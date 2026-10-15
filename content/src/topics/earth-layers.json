@@ -20,7 +20,7 @@
     "durationMin": 45,
     "scene": {
       "plugin": "gltf",
-      "asset": "models/earth-layers.glb",
+      "asset": "earth-layers.glb",
       "camera": { "position": [0, 2, 7], "target": [0, 0, 0], "fov": 45 },
       "modes": ["whole", "section"]
     },
@@ -30,8 +30,8 @@
       "geo.mantle": { "nodes": ["Mantle"] },
       "geo.outer-core": { "nodes": ["OuterCore"] },
       "geo.inner-core": { "anchor": [0, 0, 0], "nodes": ["InnerCore"] },
-      "geo.lithospheric-plate": { "anchor": [1.2, 1.9, 0.6], "nodes": ["Plate_*"] },
-      "geo.earthquake": { "anchor": [0.9, 2.0, 0.9], "nodes": ["Quake_*"] }
+      "geo.lithospheric-plate": { "anchor": [0, 1.85, 1.56], "nodes": ["Plate_*"] },
+      "geo.earthquake": { "anchor": [0.06, 1.65, 1.78], "nodes": ["Quake_*"] }
     },
     "samples": [
       { "key": "earth-layers", "title": { "ky": "Жердин катмарлары", "ru": "Оболочки Земли", "en": "Earth's layers" }, "classification": { "ky": "Кесилиш", "ru": "Разрез", "en": "Cutaway" }, "thumb": "thumbs/earth-layers.webp" },
@@ -91,7 +91,7 @@
           {
             "key": "plates",
             "focus": "geo.lithospheric-plate",
-            "camera": { "position": [2.4, 3, 3], "target": [1.2, 1.9, 0.6] },
+            "camera": { "position": [0.25, 2.8, 4.9], "target": [0.1, 1.21, 2.09] },
             "modes": { "view": "whole" },
             "text": { "ky": "Литосфера плиталарга бөлүнгөн. Инди плитасы түндүккө жылып, Тянь-Шанды азыр да көтөрүп жатат.", "ru": "Литосфера расколота на плиты. Индийская плита движется на север и до сих пор поднимает Тянь-Шань.", "en": "The lithosphere is split into plates. The Indian plate is moving north and is still lifting the Tien Shan." },
             "teacherNote": { "ky": "«Тоолордун пайда болушу» процессин ачып, кадамдарды бирге карап чыгыңыз.", "ru": "Откройте процесс «Горообразование» и разберите шаги вместе.", "en": "Open the «Mountain building» process and go through the steps together." },
@@ -100,7 +100,7 @@
           {
             "key": "earthquakes",
             "focus": "geo.earthquake",
-            "camera": { "position": [1.8, 2.8, 2.8], "target": [0.9, 2, 0.9] },
+            "camera": { "position": [0.11, 3.15, 3.39], "target": [0.06, 1.65, 1.78] },
             "text": { "ky": "Плиталардын чек арасында чыңалуу топтолуп, капыстан бошонот – жер титирейт. 1911-жылкы Кемин жер титирөөсү эң күчтүүлөрдүн бири болгон.", "ru": "На границах плит копится напряжение и внезапно разряжается – происходит землетрясение. Кеминское 1911 года было одним из сильнейших.", "en": "Stress builds up at plate boundaries and is suddenly released as an earthquake. The 1911 Kemin earthquake was one of the strongest." },
             "teacherNote": { "ky": "Жер титирөө учурунда эмне кылуу керектигин эске салыңыз: «Чөк, жабын, карма».", "ru": "Напомните правила при землетрясении: «Пригнись, укройся, держись».", "en": "Review earthquake safety: “Drop, cover, hold on”." },
             "altText": { "ky": "Очоктон ар тарапка тараган толкундар.", "ru": "Волны расходятся от очага во все стороны.", "en": "Waves spreading out in all directions from a focus." }

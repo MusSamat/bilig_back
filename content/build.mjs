@@ -16,12 +16,13 @@
  *   src/glossary/<subject>.json    { glossary: GlossaryTerm[] }   — shipped with that subject's packages
  *   src/property-types/*.json      { propertyTypes: PropertyTypeDef[] } — extends PROPERTY_TYPES
  *   src/topics/<topicKey>.json     { topic: Topic, items: Item[], version?: semver }
+ *   assets/<topicKey>/<path>       binary files of manifest path <path> (real sha256/size), ASSET.json = licence/author/source
  *
  * Runs under tsx because it imports the TypeScript contract (@bilig/content-model).
  */
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs';
-import { basename, join } from 'node:path';
+import { basename, join, normalize, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   CatalogSchema,
@@ -33,6 +34,11 @@ import {
 const ROOT = fileURLToPath(new URL('./', import.meta.url));
 const SRC = join(ROOT, 'src');
 const OUT = join(ROOT, 'packages');
+/** Binary assets: content/assets/<topicKey>/<manifest path>, described by content/assets/<topicKey>/ASSET.json. */
+const ASSETS = join(ROOT, 'assets');
+/** TZ §10: topic package ≤ 5 MB; one GLB ≤ 3 MB (asset pipeline budget). */
+const PACKAGE_BUDGET = 5 * 1024 * 1024;
+const GLB_BUDGET = 3 * 1024 * 1024;
 const CHECK = process.argv.includes('--check');
 const PARTIAL = process.argv.includes('--partial') || process.argv.some((a) => a.startsWith('--only='));
 /** Fixed build time keeps outputs reproducible; override with SOURCE_DATE (ISO). */
@@ -181,14 +187,16 @@ for (const file of jsonFiles(join(SRC, 'topics'))) {
   for (const r of topic.activities?.comparison?.rows ?? []) usedTypes.add(r);
   const extraTypes = [...usedTypes].filter((k) => propTypes.has(k)).sort().map((k) => propTypes.get(k));
 
-  // manifest: scene asset + thumbnails (binary assets are produced by the worker; hashes are placeholders until then)
+  // manifest: scene asset + thumbnails. Files present in content/assets/<topicKey>/ get their real
+  // sha256 and size; missing ones keep the placeholder (sha256("pending:<path>"), size 0).
   const paths = [...new Set([topic.scene?.asset, ...(topic.samples ?? []).map((s) => s.thumb)].filter(Boolean))];
+  const assetFiles = topicAssets(topic.key, paths, where);
   const pkg = {
     manifest: {
       topicKey: topic.key,
       version: src.version ?? '1.0.0',
       hash: '0'.repeat(64),
-      files: paths.map((p) => ({ path: p, hash: sha256(`pending:${p}`), size: 0 })),
+      files: assetFiles,
       builtAt: BUILT_AT,
     },
     subject,
@@ -222,6 +230,42 @@ for (const file of jsonFiles(join(SRC, 'topics'))) {
   pkgConcepts.forEach((c) => stats.concepts.add(c.key));
   pkgProcesses.forEach((p) => stats.processes.add(p.key));
   stats.items += items.length;
+}
+
+/**
+ * Manifest entries for a topic's files. A file that exists must be described
+ * in ASSET.json (licence, author, source: TZ A-05); the package must stay
+ * within the size budget.
+ */
+function topicAssets(topicKey, paths, where) {
+  const dir = join(ASSETS, topicKey);
+  const metaPath = join(dir, 'ASSET.json');
+  const meta = existsSync(metaPath) ? readJson(metaPath) : null;
+  const entries = new Map((meta?.files ?? []).map((f) => [f.path, f]));
+  const files = [];
+  for (const p of paths) {
+    const abs = normalize(join(dir, p));
+    if (relative(dir, abs).startsWith('..') || p === 'ASSET.json') {
+      fail(where, `asset path "${p}" leaves content/assets/${topicKey}/`);
+      continue;
+    }
+    if (!existsSync(abs)) {
+      files.push({ path: p, hash: sha256(`pending:${p}`), size: 0 });
+      continue;
+    }
+    const bytes = readFileSync(abs);
+    files.push({ path: p, hash: sha256(bytes), size: bytes.length });
+    const e = entries.get(p);
+    if (!e || !e.license || !e.author || !e.source) {
+      fail(where, `content/assets/${topicKey}/${p} needs an ASSET.json entry with license, author and source (TZ A-05)`);
+      continue;
+    }
+    if (p.endsWith('.glb') && bytes.length > GLB_BUDGET) warnings.push(`WARN ${topicKey}: ${p} is ${bytes.length} bytes (GLB budget ${GLB_BUDGET})`);
+  }
+  for (const p of entries.keys()) if (!paths.includes(p)) warnings.push(`WARN ${topicKey}: ASSET.json lists "${p}", which the topic does not use`);
+  const total = files.reduce((n, f) => n + f.size, 0);
+  if (total > PACKAGE_BUDGET) fail(where, `assets total ${total} bytes (package budget ${PACKAGE_BUDGET}, TZ §10)`);
+  return files;
 }
 
 // every unit must carry at least one topic; live subjects must have units

@@ -101,6 +101,12 @@ export class ContentService {
     return (await this.snapshot()).published.get(topicKey) ?? null;
   }
 
+  /** The published topic whose current build has this package hash (CDN stand-in lookups). */
+  async getPublishedByHash(hash: string): Promise<PublishedRec | null> {
+    for (const p of (await this.snapshot()).published.values()) if (p.build.manifest.hash === hash) return p;
+    return null;
+  }
+
   /**
    * Licence / demo gate for a topic package (TZ §2): demo topics are open to
    * everyone; others need `topic.view` plus an active school licence covering

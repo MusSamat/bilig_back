@@ -1,0 +1,112 @@
+{
+  "topicKey": "human-heart",
+  "files": [
+    {
+      "path": "human-heart.glb",
+      "license": "CC-BY-4.0",
+      "author": "Kristen Browne, Heidi Schlehlein (Human Reference Atlas, NIH HuBMAP); modified by Bilig",
+      "source": "https://humanatlas.io/3d-reference-library",
+      "sources": [
+        {
+          "title": "3D Reference Organ for Heart, Male v1.3",
+          "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/heart-male/v1.3/assets/3d-vh-m-heart.glb",
+          "landing": "https://lod.humanatlas.io/ref-organ/heart-male/v1.3",
+          "doi": "https://doi.org/10.48539/HBM564.WKNG.249",
+          "license": "CC-BY-4.0",
+          "sha256": "689df039c8bc264ea06a44cd926762976f0666c0ff2dc532d046409b185e6b0c",
+          "bytes": 4071772,
+          "triangles": 164119
+        },
+        {
+          "title": "3D Reference Organ for Blood Vasculature, Male v1.3",
+          "url": "https://cdn.humanatlas.io/digital-objects/ref-organ/blood-vasculature-male/v1.3/assets/3d-vh-m-blood-vasculature.glb",
+          "landing": "https://lod.humanatlas.io/ref-organ/blood-vasculature-male/v1.3",
+          "license": "CC-BY-4.0",
+          "sha256": "3a9fe60549769f3a27c15a0901a055e7c4fd3a9f4a37f39a77f5047f0166d4c3",
+          "bytes": 18050040,
+          "triangles": 416538,
+          "used": "19 of 87 vessel meshes (aortic root and arch with branch stumps, pulmonary trunk/arteries/veins, venae cavae, coronary arteries and sinus)"
+        }
+      ],
+      "attribution": "Heart and great vessels: \"3D Reference Organ for Heart, Male v1.3\" (https://doi.org/10.48539/HBM564.WKNG.249) and \"3D Reference Organ for Blood Vasculature, Male v1.3\" by Kristen Browne and Heidi Schlehlein, Human Reference Atlas / NIH HuBMAP, made from the Visible Human Male (National Library of Medicine); licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Modified by Bilig: subset of vessels, renamed parts, simplified, recoloured, schematic pericardium added.",
+      "downloaded": "2026-10-15",
+      "modifications": [
+        "kept the 14 heart meshes and 19 great-vessel meshes around the heart from the vasculature model (same Visible Human Male frame, no fitting)",
+        "renamed nodes to the topic concept masks: RightAtrium, LeftAtrium, RightVentricle, LeftVentricle, Valve_{Tricuspid,Mitral,Aortic,Pulmonary}, Aorta_* (ascending, arch, descending, branch stumps); papillary muscles became children of their ventricle; septum, pulmonary vessels, venae cavae and coronaries are named but not bound to a concept",
+        "added a schematic pericardium (PCA-fitted ellipsoid around the chambers; not in the source) as the isContainer shell",
+        "baked node transforms, centred on the chambers and scaled ×27.37 (metres → scene units, heart ≈ 3.4 units)",
+        "replaced materials with flat per-tissue colours (arteries red, pulmonary arteries and veins of the body blue)",
+        "gltf-transform: dedup, prune, weld, meshoptimizer simplify (ratio 0.35, error 0.0008), EXT_meshopt_compression + quantisation"
+      ],
+      "pipeline": "bilig_back/scripts/assets/human-heart.mjs",
+      "report": {
+        "sizeBefore": 22121812,
+        "sizeAfter": 834968,
+        "trianglesBefore": 580657,
+        "trianglesAfter": 116700,
+        "textures": 0,
+        "nodes": [
+          "Heart",
+          "  RightAtrium [16861]",
+          "  LeftAtrium [11880]",
+          "  RightVentricle",
+          "    RightVentricle_Papillary_Anterior [620]",
+          "    RightVentricle_Papillary_Posterior [131]",
+          "    RightVentricle_Papillary_Septal [150]",
+          "    RightVentricle_Mesh [14580]",
+          "  LeftVentricle",
+          "    LeftVentricle_Papillary_Anterolateral [488]",
+          "    LeftVentricle_Papillary_Posteromedial [564]",
+          "    LeftVentricle_Mesh [4762]",
+          "  InterventricularSeptum [4670]",
+          "  Valve_Tricuspid [4370]",
+          "  Valve_Mitral [3480]",
+          "  Valve_Aortic [2439]",
+          "  Valve_Pulmonary [6758]",
+          "  Aorta_Ascending [1110]",
+          "  Aorta_Arch [1685]",
+          "  Aorta_Descending [1744]",
+          "  Aorta_Branch_Brachiocephalic [406]",
+          "  Aorta_Branch_LeftCarotid [488]",
+          "  Aorta_Branch_LeftSubclavian [573]",
+          "  PulmonaryTrunk [2598]",
+          "  PulmonaryArtery_Left [4482]",
+          "  PulmonaryArtery_Right [2110]",
+          "  PulmonaryVein_LeftSuperior [1660]",
+          "  PulmonaryVein_LeftInferior [1854]",
+          "  PulmonaryVein_RightSuperior [1608]",
+          "  PulmonaryVein_RightInferior [2788]",
+          "  VenaCava_Superior [4874]",
+          "  VenaCava_Inferior [3900]",
+          "  Coronary_Left [4282]",
+          "  Coronary_Right [4048]",
+          "  Coronary_Diagonal [969]",
+          "  CoronarySinus [1252]",
+          "  Pericardium [2516]"
+        ]
+      }
+    },
+    {
+      "path": "thumbs/human-heart.webp",
+      "license": "CC-BY-4.0",
+      "author": "Bilig (render of human-heart.glb)",
+      "source": "https://humanatlas.io/3d-reference-library",
+      "attribution": "Heart and great vessels: \"3D Reference Organ for Heart, Male v1.3\" (https://doi.org/10.48539/HBM564.WKNG.249) and \"3D Reference Organ for Blood Vasculature, Male v1.3\" by Kristen Browne and Heidi Schlehlein, Human Reference Atlas / NIH HuBMAP, made from the Visible Human Male (National Library of Medicine); licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Modified by Bilig: subset of vessels, renamed parts, simplified, recoloured, schematic pericardium added.",
+      "downloaded": "2026-10-15",
+      "modifications": [
+        "608×400 render of human-heart.glb (three.js, headless Chromium), WebP q80"
+      ]
+    },
+    {
+      "path": "thumbs/heart-section.webp",
+      "license": "CC-BY-4.0",
+      "author": "Bilig (render of human-heart.glb)",
+      "source": "https://humanatlas.io/3d-reference-library",
+      "attribution": "Heart and great vessels: \"3D Reference Organ for Heart, Male v1.3\" (https://doi.org/10.48539/HBM564.WKNG.249) and \"3D Reference Organ for Blood Vasculature, Male v1.3\" by Kristen Browne and Heidi Schlehlein, Human Reference Atlas / NIH HuBMAP, made from the Visible Human Male (National Library of Medicine); licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Modified by Bilig: subset of vessels, renamed parts, simplified, recoloured, schematic pericardium added.",
+      "downloaded": "2026-10-15",
+      "modifications": [
+        "608×400 render of human-heart.glb cut at z = 0, pericardium hidden (three.js, headless Chromium), WebP q80"
+      ]
+    }
+  ]
+}

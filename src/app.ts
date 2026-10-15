@@ -23,6 +23,7 @@ import { registerClasses } from './modules/classes.js';
 import { registerTutor } from './modules/tutor.js';
 import { registerDecks } from './modules/decks.js';
 import { registerAdmin } from './modules/admin/index.js';
+import { registerCdn } from './modules/cdn.js';
 
 declare module 'fastify' {
   interface FastifyRequest {
@@ -163,6 +164,7 @@ export async function buildApp(deps: Deps): Promise<FastifyInstance> {
   registerTutor(app, deps);
   registerDecks(app, deps);
   registerAdmin(app, deps);
+  registerCdn(app, deps);
 
   return app;
 }

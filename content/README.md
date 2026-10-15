@@ -12,6 +12,8 @@ content/
   catalog.json               BUILD OUTPUT: groups, subjects, courses, units (server catalog base)
   packages/<topicKey>.json   BUILD OUTPUT: one validated ContentPackage per topic
   build.mjs                  assembles + validates packages from src/
+  assets/<topicKey>/         binary files of a topic (GLB, thumbs/*.webp) + ASSET.json (licence, author, source)
+  assets/CREDITS.md          attribution for every asset (CC BY text where required)
   src/                       AUTHORING SOURCES (edit these)
     curriculum.json          groups, subjects, courses, units, objectives
     concepts/<subject>.json  { "concepts": Concept[] }       the shared concept dictionary
@@ -60,9 +62,13 @@ For each `topics/<key>.json`:
    the subject's glossary, and only the extra property types the package
    uses.
 4. Writes a manifest: the scene asset and the sample thumbnails, plus a
-   sha256 over the package. Binary assets (GLB, WebP) come from the worker
-   pipeline, so until then their file hashes are placeholders
-   (`sha256("pending:<path>")`, size 0). `builtAt` is fixed (env
+   sha256 over the package. A manifest path `P` of topic `T` is the file
+   `assets/T/P`: when it exists the manifest gets its real sha256 and size
+   (and it must have an `ASSET.json` entry with `license`, `author` and
+   `source`, TZ A-05; the files of one package must stay ≤ 5 MB). Missing
+   files keep a placeholder (`sha256("pending:<path>")`, size 0) and the
+   client renders the procedural scene instead. The server serves real files
+   at `<filesBaseUrl><path>` (`/cdn/<packageHash>/<path>`, immutable). `builtAt` is fixed (env
    `SOURCE_DATE` overrides it), so builds are reproducible.
 5. Runs `validatePackage`, which checks the schema and all cross-references.
    On top of that it applies the authoring rules below.
@@ -95,8 +101,9 @@ across files: concepts, processes, items and glossary ids.
   (`BIO-7.2.1`). The topic key is the URL slug and the file name.
 - `topic.i18n` defaults to `{ ky: "machine", ru: "reviewed", en: "draft" }`.
   A native Kyrgyz reviewer flips `ky` to `reviewed`.
-- Scene plugins and their params (procedural; there are no GLB assets yet):
-  - `gltf`: `asset: "models/<key>.glb"`. Bind concepts with
+- Scene plugins and their params:
+  - `gltf`: `asset: "<key>.glb"` (file `assets/<key>/<key>.glb`; without it the
+    plugin builds a procedural scene from the same masks). Bind concepts with
     `overrides[key].nodes` (globs such as `Mito_*`) and `anchor`.
     Modes: `whole`, `section`.
   - `molecule`: `params.atoms[{id, element, position Å}]`,
@@ -141,6 +148,19 @@ it only in packages that use it.
 to `src/glossary/<subject>.json`. `forbidden` lists wrong variants that
 translators must not use. Matching is on word boundaries, so never list a
 correct inflected form, such as a genitive plural.
+
+## 3D assets
+
+Only clearly free sources: CC0, public domain / US government works, CC BY
+(with attribution). The offline pipeline lives in `scripts/assets/` (its own
+`package.json`; `npm install` there): `inspect.mjs` prints a GLB's node tree,
+triangles and part centres; one script per topic (`human-heart.mjs`,
+`earth-layers.mjs`) takes the downloaded source files as arguments, renames nodes to the concept
+masks, simplifies, compresses with meshopt and writes WebP textures
+(≤ 1024 px; KTX2 once `toktx` is in the pipeline). Budgets: ≤ 150k triangles
+and ≤ 3 MB per GLB. Record every file in `assets/<key>/ASSET.json` and
+`assets/CREDITS.md`, then rebuild. Done: `human-heart` (Human Reference Atlas,
+CC BY 4.0), `earth-layers` (own geometry + NASA Blue Marble).
 
 ## Scale test (TZ §10)
 
