@@ -53,7 +53,7 @@ export function buildServer(): FastifyInstance {
     origin: (process.env.CORS_ORIGIN ?? 'http://localhost:5173').split(','),
   });
 
-  app.decorateRequest('principal', null);
+  app.decorateRequest('principal', null as unknown as Principal);
   app.addHook('preHandler', async (req) => {
     req.principal = principalFromAuth(req.headers.authorization);
   });

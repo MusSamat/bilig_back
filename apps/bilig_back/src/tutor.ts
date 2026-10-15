@@ -58,7 +58,6 @@ export async function askTutor(req: TutorRequest): Promise<string> {
       {
         model: 'claude-opus-4-8',
         max_tokens: 1024,
-        thinking: { type: 'adaptive' },
         system: systemPrompt(req),
         messages: [{ role: 'user', content: req.question }],
       },
