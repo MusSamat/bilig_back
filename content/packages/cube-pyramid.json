@@ -1,0 +1,1977 @@
+{
+  "manifest": {
+    "topicKey": "cube-pyramid",
+    "version": "1.0.0",
+    "hash": "2b7456a9d11730bc4594b5de16e3e5c20857c64d5e9445545ec169ea74bf5f17",
+    "files": [
+      {
+        "path": "thumbs/cube.webp",
+        "hash": "30318e325c67a13a090589978cf41fe9ac0e6ae6aa09008b269b1e7aa32c0e05",
+        "size": 0
+      },
+      {
+        "path": "thumbs/square-pyramid.webp",
+        "hash": "84a114eba820e9511eb72f1289227ae3417be8fad16017e2a4a5b339414ae6c4",
+        "size": 0
+      },
+      {
+        "path": "thumbs/tetrahedron.webp",
+        "hash": "e86f5fed044786241462bd1284ba3dee16f718139502f0d5c2ef4db2bd2be8fc",
+        "size": 0
+      },
+      {
+        "path": "thumbs/triangular-prism.webp",
+        "hash": "ed0555fac65dc2feaeba4862516a00f5855a8708fd057be9f5af47e0cdb2b10e",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "math",
+    "icon": "sigma",
+    "hue": 45,
+    "group": "exact",
+    "order": 3,
+    "status": "live",
+    "title": {
+      "ky": "Математика",
+      "ru": "Математика",
+      "en": "Mathematics"
+    }
+  },
+  "course": {
+    "key": "math.g10",
+    "subjectKey": "math",
+    "grade": 10,
+    "curriculum": "kg-2024",
+    "title": {
+      "ky": "Геометрия, 10-класс",
+      "ru": "Геометрия, 10 класс",
+      "en": "Geometry, grade 10"
+    }
+  },
+  "unit": {
+    "key": "math.g10.solids",
+    "courseKey": "math.g10",
+    "order": 1,
+    "title": {
+      "ky": "Мейкиндиктеги фигуралар",
+      "ru": "Пространственные фигуры",
+      "en": "Solid figures"
+    }
+  },
+  "objectives": [
+    {
+      "key": "math.g10.solids.o1",
+      "code": "MATH-10.7.1",
+      "unitKey": "math.g10.solids",
+      "text": {
+        "ky": "Көп грандыктардын элементтерин атоо жана Эйлер формуласын текшерүү.",
+        "ru": "Называть элементы многогранников и проверять формулу Эйлера.",
+        "en": "Name the elements of polyhedra and check Euler's formula."
+      }
+    },
+    {
+      "key": "math.g10.solids.o2",
+      "code": "MATH-10.7.2",
+      "unitKey": "math.g10.solids",
+      "text": {
+        "ky": "Призманын, пирамиданын, цилиндрдин жана шардын көлөмүн эсептөө.",
+        "ru": "Вычислять объёмы призмы, пирамиды, цилиндра и шара.",
+        "en": "Calculate the volumes of prisms, pyramids, cylinders and spheres."
+      }
+    }
+  ],
+  "topic": {
+    "key": "cube-pyramid",
+    "unitKey": "math.g10.solids",
+    "status": "published",
+    "title": {
+      "ky": "Куб жана пирамида",
+      "ru": "Куб и пирамида",
+      "en": "Cube and pyramid"
+    },
+    "formula": "V = \\tfrac{1}{3}Sh",
+    "classification": {
+      "ky": "Көп грандыктар",
+      "ru": "Многогранники",
+      "en": "Polyhedra"
+    },
+    "description": {
+      "ky": "Куб жана төрт бурчтуу пирамида – эң жөнөкөй көп грандыктар. Алардын грандарын, кырларын жана чокуларын санап, Эйлер формуласын текшерип, көлөмдөрүн салыштырабыз.",
+      "ru": "Куб и четырёхугольная пирамида – простейшие многогранники. Считаем их грани, рёбра и вершины, проверяем формулу Эйлера и сравниваем объёмы.",
+      "en": "The cube and the square pyramid are the simplest polyhedra. We count their faces, edges and vertices, check Euler's formula and compare their volumes."
+    },
+    "goal": {
+      "ky": "Көп грандыктардын элементтерин атоо жана Эйлер формуласын текшерүү (MATH-10.7.1), пирамиданын көлөмүн эсептөө (MATH-10.7.2).",
+      "ru": "Называть элементы многогранников и проверять формулу Эйлера (MATH-10.7.1), вычислять объём пирамиды (MATH-10.7.2).",
+      "en": "Name the elements of polyhedra and check Euler's formula (MATH-10.7.1), and calculate a pyramid's volume (MATH-10.7.2)."
+    },
+    "objectiveKeys": [
+      "math.g10.solids.o1",
+      "math.g10.solids.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "geometry",
+      "params": {
+        "solids": [
+          {
+            "id": "cube",
+            "type": "cube",
+            "edge": 2,
+            "position": [
+              -2,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "pyramid",
+            "type": "pyramid",
+            "baseEdge": 2,
+            "height": 2,
+            "position": [
+              2,
+              0,
+              0
+            ]
+          }
+        ],
+        "showDimensions": true,
+        "unit": "cm"
+      },
+      "camera": {
+        "position": [
+          0,
+          3,
+          8
+        ],
+        "target": [
+          0,
+          0.5,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "solid",
+        "wireframe"
+      ]
+    },
+    "conceptKeys": [
+      "math.cube",
+      "math.pyramid",
+      "math.face",
+      "math.edge",
+      "math.vertex",
+      "math.pyramid-height"
+    ],
+    "overrides": {
+      "math.cube": {
+        "anchor": [
+          -2,
+          1.3,
+          0
+        ],
+        "nodes": [
+          "cube"
+        ]
+      },
+      "math.pyramid": {
+        "anchor": [
+          2,
+          2.3,
+          0
+        ],
+        "nodes": [
+          "pyramid"
+        ]
+      },
+      "math.face": {
+        "anchor": [
+          -2,
+          0,
+          1
+        ],
+        "nodes": [
+          "cube_Face_*",
+          "pyramid_Face_*"
+        ]
+      },
+      "math.edge": {
+        "anchor": [
+          -1,
+          1,
+          1
+        ],
+        "nodes": [
+          "cube_Edge_*",
+          "pyramid_Edge_*"
+        ]
+      },
+      "math.vertex": {
+        "anchor": [
+          2,
+          2,
+          0
+        ],
+        "nodes": [
+          "cube_Vertex_*",
+          "pyramid_Vertex_*"
+        ]
+      },
+      "math.pyramid-height": {
+        "anchor": [
+          2,
+          1,
+          0
+        ],
+        "nodes": [
+          "pyramid_Height"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "cube",
+        "title": {
+          "ky": "Куб",
+          "ru": "Куб",
+          "en": "Cube"
+        },
+        "classification": {
+          "ky": "Туура көп грандык",
+          "ru": "Правильный многогранник",
+          "en": "Regular polyhedron"
+        },
+        "thumb": "thumbs/cube.webp"
+      },
+      {
+        "key": "square-pyramid",
+        "title": {
+          "ky": "Төрт бурчтуу пирамида",
+          "ru": "Четырёхугольная пирамида",
+          "en": "Square pyramid"
+        },
+        "classification": {
+          "ky": "Пирамида",
+          "ru": "Пирамида",
+          "en": "Pyramid"
+        },
+        "thumb": "thumbs/square-pyramid.webp"
+      },
+      {
+        "key": "tetrahedron",
+        "title": {
+          "ky": "Тетраэдр",
+          "ru": "Тетраэдр",
+          "en": "Tetrahedron"
+        },
+        "classification": {
+          "ky": "Үч бурчтуу пирамида",
+          "ru": "Треугольная пирамида",
+          "en": "Triangular pyramid"
+        },
+        "thumb": "thumbs/tetrahedron.webp"
+      },
+      {
+        "key": "triangular-prism",
+        "title": {
+          "ky": "Үч бурчтуу призма",
+          "ru": "Треугольная призма",
+          "en": "Triangular prism"
+        },
+        "classification": {
+          "ky": "Призма",
+          "ru": "Призма",
+          "en": "Prism"
+        },
+        "thumb": "thumbs/triangular-prism.webp"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                3,
+                8
+              ],
+              "target": [
+                0,
+                0.5,
+                0
+              ]
+            },
+            "text": {
+              "ky": "Сол жакта – куб, оң жакта – төрт бурчтуу пирамида. Экөөнүн тең кыры 2 см, пирамиданын бийиктиги да 2 см.",
+              "ru": "Слева куб, справа четырёхугольная пирамида. У обоих рёбра основания 2 см, высота пирамиды тоже 2 см.",
+              "en": "On the left is a cube, on the right a square pyramid. Both have 2 cm base edges, and the pyramid is 2 cm tall."
+            },
+            "teacherNote": {
+              "ky": "Окуучулардан айлана-чөйрөдөгү куб жана пирамида формасындагы буюмдарды атоону сураңыз.",
+              "ru": "Попросите назвать предметы вокруг в форме куба и пирамиды.",
+              "en": "Ask pupils to name objects around them shaped like cubes and pyramids."
+            },
+            "altText": {
+              "ky": "Катар турган куб жана пирамида.",
+              "ru": "Куб и пирамида рядом.",
+              "en": "A cube and a pyramid side by side."
+            }
+          },
+          {
+            "key": "faces",
+            "modes": {
+              "view": "solid"
+            },
+            "focus": "math.face",
+            "text": {
+              "ky": "Грандар – жалпак беттер. Кубдун 6 граны квадрат, пирамиданын негизи квадрат жана 4 каптал граны үч бурчтук.",
+              "ru": "Грани – плоские поверхности. У куба 6 граней-квадратов, у пирамиды квадратное основание и 4 треугольные боковые грани.",
+              "en": "Faces are the flat surfaces. The cube has 6 square faces; the pyramid has a square base and 4 triangular sides."
+            },
+            "teacherNote": {
+              "ky": "Грандарды түс менен бөлүп санаңыз.",
+              "ru": "Посчитайте грани, выделяя их цветом.",
+              "en": "Count the faces, highlighting them in colour."
+            },
+            "altText": {
+              "ky": "Кубдун жана пирамиданын грандары ар башка түстө.",
+              "ru": "Грани куба и пирамиды выделены разными цветами.",
+              "en": "The faces of the cube and pyramid in different colours."
+            }
+          },
+          {
+            "key": "edges",
+            "modes": {
+              "view": "wireframe"
+            },
+            "focus": "math.edge",
+            "text": {
+              "ky": "Кырлар – грандардын кесилиштери. Каркас режиминде санайбыз: кубда 12, пирамидада 8.",
+              "ru": "Рёбра – линии пересечения граней. Считаем в режиме каркаса: у куба 12, у пирамиды 8.",
+              "en": "Edges are where faces meet. Count them in wireframe mode: 12 on the cube, 8 on the pyramid."
+            },
+            "teacherNote": {
+              "ky": "«6 × 4 = 24» деген катаны талкуулаңыз: ар бир кыр эки гранга таандык.",
+              "ru": "Обсудите ошибку «6 × 4 = 24»: каждое ребро общее для двух граней.",
+              "en": "Discuss the '6 × 4 = 24' mistake: each edge is shared by two faces."
+            },
+            "altText": {
+              "ky": "Каркас режиминдеги эки фигуранын кырлары.",
+              "ru": "Рёбра двух фигур в режиме каркаса.",
+              "en": "The edges of both shapes in wireframe mode."
+            }
+          },
+          {
+            "key": "vertices",
+            "modes": {
+              "view": "wireframe"
+            },
+            "focus": "math.vertex",
+            "text": {
+              "ky": "Чокулар – кырлар кезиккен чекиттер: кубда 8, пирамидада 5. Эйлер: 8 − 12 + 6 = 2 жана 5 − 8 + 5 = 2.",
+              "ru": "Вершины – точки, где сходятся рёбра: у куба 8, у пирамиды 5. Эйлер: 8 − 12 + 6 = 2 и 5 − 8 + 5 = 2.",
+              "en": "Vertices are where edges meet: 8 on the cube, 5 on the pyramid. Euler: 8 − 12 + 6 = 2 and 5 − 8 + 5 = 2."
+            },
+            "teacherNote": {
+              "ky": "Тетраэдр жана призма образецтери үчүн да Эйлерди текшертиңиз.",
+              "ru": "Попросите проверить формулу Эйлера и для тетраэдра и призмы.",
+              "en": "Have pupils check Euler's formula for the tetrahedron and prism samples too."
+            },
+            "altText": {
+              "ky": "Чокулар чекит менен белгиленген.",
+              "ru": "Вершины отмечены точками.",
+              "en": "The vertices marked with dots."
+            }
+          },
+          {
+            "key": "height",
+            "visibility": {
+              "hide": [
+                "math.cube"
+              ]
+            },
+            "focus": "math.pyramid-height",
+            "text": {
+              "ky": "Пирамиданын бийиктиги чокудан негиздин борборуна тик түшөт: h = 2 см.",
+              "ru": "Высота пирамиды опускается из вершины в центр основания: h = 2 см.",
+              "en": "The pyramid's height drops from the apex straight to the centre of the base: h = 2 cm."
+            },
+            "teacherNote": {
+              "ky": "Бийиктик каптал кырдан кыска экенин көрсөтүңүз.",
+              "ru": "Покажите, что высота короче бокового ребра.",
+              "en": "Show that the height is shorter than a side edge."
+            },
+            "altText": {
+              "ky": "Пирамиданын ичиндеги тик үзүк сызык – бийиктик.",
+              "ru": "Вертикальный пунктир внутри пирамиды – высота.",
+              "en": "A vertical dashed line inside the pyramid – the height."
+            }
+          },
+          {
+            "key": "volume",
+            "modes": {
+              "view": "solid"
+            },
+            "focus": "math.pyramid",
+            "text": {
+              "ky": "Кубдун көлөмү 8 см³, пирамиданыкы – анын үчтөн бири, ≈ 2,67 см³. Эмне үчүн так ⅓?",
+              "ru": "Объём куба 8 см³, пирамиды – треть от него, ≈ 2,67 см³. Почему ровно ⅓?",
+              "en": "The cube's volume is 8 cm³ and the pyramid's a third of that, ≈ 2.67 cm³. Why exactly ⅓?"
+            },
+            "teacherNote": {
+              "ky": "«Пирамиданын көлөмү» процессин иштетиңиз: куб үч пирамидага бөлүнөт.",
+              "ru": "Запустите процесс «Объём пирамиды»: куб делится на три пирамиды.",
+              "en": "Run the 'Volume of a pyramid' process: the cube splits into three pyramids."
+            },
+            "altText": {
+              "ky": "Куб жана пирамида, үстүндө көлөмдөрү жазылган.",
+              "ru": "Куб и пирамида с подписанными объёмами.",
+              "en": "The cube and pyramid labelled with their volumes."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "math.pyramid-volume"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "math.cube"
+          },
+          {
+            "kind": "concept",
+            "key": "math.pyramid"
+          }
+        ],
+        "rows": [
+          "faces",
+          "edges",
+          "vertices",
+          "volume",
+          "formula"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "math.q.cube-edges",
+          "math.q.polyhedron-elements",
+          "math.q.solid-formula",
+          "math.q.find-apex",
+          "math.q.euler-edges",
+          "math.q.pyramid-volume",
+          "math.q.pyramid-third"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "e",
+          "title": {
+            "ky": "Таңгак жана жүк ташуу",
+            "ru": "Упаковка и перевозки",
+            "en": "Packaging and shipping"
+          },
+          "text": {
+            "ky": "Логистикада куб жана тик бурчтуу кутулар колдонулат – алар контейнерге боштуксуз жайгашат.",
+            "ru": "В логистике используют кубические и прямоугольные коробки – они заполняют контейнер без пустот.",
+            "en": "Logistics uses cube and box shapes because they fill a container with no gaps."
+          }
+        },
+        {
+          "field": "s",
+          "title": {
+            "ky": "Кристаллдар",
+            "ru": "Кристаллы",
+            "en": "Crystals"
+          },
+          "text": {
+            "ky": "Туздун кристаллдары куб, ал эми алмаздын кээ бир кристаллдары октаэдр формасында өсөт – табият да көп грандыктарды «курат».",
+            "ru": "Кристаллы соли растут кубиками, а некоторые кристаллы алмаза – октаэдрами: природа тоже «строит» многогранники.",
+            "en": "Salt crystals grow as cubes and some diamond crystals as octahedra – nature builds polyhedra too."
+          }
+        },
+        {
+          "field": "m",
+          "title": {
+            "ky": "Эйлер формуласы",
+            "ru": "Формула Эйлера",
+            "en": "Euler's formula"
+          },
+          "text": {
+            "ky": "Ар кандай томпок көп грандык үчүн V − E + F = 2 – бул топологиянын алгачкы теоремаларынын бири.",
+            "ru": "Для любого выпуклого многогранника V − E + F = 2 – одна из первых теорем топологии.",
+            "en": "For every convex polyhedron V − E + F = 2 – one of the first theorems of topology."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Кант кубиги",
+            "ru": "Кубик сахара",
+            "en": "A sugar cube"
+          },
+          "text": {
+            "ky": "Чайга салган кант кубигинин 6 граны, 12 кыры жана 8 бурч-чокусу бар.",
+            "ru": "У кубика сахара для чая 6 граней, 12 рёбер и 8 уголков-вершин.",
+            "en": "A sugar cube for your tea has 6 faces, 12 edges and 8 corner vertices."
+          }
+        },
+        {
+          "title": {
+            "ky": "Кумдан пирамида",
+            "ru": "Пирамида из песка",
+            "en": "A sand pyramid"
+          },
+          "text": {
+            "ky": "Сууну куб формасындагы идиштен пирамида формасындагы идишке куйсаң, ал үч жолу толот.",
+            "ru": "Если переливать воду из кубической формочки в пирамидальную с тем же основанием и высотой, пирамидка наполнится трижды.",
+            "en": "Pour water from a cube mould into a pyramid mould with the same base and height and you can fill the pyramid three times."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "math.cube",
+      "kind": "solid",
+      "hue": 30,
+      "isContainer": true,
+      "title": {
+        "ky": "Куб",
+        "ru": "Куб",
+        "en": "Cube"
+      },
+      "subtitle": {
+        "ky": "Туура көп грандык",
+        "ru": "Правильный многогранник",
+        "en": "A regular polyhedron"
+      },
+      "description": {
+        "ky": "Алты грандын баары бирдей квадрат болгон көп грандык. Бул жерде кыры a = 2 см, көлөмү V = a³ = 8 см³.",
+        "ru": "Многогранник, все шесть граней которого – одинаковые квадраты. Здесь ребро a = 2 см, объём V = a³ = 8 см³.",
+        "en": "A polyhedron whose six faces are all equal squares. Here the edge a = 2 cm and the volume V = a³ = 8 cm³."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "faces",
+          "value": 6
+        },
+        {
+          "kind": "quantity",
+          "type": "edges",
+          "value": 12
+        },
+        {
+          "kind": "quantity",
+          "type": "vertices",
+          "value": 8
+        },
+        {
+          "kind": "quantity",
+          "type": "volume",
+          "value": 8
+        },
+        {
+          "kind": "quantity",
+          "type": "area",
+          "value": 24
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "V = a^3"
+        }
+      ],
+      "related": [
+        "math.face",
+        "math.edge",
+        "math.vertex",
+        "math.pyramid"
+      ],
+      "misconceptions": [
+        {
+          "key": "math.m.cube-edges",
+          "text": {
+            "ky": "Кубдун 8 кыры бар.",
+            "ru": "У куба 8 рёбер.",
+            "en": "A cube has 8 edges."
+          },
+          "correction": {
+            "ky": "Кубдун 8 чокусу жана 12 кыры бар: 4 үстүндө, 4 астында жана 4 тик.",
+            "ru": "У куба 8 вершин и 12 рёбер: 4 сверху, 4 снизу и 4 вертикальных.",
+            "en": "A cube has 8 vertices and 12 edges: 4 on top, 4 at the bottom and 4 upright."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Кырын эки эсе чоңойтсоң, кубдун көлөмү 8 эсе чоңоет.",
+        "ru": "Если удвоить ребро куба, его объём вырастет в 8 раз.",
+        "en": "Double the edge of a cube and its volume grows 8 times."
+      },
+      "analogy": {
+        "ky": "Оюн сөөгү",
+        "ru": "Игральный кубик",
+        "en": "A dice"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Кант кубиктери жана таңгактар",
+              "ru": "Упаковка и тара",
+              "en": "Packaging"
+            },
+            "text": {
+              "ky": "Таңгак инженерлери кутуларды куб же параллелепипед формасында жасашат – алар жүк ташуучу машинага боштуксуз жайгашат.",
+              "ru": "Инженеры упаковки делают коробки кубическими или прямоугольными – они укладываются в грузовик без пустот.",
+              "en": "Packaging engineers make boxes as cubes or cuboids because they stack in a lorry with no gaps."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Туздун кристаллы",
+              "ru": "Кристалл соли",
+              "en": "Salt crystals"
+            },
+            "text": {
+              "ky": "Аш тузунун (NaCl) кристаллдары табигый түрдө куб формасында өсөт.",
+              "ru": "Кристаллы поваренной соли (NaCl) естественно растут в форме кубиков.",
+              "en": "Crystals of table salt (NaCl) grow naturally as little cubes."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Оюн кубиги",
+              "ru": "Игральный кубик",
+              "en": "A dice"
+            },
+            "text": {
+              "ky": "Оюн кубигинин 6 жагы бар – 1ден 6га чейинки чекиттер ар бир гранда.",
+              "ru": "У игрального кубика 6 граней – на каждой от 1 до 6 точек.",
+              "en": "A dice has 6 faces, with 1 to 6 dots on each."
+            }
+          },
+          {
+            "title": {
+              "ky": "Рубик кубиги",
+              "ru": "Кубик Рубика",
+              "en": "A Rubik's cube"
+            },
+            "text": {
+              "ky": "Рубик кубиги – 3 × 3 × 3 = 27 кичине кубдан турган чоң куб.",
+              "ru": "Кубик Рубика – большой куб из 3 × 3 × 3 = 27 маленьких кубиков.",
+              "en": "A Rubik's cube is one big cube built from 3 × 3 × 3 = 27 little cubes."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "math.pyramid",
+      "kind": "solid",
+      "hue": 15,
+      "isContainer": true,
+      "title": {
+        "ky": "Төрт бурчтуу пирамида",
+        "ru": "Четырёхугольная пирамида",
+        "en": "Square pyramid"
+      },
+      "subtitle": {
+        "ky": "Негизи квадрат",
+        "ru": "Основание – квадрат",
+        "en": "A square base"
+      },
+      "description": {
+        "ky": "Негизи квадрат, каптал грандары бир чокуда биригишкен төрт үч бурчтук болгон көп грандык. Көлөмү V = ⅓Sh = ⅓ · 4 · 2 ≈ 2,67 см³.",
+        "ru": "Многогранник с квадратным основанием и четырьмя треугольными боковыми гранями, сходящимися в одной вершине. Объём V = ⅓Sh = ⅓ · 4 · 2 ≈ 2,67 см³.",
+        "en": "A polyhedron with a square base and four triangular sides meeting at one apex. Volume V = ⅓Sh = ⅓ × 4 × 2 ≈ 2.67 cm³."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "faces",
+          "value": 5
+        },
+        {
+          "kind": "quantity",
+          "type": "edges",
+          "value": 8
+        },
+        {
+          "kind": "quantity",
+          "type": "vertices",
+          "value": 5
+        },
+        {
+          "kind": "quantity",
+          "type": "volume",
+          "value": 2.667,
+          "approx": true
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "V = \\tfrac{1}{3}Sh"
+        }
+      ],
+      "related": [
+        "math.face",
+        "math.pyramid-height",
+        "math.cube"
+      ],
+      "misconceptions": [
+        {
+          "key": "math.m.pyramid-half",
+          "text": {
+            "ky": "Пирамиданын көлөмү ошол эле негиздеги жана бийиктиктеги призманын жарымына барабар.",
+            "ru": "Объём пирамиды – половина объёма призмы с тем же основанием и высотой.",
+            "en": "A pyramid's volume is half that of a prism with the same base and height."
+          },
+          "correction": {
+            "ky": "Пирамиданын көлөмү призманын үчтөн бирине барабар: V = ⅓Sh.",
+            "ru": "Объём пирамиды равен трети объёма такой призмы: V = ⅓Sh.",
+            "en": "A pyramid's volume is one third of that prism: V = ⅓Sh."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Хеопс пирамидасынын бийиктиги азыр болжол менен 139 м, ал 3800 жылдан ашык убакыт бою дүйнөдөгү эң бийик курулуш болгон.",
+        "ru": "Пирамида Хеопса сейчас высотой около 139 м и более 3800 лет была самым высоким сооружением мира.",
+        "en": "The Great Pyramid is now about 139 m tall and was the world's tallest structure for over 3,800 years."
+      },
+      "analogy": {
+        "ky": "Чатыр",
+        "ru": "Палатка",
+        "en": "A tent"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Чатырлар жана үйлөрдүн чатыры",
+              "ru": "Крыши домов",
+              "en": "Roofs"
+            },
+            "text": {
+              "ky": "Төрт каптал чатыр – пирамидага окшош; инженерлер анын жантаюусун жамгыр жана кар оңой агып түшкөндөй кылып тандашат.",
+              "ru": "Четырёхскатная крыша похожа на пирамиду; инженеры подбирают уклон, чтобы с неё легко стекали дождь и снег.",
+              "en": "A hipped roof looks like a pyramid; engineers choose its slope so that rain and snow run off easily."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Үчтөн бир",
+              "ru": "Одна треть",
+              "en": "One third"
+            },
+            "text": {
+              "ky": "Үч бирдей пирамида бир кубду толтурат – ошондуктан формулада ⅓ бар.",
+              "ru": "Три одинаковые пирамиды заполняют куб – поэтому в формуле стоит ⅓.",
+              "en": "Three equal pyramids fill a cube – that is why the formula has ⅓."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Туристтик чатыр",
+              "ru": "Палатка",
+              "en": "A tent"
+            },
+            "text": {
+              "ky": "Жогору жагы бир чекитке биригип, асты төрт бурчтуу чатыр – пирамида.",
+              "ru": "Палатка, у которой верх сходится в одну точку, а низ квадратный, – пирамида.",
+              "en": "A tent that meets in a point at the top and has a square bottom is a pyramid."
+            }
+          },
+          {
+            "title": {
+              "ky": "Муз каймак",
+              "ru": "Рожок мороженого",
+              "en": "An ice-cream cone"
+            },
+            "text": {
+              "ky": "Пирамида – чокусу бар «учтуу» тело, муз каймактын рогу сыяктуу, бирок негизи тегерек эмес, квадрат.",
+              "ru": "Пирамида – «остроконечное» тело, как рожок мороженого, только основание не круглое, а квадратное.",
+              "en": "A pyramid is a pointy shape like an ice-cream cone, but with a square base instead of a round one."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "math.face",
+      "kind": "element",
+      "hue": 190,
+      "isContainer": true,
+      "title": {
+        "ky": "Гран",
+        "ru": "Грань",
+        "en": "Face"
+      },
+      "subtitle": {
+        "ky": "Көп грандыктын бети",
+        "ru": "Плоская сторона",
+        "en": "A flat side"
+      },
+      "description": {
+        "ky": "Көп грандыкты чектеген жалпак көп бурчтук. Кубдун 6 граны – квадраттар, пирамиданын негизи – квадрат, каптал грандары – үч бурчтуктар.",
+        "ru": "Плоский многоугольник, ограничивающий многогранник. У куба 6 граней-квадратов, у пирамиды основание – квадрат, боковые грани – треугольники.",
+        "en": "A flat polygon that bounds a polyhedron. A cube has 6 square faces; a pyramid has a square base and triangular side faces."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Көп бурчтук (квадрат же үч бурчтук)",
+            "ru": "Многоугольник (квадрат или треугольник)",
+            "en": "Polygon (square or triangle)"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Телонун сырткы бети",
+            "ru": "Поверхность тела",
+            "en": "The surface of the solid"
+          }
+        }
+      ],
+      "related": [
+        "math.edge",
+        "math.cube"
+      ],
+      "misconceptions": [
+        {
+          "key": "math.m.face-edge",
+          "text": {
+            "ky": "Гран жана кыр – бир эле нерсе.",
+            "ru": "Грань и ребро – одно и то же.",
+            "en": "A face and an edge are the same thing."
+          },
+          "correction": {
+            "ky": "Гран – жалпак бет, кыр – эки грандын кесилишкен кесиндиси.",
+            "ru": "Грань – плоская поверхность, ребро – отрезок, где встречаются две грани.",
+            "en": "A face is a flat surface; an edge is the line segment where two faces meet."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Футбол тобу 12 беш бурчтуу жана 20 алты бурчтуу «грандан» тигилет.",
+        "ru": "Футбольный мяч сшивают из 12 пятиугольных и 20 шестиугольных «граней».",
+        "en": "A classic football is stitched from 12 pentagon and 20 hexagon 'faces'."
+      },
+      "analogy": {
+        "ky": "Кутунун капталы",
+        "ru": "Стенка коробки",
+        "en": "The side of a box"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "m",
+            "title": {
+              "ky": "Бетинин аянты",
+              "ru": "Площадь поверхности",
+              "en": "Surface area"
+            },
+            "text": {
+              "ky": "Кубдун бетинин аянты 6 грандын аянттарынын суммасы: 6a² = 6 · 4 = 24 см².",
+              "ru": "Площадь поверхности куба – сумма площадей 6 граней: 6a² = 6 · 4 = 24 см².",
+              "en": "A cube's surface area is the sum of its 6 faces: 6a² = 6 × 4 = 24 cm²."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "3D-моделдөө",
+              "ru": "3D-моделирование",
+              "en": "3D modelling"
+            },
+            "text": {
+              "ky": "Компьютер оюндарындагы бардык 3D-фигуралар миллиондогон кичинекей үч бурчтуу грандардан турат.",
+              "ru": "Все 3D-фигуры в компьютерных играх состоят из миллионов маленьких треугольных граней.",
+              "en": "Every 3D shape in a video game is built from millions of tiny triangular faces."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кутунун капталдары",
+              "ru": "Стенки коробки",
+              "en": "The sides of a box"
+            },
+            "text": {
+              "ky": "Кутунун ар бир капталы – гран. Бут кийим кутусунун 6 граны бар.",
+              "ru": "Каждая стенка коробки – грань. У коробки от обуви 6 граней.",
+              "en": "Each side of a box is a face. A shoebox has 6 faces."
+            }
+          },
+          {
+            "title": {
+              "ky": "Бармактын изи",
+              "ru": "Отпечаток",
+              "en": "A print"
+            },
+            "text": {
+              "ky": "Кубикти боёкко малып кагазга бассаң, анын бир граны – квадрат из калат.",
+              "ru": "Окуни кубик в краску и прижми к бумаге – отпечатается одна грань-квадрат.",
+              "en": "Dip a cube in paint and press it on paper: one square face prints."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "math.edge",
+      "kind": "element",
+      "hue": 220,
+      "isContainer": false,
+      "title": {
+        "ky": "Кыр",
+        "ru": "Ребро",
+        "en": "Edge"
+      },
+      "subtitle": {
+        "ky": "Грандардын кесилиши",
+        "ru": "Где встречаются грани",
+        "en": "Where faces meet"
+      },
+      "description": {
+        "ky": "Эки грандын жалпы жагы болгон кесинди. Кубдун 12 кыры бар, ар бири 2 см.",
+        "ru": "Отрезок – общая сторона двух граней. У куба 12 рёбер, каждое по 2 см.",
+        "en": "A line segment shared by two faces. A cube has 12 edges, each 2 cm long."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "length",
+          "value": 2,
+          "unit": "cm"
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Эки грандын чек арасы",
+            "ru": "Граница двух граней",
+            "en": "The border between two faces"
+          }
+        }
+      ],
+      "related": [
+        "math.face",
+        "math.vertex"
+      ],
+      "misconceptions": [
+        {
+          "key": "math.m.edge-count",
+          "text": {
+            "ky": "Кырларды санаганда ар бир гранды өзүнчө саноо керек: 6 × 4 = 24.",
+            "ru": "Чтобы сосчитать рёбра, надо просто умножить: 6 граней × 4 = 24.",
+            "en": "To count edges just multiply: 6 faces × 4 = 24."
+          },
+          "correction": {
+            "ky": "Ар бир кыр эки гранга таандык, ошондуктан 24ти экиге бөлөбүз: 12 кыр.",
+            "ru": "Каждое ребро принадлежит двум граням, поэтому 24 делим на 2: 12 рёбер.",
+            "en": "Each edge belongs to two faces, so divide 24 by 2: 12 edges."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Кубдун бардык кырларынын узундугунун суммасы 12a – 2 см кыры бар куб үчүн 24 см.",
+        "ru": "Сумма длин всех рёбер куба – 12a, то есть 24 см для куба с ребром 2 см.",
+        "en": "The total length of a cube's edges is 12a – 24 cm for a 2 cm cube."
+      },
+      "analogy": {
+        "ky": "Кутунун бүктөмү",
+        "ru": "Сгиб коробки",
+        "en": "The fold of a box"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Каркастуу курулуштар",
+              "ru": "Каркасные конструкции",
+              "en": "Frame structures"
+            },
+            "text": {
+              "ky": "Бийик мунаралардын темир каркасы – кырлардын торчосу; ал аз материал менен бекем курулат.",
+              "ru": "Металлический каркас вышек – сетка из рёбер; он прочный и требует мало материала.",
+              "en": "The steel frame of a tower is a network of edges – strong yet using little material."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Чиймелер",
+              "ru": "Чертежи",
+              "en": "Technical drawings"
+            },
+            "text": {
+              "ky": "Инженердик чиймеде тетиктин көрүнгөн кырлары туташ, көрүнбөгөндөрү үзүк сызык менен чийилет.",
+              "ru": "На инженерном чертеже видимые рёбра детали рисуют сплошной линией, невидимые – штриховой.",
+              "en": "In engineering drawings visible edges are drawn as solid lines and hidden ones as dashed lines."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Столдун кыры",
+              "ru": "Край стола",
+              "en": "The edge of a table"
+            },
+            "text": {
+              "ky": "Столдун учтуу кырына колуңду тийгизсең – бул кыр, эки бет кезиккен жер.",
+              "ru": "Проведи рукой по острому краю стола – это ребро, где встречаются две поверхности.",
+              "en": "Run your hand along the sharp edge of a table – that is where two surfaces meet."
+            }
+          },
+          {
+            "title": {
+              "ky": "Кагаз кутунун бүктөмү",
+              "ru": "Сгиб картонной коробки",
+              "en": "A cardboard fold"
+            },
+            "text": {
+              "ky": "Картонду бүксөң, бүктөлгөн сызык кыр болуп калат.",
+              "ru": "Согни картон – линия сгиба станет ребром.",
+              "en": "Fold some cardboard and the fold line becomes an edge."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "math.vertex",
+      "kind": "element",
+      "hue": 330,
+      "isContainer": false,
+      "title": {
+        "ky": "Чоку",
+        "ru": "Вершина",
+        "en": "Vertex"
+      },
+      "subtitle": {
+        "ky": "Кырлардын кесилиши",
+        "ru": "Где встречаются рёбра",
+        "en": "Where edges meet"
+      },
+      "description": {
+        "ky": "Бир нече кыр кезиккен чекит. Кубдун 8, пирамиданын 5 чокусу бар. Эйлер формуласы: чокулар − кырлар + грандар = 2.",
+        "ru": "Точка, в которой сходятся несколько рёбер. У куба 8 вершин, у пирамиды – 5. Формула Эйлера: вершины − рёбра + грани = 2.",
+        "en": "A point where several edges meet. A cube has 8 vertices and a pyramid 5. Euler's formula: vertices − edges + faces = 2."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Кырлардын учтары",
+            "ru": "Концы рёбер",
+            "en": "The ends of the edges"
+          }
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "V - E + F = 2"
+        }
+      ],
+      "related": [
+        "math.edge",
+        "math.pyramid"
+      ],
+      "misconceptions": [
+        {
+          "key": "math.m.euler-any",
+          "text": {
+            "ky": "Эйлер формуласы ар кандай фигура үчүн, мисалы шар үчүн да колдонулат.",
+            "ru": "Формула Эйлера подходит для любой фигуры, например для шара.",
+            "en": "Euler's formula applies to any shape, even a sphere."
+          },
+          "correction": {
+            "ky": "Формула томпок көп грандыктар үчүн; шардын чокусу да, кыры да жок.",
+            "ru": "Формула – для выпуклых многогранников; у шара нет ни вершин, ни рёбер.",
+            "en": "The formula is for convex polyhedra; a sphere has no vertices or edges at all."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Леонард Эйлер V − E + F = 2 формуласын 1750-жылдары ачкан; ал бардык томпок көп грандыктар үчүн туура.",
+        "ru": "Леонард Эйлер открыл формулу V − E + F = 2 в 1750-х годах; она верна для всех выпуклых многогранников.",
+        "en": "Leonhard Euler found V − E + F = 2 in the 1750s; it holds for every convex polyhedron."
+      },
+      "analogy": {
+        "ky": "Тоонун чокусу",
+        "ru": "Вершина горы",
+        "en": "A mountain peak"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "m",
+            "title": {
+              "ky": "Эйлерди текшерүү",
+              "ru": "Проверка Эйлера",
+              "en": "Checking Euler"
+            },
+            "text": {
+              "ky": "Куб: 8 − 12 + 6 = 2. Пирамида: 5 − 8 + 5 = 2. Ар дайым 2!",
+              "ru": "Куб: 8 − 12 + 6 = 2. Пирамида: 5 − 8 + 5 = 2. Всегда 2!",
+              "en": "Cube: 8 − 12 + 6 = 2. Pyramid: 5 − 8 + 5 = 2. Always 2!"
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "3D-принтер",
+              "ru": "3D-принтер",
+              "en": "3D printing"
+            },
+            "text": {
+              "ky": "3D-принтер үчүн файлда ар бир фигура чокулардын координаталары жана аларды бириктирген грандар менен жазылат.",
+              "ru": "В файле для 3D-принтера фигура записана координатами вершин и гранями, которые их соединяют.",
+              "en": "A 3D-printer file stores a shape as the coordinates of its vertices and the faces joining them."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Тоонун чокусу",
+              "ru": "Вершина горы",
+              "en": "A mountain peak"
+            },
+            "text": {
+              "ky": "Пирамиданын чокусу Ала-Тоонун учтуу чокусуна окшош.",
+              "ru": "Вершина пирамиды похожа на острую вершину горы Ала-Тоо.",
+              "en": "A pyramid's apex is like the sharp peak of an Ala-Too mountain."
+            }
+          },
+          {
+            "title": {
+              "ky": "Кутунун бурчу",
+              "ru": "Уголок коробки",
+              "en": "A box corner"
+            },
+            "text": {
+              "ky": "Кутунун бурчуна үч кыр чогулат – бул чоку.",
+              "ru": "В уголке коробки сходятся три ребра – это вершина.",
+              "en": "Three edges come together at the corner of a box – that is a vertex."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "math.pyramid-height",
+      "kind": "segment",
+      "hue": 100,
+      "isContainer": false,
+      "title": {
+        "ky": "Пирамиданын бийиктиги",
+        "ru": "Высота пирамиды",
+        "en": "Height of a pyramid"
+      },
+      "subtitle": {
+        "ky": "Чокудан негизге перпендикуляр",
+        "ru": "Перпендикуляр из вершины",
+        "en": "A perpendicular from the apex"
+      },
+      "description": {
+        "ky": "Пирамиданын чокусунан негизге түшүрүлгөн перпендикуляр. Туура пирамидада ал негиздин борборуна түшөт. Бул жерде h = 2 см.",
+        "ru": "Перпендикуляр, опущенный из вершины пирамиды на основание. У правильной пирамиды он падает в центр основания. Здесь h = 2 см.",
+        "en": "The perpendicular from the apex down to the base. In a regular pyramid it lands at the centre of the base. Here h = 2 cm."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "length",
+          "value": 2,
+          "unit": "cm"
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Чокудан негиздин борборуна",
+            "ru": "От вершины к центру основания",
+            "en": "From the apex to the centre of the base"
+          }
+        }
+      ],
+      "related": [
+        "math.pyramid",
+        "math.vertex"
+      ],
+      "misconceptions": [
+        {
+          "key": "math.m.height-is-edge",
+          "text": {
+            "ky": "Пирамиданын бийиктиги – анын каптал кыры.",
+            "ru": "Высота пирамиды – это её боковое ребро.",
+            "en": "The height of a pyramid is its slanted side edge."
+          },
+          "correction": {
+            "ky": "Бийиктик негизге тик түшөт жана каптал кырдан дайыма кыска.",
+            "ru": "Высота падает на основание отвесно и всегда короче бокового ребра.",
+            "en": "The height drops straight down to the base and is always shorter than a side edge."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Каптал кырды, бийиктикти жана негиздин жарым диагоналын бириктирсең – тик бурчтуу үч бурчтук чыгат.",
+        "ru": "Боковое ребро, высота и половина диагонали основания образуют прямоугольный треугольник.",
+        "en": "A side edge, the height and half the base diagonal form a right triangle."
+      },
+      "analogy": {
+        "ky": "Чатырдын ортосундагы мамы",
+        "ru": "Шест в центре палатки",
+        "en": "The pole in the middle of a tent"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "m",
+            "title": {
+              "ky": "Пифагор менен бийиктик",
+              "ru": "Высота через Пифагора",
+              "en": "Height by Pythagoras"
+            },
+            "text": {
+              "ky": "Каптал кыры l жана негиздин жарым диагоналы d белгилүү болсо, h = √(l² − d²).",
+              "ru": "Если известны боковое ребро l и половина диагонали основания d, то h = √(l² − d²).",
+              "en": "If you know a side edge l and half the base diagonal d, then h = √(l² − d²)."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Шакул менен текшерүү",
+              "ru": "Проверка отвесом",
+              "en": "Checking with a plumb line"
+            },
+            "text": {
+              "ky": "Чатырлуу курулушта уста борбордук тиреөчтүн тик экенин шакул менен текшерет.",
+              "ru": "Строя шатровую крышу, мастер проверяет отвесом, что центральная стойка вертикальна.",
+              "en": "Building a pointed roof, the carpenter checks with a plumb line that the central post is vertical."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Чатырдын мамысы",
+              "ru": "Шест палатки",
+              "en": "A tent pole"
+            },
+            "text": {
+              "ky": "Чатырдын ортосундагы тик мамы – бийиктик, ал эми чатырдын жантык капталдары – кырлар.",
+              "ru": "Вертикальный шест в центре палатки – высота, а наклонные края палатки – рёбра.",
+              "en": "The upright pole in the middle of a tent is the height; the slanted sides are the edges."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тик түшкөн таш",
+              "ru": "Камень, упавший отвесно",
+              "en": "A dropped stone"
+            },
+            "text": {
+              "ky": "Тоонун чокусунан ташты тик ылдый таштасаң, ал бийиктиктин жолу менен түшөт.",
+              "ru": "Если отпустить камень с вершины отвесно вниз, он упадёт по линии высоты.",
+              "en": "Drop a stone straight down from the peak and it falls along the height."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "math.pyramid-volume",
+      "engine": "timeline",
+      "icon": "pyramid",
+      "title": {
+        "ky": "Пирамиданын көлөмү",
+        "ru": "Объём пирамиды",
+        "en": "Volume of a pyramid"
+      },
+      "description": {
+        "ky": "Кубду чокусу бир жерде жайгашкан үч бирдей пирамидага бөлүп, пирамиданын көлөмү призманын үчтөн бири экенин көрсөтөбүз.",
+        "ru": "Разрезаем куб на три одинаковые пирамиды с общей вершиной и показываем, что объём пирамиды – треть призмы.",
+        "en": "We cut a cube into three identical pyramids that share one apex and show that a pyramid has one third of the prism's volume."
+      },
+      "equation": "V = \\tfrac{1}{3}Sh",
+      "inputs": {
+        "ky": "Кубдун кыры a = 2 см",
+        "ru": "Ребро куба a = 2 см",
+        "en": "Cube edge a = 2 cm"
+      },
+      "outputs": {
+        "ky": "Ар бир пирамиданын көлөмү 8/3 ≈ 2,67 см³",
+        "ru": "Объём каждой пирамиды 8/3 ≈ 2,67 см³",
+        "en": "Each pyramid has a volume of 8/3 ≈ 2.67 cm³"
+      },
+      "steps": [
+        {
+          "key": "cube",
+          "title": {
+            "ky": "Куб",
+            "ru": "Куб",
+            "en": "The cube"
+          },
+          "result": {
+            "ky": "V = 8 см³",
+            "ru": "V = 8 см³",
+            "en": "V = 8 cm³"
+          },
+          "description": {
+            "ky": "Кыры 2 см болгон кубдун көлөмү 2³ = 8 см³.",
+            "ru": "Объём куба с ребром 2 см равен 2³ = 8 см³.",
+            "en": "A cube with a 2 cm edge has a volume of 2³ = 8 cm³."
+          },
+          "conceptKey": "math.cube",
+          "altText": {
+            "ky": "Кыры 2 см болгон тунук куб.",
+            "ru": "Прозрачный куб с ребром 2 см.",
+            "en": "A transparent cube with a 2 cm edge."
+          },
+          "duration": 2
+        },
+        {
+          "key": "apex",
+          "title": {
+            "ky": "Жалпы чоку",
+            "ru": "Общая вершина",
+            "en": "Shared apex"
+          },
+          "result": {
+            "ky": "1 чоку",
+            "ru": "1 вершина",
+            "en": "1 apex"
+          },
+          "description": {
+            "ky": "Кубдун бир чокусун тандап, аны үч алыскы гран менен бириктиребиз.",
+            "ru": "Выбираем одну вершину куба и соединяем её с тремя дальними гранями.",
+            "en": "We pick one vertex of the cube and connect it to the three far faces."
+          },
+          "conceptKey": "math.vertex",
+          "altText": {
+            "ky": "Кубдун бурчундагы бир чоку бөлүнүп көрсөтүлгөн.",
+            "ru": "Выделена одна вершина в углу куба.",
+            "en": "One corner vertex of the cube is highlighted."
+          },
+          "duration": 2
+        },
+        {
+          "key": "split",
+          "title": {
+            "ky": "Үч пирамида",
+            "ru": "Три пирамиды",
+            "en": "Three pyramids"
+          },
+          "result": {
+            "ky": "3 × пирамида",
+            "ru": "3 × пирамида",
+            "en": "3 × pyramid"
+          },
+          "description": {
+            "ky": "Куб негизи 2 × 2 квадрат жана бийиктиги 2 см болгон үч бирдей пирамидага бөлүнөт.",
+            "ru": "Куб распадается на три одинаковые пирамиды с основанием-квадратом 2 × 2 и высотой 2 см.",
+            "en": "The cube splits into three identical pyramids, each with a 2 × 2 square base and a 2 cm height."
+          },
+          "conceptKey": "math.pyramid",
+          "altText": {
+            "ky": "Үч түстүү пирамида кубдан ажырап чыгат.",
+            "ru": "Три цветные пирамиды раздвигаются из куба.",
+            "en": "Three coloured pyramids slide apart from the cube."
+          },
+          "duration": 3
+        },
+        {
+          "key": "formula",
+          "title": {
+            "ky": "Формула",
+            "ru": "Формула",
+            "en": "The formula"
+          },
+          "result": {
+            "ky": "V = 8/3 ≈ 2,67 см³",
+            "ru": "V = 8/3 ≈ 2,67 см³",
+            "en": "V = 8/3 ≈ 2.67 cm³"
+          },
+          "description": {
+            "ky": "Ар бир пирамида кубдун үчтөн бири: V = ⅓ · S · h = ⅓ · 4 · 2 ≈ 2,67 см³.",
+            "ru": "Каждая пирамида – треть куба: V = ⅓ · S · h = ⅓ · 4 · 2 ≈ 2,67 см³.",
+            "en": "Each pyramid is a third of the cube: V = ⅓ × S × h = ⅓ × 4 × 2 ≈ 2.67 cm³."
+          },
+          "conceptKey": "math.pyramid-height",
+          "altText": {
+            "ky": "Бир пирамида жана анын бийиктиги көрсөтүлгөн.",
+            "ru": "Одна пирамида с отмеченной высотой.",
+            "en": "One pyramid with its height marked."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "cube-volume",
+          "label": {
+            "ky": "Кубдун көлөмү",
+            "ru": "Объём куба",
+            "en": "Cube volume"
+          },
+          "unit": "cm³",
+          "min": 0,
+          "max": 8,
+          "precision": 1
+        },
+        {
+          "key": "pyramid-volume",
+          "label": {
+            "ky": "Пирамиданын көлөмү",
+            "ru": "Объём пирамиды",
+            "en": "Pyramid volume"
+          },
+          "unit": "cm³",
+          "min": 0,
+          "max": 8,
+          "precision": 2
+        },
+        {
+          "key": "pyramids",
+          "label": {
+            "ky": "Пирамидалар",
+            "ru": "Пирамиды",
+            "en": "Pyramids"
+          },
+          "min": 0,
+          "max": 3,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "edge": 2,
+        "pieces": 3
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "math.q.cube-edges",
+      "type": "single",
+      "prompt": {
+        "ky": "Кубдун канча кыры бар?",
+        "ru": "Сколько рёбер у куба?",
+        "en": "How many edges does a cube have?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "8",
+            "ru": "8",
+            "en": "8"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "12",
+            "ru": "12",
+            "en": "12"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "6",
+            "ru": "6",
+            "en": "6"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "24",
+            "ru": "24",
+            "en": "24"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Кубдун 12 кыры бар: 4 үстүндө, 4 астында, 4 тик.",
+        "ru": "У куба 12 рёбер: 4 сверху, 4 снизу, 4 вертикальных.",
+        "en": "A cube has 12 edges: 4 on top, 4 at the bottom and 4 upright."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o1"
+      ],
+      "misconceptionKey": "math.m.cube-edges",
+      "difficulty": 1
+    },
+    {
+      "key": "math.q.polyhedron-elements",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Булардын кайсылары көп грандыктын элементтери?",
+        "ru": "Что из этого – элементы многогранника?",
+        "en": "Which of these are elements of a polyhedron?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Гран",
+            "ru": "Грань",
+            "en": "Face"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Кыр",
+            "ru": "Ребро",
+            "en": "Edge"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Чоку",
+            "ru": "Вершина",
+            "en": "Vertex"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Радиус",
+            "ru": "Радиус",
+            "en": "Radius"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Гран, кыр жана чоку – көп грандыктын элементтери; радиус шарга жана тегерекке тиешелүү.",
+        "ru": "Грани, рёбра и вершины – элементы многогранника; радиус относится к шару и кругу.",
+        "en": "Faces, edges and vertices are elements of a polyhedron; a radius belongs to spheres and circles."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o1"
+      ],
+      "misconceptionKey": "math.m.face-edge",
+      "difficulty": 2
+    },
+    {
+      "key": "math.q.solid-formula",
+      "type": "match",
+      "prompt": {
+        "ky": "Телону анын көлөмүнүн формуласы менен дал келтир.",
+        "ru": "Сопоставь тело и формулу его объёма.",
+        "en": "Match each solid to its volume formula."
+      },
+      "pairs": [
+        {
+          "key": "cube",
+          "left": {
+            "ky": "Куб",
+            "ru": "Куб",
+            "en": "Cube"
+          },
+          "right": {
+            "ky": "V = a³",
+            "ru": "V = a³",
+            "en": "V = a³"
+          }
+        },
+        {
+          "key": "prism",
+          "left": {
+            "ky": "Призма",
+            "ru": "Призма",
+            "en": "Prism"
+          },
+          "right": {
+            "ky": "V = Sh",
+            "ru": "V = Sh",
+            "en": "V = Sh"
+          }
+        },
+        {
+          "key": "pyramid",
+          "left": {
+            "ky": "Пирамида",
+            "ru": "Пирамида",
+            "en": "Pyramid"
+          },
+          "right": {
+            "ky": "V = ⅓Sh",
+            "ru": "V = ⅓Sh",
+            "en": "V = ⅓Sh"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Куб: a³; призма: Sh; пирамида: ⅓Sh.",
+        "ru": "Куб: a³; призма: Sh; пирамида: ⅓Sh.",
+        "en": "Cube: a³; prism: Sh; pyramid: ⅓Sh."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o2"
+      ],
+      "misconceptionKey": "math.m.pyramid-half",
+      "difficulty": 2
+    },
+    {
+      "key": "math.q.find-apex",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден пирамиданын бийиктигин тап.",
+        "ru": "Найди на модели высоту пирамиды.",
+        "en": "Find the height of the pyramid on the model."
+      },
+      "targetConceptKey": "math.pyramid-height",
+      "explanation": {
+        "ky": "Бийиктик – чокудан негиздин борборуна түшкөн тик кесинди.",
+        "ru": "Высота – вертикальный отрезок от вершины к центру основания.",
+        "en": "The height is the vertical segment from the apex to the centre of the base."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o1"
+      ],
+      "misconceptionKey": "math.m.height-is-edge",
+      "difficulty": 2
+    },
+    {
+      "key": "math.q.euler-edges",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Көп грандыктын 8 чокусу жана 6 граны бар. Анын канча кыры бар?",
+        "ru": "У многогранника 8 вершин и 6 граней. Сколько у него рёбер?",
+        "en": "A polyhedron has 8 vertices and 6 faces. How many edges does it have?"
+      },
+      "answer": 12,
+      "tolerance": 0,
+      "explanation": {
+        "ky": "Эйлер: V − E + F = 2 → E = 8 + 6 − 2 = 12.",
+        "ru": "Эйлер: V − E + F = 2 → E = 8 + 6 − 2 = 12.",
+        "en": "Euler: V − E + F = 2 → E = 8 + 6 − 2 = 12."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o1"
+      ],
+      "misconceptionKey": "math.m.edge-count",
+      "difficulty": 3
+    },
+    {
+      "key": "math.q.pyramid-volume",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Пирамиданын негизи 3 × 3 см квадрат, бийиктиги 4 см. Көлөмү канча см³?",
+        "ru": "Основание пирамиды – квадрат 3 × 3 см, высота 4 см. Каков её объём, см³?",
+        "en": "A pyramid has a 3 × 3 cm square base and a height of 4 cm. What is its volume in cm³?"
+      },
+      "answer": 12,
+      "tolerance": 0.01,
+      "unit": "cm³",
+      "explanation": {
+        "ky": "V = ⅓ · 9 · 4 = 12 см³.",
+        "ru": "V = ⅓ · 9 · 4 = 12 см³.",
+        "en": "V = ⅓ × 9 × 4 = 12 cm³."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o2"
+      ],
+      "misconceptionKey": "math.m.pyramid-half",
+      "difficulty": 3
+    },
+    {
+      "key": "math.q.pyramid-third",
+      "type": "single",
+      "prompt": {
+        "ky": "Негизи жана бийиктиги бирдей болсо, пирамиданын көлөмү призманын канча бөлүгүн түзөт?",
+        "ru": "Какую часть объёма призмы с тем же основанием и высотой составляет объём пирамиды?",
+        "en": "What fraction of a prism with the same base and height is the pyramid's volume?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "½",
+            "ru": "½",
+            "en": "½"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "⅓",
+            "ru": "⅓",
+            "en": "⅓"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "¼",
+            "ru": "¼",
+            "en": "¼"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Үч бирдей пирамида призманы толтурат – ⅓.",
+        "ru": "Три равные пирамиды заполняют призму – ⅓.",
+        "en": "Three equal pyramids fill the prism – ⅓."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o2"
+      ],
+      "misconceptionKey": "math.m.pyramid-half",
+      "difficulty": 2
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-math-right-triangle",
+      "ky": "тик бурчтуу үч бурчтук",
+      "ru": "прямоугольный треугольник",
+      "en": "right triangle",
+      "forbidden": [
+        "rectangular triangle"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-leg",
+      "ky": "катет",
+      "ru": "катет",
+      "en": "leg",
+      "forbidden": [
+        "cathet"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-hypotenuse",
+      "ky": "гипотенуза",
+      "ru": "гипотенуза",
+      "en": "hypotenuse",
+      "forbidden": [
+        "hypothenuse"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-right-angle",
+      "ky": "тик бурч",
+      "ru": "прямой угол",
+      "en": "right angle",
+      "forbidden": [
+        "rectangular angle"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-pythagoras",
+      "ky": "Пифагор теоремасы",
+      "ru": "теорема Пифагора",
+      "en": "Pythagorean theorem",
+      "forbidden": [
+        "Pifagor"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-polyhedron",
+      "ky": "көп грандык",
+      "ru": "многогранник",
+      "en": "polyhedron",
+      "forbidden": [
+        "multihedron"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-face",
+      "ky": "гран",
+      "ru": "грань",
+      "en": "face",
+      "forbidden": [],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-edge",
+      "ky": "кыр",
+      "ru": "ребро",
+      "en": "edge",
+      "forbidden": [
+        "rib"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-vertex",
+      "ky": "чоку",
+      "ru": "вершина",
+      "en": "vertex",
+      "forbidden": [
+        "vertice"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-volume",
+      "ky": "көлөм",
+      "ru": "объём",
+      "en": "volume",
+      "forbidden": [
+        "обьём",
+        "обьем"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-sphere",
+      "ky": "шар",
+      "ru": "шар",
+      "en": "sphere",
+      "forbidden": [],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-cylinder",
+      "ky": "цилиндр",
+      "ru": "цилиндр",
+      "en": "cylinder",
+      "forbidden": [
+        "cilinder"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-cone",
+      "ky": "конус",
+      "ru": "конус",
+      "en": "cone",
+      "forbidden": [],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-radius",
+      "ky": "радиус",
+      "ru": "радиус",
+      "en": "radius",
+      "forbidden": [
+        "radious"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-revolution",
+      "ky": "айлануу телосу",
+      "ru": "тело вращения",
+      "en": "solid of revolution",
+      "forbidden": [
+        "body of rotation"
+      ],
+      "approvedBy": "editor-math"
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "area",
+      "icon": "square",
+      "valueKind": "quantity",
+      "unit": "cm²",
+      "label": {
+        "ky": "Аянты",
+        "ru": "Площадь",
+        "en": "Area"
+      }
+    },
+    {
+      "key": "edges",
+      "icon": "spline",
+      "valueKind": "quantity",
+      "label": {
+        "ky": "Кырлары",
+        "ru": "Рёбра",
+        "en": "Edges"
+      }
+    },
+    {
+      "key": "faces",
+      "icon": "square-stack",
+      "valueKind": "quantity",
+      "label": {
+        "ky": "Грандары",
+        "ru": "Грани",
+        "en": "Faces"
+      }
+    },
+    {
+      "key": "length",
+      "icon": "ruler",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Узундугу",
+        "ru": "Длина",
+        "en": "Length"
+      }
+    },
+    {
+      "key": "vertices",
+      "icon": "dot",
+      "valueKind": "quantity",
+      "label": {
+        "ky": "Чокулары",
+        "ru": "Вершины",
+        "en": "Vertices"
+      }
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "topic": {
+    "key": "moon-phases",
+    "unitKey": "astro.g11.solar-system",
+    "status": "published",
+    "title": { "ky": "Айдын фазалары", "ru": "Фазы Луны", "en": "Phases of the Moon" },
+    "classification": { "ky": "Жер – Ай – Күн системасы", "ru": "Система Солнце – Земля – Луна", "en": "Sun–Earth–Moon system" },
+    "description": {
+      "ky": "Ай өзү жарык чыгарбайт: Күн анын бир жарымын ар дайым жарыктап турат. Ай Жерди айланганда биз ошол жарык жарымдын ар кандай бөлүгүн көрөбүз – жаңы айдан толгон айга чейин жана кайра. Толук цикл 29,5 күнгө созулат.",
+      "ru": "Луна не светится сама: Солнце всегда освещает одну её половину. Пока Луна обращается вокруг Земли, мы видим разную часть этой освещённой половины – от новолуния до полнолуния и обратно. Полный цикл длится 29,5 суток.",
+      "en": "The Moon gives off no light: the Sun always lights one half of it. As the Moon orbits the Earth, we see different amounts of that lit half – from new moon to full moon and back. A full cycle takes 29.5 days."
+    },
+    "goal": {
+      "ky": "Айдын фазаларынын себебин Күн – Жер – Ай жайгашуусу менен түшүндүрүү жана фазаны Айдын тутулушунан айырмалоо (AST-11.3.2).",
+      "ru": "Объяснить смену фаз Луны взаимным положением Солнца, Земли и Луны и отличать фазу от лунного затмения (AST-11.3.2).",
+      "en": "Explain the Moon's phases using the positions of the Sun, Earth and Moon, and tell a phase apart from a lunar eclipse (AST-11.3.2)."
+    },
+    "objectiveKeys": ["astro.g11.solar-system.o2"],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "moon-phases",
+        "synodicMonthDays": 29.53,
+        "siderealMonthDays": 27.32,
+        "observerLatitudeDeg": 42.87,
+        "showEarthView": true,
+        "sunDirection": [-1, 0, 0]
+      },
+      "camera": { "position": [0, 6, 9], "target": [0, 0, 0], "fov": 45 },
+      "modes": ["orbits", "earth-view"]
+    },
+    "conceptKeys": ["astro.moon", "astro.earth", "astro.sun", "astro.terminator", "astro.lunar-eclipse"],
+    "overrides": {
+      "astro.moon": { "anchor": [2.5, 0, 0], "nodes": ["Moon"] },
+      "astro.earth": { "anchor": [0, 0, 0], "nodes": ["Earth"] },
+      "astro.sun": { "anchor": [-8, 0, 0], "nodes": ["Sun", "SunLight"] },
+      "astro.terminator": { "nodes": ["Terminator"] },
+      "astro.lunar-eclipse": { "nodes": ["EarthShadow"] }
+    },
+    "samples": [
+      { "key": "moon-phases", "title": { "ky": "Айдын фазалары", "ru": "Фазы Луны", "en": "Phases of the Moon" }, "classification": { "ky": "8 фаза", "ru": "8 фаз", "en": "8 phases" }, "thumb": "thumbs/moon-phases.webp" },
+      { "key": "lunar-eclipse", "title": { "ky": "Айдын тутулушу", "ru": "Лунное затмение", "en": "Lunar eclipse" }, "classification": { "ky": "Жердин көлөкөсү", "ru": "Тень Земли", "en": "Earth's shadow" }, "thumb": "thumbs/lunar-eclipse.webp" },
+      { "key": "solar-system", "title": { "ky": "Күн системасы", "ru": "Солнечная система", "en": "Solar System" }, "classification": { "ky": "8 планета", "ru": "8 планет", "en": "8 planets" }, "thumb": "thumbs/solar-system.webp", "topicKey": "solar-system" }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": { "position": [0, 6, 9], "target": [0, 0, 0] },
+            "modes": { "orbits": true },
+            "text": { "ky": "Сол жакта – Күн, ортодо – Жер, Ай Жерди айланат. Күн Айдын ар дайым бир жарымын жарыктайт.", "ru": "Слева – Солнце, в центре – Земля, вокруг неё обращается Луна. Солнце всегда освещает половину Луны.", "en": "The Sun is on the left, the Earth in the middle, and the Moon goes around the Earth. The Sun always lights half of the Moon." },
+            "teacherNote": { "ky": "Бөлмөнү караңгылатып, чырак жана топ менен тажрыйба жасаңыз: окуучу «Жер» болуп өз огунда айланат.", "ru": "Затемните класс и проведите опыт с лампой и мячом: ученик-«Земля» поворачивается на месте.", "en": "Darken the room and try it with a lamp and a ball: a student plays the Earth and turns on the spot." },
+            "altText": { "ky": "Күн, Жер жана Жерди айланган Айдын орбитасы.", "ru": "Солнце, Земля и орбита Луны вокруг Земли.", "en": "The Sun, the Earth and the Moon's orbit around the Earth." }
+          },
+          {
+            "key": "moon",
+            "focus": "astro.moon",
+            "camera": { "position": [3.5, 1, 2], "target": [2.5, 0, 0] },
+            "text": { "ky": "Ай Жерден 384 400 км алыс. Ал өзү жарык чыгарбайт – Күндүн жарыгын чагылдырат.", "ru": "Луна находится в 384 400 км от Земли. Сама она не светится – она отражает свет Солнца.", "en": "The Moon is 384,400 km from the Earth. It does not shine by itself – it reflects sunlight." },
+            "teacherNote": { "ky": "«Ай өзү жаркырайт» деген туура эмес ойду талкуулаңыз.", "ru": "Обсудите ошибку «Луна светится сама».", "en": "Discuss the mistaken idea that the Moon makes its own light." },
+            "altText": { "ky": "Бир жарымы жарык, бир жарымы караңгы Ай.", "ru": "Луна: одна половина освещена, другая тёмная.", "en": "The Moon with one half lit and one half dark." }
+          },
+          {
+            "key": "new-moon",
+            "focus": "astro.moon",
+            "camera": { "position": [0, 3, 5], "target": [0, 0, 0] },
+            "modes": { "earth-view": true },
+            "text": { "ky": "Жаңы ай: Ай Күн менен Жердин ортосунда. Анын жарык жагы бизден тескери карайт – Ай көрүнбөйт.", "ru": "Новолуние: Луна между Солнцем и Землёй. Её освещённая сторона отвёрнута от нас – Луну не видно.", "en": "New moon: the Moon is between the Sun and the Earth, with its lit side facing away – we cannot see it." },
+            "teacherNote": { "ky": "Орозо айынын башталышы жаңы туулган ичке орок айды көрүү менен байланыштуу экенин айтып бериңиз.", "ru": "Расскажите, что начало месяца Орозо (Рамадан) связано с наблюдением первого тонкого серпа после новолуния.", "en": "Mention that the start of the month of Orozo (Ramadan) is tied to seeing the first thin crescent after the new moon." },
+            "altText": { "ky": "Жерден караганда караңгы, көрүнбөгөн Ай.", "ru": "Вид с Земли: тёмная, невидимая Луна.", "en": "The view from Earth: a dark, invisible Moon." }
+          },
+          {
+            "key": "first-quarter",
+            "focus": "astro.terminator",
+            "camera": { "position": [2.5, 3, 3], "target": [0, 0, 2.5] },
+            "modes": { "earth-view": true },
+            "text": { "ky": "Биринчи чейрек: Айдын оң жарымы жарык. Жарык менен көлөкөнүн чеги – терминатор – түз сызык болуп калат.", "ru": "Первая четверть: освещена правая половина Луны. Граница света и тени – терминатор – становится прямой.", "en": "First quarter: the right half of the Moon is lit. The line between light and shadow – the terminator – is straight." },
+            "teacherNote": { "ky": "Түндүк жарым шарда өсүп бараткан Айдын оң жагы жарык экенин белгилеңиз (Бишкек ≈43° т. к.).", "ru": "Отметьте, что в Северном полушарии у растущей Луны освещена правая сторона (Бишкек ≈43° с. ш.).", "en": "Note that in the Northern Hemisphere the waxing Moon is lit on the right (Bishkek is ≈43° N)." },
+            "altText": { "ky": "Оң жарымы жарык Ай, ортосунда түз терминатор.", "ru": "Освещённая справа половина Луны с прямым терминатором.", "en": "A half Moon lit on the right with a straight terminator." }
+          },
+          {
+            "key": "full-moon",
+            "focus": "astro.moon",
+            "camera": { "position": [-1, 3, 4], "target": [0, 0, 0] },
+            "modes": { "earth-view": true },
+            "text": { "ky": "Толгон ай: Жер Күн менен Айдын ортосунда, биз Айдын бүт жарык жарымын көрөбүз.", "ru": "Полнолуние: Земля между Солнцем и Луной, и мы видим всю освещённую половину Луны.", "en": "Full moon: the Earth is between the Sun and the Moon, and we see the whole lit half." },
+            "teacherNote": { "ky": "Сураңыз: эмне үчүн ар бир толгон айда тутулуу болбойт?", "ru": "Спросите: почему затмение бывает не каждое полнолуние?", "en": "Ask: why isn't there an eclipse every full moon?" },
+            "altText": { "ky": "Толугу менен жаркыраган тегерек Ай.", "ru": "Полностью освещённый диск Луны.", "en": "A fully lit lunar disc." }
+          },
+          {
+            "key": "eclipse",
+            "focus": "astro.lunar-eclipse",
+            "camera": { "position": [4, 1.5, 1], "target": [2.5, 0, 0] },
+            "text": { "ky": "Айдын тутулушу – бул фаза эмес! Ай Жердин көлөкөсүнө киргенде гана болот жана ал кочкул кызыл түскө боёлот.", "ru": "Лунное затмение – это не фаза! Оно бывает, только когда Луна входит в тень Земли, и Луна становится тёмно-красной.", "en": "A lunar eclipse is not a phase! It happens only when the Moon enters the Earth's shadow, and the Moon turns deep red." },
+            "teacherNote": { "ky": "Фаза менен тутулуунун айырмасын тактаңыз: фазаларда Жердин көлөкөсү катышпайт.", "ru": "Чётко разведите фазу и затмение: в фазах тень Земли не участвует.", "en": "Make the difference clear: the Earth's shadow plays no part in the phases." },
+            "altText": { "ky": "Жердин көлөкөсүндөгү кызыл түстөгү Ай.", "ru": "Красная Луна в тени Земли.", "en": "A red Moon inside the Earth's shadow." }
+          },
+          {
+            "key": "last-quarter",
+            "focus": "astro.terminator",
+            "camera": { "position": [-2.5, 3, -3], "target": [0, 0, -2.5] },
+            "modes": { "earth-view": true },
+            "text": { "ky": "Акыркы чейрек: эми Айдын сол жарымы жарык. Андан кийин эскирген орок ай, анан кайра жаңы ай келет.", "ru": "Последняя четверть: теперь освещена левая половина. Потом – убывающий серп и снова новолуние.", "en": "Last quarter: now the left half is lit. Then comes the waning crescent and another new moon." },
+            "teacherNote": { "ky": "«Айдын фазаларынын алмашуусу» процессин ачып, 8 фазаны ырааттуу кайталаңыз.", "ru": "Откройте процесс «Смена фаз Луны» и повторите все 8 фаз по порядку.", "en": "Open the «Cycle of lunar phases» process and go through all 8 phases in order." },
+            "altText": { "ky": "Сол жарымы жарык Ай.", "ru": "Луна, освещённая слева наполовину.", "en": "A half Moon lit on the left." }
+          }
+        ]
+      },
+      "processKeys": ["astro.moon-phase-cycle"],
+      "comparison": {
+        "columns": [
+          { "kind": "concept", "key": "astro.moon" },
+          { "kind": "concept", "key": "astro.earth" }
+        ],
+        "rows": ["radius", "gravity", "orbitalPeriod", "temperature"]
+      },
+      "quiz": {
+        "itemKeys": ["astro.q.moon-light", "astro.q.phase-cause", "astro.q.match-phases", "astro.q.find-terminator", "astro.q.synodic", "astro.q.eclipse-when", "astro.q.moon-distance"],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "m",
+          "title": { "ky": "Ай календары", "ru": "Лунный календарь", "en": "Lunar calendars" },
+          "text": { "ky": "12 синоддук ай ≈ 354 күн – Күн жылынан 11 күн кыска. Ошондуктан Орозо айт ар жылы болжол менен 11 күн эрте келет.", "ru": "12 синодических месяцев ≈ 354 дня – на 11 дней короче солнечного года. Поэтому Орозо айт каждый год наступает примерно на 11 дней раньше.", "en": "12 synodic months ≈ 354 days – 11 days shorter than a solar year. That is why Orozo Ait (Eid al-Fitr) comes about 11 days earlier each year." }
+        },
+        {
+          "field": "s",
+          "title": { "ky": "Ташкындар", "ru": "Приливы", "en": "Tides" },
+          "text": { "ky": "Жаңы ай жана толгон ай учурунда Күн менен Айдын тартылуусу кошулуп, океандарда эң чоң ташкындар болот.", "ru": "В новолуние и полнолуние притяжения Солнца и Луны складываются, и в океанах бывают самые сильные приливы.", "en": "At new and full moon the pulls of the Sun and the Moon add up, giving the biggest ocean tides." }
+        },
+        {
+          "field": "t",
+          "title": { "ky": "Түнкү фотосүрөт", "ru": "Ночная фотосъёмка", "en": "Night photography" },
+          "text": { "ky": "Астрофотографтар Сон-Көлдө жылдыздарды тартуу үчүн жаңы айды күтүшөт – ошондо асман эң караңгы.", "ru": "Астрофотографы на Сон-Куле ждут новолуния, чтобы снимать звёзды, – тогда небо самое тёмное.", "en": "Astrophotographers at Song-Kul wait for the new moon to shoot the stars – that is when the sky is darkest." }
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Чырак жана топ", "ru": "Лампа и мяч", "en": "A lamp and a ball" },
+          "text": { "ky": "Караңгы бөлмөдө чыракты күйгүзүп, колуңдагы топту өзүңдүн айланаңда айлантсаң, топтун жарык бөлүгү орок, жарым, толук болуп өзгөрөт.", "ru": "В тёмной комнате включи лампу и води мяч вокруг себя на вытянутой руке – освещённая часть мяча будет серпом, половиной, полным кругом.", "en": "In a dark room with one lamp on, move a ball around your head at arm's length – its lit part changes from crescent to half to full." }
+        },
+        {
+          "title": { "ky": "Тегерек нан", "ru": "Круглая лепёшка", "en": "A round flatbread" },
+          "text": { "ky": "Ай нан сыяктуу тегерек бойдон калат – биз анын жарык тийген бөлүгүн гана көрөбүз, ал эми калганы көлөкөдө.", "ru": "Луна всегда остаётся круглой, как лепёшка, – просто мы видим только ту часть, на которую падает свет.", "en": "The Moon always stays round like a flatbread – we just see only the part the light falls on." }
+        }
+      ]
+    },
+    "i18n": { "ky": "machine", "ru": "reviewed", "en": "draft" }
+  },
+  "items": [
+    {
+      "key": "astro.q.moon-light",
+      "type": "single",
+      "prompt": { "ky": "Ай эмне үчүн жаркырайт?", "ru": "Почему Луна светится?", "en": "Why does the Moon shine?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Ал өзү жарык чыгарат", "ru": "Она сама излучает свет", "en": "It makes its own light" } },
+        { "key": "b", "text": { "ky": "Ал Күндүн жарыгын чагылдырат", "ru": "Она отражает свет Солнца", "en": "It reflects sunlight" } },
+        { "key": "c", "text": { "ky": "Жер аны жарыктайт", "ru": "Её освещают огни Земли", "en": "Lights on Earth light it up" } }
+      ],
+      "answer": "b",
+      "explanation": { "ky": "Ай – таш; ал велосипеддин чагылдыргычы сыяктуу Күндүн жарыгын гана чагылдырат.", "ru": "Луна – это камень; как катафот, она лишь отражает свет Солнца.", "en": "The Moon is rock; like a bike reflector, it only reflects the Sun's light." },
+      "objectiveKeys": ["astro.g11.solar-system.o2"],
+      "misconceptionKey": "astro.m.moon-shines",
+      "difficulty": 1
+    },
+    {
+      "key": "astro.q.phase-cause",
+      "type": "single",
+      "prompt": { "ky": "Айдын фазалары эмнеден улам алмашат?", "ru": "Почему меняются фазы Луны?", "en": "What causes the phases of the Moon?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Жердин көлөкөсү Айды жабат", "ru": "Тень Земли закрывает Луну", "en": "The Earth's shadow covers the Moon" } },
+        { "key": "b", "text": { "ky": "Булуттар Айды жабат", "ru": "Облака закрывают Луну", "en": "Clouds cover the Moon" } },
+        { "key": "c", "text": { "ky": "Ай Жерди айланганда анын жарык жарымын ар кандай бурчтан көрөбүз", "ru": "Обращаясь вокруг Земли, Луна показывает нам освещённую половину под разными углами", "en": "As the Moon orbits, we see its lit half from different angles" } }
+      ],
+      "answer": "c",
+      "explanation": { "ky": "Фазаларда Жердин көлөкөсү катышпайт – бул Айдын тутулушунда гана болот.", "ru": "Тень Земли в фазах не участвует – это бывает только при лунном затмении.", "en": "The Earth's shadow plays no part in the phases – that only happens in a lunar eclipse." },
+      "objectiveKeys": ["astro.g11.solar-system.o2"],
+      "misconceptionKey": "astro.m.phases-earth-shadow",
+      "difficulty": 3
+    },
+    {
+      "key": "astro.q.match-phases",
+      "type": "match",
+      "prompt": { "ky": "Фазаны анын сүрөттөлүшү менен дал келтир.", "ru": "Сопоставь фазу и её описание.", "en": "Match each phase to its description." },
+      "pairs": [
+        { "key": "new", "left": { "ky": "Жаңы ай", "ru": "Новолуние", "en": "New moon" }, "right": { "ky": "Ай көрүнбөйт", "ru": "Луну не видно", "en": "The Moon is not visible" } },
+        { "key": "first", "left": { "ky": "Биринчи чейрек", "ru": "Первая четверть", "en": "First quarter" }, "right": { "ky": "Оң жарымы жарык", "ru": "Освещена правая половина", "en": "Right half lit" } },
+        { "key": "full", "left": { "ky": "Толгон ай", "ru": "Полнолуние", "en": "Full moon" }, "right": { "ky": "Бүт диск жарык", "ru": "Освещён весь диск", "en": "Whole disc lit" } },
+        { "key": "last", "left": { "ky": "Акыркы чейрек", "ru": "Последняя четверть", "en": "Last quarter" }, "right": { "ky": "Сол жарымы жарык", "ru": "Освещена левая половина", "en": "Left half lit" } }
+      ],
+      "explanation": { "ky": "Түндүк жарым шарда Ай оң жагынан «толуп», сол жагынан «кемийт».", "ru": "В Северном полушарии Луна «растёт» справа и «убывает» слева.", "en": "In the Northern Hemisphere the Moon grows from the right and shrinks from the left." },
+      "objectiveKeys": ["astro.g11.solar-system.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "astro.q.find-terminator",
+      "type": "find-on-model",
+      "prompt": { "ky": "Моделден Айдагы күн менен түндүн чегин тап.", "ru": "Найди на модели границу дня и ночи на Луне.", "en": "Find the line between day and night on the Moon." },
+      "targetConceptKey": "astro.terminator",
+      "explanation": { "ky": "Бул сызык – терминатор; анын формасы фазаны аныктайт.", "ru": "Эта линия – терминатор; её форма определяет фазу.", "en": "That line is the terminator; its shape sets the phase." },
+      "objectiveKeys": ["astro.g11.solar-system.o2"],
+      "misconceptionKey": "astro.m.dark-side",
+      "difficulty": 2
+    },
+    {
+      "key": "astro.q.synodic",
+      "type": "numeric",
+      "prompt": { "ky": "Бир жаңы айдан кийинки жаңы айга чейин канча күн өтөт?", "ru": "Сколько суток проходит от одного новолуния до следующего?", "en": "How many days pass from one new moon to the next?" },
+      "answer": 29.5,
+      "tolerance": 0.3,
+      "unit": "d",
+      "explanation": { "ky": "Синоддук ай ≈29,5 күн; ал 27,3 күндүк сидерлик айдан узун, анткени ошол убакта Жер да Күндү айланып жылат.", "ru": "Синодический месяц ≈29,5 суток; он длиннее сидерического (27,3 сут.), потому что за это время Земля тоже смещается по орбите.", "en": "The synodic month is ≈29.5 days – longer than the 27.3-day sidereal month because the Earth also moves along its orbit meanwhile." },
+      "objectiveKeys": ["astro.g11.solar-system.o2"],
+      "difficulty": 3
+    },
+    {
+      "key": "astro.q.eclipse-when",
+      "type": "multiple",
+      "prompt": { "ky": "Айдын тутулушу жөнүндө кайсы сүйлөмдөр туура?", "ru": "Какие утверждения о лунном затмении верны?", "en": "Which statements about lunar eclipses are true?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Толгон ай учурунда гана болот", "ru": "Бывает только в полнолуние", "en": "It happens only at full moon" } },
+        { "key": "b", "text": { "ky": "Ар бир айда болот", "ru": "Бывает каждый месяц", "en": "It happens every month" } },
+        { "key": "c", "text": { "ky": "Ай Жердин көлөкөсүнө кирет", "ru": "Луна входит в тень Земли", "en": "The Moon enters the Earth's shadow" } },
+        { "key": "d", "text": { "ky": "Толук тутулууда Ай кызарат", "ru": "При полном затмении Луна краснеет", "en": "In a total eclipse the Moon turns red" } }
+      ],
+      "answer": ["a", "c", "d"],
+      "explanation": { "ky": "Айдын орбитасы ≈5° кыйшык болгондуктан, тутулуу ар бир толгон айда болбойт.", "ru": "Орбита Луны наклонена на ≈5°, поэтому затмение бывает не в каждое полнолуние.", "en": "The Moon's orbit is tilted by ≈5°, so eclipses do not happen every full moon." },
+      "objectiveKeys": ["astro.g11.solar-system.o2"],
+      "misconceptionKey": "astro.m.eclipse-every-month",
+      "difficulty": 3
+    },
+    {
+      "key": "astro.q.moon-distance",
+      "type": "numeric",
+      "prompt": { "ky": "Ай Жерден 384 400 км алыс. Жарык (≈300 000 км/с) Айдан Жерге канча секундда жетет?", "ru": "Луна в 384 400 км от Земли. За сколько секунд свет (≈300 000 км/с) доходит от Луны до Земли?", "en": "The Moon is 384,400 km away. How many seconds does light (≈300,000 km/s) take to travel from the Moon to the Earth?" },
+      "answer": 1.28,
+      "tolerance": 0.05,
+      "unit": "s",
+      "explanation": { "ky": "384 400 / 300 000 ≈ 1,28 с – биз Айды 1,3 секунд мурунку абалында көрөбүз.", "ru": "384 400 / 300 000 ≈ 1,28 с – мы видим Луну такой, какой она была 1,3 секунды назад.", "en": "384,400 / 300,000 ≈ 1.28 s – we see the Moon as it was 1.3 seconds ago." },
+      "objectiveKeys": ["astro.g11.solar-system.o2"],
+      "difficulty": 3
+    }
+  ]
+}

@@ -1,0 +1,742 @@
+{
+  "topic": {
+    "key": "atom-structure",
+    "unitKey": "chem.g8.atoms",
+    "status": "published",
+    "title": {
+      "ky": "Атомдун түзүлүшү",
+      "ru": "Строение атома",
+      "en": "Structure of the atom"
+    },
+    "formula": "^{23}_{11}Na",
+    "classification": {
+      "ky": "Натрий атомунун модели",
+      "ru": "Модель атома натрия",
+      "en": "A model of the sodium atom"
+    },
+    "description": {
+      "ky": "Атом – ядродон жана анын айланасындагы электрондордон турат. Натрийдин мисалында ядронун курамын жана электрондордун катмар-катмар жайгашуусун карайбыз.",
+      "ru": "Атом состоит из ядра и электронов вокруг него. На примере натрия разбираем состав ядра и распределение электронов по слоям.",
+      "en": "An atom is a nucleus surrounded by electrons. Using sodium as the example, we look at what the nucleus contains and how electrons fill the shells."
+    },
+    "goal": {
+      "ky": "Атомдун түзүлүшүн сүрөттөө (CHEM-8.1.1) жана натрийдин электрондорун катмарлар боюнча бөлүштүрүү (CHEM-8.1.2).",
+      "ru": "Описать строение атома (CHEM-8.1.1) и распределить электроны натрия по слоям (CHEM-8.1.2).",
+      "en": "Describe the structure of the atom (CHEM-8.1.1) and arrange sodium's electrons in shells (CHEM-8.1.2)."
+    },
+    "objectiveKeys": [
+      "chem.g8.atoms.o1",
+      "chem.g8.atoms.o2"
+    ],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "molecule",
+      "params": {
+        "formula": "Na",
+        "atoms": [
+          {
+            "id": "Na1",
+            "element": "Na",
+            "position": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "bonds": [],
+        "showNucleus": true,
+        "protons": 11,
+        "neutrons": 12,
+        "shells": [
+          2,
+          8,
+          1
+        ]
+      },
+      "camera": {
+        "position": [
+          0,
+          2,
+          9
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "shells",
+        "spacefill"
+      ]
+    },
+    "conceptKeys": [
+      "chem.atomic-nucleus",
+      "chem.proton",
+      "chem.neutron",
+      "chem.valence-electron",
+      "chem.electron",
+      "chem.electron-shell"
+    ],
+    "overrides": {
+      "chem.atomic-nucleus": {
+        "anchor": [
+          0,
+          0.3,
+          0
+        ],
+        "nodes": [
+          "Nucleus_Na1"
+        ]
+      },
+      "chem.proton": {
+        "nodes": [
+          "Proton_Na1_*"
+        ]
+      },
+      "chem.neutron": {
+        "nodes": [
+          "Neutron_Na1_*"
+        ]
+      },
+      "chem.valence-electron": {
+        "anchor": [
+          3.6,
+          0,
+          0
+        ],
+        "nodes": [
+          "Electron_Na1_11"
+        ]
+      },
+      "chem.electron": {
+        "anchor": [
+          1.2,
+          0,
+          0
+        ],
+        "nodes": [
+          "Electron_Na1_*"
+        ]
+      },
+      "chem.electron-shell": {
+        "nodes": [
+          "Shell_Na1_*"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "atom-h",
+        "title": {
+          "ky": "Суутек атому",
+          "ru": "Атом водорода",
+          "en": "Hydrogen atom"
+        },
+        "classification": {
+          "ky": "Z = 1 · 1",
+          "ru": "Z = 1 · 1",
+          "en": "Z = 1 · 1"
+        },
+        "thumb": "thumbs/atom-h.webp"
+      },
+      {
+        "key": "atom-c",
+        "title": {
+          "ky": "Көмүртек атому",
+          "ru": "Атом углерода",
+          "en": "Carbon atom"
+        },
+        "classification": {
+          "ky": "Z = 6 · 2, 4",
+          "ru": "Z = 6 · 2, 4",
+          "en": "Z = 6 · 2, 4"
+        },
+        "thumb": "thumbs/atom-c.webp"
+      },
+      {
+        "key": "atom-o",
+        "title": {
+          "ky": "Кычкылтек атому",
+          "ru": "Атом кислорода",
+          "en": "Oxygen atom"
+        },
+        "classification": {
+          "ky": "Z = 8 · 2, 6",
+          "ru": "Z = 8 · 2, 6",
+          "en": "Z = 8 · 2, 6"
+        },
+        "thumb": "thumbs/atom-o.webp"
+      },
+      {
+        "key": "atom-na",
+        "title": {
+          "ky": "Натрий атому",
+          "ru": "Атом натрия",
+          "en": "Sodium atom"
+        },
+        "classification": {
+          "ky": "Z = 11 · 2, 8, 1",
+          "ru": "Z = 11 · 2, 8, 1",
+          "en": "Z = 11 · 2, 8, 1"
+        },
+        "thumb": "thumbs/atom-na.webp"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                2,
+                9
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "shells": true
+            },
+            "text": {
+              "ky": "Бул – натрий атомунун модели. Борбордо ядро, айланасында үч электрон катмары.",
+              "ru": "Это модель атома натрия. В центре ядро, вокруг – три электронных слоя.",
+              "en": "This is a model of a sodium atom: a nucleus in the centre and three electron shells around it."
+            },
+            "teacherNote": {
+              "ky": "Чыныгы атомдо ядро моделдегиден 100 000 эсе кичине экенин эскертиңиз.",
+              "ru": "Напомните, что в настоящем атоме ядро в 100 000 раз меньше, чем на модели.",
+              "en": "Remind the class that in a real atom the nucleus is 100,000 times smaller than shown."
+            },
+            "altText": {
+              "ky": "Борбордо кичинекей ядро, айланасында үч шакек жана 11 электрон.",
+              "ru": "Маленькое ядро в центре, вокруг три кольца и 11 электронов.",
+              "en": "A small nucleus in the centre with three rings and 11 electrons around it."
+            }
+          },
+          {
+            "key": "nucleus",
+            "camera": {
+              "position": [
+                0,
+                0.5,
+                2
+              ],
+              "target": [
+                0,
+                0.3,
+                0
+              ]
+            },
+            "visibility": {
+              "isolate": [
+                "chem.atomic-nucleus",
+                "chem.proton",
+                "chem.neutron"
+              ]
+            },
+            "focus": "chem.atomic-nucleus",
+            "text": {
+              "ky": "Ядро 11 протон жана 12 нейтрондон турат. Ал атомдун дээрлик бүт массасын кармайт.",
+              "ru": "Ядро состоит из 11 протонов и 12 нейтронов и содержит почти всю массу атома.",
+              "en": "The nucleus has 11 protons and 12 neutrons and carries almost all the atom's mass."
+            },
+            "teacherNote": {
+              "ky": "Протондордун саны элементтин номери экенин мезгилдик таблицадан көрсөтүңүз.",
+              "ru": "Покажите по периодической таблице, что число протонов – это номер элемента.",
+              "en": "Use the periodic table to show that the number of protons is the element's number."
+            },
+            "altText": {
+              "ky": "Жакындатылган ядро: кызыл протондор жана боз нейтрондор.",
+              "ru": "Ядро крупным планом: красные протоны и серые нейтроны.",
+              "en": "Close-up of the nucleus: red protons and grey neutrons."
+            }
+          },
+          {
+            "key": "protons",
+            "camera": {
+              "position": [
+                0,
+                0.5,
+                2
+              ],
+              "target": [
+                0,
+                0.3,
+                0
+              ]
+            },
+            "focus": "chem.proton",
+            "text": {
+              "ky": "Протондун заряды +1. 11 протондун +11 заряды 11 электрондун −11 зарядын теңдейт – атом нейтралдуу.",
+              "ru": "Заряд протона +1. Заряд +11 одиннадцати протонов уравновешивает −11 электронов – атом нейтрален.",
+              "en": "Each proton is +1. The +11 of eleven protons balances the −11 of the electrons, so the atom is neutral."
+            },
+            "teacherNote": {
+              "ky": "Окуучулардан: «Эгер бир электрон кетсе, атомдун заряды кандай болот?» деп сураңыз.",
+              "ru": "Спросите: «Каким станет заряд, если уйдёт один электрон?»",
+              "en": "Ask: “What will the charge be if one electron leaves?”"
+            },
+            "altText": {
+              "ky": "Ядродогу кызыл протондор бөлүнүп көрсөтүлгөн.",
+              "ru": "Красные протоны в ядре выделены.",
+              "en": "The red protons in the nucleus are highlighted."
+            }
+          },
+          {
+            "key": "shells",
+            "camera": {
+              "position": [
+                0,
+                6,
+                6
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "shells": true
+            },
+            "focus": "chem.electron-shell",
+            "text": {
+              "ky": "Электрондор катмарларга жайгашат: 1-катмарда 2, 2-катмарда 8, 3-катмарда 1.",
+              "ru": "Электроны распределены по слоям: на первом 2, на втором 8, на третьем 1.",
+              "en": "Electrons sit in shells: 2 in the first, 8 in the second, 1 in the third."
+            },
+            "teacherNote": {
+              "ky": "«Электрон катмарларынын толушу» процессин ишке киргизип, кадамдарды бирге санаңыз.",
+              "ru": "Запустите процесс «Заполнение электронных слоёв» и посчитайте электроны вместе.",
+              "en": "Run the «Filling the electron shells» process and count the electrons together."
+            },
+            "altText": {
+              "ky": "Ядронун айланасында үч концентрдик шакек.",
+              "ru": "Три концентрических кольца вокруг ядра.",
+              "en": "Three rings around the nucleus, one inside the other."
+            }
+          },
+          {
+            "key": "valence",
+            "camera": {
+              "position": [
+                5,
+                1,
+                4
+              ],
+              "target": [
+                3.6,
+                0,
+                0
+              ]
+            },
+            "focus": "chem.valence-electron",
+            "text": {
+              "ky": "Сырткы катмардагы жалгыз электрон – валенттик электрон. Натрий аны оңой берип, Na⁺ ионуна айланат.",
+              "ru": "Единственный электрон внешнего слоя – валентный. Натрий легко отдаёт его и становится ионом Na⁺.",
+              "en": "The lone electron in the outer shell is the valence electron. Sodium gives it up easily and becomes Na⁺."
+            },
+            "teacherNote": {
+              "ky": "Кийинки «Аш тузу» темасы менен байланыштырыңыз.",
+              "ru": "Свяжите с темой «Поваренная соль».",
+              "en": "Link this to the «Table salt» topic."
+            },
+            "altText": {
+              "ky": "Эң сырткы шакектеги бир жаркыраган электрон.",
+              "ru": "Один светящийся электрон на внешнем кольце.",
+              "en": "One glowing electron on the outermost ring."
+            }
+          },
+          {
+            "key": "cloud",
+            "camera": {
+              "position": [
+                0,
+                2,
+                9
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "rep": "spacefill"
+            },
+            "focus": "chem.electron",
+            "text": {
+              "ky": "«Көлөмдүү» көрүнүштө атом электрон булуту катары көрүнөт – электрондордун так жолу жок.",
+              "ru": "В объёмном виде атом выглядит как электронное облако – точных траекторий у электронов нет.",
+              "en": "In space-filling view the atom looks like an electron cloud – electrons have no exact paths."
+            },
+            "teacherNote": {
+              "ky": "Планеталык модель – жөнөкөйлөтүлгөн сүрөт экенин талкуулаңыз.",
+              "ru": "Обсудите, что планетарная модель – упрощение.",
+              "en": "Discuss that the planet-style model is a simplification."
+            },
+            "altText": {
+              "ky": "Ядрону курчаган бүдөмүк тегерек булут.",
+              "ru": "Размытое круглое облако вокруг ядра.",
+              "en": "A fuzzy round cloud around the nucleus."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.electron-filling"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.proton"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.neutron"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.electron"
+          }
+        ],
+        "rows": [
+          "charge",
+          "mass",
+          "location"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.atom-charge",
+          "chem.q.atom-in-nucleus",
+          "chem.q.atom-match",
+          "chem.q.atom-find-valence",
+          "chem.q.atom-find-nucleus",
+          "chem.q.atom-neutrons",
+          "chem.q.atom-shell2"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "t",
+          "title": {
+            "ky": "Атомдук күч микроскобу",
+            "ru": "Атомно-силовой микроскоп",
+            "en": "Atomic force microscope"
+          },
+          "text": {
+            "ky": "Бул микроскоп өтө ичке ийне менен бетти «сыйпалап», айрым атомдорду көрсөтөт.",
+            "ru": "Этот микроскоп «ощупывает» поверхность тончайшей иглой и показывает отдельные атомы.",
+            "en": "This microscope feels a surface with an ultra-fine tip and shows individual atoms."
+          }
+        },
+        {
+          "field": "s",
+          "title": {
+            "ky": "Жылдыздардын курамы",
+            "ru": "Состав звёзд",
+            "en": "What stars are made of"
+          },
+          "text": {
+            "ky": "Атомдордун электрондору өз түсүндөгү жарыкты чыгарат, ошондуктан астрономдор жылдыздын курамын анын жарыгынан билишет.",
+            "ru": "Электроны каждого элемента излучают свет своих цветов, поэтому астрономы узнают состав звезды по её свету.",
+            "en": "Each element's electrons give off their own colours, so astronomers can read a star's make-up from its light."
+          }
+        },
+        {
+          "field": "e",
+          "title": {
+            "ky": "Чиптер",
+            "ru": "Микрочипы",
+            "en": "Microchips"
+          },
+          "text": {
+            "ky": "Заманбап процессордогу транзисторлордун өлчөмү бир нече ондогон атомдой гана.",
+            "ru": "Транзисторы в современном процессоре размером всего в несколько десятков атомов.",
+            "en": "The transistors in a modern processor are only a few dozen atoms across."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Атом – Күн системасы",
+            "ru": "Атом – Солнечная система",
+            "en": "An atom is like the Solar System"
+          },
+          "text": {
+            "ky": "Ядро – Күн, электрондор – анын айланасындагы планеталар (бирок чындыгында алар булут сыяктуу).",
+            "ru": "Ядро – Солнце, электроны – планеты вокруг него (хотя на самом деле они больше похожи на облако).",
+            "en": "The nucleus is the Sun and the electrons are planets around it (really they are more like a cloud)."
+          }
+        },
+        {
+          "title": {
+            "ky": "Атом – мектеп стадиону",
+            "ru": "Атом – школьный стадион",
+            "en": "An atom is a school stadium"
+          },
+          "text": {
+            "ky": "Атом стадион болсо, ядро ортодогу бир тыйын, ал эми электрондор трибуналарда учуп жүргөн чаңдай.",
+            "ru": "Если атом – стадион, ядро – монетка в центре, а электроны – пылинки над трибунами.",
+            "en": "If the atom were a stadium, the nucleus would be a coin in the centre and the electrons dust above the stands."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "chem.q.atom-charge",
+      "type": "single",
+      "prompt": {
+        "ky": "Атомдун ядросунун заряды кандай?",
+        "ru": "Какой заряд у атомного ядра?",
+        "en": "What is the charge of the atomic nucleus?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Оң",
+            "ru": "Положительный",
+            "en": "Positive"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Терс",
+            "ru": "Отрицательный",
+            "en": "Negative"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Нөл",
+            "ru": "Нулевой",
+            "en": "Zero"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Ядродо оң заряддуу протондор жана заряды жок нейтрондор бар, ошондуктан ядро оң заряддуу.",
+        "ru": "В ядре положительные протоны и нейтральные нейтроны, поэтому ядро заряжено положительно.",
+        "en": "The nucleus holds positive protons and neutral neutrons, so it is positive."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.atom-in-nucleus",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Атомдун ядросунда кайсы бөлүкчөлөр бар?",
+        "ru": "Какие частицы находятся в ядре атома?",
+        "en": "Which particles are found in the atomic nucleus?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Протон",
+            "ru": "Протон",
+            "en": "Proton"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Нейтрон",
+            "ru": "Нейтрон",
+            "en": "Neutron"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Электрон",
+            "ru": "Электрон",
+            "en": "Electron"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "explanation": {
+        "ky": "Ядро протондордон жана нейтрондордон турат; электрондор ядронун сыртында.",
+        "ru": "Ядро состоит из протонов и нейтронов; электроны находятся вне ядра.",
+        "en": "The nucleus is made of protons and neutrons; electrons are outside it."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o1"
+      ],
+      "misconceptionKey": "chem.m.nucleus-big",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.atom-match",
+      "type": "match",
+      "prompt": {
+        "ky": "Бөлүкчөнү анын заряды менен дал келтир.",
+        "ru": "Сопоставь частицу и её заряд.",
+        "en": "Match each particle to its charge."
+      },
+      "pairs": [
+        {
+          "key": "proton",
+          "left": {
+            "ky": "Протон",
+            "ru": "Протон",
+            "en": "Proton"
+          },
+          "right": {
+            "ky": "+1",
+            "ru": "+1",
+            "en": "+1"
+          }
+        },
+        {
+          "key": "neutron",
+          "left": {
+            "ky": "Нейтрон",
+            "ru": "Нейтрон",
+            "en": "Neutron"
+          },
+          "right": {
+            "ky": "0",
+            "ru": "0",
+            "en": "0"
+          }
+        },
+        {
+          "key": "electron",
+          "left": {
+            "ky": "Электрон",
+            "ru": "Электрон",
+            "en": "Electron"
+          },
+          "right": {
+            "ky": "−1",
+            "ru": "−1",
+            "en": "−1"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Протон +1, нейтрон 0, электрон −1.",
+        "ru": "Протон +1, нейтрон 0, электрон −1.",
+        "en": "Proton +1, neutron 0, electron −1."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o1"
+      ],
+      "misconceptionKey": "chem.m.neutron-charge",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.atom-find-valence",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Натрийдин валенттик электронун моделден тап.",
+        "ru": "Найди на модели валентный электрон натрия.",
+        "en": "Find sodium's valence electron on the model."
+      },
+      "targetConceptKey": "chem.valence-electron",
+      "explanation": {
+        "ky": "Валенттик электрон – эң сырткы, үчүнчү катмардагы жалгыз электрон.",
+        "ru": "Валентный электрон – единственный электрон на внешнем, третьем слое.",
+        "en": "The valence electron is the single electron in the outermost, third shell."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o2"
+      ],
+      "misconceptionKey": "chem.m.all-electrons-bond",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.atom-find-nucleus",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Атомдун массасынын дээрлик баары топтолгон бөлүктү тап.",
+        "ru": "Найди часть атома, где сосредоточена почти вся его масса.",
+        "en": "Find the part of the atom that holds almost all of its mass."
+      },
+      "targetConceptKey": "chem.atomic-nucleus",
+      "explanation": {
+        "ky": "Атомдун массасынын 99,9 %дан ашыгы ядрого туура келет.",
+        "ru": "Более 99,9 % массы атома приходится на ядро.",
+        "en": "More than 99.9 % of the atom's mass is in the nucleus."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.atom-neutrons",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Натрий-23 атомунда 11 протон бар. Анда канча нейтрон бар?",
+        "ru": "В атоме натрия-23 11 протонов. Сколько в нём нейтронов?",
+        "en": "A sodium-23 atom has 11 protons. How many neutrons does it have?"
+      },
+      "answer": 12,
+      "tolerance": 0,
+      "explanation": {
+        "ky": "Нейтрондор = массалык сан − протондор = 23 − 11 = 12.",
+        "ru": "Нейтроны = массовое число − протоны = 23 − 11 = 12.",
+        "en": "Neutrons = mass number − protons = 23 − 11 = 12."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.atom-shell2",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Экинчи электрон катмарына эң көп канча электрон батат?",
+        "ru": "Сколько электронов максимум помещается на втором электронном слое?",
+        "en": "What is the maximum number of electrons in the second shell?"
+      },
+      "answer": 8,
+      "tolerance": 0,
+      "explanation": {
+        "ky": "2n² = 2 · 2² = 8 электрон.",
+        "ru": "2n² = 2 · 2² = 8 электронов.",
+        "en": "2n² = 2 · 2² = 8 electrons."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o2"
+      ],
+      "misconceptionKey": "chem.m.shell-any",
+      "difficulty": 2
+    }
+  ]
+}

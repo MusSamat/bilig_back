@@ -1,0 +1,998 @@
+{
+  "topic": {
+    "key": "methane-combustion",
+    "unitKey": "chem.g9.organic",
+    "status": "published",
+    "title": {
+      "ky": "Метандын күйүшү",
+      "ru": "Горение метана",
+      "en": "Combustion of methane"
+    },
+    "formula": "CH_4 + 2O_2 \\to CO_2 + 2H_2O",
+    "classification": {
+      "ky": "Экзотермиялык күйүү реакциясы",
+      "ru": "Экзотермическая реакция горения",
+      "en": "Exothermic combustion reaction"
+    },
+    "description": {
+      "ky": "Метан кычкылтекте күйүп, көмүр кычкыл газын жана сууну пайда кылат, көп жылуулук бөлүнөт. Реакцияда атомдор жоголбойт – алар кайра топтолот, ошондуктан заттардын массасы сакталат.",
+      "ru": "Метан сгорает в кислороде, образуя углекислый газ и воду, и выделяет много тепла. Атомы в реакции не исчезают – они перегруппировываются, поэтому масса веществ сохраняется.",
+      "en": "Methane burns in oxygen to form carbon dioxide and water, releasing a lot of heat. No atoms are lost – they just regroup, so the total mass stays the same."
+    },
+    "goal": {
+      "ky": "Метандын күйүү теңдемесин түзүү жана теңдеме боюнча массаларды эсептөө (CHEM-9.6.2).",
+      "ru": "Составить уравнение горения метана и рассчитать массы веществ по уравнению (CHEM-9.6.2).",
+      "en": "Write the equation for burning methane and calculate masses from it (CHEM-9.6.2)."
+    },
+    "objectiveKeys": [
+      "chem.g9.organic.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "molecule",
+      "params": {
+        "formula": "CH4 + 2O2 -> CO2 + 2H2O",
+        "molecules": [
+          {
+            "id": "CH4",
+            "side": "reactant",
+            "atoms": [
+              {
+                "id": "C1",
+                "element": "C",
+                "position": [
+                  -4.5,
+                  0,
+                  0
+                ]
+              },
+              {
+                "id": "H1",
+                "element": "H",
+                "position": [
+                  -3.872,
+                  0.628,
+                  0.628
+                ]
+              },
+              {
+                "id": "H2",
+                "element": "H",
+                "position": [
+                  -5.128,
+                  -0.628,
+                  0.628
+                ]
+              },
+              {
+                "id": "H3",
+                "element": "H",
+                "position": [
+                  -5.128,
+                  0.628,
+                  -0.628
+                ]
+              },
+              {
+                "id": "H4",
+                "element": "H",
+                "position": [
+                  -3.872,
+                  -0.628,
+                  -0.628
+                ]
+              }
+            ],
+            "bonds": [
+              {
+                "a": "C1",
+                "b": "H1",
+                "order": 1
+              },
+              {
+                "a": "C1",
+                "b": "H2",
+                "order": 1
+              },
+              {
+                "a": "C1",
+                "b": "H3",
+                "order": 1
+              },
+              {
+                "a": "C1",
+                "b": "H4",
+                "order": 1
+              }
+            ]
+          },
+          {
+            "id": "O2_1",
+            "side": "reactant",
+            "atoms": [
+              {
+                "id": "O1",
+                "element": "O",
+                "position": [
+                  -2.805,
+                  0.9,
+                  0
+                ]
+              },
+              {
+                "id": "O2",
+                "element": "O",
+                "position": [
+                  -1.595,
+                  0.9,
+                  0
+                ]
+              }
+            ],
+            "bonds": [
+              {
+                "a": "O1",
+                "b": "O2",
+                "order": 2
+              }
+            ]
+          },
+          {
+            "id": "O2_2",
+            "side": "reactant",
+            "atoms": [
+              {
+                "id": "O1",
+                "element": "O",
+                "position": [
+                  -2.805,
+                  -0.9,
+                  0
+                ]
+              },
+              {
+                "id": "O2",
+                "element": "O",
+                "position": [
+                  -1.595,
+                  -0.9,
+                  0
+                ]
+              }
+            ],
+            "bonds": [
+              {
+                "a": "O1",
+                "b": "O2",
+                "order": 2
+              }
+            ]
+          },
+          {
+            "id": "CO2",
+            "side": "product",
+            "atoms": [
+              {
+                "id": "C1",
+                "element": "C",
+                "position": [
+                  2.6,
+                  0,
+                  0
+                ]
+              },
+              {
+                "id": "O1",
+                "element": "O",
+                "position": [
+                  1.44,
+                  0,
+                  0
+                ]
+              },
+              {
+                "id": "O2",
+                "element": "O",
+                "position": [
+                  3.76,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "bonds": [
+              {
+                "a": "C1",
+                "b": "O1",
+                "order": 2
+              },
+              {
+                "a": "C1",
+                "b": "O2",
+                "order": 2
+              }
+            ]
+          },
+          {
+            "id": "H2O_1",
+            "side": "product",
+            "atoms": [
+              {
+                "id": "O1",
+                "element": "O",
+                "position": [
+                  5.0,
+                  1.0,
+                  0
+                ]
+              },
+              {
+                "id": "H1",
+                "element": "H",
+                "position": [
+                  5.757,
+                  0.414,
+                  0
+                ]
+              },
+              {
+                "id": "H2",
+                "element": "H",
+                "position": [
+                  4.243,
+                  0.414,
+                  0
+                ]
+              }
+            ],
+            "bonds": [
+              {
+                "a": "O1",
+                "b": "H1",
+                "order": 1
+              },
+              {
+                "a": "O1",
+                "b": "H2",
+                "order": 1
+              }
+            ]
+          },
+          {
+            "id": "H2O_2",
+            "side": "product",
+            "atoms": [
+              {
+                "id": "O1",
+                "element": "O",
+                "position": [
+                  5.0,
+                  -1.0,
+                  0
+                ]
+              },
+              {
+                "id": "H1",
+                "element": "H",
+                "position": [
+                  5.757,
+                  -1.586,
+                  0
+                ]
+              },
+              {
+                "id": "H2",
+                "element": "H",
+                "position": [
+                  4.243,
+                  -1.586,
+                  0
+                ]
+              }
+            ],
+            "bonds": [
+              {
+                "a": "O1",
+                "b": "H1",
+                "order": 1
+              },
+              {
+                "a": "O1",
+                "b": "H2",
+                "order": 1
+              }
+            ]
+          }
+        ]
+      },
+      "camera": {
+        "position": [
+          0,
+          1.5,
+          10
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "ball-stick",
+        "spacefill"
+      ]
+    },
+    "conceptKeys": [
+      "chem.methane",
+      "chem.o2",
+      "chem.carbon-dioxide",
+      "chem.water",
+      "chem.covalent-bond"
+    ],
+    "overrides": {
+      "chem.methane": {
+        "anchor": [
+          -4.5,
+          1,
+          0
+        ],
+        "nodes": [
+          "Mol_CH4"
+        ]
+      },
+      "chem.o2": {
+        "anchor": [
+          -2.2,
+          1.5,
+          0
+        ],
+        "nodes": [
+          "Mol_O2_*"
+        ]
+      },
+      "chem.carbon-dioxide": {
+        "anchor": [
+          2.6,
+          0.6,
+          0
+        ],
+        "nodes": [
+          "Mol_CO2"
+        ]
+      },
+      "chem.water": {
+        "anchor": [
+          5.0,
+          1.6,
+          0
+        ],
+        "nodes": [
+          "Mol_H2O_*"
+        ]
+      },
+      "chem.covalent-bond": {
+        "nodes": [
+          "Bond_*"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "ch4",
+        "title": {
+          "ky": "Метан",
+          "ru": "Метан",
+          "en": "Methane"
+        },
+        "classification": {
+          "ky": "CH₄ · отун",
+          "ru": "CH₄ · топливо",
+          "en": "CH₄ · fuel"
+        },
+        "thumb": "thumbs/ch4.webp",
+        "topicKey": "methane"
+      },
+      {
+        "key": "co2",
+        "title": {
+          "ky": "Көмүр кычкыл газы",
+          "ru": "Углекислый газ",
+          "en": "Carbon dioxide"
+        },
+        "classification": {
+          "ky": "CO₂ · продукт",
+          "ru": "CO₂ · продукт",
+          "en": "CO₂ · product"
+        },
+        "thumb": "thumbs/co2.webp"
+      },
+      {
+        "key": "h2o",
+        "title": {
+          "ky": "Суу",
+          "ru": "Вода",
+          "en": "Water"
+        },
+        "classification": {
+          "ky": "H₂O · продукт",
+          "ru": "H₂O · продукт",
+          "en": "H₂O · product"
+        },
+        "thumb": "thumbs/h2o.webp",
+        "topicKey": "water"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                10
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "text": {
+              "ky": "Сол жакта баштапкы заттар: 1 метан жана 2 кычкылтек молекуласы. Оң жакта продуктулар: 1 CO₂ жана 2 H₂O.",
+              "ru": "Слева исходные вещества: 1 молекула метана и 2 молекулы кислорода. Справа продукты: 1 CO₂ и 2 H₂O.",
+              "en": "On the left are the reactants: 1 methane and 2 oxygen molecules. On the right are the products: 1 CO₂ and 2 H₂O."
+            },
+            "teacherNote": {
+              "ky": "Эки жактагы ар бир элементтин атомдорун санатыңыз: C 1 = 1, H 4 = 4, O 4 = 4.",
+              "ru": "Попросите посчитать атомы каждого элемента слева и справа: C 1 = 1, H 4 = 4, O 4 = 4.",
+              "en": "Have pupils count each element on both sides: C 1 = 1, H 4 = 4, O 4 = 4."
+            },
+            "altText": {
+              "ky": "Сол жакта үч молекула, оң жакта үч молекула, ортодо жебе.",
+              "ru": "Три молекулы слева, три справа, посередине стрелка.",
+              "en": "Three molecules on the left, three on the right, an arrow between."
+            }
+          },
+          {
+            "key": "methane",
+            "camera": {
+              "position": [
+                -4.5,
+                1,
+                4
+              ],
+              "target": [
+                -4.5,
+                0,
+                0
+              ]
+            },
+            "focus": "chem.methane",
+            "text": {
+              "ky": "Метан – отун. Анын төрт C–H байланышында химиялык энергия сакталган.",
+              "ru": "Метан – топливо. В его четырёх связях C–H запасена химическая энергия.",
+              "en": "Methane is the fuel. Chemical energy is stored in its four C–H bonds."
+            },
+            "teacherNote": {
+              "ky": "Газ плитасындагы көк жалын – толук күйүүнүн белгиси экенин айтыңыз.",
+              "ru": "Скажите, что синее пламя газовой плиты – признак полного сгорания.",
+              "en": "Mention that the blue flame of a gas cooker is a sign of complete combustion."
+            },
+            "altText": {
+              "ky": "Тетраэдр формасындагы метан молекуласы бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделена молекула метана в форме тетраэдра.",
+              "en": "The tetrahedral methane molecule is highlighted."
+            }
+          },
+          {
+            "key": "oxygen",
+            "camera": {
+              "position": [
+                -2.2,
+                0,
+                4
+              ],
+              "target": [
+                -2.2,
+                0,
+                0
+              ]
+            },
+            "focus": "chem.o2",
+            "text": {
+              "ky": "Бир метанга эки O₂ молекуласы керек. Кычкылтек өзү күйбөйт, ал күйүүгө жардам берет.",
+              "ru": "На одну молекулу метана нужно две молекулы O₂. Кислород сам не горит, он поддерживает горение.",
+              "en": "Each methane needs two O₂ molecules. Oxygen does not burn itself – it supports burning."
+            },
+            "teacherNote": {
+              "ky": "Желдетүү эмне үчүн маанилүү экенин талкуулаңыз: кычкылтек жетпесе, уулуу ис газы (CO) пайда болот.",
+              "ru": "Обсудите, почему важна вентиляция: при нехватке кислорода образуется ядовитый угарный газ (CO).",
+              "en": "Discuss why ventilation matters: without enough oxygen, poisonous carbon monoxide (CO) forms."
+            },
+            "altText": {
+              "ky": "Эки кызыл шардан турган эки молекула.",
+              "ru": "Две молекулы из двух красных шаров.",
+              "en": "Two molecules, each of two red balls."
+            }
+          },
+          {
+            "key": "co2",
+            "camera": {
+              "position": [
+                2.6,
+                0.5,
+                4
+              ],
+              "target": [
+                2.6,
+                0,
+                0
+              ]
+            },
+            "focus": "chem.carbon-dioxide",
+            "text": {
+              "ky": "Көмүртек эки кычкылтек менен бириккенде түз сызыктуу CO₂ молекуласы пайда болот.",
+              "ru": "Углерод соединяется с двумя атомами кислорода – получается линейная молекула CO₂.",
+              "en": "Carbon joins two oxygens to make a straight CO₂ molecule."
+            },
+            "teacherNote": {
+              "ky": "CO₂дин климатка тийгизген таасирин кыскача талкуулаңыз.",
+              "ru": "Кратко обсудите влияние CO₂ на климат.",
+              "en": "Briefly discuss how CO₂ affects the climate."
+            },
+            "altText": {
+              "ky": "Түз сызыкта жайгашкан үч атом: кызыл, кара, кызыл.",
+              "ru": "Три атома в линию: красный, чёрный, красный.",
+              "en": "Three atoms in a line: red, black, red."
+            }
+          },
+          {
+            "key": "water",
+            "camera": {
+              "position": [
+                5,
+                0,
+                4
+              ],
+              "target": [
+                5,
+                0,
+                0
+              ]
+            },
+            "focus": "chem.water",
+            "text": {
+              "ky": "Төрт суутек атому эки кычкылтек менен бириккенде эки суу молекуласы пайда болот. Муздак терезеде суунун тамчылары калат.",
+              "ru": "Четыре атома водорода с двумя атомами кислорода дают две молекулы воды. На холодном окне оседают капли.",
+              "en": "The four hydrogens join two oxygens to make two water molecules – that is why droplets form on a cold window."
+            },
+            "teacherNote": {
+              "ky": "Плитанын үстүндөгү муздак кашыкта тамчылар пайда болорун эске салыңыз.",
+              "ru": "Напомните, что на холодной ложке над плитой появляются капельки.",
+              "en": "Remind them that droplets appear on a cold spoon held over a gas flame."
+            },
+            "altText": {
+              "ky": "Бүгүлгөн формадагы эки суу молекуласы.",
+              "ru": "Две изогнутые молекулы воды.",
+              "en": "Two bent water molecules."
+            }
+          },
+          {
+            "key": "mass",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                10
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "focus": "chem.covalent-bond",
+            "text": {
+              "ky": "Байланыштар үзүлүп, кайра түзүлөт, бирок атомдор жоголбойт: 16 г + 64 г = 44 г + 36 г = 80 г. 1 моль метан ≈890 кДж жылуулук берет.",
+              "ru": "Связи рвутся и образуются заново, но атомы не исчезают: 16 г + 64 г = 44 г + 36 г = 80 г. Моль метана даёт ≈890 кДж тепла.",
+              "en": "Bonds break and form again but no atoms are lost: 16 g + 64 g = 44 g + 36 g = 80 g. One mole of methane gives ≈890 kJ of heat."
+            },
+            "teacherNote": {
+              "ky": "«Метандын күйүшү» процессин ишке киргизип, массалардын көрсөткүчтөрүн байкаңыз.",
+              "ru": "Запустите процесс «Горение метана» и следите за показателями масс.",
+              "en": "Run the «Combustion of methane» process and watch the mass readouts."
+            },
+            "altText": {
+              "ky": "Бардык молекулалардагы байланыштар бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделены связи во всех молекулах.",
+              "en": "The bonds in all molecules are highlighted."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.methane-combustion"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.methane"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.o2"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.carbon-dioxide"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.water"
+          }
+        ],
+        "rows": [
+          "molarMass",
+          "boilingPoint",
+          "state"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.comb-products",
+          "chem.q.comb-o2-coef",
+          "chem.q.comb-match",
+          "chem.q.comb-find-co2",
+          "chem.q.comb-find-o2",
+          "chem.q.comb-co2-mass",
+          "chem.q.comb-o2-mass"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "t",
+          "title": {
+            "ky": "Жылуулук электр борбору",
+            "ru": "ТЭЦ",
+            "en": "Combined heat and power plant"
+          },
+          "text": {
+            "ky": "Бишкек ЖЭБи отунду күйгүзүп, шаарды жылуулук жана электр менен камсыздайт.",
+            "ru": "ТЭЦ Бишкека сжигает топливо и снабжает город теплом и электроэнергией.",
+            "en": "Bishkek's combined heat and power plant burns fuel to supply the city with heat and electricity."
+          }
+        },
+        {
+          "field": "e",
+          "title": {
+            "ky": "Ис газы детектору",
+            "ru": "Датчик угарного газа",
+            "en": "Carbon monoxide alarm"
+          },
+          "text": {
+            "ky": "Кычкылтек жетишсиз болсо, CO₂дин ордуна уулуу ис газы (CO) пайда болот; инженерлер ал үчүн үйлөргө сигнал берүүчү датчиктерди орнотушат.",
+            "ru": "При нехватке кислорода вместо CO₂ образуется ядовитый угарный газ (CO); инженеры ставят в дома датчики, которые подают сигнал.",
+            "en": "With too little oxygen, poisonous carbon monoxide (CO) forms instead of CO₂, so engineers fit homes with alarms."
+          }
+        },
+        {
+          "field": "m",
+          "title": {
+            "ky": "Стехиометрия",
+            "ru": "Стехиометрия",
+            "en": "Stoichiometry"
+          },
+          "text": {
+            "ky": "Теңдеме – пропорция: 16 г метан 64 г кычкылтек талап кылса, 8 г метан 32 г талап кылат.",
+            "ru": "Уравнение – это пропорция: если 16 г метана требуют 64 г кислорода, то 8 г – 32 г.",
+            "en": "An equation is a proportion: if 16 g of methane needs 64 g of oxygen, 8 g needs 32 g."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Конструкторду кайра чогултуу",
+            "ru": "Пересборка конструктора",
+            "en": "Rebuilding a brick model"
+          },
+          "text": {
+            "ky": "Конструктордон жасалган үйдү бузуп, ошол эле деталдардан машина жасасаң – деталдар азайбайт. Реакцияда атомдор да ушинтип кайра чогултулат.",
+            "ru": "Разбери домик из конструктора и собери из тех же деталей машинку – деталей не станет меньше. Так и атомы в реакции.",
+            "en": "Take apart a brick house and build a car from the same bricks – none go missing. Atoms in a reaction are the same."
+          }
+        },
+        {
+          "title": {
+            "ky": "Газ плитасы",
+            "ru": "Газовая плита",
+            "en": "The gas cooker"
+          },
+          "text": {
+            "ky": "Плитаны жакканыңда метан кычкылтек менен реакцияга кирип, көк жалын жана жылуулук берет – чайнек ошентип кайнайт.",
+            "ru": "Когда зажигаешь плиту, метан реагирует с кислородом и даёт синее пламя и тепло – так закипает чайник.",
+            "en": "When you light the cooker, methane reacts with oxygen to give a blue flame and heat – that is how the kettle boils."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "chem.q.comb-products",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Метан толук күйгөндө кайсы заттар пайда болот?",
+        "ru": "Какие вещества образуются при полном сгорании метана?",
+        "en": "Which substances form when methane burns completely?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Көмүр кычкыл газы",
+            "ru": "Углекислый газ",
+            "en": "Carbon dioxide"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Суу",
+            "ru": "Вода",
+            "en": "Water"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Суутек",
+            "ru": "Водород",
+            "en": "Hydrogen"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Кычкылтек",
+            "ru": "Кислород",
+            "en": "Oxygen"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "explanation": {
+        "ky": "CH₄ + 2O₂ → CO₂ + 2H₂O: көмүр кычкыл газы жана суу.",
+        "ru": "CH₄ + 2O₂ → CO₂ + 2H₂O: углекислый газ и вода.",
+        "en": "CH₄ + 2O₂ → CO₂ + 2H₂O: carbon dioxide and water."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.comb-o2-coef",
+      "type": "single",
+      "prompt": {
+        "ky": "CH₄ + __O₂ → CO₂ + 2H₂O теңдемесинде O₂нин алдындагы коэффициент канча?",
+        "ru": "Какой коэффициент перед O₂ в уравнении CH₄ + __O₂ → CO₂ + 2H₂O?",
+        "en": "What is the coefficient of O₂ in CH₄ + __O₂ → CO₂ + 2H₂O?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "1",
+            "ru": "1",
+            "en": "1"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "2",
+            "ru": "2",
+            "en": "2"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "3",
+            "ru": "3",
+            "en": "3"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "4",
+            "ru": "4",
+            "en": "4"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Оң жакта 2 + 2 = 4 кычкылтек атому бар, ошондуктан 2 O₂ керек.",
+        "ru": "Справа 2 + 2 = 4 атома кислорода, значит нужно 2 O₂.",
+        "en": "There are 2 + 2 = 4 oxygen atoms on the right, so 2 O₂ are needed."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o2"
+      ],
+      "misconceptionKey": "chem.m.oxygen-burns",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.comb-match",
+      "type": "match",
+      "prompt": {
+        "ky": "Затты анын молярдык массасы менен дал келтир.",
+        "ru": "Сопоставь вещество и его молярную массу.",
+        "en": "Match each substance to its molar mass."
+      },
+      "pairs": [
+        {
+          "key": "ch4",
+          "left": {
+            "ky": "CH₄",
+            "ru": "CH₄",
+            "en": "CH₄"
+          },
+          "right": {
+            "ky": "16 г/моль",
+            "ru": "16 г/моль",
+            "en": "16 g/mol"
+          }
+        },
+        {
+          "key": "o2",
+          "left": {
+            "ky": "O₂",
+            "ru": "O₂",
+            "en": "O₂"
+          },
+          "right": {
+            "ky": "32 г/моль",
+            "ru": "32 г/моль",
+            "en": "32 g/mol"
+          }
+        },
+        {
+          "key": "co2",
+          "left": {
+            "ky": "CO₂",
+            "ru": "CO₂",
+            "en": "CO₂"
+          },
+          "right": {
+            "ky": "44 г/моль",
+            "ru": "44 г/моль",
+            "en": "44 g/mol"
+          }
+        },
+        {
+          "key": "h2o",
+          "left": {
+            "ky": "H₂O",
+            "ru": "H₂O",
+            "en": "H₂O"
+          },
+          "right": {
+            "ky": "18 г/моль",
+            "ru": "18 г/моль",
+            "en": "18 g/mol"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "CH₄ 16, O₂ 32, CO₂ 44, H₂O 18 г/моль.",
+        "ru": "CH₄ 16, O₂ 32, CO₂ 44, H₂O 18 г/моль.",
+        "en": "CH₄ 16, O₂ 32, CO₂ 44, H₂O 18 g/mol."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.comb-find-co2",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Реакциянын продуктуларынын ичинен көмүр кычкыл газынын молекуласын тап.",
+        "ru": "Найди среди продуктов реакции молекулу углекислого газа.",
+        "en": "Find the carbon dioxide molecule among the products."
+      },
+      "targetConceptKey": "chem.carbon-dioxide",
+      "explanation": {
+        "ky": "CO₂ – түз сызыктуу молекула: ортодо көмүртек, эки жагында кычкылтек.",
+        "ru": "CO₂ – линейная молекула: углерод в центре, кислород по бокам.",
+        "en": "CO₂ is a straight molecule: carbon in the middle, oxygen at both ends."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o2"
+      ],
+      "misconceptionKey": "chem.m.co2-poison-only",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.comb-find-o2",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Кычкылтек молекуласын (O₂) тап.",
+        "ru": "Найди молекулу кислорода (O₂).",
+        "en": "Find an oxygen molecule (O₂)."
+      },
+      "targetConceptKey": "chem.o2",
+      "explanation": {
+        "ky": "O₂ – кош байланыш менен бириккен эки кызыл атом.",
+        "ru": "O₂ – два красных атома, соединённых двойной связью.",
+        "en": "O₂ is two red atoms joined by a double bond."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o2"
+      ],
+      "misconceptionKey": "chem.m.o2-single-atoms",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.comb-co2-mass",
+      "type": "numeric",
+      "prompt": {
+        "ky": "16 г метан толук күйгөндө канча грамм CO₂ пайда болот?",
+        "ru": "Сколько граммов CO₂ образуется при полном сгорании 16 г метана?",
+        "en": "How many grams of CO₂ form when 16 g of methane burns completely?"
+      },
+      "answer": 44,
+      "tolerance": 0.5,
+      "unit": "g",
+      "explanation": {
+        "ky": "16 г CH₄ = 1 моль → 1 моль CO₂ = 44 г.",
+        "ru": "16 г CH₄ = 1 моль → 1 моль CO₂ = 44 г.",
+        "en": "16 g CH₄ = 1 mol → 1 mol CO₂ = 44 g."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.comb-o2-mass",
+      "type": "numeric",
+      "prompt": {
+        "ky": "8 г метанды күйгүзүү үчүн канча грамм кычкылтек керек?",
+        "ru": "Сколько граммов кислорода нужно, чтобы сжечь 8 г метана?",
+        "en": "How many grams of oxygen are needed to burn 8 g of methane?"
+      },
+      "answer": 32,
+      "tolerance": 0.5,
+      "unit": "g",
+      "explanation": {
+        "ky": "8 г CH₄ = 0,5 моль → 1 моль O₂ = 32 г.",
+        "ru": "8 г CH₄ = 0,5 моль → 1 моль O₂ = 32 г.",
+        "en": "8 g CH₄ = 0.5 mol → 1 mol O₂ = 32 g."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o2"
+      ],
+      "difficulty": 4
+    }
+  ]
+}

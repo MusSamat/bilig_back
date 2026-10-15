@@ -1,0 +1,537 @@
+{
+  "processes": [
+    {
+      "key": "math.pythagoras-proof",
+      "engine": "timeline",
+      "icon": "square",
+      "title": {
+        "ky": "Пифагор теоремасынын далили",
+        "ru": "Доказательство теоремы Пифагора",
+        "en": "Proof of the Pythagorean theorem"
+      },
+      "description": {
+        "ky": "Үч бурчтуктун жактарына квадраттар тургузулат, анан төрт бирдей үч бурчтукту (a + b) жактуу квадратка жайгаштырып, аянттар салыштырылат.",
+        "ru": "На сторонах треугольника строят квадраты, затем четыре одинаковых треугольника укладывают в квадрат со стороной (a + b) и сравнивают площади.",
+        "en": "Squares are built on the triangle's sides, then four copies of the triangle are arranged inside a square of side (a + b) and the areas are compared."
+      },
+      "equation": "a^2 + b^2 = c^2",
+      "inputs": {
+        "ky": "a = 3 см, b = 4 см",
+        "ru": "a = 3 см, b = 4 см",
+        "en": "a = 3 cm, b = 4 cm"
+      },
+      "outputs": {
+        "ky": "c = 5 см",
+        "ru": "c = 5 см",
+        "en": "c = 5 cm"
+      },
+      "steps": [
+        {
+          "key": "triangle",
+          "title": {
+            "ky": "Тик бурчтуу үч бурчтук",
+            "ru": "Прямоугольный треугольник",
+            "en": "The right triangle"
+          },
+          "result": {
+            "ky": "a = 3, b = 4",
+            "ru": "a = 3, b = 4",
+            "en": "a = 3, b = 4"
+          },
+          "description": {
+            "ky": "Катеттери 3 см жана 4 см болгон тик бурчтуу үч бурчтукту чийебиз.",
+            "ru": "Чертим прямоугольный треугольник с катетами 3 см и 4 см.",
+            "en": "We draw a right triangle with legs of 3 cm and 4 cm."
+          },
+          "conceptKey": "math.right-triangle",
+          "altText": {
+            "ky": "Тик бурчу белгиленген үч бурчтук.",
+            "ru": "Треугольник с отмеченным прямым углом.",
+            "en": "A triangle with its right angle marked."
+          },
+          "duration": 2
+        },
+        {
+          "key": "leg-squares",
+          "title": {
+            "ky": "Катеттердеги квадраттар",
+            "ru": "Квадраты на катетах",
+            "en": "Squares on the legs"
+          },
+          "result": {
+            "ky": "9 + 16 = 25 см²",
+            "ru": "9 + 16 = 25 см²",
+            "en": "9 + 16 = 25 cm²"
+          },
+          "description": {
+            "ky": "Ар бир катетке квадрат тургузабыз: аянттары 3² = 9 жана 4² = 16 см².",
+            "ru": "На каждом катете строим квадрат: площади 3² = 9 и 4² = 16 см².",
+            "en": "We build a square on each leg: their areas are 3² = 9 and 4² = 16 cm²."
+          },
+          "conceptKey": "math.leg",
+          "altText": {
+            "ky": "Эки катетке тургузулган кичине жана орто квадраттар.",
+            "ru": "Маленький и средний квадраты на катетах.",
+            "en": "A small and a medium square on the two legs."
+          },
+          "duration": 2
+        },
+        {
+          "key": "hyp-square",
+          "title": {
+            "ky": "Гипотенузадагы квадрат",
+            "ru": "Квадрат на гипотенузе",
+            "en": "Square on the hypotenuse"
+          },
+          "result": {
+            "ky": "c² = 25 см²",
+            "ru": "c² = 25 см²",
+            "en": "c² = 25 cm²"
+          },
+          "description": {
+            "ky": "Гипотенузага квадрат тургузабыз; анын аянты 5² = 25 см².",
+            "ru": "Строим квадрат на гипотенузе; его площадь 5² = 25 см².",
+            "en": "We build a square on the hypotenuse; its area is 5² = 25 cm²."
+          },
+          "conceptKey": "math.side-square",
+          "altText": {
+            "ky": "Гипотенузадагы эң чоң квадрат.",
+            "ru": "Самый большой квадрат – на гипотенузе.",
+            "en": "The biggest square, on the hypotenuse."
+          },
+          "duration": 2
+        },
+        {
+          "key": "rearrange",
+          "title": {
+            "ky": "Кайра жайгаштыруу",
+            "ru": "Перекладывание",
+            "en": "Rearranging"
+          },
+          "result": {
+            "ky": "(a + b)² = c² + 2ab",
+            "ru": "(a + b)² = c² + 2ab",
+            "en": "(a + b)² = c² + 2ab"
+          },
+          "description": {
+            "ky": "7 × 7 квадратка төрт үч бурчтукту жайгаштырабыз: ортосунда c² квадрат калат. 49 = 25 + 4 · 6.",
+            "ru": "Укладываем четыре треугольника в квадрат 7 × 7: в середине остаётся квадрат c². 49 = 25 + 4 · 6.",
+            "en": "Four triangles fit inside a 7 × 7 square, leaving a c² square in the middle: 49 = 25 + 4 × 6."
+          },
+          "conceptKey": "math.hypotenuse",
+          "altText": {
+            "ky": "Чоң квадраттын бурчтарында төрт үч бурчтук, ортосунда кыйшык квадрат.",
+            "ru": "Четыре треугольника по углам большого квадрата, в середине – повёрнутый квадрат.",
+            "en": "Four triangles in the corners of a big square with a tilted square in the middle."
+          },
+          "duration": 3
+        },
+        {
+          "key": "conclusion",
+          "title": {
+            "ky": "Жыйынтык",
+            "ru": "Вывод",
+            "en": "Conclusion"
+          },
+          "result": {
+            "ky": "a² + b² = c²",
+            "ru": "a² + b² = c²",
+            "en": "a² + b² = c²"
+          },
+          "description": {
+            "ky": "Ачылгандан кийин (a + b)² = a² + b² + 2ab, ошондуктан a² + b² = c². Теорема далилденди.",
+            "ru": "Раскрыв скобки, (a + b)² = a² + b² + 2ab, значит a² + b² = c². Теорема доказана.",
+            "en": "Expanding, (a + b)² = a² + b² + 2ab, so a² + b² = c². The theorem is proved."
+          },
+          "conceptKey": "math.right-angle",
+          "altText": {
+            "ky": "Катеттердеги эки квадрат гипотенузадагы квадратка барабар экенин көрсөткөн чийме.",
+            "ru": "Чертёж, показывающий, что два квадрата на катетах равны квадрату на гипотенузе.",
+            "en": "A drawing showing that the two leg squares equal the hypotenuse square."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "area-a",
+          "label": {
+            "ky": "a² аянты",
+            "ru": "Площадь a²",
+            "en": "Area a²"
+          },
+          "unit": "cm²",
+          "min": 0,
+          "max": 25,
+          "precision": 0
+        },
+        {
+          "key": "area-b",
+          "label": {
+            "ky": "b² аянты",
+            "ru": "Площадь b²",
+            "en": "Area b²"
+          },
+          "unit": "cm²",
+          "min": 0,
+          "max": 25,
+          "precision": 0
+        },
+        {
+          "key": "area-c",
+          "label": {
+            "ky": "c² аянты",
+            "ru": "Площадь c²",
+            "en": "Area c²"
+          },
+          "unit": "cm²",
+          "min": 0,
+          "max": 25,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "a": 3,
+        "b": 4
+      }
+    },
+    {
+      "key": "math.pyramid-volume",
+      "engine": "timeline",
+      "icon": "pyramid",
+      "title": {
+        "ky": "Пирамиданын көлөмү",
+        "ru": "Объём пирамиды",
+        "en": "Volume of a pyramid"
+      },
+      "description": {
+        "ky": "Кубду чокусу бир жерде жайгашкан үч бирдей пирамидага бөлүп, пирамиданын көлөмү призманын үчтөн бири экенин көрсөтөбүз.",
+        "ru": "Разрезаем куб на три одинаковые пирамиды с общей вершиной и показываем, что объём пирамиды – треть призмы.",
+        "en": "We cut a cube into three identical pyramids that share one apex and show that a pyramid has one third of the prism's volume."
+      },
+      "equation": "V = \\tfrac{1}{3}Sh",
+      "inputs": {
+        "ky": "Кубдун кыры a = 2 см",
+        "ru": "Ребро куба a = 2 см",
+        "en": "Cube edge a = 2 cm"
+      },
+      "outputs": {
+        "ky": "Ар бир пирамиданын көлөмү 8/3 ≈ 2,67 см³",
+        "ru": "Объём каждой пирамиды 8/3 ≈ 2,67 см³",
+        "en": "Each pyramid has a volume of 8/3 ≈ 2.67 cm³"
+      },
+      "steps": [
+        {
+          "key": "cube",
+          "title": {
+            "ky": "Куб",
+            "ru": "Куб",
+            "en": "The cube"
+          },
+          "result": {
+            "ky": "V = 8 см³",
+            "ru": "V = 8 см³",
+            "en": "V = 8 cm³"
+          },
+          "description": {
+            "ky": "Кыры 2 см болгон кубдун көлөмү 2³ = 8 см³.",
+            "ru": "Объём куба с ребром 2 см равен 2³ = 8 см³.",
+            "en": "A cube with a 2 cm edge has a volume of 2³ = 8 cm³."
+          },
+          "conceptKey": "math.cube",
+          "altText": {
+            "ky": "Кыры 2 см болгон тунук куб.",
+            "ru": "Прозрачный куб с ребром 2 см.",
+            "en": "A transparent cube with a 2 cm edge."
+          },
+          "duration": 2
+        },
+        {
+          "key": "apex",
+          "title": {
+            "ky": "Жалпы чоку",
+            "ru": "Общая вершина",
+            "en": "Shared apex"
+          },
+          "result": {
+            "ky": "1 чоку",
+            "ru": "1 вершина",
+            "en": "1 apex"
+          },
+          "description": {
+            "ky": "Кубдун бир чокусун тандап, аны үч алыскы гран менен бириктиребиз.",
+            "ru": "Выбираем одну вершину куба и соединяем её с тремя дальними гранями.",
+            "en": "We pick one vertex of the cube and connect it to the three far faces."
+          },
+          "conceptKey": "math.vertex",
+          "altText": {
+            "ky": "Кубдун бурчундагы бир чоку бөлүнүп көрсөтүлгөн.",
+            "ru": "Выделена одна вершина в углу куба.",
+            "en": "One corner vertex of the cube is highlighted."
+          },
+          "duration": 2
+        },
+        {
+          "key": "split",
+          "title": {
+            "ky": "Үч пирамида",
+            "ru": "Три пирамиды",
+            "en": "Three pyramids"
+          },
+          "result": {
+            "ky": "3 × пирамида",
+            "ru": "3 × пирамида",
+            "en": "3 × pyramid"
+          },
+          "description": {
+            "ky": "Куб негизи 2 × 2 квадрат жана бийиктиги 2 см болгон үч бирдей пирамидага бөлүнөт.",
+            "ru": "Куб распадается на три одинаковые пирамиды с основанием-квадратом 2 × 2 и высотой 2 см.",
+            "en": "The cube splits into three identical pyramids, each with a 2 × 2 square base and a 2 cm height."
+          },
+          "conceptKey": "math.pyramid",
+          "altText": {
+            "ky": "Үч түстүү пирамида кубдан ажырап чыгат.",
+            "ru": "Три цветные пирамиды раздвигаются из куба.",
+            "en": "Three coloured pyramids slide apart from the cube."
+          },
+          "duration": 3
+        },
+        {
+          "key": "formula",
+          "title": {
+            "ky": "Формула",
+            "ru": "Формула",
+            "en": "The formula"
+          },
+          "result": {
+            "ky": "V = 8/3 ≈ 2,67 см³",
+            "ru": "V = 8/3 ≈ 2,67 см³",
+            "en": "V = 8/3 ≈ 2.67 cm³"
+          },
+          "description": {
+            "ky": "Ар бир пирамида кубдун үчтөн бири: V = ⅓ · S · h = ⅓ · 4 · 2 ≈ 2,67 см³.",
+            "ru": "Каждая пирамида – треть куба: V = ⅓ · S · h = ⅓ · 4 · 2 ≈ 2,67 см³.",
+            "en": "Each pyramid is a third of the cube: V = ⅓ × S × h = ⅓ × 4 × 2 ≈ 2.67 cm³."
+          },
+          "conceptKey": "math.pyramid-height",
+          "altText": {
+            "ky": "Бир пирамида жана анын бийиктиги көрсөтүлгөн.",
+            "ru": "Одна пирамида с отмеченной высотой.",
+            "en": "One pyramid with its height marked."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "cube-volume",
+          "label": {
+            "ky": "Кубдун көлөмү",
+            "ru": "Объём куба",
+            "en": "Cube volume"
+          },
+          "unit": "cm³",
+          "min": 0,
+          "max": 8,
+          "precision": 1
+        },
+        {
+          "key": "pyramid-volume",
+          "label": {
+            "ky": "Пирамиданын көлөмү",
+            "ru": "Объём пирамиды",
+            "en": "Pyramid volume"
+          },
+          "unit": "cm³",
+          "min": 0,
+          "max": 8,
+          "precision": 2
+        },
+        {
+          "key": "pyramids",
+          "label": {
+            "ky": "Пирамидалар",
+            "ru": "Пирамиды",
+            "en": "Pyramids"
+          },
+          "min": 0,
+          "max": 3,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "edge": 2,
+        "pieces": 3
+      }
+    },
+    {
+      "key": "math.sphere-volume",
+      "engine": "timeline",
+      "icon": "circle",
+      "title": {
+        "ky": "Архимеддин шары",
+        "ru": "Шар Архимеда",
+        "en": "Archimedes' sphere"
+      },
+      "description": {
+        "ky": "Шар ага сырттан сызылган цилиндрге салыштырылат: шардын көлөмү цилиндрдикинин ⅔сине барабар, ал эми конус, шар жана цилиндр 1 : 2 : 3 катышта.",
+        "ru": "Шар сравнивают с описанным вокруг него цилиндром: объём шара – ⅔ объёма цилиндра, а конус, шар и цилиндр относятся как 1 : 2 : 3.",
+        "en": "The sphere is compared with the cylinder wrapped around it: the sphere has ⅔ of the cylinder's volume, and cone, sphere and cylinder are in the ratio 1 : 2 : 3."
+      },
+      "equation": "V_{шар} = V_{цил} - V_{кон} = 2\\pi r^3 - \\tfrac{2}{3}\\pi r^3 = \\tfrac{4}{3}\\pi r^3",
+      "inputs": {
+        "ky": "r = 3 см, h = 2r = 6 см",
+        "ru": "r = 3 см, h = 2r = 6 см",
+        "en": "r = 3 cm, h = 2r = 6 cm"
+      },
+      "outputs": {
+        "ky": "V шар ≈ 113,1 см³",
+        "ru": "V шара ≈ 113,1 см³",
+        "en": "V sphere ≈ 113.1 cm³"
+      },
+      "steps": [
+        {
+          "key": "cylinder",
+          "title": {
+            "ky": "Цилиндр",
+            "ru": "Цилиндр",
+            "en": "The cylinder"
+          },
+          "result": {
+            "ky": "V ≈ 169,6 см³",
+            "ru": "V ≈ 169,6 см³",
+            "en": "V ≈ 169.6 cm³"
+          },
+          "description": {
+            "ky": "Радиусу 3 см жана бийиктиги 6 см цилиндр: V = πr²h = 54π ≈ 169,6 см³.",
+            "ru": "Цилиндр радиуса 3 см и высоты 6 см: V = πr²h = 54π ≈ 169,6 см³.",
+            "en": "A cylinder with radius 3 cm and height 6 cm: V = πr²h = 54π ≈ 169.6 cm³."
+          },
+          "conceptKey": "math.cylinder",
+          "altText": {
+            "ky": "Тунук цилиндр.",
+            "ru": "Прозрачный цилиндр.",
+            "en": "A transparent cylinder."
+          },
+          "duration": 2
+        },
+        {
+          "key": "cone",
+          "title": {
+            "ky": "Конус",
+            "ru": "Конус",
+            "en": "The cone"
+          },
+          "result": {
+            "ky": "V ≈ 56,5 см³",
+            "ru": "V ≈ 56,5 см³",
+            "en": "V ≈ 56.5 cm³"
+          },
+          "description": {
+            "ky": "Ошол эле негиздеги жана бийиктиктеги конус – цилиндрдин үчтөн бири: 18π ≈ 56,5 см³.",
+            "ru": "Конус с тем же основанием и высотой – треть цилиндра: 18π ≈ 56,5 см³.",
+            "en": "A cone with the same base and height is a third of the cylinder: 18π ≈ 56.5 cm³."
+          },
+          "conceptKey": "math.cone",
+          "altText": {
+            "ky": "Цилиндрдин ичиндеги конус.",
+            "ru": "Конус внутри цилиндра.",
+            "en": "A cone inside the cylinder."
+          },
+          "duration": 2
+        },
+        {
+          "key": "sphere",
+          "title": {
+            "ky": "Шар",
+            "ru": "Шар",
+            "en": "The sphere"
+          },
+          "result": {
+            "ky": "V = ⁴⁄₃πr³ ≈ 113,1 см³",
+            "ru": "V = ⁴⁄₃πr³ ≈ 113,1 см³",
+            "en": "V = ⁴⁄₃πr³ ≈ 113.1 cm³"
+          },
+          "description": {
+            "ky": "Цилиндрге так баткан шардын көлөмү цилиндр минус конус: 54π − 18π = 36π ≈ 113,1 см³.",
+            "ru": "Объём вписанного шара равен цилиндру минус конус: 54π − 18π = 36π ≈ 113,1 см³.",
+            "en": "The inscribed sphere's volume is the cylinder minus the cone: 54π − 18π = 36π ≈ 113.1 cm³."
+          },
+          "conceptKey": "math.sphere",
+          "altText": {
+            "ky": "Цилиндрге так баткан шар.",
+            "ru": "Шар, вписанный в цилиндр.",
+            "en": "A sphere fitting snugly inside the cylinder."
+          },
+          "duration": 3
+        },
+        {
+          "key": "ratio",
+          "title": {
+            "ky": "1 : 2 : 3",
+            "ru": "1 : 2 : 3",
+            "en": "1 : 2 : 3"
+          },
+          "result": {
+            "ky": "Конус : шар : цилиндр = 1 : 2 : 3",
+            "ru": "Конус : шар : цилиндр = 1 : 2 : 3",
+            "en": "Cone : sphere : cylinder = 1 : 2 : 3"
+          },
+          "description": {
+            "ky": "18π : 36π : 54π = 1 : 2 : 3. Архимед бул ачылышын эң маанилүү деп эсептеп, мүрзө ташына шар менен цилиндрди чектирүүнү суранган.",
+            "ru": "18π : 36π : 54π = 1 : 2 : 3. Архимед так гордился этим открытием, что просил высечь шар и цилиндр на своём надгробии.",
+            "en": "18π : 36π : 54π = 1 : 2 : 3. Archimedes was so proud of this that he asked for a sphere and cylinder to be carved on his tomb."
+          },
+          "conceptKey": "math.radius",
+          "altText": {
+            "ky": "Конус, шар жана цилиндр катар турат, үстүндө 1, 2, 3 сандары.",
+            "ru": "Конус, шар и цилиндр в ряд, над ними числа 1, 2, 3.",
+            "en": "A cone, sphere and cylinder in a row labelled 1, 2, 3."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "cylinder-volume",
+          "label": {
+            "ky": "Цилиндрдин көлөмү",
+            "ru": "Объём цилиндра",
+            "en": "Cylinder volume"
+          },
+          "unit": "cm³",
+          "min": 0,
+          "max": 170,
+          "precision": 1
+        },
+        {
+          "key": "cone-volume",
+          "label": {
+            "ky": "Конустун көлөмү",
+            "ru": "Объём конуса",
+            "en": "Cone volume"
+          },
+          "unit": "cm³",
+          "min": 0,
+          "max": 170,
+          "precision": 1
+        },
+        {
+          "key": "sphere-volume",
+          "label": {
+            "ky": "Шардын көлөмү",
+            "ru": "Объём шара",
+            "en": "Sphere volume"
+          },
+          "unit": "cm³",
+          "min": 0,
+          "max": 170,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "radius": 3
+      }
+    }
+  ]
+}

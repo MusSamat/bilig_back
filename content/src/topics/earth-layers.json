@@ -1,0 +1,257 @@
+{
+  "topic": {
+    "key": "earth-layers",
+    "unitKey": "geo.g6.lithosphere",
+    "status": "published",
+    "title": { "ky": "Жердин ички түзүлүшү", "ru": "Внутреннее строение Земли", "en": "Layers of the Earth" },
+    "classification": { "ky": "Жердин катмарлары", "ru": "Оболочки Земли", "en": "The Earth's shells" },
+    "description": {
+      "ky": "Жер – радиусу 6371 км болгон шар. Ал жука кыртыштан, калың мантиядан, суюк тышкы ядродон жана катуу ички ядродон турат. Литосфера плиталарга бөлүнүп, алардын кыймылы Тянь-Шанды көтөрүп, жер титирөөнү жаратат.",
+      "ru": "Земля – шар радиусом 6371 км. Она состоит из тонкой коры, толстой мантии, жидкого внешнего и твёрдого внутреннего ядра. Литосфера расколота на плиты, и их движение поднимает Тянь-Шань и вызывает землетрясения.",
+      "en": "The Earth is a ball 6371 km in radius, made of a thin crust, a thick mantle, a liquid outer core and a solid inner core. The lithosphere is broken into plates whose motion lifts the Tien Shan and causes earthquakes."
+    },
+    "goal": {
+      "ky": "Жердин катмарларын моделден таап, ар биринин калыңдыгын, температурасын жана абалын салыштыруу (GEO-6.2.1); Тянь-Шандын пайда болушун плиталардын кыймылы менен түшүндүрүү (GEO-6.2.2).",
+      "ru": "Найти на модели оболочки Земли и сравнить их толщину, температуру и состояние (GEO-6.2.1); объяснить происхождение Тянь-Шаня движением плит (GEO-6.2.2).",
+      "en": "Find the Earth's layers on the model and compare their thickness, temperature and state (GEO-6.2.1); explain how plate motion built the Tien Shan (GEO-6.2.2)."
+    },
+    "objectiveKeys": ["geo.g6.lithosphere.o1", "geo.g6.lithosphere.o2"],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "gltf",
+      "asset": "models/earth-layers.glb",
+      "camera": { "position": [0, 2, 7], "target": [0, 0, 0], "fov": 45 },
+      "modes": ["whole", "section"]
+    },
+    "conceptKeys": ["geo.crust", "geo.mantle", "geo.outer-core", "geo.inner-core", "geo.lithospheric-plate", "geo.earthquake"],
+    "overrides": {
+      "geo.crust": { "nodes": ["Crust"] },
+      "geo.mantle": { "nodes": ["Mantle"] },
+      "geo.outer-core": { "nodes": ["OuterCore"] },
+      "geo.inner-core": { "anchor": [0, 0, 0], "nodes": ["InnerCore"] },
+      "geo.lithospheric-plate": { "anchor": [1.2, 1.9, 0.6], "nodes": ["Plate_*"] },
+      "geo.earthquake": { "anchor": [0.9, 2.0, 0.9], "nodes": ["Quake_*"] }
+    },
+    "samples": [
+      { "key": "earth-layers", "title": { "ky": "Жердин катмарлары", "ru": "Оболочки Земли", "en": "Earth's layers" }, "classification": { "ky": "Кесилиш", "ru": "Разрез", "en": "Cutaway" }, "thumb": "thumbs/earth-layers.webp" },
+      { "key": "tien-shan-profile", "title": { "ky": "Тянь-Шандын кесилиши", "ru": "Профиль Тянь-Шаня", "en": "Tien Shan profile" }, "classification": { "ky": "Бүктөлгөн тоолор", "ru": "Складчатые горы", "en": "Fold mountains" }, "thumb": "thumbs/tien-shan-profile.webp" },
+      { "key": "water-cycle", "title": { "ky": "Суунун айлануусу", "ru": "Круговорот воды", "en": "Water cycle" }, "classification": { "ky": "Гидросфера", "ru": "Гидросфера", "en": "Hydrosphere" }, "thumb": "thumbs/water-cycle.webp", "topicKey": "water-cycle" }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": { "position": [0, 2, 7], "target": [0, 0, 0] },
+            "modes": { "view": "whole" },
+            "text": { "ky": "Бул – Жер. Анын радиусу 6371 км. Сырттан биз кыртышты гана көрөбүз, ал эми ичинде дагы үч катмар бар.", "ru": "Это Земля, её радиус 6371 км. Снаружи мы видим только кору, а внутри скрыты ещё три слоя.", "en": "This is the Earth, 6371 km in radius. From outside we see only the crust, but three more layers lie hidden inside." },
+            "teacherNote": { "ky": "Окуучулардан сураңыз: Жердин ортосуна чейин казсак, эмне кездешет?", "ru": "Спросите учеников: что мы встретим, если будем копать до центра Земли?", "en": "Ask the class: what would we find if we dug to the centre of the Earth?" },
+            "altText": { "ky": "Материктери жана океандары бар көк-жашыл Жер шары.", "ru": "Сине-зелёный земной шар с материками и океанами.", "en": "A blue-green globe with continents and oceans." }
+          },
+          {
+            "key": "crust",
+            "focus": "geo.crust",
+            "camera": { "position": [0.8, 2.2, 4.5], "target": [0, 1.6, 0] },
+            "modes": { "view": "section" },
+            "text": { "ky": "Жер кыртышы эң жука: океандын астында 5–10 км, материктин астында 30–70 км. Тянь-Шандын астында ал 60 кмге жакын.", "ru": "Кора самая тонкая: под океаном 5–10 км, под материком 30–70 км. Под Тянь-Шанем – почти 60 км.", "en": "The crust is the thinnest layer: 5–10 km under oceans, 30–70 km under continents, and nearly 60 km under the Tien Shan." },
+            "teacherNote": { "ky": "Жумуртка менен салыштырыңыз: кыртыш – жумуртканын кабыгындай жука.", "ru": "Сравните с яйцом: кора тонкая, как скорлупа.", "en": "Compare with an egg: the crust is as thin as the shell." },
+            "altText": { "ky": "Разрездин сыртында жука күрөң катмар бөлүнүп көрсөтүлгөн.", "ru": "В разрезе выделен тонкий коричневый наружный слой.", "en": "The thin brown outer layer of the cutaway is highlighted." }
+          },
+          {
+            "key": "mantle",
+            "focus": "geo.mantle",
+            "camera": { "position": [0, 1, 5], "target": [0, 0.5, 0] },
+            "visibility": { "hide": ["geo.crust"] },
+            "modes": { "view": "section" },
+            "text": { "ky": "Мантия – эң калың катмар, болжол менен 2900 км. Ал катуу, бирок миллиондогон жылдар бою жай агат.", "ru": "Мантия – самый толстый слой, около 2900 км. Она твёрдая, но за миллионы лет медленно течёт.", "en": "The mantle is the thickest layer, about 2900 km. It is solid but creeps slowly over millions of years." },
+            "teacherNote": { "ky": "«Мантия – лава деңизи» деген туура эмес ойду талкуулаңыз.", "ru": "Обсудите ошибку «мантия – океан лавы».", "en": "Discuss the mistaken idea that the mantle is an ocean of lava." },
+            "altText": { "ky": "Кызгылт сары калың мантия катмары.", "ru": "Толстый оранжево-красный слой мантии.", "en": "The thick orange-red mantle layer." }
+          },
+          {
+            "key": "outer-core",
+            "focus": "geo.outer-core",
+            "camera": { "position": [0, 0.6, 3.2], "target": [0, 0, 0] },
+            "visibility": { "hide": ["geo.crust", "geo.mantle"] },
+            "modes": { "view": "section" },
+            "text": { "ky": "Тышкы ядро – суюк темир жана никель. Анын агымдары Жердин магнит талаасын жаратат.", "ru": "Внешнее ядро – жидкие железо и никель. Его течения создают магнитное поле Земли.", "en": "The outer core is liquid iron and nickel. Its currents generate the Earth's magnetic field." },
+            "teacherNote": { "ky": "Компасты көрсөтүп, магнит талаасын ядро менен байланыштырыңыз.", "ru": "Покажите компас и свяжите магнитное поле с ядром.", "en": "Show a compass and link the magnetic field to the core." },
+            "altText": { "ky": "Жаркыраган сары суюк катмар.", "ru": "Светящийся жёлтый жидкий слой.", "en": "A glowing yellow liquid layer." }
+          },
+          {
+            "key": "inner-core",
+            "focus": "geo.inner-core",
+            "camera": { "position": [0, 0.3, 2], "target": [0, 0, 0] },
+            "visibility": { "isolate": ["geo.inner-core"] },
+            "modes": { "view": "section" },
+            "text": { "ky": "Ички ядро – болжол менен 5400 °C ысык, бирок чоң басымдан улам катуу темир шар.", "ru": "Внутреннее ядро раскалено примерно до 5400 °C, но из-за огромного давления остаётся твёрдым железным шаром.", "en": "The inner core is about 5400 °C, yet the enormous pressure keeps it a solid ball of iron." },
+            "teacherNote": { "ky": "Баткен өрүгүнүн данеги менен салыштырыңыз.", "ru": "Сравните с косточкой баткенского абрикоса.", "en": "Compare it with the stone of a Batken apricot." },
+            "altText": { "ky": "Борбордогу ак-сары жаркыраган шар.", "ru": "Бело-жёлтый светящийся шар в центре.", "en": "A white-yellow glowing ball in the centre." }
+          },
+          {
+            "key": "plates",
+            "focus": "geo.lithospheric-plate",
+            "camera": { "position": [2.4, 3, 3], "target": [1.2, 1.9, 0.6] },
+            "modes": { "view": "whole" },
+            "text": { "ky": "Литосфера плиталарга бөлүнгөн. Инди плитасы түндүккө жылып, Тянь-Шанды азыр да көтөрүп жатат.", "ru": "Литосфера расколота на плиты. Индийская плита движется на север и до сих пор поднимает Тянь-Шань.", "en": "The lithosphere is split into plates. The Indian plate is moving north and is still lifting the Tien Shan." },
+            "teacherNote": { "ky": "«Тоолордун пайда болушу» процессин ачып, кадамдарды бирге карап чыгыңыз.", "ru": "Откройте процесс «Горообразование» и разберите шаги вместе.", "en": "Open the «Mountain building» process and go through the steps together." },
+            "altText": { "ky": "Жердин бетиндеги пазл сыяктуу плиталардын чектери.", "ru": "Границы плит на поверхности Земли, похожие на пазл.", "en": "Plate boundaries on the surface, like a jigsaw." }
+          },
+          {
+            "key": "earthquakes",
+            "focus": "geo.earthquake",
+            "camera": { "position": [1.8, 2.8, 2.8], "target": [0.9, 2, 0.9] },
+            "text": { "ky": "Плиталардын чек арасында чыңалуу топтолуп, капыстан бошонот – жер титирейт. 1911-жылкы Кемин жер титирөөсү эң күчтүүлөрдүн бири болгон.", "ru": "На границах плит копится напряжение и внезапно разряжается – происходит землетрясение. Кеминское 1911 года было одним из сильнейших.", "en": "Stress builds up at plate boundaries and is suddenly released as an earthquake. The 1911 Kemin earthquake was one of the strongest." },
+            "teacherNote": { "ky": "Жер титирөө учурунда эмне кылуу керектигин эске салыңыз: «Чөк, жабын, карма».", "ru": "Напомните правила при землетрясении: «Пригнись, укройся, держись».", "en": "Review earthquake safety: “Drop, cover, hold on”." },
+            "altText": { "ky": "Очоктон ар тарапка тараган толкундар.", "ru": "Волны расходятся от очага во все стороны.", "en": "Waves spreading out in all directions from a focus." }
+          }
+        ]
+      },
+      "processKeys": ["geo.mountain-building"],
+      "comparison": {
+        "columns": [
+          { "kind": "concept", "key": "geo.crust" },
+          { "kind": "concept", "key": "geo.mantle" },
+          { "kind": "concept", "key": "geo.outer-core" },
+          { "kind": "concept", "key": "geo.inner-core" }
+        ],
+        "rows": ["thickness", "temperature", "density", "state"],
+        "manual": [
+          { "column": "geo.inner-core", "row": "thickness", "value": { "ky": "радиусу ≈1220 км", "ru": "радиус ≈1220 км", "en": "radius ≈1220 km" } }
+        ]
+      },
+      "quiz": {
+        "itemKeys": ["geo.q.thinnest", "geo.q.liquid-layer", "geo.q.match-layers", "geo.q.find-mantle", "geo.q.crust-share", "geo.q.tien-shan", "geo.q.inner-solid"],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "s",
+          "title": { "ky": "Жерди «рентгенге тартуу»", "ru": "«Рентген» Земли", "en": "An X-ray of the Earth" },
+          "text": { "ky": "Сейсмологдор жер титирөө толкундарынын ылдамдыгын өлчөп, Жердин ичин эч ким барбаса да «көрүшөт».", "ru": "Сейсмологи измеряют скорость волн от землетрясений и «видят» недра Земли, куда никто не может попасть.", "en": "Seismologists measure the speed of earthquake waves to see inside the Earth, where no one can go." }
+        },
+        {
+          "field": "e",
+          "title": { "ky": "Сейсмикалык туруктуу боз үй", "ru": "Сейсмостойкая юрта", "en": "The earthquake-proof yurt" },
+          "text": { "ky": "Боз үйдүн жыгачтан жасалган ийкемдүү кереге-уугу титирөөдө сынбайт – инженерлер ушул принципти заманбап курулушта колдонушат.", "ru": "Гибкий деревянный каркас юрты (кереге и уук) не ломается при толчках – инженеры применяют этот принцип в современных зданиях.", "en": "A yurt's flexible wooden frame (kerege lattice and uuk poles) bends instead of breaking in a quake – engineers use the same idea in modern buildings." }
+        },
+        {
+          "field": "m",
+          "title": { "ky": "Масштаб", "ru": "Масштаб", "en": "Scale" },
+          "text": { "ky": "Жер 1 м диаметрдеги топ болсо, кыртыштын калыңдыгы 3 мм гана болмок: 40 км / 12 742 км ≈ 0,003.", "ru": "Если бы Земля была шаром диаметром 1 м, кора была бы толщиной всего 3 мм: 40 км / 12 742 км ≈ 0,003.", "en": "If the Earth were a ball 1 m across, the crust would be only 3 mm thick: 40 km / 12,742 km ≈ 0.003." }
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Бышкан жумуртка", "ru": "Варёное яйцо", "en": "A boiled egg" },
+          "text": { "ky": "Жер бышкан жумурткага окшош: кабыгы – кыртыш, агы – мантия, сарысы – ядро.", "ru": "Земля похожа на варёное яйцо: скорлупа – кора, белок – мантия, желток – ядро.", "en": "The Earth is like a boiled egg: the shell is the crust, the white is the mantle and the yolk is the core." }
+        },
+        {
+          "title": { "ky": "Баткен өрүгү", "ru": "Баткенский абрикос", "en": "A Batken apricot" },
+          "text": { "ky": "Өрүктүн жука кабыгы – кыртыш, ширелүү эти – мантия, катуу данеги – ядро.", "ru": "Тонкая кожица абрикоса – кора, сочная мякоть – мантия, твёрдая косточка – ядро.", "en": "An apricot's thin skin is the crust, the juicy flesh is the mantle and the hard stone is the core." }
+        }
+      ]
+    },
+    "i18n": { "ky": "machine", "ru": "reviewed", "en": "draft" }
+  },
+  "items": [
+    {
+      "key": "geo.q.thinnest",
+      "type": "single",
+      "prompt": { "ky": "Жердин эң жука катмары кайсы?", "ru": "Какая оболочка Земли самая тонкая?", "en": "Which layer of the Earth is the thinnest?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Мантия", "ru": "Мантия", "en": "Mantle" } },
+        { "key": "b", "text": { "ky": "Жер кыртышы", "ru": "Земная кора", "en": "Crust" } },
+        { "key": "c", "text": { "ky": "Тышкы ядро", "ru": "Внешнее ядро", "en": "Outer core" } },
+        { "key": "d", "text": { "ky": "Ички ядро", "ru": "Внутреннее ядро", "en": "Inner core" } }
+      ],
+      "answer": "b",
+      "explanation": { "ky": "Кыртыш 5–70 км гана – Жердин радиусунун 1 %ынан аз.", "ru": "Кора – всего 5–70 км, меньше 1 % радиуса Земли.", "en": "The crust is only 5–70 km – less than 1 % of the Earth's radius." },
+      "objectiveKeys": ["geo.g6.lithosphere.o1"],
+      "misconceptionKey": "geo.m.crust-thick",
+      "difficulty": 1
+    },
+    {
+      "key": "geo.q.liquid-layer",
+      "type": "single",
+      "prompt": { "ky": "Жердин кайсы катмары суюк?", "ru": "Какая оболочка Земли жидкая?", "en": "Which layer of the Earth is liquid?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Мантия", "ru": "Мантия", "en": "Mantle" } },
+        { "key": "b", "text": { "ky": "Тышкы ядро", "ru": "Внешнее ядро", "en": "Outer core" } },
+        { "key": "c", "text": { "ky": "Ички ядро", "ru": "Внутреннее ядро", "en": "Inner core" } }
+      ],
+      "answer": "b",
+      "explanation": { "ky": "Тышкы ядро гана суюк; мантия жай агат, бирок катуу.", "ru": "Жидкое только внешнее ядро; мантия медленно течёт, но остаётся твёрдой.", "en": "Only the outer core is liquid; the mantle creeps but is solid." },
+      "objectiveKeys": ["geo.g6.lithosphere.o1"],
+      "misconceptionKey": "geo.m.mantle-liquid",
+      "difficulty": 2
+    },
+    {
+      "key": "geo.q.match-layers",
+      "type": "match",
+      "prompt": { "ky": "Катмарды анын мүнөздөмөсү менен дал келтир.", "ru": "Сопоставь оболочку и её описание.", "en": "Match each layer to its description." },
+      "pairs": [
+        { "key": "crust", "left": { "ky": "Кыртыш", "ru": "Кора", "en": "Crust" }, "right": { "ky": "Гранит жана базальт, 5–70 км", "ru": "Гранит и базальт, 5–70 км", "en": "Granite and basalt, 5–70 km" } },
+        { "key": "mantle", "left": { "ky": "Мантия", "ru": "Мантия", "en": "Mantle" }, "right": { "ky": "Эң калың, жай агуучу тек", "ru": "Самая толстая, медленно текущая порода", "en": "Thickest, slowly creeping rock" } },
+        { "key": "outer", "left": { "ky": "Тышкы ядро", "ru": "Внешнее ядро", "en": "Outer core" }, "right": { "ky": "Суюк темир, магнит талаасы", "ru": "Жидкое железо, магнитное поле", "en": "Liquid iron, magnetic field" } },
+        { "key": "inner", "left": { "ky": "Ички ядро", "ru": "Внутреннее ядро", "en": "Inner core" }, "right": { "ky": "Катуу темир шар, ≈5400 °C", "ru": "Твёрдый железный шар, ≈5400 °C", "en": "Solid iron ball, ≈5400 °C" } }
+      ],
+      "explanation": { "ky": "Тереңдеген сайын температура, басым жана тыгыздык өсөт.", "ru": "С глубиной растут температура, давление и плотность.", "en": "Temperature, pressure and density all increase with depth." },
+      "objectiveKeys": ["geo.g6.lithosphere.o1"],
+      "difficulty": 2
+    },
+    {
+      "key": "geo.q.find-mantle",
+      "type": "find-on-model",
+      "prompt": { "ky": "Моделден Жердин эң калың катмарын тап.", "ru": "Найди на модели самую толстую оболочку Земли.", "en": "Find the thickest layer of the Earth on the model." },
+      "targetConceptKey": "geo.mantle",
+      "explanation": { "ky": "Мантиянын калыңдыгы ≈2900 км – Жердин көлөмүнүн 84 %ы.", "ru": "Толщина мантии ≈2900 км – это 84 % объёма Земли.", "en": "The mantle is ≈2900 km thick – 84 % of the Earth's volume." },
+      "objectiveKeys": ["geo.g6.lithosphere.o1"],
+      "misconceptionKey": "geo.m.crust-thick",
+      "difficulty": 2
+    },
+    {
+      "key": "geo.q.crust-share",
+      "type": "numeric",
+      "prompt": { "ky": "Жердин радиусу 6371 км, ал эми ички ядронун радиусу ≈1220 км. Ички ядронун бетинен Жердин бетине чейин канча км?", "ru": "Радиус Земли 6371 км, радиус внутреннего ядра ≈1220 км. Сколько километров от поверхности внутреннего ядра до поверхности Земли?", "en": "The Earth's radius is 6371 km and the inner core's radius is ≈1220 km. How many kilometres is it from the top of the inner core to the surface?" },
+      "answer": 5151,
+      "tolerance": 30,
+      "unit": "km",
+      "explanation": { "ky": "6371 − 1220 = 5151 км – бул ички ядронун чегинин тереңдиги (≈5150 км).", "ru": "6371 − 1220 = 5151 км – это и есть глубина границы внутреннего ядра (≈5150 км).", "en": "6371 − 1220 = 5151 km – the depth of the inner core boundary (≈5150 km)." },
+      "objectiveKeys": ["geo.g6.lithosphere.o1"],
+      "difficulty": 3
+    },
+    {
+      "key": "geo.q.tien-shan",
+      "type": "multiple",
+      "prompt": { "ky": "Тянь-Шань жөнүндө кайсы сүйлөмдөр туура?", "ru": "Какие утверждения о Тянь-Шане верны?", "en": "Which statements about the Tien Shan are true?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Ал азыр да көтөрүлүп жатат", "ru": "Он поднимается до сих пор", "en": "It is still rising" } },
+        { "key": "b", "text": { "ky": "Ал плиталардын кагылышынан пайда болгон", "ru": "Он возник из-за столкновения плит", "en": "It was formed by colliding plates" } },
+        { "key": "c", "text": { "ky": "Ал ички ядродон көтөрүлгөн вулкан", "ru": "Это вулкан, выросший из внутреннего ядра", "en": "It is a volcano rising from the inner core" } },
+        { "key": "d", "text": { "ky": "Анын аймагында жер титирөө көп болот", "ru": "В нём часто бывают землетрясения", "en": "Earthquakes are common there" } }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": { "ky": "Тянь-Шань – Инди жана Евразия плиталарынын кагылышынын натыйжасы; ал азыр да өсүп, титиреп турат.", "ru": "Тянь-Шань – результат столкновения Индийской и Евразийской плит; он растёт и трясётся до сих пор.", "en": "The Tien Shan comes from the collision of the Indian and Eurasian plates; it is still growing and shaking." },
+      "objectiveKeys": ["geo.g6.lithosphere.o2"],
+      "misconceptionKey": "geo.m.plates-still",
+      "difficulty": 3
+    },
+    {
+      "key": "geo.q.inner-solid",
+      "type": "single",
+      "prompt": { "ky": "Эмне үчүн ички ядро өтө ысык болсо да катуу?", "ru": "Почему внутреннее ядро твёрдое, хотя оно очень горячее?", "en": "Why is the inner core solid even though it is so hot?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Ал муздан турат", "ru": "Оно состоит изо льда", "en": "It is made of ice" } },
+        { "key": "b", "text": { "ky": "Чоң басым темирге эрүүгө жол бербейт", "ru": "Огромное давление не даёт железу расплавиться", "en": "Huge pressure stops the iron from melting" } },
+        { "key": "c", "text": { "ky": "Ал Жердин эң суук бөлүгү", "ru": "Это самая холодная часть Земли", "en": "It is the coldest part of the Earth" } }
+      ],
+      "answer": "b",
+      "explanation": { "ky": "Басым атомдорду ушунчалык кысат, алар суюк абалга өтө албайт.", "ru": "Давление сжимает атомы так сильно, что они не могут перейти в жидкое состояние.", "en": "The pressure squeezes the atoms so hard that they cannot become liquid." },
+      "objectiveKeys": ["geo.g6.lithosphere.o1"],
+      "misconceptionKey": "geo.m.hot-means-liquid",
+      "difficulty": 4
+    }
+  ]
+}

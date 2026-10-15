@@ -1,0 +1,235 @@
+{
+  "topic": {
+    "key": "animal-cell",
+    "unitKey": "bio.g7.cells",
+    "status": "published",
+    "title": { "ky": "Жаныбар клеткасы", "ru": "Животная клетка", "en": "Animal cell" },
+    "classification": { "ky": "Эукариот клетка", "ru": "Эукариотическая клетка", "en": "Eukaryotic cell" },
+    "description": {
+      "ky": "Жаныбар клеткасы – ядросу бар эукариот клетка. Анын мембранасы, цитоплазмасы жана ар бири өз ишин аткарган органеллалары бар.",
+      "ru": "Животная клетка – эукариотическая клетка с ядром. У неё есть мембрана, цитоплазма и органеллы, каждая из которых выполняет свою работу.",
+      "en": "An animal cell is a eukaryotic cell with a nucleus. It has a membrane, cytoplasm and organelles, each doing its own job."
+    },
+    "goal": {
+      "ky": "Жаныбар клеткасынын негизги органеллаларын моделден таап, ар биринин милдетин түшүндүрүү (BIO-7.2.1).",
+      "ru": "Найти на модели основные органеллы животной клетки и объяснить функцию каждой (BIO-7.2.1).",
+      "en": "Find the main organelles of an animal cell on the model and explain what each does (BIO-7.2.1)."
+    },
+    "objectiveKeys": ["bio.g7.cells.o1"],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "gltf",
+      "asset": "models/animal-cell.glb",
+      "camera": { "position": [0, 1.5, 6], "target": [0, 0, 0], "fov": 45 },
+      "modes": ["whole", "section"]
+    },
+    "conceptKeys": ["bio.membrane", "bio.cytoplasm", "bio.nucleus", "bio.mitochondrion", "bio.ribosome", "bio.golgi"],
+    "overrides": {
+      "bio.membrane": { "nodes": ["Membrane"] },
+      "bio.cytoplasm": { "nodes": ["Cytoplasm"] },
+      "bio.nucleus": { "anchor": [0, 0.2, 0], "nodes": ["Nucleus", "Nucleolus"] },
+      "bio.mitochondrion": { "anchor": [1.4, -0.3, 0.6], "nodes": ["Mito_*"] },
+      "bio.ribosome": { "anchor": [-1.2, 0.6, 0.8], "nodes": ["Ribo_*"] },
+      "bio.golgi": { "anchor": [-0.9, -0.5, -1], "nodes": ["Golgi*"] }
+    },
+    "samples": [
+      { "key": "animal-cell", "title": { "ky": "Жаныбар клеткасы", "ru": "Животная клетка", "en": "Animal cell" }, "classification": { "ky": "Эукариот", "ru": "Эукариот", "en": "Eukaryote" }, "thumb": "thumbs/animal-cell.webp" },
+      { "key": "plant-cell", "title": { "ky": "Өсүмдүк клеткасы", "ru": "Растительная клетка", "en": "Plant cell" }, "classification": { "ky": "Эукариот", "ru": "Эукариот", "en": "Eukaryote" }, "thumb": "thumbs/plant-cell.webp", "topicKey": "plant-cell" },
+      { "key": "neuron", "title": { "ky": "Нерв клеткасы", "ru": "Нервная клетка", "en": "Nerve cell" }, "classification": { "ky": "Адистешкен жаныбар клеткасы", "ru": "Специализированная животная клетка", "en": "Specialised animal cell" }, "thumb": "thumbs/neuron.webp" }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": { "position": [0, 1.5, 6], "target": [0, 0, 0] },
+            "modes": { "view": "whole" },
+            "text": { "ky": "Бул – жаныбар клеткасы. Анын өлчөмү болжол менен 10–30 мкм, ошондуктан аны микроскоп менен гана көрөбүз.", "ru": "Это животная клетка. Её размер около 10–30 мкм, поэтому увидеть её можно только в микроскоп.", "en": "This is an animal cell. It is about 10–30 µm across, so we can only see it through a microscope." },
+            "teacherNote": { "ky": "Клетканы айлантып, бардык тараптан көрсөтүңүз. Окуучулардан клетканын формасы кандай экенин сураңыз.", "ru": "Покажите клетку со всех сторон. Спросите учеников, какой формы клетка.", "en": "Rotate the cell to show all sides. Ask the class what shape it is." },
+            "altText": { "ky": "Ичинде органеллалары бар тегерек клетка.", "ru": "Круглая клетка с органеллами внутри.", "en": "A round cell with organelles inside." }
+          },
+          {
+            "key": "membrane",
+            "focus": "bio.membrane",
+            "camera": { "position": [0, 0.5, 4.2], "target": [0, 0, 0] },
+            "text": { "ky": "Клетка мембранасы – клетканын ийкемдүү чеги. Ал керектүү заттарды киргизет, зыяндууларын токтотот.", "ru": "Клеточная мембрана – гибкая граница клетки. Она впускает нужные вещества и задерживает вредные.", "en": "The cell membrane is the cell's flexible border. It lets useful substances in and keeps harmful ones out." },
+            "teacherNote": { "ky": "Өсүмдүк клеткасынан айырмаланып, бул жерде катуу клетка дубалы жок экенин белгилеңиз.", "ru": "Отметьте, что в отличие от растительной клетки здесь нет жёсткой клеточной стенки.", "en": "Point out that, unlike a plant cell, there is no rigid cell wall here." },
+            "altText": { "ky": "Клетканы курчаган жарым тунук жука кабык бөлүнүп көрсөтүлгөн.", "ru": "Выделена полупрозрачная тонкая оболочка вокруг клетки.", "en": "The thin translucent layer around the cell is highlighted." }
+          },
+          {
+            "key": "cytoplasm",
+            "focus": "bio.cytoplasm",
+            "modes": { "view": "section" },
+            "text": { "ky": "Разрезде цитоплазма көрүнөт – органеллалар жүзүп жүргөн суюк чөйрө.", "ru": "В разрезе видна цитоплазма – жидкая среда, в которой плавают органеллы.", "en": "The section shows the cytoplasm – the liquid in which the organelles float." },
+            "teacherNote": { "ky": "«Цитоплазма бош эмес» деген ойго токтолуңуз: анда миңдеген белоктор бар.", "ru": "Обсудите, что цитоплазма не пустая: в ней тысячи белков.", "en": "Stress that the cytoplasm is not empty: it holds thousands of proteins." },
+            "altText": { "ky": "Клетканын кесилиши, ичи суюктук жана органеллалар менен толгон.", "ru": "Клетка в разрезе, внутри жидкость и органеллы.", "en": "A cut-open cell filled with liquid and organelles." }
+          },
+          {
+            "key": "nucleus",
+            "focus": "bio.nucleus",
+            "camera": { "position": [0, 0.6, 2.4], "target": [0, 0.2, 0] },
+            "visibility": { "isolate": ["bio.nucleus"] },
+            "modes": { "view": "section" },
+            "text": { "ky": "Ядро ДНКны сактайт жана клетканын бардык ишин башкарат.", "ru": "Ядро хранит ДНК и управляет всей работой клетки.", "en": "The nucleus stores DNA and runs everything the cell does." },
+            "teacherNote": { "ky": "Ядрочону (ядронун ичиндеги кочкул так) көрсөтүңүз: анда рибосомалар чогулат.", "ru": "Покажите ядрышко (тёмное пятно внутри ядра): там собираются рибосомы.", "en": "Show the nucleolus (the dark spot inside the nucleus), where ribosomes are assembled." },
+            "altText": { "ky": "Клетканын ортосундагы ири тегерек ядро жана анын ичиндеги ядрочо.", "ru": "Крупное круглое ядро в центре клетки с ядрышком внутри.", "en": "A large round nucleus in the centre of the cell with a nucleolus inside." }
+          },
+          {
+            "key": "mitochondria",
+            "focus": "bio.mitochondrion",
+            "camera": { "position": [2.6, 0.2, 2.6], "target": [1.4, -0.3, 0.6] },
+            "visibility": { "hide": ["bio.membrane"] },
+            "text": { "ky": "Митохондриялар глюкозадан АТФ түрүндө энергия алышат. Булчуң клеткаларында алар өзгөчө көп.", "ru": "Митохондрии получают из глюкозы энергию в виде АТФ. В мышечных клетках их особенно много.", "en": "Mitochondria get energy from glucose in the form of ATP. Muscle cells have especially many." },
+            "teacherNote": { "ky": "«Клеткалык дем алуу» процессин ачып, кадамдарды бирге карап чыгыңыз.", "ru": "Откройте процесс «Клеточное дыхание» и разберите шаги вместе.", "en": "Open the «Cellular respiration» process and go through the steps together." },
+            "altText": { "ky": "Ички бүктөмдөрү бар сүйрү митохондриялар.", "ru": "Вытянутые митохондрии с внутренними складками.", "en": "Oval mitochondria with folds inside." }
+          },
+          {
+            "key": "ribosomes",
+            "focus": "bio.ribosome",
+            "camera": { "position": [-2.2, 1.2, 2.2], "target": [-1.2, 0.6, 0.8] },
+            "text": { "ky": "Рибосомалар – белок жасоочу майда органеллалар. Алардан чыккан белокторду Гольджи аппараты таңгактайт.", "ru": "Рибосомы – крошечные фабрики белка. Белки от них упаковывает аппарат Гольджи.", "en": "Ribosomes are tiny protein factories. The proteins they make are packaged by the Golgi apparatus." },
+            "teacherNote": { "ky": "Белоктун жолун ырааттуу айтып бериңиз: ядро → рибосома → Гольджи → клетканын сырты.", "ru": "Проследите путь белка: ядро → рибосома → Гольджи → наружу.", "en": "Trace a protein's journey: nucleus → ribosome → Golgi → out of the cell." },
+            "altText": { "ky": "Цитоплазмадагы майда чекиттер – рибосомалар, жанында жалпак капчыктар – Гольджи.", "ru": "Мелкие точки в цитоплазме – рибосомы, рядом плоские мешочки Гольджи.", "en": "Tiny dots in the cytoplasm are ribosomes; next to them are the flat Golgi sacs." }
+          }
+        ]
+      },
+      "processKeys": ["bio.respiration"],
+      "comparison": {
+        "columns": [
+          { "kind": "concept", "key": "bio.nucleus" },
+          { "kind": "concept", "key": "bio.mitochondrion" },
+          { "kind": "concept", "key": "bio.ribosome" }
+        ],
+        "rows": ["size", "location", "function"]
+      },
+      "quiz": {
+        "itemKeys": ["bio.q.powerhouse", "bio.q.organelles", "bio.q.match", "bio.q.find-nucleus", "bio.q.nucleus-size", "bio.q.find-ribosome", "bio.q.protein-path"],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "s",
+          "title": { "ky": "Клетка өстүрүү", "ru": "Клеточные культуры", "en": "Cell cultures" },
+          "text": { "ky": "Илимпоздор вакцина жасоо үчүн жаныбар клеткаларын лабораторияда өстүрүшөт.", "ru": "Учёные выращивают животные клетки в лаборатории, чтобы создавать вакцины.", "en": "Scientists grow animal cells in the lab to make vaccines." }
+        },
+        {
+          "field": "t",
+          "title": { "ky": "Микроскоп", "ru": "Микроскоп", "en": "Microscope" },
+          "text": { "ky": "Мектептеги оптикалык микроскоп клетканы 1000 эсеге чейин чоңойтот, ал эми электрондук микроскоп рибосомаларды да көрсөтөт.", "ru": "Школьный оптический микроскоп увеличивает клетку до 1000 раз, а электронный показывает даже рибосомы.", "en": "A school light microscope magnifies a cell up to 1000 times; an electron microscope even shows ribosomes." }
+        },
+        {
+          "field": "s",
+          "title": { "ky": "Жылкынын чыдамкайлыгы", "ru": "Выносливость лошадей", "en": "Horse endurance" },
+          "text": { "ky": "Ат чабышта чуркаган жылкылардын булчуң клеткаларында митохондриялар өтө көп – ошондуктан алар узак чуркай алышат.", "ru": "У скакунов на ат-чабыше в мышечных клетках очень много митохондрий – поэтому они могут долго бежать.", "en": "Racehorses in the at-chabysh race have muscle cells packed with mitochondria – that is why they can run so far." }
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Клетка – шаар", "ru": "Клетка – город", "en": "A cell is a city" },
+          "text": { "ky": "Клетка шаарга окшош: ядро – мэрия, митохондриялар – электр станциялары, мембрана – шаардын дубалы.", "ru": "Клетка похожа на город: ядро – мэрия, митохондрии – электростанции, мембрана – городская стена.", "en": "A cell is like a city: the nucleus is city hall, mitochondria are power plants, the membrane is the city wall." }
+        },
+        {
+          "title": { "ky": "Клетка – мектеп", "ru": "Клетка – школа", "en": "A cell is a school" },
+          "text": { "ky": "Ядро – директордун кабинети, рибосомалар – ашкана, Гольджи – мектептин почтасы, цитоплазма – коридор.", "ru": "Ядро – кабинет директора, рибосомы – столовая, Гольджи – школьная почта, цитоплазма – коридор.", "en": "The nucleus is the head teacher's office, ribosomes are the canteen, the Golgi is the school post room, the cytoplasm is the corridor." }
+        }
+      ]
+    },
+    "i18n": { "ky": "machine", "ru": "reviewed", "en": "draft" }
+  },
+  "items": [
+    {
+      "key": "bio.q.powerhouse",
+      "type": "single",
+      "prompt": { "ky": "Клетканын энергия станциясы кайсы органелла?", "ru": "Какая органелла – энергетическая станция клетки?", "en": "Which organelle is the powerhouse of the cell?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Ядро", "ru": "Ядро", "en": "Nucleus" } },
+        { "key": "b", "text": { "ky": "Митохондрия", "ru": "Митохондрия", "en": "Mitochondrion" } },
+        { "key": "c", "text": { "ky": "Мембрана", "ru": "Мембрана", "en": "Membrane" } },
+        { "key": "d", "text": { "ky": "Рибосома", "ru": "Рибосома", "en": "Ribosome" } }
+      ],
+      "answer": "b",
+      "explanation": { "ky": "Митохондрия глюкозанын энергиясын АТФка айландырат.", "ru": "Митохондрия превращает энергию глюкозы в АТФ.", "en": "The mitochondrion converts the energy of glucose into ATP." },
+      "objectiveKeys": ["bio.g7.cells.o1"],
+      "misconceptionKey": "bio.m.mito-makes-energy",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.organelles",
+      "type": "multiple",
+      "prompt": { "ky": "Булардын кайсылары органелла?", "ru": "Что из этого – органеллы?", "en": "Which of these are organelles?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Ядро", "ru": "Ядро", "en": "Nucleus" } },
+        { "key": "b", "text": { "ky": "Митохондрия", "ru": "Митохондрия", "en": "Mitochondrion" } },
+        { "key": "c", "text": { "ky": "Глюкоза", "ru": "Глюкоза", "en": "Glucose" } },
+        { "key": "d", "text": { "ky": "Рибосома", "ru": "Рибосома", "en": "Ribosome" } }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": { "ky": "Глюкоза – молекула, органелла эмес.", "ru": "Глюкоза – молекула, а не органелла.", "en": "Glucose is a molecule, not an organelle." },
+      "objectiveKeys": ["bio.g7.cells.o1"],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.match",
+      "type": "match",
+      "prompt": { "ky": "Түзүлүштү анын милдети менен дал келтир.", "ru": "Сопоставь структуру и её функцию.", "en": "Match each structure to its function." },
+      "pairs": [
+        { "key": "nucleus", "left": { "ky": "Ядро", "ru": "Ядро", "en": "Nucleus" }, "right": { "ky": "ДНКны сактайт", "ru": "Хранит ДНК", "en": "Stores DNA" } },
+        { "key": "mito", "left": { "ky": "Митохондрия", "ru": "Митохондрия", "en": "Mitochondrion" }, "right": { "ky": "АТФ өндүрөт", "ru": "Вырабатывает АТФ", "en": "Makes ATP" } },
+        { "key": "ribosome", "left": { "ky": "Рибосома", "ru": "Рибосома", "en": "Ribosome" }, "right": { "ky": "Белок синтездейт", "ru": "Синтезирует белки", "en": "Makes proteins" } },
+        { "key": "golgi", "left": { "ky": "Гольджи аппараты", "ru": "Аппарат Гольджи", "en": "Golgi apparatus" }, "right": { "ky": "Белокторду таңгактайт", "ru": "Упаковывает белки", "en": "Packages proteins" } }
+      ],
+      "explanation": { "ky": "Ар бир органелланын өз милдети бар – клетка ушундай иштейт.", "ru": "У каждой органеллы своя работа – так клетка и функционирует.", "en": "Each organelle has its own job – that is how the cell works." },
+      "objectiveKeys": ["bio.g7.cells.o1"],
+      "misconceptionKey": "bio.m.golgi-makes-protein",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.find-nucleus",
+      "type": "find-on-model",
+      "prompt": { "ky": "Моделден ядрону тап.", "ru": "Найди ядро на модели.", "en": "Find the nucleus on the model." },
+      "targetConceptKey": "bio.nucleus",
+      "explanation": { "ky": "Ядро – клетканын ортосундагы эң ири органелла.", "ru": "Ядро – самая крупная органелла в центре клетки.", "en": "The nucleus is the largest organelle, in the centre of the cell." },
+      "objectiveKeys": ["bio.g7.cells.o1"],
+      "misconceptionKey": "bio.m.nucleus-everywhere",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.find-ribosome",
+      "type": "find-on-model",
+      "prompt": { "ky": "Белок жасоочу органелланы моделден тап.", "ru": "Найди на модели органеллу, которая делает белки.", "en": "Find the organelle that makes proteins on the model." },
+      "targetConceptKey": "bio.ribosome",
+      "explanation": { "ky": "Белокторду рибосомалар жасайт – алар цитоплазмадагы майда чекиттер.", "ru": "Белки делают рибосомы – это мелкие точки в цитоплазме.", "en": "Ribosomes make proteins – they are the tiny dots in the cytoplasm." },
+      "objectiveKeys": ["bio.g7.cells.o1"],
+      "misconceptionKey": "bio.m.ribosome-membrane",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.nucleus-size",
+      "type": "numeric",
+      "prompt": { "ky": "Жаныбар клеткасынын ядросунун диаметри болжол менен канча микрометр?", "ru": "Каков примерно диаметр ядра животной клетки в микрометрах?", "en": "About how many micrometres across is the nucleus of an animal cell?" },
+      "answer": 6,
+      "tolerance": 1,
+      "unit": "µm",
+      "explanation": { "ky": "Ядронун диаметри болжол менен 6 мкм – бул бүт клетканын болжол менен үчтөн бири.", "ru": "Диаметр ядра около 6 мкм – это примерно треть всей клетки.", "en": "The nucleus is about 6 µm across – roughly a third of the whole cell." },
+      "objectiveKeys": ["bio.g7.cells.o1"],
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.protein-path",
+      "type": "single",
+      "prompt": { "ky": "Белоктун клеткадагы туура жолу кайсы?", "ru": "Какой путь белка в клетке правильный?", "en": "Which is the correct path of a protein in the cell?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Рибосома → Гольджи → клетканын сырты", "ru": "Рибосома → Гольджи → наружу", "en": "Ribosome → Golgi → outside" } },
+        { "key": "b", "text": { "ky": "Гольджи → рибосома → ядро", "ru": "Гольджи → рибосома → ядро", "en": "Golgi → ribosome → nucleus" } },
+        { "key": "c", "text": { "ky": "Митохондрия → ядро → мембрана", "ru": "Митохондрия → ядро → мембрана", "en": "Mitochondrion → nucleus → membrane" } }
+      ],
+      "answer": "a",
+      "explanation": { "ky": "Белокту рибосома жасайт, Гольджи аны таңгактап, клетканын сыртына жөнөтөт.", "ru": "Белок делает рибосома, Гольджи упаковывает его и отправляет наружу.", "en": "The ribosome makes the protein, then the Golgi packages it and sends it out." },
+      "objectiveKeys": ["bio.g7.cells.o1"],
+      "misconceptionKey": "bio.m.golgi-makes-protein",
+      "difficulty": 3
+    }
+  ]
+}

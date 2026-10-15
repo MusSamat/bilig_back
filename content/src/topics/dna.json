@@ -1,0 +1,240 @@
+{
+  "topic": {
+    "key": "dna",
+    "unitKey": "bio.g9.heredity",
+    "status": "published",
+    "title": { "ky": "ДНК", "ru": "ДНК", "en": "DNA" },
+    "classification": { "ky": "Нуклеин кислотасы", "ru": "Нуклеиновая кислота", "en": "Nucleic acid" },
+    "description": {
+      "ky": "ДНК – тукум куума маалыматты сактаган кош спираль. Эки чынжыр комплементардуу негиз жуптары (A–T, G–C) менен туташкан; ДНК клетка бөлүнөөр алдында өзүн так көчүрөт.",
+      "ru": "ДНК – двойная спираль, хранящая наследственную информацию. Две цепи соединены комплементарными парами оснований (A–T, G–C); перед делением клетки ДНК точно копирует себя.",
+      "en": "DNA is a double helix that stores hereditary information. Its two strands are joined by complementary base pairs (A–T, G–C), and it copies itself exactly before a cell divides."
+    },
+    "goal": {
+      "ky": "ДНКнын түзүлүшүн жана комплементардуулук принцибин түшүндүрүү (BIO-9.5.1) жана репликацияны сүрөттөө (BIO-9.5.2).",
+      "ru": "Объяснить строение ДНК и принцип комплементарности (BIO-9.5.1) и описать репликацию (BIO-9.5.2).",
+      "en": "Explain the structure of DNA and the pairing rule (BIO-9.5.1) and describe replication (BIO-9.5.2)."
+    },
+    "objectiveKeys": ["bio.g9.heredity.o1", "bio.g9.heredity.o2"],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "molecule",
+      "params": {
+        "preset": "dna-double-helix",
+        "basePairs": 10,
+        "sequence": "ATGCGTACGT",
+        "rise": 0.34,
+        "basePairsPerTurn": 10.5,
+        "diameter": 2,
+        "units": "nm"
+      },
+      "camera": { "position": [0, 0, 8], "target": [0, 0, 0], "fov": 40 },
+      "modes": ["ball-stick", "spacefill"]
+    },
+    "conceptKeys": ["bio.dna-helix", "bio.sugar-phosphate-backbone", "bio.nucleotide", "bio.base-pair-at", "bio.base-pair-gc", "bio.hydrogen-bond"],
+    "overrides": {
+      "bio.dna-helix": { "anchor": [0, 1.9, 0], "nodes": ["Helix"] },
+      "bio.sugar-phosphate-backbone": { "anchor": [1, 0.5, 0], "nodes": ["Backbone_*"] },
+      "bio.nucleotide": { "anchor": [-1, -0.8, 0.2], "nodes": ["Nucleotide_*"] },
+      "bio.base-pair-at": { "anchor": [0, -0.3, 0], "nodes": ["Pair_AT_*"] },
+      "bio.base-pair-gc": { "anchor": [0, 0.3, 0], "nodes": ["Pair_GC_*"] },
+      "bio.hydrogen-bond": { "anchor": [0.1, 0, 0.1], "nodes": ["HBond_*"] }
+    },
+    "samples": [
+      { "key": "dna-helix", "title": { "ky": "ДНКнын кош спиралы", "ru": "Двойная спираль ДНК", "en": "DNA double helix" }, "classification": { "ky": "B-форма", "ru": "B-форма", "en": "B-form" }, "thumb": "thumbs/dna-helix.webp" },
+      { "key": "chromosome", "title": { "ky": "Хромосома", "ru": "Хромосома", "en": "Chromosome" }, "classification": { "ky": "Тыгыз оролгон ДНК", "ru": "Плотно упакованная ДНК", "en": "Tightly packed DNA" }, "thumb": "thumbs/chromosome.webp" },
+      { "key": "animal-cell", "title": { "ky": "Жаныбар клеткасы", "ru": "Животная клетка", "en": "Animal cell" }, "classification": { "ky": "ДНК ядродо", "ru": "ДНК в ядре", "en": "DNA in the nucleus" }, "thumb": "thumbs/animal-cell.webp", "topicKey": "animal-cell" }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": { "position": [0, 0, 8], "target": [0, 0, 0] },
+            "modes": { "rep": "ball-stick" },
+            "text": { "ky": "Бул – ДНКнын кичинекей бөлүгү: 10 негиз жуп. Анын диаметри болгону 2 нм.", "ru": "Это небольшой участок ДНК: 10 пар оснований. Его диаметр всего 2 нм.", "en": "This is a short piece of DNA: 10 base pairs. It is only 2 nm across." },
+            "teacherNote": { "ky": "ДНК ядродо жайгашканын эске салыңыз (жаныбар клеткасы темасы).", "ru": "Напомните, что ДНК находится в ядре (тема «Животная клетка»).", "en": "Remind the class that DNA lives in the nucleus (see the Animal cell topic)." },
+            "altText": { "ky": "Бурама тепкич сымал эки түстүү спираль.", "ru": "Двухцветная спираль, похожая на винтовую лестницу.", "en": "A two-coloured spiral that looks like a twisted ladder." }
+          },
+          {
+            "key": "helix",
+            "focus": "bio.dna-helix",
+            "camera": { "position": [3, 2, 6], "target": [0, 0, 0] },
+            "text": { "ky": "Эки чынжыр бири-бирине оң тарапка оролгон. Бир толук оромго 10,5 негиз жуп туура келет – болжол менен 3,4–3,6 нм.", "ru": "Две цепи закручены друг вокруг друга вправо. На один полный виток приходится около 10,5 пар оснований – примерно 3,4–3,6 нм.", "en": "The two strands wind round each other to the right. One full turn holds about 10.5 base pairs – roughly 3.4–3.6 nm." },
+            "teacherNote": { "ky": "1953-жылы Уотсон менен Криктин ачылышына Розалинд Франклиндин рентген сүрөтү чоң салым кошконун айтыңыз.", "ru": "Расскажите, что открытию Уотсона и Крика (1953) во многом помог рентгеновский снимок Розалинд Франклин.", "en": "Mention that Rosalind Franklin's X-ray image was key to Watson and Crick's 1953 discovery." },
+            "altText": { "ky": "Каптал жактан көрүнгөн толук бир ором.", "ru": "Полный виток спирали, вид сбоку.", "en": "One full turn of the helix seen from the side." }
+          },
+          {
+            "key": "backbone",
+            "focus": "bio.sugar-phosphate-backbone",
+            "visibility": { "isolate": ["bio.sugar-phosphate-backbone"] },
+            "text": { "ky": "Сырткы «туткалар» – кант-фосфат негизи. Дезоксирибоза менен фосфат кезектешет.", "ru": "Наружные «поручни» – сахарофосфатный остов, где чередуются дезоксирибоза и фосфат.", "en": "The outer rails are the sugar-phosphate backbone, alternating deoxyribose and phosphate." },
+            "teacherNote": { "ky": "Негиздер ичинде, туткалар сыртында – бул көп кездешкен катаны алдын алат.", "ru": "Основания внутри, остов снаружи – это предупреждает частую ошибку.", "en": "Bases inside, backbone outside – this heads off a common mistake." },
+            "altText": { "ky": "Ички бөлүгү жашырылган, эки бурама тутка гана көрүнөт.", "ru": "Внутренняя часть скрыта, видны только два спиральных остова.", "en": "The inside is hidden; only the two spiral rails are visible." }
+          },
+          {
+            "key": "nucleotide",
+            "focus": "bio.nucleotide",
+            "camera": { "position": [-2.5, -1.5, 3], "target": [-1, -0.8, 0.2] },
+            "text": { "ky": "Ар бир нуклеотид – фосфат, кант жана бир азоттук негиз. Негиздин төрт түрү бар: A, T, G, C.", "ru": "Каждый нуклеотид – это фосфат, сахар и одно азотистое основание. Оснований четыре вида: A, T, G, C.", "en": "Each nucleotide is a phosphate, a sugar and one base. There are four bases: A, T, G and C." },
+            "teacherNote": { "ky": "Нуклеотидди «тамга», генди «сөз» катары салыштырыңыз.", "ru": "Сравните нуклеотид с «буквой», а ген – со «словом».", "en": "Compare a nucleotide to a letter and a gene to a word." },
+            "altText": { "ky": "Бир нуклеотид бөлүнүп көрсөтүлгөн: шар-фосфат, беш бурчтуу кант жана негиз.", "ru": "Выделен один нуклеотид: шарик-фосфат, пятиугольный сахар и основание.", "en": "One nucleotide highlighted: a phosphate ball, a pentagon sugar and a base." }
+          },
+          {
+            "key": "pairs",
+            "focus": "bio.base-pair-gc",
+            "modes": { "rep": "spacefill" },
+            "camera": { "position": [0, 3, 3], "target": [0, 0, 0] },
+            "text": { "ky": "Негиздер жуптары комплементардуу: A – T (2 суутек байланышы), G – C (3 суутек байланышы).", "ru": "Пары оснований комплементарны: A – T (2 водородные связи), G – C (3 водородные связи).", "en": "Base pairs are complementary: A–T (2 hydrogen bonds) and G–C (3 hydrogen bonds)." },
+            "teacherNote": { "ky": "Салыштыруу таблицасын ачып, эки жуптун байланыштарынын санын көрсөтүңүз.", "ru": "Откройте таблицу сравнения и покажите число связей у двух пар.", "en": "Open the comparison table to show the number of bonds in each pair." },
+            "altText": { "ky": "Спиралдын ичинде түстүү негиз жуптары тепкичтей тизилген.", "ru": "Внутри спирали цветные пары оснований, как ступени.", "en": "Coloured base pairs lined up like steps inside the helix." }
+          },
+          {
+            "key": "hydrogen-bonds",
+            "focus": "bio.hydrogen-bond",
+            "text": { "ky": "Суутек байланыштары алсыз, ошондуктан репликацияда ДНК сыдырмадай оңой ачылат.", "ru": "Водородные связи слабые, поэтому при репликации ДНК легко «расстёгивается», как молния.", "en": "Hydrogen bonds are weak, so DNA unzips easily during replication." },
+            "teacherNote": { "ky": "Ушул жерден «ДНКнын репликациясы» процессин ишке киргизиңиз.", "ru": "Отсюда запустите процесс «Репликация ДНК».", "en": "Start the «DNA replication» process from here." },
+            "altText": { "ky": "Негиздердин ортосундагы үзүк сызыктар – суутек байланыштары.", "ru": "Пунктирные линии между основаниями – водородные связи.", "en": "Dashed lines between the bases show the hydrogen bonds." }
+          }
+        ]
+      },
+      "processKeys": ["bio.dna-replication"],
+      "comparison": {
+        "columns": [
+          { "kind": "concept", "key": "bio.base-pair-at" },
+          { "kind": "concept", "key": "bio.base-pair-gc" }
+        ],
+        "rows": ["hydrogenBonds", "composition", "function"]
+      },
+      "quiz": {
+        "itemKeys": ["bio.q.complement", "bio.q.chargaff", "bio.q.nucleotide-parts", "bio.q.dna-match", "bio.q.find-hbond", "bio.q.find-backbone", "bio.q.semiconservative"],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "s",
+          "title": { "ky": "Илбирстерди саноо", "ru": "Перепись снежных барсов", "en": "Counting snow leopards" },
+          "text": { "ky": "Кыргызстандын тоолорунда илбирстерди көрбөй туруп, алардын изинен алынган ДНК боюнча санашат жана туугандык байланышын аныкташат.", "ru": "В горах Кыргызстана снежных барсов считают по ДНК из следов, не видя самих животных, и выясняют их родство.", "en": "In Kyrgyzstan's mountains, snow leopards are counted from DNA in their traces – without seeing them – and their family ties are traced." }
+        },
+        {
+          "field": "t",
+          "title": { "ky": "Сорттордун паспорту", "ru": "Генетический паспорт сортов", "en": "Crop variety fingerprints" },
+          "text": { "ky": "Генетиктер Баткендин өрүгүнүн жана Арстанбаптын жаңгагынын жергиликтүү сортторун ДНК боюнча аныктап, аларды сакташат.", "ru": "Генетики по ДНК определяют местные сорта абрикоса Баткена и ореха Арсланбоба и сохраняют их.", "en": "Geneticists use DNA to identify and preserve local varieties of Batken apricots and Arslanbob walnuts." }
+        },
+        {
+          "field": "e",
+          "title": { "ky": "мРНК вакциналары", "ru": "мРНК-вакцины", "en": "mRNA vaccines" },
+          "text": { "ky": "Инженерлер генетикалык коддун эрежелерин колдонуп, клеткага керектүү белокту жасоону «буйруган» вакциналарды долбоорлошот.", "ru": "Используя правила генетического кода, инженеры проектируют вакцины, которые «поручают» клетке сделать нужный белок.", "en": "Using the rules of the genetic code, engineers design vaccines that instruct cells to make a specific protein." }
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Жети ата", "ru": "Семь предков", "en": "Seven forefathers" },
+          "text": { "ky": "Кыргыз баласы жети атасын билет – санжыра урпактан урпакка өтөт. ДНК да ата-энеден балага өткөн «санжыра».", "ru": "Кыргызский ребёнок знает семь предков – санжыра передаётся из поколения в поколение. ДНК – тоже «санжыра» от родителей к детям.", "en": "A Kyrgyz child learns seven forefathers – the sanjyra passes down the generations. DNA is a sanjyra passed from parents to children." }
+        },
+        {
+          "title": { "ky": "Сыдырма", "ru": "Молния", "en": "A zip" },
+          "text": { "ky": "ДНК курткадагы сыдырмага окшош: эки тарабы тиштери менен бекем кармашат, бирок керек болгондо ачылат.", "ru": "ДНК похожа на молнию на куртке: две стороны крепко сцеплены зубчиками, но при необходимости расстёгиваются.", "en": "DNA is like a jacket zip: the two sides lock together tooth by tooth but can open when needed." }
+        }
+      ]
+    },
+    "i18n": { "ky": "machine", "ru": "reviewed", "en": "draft" }
+  },
+  "items": [
+    {
+      "key": "bio.q.complement",
+      "type": "single",
+      "prompt": { "ky": "ДНКда аденин (A) кайсы негиз менен жупташат?", "ru": "С каким основанием в ДНК образует пару аденин (A)?", "en": "Which base does adenine (A) pair with in DNA?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Тимин (T)", "ru": "Тимин (T)", "en": "Thymine (T)" } },
+        { "key": "b", "text": { "ky": "Гуанин (G)", "ru": "Гуанин (G)", "en": "Guanine (G)" } },
+        { "key": "c", "text": { "ky": "Цитозин (C)", "ru": "Цитозин (C)", "en": "Cytosine (C)" } },
+        { "key": "d", "text": { "ky": "Аденин (A)", "ru": "Аденин (A)", "en": "Adenine (A)" } }
+      ],
+      "answer": "a",
+      "explanation": { "ky": "Комплементардуулук эрежеси: A – T, G – C.", "ru": "Правило комплементарности: A – T, G – C.", "en": "The pairing rule: A with T, G with C." },
+      "objectiveKeys": ["bio.g9.heredity.o1"],
+      "misconceptionKey": "bio.m.any-pairing",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.chargaff",
+      "type": "numeric",
+      "prompt": { "ky": "ДНК молекуласында аденин 30 %ды түзөт. Гуанин канча пайыз?", "ru": "В молекуле ДНК 30 % аденина. Сколько процентов гуанина?", "en": "A DNA molecule is 30 % adenine. What percentage is guanine?" },
+      "answer": 20,
+      "tolerance": 0,
+      "unit": "%",
+      "explanation": { "ky": "A = T = 30 %, демек G + C = 40 %, G = C = 20 %.", "ru": "A = T = 30 %, значит G + C = 40 %, G = C = 20 %.", "en": "A = T = 30 %, so G + C = 40 % and G = C = 20 %." },
+      "objectiveKeys": ["bio.g9.heredity.o1"],
+      "misconceptionKey": "bio.m.any-pairing",
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.nucleotide-parts",
+      "type": "multiple",
+      "prompt": { "ky": "ДНК нуклеотиди эмнелерден турат?", "ru": "Из чего состоит нуклеотид ДНК?", "en": "What is a DNA nucleotide made of?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Фосфат калдыгы", "ru": "Остаток фосфорной кислоты", "en": "A phosphate group" } },
+        { "key": "b", "text": { "ky": "Дезоксирибоза", "ru": "Дезоксирибоза", "en": "Deoxyribose" } },
+        { "key": "c", "text": { "ky": "Азоттук негиз", "ru": "Азотистое основание", "en": "A nitrogenous base" } },
+        { "key": "d", "text": { "ky": "Аминокислота", "ru": "Аминокислота", "en": "An amino acid" } }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": { "ky": "Аминокислоталар белокторду түзөт, нуклеотидди эмес.", "ru": "Аминокислоты образуют белки, а не нуклеотиды.", "en": "Amino acids build proteins, not nucleotides." },
+      "objectiveKeys": ["bio.g9.heredity.o1"],
+      "misconceptionKey": "bio.m.nucleotide-is-base",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.dna-match",
+      "type": "match",
+      "prompt": { "ky": "Түшүнүктү анын сүрөттөмөсү менен дал келтир.", "ru": "Сопоставь понятие и его описание.", "en": "Match each term to its description." },
+      "pairs": [
+        { "key": "backbone", "left": { "ky": "Кант-фосфат негизи", "ru": "Сахарофосфатный остов", "en": "Sugar-phosphate backbone" }, "right": { "ky": "Спиралдын сырткы туткасы", "ru": "Наружные «поручни» спирали", "en": "The outer rails of the helix" } },
+        { "key": "hbond", "left": { "ky": "Суутек байланышы", "ru": "Водородная связь", "en": "Hydrogen bond" }, "right": { "ky": "Негиздерди бириктирген алсыз байланыш", "ru": "Слабая связь между основаниями", "en": "Weak link between bases" } },
+        { "key": "gc", "left": { "ky": "G–C жубу", "ru": "Пара G–C", "en": "G–C pair" }, "right": { "ky": "Үч суутек байланышы", "ru": "Три водородные связи", "en": "Three hydrogen bonds" } },
+        { "key": "at", "left": { "ky": "A–T жубу", "ru": "Пара A–T", "en": "A–T pair" }, "right": { "ky": "Эки суутек байланышы", "ru": "Две водородные связи", "en": "Two hydrogen bonds" } }
+      ],
+      "explanation": { "ky": "Кош спираль бекем туткалардан жана алардын ортосундагы алсыз «тепкичтерден» турат.", "ru": "Двойная спираль – это прочные «поручни» и слабо связанные «ступеньки» между ними.", "en": "The double helix is strong rails with weakly joined steps between them." },
+      "objectiveKeys": ["bio.g9.heredity.o1"],
+      "misconceptionKey": "bio.m.gc-same-strength",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.find-hbond",
+      "type": "find-on-model",
+      "prompt": { "ky": "Репликацияда биринчи үзүлгөн байланыштарды моделден тап.", "ru": "Найди на модели связи, которые первыми разрываются при репликации.", "en": "Find the bonds that break first during replication." },
+      "targetConceptKey": "bio.hydrogen-bond",
+      "explanation": { "ky": "Хеликаза негиздердин ортосундагы суутек байланыштарын үзөт.", "ru": "Хеликаза разрывает водородные связи между основаниями.", "en": "Helicase breaks the hydrogen bonds between the bases." },
+      "objectiveKeys": ["bio.g9.heredity.o2"],
+      "misconceptionKey": "bio.m.hbond-strong",
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.find-backbone",
+      "type": "find-on-model",
+      "prompt": { "ky": "Спиралдын сыртындагы кант-фосфат негизин тап.", "ru": "Найди сахарофосфатный остов снаружи спирали.", "en": "Find the sugar-phosphate backbone on the outside of the helix." },
+      "targetConceptKey": "bio.sugar-phosphate-backbone",
+      "explanation": { "ky": "Кант-фосфат негизи спиралдын сырткы эки туткасы.", "ru": "Сахарофосфатный остов – два наружных «поручня» спирали.", "en": "The backbone forms the two outer rails of the helix." },
+      "objectiveKeys": ["bio.g9.heredity.o1"],
+      "misconceptionKey": "bio.m.bases-outside",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.semiconservative",
+      "type": "single",
+      "prompt": { "ky": "Репликациядан кийин ар бир жаңы ДНК молекуласы эмнеден турат?", "ru": "Из чего состоит каждая новая молекула ДНК после репликации?", "en": "After replication, what is each new DNA molecule made of?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Бир эски жана бир жаңы чынжырдан", "ru": "Из одной старой и одной новой цепи", "en": "One old and one new strand" } },
+        { "key": "b", "text": { "ky": "Эки жаңы чынжырдан", "ru": "Из двух новых цепей", "en": "Two new strands" } },
+        { "key": "c", "text": { "ky": "Эки эски чынжырдан", "ru": "Из двух старых цепей", "en": "Two old strands" } }
+      ],
+      "answer": "a",
+      "explanation": { "ky": "Репликация жарым консервативдүү: ар бир эски чынжыр жаңы чынжыр үчүн калып болот.", "ru": "Репликация полуконсервативна: каждая старая цепь служит матрицей для новой.", "en": "Replication is semi-conservative: each old strand is the template for a new one." },
+      "objectiveKeys": ["bio.g9.heredity.o2"],
+      "difficulty": 3
+    }
+  ]
+}

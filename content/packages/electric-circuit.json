@@ -1,0 +1,2072 @@
+{
+  "manifest": {
+    "topicKey": "electric-circuit",
+    "version": "1.0.0",
+    "hash": "716993a4e96b3990ecf36b362d832fdadc2cc50b169101df3d242c70b04a594b",
+    "files": [
+      {
+        "path": "thumbs/circuit-lamp.webp",
+        "hash": "a8a1130f0b6e8e8a45348772c1750c8b6269a68f365105c6a43bd09e649f3f2d",
+        "size": 0
+      },
+      {
+        "path": "thumbs/circuit-series.webp",
+        "hash": "af76d239c92270910bdac57d6cfb58c0f5e77f7cc2152e0134705c4d24f5e19a",
+        "size": 0
+      },
+      {
+        "path": "thumbs/circuit-parallel.webp",
+        "hash": "8badf1d561c58730f9e685369c6059625b83607b6a2d994ae6303afaa7e209d7",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "phys",
+    "icon": "magnet",
+    "hue": 15,
+    "group": "natural",
+    "order": 2,
+    "status": "live",
+    "title": {
+      "ky": "Физика",
+      "ru": "Физика",
+      "en": "Physics"
+    }
+  },
+  "course": {
+    "key": "phys.g8",
+    "subjectKey": "phys",
+    "grade": 8,
+    "curriculum": "kg-2024",
+    "title": {
+      "ky": "Физика, 8-класс",
+      "ru": "Физика, 8 класс",
+      "en": "Physics, grade 8"
+    }
+  },
+  "unit": {
+    "key": "phys.g8.electricity",
+    "courseKey": "phys.g8",
+    "order": 1,
+    "title": {
+      "ky": "Электр тогу",
+      "ru": "Электрический ток",
+      "en": "Electric current"
+    }
+  },
+  "objectives": [
+    {
+      "key": "phys.g8.electricity.o1",
+      "code": "PHYS-8.3.1",
+      "unitKey": "phys.g8.electricity",
+      "text": {
+        "ky": "Жөнөкөй электр чынжырынын бөлүктөрүн атоо жана схемасын окуу.",
+        "ru": "Называть элементы простой электрической цепи и читать её схему.",
+        "en": "Name the parts of a simple electric circuit and read its diagram."
+      }
+    },
+    {
+      "key": "phys.g8.electricity.o2",
+      "code": "PHYS-8.3.2",
+      "unitKey": "phys.g8.electricity",
+      "text": {
+        "ky": "Чынжырдын бөлүгү үчүн Ом мыйзамын колдонуу.",
+        "ru": "Применять закон Ома для участка цепи.",
+        "en": "Apply Ohm's law to a section of a circuit."
+      }
+    }
+  ],
+  "topic": {
+    "key": "electric-circuit",
+    "unitKey": "phys.g8.electricity",
+    "status": "published",
+    "title": {
+      "ky": "Жөнөкөй электр чынжыры",
+      "ru": "Простая электрическая цепь",
+      "en": "A simple electric circuit"
+    },
+    "formula": "I = U/R",
+    "classification": {
+      "ky": "Туруктуу ток",
+      "ru": "Постоянный ток",
+      "en": "Direct current"
+    },
+    "description": {
+      "ky": "Ток булагы, ачкыч, лампа жана өлчөөчү приборлор зымдар менен туташтырылган туюк чынжыр. Ток күчү Ом мыйзамы менен эсептелет: I = U/R.",
+      "ru": "Замкнутая цепь из источника тока, ключа, лампы и измерительных приборов, соединённых проводами. Сила тока находится по закону Ома: I = U/R.",
+      "en": "A closed loop of a power source, a switch, a lamp and meters joined by wires. The current follows Ohm's law: I = U/R."
+    },
+    "goal": {
+      "ky": "Чынжырдын бөлүктөрүн таанып, схемасын окуу (PHYS-8.3.1) жана Ом мыйзамы менен ток күчүн эсептөө (PHYS-8.3.2).",
+      "ru": "Узнать элементы цепи и прочитать её схему (PHYS-8.3.1), рассчитать силу тока по закону Ома (PHYS-8.3.2).",
+      "en": "Identify the parts of a circuit and read its diagram (PHYS-8.3.1), and calculate the current with Ohm's law (PHYS-8.3.2)."
+    },
+    "objectiveKeys": [
+      "phys.g8.electricity.o1",
+      "phys.g8.electricity.o2"
+    ],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "dc-circuit",
+        "emf": 4.5,
+        "lampResistance": 9,
+        "switchClosed": false,
+        "wires": [
+          "battery-switch",
+          "switch-ammeter",
+          "ammeter-lamp",
+          "lamp-battery"
+        ],
+        "voltmeterAcross": "lamp"
+      },
+      "camera": {
+        "position": [
+          0,
+          3,
+          3.5
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "schematic",
+        "electrons"
+      ]
+    },
+    "conceptKeys": [
+      "phys.battery",
+      "phys.switch",
+      "phys.lamp",
+      "phys.wire",
+      "phys.ammeter",
+      "phys.voltmeter"
+    ],
+    "overrides": {
+      "phys.battery": {
+        "anchor": [
+          -1.2,
+          0.2,
+          0
+        ],
+        "nodes": [
+          "Battery"
+        ]
+      },
+      "phys.switch": {
+        "anchor": [
+          0,
+          0.2,
+          -1
+        ],
+        "nodes": [
+          "Switch"
+        ]
+      },
+      "phys.lamp": {
+        "anchor": [
+          1.2,
+          0.5,
+          0
+        ],
+        "nodes": [
+          "Lamp",
+          "Lamp_*"
+        ]
+      },
+      "phys.wire": {
+        "nodes": [
+          "Wire_*"
+        ]
+      },
+      "phys.ammeter": {
+        "anchor": [
+          0.8,
+          0.2,
+          -1
+        ],
+        "nodes": [
+          "Ammeter"
+        ]
+      },
+      "phys.voltmeter": {
+        "anchor": [
+          1.2,
+          0.2,
+          1
+        ],
+        "nodes": [
+          "Voltmeter"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "circuit-lamp",
+        "title": {
+          "ky": "Бир лампа",
+          "ru": "Одна лампа",
+          "en": "One lamp"
+        },
+        "classification": {
+          "ky": "Жөнөкөй чынжыр",
+          "ru": "Простая цепь",
+          "en": "Simple circuit"
+        },
+        "thumb": "thumbs/circuit-lamp.webp"
+      },
+      {
+        "key": "circuit-series",
+        "title": {
+          "ky": "Эки лампа удаалаш",
+          "ru": "Две лампы последовательно",
+          "en": "Two lamps in series"
+        },
+        "classification": {
+          "ky": "Удаалаш туташтыруу",
+          "ru": "Последовательное соединение",
+          "en": "Series connection"
+        },
+        "thumb": "thumbs/circuit-series.webp"
+      },
+      {
+        "key": "circuit-parallel",
+        "title": {
+          "ky": "Эки лампа жарыш",
+          "ru": "Две лампы параллельно",
+          "en": "Two lamps in parallel"
+        },
+        "classification": {
+          "ky": "Жарыш туташтыруу",
+          "ru": "Параллельное соединение",
+          "en": "Parallel connection"
+        },
+        "thumb": "thumbs/circuit-parallel.webp"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                3,
+                3.5
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "text": {
+              "ky": "Бул – жөнөкөй электр чынжыры. Лампа күйүшү үчүн чынжыр туюк болушу керек.",
+              "ru": "Это простая электрическая цепь. Чтобы лампа горела, цепь должна быть замкнута.",
+              "en": "This is a simple electric circuit. For the lamp to light, the circuit must be closed."
+            },
+            "teacherNote": {
+              "ky": "«Схема» режимин күйгүзүп, ар бир приборду шарттуу белгиси менен салыштырыңыз.",
+              "ru": "Включите режим «Схема» и сопоставьте каждый прибор с его условным обозначением.",
+              "en": "Turn on the 'schematic' mode and match each device to its symbol."
+            },
+            "altText": {
+              "ky": "Батарейка, ачкыч, амперметр жана лампа зымдар менен шакек түрүндө туташкан.",
+              "ru": "Батарейка, ключ, амперметр и лампа соединены проводами в кольцо.",
+              "en": "A battery, switch, ammeter and lamp wired together in a loop."
+            }
+          },
+          {
+            "key": "battery",
+            "camera": {
+              "position": [
+                -1.2,
+                1.5,
+                1.8
+              ],
+              "target": [
+                -1.2,
+                0.2,
+                0
+              ]
+            },
+            "focus": "phys.battery",
+            "text": {
+              "ky": "Ток булагы – 4,5 В батарейка. Ал электрондорду «айдайт», бирок аларды өзүндө сактабайт.",
+              "ru": "Источник тока – батарейка 4,5 В. Она «гонит» электроны, но не хранит их в себе.",
+              "en": "The power source is a 4.5 V battery. It pushes electrons along but does not store them."
+            },
+            "teacherNote": {
+              "ky": "«+» жана «−» уюлдарын көрсөтүңүз; токтун шарттуу багыты «+» тан «−» ка экенин айтыңыз.",
+              "ru": "Покажите полюса «+» и «−»; скажите, что условное направление тока – от «+» к «−».",
+              "en": "Show the + and − terminals and explain that conventional current flows from + to −."
+            },
+            "altText": {
+              "ky": "Эки уюлу бар жалпак батарейка.",
+              "ru": "Плоская батарейка с двумя полюсами.",
+              "en": "A flat battery with two terminals."
+            }
+          },
+          {
+            "key": "switch",
+            "modes": {
+              "electrons": true
+            },
+            "focus": "phys.switch",
+            "text": {
+              "ky": "Ачкыч ачык – ток жок. Аны жабабыз – ток дароо жүрөт.",
+              "ru": "Ключ разомкнут – тока нет. Замыкаем – ток идёт сразу.",
+              "en": "Switch open – no current. Close it and current flows at once."
+            },
+            "teacherNote": {
+              "ky": "«Чынжырды туташтыруу» процессин иштетиңиз.",
+              "ru": "Запустите процесс «Замыкание цепи».",
+              "en": "Run the 'Closing the circuit' process."
+            },
+            "altText": {
+              "ky": "Тили көтөрүлгөн ачкыч.",
+              "ru": "Ключ с поднятым рычажком.",
+              "en": "A switch with its lever raised."
+            }
+          },
+          {
+            "key": "wire",
+            "modes": {
+              "electrons": true
+            },
+            "focus": "phys.wire",
+            "text": {
+              "ky": "Зымдардагы электрондор абдан жай – болжол менен 0,1 мм/с жылат. Бирок талаа дээрлик жарык ылдамдыгы менен тарайт, ошондуктан лампа дароо күйөт.",
+              "ru": "Электроны в проводах дрейфуют очень медленно – около 0,1 мм/с. Но поле распространяется почти со скоростью света, поэтому лампа загорается сразу.",
+              "en": "Electrons in the wires drift very slowly – about 0.1 mm/s. But the field spreads at nearly light speed, so the lamp comes on at once."
+            },
+            "teacherNote": {
+              "ky": "Сууга толгон шлангдын мисалын колдонуңуз.",
+              "ru": "Используйте пример со шлангом, полным воды.",
+              "en": "Use the example of a hose already full of water."
+            },
+            "altText": {
+              "ky": "Зымдардын ичиндеги майда электрондор жай жылат.",
+              "ru": "Мелкие электроны медленно движутся внутри проводов.",
+              "en": "Tiny electrons creeping along inside the wires."
+            }
+          },
+          {
+            "key": "ammeter",
+            "camera": {
+              "position": [
+                0.8,
+                1.4,
+                0.6
+              ],
+              "target": [
+                0.8,
+                0.2,
+                -1
+              ]
+            },
+            "focus": "phys.ammeter",
+            "text": {
+              "ky": "Амперметр удаалаш туташкан жана 0,5 А көрсөтөт: I = U/R = 4,5/9 = 0,5 А.",
+              "ru": "Амперметр включён последовательно и показывает 0,5 А: I = U/R = 4,5/9 = 0,5 А.",
+              "en": "The ammeter is in series and reads 0.5 A: I = U/R = 4.5/9 = 0.5 A."
+            },
+            "teacherNote": {
+              "ky": "Амперметрди чынжырдын башка жерине которуп, көрсөткүч өзгөрбөсүн көрсөтүңүз.",
+              "ru": "Переставьте амперметр в другое место цепи и покажите, что показания не меняются.",
+              "en": "Move the ammeter elsewhere in the loop and show the reading stays the same."
+            },
+            "altText": {
+              "ky": "Жебеси 0,5 А көрсөткөн амперметр.",
+              "ru": "Амперметр, стрелка на 0,5 А.",
+              "en": "An ammeter with its needle at 0.5 A."
+            }
+          },
+          {
+            "key": "lamp",
+            "visibility": {
+              "hide": [
+                "phys.ammeter"
+              ]
+            },
+            "focus": "phys.lamp",
+            "text": {
+              "ky": "Вольтметр лампага жарыш туташкан жана 4,5 В көрсөтөт. Лампанын кубаттуулугу P = UI = 2,25 Вт.",
+              "ru": "Вольтметр подключён параллельно лампе и показывает 4,5 В. Мощность лампы P = UI = 2,25 Вт.",
+              "en": "The voltmeter is across the lamp and reads 4.5 V. The lamp's power is P = UI = 2.25 W."
+            },
+            "teacherNote": {
+              "ky": "Удаалаш жана жарыш туташтырылган эки лампанын жарыгын салыштырыңыз.",
+              "ru": "Сравните яркость двух ламп при последовательном и параллельном соединении.",
+              "en": "Compare how bright two lamps are in series and in parallel."
+            },
+            "altText": {
+              "ky": "Күйүп жаткан лампа жана ага жарыш туташкан вольтметр.",
+              "ru": "Горящая лампа и подключённый параллельно вольтметр.",
+              "en": "A glowing lamp with a voltmeter connected across it."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.circuit-closing"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "circuit-lamp"
+          },
+          {
+            "kind": "sample",
+            "key": "circuit-series"
+          },
+          {
+            "kind": "sample",
+            "key": "circuit-parallel"
+          }
+        ],
+        "rows": [
+          "resistance",
+          "current",
+          "power"
+        ],
+        "manual": [
+          {
+            "column": "circuit-lamp",
+            "row": "resistance",
+            "value": {
+              "ky": "9 Ом",
+              "ru": "9 Ом",
+              "en": "9 Ω"
+            }
+          },
+          {
+            "column": "circuit-lamp",
+            "row": "current",
+            "value": {
+              "ky": "0,5 А",
+              "ru": "0,5 А",
+              "en": "0.5 A"
+            }
+          },
+          {
+            "column": "circuit-lamp",
+            "row": "power",
+            "value": {
+              "ky": "2,25 Вт",
+              "ru": "2,25 Вт",
+              "en": "2.25 W"
+            }
+          },
+          {
+            "column": "circuit-series",
+            "row": "resistance",
+            "value": {
+              "ky": "18 Ом",
+              "ru": "18 Ом",
+              "en": "18 Ω"
+            }
+          },
+          {
+            "column": "circuit-series",
+            "row": "current",
+            "value": {
+              "ky": "0,25 А",
+              "ru": "0,25 А",
+              "en": "0.25 A"
+            }
+          },
+          {
+            "column": "circuit-series",
+            "row": "power",
+            "value": {
+              "ky": "1,125 Вт (жалпы)",
+              "ru": "1,125 Вт (всего)",
+              "en": "1.125 W (total)"
+            }
+          },
+          {
+            "column": "circuit-parallel",
+            "row": "resistance",
+            "value": {
+              "ky": "4,5 Ом",
+              "ru": "4,5 Ом",
+              "en": "4.5 Ω"
+            }
+          },
+          {
+            "column": "circuit-parallel",
+            "row": "current",
+            "value": {
+              "ky": "1 А (жалпы)",
+              "ru": "1 А (всего)",
+              "en": "1 A (total)"
+            }
+          },
+          {
+            "column": "circuit-parallel",
+            "row": "power",
+            "value": {
+              "ky": "4,5 Вт (жалпы)",
+              "ru": "4,5 Вт (всего)",
+              "en": "4.5 W (total)"
+            }
+          }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.ammeter-connect",
+          "phys.q.current-conditions",
+          "phys.q.device-match",
+          "phys.q.find-switch",
+          "phys.q.ohm-current",
+          "phys.q.lamp-power",
+          "phys.q.current-same"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "e",
+          "title": {
+            "ky": "Токтогул ГЭСи",
+            "ru": "Токтогульская ГЭС",
+            "en": "Toktogul hydropower plant"
+          },
+          "text": {
+            "ky": "Токтогул ГЭСинин генераторлору Нарын суусунун энергиясын электрге айландырат; ал электр линиялары аркылуу миллиондогон чынжырларга – үйлөргө жана мектептерге барат.",
+            "ru": "Генераторы Токтогульской ГЭС превращают энергию воды Нарына в электричество; по линиям оно приходит в миллионы цепей – в дома и школы.",
+            "en": "The generators of the Toktogul plant turn the energy of the Naryn's water into electricity, which reaches millions of circuits – homes and schools – over power lines."
+          }
+        },
+        {
+          "field": "t",
+          "title": {
+            "ky": "Чөнтөк фонары",
+            "ru": "Карманный фонарик",
+            "en": "A torch"
+          },
+          "text": {
+            "ky": "Фонардын ичинде да ушундай эле чынжыр бар: батарейка, ачкыч, лампа же светодиод жана металл пластинкалар.",
+            "ru": "Внутри фонарика – такая же цепь: батарейка, кнопка-ключ, лампа или светодиод и металлические пластинки.",
+            "en": "A torch contains exactly this circuit: a battery, a push switch, a bulb or LED and metal strips."
+          }
+        },
+        {
+          "field": "m",
+          "title": {
+            "ky": "Ом мыйзамы",
+            "ru": "Закон Ома",
+            "en": "Ohm's law"
+          },
+          "text": {
+            "ky": "Чыңалууну эки эсе көбөйтсөк, ток да эки эсе көбөйөт: I жана U түз пропорциялуу, графиги түз сызык.",
+            "ru": "Если удвоить напряжение, ток тоже удвоится: I и U прямо пропорциональны, график – прямая.",
+            "en": "Double the voltage and the current doubles too: I and U are directly proportional, and the graph is a straight line."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Суу түтүктөрү",
+            "ru": "Водопровод",
+            "en": "Water pipes"
+          },
+          "text": {
+            "ky": "Батарейка – насос, зымдар – түтүктөр, лампа – суу айлантуучу тегирмен. Түтүк кайсы жеринен үзүлсө да, суу токтойт.",
+            "ru": "Батарейка – насос, провода – трубы, лампа – мельница, которую крутит вода. Порвись труба где угодно – вода остановится.",
+            "en": "The battery is a pump, the wires are pipes and the lamp is a water mill. Break the pipe anywhere and the water stops."
+          }
+        },
+        {
+          "title": {
+            "ky": "Тегерек жарыш жолу",
+            "ru": "Круговая беговая дорожка",
+            "en": "A circular running track"
+          },
+          "text": {
+            "ky": "Стадиондун тегерек жолунда бардык чуркоочулар бир эле убакта чуркайт; жол үзүлсө – баары токтойт. Ток да туюк чынжырда гана жүрөт.",
+            "ru": "На круговой дорожке стадиона бегут все одновременно; разорвись дорожка – все остановятся. Ток тоже идёт только по замкнутой цепи.",
+            "en": "On a round running track everyone runs at the same time; break the track and they all stop. Current also flows only around a closed loop."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "phys.battery",
+      "kind": "device",
+      "hue": 50,
+      "isContainer": false,
+      "title": {
+        "ky": "Ток булагы",
+        "ru": "Источник тока",
+        "en": "Power source"
+      },
+      "subtitle": {
+        "ky": "Батарейка",
+        "ru": "Батарейка",
+        "en": "Battery"
+      },
+      "description": {
+        "ky": "Химиялык энергияны электр энергиясына айландырып, чынжырда чыңалуу түзгөн түзүлүш. Мектептеги жалпак батарейканын чыңалуусу 4,5 В.",
+        "ru": "Устройство, которое превращает химическую энергию в электрическую и создаёт напряжение в цепи. У школьной плоской батарейки – 4,5 В.",
+        "en": "A device that turns chemical energy into electrical energy and creates a voltage in the circuit. A school flat battery gives 4.5 V."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "voltage",
+          "value": 4.5
+        },
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Үч гальваникалык элемент, ар бири 1,5 В",
+            "ru": "Три гальванических элемента по 1,5 В",
+            "en": "Three 1.5 V cells"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Электрондорду кыймылга келтирет",
+            "ru": "Заставляет электроны двигаться",
+            "en": "Drives the electrons round the circuit"
+          }
+        }
+      ],
+      "related": [
+        "phys.wire",
+        "phys.lamp",
+        "phys.voltmeter"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.battery-stores-charge",
+          "text": {
+            "ky": "Батарейкада электрондор сакталып, лампада түгөнөт.",
+            "ru": "В батарейке хранятся электроны, и в лампе они расходуются.",
+            "en": "A battery stores electrons, which get used up in the lamp."
+          },
+          "correction": {
+            "ky": "Электрондор зымдарда мурдатан эле бар; батарейка аларды гана айдайт. Түгөнгөнү – химиялык энергия.",
+            "ru": "Электроны уже есть в проводах; батарейка лишь толкает их. Расходуется химическая энергия.",
+            "en": "The electrons are already in the wires; the battery only pushes them. What runs out is chemical energy."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Биринчи батарейканы 1800-жылы Алессандро Вольта жез жана цинк дисктеринен жасаган; чыңалуунун бирдиги вольт анын атынан коюлган.",
+        "ru": "Первую батарейку в 1800 году собрал Алессандро Вольта из медных и цинковых дисков; в его честь назван вольт.",
+        "en": "Alessandro Volta built the first battery in 1800 from copper and zinc discs; the volt is named after him."
+      },
+      "analogy": {
+        "ky": "Суу насосу",
+        "ru": "Водяной насос",
+        "en": "A water pump"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Күн панелдери",
+              "ru": "Солнечные панели",
+              "en": "Solar panels"
+            },
+            "text": {
+              "ky": "Тоолордогу чабандардын үйлөрүндө күн панели күндүз аккумуляторду кубаттайт, түнкүсүн аккумулятор лампаны жагат.",
+              "ru": "В домиках чабанов в горах солнечная панель днём заряжает аккумулятор, а ночью он зажигает лампу.",
+              "en": "At shepherds' huts in the mountains a solar panel charges a battery by day and the battery lights a lamp at night."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Электромобилдер",
+              "ru": "Электромобили",
+              "en": "Electric cars"
+            },
+            "text": {
+              "ky": "Бишкекте электромобилдер көбөйүүдө; алардын литий-иондук батареялары жүздөгөн вольт чыңалуу берет.",
+              "ru": "В Бишкеке становится всё больше электромобилей; их литий-ионные батареи дают сотни вольт.",
+              "en": "Electric cars are becoming common in Bishkek; their lithium-ion batteries supply hundreds of volts."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Суу мунарасы",
+              "ru": "Водонапорная башня",
+              "en": "A water tower"
+            },
+            "text": {
+              "ky": "Суу мунарасы сууну түтүктөр аркылуу айдайт, батарейка да электрондорду зымдар аркылуу ушинтип айдайт.",
+              "ru": "Водонапорная башня гонит воду по трубам – батарейка так же гонит электроны по проводам.",
+              "en": "A water tower pushes water through pipes; a battery pushes electrons through wires the same way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Велосипедчинин буту",
+              "ru": "Ноги велосипедиста",
+              "en": "A cyclist's legs"
+            },
+            "text": {
+              "ky": "Велосипедчи педалды тепсе чынжыр айланат. Батарейка – «тепкен бут», электрондор – чынжыр.",
+              "ru": "Велосипедист крутит педали – цепь движется. Батарейка – «ноги», электроны – цепь.",
+              "en": "A cyclist pedals and the chain moves. The battery is the legs; the electrons are the chain."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.switch",
+      "kind": "device",
+      "hue": 210,
+      "isContainer": false,
+      "title": {
+        "ky": "Ачкыч",
+        "ru": "Ключ (выключатель)",
+        "en": "Switch"
+      },
+      "subtitle": {
+        "ky": "Чынжырды туташтырат",
+        "ru": "Замыкает цепь",
+        "en": "Closes the circuit"
+      },
+      "description": {
+        "ky": "Чынжырды туташтыруучу же ажыратуучу түзүлүш. Ачкыч ачык болсо ток жүрбөйт, жабык болсо – жүрөт.",
+        "ru": "Устройство, которое замыкает или размыкает цепь. Ключ разомкнут – тока нет, замкнут – ток идёт.",
+        "en": "A device that closes or opens the circuit. Open switch – no current; closed switch – current flows."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Чынжырды туташтырат жана ажыратат",
+            "ru": "Замыкает и размыкает цепь",
+            "en": "Closes and opens the circuit"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Ток булагы менен лампанын ортосунда",
+            "ru": "Между источником и лампой",
+            "en": "Between the source and the lamp"
+          }
+        }
+      ],
+      "related": [
+        "phys.wire",
+        "phys.battery"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.switch-position",
+          "text": {
+            "ky": "Ачкыч лампанын жанында гана иштейт.",
+            "ru": "Ключ работает, только если стоит рядом с лампой.",
+            "en": "A switch only works if it is next to the lamp."
+          },
+          "correction": {
+            "ky": "Удаалаш чынжырда ачкыч кайсы жерде болсо да, бүт чынжырды ажыратат.",
+            "ru": "В последовательной цепи ключ в любом месте размыкает всю цепь.",
+            "en": "In a series circuit a switch anywhere breaks the whole circuit."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Компьютердин процессорунда миллиарддаган транзистор бар – ар бири секундасына миллиарддаган жолу ачылып-жабылган кичинекей ачкыч.",
+        "ru": "В процессоре компьютера миллиарды транзисторов – крошечных ключей, переключающихся миллиарды раз в секунду.",
+        "en": "A computer processor holds billions of transistors – tiny switches flipping billions of times a second."
+      },
+      "analogy": {
+        "ky": "Көпүрө",
+        "ru": "Разводной мост",
+        "en": "A drawbridge"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Транзисторлор",
+              "ru": "Транзисторы",
+              "en": "Transistors"
+            },
+            "text": {
+              "ky": "Телефондогу бардык эсептөөлөр транзистор-ачкычтар менен жасалат: «жабык» – 1, «ачык» – 0.",
+              "ru": "Все вычисления в телефоне делают транзисторы-ключи: «замкнут» – 1, «разомкнут» – 0.",
+              "en": "Every calculation in a phone is done by transistor switches: closed means 1, open means 0."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Автоматтык өчүргүч",
+              "ru": "Автоматический выключатель",
+              "en": "Circuit breaker"
+            },
+            "text": {
+              "ky": "Үйдөгү электр щитиндеги автомат ток өтө чоңойгондо өзү эле чынжырды ажыратып, өрттөн сактайт.",
+              "ru": "Автомат в домашнем щитке сам размыкает цепь при слишком большом токе и защищает от пожара.",
+              "en": "The breaker in a home fuse box opens the circuit on its own when the current gets too big, preventing fires."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Көпүрө",
+              "ru": "Мост",
+              "en": "A bridge"
+            },
+            "text": {
+              "ky": "Ачкыч дарыянын үстүндөгү көпүрө сыяктуу: көпүрө турса машиналар өтөт, көтөрүлсө – токтошот.",
+              "ru": "Ключ – как мост через реку: мост опущен – машины едут, поднят – стоят.",
+              "en": "A switch is like a bridge over a river: when it is down cars cross, when it is raised they stop."
+            }
+          },
+          {
+            "title": {
+              "ky": "Эшик",
+              "ru": "Дверь",
+              "en": "A door"
+            },
+            "text": {
+              "ky": "Класстын эшиги жабык болсо, эч ким кирбейт; ачылса – баары кирет. Ачкычта тескерисинче: жабык болсо гана ток «кирет».",
+              "ru": "Ключ похож на дверь, только наоборот: ток проходит, когда ключ замкнут.",
+              "en": "A switch is like a door in reverse: current gets through only when the switch is closed."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.lamp",
+      "kind": "device",
+      "hue": 55,
+      "isContainer": false,
+      "title": {
+        "ky": "Электр лампасы",
+        "ru": "Лампа накаливания",
+        "en": "Light bulb"
+      },
+      "subtitle": {
+        "ky": "Электр энергиясын жарыкка айландырат",
+        "ru": "Превращает энергию в свет",
+        "en": "Turns energy into light"
+      },
+      "description": {
+        "ky": "Ичиндеги ичке вольфрам жипчеси ток өткөндө 2500 °C чейин ысып, жарык чачат. Лампа – чынжырдагы кабыл алгыч, анын каршылыгы ≈ 9 Ом.",
+        "ru": "Тонкая вольфрамовая нить внутри раскаляется током до ~2500 °C и светится. Лампа – потребитель в цепи, её сопротивление ≈ 9 Ом.",
+        "en": "A thin tungsten filament inside glows when current heats it to about 2500 °C. The lamp is the load in the circuit, with a resistance of about 9 Ω."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "resistance",
+          "value": 9
+        },
+        {
+          "kind": "quantity",
+          "type": "power",
+          "value": 2.25
+        },
+        {
+          "kind": "quantity",
+          "type": "temperature",
+          "value": 2500,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Электр энергиясын жарыкка жана жылуулукка айландырат",
+            "ru": "Превращает электрическую энергию в свет и тепло",
+            "en": "Turns electrical energy into light and heat"
+          }
+        }
+      ],
+      "related": [
+        "phys.battery",
+        "phys.ammeter"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.current-used-up",
+          "text": {
+            "ky": "Лампа токту «жеп коёт», андан кийин ток азаят.",
+            "ru": "Лампа «съедает» ток, и после неё ток меньше.",
+            "en": "The lamp 'uses up' current, so less flows after it."
+          },
+          "correction": {
+            "ky": "Удаалаш чынжырда ток күчү бардык жерде бирдей. Лампа токту эмес, энергияны колдонот.",
+            "ru": "В последовательной цепи сила тока везде одинакова. Лампа расходует не ток, а энергию.",
+            "en": "In a series circuit the current is the same everywhere. The lamp uses energy, not current."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Кадимки ысытуу лампасы энергиянын болжол менен 5 %ын гана жарыкка, калганын жылуулукка айландырат; светодиоддук лампа бир топ үнөмдүү.",
+        "ru": "Обычная лампа накаливания превращает в свет только около 5 % энергии, остальное – в тепло; светодиодная намного экономнее.",
+        "en": "An ordinary filament bulb turns only about 5 % of its energy into light and the rest into heat; an LED bulb is far more efficient."
+      },
+      "analogy": {
+        "ky": "Мештеги кызыган чок",
+        "ru": "Раскалённый уголь в печи",
+        "en": "A glowing coal in a stove"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Светодиоддор",
+              "ru": "Светодиоды",
+              "en": "LEDs"
+            },
+            "text": {
+              "ky": "Мектептерде эски лампаларды светодиоддукка алмаштыруу электрди бир нече эсе аз керектейт.",
+              "ru": "Замена старых ламп на светодиодные в школах сокращает расход электричества в несколько раз.",
+              "en": "Swapping old bulbs for LEDs in schools cuts electricity use several times over."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Кубаттуулукту эсептөө",
+              "ru": "Расчёт мощности",
+              "en": "Working out power"
+            },
+            "text": {
+              "ky": "P = U · I = 4,5 В · 0,5 А = 2,25 Вт – лампа секундасына 2,25 Дж энергия колдонот.",
+              "ru": "P = U · I = 4,5 В · 0,5 А = 2,25 Вт – лампа расходует 2,25 Дж энергии в секунду.",
+              "en": "P = U × I = 4.5 V × 0.5 A = 2.25 W – the lamp uses 2.25 J of energy every second."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кызыган зым",
+              "ru": "Раскалённая проволока",
+              "en": "A glowing wire"
+            },
+            "text": {
+              "ky": "Мештеги темирди катуу ысытсаң, ал кызарып жарык чыгарат. Лампанын жипчеси да ушундай.",
+              "ru": "Сильно нагрей железку в печи – она раскалится и засветится. Нить лампы – так же.",
+              "en": "Heat a piece of iron in a stove and it glows red. A lamp filament works the same way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тар көчө",
+              "ru": "Узкая улица",
+              "en": "A narrow street"
+            },
+            "text": {
+              "ky": "Кенен жолдон тар көчөгө киргенде машиналар жайлайт. Лампанын ичке жипчеси да электрондорго «тар көчө».",
+              "ru": "Машины с широкой дороги притормаживают в узком переулке. Тонкая нить лампы – «узкий переулок» для электронов.",
+              "en": "Cars slow down when a wide road turns into a narrow lane. The lamp's thin filament is a narrow lane for electrons."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.wire",
+      "kind": "part",
+      "hue": 25,
+      "isContainer": false,
+      "title": {
+        "ky": "Туташтыруучу зымдар",
+        "ru": "Соединительные провода",
+        "en": "Connecting wires"
+      },
+      "subtitle": {
+        "ky": "Токтун жолу",
+        "ru": "Путь для тока",
+        "en": "The path for current"
+      },
+      "description": {
+        "ky": "Жез же алюминий зымдар чынжырдын бөлүктөрүн туташтырат. Алардагы эркин электрондор ток булагынын электр талаасынын таасиринен жай жылып, ток пайда кылат.",
+        "ru": "Медные или алюминиевые провода соединяют элементы цепи. Свободные электроны в них под действием электрического поля источника медленно дрейфуют – это и есть ток.",
+        "en": "Copper or aluminium wires join the parts of the circuit. Their free electrons drift slowly under the electric field of the source – that drift is the current."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Жез, сырты изоляция менен капталган",
+            "ru": "Медь в изоляционной оболочке",
+            "en": "Copper with an insulating coating"
+          }
+        },
+        {
+          "kind": "quantity",
+          "type": "resistance",
+          "value": 0.05,
+          "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "speed",
+          "value": 0.0001,
+          "approx": true
+        }
+      ],
+      "related": [
+        "phys.battery",
+        "phys.switch"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.electrons-fast",
+          "text": {
+            "ky": "Ачкычты басканда электрондор батарейкадан лампага жарык ылдамдыгы менен учуп барат.",
+            "ru": "При включении электроны мгновенно прилетают от батарейки к лампе со скоростью света.",
+            "en": "When you flip the switch, electrons fly from the battery to the lamp at the speed of light."
+          },
+          "correction": {
+            "ky": "Электрондор абдан жай жылат – секундасына болжол менен 0,1 мм. Жарыкка жакын ылдамдык менен электр талаасы тарайт, ошондуктан бардык электрондор дээрлик бир убакта кыймылдай баштайт.",
+            "ru": "Электроны дрейфуют очень медленно – примерно 0,1 мм/с. Почти со скоростью света распространяется электрическое поле, поэтому все электроны начинают двигаться почти одновременно.",
+            "en": "Electrons drift very slowly – about 0.1 mm per second. It is the electric field that spreads at nearly light speed, so all the electrons start moving almost at once."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Эгер электрон ушундай жай жылса, 1 метр зымды өтүүгө ага бир нече саат керек болот!",
+        "ru": "Двигаясь так медленно, электрон проходит 1 метр провода за несколько часов!",
+        "en": "Drifting that slowly, an electron would take several hours to travel 1 metre of wire!"
+      },
+      "analogy": {
+        "ky": "Сууга толгон түтүк",
+        "ru": "Труба, полная воды",
+        "en": "A pipe full of water"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Электр берүү линиялары",
+              "ru": "Линии электропередачи",
+              "en": "Power lines"
+            },
+            "text": {
+              "ky": "Токтогул ГЭСинен шаарларга электр жогорку чыңалуудагы линиялар менен берилет – ошондо зымдарда энергия аз жоголот.",
+              "ru": "Электричество от Токтогульской ГЭС передают в города по линиям высокого напряжения – так в проводах теряется меньше энергии.",
+              "en": "Electricity from the Toktogul plant reaches the cities over high-voltage lines, which lose less energy in the wires."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Жездин өткөргүчтүгү",
+              "ru": "Проводимость меди",
+              "en": "Copper conductivity"
+            },
+            "text": {
+              "ky": "Жез – күмүштөн кийинки эң жакшы өткөргүч, ошондуктан үйдөгү зымдардын көбү жезден жасалат.",
+              "ru": "Медь – лучший после серебра проводник, поэтому большинство домашних проводов медные.",
+              "en": "Copper is the best conductor after silver, so most household wiring is copper."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Сууга толгон шланг",
+              "ru": "Шланг с водой",
+              "en": "A hose full of water"
+            },
+            "text": {
+              "ky": "Шланг сууга толуп турса, кранды ачканда учунан суу дароо агат – бирок бул суу крандан келген суу эмес.",
+              "ru": "Если шланг полон, вода из конца польётся сразу, как откроешь кран, – хотя это не та вода, что вошла из крана.",
+              "en": "If the hose is already full, water comes out of the end the moment you open the tap – though it is not the same water that just went in."
+            }
+          },
+          {
+            "title": {
+              "ky": "Кезекте турган окуучулар",
+              "ru": "Ученики в очереди",
+              "en": "Pupils in a queue"
+            },
+            "text": {
+              "ky": "Кезекти бир түртсөң, баары дароо кыймылдайт, бирок ар бир окуучу бир аз гана жылат.",
+              "ru": "Подтолкни очередь – сдвинутся сразу все, хотя каждый ученик продвинется чуть-чуть.",
+              "en": "Nudge a queue and everyone moves at once, even though each pupil only shuffles a little."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.ammeter",
+      "kind": "instrument",
+      "hue": 230,
+      "isContainer": false,
+      "title": {
+        "ky": "Амперметр",
+        "ru": "Амперметр",
+        "en": "Ammeter"
+      },
+      "subtitle": {
+        "ky": "Ток күчүн өлчөйт",
+        "ru": "Измеряет силу тока",
+        "en": "Measures current"
+      },
+      "description": {
+        "ky": "Ток күчүн амперлер менен өлчөөчү прибор. Ал чынжырга удаалаш туташтырылат жана анын каршылыгы өтө аз.",
+        "ru": "Прибор для измерения силы тока в амперах. Подключается в цепь последовательно и имеет очень малое сопротивление.",
+        "en": "An instrument that measures current in amperes. It is connected in series and has a very small resistance."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "current",
+          "value": 0.5
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Чынжырга удаалаш",
+            "ru": "Последовательно в цепи",
+            "en": "In series in the circuit"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Ток күчүн өлчөйт",
+            "ru": "Измеряет силу тока",
+            "en": "Measures the current"
+          }
+        }
+      ],
+      "related": [
+        "phys.lamp",
+        "phys.voltmeter"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.ammeter-parallel",
+          "text": {
+            "ky": "Амперметрди лампага жарыш туташтыруу керек.",
+            "ru": "Амперметр надо подключать параллельно лампе.",
+            "en": "An ammeter should be connected in parallel with the lamp."
+          },
+          "correction": {
+            "ky": "Амперметр удаалаш туташтырылат; жарыш койсо, анын аз каршылыгынан чоң ток өтүп, прибор бузулушу мүмкүн.",
+            "ru": "Амперметр включают последовательно; если подключить параллельно, через него пойдёт большой ток и он может сгореть.",
+            "en": "An ammeter goes in series; in parallel its tiny resistance would let a huge current through and could burn it out."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Ампер бирдиги француз физиги Андре-Мари Ампердин атынан коюлган.",
+        "ru": "Единица ампер названа в честь французского физика Андре-Мари Ампера.",
+        "en": "The ampere is named after the French physicist André-Marie Ampère."
+      },
+      "analogy": {
+        "ky": "Дарыядагы суунун агымын санагыч",
+        "ru": "Счётчик воды в трубе",
+        "en": "A water meter on a pipe"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Мультиметр",
+              "ru": "Мультиметр",
+              "en": "Multimeter"
+            },
+            "text": {
+              "ky": "Электриктер ток күчүн, чыңалууну жана каршылыкты бир мультиметр менен өлчөшөт.",
+              "ru": "Электрики измеряют ток, напряжение и сопротивление одним мультиметром.",
+              "en": "Electricians measure current, voltage and resistance with a single multimeter."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Электр эсептегич",
+              "ru": "Электросчётчик",
+              "en": "Electricity meter"
+            },
+            "text": {
+              "ky": "Үйдөгү электр эсептегич токту жана чыңалууну өлчөп, колдонулган энергияны кВт·саат менен эсептейт.",
+              "ru": "Домашний электросчётчик измеряет ток и напряжение и считает израсходованную энергию в кВт·ч.",
+              "en": "A home electricity meter measures current and voltage and totals the energy used in kWh."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Суу эсептегич",
+              "ru": "Счётчик воды",
+              "en": "A water meter"
+            },
+            "text": {
+              "ky": "Суу эсептегич түтүктүн ичине коюлуп, канча суу өткөнүн санайт. Амперметр да зымдын «ичине» коюлат.",
+              "ru": "Счётчик воды ставят прямо в трубу, и он считает, сколько воды прошло. Амперметр тоже ставят «в разрыв» провода.",
+              "en": "A water meter sits inside the pipe and counts how much water passes. An ammeter also goes right into the wire."
+            }
+          },
+          {
+            "title": {
+              "ky": "Эшиктеги санагыч",
+              "ru": "Счётчик у двери",
+              "en": "A door counter"
+            },
+            "text": {
+              "ky": "Мектептин эшигинде ар бир киргенди санаган бала – амперметрге окшош: ал өткөн электрондорду «санайт».",
+              "ru": "Ученик, считающий всех входящих в дверь, похож на амперметр: тот «считает» проходящие электроны.",
+              "en": "A pupil counting everyone coming through the door is like an ammeter counting the electrons going past."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.voltmeter",
+      "kind": "instrument",
+      "hue": 280,
+      "isContainer": false,
+      "title": {
+        "ky": "Вольтметр",
+        "ru": "Вольтметр",
+        "en": "Voltmeter"
+      },
+      "subtitle": {
+        "ky": "Чыңалууну өлчөйт",
+        "ru": "Измеряет напряжение",
+        "en": "Measures voltage"
+      },
+      "description": {
+        "ky": "Чынжырдын бөлүгүндөгү чыңалууну вольттор менен өлчөөчү прибор. Ал өлчөнүүчү бөлүккө жарыш туташтырылат жана анын каршылыгы өтө чоң.",
+        "ru": "Прибор для измерения напряжения на участке цепи в вольтах. Подключается параллельно участку и имеет очень большое сопротивление.",
+        "en": "An instrument that measures the voltage across part of a circuit in volts. It is connected in parallel and has a very large resistance."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "voltage",
+          "value": 4.5
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Лампага жарыш",
+            "ru": "Параллельно лампе",
+            "en": "In parallel with the lamp"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Чыңалууну өлчөйт",
+            "ru": "Измеряет напряжение",
+            "en": "Measures the voltage"
+          }
+        }
+      ],
+      "related": [
+        "phys.ammeter",
+        "phys.lamp"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.voltmeter-series",
+          "text": {
+            "ky": "Вольтметр да амперметр сыяктуу удаалаш туташтырылат.",
+            "ru": "Вольтметр, как и амперметр, включают последовательно.",
+            "en": "A voltmeter is connected in series, like an ammeter."
+          },
+          "correction": {
+            "ky": "Вольтметр жарыш туташтырылат; удаалаш койсо, анын чоң каршылыгы токту дээрлик токтотуп, лампа күйбөй калат.",
+            "ru": "Вольтметр подключают параллельно; если включить последовательно, его большое сопротивление почти остановит ток и лампа погаснет.",
+            "en": "A voltmeter goes in parallel; in series its huge resistance would nearly stop the current and the lamp would go out."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Электр торундагы розеткада Кыргызстанда 220 В чыңалуу бар – бул мектептеги батарейкадан болжол менен 50 эсе көп.",
+        "ru": "В розетке в Кыргызстане 220 В – это примерно в 50 раз больше, чем у школьной батарейки.",
+        "en": "A wall socket in Kyrgyzstan gives 220 V – about 50 times more than a school battery."
+      },
+      "analogy": {
+        "ky": "Суунун басымын өлчөгүч",
+        "ru": "Манометр на трубе",
+        "en": "A pressure gauge on a pipe"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Аккумуляторду текшерүү",
+              "ru": "Проверка аккумулятора",
+              "en": "Checking a car battery"
+            },
+            "text": {
+              "ky": "Автоунаа устасы аккумулятордун чыңалуусун вольтметр менен текшерет: ≈ 12,6 В болсо – толук кубатталган.",
+              "ru": "Автомеханик проверяет аккумулятор вольтметром: ≈ 12,6 В – значит, полностью заряжен.",
+              "en": "A mechanic checks a car battery with a voltmeter: about 12.6 V means it is fully charged."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Подстанциялар",
+              "ru": "Подстанции",
+              "en": "Substations"
+            },
+            "text": {
+              "ky": "Подстанцияларда инженерлер жогорку чыңалууну дайыма көзөмөлдөп, үйлөргө 220 В жетишин камсыз кылышат.",
+              "ru": "На подстанциях инженеры постоянно контролируют напряжение, чтобы в дома приходило 220 В.",
+              "en": "At substations engineers keep watch on the voltage so homes receive a steady 220 V."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Шаркыратманын бийиктиги",
+              "ru": "Высота водопада",
+              "en": "The height of a waterfall"
+            },
+            "text": {
+              "ky": "Шаркыратма канчалык бийик болсо, суу ошончолук катуу түшөт. Чыңалуу – электрдин «бийиктиги».",
+              "ru": "Чем выше водопад, тем сильнее падает вода. Напряжение – это «высота» для электричества.",
+              "en": "The higher the waterfall, the harder the water falls. Voltage is electricity's 'height'."
+            }
+          },
+          {
+            "title": {
+              "ky": "Эки кол менен текшерүү",
+              "ru": "Проверка с двух сторон",
+              "en": "Checking from both sides"
+            },
+            "text": {
+              "ky": "Вольтметр лампанын эки учун тең «кармап», алардын ортосундагы айырманы өлчөйт.",
+              "ru": "Вольтметр «держит» лампу за оба конца и измеряет разницу между ними.",
+              "en": "A voltmeter 'holds' both ends of the lamp and measures the difference between them."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "phys.circuit-closing",
+      "engine": "timeline",
+      "icon": "zap",
+      "title": {
+        "ky": "Чынжырды туташтыруу",
+        "ru": "Замыкание цепи",
+        "en": "Closing the circuit"
+      },
+      "description": {
+        "ky": "Ачкычты басканда чынжырда электр талаасы дээрлик заматта пайда болуп, бардык эркин электрондор жай жыла баштайт; лампа күйөт.",
+        "ru": "При замыкании ключа в цепи почти мгновенно возникает электрическое поле, все свободные электроны начинают медленно дрейфовать, и лампа загорается.",
+        "en": "When the switch closes, an electric field appears in the circuit almost instantly, all free electrons begin to drift slowly and the lamp lights up."
+      },
+      "equation": "I = \\frac{U}{R} = \\frac{4{,}5\\,В}{9\\,Ом} = 0{,}5\\,А",
+      "inputs": {
+        "ky": "U = 4,5 В, R = 9 Ом",
+        "ru": "U = 4,5 В, R = 9 Ом",
+        "en": "U = 4.5 V, R = 9 Ω"
+      },
+      "outputs": {
+        "ky": "I = 0,5 А, P = 2,25 Вт",
+        "ru": "I = 0,5 А, P = 2,25 Вт",
+        "en": "I = 0.5 A, P = 2.25 W"
+      },
+      "energy": {
+        "ky": "Химиялык энергия → электр энергиясы → жарык жана жылуулук",
+        "ru": "Химическая энергия → электрическая → свет и тепло",
+        "en": "Chemical energy → electrical energy → light and heat"
+      },
+      "steps": [
+        {
+          "key": "open",
+          "title": {
+            "ky": "Ачкыч ачык",
+            "ru": "Ключ разомкнут",
+            "en": "Switch open"
+          },
+          "result": {
+            "ky": "I = 0",
+            "ru": "I = 0",
+            "en": "I = 0"
+          },
+          "description": {
+            "ky": "Чынжыр ажыратылган: ток жок, лампа өчүк. Вольтметр батарейканын учтарында 4,5 В көрсөтөт.",
+            "ru": "Цепь разомкнута: тока нет, лампа не горит. Вольтметр на батарейке показывает 4,5 В.",
+            "en": "The circuit is open: no current, the lamp is off. A voltmeter across the battery reads 4.5 V."
+          },
+          "conceptKey": "phys.switch",
+          "altText": {
+            "ky": "Ачкычтын тили көтөрүлгөн, лампа күйбөйт.",
+            "ru": "Ключ разомкнут, лампа погашена.",
+            "en": "The switch lever is up and the lamp is dark."
+          },
+          "duration": 1
+        },
+        {
+          "key": "close",
+          "title": {
+            "ky": "Ачкыч жабылды",
+            "ru": "Ключ замкнут",
+            "en": "Switch closed"
+          },
+          "result": {
+            "ky": "Талаа ≈ жарык ылдамдыгы менен тарайт",
+            "ru": "Поле распространяется почти со скоростью света",
+            "en": "The field spreads at nearly light speed"
+          },
+          "description": {
+            "ky": "Зымдарда электр талаасы дээрлик заматта пайда болот, ошондуктан бардык электрондор бир убакта кыймылдай баштайт.",
+            "ru": "В проводах почти мгновенно возникает электрическое поле, поэтому все электроны начинают двигаться одновременно.",
+            "en": "An electric field forms in the wires almost instantly, so all the electrons start moving together."
+          },
+          "conceptKey": "phys.wire",
+          "altText": {
+            "ky": "Ачкыч жабык, зымдар боюнча талаанын толкуну тарайт.",
+            "ru": "Ключ замкнут, по проводам бежит волна поля.",
+            "en": "The switch closed and a wave of field running along the wires."
+          },
+          "duration": 1
+        },
+        {
+          "key": "drift",
+          "title": {
+            "ky": "Электрондордун дрейфи",
+            "ru": "Дрейф электронов",
+            "en": "Electron drift"
+          },
+          "result": {
+            "ky": "v ≈ 0,1 мм/с",
+            "ru": "v ≈ 0,1 мм/с",
+            "en": "v ≈ 0.1 mm/s"
+          },
+          "description": {
+            "ky": "Электрондор батарейканын «−» уюлунан «+» уюлуна карай жай жылат. Ток күчү удаалаш чынжырдын бардык жеринде бирдей: амперметр 0,5 А көрсөтөт.",
+            "ru": "Электроны медленно дрейфуют от «−» к «+» батарейки. Сила тока одинакова во всей последовательной цепи: амперметр показывает 0,5 А.",
+            "en": "Electrons drift slowly from the battery's − terminal towards +. The current is the same all round the series circuit: the ammeter reads 0.5 A."
+          },
+          "conceptKey": "phys.ammeter",
+          "altText": {
+            "ky": "Зымдардагы майда чекит-электрондор жай жылат, амперметрде 0,5 А.",
+            "ru": "Точки-электроны медленно движутся по проводам, на амперметре 0,5 А.",
+            "en": "Dot-electrons creeping along the wires; the ammeter reads 0.5 A."
+          },
+          "duration": 2
+        },
+        {
+          "key": "glow",
+          "title": {
+            "ky": "Лампа күйөт",
+            "ru": "Лампа светится",
+            "en": "Lamp glows"
+          },
+          "result": {
+            "ky": "P = 2,25 Вт",
+            "ru": "P = 2,25 Вт",
+            "en": "P = 2.25 W"
+          },
+          "description": {
+            "ky": "Лампанын жипчеси ысып, жарык чыгарат. Лампадагы чыңалуу 4,5 В, кубаттуулук P = UI = 2,25 Вт.",
+            "ru": "Нить лампы раскаляется и светится. Напряжение на лампе 4,5 В, мощность P = UI = 2,25 Вт.",
+            "en": "The filament heats up and glows. The voltage across the lamp is 4.5 V and the power P = UI = 2.25 W."
+          },
+          "conceptKey": "phys.lamp",
+          "altText": {
+            "ky": "Жарык чачып күйүп жаткан лампа, жанында вольтметр 4,5 В.",
+            "ru": "Светящаяся лампа, рядом вольтметр показывает 4,5 В.",
+            "en": "The glowing lamp, with the voltmeter beside it reading 4.5 V."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "current",
+          "label": {
+            "ky": "Ток күчү",
+            "ru": "Сила тока",
+            "en": "Current"
+          },
+          "unit": "A",
+          "min": 0,
+          "max": 1,
+          "precision": 2
+        },
+        {
+          "key": "voltage",
+          "label": {
+            "ky": "Лампадагы чыңалуу",
+            "ru": "Напряжение на лампе",
+            "en": "Lamp voltage"
+          },
+          "unit": "V",
+          "min": 0,
+          "max": 4.5,
+          "precision": 1
+        },
+        {
+          "key": "power",
+          "label": {
+            "ky": "Кубаттуулук",
+            "ru": "Мощность",
+            "en": "Power"
+          },
+          "unit": "W",
+          "min": 0,
+          "max": 2.5,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "emf": 4.5,
+        "resistance": 9
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "phys.q.ammeter-connect",
+      "type": "single",
+      "prompt": {
+        "ky": "Амперметр чынжырга кантип туташтырылат?",
+        "ru": "Как амперметр подключают в цепь?",
+        "en": "How is an ammeter connected in a circuit?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Удаалаш",
+            "ru": "Последовательно",
+            "en": "In series"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жарыш",
+            "ru": "Параллельно",
+            "en": "In parallel"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ток булагынан бөлөк",
+            "ru": "Отдельно от источника",
+            "en": "Separately from the source"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Амперметр удаалаш туташтырылат – ошондо ал аркылуу бүт ток өтөт.",
+        "ru": "Амперметр включают последовательно – тогда через него проходит весь ток.",
+        "en": "An ammeter goes in series, so the whole current passes through it."
+      },
+      "objectiveKeys": [
+        "phys.g8.electricity.o1"
+      ],
+      "misconceptionKey": "phys.m.ammeter-parallel",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.current-conditions",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Чынжырда ток жүрүшү үчүн эмне керек?",
+        "ru": "Что нужно, чтобы в цепи шёл ток?",
+        "en": "What is needed for a current to flow in a circuit?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ток булагы",
+            "ru": "Источник тока",
+            "en": "A power source"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Туюк чынжыр",
+            "ru": "Замкнутая цепь",
+            "en": "A closed loop"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Өткөргүч зымдар",
+            "ru": "Проводящие провода",
+            "en": "Conducting wires"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Вольтметр",
+            "ru": "Вольтметр",
+            "en": "A voltmeter"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Ток булагы жана туюк чынжыр (өткөргүчтөр, жабык ачкыч) керек. Вольтметр токту пайда кылбайт.",
+        "ru": "Нужны источник тока и замкнутая цепь (проводники и замкнутый ключ). Вольтметр ток не создаёт.",
+        "en": "You need a power source and a closed loop (conductors and a closed switch). A voltmeter does not create current."
+      },
+      "objectiveKeys": [
+        "phys.g8.electricity.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.device-match",
+      "type": "match",
+      "prompt": {
+        "ky": "Приборду ал өлчөгөн чоңдук менен дал келтир.",
+        "ru": "Сопоставь прибор и величину, которую он измеряет или создаёт.",
+        "en": "Match each device with the quantity it measures or provides."
+      },
+      "pairs": [
+        {
+          "key": "ammeter",
+          "left": {
+            "ky": "Амперметр",
+            "ru": "Амперметр",
+            "en": "Ammeter"
+          },
+          "right": {
+            "ky": "Ток күчү, А",
+            "ru": "Сила тока, А",
+            "en": "Current, A"
+          }
+        },
+        {
+          "key": "voltmeter",
+          "left": {
+            "ky": "Вольтметр",
+            "ru": "Вольтметр",
+            "en": "Voltmeter"
+          },
+          "right": {
+            "ky": "Лампадагы чыңалуу, В",
+            "ru": "Напряжение на лампе, В",
+            "en": "Voltage across the lamp, V"
+          }
+        },
+        {
+          "key": "lamp",
+          "left": {
+            "ky": "Лампа",
+            "ru": "Лампа",
+            "en": "Lamp"
+          },
+          "right": {
+            "ky": "Кубаттуулук, Вт",
+            "ru": "Мощность, Вт",
+            "en": "Power, W"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Амперметр – ток күчү, вольтметр – чыңалуу, ток булагы – чыңалуу берет, лампа – кубаттуулук керектейт.",
+        "ru": "Амперметр – сила тока, вольтметр – напряжение, источник даёт напряжение, лампа потребляет мощность.",
+        "en": "Ammeter – current, voltmeter – voltage, the source provides the voltage, the lamp uses power."
+      },
+      "objectiveKeys": [
+        "phys.g8.electricity.o1",
+        "phys.g8.electricity.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.find-switch",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден чынжырды туташтыруучу приборду тап.",
+        "ru": "Найди на модели прибор, который замыкает цепь.",
+        "en": "Find the device that closes the circuit on the model."
+      },
+      "targetConceptKey": "phys.switch",
+      "explanation": {
+        "ky": "Бул – ачкыч.",
+        "ru": "Это ключ.",
+        "en": "That is the switch."
+      },
+      "objectiveKeys": [
+        "phys.g8.electricity.o1"
+      ],
+      "misconceptionKey": "phys.m.switch-position",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.ohm-current",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Лампадагы чыңалуу 4,5 В, каршылыгы 9 Ом. Ток күчү канча ампер?",
+        "ru": "Напряжение на лампе 4,5 В, сопротивление 9 Ом. Какова сила тока, А?",
+        "en": "The lamp has 4.5 V across it and a resistance of 9 Ω. What is the current in amperes?"
+      },
+      "answer": 0.5,
+      "tolerance": 0.01,
+      "unit": "A",
+      "explanation": {
+        "ky": "Ом мыйзамы: I = U/R = 4,5/9 = 0,5 А.",
+        "ru": "Закон Ома: I = U/R = 4,5/9 = 0,5 А.",
+        "en": "Ohm's law: I = U/R = 4.5/9 = 0.5 A."
+      },
+      "objectiveKeys": [
+        "phys.g8.electricity.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.lamp-power",
+      "type": "numeric",
+      "prompt": {
+        "ky": "U = 4,5 В, I = 0,5 А. Лампанын кубаттуулугу канча ватт?",
+        "ru": "U = 4,5 В, I = 0,5 А. Какова мощность лампы, Вт?",
+        "en": "U = 4.5 V and I = 0.5 A. What is the lamp's power in watts?"
+      },
+      "answer": 2.25,
+      "tolerance": 0.05,
+      "unit": "W",
+      "explanation": {
+        "ky": "P = UI = 4,5 · 0,5 = 2,25 Вт.",
+        "ru": "P = UI = 4,5 · 0,5 = 2,25 Вт.",
+        "en": "P = UI = 4.5 × 0.5 = 2.25 W."
+      },
+      "objectiveKeys": [
+        "phys.g8.electricity.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.current-same",
+      "type": "single",
+      "prompt": {
+        "ky": "Удаалаш чынжырда лампага чейин ток 0,5 А. Лампадан кийин ток канча?",
+        "ru": "В последовательной цепи до лампы ток 0,5 А. Какой ток после лампы?",
+        "en": "In a series circuit the current before the lamp is 0.5 A. What is it after the lamp?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "0,5 А",
+            "ru": "0,5 А",
+            "en": "0.5 A"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "0,25 А",
+            "ru": "0,25 А",
+            "en": "0.25 A"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "0 А",
+            "ru": "0 А",
+            "en": "0 A"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Удаалаш чынжырда ток бардык жерде бирдей – 0,5 А. Лампа токту эмес, энергияны колдонот.",
+        "ru": "В последовательной цепи ток везде одинаков – 0,5 А. Лампа расходует энергию, а не ток.",
+        "en": "In a series circuit the current is the same everywhere – 0.5 A. The lamp uses energy, not current."
+      },
+      "objectiveKeys": [
+        "phys.g8.electricity.o1",
+        "phys.g8.electricity.o2"
+      ],
+      "misconceptionKey": "phys.m.current-used-up",
+      "difficulty": 3
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-phys-pendulum",
+      "ky": "маятник",
+      "ru": "маятник",
+      "en": "pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-period",
+      "ky": "термелүү мезгили",
+      "ru": "период колебаний",
+      "en": "period of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-amplitude",
+      "ky": "амплитуда",
+      "ru": "амплитуда",
+      "en": "amplitude",
+      "forbidden": [
+        "amplitud"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gravity",
+      "ky": "оордук күчү",
+      "ru": "сила тяжести",
+      "en": "force of gravity",
+      "forbidden": [
+        "attraction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction",
+      "ky": "сүрүлүү күчү",
+      "ru": "сила трения",
+      "en": "friction force",
+      "forbidden": [
+        "force of rubbing"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-force",
+      "ky": "таянычтын реакция күчү",
+      "ru": "сила реакции опоры",
+      "en": "normal force",
+      "forbidden": [
+        "support reaction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-acceleration",
+      "ky": "ылдамдануу",
+      "ru": "ускорение",
+      "en": "acceleration",
+      "forbidden": [
+        "тездетүү"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-speed",
+      "ky": "ылдамдык",
+      "ru": "скорость",
+      "en": "speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinetic-energy",
+      "ky": "кинетикалык энергия",
+      "ru": "кинетическая энергия",
+      "en": "kinetic energy",
+      "forbidden": [
+        "кинетический энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-potential-energy",
+      "ky": "потенциалдык энергия",
+      "ru": "потенциальная энергия",
+      "en": "potential energy",
+      "forbidden": [
+        "потенциальный энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-voltage",
+      "ky": "чыңалуу",
+      "ru": "напряжение",
+      "en": "voltage",
+      "forbidden": [
+        "electric tension"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-current",
+      "ky": "ток күчү",
+      "ru": "сила тока",
+      "en": "electric current",
+      "forbidden": [
+        "current force",
+        "current strength"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-resistance",
+      "ky": "каршылык",
+      "ru": "сопротивление",
+      "en": "resistance",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-circuit",
+      "ky": "электр чынжыры",
+      "ru": "электрическая цепь",
+      "en": "electric circuit",
+      "forbidden": [
+        "electric chain",
+        "электрическая цепочка"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-source",
+      "ky": "ток булагы",
+      "ru": "источник тока",
+      "en": "power source",
+      "forbidden": [
+        "source of current"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-switch",
+      "ky": "ачкыч",
+      "ru": "ключ (выключатель)",
+      "en": "switch",
+      "forbidden": [
+        "electric key"
+      ],
+      "approvedBy": "editor-phys"
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "composition",
+      "icon": "flask-conical",
+      "valueKind": "text",
+      "label": {
+        "ky": "Курамы",
+        "ru": "Состав",
+        "en": "Composition"
+      }
+    },
+    {
+      "key": "current",
+      "icon": "waves",
+      "valueKind": "quantity",
+      "unit": "A",
+      "label": {
+        "ky": "Ток күчү",
+        "ru": "Сила тока",
+        "en": "Current"
+      }
+    },
+    {
+      "key": "power",
+      "icon": "zap",
+      "valueKind": "quantity",
+      "unit": "W",
+      "label": {
+        "ky": "Кубаттуулук",
+        "ru": "Мощность",
+        "en": "Power"
+      }
+    },
+    {
+      "key": "resistance",
+      "icon": "zigzag",
+      "valueKind": "quantity",
+      "unit": "Ω",
+      "label": {
+        "ky": "Каршылык",
+        "ru": "Сопротивление",
+        "en": "Resistance"
+      }
+    },
+    {
+      "key": "speed",
+      "icon": "gauge",
+      "valueKind": "quantity",
+      "unit": "m/s",
+      "label": {
+        "ky": "Ылдамдыгы",
+        "ru": "Скорость",
+        "en": "Speed"
+      }
+    },
+    {
+      "key": "voltage",
+      "icon": "battery-charging",
+      "valueKind": "quantity",
+      "unit": "V",
+      "label": {
+        "ky": "Чыңалуу",
+        "ru": "Напряжение",
+        "en": "Voltage"
+      }
+    }
+  ]
+}

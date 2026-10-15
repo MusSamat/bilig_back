@@ -1,0 +1,235 @@
+{
+  "topic": {
+    "key": "human-heart",
+    "unitKey": "bio.g8.circulation",
+    "status": "published",
+    "title": { "ky": "Адамдын жүрөгү", "ru": "Сердце человека", "en": "The human heart" },
+    "classification": { "ky": "Кан айлануу системасынын органы", "ru": "Орган кровеносной системы", "en": "Organ of the circulatory system" },
+    "description": {
+      "ky": "Жүрөк – муштумдай чоңдуктагы төрт камералуу булчуң насос. Ал тынымсыз согуп, канды кан айлануунун чоң жана кичи чөйрөсү боюнча айдайт.",
+      "ru": "Сердце – четырёхкамерный мышечный насос размером с кулак. Оно непрерывно сокращается и гонит кровь по большому и малому кругам кровообращения.",
+      "en": "The heart is a fist-sized, four-chambered muscular pump. It beats non-stop, driving blood around the systemic and pulmonary circulations."
+    },
+    "goal": {
+      "ky": "Жүрөктүн камераларын, капкактарын жана чоң тамырларын моделден таап, иштешин сүрөттөө (BIO-8.4.1) жана кан айлануунун эки чөйрөсүн айырмалоо (BIO-8.4.2).",
+      "ru": "Найти на модели камеры, клапаны и крупные сосуды сердца, описать его работу (BIO-8.4.1) и различить два круга кровообращения (BIO-8.4.2).",
+      "en": "Find the chambers, valves and great vessels of the heart on the model, describe how it works (BIO-8.4.1) and tell the two circulations apart (BIO-8.4.2)."
+    },
+    "objectiveKeys": ["bio.g8.circulation.o1", "bio.g8.circulation.o2"],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "gltf",
+      "asset": "models/human-heart.glb",
+      "camera": { "position": [0, 0.5, 5.5], "target": [0, 0, 0], "fov": 45 },
+      "modes": ["whole", "section"]
+    },
+    "conceptKeys": ["bio.pericardium", "bio.right-atrium", "bio.left-atrium", "bio.right-ventricle", "bio.left-ventricle", "bio.aorta", "bio.heart-valve"],
+    "overrides": {
+      "bio.pericardium": { "nodes": ["Pericardium"] },
+      "bio.right-atrium": { "anchor": [-0.9, 0.8, 0.4], "nodes": ["RightAtrium"] },
+      "bio.left-atrium": { "anchor": [0.9, 0.9, -0.3], "nodes": ["LeftAtrium"] },
+      "bio.right-ventricle": { "anchor": [-0.6, -0.4, 0.7], "nodes": ["RightVentricle"] },
+      "bio.left-ventricle": { "anchor": [0.7, -0.6, 0.2], "nodes": ["LeftVentricle"] },
+      "bio.aorta": { "anchor": [0.1, 1.7, 0], "nodes": ["Aorta*"] },
+      "bio.heart-valve": { "anchor": [0, 0.3, 0.3], "nodes": ["Valve_*"] }
+    },
+    "samples": [
+      { "key": "human-heart", "title": { "ky": "Адамдын жүрөгү", "ru": "Сердце человека", "en": "Human heart" }, "classification": { "ky": "Төрт камералуу", "ru": "Четырёхкамерное", "en": "Four-chambered" }, "thumb": "thumbs/human-heart.webp" },
+      { "key": "heart-section", "title": { "ky": "Жүрөктүн кесилиши", "ru": "Сердце в разрезе", "en": "Heart cross-section" }, "classification": { "ky": "Ички түзүлүшү", "ru": "Внутреннее строение", "en": "Internal structure" }, "thumb": "thumbs/heart-section.webp" },
+      { "key": "fish-heart", "title": { "ky": "Балыктын жүрөгү", "ru": "Сердце рыбы", "en": "Fish heart" }, "classification": { "ky": "Эки камералуу", "ru": "Двухкамерное", "en": "Two-chambered" }, "thumb": "thumbs/fish-heart.webp" }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": { "position": [0, 0.5, 5.5], "target": [0, 0, 0] },
+            "modes": { "view": "whole" },
+            "text": { "ky": "Бул – адамдын жүрөгү. Анын массасы болжол менен 300 г, чоңдугу ээсинин муштумундай.", "ru": "Это сердце человека. Оно весит около 300 г и размером примерно с кулак своего хозяина.", "en": "This is a human heart. It weighs about 300 g and is roughly the size of its owner's fist." },
+            "teacherNote": { "ky": "Окуучуларга муштумун түйүп, жүрөктүн чоңдугун элестетүүнү сунуштаңыз. Пульсту бирге санаңыз.", "ru": "Попросите учеников сжать кулак, чтобы представить размер сердца. Посчитайте пульс вместе.", "en": "Have students make a fist to picture the heart's size, then count their pulse together." },
+            "altText": { "ky": "Үстүнөн чоң тамырлар чыккан кызыл булчуң орган.", "ru": "Красный мышечный орган, от верхней части которого отходят крупные сосуды.", "en": "A red muscular organ with large vessels leaving its top." }
+          },
+          {
+            "key": "pericardium",
+            "focus": "bio.pericardium",
+            "text": { "ky": "Жүрөк перикард деген баштыкта жатат. Анын суюктугу жүрөктүн сүрүлбөй согушуна жардам берет.", "ru": "Сердце лежит в околосердечной сумке – перикарде. Её жидкость позволяет сердцу биться без трения.", "en": "The heart sits inside a sac called the pericardium, whose fluid lets it beat without friction." },
+            "teacherNote": { "ky": "Жүрөк көкүрөктүн ортосунда жайгашкандыгын, сол жакта гана эмес экенин айтыңыз.", "ru": "Уточните, что сердце находится в середине груди, а не просто «слева».", "en": "Clarify that the heart is in the middle of the chest, not simply 'on the left'." },
+            "altText": { "ky": "Жүрөктү ороп турган жарым тунук баштык белгиленген.", "ru": "Выделена полупрозрачная сумка, окружающая сердце.", "en": "The translucent sac around the heart is highlighted." }
+          },
+          {
+            "key": "right-side",
+            "focus": "bio.right-atrium",
+            "modes": { "view": "section" },
+            "visibility": { "hide": ["bio.pericardium"] },
+            "camera": { "position": [-2.5, 0.6, 3], "target": [-0.8, 0.2, 0.5] },
+            "text": { "ky": "Оң жүрөкчө денеден келген кычкылтеги аз канды кабыл алат, оң карынча аны өпкөгө айдайт – бул кичи чөйрө.", "ru": "Правое предсердие принимает бедную кислородом кровь от тела, а правый желудочек отправляет её в лёгкие – это малый круг.", "en": "The right atrium receives oxygen-poor blood from the body and the right ventricle sends it to the lungs – the pulmonary circulation." },
+            "teacherNote": { "ky": "Моделде «оң» жана «сол» адамдын өзүнүн тарабы экенин, көрүүчүнүн эмес экенин эскертиңиз.", "ru": "Предупредите: «правое» и «левое» – со стороны самого человека, а не зрителя.", "en": "Remind students that right and left are the patient's sides, not the viewer's." },
+            "altText": { "ky": "Жүрөктүн кесилишинде оң жактагы көк түстөгү эки камера.", "ru": "Сердце в разрезе: две правые камеры, окрашенные синим.", "en": "A cut-away heart with the two right chambers shown in blue." }
+          },
+          {
+            "key": "left-side",
+            "focus": "bio.left-ventricle",
+            "modes": { "view": "section" },
+            "visibility": { "hide": ["bio.pericardium"] },
+            "camera": { "position": [2.5, 0, 3], "target": [0.7, -0.3, 0.2] },
+            "text": { "ky": "Сол карынчанын дубалы эң калың (8–12 мм): ал кычкылтекке бай канды бүт денеге айдайт – бул чоң чөйрө.", "ru": "У левого желудочка самая толстая стенка (8–12 мм): он гонит богатую кислородом кровь по всему телу – это большой круг.", "en": "The left ventricle has the thickest wall (8–12 mm): it pumps oxygen-rich blood round the whole body – the systemic circulation." },
+            "teacherNote": { "ky": "Салыштыруу таблицасын ачып, эки карынчанын дубалынын калыңдыгын жана басымын салыштырыңыз.", "ru": "Откройте таблицу сравнения и сравните толщину стенок и давление двух желудочков.", "en": "Open the comparison table to compare the wall thickness and pressure of the two ventricles." },
+            "altText": { "ky": "Сол жактагы калың дубалдуу кызыл камера.", "ru": "Левая камера с толстой красной стенкой.", "en": "The left chamber with a thick red wall." }
+          },
+          {
+            "key": "valves",
+            "focus": "bio.heart-valve",
+            "modes": { "view": "section" },
+            "camera": { "position": [0, 1.8, 2.4], "target": [0, 0.3, 0.3] },
+            "text": { "ky": "Төрт капкак канды бир гана тарапка өткөрөт. Алардын жабылышы «тук-так» деген үндү чыгарат.", "ru": "Четыре клапана пропускают кровь только в одну сторону. Их захлопывание и даёт звук «тук-тук».", "en": "Four valves let blood flow in one direction only. Their closing makes the 'lub-dub' sound." },
+            "teacherNote": { "ky": "Окуучулар бири-биринин жүрөгүнүн үнүн кулагын көкүрөгүнө коюп угуп көрүшсүн (уруксаты менен).", "ru": "Пусть ученики (с согласия) послушают сердцебиение друг друга, приложив ухо к груди.", "en": "With consent, let students listen to each other's heartbeat with an ear to the chest." },
+            "altText": { "ky": "Камералардын ортосундагы ак жука капкактар.", "ru": "Тонкие белые створки клапанов между камерами.", "en": "Thin white valve flaps between the chambers." }
+          },
+          {
+            "key": "aorta",
+            "focus": "bio.aorta",
+            "camera": { "position": [0.5, 3, 3], "target": [0.1, 1.7, 0] },
+            "text": { "ky": "Аорта – эң чоң артерия. Ал жүрөктүн үстүнөн жаа сымал ийилип, канды денеге таратат.", "ru": "Аорта – самая крупная артерия. Она дугой изгибается над сердцем и разносит кровь по телу.", "en": "The aorta is the largest artery. It arches over the heart and distributes blood to the body." },
+            "teacherNote": { "ky": "«Жүрөк цикли» процессин ишке киргизип, басымдын өзгөрүшүн көрсөтүңүз.", "ru": "Запустите процесс «Сердечный цикл» и покажите, как меняется давление.", "en": "Run the «Cardiac cycle» process and show how pressure changes." },
+            "altText": { "ky": "Жүрөктүн үстүндөгү жоон ийилген тамыр.", "ru": "Толстый изогнутый сосуд над сердцем.", "en": "A thick curved vessel above the heart." }
+          }
+        ]
+      },
+      "processKeys": ["bio.cardiac-cycle"],
+      "comparison": {
+        "columns": [
+          { "kind": "concept", "key": "bio.right-ventricle" },
+          { "kind": "concept", "key": "bio.left-ventricle" }
+        ],
+        "rows": ["thickness", "pressure", "function"]
+      },
+      "quiz": {
+        "itemKeys": ["bio.q.heart-chambers", "bio.q.to-lungs", "bio.q.oxygen-rich", "bio.q.heart-match", "bio.q.find-left-ventricle", "bio.q.find-aorta", "bio.q.cardiac-output"],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "t",
+          "title": { "ky": "Акылдуу саат", "ru": "Умные часы", "en": "Smartwatches" },
+          "text": { "ky": "Акылдуу саат жарык сенсору менен тамырдагы кандын агымын сезип, жүрөктүн согуу жыштыгын өлчөйт.", "ru": "Умные часы оптическим датчиком улавливают пульсацию крови в сосудах и измеряют частоту сердечных сокращений.", "en": "A smartwatch uses a light sensor to detect blood pulsing in vessels and measure heart rate." }
+        },
+        {
+          "field": "s",
+          "title": { "ky": "Тоодо жашагандардын жүрөгү", "ru": "Сердце горцев", "en": "Highlanders' hearts" },
+          "text": { "ky": "Окумуштуулар Тянь-Шандын бийик тоолуу жайлоолорунда жашагандардын жүрөгү менен өпкөсүнүн аз кычкылтекке көнүшүн изилдешет.", "ru": "Учёные изучают, как сердце и лёгкие жителей высокогорных пастбищ Тянь-Шаня приспосабливаются к нехватке кислорода.", "en": "Scientists study how the hearts and lungs of people on high Tien Shan pastures adapt to low oxygen." }
+        },
+        {
+          "field": "m",
+          "title": { "ky": "Бир сутканы эсептөө", "ru": "Сердце за сутки", "en": "A heart's day in numbers" },
+          "text": { "ky": "70 мүн⁻¹ × 60 × 24 ≈ 100 800 – жүрөк бир суткада 100 миңдей жолу согот.", "ru": "70 уд/мин × 60 × 24 ≈ 100 800 – за сутки сердце сокращается около 100 тысяч раз.", "en": "70 beats/min × 60 × 24 ≈ 100,800 – the heart beats about 100,000 times a day." }
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Эки насостуу үй", "ru": "Дом с двумя насосами", "en": "A house with two pumps" },
+          "text": { "ky": "Жүрөк – бири-бирине жабышкан эки насос: оң жагы канды өпкөгө, сол жагы бүт денеге айдайт.", "ru": "Сердце – два насоса, склеенные вместе: правый гонит кровь в лёгкие, левый – по всему телу.", "en": "The heart is two pumps stuck together: the right one sends blood to the lungs, the left one to the whole body." }
+        },
+        {
+          "title": { "ky": "Кан – автобус", "ru": "Кровь – автобус", "en": "Blood is a bus" },
+          "text": { "ky": "Кан автобус сыяктуу: өпкө «аялдамасында» кычкылтек жүргүнчүлөрүн алып, денедеги клеткаларга жеткирет.", "ru": "Кровь – как автобус: на «остановке» в лёгких забирает пассажиров-кислород и развозит их клеткам тела.", "en": "Blood is like a bus: it picks up oxygen passengers at the lung stop and drops them off at the body's cells." }
+        }
+      ]
+    },
+    "i18n": { "ky": "machine", "ru": "reviewed", "en": "draft" }
+  },
+  "items": [
+    {
+      "key": "bio.q.heart-chambers",
+      "type": "single",
+      "prompt": { "ky": "Адамдын жүрөгү канча камерадан турат?", "ru": "Сколько камер в сердце человека?", "en": "How many chambers does the human heart have?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Эки", "ru": "Две", "en": "Two" } },
+        { "key": "b", "text": { "ky": "Үч", "ru": "Три", "en": "Three" } },
+        { "key": "c", "text": { "ky": "Төрт", "ru": "Четыре", "en": "Four" } }
+      ],
+      "answer": "c",
+      "explanation": { "ky": "Эки жүрөкчө жана эки карынча – бардыгы төрт камера.", "ru": "Два предсердия и два желудочка – всего четыре камеры.", "en": "Two atria and two ventricles – four chambers in all." },
+      "objectiveKeys": ["bio.g8.circulation.o1"],
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.to-lungs",
+      "type": "single",
+      "prompt": { "ky": "Канды өпкөгө кайсы камера айдайт?", "ru": "Какая камера гонит кровь в лёгкие?", "en": "Which chamber pumps blood to the lungs?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Оң карынча", "ru": "Правый желудочек", "en": "Right ventricle" } },
+        { "key": "b", "text": { "ky": "Сол карынча", "ru": "Левый желудочек", "en": "Left ventricle" } },
+        { "key": "c", "text": { "ky": "Сол жүрөкчө", "ru": "Левое предсердие", "en": "Left atrium" } }
+      ],
+      "answer": "a",
+      "explanation": { "ky": "Кичи чөйрө оң карынчадан башталат: андан кан өпкө артериясы аркылуу өпкөгө барат.", "ru": "Малый круг начинается в правом желудочке: из него кровь по лёгочной артерии идёт в лёгкие.", "en": "The pulmonary circulation starts in the right ventricle, which sends blood through the pulmonary artery to the lungs." },
+      "objectiveKeys": ["bio.g8.circulation.o2"],
+      "misconceptionKey": "bio.m.ventricles-same",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.oxygen-rich",
+      "type": "multiple",
+      "prompt": { "ky": "Кайсы бөлүктөрдө кычкылтекке бай кан болот?", "ru": "Где течёт богатая кислородом кровь?", "en": "Which parts carry oxygen-rich blood?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Сол жүрөкчө", "ru": "Левое предсердие", "en": "Left atrium" } },
+        { "key": "b", "text": { "ky": "Сол карынча", "ru": "Левый желудочек", "en": "Left ventricle" } },
+        { "key": "c", "text": { "ky": "Аорта", "ru": "Аорта", "en": "Aorta" } },
+        { "key": "d", "text": { "ky": "Оң жүрөкчө", "ru": "Правое предсердие", "en": "Right atrium" } }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": { "ky": "Жүрөктүн сол жагы жана аорта өпкөдөн келген кычкылтекке бай канды ташыйт; оң жүрөкчөгө вена каны келет.", "ru": "Левая половина сердца и аорта несут богатую кислородом кровь из лёгких; в правое предсердие приходит венозная кровь.", "en": "The left side of the heart and the aorta carry oxygen-rich blood from the lungs; the right atrium receives venous blood." },
+      "objectiveKeys": ["bio.g8.circulation.o2"],
+      "misconceptionKey": "bio.m.veins-carry-poor-blood",
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.heart-match",
+      "type": "match",
+      "prompt": { "ky": "Жүрөктүн бөлүгүн анын милдети менен дал келтир.", "ru": "Сопоставь часть сердца и её функцию.", "en": "Match each part of the heart to its job." },
+      "pairs": [
+        { "key": "ra", "left": { "ky": "Оң жүрөкчө", "ru": "Правое предсердие", "en": "Right atrium" }, "right": { "ky": "Денеден канды кабыл алат", "ru": "Принимает кровь от тела", "en": "Receives blood from the body" } },
+        { "key": "lv", "left": { "ky": "Сол карынча", "ru": "Левый желудочек", "en": "Left ventricle" }, "right": { "ky": "Канды денеге айдайт", "ru": "Гонит кровь в тело", "en": "Pumps blood to the body" } },
+        { "key": "valve", "left": { "ky": "Капкак", "ru": "Клапан", "en": "Valve" }, "right": { "ky": "Кандын артка агышын токтотот", "ru": "Не даёт крови течь назад", "en": "Stops blood flowing back" } },
+        { "key": "peri", "left": { "ky": "Перикард", "ru": "Перикард", "en": "Pericardium" }, "right": { "ky": "Жүрөктү коргойт", "ru": "Защищает сердце", "en": "Protects the heart" } }
+      ],
+      "explanation": { "ky": "Жүрөктүн ар бир бөлүгү кан айланууда өз милдетин аткарат.", "ru": "Каждая часть сердца выполняет свою задачу в кровообращении.", "en": "Each part of the heart has its own role in circulation." },
+      "objectiveKeys": ["bio.g8.circulation.o1"],
+      "misconceptionKey": "bio.m.heart-sound-muscle",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.find-left-ventricle",
+      "type": "find-on-model",
+      "prompt": { "ky": "Дубалы эң калың камераны моделден тап.", "ru": "Найди на модели камеру с самой толстой стенкой.", "en": "Find the chamber with the thickest wall." },
+      "targetConceptKey": "bio.left-ventricle",
+      "explanation": { "ky": "Сол карынча канды бүт денеге айдагандыктан, анын дубалы эң калың.", "ru": "Левый желудочек гонит кровь по всему телу, поэтому его стенка самая толстая.", "en": "The left ventricle pumps blood around the whole body, so its wall is the thickest." },
+      "objectiveKeys": ["bio.g8.circulation.o1"],
+      "misconceptionKey": "bio.m.ventricles-same",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.find-aorta",
+      "type": "find-on-model",
+      "prompt": { "ky": "Денедеги эң чоң артерияны тап.", "ru": "Найди самую крупную артерию тела.", "en": "Find the largest artery in the body." },
+      "targetConceptKey": "bio.aorta",
+      "explanation": { "ky": "Аорта сол карынчадан чыгып, жүрөктүн үстүнөн ийилет.", "ru": "Аорта выходит из левого желудочка и изгибается над сердцем.", "en": "The aorta leaves the left ventricle and arches over the heart." },
+      "objectiveKeys": ["bio.g8.circulation.o1"],
+      "misconceptionKey": "bio.m.artery-always-rich",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.cardiac-output",
+      "type": "numeric",
+      "prompt": { "ky": "Жүрөк мүнөтүнө 70 жолу согуп, ар бир согууда 70 мл кан айдаса, мүнөтүнө канча литр кан айдайт?", "ru": "Сердце сокращается 70 раз в минуту и за удар выбрасывает 70 мл крови. Сколько литров крови оно перекачивает за минуту?", "en": "A heart beats 70 times a minute and pumps 70 mL per beat. How many litres does it pump per minute?" },
+      "answer": 4.9,
+      "tolerance": 0.1,
+      "unit": "L/min",
+      "explanation": { "ky": "70 × 70 мл = 4900 мл ≈ 4,9 л/мүн.", "ru": "70 × 70 мл = 4900 мл ≈ 4,9 л/мин.", "en": "70 × 70 mL = 4900 mL ≈ 4.9 L/min." },
+      "objectiveKeys": ["bio.g8.circulation.o1"],
+      "difficulty": 4
+    }
+  ]
+}

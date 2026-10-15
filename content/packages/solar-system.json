@@ -1,0 +1,2329 @@
+{
+  "manifest": {
+    "topicKey": "solar-system",
+    "version": "1.0.0",
+    "hash": "750c249e149d803987018324d6c180da284e40cc452551632f95bd79f04efba8",
+    "files": [
+      {
+        "path": "thumbs/solar-system.webp",
+        "hash": "c5ca2b304507e3c537984ddb286013aaaa847b67cfefaec405ef0a0a8d2a9ff7",
+        "size": 0
+      },
+      {
+        "path": "thumbs/inner-planets.webp",
+        "hash": "85435f1d36413ff6297d8f573bab8c34b0746576fcb642f10a4bf37749764a6b",
+        "size": 0
+      },
+      {
+        "path": "thumbs/gas-giants.webp",
+        "hash": "35f85919aeb7673ac688a19d137abcca8051669dfdb72f364075bc24513a6afc",
+        "size": 0
+      },
+      {
+        "path": "thumbs/moon-phases.webp",
+        "hash": "d46d12427ebfc2b41acb8f6e1a65156468c3a8c77e4ca645cc90329b1135fed3",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "astro",
+    "icon": "telescope",
+    "hue": 225,
+    "group": "earth-space",
+    "order": 6,
+    "status": "live",
+    "title": {
+      "ky": "Астрономия",
+      "ru": "Астрономия",
+      "en": "Astronomy"
+    }
+  },
+  "course": {
+    "key": "astro.g11",
+    "subjectKey": "astro",
+    "grade": 11,
+    "curriculum": "kg-2024",
+    "title": {
+      "ky": "Астрономия, 11-класс",
+      "ru": "Астрономия, 11 класс",
+      "en": "Astronomy, grade 11"
+    }
+  },
+  "unit": {
+    "key": "astro.g11.solar-system",
+    "courseKey": "astro.g11",
+    "order": 1,
+    "title": {
+      "ky": "Күн системасы",
+      "ru": "Солнечная система",
+      "en": "The Solar System"
+    }
+  },
+  "objectives": [
+    {
+      "key": "astro.g11.solar-system.o1",
+      "code": "AST-11.3.1",
+      "unitKey": "astro.g11.solar-system",
+      "text": {
+        "ky": "Күн системасынын планеталарын жана алардын негизги мүнөздөмөлөрүн салыштыруу.",
+        "ru": "Сравнивать планеты Солнечной системы и их основные характеристики.",
+        "en": "Compare the planets of the Solar System and their main characteristics."
+      }
+    },
+    {
+      "key": "astro.g11.solar-system.o2",
+      "code": "AST-11.3.2",
+      "unitKey": "astro.g11.solar-system",
+      "text": {
+        "ky": "Айдын фазаларынын себебин түшүндүрүү.",
+        "ru": "Объяснять причину смены фаз Луны.",
+        "en": "Explain why the Moon goes through phases."
+      }
+    }
+  ],
+  "topic": {
+    "key": "solar-system",
+    "unitKey": "astro.g11.solar-system",
+    "status": "published",
+    "title": {
+      "ky": "Күн системасы",
+      "ru": "Солнечная система",
+      "en": "The Solar System"
+    },
+    "classification": {
+      "ky": "Планеталар системасы",
+      "ru": "Планетная система",
+      "en": "Planetary system"
+    },
+    "description": {
+      "ky": "Күн системасы – Күн жана анын тартылуусу менен кармалып турган сегиз планета, алардын жандоочтору, астероиддер жана кометалар. Ички планеталар – кичине жана таштуу, тышкы планеталар – чоң газ гиганттары.",
+      "ru": "Солнечная система – это Солнце и удерживаемые его притяжением восемь планет, их спутники, астероиды и кометы. Внутренние планеты небольшие и каменные, внешние – огромные газовые гиганты.",
+      "en": "The Solar System is the Sun plus the eight planets held by its gravity, their moons, asteroids and comets. The inner planets are small and rocky; the outer ones are huge gas giants."
+    },
+    "goal": {
+      "ky": "Планеталарды радиусу, Күнгө чейинки аралыгы, айлануу мезгили жана тартылуусу боюнча салыштыруу жана Кеплердин мыйзамдарын колдонуу (AST-11.3.1).",
+      "ru": "Сравнить планеты по радиусу, расстоянию до Солнца, периоду обращения и силе тяжести и применить законы Кеплера (AST-11.3.1).",
+      "en": "Compare the planets by radius, distance from the Sun, orbital period and gravity, and apply Kepler's laws (AST-11.3.1)."
+    },
+    "objectiveKeys": [
+      "astro.g11.solar-system.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "orbits",
+        "bodies": [
+          "sun",
+          "mercury",
+          "venus",
+          "earth",
+          "mars",
+          "jupiter",
+          "saturn",
+          "uranus",
+          "neptune"
+        ],
+        "distanceScale": "log",
+        "radiusScale": "log",
+        "timeScaleDaysPerSecond": 10,
+        "showOrbits": true
+      },
+      "camera": {
+        "position": [
+          0,
+          14,
+          22
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "orbits",
+        "true-scale"
+      ]
+    },
+    "conceptKeys": [
+      "astro.sun",
+      "astro.earth",
+      "astro.mars",
+      "astro.jupiter",
+      "astro.saturn",
+      "astro.orbit"
+    ],
+    "overrides": {
+      "astro.sun": {
+        "anchor": [
+          0,
+          0,
+          0
+        ],
+        "nodes": [
+          "Sun"
+        ]
+      },
+      "astro.earth": {
+        "nodes": [
+          "Planet_earth"
+        ]
+      },
+      "astro.mars": {
+        "nodes": [
+          "Planet_mars"
+        ]
+      },
+      "astro.jupiter": {
+        "nodes": [
+          "Planet_jupiter"
+        ]
+      },
+      "astro.saturn": {
+        "nodes": [
+          "Planet_saturn",
+          "Rings_saturn"
+        ]
+      },
+      "astro.orbit": {
+        "nodes": [
+          "Orbit_*"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "solar-system",
+        "title": {
+          "ky": "Күн системасы",
+          "ru": "Солнечная система",
+          "en": "Solar System"
+        },
+        "classification": {
+          "ky": "8 планета",
+          "ru": "8 планет",
+          "en": "8 planets"
+        },
+        "thumb": "thumbs/solar-system.webp"
+      },
+      {
+        "key": "inner-planets",
+        "title": {
+          "ky": "Ички планеталар",
+          "ru": "Планеты земной группы",
+          "en": "Inner planets"
+        },
+        "classification": {
+          "ky": "Таштуу планеталар",
+          "ru": "Каменные планеты",
+          "en": "Rocky planets"
+        },
+        "thumb": "thumbs/inner-planets.webp"
+      },
+      {
+        "key": "gas-giants",
+        "title": {
+          "ky": "Газ гиганттары",
+          "ru": "Газовые гиганты",
+          "en": "Gas giants"
+        },
+        "classification": {
+          "ky": "Тышкы планеталар",
+          "ru": "Внешние планеты",
+          "en": "Outer planets"
+        },
+        "thumb": "thumbs/gas-giants.webp"
+      },
+      {
+        "key": "moon-phases",
+        "title": {
+          "ky": "Айдын фазалары",
+          "ru": "Фазы Луны",
+          "en": "Phases of the Moon"
+        },
+        "classification": {
+          "ky": "Жер – Ай системасы",
+          "ru": "Система Земля – Луна",
+          "en": "Earth–Moon system"
+        },
+        "thumb": "thumbs/moon-phases.webp",
+        "topicKey": "moon-phases"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                14,
+                22
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "orbits": true
+            },
+            "text": {
+              "ky": "Бул – Күн системасы. Сегиз планета Күндү өз орбиталары менен айланат. Моделде аралыктар кыскартылган, болбосо планеталар көрүнбөй калмак.",
+              "ru": "Это Солнечная система. Восемь планет обращаются вокруг Солнца по своим орбитам. Расстояния на модели сжаты, иначе планет не было бы видно.",
+              "en": "This is the Solar System. Eight planets travel around the Sun on their own orbits. Distances are squeezed on the model, otherwise the planets would be invisible."
+            },
+            "teacherNote": {
+              "ky": "Планеталардын ырааттуулугун эстеп калуу үчүн окуучулар менен кыска сүйлөм ойлоп табыңыз.",
+              "ru": "Придумайте с учениками фразу-запоминалку для порядка планет.",
+              "en": "Make up a memory sentence with the class for the order of the planets."
+            },
+            "altText": {
+              "ky": "Борбордо Күн, айланасында сегиз планетанын орбиталары.",
+              "ru": "Солнце в центре, вокруг орбиты восьми планет.",
+              "en": "The Sun in the centre with the orbits of eight planets around it."
+            }
+          },
+          {
+            "key": "sun",
+            "focus": "astro.sun",
+            "camera": {
+              "position": [
+                0,
+                2,
+                6
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "text": {
+              "ky": "Күн – Күн системасынын массасынын 99,8 %ы. Анын радиусу 696 000 км, бетинин температурасы болжол менен 5500 °C.",
+              "ru": "Солнце – это 99,8 % массы всей Солнечной системы. Его радиус 696 000 км, температура поверхности около 5500 °C.",
+              "en": "The Sun holds 99.8 % of the Solar System's mass. Its radius is 696,000 km and its surface is about 5500 °C."
+            },
+            "teacherNote": {
+              "ky": "Күнгө телескоп же көз менен түз кароого болбой турганын эскертиңиз.",
+              "ru": "Предупредите: на Солнце нельзя смотреть прямо, ни глазом, ни в телескоп.",
+              "en": "Warn the class never to look straight at the Sun, with or without a telescope."
+            },
+            "altText": {
+              "ky": "Жаркыраган сары-кызгылт сары Күн.",
+              "ru": "Сияющее жёлто-оранжевое Солнце.",
+              "en": "The glowing yellow-orange Sun."
+            }
+          },
+          {
+            "key": "earth",
+            "focus": "astro.earth",
+            "camera": {
+              "position": [
+                3,
+                1.5,
+                5
+              ],
+              "target": [
+                2.5,
+                0,
+                2.5
+              ]
+            },
+            "text": {
+              "ky": "Жер Күндөн 149,6 млн км (1 астрономиялык бирдик) алыстыкта, Күндү 365,25 күндө айланат.",
+              "ru": "Земля находится в 149,6 млн км (1 астрономическая единица) от Солнца и обходит его за 365,25 суток.",
+              "en": "The Earth is 149.6 million km (1 astronomical unit) from the Sun and goes around it in 365.25 days."
+            },
+            "teacherNote": {
+              "ky": "«Жердин Күндү айланышы» процессин ачып, перигелий менен афелийди көрсөтүңүз.",
+              "ru": "Откройте процесс «Обращение Земли вокруг Солнца» и покажите перигелий и афелий.",
+              "en": "Open the «Earth's orbit» process and show perihelion and aphelion."
+            },
+            "altText": {
+              "ky": "Орбитасындагы көк Жер.",
+              "ru": "Голубая Земля на своей орбите.",
+              "en": "The blue Earth on its orbit."
+            }
+          },
+          {
+            "key": "mars",
+            "focus": "astro.mars",
+            "camera": {
+              "position": [
+                4,
+                1.5,
+                6
+              ],
+              "target": [
+                3.5,
+                0,
+                3.5
+              ]
+            },
+            "text": {
+              "ky": "Марс – кызыл, суук планета. Анын жылы 687 күн, тартылуусу Жердикинен дээрлик үч эсе алсыз.",
+              "ru": "Марс – красная холодная планета. Его год длится 687 суток, а притяжение почти втрое слабее земного.",
+              "en": "Mars is a cold red planet. Its year lasts 687 days and its gravity is almost three times weaker than Earth's."
+            },
+            "teacherNote": {
+              "ky": "Марс роверлери жана Марска учуу жөнүндө кыскача айтып бериңиз.",
+              "ru": "Коротко расскажите о марсоходах и полётах к Марсу.",
+              "en": "Briefly talk about Mars rovers and missions to Mars."
+            },
+            "altText": {
+              "ky": "Кызгылт күрөң кичине планета.",
+              "ru": "Небольшая красно-коричневая планета.",
+              "en": "A small red-brown planet."
+            }
+          },
+          {
+            "key": "jupiter",
+            "focus": "astro.jupiter",
+            "camera": {
+              "position": [
+                7,
+                3,
+                9
+              ],
+              "target": [
+                6,
+                0,
+                6
+              ]
+            },
+            "text": {
+              "ky": "Юпитер – эң чоң планета: радиусу Жердикинен 11 эсе чоң. Анын 95 жандоочу белгилүү.",
+              "ru": "Юпитер – самая большая планета: его радиус в 11 раз больше земного. У него известно 95 спутников.",
+              "en": "Jupiter is the largest planet: its radius is 11 times the Earth's. It has 95 known moons."
+            },
+            "teacherNote": {
+              "ky": "Чоң Кызыл Такты көрсөтүп, ал Жерден чоң бороон экенин айтыңыз.",
+              "ru": "Покажите Большое Красное Пятно – бурю больше Земли.",
+              "en": "Point out the Great Red Spot – a storm bigger than the Earth."
+            },
+            "altText": {
+              "ky": "Тилке-тилке боёлгон ири планета, кызыл тагы бар.",
+              "ru": "Огромная полосатая планета с красным пятном.",
+              "en": "A huge striped planet with a red spot."
+            }
+          },
+          {
+            "key": "saturn",
+            "focus": "astro.saturn",
+            "camera": {
+              "position": [
+                9,
+                4,
+                12
+              ],
+              "target": [
+                8,
+                0,
+                8
+              ]
+            },
+            "text": {
+              "ky": "Сатурндун шакекчелери муз жана таш бөлүкчөлөрүнөн турат. Анын тыгыздыгы суунукунан да аз.",
+              "ru": "Кольца Сатурна состоят из частиц льда и камня. Его плотность меньше плотности воды.",
+              "en": "Saturn's rings are made of bits of ice and rock. The planet is less dense than water."
+            },
+            "teacherNote": {
+              "ky": "Шакекчелер бүтүн диск эмес экенин баса белгилеңиз.",
+              "ru": "Подчеркните, что кольца – не сплошной диск.",
+              "en": "Stress that the rings are not one solid disc."
+            },
+            "altText": {
+              "ky": "Кең шакекчелери бар саргыч планета.",
+              "ru": "Желтоватая планета с широкими кольцами.",
+              "en": "A yellowish planet with wide rings."
+            }
+          },
+          {
+            "key": "orbits",
+            "focus": "astro.orbit",
+            "camera": {
+              "position": [
+                0,
+                20,
+                1
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "orbits": true
+            },
+            "text": {
+              "ky": "Бардык орбиталар – эллипстер. Планета Күндөн канчалык алыс болсо, анын жылы ошончолук узун: T² = a³.",
+              "ru": "Все орбиты – эллипсы. Чем дальше планета от Солнца, тем длиннее её год: T² = a³.",
+              "en": "Every orbit is an ellipse. The farther a planet is from the Sun, the longer its year: T² = a³."
+            },
+            "teacherNote": {
+              "ky": "Юпитер үчүн эсептеп көрүңүз: a = 5,2 а. б. → T ≈ 11,9 жыл.",
+              "ru": "Посчитайте для Юпитера: a = 5,2 а. е. → T ≈ 11,9 года.",
+              "en": "Work it out for Jupiter: a = 5.2 AU → T ≈ 11.9 years."
+            },
+            "altText": {
+              "ky": "Үстүнөн караганда планеталардын эллипс орбиталары.",
+              "ru": "Вид сверху на эллиптические орбиты планет.",
+              "en": "A top-down view of the planets' elliptical orbits."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "astro.planet-orbit"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "astro.earth"
+          },
+          {
+            "kind": "concept",
+            "key": "astro.mars"
+          },
+          {
+            "kind": "concept",
+            "key": "astro.jupiter"
+          },
+          {
+            "kind": "concept",
+            "key": "astro.saturn"
+          }
+        ],
+        "rows": [
+          "radius",
+          "distance",
+          "orbitalPeriod",
+          "gravity",
+          "moons",
+          "temperature"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "astro.q.largest",
+          "astro.q.gas-giants",
+          "astro.q.match-planets",
+          "astro.q.find-mars",
+          "astro.q.kepler-mars",
+          "astro.q.light-time",
+          "astro.q.what-holds"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "t",
+          "title": {
+            "ky": "Космос аппараттары",
+            "ru": "Межпланетные станции",
+            "en": "Space probes"
+          },
+          "text": {
+            "ky": "«Вояджер-1» 1977-жылы учуп, Юпитер менен Сатурндун жанынан өтүп, азыр гелиосферанын – Күн шамалынын чегинен чыгып кеткен.",
+            "ru": "«Вояджер-1», запущенный в 1977 году, пролетел мимо Юпитера и Сатурна и уже покинул пределы гелиосферы.",
+            "en": "Voyager 1, launched in 1977, flew past Jupiter and Saturn and has now left the heliosphere."
+          }
+        },
+        {
+          "field": "m",
+          "title": {
+            "ky": "Масштабдуу модель",
+            "ru": "Масштабная модель",
+            "en": "A scale model"
+          },
+          "text": {
+            "ky": "Жер Күндөн 1 м алыс болсо, Сатурн 9,5 м, Нептун 30 м алыстыкта болмок – мектептин коридору жетпейт!",
+            "ru": "Если Земля в 1 м от Солнца, то Сатурн – в 9,5 м, а Нептун – в 30 м: школьного коридора не хватит!",
+            "en": "If the Earth were 1 m from the Sun, Saturn would be 9.5 m away and Neptune 30 m – longer than a school corridor!"
+          }
+        },
+        {
+          "field": "s",
+          "title": {
+            "ky": "Тоолордогу обсерваториялар",
+            "ru": "Горные обсерватории",
+            "en": "Mountain observatories"
+          },
+          "text": {
+            "ky": "Тянь-Шандын бийик тоолорунда аба таза жана кургак – астрономдор планеталарды байкоо үчүн ушундай жерлерди тандашат.",
+            "ru": "В высокогорье Тянь-Шаня воздух чистый и сухой – астрономы выбирают такие места для наблюдения планет.",
+            "en": "The air high in the Tien Shan is clean and dry – the kind of place astronomers choose for watching planets."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Боз үйдүн очогу",
+            "ru": "Очаг в юрте",
+            "en": "A yurt's hearth"
+          },
+          "text": {
+            "ky": "Күн – боз үйдүн ортосундагы очок, планеталар – анын айланасында ар кандай алыстыкта отурган үй-бүлө мүчөлөрү.",
+            "ru": "Солнце – очаг в центре юрты, а планеты – члены семьи, сидящие вокруг на разном расстоянии.",
+            "en": "The Sun is the hearth in the middle of the yurt, and the planets are family members sitting around it at different distances."
+          }
+        },
+        {
+          "title": {
+            "ky": "Стадиондун жолдору",
+            "ru": "Беговые дорожки",
+            "en": "Stadium lanes"
+          },
+          "text": {
+            "ky": "Тышкы жолдо чуркаган спортчу айлампаны узагыраак чуркайт. Алыскы планеталардын да «айлампасы» – жылы узун.",
+            "ru": "Бегун на внешней дорожке пробегает круг дольше. У дальних планет «круг» – год – тоже длиннее.",
+            "en": "A runner in an outer lane takes longer to finish a lap. Far-away planets have longer laps – longer years – too."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "astro.sun",
+      "kind": "star",
+      "hue": 45,
+      "isContainer": false,
+      "title": {
+        "ky": "Күн",
+        "ru": "Солнце",
+        "en": "The Sun"
+      },
+      "subtitle": {
+        "ky": "Бизге эң жакын жылдыз",
+        "ru": "Ближайшая к нам звезда",
+        "en": "Our nearest star"
+      },
+      "description": {
+        "ky": "Күн системасынын борборундагы жылдыз – ысык плазмадан турган шар. Анын ядросунда суутек гелийге айланып, Жерди жылыткан жарык жана жылуулук бөлүнөт.",
+        "ru": "Звезда в центре Солнечной системы – шар из раскалённой плазмы. В его ядре водород превращается в гелий, выделяя свет и тепло, которые согревают Землю.",
+        "en": "The star at the centre of the Solar System – a ball of glowing plasma. In its core hydrogen turns into helium, releasing the light and heat that warm the Earth."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "radius",
+          "value": 696000,
+          "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "temperature",
+          "value": 5500,
+          "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "gravity",
+          "value": 274,
+          "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "mass",
+          "value": 1.989e+30,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "≈73 % суутек, ≈25 % гелий",
+            "ru": "≈73 % водорода, ≈25 % гелия",
+            "en": "≈73 % hydrogen, ≈25 % helium"
+          }
+        }
+      ],
+      "related": [
+        "astro.earth",
+        "astro.orbit",
+        "astro.moon"
+      ],
+      "misconceptions": [
+        {
+          "key": "astro.m.sun-orbits-earth",
+          "text": {
+            "ky": "Күн Жерди айланат – ошондуктан күн чыгып, батат.",
+            "ru": "Солнце вращается вокруг Земли – поэтому оно восходит и заходит.",
+            "en": "The Sun goes around the Earth – that is why it rises and sets."
+          },
+          "correction": {
+            "ky": "Жер өз огунун айланасында айланат, ошондуктан Күн асманда жылгандай көрүнөт. Жер Күндү бир жылда айланып чыгат.",
+            "ru": "Земля вращается вокруг своей оси, поэтому кажется, что Солнце движется по небу. А вокруг Солнца Земля обращается за год.",
+            "en": "The Earth spins on its axis, so the Sun only seems to move across the sky. The Earth goes around the Sun once a year."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Күндүн жарыгы Жерге болжол менен 8 мүнөт 20 секундада жетет. Биз Күндү ар дайым 8 мүнөт мурунку абалында көрөбүз.",
+        "ru": "Свет Солнца идёт до Земли около 8 минут 20 секунд. Мы всегда видим Солнце таким, каким оно было 8 минут назад.",
+        "en": "Sunlight takes about 8 minutes 20 seconds to reach the Earth, so we always see the Sun as it was 8 minutes ago."
+      },
+      "analogy": {
+        "ky": "Боз үйдүн ортосундагы очок",
+        "ru": "Очаг в центре юрты",
+        "en": "The hearth in the middle of a yurt"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Күн панелдери",
+              "ru": "Солнечные панели",
+              "en": "Solar panels"
+            },
+            "text": {
+              "ky": "Жайлоодогу малчылар күн панелдери менен телефонун кубаттап, жарык күйгүзүшөт – Кыргызстанда жылына 2500 сааттан ашык күн тийет.",
+              "ru": "Чабаны на джайлоо заряжают телефоны и включают свет от солнечных панелей – в Кыргызстане больше 2500 солнечных часов в год.",
+              "en": "Herders on summer pastures charge phones and run lights from solar panels – Kyrgyzstan gets over 2500 hours of sunshine a year."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Термоядролук синтез",
+              "ru": "Термоядерный синтез",
+              "en": "Nuclear fusion"
+            },
+            "text": {
+              "ky": "Физиктер Жерде Күндүн ядросундагыдай синтез реакциясын кайталап, таза энергия алууга аракет кылып жатышат.",
+              "ru": "Физики пытаются повторить на Земле реакцию синтеза, как в ядре Солнца, чтобы получать чистую энергию.",
+              "en": "Physicists are trying to recreate the Sun's fusion reaction on Earth to produce clean energy."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Очок",
+              "ru": "Очаг",
+              "en": "A fireplace"
+            },
+            "text": {
+              "ky": "Боз үйдүн ортосундагы очок баарын жылытат. Күн да бардык планеталарды жылытып, жарык берет.",
+              "ru": "Очаг в центре юрты греет всех вокруг. Солнце так же греет и освещает все планеты.",
+              "en": "The hearth in the middle of a yurt warms everyone around it. The Sun warms and lights all the planets the same way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Эшик жана тыйын",
+              "ru": "Дверь и монетка",
+              "en": "A door and a coin"
+            },
+            "text": {
+              "ky": "Күн эшиктей бийик (2 м) болсо, Жер анын жанында тыйындай гана (≈2 см) болмок.",
+              "ru": "Если бы Солнце было высотой с дверь (2 м), Земля рядом с ним была бы размером с монетку (≈2 см).",
+              "en": "If the Sun were as tall as a door (2 m), the Earth beside it would be the size of a coin (≈2 cm)."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "astro.earth",
+      "kind": "planet",
+      "hue": 210,
+      "isContainer": false,
+      "title": {
+        "ky": "Жер",
+        "ru": "Земля",
+        "en": "Earth"
+      },
+      "subtitle": {
+        "ky": "Биздин үйүбүз",
+        "ru": "Наш дом",
+        "en": "Our home"
+      },
+      "description": {
+        "ky": "Күндөн үчүнчү планета жана суюк суу менен жашоо бар экени белгилүү болгон жалгыз планета. Жер өз огунун айланасында 24 саатта, Күндүн айланасында 365,25 күндө айланат.",
+        "ru": "Третья планета от Солнца и единственная известная планета с жидкой водой и жизнью. Земля оборачивается вокруг оси за 24 часа, а вокруг Солнца – за 365,25 суток.",
+        "en": "The third planet from the Sun and the only one known to have liquid water and life. The Earth spins once in 24 hours and goes around the Sun in 365.25 days."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "radius",
+          "value": 6371
+        },
+        {
+          "kind": "quantity",
+          "type": "distance",
+          "value": 149.6,
+          "unit": "mln km"
+        },
+        {
+          "kind": "quantity",
+          "type": "orbitalPeriod",
+          "value": 365.25
+        },
+        {
+          "kind": "quantity",
+          "type": "gravity",
+          "value": 9.81
+        },
+        {
+          "kind": "quantity",
+          "type": "moons",
+          "value": 1
+        },
+        {
+          "kind": "quantity",
+          "type": "temperature",
+          "value": 15,
+          "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "angle",
+          "value": 23.44
+        }
+      ],
+      "related": [
+        "astro.sun",
+        "astro.moon",
+        "astro.orbit"
+      ],
+      "misconceptions": [
+        {
+          "key": "astro.m.seasons-distance",
+          "text": {
+            "ky": "Жайында Жер Күнгө жакындайт, ошондуктан ысык болот.",
+            "ru": "Летом Земля ближе к Солнцу, поэтому жарко.",
+            "en": "It is hot in summer because the Earth is closer to the Sun."
+          },
+          "correction": {
+            "ky": "Жыл мезгилдери Жердин огунун 23,4° кыйшайганынан болот. Жер Күнгө январдын башында эң жакын болот – бизде ал учурда кыш.",
+            "ru": "Времена года возникают из-за наклона земной оси на 23,4°. Ближе всего к Солнцу Земля в начале января – у нас тогда зима.",
+            "en": "Seasons come from the 23.4° tilt of the Earth's axis. The Earth is closest to the Sun in early January – which is winter for us."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Жер Күндүн айланасында секундасына болжол менен 30 км ылдамдыкта учуп баратат – Бишкектен Ош шаарына 10 секундда жетмекпиз!",
+        "ru": "Земля летит вокруг Солнца со скоростью около 30 км/с – с такой скоростью из Бишкека в Ош можно долететь за 10 секунд!",
+        "en": "The Earth races around the Sun at about 30 km/s – fast enough to get from Bishkek to Osh in 10 seconds!"
+      },
+      "analogy": {
+        "ky": "Карусельдеги бала",
+        "ru": "Ребёнок на карусели",
+        "en": "A child on a merry-go-round"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "GPS навигация",
+              "ru": "Навигация GPS",
+              "en": "GPS navigation"
+            },
+            "text": {
+              "ky": "Телефондогу карта Жердин айланасындагы спутниктердин сигналдарын колдонуп, сиздин ордуңузду бир нече метр тактык менен табат.",
+              "ru": "Карта в телефоне использует сигналы спутников на орбите Земли и находит вас с точностью до нескольких метров.",
+              "en": "The map on your phone uses signals from satellites orbiting the Earth to find you to within a few metres."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Жердин айланасын өлчөө",
+              "ru": "Измерение окружности Земли",
+              "en": "Measuring the Earth"
+            },
+            "text": {
+              "ky": "Эратосфен 2000 жыл мурун эки шаардагы көлөкөлөрдүн бурчу боюнча Жердин айланасын эсептеген: 2πR ≈ 40 000 км.",
+              "ru": "Эратосфен более 2000 лет назад по углу теней в двух городах вычислил окружность Земли: 2πR ≈ 40 000 км.",
+              "en": "Over 2000 years ago Eratosthenes used the angle of shadows in two cities to calculate the Earth's circumference: 2πR ≈ 40,000 km."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Айланган топ",
+              "ru": "Крутящийся мяч",
+              "en": "A spinning ball"
+            },
+            "text": {
+              "ky": "Топту манжаңда айлантсаң, бир жагы жарыкка, бир жагы көлөкөгө бурулат – Жерде күн менен түн ушинтип алмашат.",
+              "ru": "Если крутить мяч на пальце у лампы, одна сторона освещена, другая в тени – так на Земле сменяются день и ночь.",
+              "en": "Spin a ball on your finger next to a lamp: one side is lit, the other is dark – that is how day and night change on Earth."
+            }
+          },
+          {
+            "title": {
+              "ky": "Стадиондогу айлампа",
+              "ru": "Круг по стадиону",
+              "en": "A lap of the stadium"
+            },
+            "text": {
+              "ky": "Стадиондун айланасын бир жолу чуркап чыкканыңдай, Жер Күндү бир жылда бир жолу айланып чыгат.",
+              "ru": "Как ты пробегаешь один круг по стадиону, так Земля за год делает один круг вокруг Солнца.",
+              "en": "Just as you run one lap of the stadium, the Earth makes one lap around the Sun each year."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "astro.mars",
+      "kind": "planet",
+      "hue": 10,
+      "isContainer": false,
+      "title": {
+        "ky": "Марс",
+        "ru": "Марс",
+        "en": "Mars"
+      },
+      "subtitle": {
+        "ky": "Кызыл планета",
+        "ru": "Красная планета",
+        "en": "The Red Planet"
+      },
+      "description": {
+        "ky": "Күндөн төртүнчү, Жерден кичине, суук жана кургак планета. Анын кызыл түсү топурактагы темир кычкылынан (дат).",
+        "ru": "Четвёртая планета от Солнца – меньше Земли, холодная и сухая. Красный цвет ей придаёт оксид железа (ржавчина) в грунте.",
+        "en": "The fourth planet from the Sun – smaller than the Earth, cold and dry. Its red colour comes from iron oxide (rust) in the soil."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "radius",
+          "value": 3390
+        },
+        {
+          "kind": "quantity",
+          "type": "distance",
+          "value": 227.9,
+          "unit": "mln km"
+        },
+        {
+          "kind": "quantity",
+          "type": "orbitalPeriod",
+          "value": 687
+        },
+        {
+          "kind": "quantity",
+          "type": "gravity",
+          "value": 3.71
+        },
+        {
+          "kind": "quantity",
+          "type": "moons",
+          "value": 2
+        },
+        {
+          "kind": "quantity",
+          "type": "temperature",
+          "value": -63,
+          "approx": true
+        }
+      ],
+      "related": [
+        "astro.earth",
+        "astro.jupiter",
+        "astro.orbit"
+      ],
+      "misconceptions": [
+        {
+          "key": "astro.m.mars-hot",
+          "text": {
+            "ky": "Марс кызыл, демек ал ысык планета.",
+            "ru": "Марс красный, значит, он горячий.",
+            "en": "Mars is red, so it must be hot."
+          },
+          "correction": {
+            "ky": "Марстын кызыл түсү дат топурактан; анын орточо температурасы болжол менен −63 °C.",
+            "ru": "Красный цвет Марса – от ржавого грунта; средняя температура там около −63 °C.",
+            "en": "Mars is red because of rusty soil; its average temperature is about −63 °C."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Марста Күн системасындагы эң бийик тоо – Олимп вулканы бар, анын бийиктиги болжол менен 22 км, Жеңиш чокусунан 3 эсе бийик.",
+        "ru": "На Марсе – самая высокая гора Солнечной системы, вулкан Олимп высотой около 22 км, втрое выше пика Победы.",
+        "en": "Mars has the tallest mountain in the Solar System, the volcano Olympus Mons, about 22 km high – three times taller than Jengish Chokusu (Victory Peak)."
+      },
+      "analogy": {
+        "ky": "Дат баскан темир топ",
+        "ru": "Ржавый железный шар",
+        "en": "A rusty iron ball"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Марс роверлери",
+              "ru": "Марсоходы",
+              "en": "Mars rovers"
+            },
+            "text": {
+              "ky": "Инженерлер Марстын топурагын изилдөө үчүн роверлерди жасашат; алар Жерден буйрук алганга чейин 4–24 мүнөт күтөт.",
+              "ru": "Инженеры создают марсоходы для изучения грунта Марса; команды с Земли идут к ним от 4 до 24 минут.",
+              "en": "Engineers build rovers to study Martian soil; commands from Earth take 4 to 24 minutes to reach them."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Учуу терезеси",
+              "ru": "Окно запуска",
+              "en": "Launch windows"
+            },
+            "text": {
+              "ky": "Жер менен Марс болжол менен ар 26 айда бири-бирине жакындайт – математиктер ракеталарды ушул убакка эсептешет.",
+              "ru": "Земля и Марс сближаются примерно раз в 26 месяцев – математики рассчитывают запуски ракет к этому моменту.",
+              "en": "Earth and Mars line up about every 26 months – mathematicians time rocket launches for these windows."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Дат баскан мык",
+              "ru": "Ржавый гвоздь",
+              "en": "A rusty nail"
+            },
+            "text": {
+              "ky": "Темир мык нымда дат басып кызарат. Марстын топурагы да дат болуп калган темирден кызыл.",
+              "ru": "Железный гвоздь во влаге ржавеет и краснеет. Грунт Марса красный от такой же «ржавчины».",
+              "en": "An iron nail left in the damp goes red with rust. Mars's soil is red with the same kind of rust."
+            }
+          },
+          {
+            "title": {
+              "ky": "Жеңил секирүү",
+              "ru": "Лёгкий прыжок",
+              "en": "A light jump"
+            },
+            "text": {
+              "ky": "Марста тартылуу Жердегиден дээрлик үч эсе алсыз – ал жакта сен дээрлик үч эсе бийик секирмексиң.",
+              "ru": "На Марсе притяжение почти втрое слабее земного – там ты прыгнул бы почти в три раза выше.",
+              "en": "Gravity on Mars is almost three times weaker – there you could jump nearly three times higher."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "astro.jupiter",
+      "kind": "planet",
+      "hue": 30,
+      "isContainer": false,
+      "title": {
+        "ky": "Юпитер",
+        "ru": "Юпитер",
+        "en": "Jupiter"
+      },
+      "subtitle": {
+        "ky": "Эң чоң планета",
+        "ru": "Самая большая планета",
+        "en": "The largest planet"
+      },
+      "description": {
+        "ky": "Күндөн бешинчи жана Күн системасындагы эң чоң планета – газ гиганты. Анын катуу бети жок; суутек менен гелийден турат.",
+        "ru": "Пятая планета от Солнца и самая большая в Солнечной системе – газовый гигант. Твёрдой поверхности у неё нет; она состоит из водорода и гелия.",
+        "en": "The fifth planet from the Sun and the largest in the Solar System – a gas giant with no solid surface, made mostly of hydrogen and helium."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "radius",
+          "value": 69911
+        },
+        {
+          "kind": "quantity",
+          "type": "distance",
+          "value": 778.5,
+          "unit": "mln km"
+        },
+        {
+          "kind": "quantity",
+          "type": "orbitalPeriod",
+          "value": 4333
+        },
+        {
+          "kind": "quantity",
+          "type": "gravity",
+          "value": 24.8
+        },
+        {
+          "kind": "quantity",
+          "type": "moons",
+          "value": 95
+        },
+        {
+          "kind": "quantity",
+          "type": "temperature",
+          "value": -110,
+          "approx": true
+        }
+      ],
+      "related": [
+        "astro.saturn",
+        "astro.mars",
+        "astro.orbit"
+      ],
+      "misconceptions": [
+        {
+          "key": "astro.m.gas-giant-landing",
+          "text": {
+            "ky": "Юпитерге ракета менен конууга болот.",
+            "ru": "На Юпитер можно посадить ракету.",
+            "en": "A rocket could land on Jupiter."
+          },
+          "correction": {
+            "ky": "Юпитердин катуу бети жок: тереңдеген сайын газ коюуланып, басым аппаратты жанчып салат.",
+            "ru": "У Юпитера нет твёрдой поверхности: газ с глубиной становится всё плотнее, и давление раздавит аппарат.",
+            "en": "Jupiter has no solid surface: the gas gets denser with depth until the pressure would crush a spacecraft."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Юпитердеги Чоң Кызыл Так – Жерден чоң бороон, ал 300 жылдан ашык убакыттан бери токтобой келет.",
+        "ru": "Большое Красное Пятно на Юпитере – буря больше Земли, которая бушует уже более 300 лет.",
+        "en": "Jupiter's Great Red Spot is a storm bigger than the Earth that has been raging for over 300 years."
+      },
+      "analogy": {
+        "ky": "Чоң дарбыз жанындагы алча",
+        "ru": "Арбуз рядом с вишней",
+        "en": "A watermelon next to a cherry"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Гравитациялык маневр",
+              "ru": "Гравитационный манёвр",
+              "en": "Gravity assist"
+            },
+            "text": {
+              "ky": "Инженерлер космос аппараттарын Юпитердин жанынан өткөрүп, анын тартылуусу менен ылдамдыгын арттырышат – отун үнөмдөлөт.",
+              "ru": "Инженеры проводят космические аппараты мимо Юпитера, чтобы его притяжение разогнало их, – так экономится топливо.",
+              "en": "Engineers fly spacecraft past Jupiter so its gravity speeds them up – saving fuel."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Галилейдин ачылышы",
+              "ru": "Открытие Галилея",
+              "en": "Galileo's discovery"
+            },
+            "text": {
+              "ky": "1610-жылы Галилей телескоп менен Юпитердин 4 жандоочун көрүп, баары эле Жерди айланбай турганын далилдеген.",
+              "ru": "В 1610 году Галилей увидел в телескоп 4 спутника Юпитера и доказал, что не всё вращается вокруг Земли.",
+              "en": "In 1610 Galileo saw four moons of Jupiter through a telescope, proving that not everything orbits the Earth."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Дарбыз жана алча",
+              "ru": "Арбуз и вишня",
+              "en": "Watermelon and cherry"
+            },
+            "text": {
+              "ky": "Юпитер дарбыз болсо, Жер анын жанындагы алчадай гана.",
+              "ru": "Если Юпитер – арбуз, то Земля рядом с ним – всего лишь вишня.",
+              "en": "If Jupiter were a watermelon, the Earth would be just a cherry beside it."
+            }
+          },
+          {
+            "title": {
+              "ky": "Пахта булут",
+              "ru": "Сахарная вата",
+              "en": "Candy floss"
+            },
+            "text": {
+              "ky": "Юпитерди кол менен кармай албайсың – ал таттуу пахтадай, бирок газдан турган чоң шар.",
+              "ru": "Юпитер не потрогать руками – это огромный шар из газа, как сахарная вата без палочки.",
+              "en": "You couldn't stand on Jupiter – it is a giant ball of gas, like candy floss with no stick inside."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "astro.saturn",
+      "kind": "planet",
+      "hue": 50,
+      "isContainer": false,
+      "title": {
+        "ky": "Сатурн",
+        "ru": "Сатурн",
+        "en": "Saturn"
+      },
+      "subtitle": {
+        "ky": "Шакекчелүү планета",
+        "ru": "Планета с кольцами",
+        "en": "The ringed planet"
+      },
+      "description": {
+        "ky": "Күндөн алтынчы планета, газ гиганты. Анын жаркыраган шакекчелери миллиарддаган муз жана таш бөлүкчөлөрүнөн турат.",
+        "ru": "Шестая планета от Солнца, газовый гигант. Её яркие кольца состоят из миллиардов частиц льда и камня.",
+        "en": "The sixth planet from the Sun, a gas giant. Its bright rings are made of billions of pieces of ice and rock."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "radius",
+          "value": 58232
+        },
+        {
+          "kind": "quantity",
+          "type": "distance",
+          "value": 1433.5,
+          "unit": "mln km"
+        },
+        {
+          "kind": "quantity",
+          "type": "orbitalPeriod",
+          "value": 10759
+        },
+        {
+          "kind": "quantity",
+          "type": "gravity",
+          "value": 10.4
+        },
+        {
+          "kind": "quantity",
+          "type": "moons",
+          "value": 146
+        },
+        {
+          "kind": "quantity",
+          "type": "density",
+          "value": 0.69
+        },
+        {
+          "kind": "quantity",
+          "type": "temperature",
+          "value": -140,
+          "approx": true
+        }
+      ],
+      "related": [
+        "astro.jupiter",
+        "astro.orbit"
+      ],
+      "misconceptions": [
+        {
+          "key": "astro.m.rings-solid",
+          "text": {
+            "ky": "Сатурндун шакекчелери – бүтүн катуу диск.",
+            "ru": "Кольца Сатурна – сплошной твёрдый диск.",
+            "en": "Saturn's rings are one solid disc."
+          },
+          "correction": {
+            "ky": "Шакекчелер өз алдынча айланган сансыз муз жана таш бөлүкчөлөрүнөн турат – чаң бүртүгүнөн үйдөй чоңдукка чейин.",
+            "ru": "Кольца – это бесчисленные отдельные частицы льда и камня, от пылинки до размера дома, каждая на своей орбите.",
+            "en": "The rings are countless separate bits of ice and rock, from dust grains to house-sized chunks, each on its own orbit."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Сатурндун орточо тыгыздыгы суунукунан аз – 0,69 г/см³. Ага бата турган чоң көл болсо, Сатурн калкып жүрмөк!",
+        "ru": "Средняя плотность Сатурна меньше, чем у воды, – 0,69 г/см³. В огромном океане он бы плавал!",
+        "en": "Saturn's average density is lower than water's – 0.69 g/cm³. In a big enough ocean it would float!"
+      },
+      "analogy": {
+        "ky": "Шляпанын чети бар топ",
+        "ru": "Мяч в широкополой шляпе",
+        "en": "A ball wearing a wide-brimmed hat"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "«Кассини» миссиясы",
+              "ru": "Миссия «Кассини»",
+              "en": "The Cassini mission"
+            },
+            "text": {
+              "ky": "«Кассини» аппараты 13 жыл Сатурнду айланып, шакекчелердин жана жандоочтордун жүз миңдеген сүрөттөрүн жиберген.",
+              "ru": "Аппарат «Кассини» 13 лет облетал Сатурн и прислал сотни тысяч снимков колец и спутников.",
+              "en": "The Cassini spacecraft orbited Saturn for 13 years and sent back hundreds of thousands of images of its rings and moons."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Кеплердин үчүнчү мыйзамы",
+              "ru": "Третий закон Кеплера",
+              "en": "Kepler's third law"
+            },
+            "text": {
+              "ky": "T² = a³ формуласы боюнча Сатурн үчүн a = 9,54 а. б., демек T ≈ 29,5 жыл – бул чыныгы мааниге дал келет.",
+              "ru": "По формуле T² = a³ для Сатурна a = 9,54 а. е., значит T ≈ 29,5 года – как и наблюдается.",
+              "en": "Using T² = a³ with a = 9.54 AU for Saturn gives T ≈ 29.5 years – exactly what we observe."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Калпак",
+              "ru": "Шляпа",
+              "en": "A hat"
+            },
+            "text": {
+              "ky": "Сатурн кең четтүү калпак кийген топко окшош – анын шакекчелери «калпактын чети».",
+              "ru": "Сатурн похож на мяч в шляпе с широкими полями – его кольца и есть «поля шляпы».",
+              "en": "Saturn looks like a ball wearing a wide-brimmed hat – the rings are the brim."
+            }
+          },
+          {
+            "title": {
+              "ky": "Калкыган топ",
+              "ru": "Плавающий мяч",
+              "en": "A floating ball"
+            },
+            "text": {
+              "ky": "Пластик топ сууда калкыйт, анткени ал суудан жеңил. Сатурн да ушундай «жеңил» планета.",
+              "ru": "Пластиковый мяч плавает, потому что легче воды. Сатурн – такая же «лёгкая» планета.",
+              "en": "A plastic ball floats because it is lighter than water. Saturn is a “light” planet in the same way."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "astro.orbit",
+      "kind": "path",
+      "hue": 260,
+      "isContainer": false,
+      "title": {
+        "ky": "Орбита",
+        "ru": "Орбита",
+        "en": "Orbit"
+      },
+      "subtitle": {
+        "ky": "Планетанын жолу",
+        "ru": "Путь планеты",
+        "en": "A planet's path"
+      },
+      "description": {
+        "ky": "Асман телосунун башка теленин айланасында тартылуу күчүнүн таасири менен жүргөн жолу. Планеталардын орбиталары – Күн бир фокусунда турган эллипстер (Кеплердин биринчи мыйзамы).",
+        "ru": "Путь, по которому небесное тело движется вокруг другого под действием силы тяготения. Орбиты планет – эллипсы, в одном из фокусов которых находится Солнце (первый закон Кеплера).",
+        "en": "The path a body follows around another under gravity. Planetary orbits are ellipses with the Sun at one focus (Kepler's first law)."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Эллипс (Жердики дээрлик тегерек)",
+            "ru": "Эллипс (у Земли почти окружность)",
+            "en": "Ellipse (Earth's is almost a circle)"
+          }
+        },
+        {
+          "kind": "quantity",
+          "type": "distance",
+          "value": 147.1,
+          "max": 152.1,
+          "unit": "mln km"
+        },
+        {
+          "kind": "quantity",
+          "type": "speed",
+          "value": 29.3,
+          "max": 30.3,
+          "unit": "km/s"
+        }
+      ],
+      "related": [
+        "astro.sun",
+        "astro.earth"
+      ],
+      "misconceptions": [
+        {
+          "key": "astro.m.no-gravity-space",
+          "text": {
+            "ky": "Космосто тартылуу жок, ошондуктан планеталар жөн эле калкып жүрөт.",
+            "ru": "В космосе нет притяжения, поэтому планеты просто плавают.",
+            "en": "There is no gravity in space, so planets just float."
+          },
+          "correction": {
+            "ky": "Күндүн тартылуусу планеталарды орбитада кармап турат; ал жок болсо, алар түз сызык менен учуп кетмек.",
+            "ru": "Именно притяжение Солнца удерживает планеты на орбитах; без него они улетели бы по прямой.",
+            "en": "The Sun's gravity is what keeps the planets in orbit; without it they would fly off in a straight line."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Жер Күнгө эң жакын (147,1 млн км) январдын башында, эң алыс (152,1 млн км) июлдун башында болот.",
+        "ru": "Ближе всего к Солнцу (147,1 млн км) Земля бывает в начале января, дальше всего (152,1 млн км) – в начале июля.",
+        "en": "The Earth is closest to the Sun (147.1 million km) in early January and farthest (152.1 million km) in early July."
+      },
+      "analogy": {
+        "ky": "Жипке байланган айланган таш",
+        "ru": "Камень на верёвке, который раскручивают",
+        "en": "A stone whirled on a string"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Спутниктерди учуруу",
+              "ru": "Запуск спутников",
+              "en": "Launching satellites"
+            },
+            "text": {
+              "ky": "Спутник орбитада калышы үчүн инженерлер ага болжол менен 7,9 км/с ылдамдык беришет – биринчи космостук ылдамдык.",
+              "ru": "Чтобы спутник остался на орбите, инженеры разгоняют его примерно до 7,9 км/с – первой космической скорости.",
+              "en": "To stay in orbit, a satellite must be launched to about 7.9 km/s – the first cosmic velocity."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Эллипс",
+              "ru": "Эллипс",
+              "en": "Ellipses"
+            },
+            "text": {
+              "ky": "Эки казыкка жип байлап, карандаш менен тартсаң, эллипс чыгат. Математика ушул форма менен бардык орбиталарды сүрөттөйт.",
+              "ru": "Привяжи нитку к двум гвоздикам и обведи карандашом – получится эллипс. Этой фигурой математика описывает все орбиты.",
+              "en": "Tie a loop of string around two pins and trace it with a pencil – you get an ellipse, the shape maths uses for every orbit."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Жиптеги таш",
+              "ru": "Камень на верёвке",
+              "en": "A stone on a string"
+            },
+            "text": {
+              "ky": "Жипке байланган ташты айлантсаң, ал тегеренет. Жип – Күндүн тартылуусу, таш – планета.",
+              "ru": "Раскрути камень на верёвке – он летает по кругу. Верёвка – это притяжение Солнца, камень – планета.",
+              "en": "Whirl a stone on a string and it goes round and round. The string is the Sun's gravity; the stone is a planet."
+            }
+          },
+          {
+            "title": {
+              "ky": "Стадиондун жолдору",
+              "ru": "Дорожки стадиона",
+              "en": "Running tracks"
+            },
+            "text": {
+              "ky": "Стадиондо ар бир спортчунун өз жолу бар. Ар бир планетанын да Күндүн айланасында өз орбитасы бар.",
+              "ru": "На стадионе у каждого бегуна своя дорожка. У каждой планеты тоже своя орбита вокруг Солнца.",
+              "en": "On a stadium every runner has their own lane. Every planet has its own orbit around the Sun."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "astro.moon",
+      "kind": "satellite",
+      "hue": 230,
+      "isContainer": false,
+      "title": {
+        "ky": "Ай",
+        "ru": "Луна",
+        "en": "The Moon"
+      },
+      "subtitle": {
+        "ky": "Жердин табигый жандоочу",
+        "ru": "Естественный спутник Земли",
+        "en": "Earth's natural satellite"
+      },
+      "description": {
+        "ky": "Жерди айланган таштуу жандооч. Ай өзү жарык чыгарбайт – ал Күндүн жарыгын чагылдырат. Ай Жерге ар дайым бир эле тарабы менен карап турат.",
+        "ru": "Каменный спутник, обращающийся вокруг Земли. Луна не светится сама – она отражает свет Солнца. К Земле Луна всегда повёрнута одной стороной.",
+        "en": "The rocky satellite that orbits the Earth. The Moon gives off no light of its own – it reflects sunlight. It always shows the Earth the same side."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "radius",
+          "value": 1737
+        },
+        {
+          "kind": "quantity",
+          "type": "distance",
+          "value": 384400
+        },
+        {
+          "kind": "quantity",
+          "type": "gravity",
+          "value": 1.62
+        },
+        {
+          "kind": "quantity",
+          "type": "orbitalPeriod",
+          "value": 27.3
+        },
+        {
+          "kind": "quantity",
+          "type": "period",
+          "value": 29.53,
+          "unit": "d"
+        },
+        {
+          "kind": "quantity",
+          "type": "temperature",
+          "value": -173,
+          "max": 127
+        }
+      ],
+      "related": [
+        "astro.earth",
+        "astro.sun"
+      ],
+      "misconceptions": [
+        {
+          "key": "astro.m.moon-shines",
+          "text": {
+            "ky": "Ай өзү жарык чыгарат.",
+            "ru": "Луна светится сама.",
+            "en": "The Moon makes its own light."
+          },
+          "correction": {
+            "ky": "Ай күзгүдөй Күндүн жарыгын гана чагылдырат.",
+            "ru": "Луна, как зеркало, лишь отражает свет Солнца.",
+            "en": "Like a mirror, the Moon only reflects the Sun's light."
+          }
+        },
+        {
+          "key": "astro.m.phases-earth-shadow",
+          "text": {
+            "ky": "Айдын фазалары Жердин көлөкөсүнөн болот.",
+            "ru": "Фазы Луны возникают из-за тени Земли.",
+            "en": "The Moon's phases are caused by the Earth's shadow."
+          },
+          "correction": {
+            "ky": "Фазалар Айдын Күн жарыктаган жарымынын канча бөлүгүн Жерден көрөрүбүзгө жараша болот. Жердин көлөкөсү Айга түшкөндө – бул Айдын тутулушу.",
+            "ru": "Фазы зависят от того, какую часть освещённой Солнцем половины Луны мы видим с Земли. Когда на Луну падает тень Земли – это лунное затмение.",
+            "en": "Phases depend on how much of the Moon's sunlit half we can see from Earth. When the Earth's shadow falls on the Moon, that is a lunar eclipse."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Ай жыл сайын Жерден болжол менен 3,8 см алыстап баратат.",
+        "ru": "Каждый год Луна удаляется от Земли примерно на 3,8 см.",
+        "en": "Every year the Moon drifts about 3.8 cm farther from the Earth."
+      },
+      "analogy": {
+        "ky": "Түнкү чырак эмес, күзгү",
+        "ru": "Не фонарь, а зеркало",
+        "en": "Not a lamp but a mirror"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Лазер менен аралыкты өлчөө",
+              "ru": "Лазерная локация Луны",
+              "en": "Laser ranging"
+            },
+            "text": {
+              "ky": "Айга астронавттар калтырган күзгүлөргө лазер жиберип, кайтып келген убакыт боюнча аралык сантиметр тактык менен өлчөнөт.",
+              "ru": "Лазерный луч посылают на зеркала, оставленные астронавтами на Луне, и по времени возврата измеряют расстояние с точностью до сантиметров.",
+              "en": "Lasers are fired at mirrors left on the Moon by astronauts, and the return time gives the distance to within centimetres."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Деңиз ташкындары",
+              "ru": "Приливы",
+              "en": "Tides"
+            },
+            "text": {
+              "ky": "Айдын тартылуусу океандардын суусун өзүнө тартып, суткасына эки жолу ташкын жаратат.",
+              "ru": "Притяжение Луны поднимает воду океанов и вызывает приливы дважды в сутки.",
+              "en": "The Moon's gravity pulls on the oceans, causing high tides twice a day."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Велосипеддин чагылдыргычы",
+              "ru": "Катафот велосипеда",
+              "en": "A bike reflector"
+            },
+            "text": {
+              "ky": "Велосипеддин чагылдыргычы өзү жанбайт, машинанын жарыгы тийгенде гана жаркырайт. Ай да Күндүн жарыгы менен гана жаркырайт.",
+              "ru": "Катафот на велосипеде сам не горит – он сверкает, только когда на него светят фары. Луна тоже светит лишь отражённым светом Солнца.",
+              "en": "A bike reflector doesn't glow by itself – it shines only when headlights hit it. The Moon shines only with reflected sunlight."
+            }
+          },
+          {
+            "title": {
+              "ky": "Ата-энесинин жанында бала",
+              "ru": "Ребёнок рядом с родителем",
+              "en": "A child walking round a parent"
+            },
+            "text": {
+              "ky": "Ай Жердин айланасында дайыма бети менен карап басып жүргөн балага окшош – анын аркасын көрбөйбүз.",
+              "ru": "Луна похожа на ребёнка, который ходит вокруг мамы, всегда глядя на неё, – его затылка мама не видит.",
+              "en": "The Moon is like a child walking around a parent while always facing them – the parent never sees the back of their head."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "astro.planet-orbit",
+      "engine": "ode",
+      "icon": "orbit",
+      "title": {
+        "ky": "Жердин Күндү айланышы",
+        "ru": "Обращение Земли вокруг Солнца",
+        "en": "The Earth's orbit around the Sun"
+      },
+      "description": {
+        "ky": "Плагин Ньютондун тартылуу мыйзамы боюнча Жердин кыймылын эсептейт: Күнгө жакындаганда Жер тездейт, алыстаганда жайлайт (Кеплердин экинчи мыйзамы).",
+        "ru": "Плагин рассчитывает движение Земли по закону всемирного тяготения: приближаясь к Солнцу, Земля ускоряется, удаляясь – замедляется (второй закон Кеплера).",
+        "en": "The plugin integrates the Earth's motion under Newton's law of gravitation: it speeds up near the Sun and slows down farther away (Kepler's second law)."
+      },
+      "equation": "F = G\\frac{Mm}{r^2}, \\quad T^2 = a^3",
+      "inputs": {
+        "ky": "Күндүн массасы, орбитанын чоң жарым огу жана эксцентриситети",
+        "ru": "Масса Солнца, большая полуось и эксцентриситет орбиты",
+        "en": "The Sun's mass, the orbit's semi-major axis and eccentricity"
+      },
+      "outputs": {
+        "ky": "Аралык, ылдамдык жана айлануу мезгили",
+        "ru": "Расстояние, скорость и период обращения",
+        "en": "Distance, speed and orbital period"
+      },
+      "energy": {
+        "ky": "Кинетикалык + потенциалдык энергиянын суммасы туруктуу",
+        "ru": "Сумма кинетической и потенциальной энергии постоянна",
+        "en": "Kinetic + potential energy stays constant"
+      },
+      "steps": [
+        {
+          "key": "perihelion",
+          "title": {
+            "ky": "Перигелий",
+            "ru": "Перигелий",
+            "en": "Perihelion"
+          },
+          "result": {
+            "ky": "147,1 млн км, ≈30,3 км/с",
+            "ru": "147,1 млн км, ≈30,3 км/с",
+            "en": "147.1 million km, ≈30.3 km/s"
+          },
+          "description": {
+            "ky": "Январдын башында Жер Күнгө эң жакын жана эң ылдам кыймылдайт.",
+            "ru": "В начале января Земля ближе всего к Солнцу и движется быстрее всего.",
+            "en": "In early January the Earth is closest to the Sun and moves fastest."
+          },
+          "conceptKey": "astro.earth",
+          "altText": {
+            "ky": "Жер орбитанын Күнгө жакын чекитинде.",
+            "ru": "Земля в ближайшей к Солнцу точке орбиты.",
+            "en": "The Earth at the point of its orbit nearest the Sun."
+          },
+          "duration": 2
+        },
+        {
+          "key": "equal-areas",
+          "title": {
+            "ky": "Бирдей аянттар",
+            "ru": "Равные площади",
+            "en": "Equal areas"
+          },
+          "result": {
+            "ky": "Бирдей убакытта – бирдей аянт",
+            "ru": "За равное время – равные площади",
+            "en": "Equal areas in equal times"
+          },
+          "description": {
+            "ky": "Күндөн Жерге чейинки кесинди бирдей убакыттарда бирдей аянттарды «сызат» – Кеплердин экинчи мыйзамы.",
+            "ru": "Отрезок «Солнце – Земля» за равные промежутки времени заметает равные площади – второй закон Кеплера.",
+            "en": "The line from the Sun to the Earth sweeps out equal areas in equal times – Kepler's second law."
+          },
+          "conceptKey": "astro.orbit",
+          "altText": {
+            "ky": "Орбитада боёлгон эки бирдей аянттуу сектор.",
+            "ru": "Два закрашенных сектора равной площади на орбите.",
+            "en": "Two shaded sectors of equal area on the orbit."
+          },
+          "duration": 3
+        },
+        {
+          "key": "aphelion",
+          "title": {
+            "ky": "Афелий",
+            "ru": "Афелий",
+            "en": "Aphelion"
+          },
+          "result": {
+            "ky": "152,1 млн км, ≈29,3 км/с",
+            "ru": "152,1 млн км, ≈29,3 км/с",
+            "en": "152.1 million km, ≈29.3 km/s"
+          },
+          "description": {
+            "ky": "Июлдун башында Жер Күндөн эң алыс жана эң жай кыймылдайт – бирок бизде бул учурда жай.",
+            "ru": "В начале июля Земля дальше всего от Солнца и движется медленнее всего – а у нас в это время лето.",
+            "en": "In early July the Earth is farthest from the Sun and moves slowest – yet it is summer for us."
+          },
+          "conceptKey": "astro.earth",
+          "altText": {
+            "ky": "Жер орбитанын Күндөн эң алыс чекитинде.",
+            "ru": "Земля в самой далёкой от Солнца точке орбиты.",
+            "en": "The Earth at the point of its orbit farthest from the Sun."
+          },
+          "duration": 2
+        },
+        {
+          "key": "full-year",
+          "title": {
+            "ky": "Толук айлануу",
+            "ru": "Полный оборот",
+            "en": "One full orbit"
+          },
+          "result": {
+            "ky": "365,25 күн",
+            "ru": "365,25 суток",
+            "en": "365.25 days"
+          },
+          "description": {
+            "ky": "Жер Күндү бир жылда айланып чыгат. Кеплердин үчүнчү мыйзамы боюнча алыскы планеталардын жылы узунураак: T² = a³.",
+            "ru": "Земля делает полный оборот вокруг Солнца за год. По третьему закону Кеплера год дальних планет длиннее: T² = a³.",
+            "en": "The Earth completes one orbit in a year. By Kepler's third law, more distant planets have longer years: T² = a³."
+          },
+          "conceptKey": "astro.sun",
+          "altText": {
+            "ky": "Күндүн айланасындагы толук эллипс орбита.",
+            "ru": "Полная эллиптическая орбита вокруг Солнца.",
+            "en": "A complete elliptical orbit around the Sun."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "distance",
+          "label": {
+            "ky": "Күнгө чейинки аралык",
+            "ru": "Расстояние до Солнца",
+            "en": "Distance to the Sun"
+          },
+          "unit": "AU",
+          "min": 0.98,
+          "max": 1.02,
+          "precision": 3
+        },
+        {
+          "key": "speed",
+          "label": {
+            "ky": "Орбиталык ылдамдык",
+            "ru": "Орбитальная скорость",
+            "en": "Orbital speed"
+          },
+          "unit": "km/s",
+          "min": 29,
+          "max": 31,
+          "precision": 1
+        },
+        {
+          "key": "elapsed",
+          "label": {
+            "ky": "Өткөн убакыт",
+            "ru": "Прошло времени",
+            "en": "Time elapsed"
+          },
+          "unit": "d",
+          "min": 0,
+          "max": 365.25,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "gmSunKm3PerS2": 132712440018,
+        "semiMajorAxisAu": 1,
+        "eccentricity": 0.0167,
+        "auKm": 149597871
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "astro.q.largest",
+      "type": "single",
+      "prompt": {
+        "ky": "Күн системасындагы эң чоң планета кайсы?",
+        "ru": "Какая планета Солнечной системы самая большая?",
+        "en": "Which is the largest planet in the Solar System?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Сатурн",
+            "ru": "Сатурн",
+            "en": "Saturn"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Юпитер",
+            "ru": "Юпитер",
+            "en": "Jupiter"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жер",
+            "ru": "Земля",
+            "en": "Earth"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Марс",
+            "ru": "Марс",
+            "en": "Mars"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Юпитердин радиусу ≈69 911 км – Жердикинен 11 эсе чоң.",
+        "ru": "Радиус Юпитера ≈69 911 км – в 11 раз больше земного.",
+        "en": "Jupiter's radius is ≈69,911 km – 11 times the Earth's."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "astro.q.gas-giants",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсылары газ гиганттары?",
+        "ru": "Какие из планет – газовые гиганты?",
+        "en": "Which of these planets are gas giants?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Юпитер",
+            "ru": "Юпитер",
+            "en": "Jupiter"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Марс",
+            "ru": "Марс",
+            "en": "Mars"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Сатурн",
+            "ru": "Сатурн",
+            "en": "Saturn"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Жер",
+            "ru": "Земля",
+            "en": "Earth"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Юпитер жана Сатурн негизинен суутек менен гелийден турат; Жер жана Марс – таштуу планеталар.",
+        "ru": "Юпитер и Сатурн состоят в основном из водорода и гелия; Земля и Марс – каменные планеты.",
+        "en": "Jupiter and Saturn are mostly hydrogen and helium; the Earth and Mars are rocky planets."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "misconceptionKey": "astro.m.gas-giant-landing",
+      "difficulty": 2
+    },
+    {
+      "key": "astro.q.match-planets",
+      "type": "match",
+      "prompt": {
+        "ky": "Планетаны анын өзгөчөлүгү менен дал келтир.",
+        "ru": "Сопоставь планету и её особенность.",
+        "en": "Match each planet to its feature."
+      },
+      "pairs": [
+        {
+          "key": "earth",
+          "left": {
+            "ky": "Жер",
+            "ru": "Земля",
+            "en": "Earth"
+          },
+          "right": {
+            "ky": "Суюк суу жана жашоо",
+            "ru": "Жидкая вода и жизнь",
+            "en": "Liquid water and life"
+          }
+        },
+        {
+          "key": "mars",
+          "left": {
+            "ky": "Марс",
+            "ru": "Марс",
+            "en": "Mars"
+          },
+          "right": {
+            "ky": "Дат баскан кызыл топурак",
+            "ru": "Ржавый красный грунт",
+            "en": "Rusty red soil"
+          }
+        },
+        {
+          "key": "jupiter",
+          "left": {
+            "ky": "Юпитер",
+            "ru": "Юпитер",
+            "en": "Jupiter"
+          },
+          "right": {
+            "ky": "Чоң Кызыл Так",
+            "ru": "Большое Красное Пятно",
+            "en": "The Great Red Spot"
+          }
+        },
+        {
+          "key": "saturn",
+          "left": {
+            "ky": "Сатурн",
+            "ru": "Сатурн",
+            "en": "Saturn"
+          },
+          "right": {
+            "ky": "Жаркыраган шакекчелер",
+            "ru": "Яркие кольца",
+            "en": "Bright rings"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Ар бир планетанын өз «визит карточкасы» бар.",
+        "ru": "У каждой планеты своя «визитная карточка».",
+        "en": "Each planet has its own calling card."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "misconceptionKey": "astro.m.rings-solid",
+      "difficulty": 2
+    },
+    {
+      "key": "astro.q.find-mars",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден кызыл планетаны тап.",
+        "ru": "Найди на модели Красную планету.",
+        "en": "Find the Red Planet on the model."
+      },
+      "targetConceptKey": "astro.mars",
+      "explanation": {
+        "ky": "Марс – Күндөн төртүнчү планета, Жерден кийинки.",
+        "ru": "Марс – четвёртая планета от Солнца, следующая после Земли.",
+        "en": "Mars is the fourth planet from the Sun, right after the Earth."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "misconceptionKey": "astro.m.mars-hot",
+      "difficulty": 1
+    },
+    {
+      "key": "astro.q.kepler-mars",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Марстын орбитасынын чоң жарым огу 1,52 а. б. Кеплердин үчүнчү мыйзамы (T² = a³) боюнча анын жылы канча Жер жылына барабар?",
+        "ru": "Большая полуось орбиты Марса 1,52 а. е. Сколько земных лет длится год на Марсе по третьему закону Кеплера (T² = a³)?",
+        "en": "Mars's orbit has a semi-major axis of 1.52 AU. Using Kepler's third law (T² = a³), how many Earth years long is a Martian year?"
+      },
+      "answer": 1.87,
+      "tolerance": 0.05,
+      "unit": "yr",
+      "explanation": {
+        "ky": "T = √(1,52³) = √3,51 ≈ 1,87 жыл ≈ 687 күн.",
+        "ru": "T = √(1,52³) = √3,51 ≈ 1,87 года ≈ 687 суток.",
+        "en": "T = √(1.52³) = √3.51 ≈ 1.87 years ≈ 687 days."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "difficulty": 4
+    },
+    {
+      "key": "astro.q.light-time",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Күндөн Жерге чейин 149,6 млн км, жарыктын ылдамдыгы ≈300 000 км/с. Күндүн жарыгы Жерге канча мүнөттө жетет?",
+        "ru": "От Солнца до Земли 149,6 млн км, скорость света ≈300 000 км/с. За сколько минут свет Солнца доходит до Земли?",
+        "en": "The Sun is 149.6 million km away and light travels at ≈300,000 km/s. How many minutes does sunlight take to reach the Earth?"
+      },
+      "answer": 8.3,
+      "tolerance": 0.3,
+      "unit": "min",
+      "explanation": {
+        "ky": "149 600 000 / 300 000 ≈ 499 с ≈ 8,3 мүнөт.",
+        "ru": "149 600 000 / 300 000 ≈ 499 с ≈ 8,3 минуты.",
+        "en": "149,600,000 / 300,000 ≈ 499 s ≈ 8.3 minutes."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "astro.q.what-holds",
+      "type": "single",
+      "prompt": {
+        "ky": "Планеталарды орбитада эмне кармап турат?",
+        "ru": "Что удерживает планеты на орбитах?",
+        "en": "What keeps the planets in their orbits?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Күндүн тартылуу күчү",
+            "ru": "Сила притяжения Солнца",
+            "en": "The Sun's gravity"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Космостогу аба",
+            "ru": "Воздух в космосе",
+            "en": "Air in space"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эч нерсе – космосто тартылуу жок",
+            "ru": "Ничего – в космосе нет притяжения",
+            "en": "Nothing – there is no gravity in space"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Күндүн тартылуусу планетанын жолун ийип турат; ансыз ал түз сызык менен учуп кетмек.",
+        "ru": "Притяжение Солнца всё время искривляет путь планеты; без него она улетела бы по прямой.",
+        "en": "The Sun's gravity keeps bending each planet's path; without it the planet would fly off in a straight line."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "misconceptionKey": "astro.m.no-gravity-space",
+      "difficulty": 2
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-astro-sun",
+      "ky": "Күн",
+      "ru": "Солнце",
+      "en": "Sun",
+      "forbidden": [],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-moon",
+      "ky": "Ай",
+      "ru": "Луна",
+      "en": "Moon",
+      "forbidden": [],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-planet",
+      "ky": "планета",
+      "ru": "планета",
+      "en": "planet",
+      "forbidden": [],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-satellite",
+      "ky": "жандооч",
+      "ru": "спутник",
+      "en": "satellite",
+      "forbidden": [
+        "sattelite"
+      ],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-orbit",
+      "ky": "орбита",
+      "ru": "орбита",
+      "en": "orbit",
+      "forbidden": [
+        "orbite"
+      ],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-solar-system",
+      "ky": "Күн системасы",
+      "ru": "Солнечная система",
+      "en": "Solar System",
+      "forbidden": [
+        "солнечная системма"
+      ],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-phase",
+      "ky": "Айдын фазасы",
+      "ru": "фаза Луны",
+      "en": "lunar phase",
+      "forbidden": [],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-new-moon",
+      "ky": "жаңы ай",
+      "ru": "новолуние",
+      "en": "new moon",
+      "forbidden": [],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-full-moon",
+      "ky": "толгон ай",
+      "ru": "полнолуние",
+      "en": "full moon",
+      "forbidden": [],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-lunar-eclipse",
+      "ky": "Айдын тутулушу",
+      "ru": "лунное затмение",
+      "en": "lunar eclipse",
+      "forbidden": [
+        "лунное затемнение",
+        "moon eclipse"
+      ],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-au",
+      "ky": "астрономиялык бирдик",
+      "ru": "астрономическая единица",
+      "en": "astronomical unit",
+      "forbidden": [],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-gas-giant",
+      "ky": "газ гиганты",
+      "ru": "газовый гигант",
+      "en": "gas giant",
+      "forbidden": [],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-solstice",
+      "ky": "күн токтоо",
+      "ru": "солнцестояние",
+      "en": "solstice",
+      "forbidden": [
+        "солнцестоянье",
+        "solistice"
+      ],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-equinox",
+      "ky": "күн-түн теңелүү",
+      "ru": "равноденствие",
+      "en": "equinox",
+      "forbidden": [
+        "равноденствье"
+      ],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-equator",
+      "ky": "экватор",
+      "ru": "экватор",
+      "en": "equator",
+      "forbidden": [
+        "equador"
+      ],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-axial-tilt",
+      "ky": "огунун жантаюусу",
+      "ru": "наклон оси",
+      "en": "axial tilt",
+      "forbidden": [],
+      "approvedBy": "editor-astro"
+    },
+    {
+      "id": "g-astro-season",
+      "ky": "жыл мезгили",
+      "ru": "время года",
+      "en": "season",
+      "forbidden": [],
+      "approvedBy": "editor-astro"
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "angle",
+      "icon": "triangle-right",
+      "valueKind": "quantity",
+      "unit": "°",
+      "label": {
+        "ky": "Бурчу",
+        "ru": "Угол",
+        "en": "Angle"
+      }
+    },
+    {
+      "key": "composition",
+      "icon": "flask-conical",
+      "valueKind": "text",
+      "label": {
+        "ky": "Курамы",
+        "ru": "Состав",
+        "en": "Composition"
+      }
+    },
+    {
+      "key": "distance",
+      "icon": "move-horizontal",
+      "valueKind": "quantity",
+      "unit": "km",
+      "label": {
+        "ky": "Аралык",
+        "ru": "Расстояние",
+        "en": "Distance"
+      }
+    },
+    {
+      "key": "gravity",
+      "icon": "arrow-down",
+      "valueKind": "quantity",
+      "unit": "m/s²",
+      "label": {
+        "ky": "Эркин түшүү ылдамдануусу",
+        "ru": "Ускорение свободного падения",
+        "en": "Surface gravity"
+      }
+    },
+    {
+      "key": "moons",
+      "icon": "moon",
+      "valueKind": "quantity",
+      "label": {
+        "ky": "Жандоочтору",
+        "ru": "Спутники",
+        "en": "Moons"
+      }
+    },
+    {
+      "key": "orbitalPeriod",
+      "icon": "orbit",
+      "valueKind": "quantity",
+      "unit": "d",
+      "label": {
+        "ky": "Айлануу мезгили",
+        "ru": "Период обращения",
+        "en": "Orbital period"
+      }
+    },
+    {
+      "key": "period",
+      "icon": "timer",
+      "valueKind": "quantity",
+      "unit": "s",
+      "label": {
+        "ky": "Мезгили",
+        "ru": "Период",
+        "en": "Period"
+      }
+    },
+    {
+      "key": "radius",
+      "icon": "circle-dot",
+      "valueKind": "quantity",
+      "unit": "km",
+      "label": {
+        "ky": "Радиусу",
+        "ru": "Радиус",
+        "en": "Radius"
+      }
+    },
+    {
+      "key": "speed",
+      "icon": "gauge",
+      "valueKind": "quantity",
+      "unit": "m/s",
+      "label": {
+        "ky": "Ылдамдыгы",
+        "ru": "Скорость",
+        "en": "Speed"
+      }
+    }
+  ]
+}

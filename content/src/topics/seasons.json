@@ -1,0 +1,784 @@
+{
+  "topic": {
+    "key": "seasons",
+    "unitKey": "astro.g11.solar-system",
+    "status": "published",
+    "title": {
+      "ky": "Жыл мезгилдери",
+      "ru": "Времена года",
+      "en": "The seasons"
+    },
+    "classification": {
+      "ky": "Жер – Күн системасы",
+      "ru": "Система Земля – Солнце",
+      "en": "Earth–Sun system"
+    },
+    "description": {
+      "ky": "Жыл мезгилдери Жер Күнгө жакындап же алыстаганы үчүн эмес, анын огу 23,44°ка жантайганы үчүн алмашат. Жарым шар Күнгө ыңгайланганда Күн бийик көтөрүлүп, күн узун болот – жай келет.",
+      "ru": "Времена года меняются не потому, что Земля приближается к Солнцу или удаляется от него, а потому, что её ось наклонена на 23,44°. Когда полушарие наклонено к Солнцу, оно поднимается выше, дни длиннее – наступает лето.",
+      "en": "Seasons change not because the Earth moves closer to or farther from the Sun, but because its axis is tilted 23.44°. When a hemisphere leans towards the Sun, the Sun climbs higher and days are longer – it is summer."
+    },
+    "goal": {
+      "ky": "Жыл мезгилдеринин себебин октун жантаюусу менен түшүндүрүү жана Бишкектеги Күндүн бийиктигин жана күндүн узактыгын салыштыруу (AST-11.3.1).",
+      "ru": "Объяснить смену времён года наклоном оси и сравнить высоту Солнца и долготу дня в Бишкеке (AST-11.3.1).",
+      "en": "Explain the seasons by the axial tilt and compare the Sun's height and day length in Bishkek (AST-11.3.1)."
+    },
+    "objectiveKeys": [
+      "astro.g11.solar-system.o1"
+    ],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "seasons",
+        "axialTiltDeg": 23.44,
+        "observerLatitudeDeg": 42.9,
+        "orbitPoints": [
+          "march-equinox",
+          "june-solstice",
+          "september-equinox",
+          "december-solstice"
+        ],
+        "showSunRays": true
+      },
+      "camera": {
+        "position": [
+          0,
+          8,
+          12
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "orbits",
+        "sun-rays"
+      ]
+    },
+    "conceptKeys": [
+      "astro.earth",
+      "astro.sun",
+      "astro.axial-tilt",
+      "astro.equator",
+      "astro.solstice",
+      "astro.equinox",
+      "astro.day-length"
+    ],
+    "overrides": {
+      "astro.earth": {
+        "nodes": [
+          "Earth"
+        ]
+      },
+      "astro.sun": {
+        "anchor": [
+          0,
+          0,
+          0
+        ],
+        "nodes": [
+          "Sun"
+        ]
+      },
+      "astro.axial-tilt": {
+        "nodes": [
+          "Axis"
+        ]
+      },
+      "astro.equator": {
+        "nodes": [
+          "Equator"
+        ]
+      },
+      "astro.solstice": {
+        "nodes": [
+          "Point_solstice_*",
+          "Tropic_*"
+        ]
+      },
+      "astro.equinox": {
+        "nodes": [
+          "Point_equinox_*"
+        ]
+      },
+      "astro.day-length": {
+        "nodes": [
+          "DayNight"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "seasons",
+        "title": {
+          "ky": "Жыл мезгилдери",
+          "ru": "Времена года",
+          "en": "The seasons"
+        },
+        "classification": {
+          "ky": "Орбитанын 4 чекити",
+          "ru": "4 точки орбиты",
+          "en": "4 points of the orbit"
+        },
+        "thumb": "thumbs/seasons.webp"
+      },
+      {
+        "key": "sun-height-bishkek",
+        "title": {
+          "ky": "Бишкектеги Күндүн бийиктиги",
+          "ru": "Высота Солнца в Бишкеке",
+          "en": "Sun height in Bishkek"
+        },
+        "classification": {
+          "ky": "23,7°тан 70,5°ка чейин",
+          "ru": "От 23,7° до 70,5°",
+          "en": "From 23.7° to 70.5°"
+        },
+        "thumb": "thumbs/sun-height-bishkek.webp"
+      },
+      {
+        "key": "solar-system",
+        "title": {
+          "ky": "Күн системасы",
+          "ru": "Солнечная система",
+          "en": "Solar System"
+        },
+        "classification": {
+          "ky": "8 планета",
+          "ru": "8 планет",
+          "en": "8 planets"
+        },
+        "thumb": "thumbs/solar-system.webp",
+        "topicKey": "solar-system"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                8,
+                12
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "orbits": true
+            },
+            "text": {
+              "ky": "Жер Күндү бир жылда айланат. Анын огу 23,44° жантайган жана дайыма бир багытты карайт.",
+              "ru": "Земля обходит Солнце за год. Её ось наклонена на 23,44° и всегда смотрит в одну сторону.",
+              "en": "The Earth goes around the Sun once a year. Its axis is tilted 23.44° and always points the same way."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: жайында Жер Күнгө жакынбы же алыспы?",
+              "ru": "Спросите: летом Земля ближе к Солнцу или дальше?",
+              "en": "Ask: is the Earth closer to the Sun in summer or farther away?"
+            },
+            "altText": {
+              "ky": "Күн жана анын айланасындагы орбитада төрт абалдагы Жер.",
+              "ru": "Солнце и Земля в четырёх положениях на орбите.",
+              "en": "The Sun and the Earth at four positions on its orbit."
+            }
+          },
+          {
+            "key": "tilt",
+            "camera": {
+              "position": [
+                2,
+                1.5,
+                4
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "focus": "astro.axial-tilt",
+            "text": {
+              "ky": "Ок 23,44°ка жантайган. Ушул жантаюудан улам жарым шарлар Күнгө кезек менен ыңгайланат.",
+              "ru": "Ось наклонена на 23,44°. Из-за этого полушария по очереди наклоняются к Солнцу.",
+              "en": "The axis is tilted 23.44°. Because of this, the hemispheres take turns leaning towards the Sun."
+            },
+            "teacherNote": {
+              "ky": "Глобусту көрсөтүп, анын огу да кыйшык экенин белгилеңиз.",
+              "ru": "Покажите глобус: его ось тоже наклонена.",
+              "en": "Show a globe: its axis is tilted too."
+            },
+            "altText": {
+              "ky": "Уюлдардан өткөн кыйшык сызык менен Жер.",
+              "ru": "Земля с наклонной осью через полюсы.",
+              "en": "The Earth with a tilted line through its poles."
+            }
+          },
+          {
+            "key": "equator",
+            "focus": "astro.equator",
+            "text": {
+              "ky": "Экватор Жерди эки жарым шарга бөлөт. Күн-түн теңелүүдө Күн чак түштө экватордун үстүндө тике турат.",
+              "ru": "Экватор делит Землю на два полушария. В равноденствие Солнце в полдень стоит в зените над экватором.",
+              "en": "The equator divides the Earth into two hemispheres. At the equinoxes the noon Sun is overhead at the equator."
+            },
+            "teacherNote": {
+              "ky": "Фонарь менен тажрыйба: тике нур кичине, бирок жаркыраак так берет.",
+              "ru": "Опыт с фонариком: прямой луч даёт маленькое, но яркое пятно.",
+              "en": "Torch demo: a straight-down beam makes a small but bright spot."
+            },
+            "altText": {
+              "ky": "Жердин ортосундагы жашыл сызык – экватор.",
+              "ru": "Зелёная линия посередине Земли – экватор.",
+              "en": "A green line around the middle of the Earth – the equator."
+            }
+          },
+          {
+            "key": "june",
+            "camera": {
+              "position": [
+                6,
+                2,
+                3
+              ],
+              "target": [
+                4,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "sun-rays": true
+            },
+            "focus": "astro.solstice",
+            "text": {
+              "ky": "Жайкы күн токтоо (≈21-июнь): Бишкекте Күн чак түштө 70,5°ка көтөрүлөт, күн 15 сааттан ашык.",
+              "ru": "Летнее солнцестояние (≈21 июня): в Бишкеке Солнце в полдень поднимается на 70,5°, день длится больше 15 часов.",
+              "en": "June solstice (≈21 June): in Bishkek the noon Sun climbs to 70.5° and the day lasts over 15 hours."
+            },
+            "teacherNote": {
+              "ky": "Ушул учурда Жер Күндөн эң алыс абалга жакын экенин айтып бериңиз.",
+              "ru": "Отметьте, что в это время Земля почти в самой дальней от Солнца точке.",
+              "en": "Point out that the Earth is near its farthest point from the Sun at this time."
+            },
+            "altText": {
+              "ky": "Түндүк уюлу Күнгө карай жантайган Жер.",
+              "ru": "Земля, наклонённая Северным полюсом к Солнцу.",
+              "en": "The Earth with its North Pole tipped towards the Sun."
+            }
+          },
+          {
+            "key": "equinox",
+            "camera": {
+              "position": [
+                3,
+                2,
+                6
+              ],
+              "target": [
+                0,
+                0,
+                4
+              ]
+            },
+            "focus": "astro.equinox",
+            "text": {
+              "ky": "Күн-түн теңелүүдө (≈20-март, ≈22–23-сентябрь) Бишкекте Күн чак түштө 47,1°та, күн менен түн дээрлик барабар.",
+              "ru": "В равноденствия (≈20 марта, ≈22–23 сентября) Солнце в Бишкеке в полдень на высоте 47,1°, день почти равен ночи.",
+              "en": "At the equinoxes (≈20 March, ≈22–23 September) the noon Sun in Bishkek is at 47.1° and day almost equals night."
+            },
+            "teacherNote": {
+              "ky": "Нооруздун күн-түн теңелүү менен байланышын айтып бериңиз.",
+              "ru": "Расскажите о связи Нооруза с равноденствием.",
+              "en": "Mention how Nooruz is tied to the spring equinox."
+            },
+            "altText": {
+              "ky": "Огу Күнгө карата каптал жакты караган Жер.",
+              "ru": "Земля, ось которой направлена вбок относительно Солнца.",
+              "en": "The Earth with its axis pointing sideways to the Sun."
+            }
+          },
+          {
+            "key": "december",
+            "camera": {
+              "position": [
+                -6,
+                2,
+                3
+              ],
+              "target": [
+                -4,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "sun-rays": true
+            },
+            "focus": "astro.solstice",
+            "text": {
+              "ky": "Кышкы күн токтоо (≈21–22-декабрь): Бишкекте Күн 23,7°ка гана көтөрүлөт, күн 9 саатка жакын. Бирок январдын башында Жер Күнгө эң жакын!",
+              "ru": "Зимнее солнцестояние (≈21–22 декабря): в Бишкеке Солнце поднимается лишь на 23,7°, день около 9 часов. А в начале января Земля ближе всего к Солнцу!",
+              "en": "December solstice (≈21–22 December): in Bishkek the Sun rises only to 23.7° and the day lasts about 9 hours. Yet in early January the Earth is closest to the Sun!"
+            },
+            "teacherNote": {
+              "ky": "Ушул жерде «аралык» деген туура эмес ойду толук жокко чыгарыңыз.",
+              "ru": "Здесь окончательно опровергните идею «дело в расстоянии».",
+              "en": "Use this step to put the distance myth to rest."
+            },
+            "altText": {
+              "ky": "Түндүк уюлу Күндөн тескери жантайган Жер.",
+              "ru": "Земля, наклонённая Северным полюсом от Солнца.",
+              "en": "The Earth with its North Pole tipped away from the Sun."
+            }
+          },
+          {
+            "key": "day-length",
+            "focus": "astro.day-length",
+            "text": {
+              "ky": "Ошентип, жарым шар Күнгө ыңгайланганда күн узун жана Күн бийик – жай; тескери жантайганда – кыш.",
+              "ru": "Итак, когда полушарие наклонено к Солнцу, дни длинные и Солнце высоко – лето; когда от Солнца – зима.",
+              "en": "So when a hemisphere leans towards the Sun, days are long and the Sun is high – summer; when it leans away – winter."
+            },
+            "teacherNote": {
+              "ky": "«Жыл мезгилдеринин алмашуусу» процессин ачып, метрикаларды салыштырыңыз.",
+              "ru": "Откройте процесс «Смена времён года» и сравните показатели.",
+              "en": "Open the «How the seasons change» process and compare the metrics."
+            },
+            "altText": {
+              "ky": "Күн жана түн бөлүктөрү көрсөтүлгөн Жер.",
+              "ru": "Земля с отмеченными дневной и ночной частями.",
+              "en": "The Earth showing its day and night sides."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "astro.seasons-orbit"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "astro.solstice"
+          },
+          {
+            "kind": "concept",
+            "key": "astro.equinox"
+          }
+        ],
+        "rows": [
+          "angle",
+          "count",
+          "location"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "astro.q.season-cause",
+          "astro.q.summer-signs",
+          "astro.q.match-dates",
+          "astro.q.find-equator",
+          "astro.q.noon-june",
+          "astro.q.perihelion-month",
+          "astro.q.equinox-day"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "e",
+          "title": {
+            "ky": "Күн панелдери",
+            "ru": "Солнечные панели",
+            "en": "Solar panels"
+          },
+          "text": {
+            "ky": "Бишкекте күн панелинин эң жакшы бурчу жыл мезгилине жараша өзгөрөт: кышында Күн төмөн, ошондуктан панелди тигирээк коюшат.",
+            "ru": "В Бишкеке лучший угол солнечной панели зависит от сезона: зимой Солнце низко, поэтому панель ставят круче.",
+            "en": "In Bishkek the best solar panel angle depends on the season: the winter Sun is low, so panels are set steeper."
+          }
+        },
+        {
+          "field": "s",
+          "title": {
+            "ky": "Айыл чарба",
+            "ru": "Сельское хозяйство",
+            "en": "Farming"
+          },
+          "text": {
+            "ky": "Дыйкандар Чүй өрөөнүндө эгинди күн узарып, топурак жылыган убакта себишет – бул жыл мезгилдерине байланыштуу.",
+            "ru": "Фермеры Чуйской долины сеют, когда дни удлиняются и почва прогревается, – это связано со сменой сезонов.",
+            "en": "Farmers in the Chüy valley sow when days lengthen and the soil warms – all part of the seasons."
+          }
+        },
+        {
+          "field": "m",
+          "title": {
+            "ky": "Бурчту эсептөө",
+            "ru": "Расчёт угла",
+            "en": "Calculating the angle"
+          },
+          "text": {
+            "ky": "h = 90° − 42,9° + 23,44° ≈ 70,5° – Бишкектеги жайкы чак түштөгү Күндүн бийиктиги.",
+            "ru": "h = 90° − 42,9° + 23,44° ≈ 70,5° – высота полуденного Солнца в Бишкеке летом.",
+            "en": "h = 90° − 42.9° + 23.44° ≈ 70.5° – the summer noon Sun height in Bishkek."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Фонардын нуру",
+            "ru": "Луч фонарика",
+            "en": "A torch beam"
+          },
+          "text": {
+            "ky": "Фонарды тике түшүрсөң, так кичине жана жаркыраак; кыйшык түшүрсөң – чоң жана күңүрт. Жайында Күн нуру тикерээк түшөт.",
+            "ru": "Посвети фонариком прямо – пятно маленькое и яркое; наискосок – большое и тусклое. Летом солнечные лучи падают круче.",
+            "en": "Shine a torch straight down and the spot is small and bright; at a slant it is big and dim. In summer sunlight falls more steeply."
+          }
+        },
+        {
+          "title": {
+            "ky": "От жанындагы колдор",
+            "ru": "Руки у костра",
+            "en": "Hands by a fire"
+          },
+          "text": {
+            "ky": "Колуңду отко тике кармасаң тез жылыйт, капталынан кармасаң – жай. Жер да Күнгө «ыңгайланганда» көбүрөөк жылыйт.",
+            "ru": "Если держать ладони прямо к костру – греешься быстро, боком – медленно. Земля тоже сильнее прогревается, когда «повёрнута» к Солнцу.",
+            "en": "Hold your palms straight towards a fire and they warm fast; sideways and they warm slowly. The Earth warms more when it is turned towards the Sun."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "astro.q.season-cause",
+      "type": "single",
+      "prompt": {
+        "ky": "Жыл мезгилдеринин алмашуусунун негизги себеби эмне?",
+        "ru": "Какова главная причина смены времён года?",
+        "en": "What is the main cause of the seasons?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жер Күнгө жакындайт жана алыстайт",
+            "ru": "Земля то приближается к Солнцу, то удаляется",
+            "en": "The Earth moves closer to and farther from the Sun"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жердин огу 23,44° жантайган",
+            "ru": "Ось Земли наклонена на 23,44°",
+            "en": "The Earth's axis is tilted 23.44°"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Күн кээде күчтүүрөөк жанат",
+            "ru": "Солнце иногда светит сильнее",
+            "en": "The Sun sometimes shines more strongly"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Жантаюудан улам Күндүн бийиктиги жана күндүн узактыгы өзгөрөт; Жер январда Күнгө эң жакын, бирок бизде кыш.",
+        "ru": "Из-за наклона меняются высота Солнца и долгота дня; ближе всего к Солнцу Земля в январе, а у нас зима.",
+        "en": "The tilt changes the Sun's height and the day length; the Earth is closest to the Sun in January, yet it is winter for us."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "misconceptionKey": "astro.m.seasons-distance",
+      "difficulty": 2
+    },
+    {
+      "key": "astro.q.summer-signs",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Бишкекте жайында эмне болот?",
+        "ru": "Что происходит в Бишкеке летом?",
+        "en": "What happens in Bishkek in summer?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Күн чак түштө бийик көтөрүлөт",
+            "ru": "Солнце в полдень поднимается высоко",
+            "en": "The noon Sun is high"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Күн узун болот",
+            "ru": "Дни длинные",
+            "en": "Days are long"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жер Күнгө эң жакын",
+            "ru": "Земля ближе всего к Солнцу",
+            "en": "The Earth is closest to the Sun"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Күн нуру тикерээк түшөт",
+            "ru": "Лучи падают круче",
+            "en": "Sunlight falls more steeply"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": {
+        "ky": "Жайында Жер Күндөн алысыраак, бирок Түндүк жарым шар Күнгө ыңгайланган.",
+        "ru": "Летом Земля дальше от Солнца, но Северное полушарие наклонено к нему.",
+        "en": "In summer the Earth is farther from the Sun, but the Northern Hemisphere leans towards it."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "misconceptionKey": "astro.m.seasons-distance",
+      "difficulty": 3
+    },
+    {
+      "key": "astro.q.match-dates",
+      "type": "match",
+      "prompt": {
+        "ky": "Орбитанын чекитин датасы менен дал келтир.",
+        "ru": "Сопоставь точку орбиты и дату.",
+        "en": "Match each orbit point to its date."
+      },
+      "pairs": [
+        {
+          "key": "mar",
+          "left": {
+            "ky": "Жазкы күн-түн теңелүү",
+            "ru": "Весеннее равноденствие",
+            "en": "March equinox"
+          },
+          "right": {
+            "ky": "≈20-март",
+            "ru": "≈20 марта",
+            "en": "≈20 March"
+          }
+        },
+        {
+          "key": "jun",
+          "left": {
+            "ky": "Жайкы күн токтоо",
+            "ru": "Летнее солнцестояние",
+            "en": "June solstice"
+          },
+          "right": {
+            "ky": "≈21-июнь",
+            "ru": "≈21 июня",
+            "en": "≈21 June"
+          }
+        },
+        {
+          "key": "sep",
+          "left": {
+            "ky": "Күзгү күн-түн теңелүү",
+            "ru": "Осеннее равноденствие",
+            "en": "September equinox"
+          },
+          "right": {
+            "ky": "≈22–23-сентябрь",
+            "ru": "≈22–23 сентября",
+            "en": "≈22–23 September"
+          }
+        },
+        {
+          "key": "dec",
+          "left": {
+            "ky": "Кышкы күн токтоо",
+            "ru": "Зимнее солнцестояние",
+            "en": "December solstice"
+          },
+          "right": {
+            "ky": "≈21–22-декабрь",
+            "ru": "≈21–22 декабря",
+            "en": "≈21–22 December"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Төрт чекит орбитаны болжол менен төрт бирдей бөлүккө бөлөт – жыл мезгилдеринин астрономиялык башталышы.",
+        "ru": "Четыре точки делят орбиту примерно на четыре равные части – это астрономические начала сезонов.",
+        "en": "The four points split the orbit into roughly equal quarters – the astronomical starts of the seasons."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "astro.q.find-equator",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден Жерди эки жарым шарга бөлгөн сызыкты тап.",
+        "ru": "Найди на модели линию, которая делит Землю на два полушария.",
+        "en": "Find the line that divides the Earth into two hemispheres."
+      },
+      "targetConceptKey": "astro.equator",
+      "explanation": {
+        "ky": "Бул – экватор, 0° кеңдик.",
+        "ru": "Это экватор, 0° широты.",
+        "en": "That is the equator, 0° latitude."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "misconceptionKey": "astro.m.equator-closer-sun",
+      "difficulty": 1
+    },
+    {
+      "key": "astro.q.noon-june",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Бишкек ≈42,9° т. к. жайгашкан. Жайкы күн токтоодо чак түштө Күн канча градуска көтөрүлөт? (h = 90° − φ + 23,44°)",
+        "ru": "Бишкек находится на ≈42,9° с. ш. На какую высоту в градусах поднимается Солнце в полдень летнего солнцестояния? (h = 90° − φ + 23,44°)",
+        "en": "Bishkek is at ≈42.9° N. How high in degrees is the noon Sun on the June solstice? (h = 90° − φ + 23.44°)"
+      },
+      "answer": 70.5,
+      "tolerance": 0.5,
+      "unit": "°",
+      "explanation": {
+        "ky": "90 − 42,9 + 23,44 ≈ 70,5°. Кышкы күн токтоодо: 90 − 42,9 − 23,44 ≈ 23,7°.",
+        "ru": "90 − 42,9 + 23,44 ≈ 70,5°. В зимнее солнцестояние: 90 − 42,9 − 23,44 ≈ 23,7°.",
+        "en": "90 − 42.9 + 23.44 ≈ 70.5°. On the December solstice: 90 − 42.9 − 23.44 ≈ 23.7°."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "difficulty": 4
+    },
+    {
+      "key": "astro.q.perihelion-month",
+      "type": "single",
+      "prompt": {
+        "ky": "Жер Күнгө кайсы айда эң жакын болот?",
+        "ru": "В каком месяце Земля ближе всего к Солнцу?",
+        "en": "In which month is the Earth closest to the Sun?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Январь",
+            "ru": "Январь",
+            "en": "January"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Июль",
+            "ru": "Июль",
+            "en": "July"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Март",
+            "ru": "Март",
+            "en": "March"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Перигелий январдын башында (≈147 млн км) – Түндүк жарым шарда ал учурда кыш. Демек, аралык жыл мезгилин аныктабайт.",
+        "ru": "Перигелий – в начале января (≈147 млн км), когда в Северном полушарии зима. Значит, расстояние не определяет сезон.",
+        "en": "Perihelion is in early January (≈147 million km), during northern winter – so distance does not decide the season."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "misconceptionKey": "astro.m.seasons-distance",
+      "difficulty": 3
+    },
+    {
+      "key": "astro.q.equinox-day",
+      "type": "single",
+      "prompt": {
+        "ky": "Күн-түн теңелүү күнү чак түштө Күн кайсы жерде тике (зенитте) турат?",
+        "ru": "Где в полдень равноденствия Солнце стоит в зените?",
+        "en": "Where is the noon Sun directly overhead on an equinox?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Экватордо",
+            "ru": "На экваторе",
+            "en": "At the equator"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Түндүк уюлда",
+            "ru": "На Северном полюсе",
+            "en": "At the North Pole"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Бишкекте",
+            "ru": "В Бишкеке",
+            "en": "In Bishkek"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Күн-түн теңелүүдө огу Күнгө ыңгайланбайт, ошондуктан Күн экватордун үстүндө тике турат.",
+        "ru": "В равноденствие ось не наклонена к Солнцу, поэтому оно в зените над экватором.",
+        "en": "At an equinox the axis does not lean towards the Sun, so the Sun is overhead at the equator."
+      },
+      "objectiveKeys": [
+        "astro.g11.solar-system.o1"
+      ],
+      "misconceptionKey": "astro.m.equinox-exact",
+      "difficulty": 2
+    }
+  ]
+}

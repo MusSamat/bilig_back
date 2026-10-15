@@ -1,0 +1,559 @@
+{
+  "processes": [
+    {
+      "key": "phys.pendulum-oscillation",
+      "engine": "ode",
+      "icon": "activity",
+      "title": {
+        "ky": "Маятниктин термелүүсү",
+        "ru": "Колебания маятника",
+        "en": "Pendulum swing"
+      },
+      "description": {
+        "ky": "Чыгарылган жүк тең салмак абалынан өтүп, карама-каршы четке жетет да, кайра кайтат. Кыймыл теңдемеси сан менен чечилип, энергия жана ылдамдык формулалар боюнча эсептелет.",
+        "ru": "Отпущенный груз проходит положение равновесия, доходит до противоположного края и возвращается. Уравнение движения решается численно, энергия и скорость вычисляются по формулам.",
+        "en": "The released bob passes through equilibrium, reaches the opposite end and comes back. The equation of motion is solved numerically and energy and speed are computed from formulas."
+      },
+      "equation": "\\ddot\\theta = -\\frac{g}{l}\\sin\\theta,\\quad T = 2\\pi\\sqrt{l/g}",
+      "inputs": {
+        "ky": "l = 1 м, m = 0,2 кг, θ₀ = 10°, g = 9,81 м/с²",
+        "ru": "l = 1 м, m = 0,2 кг, θ₀ = 10°, g = 9,81 м/с²",
+        "en": "l = 1 m, m = 0.2 kg, θ₀ = 10°, g = 9.81 m/s²"
+      },
+      "outputs": {
+        "ky": "T ≈ 2,01 с, v_max ≈ 0,55 м/с",
+        "ru": "T ≈ 2,01 с, v_max ≈ 0,55 м/с",
+        "en": "T ≈ 2.01 s, v_max ≈ 0.55 m/s"
+      },
+      "energy": {
+        "ky": "Толук энергия E = mgl(1 − cos θ₀) ≈ 0,0298 Дж туруктуу",
+        "ru": "Полная энергия E = mgl(1 − cos θ₀) ≈ 0,0298 Дж сохраняется",
+        "en": "Total energy E = mgl(1 − cos θ₀) ≈ 0.0298 J is conserved"
+      },
+      "steps": [
+        {
+          "key": "release",
+          "title": {
+            "ky": "Жүктү коё берүү",
+            "ru": "Груз отпускают",
+            "en": "Release"
+          },
+          "result": {
+            "ky": "Eп = 0,0298 Дж, v = 0",
+            "ru": "Eп = 0,0298 Дж, v = 0",
+            "en": "PE = 0.0298 J, v = 0"
+          },
+          "description": {
+            "ky": "Жүк 10° бурчка четтетилип коё берилет. Ал бир заматка кыймылсыз: бардык энергия потенциалдык.",
+            "ru": "Груз отклонили на 10° и отпустили. На миг он неподвижен: вся энергия потенциальная.",
+            "en": "The bob is pulled out to 10° and let go. For an instant it is still: all the energy is potential."
+          },
+          "conceptKey": "phys.amplitude",
+          "altText": {
+            "ky": "Жүк оң жактагы четки чекитте, жип 10° бурчта.",
+            "ru": "Груз в правой крайней точке, нить под углом 10°.",
+            "en": "The bob at the right-hand end, the string at 10°."
+          },
+          "duration": 0.5
+        },
+        {
+          "key": "bottom",
+          "title": {
+            "ky": "Эң төмөнкү чекит",
+            "ru": "Нижняя точка",
+            "en": "Lowest point"
+          },
+          "result": {
+            "ky": "Eк = 0,0298 Дж, v ≈ 0,55 м/с",
+            "ru": "Eк = 0,0298 Дж, v ≈ 0,55 м/с",
+            "en": "KE = 0.0298 J, v ≈ 0.55 m/s"
+          },
+          "description": {
+            "ky": "T/4 ≈ 0,5 с өткөндө жүк тең салмак абалынан өтөт: ылдамдык эң чоң, бардык энергия кинетикалык.",
+            "ru": "Через T/4 ≈ 0,5 с груз проходит положение равновесия: скорость максимальна, вся энергия кинетическая.",
+            "en": "After T/4 ≈ 0.5 s the bob passes equilibrium: the speed is greatest and all the energy is kinetic."
+          },
+          "conceptKey": "phys.equilibrium",
+          "altText": {
+            "ky": "Жүк так илинүү чекитинин астында, ылдамдык жебеси эң узун.",
+            "ru": "Груз точно под точкой подвеса, стрелка скорости самая длинная.",
+            "en": "The bob straight below the pivot, the speed arrow at its longest."
+          },
+          "duration": 0.5
+        },
+        {
+          "key": "opposite",
+          "title": {
+            "ky": "Карама-каршы чет",
+            "ru": "Противоположный край",
+            "en": "Opposite end"
+          },
+          "result": {
+            "ky": "Eп = 0,0298 Дж, v = 0",
+            "ru": "Eп = 0,0298 Дж, v = 0",
+            "en": "PE = 0.0298 J, v = 0"
+          },
+          "description": {
+            "ky": "Жарым мезгилден кийин жүк сол жакта −10°ка жетип, кайра бир заматка токтойт.",
+            "ru": "Через полпериода груз доходит до −10° слева и снова на миг останавливается.",
+            "en": "After half a period the bob reaches −10° on the left and stops again for an instant."
+          },
+          "conceptKey": "phys.bob",
+          "altText": {
+            "ky": "Жүк сол жактагы четки чекитте.",
+            "ru": "Груз в левой крайней точке.",
+            "en": "The bob at the left-hand end."
+          },
+          "duration": 0.5
+        },
+        {
+          "key": "return",
+          "title": {
+            "ky": "Толук термелүү",
+            "ru": "Полное колебание",
+            "en": "Full swing"
+          },
+          "result": {
+            "ky": "T ≈ 2,01 с",
+            "ru": "T ≈ 2,01 с",
+            "en": "T ≈ 2.01 s"
+          },
+          "description": {
+            "ky": "Жүк кайра тең салмак абалынан өтүп, баштапкы чекитке кайтат. Бир толук термелүүгө T = 2π√(l/g) ≈ 2,01 с кетет.",
+            "ru": "Груз снова проходит равновесие и возвращается в начальную точку. Одно полное колебание длится T = 2π√(l/g) ≈ 2,01 с.",
+            "en": "The bob passes equilibrium again and returns to its start. One full swing takes T = 2π√(l/g) ≈ 2.01 s."
+          },
+          "conceptKey": "phys.bob",
+          "altText": {
+            "ky": "Жүк баштапкы оң жактагы чекитке кайтып келди.",
+            "ru": "Груз вернулся в начальную правую точку.",
+            "en": "The bob back at its starting point on the right."
+          },
+          "duration": 0.5
+        }
+      ],
+      "metrics": [
+        {
+          "key": "pe",
+          "label": {
+            "ky": "Потенциалдык энергия",
+            "ru": "Потенциальная энергия",
+            "en": "Potential energy"
+          },
+          "unit": "J",
+          "min": 0,
+          "max": 0.03,
+          "precision": 4
+        },
+        {
+          "key": "ke",
+          "label": {
+            "ky": "Кинетикалык энергия",
+            "ru": "Кинетическая энергия",
+            "en": "Kinetic energy"
+          },
+          "unit": "J",
+          "min": 0,
+          "max": 0.03,
+          "precision": 4
+        },
+        {
+          "key": "speed",
+          "label": {
+            "ky": "Ылдамдык",
+            "ru": "Скорость",
+            "en": "Speed"
+          },
+          "unit": "m/s",
+          "min": 0,
+          "max": 0.6,
+          "precision": 3
+        },
+        {
+          "key": "angle",
+          "label": {
+            "ky": "Четтөө бурчу",
+            "ru": "Угол отклонения",
+            "en": "Angle"
+          },
+          "unit": "°",
+          "min": -10,
+          "max": 10,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "length": 1,
+        "g": 9.81,
+        "mass": 0.2,
+        "amplitudeDeg": 10,
+        "damping": 0
+      }
+    },
+    {
+      "key": "phys.block-slide",
+      "engine": "ode",
+      "icon": "move-down-right",
+      "title": {
+        "ky": "Брусоктун тайгаланышы",
+        "ru": "Скольжение бруска",
+        "en": "Block sliding down"
+      },
+      "description": {
+        "ky": "Брусок 30° жантайма тегиздиктен сүрүлүү менен тайгаланат. Ылдамдануу Ньютондун экинчи мыйзамы боюнча эсептелет: a = g(sin α − μ cos α).",
+        "ru": "Брусок скользит с трением по плоскости с наклоном 30°. Ускорение находят по второму закону Ньютона: a = g(sin α − μ cos α).",
+        "en": "A block slides with friction down a 30° slope. Its acceleration follows from Newton's second law: a = g(sin α − μ cos α)."
+      },
+      "equation": "ma = mg\\sin\\alpha - \\mu mg\\cos\\alpha",
+      "inputs": {
+        "ky": "m = 2 кг, α = 30°, μ = 0,2, L = 3 м",
+        "ru": "m = 2 кг, α = 30°, μ = 0,2, L = 3 м",
+        "en": "m = 2 kg, α = 30°, μ = 0.2, L = 3 m"
+      },
+      "outputs": {
+        "ky": "a ≈ 3,21 м/с², v ≈ 4,39 м/с ылдыйда",
+        "ru": "a ≈ 3,21 м/с², внизу v ≈ 4,39 м/с",
+        "en": "a ≈ 3.21 m/s², v ≈ 4.39 m/s at the bottom"
+      },
+      "energy": {
+        "ky": "Потенциалдык энергия mgh = 29,4 Дж кинетикалык энергияга жана сүрүлүүдөн жылуулукка айланат",
+        "ru": "Потенциальная энергия mgh = 29,4 Дж переходит в кинетическую и в тепло от трения",
+        "en": "Potential energy mgh = 29.4 J turns into kinetic energy and heat from friction"
+      },
+      "steps": [
+        {
+          "key": "hold",
+          "title": {
+            "ky": "Брусок токтоп турат",
+            "ru": "Брусок удерживают",
+            "en": "Held still"
+          },
+          "result": {
+            "ky": "v = 0, a = 0",
+            "ru": "v = 0, a = 0",
+            "en": "v = 0, a = 0"
+          },
+          "description": {
+            "ky": "Брусокту кол менен кармап турабыз: күчтөр теңделген, ошондуктан ал кыймылсыз (Ньютондун 1-мыйзамы).",
+            "ru": "Брусок держат рукой: силы скомпенсированы, поэтому он покоится (1-й закон Ньютона).",
+            "en": "A hand holds the block: the forces balance, so it stays at rest (Newton's first law)."
+          },
+          "conceptKey": "phys.block",
+          "altText": {
+            "ky": "Жантайма тегиздиктин үстүндөгү брусок, ага үч жебе-күч көрсөтүлгөн.",
+            "ru": "Брусок наверху наклонной плоскости, показаны три стрелки сил.",
+            "en": "The block at the top of the slope with three force arrows."
+          },
+          "duration": 1
+        },
+        {
+          "key": "release",
+          "title": {
+            "ky": "Коё берүү",
+            "ru": "Брусок отпустили",
+            "en": "Release"
+          },
+          "result": {
+            "ky": "F ≈ 6,41 Н, a ≈ 3,21 м/с²",
+            "ru": "F ≈ 6,41 Н, a ≈ 3,21 м/с²",
+            "en": "F ≈ 6.41 N, a ≈ 3.21 m/s²"
+          },
+          "description": {
+            "ky": "Тегиздик боюнча 9,81 Н ылдый тартат, сүрүлүү 3,40 Н каршы турат. Тең аракеттүү күч 6,41 Н, демек a = F/m ≈ 3,21 м/с² (2-мыйзам).",
+            "ru": "Вдоль плоскости вниз тянет 9,81 Н, трение 3,40 Н мешает. Равнодействующая 6,41 Н, значит a = F/m ≈ 3,21 м/с² (2-й закон).",
+            "en": "Along the slope 9.81 N pulls down and friction resists with 3.40 N. The net force is 6.41 N, so a = F/m ≈ 3.21 m/s² (second law)."
+          },
+          "conceptKey": "phys.net-force",
+          "altText": {
+            "ky": "Тегиздик боюнча ылдый караган тең аракеттүү күчтүн жебеси.",
+            "ru": "Стрелка равнодействующей вдоль плоскости вниз.",
+            "en": "The net-force arrow pointing down the slope."
+          },
+          "duration": 1
+        },
+        {
+          "key": "halfway",
+          "title": {
+            "ky": "Жолдун ортосу",
+            "ru": "Середина пути",
+            "en": "Halfway"
+          },
+          "result": {
+            "ky": "s = 1,5 м, v ≈ 3,10 м/с, t ≈ 0,97 с",
+            "ru": "s = 1,5 м, v ≈ 3,10 м/с, t ≈ 0,97 с",
+            "en": "s = 1.5 m, v ≈ 3.10 m/s, t ≈ 0.97 s"
+          },
+          "description": {
+            "ky": "Ылдамдануу туруктуу, ошондуктан ылдамдык убакыт менен бирдей өсөт: v = at.",
+            "ru": "Ускорение постоянно, поэтому скорость растёт равномерно: v = at.",
+            "en": "The acceleration is constant, so the speed grows steadily: v = at."
+          },
+          "conceptKey": "phys.friction-force",
+          "altText": {
+            "ky": "Брусок тегиздиктин ортосунда, сүрүлүү жебеси кыймылга каршы.",
+            "ru": "Брусок на середине склона, стрелка трения против движения.",
+            "en": "The block halfway down, the friction arrow pointing against the motion."
+          },
+          "duration": 1
+        },
+        {
+          "key": "bottom",
+          "title": {
+            "ky": "Ылдыйга жетти",
+            "ru": "Внизу",
+            "en": "At the bottom"
+          },
+          "result": {
+            "ky": "s = 3 м, v ≈ 4,39 м/с, t ≈ 1,37 с",
+            "ru": "s = 3 м, v ≈ 4,39 м/с, t ≈ 1,37 с",
+            "en": "s = 3 m, v ≈ 4.39 m/s, t ≈ 1.37 s"
+          },
+          "description": {
+            "ky": "Брусок тегиздикти басат – тегиздик да аны ошондой эле күч менен түртөт (3-мыйзам).",
+            "ru": "Брусок давит на плоскость, а плоскость с той же силой давит на брусок (3-й закон).",
+            "en": "The block pushes on the slope and the slope pushes back just as hard (third law)."
+          },
+          "conceptKey": "phys.normal-force",
+          "altText": {
+            "ky": "Брусок тегиздиктин этегинде, ылдамдык жебеси эң узун.",
+            "ru": "Брусок у основания склона, стрелка скорости самая длинная.",
+            "en": "The block at the foot of the slope, the speed arrow at its longest."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "speed",
+          "label": {
+            "ky": "Ылдамдык",
+            "ru": "Скорость",
+            "en": "Speed"
+          },
+          "unit": "m/s",
+          "min": 0,
+          "max": 4.5,
+          "precision": 2
+        },
+        {
+          "key": "distance",
+          "label": {
+            "ky": "Өткөн жол",
+            "ru": "Пройденный путь",
+            "en": "Distance"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 3,
+          "precision": 2
+        },
+        {
+          "key": "acceleration",
+          "label": {
+            "ky": "Ылдамдануу",
+            "ru": "Ускорение",
+            "en": "Acceleration"
+          },
+          "unit": "m/s²",
+          "min": 0,
+          "max": 4,
+          "precision": 2
+        },
+        {
+          "key": "time",
+          "label": {
+            "ky": "Убакыт",
+            "ru": "Время",
+            "en": "Time"
+          },
+          "unit": "s",
+          "min": 0,
+          "max": 1.4,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "angleDeg": 30,
+        "mass": 2,
+        "mu": 0.2,
+        "g": 9.81,
+        "length": 3
+      }
+    },
+    {
+      "key": "phys.circuit-closing",
+      "engine": "timeline",
+      "icon": "zap",
+      "title": {
+        "ky": "Чынжырды туташтыруу",
+        "ru": "Замыкание цепи",
+        "en": "Closing the circuit"
+      },
+      "description": {
+        "ky": "Ачкычты басканда чынжырда электр талаасы дээрлик заматта пайда болуп, бардык эркин электрондор жай жыла баштайт; лампа күйөт.",
+        "ru": "При замыкании ключа в цепи почти мгновенно возникает электрическое поле, все свободные электроны начинают медленно дрейфовать, и лампа загорается.",
+        "en": "When the switch closes, an electric field appears in the circuit almost instantly, all free electrons begin to drift slowly and the lamp lights up."
+      },
+      "equation": "I = \\frac{U}{R} = \\frac{4{,}5\\,В}{9\\,Ом} = 0{,}5\\,А",
+      "inputs": {
+        "ky": "U = 4,5 В, R = 9 Ом",
+        "ru": "U = 4,5 В, R = 9 Ом",
+        "en": "U = 4.5 V, R = 9 Ω"
+      },
+      "outputs": {
+        "ky": "I = 0,5 А, P = 2,25 Вт",
+        "ru": "I = 0,5 А, P = 2,25 Вт",
+        "en": "I = 0.5 A, P = 2.25 W"
+      },
+      "energy": {
+        "ky": "Химиялык энергия → электр энергиясы → жарык жана жылуулук",
+        "ru": "Химическая энергия → электрическая → свет и тепло",
+        "en": "Chemical energy → electrical energy → light and heat"
+      },
+      "steps": [
+        {
+          "key": "open",
+          "title": {
+            "ky": "Ачкыч ачык",
+            "ru": "Ключ разомкнут",
+            "en": "Switch open"
+          },
+          "result": {
+            "ky": "I = 0",
+            "ru": "I = 0",
+            "en": "I = 0"
+          },
+          "description": {
+            "ky": "Чынжыр ажыратылган: ток жок, лампа өчүк. Вольтметр батарейканын учтарында 4,5 В көрсөтөт.",
+            "ru": "Цепь разомкнута: тока нет, лампа не горит. Вольтметр на батарейке показывает 4,5 В.",
+            "en": "The circuit is open: no current, the lamp is off. A voltmeter across the battery reads 4.5 V."
+          },
+          "conceptKey": "phys.switch",
+          "altText": {
+            "ky": "Ачкычтын тили көтөрүлгөн, лампа күйбөйт.",
+            "ru": "Ключ разомкнут, лампа погашена.",
+            "en": "The switch lever is up and the lamp is dark."
+          },
+          "duration": 1
+        },
+        {
+          "key": "close",
+          "title": {
+            "ky": "Ачкыч жабылды",
+            "ru": "Ключ замкнут",
+            "en": "Switch closed"
+          },
+          "result": {
+            "ky": "Талаа ≈ жарык ылдамдыгы менен тарайт",
+            "ru": "Поле распространяется почти со скоростью света",
+            "en": "The field spreads at nearly light speed"
+          },
+          "description": {
+            "ky": "Зымдарда электр талаасы дээрлик заматта пайда болот, ошондуктан бардык электрондор бир убакта кыймылдай баштайт.",
+            "ru": "В проводах почти мгновенно возникает электрическое поле, поэтому все электроны начинают двигаться одновременно.",
+            "en": "An electric field forms in the wires almost instantly, so all the electrons start moving together."
+          },
+          "conceptKey": "phys.wire",
+          "altText": {
+            "ky": "Ачкыч жабык, зымдар боюнча талаанын толкуну тарайт.",
+            "ru": "Ключ замкнут, по проводам бежит волна поля.",
+            "en": "The switch closed and a wave of field running along the wires."
+          },
+          "duration": 1
+        },
+        {
+          "key": "drift",
+          "title": {
+            "ky": "Электрондордун дрейфи",
+            "ru": "Дрейф электронов",
+            "en": "Electron drift"
+          },
+          "result": {
+            "ky": "v ≈ 0,1 мм/с",
+            "ru": "v ≈ 0,1 мм/с",
+            "en": "v ≈ 0.1 mm/s"
+          },
+          "description": {
+            "ky": "Электрондор батарейканын «−» уюлунан «+» уюлуна карай жай жылат. Ток күчү удаалаш чынжырдын бардык жеринде бирдей: амперметр 0,5 А көрсөтөт.",
+            "ru": "Электроны медленно дрейфуют от «−» к «+» батарейки. Сила тока одинакова во всей последовательной цепи: амперметр показывает 0,5 А.",
+            "en": "Electrons drift slowly from the battery's − terminal towards +. The current is the same all round the series circuit: the ammeter reads 0.5 A."
+          },
+          "conceptKey": "phys.ammeter",
+          "altText": {
+            "ky": "Зымдардагы майда чекит-электрондор жай жылат, амперметрде 0,5 А.",
+            "ru": "Точки-электроны медленно движутся по проводам, на амперметре 0,5 А.",
+            "en": "Dot-electrons creeping along the wires; the ammeter reads 0.5 A."
+          },
+          "duration": 2
+        },
+        {
+          "key": "glow",
+          "title": {
+            "ky": "Лампа күйөт",
+            "ru": "Лампа светится",
+            "en": "Lamp glows"
+          },
+          "result": {
+            "ky": "P = 2,25 Вт",
+            "ru": "P = 2,25 Вт",
+            "en": "P = 2.25 W"
+          },
+          "description": {
+            "ky": "Лампанын жипчеси ысып, жарык чыгарат. Лампадагы чыңалуу 4,5 В, кубаттуулук P = UI = 2,25 Вт.",
+            "ru": "Нить лампы раскаляется и светится. Напряжение на лампе 4,5 В, мощность P = UI = 2,25 Вт.",
+            "en": "The filament heats up and glows. The voltage across the lamp is 4.5 V and the power P = UI = 2.25 W."
+          },
+          "conceptKey": "phys.lamp",
+          "altText": {
+            "ky": "Жарык чачып күйүп жаткан лампа, жанында вольтметр 4,5 В.",
+            "ru": "Светящаяся лампа, рядом вольтметр показывает 4,5 В.",
+            "en": "The glowing lamp, with the voltmeter beside it reading 4.5 V."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "current",
+          "label": {
+            "ky": "Ток күчү",
+            "ru": "Сила тока",
+            "en": "Current"
+          },
+          "unit": "A",
+          "min": 0,
+          "max": 1,
+          "precision": 2
+        },
+        {
+          "key": "voltage",
+          "label": {
+            "ky": "Лампадагы чыңалуу",
+            "ru": "Напряжение на лампе",
+            "en": "Lamp voltage"
+          },
+          "unit": "V",
+          "min": 0,
+          "max": 4.5,
+          "precision": 1
+        },
+        {
+          "key": "power",
+          "label": {
+            "ky": "Кубаттуулук",
+            "ru": "Мощность",
+            "en": "Power"
+          },
+          "unit": "W",
+          "min": 0,
+          "max": 2.5,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "emf": 4.5,
+        "resistance": 9
+      }
+    }
+  ]
+}

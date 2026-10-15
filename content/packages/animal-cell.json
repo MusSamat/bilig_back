@@ -2,38 +2,43 @@
   "manifest": {
     "topicKey": "animal-cell",
     "version": "1.0.0",
-    "hash": "a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1a1",
+    "hash": "70ff0a6fdb9a91a6d6742156eabb8fd13baaee9b0fc509cf7dee52e90f6ff389",
     "files": [
       {
         "path": "models/animal-cell.glb",
-        "hash": "b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2b2",
-        "size": 1820000
+        "hash": "eacab2523718bc06e1afb336c9537c5fa7ee68d77f16198fa6adcccb2c0bc666",
+        "size": 0
       },
       {
         "path": "thumbs/animal-cell.webp",
-        "hash": "c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3c3",
-        "size": 24000
+        "hash": "63bcf804acf02a7107d943f4c8ba8ef07808419426426e8dd8af49767f20b05f",
+        "size": 0
       },
       {
         "path": "thumbs/plant-cell.webp",
-        "hash": "d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4",
-        "size": 23000
+        "hash": "6d6fb43fa6ee8177aabf0e6e749075aa08c9a817aee9522271417b8a925107ea",
+        "size": 0
+      },
+      {
+        "path": "thumbs/neuron.webp",
+        "hash": "a78e61c19a5cad6ad63a65693348b01c20f2376563fc608d738535d9cb96c650",
+        "size": 0
       }
     ],
-    "builtAt": "2026-10-01T10:00:00Z"
+    "builtAt": "2026-10-15T00:00:00Z"
   },
   "subject": {
     "key": "bio",
-    "title": {
-      "ky": "Биология",
-      "ru": "Биология",
-      "en": "Biology"
-    },
     "icon": "leaf",
     "hue": 140,
     "group": "natural",
     "order": 0,
-    "status": "live"
+    "status": "live",
+    "title": {
+      "ky": "Биология",
+      "ru": "Биология",
+      "en": "Biology"
+    }
   },
   "course": {
     "key": "bio.g7",
@@ -66,6 +71,16 @@
         "ru": "Называть основные органеллы клетки и объяснять их функции.",
         "en": "Name the main organelles of the cell and explain their functions."
       }
+    },
+    {
+      "key": "bio.g7.cells.o2",
+      "code": "BIO-7.2.2",
+      "unitKey": "bio.g7.cells",
+      "text": {
+        "ky": "Өсүмдүк жана жаныбар клеткаларын салыштыруу.",
+        "ru": "Сравнивать растительную и животную клетки.",
+        "en": "Compare plant and animal cells."
+      }
     }
   ],
   "topic": {
@@ -83,14 +98,14 @@
       "en": "Eukaryotic cell"
     },
     "description": {
-      "ky": "Жаныбар клеткасынын түзүлүшү жана негизги органеллалары.",
-      "ru": "Строение животной клетки и её основные органеллы.",
-      "en": "The structure of an animal cell and its main organelles."
+      "ky": "Жаныбар клеткасы – ядросу бар эукариот клетка. Анын мембранасы, цитоплазмасы жана ар бири өз ишин аткарган органеллалары бар.",
+      "ru": "Животная клетка – эукариотическая клетка с ядром. У неё есть мембрана, цитоплазма и органеллы, каждая из которых выполняет свою работу.",
+      "en": "An animal cell is a eukaryotic cell with a nucleus. It has a membrane, cytoplasm and organelles, each doing its own job."
     },
     "goal": {
-      "ky": "Негизги органеллаларды таанып, кызматын түшүндүрүү.",
-      "ru": "Узнать основные органеллы и объяснить их функции.",
-      "en": "Identify the main organelles and explain their functions."
+      "ky": "Жаныбар клеткасынын негизги органеллаларын моделден таап, ар биринин милдетин түшүндүрүү (BIO-7.2.1).",
+      "ru": "Найти на модели основные органеллы животной клетки и объяснить функцию каждой (BIO-7.2.1).",
+      "en": "Find the main organelles of an animal cell on the model and explain what each does (BIO-7.2.1)."
     },
     "objectiveKeys": [
       "bio.g7.cells.o1"
@@ -119,10 +134,23 @@
     },
     "conceptKeys": [
       "bio.membrane",
+      "bio.cytoplasm",
       "bio.nucleus",
-      "bio.mitochondrion"
+      "bio.mitochondrion",
+      "bio.ribosome",
+      "bio.golgi"
     ],
     "overrides": {
+      "bio.membrane": {
+        "nodes": [
+          "Membrane"
+        ]
+      },
+      "bio.cytoplasm": {
+        "nodes": [
+          "Cytoplasm"
+        ]
+      },
       "bio.nucleus": {
         "anchor": [
           0,
@@ -130,7 +158,8 @@
           0
         ],
         "nodes": [
-          "Nucleus"
+          "Nucleus",
+          "Nucleolus"
         ]
       },
       "bio.mitochondrion": {
@@ -141,16 +170,26 @@
         ],
         "nodes": [
           "Mito_*"
-        ],
-        "subtitle": {
-          "ky": "Энергия станциясы",
-          "ru": "Энергостанция",
-          "en": "Power station"
-        }
+        ]
       },
-      "bio.membrane": {
+      "bio.ribosome": {
+        "anchor": [
+          -1.2,
+          0.6,
+          0.8
+        ],
         "nodes": [
-          "Membrane"
+          "Ribo_*"
+        ]
+      },
+      "bio.golgi": {
+        "anchor": [
+          -0.9,
+          -0.5,
+          -1
+        ],
+        "nodes": [
+          "Golgi*"
         ]
       }
     },
@@ -183,6 +222,20 @@
         },
         "thumb": "thumbs/plant-cell.webp",
         "topicKey": "plant-cell"
+      },
+      {
+        "key": "neuron",
+        "title": {
+          "ky": "Нерв клеткасы",
+          "ru": "Нервная клетка",
+          "en": "Nerve cell"
+        },
+        "classification": {
+          "ky": "Адистешкен жаныбар клеткасы",
+          "ru": "Специализированная животная клетка",
+          "en": "Specialised animal cell"
+        },
+        "thumb": "thumbs/neuron.webp"
       }
     ],
     "activities": {
@@ -202,25 +255,93 @@
                 0
               ]
             },
+            "modes": {
+              "view": "whole"
+            },
             "text": {
-              "ky": "Бул – жаныбар клеткасы.",
-              "ru": "Это животная клетка.",
-              "en": "This is an animal cell."
+              "ky": "Бул – жаныбар клеткасы. Анын өлчөмү болжол менен 10–30 мкм, ошондуктан аны микроскоп менен гана көрөбүз.",
+              "ru": "Это животная клетка. Её размер около 10–30 мкм, поэтому увидеть её можно только в микроскоп.",
+              "en": "This is an animal cell. It is about 10–30 µm across, so we can only see it through a microscope."
             },
             "teacherNote": {
-              "ky": "Клетканы айлантып көрсөтүңүз.",
-              "ru": "Покажите клетку со всех сторон.",
-              "en": "Rotate the cell to show all sides."
+              "ky": "Клетканы айлантып, бардык тараптан көрсөтүңүз. Окуучулардан клетканын формасы кандай экенин сураңыз.",
+              "ru": "Покажите клетку со всех сторон. Спросите учеников, какой формы клетка.",
+              "en": "Rotate the cell to show all sides. Ask the class what shape it is."
             },
             "altText": {
-              "ky": "Тегерек клетка, ичинде органеллалар.",
+              "ky": "Ичинде органеллалары бар тегерек клетка.",
               "ru": "Круглая клетка с органеллами внутри.",
               "en": "A round cell with organelles inside."
             }
           },
           {
+            "key": "membrane",
+            "focus": "bio.membrane",
+            "camera": {
+              "position": [
+                0,
+                0.5,
+                4.2
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "text": {
+              "ky": "Клетка мембранасы – клетканын ийкемдүү чеги. Ал керектүү заттарды киргизет, зыяндууларын токтотот.",
+              "ru": "Клеточная мембрана – гибкая граница клетки. Она впускает нужные вещества и задерживает вредные.",
+              "en": "The cell membrane is the cell's flexible border. It lets useful substances in and keeps harmful ones out."
+            },
+            "teacherNote": {
+              "ky": "Өсүмдүк клеткасынан айырмаланып, бул жерде катуу клетка дубалы жок экенин белгилеңиз.",
+              "ru": "Отметьте, что в отличие от растительной клетки здесь нет жёсткой клеточной стенки.",
+              "en": "Point out that, unlike a plant cell, there is no rigid cell wall here."
+            },
+            "altText": {
+              "ky": "Клетканы курчаган жарым тунук жука кабык бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделена полупрозрачная тонкая оболочка вокруг клетки.",
+              "en": "The thin translucent layer around the cell is highlighted."
+            }
+          },
+          {
+            "key": "cytoplasm",
+            "focus": "bio.cytoplasm",
+            "modes": {
+              "view": "section"
+            },
+            "text": {
+              "ky": "Разрезде цитоплазма көрүнөт – органеллалар жүзүп жүргөн суюк чөйрө.",
+              "ru": "В разрезе видна цитоплазма – жидкая среда, в которой плавают органеллы.",
+              "en": "The section shows the cytoplasm – the liquid in which the organelles float."
+            },
+            "teacherNote": {
+              "ky": "«Цитоплазма бош эмес» деген ойго токтолуңуз: анда миңдеген белоктор бар.",
+              "ru": "Обсудите, что цитоплазма не пустая: в ней тысячи белков.",
+              "en": "Stress that the cytoplasm is not empty: it holds thousands of proteins."
+            },
+            "altText": {
+              "ky": "Клетканын кесилиши, ичи суюктук жана органеллалар менен толгон.",
+              "ru": "Клетка в разрезе, внутри жидкость и органеллы.",
+              "en": "A cut-open cell filled with liquid and organelles."
+            }
+          },
+          {
             "key": "nucleus",
             "focus": "bio.nucleus",
+            "camera": {
+              "position": [
+                0,
+                0.6,
+                2.4
+              ],
+              "target": [
+                0,
+                0.2,
+                0
+              ]
+            },
             "visibility": {
               "isolate": [
                 "bio.nucleus"
@@ -230,33 +351,86 @@
               "view": "section"
             },
             "text": {
-              "ky": "Ядро ДНКны сактайт.",
-              "ru": "Ядро хранит ДНК.",
-              "en": "The nucleus stores DNA."
+              "ky": "Ядро ДНКны сактайт жана клетканын бардык ишин башкарат.",
+              "ru": "Ядро хранит ДНК и управляет всей работой клетки.",
+              "en": "The nucleus stores DNA and runs everything the cell does."
+            },
+            "teacherNote": {
+              "ky": "Ядрочону (ядронун ичиндеги кочкул так) көрсөтүңүз: анда рибосомалар чогулат.",
+              "ru": "Покажите ядрышко (тёмное пятно внутри ядра): там собираются рибосомы.",
+              "en": "Show the nucleolus (the dark spot inside the nucleus), where ribosomes are assembled."
             },
             "altText": {
-              "ky": "Клетканын ортосундагы ири ядро.",
-              "ru": "Крупное ядро в центре клетки.",
-              "en": "A large nucleus in the centre of the cell."
+              "ky": "Клетканын ортосундагы ири тегерек ядро жана анын ичиндеги ядрочо.",
+              "ru": "Крупное круглое ядро в центре клетки с ядрышком внутри.",
+              "en": "A large round nucleus in the centre of the cell with a nucleolus inside."
             }
           },
           {
             "key": "mitochondria",
             "focus": "bio.mitochondrion",
+            "camera": {
+              "position": [
+                2.6,
+                0.2,
+                2.6
+              ],
+              "target": [
+                1.4,
+                -0.3,
+                0.6
+              ]
+            },
             "visibility": {
               "hide": [
                 "bio.membrane"
               ]
             },
             "text": {
-              "ky": "Митохондриялар энергия өндүрөт.",
-              "ru": "Митохондрии вырабатывают энергию.",
-              "en": "Mitochondria produce energy."
+              "ky": "Митохондриялар глюкозадан АТФ түрүндө энергия алышат. Булчуң клеткаларында алар өзгөчө көп.",
+              "ru": "Митохондрии получают из глюкозы энергию в виде АТФ. В мышечных клетках их особенно много.",
+              "en": "Mitochondria get energy from glucose in the form of ATP. Muscle cells have especially many."
+            },
+            "teacherNote": {
+              "ky": "«Клеткалык дем алуу» процессин ачып, кадамдарды бирге карап чыгыңыз.",
+              "ru": "Откройте процесс «Клеточное дыхание» и разберите шаги вместе.",
+              "en": "Open the «Cellular respiration» process and go through the steps together."
             },
             "altText": {
-              "ky": "Сүйрү формадагы митохондриялар.",
-              "ru": "Митохондрии вытянутой формы.",
-              "en": "Oval-shaped mitochondria."
+              "ky": "Ички бүктөмдөрү бар сүйрү митохондриялар.",
+              "ru": "Вытянутые митохондрии с внутренними складками.",
+              "en": "Oval mitochondria with folds inside."
+            }
+          },
+          {
+            "key": "ribosomes",
+            "focus": "bio.ribosome",
+            "camera": {
+              "position": [
+                -2.2,
+                1.2,
+                2.2
+              ],
+              "target": [
+                -1.2,
+                0.6,
+                0.8
+              ]
+            },
+            "text": {
+              "ky": "Рибосомалар – белок жасоочу майда органеллалар. Алардан чыккан белокторду Гольджи аппараты таңгактайт.",
+              "ru": "Рибосомы – крошечные фабрики белка. Белки от них упаковывает аппарат Гольджи.",
+              "en": "Ribosomes are tiny protein factories. The proteins they make are packaged by the Golgi apparatus."
+            },
+            "teacherNote": {
+              "ky": "Белоктун жолун ырааттуу айтып бериңиз: ядро → рибосома → Гольджи → клетканын сырты.",
+              "ru": "Проследите путь белка: ядро → рибосома → Гольджи → наружу.",
+              "en": "Trace a protein's journey: nucleus → ribosome → Golgi → out of the cell."
+            },
+            "altText": {
+              "ky": "Цитоплазмадагы майда чекиттер – рибосомалар, жанында жалпак капчыктар – Гольджи.",
+              "ru": "Мелкие точки в цитоплазме – рибосомы, рядом плоские мешочки Гольджи.",
+              "en": "Tiny dots in the cytoplasm are ribosomes; next to them are the flat Golgi sacs."
             }
           }
         ]
@@ -273,11 +447,16 @@
           {
             "kind": "concept",
             "key": "bio.mitochondrion"
+          },
+          {
+            "kind": "concept",
+            "key": "bio.ribosome"
           }
         ],
         "rows": [
           "size",
-          "location"
+          "location",
+          "function"
         ]
       },
       "quiz": {
@@ -286,38 +465,53 @@
           "bio.q.organelles",
           "bio.q.match",
           "bio.q.find-nucleus",
-          "bio.q.nucleus-size"
+          "bio.q.nucleus-size",
+          "bio.q.find-ribosome",
+          "bio.q.protein-path"
         ],
-        "sampleSize": 3
+        "sampleSize": 5
       }
     },
     "examples": {
       "stem": [
         {
+          "field": "s",
           "title": {
             "ky": "Клетка өстүрүү",
             "ru": "Клеточные культуры",
             "en": "Cell cultures"
           },
           "text": {
-            "ky": "Илимпоздор вакцина жасоо үчүн клеткаларды лабораторияда өстүрүшөт.",
-            "ru": "Учёные выращивают клетки в лаборатории, чтобы создавать вакцины.",
-            "en": "Scientists grow cells in the lab to make vaccines."
-          },
-          "field": "s"
+            "ky": "Илимпоздор вакцина жасоо үчүн жаныбар клеткаларын лабораторияда өстүрүшөт.",
+            "ru": "Учёные выращивают животные клетки в лаборатории, чтобы создавать вакцины.",
+            "en": "Scientists grow animal cells in the lab to make vaccines."
+          }
         },
         {
+          "field": "t",
           "title": {
             "ky": "Микроскоп",
             "ru": "Микроскоп",
             "en": "Microscope"
           },
           "text": {
-            "ky": "Оптикалык микроскоп клетканы 1000 эсе чоңойтот.",
-            "ru": "Оптический микроскоп увеличивает клетку в 1000 раз.",
-            "en": "An optical microscope magnifies a cell 1000 times."
+            "ky": "Мектептеги оптикалык микроскоп клетканы 1000 эсеге чейин чоңойтот, ал эми электрондук микроскоп рибосомаларды да көрсөтөт.",
+            "ru": "Школьный оптический микроскоп увеличивает клетку до 1000 раз, а электронный показывает даже рибосомы.",
+            "en": "A school light microscope magnifies a cell up to 1000 times; an electron microscope even shows ribosomes."
+          }
+        },
+        {
+          "field": "s",
+          "title": {
+            "ky": "Жылкынын чыдамкайлыгы",
+            "ru": "Выносливость лошадей",
+            "en": "Horse endurance"
           },
-          "field": "t"
+          "text": {
+            "ky": "Ат чабышта чуркаган жылкылардын булчуң клеткаларында митохондриялар өтө көп – ошондуктан алар узак чуркай алышат.",
+            "ru": "У скакунов на ат-чабыше в мышечных клетках очень много митохондрий – поэтому они могут долго бежать.",
+            "en": "Racehorses in the at-chabysh race have muscle cells packed with mitochondria – that is why they can run so far."
+          }
         }
       ],
       "simple": [
@@ -328,15 +522,27 @@
             "en": "A cell is a city"
           },
           "text": {
-            "ky": "Клетка шаарга окшош: ядро – мэрия, митохондрия – электр станциясы.",
-            "ru": "Клетка похожа на город: ядро – мэрия, митохондрии – электростанции.",
-            "en": "A cell is like a city: the nucleus is city hall, mitochondria are power plants."
+            "ky": "Клетка шаарга окшош: ядро – мэрия, митохондриялар – электр станциялары, мембрана – шаардын дубалы.",
+            "ru": "Клетка похожа на город: ядро – мэрия, митохондрии – электростанции, мембрана – городская стена.",
+            "en": "A cell is like a city: the nucleus is city hall, mitochondria are power plants, the membrane is the city wall."
+          }
+        },
+        {
+          "title": {
+            "ky": "Клетка – мектеп",
+            "ru": "Клетка – школа",
+            "en": "A cell is a school"
+          },
+          "text": {
+            "ky": "Ядро – директордун кабинети, рибосомалар – ашкана, Гольджи – мектептин почтасы, цитоплазма – коридор.",
+            "ru": "Ядро – кабинет директора, рибосомы – столовая, Гольджи – школьная почта, цитоплазма – коридор.",
+            "en": "The nucleus is the head teacher's office, ribosomes are the canteen, the Golgi is the school post room, the cytoplasm is the corridor."
           }
         }
       ]
     },
     "i18n": {
-      "ky": "reviewed",
+      "ky": "machine",
       "ru": "reviewed",
       "en": "draft"
     }
@@ -352,10 +558,15 @@
         "ru": "Клеточная мембрана",
         "en": "Cell membrane"
       },
+      "subtitle": {
+        "ky": "Клетканын чек арасы",
+        "ru": "Граница клетки",
+        "en": "The cell's border"
+      },
       "description": {
-        "ky": "Клетканы курчап турган тандамалуу тоскоол.",
-        "ru": "Избирательный барьер, окружающий клетку.",
-        "en": "The selective barrier surrounding the cell."
+        "ky": "Клетканы курчап турган жука кош липид катмары. Ал кайсы заттар кирерин жана чыгарын тандап өткөрөт.",
+        "ru": "Тонкий двойной слой липидов, окружающий клетку. Он избирательно решает, какие вещества войдут в клетку и выйдут из неё.",
+        "en": "A thin double layer of lipids around the cell. It selectively decides which substances enter and leave."
       },
       "props": [
         {
@@ -369,35 +580,87 @@
           "kind": "text",
           "type": "location",
           "value": {
-            "ky": "Клетканын сырты",
-            "ru": "Снаружи клетки",
-            "en": "Outside of the cell"
+            "ky": "Клетканын сырткы чеги",
+            "ru": "Наружная граница клетки",
+            "en": "Outer boundary of the cell"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Бардык клеткалар",
+            "ru": "Все клетки",
+            "en": "All cells"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Заттарды тандап өткөрөт, клетканы коргойт",
+            "ru": "Избирательно пропускает вещества, защищает клетку",
+            "en": "Lets substances through selectively, protects the cell"
           }
         }
       ],
       "related": [
-        "bio.nucleus"
+        "bio.cytoplasm",
+        "bio.nucleus",
+        "bio.cell-wall"
       ],
-      "misconceptions": [],
+      "misconceptions": [
+        {
+          "key": "bio.m.membrane-solid",
+          "text": {
+            "ky": "Мембрана – катуу, кыймылсыз кабык.",
+            "ru": "Мембрана – твёрдая неподвижная оболочка.",
+            "en": "The membrane is a hard, rigid shell."
+          },
+          "correction": {
+            "ky": "Мембрана суюк жана ийкемдүү: анын молекулалары дайыма кыймылда.",
+            "ru": "Мембрана жидкая и гибкая: её молекулы постоянно движутся.",
+            "en": "The membrane is fluid and flexible: its molecules keep moving."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Мембрана ушунчалык жука болгондуктан, 10 000 мембрананы үстү-үстүнө койсо да, кагаз барагындай гана калыңдык болот.",
+        "ru": "Мембрана так тонка, что стопка из 10 000 мембран будет толщиной примерно с лист бумаги.",
+        "en": "A membrane is so thin that a stack of 10,000 of them would be about as thick as a sheet of paper."
+      },
       "analogy": {
-        "ky": "Шаардын дубалы",
-        "ru": "Городская стена",
-        "en": "A city wall"
+        "ky": "Шаардын дарбазасы бар дубалы",
+        "ru": "Городская стена с воротами",
+        "en": "A city wall with gates"
       },
       "examples": {
         "stem": [
           {
+            "field": "e",
             "title": {
-              "ky": "Суу чыпкалары",
-              "ru": "Фильтры для воды",
-              "en": "Water filters"
+              "ky": "Сууну тазалоочу чыпкалар",
+              "ru": "Мембранные фильтры для воды",
+              "en": "Membrane water filters"
             },
             "text": {
-              "ky": "Инженерлер мембрана сыяктуу чыпкалар менен сууну тазалашат.",
-              "ru": "Инженеры очищают воду фильтрами, похожими на мембрану.",
-              "en": "Engineers purify water with membrane-like filters."
+              "ky": "Инженерлер мембранага окшош чыпкаларды жасап, Бишкек сыяктуу шаарларда ичүүчү сууну тазалашат.",
+              "ru": "Инженеры создают фильтры, похожие на мембрану, и очищают ими питьевую воду в городах вроде Бишкека.",
+              "en": "Engineers build membrane-like filters to purify drinking water in cities such as Bishkek."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Дары капсулалары",
+              "ru": "Липосомы для лекарств",
+              "en": "Drug-carrying liposomes"
             },
-            "field": "e"
+            "text": {
+              "ky": "Дары кичинекей липид көбүкчөлөргө салынат: алар клетка мембранасы менен кошулуп, дарыны так ичине жеткирет.",
+              "ru": "Лекарство помещают в крошечные липидные пузырьки: они сливаются с мембраной клетки и доставляют лекарство прямо внутрь.",
+              "en": "Medicine is packed into tiny lipid bubbles that merge with the cell membrane and deliver the drug right inside."
+            }
           }
         ],
         "simple": [
@@ -411,6 +674,153 @@
               "ky": "Мембрана элек сыяктуу: кээ бир нерселерди өткөрөт, кээ бирин өткөрбөйт.",
               "ru": "Мембрана как сито: что-то пропускает, а что-то нет.",
               "en": "A membrane is like a sieve: it lets some things through and keeps others out."
+            }
+          },
+          {
+            "title": {
+              "ky": "Мектептин кароолчусу",
+              "ru": "Охранник у входа в школу",
+              "en": "The school guard"
+            },
+            "text": {
+              "ky": "Мектептин эшигиндеги кароолчу окуучуларды киргизет, бөтөн адамдарды токтотот. Мембрана да ушундай.",
+              "ru": "Охранник у входа пропускает учеников и останавливает посторонних. Мембрана работает так же.",
+              "en": "The guard at the school door lets students in and stops strangers. The membrane works the same way."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.cytoplasm",
+      "kind": "structure",
+      "hue": 185,
+      "isContainer": true,
+      "title": {
+        "ky": "Цитоплазма",
+        "ru": "Цитоплазма",
+        "en": "Cytoplasm"
+      },
+      "subtitle": {
+        "ky": "Клетканын ички чөйрөсү",
+        "ru": "Внутренняя среда клетки",
+        "en": "The cell's inner medium"
+      },
+      "description": {
+        "ky": "Мембрана менен ядронун ортосундагы суюк зат. Органеллалар ушул жерде жайгашып, көп химиялык реакциялар ушул жерде жүрөт.",
+        "ru": "Жидкое содержимое клетки между мембраной и ядром. В нём находятся органеллы и идут многие химические реакции.",
+        "en": "The jelly-like contents between the membrane and the nucleus. Organelles sit in it and many chemical reactions happen here."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "70–80 % суу, белоктор, туздар, глюкоза",
+            "ru": "70–80 % воды, белки, соли, глюкоза",
+            "en": "70–80 % water, proteins, salts, glucose"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Мембрана менен ядронун ортосунда",
+            "ru": "Между мембраной и ядром",
+            "en": "Between the membrane and the nucleus"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Органеллаларды бириктирет, заттарды ташыйт",
+            "ru": "Объединяет органеллы, переносит вещества",
+            "en": "Holds organelles together and moves substances"
+          }
+        }
+      ],
+      "related": [
+        "bio.membrane",
+        "bio.ribosome"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.cytoplasm-empty",
+          "text": {
+            "ky": "Цитоплазма – бош, жөн гана суу.",
+            "ru": "Цитоплазма – пустое место, просто вода.",
+            "en": "Cytoplasm is empty space, just water."
+          },
+          "correction": {
+            "ky": "Цитоплазмада миңдеген белоктор жана жипчелерден турган «скелет» бар; ал дайыма агып турат.",
+            "ru": "В цитоплазме тысячи белков и «скелет» из нитей; она постоянно движется.",
+            "en": "Cytoplasm is packed with thousands of proteins and a skeleton of fibres, and it keeps flowing."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Өсүмдүк клеткаларында цитоплазма айлана агат – муну жөнөкөй микроскоп менен көрүүгө болот.",
+        "ru": "В клетках растений цитоплазма течёт по кругу – это видно даже в школьный микроскоп.",
+        "en": "In plant cells the cytoplasm streams in a circle – you can see it in a school microscope."
+      },
+      "analogy": {
+        "ky": "Шаардын көчөлөрү жана аянттары",
+        "ru": "Улицы и площади города",
+        "en": "The streets and squares of a city"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Кымыз ачытуу",
+              "ru": "Брожение кымыза",
+              "en": "Kymyz fermentation"
+            },
+            "text": {
+              "ky": "Бээ сүтүндөгү ачыткы жана сүт кычкыл бактериялары цитоплазмасында кантты сүт кислотасына жана спиртке айландырып, кымыз жасашат.",
+              "ru": "Дрожжи и молочнокислые бактерии в цитоплазме превращают сахар кобыльего молока в молочную кислоту и спирт – так получается кымыз.",
+              "en": "Yeast and lactic-acid bacteria turn the sugar of mare's milk into lactic acid and alcohol in their cytoplasm – that is how kymyz is made."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Клеткасыз биотехнология",
+              "ru": "Бесклеточные системы",
+              "en": "Cell-free biotech"
+            },
+            "text": {
+              "ky": "Илимпоздор цитоплазманын экстрактын пробиркага бөлүп алып, клеткасыз эле белок жасашат – мисалы, тез тесттер үчүн.",
+              "ru": "Учёные выделяют экстракт цитоплазмы в пробирку и синтезируют белки без живой клетки – например, для экспресс-тестов.",
+              "en": "Scientists put cytoplasm extract in a test tube and make proteins without a living cell – for example, for rapid tests."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Желе",
+              "ru": "Желе",
+              "en": "Jelly"
+            },
+            "text": {
+              "ky": "Цитоплазма жемиш салынган желеге окшош: желе – суюктук, жемиштер – органеллалар.",
+              "ru": "Цитоплазма похожа на желе с кусочками фруктов: желе – это жидкость, фрукты – органеллы.",
+              "en": "Cytoplasm is like jelly with fruit pieces: the jelly is the liquid, the fruit pieces are organelles."
+            }
+          },
+          {
+            "title": {
+              "ky": "Мектептин коридору",
+              "ru": "Школьный коридор",
+              "en": "The school corridor"
+            },
+            "text": {
+              "ky": "Коридор бардык класстарды бириктирет, ал аркылуу баары жүрөт. Цитоплазма да органеллаларды ушинтип бириктирет.",
+              "ru": "Коридор соединяет все классы, по нему все ходят. Цитоплазма так же соединяет органеллы.",
+              "en": "The corridor connects all the classrooms and everyone moves through it. Cytoplasm connects organelles the same way."
             }
           }
         ]
@@ -429,12 +839,12 @@
       "subtitle": {
         "ky": "Башкаруу борбору",
         "ru": "Центр управления",
-        "en": "Control center"
+        "en": "Control centre"
       },
       "description": {
-        "ky": "Генетикалык маалыматты сактайт.",
-        "ru": "Хранит генетическую информацию.",
-        "en": "Stores the genetic information."
+        "ky": "Клетканын эң ири органелласы. Анда ДНК – клетканын бардык «нускамалары» сакталат; ядро клетканын өсүшүн жана бөлүнүшүн башкарат.",
+        "ru": "Самая крупная органелла клетки. В нём хранится ДНК – все «инструкции» клетки; ядро управляет ростом и делением клетки.",
+        "en": "The largest organelle. It stores DNA – all of the cell's instructions – and controls growth and division."
       },
       "props": [
         {
@@ -446,24 +856,35 @@
           "kind": "text",
           "type": "location",
           "value": {
-            "ky": "Клетканын борбору",
-            "ru": "Центр клетки",
-            "en": "Centre of the cell"
+            "ky": "Көбүнчө клетканын борборунда",
+            "ru": "Обычно в центре клетки",
+            "en": "Usually in the centre of the cell"
           }
         },
         {
           "kind": "text",
           "type": "foundIn",
           "value": {
-            "ky": "Эукариоттор",
-            "ru": "Эукариоты",
-            "en": "Eukaryotes"
+            "ky": "Эукариоттор (өсүмдүктөр, жаныбарлар, козу карындар)",
+            "ru": "Эукариоты (растения, животные, грибы)",
+            "en": "Eukaryotes (plants, animals, fungi)"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "ДНКны сактайт, клетканын ишин башкарат",
+            "ru": "Хранит ДНК, управляет работой клетки",
+            "en": "Stores DNA, controls the cell"
           }
         }
       ],
       "related": [
         "bio.membrane",
-        "bio.mitochondrion"
+        "bio.mitochondrion",
+        "bio.ribosome",
+        "bio.dna-helix"
       ],
       "misconceptions": [
         {
@@ -474,39 +895,64 @@
             "en": "All cells have a nucleus."
           },
           "correction": {
-            "ky": "Бактериялардын ядросу жок.",
-            "ru": "У бактерий нет ядра.",
-            "en": "Bacteria have no nucleus."
+            "ky": "Бактериялардын ядросу жок, ал эми адамдын жетилген эритроциттери ядросун жоготот.",
+            "ru": "У бактерий нет ядра, а зрелые эритроциты человека теряют его.",
+            "en": "Bacteria have no nucleus, and mature human red blood cells lose theirs."
           }
         }
       ],
       "funFact": {
-        "ky": "Ядродо ДНК сакталат.",
-        "ru": "В ядре хранится ДНК.",
-        "en": "DNA is stored in the nucleus."
+        "ky": "Бир эле ядродогу ДНКны түздөсө, узундугу 2 метрге жакын болот.",
+        "ru": "Если вытянуть ДНК из одного ядра человека, получится нить длиной почти 2 метра.",
+        "en": "Stretched out, the DNA from one human nucleus would be almost 2 metres long."
       },
       "analogy": {
-        "ky": "Китепкана",
-        "ru": "Библиотека",
-        "en": "A library"
+        "ky": "Мектеп директорунун кабинети",
+        "ru": "Кабинет директора школы",
+        "en": "The head teacher's office"
       },
       "examples": {
         "stem": [
           {
+            "field": "s",
             "title": {
               "ky": "ДНК анализи",
               "ru": "Анализ ДНК",
               "en": "DNA testing"
             },
             "text": {
-              "ky": "Дарыгерлер ядродогу ДНКны изилдеп, ооруларды аныкташат.",
-              "ru": "Врачи изучают ДНК из ядра, чтобы находить болезни.",
-              "en": "Doctors study DNA from the nucleus to detect diseases."
+              "ky": "Дарыгерлер ядродогу ДНКны изилдеп, тукум куума ооруларды аныкташат.",
+              "ru": "Врачи изучают ДНК из ядра, чтобы находить наследственные болезни.",
+              "en": "Doctors study DNA from the nucleus to detect inherited diseases."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Клондоо",
+              "ru": "Клонирование",
+              "en": "Cloning"
             },
-            "field": "s"
+            "text": {
+              "ky": "1996-жылы Долли деген кой бир клетканын ядросун башка жумуртка клеткага көчүрүү менен алынган.",
+              "ru": "В 1996 году овцу Долли получили, перенеся ядро одной клетки в другую яйцеклетку.",
+              "en": "In 1996 Dolly the sheep was created by moving the nucleus of one cell into another egg cell."
+            }
           }
         ],
         "simple": [
+          {
+            "title": {
+              "ky": "Директордун кабинети",
+              "ru": "Кабинет директора",
+              "en": "The head teacher's office"
+            },
+            "text": {
+              "ky": "Ядро – мектеп директорунун кабинети сыяктуу: бардык маанилүү чечимдер жана документтер ошол жерде.",
+              "ru": "Ядро – как кабинет директора школы: там все важные решения и документы.",
+              "en": "The nucleus is like the head teacher's office: all the important decisions and papers are kept there."
+            }
+          },
           {
             "title": {
               "ky": "Рецепт китеби",
@@ -516,7 +962,7 @@
             "text": {
               "ky": "Ядро – клетканын рецепт китеби: эмнени жана качан жасоо керектигин айтат.",
               "ru": "Ядро – книга рецептов клетки: говорит, что и когда делать.",
-              "en": "The nucleus is the cell’s recipe book: it says what to make and when."
+              "en": "The nucleus is the cell's recipe book: it says what to make and when."
             }
           }
         ]
@@ -532,21 +978,63 @@
         "ru": "Митохондрия",
         "en": "Mitochondrion"
       },
+      "subtitle": {
+        "ky": "Энергия станциясы",
+        "ru": "Энергостанция",
+        "en": "Power station"
+      },
       "description": {
-        "ky": "Клетканын энергия станциясы.",
-        "ru": "Энергетическая станция клетки.",
-        "en": "The powerhouse of the cell."
+        "ky": "Эки мембраналуу органелла. Анда глюкоза кычкылтек менен кычкылданып, клетка колдоно турган энергия – АТФ пайда болот.",
+        "ru": "Органелла с двумя мембранами. В ней глюкоза окисляется кислородом и образуется АТФ – энергия, которую использует клетка.",
+        "en": "An organelle with two membranes. Glucose is oxidised with oxygen here, producing ATP – the energy the cell uses."
       },
       "props": [
         {
           "kind": "quantity",
           "type": "size",
           "value": 1,
+          "max": 10,
           "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "count",
+          "value": 1000,
+          "max": 2000,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Цитоплазмада",
+            "ru": "В цитоплазме",
+            "en": "In the cytoplasm"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Дээрлик бардык эукариоттор",
+            "ru": "Почти все эукариоты",
+            "en": "Almost all eukaryotes"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "АТФ түрүндө энергия өндүрөт",
+            "ru": "Вырабатывает энергию в виде АТФ",
+            "en": "Produces energy as ATP"
+          }
         }
       ],
       "related": [
-        "bio.nucleus"
+        "bio.nucleus",
+        "bio.cytoplasm",
+        "bio.chloroplast"
       ],
       "misconceptions": [
         {
@@ -557,26 +1045,49 @@
             "en": "Mitochondria create energy from nothing."
           },
           "correction": {
-            "ky": "Ал глюкозадагы энергияны АТФка айландырат.",
-            "ru": "Она превращает энергию глюкозы в АТФ.",
-            "en": "They convert the energy of glucose into ATP."
+            "ky": "Ал глюкозадагы химиялык энергияны АТФка айландырат.",
+            "ru": "Она превращает химическую энергию глюкозы в АТФ.",
+            "en": "They convert the chemical energy of glucose into ATP."
           }
         }
       ],
+      "funFact": {
+        "ky": "Митохондриянын өз ДНКсы бар жана ал бизге апабыздан гана өтөт.",
+        "ru": "У митохондрий есть своя ДНК, и мы получаем её только от мамы.",
+        "en": "Mitochondria have their own DNA, and we inherit it only from our mother."
+      },
+      "analogy": {
+        "ky": "Токтогул ГЭСи – шаардын электр станциясы",
+        "ru": "Токтогульская ГЭС – электростанция города",
+        "en": "Toktogul hydropower plant – the city's power station"
+      },
       "examples": {
         "stem": [
           {
+            "field": "s",
             "title": {
-              "ky": "Спорт илими",
-              "ru": "Спортивная наука",
-              "en": "Sports science"
+              "ky": "Бийик тоодо машыгуу",
+              "ru": "Тренировки в высокогорье",
+              "en": "High-altitude training"
             },
             "text": {
-              "ky": "Машыгуу булчуңдагы митохондриялардын санын көбөйтөт.",
-              "ru": "Тренировки увеличивают число митохондрий в мышцах.",
-              "en": "Training increases the number of mitochondria in muscles."
+              "ky": "Спортчулар Ысык-Көлдүн жана Тянь-Шандын бийик тоолуу базаларында машыгышат: аз кычкылтекте булчуңдарда митохондриялар көбөйөт.",
+              "ru": "Спортсмены тренируются на высокогорных базах Иссык-Куля и Тянь-Шаня: при недостатке кислорода в мышцах становится больше митохондрий.",
+              "en": "Athletes train at high-altitude camps at Issyk-Kul and in the Tien Shan: with less oxygen, their muscles grow more mitochondria."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Биоотун",
+              "ru": "Биотопливо",
+              "en": "Biofuels"
             },
-            "field": "s"
+            "text": {
+              "ky": "Биоинженерлер ачыткы клеткаларынын энергия алмашуусун өзгөртүп, андан биоэтанол көбүрөөк алышат.",
+              "ru": "Биоинженеры меняют энергетический обмен дрожжевых клеток, чтобы получать больше биоэтанола.",
+              "en": "Bioengineers tweak the energy metabolism of yeast cells to get more bioethanol."
+            }
           }
         ],
         "simple": [
@@ -591,6 +1102,767 @@
               "ru": "Митохондрия заряжает клетку, как батарейка.",
               "en": "A mitochondrion powers the cell like a battery."
             }
+          },
+          {
+            "title": {
+              "ky": "Ашкананын меши",
+              "ru": "Печка на кухне",
+              "en": "The kitchen stove"
+            },
+            "text": {
+              "ky": "Мешке отун салсаң жылуулук берет. Митохондрияга глюкоза «салынат», ал клеткага энергия берет.",
+              "ru": "В печку кладут дрова – она даёт тепло. В митохондрию «кладут» глюкозу – она даёт клетке энергию.",
+              "en": "You put wood in a stove and it gives heat. Glucose goes into a mitochondrion and it gives the cell energy."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.ribosome",
+      "kind": "organelle",
+      "hue": 330,
+      "isContainer": false,
+      "title": {
+        "ky": "Рибосома",
+        "ru": "Рибосома",
+        "en": "Ribosome"
+      },
+      "subtitle": {
+        "ky": "Белок цехи",
+        "ru": "Фабрика белка",
+        "en": "Protein factory"
+      },
+      "description": {
+        "ky": "Белокторду аминокислоталардан чогултуучу эң майда органелла. Ядродон келген маалымат боюнча иштейт.",
+        "ru": "Крошечная органелла, которая собирает белки из аминокислот по инструкции, пришедшей из ядра.",
+        "en": "A tiny organelle that assembles proteins from amino acids following instructions sent from the nucleus."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "size",
+          "value": 25,
+          "max": 30,
+          "unit": "nm"
+        },
+        {
+          "kind": "quantity",
+          "type": "count",
+          "value": 10000000,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Цитоплазмада жана эндоплазмалык торчодо",
+            "ru": "В цитоплазме и на эндоплазматической сети",
+            "en": "In the cytoplasm and on the endoplasmic reticulum"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Бардык клеткалар, бактерияларда да",
+            "ru": "Все клетки, включая бактерии",
+            "en": "All cells, bacteria included"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Белок синтездейт",
+            "ru": "Синтезирует белки",
+            "en": "Makes proteins"
+          }
+        }
+      ],
+      "related": [
+        "bio.nucleus",
+        "bio.cytoplasm"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.ribosome-membrane",
+          "text": {
+            "ky": "Рибосома да мембрана менен капталган.",
+            "ru": "Рибосома тоже окружена мембраной.",
+            "en": "Ribosomes are wrapped in a membrane too."
+          },
+          "correction": {
+            "ky": "Рибосоманын мембранасы жок: ал РНК менен белоктон турган эки бөлүкчө.",
+            "ru": "У рибосомы нет мембраны: она состоит из двух субъединиц из РНК и белка.",
+            "en": "Ribosomes have no membrane: they are two subunits made of RNA and protein."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Адамдын клеткасындагы бир рибосома секундасына болжол менен 5 аминокислота кошот, ал эми бактерияныкы – 20га чейин.",
+        "ru": "Рибосома в клетке человека присоединяет около 5 аминокислот в секунду, а у бактерий – до 20.",
+        "en": "A ribosome in a human cell adds about 5 amino acids per second; in bacteria, up to 20."
+      },
+      "analogy": {
+        "ky": "Кийиз басуучу уста",
+        "ru": "Мастер, валяющий войлок",
+        "en": "A felt-making craftswoman"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Антибиотиктер",
+              "ru": "Антибиотики",
+              "en": "Antibiotics"
+            },
+            "text": {
+              "ky": "Көп антибиотиктер бактериялардын рибосомасын гана токтотот, ошондуктан адамдын клеткаларына зыян кылбайт.",
+              "ru": "Многие антибиотики останавливают только рибосомы бактерий, поэтому не вредят клеткам человека.",
+              "en": "Many antibiotics block only bacterial ribosomes, so they don't harm human cells."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Инсулин өндүрүү",
+              "ru": "Производство инсулина",
+              "en": "Making insulin"
+            },
+            "text": {
+              "ky": "Бактериялардын рибосомалары адамдын инсулинин жасайт – диабет менен ооругандар үчүн дары ушинтип алынат.",
+              "ru": "Рибосомы бактерий синтезируют человеческий инсулин – так получают лекарство для людей с диабетом.",
+              "en": "Bacterial ribosomes make human insulin – that is how medicine for people with diabetes is produced."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Мончок тизүү",
+              "ru": "Нанизывание бусин",
+              "en": "Stringing beads"
+            },
+            "text": {
+              "ky": "Рибосома аминокислоталарды мончок сыяктуу бирден жипке тизип, белок жасайт.",
+              "ru": "Рибосома нанизывает аминокислоты одну за другой, как бусины на нитку, и получается белок.",
+              "en": "A ribosome strings amino acids one by one like beads on a thread, and a protein is made."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тамак бышыруучу ашпозчу",
+              "ru": "Повар в столовой",
+              "en": "The canteen cook"
+            },
+            "text": {
+              "ky": "Ашпозчу рецепт боюнча тамак жасайт. Рибосома ядродон келген «рецепт» боюнча белок жасайт.",
+              "ru": "Повар готовит по рецепту. Рибосома делает белок по «рецепту» из ядра.",
+              "en": "A cook follows a recipe. A ribosome makes a protein following a recipe from the nucleus."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.golgi",
+      "kind": "organelle",
+      "hue": 50,
+      "isContainer": false,
+      "title": {
+        "ky": "Гольджи аппараты",
+        "ru": "Аппарат Гольджи",
+        "en": "Golgi apparatus"
+      },
+      "subtitle": {
+        "ky": "Клетканын почтасы",
+        "ru": "Почта клетки",
+        "en": "The cell's post office"
+      },
+      "description": {
+        "ky": "Жалпак капчыктардын тизмеги. Белокторду иреттеп, «таңгактап», клетканын керектүү жерине же сыртка жөнөтөт.",
+        "ru": "Стопка плоских мешочков. Сортирует и «упаковывает» белки и отправляет их в нужное место клетки или наружу.",
+        "en": "A stack of flat sacs. It sorts and packages proteins and ships them to where they are needed or out of the cell."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "size",
+          "value": 1,
+          "max": 3,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Жалпак капчыктардын тизмеги",
+            "ru": "Стопка плоских цистерн",
+            "en": "A stack of flat sacs"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Ядронун жанында, цитоплазмада",
+            "ru": "Рядом с ядром, в цитоплазме",
+            "en": "Near the nucleus, in the cytoplasm"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Белокторду таңгактап жөнөтөт",
+            "ru": "Упаковывает и рассылает белки",
+            "en": "Packages and ships proteins"
+          }
+        }
+      ],
+      "related": [
+        "bio.ribosome",
+        "bio.membrane"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.golgi-makes-protein",
+          "text": {
+            "ky": "Гольджи аппараты белокту жаратат.",
+            "ru": "Аппарат Гольджи создаёт белки.",
+            "en": "The Golgi apparatus makes proteins."
+          },
+          "correction": {
+            "ky": "Белокту рибосома жасайт, Гольджи аны гана өзгөртүп, таңгактайт.",
+            "ru": "Белки делают рибосомы, а Гольджи только дорабатывает и упаковывает их.",
+            "en": "Ribosomes make proteins; the Golgi only finishes and packages them."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Бул органелланы 1898-жылы италиялык окумуштуу Камилло Гольджи ачкан.",
+        "ru": "Эту органеллу открыл в 1898 году итальянский учёный Камилло Гольджи.",
+        "en": "This organelle was discovered in 1898 by the Italian scientist Camillo Golgi."
+      },
+      "analogy": {
+        "ky": "Почта бөлүмү",
+        "ru": "Почтовое отделение",
+        "en": "A post office"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Сүт бездери",
+              "ru": "Молочные железы",
+              "en": "Milk glands"
+            },
+            "text": {
+              "ky": "Бээнин сүт бези клеткаларында Гольджи аппараты сүт белокторун таңгактап, сыртка чыгарат – кымыздын чийки заты ушундай пайда болот.",
+              "ru": "В клетках молочной железы кобылы аппарат Гольджи упаковывает белки молока и выводит их наружу – так появляется сырьё для кымыза.",
+              "en": "In a mare's milk-gland cells the Golgi packages milk proteins and sends them out – this is where kymyz begins."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Логистика",
+              "ru": "Логистика",
+              "en": "Logistics"
+            },
+            "text": {
+              "ky": "Инженерлер ири кампалардагы жүктөрдү иреттөө системасын түзүүдө клетканын «почтасынан» үйрөнүшөт.",
+              "ru": "Инженеры, проектируя системы сортировки на больших складах, учатся у «почты» клетки.",
+              "en": "Engineers designing sorting systems for big warehouses take ideas from the cell's post office."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Посылка",
+              "ru": "Посылка",
+              "en": "A parcel"
+            },
+            "text": {
+              "ky": "Белок – посылка, Гольджи аны кутуга салып, дарегин жазат.",
+              "ru": "Белок – посылка, а Гольджи кладёт её в коробку и пишет адрес.",
+              "en": "A protein is a parcel; the Golgi puts it in a box and writes the address."
+            }
+          },
+          {
+            "title": {
+              "ky": "Белек таңгактоо",
+              "ru": "Упаковка подарка",
+              "en": "Wrapping a present"
+            },
+            "text": {
+              "ky": "Туулган күнгө белекти кооз кагазга ороп беребиз. Гольджи да белокторду «ороп» жөнөтөт.",
+              "ru": "Подарок на день рождения заворачивают в красивую бумагу. Гольджи так же «заворачивает» белки.",
+              "en": "We wrap a birthday present in nice paper. The Golgi wraps proteins in the same way."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.cell-wall",
+      "kind": "structure",
+      "hue": 95,
+      "isContainer": true,
+      "title": {
+        "ky": "Клетка дубалы",
+        "ru": "Клеточная стенка",
+        "en": "Cell wall"
+      },
+      "subtitle": {
+        "ky": "Өсүмдүктүн «каркасы»",
+        "ru": "«Каркас» растения",
+        "en": "The plant's frame"
+      },
+      "description": {
+        "ky": "Мембрананын сыртындагы бекем катмар. Негизинен целлюлозадан турат, клетканын формасын кармап, аны коргойт.",
+        "ru": "Прочный слой снаружи от мембраны. Состоит в основном из целлюлозы, держит форму клетки и защищает её.",
+        "en": "A strong layer outside the membrane. Made mostly of cellulose, it keeps the cell's shape and protects it."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "size",
+          "value": 0.1,
+          "max": 10
+        },
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Целлюлоза, пектин; жыгачта – лигнин",
+            "ru": "Целлюлоза, пектин; в древесине – лигнин",
+            "en": "Cellulose, pectin; lignin in wood"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Мембрананын сыртында",
+            "ru": "Снаружи от мембраны",
+            "en": "Outside the membrane"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Өсүмдүктөр, козу карындар, бактериялар",
+            "ru": "Растения, грибы, бактерии",
+            "en": "Plants, fungi, bacteria"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Форма берет, коргойт, клетканын жарылышына жол бербейт",
+            "ru": "Придаёт форму, защищает, не даёт клетке лопнуть",
+            "en": "Gives shape, protects, stops the cell from bursting"
+          }
+        }
+      ],
+      "related": [
+        "bio.membrane"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.wall-instead-of-membrane",
+          "text": {
+            "ky": "Өсүмдүк клеткасында мембрана жок, анын ордуна дубал бар.",
+            "ru": "У растительной клетки нет мембраны – вместо неё стенка.",
+            "en": "Plant cells have a wall instead of a membrane."
+          },
+          "correction": {
+            "ky": "Өсүмдүк клеткасында экөө тең бар: дубалдын ички жагында мембрана жайгашат.",
+            "ru": "У растительной клетки есть и то и другое: мембрана лежит под стенкой.",
+            "en": "Plant cells have both: the membrane lies just inside the wall."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Пахта буласы дээрлик таза целлюлоза – б.а. өсүмдүк клеткаларынын дубалы.",
+        "ru": "Хлопковое волокно – почти чистая целлюлоза, то есть стенки растительных клеток.",
+        "en": "Cotton fibre is almost pure cellulose – in other words, plant cell walls."
+      },
+      "analogy": {
+        "ky": "Боз үйдүн керегеси",
+        "ru": "Решётчатый остов юрты (кереге)",
+        "en": "The lattice frame of a yurt (kerege)"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Кагаз жана пахта",
+              "ru": "Бумага и хлопок",
+              "en": "Paper and cotton"
+            },
+            "text": {
+              "ky": "Жалал-Абад менен Оштун пахтасы жана кагаз – клетка дубалынын целлюлозасы. Андан кездеме жана дептер жасалат.",
+              "ru": "Хлопок Джалал-Абада и Оша и бумага – это целлюлоза клеточных стенок. Из неё делают ткань и тетради.",
+              "en": "Cotton from Jalal-Abad and Osh and paper are cellulose from cell walls; we make fabric and notebooks from it."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Жыгач курулушта",
+              "ru": "Древесина в строительстве",
+              "en": "Timber in construction"
+            },
+            "text": {
+              "ky": "Жыгачтын бекемдиги клетка дубалындагы лигнинден келет. Инженерлер аны үй, көпүрө жана боз үйдүн уугу үчүн эсептешет.",
+              "ru": "Прочность древесины даёт лигнин в клеточных стенках. Инженеры учитывают её при строительстве домов, мостов и жердей юрты.",
+              "en": "Wood gets its strength from lignin in cell walls. Engineers rely on it for houses, bridges and the roof poles of a yurt."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Картон куту",
+              "ru": "Картонная коробка",
+              "en": "A cardboard box"
+            },
+            "text": {
+              "ky": "Клетка дубалы ичинде шар салынган картон кутуга окшош: шар (клетка) куту формасында калат.",
+              "ru": "Клеточная стенка – как картонная коробка с воздушным шариком внутри: шарик (клетка) принимает форму коробки.",
+              "en": "A cell wall is like a cardboard box with a balloon inside: the balloon (the cell) takes the box's shape."
+            }
+          },
+          {
+            "title": {
+              "ky": "Футбол тобунун покрышкасы",
+              "ru": "Покрышка мяча",
+              "en": "A football's outer skin"
+            },
+            "text": {
+              "ky": "Топтун ичиндеги камера – мембрана, сырткы бекем кабыгы – клетка дубалы. Ал камераны жарылуудан сактайт.",
+              "ru": "Камера внутри мяча – мембрана, а прочная покрышка – клеточная стенка: она не даёт камере лопнуть.",
+              "en": "The bladder inside a football is the membrane; the tough outer skin is the cell wall that keeps it from bursting."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.dna-helix",
+      "kind": "molecule",
+      "hue": 270,
+      "isContainer": false,
+      "title": {
+        "ky": "ДНКнын кош спиралы",
+        "ru": "Двойная спираль ДНК",
+        "en": "DNA double helix"
+      },
+      "subtitle": {
+        "ky": "Тукум куучулуктун молекуласы",
+        "ru": "Молекула наследственности",
+        "en": "The molecule of heredity"
+      },
+      "description": {
+        "ky": "ДНК (дезоксирибонуклеин кислотасы) – бири-бирине оролгон эки чынжырдан турган узун молекула. Анда организмдин бардык тукум куума маалыматы жазылган.",
+        "ru": "ДНК (дезоксирибонуклеиновая кислота) – длинная молекула из двух закрученных друг вокруг друга цепей. В ней записана вся наследственная информация организма.",
+        "en": "DNA (deoxyribonucleic acid) is a long molecule of two strands twisted around each other. It holds all of an organism's hereditary information."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "size",
+          "value": 2,
+          "unit": "nm"
+        },
+        {
+          "kind": "quantity",
+          "type": "length",
+          "value": 3.4,
+          "max": 3.6,
+          "unit": "nm"
+        },
+        {
+          "kind": "quantity",
+          "type": "count",
+          "value": 3100000000,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Ядродо, хромосомаларда; аз өлчөмдө митохондрияда жана хлоропласта",
+            "ru": "В ядре, в хромосомах; немного – в митохондриях и хлоропластах",
+            "en": "In the nucleus, in chromosomes; a little in mitochondria and chloroplasts"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Оң бурама кош спираль",
+            "ru": "Правозакрученная двойная спираль",
+            "en": "Right-handed double helix"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Тукум куума маалыматты сактайт жана өткөрөт",
+            "ru": "Хранит и передаёт наследственную информацию",
+            "en": "Stores and passes on hereditary information"
+          }
+        }
+      ],
+      "related": [
+        "bio.nucleus"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.dna-only-humans",
+          "text": {
+            "ky": "ДНК адамдарда жана жаныбарларда гана болот.",
+            "ru": "ДНК есть только у людей и животных.",
+            "en": "Only humans and animals have DNA."
+          },
+          "correction": {
+            "ky": "ДНК бардык тирүү организмдерде бар: өсүмдүктөрдө, козу карындарда, бактерияларда.",
+            "ru": "ДНК есть у всех живых организмов: у растений, грибов, бактерий.",
+            "en": "Every living thing has DNA: plants, fungi and bacteria too."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Адамдын бир клеткасындагы ДНКда болжол менен 3,1 миллиард негиз жуп бар; аларды китеп кылып басса, миңдеген том болмок.",
+        "ru": "В ДНК человека около 3,1 миллиарда пар оснований; если напечатать их буквами, получится несколько тысяч томов.",
+        "en": "Human DNA has about 3.1 billion base pairs; printed as letters it would fill thousands of books."
+      },
+      "analogy": {
+        "ky": "Санжыра – урпактан урпакка өткөн маалымат",
+        "ru": "Санжыра – родословная, передаваемая из поколения в поколение",
+        "en": "A sanjyra – a family tree passed down through generations"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Илбирсти изилдөө",
+              "ru": "Изучение снежного барса",
+              "en": "Tracking snow leopards"
+            },
+            "text": {
+              "ky": "Сарычат-Эрташ корукунда илимпоздор илбирстин изинен табылган ДНК менен канча жаныбар жашарын аныкташат – аны көрбөй туруп.",
+              "ru": "В заповеднике Сарычат-Эрташ учёные по ДНК из следов жизнедеятельности снежного барса узнают, сколько барсов там живёт, даже не видя их.",
+              "en": "In the Sarychat-Ertash reserve scientists use DNA from droppings to count snow leopards without ever seeing them."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Криминалистика",
+              "ru": "Криминалистика",
+              "en": "Forensics"
+            },
+            "text": {
+              "ky": "Криминалисттер чачтагы же тамчы кандагы ДНК боюнча адамды так аныкташат.",
+              "ru": "Криминалисты по ДНК из волоса или капли крови точно устанавливают личность человека.",
+              "en": "Forensic scientists identify a person precisely from the DNA in a hair or a drop of blood."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Бурама тепкич",
+              "ru": "Винтовая лестница",
+              "en": "A spiral staircase"
+            },
+            "text": {
+              "ky": "ДНК бурама тепкичке окшош: эки тутка – чынжырлар, тепкичтер – негиз жуптары.",
+              "ru": "ДНК похожа на винтовую лестницу: два поручня – цепи, ступеньки – пары оснований.",
+              "en": "DNA looks like a spiral staircase: the two handrails are the strands, the steps are the base pairs."
+            }
+          },
+          {
+            "title": {
+              "ky": "Санжыра",
+              "ru": "Санжыра",
+              "en": "A family tree"
+            },
+            "text": {
+              "ky": "Кыргыздар жети атасын билиши керек – санжыра атадан балага өтөт. ДНК да ата-энеден балага өтүүчү «санжыра».",
+              "ru": "Кыргызы знают своих семь предков – санжыра переходит от отца к сыну. ДНК – это тоже «санжыра», которая передаётся от родителей детям.",
+              "en": "Kyrgyz people learn their seven forefathers – the sanjyra passes from parent to child. DNA is a sanjyra written inside every cell."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.chloroplast",
+      "kind": "organelle",
+      "hue": 120,
+      "isContainer": false,
+      "title": {
+        "ky": "Хлоропласт",
+        "ru": "Хлоропласт",
+        "en": "Chloroplast"
+      },
+      "subtitle": {
+        "ky": "Күн электр станциясы",
+        "ru": "Солнечная электростанция",
+        "en": "Solar power plant"
+      },
+      "description": {
+        "ky": "Хлорофиллге бай жашыл органелла. Анда жарыктын энергиясы менен көмүр кычкыл газы жана суудан глюкоза жасалат – бул фотосинтез.",
+        "ru": "Зелёная органелла, богатая хлорофиллом. В ней за счёт энергии света из углекислого газа и воды образуется глюкоза – это фотосинтез.",
+        "en": "A green organelle full of chlorophyll. Using light energy it makes glucose from carbon dioxide and water – this is photosynthesis."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "size",
+          "value": 5,
+          "max": 10
+        },
+        {
+          "kind": "quantity",
+          "type": "count",
+          "value": 20,
+          "max": 100,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Линза сымал, ичинде тилакоид тизмектери",
+            "ru": "Линзовидная, внутри стопки тилакоидов",
+            "en": "Lens-shaped, with stacks of thylakoids inside"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Жалбырак клеткаларынын цитоплазмасында",
+            "ru": "В цитоплазме клеток листа",
+            "en": "In the cytoplasm of leaf cells"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Өсүмдүктөр жана балырлар",
+            "ru": "Растения и водоросли",
+            "en": "Plants and algae"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Фотосинтез: жарыктан глюкоза жана кычкылтек алат",
+            "ru": "Фотосинтез: из света – глюкоза и кислород",
+            "en": "Photosynthesis: turns light into glucose and oxygen"
+          }
+        }
+      ],
+      "related": [
+        "bio.mitochondrion",
+        "bio.cytoplasm"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.chloroplast-everywhere",
+          "text": {
+            "ky": "Өсүмдүктүн бардык клеткаларында хлоропласт бар.",
+            "ru": "Хлоропласты есть во всех клетках растения.",
+            "en": "Every plant cell has chloroplasts."
+          },
+          "correction": {
+            "ky": "Тамырдын клеткаларына жарык тийбейт, ошондуктан аларда хлоропласт жок.",
+            "ru": "В клетках корня света нет, поэтому хлоропластов там нет.",
+            "en": "Root cells get no light, so they have no chloroplasts."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Хлоропласттын өз ДНКсы бар: илимпоздор ал илгери өз алдынча жашаган бактерия болгон деп эсептешет.",
+        "ru": "У хлоропласта есть своя ДНК: учёные считают, что когда-то он был свободноживущей бактерией.",
+        "en": "Chloroplasts have their own DNA: scientists think they were once free-living bacteria."
+      },
+      "analogy": {
+        "ky": "Күн панели менен иштеген ашкана",
+        "ru": "Кухня на солнечных батареях",
+        "en": "A kitchen running on solar panels"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Баткендин өрүгү",
+              "ru": "Баткенский урожай абрикосов",
+              "en": "Batken apricots"
+            },
+            "text": {
+              "ky": "Баткенде күн ачык күндөр көп, ошондуктан жалбырактардын хлоропласттары көп кант жасап, өрүк абдан таттуу болот.",
+              "ru": "В Баткене много солнечных дней, хлоропласты листьев производят много сахара – поэтому абрикосы там такие сладкие.",
+              "en": "Batken has many sunny days, so leaf chloroplasts make lots of sugar – that is why its apricots are so sweet."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Жасалма фотосинтез",
+              "ru": "Искусственный фотосинтез",
+              "en": "Artificial photosynthesis"
+            },
+            "text": {
+              "ky": "Инженерлер хлоропласттан үлгү алып, күн нурунун жардамы менен суудан суутек отунун алган панелдерди иштеп чыгышууда.",
+              "ru": "Инженеры по образцу хлоропласта создают панели, которые с помощью солнечного света получают из воды водородное топливо.",
+              "en": "Engineers copy the chloroplast to build panels that use sunlight to make hydrogen fuel from water."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Күн панели",
+              "ru": "Солнечная батарея",
+              "en": "A solar panel"
+            },
+            "text": {
+              "ky": "Хлоропласт кичинекей күн панели сыяктуу: күн нурун кармап, энергияга айландырат.",
+              "ru": "Хлоропласт – как крошечная солнечная батарея: ловит солнечный свет и превращает его в энергию.",
+              "en": "A chloroplast is like a tiny solar panel: it catches sunlight and turns it into energy."
+            }
+          },
+          {
+            "title": {
+              "ky": "Нан бышыруучу",
+              "ru": "Пекарня",
+              "en": "A bakery"
+            },
+            "text": {
+              "ky": "Нан бышыруучу ун менен суудан нан жасайт. Хлоропласт аба менен суудан «кант нанын» жасайт, меши – күн.",
+              "ru": "Пекарь печёт хлеб из муки и воды. Хлоропласт «печёт» сахар из воздуха и воды, а печка у него – солнце.",
+              "en": "A baker makes bread from flour and water. A chloroplast bakes sugar from air and water – and its oven is the Sun."
+            }
           }
         ]
       }
@@ -600,16 +1872,16 @@
     {
       "key": "bio.respiration",
       "engine": "timeline",
+      "icon": "wind",
       "title": {
         "ky": "Клеткалык дем алуу",
         "ru": "Клеточное дыхание",
         "en": "Cellular respiration"
       },
-      "icon": "wind",
       "description": {
-        "ky": "Глюкозадан энергия алуу.",
-        "ru": "Получение энергии из глюкозы.",
-        "en": "Releasing energy from glucose."
+        "ky": "Клетка глюкозаны кычкылтек менен акырындык менен ажыратып, бөлүнгөн энергияны АТФ молекулаларына топтойт.",
+        "ru": "Клетка постепенно расщепляет глюкозу с участием кислорода и запасает выделившуюся энергию в молекулах АТФ.",
+        "en": "The cell breaks glucose down step by step using oxygen and stores the released energy in ATP molecules."
       },
       "equation": "C_6H_{12}O_6 + 6O_2 \\to 6CO_2 + 6H_2O",
       "inputs": {
@@ -623,9 +1895,9 @@
         "en": "Carbon dioxide + water"
       },
       "energy": {
-        "ky": "≈ 30 АТФ",
-        "ru": "≈ 30 АТФ",
-        "en": "≈ 30 ATP"
+        "ky": "≈ 30 АТФ бир глюкоза молекуласынан",
+        "ru": "≈ 30 АТФ на одну молекулу глюкозы",
+        "en": "≈ 30 ATP per glucose molecule"
       },
       "steps": [
         {
@@ -641,14 +1913,15 @@
             "en": "2 ATP"
           },
           "description": {
-            "ky": "Глюкоза пируватка ажырайт.",
-            "ru": "Глюкоза расщепляется до пирувата.",
-            "en": "Glucose is split into pyruvate."
+            "ky": "Цитоплазмада бир глюкоза молекуласы пируваттын эки молекуласына ажырайт. Бул үчүн кычкылтек керек эмес.",
+            "ru": "В цитоплазме молекула глюкозы расщепляется на две молекулы пирувата. Кислород для этого не нужен.",
+            "en": "In the cytoplasm one glucose molecule is split into two pyruvate molecules. No oxygen is needed."
           },
+          "conceptKey": "bio.cytoplasm",
           "altText": {
-            "ky": "Глюкоза экиге бөлүнөт.",
-            "ru": "Глюкоза делится надвое.",
-            "en": "Glucose splits in two."
+            "ky": "Цитоплазмадагы глюкоза экиге бөлүнөт.",
+            "ru": "Глюкоза в цитоплазме делится надвое.",
+            "en": "Glucose in the cytoplasm splits in two."
           },
           "duration": 2
         },
@@ -660,46 +1933,47 @@
             "en": "Krebs cycle"
           },
           "result": {
-            "ky": "2 АТФ",
-            "ru": "2 АТФ",
-            "en": "2 ATP"
+            "ky": "2 АТФ + 6 CO₂",
+            "ru": "2 АТФ + 6 CO₂",
+            "en": "2 ATP + 6 CO₂"
           },
           "description": {
-            "ky": "Пируват митохондрияда кычкылданат.",
-            "ru": "Пируват окисляется в митохондрии.",
-            "en": "Pyruvate is oxidised in the mitochondrion."
+            "ky": "Пируват митохондрияга кирип, толук кычкылданат; көмүр кычкыл газы бөлүнүп чыгат.",
+            "ru": "Пируват входит в митохондрию и полностью окисляется; выделяется углекислый газ.",
+            "en": "Pyruvate enters the mitochondrion and is fully oxidised; carbon dioxide is released."
           },
           "conceptKey": "bio.mitochondrion",
           "altText": {
-            "ky": "Митохондриядагы цикл.",
-            "ru": "Цикл внутри митохондрии.",
-            "en": "A cycle inside the mitochondrion."
+            "ky": "Митохондриянын ичиндеги тегерек цикл, CO₂ чыгат.",
+            "ru": "Круговой цикл внутри митохондрии, выходит CO₂.",
+            "en": "A circular cycle inside the mitochondrion releasing CO₂."
           },
           "duration": 3
         },
         {
           "key": "etc",
           "title": {
-            "ky": "Электрон ташуу чынжыры",
+            "ky": "Электрон ташуучу чынжыр",
             "ru": "Дыхательная цепь",
             "en": "Electron transport chain"
           },
           "result": {
-            "ky": "≈ 26 АТФ",
-            "ru": "≈ 26 АТФ",
-            "en": "≈ 26 ATP"
+            "ky": "≈ 26 АТФ + 6 H₂O",
+            "ru": "≈ 26 АТФ + 6 H₂O",
+            "en": "≈ 26 ATP + 6 H₂O"
           },
           "description": {
-            "ky": "АТФтын көбү ушул жерде пайда болот.",
-            "ru": "Здесь образуется большая часть АТФ.",
-            "en": "Most ATP is made here."
+            "ky": "Митохондриянын ички мембранасында кычкылтек электрондорду кабыл алып, сууга айланат. АТФтын көбү ушул жерде пайда болот.",
+            "ru": "На внутренней мембране митохондрии кислород принимает электроны и превращается в воду. Здесь образуется большая часть АТФ.",
+            "en": "On the inner mitochondrial membrane oxygen accepts electrons and becomes water. Most of the ATP is made here."
           },
           "conceptKey": "bio.mitochondrion",
           "altText": {
-            "ky": "Мембранадагы белоктор.",
-            "ru": "Белки на мембране.",
-            "en": "Proteins on a membrane."
-          }
+            "ky": "Митохондриянын ички мембранасындагы белоктор.",
+            "ru": "Белки на внутренней мембране митохондрии.",
+            "en": "Proteins on the inner membrane of the mitochondrion."
+          },
+          "duration": 3
         }
       ],
       "metrics": [
@@ -710,6 +1984,7 @@
             "ru": "АТФ",
             "en": "ATP"
           },
+          "unit": "molecules",
           "min": 0,
           "max": 30,
           "precision": 0
@@ -717,16 +1992,35 @@
         {
           "key": "o2",
           "label": {
-            "ky": "O₂",
-            "ru": "O₂",
-            "en": "O₂"
+            "ky": "Сарпталган O₂",
+            "ru": "Израсходовано O₂",
+            "en": "O₂ used"
+          },
+          "unit": "mol",
+          "min": 0,
+          "max": 6,
+          "precision": 1
+        },
+        {
+          "key": "co2",
+          "label": {
+            "ky": "Бөлүнгөн CO₂",
+            "ru": "Выделено CO₂",
+            "en": "CO₂ released"
           },
           "unit": "mol",
           "min": 0,
           "max": 6,
           "precision": 1
         }
-      ]
+      ],
+      "params": {
+        "glucose": 1,
+        "o2": 6,
+        "co2": 6,
+        "h2o": 6,
+        "atpYield": 30
+      }
     }
   ],
   "items": [
@@ -734,8 +2028,8 @@
       "key": "bio.q.powerhouse",
       "type": "single",
       "prompt": {
-        "ky": "Клетканын энергия станциясы кайсы?",
-        "ru": "Что является энергетической станцией клетки?",
+        "ky": "Клетканын энергия станциясы кайсы органелла?",
+        "ru": "Какая органелла – энергетическая станция клетки?",
         "en": "Which organelle is the powerhouse of the cell?"
       },
       "options": [
@@ -762,13 +2056,21 @@
             "ru": "Мембрана",
             "en": "Membrane"
           }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Рибосома",
+            "ru": "Рибосома",
+            "en": "Ribosome"
+          }
         }
       ],
       "answer": "b",
       "explanation": {
-        "ky": "Митохондрия АТФ өндүрөт.",
-        "ru": "Митохондрия вырабатывает АТФ.",
-        "en": "The mitochondrion produces ATP."
+        "ky": "Митохондрия глюкозанын энергиясын АТФка айландырат.",
+        "ru": "Митохондрия превращает энергию глюкозы в АТФ.",
+        "en": "The mitochondrion converts the energy of glucose into ATP."
       },
       "objectiveKeys": [
         "bio.g7.cells.o1"
@@ -780,8 +2082,8 @@
       "key": "bio.q.organelles",
       "type": "multiple",
       "prompt": {
-        "ky": "Кайсылары органелла?",
-        "ru": "Что из этого органеллы?",
+        "ky": "Булардын кайсылары органелла?",
+        "ru": "Что из этого – органеллы?",
         "en": "Which of these are organelles?"
       },
       "options": [
@@ -808,11 +2110,20 @@
             "ru": "Глюкоза",
             "en": "Glucose"
           }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Рибосома",
+            "ru": "Рибосома",
+            "en": "Ribosome"
+          }
         }
       ],
       "answer": [
         "a",
-        "b"
+        "b",
+        "d"
       ],
       "explanation": {
         "ky": "Глюкоза – молекула, органелла эмес.",
@@ -828,9 +2139,9 @@
       "key": "bio.q.match",
       "type": "match",
       "prompt": {
-        "ky": "Түзүлүштү милдети менен дал келтир.",
-        "ru": "Сопоставь структуру и функцию.",
-        "en": "Match structure to function."
+        "ky": "Түзүлүштү анын милдети менен дал келтир.",
+        "ru": "Сопоставь структуру и её функцию.",
+        "en": "Match each structure to its function."
       },
       "pairs": [
         {
@@ -855,19 +2166,46 @@
           },
           "right": {
             "ky": "АТФ өндүрөт",
-            "ru": "Делает АТФ",
+            "ru": "Вырабатывает АТФ",
             "en": "Makes ATP"
+          }
+        },
+        {
+          "key": "ribosome",
+          "left": {
+            "ky": "Рибосома",
+            "ru": "Рибосома",
+            "en": "Ribosome"
+          },
+          "right": {
+            "ky": "Белок синтездейт",
+            "ru": "Синтезирует белки",
+            "en": "Makes proteins"
+          }
+        },
+        {
+          "key": "golgi",
+          "left": {
+            "ky": "Гольджи аппараты",
+            "ru": "Аппарат Гольджи",
+            "en": "Golgi apparatus"
+          },
+          "right": {
+            "ky": "Белокторду таңгактайт",
+            "ru": "Упаковывает белки",
+            "en": "Packages proteins"
           }
         }
       ],
       "explanation": {
-        "ky": "Ар бир органелланын өз милдети бар.",
-        "ru": "У каждой органеллы своя функция.",
-        "en": "Each organelle has its own job."
+        "ky": "Ар бир органелланын өз милдети бар – клетка ушундай иштейт.",
+        "ru": "У каждой органеллы своя работа – так клетка и функционирует.",
+        "en": "Each organelle has its own job – that is how the cell works."
       },
       "objectiveKeys": [
         "bio.g7.cells.o1"
       ],
+      "misconceptionKey": "bio.m.golgi-makes-protein",
       "difficulty": 2
     },
     {
@@ -880,9 +2218,9 @@
       },
       "targetConceptKey": "bio.nucleus",
       "explanation": {
-        "ky": "Ядро клетканын борборунда.",
-        "ru": "Ядро в центре клетки.",
-        "en": "The nucleus is in the centre."
+        "ky": "Ядро – клетканын ортосундагы эң ири органелла.",
+        "ru": "Ядро – самая крупная органелла в центре клетки.",
+        "en": "The nucleus is the largest organelle, in the centre of the cell."
       },
       "objectiveKeys": [
         "bio.g7.cells.o1"
@@ -891,28 +2229,105 @@
       "difficulty": 1
     },
     {
+      "key": "bio.q.find-ribosome",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Белок жасоочу органелланы моделден тап.",
+        "ru": "Найди на модели органеллу, которая делает белки.",
+        "en": "Find the organelle that makes proteins on the model."
+      },
+      "targetConceptKey": "bio.ribosome",
+      "explanation": {
+        "ky": "Белокторду рибосомалар жасайт – алар цитоплазмадагы майда чекиттер.",
+        "ru": "Белки делают рибосомы – это мелкие точки в цитоплазме.",
+        "en": "Ribosomes make proteins – they are the tiny dots in the cytoplasm."
+      },
+      "objectiveKeys": [
+        "bio.g7.cells.o1"
+      ],
+      "misconceptionKey": "bio.m.ribosome-membrane",
+      "difficulty": 2
+    },
+    {
       "key": "bio.q.nucleus-size",
       "type": "numeric",
       "prompt": {
-        "ky": "Ядронун өлчөмү канча мкм?",
-        "ru": "Каков размер ядра в мкм?",
-        "en": "How big is the nucleus in µm?"
+        "ky": "Жаныбар клеткасынын ядросунун диаметри болжол менен канча микрометр?",
+        "ru": "Каков примерно диаметр ядра животной клетки в микрометрах?",
+        "en": "About how many micrometres across is the nucleus of an animal cell?"
       },
       "answer": 6,
       "tolerance": 1,
       "unit": "µm",
       "explanation": {
-        "ky": "Болжол менен 6 мкм.",
-        "ru": "Около 6 мкм.",
-        "en": "About 6 µm."
+        "ky": "Ядронун диаметри болжол менен 6 мкм – бул бүт клетканын болжол менен үчтөн бири.",
+        "ru": "Диаметр ядра около 6 мкм – это примерно треть всей клетки.",
+        "en": "The nucleus is about 6 µm across – roughly a third of the whole cell."
       },
       "objectiveKeys": [
         "bio.g7.cells.o1"
       ],
       "difficulty": 3
+    },
+    {
+      "key": "bio.q.protein-path",
+      "type": "single",
+      "prompt": {
+        "ky": "Белоктун клеткадагы туура жолу кайсы?",
+        "ru": "Какой путь белка в клетке правильный?",
+        "en": "Which is the correct path of a protein in the cell?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Рибосома → Гольджи → клетканын сырты",
+            "ru": "Рибосома → Гольджи → наружу",
+            "en": "Ribosome → Golgi → outside"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Гольджи → рибосома → ядро",
+            "ru": "Гольджи → рибосома → ядро",
+            "en": "Golgi → ribosome → nucleus"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Митохондрия → ядро → мембрана",
+            "ru": "Митохондрия → ядро → мембрана",
+            "en": "Mitochondrion → nucleus → membrane"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Белокту рибосома жасайт, Гольджи аны таңгактап, клетканын сыртына жөнөтөт.",
+        "ru": "Белок делает рибосома, Гольджи упаковывает его и отправляет наружу.",
+        "en": "The ribosome makes the protein, then the Golgi packages it and sends it out."
+      },
+      "objectiveKeys": [
+        "bio.g7.cells.o1"
+      ],
+      "misconceptionKey": "bio.m.golgi-makes-protein",
+      "difficulty": 3
     }
   ],
   "glossary": [
+    {
+      "id": "g-cell",
+      "ky": "клетка",
+      "ru": "клетка",
+      "en": "cell",
+      "forbidden": [
+        "жасуша",
+        "уяча"
+      ],
+      "approvedBy": "editor-bio"
+    },
     {
       "id": "g-organelle",
       "ky": "органелла",
@@ -922,6 +2337,258 @@
         "органоид"
       ],
       "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-nucleus",
+      "ky": "ядро",
+      "ru": "ядро",
+      "en": "nucleus",
+      "forbidden": [
+        "nucleous"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-membrane",
+      "ky": "клетка мембранасы",
+      "ru": "клеточная мембрана",
+      "en": "cell membrane",
+      "forbidden": [
+        "клетка кабыгы",
+        "cell skin"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-cytoplasm",
+      "ky": "цитоплазма",
+      "ru": "цитоплазма",
+      "en": "cytoplasm",
+      "forbidden": [
+        "цитоплазм",
+        "cytoplasma"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-mitochondrion",
+      "ky": "митохондрия",
+      "ru": "митохондрия",
+      "en": "mitochondrion",
+      "forbidden": [
+        "a mitochondria",
+        "mitochondrias"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-ribosome",
+      "ky": "рибосома",
+      "ru": "рибосома",
+      "en": "ribosome",
+      "forbidden": [
+        "рибозома",
+        "ribozome"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-atp",
+      "ky": "АТФ (аденозинтрифосфат)",
+      "ru": "АТФ (аденозинтрифосфат)",
+      "en": "ATP (adenosine triphosphate)",
+      "forbidden": [
+        "АТП"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-cell-wall",
+      "ky": "клетка дубалы",
+      "ru": "клеточная стенка",
+      "en": "cell wall",
+      "forbidden": [],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-chloroplast",
+      "ky": "хлоропласт",
+      "ru": "хлоропласт",
+      "en": "chloroplast",
+      "forbidden": [
+        "хлоропласть"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-vacuole",
+      "ky": "вакуоль",
+      "ru": "вакуоль",
+      "en": "vacuole",
+      "forbidden": [
+        "вакуола",
+        "vacuol"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-chlorophyll",
+      "ky": "хлорофилл",
+      "ru": "хлорофилл",
+      "en": "chlorophyll",
+      "forbidden": [
+        "хлорофил",
+        "chlorophyl"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-photosynthesis",
+      "ky": "фотосинтез",
+      "ru": "фотосинтез",
+      "en": "photosynthesis",
+      "forbidden": [
+        "фотосинтес",
+        "photosinthesis"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-stoma",
+      "ky": "устьице",
+      "ru": "устьице",
+      "en": "stoma",
+      "forbidden": [
+        "устице"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-atrium",
+      "ky": "жүрөкчө",
+      "ru": "предсердие",
+      "en": "atrium",
+      "forbidden": [
+        "предсердье"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-ventricle",
+      "ky": "карынча",
+      "ru": "желудочек",
+      "en": "ventricle",
+      "forbidden": [
+        "ventrical"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-aorta",
+      "ky": "аорта",
+      "ru": "аорта",
+      "en": "aorta",
+      "forbidden": [
+        "aortha"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-valve",
+      "ky": "жүрөк капкагы",
+      "ru": "клапан сердца",
+      "en": "heart valve",
+      "forbidden": [],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-systole",
+      "ky": "систола",
+      "ru": "систола",
+      "en": "systole",
+      "forbidden": [],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-diastole",
+      "ky": "диастола",
+      "ru": "диастола",
+      "en": "diastole",
+      "forbidden": [],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-dna",
+      "ky": "ДНК (дезоксирибонуклеин кислотасы)",
+      "ru": "ДНК (дезоксирибонуклеиновая кислота)",
+      "en": "DNA (deoxyribonucleic acid)",
+      "forbidden": [
+        "дезоксирибонуклеинавая"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-nucleotide",
+      "ky": "нуклеотид",
+      "ru": "нуклеотид",
+      "en": "nucleotide",
+      "forbidden": [
+        "нуклиотид",
+        "nucleotid"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-complementarity",
+      "ky": "комплементардуулук",
+      "ru": "комплементарность",
+      "en": "complementarity",
+      "forbidden": [
+        "комплиментарность",
+        "complimentarity"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-replication",
+      "ky": "репликация",
+      "ru": "репликация",
+      "en": "replication",
+      "forbidden": [
+        "рапликация"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-hydrogen-bond",
+      "ky": "суутек байланышы",
+      "ru": "водородная связь",
+      "en": "hydrogen bond",
+      "forbidden": [],
+      "approvedBy": "editor-bio"
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "composition",
+      "icon": "flask-conical",
+      "valueKind": "text",
+      "label": {
+        "ky": "Курамы",
+        "ru": "Состав",
+        "en": "Composition"
+      }
+    },
+    {
+      "key": "length",
+      "icon": "ruler",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Узундугу",
+        "ru": "Длина",
+        "en": "Length"
+      }
     }
   ]
 }

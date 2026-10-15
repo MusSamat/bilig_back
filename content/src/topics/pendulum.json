@@ -1,0 +1,781 @@
+{
+  "topic": {
+    "key": "pendulum",
+    "unitKey": "phys.g9.oscillations",
+    "status": "published",
+    "title": {
+      "ky": "Математикалык маятник",
+      "ru": "Математический маятник",
+      "en": "Simple pendulum"
+    },
+    "formula": "T = 2\\pi\\sqrt{l/g}",
+    "classification": {
+      "ky": "Механикалык термелүү системасы",
+      "ru": "Колебательная система",
+      "en": "Oscillating system"
+    },
+    "description": {
+      "ky": "Жеңил жипке илинген кичинекей оор жүк. Анын термелүү мезгили жиптин узундугуна жана g ге гана көз каранды, ал эми энергиясы потенциалдыктан кинетикалыкка жана кайра айланат.",
+      "ru": "Маленький тяжёлый груз на лёгкой нити. Период его колебаний зависит только от длины нити и g, а энергия переходит из потенциальной в кинетическую и обратно.",
+      "en": "A small heavy bob on a light string. Its period depends only on the string length and g, while its energy changes from potential to kinetic and back."
+    },
+    "goal": {
+      "ky": "Маятниктин мезгилин T = 2π√(l/g) формуласы менен эсептөө (PHYS-9.4.1) жана термелүүдө энергиянын айланышын түшүндүрүү (PHYS-9.4.2).",
+      "ru": "Рассчитать период маятника по формуле T = 2π√(l/g) (PHYS-9.4.1) и объяснить превращения энергии при колебаниях (PHYS-9.4.2).",
+      "en": "Calculate a pendulum's period with T = 2π√(l/g) (PHYS-9.4.1) and explain how energy changes during the swing (PHYS-9.4.2)."
+    },
+    "objectiveKeys": [
+      "phys.g9.oscillations.o1",
+      "phys.g9.oscillations.o2"
+    ],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "pendulum",
+        "length": 1,
+        "mass": 0.2,
+        "amplitudeDeg": 10,
+        "g": 9.81,
+        "damping": 0
+      },
+      "camera": {
+        "position": [
+          0,
+          0,
+          3.5
+        ],
+        "target": [
+          0,
+          -0.2,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "trace",
+        "energy"
+      ]
+    },
+    "conceptKeys": [
+      "phys.pivot",
+      "phys.string",
+      "phys.bob",
+      "phys.equilibrium",
+      "phys.amplitude",
+      "phys.gravity"
+    ],
+    "overrides": {
+      "phys.pivot": {
+        "anchor": [
+          0,
+          0.5,
+          0
+        ],
+        "nodes": [
+          "Pivot"
+        ]
+      },
+      "phys.string": {
+        "nodes": [
+          "String"
+        ]
+      },
+      "phys.bob": {
+        "anchor": [
+          0,
+          -0.5,
+          0
+        ],
+        "nodes": [
+          "Bob"
+        ]
+      },
+      "phys.equilibrium": {
+        "anchor": [
+          0,
+          -0.55,
+          0
+        ],
+        "nodes": [
+          "Marker_Equilibrium"
+        ]
+      },
+      "phys.amplitude": {
+        "anchor": [
+          0.17,
+          -0.48,
+          0
+        ],
+        "nodes": [
+          "Arc_Amplitude"
+        ]
+      },
+      "phys.gravity": {
+        "anchor": [
+          0,
+          -0.75,
+          0
+        ],
+        "nodes": [
+          "Vector_Gravity"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 1.96,
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "acceleration",
+            "value": 9.81
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F = mg"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "pendulum-1m",
+        "title": {
+          "ky": "Маятник, l = 1 м",
+          "ru": "Маятник, l = 1 м",
+          "en": "Pendulum, l = 1 m"
+        },
+        "classification": {
+          "ky": "Математикалык маятник",
+          "ru": "Математический маятник",
+          "en": "Simple pendulum"
+        },
+        "thumb": "thumbs/pendulum-1m.webp"
+      },
+      {
+        "key": "pendulum-25cm",
+        "title": {
+          "ky": "Маятник, l = 0,25 м",
+          "ru": "Маятник, l = 0,25 м",
+          "en": "Pendulum, l = 0.25 m"
+        },
+        "classification": {
+          "ky": "Математикалык маятник",
+          "ru": "Математический маятник",
+          "en": "Simple pendulum"
+        },
+        "thumb": "thumbs/pendulum-25cm.webp"
+      },
+      {
+        "key": "swing",
+        "title": {
+          "ky": "Селкинчек, l ≈ 2,5 м",
+          "ru": "Качели, l ≈ 2,5 м",
+          "en": "Swing, l ≈ 2.5 m"
+        },
+        "classification": {
+          "ky": "Физикалык маятник",
+          "ru": "Физический маятник",
+          "en": "Physical pendulum"
+        },
+        "thumb": "thumbs/swing.webp"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                0,
+                3.5
+              ],
+              "target": [
+                0,
+                -0.2,
+                0
+              ]
+            },
+            "text": {
+              "ky": "Бул – математикалык маятник: 1 м жипке илинген 0,2 кг жүк. Аны четке тартып коё берели.",
+              "ru": "Это математический маятник: груз 0,2 кг на нити длиной 1 м. Отклоним его и отпустим.",
+              "en": "This is a simple pendulum: a 0.2 kg bob on a 1 m string. Let's pull it aside and let go."
+            },
+            "teacherNote": {
+              "ky": "Окуучулардан маятниктин кайда эң тез кыймылдаарын болжолдоону сураңыз.",
+              "ru": "Попросите учеников предположить, где маятник движется быстрее всего.",
+              "en": "Ask the class to guess where the pendulum moves fastest."
+            },
+            "altText": {
+              "ky": "Илинүү чекитинен ылдый салаңдаган жип жана анын учундагы шар.",
+              "ru": "Нить, свисающая с точки подвеса, и шарик на конце.",
+              "en": "A string hanging from a pivot with a ball on the end."
+            }
+          },
+          {
+            "key": "pivot",
+            "camera": {
+              "position": [
+                0,
+                0.5,
+                2
+              ],
+              "target": [
+                0,
+                0.4,
+                0
+              ]
+            },
+            "focus": "phys.pivot",
+            "text": {
+              "ky": "Илинүү чекити кыймылсыз; жүк анын айланасында жаа сызып термелет.",
+              "ru": "Точка подвеса неподвижна; груз качается вокруг неё по дуге.",
+              "en": "The pivot stays still; the bob swings around it along an arc."
+            },
+            "teacherNote": {
+              "ky": "Жип созулбайт деп эсептейбиз – бул «математикалык» маятниктин шарты экенин белгилеңиз.",
+              "ru": "Отметьте: нить считаем нерастяжимой – это условие «математического» маятника.",
+              "en": "Point out that we treat the string as non-stretching – a condition of the 'simple' pendulum."
+            },
+            "altText": {
+              "ky": "Жогорку бекитилген чекит бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделена верхняя закреплённая точка.",
+              "en": "The fixed top point is highlighted."
+            }
+          },
+          {
+            "key": "amplitude",
+            "modes": {
+              "energy": true
+            },
+            "focus": "phys.amplitude",
+            "text": {
+              "ky": "Жүктүн эң чоң четтөө бурчу – амплитуда, бул жерде 10°. Четки чекитте жүк бир заматка токтойт: энергиясы толугу менен потенциалдык.",
+              "ru": "Наибольший угол отклонения – амплитуда, здесь 10°. В крайней точке груз на миг останавливается: вся энергия потенциальная.",
+              "en": "The largest swing angle is the amplitude, here 10°. At the end point the bob stops for an instant: all its energy is potential."
+            },
+            "teacherNote": {
+              "ky": "«Энергия» режимин күйгүзүп, эки тилкени көрсөтүңүз.",
+              "ru": "Включите режим «Энергия» и покажите два столбика.",
+              "en": "Turn on the 'energy' mode and show the two bars."
+            },
+            "altText": {
+              "ky": "Тик сызыктан 10° четтеген жип жана бурч жаасы.",
+              "ru": "Нить, отклонённая на 10° от вертикали, и дуга угла.",
+              "en": "The string 10° from the vertical with the angle arc."
+            }
+          },
+          {
+            "key": "equilibrium",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.equilibrium",
+            "text": {
+              "ky": "Тең салмак абалында жүк эң тез – болжол менен 0,55 м/с. Бул жерде энергия толугу менен кинетикалык.",
+              "ru": "В положении равновесия груз движется быстрее всего – около 0,55 м/с. Здесь вся энергия кинетическая.",
+              "en": "At equilibrium the bob is fastest – about 0.55 m/s. Here all its energy is kinetic."
+            },
+            "teacherNote": {
+              "ky": "«Төмөндө жүк токтойт» деген жаңылыш ойду талкуулаңыз.",
+              "ru": "Разберите ошибочное мнение «внизу груз останавливается».",
+              "en": "Discuss the mistaken idea that the bob stops at the bottom."
+            },
+            "altText": {
+              "ky": "Жүк илинүү чекитинин так астында, ылдамдык жебеси эң узун.",
+              "ru": "Груз точно под точкой подвеса, стрелка скорости самая длинная.",
+              "en": "The bob right under the pivot with the longest speed arrow."
+            }
+          },
+          {
+            "key": "gravity",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.gravity",
+            "text": {
+              "ky": "Жүктү кайра ортого кайтарган – оордук күчү. Ал дайыма тик ылдый багытталган.",
+              "ru": "Груз к середине возвращает сила тяжести. Она всегда направлена вертикально вниз.",
+              "en": "Gravity is what pulls the bob back towards the middle. It always points straight down."
+            },
+            "teacherNote": {
+              "ky": "Айда g 6 эсе аз болсо, маятник канча жай термелерин бирге эсептеңиз (≈ 2,45 эсе).",
+              "ru": "Посчитайте вместе, во сколько раз медленнее качался бы маятник на Луне, где g в 6 раз меньше (≈ в 2,45 раза).",
+              "en": "Work out together how much slower it would swing on the Moon, where g is 6 times smaller (about 2.45 times)."
+            },
+            "altText": {
+              "ky": "Жүктөн тик ылдый караган жебе – оордук күчү.",
+              "ru": "Стрелка от груза вертикально вниз – сила тяжести.",
+              "en": "An arrow from the bob straight down – the force of gravity."
+            }
+          },
+          {
+            "key": "string",
+            "modes": {
+              "trace": true
+            },
+            "focus": "phys.string",
+            "text": {
+              "ky": "Жипти 4 эсе кыскартсак (0,25 м), мезгил 2 эсе кыскарат – ≈ 1,0 с. Масса таасир этпейт!",
+              "ru": "Если укоротить нить в 4 раза (до 0,25 м), период уменьшится вдвое – до ≈ 1,0 с. Масса не влияет!",
+              "en": "Make the string 4 times shorter (0.25 m) and the period halves to about 1.0 s. The mass makes no difference!"
+            },
+            "teacherNote": {
+              "ky": "Салыштыруу таблицасын ачып, үч образецти салыштырыңыз.",
+              "ru": "Откройте таблицу сравнения и сравните три образца.",
+              "en": "Open the comparison table and compare the three samples."
+            },
+            "altText": {
+              "ky": "Жип бөлүнүп көрсөтүлгөн, жанында узундук белгиси.",
+              "ru": "Выделена нить, рядом отметка длины.",
+              "en": "The string highlighted with a length label next to it."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.pendulum-oscillation"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "pendulum-1m"
+          },
+          {
+            "kind": "sample",
+            "key": "pendulum-25cm"
+          },
+          {
+            "kind": "sample",
+            "key": "swing"
+          }
+        ],
+        "rows": [
+          "length",
+          "period"
+        ],
+        "manual": [
+          {
+            "column": "pendulum-1m",
+            "row": "length",
+            "value": {
+              "ky": "1 м",
+              "ru": "1 м",
+              "en": "1 m"
+            }
+          },
+          {
+            "column": "pendulum-1m",
+            "row": "period",
+            "value": {
+              "ky": "≈ 2,01 с",
+              "ru": "≈ 2,01 с",
+              "en": "≈ 2.01 s"
+            }
+          },
+          {
+            "column": "pendulum-25cm",
+            "row": "length",
+            "value": {
+              "ky": "0,25 м",
+              "ru": "0,25 м",
+              "en": "0.25 m"
+            }
+          },
+          {
+            "column": "pendulum-25cm",
+            "row": "period",
+            "value": {
+              "ky": "≈ 1,00 с",
+              "ru": "≈ 1,00 с",
+              "en": "≈ 1.00 s"
+            }
+          },
+          {
+            "column": "swing",
+            "row": "length",
+            "value": {
+              "ky": "≈ 2,5 м",
+              "ru": "≈ 2,5 м",
+              "en": "≈ 2.5 m"
+            }
+          },
+          {
+            "column": "swing",
+            "row": "period",
+            "value": {
+              "ky": "≈ 3,2 с",
+              "ru": "≈ 3,2 с",
+              "en": "≈ 3.2 s"
+            }
+          }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.period-depends",
+          "phys.q.not-affect-period",
+          "phys.q.energy-match",
+          "phys.q.find-bob",
+          "phys.q.period-1m",
+          "phys.q.speed-bottom",
+          "phys.q.moon-pendulum"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "t",
+          "title": {
+            "ky": "Маятниктүү саат",
+            "ru": "Маятниковые часы",
+            "en": "Pendulum clocks"
+          },
+          "text": {
+            "ky": "1656-жылы Христиан Гюйгенс маятниктүү саатты ойлоп тапкан; узундугу ≈ 1 м маятник ар бир секундада бир «тык» берет.",
+            "ru": "В 1656 году Христиан Гюйгенс изобрёл маятниковые часы; маятник длиной ≈ 1 м отсчитывает по «тику» каждую секунду.",
+            "en": "In 1656 Christiaan Huygens invented the pendulum clock; a pendulum about 1 m long ticks once every second."
+          }
+        },
+        {
+          "field": "s",
+          "title": {
+            "ky": "g ни өлчөө",
+            "ru": "Измерение g",
+            "en": "Measuring g"
+          },
+          "text": {
+            "ky": "Маятниктин узундугун жана мезгилин өлчөп, g = 4π²l/T² формуласы менен эркин түшүү ылдамдануусун табууга болот – геологдор муну пайдалуу кендерди издөөдө колдонушкан.",
+            "ru": "Измерив длину и период маятника, можно найти ускорение свободного падения: g = 4π²l/T²; геологи так искали полезные ископаемые.",
+            "en": "By measuring a pendulum's length and period you can find g = 4π²l/T²; geologists once used this to search for mineral deposits."
+          }
+        },
+        {
+          "field": "e",
+          "title": {
+            "ky": "Бийик имараттардагы демпферлер",
+            "ru": "Демпферы в небоскрёбах",
+            "en": "Skyscraper dampers"
+          },
+          "text": {
+            "ky": "Тайбэй 101 асман тиреген имаратында 660 тонналык шар-маятник илинип, шамалда жана жер титирөөдө имараттын чайкалышын азайтат.",
+            "ru": "В небоскрёбе Тайбэй 101 подвешен шар-маятник массой 660 т – он гасит раскачивание здания от ветра и землетрясений.",
+            "en": "The Taipei 101 skyscraper hangs a 660-tonne pendulum ball that damps the building's sway in wind and earthquakes."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Селкинчек",
+            "ru": "Качели",
+            "en": "A swing"
+          },
+          "text": {
+            "ky": "Короодогу селкинчек – чоң маятник: аны канчалык катуу түртсөң да, бир барып-келүүгө кеткен убакыт дээрлик бирдей.",
+            "ru": "Качели во дворе – большой маятник: как ни раскачивай, на одно качание уходит почти одно и то же время.",
+            "en": "A playground swing is a big pendulum: however hard you push, one back-and-forth takes about the same time."
+          }
+        },
+        {
+          "title": {
+            "ky": "Бешик",
+            "ru": "Колыбель",
+            "en": "A cradle"
+          },
+          "text": {
+            "ky": "Апалар баланы бешикте бир калыпта термелтишет – бешиктин ыргагы маятниктикиндей туруктуу.",
+            "ru": "Мамы качают ребёнка в бешике размеренно – ритм колыбели ровный, как у маятника.",
+            "en": "Mothers rock a baby's beshik cradle with a steady rhythm, just like a pendulum's."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "phys.q.period-depends",
+      "type": "single",
+      "prompt": {
+        "ky": "Математикалык маятниктин мезгили эмнеден көз каранды?",
+        "ru": "От чего зависит период математического маятника?",
+        "en": "What does the period of a simple pendulum depend on?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жүктүн массасынан",
+            "ru": "От массы груза",
+            "en": "The mass of the bob"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жиптин узундугунан",
+            "ru": "От длины нити",
+            "en": "The length of the string"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жүктүн түсүнөн",
+            "ru": "От цвета груза",
+            "en": "The colour of the bob"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "T = 2π√(l/g): мезгил жиптин узундугуна жана g ге гана көз каранды.",
+        "ru": "T = 2π√(l/g): период зависит только от длины нити и g.",
+        "en": "T = 2π√(l/g): the period depends only on the string length and g."
+      },
+      "objectiveKeys": [
+        "phys.g9.oscillations.o1"
+      ],
+      "misconceptionKey": "phys.m.heavier-faster",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.not-affect-period",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кичине бурчтарда эмне маятниктин мезгилине ТААСИР ЭТПЕЙТ?",
+        "ru": "Что НЕ влияет на период маятника при малых углах?",
+        "en": "Which of these do NOT affect the period at small angles?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жүктүн массасы",
+            "ru": "Масса груза",
+            "en": "The bob's mass"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Амплитуда (10°ка чейин)",
+            "ru": "Амплитуда (до 10°)",
+            "en": "The amplitude (up to 10°)"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жиптин узундугу",
+            "ru": "Длина нити",
+            "en": "The string length"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Эркин түшүү ылдамдануусу g",
+            "ru": "Ускорение свободного падения g",
+            "en": "The acceleration due to gravity g"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "explanation": {
+        "ky": "Массасы жана кичине амплитудасы мезгилди өзгөртпөйт; узундугу жана g өзгөртөт.",
+        "ru": "Масса и малая амплитуда период не меняют; длина и g – меняют.",
+        "en": "The mass and a small amplitude do not change the period; the length and g do."
+      },
+      "objectiveKeys": [
+        "phys.g9.oscillations.o1"
+      ],
+      "misconceptionKey": "phys.m.amplitude-period",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.energy-match",
+      "type": "match",
+      "prompt": {
+        "ky": "Жүктүн абалын анын энергиясы менен дал келтир.",
+        "ru": "Сопоставь положение груза и его энергию.",
+        "en": "Match each position of the bob to its energy."
+      },
+      "pairs": [
+        {
+          "key": "edge",
+          "left": {
+            "ky": "Четки чекит",
+            "ru": "Крайняя точка",
+            "en": "End point"
+          },
+          "right": {
+            "ky": "Потенциалдык энергия эң чоң, v = 0",
+            "ru": "Потенциальная максимальна, v = 0",
+            "en": "Maximum potential energy, v = 0"
+          }
+        },
+        {
+          "key": "bottom",
+          "left": {
+            "ky": "Тең салмак абалы",
+            "ru": "Положение равновесия",
+            "en": "Equilibrium"
+          },
+          "right": {
+            "ky": "Кинетикалык энергия эң чоң",
+            "ru": "Кинетическая максимальна",
+            "en": "Maximum kinetic energy"
+          }
+        },
+        {
+          "key": "between",
+          "left": {
+            "ky": "Ортосундагы чекит",
+            "ru": "Промежуточная точка",
+            "en": "Somewhere in between"
+          },
+          "right": {
+            "ky": "Эки энергия тең бар",
+            "ru": "Есть обе энергии",
+            "en": "Both kinds of energy"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Четте энергия потенциалдык, ортодо кинетикалык, ортосунда экөө тең бар.",
+        "ru": "В крайней точке энергия потенциальная, внизу – кинетическая, между ними – обе.",
+        "en": "At the end the energy is potential, at the bottom kinetic, and in between it is a mix of both."
+      },
+      "objectiveKeys": [
+        "phys.g9.oscillations.o2"
+      ],
+      "misconceptionKey": "phys.m.stops-at-bottom",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.find-bob",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден термелген денени – жүктү тап.",
+        "ru": "Найди на модели колеблющееся тело – груз.",
+        "en": "Find the swinging body – the bob – on the model."
+      },
+      "targetConceptKey": "phys.bob",
+      "explanation": {
+        "ky": "Жүк – жиптин учундагы шар.",
+        "ru": "Груз – это шарик на конце нити.",
+        "en": "The bob is the ball at the end of the string."
+      },
+      "objectiveKeys": [
+        "phys.g9.oscillations.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.period-1m",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Узундугу 1 м маятниктин мезгили канча секунд? (g = 9,81 м/с²)",
+        "ru": "Каков период маятника длиной 1 м? (g = 9,81 м/с²)",
+        "en": "What is the period of a 1 m pendulum? (g = 9.81 m/s²)"
+      },
+      "answer": 2.01,
+      "tolerance": 0.05,
+      "unit": "s",
+      "explanation": {
+        "ky": "T = 2π√(1/9,81) ≈ 2,01 с.",
+        "ru": "T = 2π√(1/9,81) ≈ 2,01 с.",
+        "en": "T = 2π√(1/9.81) ≈ 2.01 s."
+      },
+      "objectiveKeys": [
+        "phys.g9.oscillations.o1"
+      ],
+      "misconceptionKey": "phys.m.length-no-effect",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.speed-bottom",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Жүк 10° дан коё берилди (l = 1 м). Анын эң төмөнкү чекиттеги ылдамдыгы канча м/с?",
+        "ru": "Груз отпустили с 10° (l = 1 м). Какова его скорость в нижней точке, м/с?",
+        "en": "The bob is released from 10° (l = 1 m). What is its speed at the lowest point in m/s?"
+      },
+      "answer": 0.55,
+      "tolerance": 0.02,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "v = √(2gl(1 − cos 10°)) = √(2 · 9,81 · 0,0152) ≈ 0,55 м/с.",
+        "ru": "v = √(2gl(1 − cos 10°)) = √(2 · 9,81 · 0,0152) ≈ 0,55 м/с.",
+        "en": "v = √(2gl(1 − cos 10°)) = √(2 × 9.81 × 0.0152) ≈ 0.55 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g9.oscillations.o2"
+      ],
+      "difficulty": 5
+    },
+    {
+      "key": "phys.q.moon-pendulum",
+      "type": "single",
+      "prompt": {
+        "ky": "Ошол эле маятникти Айга алып барсак (g 6 эсе аз), эмне болот?",
+        "ru": "Что будет, если тот же маятник перенести на Луну (g в 6 раз меньше)?",
+        "en": "What happens if the same pendulum is taken to the Moon (g is 6 times smaller)?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Тезирээк термелет",
+            "ru": "Будет качаться быстрее",
+            "en": "It swings faster"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жайыраак термелет",
+            "ru": "Будет качаться медленнее",
+            "en": "It swings more slowly"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эч нерсе өзгөрбөйт",
+            "ru": "Ничего не изменится",
+            "en": "Nothing changes"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "T ~ 1/√g, ошондуктан мезгил √6 ≈ 2,45 эсе узарат.",
+        "ru": "T ~ 1/√g, поэтому период вырастет в √6 ≈ 2,45 раза.",
+        "en": "T ~ 1/√g, so the period grows by √6 ≈ 2.45 times."
+      },
+      "objectiveKeys": [
+        "phys.g9.oscillations.o1"
+      ],
+      "difficulty": 4
+    }
+  ]
+}

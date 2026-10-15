@@ -1,0 +1,766 @@
+{
+  "topic": {
+    "key": "water",
+    "unitKey": "chem.g8.bonds",
+    "status": "published",
+    "title": {
+      "ky": "Суу",
+      "ru": "Вода",
+      "en": "Water"
+    },
+    "formula": "H_2O",
+    "classification": {
+      "ky": "Коваленттик полярдуу байланышы бар молекула",
+      "ru": "Молекула с ковалентной полярной связью",
+      "en": "A molecule with polar covalent bonds"
+    },
+    "description": {
+      "ky": "Суу молекуласы бир кычкылтек жана эки суутек атомунан турат. Бөлүнбөгөн электрон жуптарынан улам ал 104,5° бурч менен бүгүлгөн – ушундан суунун көп өзгөчө касиеттери келип чыгат.",
+      "ru": "Молекула воды состоит из одного атома кислорода и двух атомов водорода. Из-за неподелённых электронных пар она изогнута под углом 104,5° – отсюда многие особые свойства воды.",
+      "en": "A water molecule has one oxygen and two hydrogen atoms. Because of its lone pairs it is bent at 104.5°, which explains many of water's special properties."
+    },
+    "goal": {
+      "ky": "Суудагы коваленттик байланышты жана молекуланын формасын түшүндүрүү (CHEM-8.2.1), H₂Oнун молярдык массасын эсептөө (CHEM-8.2.3).",
+      "ru": "Объяснить ковалентную связь и форму молекулы воды (CHEM-8.2.1) и вычислить молярную массу H₂O (CHEM-8.2.3).",
+      "en": "Explain covalent bonding and the shape of the water molecule (CHEM-8.2.1) and calculate the molar mass of H₂O (CHEM-8.2.3)."
+    },
+    "objectiveKeys": [
+      "chem.g8.bonds.o1",
+      "chem.g8.bonds.o3"
+    ],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "molecule",
+      "params": {
+        "formula": "H2O",
+        "atoms": [
+          {
+            "id": "O1",
+            "element": "O",
+            "position": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "H1",
+            "element": "H",
+            "position": [
+              0.757,
+              -0.586,
+              0
+            ]
+          },
+          {
+            "id": "H2",
+            "element": "H",
+            "position": [
+              -0.757,
+              -0.586,
+              0
+            ]
+          }
+        ],
+        "bonds": [
+          {
+            "a": "O1",
+            "b": "H1",
+            "order": 1
+          },
+          {
+            "a": "O1",
+            "b": "H2",
+            "order": 1
+          }
+        ],
+        "lonePairs": [
+          {
+            "atom": "O1",
+            "count": 2
+          }
+        ]
+      },
+      "camera": {
+        "position": [
+          0,
+          0,
+          4
+        ],
+        "target": [
+          0,
+          -0.2,
+          0
+        ],
+        "fov": 40
+      },
+      "modes": [
+        "ball-stick",
+        "spacefill",
+        "shells"
+      ]
+    },
+    "conceptKeys": [
+      "chem.water",
+      "chem.oxygen",
+      "chem.hydrogen",
+      "chem.covalent-bond",
+      "chem.lone-pair"
+    ],
+    "overrides": {
+      "chem.water": {
+        "nodes": [
+          "Molecule_H2O"
+        ]
+      },
+      "chem.oxygen": {
+        "anchor": [
+          0,
+          0.25,
+          0
+        ],
+        "nodes": [
+          "Atom_O1"
+        ]
+      },
+      "chem.hydrogen": {
+        "anchor": [
+          0.9,
+          -0.75,
+          0
+        ],
+        "nodes": [
+          "Atom_H*"
+        ]
+      },
+      "chem.covalent-bond": {
+        "anchor": [
+          0.38,
+          -0.29,
+          0
+        ],
+        "nodes": [
+          "Bond_*"
+        ]
+      },
+      "chem.lone-pair": {
+        "anchor": [
+          0,
+          0.6,
+          0.4
+        ],
+        "nodes": [
+          "LonePair_O1_*"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "h2o",
+        "title": {
+          "ky": "Суу молекуласы",
+          "ru": "Молекула воды",
+          "en": "Water molecule"
+        },
+        "classification": {
+          "ky": "H₂O · суюк",
+          "ru": "H₂O · жидкость",
+          "en": "H₂O · liquid"
+        },
+        "thumb": "thumbs/h2o.webp"
+      },
+      {
+        "key": "ice",
+        "title": {
+          "ky": "Муз",
+          "ru": "Лёд",
+          "en": "Ice"
+        },
+        "classification": {
+          "ky": "H₂O · катуу",
+          "ru": "H₂O · твёрдое",
+          "en": "H₂O · solid"
+        },
+        "thumb": "thumbs/ice.webp"
+      },
+      {
+        "key": "steam",
+        "title": {
+          "ky": "Суу буусу",
+          "ru": "Водяной пар",
+          "en": "Water vapour"
+        },
+        "classification": {
+          "ky": "H₂O · газ",
+          "ru": "H₂O · газ",
+          "en": "H₂O · gas"
+        },
+        "thumb": "thumbs/steam.webp"
+      },
+      {
+        "key": "ch4",
+        "title": {
+          "ky": "Метан",
+          "ru": "Метан",
+          "en": "Methane"
+        },
+        "classification": {
+          "ky": "CH₄ · алкан",
+          "ru": "CH₄ · алкан",
+          "en": "CH₄ · alkane"
+        },
+        "thumb": "thumbs/ch4.webp",
+        "topicKey": "methane"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                0,
+                4
+              ],
+              "target": [
+                0,
+                -0.2,
+                0
+              ]
+            },
+            "modes": {
+              "rep": "ball-stick"
+            },
+            "focus": "chem.water",
+            "text": {
+              "ky": "Бул – суу молекуласы, H₂O. Бир кычкылтек жана эки суутек атому.",
+              "ru": "Это молекула воды, H₂O: один атом кислорода и два атома водорода.",
+              "en": "This is a water molecule, H₂O: one oxygen atom and two hydrogen atoms."
+            },
+            "teacherNote": {
+              "ky": "Формуланын маанисин сураңыз: «2» деген сан эмнени билдирет?",
+              "ru": "Спросите, что означает цифра «2» в формуле.",
+              "en": "Ask what the little “2” in the formula means."
+            },
+            "altText": {
+              "ky": "Чоң кызыл шар жана ага туташкан эки кичинекей ак шар.",
+              "ru": "Большой красный шар и два маленьких белых шара, соединённых с ним.",
+              "en": "A large red ball joined to two small white balls."
+            }
+          },
+          {
+            "key": "oxygen",
+            "camera": {
+              "position": [
+                0,
+                0.5,
+                2.5
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "shells": true
+            },
+            "focus": "chem.oxygen",
+            "text": {
+              "ky": "Кычкылтектин 6 валенттик электрону бар; ага толук катмар үчүн дагы 2 электрон керек.",
+              "ru": "У кислорода 6 валентных электронов; до заполненного слоя ему нужно ещё 2.",
+              "en": "Oxygen has 6 valence electrons and needs 2 more for a full shell."
+            },
+            "teacherNote": {
+              "ky": "«Электрон катмарлары» режимин күйгүзүп, кычкылтектин катмарларын көрсөтүңүз.",
+              "ru": "Включите режим «Электронные оболочки» и покажите слои кислорода.",
+              "en": "Turn on «Electron shells» to show oxygen's shells."
+            },
+            "altText": {
+              "ky": "Кычкылтек атому жана анын эки электрон катмары.",
+              "ru": "Атом кислорода и два его электронных слоя.",
+              "en": "The oxygen atom with its two electron shells."
+            }
+          },
+          {
+            "key": "bonds",
+            "camera": {
+              "position": [
+                1,
+                -0.3,
+                2.5
+              ],
+              "target": [
+                0.38,
+                -0.29,
+                0
+              ]
+            },
+            "focus": "chem.covalent-bond",
+            "text": {
+              "ky": "Ар бир O–H байланышы – бир жалпы электрон жубу. Узундугу 0,0957 нм.",
+              "ru": "Каждая связь O–H – одна общая электронная пара длиной 0,0957 нм.",
+              "en": "Each O–H bond is one shared pair of electrons, 0.0957 nm long."
+            },
+            "teacherNote": {
+              "ky": "Кычкылтек электрондорду күчтүүрөөк тартат (3,44 > 2,20) – байланыш полярдуу экенин түшүндүрүңүз.",
+              "ru": "Объясните, что кислород сильнее притягивает электроны (3,44 > 2,20), поэтому связь полярная.",
+              "en": "Explain that oxygen pulls electrons harder (3.44 > 2.20), so the bond is polar."
+            },
+            "altText": {
+              "ky": "Атомдорду бириктирген эки таякча бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделены две палочки, соединяющие атомы.",
+              "en": "The two sticks joining the atoms are highlighted."
+            }
+          },
+          {
+            "key": "lone-pairs",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                3
+              ],
+              "target": [
+                0,
+                0.3,
+                0
+              ]
+            },
+            "focus": "chem.lone-pair",
+            "text": {
+              "ky": "Кычкылтектин үстүндөгү эки бөлүнбөгөн жуп суутектерди «түртүп», молекуланы 104,5° бурч менен бүктөйт.",
+              "ru": "Две неподелённые пары на кислороде «отталкивают» водороды и сгибают молекулу до 104,5°.",
+              "en": "Two lone pairs on oxygen push the hydrogens down and bend the molecule to 104.5°."
+            },
+            "teacherNote": {
+              "ky": "Метан менен салыштырыңыз: анда бөлүнбөгөн жуп жок, бурч 109,5°.",
+              "ru": "Сравните с метаном: там нет неподелённых пар, угол 109,5°.",
+              "en": "Compare with methane: no lone pairs, angle 109.5°."
+            },
+            "altText": {
+              "ky": "Кычкылтектин үстүндөгү эки жарым тунук «кулак» – бөлүнбөгөн жуптар.",
+              "ru": "Два полупрозрачных «ушка» над кислородом – неподелённые пары.",
+              "en": "Two translucent lobes above the oxygen – the lone pairs."
+            }
+          },
+          {
+            "key": "spacefill",
+            "camera": {
+              "position": [
+                0,
+                0,
+                4
+              ],
+              "target": [
+                0,
+                -0.2,
+                0
+              ]
+            },
+            "modes": {
+              "rep": "spacefill"
+            },
+            "focus": "chem.water",
+            "text": {
+              "ky": "«Көлөмдүү» модель атомдордун чыныгы өлчөмүн көрсөтөт: суутек кычкылтекке жартылай «кирип» турат.",
+              "ru": "Объёмная модель показывает настоящие размеры атомов: водороды как бы «вдавлены» в кислород.",
+              "en": "The space-filling model shows true atom sizes: the hydrogens are partly sunk into the oxygen."
+            },
+            "teacherNote": {
+              "ky": "Эки моделдин айырмасын талкуулаңыз: кайсынысы эмнени жакшы көрсөтөт?",
+              "ru": "Обсудите, что лучше видно в каждой из двух моделей.",
+              "en": "Discuss what each of the two models shows best."
+            },
+            "altText": {
+              "ky": "Үч шар бири-бирине кирген тыгыз фигура.",
+              "ru": "Плотная фигура из трёх слившихся шаров.",
+              "en": "A compact shape of three overlapping balls."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.water-electrolysis"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.water"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.methane"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.carbon-dioxide"
+          }
+        ],
+        "rows": [
+          "molarMass",
+          "bondAngle",
+          "boilingPoint",
+          "geometry"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.water-angle",
+          "chem.q.water-true",
+          "chem.q.water-match",
+          "chem.q.water-find-oxygen",
+          "chem.q.water-find-lonepair",
+          "chem.q.water-molar",
+          "chem.q.water-electrolysis"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "e",
+          "title": {
+            "ky": "Токтогул суу сактагычы",
+            "ru": "Токтогульское водохранилище",
+            "en": "Toktogul reservoir"
+          },
+          "text": {
+            "ky": "Нарындагы Токтогул ГЭСинин плотинасы суунун потенциалдык энергиясын электр энергиясына айлантат.",
+            "ru": "Плотина Токтогульской ГЭС на Нарыне превращает потенциальную энергию воды в электроэнергию.",
+            "en": "The Toktogul dam on the Naryn turns the potential energy of water into electricity."
+          }
+        },
+        {
+          "field": "s",
+          "title": {
+            "ky": "Мөңгүлөр",
+            "ru": "Ледники",
+            "en": "Glaciers"
+          },
+          "text": {
+            "ky": "Тянь-Шандын мөңгүлөрү – муз түрүндөгү таза суунун кампасы; жайында алар эрип, дарыяларды толтурат.",
+            "ru": "Ледники Тянь-Шаня – запас пресной воды в виде льда; летом они тают и питают реки.",
+            "en": "Tien Shan glaciers store fresh water as ice; in summer they melt and feed the rivers."
+          }
+        },
+        {
+          "field": "t",
+          "title": {
+            "ky": "Суутек энергетикасы",
+            "ru": "Водородная энергетика",
+            "en": "Hydrogen energy"
+          },
+          "text": {
+            "ky": "ГЭСтин арзан электри менен сууну электролиздеп, таза отун – суутек алууга болот.",
+            "ru": "Дешёвым электричеством ГЭС можно разлагать воду электролизом и получать чистое топливо – водород.",
+            "en": "Cheap hydroelectric power can split water by electrolysis to make a clean fuel – hydrogen."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Микки Маус",
+            "ru": "Микки-Маус",
+            "en": "Mickey Mouse"
+          },
+          "text": {
+            "ky": "Суу молекуласы Микки Маустун башына окшош: чоң баш – кычкылтек, эки кулак – суутектер.",
+            "ru": "Молекула воды похожа на голову Микки-Мауса: большая голова – кислород, два уха – водороды.",
+            "en": "A water molecule looks like Mickey Mouse: the big head is oxygen, the two ears are hydrogens."
+          }
+        },
+        {
+          "title": {
+            "ky": "Тоодо чай кайнатуу",
+            "ru": "Чай в горах",
+            "en": "Tea in the mountains"
+          },
+          "text": {
+            "ky": "Сусамырдагы жайлоодо чайнек тезирээк кайнайт, бирок чай анча ысык болбойт – бийиктикте суу 100 °Cтан төмөн кайнайт.",
+            "ru": "На джайлоо в Суусамыре чайник закипает быстрее, но чай не такой горячий – в горах вода кипит ниже 100 °C.",
+            "en": "At a summer pasture in Suusamyr the kettle boils sooner, but the tea is less hot – up high water boils below 100 °C."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "chem.q.water-angle",
+      "type": "single",
+      "prompt": {
+        "ky": "Суу молекуласындагы H–O–H бурчу канча?",
+        "ru": "Каков угол H–O–H в молекуле воды?",
+        "en": "What is the H–O–H angle in a water molecule?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "180°",
+            "ru": "180°",
+            "en": "180°"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "104,5°",
+            "ru": "104,5°",
+            "en": "104.5°"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "90°",
+            "ru": "90°",
+            "en": "90°"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "120°",
+            "ru": "120°",
+            "en": "120°"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Эки бөлүнбөгөн жуп байланыштарды жакындатып, бурч 104,5° болот.",
+        "ru": "Две неподелённые пары сближают связи, и угол равен 104,5°.",
+        "en": "The two lone pairs squeeze the bonds together, giving 104.5°."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o1"
+      ],
+      "misconceptionKey": "chem.m.water-linear",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.water-true",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Суу жөнүндө туура пикирлерди танда.",
+        "ru": "Выбери верные утверждения о воде.",
+        "en": "Choose the true statements about water."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Суу – химиялык элемент",
+            "ru": "Вода – химический элемент",
+            "en": "Water is an element"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Молекулада коваленттик байланыштар бар",
+            "ru": "В молекуле ковалентные связи",
+            "en": "The molecule has covalent bonds"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Молекула бүгүлгөн",
+            "ru": "Молекула изогнута",
+            "en": "The molecule is bent"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Кычкылтекте эки бөлүнбөгөн жуп бар",
+            "ru": "У кислорода две неподелённые пары",
+            "en": "Oxygen has two lone pairs"
+          }
+        }
+      ],
+      "answer": [
+        "b",
+        "c",
+        "d"
+      ],
+      "explanation": {
+        "ky": "Суу – кошулма (элемент эмес); атомдор коваленттик байланыш менен бириккен, молекула бүгүлгөн.",
+        "ru": "Вода – сложное вещество (не элемент); атомы связаны ковалентно, молекула изогнута.",
+        "en": "Water is a compound, not an element; its atoms are covalently bonded and the molecule is bent."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o1"
+      ],
+      "misconceptionKey": "chem.m.water-element",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.water-match",
+      "type": "match",
+      "prompt": {
+        "ky": "Түшүнүктү анын суудагы мааниси менен дал келтир.",
+        "ru": "Сопоставь понятие и его значение для воды.",
+        "en": "Match each term to what it is in water."
+      },
+      "pairs": [
+        {
+          "key": "formula",
+          "left": {
+            "ky": "Формула",
+            "ru": "Формула",
+            "en": "Formula"
+          },
+          "right": {
+            "ky": "H₂O",
+            "ru": "H₂O",
+            "en": "H₂O"
+          }
+        },
+        {
+          "key": "angle",
+          "left": {
+            "ky": "Байланыш бурчу",
+            "ru": "Валентный угол",
+            "en": "Bond angle"
+          },
+          "right": {
+            "ky": "104,5°",
+            "ru": "104,5°",
+            "en": "104.5°"
+          }
+        },
+        {
+          "key": "mass",
+          "left": {
+            "ky": "Молярдык масса",
+            "ru": "Молярная масса",
+            "en": "Molar mass"
+          },
+          "right": {
+            "ky": "18 г/моль",
+            "ru": "18 г/моль",
+            "en": "18 g/mol"
+          }
+        },
+        {
+          "key": "bp",
+          "left": {
+            "ky": "Кайноо температурасы",
+            "ru": "Температура кипения",
+            "en": "Boiling point"
+          },
+          "right": {
+            "ky": "100 °C",
+            "ru": "100 °C",
+            "en": "100 °C"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Формула H₂O; бурч 104,5°; молярдык масса 18 г/моль; кайноо температурасы 100 °C (деңиз деңгээлинде).",
+        "ru": "Формула H₂O; угол 104,5°; молярная масса 18 г/моль; кипение 100 °C (на уровне моря).",
+        "en": "Formula H₂O; angle 104.5°; molar mass 18 g/mol; boiling point 100 °C (at sea level)."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o1",
+        "chem.g8.bonds.o3"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.water-find-oxygen",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден кычкылтек атомун тап.",
+        "ru": "Найди на модели атом кислорода.",
+        "en": "Find the oxygen atom on the model."
+      },
+      "targetConceptKey": "chem.oxygen",
+      "explanation": {
+        "ky": "Кычкылтек – эң чоң, кызыл атом, бурчтун чокусунда.",
+        "ru": "Кислород – самый крупный, красный атом в вершине угла.",
+        "en": "Oxygen is the largest, red atom at the corner of the angle."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.water-find-lonepair",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Молекуланы бүгүп турган бөлүнбөгөн электрон жубун тап.",
+        "ru": "Найди неподелённую электронную пару, которая изгибает молекулу.",
+        "en": "Find a lone pair that bends the molecule."
+      },
+      "targetConceptKey": "chem.lone-pair",
+      "explanation": {
+        "ky": "Бөлүнбөгөн жуптар кычкылтектин үстүндө, суутектерге карама-каршы жакта.",
+        "ru": "Неподелённые пары на кислороде, со стороны, противоположной водородам.",
+        "en": "The lone pairs sit on the oxygen, opposite the hydrogens."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o1"
+      ],
+      "misconceptionKey": "chem.m.water-linear",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.water-molar",
+      "type": "numeric",
+      "prompt": {
+        "ky": "H₂Oнун молярдык массасын эсепте (H = 1,008; O = 16,00).",
+        "ru": "Вычисли молярную массу H₂O (H = 1,008; O = 16,00).",
+        "en": "Calculate the molar mass of H₂O (H = 1.008; O = 16.00)."
+      },
+      "answer": 18.02,
+      "tolerance": 0.1,
+      "unit": "g/mol",
+      "explanation": {
+        "ky": "M = 2 · 1,008 + 16,00 = 18,02 г/моль.",
+        "ru": "M = 2 · 1,008 + 16,00 = 18,02 г/моль.",
+        "en": "M = 2 × 1.008 + 16.00 = 18.02 g/mol."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o3"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.water-electrolysis",
+      "type": "numeric",
+      "prompt": {
+        "ky": "36 г сууну электролиздегенде канча грамм кычкылтек пайда болот?",
+        "ru": "Сколько граммов кислорода образуется при электролизе 36 г воды?",
+        "en": "How many grams of oxygen form when 36 g of water is electrolysed?"
+      },
+      "answer": 32,
+      "tolerance": 0.5,
+      "unit": "g",
+      "explanation": {
+        "ky": "2H₂O → 2H₂ + O₂: 36 г суу = 2 моль → 1 моль O₂ = 32 г.",
+        "ru": "2H₂O → 2H₂ + O₂: 36 г воды = 2 моль → 1 моль O₂ = 32 г.",
+        "en": "2H₂O → 2H₂ + O₂: 36 g water = 2 mol → 1 mol O₂ = 32 g."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o3"
+      ],
+      "difficulty": 4
+    }
+  ]
+}

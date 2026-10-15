@@ -1,0 +1,238 @@
+{
+  "topic": {
+    "key": "plant-cell",
+    "unitKey": "bio.g7.cells",
+    "status": "published",
+    "title": { "ky": "Өсүмдүк клеткасы", "ru": "Растительная клетка", "en": "Plant cell" },
+    "classification": { "ky": "Эукариот клетка", "ru": "Эукариотическая клетка", "en": "Eukaryotic cell" },
+    "description": {
+      "ky": "Өсүмдүк клеткасында жаныбар клеткасындагы органеллалардан тышкары бекем клетка дубалы, хлоропласттар жана ири вакуоль бар.",
+      "ru": "Кроме органелл, общих с животной клеткой, у растительной клетки есть прочная клеточная стенка, хлоропласты и крупная вакуоль.",
+      "en": "Besides the organelles shared with animal cells, a plant cell has a strong cell wall, chloroplasts and a large vacuole."
+    },
+    "goal": {
+      "ky": "Өсүмдүк клеткасынын органеллаларын таап (BIO-7.2.1) жана аны жаныбар клеткасы менен салыштыруу (BIO-7.2.2).",
+      "ru": "Найти органеллы растительной клетки (BIO-7.2.1) и сравнить её с животной клеткой (BIO-7.2.2).",
+      "en": "Identify the organelles of a plant cell (BIO-7.2.1) and compare it with an animal cell (BIO-7.2.2)."
+    },
+    "objectiveKeys": ["bio.g7.cells.o1", "bio.g7.cells.o2"],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "gltf",
+      "asset": "models/plant-cell.glb",
+      "camera": { "position": [0, 2, 7], "target": [0, 0, 0], "fov": 45 },
+      "modes": ["whole", "section"]
+    },
+    "conceptKeys": ["bio.cell-wall", "bio.membrane", "bio.cytoplasm", "bio.nucleus", "bio.chloroplast", "bio.vacuole", "bio.mitochondrion"],
+    "overrides": {
+      "bio.cell-wall": { "nodes": ["CellWall"] },
+      "bio.membrane": { "nodes": ["Membrane"] },
+      "bio.cytoplasm": { "nodes": ["Cytoplasm"] },
+      "bio.nucleus": {
+        "anchor": [-1.3, 0.6, 0.4],
+        "nodes": ["Nucleus", "Nucleolus"],
+        "description": {
+          "ky": "Өсүмдүк клеткасында ядро көбүнчө четке, дубалга жакын жайгашат – ортону ири вакуоль ээлеп турат.",
+          "ru": "В растительной клетке ядро обычно сдвинуто к краю, ближе к стенке, – центр занимает крупная вакуоль.",
+          "en": "In a plant cell the nucleus is usually pushed to the side, near the wall – the large vacuole fills the centre."
+        }
+      },
+      "bio.chloroplast": { "anchor": [1.5, 0.8, 0.6], "nodes": ["Chloro_*"] },
+      "bio.vacuole": { "anchor": [0, 0, 0], "nodes": ["Vacuole"] },
+      "bio.mitochondrion": { "anchor": [1.2, -1, 0.5], "nodes": ["Mito_*"] }
+    },
+    "samples": [
+      { "key": "plant-cell", "title": { "ky": "Өсүмдүк клеткасы", "ru": "Растительная клетка", "en": "Plant cell" }, "classification": { "ky": "Эукариот", "ru": "Эукариот", "en": "Eukaryote" }, "thumb": "thumbs/plant-cell.webp" },
+      { "key": "animal-cell", "title": { "ky": "Жаныбар клеткасы", "ru": "Животная клетка", "en": "Animal cell" }, "classification": { "ky": "Эукариот", "ru": "Эукариот", "en": "Eukaryote" }, "thumb": "thumbs/animal-cell.webp", "topicKey": "animal-cell" },
+      { "key": "onion-skin", "title": { "ky": "Пияздын кабыкчасы", "ru": "Кожица лука", "en": "Onion skin" }, "classification": { "ky": "Эпидермис клеткалары", "ru": "Клетки эпидермиса", "en": "Epidermal cells" }, "thumb": "thumbs/onion-skin.webp" }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": { "position": [0, 2, 7], "target": [0, 0, 0] },
+            "modes": { "view": "whole" },
+            "text": { "ky": "Бул – өсүмдүк клеткасы. Ал тик бурчтуу формада жана жаныбар клеткасынан чоңураак: 10–100 мкм.", "ru": "Это растительная клетка. Она прямоугольная и обычно крупнее животной: 10–100 мкм.", "en": "This is a plant cell. It is box-shaped and usually larger than an animal cell: 10–100 µm." },
+            "teacherNote": { "ky": "Окуучулардан бул клетканын жаныбар клеткасынан эмнеси менен айырмаланаарын божомолдоону сураңыз.", "ru": "Попросите учеников предположить, чем эта клетка отличается от животной.", "en": "Ask students to guess how this cell differs from an animal cell." },
+            "altText": { "ky": "Жашыл тегерек бөлүкчөлөрү бар тик бурчтуу клетка.", "ru": "Прямоугольная клетка с зелёными округлыми тельцами.", "en": "A box-shaped cell with round green bodies inside." }
+          },
+          {
+            "key": "wall",
+            "focus": "bio.cell-wall",
+            "camera": { "position": [3, 2, 5], "target": [0, 0, 0] },
+            "text": { "ky": "Клетка дубалы целлюлозадан турат жана клеткага бекем форма берет. Анын ички жагында мембрана жайгашат.", "ru": "Клеточная стенка состоит из целлюлозы и придаёт клетке жёсткую форму. Под ней находится мембрана.", "en": "The cell wall is made of cellulose and gives the cell a firm shape. The membrane lies just inside it." },
+            "teacherNote": { "ky": "Дубал менен мембрананы чаташтырбоо керектигин баса белгилеңиз: экөө тең бар.", "ru": "Подчеркните, что стенку и мембрану нельзя путать: у растительной клетки есть обе.", "en": "Stress that the wall and the membrane are different – plant cells have both." },
+            "altText": { "ky": "Клетканы курчаган калың жашыл-сары кабат белгиленген.", "ru": "Выделен толстый зеленовато-жёлтый слой вокруг клетки.", "en": "The thick yellow-green layer around the cell is highlighted." }
+          },
+          {
+            "key": "vacuole",
+            "focus": "bio.vacuole",
+            "modes": { "view": "section" },
+            "visibility": { "hide": ["bio.cell-wall"] },
+            "text": { "ky": "Ортодогу ири вакуоль клетка ширесин сактайт жана клетканы тың кармайт.", "ru": "Крупная центральная вакуоль хранит клеточный сок и поддерживает упругость клетки.", "en": "The large central vacuole stores cell sap and keeps the cell firm." },
+            "teacherNote": { "ky": "Солуган гүлдүн мисалын келтириңиз: суу жетишпесе вакуоль кичирейет.", "ru": "Приведите пример завядшего цветка: без воды вакуоль сжимается.", "en": "Use a wilting flower as an example: without water the vacuole shrinks." },
+            "altText": { "ky": "Клетканын ортосундагы ири тунук көбүкчө.", "ru": "Большой прозрачный пузырь в центре клетки.", "en": "A large clear sac in the middle of the cell." }
+          },
+          {
+            "key": "chloroplasts",
+            "focus": "bio.chloroplast",
+            "camera": { "position": [3, 1.5, 3], "target": [1.5, 0.8, 0.6] },
+            "text": { "ky": "Хлоропласттар – фотосинтез жүргөн жашыл органеллалар. Алар өсүмдүккө жашыл түс берет.", "ru": "Хлоропласты – зелёные органеллы, где идёт фотосинтез. Они делают растение зелёным.", "en": "Chloroplasts are the green organelles where photosynthesis happens. They make the plant green." },
+            "teacherNote": { "ky": "«Фотосинтез» процессин ачып, хлоропласттын ишин көрсөтүңүз.", "ru": "Откройте процесс «Фотосинтез» и покажите работу хлоропласта.", "en": "Open the «Photosynthesis» process to show the chloroplast at work." },
+            "altText": { "ky": "Цитоплазмадагы бир нече сүйрү жашыл хлоропласт.", "ru": "Несколько овальных зелёных хлоропластов в цитоплазме.", "en": "Several oval green chloroplasts in the cytoplasm." }
+          },
+          {
+            "key": "nucleus",
+            "focus": "bio.nucleus",
+            "camera": { "position": [-3, 1.5, 3], "target": [-1.3, 0.6, 0.4] },
+            "text": { "ky": "Ядро вакуолдун кысымынан четке жылган, бирок дагы эле клетканы башкарат.", "ru": "Ядро оттеснено вакуолью к краю, но по-прежнему управляет клеткой.", "en": "The nucleus is pushed aside by the vacuole but still runs the cell." },
+            "teacherNote": { "ky": "Жаныбар клеткасындагы ядронун жайгашуусу менен салыштырыңыз.", "ru": "Сравните с положением ядра в животной клетке.", "en": "Compare with where the nucleus sits in an animal cell." },
+            "altText": { "ky": "Клетканын четинде, дубалга жакын тегерек ядро.", "ru": "Круглое ядро у края клетки, рядом со стенкой.", "en": "A round nucleus at the edge of the cell, near the wall." }
+          },
+          {
+            "key": "mitochondria",
+            "focus": "bio.mitochondrion",
+            "text": { "ky": "Өсүмдүк клеткасында да митохондриялар бар: хлоропласт кант жасайт, митохондрия андан энергия алат.", "ru": "У растительной клетки тоже есть митохондрии: хлоропласт делает сахар, а митохондрия получает из него энергию.", "en": "Plant cells have mitochondria too: the chloroplast makes sugar and the mitochondrion gets energy from it." },
+            "teacherNote": { "ky": "«Өсүмдүктөр дем албайт» деген туура эмес ойду талкуулаңыз.", "ru": "Обсудите ошибочное мнение, что растения не дышат.", "en": "Discuss the misconception that plants don't respire." },
+            "altText": { "ky": "Хлоропласттардын жанындагы майда сүйрү митохондриялар.", "ru": "Мелкие овальные митохондрии рядом с хлоропластами.", "en": "Small oval mitochondria next to the chloroplasts." }
+          }
+        ]
+      },
+      "processKeys": ["bio.photosynthesis", "bio.respiration"],
+      "comparison": {
+        "columns": [
+          { "kind": "sample", "key": "plant-cell" },
+          { "kind": "sample", "key": "animal-cell" }
+        ],
+        "rows": ["shape", "size", "composition"],
+        "manual": [
+          { "column": "plant-cell", "row": "shape", "value": { "ky": "Тик бурчтуу, туруктуу", "ru": "Прямоугольная, постоянная", "en": "Box-shaped, fixed" } },
+          { "column": "animal-cell", "row": "shape", "value": { "ky": "Тегерек же ар түрдүү, өзгөрмө", "ru": "Округлая или разная, изменчивая", "en": "Round or varied, flexible" } },
+          { "column": "plant-cell", "row": "size", "value": { "ky": "10–100 мкм", "ru": "10–100 мкм", "en": "10–100 µm" } },
+          { "column": "animal-cell", "row": "size", "value": { "ky": "10–30 мкм", "ru": "10–30 мкм", "en": "10–30 µm" } },
+          { "column": "plant-cell", "row": "composition", "value": { "ky": "Клетка дубалы, хлоропласттар, ири вакуоль бар", "ru": "Есть клеточная стенка, хлоропласты, крупная вакуоль", "en": "Has a cell wall, chloroplasts and a large vacuole" } },
+          { "column": "animal-cell", "row": "composition", "value": { "ky": "Дубалы жана хлоропласты жок, вакуолдору майда", "ru": "Нет стенки и хлоропластов, вакуоли мелкие", "en": "No wall or chloroplasts; small vacuoles only" } }
+        ]
+      },
+      "quiz": {
+        "itemKeys": ["bio.q.plant-only", "bio.q.wall-material", "bio.q.plant-vs-animal", "bio.q.find-chloroplast", "bio.q.vacuole-share", "bio.q.plant-respire", "bio.q.find-cell-wall"],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "s",
+          "title": { "ky": "Пияз кабыкчасы микроскоп астында", "ru": "Кожица лука под микроскопом", "en": "Onion skin under the microscope" },
+          "text": { "ky": "Мектеп лабораториясында пияздын жука кабыкчасын йод менен боёп, клетка дубалын жана ядрону көрүүгө болот.", "ru": "В школьной лаборатории тонкую кожицу лука окрашивают йодом и видят клеточные стенки и ядра.", "en": "In the school lab, a thin onion skin stained with iodine shows the cell walls and nuclei." }
+        },
+        {
+          "field": "t",
+          "title": { "ky": "Микроклоналдык көбөйтүү", "ru": "Микроклональное размножение", "en": "Micropropagation" },
+          "text": { "ky": "Лабораторияда бир өсүмдүктүн бир нече клеткасынан миңдеген картөшкө көчөтүн өстүрүшөт – Ысык-Көл жана Талас фермерлери үчүн ооруга чыдамдуу үрөн ушинтип алынат.", "ru": "В лаборатории из нескольких клеток одного растения выращивают тысячи саженцев картофеля – так получают здоровый семенной материал для фермеров Иссык-Куля и Таласа.", "en": "Labs grow thousands of potato plantlets from a few cells of one plant – that is how disease-free seed potatoes are produced for farmers in Issyk-Kul and Talas." }
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Кирпич үй", "ru": "Кирпичный дом", "en": "A brick house" },
+          "text": { "ky": "Өсүмдүк клеткалары кирпичтей бири-бирине тыгыз тизилип, бекем «дубал» түзөт – ошондуктан дарак тик турат.", "ru": "Растительные клетки плотно уложены, как кирпичи, и образуют прочную «стену» – поэтому дерево стоит прямо.", "en": "Plant cells are packed tightly like bricks and form a strong wall – that is why a tree stands upright." }
+        },
+        {
+          "title": { "ky": "Жашыл ашкана", "ru": "Зелёная кухня", "en": "A green kitchen" },
+          "text": { "ky": "Жаныбар клеткасы тамакты сырттан алат, өсүмдүк клеткасынын өз «ашканасы» – хлоропласты бар.", "ru": "Животная клетка получает еду снаружи, а у растительной есть своя «кухня» – хлоропласты.", "en": "An animal cell gets food from outside; a plant cell has its own kitchen – the chloroplasts." }
+        }
+      ]
+    },
+    "i18n": { "ky": "machine", "ru": "reviewed", "en": "draft" }
+  },
+  "items": [
+    {
+      "key": "bio.q.plant-only",
+      "type": "multiple",
+      "prompt": { "ky": "Кайсы түзүлүштөр өсүмдүк клеткасында бар, ал эми жаныбар клеткасында жок?", "ru": "Какие структуры есть у растительной клетки, но нет у животной?", "en": "Which structures are found in plant cells but not in animal cells?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Клетка дубалы", "ru": "Клеточная стенка", "en": "Cell wall" } },
+        { "key": "b", "text": { "ky": "Хлоропласт", "ru": "Хлоропласт", "en": "Chloroplast" } },
+        { "key": "c", "text": { "ky": "Ядро", "ru": "Ядро", "en": "Nucleus" } },
+        { "key": "d", "text": { "ky": "Митохондрия", "ru": "Митохондрия", "en": "Mitochondrion" } }
+      ],
+      "answer": ["a", "b"],
+      "explanation": { "ky": "Ядро менен митохондрия эки клеткада тең бар; дубал менен хлоропласт өсүмдүккө гана мүнөздүү.", "ru": "Ядро и митохондрии есть в обеих клетках; стенка и хлоропласты – только у растений.", "en": "Both cells have a nucleus and mitochondria; only plant cells have a wall and chloroplasts." },
+      "objectiveKeys": ["bio.g7.cells.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.wall-material",
+      "type": "single",
+      "prompt": { "ky": "Өсүмдүк клеткасынын дубалы негизинен эмнеден турат?", "ru": "Из чего в основном состоит клеточная стенка растений?", "en": "What is a plant cell wall mainly made of?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Целлюлоза", "ru": "Целлюлоза", "en": "Cellulose" } },
+        { "key": "b", "text": { "ky": "Белок", "ru": "Белок", "en": "Protein" } },
+        { "key": "c", "text": { "ky": "Май", "ru": "Жир", "en": "Fat" } }
+      ],
+      "answer": "a",
+      "explanation": { "ky": "Клетка дубалынын негизи – целлюлоза; пахта менен кагаз да ошондон турат.", "ru": "Основа клеточной стенки – целлюлоза; из неё же состоят хлопок и бумага.", "en": "The cell wall is mostly cellulose – the same stuff as cotton and paper." },
+      "objectiveKeys": ["bio.g7.cells.o1"],
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.plant-vs-animal",
+      "type": "match",
+      "prompt": { "ky": "Белгини клетканын түрү менен дал келтир.", "ru": "Сопоставь признак с типом клетки.", "en": "Match each feature with the cell." },
+      "pairs": [
+        { "key": "wall", "left": { "ky": "Целлюлоза дубалы", "ru": "Целлюлозная стенка", "en": "Cellulose wall" }, "right": { "ky": "Өсүмдүк клеткасы", "ru": "Растительная клетка", "en": "Plant cell" } },
+        { "key": "flexible", "left": { "ky": "Формасы өзгөрмө", "ru": "Изменчивая форма", "en": "Flexible shape" }, "right": { "ky": "Жаныбар клеткасы", "ru": "Животная клетка", "en": "Animal cell" } },
+        { "key": "both", "left": { "ky": "Ядро жана митохондрия", "ru": "Ядро и митохондрии", "en": "Nucleus and mitochondria" }, "right": { "ky": "Экөөндө тең", "ru": "У обеих", "en": "Both cells" } }
+      ],
+      "explanation": { "ky": "Эки клетканын жалпы органеллалары бар, бирок өсүмдүк клеткасында кошумча дубал, хлоропласт жана ири вакуоль бар.", "ru": "У клеток есть общие органеллы, но у растительной – ещё стенка, хлоропласты и крупная вакуоль.", "en": "The cells share organelles, but the plant cell also has a wall, chloroplasts and a large vacuole." },
+      "objectiveKeys": ["bio.g7.cells.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.find-chloroplast",
+      "type": "find-on-model",
+      "prompt": { "ky": "Фотосинтез жүргөн органелланы моделден тап.", "ru": "Найди на модели органеллу, где идёт фотосинтез.", "en": "Find the organelle where photosynthesis happens." },
+      "targetConceptKey": "bio.chloroplast",
+      "explanation": { "ky": "Фотосинтез жашыл хлоропласттарда жүрөт.", "ru": "Фотосинтез идёт в зелёных хлоропластах.", "en": "Photosynthesis happens in the green chloroplasts." },
+      "objectiveKeys": ["bio.g7.cells.o1"],
+      "misconceptionKey": "bio.m.chloroplast-everywhere",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.find-cell-wall",
+      "type": "find-on-model",
+      "prompt": { "ky": "Клетканын формасын кармап турган бекем катмарды тап.", "ru": "Найди прочный слой, который держит форму клетки.", "en": "Find the strong layer that keeps the cell's shape." },
+      "targetConceptKey": "bio.cell-wall",
+      "explanation": { "ky": "Бул – клетка дубалы; мембрана анын ички жагында.", "ru": "Это клеточная стенка; мембрана находится под ней.", "en": "That is the cell wall; the membrane lies inside it." },
+      "objectiveKeys": ["bio.g7.cells.o1"],
+      "misconceptionKey": "bio.m.wall-instead-of-membrane",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.vacuole-share",
+      "type": "numeric",
+      "prompt": { "ky": "Жетилген өсүмдүк клеткасында борбордук вакуоль клетканын көлөмүнүн болжол менен канча пайызын ээлейт?", "ru": "Какую примерно долю объёма зрелой растительной клетки (в %) занимает центральная вакуоль?", "en": "Roughly what percentage of a mature plant cell's volume does the central vacuole take up?" },
+      "answer": 80,
+      "tolerance": 10,
+      "unit": "%",
+      "explanation": { "ky": "Борбордук вакуоль клетканын 80–90 %ин ээлеши мүмкүн.", "ru": "Центральная вакуоль может занимать 80–90 % объёма клетки.", "en": "The central vacuole can fill 80–90 % of the cell." },
+      "objectiveKeys": ["bio.g7.cells.o1"],
+      "misconceptionKey": "bio.m.vacuole-empty",
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.plant-respire",
+      "type": "single",
+      "prompt": { "ky": "Өсүмдүк клеткаларында митохондрия барбы?", "ru": "Есть ли митохондрии в клетках растений?", "en": "Do plant cells have mitochondria?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Ооба, алар дем алуу үчүн керек", "ru": "Да, они нужны для дыхания", "en": "Yes, they are needed for respiration" } },
+        { "key": "b", "text": { "ky": "Жок, хлоропласт алардын ордун басат", "ru": "Нет, их заменяют хлоропласты", "en": "No, chloroplasts replace them" } }
+      ],
+      "answer": "a",
+      "explanation": { "ky": "Өсүмдүктөр да дем алат: хлоропласт кант жасайт, митохондрия андан АТФ алат.", "ru": "Растения тоже дышат: хлоропласт делает сахар, митохондрия получает из него АТФ.", "en": "Plants respire too: chloroplasts make sugar, mitochondria turn it into ATP." },
+      "objectiveKeys": ["bio.g7.cells.o2"],
+      "difficulty": 3
+    }
+  ]
+}

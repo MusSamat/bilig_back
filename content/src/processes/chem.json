@@ -1,0 +1,859 @@
+{
+  "processes": [
+    {
+      "key": "chem.electron-filling",
+      "engine": "timeline",
+      "icon": "layers",
+      "title": {
+        "ky": "Электрон катмарларынын толушу",
+        "ru": "Заполнение электронных слоёв",
+        "en": "Filling the electron shells"
+      },
+      "description": {
+        "ky": "Натрий атомунун (Z = 11) электрондору ядродон баштап катмар-катмар жайгашат: 2, андан кийин 8, акыры 1.",
+        "ru": "Электроны атома натрия (Z = 11) заполняют слои начиная от ядра: сначала 2, затем 8 и наконец 1.",
+        "en": "The electrons of a sodium atom (Z = 11) fill the shells outwards from the nucleus: first 2, then 8, then 1."
+      },
+      "inputs": {
+        "ky": "Ядро: 11 протон, 12 нейтрон",
+        "ru": "Ядро: 11 протонов, 12 нейтронов",
+        "en": "Nucleus: 11 protons, 12 neutrons"
+      },
+      "outputs": {
+        "ky": "Электрондук формула 2, 8, 1",
+        "ru": "Электронная схема 2, 8, 1",
+        "en": "Electron arrangement 2, 8, 1"
+      },
+      "steps": [
+        {
+          "key": "nucleus",
+          "title": {
+            "ky": "Ядро",
+            "ru": "Ядро",
+            "en": "The nucleus"
+          },
+          "result": {
+            "ky": "+11",
+            "ru": "+11",
+            "en": "+11"
+          },
+          "description": {
+            "ky": "Борбордо 11 протон жана 12 нейтрон. Ядронун +11 заряды 11 электронду тартат.",
+            "ru": "В центре 11 протонов и 12 нейтронов. Заряд ядра +11 притягивает 11 электронов.",
+            "en": "At the centre are 11 protons and 12 neutrons. The nucleus's +11 charge attracts 11 electrons."
+          },
+          "conceptKey": "chem.atomic-nucleus",
+          "altText": {
+            "ky": "Борбордо кызыл жана көк шарчалардан турган кичинекей ядро.",
+            "ru": "В центре маленькое ядро из красных и синих шариков.",
+            "en": "A tiny nucleus of red and blue balls at the centre."
+          },
+          "duration": 1
+        },
+        {
+          "key": "shell1",
+          "title": {
+            "ky": "1-катмар",
+            "ru": "Первый слой",
+            "en": "Shell 1"
+          },
+          "result": {
+            "ky": "2 e⁻",
+            "ru": "2 e⁻",
+            "en": "2 e⁻"
+          },
+          "description": {
+            "ky": "Ядрого эң жакын катмарга 2 электрон батат – ал толду.",
+            "ru": "На ближайшем к ядру слое помещаются 2 электрона – он заполнен.",
+            "en": "The shell nearest the nucleus holds 2 electrons – now it is full."
+          },
+          "conceptKey": "chem.electron-shell",
+          "altText": {
+            "ky": "Ядронун жанындагы кичинекей шакекте эки электрон.",
+            "ru": "Два электрона на маленьком кольце у ядра.",
+            "en": "Two electrons on a small ring near the nucleus."
+          },
+          "duration": 2
+        },
+        {
+          "key": "shell2",
+          "title": {
+            "ky": "2-катмар",
+            "ru": "Второй слой",
+            "en": "Shell 2"
+          },
+          "result": {
+            "ky": "2 + 8 e⁻",
+            "ru": "2 + 8 e⁻",
+            "en": "2 + 8 e⁻"
+          },
+          "description": {
+            "ky": "Кийинки катмарга 8 электрон жайгашат; бул катмар да толук.",
+            "ru": "На следующем слое располагаются 8 электронов; этот слой тоже заполнен.",
+            "en": "The next shell takes 8 electrons and is also full."
+          },
+          "conceptKey": "chem.electron-shell",
+          "altText": {
+            "ky": "Экинчи, чоңураак шакекте сегиз электрон.",
+            "ru": "Восемь электронов на втором, большем кольце.",
+            "en": "Eight electrons on a second, larger ring."
+          },
+          "duration": 2
+        },
+        {
+          "key": "shell3",
+          "title": {
+            "ky": "Сырткы катмар",
+            "ru": "Внешний слой",
+            "en": "Outer shell"
+          },
+          "result": {
+            "ky": "2, 8, 1",
+            "ru": "2, 8, 1",
+            "en": "2, 8, 1"
+          },
+          "description": {
+            "ky": "Калган 1 электрон үчүнчү катмарга барат. Бул – валенттик электрон, натрий аны оңой берет.",
+            "ru": "Последний, 11-й электрон попадает на третий слой. Это валентный электрон, натрий легко его отдаёт.",
+            "en": "The last electron goes into the third shell. It is the valence electron, which sodium gives away easily."
+          },
+          "conceptKey": "chem.valence-electron",
+          "altText": {
+            "ky": "Эң чоң сырткы шакекте жалгыз электрон жаркырайт.",
+            "ru": "На самом большом внешнем кольце светится один электрон.",
+            "en": "A single electron glows on the largest outer ring."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "electrons",
+          "label": {
+            "ky": "Жайгашкан электрондор",
+            "ru": "Размещено электронов",
+            "en": "Electrons placed"
+          },
+          "min": 0,
+          "max": 11,
+          "precision": 0
+        },
+        {
+          "key": "shells",
+          "label": {
+            "ky": "Катмарлар",
+            "ru": "Слои",
+            "en": "Shells"
+          },
+          "min": 0,
+          "max": 3,
+          "precision": 0
+        },
+        {
+          "key": "valence",
+          "label": {
+            "ky": "Валенттик электрондор",
+            "ru": "Валентные электроны",
+            "en": "Valence electrons"
+          },
+          "min": 0,
+          "max": 8,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "Z": 11,
+        "neutrons": 12,
+        "shell1": 2,
+        "shell2": 8,
+        "shell3": 1
+      }
+    },
+    {
+      "key": "chem.water-electrolysis",
+      "engine": "stoich",
+      "icon": "zap",
+      "title": {
+        "ky": "Суунун электролизи",
+        "ru": "Электролиз воды",
+        "en": "Electrolysis of water"
+      },
+      "description": {
+        "ky": "Электр тогу сууну суутек жана кычкылтек газдарына ажыратат. Суутектин көлөмү кычкылтектикинен эки эсе көп.",
+        "ru": "Электрический ток разлагает воду на водород и кислород. Водорода выделяется по объёму вдвое больше, чем кислорода.",
+        "en": "An electric current splits water into hydrogen and oxygen gas, with twice as much hydrogen as oxygen by volume."
+      },
+      "equation": "2H_2O \\to 2H_2 + O_2",
+      "inputs": {
+        "ky": "2 моль суу (36 г) + электр энергиясы",
+        "ru": "2 моль воды (36 г) + электроэнергия",
+        "en": "2 mol water (36 g) + electricity"
+      },
+      "outputs": {
+        "ky": "2 моль H₂ (4 г) + 1 моль O₂ (32 г)",
+        "ru": "2 моль H₂ (4 г) + 1 моль O₂ (32 г)",
+        "en": "2 mol H₂ (4 g) + 1 mol O₂ (32 g)"
+      },
+      "energy": {
+        "ky": "≈ 572 кДж сиңирилет (2 моль сууга)",
+        "ru": "≈ 572 кДж поглощается (на 2 моль воды)",
+        "en": "≈ 572 kJ absorbed (per 2 mol water)"
+      },
+      "steps": [
+        {
+          "key": "current",
+          "title": {
+            "ky": "Ток күйгүзүлөт",
+            "ru": "Включаем ток",
+            "en": "Current on"
+          },
+          "description": {
+            "ky": "Сууга салынган эки электродго туруктуу чыңалуу берилет.",
+            "ru": "На два электрода в воде подаётся постоянное напряжение.",
+            "en": "A steady voltage is applied to two electrodes in the water."
+          },
+          "conceptKey": "chem.water",
+          "altText": {
+            "ky": "Суу куюлган идиштеги эки электрод зымдар менен батарейкага туташкан.",
+            "ru": "Два электрода в сосуде с водой соединены проводами с батареей.",
+            "en": "Two electrodes in a jar of water wired to a battery."
+          },
+          "duration": 1
+        },
+        {
+          "key": "split",
+          "title": {
+            "ky": "Молекулалар ажырайт",
+            "ru": "Молекулы распадаются",
+            "en": "Molecules split"
+          },
+          "result": {
+            "ky": "−2 H₂O",
+            "ru": "−2 H₂O",
+            "en": "−2 H₂O"
+          },
+          "description": {
+            "ky": "O–H байланыштары үзүлүп, суунун молекулалары атомдорго ажырайт.",
+            "ru": "Связи O–H рвутся, молекулы воды распадаются.",
+            "en": "The O–H bonds break and the water molecules fall apart."
+          },
+          "conceptKey": "chem.covalent-bond",
+          "altText": {
+            "ky": "Суу молекулаларынын байланыштары үзүлүп жатат.",
+            "ru": "Связи в молекулах воды разрываются.",
+            "en": "Bonds in water molecules breaking apart."
+          },
+          "duration": 2
+        },
+        {
+          "key": "hydrogen",
+          "title": {
+            "ky": "Терс электроддо суутек",
+            "ru": "Водород на катоде",
+            "en": "Hydrogen at the cathode"
+          },
+          "result": {
+            "ky": "+2 H₂",
+            "ru": "+2 H₂",
+            "en": "+2 H₂"
+          },
+          "description": {
+            "ky": "Терс электроддо (катоддо) суутек газы көбүкчө болуп чыгат: 2 моль H₂.",
+            "ru": "На отрицательном электроде (катоде) пузырьками выделяется водород: 2 моль H₂.",
+            "en": "Hydrogen gas bubbles off at the negative electrode (cathode): 2 mol H₂."
+          },
+          "conceptKey": "chem.hydrogen",
+          "altText": {
+            "ky": "Сол электроддо көп көбүкчөлөр.",
+            "ru": "У левого электрода много пузырьков.",
+            "en": "Lots of bubbles at the left electrode."
+          },
+          "duration": 2
+        },
+        {
+          "key": "oxygen",
+          "title": {
+            "ky": "Оң электроддо кычкылтек",
+            "ru": "Кислород на аноде",
+            "en": "Oxygen at the anode"
+          },
+          "result": {
+            "ky": "+1 O₂",
+            "ru": "+1 O₂",
+            "en": "+1 O₂"
+          },
+          "description": {
+            "ky": "Оң электроддо (аноддо) кычкылтек чыгат: 1 моль O₂ – көлөмү суутектен эки эсе аз.",
+            "ru": "На положительном электроде (аноде) выделяется кислород: 1 моль O₂ – по объёму вдвое меньше водорода.",
+            "en": "Oxygen forms at the positive electrode (anode): 1 mol O₂, half the volume of the hydrogen."
+          },
+          "conceptKey": "chem.oxygen",
+          "altText": {
+            "ky": "Оң электроддо көбүкчөлөр эки эсе аз.",
+            "ru": "У правого электрода пузырьков вдвое меньше.",
+            "en": "Half as many bubbles at the right electrode."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "h2o",
+          "label": {
+            "ky": "Суу",
+            "ru": "Вода",
+            "en": "Water"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 36,
+          "precision": 1
+        },
+        {
+          "key": "h2",
+          "label": {
+            "ky": "Суутек",
+            "ru": "Водород",
+            "en": "Hydrogen"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 4,
+          "precision": 2
+        },
+        {
+          "key": "o2",
+          "label": {
+            "ky": "Кычкылтек",
+            "ru": "Кислород",
+            "en": "Oxygen"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 32,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "H2O": 2,
+        "H2": 2,
+        "O2": 1,
+        "M_H2O": 18.02,
+        "M_H2": 2.016,
+        "M_O2": 32.0,
+        "dH_kJ": 572
+      }
+    },
+    {
+      "key": "chem.nacl-formation",
+      "engine": "timeline",
+      "icon": "magnet",
+      "title": {
+        "ky": "Аш тузунун пайда болушу",
+        "ru": "Образование поваренной соли",
+        "en": "How table salt forms"
+      },
+      "description": {
+        "ky": "Натрий хлорго бир электрон берет; пайда болгон Na⁺ жана Cl⁻ иондору тартылып, кристалл торчосун түзөт.",
+        "ru": "Натрий отдаёт хлору один электрон; образовавшиеся ионы Na⁺ и Cl⁻ притягиваются и строят кристаллическую решётку.",
+        "en": "Sodium gives chlorine one electron; the resulting Na⁺ and Cl⁻ ions attract and build a crystal lattice."
+      },
+      "equation": "2Na + Cl_2 \\to 2NaCl",
+      "inputs": {
+        "ky": "Натрий (металл) + хлор (газ)",
+        "ru": "Натрий (металл) + хлор (газ)",
+        "en": "Sodium (metal) + chlorine (gas)"
+      },
+      "outputs": {
+        "ky": "Натрий хлориди (кристалл)",
+        "ru": "Хлорид натрия (кристалл)",
+        "en": "Sodium chloride (crystal)"
+      },
+      "energy": {
+        "ky": "≈ 411 кДж/моль бөлүнөт",
+        "ru": "≈ 411 кДж/моль выделяется",
+        "en": "≈ 411 kJ/mol released"
+      },
+      "steps": [
+        {
+          "key": "atoms",
+          "title": {
+            "ky": "Атомдор",
+            "ru": "Атомы",
+            "en": "The atoms"
+          },
+          "description": {
+            "ky": "Натрийдин сырткы катмарында 1 электрон, хлордукунда 7 электрон бар.",
+            "ru": "У натрия на внешнем слое 1 электрон, у хлора – 7.",
+            "en": "Sodium has 1 outer electron and chlorine has 7."
+          },
+          "conceptKey": "chem.sodium",
+          "altText": {
+            "ky": "Натрий жана хлор атомдору катар турат.",
+            "ru": "Атомы натрия и хлора рядом.",
+            "en": "A sodium atom and a chlorine atom side by side."
+          },
+          "duration": 1
+        },
+        {
+          "key": "transfer",
+          "title": {
+            "ky": "Электрон өтөт",
+            "ru": "Переход электрона",
+            "en": "Electron transfer"
+          },
+          "result": {
+            "ky": "Na⁺ + Cl⁻",
+            "ru": "Na⁺ + Cl⁻",
+            "en": "Na⁺ + Cl⁻"
+          },
+          "description": {
+            "ky": "Натрийдин сырткы электрону хлорго өтөт. Эми экөөнүн тең сырткы катмары толук.",
+            "ru": "Внешний электрон натрия переходит к хлору. Теперь у обоих внешний слой заполнен.",
+            "en": "Sodium's outer electron moves to chlorine. Now both have a full outer shell."
+          },
+          "conceptKey": "chem.chlorine",
+          "altText": {
+            "ky": "Жаркыраган бир электрон натрийден хлорго учуп өтөт.",
+            "ru": "Светящийся электрон перелетает от натрия к хлору.",
+            "en": "A glowing electron flies from sodium to chlorine."
+          },
+          "duration": 2
+        },
+        {
+          "key": "attract",
+          "title": {
+            "ky": "Иондор тартылат",
+            "ru": "Ионы притягиваются",
+            "en": "Ions attract"
+          },
+          "description": {
+            "ky": "Оң Na⁺ жана терс Cl⁻ иондору электр күчү менен бири-бирине тартылат – бул иондук байланыш.",
+            "ru": "Положительный Na⁺ и отрицательный Cl⁻ притягиваются электрическими силами – это ионная связь.",
+            "en": "Positive Na⁺ and negative Cl⁻ pull on each other electrically – this is an ionic bond."
+          },
+          "conceptKey": "chem.ionic-bond",
+          "altText": {
+            "ky": "Кичине кызгылт көк жана чоң жашыл шар бири-бирине жакындайт.",
+            "ru": "Маленький фиолетовый и большой зелёный шары сближаются.",
+            "en": "A small purple ball and a large green ball move together."
+          },
+          "duration": 2
+        },
+        {
+          "key": "lattice",
+          "title": {
+            "ky": "Кристалл торчосу",
+            "ru": "Кристаллическая решётка",
+            "en": "The lattice"
+          },
+          "result": {
+            "ky": "NaCl (к.)",
+            "ru": "NaCl (тв.)",
+            "en": "NaCl (s)"
+          },
+          "description": {
+            "ky": "Миллиарддаган иондор кезектешип тизилип, куб формасындагы кристалл пайда болот; энергия бөлүнөт.",
+            "ru": "Миллиарды ионов выстраиваются, чередуясь, и получается кубический кристалл; выделяется энергия.",
+            "en": "Billions of ions line up alternately into a cubic crystal, releasing energy."
+          },
+          "conceptKey": "chem.unit-cell",
+          "altText": {
+            "ky": "Кезектешкен шарлардан турган куб торчо.",
+            "ru": "Кубическая решётка из чередующихся шаров.",
+            "en": "A cubic grid of alternating balls."
+          },
+          "duration": 3
+        }
+      ],
+      "metrics": [
+        {
+          "key": "electrons",
+          "label": {
+            "ky": "Өткөн электрондор",
+            "ru": "Передано электронов",
+            "en": "Electrons transferred"
+          },
+          "unit": "mol",
+          "min": 0,
+          "max": 2,
+          "precision": 0
+        },
+        {
+          "key": "nacl",
+          "label": {
+            "ky": "Пайда болгон NaCl",
+            "ru": "Образовалось NaCl",
+            "en": "NaCl formed"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 116.9,
+          "precision": 1
+        },
+        {
+          "key": "energy",
+          "label": {
+            "ky": "Бөлүнгөн энергия",
+            "ru": "Выделилось энергии",
+            "en": "Energy released"
+          },
+          "unit": "kJ",
+          "min": 0,
+          "max": 822,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "Na": 2,
+        "Cl2": 1,
+        "NaCl": 2,
+        "M_Na": 22.99,
+        "M_Cl2": 70.9,
+        "M_NaCl": 58.44,
+        "dH_kJ": -822
+      }
+    },
+    {
+      "key": "chem.biogas",
+      "engine": "timeline",
+      "icon": "recycle",
+      "title": {
+        "ky": "Биогаз: кыктан метан",
+        "ru": "Биогаз: метан из навоза",
+        "en": "Biogas: methane from manure"
+      },
+      "description": {
+        "ky": "Абасыз шартта бактериялар органикалык калдыктарды ажыратып, метан жана көмүр кычкыл газын бөлүп чыгарышат.",
+        "ru": "Без доступа воздуха бактерии разлагают органические отходы и выделяют метан и углекислый газ.",
+        "en": "Without air, bacteria break down organic waste and give off methane and carbon dioxide."
+      },
+      "inputs": {
+        "ky": "Кык, өсүмдүк калдыктары, суу",
+        "ru": "Навоз, растительные остатки, вода",
+        "en": "Manure, plant waste, water"
+      },
+      "outputs": {
+        "ky": "Биогаз (≈60 % CH₄, ≈40 % CO₂) + жер семирткич",
+        "ru": "Биогаз (≈60 % CH₄, ≈40 % CO₂) + удобрение",
+        "en": "Biogas (≈60 % CH₄, ≈40 % CO₂) + fertiliser"
+      },
+      "steps": [
+        {
+          "key": "load",
+          "title": {
+            "ky": "Жүктөө",
+            "ru": "Загрузка",
+            "en": "Loading"
+          },
+          "description": {
+            "ky": "Кык суу менен аралаштырылып, жабык идишке (реакторго) салынат.",
+            "ru": "Навоз смешивают с водой и загружают в закрытый резервуар (реактор).",
+            "en": "Manure is mixed with water and loaded into a sealed tank (the digester)."
+          },
+          "altText": {
+            "ky": "Жабык бак, ага кык куюлуп жатат.",
+            "ru": "В закрытый бак заливают навоз.",
+            "en": "Manure being poured into a sealed tank."
+          },
+          "duration": 1
+        },
+        {
+          "key": "bacteria",
+          "title": {
+            "ky": "Бактериялар иштейт",
+            "ru": "Работа бактерий",
+            "en": "Bacteria at work"
+          },
+          "description": {
+            "ky": "Кычкылтексиз шартта бактериялар ири молекулаларды майда бөлүктөргө ажыратат.",
+            "ru": "Без кислорода бактерии расщепляют крупные молекулы на мелкие.",
+            "en": "With no oxygen, bacteria break large molecules into small ones."
+          },
+          "altText": {
+            "ky": "Бактериялар органикалык затты «жеп» жатат.",
+            "ru": "Бактерии «поедают» органику.",
+            "en": "Bacteria feeding on organic matter."
+          },
+          "duration": 3
+        },
+        {
+          "key": "methane",
+          "title": {
+            "ky": "Метан пайда болот",
+            "ru": "Образуется метан",
+            "en": "Methane forms"
+          },
+          "result": {
+            "ky": "≈60 % CH₄",
+            "ru": "≈60 % CH₄",
+            "en": "≈60 % CH₄"
+          },
+          "description": {
+            "ky": "Метан пайда кылуучу бактериялар CH₄ бөлүп чыгарат; газ идиштин жогору жагына чогулат.",
+            "ru": "Метанообразующие бактерии выделяют CH₄; газ собирается в верхней части бака.",
+            "en": "Methane-making bacteria release CH₄, which collects at the top of the tank."
+          },
+          "conceptKey": "chem.methane",
+          "altText": {
+            "ky": "Бактын жогорку бөлүгүнө көбүкчөлөр чогулууда.",
+            "ru": "Пузырьки собираются в верхней части бака.",
+            "en": "Bubbles gathering at the top of the tank."
+          },
+          "duration": 2
+        },
+        {
+          "key": "use",
+          "title": {
+            "ky": "Колдонуу",
+            "ru": "Использование",
+            "en": "Use"
+          },
+          "result": {
+            "ky": "≈40 % CO₂",
+            "ru": "≈40 % CO₂",
+            "en": "≈40 % CO₂"
+          },
+          "description": {
+            "ky": "Газ түтүк менен плитага барат; калган масса – жакшы жер семирткич.",
+            "ru": "Газ по трубе идёт к плите; оставшаяся масса – хорошее удобрение.",
+            "en": "The gas is piped to a cooker; what remains is a good fertiliser."
+          },
+          "conceptKey": "chem.carbon-dioxide",
+          "altText": {
+            "ky": "Түтүк менен туташкан газ плитасында көк жалын.",
+            "ru": "Синее пламя на газовой плите, подключённой трубой.",
+            "en": "A blue flame on a cooker connected by a pipe."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "ch4",
+          "label": {
+            "ky": "Метандын үлүшү",
+            "ru": "Доля метана",
+            "en": "Methane share"
+          },
+          "unit": "%",
+          "min": 0,
+          "max": 70,
+          "precision": 0
+        },
+        {
+          "key": "co2",
+          "label": {
+            "ky": "CO₂ үлүшү",
+            "ru": "Доля CO₂",
+            "en": "CO₂ share"
+          },
+          "unit": "%",
+          "min": 0,
+          "max": 50,
+          "precision": 0
+        },
+        {
+          "key": "days",
+          "label": {
+            "ky": "Убакыт",
+            "ru": "Время",
+            "en": "Time"
+          },
+          "unit": "d",
+          "min": 0,
+          "max": 30,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "ch4Share": 60,
+        "co2Share": 40,
+        "retentionDays": 30,
+        "temperatureC": 35
+      }
+    },
+    {
+      "key": "chem.methane-combustion",
+      "engine": "stoich",
+      "icon": "flame",
+      "title": {
+        "ky": "Метандын күйүшү",
+        "ru": "Горение метана",
+        "en": "Combustion of methane"
+      },
+      "description": {
+        "ky": "Метан кычкылтек менен реакцияга кирип, көмүр кычкыл газын жана сууну пайда кылат; көп жылуулук бөлүнөт. Атомдордун саны жана масса сакталат.",
+        "ru": "Метан реагирует с кислородом, образуя углекислый газ и воду; выделяется много тепла. Число атомов и масса сохраняются.",
+        "en": "Methane reacts with oxygen to form carbon dioxide and water, releasing a lot of heat. The number of atoms and the mass are conserved."
+      },
+      "equation": "CH_4 + 2O_2 \\to CO_2 + 2H_2O",
+      "inputs": {
+        "ky": "1 моль CH₄ (16 г) + 2 моль O₂ (64 г)",
+        "ru": "1 моль CH₄ (16 г) + 2 моль O₂ (64 г)",
+        "en": "1 mol CH₄ (16 g) + 2 mol O₂ (64 g)"
+      },
+      "outputs": {
+        "ky": "1 моль CO₂ (44 г) + 2 моль H₂O (36 г)",
+        "ru": "1 моль CO₂ (44 г) + 2 моль H₂O (36 г)",
+        "en": "1 mol CO₂ (44 g) + 2 mol H₂O (36 g)"
+      },
+      "energy": {
+        "ky": "≈ 890 кДж бөлүнөт (1 моль метанга)",
+        "ru": "≈ 890 кДж выделяется (на 1 моль метана)",
+        "en": "≈ 890 kJ released (per mole of methane)"
+      },
+      "steps": [
+        {
+          "key": "reactants",
+          "title": {
+            "ky": "Баштапкы заттар",
+            "ru": "Исходные вещества",
+            "en": "Reactants"
+          },
+          "result": {
+            "ky": "CH₄ + 2O₂",
+            "ru": "CH₄ + 2O₂",
+            "en": "CH₄ + 2O₂"
+          },
+          "description": {
+            "ky": "Бир метан молекуласы жана эки кычкылтек молекуласы кагылышат. Учкун же от реакцияны баштайт.",
+            "ru": "Одна молекула метана и две молекулы кислорода сталкиваются. Искра или пламя запускает реакцию.",
+            "en": "One methane molecule meets two oxygen molecules. A spark or flame starts the reaction."
+          },
+          "conceptKey": "chem.methane",
+          "altText": {
+            "ky": "Сол жакта бир CH₄ жана эки O₂ модели.",
+            "ru": "Слева одна модель CH₄ и две модели O₂.",
+            "en": "One CH₄ model and two O₂ models on the left."
+          },
+          "duration": 1
+        },
+        {
+          "key": "break",
+          "title": {
+            "ky": "Байланыштар үзүлөт",
+            "ru": "Связи рвутся",
+            "en": "Bonds break"
+          },
+          "result": {
+            "ky": "C + 4H + 4O",
+            "ru": "C + 4H + 4O",
+            "en": "C + 4H + 4O"
+          },
+          "description": {
+            "ky": "4 C–H жана 2 O=O байланышы үзүлөт – бул үчүн энергия керек.",
+            "ru": "Рвутся 4 связи C–H и 2 связи O=O – на это нужна энергия.",
+            "en": "Four C–H bonds and two O=O bonds break, which takes energy."
+          },
+          "conceptKey": "chem.covalent-bond",
+          "altText": {
+            "ky": "Атомдор бири-биринен ажырап, өзүнчө шарлар болуп калат.",
+            "ru": "Атомы разлетаются отдельными шариками.",
+            "en": "The atoms come apart into separate balls."
+          },
+          "duration": 2
+        },
+        {
+          "key": "regroup",
+          "title": {
+            "ky": "Атомдор кайра топтолот",
+            "ru": "Атомы перегруппировываются",
+            "en": "Atoms regroup"
+          },
+          "result": {
+            "ky": "CO₂ + 2H₂O",
+            "ru": "CO₂ + 2H₂O",
+            "en": "CO₂ + 2H₂O"
+          },
+          "description": {
+            "ky": "Көмүртек эки кычкылтек менен CO₂, суутек атомдору кычкылтек менен эки H₂O түзөт.",
+            "ru": "Углерод с двумя кислородами образует CO₂, атомы водорода с кислородом – две молекулы H₂O.",
+            "en": "Carbon joins two oxygens to make CO₂; the hydrogens join oxygen to make two H₂O."
+          },
+          "conceptKey": "chem.carbon-dioxide",
+          "altText": {
+            "ky": "Шарлар жаңы молекулаларга биригип жатат.",
+            "ru": "Шарики соединяются в новые молекулы.",
+            "en": "The balls join up into new molecules."
+          },
+          "duration": 2
+        },
+        {
+          "key": "energy",
+          "title": {
+            "ky": "Энергия бөлүнөт",
+            "ru": "Выделяется энергия",
+            "en": "Energy released"
+          },
+          "result": {
+            "ky": "−890 кДж",
+            "ru": "−890 кДж",
+            "en": "−890 kJ"
+          },
+          "description": {
+            "ky": "Жаңы байланыштар пайда болгондо, үзүлгөндөгүдөн көп энергия бөлүнөт: 1 моль метанга ≈890 кДж. Массасы: 16 + 64 = 44 + 36 = 80 г.",
+            "ru": "При образовании новых связей выделяется больше энергии, чем ушло на разрыв: ≈890 кДж на моль метана. Масса: 16 + 64 = 44 + 36 = 80 г.",
+            "en": "Forming the new bonds releases more energy than breaking the old ones took: ≈890 kJ per mole of methane. Mass: 16 + 64 = 44 + 36 = 80 g."
+          },
+          "conceptKey": "chem.water",
+          "altText": {
+            "ky": "Көк жалын жана жылуулук толкундары.",
+            "ru": "Синее пламя и волны тепла.",
+            "en": "A blue flame and waves of heat."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "ch4",
+          "label": {
+            "ky": "Метан",
+            "ru": "Метан",
+            "en": "Methane"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 16,
+          "precision": 1
+        },
+        {
+          "key": "co2",
+          "label": {
+            "ky": "Көмүр кычкыл газы",
+            "ru": "Углекислый газ",
+            "en": "Carbon dioxide"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 44,
+          "precision": 1
+        },
+        {
+          "key": "heat",
+          "label": {
+            "ky": "Жылуулук",
+            "ru": "Теплота",
+            "en": "Heat"
+          },
+          "unit": "kJ",
+          "min": 0,
+          "max": 890,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "CH4": 1,
+        "O2": 2,
+        "CO2": 1,
+        "H2O": 2,
+        "M_CH4": 16.04,
+        "M_O2": 32.0,
+        "M_CO2": 44.01,
+        "M_H2O": 18.02,
+        "dH_kJ": -890
+      }
+    }
+  ]
+}

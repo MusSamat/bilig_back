@@ -1,0 +1,727 @@
+{
+  "topic": {
+    "key": "photosynthesis",
+    "unitKey": "bio.g7.plants",
+    "status": "published",
+    "title": {
+      "ky": "Фотосинтез",
+      "ru": "Фотосинтез",
+      "en": "Photosynthesis"
+    },
+    "formula": "6CO_2 + 6H_2O \\xrightarrow{light} C_6H_{12}O_6 + 6O_2",
+    "classification": {
+      "ky": "Өсүмдүктүн азыктануусу",
+      "ru": "Питание растений",
+      "en": "Plant nutrition"
+    },
+    "description": {
+      "ky": "Фотосинтез – жашыл өсүмдүктөрдүн жарыктын энергиясы менен көмүр кычкыл газы жана суудан органикалык зат (глюкоза) жасоосу. Ушул процесстин аркасында абада кычкылтек бар.",
+      "ru": "Фотосинтез – образование зелёными растениями органического вещества (глюкозы) из углекислого газа и воды за счёт энергии света. Благодаря ему в воздухе есть кислород.",
+      "en": "Photosynthesis is how green plants use light energy to make glucose from carbon dioxide and water. It is the reason our air contains oxygen."
+    },
+    "goal": {
+      "ky": "Жалбырактын ичинде фотосинтездин шарттарын, баштапкы заттарын жана продуктуларын аныктоо (BIO-7.3.1) жана анын жер бетиндеги жашоо үчүн маанисин түшүндүрүү (BIO-7.3.2).",
+      "ru": "Определить по модели листа условия, исходные вещества и продукты фотосинтеза (BIO-7.3.1) и объяснить его значение для жизни на Земле (BIO-7.3.2).",
+      "en": "Use the leaf model to identify the conditions, reactants and products of photosynthesis (BIO-7.3.1) and explain why it matters for life on Earth (BIO-7.3.2)."
+    },
+    "objectiveKeys": [
+      "bio.g7.plants.o1",
+      "bio.g7.plants.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "gltf",
+      "asset": "models/leaf.glb",
+      "camera": {
+        "position": [
+          0,
+          2.5,
+          6
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 40
+      },
+      "modes": [
+        "whole",
+        "section"
+      ]
+    },
+    "conceptKeys": [
+      "bio.leaf-epidermis",
+      "bio.mesophyll",
+      "bio.leaf-stoma",
+      "bio.chloroplast",
+      "bio.chlorophyll"
+    ],
+    "overrides": {
+      "bio.leaf-epidermis": {
+        "nodes": [
+          "Epidermis_*",
+          "Cuticle"
+        ]
+      },
+      "bio.mesophyll": {
+        "anchor": [
+          0,
+          0.3,
+          0
+        ],
+        "nodes": [
+          "Palisade_*",
+          "Spongy_*"
+        ]
+      },
+      "bio.leaf-stoma": {
+        "anchor": [
+          0.8,
+          -0.9,
+          0.4
+        ],
+        "nodes": [
+          "Stoma_*",
+          "GuardCell_*"
+        ]
+      },
+      "bio.chloroplast": {
+        "anchor": [
+          -0.6,
+          0.5,
+          0.5
+        ],
+        "nodes": [
+          "Chloro_*"
+        ]
+      },
+      "bio.chlorophyll": {
+        "anchor": [
+          -0.6,
+          0.7,
+          0.7
+        ],
+        "nodes": [
+          "Thylakoid_*"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "leaf-section",
+        "title": {
+          "ky": "Жалбырактын кесилиши",
+          "ru": "Срез листа",
+          "en": "Leaf cross-section"
+        },
+        "classification": {
+          "ky": "Өсүмдүк органы",
+          "ru": "Орган растения",
+          "en": "Plant organ"
+        },
+        "thumb": "thumbs/leaf-section.webp"
+      },
+      {
+        "key": "chloroplast",
+        "title": {
+          "ky": "Хлоропласт",
+          "ru": "Хлоропласт",
+          "en": "Chloroplast"
+        },
+        "classification": {
+          "ky": "Органелла",
+          "ru": "Органелла",
+          "en": "Organelle"
+        },
+        "thumb": "thumbs/chloroplast.webp"
+      },
+      {
+        "key": "plant-cell",
+        "title": {
+          "ky": "Өсүмдүк клеткасы",
+          "ru": "Растительная клетка",
+          "en": "Plant cell"
+        },
+        "classification": {
+          "ky": "Эукариот",
+          "ru": "Эукариот",
+          "en": "Eukaryote"
+        },
+        "thumb": "thumbs/plant-cell.webp",
+        "topicKey": "plant-cell"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                2.5,
+                6
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "view": "whole"
+            },
+            "text": {
+              "ky": "Бул – жалбырактын бир бөлүгү. Жалбырак – өсүмдүктүн «ашканасы»: тамак ушул жерде жасалат.",
+              "ru": "Это участок листа. Лист – «кухня» растения: именно здесь готовится пища.",
+              "en": "This is a piece of a leaf. The leaf is the plant's kitchen – this is where its food is made."
+            },
+            "teacherNote": {
+              "ky": "Окуучулардан өсүмдүк тамакты кайдан алат деп сураңыз – көбү «топурактан» деп жооп беришет.",
+              "ru": "Спросите, откуда растение берёт пищу, – многие ответят «из почвы».",
+              "en": "Ask where a plant gets its food – many will say 'from the soil'."
+            },
+            "altText": {
+              "ky": "Жалпак жашыл жалбырактын бир бөлүгү, үстүнөн көрүнүш.",
+              "ru": "Фрагмент плоского зелёного листа, вид сверху.",
+              "en": "A section of a flat green leaf, seen from above."
+            }
+          },
+          {
+            "key": "epidermis",
+            "focus": "bio.leaf-epidermis",
+            "modes": {
+              "view": "section"
+            },
+            "text": {
+              "ky": "Разрезде жалбырак эки жагынан тунук эпидермис менен капталганы көрүнөт. Мом катмары сууну сактайт.",
+              "ru": "В разрезе видно, что лист с обеих сторон покрыт прозрачным эпидермисом. Восковой слой удерживает воду.",
+              "en": "The section shows the clear epidermis on both sides of the leaf. Its waxy coat keeps water in."
+            },
+            "teacherNote": {
+              "ky": "Эпидермис тунук болгондуктан жарык ички клеткаларга жетерин белгилеңиз.",
+              "ru": "Отметьте, что эпидермис прозрачен, поэтому свет доходит до внутренних клеток.",
+              "en": "Point out that the epidermis is clear so light reaches the cells inside."
+            },
+            "altText": {
+              "ky": "Жалбырактын кесилишинде үстүңкү жана астыңкы тунук клетка катарлары.",
+              "ru": "На срезе листа – верхний и нижний ряды прозрачных клеток.",
+              "en": "The leaf cross-section with clear rows of cells top and bottom."
+            }
+          },
+          {
+            "key": "stomata",
+            "focus": "bio.leaf-stoma",
+            "camera": {
+              "position": [
+                1.6,
+                -2.2,
+                2
+              ],
+              "target": [
+                0.8,
+                -0.9,
+                0.4
+              ]
+            },
+            "text": {
+              "ky": "Жалбырактын астында устьицелер бар. Алар аркылуу CO₂ кирет, O₂ жана суу буусу чыгат.",
+              "ru": "На нижней стороне листа есть устьица. Через них входит CO₂, а выходят O₂ и водяной пар.",
+              "en": "Stomata on the underside let CO₂ in and O₂ and water vapour out."
+            },
+            "teacherNote": {
+              "ky": "Процесстин биринчи кадамын ушул жерде баштаңыз.",
+              "ru": "Запустите здесь первый шаг процесса.",
+              "en": "Start the first step of the process here."
+            },
+            "altText": {
+              "ky": "Эки сүйрү сакчы клетканын ортосундагы тешик.",
+              "ru": "Щель между двумя бобовидными замыкающими клетками.",
+              "en": "A pore between two bean-shaped guard cells."
+            }
+          },
+          {
+            "key": "mesophyll",
+            "focus": "bio.mesophyll",
+            "visibility": {
+              "hide": [
+                "bio.leaf-epidermis"
+              ]
+            },
+            "text": {
+              "ky": "Мезофиллдин мамычалуу клеткалары жарыкка жакын тизилип, хлоропласттарга толгон.",
+              "ru": "Столбчатые клетки мезофилла выстроены ближе к свету и полны хлоропластов.",
+              "en": "The palisade mesophyll cells line up near the light and are full of chloroplasts."
+            },
+            "teacherNote": {
+              "ky": "Мамычалуу жана борпоң клеткаларды салыштырыңыз.",
+              "ru": "Сравните столбчатые и губчатые клетки.",
+              "en": "Compare the palisade and spongy cells."
+            },
+            "altText": {
+              "ky": "Тик тизилген узун жашыл клеткалар жана алардын астында борпоң клеткалар.",
+              "ru": "Вертикальные вытянутые зелёные клетки и под ними рыхлые губчатые.",
+              "en": "Tall green upright cells with loosely packed cells beneath them."
+            }
+          },
+          {
+            "key": "chloroplast",
+            "focus": "bio.chloroplast",
+            "camera": {
+              "position": [
+                -1.4,
+                1.2,
+                1.8
+              ],
+              "target": [
+                -0.6,
+                0.5,
+                0.5
+              ]
+            },
+            "visibility": {
+              "isolate": [
+                "bio.chloroplast",
+                "bio.chlorophyll"
+              ]
+            },
+            "text": {
+              "ky": "Хлоропласттын ичинде тилакоиддер тизилген. Жарык фазасы тилакоиддерде, Кальвин цикли стромада жүрөт.",
+              "ru": "Внутри хлоропласта – стопки тилакоидов. Световая фаза идёт в тилакоидах, цикл Кальвина – в строме.",
+              "en": "Inside the chloroplast are stacks of thylakoids. The light-dependent stage happens there; the Calvin cycle happens in the stroma."
+            },
+            "teacherNote": {
+              "ky": "Эки фазаны тактага таблица кылып жазыңыз: эмне кирет, эмне чыгат.",
+              "ru": "Запишите две фазы в таблицу на доске: что входит и что выходит.",
+              "en": "Draw a two-column table of the stages on the board: inputs and outputs."
+            },
+            "altText": {
+              "ky": "Ичинде жашыл тыйын сымал тизмектер бар сүйрү хлоропласт.",
+              "ru": "Овальный хлоропласт со стопками зелёных «монеток» внутри.",
+              "en": "An oval chloroplast with stacks of green coin-like discs inside."
+            }
+          },
+          {
+            "key": "chlorophyll",
+            "focus": "bio.chlorophyll",
+            "text": {
+              "ky": "Хлорофилл кызыл жана көк жарыкты сиңирип, жашылды чагылтат. Ушул энергия бардык процесстин кыймылдаткычы.",
+              "ru": "Хлорофилл поглощает красный и синий свет и отражает зелёный. Эта энергия приводит в движение весь процесс.",
+              "en": "Chlorophyll absorbs red and blue light and reflects green. That captured energy drives the whole process."
+            },
+            "teacherNote": {
+              "ky": "Сабак аягында: «Абадагы кычкылтек кайдан келет?» деген суроого кайтыңыз.",
+              "ru": "В конце урока вернитесь к вопросу: «Откуда в воздухе кислород?»",
+              "en": "End by returning to the question: where does the oxygen in the air come from?"
+            },
+            "altText": {
+              "ky": "Тилакоид мембранасындагы жарыкты кармаган жашыл молекулалар.",
+              "ru": "Зелёные молекулы, улавливающие свет, на мембране тилакоида.",
+              "en": "Green light-catching molecules on a thylakoid membrane."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "bio.photosynthesis"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "bio.chloroplast"
+          },
+          {
+            "kind": "concept",
+            "key": "bio.mitochondrion"
+          }
+        ],
+        "rows": [
+          "size",
+          "function",
+          "foundIn"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "bio.q.ps-products",
+          "bio.q.ps-needs",
+          "bio.q.ps-match",
+          "bio.q.find-stoma",
+          "bio.q.ps-o2",
+          "bio.q.green-light",
+          "bio.q.find-chloroplast-leaf"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "s",
+          "title": {
+            "ky": "Баткендин өрүгү",
+            "ru": "Абрикосы Баткена",
+            "en": "Batken apricots"
+          },
+          "text": {
+            "ky": "Баткенде жай узун жана күн ачык – фотосинтез көп кант берип, өрүк таттуу жана кургатууга ылайыктуу болот.",
+            "ru": "В Баткене долгое солнечное лето – фотосинтез даёт много сахара, и абрикосы получаются сладкими и хорошо сушатся.",
+            "en": "Batken has a long, sunny summer – photosynthesis makes plenty of sugar, so the apricots are sweet and dry well."
+          }
+        },
+        {
+          "field": "m",
+          "title": {
+            "ky": "Түшүмдү эсептөө",
+            "ru": "Расчёт урожая",
+            "en": "Calculating a harvest"
+          },
+          "text": {
+            "ky": "Теңдеме боюнча 6 моль CO₂ 1 моль глюкоза берет: агрономдор Чүй өрөөнүндөгү буудайдын CO₂ сиңирүүсүн ушинтип эсептешет.",
+            "ru": "По уравнению 6 моль CO₂ дают 1 моль глюкозы – так агрономы оценивают поглощение CO₂ пшеницей Чуйской долины.",
+            "en": "By the equation, 6 mol of CO₂ give 1 mol of glucose – agronomists use this to estimate how much CO₂ Chüy valley wheat absorbs."
+          }
+        },
+        {
+          "field": "t",
+          "title": {
+            "ky": "LED жылыткалар",
+            "ru": "Светодиодные теплицы",
+            "en": "LED greenhouses"
+          },
+          "text": {
+            "ky": "Кышында жылыткаларда кызыл жана көк LED лампалар коюлат – хлорофилл дал ушул жарыкты сиңирет, ал эми электр үнөмдөлөт.",
+            "ru": "Зимой в теплицах ставят красные и синие светодиоды – хлорофилл поглощает именно этот свет, а электричество экономится.",
+            "en": "In winter greenhouses use red and blue LEDs – exactly the light chlorophyll absorbs – which saves electricity."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Жалбырак – ашкана",
+            "ru": "Лист – кухня",
+            "en": "A leaf is a kitchen"
+          },
+          "text": {
+            "ky": "Жалбырак ашканага окшош: суу менен аба – азык-түлүк, күн – меш, глюкоза – даяр тамак, кычкылтек – буу.",
+            "ru": "Лист похож на кухню: вода и воздух – продукты, солнце – плита, глюкоза – готовое блюдо, а кислород – пар.",
+            "en": "A leaf is like a kitchen: water and air are the ingredients, the Sun is the stove, glucose is the meal and oxygen is the steam."
+          }
+        },
+        {
+          "title": {
+            "ky": "Күн менен заряддоо",
+            "ru": "Зарядка от солнца",
+            "en": "Solar charging"
+          },
+          "text": {
+            "ky": "Күн менен заряддалган фонарь күндүзү энергия топтойт. Өсүмдүк да күндүзү энергияны кантка «заряддайт».",
+            "ru": "Фонарик на солнечной батарее днём копит энергию. Растение тоже днём «заряжает» энергию в сахар.",
+            "en": "A solar torch stores energy during the day. A plant also 'charges' energy into sugar in daylight."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "bio.q.ps-products",
+      "type": "single",
+      "prompt": {
+        "ky": "Фотосинтездин продуктулары кайсылар?",
+        "ru": "Что образуется в результате фотосинтеза?",
+        "en": "What are the products of photosynthesis?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Глюкоза жана кычкылтек",
+            "ru": "Глюкоза и кислород",
+            "en": "Glucose and oxygen"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Көмүр кычкыл газы жана суу",
+            "ru": "Углекислый газ и вода",
+            "en": "Carbon dioxide and water"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Топурак жана минералдар",
+            "ru": "Почва и минералы",
+            "en": "Soil and minerals"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "CO₂ жана суу – баштапкы заттар, глюкоза жана O₂ – продуктулар.",
+        "ru": "CO₂ и вода – исходные вещества, глюкоза и O₂ – продукты.",
+        "en": "CO₂ and water go in; glucose and O₂ come out."
+      },
+      "objectiveKeys": [
+        "bio.g7.plants.o1"
+      ],
+      "misconceptionKey": "bio.m.photosynthesis-whole-plant",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.ps-needs",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Фотосинтез жүрүшү үчүн эмнелер керек?",
+        "ru": "Что необходимо для фотосинтеза?",
+        "en": "What does photosynthesis need?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жарык",
+            "ru": "Свет",
+            "en": "Light"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Көмүр кычкыл газы",
+            "ru": "Углекислый газ",
+            "en": "Carbon dioxide"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Суу",
+            "ru": "Вода",
+            "en": "Water"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Кычкылтек",
+            "ru": "Кислород",
+            "en": "Oxygen"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Хлорофилл",
+            "ru": "Хлорофилл",
+            "en": "Chlorophyll"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c",
+        "e"
+      ],
+      "explanation": {
+        "ky": "Кычкылтек фотосинтезге керек эмес – ал анын продуктусу.",
+        "ru": "Кислород для фотосинтеза не нужен – это его продукт.",
+        "en": "Oxygen is not needed – it is a product of photosynthesis."
+      },
+      "objectiveKeys": [
+        "bio.g7.plants.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.ps-match",
+      "type": "match",
+      "prompt": {
+        "ky": "Жалбырактын бөлүгүн анын милдети менен дал келтир.",
+        "ru": "Сопоставь часть листа и её функцию.",
+        "en": "Match each part of the leaf to its job."
+      },
+      "pairs": [
+        {
+          "key": "stoma",
+          "left": {
+            "ky": "Устьице",
+            "ru": "Устьице",
+            "en": "Stoma"
+          },
+          "right": {
+            "ky": "Газ алмашуу",
+            "ru": "Газообмен",
+            "en": "Gas exchange"
+          }
+        },
+        {
+          "key": "chlorophyll",
+          "left": {
+            "ky": "Хлорофилл",
+            "ru": "Хлорофилл",
+            "en": "Chlorophyll"
+          },
+          "right": {
+            "ky": "Жарыкты кармоо",
+            "ru": "Поглощение света",
+            "en": "Capturing light"
+          }
+        },
+        {
+          "key": "epidermis",
+          "left": {
+            "ky": "Эпидермис",
+            "ru": "Эпидермис",
+            "en": "Epidermis"
+          },
+          "right": {
+            "ky": "Коргоо жана сууну сактоо",
+            "ru": "Защита и удержание воды",
+            "en": "Protection and keeping water in"
+          }
+        },
+        {
+          "key": "mesophyll",
+          "left": {
+            "ky": "Мезофилл",
+            "ru": "Мезофилл",
+            "en": "Mesophyll"
+          },
+          "right": {
+            "ky": "Фотосинтездин негизги орду",
+            "ru": "Главное место фотосинтеза",
+            "en": "Main site of photosynthesis"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Жалбырактын ар бир бөлүгү фотосинтезде өз ролун аткарат.",
+        "ru": "Каждая часть листа играет свою роль в фотосинтезе.",
+        "en": "Every part of the leaf plays its own role in photosynthesis."
+      },
+      "objectiveKeys": [
+        "bio.g7.plants.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.find-stoma",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Көмүр кычкыл газы жалбыракка кирген түзүлүштү тап.",
+        "ru": "Найди структуру, через которую углекислый газ попадает в лист.",
+        "en": "Find where carbon dioxide gets into the leaf."
+      },
+      "targetConceptKey": "bio.leaf-stoma",
+      "explanation": {
+        "ky": "CO₂ жалбырактын астындагы устьицелер аркылуу кирет.",
+        "ru": "CO₂ входит через устьица на нижней стороне листа.",
+        "en": "CO₂ enters through stomata on the underside of the leaf."
+      },
+      "objectiveKeys": [
+        "bio.g7.plants.o1"
+      ],
+      "misconceptionKey": "bio.m.stoma-always-open",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.find-chloroplast-leaf",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Кальвин цикли жүргөн органелланы тап.",
+        "ru": "Найди органеллу, в которой идёт цикл Кальвина.",
+        "en": "Find the organelle where the Calvin cycle takes place."
+      },
+      "targetConceptKey": "bio.chloroplast",
+      "explanation": {
+        "ky": "Кальвин цикли хлоропласттын стромасында жүрөт.",
+        "ru": "Цикл Кальвина идёт в строме хлоропласта.",
+        "en": "The Calvin cycle runs in the stroma of the chloroplast."
+      },
+      "objectiveKeys": [
+        "bio.g7.plants.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.ps-o2",
+      "type": "numeric",
+      "prompt": {
+        "ky": "1 моль глюкоза пайда болгондо канча моль кычкылтек бөлүнүп чыгат?",
+        "ru": "Сколько моль кислорода выделяется при образовании 1 моль глюкозы?",
+        "en": "How many moles of oxygen are released when 1 mol of glucose is made?"
+      },
+      "answer": 6,
+      "tolerance": 0,
+      "unit": "mol",
+      "explanation": {
+        "ky": "Теңдеме боюнча: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂.",
+        "ru": "По уравнению: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂.",
+        "en": "From the equation: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂."
+      },
+      "objectiveKeys": [
+        "bio.g7.plants.o1",
+        "bio.g7.plants.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.green-light",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн жалбырактар жашыл көрүнөт?",
+        "ru": "Почему листья кажутся зелёными?",
+        "en": "Why do leaves look green?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Хлорофилл жашыл жарыкты чагылтат",
+            "ru": "Хлорофилл отражает зелёный свет",
+            "en": "Chlorophyll reflects green light"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Хлорофилл жашыл жарыкты эң көп сиңирет",
+            "ru": "Хлорофилл сильнее всего поглощает зелёный свет",
+            "en": "Chlorophyll absorbs green light the most"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эпидермис жашыл боелгон",
+            "ru": "Эпидермис окрашен в зелёный",
+            "en": "The epidermis is painted green"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Көзүбүзгө чагылган жарык көрүнөт; хлорофилл кызыл менен көктү сиңирип, жашылды чагылтат.",
+        "ru": "Мы видим отражённый свет: хлорофилл поглощает красный и синий и отражает зелёный.",
+        "en": "We see reflected light: chlorophyll absorbs red and blue and reflects green."
+      },
+      "objectiveKeys": [
+        "bio.g7.plants.o1"
+      ],
+      "misconceptionKey": "bio.m.green-light-used",
+      "difficulty": 3
+    }
+  ]
+}

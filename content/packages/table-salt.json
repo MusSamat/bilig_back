@@ -1,0 +1,2396 @@
+{
+  "manifest": {
+    "topicKey": "table-salt",
+    "version": "1.0.0",
+    "hash": "3c6fefe91d69d6762cd19fdb9ef9a7a9d239ec176b218c6ce5c91c35363759ca",
+    "files": [
+      {
+        "path": "thumbs/nacl.webp",
+        "hash": "27d1f3aab1b4b67d3cde804f6ac3d09b152ac12c86fdff9716eff642c22fc184",
+        "size": 0
+      },
+      {
+        "path": "thumbs/kcl.webp",
+        "hash": "9eb8b57f4a25b86362bab91708bf5edbf4636cc22443cfd92005a2073ea1932c",
+        "size": 0
+      },
+      {
+        "path": "thumbs/halite.webp",
+        "hash": "81a0db533ba7af7f0f420f02a70f3a8b733346258480a78b0120c395a1ab03a8",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "chem",
+    "icon": "flask",
+    "hue": 265,
+    "group": "natural",
+    "order": 1,
+    "status": "live",
+    "title": {
+      "ky": "Химия",
+      "ru": "Химия",
+      "en": "Chemistry"
+    }
+  },
+  "course": {
+    "key": "chem.g8",
+    "subjectKey": "chem",
+    "grade": 8,
+    "curriculum": "kg-2024",
+    "title": {
+      "ky": "Химия, 8-класс",
+      "ru": "Химия, 8 класс",
+      "en": "Chemistry, grade 8"
+    }
+  },
+  "unit": {
+    "key": "chem.g8.bonds",
+    "courseKey": "chem.g8",
+    "order": 2,
+    "title": {
+      "ky": "Химиялык байланыш жана заттын түзүлүшү",
+      "ru": "Химическая связь и строение вещества",
+      "en": "Chemical bonding and structure of matter"
+    }
+  },
+  "objectives": [
+    {
+      "key": "chem.g8.bonds.o1",
+      "code": "CHEM-8.2.1",
+      "unitKey": "chem.g8.bonds",
+      "text": {
+        "ky": "Коваленттик байланышты жана молекуланын формасын түшүндүрүү.",
+        "ru": "Объяснять ковалентную связь и форму молекулы.",
+        "en": "Explain covalent bonding and molecular shape."
+      }
+    },
+    {
+      "key": "chem.g8.bonds.o2",
+      "code": "CHEM-8.2.2",
+      "unitKey": "chem.g8.bonds",
+      "text": {
+        "ky": "Иондук байланышты жана кристалл торчосун сүрөттөө.",
+        "ru": "Описывать ионную связь и кристаллическую решётку.",
+        "en": "Describe ionic bonding and the crystal lattice."
+      }
+    },
+    {
+      "key": "chem.g8.bonds.o3",
+      "code": "CHEM-8.2.3",
+      "unitKey": "chem.g8.bonds",
+      "text": {
+        "ky": "Формула боюнча молярдык массаны эсептөө.",
+        "ru": "Вычислять молярную массу по формуле.",
+        "en": "Calculate molar mass from a formula."
+      }
+    }
+  ],
+  "topic": {
+    "key": "table-salt",
+    "unitKey": "chem.g8.bonds",
+    "status": "published",
+    "title": {
+      "ky": "Аш тузу",
+      "ru": "Поваренная соль",
+      "en": "Table salt"
+    },
+    "formula": "NaCl",
+    "classification": {
+      "ky": "Иондук кристалл",
+      "ru": "Ионный кристалл",
+      "en": "Ionic crystal"
+    },
+    "description": {
+      "ky": "Аш тузу – натрий хлориди. Ал молекулалардан эмес, кезектешкен Na⁺ жана Cl⁻ иондорунан турган куб торчосу. Иондорду иондук байланыш – карама-каршы заряддардын тартылуусу кармап турат.",
+      "ru": "Поваренная соль – хлорид натрия. Она состоит не из молекул, а из кубической решётки чередующихся ионов Na⁺ и Cl⁻. Ионы удерживает ионная связь – притяжение противоположных зарядов.",
+      "en": "Table salt is sodium chloride. It is not made of molecules but of a cubic lattice of alternating Na⁺ and Cl⁻ ions, held together by ionic bonds – the attraction of opposite charges."
+    },
+    "goal": {
+      "ky": "Иондук байланышты жана NaCl кристалл торчосун сүрөттөө (CHEM-8.2.2), NaClдин молярдык массасын эсептөө (CHEM-8.2.3).",
+      "ru": "Описать ионную связь и кристаллическую решётку NaCl (CHEM-8.2.2) и вычислить молярную массу NaCl (CHEM-8.2.3).",
+      "en": "Describe ionic bonding and the NaCl crystal lattice (CHEM-8.2.2) and calculate the molar mass of NaCl (CHEM-8.2.3)."
+    },
+    "objectiveKeys": [
+      "chem.g8.bonds.o2",
+      "chem.g8.bonds.o3"
+    ],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "crystal",
+      "params": {
+        "structure": "rock-salt",
+        "latticeConstant": 0.564,
+        "cells": [
+          2,
+          2,
+          2
+        ],
+        "ions": [
+          {
+            "element": "Na",
+            "charge": 1,
+            "radius": 0.102
+          },
+          {
+            "element": "Cl",
+            "charge": -1,
+            "radius": 0.181
+          }
+        ]
+      },
+      "camera": {
+        "position": [
+          2.2,
+          1.8,
+          2.6
+        ],
+        "target": [
+          0.564,
+          0.564,
+          0.564
+        ],
+        "fov": 40
+      },
+      "modes": [
+        "ball-stick",
+        "spacefill"
+      ]
+    },
+    "conceptKeys": [
+      "chem.nacl",
+      "chem.unit-cell",
+      "chem.na-ion",
+      "chem.cl-ion",
+      "chem.ionic-bond"
+    ],
+    "overrides": {
+      "chem.nacl": {
+        "nodes": [
+          "Crystal"
+        ]
+      },
+      "chem.unit-cell": {
+        "anchor": [
+          0.282,
+          0.282,
+          0.6
+        ],
+        "nodes": [
+          "UnitCell"
+        ]
+      },
+      "chem.na-ion": {
+        "anchor": [
+          0.282,
+          0,
+          0
+        ],
+        "nodes": [
+          "Ion_Na_*"
+        ]
+      },
+      "chem.cl-ion": {
+        "anchor": [
+          0,
+          0,
+          0
+        ],
+        "nodes": [
+          "Ion_Cl_*"
+        ]
+      },
+      "chem.ionic-bond": {
+        "anchor": [
+          0.141,
+          0,
+          0
+        ],
+        "nodes": [
+          "Bond_*"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "nacl",
+        "title": {
+          "ky": "Натрий хлориди",
+          "ru": "Хлорид натрия",
+          "en": "Sodium chloride"
+        },
+        "classification": {
+          "ky": "NaCl · аш тузу",
+          "ru": "NaCl · поваренная соль",
+          "en": "NaCl · table salt"
+        },
+        "thumb": "thumbs/nacl.webp"
+      },
+      {
+        "key": "kcl",
+        "title": {
+          "ky": "Калий хлориди",
+          "ru": "Хлорид калия",
+          "en": "Potassium chloride"
+        },
+        "classification": {
+          "ky": "KCl · жер семирткич",
+          "ru": "KCl · удобрение",
+          "en": "KCl · fertiliser"
+        },
+        "thumb": "thumbs/kcl.webp"
+      },
+      {
+        "key": "halite",
+        "title": {
+          "ky": "Галит (таш туз)",
+          "ru": "Галит (каменная соль)",
+          "en": "Halite (rock salt)"
+        },
+        "classification": {
+          "ky": "NaCl · минерал",
+          "ru": "NaCl · минерал",
+          "en": "NaCl · mineral"
+        },
+        "thumb": "thumbs/halite.webp"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                2.2,
+                1.8,
+                2.6
+              ],
+              "target": [
+                0.564,
+                0.564,
+                0.564
+              ]
+            },
+            "modes": {
+              "rep": "ball-stick"
+            },
+            "focus": "chem.nacl",
+            "text": {
+              "ky": "Бул – аш тузунун кристаллынын бир бөлүгү: кезектешкен кызгылт көк Na⁺ жана жашыл Cl⁻ иондору.",
+              "ru": "Это фрагмент кристалла поваренной соли: чередующиеся фиолетовые ионы Na⁺ и зелёные Cl⁻.",
+              "en": "This is a piece of a salt crystal: alternating purple Na⁺ and green Cl⁻ ions."
+            },
+            "teacherNote": {
+              "ky": "Чыныгы туз кристаллдарын лупа менен көрсөтүңүз – алар да куб формасында.",
+              "ru": "Покажите настоящие кристаллы соли через лупу – они тоже кубические.",
+              "en": "Show real salt crystals under a magnifier – they are cubes too."
+            },
+            "altText": {
+              "ky": "Эки түрдүү шарлардан турган куб торчо.",
+              "ru": "Кубическая решётка из шаров двух видов.",
+              "en": "A cubic lattice of two kinds of balls."
+            }
+          },
+          {
+            "key": "na-ion",
+            "camera": {
+              "position": [
+                1.2,
+                0.6,
+                1.4
+              ],
+              "target": [
+                0.282,
+                0,
+                0
+              ]
+            },
+            "focus": "chem.na-ion",
+            "text": {
+              "ky": "Na⁺ иону – натрий атому бир электронун бергенден кийинки бөлүкчө. Ал кичинекей (102 пм).",
+              "ru": "Ион Na⁺ – это атом натрия, отдавший один электрон. Он маленький (102 пм).",
+              "en": "Na⁺ is a sodium atom that has given away one electron. It is small (102 pm)."
+            },
+            "teacherNote": {
+              "ky": "«Атомдун түзүлүшү» темасындагы валенттик электронду эстетиңиз.",
+              "ru": "Напомните о валентном электроне из темы «Строение атома».",
+              "en": "Recall the valence electron from the «Structure of the atom» topic."
+            },
+            "altText": {
+              "ky": "Кичинекей кызгылт көк шарлар бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделены маленькие фиолетовые шары.",
+              "en": "The small purple balls are highlighted."
+            }
+          },
+          {
+            "key": "cl-ion",
+            "camera": {
+              "position": [
+                1,
+                0.6,
+                1.4
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "focus": "chem.cl-ion",
+            "text": {
+              "ky": "Cl⁻ иону бир электрон кабыл алган хлор. Ал Na⁺ ионунан дээрлик эки эсе чоң.",
+              "ru": "Ион Cl⁻ – хлор, принявший один электрон. Он почти вдвое больше Na⁺.",
+              "en": "Cl⁻ is chlorine that has gained an electron. It is almost twice as big as Na⁺."
+            },
+            "teacherNote": {
+              "ky": "Эмне үчүн электрон кошулганда ион чоңоёрун талкуулаңыз.",
+              "ru": "Обсудите, почему ион становится больше, когда добавляется электрон.",
+              "en": "Discuss why gaining an electron makes the ion bigger."
+            },
+            "altText": {
+              "ky": "Чоң жашыл шарлар бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделены крупные зелёные шары.",
+              "en": "The large green balls are highlighted."
+            }
+          },
+          {
+            "key": "bond",
+            "camera": {
+              "position": [
+                1.2,
+                1.2,
+                1.2
+              ],
+              "target": [
+                0.282,
+                0.282,
+                0.282
+              ]
+            },
+            "focus": "chem.ionic-bond",
+            "text": {
+              "ky": "Карама-каршы заряддар тартылат: ар бир Na⁺ алты Cl⁻ менен курчалган – бул иондук байланыш.",
+              "ru": "Противоположные заряды притягиваются: каждый Na⁺ окружён шестью Cl⁻ – это ионная связь.",
+              "en": "Opposite charges attract: each Na⁺ is surrounded by six Cl⁻ – that is ionic bonding."
+            },
+            "teacherNote": {
+              "ky": "Бир Na⁺ ионунун коңшуларын санатыңыз (6).",
+              "ru": "Попросите посчитать соседей одного иона Na⁺ (6).",
+              "en": "Have pupils count the neighbours of one Na⁺ ion (6)."
+            },
+            "altText": {
+              "ky": "Бир Na⁺ иону жана аны курчаган алты Cl⁻.",
+              "ru": "Один ион Na⁺ и шесть окружающих его Cl⁻.",
+              "en": "One Na⁺ ion with six Cl⁻ around it."
+            }
+          },
+          {
+            "key": "unit-cell",
+            "camera": {
+              "position": [
+                2,
+                1.6,
+                2.2
+              ],
+              "target": [
+                0.282,
+                0.282,
+                0.282
+              ]
+            },
+            "focus": "chem.unit-cell",
+            "text": {
+              "ky": "Элементардык уяча – кыры 0,564 нм болгон куб. Ал үч тарапка кайталанып, бүт кристаллды түзөт.",
+              "ru": "Элементарная ячейка – куб с ребром 0,564 нм. Повторяясь во все стороны, она образует весь кристалл.",
+              "en": "The unit cell is a cube with 0.564 nm edges. Repeated in every direction, it builds the whole crystal."
+            },
+            "teacherNote": {
+              "ky": "Уячада 4 Na⁺ жана 4 Cl⁻ иону бар экенин, бирок формула NaCl (1 : 1) экенин белгилеңиз.",
+              "ru": "Отметьте: в ячейке 4 Na⁺ и 4 Cl⁻, но формула NaCl (1 : 1).",
+              "en": "Note: the cell holds 4 Na⁺ and 4 Cl⁻, but the formula is NaCl (1 : 1)."
+            },
+            "altText": {
+              "ky": "Кристаллдын ичинде бир куб чийилип бөлүнгөн.",
+              "ru": "Внутри кристалла выделен один куб.",
+              "en": "One cube outlined inside the crystal."
+            }
+          },
+          {
+            "key": "spacefill",
+            "camera": {
+              "position": [
+                2.2,
+                1.8,
+                2.6
+              ],
+              "target": [
+                0.564,
+                0.564,
+                0.564
+              ]
+            },
+            "modes": {
+              "rep": "spacefill"
+            },
+            "focus": "chem.nacl",
+            "text": {
+              "ky": "«Көлөмдүү» көрүнүштө иондор бири-бирине тыгыз жабышып турат – туз ошондуктан катуу жана 801 °C да гана эрийт.",
+              "ru": "В объёмном виде ионы плотно прилегают друг к другу – поэтому соль твёрдая и плавится лишь при 801 °C.",
+              "en": "In space-filling view the ions are packed tightly – that is why salt is hard and only melts at 801 °C."
+            },
+            "teacherNote": {
+              "ky": "Тузду сууда эритүү менен балкытып эритүүнүн айырмасын талкуулаңыз.",
+              "ru": "Обсудите разницу между растворением соли в воде и её плавлением.",
+              "en": "Discuss the difference between dissolving salt and melting it."
+            },
+            "altText": {
+              "ky": "Тыгыз жайгашкан чоң жана кичине шарлар.",
+              "ru": "Плотно уложенные большие и маленькие шары.",
+              "en": "Tightly packed large and small balls."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.nacl-formation"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.sodium"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.chlorine"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.nacl"
+          }
+        ],
+        "rows": [
+          "meltingPoint",
+          "density",
+          "state"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.salt-bond",
+          "chem.q.salt-true",
+          "chem.q.salt-match",
+          "chem.q.salt-find-cl",
+          "chem.q.salt-find-cell",
+          "chem.q.salt-molar"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "s",
+          "title": {
+            "ky": "Ысык-Көлдүн туздуулугу",
+            "ru": "Солёность Иссык-Куля",
+            "en": "Issyk-Kul's saltiness"
+          },
+          "text": {
+            "ky": "Ысык-Көлдүн суусунда литрине 6 г чамалуу туз бар – бул океандыкынан болжол менен 6 эсе аз.",
+            "ru": "В литре воды Иссык-Куля около 6 г солей – примерно в 6 раз меньше, чем в океане.",
+            "en": "Issyk-Kul holds about 6 g of salts per litre – roughly six times less than the ocean."
+          }
+        },
+        {
+          "field": "t",
+          "title": {
+            "ky": "Тамакты сактоо",
+            "ru": "Консервирование",
+            "en": "Food preservation"
+          },
+          "text": {
+            "ky": "Туз микробдордун клеткаларынан сууну тартып алат, ошондуктан туздалган эт, бадыраң көпкө сакталат.",
+            "ru": "Соль вытягивает воду из клеток микробов, поэтому солёное мясо и огурцы долго хранятся.",
+            "en": "Salt pulls water out of microbes, so salted meat and pickles keep for a long time."
+          }
+        },
+        {
+          "field": "e",
+          "title": {
+            "ky": "Жолдорду тазалоо",
+            "ru": "Зимние дороги",
+            "en": "Winter roads"
+          },
+          "text": {
+            "ky": "Туз эритмеси 0 °Cтан төмөн тоңот, ошондуктан кышында Бишкектин жолдоруна туз себилет.",
+            "ru": "Солевой раствор замерзает ниже 0 °C, поэтому зимой дороги Бишкека посыпают солью.",
+            "en": "Salt water freezes below 0 °C, so Bishkek's roads are salted in winter."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Шахмат тактасы",
+            "ru": "Шахматная доска",
+            "en": "A chessboard"
+          },
+          "text": {
+            "ky": "Туз кристаллы көлөмдүү шахмат тактасындай: «ак» Na⁺ жана «кара» Cl⁻ кезектешет.",
+            "ru": "Кристалл соли – как объёмная шахматная доска: «белые» Na⁺ и «чёрные» Cl⁻ чередуются.",
+            "en": "A salt crystal is like a 3D chessboard: “white” Na⁺ and “black” Cl⁻ take turns."
+          }
+        },
+        {
+          "title": {
+            "ky": "Кыз-жигиттер бийи",
+            "ru": "Танец парами",
+            "en": "A partner dance"
+          },
+          "text": {
+            "ky": "Бийде кыздар менен балдар бирин-бири аралап турушса, алар кезектешет – туздагы иондор да ушинтип кезектешет.",
+            "ru": "В танце, где девочки и мальчики встают через одного, они чередуются – так же чередуются ионы в соли.",
+            "en": "In a dance where girls and boys stand alternately, they take turns – just like the ions in salt."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "chem.nacl",
+      "kind": "substance",
+      "hue": 320,
+      "isContainer": true,
+      "title": {
+        "ky": "Натрий хлориди (аш тузу)",
+        "ru": "Хлорид натрия (поваренная соль)",
+        "en": "Sodium chloride (table salt)"
+      },
+      "subtitle": {
+        "ky": "Иондук кристалл",
+        "ru": "Ионный кристалл",
+        "en": "An ionic crystal"
+      },
+      "description": {
+        "ky": "Na⁺ жана Cl⁻ иондорунан турган кристалл. Ар бир ион карама-каршы заряддуу 6 ион менен курчалган; кристаллдар куб формасында болот.",
+        "ru": "Кристалл из ионов Na⁺ и Cl⁻. Каждый ион окружён шестью ионами противоположного заряда; кристаллы имеют форму кубиков.",
+        "en": "A crystal of Na⁺ and Cl⁻ ions. Each ion is surrounded by six ions of opposite charge, and the crystals are little cubes."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "NaCl"
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 58.44
+        },
+        {
+          "kind": "quantity",
+          "type": "meltingPoint",
+          "value": 801
+        },
+        {
+          "kind": "quantity",
+          "type": "boilingPoint",
+          "value": 1465
+        },
+        {
+          "kind": "quantity",
+          "type": "density",
+          "value": 2.16
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Катуу кристалл",
+            "ru": "Твёрдый кристалл",
+            "en": "Solid crystal"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "bondType",
+          "value": {
+            "ky": "Иондук",
+            "ru": "Ионная",
+            "en": "Ionic"
+          }
+        }
+      ],
+      "related": [
+        "chem.na-ion",
+        "chem.cl-ion",
+        "chem.ionic-bond"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.salt-melts-easily",
+          "text": {
+            "ky": "Туз музга окшоп оңой эрийт.",
+            "ru": "Соль плавится так же легко, как лёд.",
+            "en": "Salt melts as easily as ice."
+          },
+          "correction": {
+            "ky": "Туздун эрүү температурасы 801 °C – иондордун ортосундагы тартылуу абдан күчтүү. Сууда эриши – балкып эрүү эмес, башка процесс.",
+            "ru": "Соль плавится при 801 °C – притяжение ионов очень сильное. Растворение в воде – это другой процесс.",
+            "en": "Salt melts at 801 °C because the ions attract very strongly. Dissolving in water is a different process."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Туздун бир кичинекей кристаллында миллиарддаган миллиард иондор бар.",
+        "ru": "В одном крошечном кристаллике соли – миллиарды миллиардов ионов.",
+        "en": "One tiny salt crystal holds billions of billions of ions."
+      },
+      "analogy": {
+        "ky": "Шахмат тактасы, бирок көлөмдүү",
+        "ru": "Объёмная шахматная доска",
+        "en": "A 3D chessboard"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Ысык-Көлдүн суусу",
+              "ru": "Вода Иссык-Куля",
+              "en": "Issyk-Kul's water"
+            },
+            "text": {
+              "ky": "Ысык-Көлдүн суусунда литрине болжол менен 6 г туздар эриген, ошондуктан ал бир аз туздуу.",
+              "ru": "В литре воды Иссык-Куля растворено около 6 г солей, поэтому она слегка солёная.",
+              "en": "Each litre of Issyk-Kul water holds about 6 g of dissolved salts, so it tastes slightly salty."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Тамакты сактоо",
+              "ru": "Консервирование",
+              "en": "Preserving food"
+            },
+            "text": {
+              "ky": "Туз микробдордон сууну тартып алат, ошондуктан кышка туздалган эт жана бадыраң сакталат.",
+              "ru": "Соль вытягивает воду из микробов, поэтому солёное мясо и огурцы хранятся всю зиму.",
+              "en": "Salt draws water out of microbes, which is why salted meat and pickles keep all winter."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Шахмат тактасы",
+              "ru": "Шахматная доска",
+              "en": "A chessboard"
+            },
+            "text": {
+              "ky": "Туз кристаллында Na⁺ жана Cl⁻ шахмат тактасындагы ак жана кара чарчылардай кезектешет – бирок үч өлчөмдө.",
+              "ru": "В кристалле соли Na⁺ и Cl⁻ чередуются, как белые и чёрные клетки шахматной доски, – только в трёх измерениях.",
+              "en": "In a salt crystal Na⁺ and Cl⁻ alternate like the squares of a chessboard – but in three dimensions."
+            }
+          },
+          {
+            "title": {
+              "ky": "Кубиктер",
+              "ru": "Кубики",
+              "en": "Little cubes"
+            },
+            "text": {
+              "ky": "Тузду лупа менен карасаң, кичинекей кубиктерди көрөсүң.",
+              "ru": "Посмотри на соль через лупу – увидишь крошечные кубики.",
+              "en": "Look at salt through a magnifying glass and you will see tiny cubes."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.unit-cell",
+      "kind": "lattice",
+      "hue": 260,
+      "isContainer": true,
+      "title": {
+        "ky": "Элементардык уяча",
+        "ru": "Элементарная ячейка",
+        "en": "Unit cell"
+      },
+      "subtitle": {
+        "ky": "Кристаллдын «кирпичи»",
+        "ru": "«Кирпичик» кристалла",
+        "en": "The crystal's building block"
+      },
+      "description": {
+        "ky": "Кристаллдын эң кичинекей кайталанган бөлүгү. NaCl үчүн бул кыры 0,564 нм болгон куб, анын ичинде 4 Na⁺ жана 4 Cl⁻ иону бар.",
+        "ru": "Наименьшая повторяющаяся часть кристалла. Для NaCl это куб с ребром 0,564 нм, на который приходится 4 иона Na⁺ и 4 иона Cl⁻.",
+        "en": "The smallest repeating piece of a crystal. For NaCl it is a cube 0.564 nm along each edge containing 4 Na⁺ and 4 Cl⁻ ions."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "length",
+          "value": 0.564,
+          "unit": "nm"
+        },
+        {
+          "kind": "quantity",
+          "type": "count",
+          "value": 8
+        },
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Куб",
+            "ru": "Куб",
+            "en": "Cube"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "4 Na⁺ + 4 Cl⁻",
+            "ru": "4 Na⁺ + 4 Cl⁻",
+            "en": "4 Na⁺ + 4 Cl⁻"
+          }
+        }
+      ],
+      "related": [
+        "chem.nacl",
+        "chem.na-ion",
+        "chem.cl-ion"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.cell-whole-crystal",
+          "text": {
+            "ky": "Элементардык уяча – бул бүтүн кристалл.",
+            "ru": "Элементарная ячейка – это и есть весь кристалл.",
+            "en": "The unit cell is the whole crystal."
+          },
+          "correction": {
+            "ky": "Уяча – кирпич; кристалл болсо үч тарапка кайталанган миллиарддаган уячалардан турат.",
+            "ru": "Ячейка – кирпичик; кристалл состоит из миллиардов таких ячеек, повторённых во все стороны.",
+            "en": "The unit cell is a brick; a crystal is billions of them repeated in every direction."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Туз кристаллынын 1 мм кырында 1,7 миллиондой элементардык уяча тизилет.",
+        "ru": "Вдоль ребра кристалла соли длиной 1 мм укладывается около 1,7 миллиона элементарных ячеек.",
+        "en": "About 1.7 million unit cells line up along a 1 mm edge of a salt crystal."
+      },
+      "analogy": {
+        "ky": "Кирпич дубалдагы бир кирпич",
+        "ru": "Один кирпич в стене",
+        "en": "One brick in a wall"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Рентген кристаллографиясы",
+              "ru": "Рентгеноструктурный анализ",
+              "en": "X-ray crystallography"
+            },
+            "text": {
+              "ky": "Илимпоздор кристаллга рентген нурун тийгизип, уячанын өлчөмүн жана атомдордун ордун аныкташат.",
+              "ru": "Учёные просвечивают кристалл рентгеном и определяют размеры ячейки и положения атомов.",
+              "en": "Scientists shine X-rays through a crystal to measure the unit cell and find where the atoms are."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Куб симметриясы",
+              "ru": "Симметрия куба",
+              "en": "Cube symmetry"
+            },
+            "text": {
+              "ky": "Математиктер кристаллдардын формасын симметрия топтору менен сүрөттөшөт; туз куб симметриясына ээ.",
+              "ru": "Математики описывают форму кристаллов группами симметрии; у соли – симметрия куба.",
+              "en": "Mathematicians describe crystal shapes with symmetry groups; salt has the symmetry of a cube."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кирпич",
+              "ru": "Кирпич",
+              "en": "A brick"
+            },
+            "text": {
+              "ky": "Бир кирпичти кайра-кайра коюп дубал салгандай, бир уячаны кайталап кристалл «салынат».",
+              "ru": "Как стену строят из одинаковых кирпичей, так и кристалл «строится» из одинаковых ячеек.",
+              "en": "Just as a wall is built from identical bricks, a crystal is built from identical unit cells."
+            }
+          },
+          {
+            "title": {
+              "ky": "Дасторкондун оюму",
+              "ru": "Узор на дастархане",
+              "en": "A tablecloth pattern"
+            },
+            "text": {
+              "ky": "Дасторкондогу бир оюм кайталана берет – уяча да кристаллдагы кайталанган «оюм».",
+              "ru": "На дастархане один узор повторяется снова и снова – ячейка тоже повторяющийся «узор» кристалла.",
+              "en": "A tablecloth repeats one pattern over and over – a unit cell is the repeating pattern of a crystal."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.na-ion",
+      "kind": "ion",
+      "hue": 290,
+      "isContainer": false,
+      "title": {
+        "ky": "Натрий иону",
+        "ru": "Ион натрия",
+        "en": "Sodium ion"
+      },
+      "subtitle": {
+        "ky": "Na⁺ катиону",
+        "ru": "Катион Na⁺",
+        "en": "The Na⁺ cation"
+      },
+      "description": {
+        "ky": "Натрий атому бир электронун бергенде пайда болгон оң ион. Анын электрондору 2 + 8 – неондукундай толук катмар.",
+        "ru": "Положительный ион, который образуется, когда атом натрия отдаёт один электрон. Его электроны 2 + 8 – заполненный слой, как у неона.",
+        "en": "The positive ion formed when a sodium atom gives away one electron. Its electrons are 2 + 8 – a full shell like neon's."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "charge",
+          "value": 1
+        },
+        {
+          "kind": "quantity",
+          "type": "radius",
+          "value": 102,
+          "unit": "pm"
+        },
+        {
+          "kind": "quantity",
+          "type": "coordination",
+          "value": 6
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Туз кристаллынын түйүндөрүндө",
+            "ru": "В узлах кристалла соли",
+            "en": "At lattice points of the salt crystal"
+          }
+        }
+      ],
+      "related": [
+        "chem.cl-ion",
+        "chem.sodium"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.cation-gains",
+          "text": {
+            "ky": "Оң ион электрон алганда пайда болот.",
+            "ru": "Положительный ион образуется, когда атом получает электрон.",
+            "en": "A positive ion forms when an atom gains an electron."
+          },
+          "correction": {
+            "ky": "Оң ион электрон бергенде пайда болот: электрон кетсе, протондор көп калат.",
+            "ru": "Положительный ион образуется при отдаче электрона: электронов становится меньше, чем протонов.",
+            "en": "A positive ion forms by losing an electron, leaving more protons than electrons."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Na⁺ иону натрий атомунан дээрлик эки эсе кичине, анткени сырткы катмары жок болуп калат.",
+        "ru": "Ион Na⁺ почти вдвое меньше атома натрия, потому что теряет внешний слой.",
+        "en": "Na⁺ is almost half the size of a sodium atom because it has lost its outer shell."
+      },
+      "analogy": {
+        "ky": "Колундагы бир нерсесин берип, жеңилдеген адам",
+        "ru": "Человек, отдавший ношу и ставший легче",
+        "en": "Someone who gave away a bag"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Спорт суусундуктары",
+              "ru": "Спортивные напитки",
+              "en": "Sports drinks"
+            },
+            "text": {
+              "ky": "Тердегенде денеден Na⁺ иондору чыгат, ошондуктан спорт суусундуктарына туз кошулат.",
+              "ru": "С потом организм теряет ионы Na⁺, поэтому в спортивные напитки добавляют соль.",
+              "en": "Sweat carries Na⁺ ions out of the body, so salt is added to sports drinks."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Физиологиялык эритме",
+              "ru": "Физраствор",
+              "en": "Saline drips"
+            },
+            "text": {
+              "ky": "Ооруканадагы тамчылатма – 0,9 % NaCl эритмеси; анын Na⁺ иондору кандагыдай.",
+              "ru": "Капельница в больнице – 0,9 % раствор NaCl; ионов Na⁺ в нём столько же, сколько в крови.",
+              "en": "A hospital drip is 0.9 % NaCl solution, with about as much Na⁺ as blood."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Шарды жоготкон бала",
+              "ru": "Мальчик без шарика",
+              "en": "A child who let go of a balloon"
+            },
+            "text": {
+              "ky": "Бир электронун «коё берген» натрий кичирейип, оң заряддуу болуп калат.",
+              "ru": "Натрий, «отпустивший» электрон, становится меньше и положительно заряженным.",
+              "en": "Sodium that lets go of an electron gets smaller and becomes positively charged."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тузду сууга салуу",
+              "ru": "Соль в воде",
+              "en": "Salt in water"
+            },
+            "text": {
+              "ky": "Тузду сууга салсаң, Na⁺ иондору суу молекулаларынын арасында сүзүп кетет.",
+              "ru": "Брось соль в воду – ионы Na⁺ уплывут между молекулами воды.",
+              "en": "Drop salt in water and the Na⁺ ions swim off among the water molecules."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.cl-ion",
+      "kind": "ion",
+      "hue": 120,
+      "isContainer": false,
+      "title": {
+        "ky": "Хлорид иону",
+        "ru": "Хлорид-ион",
+        "en": "Chloride ion"
+      },
+      "subtitle": {
+        "ky": "Cl⁻ аниону",
+        "ru": "Анион Cl⁻",
+        "en": "The Cl⁻ anion"
+      },
+      "description": {
+        "ky": "Хлор атому бир электрон кабыл алганда пайда болгон терс ион. Анын электрондору 2 + 8 + 8 – аргондукундай толук катмар.",
+        "ru": "Отрицательный ион, который образуется, когда атом хлора принимает один электрон. Его электроны 2 + 8 + 8 – заполненный слой, как у аргона.",
+        "en": "The negative ion formed when a chlorine atom accepts one electron. Its electrons are 2 + 8 + 8 – a full shell like argon's."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "charge",
+          "value": -1
+        },
+        {
+          "kind": "quantity",
+          "type": "radius",
+          "value": 181,
+          "unit": "pm"
+        },
+        {
+          "kind": "quantity",
+          "type": "coordination",
+          "value": 6
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Туз кристаллынын түйүндөрүндө",
+            "ru": "В узлах кристалла соли",
+            "en": "At lattice points of the salt crystal"
+          }
+        }
+      ],
+      "related": [
+        "chem.na-ion",
+        "chem.chlorine"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.anion-smaller",
+          "text": {
+            "ky": "Терс ион атомдон кичине.",
+            "ru": "Отрицательный ион меньше атома.",
+            "en": "A negative ion is smaller than its atom."
+          },
+          "correction": {
+            "ky": "Электрон кошулганда ион чоңоёт: Cl⁻ (181 пм) Cl атомунан чоң.",
+            "ru": "При присоединении электрона ион увеличивается: Cl⁻ (181 пм) больше атома хлора.",
+            "en": "Adding an electron makes the ion bigger: Cl⁻ (181 pm) is larger than the chlorine atom."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Ашказандагы туз кислотасынын (HCl) курамында да Cl⁻ иондору бар – алар тамак сиңирүүгө жардам берет.",
+        "ru": "В соляной кислоте желудка (HCl) тоже есть ионы Cl⁻ – они помогают переваривать пищу.",
+        "en": "The hydrochloric acid (HCl) in your stomach also contains Cl⁻ ions that help digest food."
+      },
+      "analogy": {
+        "ky": "Белек алып, «толуп» калган дос",
+        "ru": "Друг, получивший подарок",
+        "en": "A friend who got a gift"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Ашказан ширеси",
+              "ru": "Желудочный сок",
+              "en": "Stomach acid"
+            },
+            "text": {
+              "ky": "Ашказан клеткалары кандан Cl⁻ иондорун алып, туз кислотасын жасайт.",
+              "ru": "Клетки желудка берут ионы Cl⁻ из крови и производят соляную кислоту.",
+              "en": "Stomach cells take Cl⁻ ions from the blood to make hydrochloric acid."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Сууну анализдөө",
+              "ru": "Анализ воды",
+              "en": "Water testing"
+            },
+            "text": {
+              "ky": "Лабораторияларда ичүүчү суудагы Cl⁻ иондорунун өлчөмү текшерилет.",
+              "ru": "В лабораториях проверяют содержание ионов Cl⁻ в питьевой воде.",
+              "en": "Labs measure the amount of Cl⁻ ions in drinking water."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Толгон чөнтөк",
+              "ru": "Полный карман",
+              "en": "A full pocket"
+            },
+            "text": {
+              "ky": "Хлордун чөнтөгүнө бир гана орун бош болчу – электрон келип, чөнтөк толду жана ион «оорлоп», чоңоюп калды.",
+              "ru": "В кармане хлора было одно свободное место – пришёл электрон, карман заполнился, и ион стал больше.",
+              "en": "Chlorine's pocket had one free spot; an electron filled it and the ion grew a little."
+            }
+          },
+          {
+            "title": {
+              "ky": "Магниттин минусу",
+              "ru": "Минус магнита",
+              "en": "The other magnet pole"
+            },
+            "text": {
+              "ky": "Cl⁻ иону Na⁺ ионуна магниттин карама-каршы учундай тартылат.",
+              "ru": "Ион Cl⁻ притягивается к Na⁺, как противоположный полюс магнита.",
+              "en": "Cl⁻ is pulled towards Na⁺ like the opposite end of a magnet."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.ionic-bond",
+      "kind": "bond",
+      "hue": 300,
+      "isContainer": false,
+      "title": {
+        "ky": "Иондук байланыш",
+        "ru": "Ионная связь",
+        "en": "Ionic bond"
+      },
+      "subtitle": {
+        "ky": "Карама-каршы иондордун тартылуусу",
+        "ru": "Притяжение противоположных ионов",
+        "en": "Attraction of opposite ions"
+      },
+      "description": {
+        "ky": "Бир атом электронун башка атомго толук бергенде пайда болгон оң жана терс иондордун тартылуусу. Мисалы, Na⁺ жана Cl⁻ аш тузунда.",
+        "ru": "Притяжение положительных и отрицательных ионов, которые возникают, когда один атом полностью отдаёт электрон другому. Например, Na⁺ и Cl⁻ в поваренной соли.",
+        "en": "The attraction between positive and negative ions formed when one atom gives an electron completely to another, as with Na⁺ and Cl⁻ in table salt."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "bondType",
+          "value": {
+            "ky": "Электрон бир атомдон экинчисине өтөт",
+            "ru": "Электрон переходит от одного атома к другому",
+            "en": "An electron is transferred"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Туздар: NaCl, KCl, CaF₂",
+            "ru": "Соли: NaCl, KCl, CaF₂",
+            "en": "Salts: NaCl, KCl, CaF₂"
+          }
+        }
+      ],
+      "related": [
+        "chem.covalent-bond",
+        "chem.na-ion",
+        "chem.cl-ion"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.ionic-molecule",
+          "text": {
+            "ky": "Аш тузу NaCl молекулаларынан турат.",
+            "ru": "Поваренная соль состоит из молекул NaCl.",
+            "en": "Table salt is made of NaCl molecules."
+          },
+          "correction": {
+            "ky": "Туз – иондордун кристалл торчосу; анда өзүнчө молекулалар жок, ар бир Na⁺ иону 6 Cl⁻ ионуна курчалган.",
+            "ru": "Соль – кристаллическая решётка ионов; отдельных молекул в ней нет, каждый Na⁺ окружён шестью Cl⁻.",
+            "en": "Salt is a lattice of ions with no separate molecules; each Na⁺ is surrounded by six Cl⁻."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Иондук байланыш эки атомдун электр терс таасирдүүлүгүнүн айырмасы чоң болгондо (болжол менен 1,7ден ашык) пайда болот: Na – 0,93, Cl – 3,16.",
+        "ru": "Ионная связь возникает, когда электроотрицательности атомов сильно различаются (примерно больше чем на 1,7): у Na – 0,93, у Cl – 3,16.",
+        "en": "Ionic bonds form when the electronegativities differ a lot (roughly by more than 1.7): Na is 0.93, Cl is 3.16."
+      },
+      "analogy": {
+        "ky": "Магниттин плюсу менен минусу",
+        "ru": "Плюс и минус магнита",
+        "en": "Opposite poles of magnets"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Литий-иондук батарейкалар",
+              "ru": "Литий-ионные аккумуляторы",
+              "en": "Lithium-ion batteries"
+            },
+            "text": {
+              "ky": "Телефондун батарейкасы кубатталганда жана иштегенде ичинде иондор бир электроддон экинчисине көчөт.",
+              "ru": "При зарядке и работе аккумулятора телефона ионы перемещаются от одного электрода к другому.",
+              "en": "When a phone battery charges and discharges, ions move from one electrode to the other."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Жолдорду туз менен тазалоо",
+              "ru": "Посыпка дорог солью",
+              "en": "Salting icy roads"
+            },
+            "text": {
+              "ky": "Кышында Бишкектин көчөлөрүнө туз себилет: суудагы иондор муздун эришин тездетет.",
+              "ru": "Зимой улицы Бишкека посыпают солью: ионы в воде мешают ей замерзать.",
+              "en": "In winter Bishkek's streets are salted: ions in the water stop it from freezing so easily."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Магниттер",
+              "ru": "Магниты",
+              "en": "Magnets"
+            },
+            "text": {
+              "ky": "Эки магниттин карама-каршы учтары бири-бирине жабышат – оң жана терс иондор да ушинтип тартылат.",
+              "ru": "Противоположные полюса двух магнитов прилипают друг к другу – так притягиваются и ионы.",
+              "en": "Opposite ends of two magnets snap together – positive and negative ions attract the same way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Белек берүү",
+              "ru": "Подарок",
+              "en": "Giving a gift"
+            },
+            "text": {
+              "ky": "Натрий хлорго электронун белек кылып берет, андан кийин алар ажырагыс достордон болуп калышат.",
+              "ru": "Натрий дарит хлору свой электрон, и после этого они становятся неразлучными друзьями.",
+              "en": "Sodium gives chlorine its electron as a gift, and after that they are inseparable."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.sodium",
+      "kind": "element",
+      "hue": 275,
+      "isContainer": false,
+      "title": {
+        "ky": "Натрий",
+        "ru": "Натрий",
+        "en": "Sodium"
+      },
+      "subtitle": {
+        "ky": "Жумшак, активдүү металл",
+        "ru": "Мягкий активный металл",
+        "en": "A soft, reactive metal"
+      },
+      "description": {
+        "ky": "11-элемент: электрондору 2 + 8 + 1. Жалгыз сырткы электронун оңой берип, Na⁺ ионуна айланат. Бычак менен кесилгендей жумшак металл, суу менен катуу реакцияга кирет.",
+        "ru": "Элемент № 11: электроны 2 + 8 + 1. Легко отдаёт единственный внешний электрон и становится ионом Na⁺. Мягкий металл, режется ножом, бурно реагирует с водой.",
+        "en": "Element 11 with electrons 2 + 8 + 1. It easily gives away its single outer electron to become Na⁺. A soft metal you can cut with a knife; it reacts violently with water."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "atomicNumber",
+          "value": 11
+        },
+        {
+          "kind": "quantity",
+          "type": "electronegativity",
+          "value": 0.93
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 22.99
+        },
+        {
+          "kind": "quantity",
+          "type": "meltingPoint",
+          "value": 97.8
+        },
+        {
+          "kind": "quantity",
+          "type": "density",
+          "value": 0.97
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Катуу металл",
+            "ru": "Твёрдый металл",
+            "en": "Solid metal"
+          }
+        }
+      ],
+      "related": [
+        "chem.chlorine"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.sodium-in-salt-metal",
+          "text": {
+            "ky": "Туздун ичинде металл натрий бар.",
+            "ru": "В соли содержится металлический натрий.",
+            "en": "Salt contains metallic sodium."
+          },
+          "correction": {
+            "ky": "Туздагы натрий – бул Na⁺ иону: анын касиеттери металлдыкынан таптакыр башка, ал коопсуз.",
+            "ru": "Натрий в соли – это ион Na⁺; его свойства совсем другие, чем у металла, и он безопасен.",
+            "en": "The sodium in salt is the Na⁺ ion, which behaves nothing like the metal and is safe."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Натрий ушунчалык жеңил, суудан да жеңил: ал суунун бетинде калкып, реакция менен ызылдап чуркайт.",
+        "ru": "Натрий легче воды: он плавает на поверхности и с шипением носится по ней, реагируя.",
+        "en": "Sodium is lighter than water: it floats and fizzes around on the surface as it reacts."
+      },
+      "analogy": {
+        "ky": "Электронун оңой берген март адам",
+        "ru": "Щедрый, легко отдающий электрон",
+        "en": "A generous giver of electrons"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Көчө чырактары",
+              "ru": "Натриевые лампы",
+              "en": "Sodium lamps"
+            },
+            "text": {
+              "ky": "Натрий буусу толтурулган лампалар көчөлөрдү сары жарык менен жарыктандырат.",
+              "ru": "Лампы с парами натрия освещают улицы жёлтым светом.",
+              "en": "Lamps filled with sodium vapour light streets with a yellow glow."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Нерв сигналдары",
+              "ru": "Нервные сигналы",
+              "en": "Nerve signals"
+            },
+            "text": {
+              "ky": "Нерв клеткалары Na⁺ иондорунун кирип-чыгышы аркылуу сигнал жөнөтөт.",
+              "ru": "Нервные клетки передают сигналы за счёт входа и выхода ионов Na⁺.",
+              "en": "Nerve cells send signals by letting Na⁺ ions move in and out."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Ашыкча бир момпосуй",
+              "ru": "Лишняя конфета",
+              "en": "One extra sweet"
+            },
+            "text": {
+              "ky": "Колунда бир гана артык момпосуй бар бала аны досуна оңой берет – натрий да сырткы электронун ушинтип берет.",
+              "ru": "У мальчика одна лишняя конфета – он легко отдаёт её другу. Так натрий отдаёт свой внешний электрон.",
+              "en": "A child with one spare sweet happily gives it away – sodium gives away its outer electron like that."
+            }
+          },
+          {
+            "title": {
+              "ky": "Май сыяктуу металл",
+              "ru": "Металл как сливочное масло",
+              "en": "A metal like butter"
+            },
+            "text": {
+              "ky": "Натрийди бычак менен майдай кесүүгө болот.",
+              "ru": "Натрий можно резать ножом, как сливочное масло.",
+              "en": "You can cut sodium with a knife like butter."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.chlorine",
+      "kind": "element",
+      "hue": 95,
+      "isContainer": false,
+      "title": {
+        "ky": "Хлор",
+        "ru": "Хлор",
+        "en": "Chlorine"
+      },
+      "subtitle": {
+        "ky": "Сары-жашыл уулуу газ",
+        "ru": "Жёлто-зелёный ядовитый газ",
+        "en": "A yellow-green toxic gas"
+      },
+      "description": {
+        "ky": "17-элемент: электрондору 2 + 8 + 7. Толук катмарга бир электрон жетпейт, ошондуктан аны оңой кабыл алып, Cl⁻ ионуна айланат.",
+        "ru": "Элемент № 17: электроны 2 + 8 + 7. До полного слоя не хватает одного электрона, поэтому он легко принимает его и становится ионом Cl⁻.",
+        "en": "Element 17 with electrons 2 + 8 + 7. It is one electron short of a full shell, so it readily takes one and becomes Cl⁻."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "atomicNumber",
+          "value": 17
+        },
+        {
+          "kind": "quantity",
+          "type": "electronegativity",
+          "value": 3.16
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 35.45
+        },
+        {
+          "kind": "quantity",
+          "type": "meltingPoint",
+          "value": -101.5
+        },
+        {
+          "kind": "quantity",
+          "type": "density",
+          "value": 0.0032
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Газ (Cl₂)",
+            "ru": "Газ (Cl₂)",
+            "en": "Gas (Cl₂)"
+          }
+        }
+      ],
+      "related": [
+        "chem.sodium"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.chlorine-safe",
+          "text": {
+            "ky": "Хлор туздун курамында болгондуктан, газ түрүндө да зыянсыз.",
+            "ru": "Раз хлор есть в соли, то и газ хлор безвреден.",
+            "en": "Since chlorine is in salt, chlorine gas must be harmless."
+          },
+          "correction": {
+            "ky": "Cl₂ газы уулуу; туздагы Cl⁻ иону болсо таптакыр башка зат жана коопсуз.",
+            "ru": "Газ Cl₂ ядовит; ион Cl⁻ в соли – совсем другое вещество, и он безопасен.",
+            "en": "Cl₂ gas is toxic; the Cl⁻ ion in salt is a completely different thing and is safe."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Хлордун аты грекче «сары-жашыл» дегенди билдирет.",
+        "ru": "Название хлора происходит от греческого слова «жёлто-зелёный».",
+        "en": "Chlorine's name comes from the Greek word for “yellow-green”."
+      },
+      "analogy": {
+        "ky": "Электрондун аңчысы",
+        "ru": "Охотник за электроном",
+        "en": "An electron grabber"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Сууну зыянсыздандыруу",
+              "ru": "Обеззараживание воды",
+              "en": "Disinfecting water"
+            },
+            "text": {
+              "ky": "Суу түтүктөрүнө жана бассейндерге микробдорду жок кылуу үчүн аз өлчөмдө хлор кошулат.",
+              "ru": "В водопровод и бассейны добавляют немного хлора, чтобы уничтожить микробы.",
+              "en": "A little chlorine is added to tap water and swimming pools to kill germs."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "ПВХ түтүктөр",
+              "ru": "Трубы из ПВХ",
+              "en": "PVC pipes"
+            },
+            "text": {
+              "ky": "Пластик терезелер менен түтүктөр жасалган ПВХнын курамында хлор бар.",
+              "ru": "В составе ПВХ, из которого делают пластиковые окна и трубы, есть хлор.",
+              "en": "PVC, used for plastic windows and pipes, contains chlorine."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Жетпеген бир пазл",
+              "ru": "Последний кусочек пазла",
+              "en": "The missing jigsaw piece"
+            },
+            "text": {
+              "ky": "Хлорго пазлды бүтүрүү үчүн бир гана бөлүк – бир электрон жетпейт.",
+              "ru": "Хлору не хватает одного кусочка пазла – одного электрона.",
+              "en": "Chlorine is missing just one jigsaw piece – one electron."
+            }
+          },
+          {
+            "title": {
+              "ky": "Бассейндин жыты",
+              "ru": "Запах бассейна",
+              "en": "The swimming-pool smell"
+            },
+            "text": {
+              "ky": "Бассейндеги өзгөчө жыт – суудагы хлордун кошулмаларынын жыты.",
+              "ru": "Особый запах бассейна – это запах соединений хлора в воде.",
+              "en": "That swimming-pool smell comes from chlorine compounds in the water."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.covalent-bond",
+      "kind": "bond",
+      "hue": 240,
+      "isContainer": false,
+      "title": {
+        "ky": "Коваленттик байланыш",
+        "ru": "Ковалентная связь",
+        "en": "Covalent bond"
+      },
+      "subtitle": {
+        "ky": "Жалпы электрон жубу",
+        "ru": "Общая электронная пара",
+        "en": "A shared electron pair"
+      },
+      "description": {
+        "ky": "Эки атом бир же бир нече электрон жубун жалпы колдонгондо пайда болгон байланыш. Суунун, метандын жана көмүр кычкыл газынын молекулалары ушундай байланышат.",
+        "ru": "Связь, при которой два атома делят одну или несколько общих электронных пар. Так связаны атомы в молекулах воды, метана и углекислого газа.",
+        "en": "A bond in which two atoms share one or more pairs of electrons. The atoms in water, methane and carbon dioxide are held this way."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "bondType",
+          "value": {
+            "ky": "Электрондор жалпы колдонулат",
+            "ru": "Электроны обобществлены",
+            "en": "Electrons are shared"
+          }
+        },
+        {
+          "kind": "quantity",
+          "type": "length",
+          "value": 95.7,
+          "max": 116,
+          "unit": "pm"
+        },
+        {
+          "kind": "quantity",
+          "type": "energy",
+          "value": 413,
+          "max": 799,
+          "unit": "kJ/mol"
+        },
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "H₂O, CH₄, CO₂, O₂",
+            "ru": "H₂O, CH₄, CO₂, O₂",
+            "en": "H₂O, CH₄, CO₂, O₂"
+          }
+        }
+      ],
+      "related": [
+        "chem.ionic-bond"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.bond-stick",
+          "text": {
+            "ky": "Байланыш – атомдорду бириктирген кичинекей таякча.",
+            "ru": "Связь – это маленькая палочка между атомами.",
+            "en": "A bond is a tiny stick joining atoms."
+          },
+          "correction": {
+            "ky": "Моделдеги таякча – шарттуу белги; чыныгы байланыш – бул эки ядро тең тарткан электрондор.",
+            "ru": "Палочка в модели – условность; настоящая связь – это электроны, которые притягивают оба ядра.",
+            "en": "The stick in a model is just a symbol; the real bond is electrons attracted by both nuclei."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Алмаздын катуулугу анын ар бир көмүртек атому төрт коваленттик байланыш менен бекем бириккенинен.",
+        "ru": "Алмаз так твёрд, потому что каждый атом углерода прочно связан с соседями четырьмя ковалентными связями.",
+        "en": "Diamond is so hard because each carbon atom is locked to its neighbours by four covalent bonds."
+      },
+      "analogy": {
+        "ky": "Эки баланын бир топту бирге кармашы",
+        "ru": "Двое держат один мяч",
+        "en": "Two children holding one ball"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Курулуш материалдары",
+              "ru": "Строительные материалы",
+              "en": "Building materials"
+            },
+            "text": {
+              "ky": "Пластмассалардын бекемдиги узун молекулалардагы коваленттик байланыштарга байланыштуу.",
+              "ru": "Прочность пластмасс зависит от ковалентных связей в их длинных молекулах.",
+              "en": "Plastics are strong because of the covalent bonds along their long molecules."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Дары жасоо",
+              "ru": "Создание лекарств",
+              "en": "Designing medicines"
+            },
+            "text": {
+              "ky": "Химиктер дары молекулаларын коваленттик байланыштарды курап, атом-атомдон «чогултушат».",
+              "ru": "Химики «собирают» молекулы лекарств атом за атомом, создавая ковалентные связи.",
+              "en": "Chemists build medicine molecules atom by atom by making covalent bonds."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кол кармашуу",
+              "ru": "Держаться за руки",
+              "en": "Holding hands"
+            },
+            "text": {
+              "ky": "Эки дос кол кармашып басканда экөө тең «бирге» – коваленттик байланыш да ушундай: электрондор экөөнө тең таандык.",
+              "ru": "Двое друзей идут, держась за руки, – руки у них общие. Так и в ковалентной связи электроны принадлежат обоим.",
+              "en": "Two friends walking hand in hand share the grip – in a covalent bond the electrons belong to both atoms."
+            }
+          },
+          {
+            "title": {
+              "ky": "Жалпы чатыр",
+              "ru": "Общий зонтик",
+              "en": "A shared umbrella"
+            },
+            "text": {
+              "ky": "Жамгырда эки адам бир кол чатыр астында турат – экөө тең коргонот.",
+              "ru": "Под дождём двое стоят под одним зонтом – он защищает обоих.",
+              "en": "Two people share one umbrella in the rain – it covers both of them."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "chem.nacl-formation",
+      "engine": "timeline",
+      "icon": "magnet",
+      "title": {
+        "ky": "Аш тузунун пайда болушу",
+        "ru": "Образование поваренной соли",
+        "en": "How table salt forms"
+      },
+      "description": {
+        "ky": "Натрий хлорго бир электрон берет; пайда болгон Na⁺ жана Cl⁻ иондору тартылып, кристалл торчосун түзөт.",
+        "ru": "Натрий отдаёт хлору один электрон; образовавшиеся ионы Na⁺ и Cl⁻ притягиваются и строят кристаллическую решётку.",
+        "en": "Sodium gives chlorine one electron; the resulting Na⁺ and Cl⁻ ions attract and build a crystal lattice."
+      },
+      "equation": "2Na + Cl_2 \\to 2NaCl",
+      "inputs": {
+        "ky": "Натрий (металл) + хлор (газ)",
+        "ru": "Натрий (металл) + хлор (газ)",
+        "en": "Sodium (metal) + chlorine (gas)"
+      },
+      "outputs": {
+        "ky": "Натрий хлориди (кристалл)",
+        "ru": "Хлорид натрия (кристалл)",
+        "en": "Sodium chloride (crystal)"
+      },
+      "energy": {
+        "ky": "≈ 411 кДж/моль бөлүнөт",
+        "ru": "≈ 411 кДж/моль выделяется",
+        "en": "≈ 411 kJ/mol released"
+      },
+      "steps": [
+        {
+          "key": "atoms",
+          "title": {
+            "ky": "Атомдор",
+            "ru": "Атомы",
+            "en": "The atoms"
+          },
+          "description": {
+            "ky": "Натрийдин сырткы катмарында 1 электрон, хлордукунда 7 электрон бар.",
+            "ru": "У натрия на внешнем слое 1 электрон, у хлора – 7.",
+            "en": "Sodium has 1 outer electron and chlorine has 7."
+          },
+          "conceptKey": "chem.sodium",
+          "altText": {
+            "ky": "Натрий жана хлор атомдору катар турат.",
+            "ru": "Атомы натрия и хлора рядом.",
+            "en": "A sodium atom and a chlorine atom side by side."
+          },
+          "duration": 1
+        },
+        {
+          "key": "transfer",
+          "title": {
+            "ky": "Электрон өтөт",
+            "ru": "Переход электрона",
+            "en": "Electron transfer"
+          },
+          "result": {
+            "ky": "Na⁺ + Cl⁻",
+            "ru": "Na⁺ + Cl⁻",
+            "en": "Na⁺ + Cl⁻"
+          },
+          "description": {
+            "ky": "Натрийдин сырткы электрону хлорго өтөт. Эми экөөнүн тең сырткы катмары толук.",
+            "ru": "Внешний электрон натрия переходит к хлору. Теперь у обоих внешний слой заполнен.",
+            "en": "Sodium's outer electron moves to chlorine. Now both have a full outer shell."
+          },
+          "conceptKey": "chem.chlorine",
+          "altText": {
+            "ky": "Жаркыраган бир электрон натрийден хлорго учуп өтөт.",
+            "ru": "Светящийся электрон перелетает от натрия к хлору.",
+            "en": "A glowing electron flies from sodium to chlorine."
+          },
+          "duration": 2
+        },
+        {
+          "key": "attract",
+          "title": {
+            "ky": "Иондор тартылат",
+            "ru": "Ионы притягиваются",
+            "en": "Ions attract"
+          },
+          "description": {
+            "ky": "Оң Na⁺ жана терс Cl⁻ иондору электр күчү менен бири-бирине тартылат – бул иондук байланыш.",
+            "ru": "Положительный Na⁺ и отрицательный Cl⁻ притягиваются электрическими силами – это ионная связь.",
+            "en": "Positive Na⁺ and negative Cl⁻ pull on each other electrically – this is an ionic bond."
+          },
+          "conceptKey": "chem.ionic-bond",
+          "altText": {
+            "ky": "Кичине кызгылт көк жана чоң жашыл шар бири-бирине жакындайт.",
+            "ru": "Маленький фиолетовый и большой зелёный шары сближаются.",
+            "en": "A small purple ball and a large green ball move together."
+          },
+          "duration": 2
+        },
+        {
+          "key": "lattice",
+          "title": {
+            "ky": "Кристалл торчосу",
+            "ru": "Кристаллическая решётка",
+            "en": "The lattice"
+          },
+          "result": {
+            "ky": "NaCl (к.)",
+            "ru": "NaCl (тв.)",
+            "en": "NaCl (s)"
+          },
+          "description": {
+            "ky": "Миллиарддаган иондор кезектешип тизилип, куб формасындагы кристалл пайда болот; энергия бөлүнөт.",
+            "ru": "Миллиарды ионов выстраиваются, чередуясь, и получается кубический кристалл; выделяется энергия.",
+            "en": "Billions of ions line up alternately into a cubic crystal, releasing energy."
+          },
+          "conceptKey": "chem.unit-cell",
+          "altText": {
+            "ky": "Кезектешкен шарлардан турган куб торчо.",
+            "ru": "Кубическая решётка из чередующихся шаров.",
+            "en": "A cubic grid of alternating balls."
+          },
+          "duration": 3
+        }
+      ],
+      "metrics": [
+        {
+          "key": "electrons",
+          "label": {
+            "ky": "Өткөн электрондор",
+            "ru": "Передано электронов",
+            "en": "Electrons transferred"
+          },
+          "unit": "mol",
+          "min": 0,
+          "max": 2,
+          "precision": 0
+        },
+        {
+          "key": "nacl",
+          "label": {
+            "ky": "Пайда болгон NaCl",
+            "ru": "Образовалось NaCl",
+            "en": "NaCl formed"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 116.9,
+          "precision": 1
+        },
+        {
+          "key": "energy",
+          "label": {
+            "ky": "Бөлүнгөн энергия",
+            "ru": "Выделилось энергии",
+            "en": "Energy released"
+          },
+          "unit": "kJ",
+          "min": 0,
+          "max": 822,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "Na": 2,
+        "Cl2": 1,
+        "NaCl": 2,
+        "M_Na": 22.99,
+        "M_Cl2": 70.9,
+        "M_NaCl": 58.44,
+        "dH_kJ": -822
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "chem.q.salt-bond",
+      "type": "single",
+      "prompt": {
+        "ky": "Аш тузунда (NaCl) кандай байланыш бар?",
+        "ru": "Какая связь в поваренной соли (NaCl)?",
+        "en": "What type of bond is found in table salt (NaCl)?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Коваленттик",
+            "ru": "Ковалентная",
+            "en": "Covalent"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Иондук",
+            "ru": "Ионная",
+            "en": "Ionic"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Металлдык",
+            "ru": "Металлическая",
+            "en": "Metallic"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Натрий электронун хлорго берет; пайда болгон иондор тартылат – бул иондук байланыш.",
+        "ru": "Натрий отдаёт электрон хлору, ионы притягиваются – это ионная связь.",
+        "en": "Sodium gives its electron to chlorine and the ions attract – an ionic bond."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.salt-true",
+      "type": "multiple",
+      "prompt": {
+        "ky": "NaCl кристаллы жөнүндө туура пикирлерди танда.",
+        "ru": "Выбери верные утверждения о кристалле NaCl.",
+        "en": "Choose the true statements about a NaCl crystal."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ал NaCl молекулаларынан турат",
+            "ru": "Он состоит из молекул NaCl",
+            "en": "It is made of NaCl molecules"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ар бир Na⁺ 6 Cl⁻ менен курчалган",
+            "ru": "Каждый Na⁺ окружён 6 Cl⁻",
+            "en": "Each Na⁺ is surrounded by 6 Cl⁻"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эрүү температурасы 801 °C",
+            "ru": "Плавится при 801 °C",
+            "en": "It melts at 801 °C"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Cl⁻ иону Na⁺ ионунан чоң",
+            "ru": "Ион Cl⁻ больше иона Na⁺",
+            "en": "Cl⁻ is larger than Na⁺"
+          }
+        }
+      ],
+      "answer": [
+        "b",
+        "c",
+        "d"
+      ],
+      "explanation": {
+        "ky": "Кристалл молекулалардан эмес, иондордон турат; ар бир ион карама-каршы заряддуу 6 ион менен курчалган.",
+        "ru": "Кристалл состоит не из молекул, а из ионов; каждый ион окружён шестью противоположно заряженными.",
+        "en": "The crystal is made of ions, not molecules; each ion has six oppositely charged neighbours."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o2"
+      ],
+      "misconceptionKey": "chem.m.ionic-molecule",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.salt-match",
+      "type": "match",
+      "prompt": {
+        "ky": "Бөлүкчөнү анын заряды менен дал келтир.",
+        "ru": "Сопоставь частицу и её заряд.",
+        "en": "Match each particle to its charge."
+      },
+      "pairs": [
+        {
+          "key": "na-ion",
+          "left": {
+            "ky": "Na⁺",
+            "ru": "Na⁺",
+            "en": "Na⁺"
+          },
+          "right": {
+            "ky": "+1",
+            "ru": "+1",
+            "en": "+1"
+          }
+        },
+        {
+          "key": "cl-ion",
+          "left": {
+            "ky": "Cl⁻",
+            "ru": "Cl⁻",
+            "en": "Cl⁻"
+          },
+          "right": {
+            "ky": "−1",
+            "ru": "−1",
+            "en": "−1"
+          }
+        },
+        {
+          "key": "na-atom",
+          "left": {
+            "ky": "Na атому",
+            "ru": "Атом Na",
+            "en": "Na atom"
+          },
+          "right": {
+            "ky": "0",
+            "ru": "0",
+            "en": "0"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Na атому жана Cl атому нейтралдуу; Na⁺ электрон берип +1, Cl⁻ электрон алып −1 болот.",
+        "ru": "Атомы Na и Cl нейтральны; Na⁺, отдав электрон, имеет +1, Cl⁻, приняв электрон, – −1.",
+        "en": "Na and Cl atoms are neutral; Na⁺ has lost an electron (+1), Cl⁻ has gained one (−1)."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o2"
+      ],
+      "misconceptionKey": "chem.m.cation-gains",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.salt-find-cl",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Кристаллдан хлорид ионун (Cl⁻) тап.",
+        "ru": "Найди в кристалле хлорид-ион (Cl⁻).",
+        "en": "Find a chloride ion (Cl⁻) in the crystal."
+      },
+      "targetConceptKey": "chem.cl-ion",
+      "explanation": {
+        "ky": "Cl⁻ – чоңураак жашыл шарлар (181 пм).",
+        "ru": "Cl⁻ – более крупные зелёные шары (181 пм).",
+        "en": "Cl⁻ ions are the larger green balls (181 pm)."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o2"
+      ],
+      "misconceptionKey": "chem.m.anion-smaller",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.salt-find-cell",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Кристаллдын кайталанган «кирпичин» – элементардык уячаны тап.",
+        "ru": "Найди повторяющийся «кирпичик» кристалла – элементарную ячейку.",
+        "en": "Find the repeating brick of the crystal – the unit cell."
+      },
+      "targetConceptKey": "chem.unit-cell",
+      "explanation": {
+        "ky": "Элементардык уяча – кыры 0,564 нм болгон куб.",
+        "ru": "Элементарная ячейка – куб с ребром 0,564 нм.",
+        "en": "The unit cell is a cube with 0.564 nm edges."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o2"
+      ],
+      "misconceptionKey": "chem.m.cell-whole-crystal",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.salt-molar",
+      "type": "numeric",
+      "prompt": {
+        "ky": "NaClдин молярдык массасын эсепте (Na = 22,99; Cl = 35,45).",
+        "ru": "Вычисли молярную массу NaCl (Na = 22,99; Cl = 35,45).",
+        "en": "Calculate the molar mass of NaCl (Na = 22.99; Cl = 35.45)."
+      },
+      "answer": 58.44,
+      "tolerance": 0.1,
+      "unit": "g/mol",
+      "explanation": {
+        "ky": "M = 22,99 + 35,45 = 58,44 г/моль.",
+        "ru": "M = 22,99 + 35,45 = 58,44 г/моль.",
+        "en": "M = 22.99 + 35.45 = 58.44 g/mol."
+      },
+      "objectiveKeys": [
+        "chem.g8.bonds.o3"
+      ],
+      "difficulty": 2
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-chem-atom",
+      "ky": "атом",
+      "ru": "атом",
+      "en": "atom",
+      "forbidden": [
+        "atome"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-molecule",
+      "ky": "молекула",
+      "ru": "молекула",
+      "en": "molecule",
+      "forbidden": [
+        "molecula",
+        "molecul"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-element",
+      "ky": "химиялык элемент",
+      "ru": "химический элемент",
+      "en": "chemical element",
+      "forbidden": [
+        "химикалык элемент"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-atomic-nucleus",
+      "ky": "атомдун ядросу",
+      "ru": "атомное ядро",
+      "en": "atomic nucleus",
+      "forbidden": [
+        "ядерное ядро"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-proton",
+      "ky": "протон",
+      "ru": "протон",
+      "en": "proton",
+      "forbidden": [
+        "protone"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-neutron",
+      "ky": "нейтрон",
+      "ru": "нейтрон",
+      "en": "neutron",
+      "forbidden": [
+        "нейтрино",
+        "neutrino"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-electron",
+      "ky": "электрон",
+      "ru": "электрон",
+      "en": "electron",
+      "forbidden": [
+        "электорон",
+        "electrone"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-electron-shell",
+      "ky": "электрон катмары",
+      "ru": "электронный слой",
+      "en": "electron shell",
+      "forbidden": [
+        "электрон орбитасы",
+        "electron orbit"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-valence-electron",
+      "ky": "валенттик электрон",
+      "ru": "валентный электрон",
+      "en": "valence electron",
+      "forbidden": [
+        "валентностный электрон",
+        "valency electron"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-covalent-bond",
+      "ky": "коваленттик байланыш",
+      "ru": "ковалентная связь",
+      "en": "covalent bond",
+      "forbidden": [
+        "ковалентная связка",
+        "covalant bond"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-ionic-bond",
+      "ky": "иондук байланыш",
+      "ru": "ионная связь",
+      "en": "ionic bond",
+      "forbidden": [
+        "ионовая связь",
+        "ionic bound"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-ion",
+      "ky": "ион",
+      "ru": "ион",
+      "en": "ion",
+      "forbidden": [
+        "iona"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-lone-pair",
+      "ky": "бөлүнбөгөн электрон жубу",
+      "ru": "неподелённая электронная пара",
+      "en": "lone pair",
+      "forbidden": [
+        "свободная пара электронов",
+        "lonely pair"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-crystal-lattice",
+      "ky": "кристалл торчосу",
+      "ru": "кристаллическая решётка",
+      "en": "crystal lattice",
+      "forbidden": [
+        "кристальная решётка",
+        "crystal grid"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-unit-cell",
+      "ky": "элементардык уяча",
+      "ru": "элементарная ячейка",
+      "en": "unit cell",
+      "forbidden": [
+        "элементарная клетка",
+        "elementary cell"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-molar-mass",
+      "ky": "молярдык масса",
+      "ru": "молярная масса",
+      "en": "molar mass",
+      "forbidden": [
+        "молярный вес",
+        "molar weight"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-hydrogen",
+      "ky": "суутек",
+      "ru": "водород",
+      "en": "hydrogen",
+      "forbidden": [
+        "сутек",
+        "hydrogene"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-oxygen",
+      "ky": "кычкылтек",
+      "ru": "кислород",
+      "en": "oxygen",
+      "forbidden": [
+        "оттек",
+        "oxigen"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-carbon",
+      "ky": "көмүртек",
+      "ru": "углерод",
+      "en": "carbon",
+      "forbidden": [
+        "көміртек",
+        "көмүр кычкылы"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-carbon-dioxide",
+      "ky": "көмүр кычкыл газы",
+      "ru": "углекислый газ",
+      "en": "carbon dioxide",
+      "forbidden": [
+        "углекислота",
+        "carbon oxide"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-sodium-chloride",
+      "ky": "натрий хлориди (аш тузу)",
+      "ru": "хлорид натрия (поваренная соль)",
+      "en": "sodium chloride (table salt)",
+      "forbidden": [
+        "хлористый натр",
+        "sodium chlorine"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-combustion",
+      "ky": "күйүү",
+      "ru": "горение",
+      "en": "combustion",
+      "forbidden": [
+        "combustation"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-electrolysis",
+      "ky": "электролиз",
+      "ru": "электролиз",
+      "en": "electrolysis",
+      "forbidden": [
+        "электролизис",
+        "electrolisys"
+      ],
+      "approvedBy": "editor-chem"
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "bondType",
+      "icon": "link",
+      "valueKind": "text",
+      "label": {
+        "ky": "Байланыштын түрү",
+        "ru": "Тип связи",
+        "en": "Bond type"
+      }
+    },
+    {
+      "key": "composition",
+      "icon": "flask-conical",
+      "valueKind": "text",
+      "label": {
+        "ky": "Курамы",
+        "ru": "Состав",
+        "en": "Composition"
+      }
+    },
+    {
+      "key": "coordination",
+      "icon": "network",
+      "valueKind": "quantity",
+      "label": {
+        "ky": "Координациялык сан",
+        "ru": "Координационное число",
+        "en": "Coordination number"
+      }
+    },
+    {
+      "key": "energy",
+      "icon": "battery",
+      "valueKind": "quantity",
+      "unit": "J",
+      "label": {
+        "ky": "Энергия",
+        "ru": "Энергия",
+        "en": "Energy"
+      }
+    },
+    {
+      "key": "length",
+      "icon": "ruler",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Узундугу",
+        "ru": "Длина",
+        "en": "Length"
+      }
+    },
+    {
+      "key": "radius",
+      "icon": "circle-dot",
+      "valueKind": "quantity",
+      "unit": "km",
+      "label": {
+        "ky": "Радиусу",
+        "ru": "Радиус",
+        "en": "Radius"
+      }
+    },
+    {
+      "key": "state",
+      "icon": "droplet",
+      "valueKind": "text",
+      "label": {
+        "ky": "Агрегаттык абалы",
+        "ru": "Агрегатное состояние",
+        "en": "State of matter"
+      }
+    }
+  ]
+}

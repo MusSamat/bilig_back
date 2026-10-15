@@ -1,0 +1,1752 @@
+{
+  "manifest": {
+    "topicKey": "pythagorean-theorem",
+    "version": "1.0.0",
+    "hash": "8fc8a4cf7bba3af4d1be870ca22298db3247ddb2a28568dee83ea3b95145711e",
+    "files": [
+      {
+        "path": "thumbs/triangle-3-4-5.webp",
+        "hash": "138645321f3776ffded443fe76533a2dc32674214c1d46253348ee4ba65ba84f",
+        "size": 0
+      },
+      {
+        "path": "thumbs/triangle-5-12-13.webp",
+        "hash": "d9c7baa6d7de48ab7ece3bf3f7ed15b7c8621e26f1c552c0fc5fb4146c73a349",
+        "size": 0
+      },
+      {
+        "path": "thumbs/triangle-1-1.webp",
+        "hash": "86a0e41670f1cd2d4e1070e87f9207005489b99f1987e44498eb0d9104ea5cb3",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "math",
+    "icon": "sigma",
+    "hue": 45,
+    "group": "exact",
+    "order": 3,
+    "status": "live",
+    "title": {
+      "ky": "Математика",
+      "ru": "Математика",
+      "en": "Mathematics"
+    }
+  },
+  "course": {
+    "key": "math.g8",
+    "subjectKey": "math",
+    "grade": 8,
+    "curriculum": "kg-2024",
+    "title": {
+      "ky": "Геометрия, 8-класс",
+      "ru": "Геометрия, 8 класс",
+      "en": "Geometry, grade 8"
+    }
+  },
+  "unit": {
+    "key": "math.g8.triangles",
+    "courseKey": "math.g8",
+    "order": 1,
+    "title": {
+      "ky": "Тик бурчтуу үч бурчтук",
+      "ru": "Прямоугольный треугольник",
+      "en": "Right triangles"
+    }
+  },
+  "objectives": [
+    {
+      "key": "math.g8.triangles.o1",
+      "code": "MATH-8.4.1",
+      "unitKey": "math.g8.triangles",
+      "text": {
+        "ky": "Пифагор теоремасын далилдөө жана маселелерде колдонуу.",
+        "ru": "Доказывать теорему Пифагора и применять её в задачах.",
+        "en": "Prove the Pythagorean theorem and apply it to problems."
+      }
+    }
+  ],
+  "topic": {
+    "key": "pythagorean-theorem",
+    "unitKey": "math.g8.triangles",
+    "status": "published",
+    "title": {
+      "ky": "Пифагор теоремасы",
+      "ru": "Теорема Пифагора",
+      "en": "The Pythagorean theorem"
+    },
+    "formula": "a^2 + b^2 = c^2",
+    "classification": {
+      "ky": "Планиметрия",
+      "ru": "Планиметрия",
+      "en": "Plane geometry"
+    },
+    "description": {
+      "ky": "Тик бурчтуу үч бурчтукта гипотенузанын квадраты катеттердин квадраттарынын суммасына барабар. Моделде жактарга тургузулган квадраттардын аянттарын салыштырабыз.",
+      "ru": "В прямоугольном треугольнике квадрат гипотенузы равен сумме квадратов катетов. На модели сравниваем площади квадратов, построенных на сторонах.",
+      "en": "In a right triangle the square of the hypotenuse equals the sum of the squares of the legs. On the model we compare the areas of squares built on the sides."
+    },
+    "goal": {
+      "ky": "Пифагор теоремасын аянттар аркылуу далилдөө жана белгисиз жакты табууда колдонуу (MATH-8.4.1).",
+      "ru": "Доказать теорему Пифагора через площади и применять её для нахождения неизвестной стороны (MATH-8.4.1).",
+      "en": "Prove the Pythagorean theorem with areas and use it to find a missing side (MATH-8.4.1)."
+    },
+    "objectiveKeys": [
+      "math.g8.triangles.o1"
+    ],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "geometry",
+      "params": {
+        "solids": [
+          {
+            "id": "tri",
+            "type": "right-triangle",
+            "legs": [
+              3,
+              4
+            ],
+            "squaresOnSides": true,
+            "position": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "showDimensions": true,
+        "unit": "cm"
+      },
+      "camera": {
+        "position": [
+          1.5,
+          2,
+          14
+        ],
+        "target": [
+          1.5,
+          2,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "solid",
+        "wireframe"
+      ]
+    },
+    "conceptKeys": [
+      "math.right-triangle",
+      "math.leg",
+      "math.hypotenuse",
+      "math.right-angle",
+      "math.side-square"
+    ],
+    "overrides": {
+      "math.right-triangle": {
+        "nodes": [
+          "tri",
+          "tri_Face_Main"
+        ]
+      },
+      "math.leg": {
+        "anchor": [
+          1.5,
+          -0.3,
+          0
+        ],
+        "nodes": [
+          "tri_Edge_a",
+          "tri_Edge_b"
+        ]
+      },
+      "math.hypotenuse": {
+        "anchor": [
+          1.6,
+          2.2,
+          0
+        ],
+        "nodes": [
+          "tri_Edge_c"
+        ]
+      },
+      "math.right-angle": {
+        "anchor": [
+          0.2,
+          0.2,
+          0
+        ],
+        "nodes": [
+          "tri_Vertex_C"
+        ]
+      },
+      "math.side-square": {
+        "anchor": [
+          5.5,
+          5,
+          0
+        ],
+        "nodes": [
+          "tri_Face_Square*"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "triangle-3-4-5",
+        "title": {
+          "ky": "Үч бурчтук 3–4–5",
+          "ru": "Треугольник 3–4–5",
+          "en": "Triangle 3–4–5"
+        },
+        "classification": {
+          "ky": "Египет үч бурчтугу",
+          "ru": "Египетский треугольник",
+          "en": "Egyptian triangle"
+        },
+        "thumb": "thumbs/triangle-3-4-5.webp"
+      },
+      {
+        "key": "triangle-5-12-13",
+        "title": {
+          "ky": "Үч бурчтук 5–12–13",
+          "ru": "Треугольник 5–12–13",
+          "en": "Triangle 5–12–13"
+        },
+        "classification": {
+          "ky": "Пифагор үчтүгү",
+          "ru": "Пифагорова тройка",
+          "en": "Pythagorean triple"
+        },
+        "thumb": "thumbs/triangle-5-12-13.webp"
+      },
+      {
+        "key": "triangle-1-1",
+        "title": {
+          "ky": "Тең капталдуу тик бурчтуу үч бурчтук",
+          "ru": "Равнобедренный прямоугольный треугольник",
+          "en": "Isosceles right triangle"
+        },
+        "classification": {
+          "ky": "Гипотенуза √2",
+          "ru": "Гипотенуза √2",
+          "en": "Hypotenuse √2"
+        },
+        "thumb": "thumbs/triangle-1-1.webp"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                1.5,
+                2,
+                14
+              ],
+              "target": [
+                1.5,
+                2,
+                0
+              ]
+            },
+            "focus": "math.right-triangle",
+            "text": {
+              "ky": "Бул – катеттери 3 см жана 4 см болгон тик бурчтуу үч бурчтук. Анын гипотенузасы канча?",
+              "ru": "Это прямоугольный треугольник с катетами 3 см и 4 см. Какова его гипотенуза?",
+              "en": "This is a right triangle with legs of 3 cm and 4 cm. How long is its hypotenuse?"
+            },
+            "teacherNote": {
+              "ky": "Окуучулар адегенде сызгыч менен өлчөп, болжолдосун.",
+              "ru": "Пусть ученики сначала оценят длину, измерив линейкой.",
+              "en": "Let pupils first estimate by measuring with a ruler."
+            },
+            "altText": {
+              "ky": "Тик бурчтуу үч бурчтук жана анын жактарындагы үч квадрат.",
+              "ru": "Прямоугольный треугольник и три квадрата на его сторонах.",
+              "en": "A right triangle with three squares on its sides."
+            }
+          },
+          {
+            "key": "right-angle",
+            "camera": {
+              "position": [
+                0.5,
+                0.5,
+                5
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "focus": "math.right-angle",
+            "text": {
+              "ky": "Тик бурч – 90°. Чиймеде ал кичинекей квадрат менен белгиленет.",
+              "ru": "Прямой угол – 90°. На чертеже он отмечен маленьким квадратиком.",
+              "en": "The right angle is 90°. Drawings mark it with a small square."
+            },
+            "teacherNote": {
+              "ky": "Тик бурч дайыма ылдыйда болбостугун көрсөтүү үчүн моделди бураңыз.",
+              "ru": "Поверните модель, чтобы показать: прямой угол не обязательно внизу.",
+              "en": "Rotate the model to show the right angle does not have to be at the bottom."
+            },
+            "altText": {
+              "ky": "Эки катеттин кесилишиндеги квадрат белгиси.",
+              "ru": "Значок-квадратик там, где сходятся катеты.",
+              "en": "The small square mark where the legs meet."
+            }
+          },
+          {
+            "key": "legs",
+            "visibility": {
+              "hide": [
+                "math.hypotenuse"
+              ]
+            },
+            "focus": "math.leg",
+            "text": {
+              "ky": "Тик бурчтун жанындагы жактар – катеттер: a = 3 см, b = 4 см.",
+              "ru": "Стороны у прямого угла – катеты: a = 3 см, b = 4 см.",
+              "en": "The sides next to the right angle are the legs: a = 3 cm, b = 4 cm."
+            },
+            "teacherNote": {
+              "ky": "Катеттерге тургузулган квадраттарды клеткалар боюнча санаңыз: 9 жана 16.",
+              "ru": "Посчитайте клетки в квадратах на катетах: 9 и 16.",
+              "en": "Count the cells in the squares on the legs: 9 and 16."
+            },
+            "altText": {
+              "ky": "Эки катет жана аларга тургузулган кичине квадраттар.",
+              "ru": "Два катета и маленькие квадраты на них.",
+              "en": "The two legs and the small squares on them."
+            }
+          },
+          {
+            "key": "hypotenuse",
+            "focus": "math.hypotenuse",
+            "text": {
+              "ky": "Тик бурчтун каршысындагы эң узун жак – гипотенуза.",
+              "ru": "Самая длинная сторона, напротив прямого угла, – гипотенуза.",
+              "en": "The longest side, opposite the right angle, is the hypotenuse."
+            },
+            "teacherNote": {
+              "ky": "«c = a + b = 7» деген ката жоопту талкуулаңыз.",
+              "ru": "Обсудите ошибочный ответ «c = a + b = 7».",
+              "en": "Discuss the wrong answer 'c = a + b = 7'."
+            },
+            "altText": {
+              "ky": "Тик бурчтун каршысындагы узун жак бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделена длинная сторона напротив прямого угла.",
+              "en": "The long side opposite the right angle is highlighted."
+            }
+          },
+          {
+            "key": "squares",
+            "modes": {
+              "view": "solid"
+            },
+            "focus": "math.side-square",
+            "text": {
+              "ky": "Гипотенузадагы квадраттын аянты 25 см² = 9 + 16. Демек, c² = a² + b², c = 5 см.",
+              "ru": "Площадь квадрата на гипотенузе 25 см² = 9 + 16. Значит, c² = a² + b², c = 5 см.",
+              "en": "The square on the hypotenuse has an area of 25 cm² = 9 + 16. So c² = a² + b² and c = 5 cm."
+            },
+            "teacherNote": {
+              "ky": "«Пифагор теоремасынын далили» процессин иштетип, кайра жайгаштырууну көрсөтүңүз.",
+              "ru": "Запустите процесс «Доказательство теоремы Пифагора» и покажите перекладывание.",
+              "en": "Run the 'Proof of the Pythagorean theorem' process and show the rearrangement."
+            },
+            "altText": {
+              "ky": "Үч квадрат, аянттары 9, 16 жана 25 деп жазылган.",
+              "ru": "Три квадрата с подписями площадей 9, 16 и 25.",
+              "en": "Three squares labelled with areas 9, 16 and 25."
+            }
+          },
+          {
+            "key": "practice",
+            "modes": {
+              "view": "wireframe"
+            },
+            "focus": "math.hypotenuse",
+            "text": {
+              "ky": "Боз үйдүн уугу түндүктөн керегеге чейин жантык турат. Анын узундугун Пифагор теоремасы менен болжолдуу эсептесе болот.",
+              "ru": "Уук юрты идёт наклонно от тюндюка к кереге. Его длину можно приближённо найти по теореме Пифагора.",
+              "en": "A yurt's uuk pole slopes from the tunduk to the kerege. Its length can be estimated with the Pythagorean theorem."
+            },
+            "teacherNote": {
+              "ky": "Окуучуларга маселе бериңиз: жатык аралык 2,4 м, бийиктиги 1 м болсо – уук ≈ 2,6 м.",
+              "ru": "Дайте задачу: горизонталь 2,4 м, высота 1 м – уук ≈ 2,6 м.",
+              "en": "Set a problem: a horizontal span of 2.4 m and a rise of 1 m give an uuk of about 2.6 m."
+            },
+            "altText": {
+              "ky": "Үч бурчтук каркас режиминде, гипотенуза уукту билдирет.",
+              "ru": "Треугольник в режиме каркаса, гипотенуза изображает уук.",
+              "en": "The triangle in wireframe mode, its hypotenuse standing for an uuk pole."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "math.pythagoras-proof"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "math.leg"
+          },
+          {
+            "kind": "concept",
+            "key": "math.hypotenuse"
+          },
+          {
+            "kind": "concept",
+            "key": "math.right-angle"
+          }
+        ],
+        "rows": [
+          "length",
+          "angle",
+          "location"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "math.q.which-hyp",
+          "math.q.triples",
+          "math.q.sides-match",
+          "math.q.find-hyp",
+          "math.q.hyp-6-8",
+          "math.q.leg-5-13",
+          "math.q.ladder"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "e",
+          "title": {
+            "ky": "Курулушта тик бурч",
+            "ru": "Прямой угол на стройке",
+            "en": "Right angles on site"
+          },
+          "text": {
+            "ky": "Пайдубал казганда куруучулар 3–4–5 м аркан менен бурчту текшеришет – ошондо дубалдар кыйшык болбойт.",
+            "ru": "Копая фундамент, строители проверяют угол верёвкой 3–4–5 м – так стены не выходят косыми.",
+            "en": "When digging foundations, builders check the corner with a 3–4–5 m rope so the walls don't come out crooked."
+          }
+        },
+        {
+          "field": "e",
+          "title": {
+            "ky": "Боз үйдүн уугу",
+            "ru": "Уук юрты",
+            "en": "The yurt's uuk"
+          },
+          "text": {
+            "ky": "Түндүк менен керегенин ортосундагы жатык аралык жана чатырдын бийиктиги – катеттер, уук – болжолдуу гипотенуза.",
+            "ru": "Горизонтальное расстояние от кереге до тюндюка и высота крыши – катеты, а уук – примерно гипотенуза.",
+            "en": "The horizontal span from kerege to tunduk and the roof's rise are the legs; the uuk is roughly the hypotenuse."
+          }
+        },
+        {
+          "field": "t",
+          "title": {
+            "ky": "Навигация",
+            "ru": "Навигация",
+            "en": "Navigation"
+          },
+          "text": {
+            "ky": "Телефондогу карта эки чекиттин түз аралыгын координаттардын айырмасы аркылуу Пифагор теоремасы менен эсептейт.",
+            "ru": "Карта в телефоне считает прямое расстояние между точками по разнице координат – по теореме Пифагора.",
+            "en": "A phone map finds the straight distance between two points from the coordinate differences – by Pythagoras."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Газондогу кыска жол",
+            "ru": "Тропинка через газон",
+            "en": "A shortcut across the lawn"
+          },
+          "text": {
+            "ky": "Мектептин аянтында бурчунан бурчуна кыйгач өтсөң, эки тротуар менен айланып өткөндөн кыска – бул гипотенуза.",
+            "ru": "Срезать путь наискосок через школьный двор короче, чем обходить по двум дорожкам, – это гипотенуза.",
+            "en": "Cutting diagonally across the school yard is shorter than walking round two paths – that's the hypotenuse."
+          }
+        },
+        {
+          "title": {
+            "ky": "Шоколаддын бөлүктөрү",
+            "ru": "Дольки шоколада",
+            "en": "Chocolate squares"
+          },
+          "text": {
+            "ky": "3 × 3 жана 4 × 4 шоколаддын бөлүктөрүн чогултсаң, так 5 × 5 шоколад чыгат: 9 + 16 = 25.",
+            "ru": "Сложи дольки шоколадок 3 × 3 и 4 × 4 – получится ровно 5 × 5: 9 + 16 = 25.",
+            "en": "Put the pieces of a 3 × 3 and a 4 × 4 chocolate bar together and you get exactly 5 × 5: 9 + 16 = 25."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "math.right-triangle",
+      "kind": "figure",
+      "hue": 45,
+      "isContainer": true,
+      "title": {
+        "ky": "Тик бурчтуу үч бурчтук",
+        "ru": "Прямоугольный треугольник",
+        "en": "Right triangle"
+      },
+      "subtitle": {
+        "ky": "Бир бурчу 90°",
+        "ru": "Один угол равен 90°",
+        "en": "One angle is 90°"
+      },
+      "description": {
+        "ky": "Бир бурчу тик (90°) болгон үч бурчтук. Тик бурчтун жанындагы жактары – катеттер, каршысындагысы – гипотенуза.",
+        "ru": "Треугольник, у которого один угол прямой (90°). Стороны у прямого угла – катеты, сторона напротив – гипотенуза.",
+        "en": "A triangle with one right angle (90°). The sides next to the right angle are the legs; the side opposite it is the hypotenuse."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "area",
+          "value": 6
+        },
+        {
+          "kind": "quantity",
+          "type": "angle",
+          "value": 90
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "a^2 + b^2 = c^2"
+        }
+      ],
+      "related": [
+        "math.leg",
+        "math.hypotenuse",
+        "math.right-angle"
+      ],
+      "misconceptions": [
+        {
+          "key": "math.m.any-triangle",
+          "text": {
+            "ky": "Пифагор теоремасы бардык үч бурчтуктар үчүн туура.",
+            "ru": "Теорема Пифагора верна для любого треугольника.",
+            "en": "The Pythagorean theorem works for any triangle."
+          },
+          "correction": {
+            "ky": "Теорема тик бурчтуу үч бурчтуктар үчүн гана туура; башка үч бурчтуктарда a² + b² ≠ c².",
+            "ru": "Теорема верна только для прямоугольных треугольников; в остальных a² + b² ≠ c².",
+            "en": "It holds only for right triangles; in other triangles a² + b² ≠ c²."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Жактары 3, 4 жана 5 болгон үч бурчтукту «египет үч бурчтугу» деп аташат – аны байыркы куруучулар тик бурч куруу үчүн колдонушкан.",
+        "ru": "Треугольник со сторонами 3, 4 и 5 называют «египетским» – древние строители размечали с его помощью прямые углы.",
+        "en": "The 3-4-5 triangle is called the 'Egyptian triangle' – ancient builders used it to lay out right angles."
+      },
+      "analogy": {
+        "ky": "Китептин бурчу",
+        "ru": "Уголок книги",
+        "en": "The corner of a book"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Пайдубалды белгилөө",
+              "ru": "Разметка фундамента",
+              "en": "Setting out foundations"
+            },
+            "text": {
+              "ky": "Куруучулар 3 м, 4 м жана 5 м аркан менен тик бурчту белгилешет – ошондо үйдүн бурчтары так 90° болот.",
+              "ru": "Строители размечают прямой угол верёвкой 3 м, 4 м и 5 м – тогда углы дома будут ровно 90°.",
+              "en": "Builders mark out right angles with ropes of 3 m, 4 m and 5 m so the corners of a house are exactly 90°."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "GPS жана карталар",
+              "ru": "GPS и карты",
+              "en": "GPS and maps"
+            },
+            "text": {
+              "ky": "Картадагы эки чекиттин ортосундагы түз аралык чыгыш жана түндүк боюнча айырмалардан Пифагор теоремасы менен эсептелет.",
+              "ru": "Прямое расстояние между двумя точками на карте вычисляется по теореме Пифагора из разниц по востоку и северу.",
+              "en": "The straight-line distance between two points on a map comes from the east and north differences via Pythagoras."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Дептердин бурчу",
+              "ru": "Угол тетради",
+              "en": "A notebook corner"
+            },
+            "text": {
+              "ky": "Дептериңдин бурчу – тик бурч. Анын эки кырынан диагоналга чийсең, тик бурчтуу үч бурчтук чыгат.",
+              "ru": "Угол тетради – прямой. Проведи линию через угол наискосок – получится прямоугольный треугольник.",
+              "en": "The corner of your notebook is a right angle. Draw a line across the corner and you get a right triangle."
+            }
+          },
+          {
+            "title": {
+              "ky": "Дубалга таянган тепкич",
+              "ru": "Лестница у стены",
+              "en": "A ladder against a wall"
+            },
+            "text": {
+              "ky": "Дубалга тепкичти таяп койсоң, дубал, жер жана тепкич тик бурчтуу үч бурчтук түзөт.",
+              "ru": "Прислони лестницу к стене – стена, земля и лестница образуют прямоугольный треугольник.",
+              "en": "Lean a ladder on a wall and the wall, the ground and the ladder make a right triangle."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "math.leg",
+      "kind": "segment",
+      "hue": 200,
+      "isContainer": false,
+      "title": {
+        "ky": "Катет",
+        "ru": "Катет",
+        "en": "Leg"
+      },
+      "subtitle": {
+        "ky": "Тик бурчтун жагы",
+        "ru": "Сторона у прямого угла",
+        "en": "A side of the right angle"
+      },
+      "description": {
+        "ky": "Тик бурчту түзгөн эки жактын бири. Бул жерде катеттер a = 3 см жана b = 4 см.",
+        "ru": "Одна из двух сторон, образующих прямой угол. Здесь катеты a = 3 см и b = 4 см.",
+        "en": "One of the two sides that form the right angle. Here the legs are a = 3 cm and b = 4 cm."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "length",
+          "value": 3,
+          "max": 4,
+          "unit": "cm"
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Тик бурчтун жанында",
+            "ru": "Прилегает к прямому углу",
+            "en": "Next to the right angle"
+          }
+        }
+      ],
+      "related": [
+        "math.hypotenuse",
+        "math.right-angle"
+      ],
+      "misconceptions": [
+        {
+          "key": "math.m.leg-longest",
+          "text": {
+            "ky": "Катет гипотенузадан узун болушу мүмкүн.",
+            "ru": "Катет может быть длиннее гипотенузы.",
+            "en": "A leg can be longer than the hypotenuse."
+          },
+          "correction": {
+            "ky": "Ар бир катет дайыма гипотенузадан кыска, анткени c² = a² + b² > a².",
+            "ru": "Каждый катет всегда короче гипотенузы, ведь c² = a² + b² > a².",
+            "en": "Each leg is always shorter than the hypotenuse, because c² = a² + b² > a²."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "«Катет» сөзү грекче «тик түшкөн» дегенди билдирет.",
+        "ru": "Слово «катет» по-гречески значит «опущенный отвесно».",
+        "en": "The Russian and Kyrgyz word 'katet' comes from Greek for 'dropped vertically'."
+      },
+      "analogy": {
+        "ky": "Бурчтун эки дубалы",
+        "ru": "Две стены угла комнаты",
+        "en": "Two walls meeting in a corner"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "m",
+            "title": {
+              "ky": "Аянтты эсептөө",
+              "ru": "Вычисление площади",
+              "en": "Finding the area"
+            },
+            "text": {
+              "ky": "Тик бурчтуу үч бурчтуктун аянты катеттердин көбөйтүндүсүнүн жарымы: S = ab/2 = 3 · 4 / 2 = 6 см².",
+              "ru": "Площадь прямоугольного треугольника равна половине произведения катетов: S = ab/2 = 3 · 4 / 2 = 6 см².",
+              "en": "A right triangle's area is half the product of its legs: S = ab/2 = 3 × 4 / 2 = 6 cm²."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Пандустун бийиктиги",
+              "ru": "Высота пандуса",
+              "en": "Ramp height"
+            },
+            "text": {
+              "ky": "Пандустун бийиктиги жана горизонталдык узундугу – катеттер; алардан пандустун өзүнүн узундугу табылат.",
+              "ru": "Высота и горизонтальная длина пандуса – катеты; по ним находят длину самого пандуса.",
+              "en": "A ramp's height and horizontal run are the legs; from them you find the length of the ramp itself."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Көчөнүн бурчу",
+              "ru": "Угол улицы",
+              "en": "A street corner"
+            },
+            "text": {
+              "ky": "Эки көчө тик бурч менен кесилишсе, бурчка чейинки ар бир көчөнүн бөлүгү – катет.",
+              "ru": "Если две улицы пересекаются под прямым углом, каждая до перекрёстка – катет.",
+              "en": "Where two streets meet at a right angle, each street up to the corner is a leg."
+            }
+          },
+          {
+            "title": {
+              "ky": "Жыгачтын көлөкөсү",
+              "ru": "Тень дерева",
+              "en": "A tree's shadow"
+            },
+            "text": {
+              "ky": "Жыгачтын бою жана анын жердеги көлөкөсү – эки катет.",
+              "ru": "Высота дерева и его тень на земле – два катета.",
+              "en": "A tree's height and its shadow on the ground are two legs."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "math.hypotenuse",
+      "kind": "segment",
+      "hue": 0,
+      "isContainer": false,
+      "title": {
+        "ky": "Гипотенуза",
+        "ru": "Гипотенуза",
+        "en": "Hypotenuse"
+      },
+      "subtitle": {
+        "ky": "Эң узун жак",
+        "ru": "Самая длинная сторона",
+        "en": "The longest side"
+      },
+      "description": {
+        "ky": "Тик бурчтун каршысында жаткан жак. Бул үч бурчтукта c = √(3² + 4²) = 5 см.",
+        "ru": "Сторона, лежащая напротив прямого угла. В этом треугольнике c = √(3² + 4²) = 5 см.",
+        "en": "The side opposite the right angle. In this triangle c = √(3² + 4²) = 5 cm."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "length",
+          "value": 5,
+          "unit": "cm"
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Тик бурчтун каршысында",
+            "ru": "Напротив прямого угла",
+            "en": "Opposite the right angle"
+          }
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "c = \\sqrt{a^2 + b^2}"
+        }
+      ],
+      "related": [
+        "math.leg",
+        "math.right-triangle"
+      ],
+      "misconceptions": [
+        {
+          "key": "math.m.hyp-sum",
+          "text": {
+            "ky": "Гипотенуза катеттердин суммасына барабар: c = a + b.",
+            "ru": "Гипотенуза равна сумме катетов: c = a + b.",
+            "en": "The hypotenuse equals the sum of the legs: c = a + b."
+          },
+          "correction": {
+            "ky": "Катеттердин квадраттары кошулат: c² = a² + b². 3 жана 4 үчүн c = 5, 7 эмес.",
+            "ru": "Складываются квадраты катетов: c² = a² + b². Для 3 и 4 получается c = 5, а не 7.",
+            "en": "It is the squares that add: c² = a² + b². For 3 and 4, c = 5, not 7."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Түз жол дайыма кыска: аянтты бурчунан бурчуна кесип өтүү эки жагы менен айланып өткөндөн кыска.",
+        "ru": "Прямой путь всегда короче: пересечь площадь по диагонали короче, чем обойти по двум сторонам.",
+        "en": "The straight path is always shorter: cutting across a square diagonally beats walking round two sides."
+      },
+      "analogy": {
+        "ky": "Эки көчөнүн ортосундагы кыска жол",
+        "ru": "Тропинка напрямик",
+        "en": "A shortcut path"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Тепкичтин узундугу",
+              "ru": "Длина лестницы",
+              "en": "Ladder length"
+            },
+            "text": {
+              "ky": "Үйдүн 4 м бийиктигине, дубалдан 3 м аралыкта коюлган тепкич 5 м узундукта болушу керек.",
+              "ru": "Чтобы достать до высоты 4 м, стоя в 3 м от стены, лестница должна быть 5 м.",
+              "en": "To reach 4 m up a wall from 3 m away, a ladder must be 5 m long."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Экрандын диагоналы",
+              "ru": "Диагональ экрана",
+              "en": "Screen diagonal"
+            },
+            "text": {
+              "ky": "Телевизордун «дюйму» – анын экранынын диагоналы, ал экрандын бийиктиги жана туурасы аркылуу Пифагор теоремасы менен эсептелет.",
+              "ru": "«Дюймы» телевизора – это диагональ экрана, она вычисляется по теореме Пифагора из ширины и высоты.",
+              "en": "A TV's 'inches' are the screen diagonal, found from its width and height using Pythagoras."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Чөптөгү жолчо",
+              "ru": "Тропинка через газон",
+              "en": "A path across the grass"
+            },
+            "text": {
+              "ky": "Окуучулар газондун бурчун кесип өтүшөт – бул гипотенуза, ал эки тротуардан кыска.",
+              "ru": "Ученики срезают угол через газон – это гипотенуза, и она короче двух тротуаров.",
+              "en": "Pupils cut across the corner of the lawn – that is the hypotenuse, shorter than the two pavements."
+            }
+          },
+          {
+            "title": {
+              "ky": "Ийилген жип",
+              "ru": "Натянутая верёвка",
+              "en": "A taut rope"
+            },
+            "text": {
+              "ky": "Чатырды жерге бекиткен тартылган жип – гипотенуза, мамы жана жер – катеттер.",
+              "ru": "Натянутая растяжка палатки – гипотенуза, а стойка и земля – катеты.",
+              "en": "A taut tent guy-rope is the hypotenuse; the pole and the ground are the legs."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "math.right-angle",
+      "kind": "angle",
+      "hue": 120,
+      "isContainer": false,
+      "title": {
+        "ky": "Тик бурч",
+        "ru": "Прямой угол",
+        "en": "Right angle"
+      },
+      "subtitle": {
+        "ky": "90°",
+        "ru": "90°",
+        "en": "90°"
+      },
+      "description": {
+        "ky": "90° ка барабар бурч. Чиймеде ал кичинекей квадрат белгиси менен көрсөтүлөт.",
+        "ru": "Угол, равный 90°. На чертеже его отмечают маленьким квадратиком.",
+        "en": "An angle of 90°. Drawings mark it with a small square."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "angle",
+          "value": 90
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Эки катеттин ортосунда",
+            "ru": "Между двумя катетами",
+            "en": "Between the two legs"
+          }
+        }
+      ],
+      "related": [
+        "math.leg",
+        "math.right-triangle"
+      ],
+      "misconceptions": [
+        {
+          "key": "math.m.right-angle-position",
+          "text": {
+            "ky": "Тик бурч дайыма ылдыйкы сол бурчта болот.",
+            "ru": "Прямой угол всегда находится внизу слева.",
+            "en": "The right angle is always at the bottom left."
+          },
+          "correction": {
+            "ky": "Үч бурчтукту бурсаң, тик бурч каалаган жерде болушу мүмкүн; аны белгиси же 90° менен табабыз.",
+            "ru": "Если повернуть треугольник, прямой угол может оказаться где угодно; его узнают по значку или по 90°.",
+            "en": "Turn the triangle and the right angle can be anywhere; we spot it by its mark or by 90°."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Үч бурчтуктун бурчтарынын суммасы 180°, ошондуктан тик бурчтуу үч бурчтукта калган эки бурчтун суммасы 90°.",
+        "ru": "Сумма углов треугольника 180°, поэтому в прямоугольном треугольнике два других угла вместе дают 90°.",
+        "en": "A triangle's angles add up to 180°, so in a right triangle the other two angles add up to 90°."
+      },
+      "analogy": {
+        "ky": "Бөлмөнүн бурчу",
+        "ru": "Угол комнаты",
+        "en": "The corner of a room"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Боз үйдүн эшиги",
+              "ru": "Дверь юрты",
+              "en": "The yurt door"
+            },
+            "text": {
+              "ky": "Боз үйдүн жыгач эшигинин алкагы тик бурчтуу; уста бурчтарын бурчтук менен текшерет.",
+              "ru": "Деревянная рама двери юрты прямоугольная; мастер проверяет углы угольником.",
+              "en": "The wooden door frame of a yurt is rectangular; the craftsman checks its corners with a set square."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Робот-кесүүчү",
+              "ru": "Станок с ЧПУ",
+              "en": "CNC machines"
+            },
+            "text": {
+              "ky": "Компьютер башкарган станоктор жыгачты так 90° кесет, ошондо эмерек тегиз чогулат.",
+              "ru": "Станки с компьютерным управлением режут дерево точно под 90°, и мебель собирается ровно.",
+              "en": "Computer-controlled machines cut wood at exactly 90° so furniture fits together squarely."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Китептин бурчу",
+              "ru": "Угол книги",
+              "en": "A book corner"
+            },
+            "text": {
+              "ky": "Китептин бурчу – тик бурч: ага бурчтукту койсоң, так дал келет.",
+              "ru": "Угол книги – прямой: приложи к нему угольник, и он совпадёт.",
+              "en": "A book's corner is a right angle: put a set square on it and it fits exactly."
+            }
+          },
+          {
+            "title": {
+              "ky": "Сааттын жебелери",
+              "ru": "Стрелки часов",
+              "en": "Clock hands"
+            },
+            "text": {
+              "ky": "Саат 3:00дө сааттын жебелери тик бурч түзөт.",
+              "ru": "В 3:00 стрелки часов образуют прямой угол.",
+              "en": "At 3 o'clock the hands of a clock make a right angle."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "math.side-square",
+      "kind": "figure",
+      "hue": 280,
+      "isContainer": true,
+      "title": {
+        "ky": "Жакка тургузулган квадрат",
+        "ru": "Квадрат на стороне",
+        "en": "Square on a side"
+      },
+      "subtitle": {
+        "ky": "Аянттар теоремасы",
+        "ru": "Площади в теореме",
+        "en": "Areas in the theorem"
+      },
+      "description": {
+        "ky": "Үч бурчтуктун ар бир жагына тургузулган квадрат. Катеттердеги квадраттардын аянттарынын суммасы (9 + 16) гипотенузадагы квадраттын аянтына (25) барабар.",
+        "ru": "Квадрат, построенный на стороне треугольника. Сумма площадей квадратов на катетах (9 + 16) равна площади квадрата на гипотенузе (25).",
+        "en": "A square built on a side of the triangle. The areas of the squares on the legs (9 + 16) add up to the area of the square on the hypotenuse (25)."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "area",
+          "value": 9,
+          "max": 25
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "S = a^2"
+        }
+      ],
+      "related": [
+        "math.leg",
+        "math.hypotenuse"
+      ],
+      "misconceptions": [
+        {
+          "key": "math.m.square-is-double",
+          "text": {
+            "ky": "Жагы эки эсе чоң квадраттын аянты да эки эсе чоң.",
+            "ru": "Если сторону квадрата удвоить, площадь тоже удвоится.",
+            "en": "Doubling a square's side doubles its area."
+          },
+          "correction": {
+            "ky": "Аянт жактын квадратына пропорциялуу: жагы 2 эсе чоңойсо, аянт 4 эсе чоңоет.",
+            "ru": "Площадь пропорциональна квадрату стороны: сторона больше в 2 раза – площадь больше в 4 раза.",
+            "en": "Area grows with the square of the side: double the side and the area becomes 4 times bigger."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Байыркы Кытайда жана Индияда да бул теорема Пифагордон көп мурун белгилүү болгон.",
+        "ru": "В Древнем Китае и Индии эту теорему знали задолго до Пифагора.",
+        "en": "The theorem was known in ancient China and India long before Pythagoras."
+      },
+      "analogy": {
+        "ky": "Плиткадан жасалган аянт",
+        "ru": "Квадрат из плиток",
+        "en": "A square made of tiles"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "m",
+            "title": {
+              "ky": "Кафель менен текшерүү",
+              "ru": "Проверка плиткой",
+              "en": "Checking with tiles"
+            },
+            "text": {
+              "ky": "3 × 3 жана 4 × 4 плиткадан турган квадраттарды бириктирсең, 25 плитка чыгат – бул так 5 × 5 квадрат.",
+              "ru": "Квадраты из 3 × 3 и 4 × 4 плиток вместе содержат 25 плиток – ровно квадрат 5 × 5.",
+              "en": "Squares of 3 × 3 and 4 × 4 tiles hold 25 tiles together – exactly a 5 × 5 square."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Шырдактын оюмдары",
+              "ru": "Узоры шырдака",
+              "en": "Shyrdak patterns"
+            },
+            "text": {
+              "ky": "Шырдактын оюмдарында квадраттар жана үч бурчтуктар көп кайталанат; чеберлер өлчөмдөрдү аянттар менен эсептешет.",
+              "ru": "В узорах шырдака много повторяющихся квадратов и треугольников; мастерицы считают размеры через площади.",
+              "en": "Shyrdak felt patterns repeat many squares and triangles, and the makers plan sizes using areas."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Шоколад плиткасы",
+              "ru": "Плитка шоколада",
+              "en": "A chocolate bar"
+            },
+            "text": {
+              "ky": "3 × 3 бөлүктүү шоколад – 9 бөлүк, 4 × 4 – 16 бөлүк. Экөөнү кошсоң, 5 × 5 = 25 бөлүк чыгат!",
+              "ru": "Шоколадка 3 × 3 – 9 долек, 4 × 4 – 16 долек. Вместе – как раз 5 × 5 = 25!",
+              "en": "A 3 × 3 chocolate bar has 9 squares and a 4 × 4 one has 16. Together that makes 5 × 5 = 25!"
+            }
+          },
+          {
+            "title": {
+              "ky": "Шахмат тактасы",
+              "ru": "Шахматная доска",
+              "en": "A chessboard"
+            },
+            "text": {
+              "ky": "Шахмат тактасы 8 × 8 = 64 клеткадан турат – жагы 8 болгон квадраттын аянты.",
+              "ru": "Шахматная доска – 8 × 8 = 64 клетки: площадь квадрата со стороной 8.",
+              "en": "A chessboard is 8 × 8 = 64 squares – the area of a square with side 8."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "math.pythagoras-proof",
+      "engine": "timeline",
+      "icon": "square",
+      "title": {
+        "ky": "Пифагор теоремасынын далили",
+        "ru": "Доказательство теоремы Пифагора",
+        "en": "Proof of the Pythagorean theorem"
+      },
+      "description": {
+        "ky": "Үч бурчтуктун жактарына квадраттар тургузулат, анан төрт бирдей үч бурчтукту (a + b) жактуу квадратка жайгаштырып, аянттар салыштырылат.",
+        "ru": "На сторонах треугольника строят квадраты, затем четыре одинаковых треугольника укладывают в квадрат со стороной (a + b) и сравнивают площади.",
+        "en": "Squares are built on the triangle's sides, then four copies of the triangle are arranged inside a square of side (a + b) and the areas are compared."
+      },
+      "equation": "a^2 + b^2 = c^2",
+      "inputs": {
+        "ky": "a = 3 см, b = 4 см",
+        "ru": "a = 3 см, b = 4 см",
+        "en": "a = 3 cm, b = 4 cm"
+      },
+      "outputs": {
+        "ky": "c = 5 см",
+        "ru": "c = 5 см",
+        "en": "c = 5 cm"
+      },
+      "steps": [
+        {
+          "key": "triangle",
+          "title": {
+            "ky": "Тик бурчтуу үч бурчтук",
+            "ru": "Прямоугольный треугольник",
+            "en": "The right triangle"
+          },
+          "result": {
+            "ky": "a = 3, b = 4",
+            "ru": "a = 3, b = 4",
+            "en": "a = 3, b = 4"
+          },
+          "description": {
+            "ky": "Катеттери 3 см жана 4 см болгон тик бурчтуу үч бурчтукту чийебиз.",
+            "ru": "Чертим прямоугольный треугольник с катетами 3 см и 4 см.",
+            "en": "We draw a right triangle with legs of 3 cm and 4 cm."
+          },
+          "conceptKey": "math.right-triangle",
+          "altText": {
+            "ky": "Тик бурчу белгиленген үч бурчтук.",
+            "ru": "Треугольник с отмеченным прямым углом.",
+            "en": "A triangle with its right angle marked."
+          },
+          "duration": 2
+        },
+        {
+          "key": "leg-squares",
+          "title": {
+            "ky": "Катеттердеги квадраттар",
+            "ru": "Квадраты на катетах",
+            "en": "Squares on the legs"
+          },
+          "result": {
+            "ky": "9 + 16 = 25 см²",
+            "ru": "9 + 16 = 25 см²",
+            "en": "9 + 16 = 25 cm²"
+          },
+          "description": {
+            "ky": "Ар бир катетке квадрат тургузабыз: аянттары 3² = 9 жана 4² = 16 см².",
+            "ru": "На каждом катете строим квадрат: площади 3² = 9 и 4² = 16 см².",
+            "en": "We build a square on each leg: their areas are 3² = 9 and 4² = 16 cm²."
+          },
+          "conceptKey": "math.leg",
+          "altText": {
+            "ky": "Эки катетке тургузулган кичине жана орто квадраттар.",
+            "ru": "Маленький и средний квадраты на катетах.",
+            "en": "A small and a medium square on the two legs."
+          },
+          "duration": 2
+        },
+        {
+          "key": "hyp-square",
+          "title": {
+            "ky": "Гипотенузадагы квадрат",
+            "ru": "Квадрат на гипотенузе",
+            "en": "Square on the hypotenuse"
+          },
+          "result": {
+            "ky": "c² = 25 см²",
+            "ru": "c² = 25 см²",
+            "en": "c² = 25 cm²"
+          },
+          "description": {
+            "ky": "Гипотенузага квадрат тургузабыз; анын аянты 5² = 25 см².",
+            "ru": "Строим квадрат на гипотенузе; его площадь 5² = 25 см².",
+            "en": "We build a square on the hypotenuse; its area is 5² = 25 cm²."
+          },
+          "conceptKey": "math.side-square",
+          "altText": {
+            "ky": "Гипотенузадагы эң чоң квадрат.",
+            "ru": "Самый большой квадрат – на гипотенузе.",
+            "en": "The biggest square, on the hypotenuse."
+          },
+          "duration": 2
+        },
+        {
+          "key": "rearrange",
+          "title": {
+            "ky": "Кайра жайгаштыруу",
+            "ru": "Перекладывание",
+            "en": "Rearranging"
+          },
+          "result": {
+            "ky": "(a + b)² = c² + 2ab",
+            "ru": "(a + b)² = c² + 2ab",
+            "en": "(a + b)² = c² + 2ab"
+          },
+          "description": {
+            "ky": "7 × 7 квадратка төрт үч бурчтукту жайгаштырабыз: ортосунда c² квадрат калат. 49 = 25 + 4 · 6.",
+            "ru": "Укладываем четыре треугольника в квадрат 7 × 7: в середине остаётся квадрат c². 49 = 25 + 4 · 6.",
+            "en": "Four triangles fit inside a 7 × 7 square, leaving a c² square in the middle: 49 = 25 + 4 × 6."
+          },
+          "conceptKey": "math.hypotenuse",
+          "altText": {
+            "ky": "Чоң квадраттын бурчтарында төрт үч бурчтук, ортосунда кыйшык квадрат.",
+            "ru": "Четыре треугольника по углам большого квадрата, в середине – повёрнутый квадрат.",
+            "en": "Four triangles in the corners of a big square with a tilted square in the middle."
+          },
+          "duration": 3
+        },
+        {
+          "key": "conclusion",
+          "title": {
+            "ky": "Жыйынтык",
+            "ru": "Вывод",
+            "en": "Conclusion"
+          },
+          "result": {
+            "ky": "a² + b² = c²",
+            "ru": "a² + b² = c²",
+            "en": "a² + b² = c²"
+          },
+          "description": {
+            "ky": "Ачылгандан кийин (a + b)² = a² + b² + 2ab, ошондуктан a² + b² = c². Теорема далилденди.",
+            "ru": "Раскрыв скобки, (a + b)² = a² + b² + 2ab, значит a² + b² = c². Теорема доказана.",
+            "en": "Expanding, (a + b)² = a² + b² + 2ab, so a² + b² = c². The theorem is proved."
+          },
+          "conceptKey": "math.right-angle",
+          "altText": {
+            "ky": "Катеттердеги эки квадрат гипотенузадагы квадратка барабар экенин көрсөткөн чийме.",
+            "ru": "Чертёж, показывающий, что два квадрата на катетах равны квадрату на гипотенузе.",
+            "en": "A drawing showing that the two leg squares equal the hypotenuse square."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "area-a",
+          "label": {
+            "ky": "a² аянты",
+            "ru": "Площадь a²",
+            "en": "Area a²"
+          },
+          "unit": "cm²",
+          "min": 0,
+          "max": 25,
+          "precision": 0
+        },
+        {
+          "key": "area-b",
+          "label": {
+            "ky": "b² аянты",
+            "ru": "Площадь b²",
+            "en": "Area b²"
+          },
+          "unit": "cm²",
+          "min": 0,
+          "max": 25,
+          "precision": 0
+        },
+        {
+          "key": "area-c",
+          "label": {
+            "ky": "c² аянты",
+            "ru": "Площадь c²",
+            "en": "Area c²"
+          },
+          "unit": "cm²",
+          "min": 0,
+          "max": 25,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "a": 3,
+        "b": 4
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "math.q.which-hyp",
+      "type": "single",
+      "prompt": {
+        "ky": "Тик бурчтуу үч бурчтуктун кайсы жагы гипотенуза?",
+        "ru": "Какая сторона прямоугольного треугольника – гипотенуза?",
+        "en": "Which side of a right triangle is the hypotenuse?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Тик бурчтун каршысындагы",
+            "ru": "Напротив прямого угла",
+            "en": "The one opposite the right angle"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Тик бурчтун жанындагы",
+            "ru": "Прилегающая к прямому углу",
+            "en": "One next to the right angle"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эң кыскасы",
+            "ru": "Самая короткая",
+            "en": "The shortest one"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Гипотенуза тик бурчтун каршысында жатат жана эң узун жак.",
+        "ru": "Гипотенуза лежит напротив прямого угла и является самой длинной стороной.",
+        "en": "The hypotenuse lies opposite the right angle and is the longest side."
+      },
+      "objectiveKeys": [
+        "math.g8.triangles.o1"
+      ],
+      "misconceptionKey": "math.m.leg-longest",
+      "difficulty": 1
+    },
+    {
+      "key": "math.q.triples",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы үч сан тик бурчтуу үч бурчтуктун жактары боло алат?",
+        "ru": "Какие тройки чисел могут быть сторонами прямоугольного треугольника?",
+        "en": "Which triples can be the sides of a right triangle?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "3, 4, 5",
+            "ru": "3, 4, 5",
+            "en": "3, 4, 5"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "6, 8, 10",
+            "ru": "6, 8, 10",
+            "en": "6, 8, 10"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "5, 12, 13",
+            "ru": "5, 12, 13",
+            "en": "5, 12, 13"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "2, 3, 4",
+            "ru": "2, 3, 4",
+            "en": "2, 3, 4"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Текшеребиз: 9 + 16 = 25, 36 + 64 = 100, 25 + 144 = 169, бирок 4 + 9 ≠ 16.",
+        "ru": "Проверяем: 9 + 16 = 25, 36 + 64 = 100, 25 + 144 = 169, но 4 + 9 ≠ 16.",
+        "en": "Check: 9 + 16 = 25, 36 + 64 = 100, 25 + 144 = 169, but 4 + 9 ≠ 16."
+      },
+      "objectiveKeys": [
+        "math.g8.triangles.o1"
+      ],
+      "misconceptionKey": "math.m.any-triangle",
+      "difficulty": 3
+    },
+    {
+      "key": "math.q.sides-match",
+      "type": "match",
+      "prompt": {
+        "ky": "Катеттерди гипотенуза менен дал келтир.",
+        "ru": "Сопоставь катеты и гипотенузу.",
+        "en": "Match the legs to the hypotenuse."
+      },
+      "pairs": [
+        {
+          "key": "t345",
+          "left": {
+            "ky": "a = 3, b = 4",
+            "ru": "a = 3, b = 4",
+            "en": "a = 3, b = 4"
+          },
+          "right": {
+            "ky": "c = 5",
+            "ru": "c = 5",
+            "en": "c = 5"
+          }
+        },
+        {
+          "key": "t51213",
+          "left": {
+            "ky": "a = 5, b = 12",
+            "ru": "a = 5, b = 12",
+            "en": "a = 5, b = 12"
+          },
+          "right": {
+            "ky": "c = 13",
+            "ru": "c = 13",
+            "en": "c = 13"
+          }
+        },
+        {
+          "key": "t6810",
+          "left": {
+            "ky": "a = 6, b = 8",
+            "ru": "a = 6, b = 8",
+            "en": "a = 6, b = 8"
+          },
+          "right": {
+            "ky": "c = 10",
+            "ru": "c = 10",
+            "en": "c = 10"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "c = √(a² + b²): √25 = 5, √169 = 13, √100 = 10.",
+        "ru": "c = √(a² + b²): √25 = 5, √169 = 13, √100 = 10.",
+        "en": "c = √(a² + b²): √25 = 5, √169 = 13, √100 = 10."
+      },
+      "objectiveKeys": [
+        "math.g8.triangles.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "math.q.find-hyp",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден гипотенузаны тап.",
+        "ru": "Найди на модели гипотенузу.",
+        "en": "Find the hypotenuse on the model."
+      },
+      "targetConceptKey": "math.hypotenuse",
+      "explanation": {
+        "ky": "Гипотенуза – тик бурчтун каршысындагы эң узун жак.",
+        "ru": "Гипотенуза – самая длинная сторона напротив прямого угла.",
+        "en": "The hypotenuse is the longest side, opposite the right angle."
+      },
+      "objectiveKeys": [
+        "math.g8.triangles.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "math.q.hyp-6-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Катеттер 6 см жана 8 см. Гипотенуза канча см?",
+        "ru": "Катеты 6 см и 8 см. Чему равна гипотенуза, см?",
+        "en": "The legs are 6 cm and 8 cm. How long is the hypotenuse in cm?"
+      },
+      "answer": 10,
+      "tolerance": 0,
+      "unit": "cm",
+      "explanation": {
+        "ky": "c = √(36 + 64) = √100 = 10 см.",
+        "ru": "c = √(36 + 64) = √100 = 10 см.",
+        "en": "c = √(36 + 64) = √100 = 10 cm."
+      },
+      "objectiveKeys": [
+        "math.g8.triangles.o1"
+      ],
+      "misconceptionKey": "math.m.hyp-sum",
+      "difficulty": 2
+    },
+    {
+      "key": "math.q.leg-5-13",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Гипотенуза 13 см, бир катет 5 см. Экинчи катет канча см?",
+        "ru": "Гипотенуза 13 см, один катет 5 см. Чему равен второй катет, см?",
+        "en": "The hypotenuse is 13 cm and one leg is 5 cm. How long is the other leg in cm?"
+      },
+      "answer": 12,
+      "tolerance": 0,
+      "unit": "cm",
+      "explanation": {
+        "ky": "b = √(169 − 25) = √144 = 12 см.",
+        "ru": "b = √(169 − 25) = √144 = 12 см.",
+        "en": "b = √(169 − 25) = √144 = 12 cm."
+      },
+      "objectiveKeys": [
+        "math.g8.triangles.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "math.q.ladder",
+      "type": "numeric",
+      "prompt": {
+        "ky": "5 м тепкич дубалдан 3 м алыс коюлду. Ал дубалга кандай бийиктикке жетет (м)?",
+        "ru": "Лестница 5 м стоит в 3 м от стены. На какую высоту она достаёт, м?",
+        "en": "A 5 m ladder stands 3 m from a wall. How high up the wall does it reach, in metres?"
+      },
+      "answer": 4,
+      "tolerance": 0.05,
+      "unit": "m",
+      "explanation": {
+        "ky": "h = √(25 − 9) = √16 = 4 м.",
+        "ru": "h = √(25 − 9) = √16 = 4 м.",
+        "en": "h = √(25 − 9) = √16 = 4 m."
+      },
+      "objectiveKeys": [
+        "math.g8.triangles.o1"
+      ],
+      "difficulty": 4
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-math-right-triangle",
+      "ky": "тик бурчтуу үч бурчтук",
+      "ru": "прямоугольный треугольник",
+      "en": "right triangle",
+      "forbidden": [
+        "rectangular triangle"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-leg",
+      "ky": "катет",
+      "ru": "катет",
+      "en": "leg",
+      "forbidden": [
+        "cathet"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-hypotenuse",
+      "ky": "гипотенуза",
+      "ru": "гипотенуза",
+      "en": "hypotenuse",
+      "forbidden": [
+        "hypothenuse"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-right-angle",
+      "ky": "тик бурч",
+      "ru": "прямой угол",
+      "en": "right angle",
+      "forbidden": [
+        "rectangular angle"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-pythagoras",
+      "ky": "Пифагор теоремасы",
+      "ru": "теорема Пифагора",
+      "en": "Pythagorean theorem",
+      "forbidden": [
+        "Pifagor"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-polyhedron",
+      "ky": "көп грандык",
+      "ru": "многогранник",
+      "en": "polyhedron",
+      "forbidden": [
+        "multihedron"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-face",
+      "ky": "гран",
+      "ru": "грань",
+      "en": "face",
+      "forbidden": [],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-edge",
+      "ky": "кыр",
+      "ru": "ребро",
+      "en": "edge",
+      "forbidden": [
+        "rib"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-vertex",
+      "ky": "чоку",
+      "ru": "вершина",
+      "en": "vertex",
+      "forbidden": [
+        "vertice"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-volume",
+      "ky": "көлөм",
+      "ru": "объём",
+      "en": "volume",
+      "forbidden": [
+        "обьём",
+        "обьем"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-sphere",
+      "ky": "шар",
+      "ru": "шар",
+      "en": "sphere",
+      "forbidden": [],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-cylinder",
+      "ky": "цилиндр",
+      "ru": "цилиндр",
+      "en": "cylinder",
+      "forbidden": [
+        "cilinder"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-cone",
+      "ky": "конус",
+      "ru": "конус",
+      "en": "cone",
+      "forbidden": [],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-radius",
+      "ky": "радиус",
+      "ru": "радиус",
+      "en": "radius",
+      "forbidden": [
+        "radious"
+      ],
+      "approvedBy": "editor-math"
+    },
+    {
+      "id": "g-math-revolution",
+      "ky": "айлануу телосу",
+      "ru": "тело вращения",
+      "en": "solid of revolution",
+      "forbidden": [
+        "body of rotation"
+      ],
+      "approvedBy": "editor-math"
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "angle",
+      "icon": "triangle-right",
+      "valueKind": "quantity",
+      "unit": "°",
+      "label": {
+        "ky": "Бурчу",
+        "ru": "Угол",
+        "en": "Angle"
+      }
+    },
+    {
+      "key": "area",
+      "icon": "square",
+      "valueKind": "quantity",
+      "unit": "cm²",
+      "label": {
+        "ky": "Аянты",
+        "ru": "Площадь",
+        "en": "Area"
+      }
+    },
+    {
+      "key": "length",
+      "icon": "ruler",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Узундугу",
+        "ru": "Длина",
+        "en": "Length"
+      }
+    }
+  ]
+}

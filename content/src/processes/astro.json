@@ -1,0 +1,622 @@
+{
+  "processes": [
+    {
+      "key": "astro.planet-orbit",
+      "engine": "ode",
+      "icon": "orbit",
+      "title": {
+        "ky": "Жердин Күндү айланышы",
+        "ru": "Обращение Земли вокруг Солнца",
+        "en": "The Earth's orbit around the Sun"
+      },
+      "description": {
+        "ky": "Плагин Ньютондун тартылуу мыйзамы боюнча Жердин кыймылын эсептейт: Күнгө жакындаганда Жер тездейт, алыстаганда жайлайт (Кеплердин экинчи мыйзамы).",
+        "ru": "Плагин рассчитывает движение Земли по закону всемирного тяготения: приближаясь к Солнцу, Земля ускоряется, удаляясь – замедляется (второй закон Кеплера).",
+        "en": "The plugin integrates the Earth's motion under Newton's law of gravitation: it speeds up near the Sun and slows down farther away (Kepler's second law)."
+      },
+      "equation": "F = G\\frac{Mm}{r^2}, \\quad T^2 = a^3",
+      "inputs": {
+        "ky": "Күндүн массасы, орбитанын чоң жарым огу жана эксцентриситети",
+        "ru": "Масса Солнца, большая полуось и эксцентриситет орбиты",
+        "en": "The Sun's mass, the orbit's semi-major axis and eccentricity"
+      },
+      "outputs": {
+        "ky": "Аралык, ылдамдык жана айлануу мезгили",
+        "ru": "Расстояние, скорость и период обращения",
+        "en": "Distance, speed and orbital period"
+      },
+      "energy": {
+        "ky": "Кинетикалык + потенциалдык энергиянын суммасы туруктуу",
+        "ru": "Сумма кинетической и потенциальной энергии постоянна",
+        "en": "Kinetic + potential energy stays constant"
+      },
+      "steps": [
+        {
+          "key": "perihelion",
+          "title": {
+            "ky": "Перигелий",
+            "ru": "Перигелий",
+            "en": "Perihelion"
+          },
+          "result": {
+            "ky": "147,1 млн км, ≈30,3 км/с",
+            "ru": "147,1 млн км, ≈30,3 км/с",
+            "en": "147.1 million km, ≈30.3 km/s"
+          },
+          "description": {
+            "ky": "Январдын башында Жер Күнгө эң жакын жана эң ылдам кыймылдайт.",
+            "ru": "В начале января Земля ближе всего к Солнцу и движется быстрее всего.",
+            "en": "In early January the Earth is closest to the Sun and moves fastest."
+          },
+          "conceptKey": "astro.earth",
+          "altText": {
+            "ky": "Жер орбитанын Күнгө жакын чекитинде.",
+            "ru": "Земля в ближайшей к Солнцу точке орбиты.",
+            "en": "The Earth at the point of its orbit nearest the Sun."
+          },
+          "duration": 2
+        },
+        {
+          "key": "equal-areas",
+          "title": {
+            "ky": "Бирдей аянттар",
+            "ru": "Равные площади",
+            "en": "Equal areas"
+          },
+          "result": {
+            "ky": "Бирдей убакытта – бирдей аянт",
+            "ru": "За равное время – равные площади",
+            "en": "Equal areas in equal times"
+          },
+          "description": {
+            "ky": "Күндөн Жерге чейинки кесинди бирдей убакыттарда бирдей аянттарды «сызат» – Кеплердин экинчи мыйзамы.",
+            "ru": "Отрезок «Солнце – Земля» за равные промежутки времени заметает равные площади – второй закон Кеплера.",
+            "en": "The line from the Sun to the Earth sweeps out equal areas in equal times – Kepler's second law."
+          },
+          "conceptKey": "astro.orbit",
+          "altText": {
+            "ky": "Орбитада боёлгон эки бирдей аянттуу сектор.",
+            "ru": "Два закрашенных сектора равной площади на орбите.",
+            "en": "Two shaded sectors of equal area on the orbit."
+          },
+          "duration": 3
+        },
+        {
+          "key": "aphelion",
+          "title": {
+            "ky": "Афелий",
+            "ru": "Афелий",
+            "en": "Aphelion"
+          },
+          "result": {
+            "ky": "152,1 млн км, ≈29,3 км/с",
+            "ru": "152,1 млн км, ≈29,3 км/с",
+            "en": "152.1 million km, ≈29.3 km/s"
+          },
+          "description": {
+            "ky": "Июлдун башында Жер Күндөн эң алыс жана эң жай кыймылдайт – бирок бизде бул учурда жай.",
+            "ru": "В начале июля Земля дальше всего от Солнца и движется медленнее всего – а у нас в это время лето.",
+            "en": "In early July the Earth is farthest from the Sun and moves slowest – yet it is summer for us."
+          },
+          "conceptKey": "astro.earth",
+          "altText": {
+            "ky": "Жер орбитанын Күндөн эң алыс чекитинде.",
+            "ru": "Земля в самой далёкой от Солнца точке орбиты.",
+            "en": "The Earth at the point of its orbit farthest from the Sun."
+          },
+          "duration": 2
+        },
+        {
+          "key": "full-year",
+          "title": {
+            "ky": "Толук айлануу",
+            "ru": "Полный оборот",
+            "en": "One full orbit"
+          },
+          "result": {
+            "ky": "365,25 күн",
+            "ru": "365,25 суток",
+            "en": "365.25 days"
+          },
+          "description": {
+            "ky": "Жер Күндү бир жылда айланып чыгат. Кеплердин үчүнчү мыйзамы боюнча алыскы планеталардын жылы узунураак: T² = a³.",
+            "ru": "Земля делает полный оборот вокруг Солнца за год. По третьему закону Кеплера год дальних планет длиннее: T² = a³.",
+            "en": "The Earth completes one orbit in a year. By Kepler's third law, more distant planets have longer years: T² = a³."
+          },
+          "conceptKey": "astro.sun",
+          "altText": {
+            "ky": "Күндүн айланасындагы толук эллипс орбита.",
+            "ru": "Полная эллиптическая орбита вокруг Солнца.",
+            "en": "A complete elliptical orbit around the Sun."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "distance",
+          "label": {
+            "ky": "Күнгө чейинки аралык",
+            "ru": "Расстояние до Солнца",
+            "en": "Distance to the Sun"
+          },
+          "unit": "AU",
+          "min": 0.98,
+          "max": 1.02,
+          "precision": 3
+        },
+        {
+          "key": "speed",
+          "label": {
+            "ky": "Орбиталык ылдамдык",
+            "ru": "Орбитальная скорость",
+            "en": "Orbital speed"
+          },
+          "unit": "km/s",
+          "min": 29,
+          "max": 31,
+          "precision": 1
+        },
+        {
+          "key": "elapsed",
+          "label": {
+            "ky": "Өткөн убакыт",
+            "ru": "Прошло времени",
+            "en": "Time elapsed"
+          },
+          "unit": "d",
+          "min": 0,
+          "max": 365.25,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "gmSunKm3PerS2": 132712440018,
+        "semiMajorAxisAu": 1,
+        "eccentricity": 0.0167,
+        "auKm": 149597871
+      }
+    },
+    {
+      "key": "astro.moon-phase-cycle",
+      "engine": "timeline",
+      "icon": "moon",
+      "title": {
+        "ky": "Айдын фазаларынын алмашуусу",
+        "ru": "Смена фаз Луны",
+        "en": "The cycle of lunar phases"
+      },
+      "description": {
+        "ky": "Ай Жерди айланганда анын Күн жарыктаган жарымы бизге ар кандай бурчта көрүнөт. Толук цикл – синоддук ай – 29,5 күнгө созулат.",
+        "ru": "Пока Луна обращается вокруг Земли, мы видим её освещённую Солнцем половину под разными углами. Полный цикл – синодический месяц – длится 29,5 суток.",
+        "en": "As the Moon orbits the Earth, we see its sunlit half from different angles. A full cycle – the synodic month – lasts 29.5 days."
+      },
+      "inputs": {
+        "ky": "Күн – Жер – Ай жайгашуусу",
+        "ru": "Взаимное положение Солнца, Земли и Луны",
+        "en": "The positions of the Sun, Earth and Moon"
+      },
+      "outputs": {
+        "ky": "Айдын көрүнгөн формасы (фаза)",
+        "ru": "Видимая форма Луны (фаза)",
+        "en": "The Moon's visible shape (phase)"
+      },
+      "steps": [
+        {
+          "key": "new-moon",
+          "title": {
+            "ky": "Жаңы ай",
+            "ru": "Новолуние",
+            "en": "New moon"
+          },
+          "result": {
+            "ky": "0 % жарык",
+            "ru": "0 % освещено",
+            "en": "0 % lit"
+          },
+          "description": {
+            "ky": "Ай Күн менен Жердин ортосунда; анын жарык тарабы бизден тескери карайт, Ай көрүнбөйт.",
+            "ru": "Луна между Солнцем и Землёй; освещённая сторона отвёрнута от нас, Луну не видно.",
+            "en": "The Moon is between the Sun and the Earth; its lit side faces away, so we cannot see it."
+          },
+          "conceptKey": "astro.moon",
+          "altText": {
+            "ky": "Караңгы Ай, Күн анын артында.",
+            "ru": "Тёмная Луна, Солнце позади неё.",
+            "en": "A dark Moon with the Sun behind it."
+          },
+          "duration": 1
+        },
+        {
+          "key": "waxing-crescent",
+          "title": {
+            "ky": "Жаңы туулган ай (орок)",
+            "ru": "Растущий серп",
+            "en": "Waxing crescent"
+          },
+          "result": {
+            "ky": "≈15 % жарык, ≈3,7 күн",
+            "ru": "≈15 % освещено, ≈3,7 сут.",
+            "en": "≈15 % lit, ≈3.7 days"
+          },
+          "description": {
+            "ky": "Кечинде батыш тарапта ичке орок ай көрүнөт; анын оң жагы жарык.",
+            "ru": "Вечером на западе виден тонкий серп; освещена его правая сторона.",
+            "en": "A thin crescent appears in the west in the evening; its right side is lit."
+          },
+          "conceptKey": "astro.terminator",
+          "altText": {
+            "ky": "Оң жагы жаркыраган ичке орок.",
+            "ru": "Тонкий серп, освещённый справа.",
+            "en": "A thin crescent lit on the right."
+          },
+          "duration": 1
+        },
+        {
+          "key": "first-quarter",
+          "title": {
+            "ky": "Биринчи чейрек",
+            "ru": "Первая четверть",
+            "en": "First quarter"
+          },
+          "result": {
+            "ky": "50 % жарык, ≈7,4 күн",
+            "ru": "50 % освещено, ≈7,4 сут.",
+            "en": "50 % lit, ≈7.4 days"
+          },
+          "description": {
+            "ky": "Ай Жер – Күн сызыгына тик бурчта турат; анын оң жарымы жарык.",
+            "ru": "Луна под прямым углом к линии Земля – Солнце; освещена правая половина диска.",
+            "en": "The Moon is at a right angle to the Earth–Sun line; the right half is lit."
+          },
+          "conceptKey": "astro.terminator",
+          "altText": {
+            "ky": "Оң жарымы жарык Ай, терминатор түз сызык.",
+            "ru": "Освещена правая половина, терминатор прямой.",
+            "en": "The right half is lit and the terminator is straight."
+          },
+          "duration": 1
+        },
+        {
+          "key": "waxing-gibbous",
+          "title": {
+            "ky": "Толуп бараткан ай",
+            "ru": "Растущая Луна",
+            "en": "Waxing gibbous"
+          },
+          "result": {
+            "ky": "≈85 % жарык, ≈11 күн",
+            "ru": "≈85 % освещено, ≈11 сут.",
+            "en": "≈85 % lit, ≈11 days"
+          },
+          "description": {
+            "ky": "Жарык бөлүгү жарымдан көп, ар бир түнү чоңоюп баратат.",
+            "ru": "Освещено больше половины диска, и с каждой ночью всё больше.",
+            "en": "More than half is lit, and more each night."
+          },
+          "conceptKey": "astro.moon",
+          "altText": {
+            "ky": "Сол жагы гана бир аз караңгы Ай.",
+            "ru": "Луна, у которой темна лишь узкая полоска слева.",
+            "en": "A Moon with only a narrow dark sliver on the left."
+          },
+          "duration": 1
+        },
+        {
+          "key": "full-moon",
+          "title": {
+            "ky": "Толгон ай",
+            "ru": "Полнолуние",
+            "en": "Full moon"
+          },
+          "result": {
+            "ky": "100 % жарык, ≈14,8 күн",
+            "ru": "100 % освещено, ≈14,8 сут.",
+            "en": "100 % lit, ≈14.8 days"
+          },
+          "description": {
+            "ky": "Жер Күн менен Айдын ортосунда; биз Айдын бүт жарык жарымын көрөбүз. Ай кечинде чыгып, таңда батат.",
+            "ru": "Земля между Солнцем и Луной; мы видим всю освещённую половину. Луна восходит вечером и заходит утром.",
+            "en": "The Earth is between the Sun and the Moon; we see the whole lit half. The Moon rises at dusk and sets at dawn."
+          },
+          "conceptKey": "astro.moon",
+          "altText": {
+            "ky": "Толугу менен жаркыраган тегерек Ай.",
+            "ru": "Полностью освещённый круглый диск Луны.",
+            "en": "A fully lit round Moon."
+          },
+          "duration": 1
+        },
+        {
+          "key": "waning-gibbous",
+          "title": {
+            "ky": "Кемип бараткан ай",
+            "ru": "Убывающая Луна",
+            "en": "Waning gibbous"
+          },
+          "result": {
+            "ky": "≈85 % жарык, ≈18,5 күн",
+            "ru": "≈85 % освещено, ≈18,5 сут.",
+            "en": "≈85 % lit, ≈18.5 days"
+          },
+          "description": {
+            "ky": "Жарык бөлүгү ар бир түнү кичирейет; эми караңгы бөлүгү оң жактан башталат.",
+            "ru": "Освещённая часть с каждой ночью уменьшается; тень наползает справа.",
+            "en": "The lit part shrinks each night; the shadow creeps in from the right."
+          },
+          "conceptKey": "astro.moon",
+          "altText": {
+            "ky": "Оң жагы бир аз караңгыланган Ай.",
+            "ru": "Луна с тёмной полоской справа.",
+            "en": "A Moon with a dark sliver on the right."
+          },
+          "duration": 1
+        },
+        {
+          "key": "last-quarter",
+          "title": {
+            "ky": "Акыркы чейрек",
+            "ru": "Последняя четверть",
+            "en": "Last quarter"
+          },
+          "result": {
+            "ky": "50 % жарык, ≈22,1 күн",
+            "ru": "50 % освещено, ≈22,1 сут.",
+            "en": "50 % lit, ≈22.1 days"
+          },
+          "description": {
+            "ky": "Айдын сол жарымы жарык; ал түн ортосунда чыгып, таңда асманда турат.",
+            "ru": "Освещена левая половина; Луна восходит около полуночи и видна утром.",
+            "en": "The left half is lit; the Moon rises around midnight and is still up in the morning."
+          },
+          "conceptKey": "astro.terminator",
+          "altText": {
+            "ky": "Сол жарымы жарык Ай.",
+            "ru": "Луна, освещённая слева наполовину.",
+            "en": "A Moon with its left half lit."
+          },
+          "duration": 1
+        },
+        {
+          "key": "waning-crescent",
+          "title": {
+            "ky": "Эскирген ай (орок)",
+            "ru": "Убывающий серп",
+            "en": "Waning crescent"
+          },
+          "result": {
+            "ky": "≈15 % жарык, ≈25,8 күн",
+            "ru": "≈15 % освещено, ≈25,8 сут.",
+            "en": "≈15 % lit, ≈25.8 days"
+          },
+          "description": {
+            "ky": "Таң алдында чыгышта ичке орок көрүнөт; анын сол жагы жарык. Андан кийин кайра жаңы ай келет.",
+            "ru": "Перед рассветом на востоке виден тонкий серп, освещённый слева. Затем снова наступает новолуние.",
+            "en": "Before dawn a thin crescent lit on the left appears in the east. Then comes the next new moon."
+          },
+          "conceptKey": "astro.terminator",
+          "altText": {
+            "ky": "Сол жагы жаркыраган ичке орок.",
+            "ru": "Тонкий серп, освещённый слева.",
+            "en": "A thin crescent lit on the left."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "illuminated",
+          "label": {
+            "ky": "Жарык бөлүгү",
+            "ru": "Освещённая часть",
+            "en": "Illuminated fraction"
+          },
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "precision": 0
+        },
+        {
+          "key": "age",
+          "label": {
+            "ky": "Айдын жашы",
+            "ru": "Возраст Луны",
+            "en": "Moon's age"
+          },
+          "unit": "d",
+          "min": 0,
+          "max": 29.53,
+          "precision": 1
+        },
+        {
+          "key": "elongation",
+          "label": {
+            "ky": "Күндөн бурчтук аралык",
+            "ru": "Угловое расстояние от Солнца",
+            "en": "Angle from the Sun"
+          },
+          "unit": "°",
+          "min": 0,
+          "max": 180,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "synodicMonthDays": 29.53,
+        "siderealMonthDays": 27.32,
+        "orbitTiltDeg": 5.14
+      }
+    },
+    {
+      "key": "astro.seasons-orbit",
+      "engine": "timeline",
+      "icon": "sun",
+      "title": {
+        "ky": "Жыл мезгилдеринин алмашуусу",
+        "ru": "Смена времён года",
+        "en": "How the seasons change"
+      },
+      "description": {
+        "ky": "Жер бир жылда Күндү айланып чыгат, ал эми анын огу 23,44° жантайган бойдон бир багытты карайт. Ошондуктан Бишкекте чак түштөгү Күндүн бийиктиги жана күндүн узактыгы жыл бою өзгөрөт.",
+        "ru": "За год Земля обходит Солнце, а её ось, наклонённая на 23,44°, смотрит в одну сторону. Поэтому в Бишкеке высота полуденного Солнца и долгота дня меняются в течение года.",
+        "en": "The Earth goes around the Sun once a year while its axis, tilted 23.44°, keeps pointing the same way. So in Bishkek the noon Sun's height and the day length change through the year."
+      },
+      "equation": "h = 90^\\circ - \\varphi + \\delta",
+      "inputs": {
+        "ky": "Октун жантаюусу 23,44° жана Жердин орбитадагы ордун",
+        "ru": "Наклон оси 23,44° и положение Земли на орбите",
+        "en": "An axial tilt of 23.44° and the Earth's place on its orbit"
+      },
+      "outputs": {
+        "ky": "Күндүн бийиктиги, күндүн узактыгы, жыл мезгилдери",
+        "ru": "Высота Солнца, долгота дня, времена года",
+        "en": "Sun height, day length, the seasons"
+      },
+      "steps": [
+        {
+          "key": "march-equinox",
+          "title": {
+            "ky": "Жазкы күн-түн теңелүү",
+            "ru": "Весеннее равноденствие",
+            "en": "March equinox"
+          },
+          "result": {
+            "ky": "12,1 саат, 47,1°",
+            "ru": "12,1 ч, 47,1°",
+            "en": "12.1 h, 47.1°"
+          },
+          "description": {
+            "ky": "≈20-март. Күн экватордун үстүндө, Бишкекте чак түштө Күндүн бийиктиги 47,1°, күн менен түн дээрлик барабар. Нооруз.",
+            "ru": "≈20 марта. Солнце над экватором, в Бишкеке высота полуденного Солнца 47,1°, день почти равен ночи. Нооруз.",
+            "en": "≈20 March. The Sun is over the equator; in Bishkek it reaches 47.1° at noon and day almost equals night. Nooruz."
+          },
+          "conceptKey": "astro.equinox",
+          "altText": {
+            "ky": "Жердин огу Күнгө да, андан тескери да жантайбаган абал.",
+            "ru": "Ось Земли не наклонена ни к Солнцу, ни от него.",
+            "en": "The Earth's axis leans neither towards nor away from the Sun."
+          },
+          "duration": 2
+        },
+        {
+          "key": "june-solstice",
+          "title": {
+            "ky": "Жайкы күн токтоо",
+            "ru": "Летнее солнцестояние",
+            "en": "June solstice"
+          },
+          "result": {
+            "ky": "≈15,3 саат, 70,5°",
+            "ru": "≈15,3 ч, 70,5°",
+            "en": "≈15.3 h, 70.5°"
+          },
+          "description": {
+            "ky": "≈21-июнь. Түндүк жарым шар Күнгө ыңгайланган, Күн Түндүк тропиктин үстүндө. Бишкекте Күн 70,5°ка көтөрүлөт – эң узун күн. Жер Күндөн алыс: ≈152 млн км.",
+            "ru": "≈21 июня. Северное полушарие наклонено к Солнцу, Солнце над тропиком Рака. В Бишкеке оно поднимается на 70,5° – самый длинный день. При этом Земля далеко от Солнца: ≈152 млн км.",
+            "en": "≈21 June. The Northern Hemisphere leans towards the Sun, which is overhead at the Tropic of Cancer. In Bishkek it climbs to 70.5° – the longest day. Yet the Earth is far from the Sun: ≈152 million km."
+          },
+          "conceptKey": "astro.solstice",
+          "altText": {
+            "ky": "Түндүк уюл Күнгө ыңгайланган Жер.",
+            "ru": "Земля, наклонённая Северным полюсом к Солнцу.",
+            "en": "The Earth with its North Pole tipped towards the Sun."
+          },
+          "duration": 2
+        },
+        {
+          "key": "september-equinox",
+          "title": {
+            "ky": "Күзгү күн-түн теңелүү",
+            "ru": "Осеннее равноденствие",
+            "en": "September equinox"
+          },
+          "result": {
+            "ky": "12,1 саат, 47,1°",
+            "ru": "12,1 ч, 47,1°",
+            "en": "12.1 h, 47.1°"
+          },
+          "description": {
+            "ky": "≈22–23-сентябрь. Күн кайра экватордун үстүндө; Бишкекте чак түштө 47,1°, күн менен түн дээрлик барабар.",
+            "ru": "≈22–23 сентября. Солнце снова над экватором; в Бишкеке в полдень 47,1°, день почти равен ночи.",
+            "en": "≈22–23 September. The Sun is over the equator again; in Bishkek it reaches 47.1° at noon and day almost equals night."
+          },
+          "conceptKey": "astro.equinox",
+          "altText": {
+            "ky": "Орбитанын карама-каршы жагындагы Жер, огу каптал жакты карайт.",
+            "ru": "Земля на противоположной стороне орбиты, ось направлена вбок.",
+            "en": "The Earth on the opposite side of its orbit with its axis pointing sideways."
+          },
+          "duration": 2
+        },
+        {
+          "key": "december-solstice",
+          "title": {
+            "ky": "Кышкы күн токтоо",
+            "ru": "Зимнее солнцестояние",
+            "en": "December solstice"
+          },
+          "result": {
+            "ky": "≈9,1 саат, 23,7°",
+            "ru": "≈9,1 ч, 23,7°",
+            "en": "≈9.1 h, 23.7°"
+          },
+          "description": {
+            "ky": "≈21–22-декабрь. Түндүк жарым шар Күндөн тескери жантайган. Бишкекте Күн 23,7°ка гана көтөрүлөт – эң кыска күн. Бирок Жер Күнгө жакын: январдын башында перигелий, ≈147 млн км.",
+            "ru": "≈21–22 декабря. Северное полушарие наклонено от Солнца. В Бишкеке оно поднимается лишь на 23,7° – самый короткий день. Но Земля близко к Солнцу: в начале января перигелий, ≈147 млн км.",
+            "en": "≈21–22 December. The Northern Hemisphere leans away from the Sun. In Bishkek it rises only to 23.7° – the shortest day. Yet the Earth is close to the Sun: perihelion in early January is ≈147 million km."
+          },
+          "conceptKey": "astro.solstice",
+          "altText": {
+            "ky": "Түндүк уюл Күндөн тескери жантайган Жер.",
+            "ru": "Земля, наклонённая Северным полюсом от Солнца.",
+            "en": "The Earth with its North Pole tipped away from the Sun."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "day-length",
+          "label": {
+            "ky": "Күндүн узактыгы (Бишкек)",
+            "ru": "Долгота дня (Бишкек)",
+            "en": "Day length (Bishkek)"
+          },
+          "unit": "h",
+          "min": 9,
+          "max": 15.5,
+          "precision": 1
+        },
+        {
+          "key": "noon-altitude",
+          "label": {
+            "ky": "Чак түштөгү Күндүн бийиктиги",
+            "ru": "Высота Солнца в полдень",
+            "en": "Noon Sun altitude"
+          },
+          "unit": "°",
+          "min": 23.7,
+          "max": 70.5,
+          "precision": 1
+        },
+        {
+          "key": "sun-distance",
+          "label": {
+            "ky": "Күнгө чейинки аралык",
+            "ru": "Расстояние до Солнца",
+            "en": "Distance to the Sun"
+          },
+          "unit": "mln km",
+          "min": 147.1,
+          "max": 152.1,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "latitudeDeg": 42.9,
+        "axialTiltDeg": 23.44,
+        "eccentricity": 0.0167
+      }
+    }
+  ]
+}

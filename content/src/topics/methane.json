@@ -1,0 +1,750 @@
+{
+  "topic": {
+    "key": "methane",
+    "unitKey": "chem.g9.organic",
+    "status": "published",
+    "title": {
+      "ky": "Метан",
+      "ru": "Метан",
+      "en": "Methane"
+    },
+    "formula": "CH_4",
+    "classification": {
+      "ky": "Каныккан көмүрсутек (алкан)",
+      "ru": "Предельный углеводород (алкан)",
+      "en": "Saturated hydrocarbon (alkane)"
+    },
+    "description": {
+      "ky": "Метан – эң жөнөкөй органикалык зат. Борбордогу көмүртек атому төрт суутек менен коваленттик байланышта, молекула тетраэдр формасында. Метан – жаратылыш газынын жана биогаздын негизги бөлүгү.",
+      "ru": "Метан – простейшее органическое вещество. Атом углерода в центре связан ковалентно с четырьмя атомами водорода, молекула имеет форму тетраэдра. Метан – главная часть природного газа и биогаза.",
+      "en": "Methane is the simplest organic compound. A central carbon is covalently bonded to four hydrogens in a tetrahedral shape. It is the main part of natural gas and biogas."
+    },
+    "goal": {
+      "ky": "Метандын түзүлүшүн жана касиеттерин сүрөттөө (CHEM-9.6.1).",
+      "ru": "Описать строение и свойства метана (CHEM-9.6.1).",
+      "en": "Describe the structure and properties of methane (CHEM-9.6.1)."
+    },
+    "objectiveKeys": [
+      "chem.g9.organic.o1"
+    ],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "molecule",
+      "params": {
+        "formula": "CH4",
+        "atoms": [
+          {
+            "id": "C1",
+            "element": "C",
+            "position": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "H1",
+            "element": "H",
+            "position": [
+              0.628,
+              0.628,
+              0.628
+            ]
+          },
+          {
+            "id": "H2",
+            "element": "H",
+            "position": [
+              -0.628,
+              -0.628,
+              0.628
+            ]
+          },
+          {
+            "id": "H3",
+            "element": "H",
+            "position": [
+              -0.628,
+              0.628,
+              -0.628
+            ]
+          },
+          {
+            "id": "H4",
+            "element": "H",
+            "position": [
+              0.628,
+              -0.628,
+              -0.628
+            ]
+          }
+        ],
+        "bonds": [
+          {
+            "a": "C1",
+            "b": "H1",
+            "order": 1
+          },
+          {
+            "a": "C1",
+            "b": "H2",
+            "order": 1
+          },
+          {
+            "a": "C1",
+            "b": "H3",
+            "order": 1
+          },
+          {
+            "a": "C1",
+            "b": "H4",
+            "order": 1
+          }
+        ]
+      },
+      "camera": {
+        "position": [
+          2.5,
+          1.5,
+          3.5
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 40
+      },
+      "modes": [
+        "ball-stick",
+        "spacefill",
+        "shells"
+      ]
+    },
+    "conceptKeys": [
+      "chem.methane",
+      "chem.carbon",
+      "chem.hydrogen",
+      "chem.covalent-bond"
+    ],
+    "overrides": {
+      "chem.methane": {
+        "nodes": [
+          "Molecule_CH4"
+        ]
+      },
+      "chem.carbon": {
+        "anchor": [
+          0,
+          0.25,
+          0
+        ],
+        "nodes": [
+          "Atom_C1"
+        ]
+      },
+      "chem.hydrogen": {
+        "anchor": [
+          0.75,
+          0.75,
+          0.75
+        ],
+        "nodes": [
+          "Atom_H*"
+        ]
+      },
+      "chem.covalent-bond": {
+        "anchor": [
+          0.31,
+          0.31,
+          0.31
+        ],
+        "nodes": [
+          "Bond_*"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "ch4",
+        "title": {
+          "ky": "Метан",
+          "ru": "Метан",
+          "en": "Methane"
+        },
+        "classification": {
+          "ky": "CH₄ · алкан",
+          "ru": "CH₄ · алкан",
+          "en": "CH₄ · alkane"
+        },
+        "thumb": "thumbs/ch4.webp"
+      },
+      {
+        "key": "c2h6",
+        "title": {
+          "ky": "Этан",
+          "ru": "Этан",
+          "en": "Ethane"
+        },
+        "classification": {
+          "ky": "C₂H₆ · алкан",
+          "ru": "C₂H₆ · алкан",
+          "en": "C₂H₆ · alkane"
+        },
+        "thumb": "thumbs/c2h6.webp"
+      },
+      {
+        "key": "c3h8",
+        "title": {
+          "ky": "Пропан",
+          "ru": "Пропан",
+          "en": "Propane"
+        },
+        "classification": {
+          "ky": "C₃H₈ · алкан",
+          "ru": "C₃H₈ · алкан",
+          "en": "C₃H₈ · alkane"
+        },
+        "thumb": "thumbs/c3h8.webp"
+      },
+      {
+        "key": "ch4-flame",
+        "title": {
+          "ky": "Метандын күйүшү",
+          "ru": "Горение метана",
+          "en": "Burning methane"
+        },
+        "classification": {
+          "ky": "Реакция",
+          "ru": "Реакция",
+          "en": "Reaction"
+        },
+        "thumb": "thumbs/ch4-flame.webp",
+        "topicKey": "methane-combustion"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                2.5,
+                1.5,
+                3.5
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "rep": "ball-stick"
+            },
+            "focus": "chem.methane",
+            "text": {
+              "ky": "Бул – метан молекуласы, CH₄: бир көмүртек жана төрт суутек атому.",
+              "ru": "Это молекула метана, CH₄: один атом углерода и четыре атома водорода.",
+              "en": "This is a methane molecule, CH₄: one carbon atom and four hydrogen atoms."
+            },
+            "teacherNote": {
+              "ky": "Молекуланы айлантып, анын жалпак эмес экенин көрсөтүңүз.",
+              "ru": "Поверните молекулу и покажите, что она не плоская.",
+              "en": "Rotate the molecule to show it is not flat."
+            },
+            "altText": {
+              "ky": "Борбордогу кара шар жана ага туташкан төрт ак шар.",
+              "ru": "Чёрный шар в центре и четыре белых шара вокруг.",
+              "en": "A black ball in the centre with four white balls around it."
+            }
+          },
+          {
+            "key": "carbon",
+            "camera": {
+              "position": [
+                0.8,
+                0.6,
+                1.6
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "shells": true
+            },
+            "focus": "chem.carbon",
+            "text": {
+              "ky": "Көмүртектин 4 валенттик электрону бар, ошондуктан ал 4 байланыш түзөт.",
+              "ru": "У углерода 4 валентных электрона, поэтому он образует 4 связи.",
+              "en": "Carbon has 4 valence electrons, so it forms 4 bonds."
+            },
+            "teacherNote": {
+              "ky": "«Электрон катмарлары» режиминде көмүртектин 2 + 4 электронун көрсөтүңүз.",
+              "ru": "В режиме «Электронные оболочки» покажите 2 + 4 электрона углерода.",
+              "en": "Use «Electron shells» to show carbon's 2 + 4 electrons."
+            },
+            "altText": {
+              "ky": "Борбордогу көмүртек атому жана анын эки катмары.",
+              "ru": "Атом углерода в центре и его два слоя.",
+              "en": "The central carbon atom with its two shells."
+            }
+          },
+          {
+            "key": "bonds",
+            "camera": {
+              "position": [
+                1.5,
+                1,
+                2
+              ],
+              "target": [
+                0.31,
+                0.31,
+                0.31
+              ]
+            },
+            "focus": "chem.covalent-bond",
+            "text": {
+              "ky": "Ар бир C–H байланышы – жалпы электрон жубу; узундугу 0,109 нм.",
+              "ru": "Каждая связь C–H – общая электронная пара длиной 0,109 нм.",
+              "en": "Each C–H bond is a shared electron pair 0.109 nm long."
+            },
+            "teacherNote": {
+              "ky": "Байланыштар эмне үчүн бири-биринен алыстаарын түшүндүрүңүз: электрон жуптары түртүшөт.",
+              "ru": "Объясните, почему связи расходятся: электронные пары отталкиваются.",
+              "en": "Explain that the bonds spread out because electron pairs repel."
+            },
+            "altText": {
+              "ky": "Төрт таякча ар тарапка бирдей таралган.",
+              "ru": "Четыре палочки равномерно расходятся в стороны.",
+              "en": "Four sticks spread out evenly."
+            }
+          },
+          {
+            "key": "tetrahedron",
+            "camera": {
+              "position": [
+                3,
+                0,
+                0.5
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "focus": "chem.hydrogen",
+            "text": {
+              "ky": "Төрт суутек тетраэдрдин чокуларында, H–C–H бурчу 109,5°.",
+              "ru": "Четыре водорода в вершинах тетраэдра, угол H–C–H 109,5°.",
+              "en": "The four hydrogens sit at the corners of a tetrahedron, 109.5° apart."
+            },
+            "teacherNote": {
+              "ky": "Суу молекуласынын бурчу (104,5°) менен салыштырыңыз.",
+              "ru": "Сравните с углом в молекуле воды (104,5°).",
+              "en": "Compare with the angle in water (104.5°)."
+            },
+            "altText": {
+              "ky": "Суутек атомдору үч бурчтуу пирамиданын чокуларында.",
+              "ru": "Атомы водорода в вершинах треугольной пирамиды.",
+              "en": "Hydrogen atoms at the corners of a triangular pyramid."
+            }
+          },
+          {
+            "key": "spacefill",
+            "camera": {
+              "position": [
+                2.5,
+                1.5,
+                3.5
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "rep": "spacefill"
+            },
+            "focus": "chem.methane",
+            "text": {
+              "ky": "«Көлөмдүү» моделде метан дээрлик тегерек көрүнөт – ошондуктан анын молекулалары бири-бирине начар тартылат жана −161,5 °C да эле кайнайт.",
+              "ru": "В объёмной модели метан почти шарообразный – его молекулы слабо притягиваются и кипят уже при −161,5 °C.",
+              "en": "In space-filling view methane is nearly round – its molecules barely attract, so it boils at −161.5 °C."
+            },
+            "teacherNote": {
+              "ky": "«Биогаз» процессин ачып, метандын айылдагы колдонулушун талкуулаңыз.",
+              "ru": "Откройте процесс «Биогаз» и обсудите применение метана в сёлах.",
+              "en": "Open the «Biogas» process and discuss how villages use methane."
+            },
+            "altText": {
+              "ky": "Тегерекке жакын тыгыз фигура.",
+              "ru": "Плотная почти круглая фигура.",
+              "en": "A compact, almost round shape."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.biogas",
+        "chem.methane-combustion"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.carbon"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.hydrogen"
+          }
+        ],
+        "rows": [
+          "atomicNumber",
+          "electronegativity",
+          "molarMass"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.methane-shape",
+          "chem.q.methane-true",
+          "chem.q.methane-match",
+          "chem.q.methane-find-carbon",
+          "chem.q.methane-find-bond",
+          "chem.q.methane-molar",
+          "chem.q.methane-angle"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "t",
+          "title": {
+            "ky": "Газ плиталары",
+            "ru": "Газовые плиты",
+            "en": "Gas cookers"
+          },
+          "text": {
+            "ky": "Бишкектин көп үйлөрүндө тамак жаратылыш газы – негизинен метан менен бышырылат.",
+            "ru": "Во многих домах Бишкека готовят на природном газе – в основном это метан.",
+            "en": "Many homes in Bishkek cook with natural gas, which is mostly methane."
+          }
+        },
+        {
+          "field": "e",
+          "title": {
+            "ky": "Биогаз орнотмолору",
+            "ru": "Биогазовые установки",
+            "en": "Biogas digesters"
+          },
+          "text": {
+            "ky": "Фермерлер мал кыгын жабык бакка салып, бактериялардын жардамы менен метан алышат.",
+            "ru": "Фермеры загружают навоз в закрытый бак и с помощью бактерий получают метан.",
+            "en": "Farmers load manure into a sealed tank and bacteria turn it into methane."
+          }
+        },
+        {
+          "field": "s",
+          "title": {
+            "ky": "Климат",
+            "ru": "Климат",
+            "en": "Climate"
+          },
+          "text": {
+            "ky": "Метан – парник газы: ал CO₂дан 25 эсе күчтүүрөөк жылуулукту кармайт (100 жыл ичинде).",
+            "ru": "Метан – парниковый газ: за 100 лет он удерживает тепло примерно в 25 раз сильнее CO₂.",
+            "en": "Methane is a greenhouse gas that traps about 25 times more heat than CO₂ over 100 years."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Табуретка",
+            "ru": "Табуретка",
+            "en": "A stool"
+          },
+          "text": {
+            "ky": "Метан төрт буттуу табуреткага окшош, бирок анын «буттары» ар тарапка бирдей карайт.",
+            "ru": "Метан похож на табуретку с четырьмя ножками, только «ножки» смотрят во все стороны одинаково.",
+            "en": "Methane is like a four-legged stool whose legs point equally in every direction."
+          }
+        },
+        {
+          "title": {
+            "ky": "Үч бурчтуу пирамида",
+            "ru": "Пирамидка",
+            "en": "A pyramid puzzle"
+          },
+          "text": {
+            "ky": "Төрт үч бурчтуктан пирамида жасасаң, анын төрт чокусу – метандагы суутектердин орду.",
+            "ru": "Сложи пирамидку из четырёх треугольников – её четыре вершины и есть места водородов в метане.",
+            "en": "Build a pyramid from four triangles – its four corners are where methane's hydrogens sit."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "chem.q.methane-shape",
+      "type": "single",
+      "prompt": {
+        "ky": "Метан молекуласынын формасы кандай?",
+        "ru": "Какую форму имеет молекула метана?",
+        "en": "What shape is a methane molecule?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жалпак квадрат",
+            "ru": "Плоский квадрат",
+            "en": "Flat square"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Тетраэдр",
+            "ru": "Тетраэдр",
+            "en": "Tetrahedron"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Түз сызык",
+            "ru": "Линия",
+            "en": "Straight line"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Төрт C–H байланышы бири-биринен эң алыс – тетраэдрдин чокуларына багытталат, бурчу 109,5°.",
+        "ru": "Четыре связи C–H расходятся как можно дальше – к вершинам тетраэдра, угол 109,5°.",
+        "en": "The four C–H bonds spread as far apart as possible – to the corners of a tetrahedron, 109.5°."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o1"
+      ],
+      "misconceptionKey": "chem.m.methane-flat",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.methane-true",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Метан жөнүндө туура пикирлерди танда.",
+        "ru": "Выбери верные утверждения о метане.",
+        "en": "Choose the true statements about methane."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жаратылыш газынын негизги бөлүгү",
+            "ru": "Главная часть природного газа",
+            "en": "The main part of natural gas"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Курч жыты бар",
+            "ru": "Имеет резкий запах",
+            "en": "Has a strong smell"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Молекулада 4 коваленттик байланыш бар",
+            "ru": "В молекуле 4 ковалентные связи",
+            "en": "Has 4 covalent bonds"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Бөлмө температурасында суюк",
+            "ru": "Жидкость при комнатной температуре",
+            "en": "Liquid at room temperature"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Метан – жыты жок газ, жаратылыш газынын негизи; анын молекуласында 4 коваленттик байланыш бар.",
+        "ru": "Метан – газ без запаха, основа природного газа; в молекуле 4 ковалентные связи.",
+        "en": "Methane is an odourless gas, the main part of natural gas, with 4 covalent bonds."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o1"
+      ],
+      "misconceptionKey": "chem.m.gas-smell",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.methane-match",
+      "type": "match",
+      "prompt": {
+        "ky": "Затты анын формуласы менен дал келтир.",
+        "ru": "Сопоставь вещество и его формулу.",
+        "en": "Match each substance to its formula."
+      },
+      "pairs": [
+        {
+          "key": "methane",
+          "left": {
+            "ky": "Метан",
+            "ru": "Метан",
+            "en": "Methane"
+          },
+          "right": {
+            "ky": "CH₄",
+            "ru": "CH₄",
+            "en": "CH₄"
+          }
+        },
+        {
+          "key": "ethane",
+          "left": {
+            "ky": "Этан",
+            "ru": "Этан",
+            "en": "Ethane"
+          },
+          "right": {
+            "ky": "C₂H₆",
+            "ru": "C₂H₆",
+            "en": "C₂H₆"
+          }
+        },
+        {
+          "key": "propane",
+          "left": {
+            "ky": "Пропан",
+            "ru": "Пропан",
+            "en": "Propane"
+          },
+          "right": {
+            "ky": "C₃H₈",
+            "ru": "C₃H₈",
+            "en": "C₃H₈"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Метан CH₄, этан C₂H₆, пропан C₃H₈ – алкандар катары.",
+        "ru": "Метан CH₄, этан C₂H₆, пропан C₃H₈ – ряд алканов.",
+        "en": "Methane CH₄, ethane C₂H₆, propane C₃H₈ – the alkane series."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.methane-find-carbon",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Төрт байланыш түзгөн атомду тап.",
+        "ru": "Найди атом, который образует четыре связи.",
+        "en": "Find the atom that forms four bonds."
+      },
+      "targetConceptKey": "chem.carbon",
+      "explanation": {
+        "ky": "Көмүртектин 4 валенттик электрону бар – ал борбордо, 4 суутек менен байланышкан.",
+        "ru": "У углерода 4 валентных электрона – он в центре и связан с 4 водородами.",
+        "en": "Carbon has 4 valence electrons; it sits in the centre bonded to 4 hydrogens."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o1"
+      ],
+      "misconceptionKey": "chem.m.carbon-coal-only",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.methane-find-bond",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден C–H коваленттик байланышын тап.",
+        "ru": "Найди на модели ковалентную связь C–H.",
+        "en": "Find a C–H covalent bond on the model."
+      },
+      "targetConceptKey": "chem.covalent-bond",
+      "explanation": {
+        "ky": "Байланыш – көмүртекти суутек менен бириктирген жалпы электрон жубу.",
+        "ru": "Связь – общая электронная пара между углеродом и водородом.",
+        "en": "The bond is the shared electron pair between carbon and hydrogen."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.methane-molar",
+      "type": "numeric",
+      "prompt": {
+        "ky": "CH₄түн молярдык массасын эсепте (C = 12,01; H = 1,008).",
+        "ru": "Вычисли молярную массу CH₄ (C = 12,01; H = 1,008).",
+        "en": "Calculate the molar mass of CH₄ (C = 12.01; H = 1.008)."
+      },
+      "answer": 16.04,
+      "tolerance": 0.1,
+      "unit": "g/mol",
+      "explanation": {
+        "ky": "M = 12,01 + 4 · 1,008 = 16,04 г/моль.",
+        "ru": "M = 12,01 + 4 · 1,008 = 16,04 г/моль.",
+        "en": "M = 12.01 + 4 × 1.008 = 16.04 g/mol."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.methane-angle",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Метандагы H–C–H бурчу канча градус?",
+        "ru": "Сколько градусов угол H–C–H в метане?",
+        "en": "How many degrees is the H–C–H angle in methane?"
+      },
+      "answer": 109.5,
+      "tolerance": 0.5,
+      "unit": "°",
+      "explanation": {
+        "ky": "Тетраэдрдик бурч – 109,5°.",
+        "ru": "Тетраэдрический угол – 109,5°.",
+        "en": "The tetrahedral angle is 109.5°."
+      },
+      "objectiveKeys": [
+        "chem.g9.organic.o1"
+      ],
+      "misconceptionKey": "chem.m.methane-flat",
+      "difficulty": 3
+    }
+  ]
+}

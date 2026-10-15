@@ -1,0 +1,747 @@
+{
+  "topic": {
+    "key": "sphere-cylinder",
+    "unitKey": "math.g10.solids",
+    "status": "published",
+    "title": {
+      "ky": "Шар, цилиндр жана конус",
+      "ru": "Шар, цилиндр и конус",
+      "en": "Sphere, cylinder and cone"
+    },
+    "formula": "V = \\tfrac{4}{3}\\pi r^3",
+    "classification": {
+      "ky": "Айлануу телолору",
+      "ru": "Тела вращения",
+      "en": "Solids of revolution"
+    },
+    "description": {
+      "ky": "Радиусу 3 см болгон шар, цилиндр жана конус. Архимеддин ыкмасы менен шардын көлөмү ага сырттан сызылган цилиндрдин ⅔си экенин көрөбүз.",
+      "ru": "Шар, цилиндр и конус радиусом 3 см. Методом Архимеда убеждаемся, что объём шара составляет ⅔ описанного цилиндра.",
+      "en": "A sphere, cylinder and cone, each with a 3 cm radius. Following Archimedes, we see that the sphere has ⅔ of the volume of the cylinder around it."
+    },
+    "goal": {
+      "ky": "Цилиндрдин, конустун жана шардын көлөмүн эсептөө (MATH-10.7.2).",
+      "ru": "Вычислять объёмы цилиндра, конуса и шара (MATH-10.7.2).",
+      "en": "Calculate the volumes of a cylinder, cone and sphere (MATH-10.7.2)."
+    },
+    "objectiveKeys": [
+      "math.g10.solids.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "geometry",
+      "params": {
+        "solids": [
+          {
+            "id": "sphere",
+            "type": "sphere",
+            "radius": 3,
+            "position": [
+              -7,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "cylinder",
+            "type": "cylinder",
+            "radius": 3,
+            "height": 6,
+            "position": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "cone",
+            "type": "cone",
+            "radius": 3,
+            "height": 6,
+            "position": [
+              7,
+              0,
+              0
+            ]
+          }
+        ],
+        "showDimensions": true,
+        "unit": "cm"
+      },
+      "camera": {
+        "position": [
+          0,
+          5,
+          20
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "solid",
+        "wireframe"
+      ]
+    },
+    "conceptKeys": [
+      "math.sphere",
+      "math.cylinder",
+      "math.cone",
+      "math.radius",
+      "math.cylinder-height",
+      "math.base-circle"
+    ],
+    "overrides": {
+      "math.sphere": {
+        "anchor": [
+          -7,
+          3.4,
+          0
+        ],
+        "nodes": [
+          "sphere"
+        ]
+      },
+      "math.cylinder": {
+        "anchor": [
+          0,
+          3.4,
+          0
+        ],
+        "nodes": [
+          "cylinder"
+        ]
+      },
+      "math.cone": {
+        "anchor": [
+          7,
+          3.4,
+          0
+        ],
+        "nodes": [
+          "cone"
+        ]
+      },
+      "math.radius": {
+        "anchor": [
+          -5.5,
+          0,
+          0
+        ],
+        "nodes": [
+          "*_Radius"
+        ]
+      },
+      "math.cylinder-height": {
+        "anchor": [
+          3.2,
+          0,
+          0
+        ],
+        "nodes": [
+          "cylinder_Height"
+        ]
+      },
+      "math.base-circle": {
+        "anchor": [
+          0,
+          -3,
+          0
+        ],
+        "nodes": [
+          "cylinder_Face_Base*",
+          "cone_Face_Base"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "sphere",
+        "title": {
+          "ky": "Шар",
+          "ru": "Шар",
+          "en": "Sphere"
+        },
+        "classification": {
+          "ky": "Айлануу телосу",
+          "ru": "Тело вращения",
+          "en": "Solid of revolution"
+        },
+        "thumb": "thumbs/sphere.webp"
+      },
+      {
+        "key": "cylinder",
+        "title": {
+          "ky": "Цилиндр",
+          "ru": "Цилиндр",
+          "en": "Cylinder"
+        },
+        "classification": {
+          "ky": "Айлануу телосу",
+          "ru": "Тело вращения",
+          "en": "Solid of revolution"
+        },
+        "thumb": "thumbs/cylinder.webp"
+      },
+      {
+        "key": "cone",
+        "title": {
+          "ky": "Конус",
+          "ru": "Конус",
+          "en": "Cone"
+        },
+        "classification": {
+          "ky": "Айлануу телосу",
+          "ru": "Тело вращения",
+          "en": "Solid of revolution"
+        },
+        "thumb": "thumbs/cone.webp"
+      },
+      {
+        "key": "yurt",
+        "title": {
+          "ky": "Боз үй",
+          "ru": "Юрта",
+          "en": "Yurt"
+        },
+        "classification": {
+          "ky": "Цилиндр + конус",
+          "ru": "Цилиндр + конус",
+          "en": "Cylinder + cone"
+        },
+        "thumb": "thumbs/yurt.webp"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                5,
+                20
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "text": {
+              "ky": "Шар, цилиндр жана конус – айлануу телолору: аларды жалпак фигураны огунун айланасында айлантып алууга болот.",
+              "ru": "Шар, цилиндр и конус – тела вращения: их получают, вращая плоскую фигуру вокруг оси.",
+              "en": "The sphere, cylinder and cone are solids of revolution: you get them by spinning a flat shape around an axis."
+            },
+            "teacherNote": {
+              "ky": "Тик бурчтукту айлантсаң цилиндр, үч бурчтукту – конус, жарым тегеректи – шар чыгарын сураңыз.",
+              "ru": "Спросите: что получится, если вращать прямоугольник, треугольник, полукруг?",
+              "en": "Ask what you get by spinning a rectangle, a triangle and a semicircle."
+            },
+            "altText": {
+              "ky": "Катар турган шар, цилиндр жана конус.",
+              "ru": "Шар, цилиндр и конус в ряд.",
+              "en": "A sphere, a cylinder and a cone in a row."
+            }
+          },
+          {
+            "key": "radius",
+            "modes": {
+              "view": "wireframe"
+            },
+            "focus": "math.radius",
+            "text": {
+              "ky": "Үчөөнүн тең радиусу 3 см. Радиус – борбордон бетке чейинки аралык, диаметрдин жарымы.",
+              "ru": "У всех трёх радиус 3 см. Радиус – расстояние от центра до поверхности, половина диаметра.",
+              "en": "All three have a radius of 3 cm. The radius is the distance from centre to surface – half the diameter."
+            },
+            "teacherNote": {
+              "ky": "Радиус менен диаметрди чаташтырбоону эскертиңиз.",
+              "ru": "Предупредите, чтобы не путали радиус и диаметр.",
+              "en": "Warn pupils not to mix up radius and diameter."
+            },
+            "altText": {
+              "ky": "Шардын борборунан бетине чейинки кесинди.",
+              "ru": "Отрезок от центра шара до его поверхности.",
+              "en": "A segment from the sphere's centre to its surface."
+            }
+          },
+          {
+            "key": "base",
+            "focus": "math.base-circle",
+            "text": {
+              "ky": "Цилиндрдин жана конустун негизи – тегерек: S = πr² ≈ 28,3 см².",
+              "ru": "Основания цилиндра и конуса – круги: S = πr² ≈ 28,3 см².",
+              "en": "The bases of the cylinder and cone are circles: S = πr² ≈ 28.3 cm²."
+            },
+            "teacherNote": {
+              "ky": "2πr (айлананын узундугу) менен πr² (аянт) айырмасын тактаңыз.",
+              "ru": "Уточните разницу между 2πr (длина окружности) и πr² (площадь).",
+              "en": "Clarify the difference between 2πr (circumference) and πr² (area)."
+            },
+            "altText": {
+              "ky": "Цилиндрдин тегерек негизи бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделено круглое основание цилиндра.",
+              "en": "The circular base of the cylinder is highlighted."
+            }
+          },
+          {
+            "key": "cylinder",
+            "visibility": {
+              "isolate": [
+                "math.cylinder",
+                "math.cylinder-height"
+              ]
+            },
+            "focus": "math.cylinder-height",
+            "text": {
+              "ky": "Цилиндрдин бийиктиги 6 см = 2r. Көлөмү V = πr²h = 54π ≈ 169,6 см³.",
+              "ru": "Высота цилиндра 6 см = 2r. Объём V = πr²h = 54π ≈ 169,6 см³.",
+              "en": "The cylinder is 6 cm tall, which is 2r. Its volume is V = πr²h = 54π ≈ 169.6 cm³."
+            },
+            "teacherNote": {
+              "ky": "Боз үйдүн керегеси болжол менен цилиндр экенин эске салыңыз.",
+              "ru": "Напомните, что кереге юрты – примерно цилиндр.",
+              "en": "Remind pupils that a yurt's kerege wall is roughly a cylinder."
+            },
+            "altText": {
+              "ky": "Цилиндр жана анын бийиктиги көрсөтүлгөн.",
+              "ru": "Цилиндр с отмеченной высотой.",
+              "en": "The cylinder with its height marked."
+            }
+          },
+          {
+            "key": "cone",
+            "focus": "math.cone",
+            "text": {
+              "ky": "Конус – ошол эле цилиндрдин үчтөн бири: V = ⅓πr²h ≈ 56,5 см³.",
+              "ru": "Конус – треть такого же цилиндра: V = ⅓πr²h ≈ 56,5 см³.",
+              "en": "The cone is one third of the same cylinder: V = ⅓πr²h ≈ 56.5 cm³."
+            },
+            "teacherNote": {
+              "ky": "Боз үйдүн уук-чатыры конуска окшош экенин көрсөтүңүз («Боз үй» образеци).",
+              "ru": "Покажите, что крыша юрты из уук похожа на конус (образец «Юрта»).",
+              "en": "Show that a yurt's uuk roof looks like a cone (the 'Yurt' sample)."
+            },
+            "altText": {
+              "ky": "Учтуу конус жана анын тегерек негизи.",
+              "ru": "Острый конус и его круглое основание.",
+              "en": "A pointed cone with its round base."
+            }
+          },
+          {
+            "key": "sphere",
+            "modes": {
+              "view": "solid"
+            },
+            "focus": "math.sphere",
+            "text": {
+              "ky": "Шар цилиндрге так батат. Анын көлөмү – цилиндр минус конус: 36π ≈ 113,1 см³, же V = ⁴⁄₃πr³.",
+              "ru": "Шар точно вписывается в цилиндр. Его объём – цилиндр минус конус: 36π ≈ 113,1 см³, то есть V = ⁴⁄₃πr³.",
+              "en": "The sphere fits exactly inside the cylinder. Its volume is cylinder minus cone: 36π ≈ 113.1 cm³, i.e. V = ⁴⁄₃πr³."
+            },
+            "teacherNote": {
+              "ky": "«Архимеддин шары» процессин иштетип, 1 : 2 : 3 катышын талкуулаңыз.",
+              "ru": "Запустите процесс «Шар Архимеда» и обсудите соотношение 1 : 2 : 3.",
+              "en": "Run the 'Archimedes' sphere' process and discuss the 1 : 2 : 3 ratio."
+            },
+            "altText": {
+              "ky": "Тоголок шар, жанында анын көлөмүнүн формуласы.",
+              "ru": "Круглый шар и рядом формула его объёма.",
+              "en": "A round sphere with its volume formula beside it."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "math.sphere-volume"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "math.sphere"
+          },
+          {
+            "kind": "concept",
+            "key": "math.cylinder"
+          },
+          {
+            "kind": "concept",
+            "key": "math.cone"
+          }
+        ],
+        "rows": [
+          "radius",
+          "volume",
+          "area",
+          "formula"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "math.q.sphere-formula",
+          "math.q.solids-revolution",
+          "math.q.revolution-match",
+          "math.q.find-radius",
+          "math.q.sphere-r3",
+          "math.q.cylinder-r2h5",
+          "math.q.cone-third"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "e",
+          "title": {
+            "ky": "Боз үйдүн геометриясы",
+            "ru": "Геометрия юрты",
+            "en": "Yurt geometry"
+          },
+          "text": {
+            "ky": "Боз үйдүн керегеси – цилиндр, уук менен түндүк – конуска жакын чатыр. Мындай форма шамалга туруштук берип, жылуулукту жакшы сактайт.",
+            "ru": "Кереге юрты – цилиндр, уук и тюндюк образуют крышу, близкую к конусу. Такая форма устойчива к ветру и хорошо держит тепло.",
+            "en": "A yurt's kerege is a cylinder and the uuk with the tunduk make a roughly conical roof – a shape that stands up to wind and keeps heat in."
+          }
+        },
+        {
+          "field": "s",
+          "title": {
+            "ky": "Тамчылар жана планеталар",
+            "ru": "Капли и планеты",
+            "en": "Drops and planets"
+          },
+          "text": {
+            "ky": "Суу тамчылары, көбүкчөлөр жана планеталар дээрлик шар формасында – шар бир эле бет аянтында эң көп көлөмдү камтыйт.",
+            "ru": "Капли, пузыри и планеты почти шарообразны: шар вмещает наибольший объём при данной площади поверхности.",
+            "en": "Drops, bubbles and planets are nearly spherical: a sphere holds the most volume for a given surface area."
+          }
+        },
+        {
+          "field": "t",
+          "title": {
+            "ky": "Цистерналар",
+            "ru": "Цистерны",
+            "en": "Tankers"
+          },
+          "text": {
+            "ky": "Сүт жана май ташуучу цистерналар цилиндр формасында: көлөмүн V = πr²h менен оңой эсептесе болот, басымга да бекем.",
+            "ru": "Цистерны для молока и топлива цилиндрические: объём легко считать по V = πr²h, и они прочны под давлением.",
+            "en": "Milk and fuel tankers are cylinders: their volume is easy to find with V = πr²h, and they withstand pressure well."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Апельсин жана банка",
+            "ru": "Апельсин в банке",
+            "en": "An orange in a jar"
+          },
+          "text": {
+            "ky": "Апельсин так баткан банкага суу куйсаң, апельсин банканын болжол менен ⅔ көлөмүн ээлейт.",
+            "ru": "Если апельсин впритык помещается в банку, он занимает примерно ⅔ её объёма.",
+            "en": "An orange that fits snugly in a jar takes up about ⅔ of the jar's volume."
+          }
+        },
+        {
+          "title": {
+            "ky": "Муз каймак рогу жана стакан",
+            "ru": "Рожок и стакан",
+            "en": "A cone and a cup"
+          },
+          "text": {
+            "ky": "Бирдей кенен жана бийик рог менен стаканды салыштырсаң, стаканга үч рог муз каймак батат.",
+            "ru": "Если рожок и стакан одной ширины и высоты, в стакан поместится три рожка мороженого.",
+            "en": "If a cone and a cup are the same width and height, the cup holds three cones' worth of ice cream."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "math.q.sphere-formula",
+      "type": "single",
+      "prompt": {
+        "ky": "Шардын көлөмүнүн формуласы кайсы?",
+        "ru": "Какая формула объёма шара?",
+        "en": "Which is the formula for the volume of a sphere?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "V = ⁴⁄₃πr³",
+            "ru": "V = ⁴⁄₃πr³",
+            "en": "V = ⁴⁄₃πr³"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "V = 4πr²",
+            "ru": "V = 4πr²",
+            "en": "V = 4πr²"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "V = πr²h",
+            "ru": "V = πr²h",
+            "en": "V = πr²h"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "V = ⁴⁄₃πr³; 4πr² – бетинин аянты.",
+        "ru": "V = ⁴⁄₃πr³; 4πr² – площадь поверхности.",
+        "en": "V = ⁴⁄₃πr³; 4πr² is the surface area."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o2"
+      ],
+      "misconceptionKey": "math.m.sphere-circle",
+      "difficulty": 2
+    },
+    {
+      "key": "math.q.solids-revolution",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Булардын кайсылары айлануу телолору?",
+        "ru": "Какие из этих тел – тела вращения?",
+        "en": "Which of these are solids of revolution?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Шар",
+            "ru": "Шар",
+            "en": "Sphere"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Цилиндр",
+            "ru": "Цилиндр",
+            "en": "Cylinder"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Конус",
+            "ru": "Конус",
+            "en": "Cone"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Куб",
+            "ru": "Куб",
+            "en": "Cube"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Шар, цилиндр жана конус фигураны октун айланасында айлантуудан алынат; кубду мындай алууга болбойт.",
+        "ru": "Шар, цилиндр и конус получаются вращением фигуры вокруг оси; куб так не получить.",
+        "en": "The sphere, cylinder and cone come from spinning a shape about an axis; a cube cannot be made that way."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "math.q.revolution-match",
+      "type": "match",
+      "prompt": {
+        "ky": "Телону көлөмүнүн формуласы менен дал келтир.",
+        "ru": "Сопоставь тело и формулу его объёма.",
+        "en": "Match each solid to its volume formula."
+      },
+      "pairs": [
+        {
+          "key": "cylinder",
+          "left": {
+            "ky": "Цилиндр",
+            "ru": "Цилиндр",
+            "en": "Cylinder"
+          },
+          "right": {
+            "ky": "πr²h",
+            "ru": "πr²h",
+            "en": "πr²h"
+          }
+        },
+        {
+          "key": "cone",
+          "left": {
+            "ky": "Конус",
+            "ru": "Конус",
+            "en": "Cone"
+          },
+          "right": {
+            "ky": "⅓πr²h",
+            "ru": "⅓πr²h",
+            "en": "⅓πr²h"
+          }
+        },
+        {
+          "key": "sphere",
+          "left": {
+            "ky": "Шар",
+            "ru": "Шар",
+            "en": "Sphere"
+          },
+          "right": {
+            "ky": "⁴⁄₃πr³",
+            "ru": "⁴⁄₃πr³",
+            "en": "⁴⁄₃πr³"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Цилиндр: πr²h, конус: ⅓πr²h, шар: ⁴⁄₃πr³.",
+        "ru": "Цилиндр: πr²h, конус: ⅓πr²h, шар: ⁴⁄₃πr³.",
+        "en": "Cylinder: πr²h; cone: ⅓πr²h; sphere: ⁴⁄₃πr³."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o2"
+      ],
+      "misconceptionKey": "math.m.cone-half",
+      "difficulty": 2
+    },
+    {
+      "key": "math.q.find-radius",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден радиусту тап.",
+        "ru": "Найди на модели радиус.",
+        "en": "Find a radius on the model."
+      },
+      "targetConceptKey": "math.radius",
+      "explanation": {
+        "ky": "Радиус – борбордон бетке чейинки кесинди.",
+        "ru": "Радиус – отрезок от центра до поверхности.",
+        "en": "A radius is the segment from the centre to the surface."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o2"
+      ],
+      "misconceptionKey": "math.m.radius-diameter",
+      "difficulty": 1
+    },
+    {
+      "key": "math.q.sphere-r3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Радиусу 3 см шардын көлөмү канча см³? (π ≈ 3,14)",
+        "ru": "Каков объём шара радиусом 3 см, см³? (π ≈ 3,14)",
+        "en": "What is the volume of a sphere of radius 3 cm in cm³? (π ≈ 3.14)"
+      },
+      "answer": 113.1,
+      "tolerance": 0.5,
+      "unit": "cm³",
+      "explanation": {
+        "ky": "V = ⁴⁄₃ · 3,14 · 27 ≈ 113 см³.",
+        "ru": "V = ⁴⁄₃ · 3,14 · 27 ≈ 113 см³.",
+        "en": "V = ⁴⁄₃ × 3.14 × 27 ≈ 113 cm³."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "math.q.cylinder-r2h5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Цилиндрдин радиусу 2 см, бийиктиги 5 см. Көлөмү канча см³? (π ≈ 3,14)",
+        "ru": "Радиус цилиндра 2 см, высота 5 см. Каков объём, см³? (π ≈ 3,14)",
+        "en": "A cylinder has radius 2 cm and height 5 cm. What is its volume in cm³? (π ≈ 3.14)"
+      },
+      "answer": 62.8,
+      "tolerance": 0.3,
+      "unit": "cm³",
+      "explanation": {
+        "ky": "V = πr²h = 3,14 · 4 · 5 ≈ 62,8 см³.",
+        "ru": "V = πr²h = 3,14 · 4 · 5 ≈ 62,8 см³.",
+        "en": "V = πr²h = 3.14 × 4 × 5 ≈ 62.8 cm³."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o2"
+      ],
+      "misconceptionKey": "math.m.cylinder-diameter",
+      "difficulty": 3
+    },
+    {
+      "key": "math.q.cone-third",
+      "type": "single",
+      "prompt": {
+        "ky": "Конус менен цилиндрдин негизи жана бийиктиги бирдей. Конустун көлөмү цилиндрдин канча бөлүгү?",
+        "ru": "У конуса и цилиндра одинаковые основание и высота. Какую часть объёма цилиндра составляет конус?",
+        "en": "A cone and a cylinder share the same base and height. What fraction of the cylinder is the cone?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "½",
+            "ru": "½",
+            "en": "½"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "⅓",
+            "ru": "⅓",
+            "en": "⅓"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "⅔",
+            "ru": "⅔",
+            "en": "⅔"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "V конус = ⅓πr²h – цилиндрдин үчтөн бири.",
+        "ru": "V конуса = ⅓πr²h – треть цилиндра.",
+        "en": "V cone = ⅓πr²h – one third of the cylinder."
+      },
+      "objectiveKeys": [
+        "math.g10.solids.o2"
+      ],
+      "misconceptionKey": "math.m.cone-half",
+      "difficulty": 2
+    }
+  ]
+}

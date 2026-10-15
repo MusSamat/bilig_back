@@ -1,0 +1,239 @@
+{
+  "topic": {
+    "key": "water-cycle",
+    "unitKey": "geo.g6.hydrosphere",
+    "status": "published",
+    "title": { "ky": "Табияттагы суунун айлануусу", "ru": "Круговорот воды в природе", "en": "The water cycle" },
+    "classification": { "ky": "Гидросфера", "ru": "Гидросфера", "en": "Hydrosphere" },
+    "description": {
+      "ky": "Суу дайыма кыймылда: Ысык-Көлдөн бууланып, Тянь-Шандын үстүндө булут болуп, кар-жаан болуп түшөт, мөңгүлөрдө топтолот, анан дарыялар жана жер астындагы суулар аркылуу кайра көлгө кайтат.",
+      "ru": "Вода всё время в движении: испаряется с Иссык-Куля, собирается в облака над Тянь-Шанем, выпадает дождём и снегом, копится в ледниках и по рекам и подземным водам возвращается в озеро.",
+      "en": "Water is always on the move: it evaporates from Issyk-Kul, forms clouds over the Tien Shan, falls as rain and snow, is stored in glaciers and returns to the lake through rivers and groundwater."
+    },
+    "goal": {
+      "ky": "Суунун айлануусунун этаптарын атап, ар бир этапта суунун абалы кантип өзгөрөрүн моделден көрсөтүү (GEO-6.4.1).",
+      "ru": "Назвать этапы круговорота воды и показать на модели, как меняется состояние воды на каждом этапе (GEO-6.4.1).",
+      "en": "Name the stages of the water cycle and show on the model how the state of water changes at each stage (GEO-6.4.1)."
+    },
+    "objectiveKeys": ["geo.g6.hydrosphere.o1"],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "gltf",
+      "asset": "models/water-cycle.glb",
+      "camera": { "position": [0, 3, 8], "target": [0, 0.5, 0], "fov": 45 },
+      "modes": ["whole", "section"]
+    },
+    "conceptKeys": ["geo.atmosphere", "geo.cloud", "geo.glacier", "geo.river", "geo.lake", "geo.groundwater"],
+    "overrides": {
+      "geo.atmosphere": { "nodes": ["Atmosphere"] },
+      "geo.cloud": { "anchor": [-0.5, 2.6, 0], "nodes": ["Cloud_*"] },
+      "geo.glacier": { "anchor": [-2.2, 1.8, -0.8], "nodes": ["Glacier*"] },
+      "geo.river": { "anchor": [-0.8, 0.4, 0.6], "nodes": ["River_*"] },
+      "geo.lake": { "anchor": [1.8, 0, 0.8], "nodes": ["Lake"] },
+      "geo.groundwater": { "anchor": [0.4, -0.8, 0.4], "nodes": ["Aquifer*"] }
+    },
+    "samples": [
+      { "key": "water-cycle", "title": { "ky": "Суунун айлануусу", "ru": "Круговорот воды", "en": "Water cycle" }, "classification": { "ky": "Диорама", "ru": "Диорама", "en": "Diorama" }, "thumb": "thumbs/water-cycle.webp" },
+      { "key": "issyk-kul", "title": { "ky": "Ысык-Көл", "ru": "Иссык-Куль", "en": "Issyk-Kul" }, "classification": { "ky": "Туюк тоо көлү", "ru": "Бессточное горное озеро", "en": "Closed mountain lake" }, "thumb": "thumbs/issyk-kul.webp" },
+      { "key": "inylchek", "title": { "ky": "Эңилчек мөңгүсү", "ru": "Ледник Иныльчек", "en": "Inylchek glacier" }, "classification": { "ky": "Капчыгай мөңгүсү", "ru": "Долинный ледник", "en": "Valley glacier" }, "thumb": "thumbs/inylchek.webp" }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": { "position": [0, 3, 8], "target": [0, 0.5, 0] },
+            "modes": { "view": "whole" },
+            "text": { "ky": "Бул – Ысык-Көл ойдуңунун модели: тоолор, мөңгүлөр, дарыялар жана көл. Суу алардын ортосунда тынымсыз айланат.", "ru": "Это модель Иссык-Кульской котловины: горы, ледники, реки и озеро. Вода непрерывно движется между ними.", "en": "This is a model of the Issyk-Kul basin: mountains, glaciers, rivers and the lake. Water keeps moving between them." },
+            "teacherNote": { "ky": "Окуучулардан сураңыз: бүгүн ичкен сууңар мурун кайда болгон?", "ru": "Спросите учеников: где была вода, которую вы сегодня пили, раньше?", "en": "Ask the class: where was the water you drank today before?" },
+            "altText": { "ky": "Кар баскан тоолор, мөңгү, дарыя жана көк көл.", "ru": "Заснеженные горы, ледник, река и синее озеро.", "en": "Snowy mountains, a glacier, a river and a blue lake." }
+          },
+          {
+            "key": "evaporation",
+            "focus": "geo.lake",
+            "camera": { "position": [3, 1.2, 3.5], "target": [1.8, 0, 0.8] },
+            "text": { "ky": "Күн көлдүн бетин жылытат, суу көрүнбөгөн буу болуп абага көтөрүлөт. Туздар көлдө калат – ошондуктан Ысык-Көл бир аз туздуу.", "ru": "Солнце нагревает поверхность озера, и вода невидимым паром уходит в воздух. Соли остаются – поэтому Иссык-Куль слабосолёный.", "en": "The Sun warms the lake and water rises as invisible vapour. The salts stay behind – that is why Issyk-Kul is slightly salty." },
+            "teacherNote": { "ky": "Ысык-Көлгө 80ден ашык дарыя куят, бирок бир да дарыя агып чыкпайт – суу кайда кетет? деп сураңыз.", "ru": "Спросите: в Иссык-Куль впадает больше 80 рек и ни одна не вытекает – куда уходит вода?", "en": "Ask: more than 80 rivers flow into Issyk-Kul and none flow out – where does the water go?" },
+            "altText": { "ky": "Көлдүн бетинен өйдө көтөрүлгөн буунун жебелери.", "ru": "Стрелки пара над поверхностью озера.", "en": "Vapour arrows rising from the lake." }
+          },
+          {
+            "key": "clouds",
+            "focus": "geo.cloud",
+            "camera": { "position": [-0.5, 3.5, 4], "target": [-0.5, 2.6, 0] },
+            "text": { "ky": "Бийиктикте буу муздап, майда тамчыларга айланат – конденсация. Булуттар ушинтип пайда болот.", "ru": "На высоте пар остывает и превращается в мельчайшие капли – это конденсация. Так появляются облака.", "en": "Higher up, the vapour cools into tiny droplets – condensation. That is how clouds form." },
+            "teacherNote": { "ky": "Муздак стакандын сыртындагы тамчыларды мисал келтириңиз.", "ru": "Приведите пример капель на холодном стакане.", "en": "Use the example of drops on a cold glass." },
+            "altText": { "ky": "Тоолордун үстүндө ак булуттар.", "ru": "Белые облака над горами.", "en": "White clouds above the mountains." }
+          },
+          {
+            "key": "glacier",
+            "focus": "geo.glacier",
+            "camera": { "position": [-3.4, 2.6, 1.4], "target": [-2.2, 1.8, -0.8] },
+            "text": { "ky": "Бийик тоодо жаан-чачын кар болуп түшөт. Кар жылдар бою топтолуп, мөңгүгө айланат – Кыргызстанда 8000ге жакын мөңгү бар.", "ru": "Высоко в горах осадки выпадают снегом. За годы снег превращается в ледник – в Кыргызстане их около 8000.", "en": "High in the mountains, precipitation falls as snow, which over the years becomes glacier ice – Kyrgyzstan has about 8000 glaciers." },
+            "teacherNote": { "ky": "Мөңгүлөрдүн кыскарышы дарыяларга кандай таасир этерин талкуулаңыз.", "ru": "Обсудите, как сокращение ледников повлияет на реки.", "en": "Discuss how shrinking glaciers will affect rivers." },
+            "altText": { "ky": "Тоо капчыгайындагы ак-көк мөңгү.", "ru": "Бело-голубой ледник в горной долине.", "en": "A white-blue glacier in a mountain valley." }
+          },
+          {
+            "key": "river",
+            "focus": "geo.river",
+            "camera": { "position": [-0.8, 1.5, 3], "target": [-0.8, 0.4, 0.6] },
+            "text": { "ky": "Жайында мөңгү эрип, суусу дарыяларга агат. Нарын дарыясынын суусу Токтогул ГЭСинде электр берет.", "ru": "Летом ледники тают, и вода стекает в реки. Вода Нарына даёт электричество на Токтогульской ГЭС.", "en": "In summer the glaciers melt and the water runs into rivers. Naryn water makes electricity at the Toktogul hydropower plant." },
+            "teacherNote": { "ky": "Дарыяларды картадан көрсөтүңүз: Нарын, Чүй, Талас.", "ru": "Покажите на карте реки: Нарын, Чу, Талас.", "en": "Show the rivers on a map: Naryn, Chüy, Talas." },
+            "altText": { "ky": "Мөңгүдөн өрөөнгө аккан дарыя.", "ru": "Река стекает от ледника в долину.", "en": "A river running from the glacier down into the valley." }
+          },
+          {
+            "key": "groundwater",
+            "focus": "geo.groundwater",
+            "camera": { "position": [0.4, 0, 3], "target": [0.4, -0.8, 0.4] },
+            "modes": { "view": "section" },
+            "text": { "ky": "Суунун бир бөлүгү топуракка сиңип, жер астындагы сууга кошулат. Ал булак болуп чыгып, кайра көлгө жетет – айлануу жабылат.", "ru": "Часть воды просачивается в почву и пополняет подземные воды. Они выходят родниками и снова достигают озера – круговорот замыкается.", "en": "Some water soaks into the ground and joins the groundwater, which comes out as springs and reaches the lake again – the cycle is closed." },
+            "teacherNote": { "ky": "«Суунун айлануусу» процессин ачып, бардык этаптарды кайталаңыз.", "ru": "Откройте процесс «Круговорот воды» и повторите все этапы.", "en": "Open the «Water cycle» process and review all the stages." },
+            "altText": { "ky": "Жердин кесилиши: топурак астындагы суулуу катмар.", "ru": "Разрез грунта: водоносный слой под почвой.", "en": "A ground cross-section showing a water-bearing layer under the soil." }
+          }
+        ]
+      },
+      "processKeys": ["geo.water-cycle"],
+      "comparison": {
+        "columns": [
+          { "kind": "concept", "key": "geo.cloud" },
+          { "kind": "concept", "key": "geo.glacier" },
+          { "kind": "concept", "key": "geo.river" },
+          { "kind": "concept", "key": "geo.groundwater" }
+        ],
+        "rows": ["state", "location"],
+        "manual": [
+          { "column": "geo.river", "row": "location", "value": { "ky": "Тоо өрөөндөрү жана түздүктөр", "ru": "Горные долины и равнины", "en": "Mountain valleys and plains" } }
+        ]
+      },
+      "quiz": {
+        "itemKeys": ["geo.q.condensation", "geo.q.stage-order", "geo.q.match-stages", "geo.q.find-glacier", "geo.q.lake-depth", "geo.q.lake-salty", "geo.q.cloud-made-of"],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "e",
+          "title": { "ky": "Токтогул суу сактагычы", "ru": "Токтогульское водохранилище", "en": "Toktogul reservoir" },
+          "text": { "ky": "Инженерлер мөңгүлөрдөн келген сууну Токтогулда топтоп, кышында электр, жайында сугат үчүн акырындап чыгарышат.", "ru": "Инженеры накапливают воду ледников в Токтогуле и выпускают её постепенно: зимой – для электричества, летом – для полива.", "en": "Engineers store glacier water at Toktogul and release it gradually: in winter for electricity, in summer for irrigation." }
+        },
+        {
+          "field": "t",
+          "title": { "ky": "Тамчылатып сугаруу", "ru": "Капельное орошение", "en": "Drip irrigation" },
+          "text": { "ky": "Баткендин өрүк бактарында тамчылатып сугаруу сууну тамырга гана жеткирип, бууланууну азайтат.", "ru": "В абрикосовых садах Баткена капельное орошение подаёт воду прямо к корням и уменьшает испарение.", "en": "In Batken's apricot orchards, drip irrigation delivers water straight to the roots and cuts evaporation." }
+        },
+        {
+          "field": "m",
+          "title": { "ky": "Суу балансы", "ru": "Водный баланс", "en": "Water balance" },
+          "text": { "ky": "Туюк көл үчүн: кирген суу (дарыялар + жаан) = бууланган суу. Эгер бууланыш көбөйсө, көлдүн деңгээли түшөт.", "ru": "Для бессточного озера: приток (реки + осадки) = испарение. Если испарение растёт, уровень озера падает.", "en": "For a closed lake: inflow (rivers + rain) = evaporation. If evaporation grows, the lake level drops." }
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Казандын капкагы", "ru": "Крышка кастрюли", "en": "A saucepan lid" },
+          "text": { "ky": "Казан кайнаганда капкагынын ички бетине тамчылар чогулуп, кайра ылдый тамат – бул кичинекей суунун айлануусу.", "ru": "Когда кастрюля кипит, на крышке собираются капли и капают обратно – это маленький круговорот воды.", "en": "When a pot boils, drops collect on the lid and drip back down – a tiny water cycle." }
+        },
+        {
+          "title": { "ky": "Ысык күндөгү кийим", "ru": "Бельё в жаркий день", "en": "Washing on a hot day" },
+          "text": { "ky": "Жуулган кийим күндө кургайт: суу абага кетет, кийин ал булут болуп, кайра жаан болуп түшөт.", "ru": "Бельё сохнет на солнце: вода уходит в воздух, потом становится облаком и снова выпадает дождём.", "en": "Washing dries in the sun: the water goes into the air, later becomes a cloud and falls again as rain." }
+        }
+      ]
+    },
+    "i18n": { "ky": "machine", "ru": "reviewed", "en": "draft" }
+  },
+  "items": [
+    {
+      "key": "geo.q.condensation",
+      "type": "single",
+      "prompt": { "ky": "Суу буусунун тамчыларга айланышы кандай аталат?", "ru": "Как называется превращение водяного пара в капли?", "en": "What is it called when water vapour turns into droplets?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Бууланыш", "ru": "Испарение", "en": "Evaporation" } },
+        { "key": "b", "text": { "ky": "Конденсация", "ru": "Конденсация", "en": "Condensation" } },
+        { "key": "c", "text": { "ky": "Инфильтрация", "ru": "Просачивание", "en": "Infiltration" } }
+      ],
+      "answer": "b",
+      "explanation": { "ky": "Конденсацияда буу муздап суюк тамчыга айланат – булуттар ушинтип пайда болот.", "ru": "При конденсации пар охлаждается и становится жидкими каплями – так рождаются облака.", "en": "In condensation, vapour cools into liquid droplets – that is how clouds form." },
+      "objectiveKeys": ["geo.g6.hydrosphere.o1"],
+      "difficulty": 1
+    },
+    {
+      "key": "geo.q.stage-order",
+      "type": "multiple",
+      "prompt": { "ky": "Төмөнкүлөрдүн кайсылары суунун айлануусунун этаптары?", "ru": "Что из этого – этапы круговорота воды?", "en": "Which of these are stages of the water cycle?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Бууланыш", "ru": "Испарение", "en": "Evaporation" } },
+        { "key": "b", "text": { "ky": "Жаан-чачын", "ru": "Осадки", "en": "Precipitation" } },
+        { "key": "c", "text": { "ky": "Фотосинтез", "ru": "Фотосинтез", "en": "Photosynthesis" } },
+        { "key": "d", "text": { "ky": "Жер бети менен агуу", "ru": "Поверхностный сток", "en": "Run-off" } }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": { "ky": "Фотосинтез – өсүмдүктөрдүн процесси; ал суу колдонот, бирок айлануунун этабы эмес.", "ru": "Фотосинтез – процесс в растениях; он использует воду, но не является этапом круговорота.", "en": "Photosynthesis is a plant process; it uses water but is not a stage of the water cycle." },
+      "objectiveKeys": ["geo.g6.hydrosphere.o1"],
+      "difficulty": 2
+    },
+    {
+      "key": "geo.q.match-stages",
+      "type": "match",
+      "prompt": { "ky": "Этапты суунун абалынын өзгөрүшү менен дал келтир.", "ru": "Сопоставь этап и изменение воды.", "en": "Match each stage to what happens to the water." },
+      "pairs": [
+        { "key": "evap", "left": { "ky": "Бууланыш", "ru": "Испарение", "en": "Evaporation" }, "right": { "ky": "Суюктук → буу", "ru": "Жидкость → пар", "en": "Liquid → vapour" } },
+        { "key": "cond", "left": { "ky": "Конденсация", "ru": "Конденсация", "en": "Condensation" }, "right": { "ky": "Буу → тамчылар", "ru": "Пар → капли", "en": "Vapour → droplets" } },
+        { "key": "glac", "left": { "ky": "Мөңгүдө топтолуу", "ru": "Накопление в леднике", "en": "Glacier storage" }, "right": { "ky": "Кар → муз", "ru": "Снег → лёд", "en": "Snow → ice" } },
+        { "key": "melt", "left": { "ky": "Эрүү жана агуу", "ru": "Таяние и сток", "en": "Melting and run-off" }, "right": { "ky": "Муз → дарыя суусу", "ru": "Лёд → речная вода", "en": "Ice → river water" } }
+      ],
+      "explanation": { "ky": "Айлануу учурунда суу үч абалда тең болот: суюк, газ (буу) жана катуу (муз).", "ru": "В круговороте вода бывает во всех трёх состояниях: жидком, газообразном (пар) и твёрдом (лёд).", "en": "In the cycle, water takes all three states: liquid, gas (vapour) and solid (ice)." },
+      "objectiveKeys": ["geo.g6.hydrosphere.o1"],
+      "difficulty": 2
+    },
+    {
+      "key": "geo.q.find-glacier",
+      "type": "find-on-model",
+      "prompt": { "ky": "Моделден тоодогу таза суунун кампасын – мөңгүнү тап.", "ru": "Найди на модели горный запас пресной воды – ледник.", "en": "Find the mountain store of fresh water – the glacier – on the model." },
+      "targetConceptKey": "geo.glacier",
+      "explanation": { "ky": "Мөңгү бийик тоонун капчыгайында жайгашкан; анын эриген суусу дарыяларды толтурат.", "ru": "Ледник лежит в высокогорной долине; его талая вода наполняет реки.", "en": "The glacier lies in a high mountain valley; its meltwater fills the rivers." },
+      "objectiveKeys": ["geo.g6.hydrosphere.o1"],
+      "misconceptionKey": "geo.m.glacier-still",
+      "difficulty": 1
+    },
+    {
+      "key": "geo.q.lake-depth",
+      "type": "numeric",
+      "prompt": { "ky": "Ысык-Көлдүн көлөмү ≈1738 км³, аянты 6236 км². Анын орточо тереңдиги канча метр? (h = V / S)", "ru": "Объём Иссык-Куля ≈1738 км³, площадь 6236 км². Какова его средняя глубина в метрах? (h = V / S)", "en": "Issyk-Kul holds ≈1738 km³ of water over 6236 km². What is its average depth in metres? (h = V / S)" },
+      "answer": 279,
+      "tolerance": 10,
+      "unit": "m",
+      "explanation": { "ky": "1738 / 6236 ≈ 0,279 км ≈ 279 м. Эң терең жери 668 м.", "ru": "1738 / 6236 ≈ 0,279 км ≈ 279 м. Наибольшая глубина – 668 м.", "en": "1738 / 6236 ≈ 0.279 km ≈ 279 m. The greatest depth is 668 m." },
+      "objectiveKeys": ["geo.g6.hydrosphere.o1"],
+      "difficulty": 4
+    },
+    {
+      "key": "geo.q.lake-salty",
+      "type": "single",
+      "prompt": { "ky": "Эмне үчүн Ысык-Көлдүн суусу бир аз туздуу?", "ru": "Почему вода Иссык-Куля слабосолёная?", "en": "Why is the water of Issyk-Kul slightly salty?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Андан дарыя агып чыкпайт, суу бууланып, туз калат", "ru": "Из него не вытекают реки: вода испаряется, а соли остаются", "en": "No river flows out: water evaporates and the salts stay" } },
+        { "key": "b", "text": { "ky": "Ага деңиз суусу куят", "ru": "В него впадает морская вода", "en": "Sea water flows into it" } },
+        { "key": "c", "text": { "ky": "Мөңгүлөр туздуу", "ru": "Ледники солёные", "en": "The glaciers are salty" } }
+      ],
+      "answer": "a",
+      "explanation": { "ky": "Дарыялар аз-аздан туз алып келет, бууланышта туз көлдө калып, топтолот.", "ru": "Реки приносят понемногу солей, а при испарении соли остаются в озере и накапливаются.", "en": "Rivers bring in small amounts of salt; when water evaporates the salt stays and builds up." },
+      "objectiveKeys": ["geo.g6.hydrosphere.o1"],
+      "misconceptionKey": "geo.m.lake-fresh",
+      "difficulty": 3
+    },
+    {
+      "key": "geo.q.cloud-made-of",
+      "type": "single",
+      "prompt": { "ky": "Булут эмнеден турат?", "ru": "Из чего состоит облако?", "en": "What is a cloud made of?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Көрүнбөгөн суу буусунан", "ru": "Из невидимого водяного пара", "en": "Invisible water vapour" } },
+        { "key": "b", "text": { "ky": "Суунун майда тамчыларынан жана муз кристаллдарынан", "ru": "Из мельчайших капель воды и кристалликов льда", "en": "Tiny water droplets and ice crystals" } },
+        { "key": "c", "text": { "ky": "Түтүндөн", "ru": "Из дыма", "en": "Smoke" } }
+      ],
+      "answer": "b",
+      "explanation": { "ky": "Буу көрүнбөйт; биз көргөн булут – буу муздап пайда болгон тамчылар.", "ru": "Пар невидим; облако, которое мы видим, – это капли, образовавшиеся из остывшего пара.", "en": "Vapour is invisible; the cloud we see is droplets made from cooled vapour." },
+      "objectiveKeys": ["geo.g6.hydrosphere.o1"],
+      "misconceptionKey": "geo.m.cloud-vapour",
+      "difficulty": 2
+    }
+  ]
+}

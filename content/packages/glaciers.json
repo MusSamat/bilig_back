@@ -1,0 +1,2621 @@
+{
+  "manifest": {
+    "topicKey": "glaciers",
+    "version": "1.0.0",
+    "hash": "d57292c6d55e37560751e9dc612da25f7897f4a0210912fecf90a25a6e6467f3",
+    "files": [
+      {
+        "path": "models/glaciers.glb",
+        "hash": "ce4136117fb25f8dc876dbf7bbdb584b889977e62219fabe6d5d14bcf755b165",
+        "size": 0
+      },
+      {
+        "path": "thumbs/glaciers.webp",
+        "hash": "3a11dd07feec1f592f831af3b21670ff02a40aa0328984764163320ccae20ce0",
+        "size": 0
+      },
+      {
+        "path": "thumbs/inylchek.webp",
+        "hash": "6167841d852ac1e1df9fc0aeb3fa7ba36f4d6075bfadaa0f1dfcb9dc479d7fab",
+        "size": 0
+      },
+      {
+        "path": "thumbs/water-cycle.webp",
+        "hash": "7222c8d8f4c57014d04136d18e4070e1d28abfda8c49905b9c22d028287821bc",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "geo",
+    "icon": "globe",
+    "hue": 165,
+    "group": "earth-space",
+    "order": 5,
+    "status": "live",
+    "title": {
+      "ky": "География",
+      "ru": "География",
+      "en": "Geography"
+    }
+  },
+  "course": {
+    "key": "geo.g6",
+    "subjectKey": "geo",
+    "grade": 6,
+    "curriculum": "kg-2024",
+    "title": {
+      "ky": "География, 6-класс",
+      "ru": "География, 6 класс",
+      "en": "Geography, grade 6"
+    }
+  },
+  "unit": {
+    "key": "geo.g6.hydrosphere",
+    "courseKey": "geo.g6",
+    "order": 2,
+    "title": {
+      "ky": "Гидросфера",
+      "ru": "Гидросфера",
+      "en": "Hydrosphere"
+    }
+  },
+  "objectives": [
+    {
+      "key": "geo.g6.hydrosphere.o1",
+      "code": "GEO-6.4.1",
+      "unitKey": "geo.g6.hydrosphere",
+      "text": {
+        "ky": "Табияттагы суунун айлануусун жана анын этаптарын сүрөттөө.",
+        "ru": "Описывать круговорот воды в природе и его этапы.",
+        "en": "Describe the water cycle and its stages."
+      }
+    }
+  ],
+  "topic": {
+    "key": "glaciers",
+    "unitKey": "geo.g6.hydrosphere",
+    "status": "published",
+    "title": {
+      "ky": "Тянь-Шандын мөңгүлөрү",
+      "ru": "Ледники Тянь-Шаня",
+      "en": "Glaciers of the Tien Shan"
+    },
+    "classification": {
+      "ky": "Тоо мөңгүлөрү",
+      "ru": "Горные ледники",
+      "en": "Mountain glaciers"
+    },
+    "description": {
+      "ky": "Мөңгү – көп жылдар бою топтолгон кардан пайда болгон, ылдый жай агуучу муз. Тянь-Шандын мөңгүлөрү Кыргызстандын дарыяларын суу менен камсыздайт, бирок акыркы ондогон жылдарда алар кыскарып жатат.",
+      "ru": "Ледник – медленно текущий вниз лёд, образованный из снега, копившегося много лет. Ледники Тянь-Шаня питают реки Кыргызстана, но в последние десятилетия они сокращаются.",
+      "en": "A glacier is slowly flowing ice formed from snow that built up over many years. The Tien Shan glaciers feed Kyrgyzstan's rivers, but they have been shrinking for decades."
+    },
+    "goal": {
+      "ky": "Мөңгүнүн топтолуу жана эрүү зоналарын моделден таап, мөңгү суунун айлануусунда кандай роль ойноорун түшүндүрүү (GEO-6.4.1).",
+      "ru": "Найти на модели области питания и абляции ледника и объяснить его роль в круговороте воды (GEO-6.4.1).",
+      "en": "Find the accumulation and ablation zones on the model and explain the glacier's role in the water cycle (GEO-6.4.1)."
+    },
+    "objectiveKeys": [
+      "geo.g6.hydrosphere.o1"
+    ],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "gltf",
+      "asset": "models/glaciers.glb",
+      "camera": {
+        "position": [
+          0,
+          3,
+          8
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "whole",
+        "section"
+      ]
+    },
+    "conceptKeys": [
+      "geo.glacier",
+      "geo.accumulation-zone",
+      "geo.ablation-zone",
+      "geo.moraine",
+      "geo.meltwater",
+      "geo.river"
+    ],
+    "overrides": {
+      "geo.glacier": {
+        "nodes": [
+          "Glacier"
+        ]
+      },
+      "geo.accumulation-zone": {
+        "anchor": [
+          -1.8,
+          2.6,
+          -0.6
+        ],
+        "nodes": [
+          "Zone_Accumulation"
+        ]
+      },
+      "geo.ablation-zone": {
+        "anchor": [
+          0.8,
+          1.2,
+          0.4
+        ],
+        "nodes": [
+          "Zone_Ablation"
+        ]
+      },
+      "geo.moraine": {
+        "anchor": [
+          1.9,
+          0.5,
+          1.1
+        ],
+        "nodes": [
+          "Moraine_*"
+        ]
+      },
+      "geo.meltwater": {
+        "anchor": [
+          2.4,
+          0.2,
+          1.6
+        ],
+        "nodes": [
+          "Melt_*"
+        ]
+      },
+      "geo.river": {
+        "anchor": [
+          3.2,
+          -0.1,
+          2.4
+        ],
+        "nodes": [
+          "River_*"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "glaciers",
+        "title": {
+          "ky": "Тоо мөңгүсү",
+          "ru": "Горный ледник",
+          "en": "Mountain glacier"
+        },
+        "classification": {
+          "ky": "Капчыгай мөңгүсү",
+          "ru": "Долинный ледник",
+          "en": "Valley glacier"
+        },
+        "thumb": "thumbs/glaciers.webp"
+      },
+      {
+        "key": "inylchek",
+        "title": {
+          "ky": "Эңилчек мөңгүсү",
+          "ru": "Ледник Иныльчек",
+          "en": "Inylchek glacier"
+        },
+        "classification": {
+          "ky": "≈60 км, Тянь-Шандагы эң ирилердин бири",
+          "ru": "≈60 км, один из крупнейших в Тянь-Шане",
+          "en": "≈60 km, among the largest in the Tien Shan"
+        },
+        "thumb": "thumbs/inylchek.webp"
+      },
+      {
+        "key": "water-cycle",
+        "title": {
+          "ky": "Суунун айлануусу",
+          "ru": "Круговорот воды",
+          "en": "Water cycle"
+        },
+        "classification": {
+          "ky": "Гидросфера",
+          "ru": "Гидросфера",
+          "en": "Hydrosphere"
+        },
+        "thumb": "thumbs/water-cycle.webp",
+        "topicKey": "water-cycle"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                3,
+                8
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "view": "whole"
+            },
+            "text": {
+              "ky": "Бул – Тянь-Шандагы капчыгай мөңгүсү. Ал жогорудан ылдый жай аккан муз дарыясына окшош.",
+              "ru": "Это долинный ледник Тянь-Шаня. Он похож на медленную ледяную реку, текущую сверху вниз.",
+              "en": "This is a Tien Shan valley glacier. It looks like a slow river of ice flowing downhill."
+            },
+            "teacherNote": {
+              "ky": "Окуучулардан сураңыз: мөңгү жана тоңгон көлдүн айырмасы эмнеде?",
+              "ru": "Спросите: чем ледник отличается от замёрзшего озера?",
+              "en": "Ask: how is a glacier different from a frozen lake?"
+            },
+            "altText": {
+              "ky": "Тоолордун ортосундагы узун ак муз агымы.",
+              "ru": "Длинный белый поток льда между горами.",
+              "en": "A long white stream of ice between mountains."
+            }
+          },
+          {
+            "key": "accumulation",
+            "camera": {
+              "position": [
+                -2.6,
+                3.6,
+                1.6
+              ],
+              "target": [
+                -1.8,
+                2.6,
+                -0.6
+              ]
+            },
+            "focus": "geo.accumulation-zone",
+            "text": {
+              "ky": "Жогору жакта – топтолуу зонасы: кар эригенден көбүрөөк жаайт, тыгызданып фирнге айланат.",
+              "ru": "Наверху – область питания: снега выпадает больше, чем тает, и он уплотняется в фирн.",
+              "en": "At the top is the accumulation zone: more snow falls than melts, and it compacts into firn."
+            },
+            "teacherNote": {
+              "ky": "Карды колго кысып тоголок жасоо менен салыштырыңыз.",
+              "ru": "Сравните со снежком, который сжимают в руке.",
+              "en": "Compare it with squeezing a snowball."
+            },
+            "altText": {
+              "ky": "Мөңгүнүн кар баскан жогорку бөлүгү бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделена заснеженная верхняя часть ледника.",
+              "en": "The snowy upper part of the glacier is highlighted."
+            }
+          },
+          {
+            "key": "ice",
+            "modes": {
+              "view": "section"
+            },
+            "focus": "geo.glacier",
+            "text": {
+              "ky": "Разрезде фирн көп жылдардан кийин тыгыз көгүш музга айланганы көрүнөт.",
+              "ru": "В разрезе видно, как фирн за много лет превращается в плотный голубоватый лёд.",
+              "en": "The section shows firn turning into dense bluish ice over many years."
+            },
+            "teacherNote": {
+              "ky": "«Мөңгүнүн пайда болушу жана эриши» процессин ачыңыз.",
+              "ru": "Откройте процесс «Как ледник рождается и тает».",
+              "en": "Open the «How a glacier forms and melts» process."
+            },
+            "altText": {
+              "ky": "Мөңгүнүн кесилиши: үстүндө кар, ылдыйда көк муз.",
+              "ru": "Ледник в разрезе: сверху снег, ниже голубой лёд.",
+              "en": "A glacier cross-section: snow on top, blue ice below."
+            }
+          },
+          {
+            "key": "ablation",
+            "camera": {
+              "position": [
+                1.8,
+                2,
+                3
+              ],
+              "target": [
+                0.8,
+                1.2,
+                0.4
+              ]
+            },
+            "focus": "geo.ablation-zone",
+            "text": {
+              "ky": "Төмөнкү бөлүгүндө – эрүү зонасы: жайында муз эрип, мөңгүнүн тили кыскарат.",
+              "ru": "Внизу – область абляции: летом лёд тает, и язык ледника укорачивается.",
+              "en": "Lower down is the ablation zone: in summer the ice melts and the tongue shrinks."
+            },
+            "teacherNote": {
+              "ky": "Мөңгү чегингенде муз өйдө карай акпай турганын баса белгилеңиз.",
+              "ru": "Подчеркните: при отступании лёд не течёт вверх.",
+              "en": "Stress that a retreating glacier does not flow uphill."
+            },
+            "altText": {
+              "ky": "Эриген суунун агымдары бар мөңгүнүн тили.",
+              "ru": "Язык ледника с ручьями талой воды.",
+              "en": "The glacier's tongue with meltwater streams."
+            }
+          },
+          {
+            "key": "moraine",
+            "camera": {
+              "position": [
+                2.8,
+                1.4,
+                3.4
+              ],
+              "target": [
+                1.9,
+                0.5,
+                1.1
+              ]
+            },
+            "focus": "geo.moraine",
+            "text": {
+              "ky": "Мөңгү сүрүп келген таштар мореналарды түзөт. Алар мөңгүнүн мурунку чегин көрсөтөт.",
+              "ru": "Камни, принесённые ледником, образуют морены. Они отмечают прежнюю границу ледника.",
+              "en": "Rocks pushed by the glacier form moraines, which mark where the ice once reached."
+            },
+            "teacherNote": {
+              "ky": "Морена тосуп турган көлдөрдүн коркунучун талкуулаңыз (мисалы, Петров көлү).",
+              "ru": "Обсудите опасность озёр за моренами (например, озеро Петрова).",
+              "en": "Discuss the danger of moraine-dammed lakes (e.g. Lake Petrov)."
+            },
+            "altText": {
+              "ky": "Мөңгүнүн алдындагы бурч-бурчтуу таштардан турган дөбөлөр.",
+              "ru": "Валы из угловатых камней перед ледником.",
+              "en": "Ridges of angular rocks in front of the glacier."
+            }
+          },
+          {
+            "key": "river",
+            "camera": {
+              "position": [
+                4,
+                0.8,
+                4
+              ],
+              "target": [
+                3.2,
+                -0.1,
+                2.4
+              ]
+            },
+            "focus": "geo.river",
+            "text": {
+              "ky": "Эриген суу дарыяны баштайт. Кыргызстандын көп дарыялары жайында ушундай суу менен толот.",
+              "ru": "Талая вода даёт начало реке. Многие реки Кыргызстана летом наполняются именно ею.",
+              "en": "Meltwater starts a river. Many rivers in Kyrgyzstan are filled by it in summer."
+            },
+            "teacherNote": {
+              "ky": "Мөңгүлөр кыскарса дарыялар эмне болорун сураңыз.",
+              "ru": "Спросите, что будет с реками, если ледники сократятся.",
+              "en": "Ask what will happen to rivers if glaciers shrink."
+            },
+            "altText": {
+              "ky": "Мөңгүдөн башталып өрөөнгө аккан ак-боз дарыя.",
+              "ru": "Молочно-голубая река вытекает из-под ледника в долину.",
+              "en": "A milky-blue river flowing from the glacier into the valley."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "geo.glacier-life"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "geo.accumulation-zone"
+          },
+          {
+            "kind": "concept",
+            "key": "geo.ablation-zone"
+          },
+          {
+            "kind": "concept",
+            "key": "geo.glacier"
+          }
+        ],
+        "rows": [
+          "location",
+          "state",
+          "function"
+        ],
+        "manual": [
+          {
+            "column": "geo.glacier",
+            "row": "function",
+            "value": {
+              "ky": "Таза сууну көп жылга сактайт",
+              "ru": "Хранит пресную воду много лет",
+              "en": "Stores fresh water for many years"
+            }
+          }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "geo.q.glacier-from",
+          "geo.q.glacier-truths",
+          "geo.q.match-glacier",
+          "geo.q.find-moraine",
+          "geo.q.ice-water",
+          "geo.q.retreat",
+          "geo.q.melt-future"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "s",
+          "title": {
+            "ky": "Мөңгүлөрдү өлчөө",
+            "ru": "Мониторинг ледников",
+            "en": "Glacier monitoring"
+          },
+          "text": {
+            "ky": "Гляциологдор Ала-Арча капчыгайындагы мөңгүлөрдү жыл сайын өлчөп, алардын кыскарып жатканын каттап турушат.",
+            "ru": "Гляциологи ежегодно измеряют ледники ущелья Ала-Арча и фиксируют их сокращение.",
+            "en": "Glaciologists measure the Ala-Archa glaciers every year and record how they are shrinking."
+          }
+        },
+        {
+          "field": "e",
+          "title": {
+            "ky": "Суу ресурстары",
+            "ru": "Водные ресурсы",
+            "en": "Water resources"
+          },
+          "text": {
+            "ky": "Инженерлер мөңгү суусун эсептеп, Токтогул суу сактагычынан канча суу чыгарууну пландашат.",
+            "ru": "Инженеры учитывают ледниковый сток, планируя, сколько воды выпускать из Токтогульского водохранилища.",
+            "en": "Engineers factor in glacier runoff when planning how much water to release from the Toktogul reservoir."
+          }
+        },
+        {
+          "field": "t",
+          "title": {
+            "ky": "Спутник сүрөттөрү",
+            "ru": "Спутниковые снимки",
+            "en": "Satellite images"
+          },
+          "text": {
+            "ky": "Ар кайсы жылдардагы спутник сүрөттөрүн салыштырып, мөңгүлөрдүн аянтынын өзгөрүшүн компьютер эсептейт.",
+            "ru": "Сравнивая спутниковые снимки разных лет, компьютер вычисляет, как меняется площадь ледников.",
+            "en": "By comparing satellite images from different years, computers calculate how glacier area changes."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Кардан тоголок",
+            "ru": "Снежок",
+            "en": "A snowball"
+          },
+          "text": {
+            "ky": "Карды кысып тоголок кылсаң, ал катуу муздай болуп калат. Мөңгү да кысылган кардан пайда болот.",
+            "ru": "Сожми снег – получится твёрдый, почти ледяной снежок. Ледник тоже рождается из сжатого снега.",
+            "en": "Squeeze snow and you get a hard, almost icy snowball. A glacier is also born from squeezed snow."
+          }
+        },
+        {
+          "title": {
+            "ky": "Муздаткыч",
+            "ru": "Морозилка",
+            "en": "A freezer"
+          },
+          "text": {
+            "ky": "Тоолор кышкы карды муздаткычтай сактап, жайында акырындап «эритип» дарыяларга берет.",
+            "ru": "Горы хранят зимний снег, как морозилка, и летом понемногу «размораживают» его для рек.",
+            "en": "Mountains keep winter snow like a freezer and slowly defrost it for the rivers in summer."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "geo.glacier",
+      "kind": "water-body",
+      "hue": 190,
+      "isContainer": false,
+      "title": {
+        "ky": "Мөңгү",
+        "ru": "Ледник",
+        "en": "Glacier"
+      },
+      "subtitle": {
+        "ky": "Тоодогу таза суунун кампасы",
+        "ru": "Горный запас пресной воды",
+        "en": "A mountain store of fresh water"
+      },
+      "description": {
+        "ky": "Көп жылдар бою топтолгон кардан пайда болгон, жай агуучу калың муз. Тянь-Шандын мөңгүлөрү жайында эрип, Кыргызстандын дарыяларын суу менен камсыздайт.",
+        "ru": "Толща медленно текущего льда, образованного из снега, копившегося много лет. Летом ледники Тянь-Шаня тают и питают реки Кыргызстана.",
+        "en": "A thick mass of slowly flowing ice formed from snow piled up over many years. In summer the Tien Shan glaciers melt and feed Kyrgyzstan's rivers."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "count",
+          "value": 8000,
+          "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "length",
+          "value": 60,
+          "unit": "km",
+          "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "temperature",
+          "value": 0,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Катуу (муз)",
+            "ru": "Твёрдое (лёд)",
+            "en": "Solid (ice)"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Тянь-Шань жана Памир-Алайдын бийик тоолору",
+            "ru": "Высокогорья Тянь-Шаня и Памиро-Алая",
+            "en": "The high Tien Shan and Pamir-Alay"
+          }
+        }
+      ],
+      "related": [
+        "geo.river",
+        "geo.cloud"
+      ],
+      "misconceptions": [
+        {
+          "key": "geo.m.glacier-still",
+          "text": {
+            "ky": "Мөңгү – бир жерде кыймылсыз турган муз.",
+            "ru": "Ледник – неподвижная глыба льда.",
+            "en": "A glacier is a block of ice that does not move."
+          },
+          "correction": {
+            "ky": "Мөңгү өз салмагы менен жылына ондогон метрге ылдый агат.",
+            "ru": "Ледник под собственным весом стекает вниз на десятки метров в год.",
+            "en": "A glacier creeps downhill under its own weight, often tens of metres a year."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Түштүк Эңилчек мөңгүсүнүн узундугу болжол менен 60 км – ал уюлдардан тышкаркы эң узун мөңгүлөрдүн бири.",
+        "ru": "Южный Иныльчек длиной около 60 км – один из самых длинных ледников за пределами полярных областей.",
+        "en": "The South Inylchek glacier is about 60 km long – one of the longest glaciers outside the polar regions."
+      },
+      "analogy": {
+        "ky": "Тоодогу муздаткыч",
+        "ru": "Горный холодильник",
+        "en": "A mountain freezer"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Климаттын өзгөрүшүн байкоо",
+              "ru": "Наблюдение за климатом",
+              "en": "Climate monitoring"
+            },
+            "text": {
+              "ky": "Гляциологдор Ала-Арча капчыгайындагы мөңгүлөрдү ченеп, алардын жылдан жылга кыскарып жатканын байкашат.",
+              "ru": "Гляциологи измеряют ледники ущелья Ала-Арча и видят, как они год от года отступают.",
+              "en": "Glaciologists measure the glaciers of the Ala-Archa gorge and watch them retreat year after year."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Сугат жана ГЭСтер",
+              "ru": "Орошение и ГЭС",
+              "en": "Irrigation and hydropower"
+            },
+            "text": {
+              "ky": "Мөңгүлөрдүн эриген суусу Нарын аркылуу Токтогул суу сактагычына келип, электр энергиясын берет жана талааларды сугарат.",
+              "ru": "Талая вода ледников по Нарыну приходит в Токтогульское водохранилище, даёт электроэнергию и орошает поля.",
+              "en": "Glacier meltwater flows down the Naryn into the Toktogul reservoir, producing electricity and irrigating fields."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Муздаткычтагы муз",
+              "ru": "Лёд в морозилке",
+              "en": "Ice in the freezer"
+            },
+            "text": {
+              "ky": "Кыштын карын тоолор муздаткычтагыдай сактап, жайында акырындап «эритип» берет.",
+              "ru": "Горы хранят зимний снег, как морозилка, и летом понемногу «размораживают» его.",
+              "en": "The mountains store winter snow like a freezer and slowly defrost it in summer."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тоңгон бал",
+              "ru": "Густой мёд",
+              "en": "Thick syrup"
+            },
+            "text": {
+              "ky": "Мөңгү катуу көрүнгөнү менен коюу бал сыяктуу өтө жай ылдый агат.",
+              "ru": "Ледник кажется твёрдым, но, как густой мёд, очень медленно сползает вниз.",
+              "en": "A glacier looks solid, but like thick syrup it very slowly slides downhill."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "geo.accumulation-zone",
+      "kind": "zone",
+      "hue": 195,
+      "isContainer": false,
+      "title": {
+        "ky": "Топтолуу зонасы",
+        "ru": "Область питания",
+        "en": "Accumulation zone"
+      },
+      "subtitle": {
+        "ky": "Мөңгүнүн «азыктанган» жери",
+        "ru": "Где ледник «питается»",
+        "en": "Where the glacier is fed"
+      },
+      "description": {
+        "ky": "Мөңгүнүн жогорку бөлүгү: бул жерде жылына эриген кардан көбүрөөк кар түшөт. Кар тыгыздалып фирнге, анан мөңгү музуна айланат.",
+        "ru": "Верхняя часть ледника, где за год выпадает больше снега, чем успевает растаять. Снег уплотняется в фирн, а затем в ледниковый лёд.",
+        "en": "The upper part of a glacier, where more snow falls each year than melts. The snow compacts into firn and then into glacier ice."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "density",
+          "value": 0.4,
+          "max": 0.83,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Мөңгүнүн жогорку, эң бийик бөлүгү",
+            "ru": "Верхняя, самая высокая часть ледника",
+            "en": "The upper, highest part of the glacier"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Кар жана фирн (тыгызданган кар)",
+            "ru": "Снег и фирн (уплотнённый снег)",
+            "en": "Snow and firn (compacted snow)"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Мөңгүгө жаңы муз берет",
+            "ru": "Даёт леднику новый лёд",
+            "en": "Supplies the glacier with new ice"
+          }
+        }
+      ],
+      "related": [
+        "geo.glacier",
+        "geo.ablation-zone"
+      ],
+      "misconceptions": [
+        {
+          "key": "geo.m.glacier-frozen-lake",
+          "text": {
+            "ky": "Мөңгү – тоңуп калган көл же дарыя.",
+            "ru": "Ледник – это замёрзшее озеро или река.",
+            "en": "A glacier is a frozen lake or river."
+          },
+          "correction": {
+            "ky": "Мөңгү көп жыл бою топтолуп, тыгызданган кардан пайда болот.",
+            "ru": "Ледник образуется из снега, который копится и уплотняется много лет.",
+            "en": "A glacier forms from snow that piles up and compacts over many years."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Жаңы жааган кар 90 %дан ашык абадан турат, ал эми мөңгү музунда аба дээрлик калбайт.",
+        "ru": "Свежий снег больше чем на 90 % состоит из воздуха, а в ледниковом льду воздуха почти не остаётся.",
+        "en": "Fresh snow is more than 90 % air, while glacier ice has almost none left."
+      },
+      "analogy": {
+        "ky": "Баары сакталуучу кампа",
+        "ru": "Кладовая, куда всё складывают",
+        "en": "A pantry where supplies are stored"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Муз кернлери",
+              "ru": "Ледяные керны",
+              "en": "Ice cores"
+            },
+            "text": {
+              "ky": "Окумуштуулар топтолуу зонасынан муз мамычаларын бургулап алып, ичиндеги аба көбүкчөлөрү боюнча байыркы климатты изилдешет.",
+              "ru": "Учёные бурят в области питания ледяные керны и по пузырькам воздуха в них изучают климат прошлого.",
+              "en": "Scientists drill ice cores in the accumulation zone and study past climates from the air bubbles trapped inside."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Масса балансы",
+              "ru": "Баланс массы",
+              "en": "Mass balance"
+            },
+            "text": {
+              "ky": "Гляциологдор топтолгон карды жана эриген музду өлчөп, айырмасын эсептешет: оң болсо – мөңгү өсөт, терс болсо – кичирейет.",
+              "ru": "Гляциологи измеряют накопленный снег и растаявший лёд и считают разность: если она положительна – ледник растёт, если отрицательна – сокращается.",
+              "en": "Glaciologists measure snow gained and ice lost and take the difference: positive means the glacier grows, negative means it shrinks."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кардан тоголок",
+              "ru": "Снежок в руке",
+              "en": "Squeezing a snowball"
+            },
+            "text": {
+              "ky": "Карды колуңда кысып тоголок жасасаң, ал катуу болуп калат. Тоодо кар өз салмагы менен ушинтип кысылат.",
+              "ru": "Если сжать снег в руке, получится твёрдый снежок. В горах снег так же сжимается под собственным весом.",
+              "en": "Squeeze snow in your hand and it turns into a hard snowball. In the mountains, snow is squeezed the same way by its own weight."
+            }
+          },
+          {
+            "title": {
+              "ky": "Акча кутучасы",
+              "ru": "Копилка",
+              "en": "A piggy bank"
+            },
+            "text": {
+              "ky": "Акча кутучасына тыйындарды салып турсаң, ал көбөйөт. Мөңгүнүн жогору жагына кар ушинтип «салынып» турат.",
+              "ru": "Если всё время класть монетки в копилку, денег становится больше. Наверху ледника так же «копится» снег.",
+              "en": "Keep dropping coins into a piggy bank and the savings grow. Snow builds up at the top of a glacier the same way."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "geo.ablation-zone",
+      "kind": "zone",
+      "hue": 180,
+      "isContainer": false,
+      "title": {
+        "ky": "Эрүү зонасы",
+        "ru": "Область абляции",
+        "en": "Ablation zone"
+      },
+      "subtitle": {
+        "ky": "Мөңгү муз жоготкон жер",
+        "ru": "Где ледник теряет лёд",
+        "en": "Where the glacier loses ice"
+      },
+      "description": {
+        "ky": "Мөңгүнүн төмөнкү бөлүгү: бул жерде жайында муз түшкөн кардан көбүрөөк эрийт жана бууланат. Мөңгү ылдый агып, жоготкон музду толуктап турат.",
+        "ru": "Нижняя часть ледника, где летом тает и испаряется больше льда, чем выпадает снега. Ледник стекает вниз и возмещает потерю.",
+        "en": "The lower part of a glacier, where more ice melts and evaporates in summer than snow falls. The glacier flows down to replace the loss."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "temperature",
+          "value": 0,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Мөңгүнүн төмөнкү бөлүгү, «тили»",
+            "ru": "Нижняя часть, «язык» ледника",
+            "en": "The lower part, the glacier's tongue"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Ачык муз, жайында эриген суу",
+            "ru": "Открытый лёд, летом – талая вода",
+            "en": "Bare ice, with meltwater in summer"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Дарыяларга эриген суу берет",
+            "ru": "Отдаёт талую воду рекам",
+            "en": "Releases meltwater to rivers"
+          }
+        }
+      ],
+      "related": [
+        "geo.glacier",
+        "geo.meltwater",
+        "geo.accumulation-zone"
+      ],
+      "misconceptions": [
+        {
+          "key": "geo.m.retreat-flows-back",
+          "text": {
+            "ky": "Мөңгү «чегинсе», демек ал өйдө карай агып жатат.",
+            "ru": "Если ледник «отступает», значит, он течёт вверх.",
+            "en": "A retreating glacier is flowing back uphill."
+          },
+          "correction": {
+            "ky": "Муз ар дайым ылдый агат; мөңгүнүн тили эрүү агымдан тез болгондо гана кыскарат.",
+            "ru": "Лёд всегда течёт вниз; язык ледника укорачивается, когда таяние идёт быстрее, чем подача льда.",
+            "en": "Ice always flows downhill; the tongue gets shorter when melting outpaces the ice arriving from above."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Ысык жайда мөңгүнүн бетинде эриген суунун «дарыячалары» агып, муздун ичине кудуктай тешиктер аркылуу кулап кетет.",
+        "ru": "В жаркое лето по поверхности ледника бегут ручьи талой воды и проваливаются внутрь льда через вертикальные колодцы.",
+        "en": "On hot summer days streams of meltwater run across the glacier and plunge into the ice through vertical shafts."
+      },
+      "analogy": {
+        "ky": "Күн тийген балмуздактын учу",
+        "ru": "Тающий кончик мороженого на солнце",
+        "en": "The melting tip of an ice cream in the sun"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Абляциялык казыктар",
+              "ru": "Абляционные рейки",
+              "en": "Ablation stakes"
+            },
+            "text": {
+              "ky": "Гляциологдор музга казык кагып, жайдын аягында анын канча чыгып калганын өлчөп, канча муз эригенин билишет.",
+              "ru": "Гляциологи забивают в лёд рейки и в конце лета измеряют, насколько они обнажились, – так узнают, сколько льда растаяло.",
+              "en": "Glaciologists drill stakes into the ice and measure at summer's end how much of each stake is exposed, showing how much ice melted."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Спутниктен байкоо",
+              "ru": "Наблюдение со спутников",
+              "en": "Satellite monitoring"
+            },
+            "text": {
+              "ky": "Спутник сүрөттөрү Тянь-Шандын көп мөңгүлөрүнүн тилдери акыркы ондогон жылдарда кыскарганын көрсөтөт.",
+              "ru": "Спутниковые снимки показывают, что языки многих ледников Тянь-Шаня за последние десятилетия отступили.",
+              "en": "Satellite images show that the tongues of many Tien Shan glaciers have retreated over recent decades."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Балмуздак",
+              "ru": "Мороженое",
+              "en": "Ice cream"
+            },
+            "text": {
+              "ky": "Ысыкта балмуздактын төмөнкү учу биринчи эрийт. Мөңгүнүн төмөнкү бөлүгү да ушинтип эрийт.",
+              "ru": "В жару мороженое первым тает снизу. Нижняя часть ледника тает так же.",
+              "en": "On a hot day an ice cream melts at the bottom first. The lower part of a glacier melts the same way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Сарпталган акча",
+              "ru": "Потраченные деньги",
+              "en": "Spending money"
+            },
+            "text": {
+              "ky": "Топтолуу зонасы – акча чогултуу, эрүү зонасы – аны сарптоо. Көбүрөөк сарпталса, мөңгү кичирейет.",
+              "ru": "Область питания – это копить, область абляции – тратить. Если тратить больше, ледник уменьшается.",
+              "en": "The accumulation zone is saving, the ablation zone is spending. Spend more than you save and the glacier shrinks."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "geo.moraine",
+      "kind": "landform",
+      "hue": 35,
+      "isContainer": false,
+      "title": {
+        "ky": "Морена",
+        "ru": "Морена",
+        "en": "Moraine"
+      },
+      "subtitle": {
+        "ky": "Мөңгү калтырган таштар",
+        "ru": "Камни, оставленные ледником",
+        "en": "Rock left by a glacier"
+      },
+      "description": {
+        "ky": "Мөңгү жылганда сүрүп жүргөн таштар, шагыл жана кумдун үймөгү. Ал мөңгүнүн капталдарында жана тилинин алдында топтолот; мөңгү чегингенде морена анын мурунку чегин көрсөтүп калат.",
+        "ru": "Скопление камней, щебня и песка, которые ледник сдвигает при движении. Оно собирается по бокам и перед языком ледника; когда ледник отступает, морена отмечает его прежнюю границу.",
+        "en": "A heap of boulders, gravel and sand pushed along by a moving glacier. It piles up along the sides and in front of the tongue; when the glacier retreats, the moraine marks where it used to reach."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Таштар, шагыл, кум, чопо",
+            "ru": "Валуны, щебень, песок, глина",
+            "en": "Boulders, gravel, sand, clay"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Мөңгүнүн капталындагы жана алдындагы дөбөлөр",
+            "ru": "Валы по бокам и перед ледником",
+            "en": "Ridges along the sides and in front of the glacier"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Мөңгүнүн капталдары жана тилинин алды",
+            "ru": "Борта ледника и фронт его языка",
+            "en": "The glacier's sides and the front of its tongue"
+          }
+        }
+      ],
+      "related": [
+        "geo.glacier",
+        "geo.meltwater"
+      ],
+      "misconceptions": [
+        {
+          "key": "geo.m.moraine-river",
+          "text": {
+            "ky": "Моренанын таштарын дарыя алып келген.",
+            "ru": "Камни морены принесла река.",
+            "en": "The rocks of a moraine were brought by a river."
+          },
+          "correction": {
+            "ky": "Моренаны мөңгүнүн өзү сүрүп келет; дарыя таштары жылмакай, моренаныкы бурч-бурчтуу.",
+            "ru": "Морену приносит сам ледник; речные камни окатанные, а моренные – угловатые.",
+            "en": "The glacier itself carries the moraine; river stones are rounded while moraine rocks are angular."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Кумтөр кенинин жанындагы Петров көлү – мөңгүнүн эриген суусу морена тосмосунун артында топтолгон көл.",
+        "ru": "Озеро Петрова у рудника Кумтор – это талая вода ледника, скопившаяся за моренной перемычкой.",
+        "en": "Lake Petrov near the Kumtor mine is glacier meltwater held back behind a moraine dam."
+      },
+      "analogy": {
+        "ky": "Бульдозер түрткөн топурак үймөгү",
+        "ru": "Куча земли перед бульдозером",
+        "en": "The pile of earth in front of a bulldozer"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Сел коркунучун азайтуу",
+              "ru": "Защита от селей",
+              "en": "Flood protection"
+            },
+            "text": {
+              "ky": "Морена тосуп турган мөңгү көлдөрү жарылып, сел жүрүшү мүмкүн; инженерлер алардын деңгээлин көзөмөлдөп, сууну атайын каналдар менен агызышат.",
+              "ru": "Ледниковые озёра за моренами могут прорваться и вызвать сель; инженеры следят за их уровнем и спускают воду по каналам.",
+              "en": "Glacial lakes held by moraines can burst and cause mudflows; engineers monitor their levels and drain water through channels."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Мурунку мөңгүлөрдүн изи",
+              "ru": "Следы древних ледников",
+              "en": "Traces of ancient glaciers"
+            },
+            "text": {
+              "ky": "Ала-Арча жана Чүй өрөөнүнүн тоо этектериндеги эски мореналар боюнча геологдор мөңгүлөр мурун канчалык төмөн түшкөнүн аныкташат.",
+              "ru": "По древним моренам в Ала-Арче и у подножий Чуйской долины геологи узнают, как низко спускались ледники в прошлом.",
+              "en": "Old moraines in Ala-Archa and the foothills of the Chüy valley show geologists how far down glaciers once reached."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Шыпыргы менен шыпыруу",
+              "ru": "Подметаем веником",
+              "en": "Sweeping with a broom"
+            },
+            "text": {
+              "ky": "Шыпыргы менен шыпырсаң, алдыңда таштанды үймөгү чогулат. Мөңгү да таштарды ушинтип алдына чогултат.",
+              "ru": "Когда метёшь веником, перед тобой собирается кучка мусора. Ледник так же сгребает перед собой камни.",
+              "en": "When you sweep with a broom, a pile of dirt collects in front. A glacier piles up rocks in front of it the same way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Кумдагы из",
+              "ru": "След на песке",
+              "en": "A trail in the sand"
+            },
+            "text": {
+              "ky": "Кумдун үстүнөн колуңду сүйрөсөң, капталдарына кум үймөктөрү калат. Мөңгү кеткенден кийин да ушундай «из» калат.",
+              "ru": "Проведи рукой по песку – по бокам останутся валики. После ледника остаётся такой же «след».",
+              "en": "Drag your hand through sand and little ridges form at the sides. A glacier leaves the same kind of trail behind."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "geo.meltwater",
+      "kind": "water-body",
+      "hue": 205,
+      "isContainer": false,
+      "title": {
+        "ky": "Мөңгүнүн эриген суусу",
+        "ru": "Талая вода ледника",
+        "en": "Glacier meltwater"
+      },
+      "subtitle": {
+        "ky": "Жайкы дарыялардын булагы",
+        "ru": "Источник летних рек",
+        "en": "The source of summer rivers"
+      },
+      "description": {
+        "ky": "Мөңгү эригенде пайда болгон муздак, таза суу. Ал жайдын ысыгында дарыяларды толтуруп, жаан аз болгон убакта талааларды сугарууга мүмкүнчүлүк берет.",
+        "ru": "Холодная пресная вода, образующаяся при таянии ледника. В летнюю жару она наполняет реки и позволяет орошать поля, когда дождей мало.",
+        "en": "Cold fresh water produced when a glacier melts. In the summer heat it fills rivers and lets farmers irrigate when there is little rain."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "temperature",
+          "value": 0,
+          "max": 4,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Суюк",
+            "ru": "Жидкое",
+            "en": "Liquid"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Таза суу, майда тек бөлүкчөлөрү («мөңгү сүтү»)",
+            "ru": "Пресная вода с тонкой каменной мутью («ледниковое молоко»)",
+            "en": "Fresh water with fine rock powder (“glacial milk”)"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Жайында дарыяларды жана сугатты суу менен камсыздайт",
+            "ru": "Питает реки и орошение летом",
+            "en": "Feeds rivers and irrigation in summer"
+          }
+        }
+      ],
+      "related": [
+        "geo.glacier",
+        "geo.river"
+      ],
+      "misconceptions": [
+        {
+          "key": "geo.m.more-melt-forever",
+          "text": {
+            "ky": "Мөңгүлөр тезирээк эрисе, дарыяларда суу түбөлүк көбөйөт.",
+            "ru": "Если ледники тают быстрее, воды в реках навсегда станет больше.",
+            "en": "If glaciers melt faster, rivers will have more water forever."
+          },
+          "correction": {
+            "ky": "Адегенде суу көбөйөт, бирок мөңгү кичирейген сайын эриген суу азаят – жайкы дарыялар тайыздайт.",
+            "ru": "Сначала воды становится больше, но по мере сокращения ледника талой воды всё меньше – летние реки мелеют.",
+            "en": "At first there is more water, but as the glacier shrinks there is less and less meltwater – summer rivers run low."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Мөңгү суусу ак-боз түстө болот, анткени мөңгү тектерди уну сыяктуу майдалап, сууга аралаштырат.",
+        "ru": "Ледниковая вода бывает молочно-голубой, потому что ледник перетирает породы в «муку» и она взвешена в воде.",
+        "en": "Glacier water often looks milky blue because the glacier grinds rock into a flour that hangs in the water."
+      },
+      "analogy": {
+        "ky": "Муздаткычтан чыккан муздун суусу",
+        "ru": "Вода из размороженной морозилки",
+        "en": "Water from a defrosting freezer"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "ГЭСтердин жайкы режими",
+              "ru": "Летний режим ГЭС",
+              "en": "Hydropower in summer"
+            },
+            "text": {
+              "ky": "Нарындагы ГЭСтердин суу сактагычтары жайында мөңгү суусу менен толуп, кышында бул суу электр берүүгө колдонулат.",
+              "ru": "Водохранилища ГЭС на Нарыне летом наполняются талой ледниковой водой, а зимой она идёт на выработку электричества.",
+              "en": "Reservoirs of the hydropower plants on the Naryn fill with glacier meltwater in summer, and in winter that water generates electricity."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Гидропосттор",
+              "ru": "Гидропосты",
+              "en": "River gauges"
+            },
+            "text": {
+              "ky": "Дарыялардагы автоматтык гидропосттор суунун деңгээлин өлчөп, мөңгүлөр күчтүү эригенде ташкын тууралуу эскертет.",
+              "ru": "Автоматические гидропосты на реках измеряют уровень воды и предупреждают о паводке при сильном таянии ледников.",
+              "en": "Automatic river gauges measure water levels and warn of floods when glaciers melt strongly."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Стакандагы муз",
+              "ru": "Лёд в стакане",
+              "en": "Ice in a glass"
+            },
+            "text": {
+              "ky": "Стакандагы муз эригенде, стакандагы суу көбөйөт. Мөңгү эригенде дарыя ушинтип толот.",
+              "ru": "Когда лёд в стакане тает, воды в стакане становится больше. Так и реки наполняются, когда тают ледники.",
+              "en": "When ice in a glass melts, there is more water in the glass. Rivers fill up in the same way when glaciers melt."
+            }
+          },
+          {
+            "title": {
+              "ky": "Бүтүп калган кампа",
+              "ru": "Пустеющая кладовая",
+              "en": "An emptying pantry"
+            },
+            "text": {
+              "ky": "Кампадан күн сайын нан алып, жаңысын салбасаң, бир күнү ал бош калат. Мөңгү да кар толукталбаса түгөнөт.",
+              "ru": "Если каждый день брать из кладовой хлеб и не класть новый, однажды она опустеет. Ледник без нового снега тоже исчезнет.",
+              "en": "Take bread from the pantry every day without restocking and one day it is empty. A glacier without new snow runs out too."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "geo.river",
+      "kind": "water-body",
+      "hue": 220,
+      "isContainer": false,
+      "title": {
+        "ky": "Дарыя",
+        "ru": "Река",
+        "en": "River"
+      },
+      "subtitle": {
+        "ky": "Тоодон ылдый аккан суу",
+        "ru": "Вода, стекающая с гор",
+        "en": "Water running down from the mountains"
+      },
+      "description": {
+        "ky": "Жаан-чачын жана мөңгүлөрдүн суусу жер бети менен агып, дарыяларды түзөт. Нарын дарыясы Кара-Дарыя менен кошулуп, Сыр-Дарыяны пайда кылат.",
+        "ru": "Вода осадков и ледников стекает по поверхности и образует реки. Нарын, сливаясь с Карадарьёй, образует Сырдарью.",
+        "en": "Rain, snow and glacier water run over the land and form rivers. The Naryn joins the Kara Darya to form the Syr Darya."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "speed",
+          "value": 0.5,
+          "max": 3,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Суюк",
+            "ru": "Жидкое",
+            "en": "Liquid"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Нарын, Чүй, Талас, Кара-Дарыя",
+            "ru": "Нарын, Чу, Талас, Карадарья",
+            "en": "Naryn, Chüy, Talas, Kara Darya"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Сууну тоолордон түздүктөргө жана көлдөргө ташыйт",
+            "ru": "Несёт воду с гор на равнины и в озёра",
+            "en": "Carries water from the mountains to plains and lakes"
+          }
+        }
+      ],
+      "related": [
+        "geo.glacier",
+        "geo.lake",
+        "geo.groundwater"
+      ],
+      "misconceptions": [
+        {
+          "key": "geo.m.river-endless",
+          "text": {
+            "ky": "Дарыядагы суу эч качан түгөнбөйт, ал жерден эле пайда болот.",
+            "ru": "Вода в реке берётся ниоткуда и никогда не кончится.",
+            "en": "River water comes from nowhere and never runs out."
+          },
+          "correction": {
+            "ky": "Дарыя жаан-чачындан, мөңгүлөрдөн жана жер астындагы суудан толукталат; мөңгүлөр азайса, дарыя да тайыздайт.",
+            "ru": "Реку питают осадки, ледники и подземные воды; если ледники сокращаются, река мелеет.",
+            "en": "Rivers are fed by rain, glaciers and groundwater; if glaciers shrink, rivers get lower."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Нарындагы Токтогул суу сактагычында болжол менен 19,5 км³ суу батат.",
+        "ru": "Токтогульское водохранилище на Нарыне вмещает около 19,5 км³ воды.",
+        "en": "The Toktogul reservoir on the Naryn holds about 19.5 km³ of water."
+      },
+      "analogy": {
+        "ky": "Үйдүн суу түтүгү",
+        "ru": "Водопровод дома",
+        "en": "The water pipe in a house"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Токтогул ГЭСи",
+              "ru": "Токтогульская ГЭС",
+              "en": "Toktogul hydropower plant"
+            },
+            "text": {
+              "ky": "Нарындын суусу плотинадан турбиналарга түшүп, 1200 МВт кубаттуулуктагы электр энергиясын өндүрөт.",
+              "ru": "Вода Нарына падает с плотины на турбины и вырабатывает электроэнергию мощностью 1200 МВт.",
+              "en": "Naryn water drops from the dam onto turbines, generating up to 1200 MW of electricity."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Суу чыгымын эсептөө",
+              "ru": "Расчёт расхода воды",
+              "en": "Calculating river flow"
+            },
+            "text": {
+              "ky": "Гидрологдор дарыянын кесилишинин аянтын агымдын ылдамдыгына көбөйтүп, секундасына канча м³ суу акканын табышат.",
+              "ru": "Гидрологи умножают площадь сечения реки на скорость течения и находят, сколько м³ воды проходит за секунду.",
+              "en": "Hydrologists multiply a river's cross-section area by its flow speed to find how many m³ pass each second."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Жаандан кийинки арык",
+              "ru": "Ручеёк после дождя",
+              "en": "A stream after rain"
+            },
+            "text": {
+              "ky": "Жаандан кийин көчөдөгү суу ылдыйды көздөй агып, арыкка куюлат. Дарыя да ушундай, бир гана өтө чоң.",
+              "ru": "После дождя вода на улице стекает вниз и собирается в арык. Река – то же самое, только огромное.",
+              "en": "After rain, water on the street runs downhill into the gutter. A river is the same, only huge."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тоодон түшкөн чана",
+              "ru": "Санки с горки",
+              "en": "A sledge on a hill"
+            },
+            "text": {
+              "ky": "Чана тоодон ылдый гана жылат. Дарыянын суусу да ар дайым бийиктен ылдыйга агат.",
+              "ru": "Санки едут только с горки вниз. Вода в реке тоже всегда течёт сверху вниз.",
+              "en": "A sledge only slides downhill. River water also always flows from high to low."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "geo.cloud",
+      "kind": "phenomenon",
+      "hue": 210,
+      "isContainer": false,
+      "title": {
+        "ky": "Булут",
+        "ru": "Облако",
+        "en": "Cloud"
+      },
+      "subtitle": {
+        "ky": "Асмандагы суу тамчылары",
+        "ru": "Капли воды в небе",
+        "en": "Water droplets in the sky"
+      },
+      "description": {
+        "ky": "Суу буусу бийиктикте муздап, суунун майда тамчыларына же муз кристаллдарына айланганда (конденсация) пайда болот. Тамчылар чоңойгондо жаан же кар болуп түшөт.",
+        "ru": "Образуется, когда водяной пар на высоте охлаждается и превращается в мельчайшие капли или кристаллы льда (конденсация). Когда капли укрупняются, выпадает дождь или снег.",
+        "en": "Forms when water vapour cools high up and turns into tiny droplets or ice crystals (condensation). When the droplets grow, they fall as rain or snow."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "size",
+          "value": 10,
+          "max": 20,
+          "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "mass",
+          "value": 500000,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Суюк тамчылар жана муз кристаллдары",
+            "ru": "Жидкие капли и кристаллы льда",
+            "en": "Liquid droplets and ice crystals"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Тропосферада",
+            "ru": "В тропосфере",
+            "en": "In the troposphere"
+          }
+        }
+      ],
+      "related": [
+        "geo.glacier",
+        "geo.river"
+      ],
+      "misconceptions": [
+        {
+          "key": "geo.m.cloud-vapour",
+          "text": {
+            "ky": "Булут – суу буусунан турат.",
+            "ru": "Облако состоит из водяного пара.",
+            "en": "Clouds are made of water vapour."
+          },
+          "correction": {
+            "ky": "Булут – буу эмес, суунун майда тамчылары жана муз кристаллдары.",
+            "ru": "Облако – это не пар, а мельчайшие капли воды и кристаллики льда.",
+            "en": "A cloud is not vapour but tiny water droplets and ice crystals."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Орточо бир ак булуттагы суунун массасы болжол менен 500 тонна – 100 пилдей!",
+        "ru": "Масса воды в обычном кучевом облаке – около 500 тонн, как у сотни слонов!",
+        "en": "An ordinary fluffy cloud holds about 500 tonnes of water – as heavy as a hundred elephants!"
+      },
+      "analogy": {
+        "ky": "Чайнектин үстүндөгү ак буу",
+        "ru": "Белое облачко над чайником",
+        "en": "The white puff above a kettle"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Мөндүргө каршы кызмат",
+              "ru": "Противоградовая служба",
+              "en": "Hail suppression"
+            },
+            "text": {
+              "ky": "Айыл чарба аймактарында булуттарга атайын заттар чачылып, мөндүрдүн ордуна жаан түшүрүүгө аракет кылынат.",
+              "ru": "В сельскохозяйственных районах в облака вводят специальные реагенты, чтобы вместо града шёл дождь.",
+              "en": "In farming regions special substances are seeded into clouds so that rain falls instead of hail."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Шүүдүрүм чекити",
+              "ru": "Точка росы",
+              "en": "Dew point"
+            },
+            "text": {
+              "ky": "Метеорологдор шүүдүрүм чекитин эсептеп, булут кайсы бийиктикте пайда боло турганын аныкташат.",
+              "ru": "Метеорологи рассчитывают точку росы и определяют, на какой высоте образуются облака.",
+              "en": "Meteorologists calculate the dew point to work out at what height clouds will form."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Ысык чайдын буусу",
+              "ru": "Пар от горячего чая",
+              "en": "Steam from hot tea"
+            },
+            "text": {
+              "ky": "Ысык чайдын үстүндө пайда болгон ак «булутча» – бул да кичинекей булут.",
+              "ru": "Белое «облачко» над горячим чаем – это маленькое облако.",
+              "en": "The white puff above a cup of hot tea is a tiny cloud."
+            }
+          },
+          {
+            "title": {
+              "ky": "Муздак стакан",
+              "ru": "Холодный стакан",
+              "en": "A cold glass"
+            },
+            "text": {
+              "ky": "Муздак сууну стаканга куйсаң, анын сыртында тамчылар пайда болот – буу муздап сууга айланат, булут да ушинтип пайда болот.",
+              "ru": "На стакане с холодной водой снаружи появляются капли – пар охлаждается и становится водой. Так же рождаются облака.",
+              "en": "Drops appear on the outside of a glass of cold water – vapour cools into water. Clouds form the same way."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "geo.lake",
+      "kind": "water-body",
+      "hue": 200,
+      "isContainer": false,
+      "title": {
+        "ky": "Ысык-Көл",
+        "ru": "Иссык-Куль",
+        "en": "Issyk-Kul"
+      },
+      "subtitle": {
+        "ky": "Тоңбогон тоо көлү",
+        "ru": "Незамерзающее горное озеро",
+        "en": "A mountain lake that never freezes"
+      },
+      "description": {
+        "ky": "Тянь-Шандагы туюк, бир аз туздуу көл. Ага 80ден ашык дарыя куят, бирок андан бир да дарыя агып чыкпайт: суу бети аркылуу бууланып кетет.",
+        "ru": "Бессточное слабосолёное озеро в Тянь-Шане. В него впадает более 80 рек, но ни одна не вытекает: вода уходит испарением с поверхности.",
+        "en": "A closed, slightly salty lake in the Tien Shan. More than 80 rivers flow in, but none flow out: the water leaves by evaporating from the surface."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "area",
+          "value": 6236,
+          "unit": "km²"
+        },
+        {
+          "kind": "quantity",
+          "type": "depth",
+          "value": 668,
+          "unit": "m"
+        },
+        {
+          "kind": "quantity",
+          "type": "volume",
+          "value": 1738,
+          "unit": "km³",
+          "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "elevation",
+          "value": 1607
+        },
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Бир аз туздуу суу (≈6 ‰)",
+            "ru": "Слабосолёная вода (≈6 ‰)",
+            "en": "Slightly salty water (≈6 ‰)"
+          }
+        }
+      ],
+      "related": [
+        "geo.river"
+      ],
+      "misconceptions": [
+        {
+          "key": "geo.m.lake-fresh",
+          "text": {
+            "ky": "Ысык-Көлдүн суусу таза, тузсуз.",
+            "ru": "Вода Иссык-Куля пресная.",
+            "en": "Issyk-Kul is a freshwater lake."
+          },
+          "correction": {
+            "ky": "Ысык-Көл бир аз туздуу: суу бууланат, туз калат, анткени көлдөн дарыя агып чыкпайт.",
+            "ru": "Иссык-Куль слабосолёный: вода испаряется, а соли остаются, потому что сток из озера отсутствует.",
+            "en": "Issyk-Kul is slightly salty: the water evaporates but the salts stay, because no river drains the lake."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Ысык-Көл ушунчалык терең жана бир аз туздуу болгондуктан, катуу кышта да тоңбойт – аты да «ысык көл» дегенди билдирет.",
+        "ru": "Иссык-Куль такой глубокий и слегка солёный, что не замерзает даже в суровые зимы – его название значит «горячее озеро».",
+        "en": "Issyk-Kul is so deep and slightly salty that it does not freeze even in harsh winters – its name means “warm lake”."
+      },
+      "analogy": {
+        "ky": "Чоң табак суу күн нурунда",
+        "ru": "Большая миска воды на солнце",
+        "en": "A big bowl of water in the sun"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Бууланууну өлчөө",
+              "ru": "Измерение испарения",
+              "en": "Measuring evaporation"
+            },
+            "text": {
+              "ky": "Гидрологдор көлдүн деңгээлин, дарыялардын куймасын жана бууланууну салыштырып, Ысык-Көлдүн суу балансын эсептешет.",
+              "ru": "Гидрологи сравнивают уровень озера, приток рек и испарение и рассчитывают водный баланс Иссык-Куля.",
+              "en": "Hydrologists compare the lake level, river inflow and evaporation to work out the water balance of Issyk-Kul."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Көлдүн көлөмү",
+              "ru": "Объём озера",
+              "en": "The lake's volume"
+            },
+            "text": {
+              "ky": "Көлдүн көлөмүн (≈1738 км³) аянтына (6236 км²) бөлсөк, орточо тереңдиги ≈280 м чыгат.",
+              "ru": "Разделив объём озера (≈1738 км³) на площадь (6236 км²), получаем среднюю глубину ≈280 м.",
+              "en": "Dividing the lake's volume (≈1738 km³) by its area (6236 km²) gives an average depth of ≈280 m."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Туздуу шорпо",
+              "ru": "Пересоленный суп",
+              "en": "A soup that gets saltier"
+            },
+            "text": {
+              "ky": "Шорпону узак кайнатсаң, суусу бууланып, туздуулугу күчөйт. Ысык-Көлдө да суу бууланып, туз калат.",
+              "ru": "Если долго варить суп, вода выкипает, а суп становится солонее. В Иссык-Куле вода тоже испаряется, а соль остаётся.",
+              "en": "Boil soup for a long time and the water goes but the salt stays, so it tastes saltier. Issyk-Kul works the same way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Жылуу ванна",
+              "ru": "Тёплая ванна",
+              "en": "A warm bath"
+            },
+            "text": {
+              "ky": "Чоң ванна суусу кичине чөйчөктөн жай муздайт. Ысык-Көлдө суу абдан көп болгондуктан кышында тоңуп үлгүрбөйт.",
+              "ru": "Большая ванна остывает медленнее маленькой чашки. В Иссык-Куле так много воды, что за зиму он не успевает замёрзнуть.",
+              "en": "A full bath cools more slowly than a small cup. Issyk-Kul holds so much water that it cannot freeze over in one winter."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "geo.groundwater",
+      "kind": "water-body",
+      "hue": 235,
+      "isContainer": false,
+      "title": {
+        "ky": "Жер астындагы суу",
+        "ru": "Подземные воды",
+        "en": "Groundwater"
+      },
+      "subtitle": {
+        "ky": "Тектердин ичиндеги суу",
+        "ru": "Вода в толще пород",
+        "en": "Water inside the rocks"
+      },
+      "description": {
+        "ky": "Жаан жана эриген кар топуракка сиңип (инфильтрация), тектердин боштуктарына топтолот. Ал булак болуп чыгат же дарыяларды толуктайт.",
+        "ru": "Дождь и талый снег просачиваются в почву (инфильтрация) и накапливаются в пустотах пород. Эта вода выходит родниками или питает реки.",
+        "en": "Rain and meltwater soak into the soil (infiltration) and collect in gaps in the rock. This water comes out as springs or feeds rivers."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "depth",
+          "value": 0.01,
+          "max": 2,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Суюк",
+            "ru": "Жидкое",
+            "en": "Liquid"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Топурак жана тектердин жаракалары",
+            "ru": "Почва и трещины горных пород",
+            "en": "Soil and cracks in rocks"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Булактарды жана кудуктарды суу менен камсыздайт",
+            "ru": "Питает родники и колодцы",
+            "en": "Feeds springs and wells"
+          }
+        }
+      ],
+      "related": [
+        "geo.river"
+      ],
+      "misconceptions": [
+        {
+          "key": "geo.m.underground-lakes",
+          "text": {
+            "ky": "Жер астындагы суу – жер астындагы чоң көлдөр.",
+            "ru": "Подземные воды – это огромные подземные озёра.",
+            "en": "Groundwater is huge underground lakes."
+          },
+          "correction": {
+            "ky": "Көбүнчө ал кумдун жана тектердин майда боштуктарындагы суу, губкадагыдай.",
+            "ru": "Чаще всего это вода в мелких порах песка и пород, как в губке.",
+            "en": "Mostly it is water held in tiny pores of sand and rock, like in a sponge."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Жердеги таза суунун болжол менен 30 %ы жер астында, ал эми 69 %ы мөңгүлөрдө жана муз катмарларында.",
+        "ru": "Около 30 % пресной воды Земли находится под землёй, а около 69 % – в ледниках и ледяных щитах.",
+        "en": "About 30 % of the Earth's fresh water is underground, and about 69 % is locked in glaciers and ice sheets."
+      },
+      "analogy": {
+        "ky": "Сууга чыланган губка",
+        "ru": "Губка, пропитанная водой",
+        "en": "A soaked sponge"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Кудук казуу",
+              "ru": "Бурение скважин",
+              "en": "Drilling wells"
+            },
+            "text": {
+              "ky": "Чүй өрөөнүндө ичүүчү суунун көбү жер астындагы суудан – инженерлер скважина казып, сууну насос менен чыгарышат.",
+              "ru": "В Чуйской долине большая часть питьевой воды – подземная: инженеры бурят скважины и откачивают её насосами.",
+              "en": "Much of the drinking water in the Chüy valley comes from underground: engineers drill wells and pump it up."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Минералдык суулар",
+              "ru": "Минеральные воды",
+              "en": "Mineral water"
+            },
+            "text": {
+              "ky": "Жер астындагы суу тектерден өтүп, туздарды эритет; Жалал-Абаддын шыпаалуу булактары ушундан пайда болгон.",
+              "ru": "Проходя через породы, подземная вода растворяет соли; так возникли целебные источники Джалал-Абада.",
+              "en": "As groundwater passes through rocks it dissolves minerals; that is how the healing springs of Jalal-Abad formed."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Губка",
+              "ru": "Губка",
+              "en": "A sponge"
+            },
+            "text": {
+              "ky": "Губканы сууга салсаң, суу анын майда тешиктерине сиңет. Топурак да жаан суусун ушинтип сиңирет.",
+              "ru": "Опусти губку в воду – вода впитается в её дырочки. Почва так же впитывает дождь.",
+              "en": "Dip a sponge in water and it soaks into the tiny holes. Soil soaks up rain the same way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Гүл карапасы",
+              "ru": "Цветочный горшок",
+              "en": "A flower pot"
+            },
+            "text": {
+              "ky": "Гүлгө суу куйсаң, ал топуракка кирип, түбүндөгү тешиктен чыгат. Жер астындагы суу да ушинтип ылдый сиңет.",
+              "ru": "Польёшь цветок – вода уходит в землю и вытекает из дырочки внизу горшка. Подземные воды тоже просачиваются вниз.",
+              "en": "Water a plant and the water sinks into the soil and drips out of the pot's hole. Groundwater seeps down in the same way."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "geo.glacier-life",
+      "engine": "timeline",
+      "icon": "snowflake",
+      "title": {
+        "ky": "Мөңгүнүн пайда болушу жана эриши",
+        "ru": "Как ледник рождается и тает",
+        "en": "How a glacier forms and melts"
+      },
+      "description": {
+        "ky": "Бийик тоодо кар топтолуп, фирнге жана музга айланат, муз ылдый агат, төмөнкү бөлүгүндө эрийт. Эрүү топтолуудан көп болсо, мөңгү чегинип, морена калтырат.",
+        "ru": "В высокогорье снег копится, превращается в фирн и лёд, лёд стекает вниз и тает в нижней части. Если таяние больше накопления, ледник отступает и оставляет морену.",
+        "en": "High in the mountains snow piles up and becomes firn and then ice; the ice flows down and melts at the lower end. If melting beats accumulation, the glacier retreats and leaves a moraine behind."
+      },
+      "inputs": {
+        "ky": "Кар жана суук аба",
+        "ru": "Снег и холодный воздух",
+        "en": "Snow and cold air"
+      },
+      "outputs": {
+        "ky": "Эриген суу, дарыялар, морена",
+        "ru": "Талая вода, реки, морена",
+        "en": "Meltwater, rivers, moraine"
+      },
+      "energy": {
+        "ky": "Жайкы Күндүн жылуулугу музду эритет",
+        "ru": "Летнее тепло Солнца растапливает лёд",
+        "en": "Summer sunshine melts the ice"
+      },
+      "steps": [
+        {
+          "key": "snowfall",
+          "title": {
+            "ky": "Кар жаашы",
+            "ru": "Снегопад",
+            "en": "Snowfall"
+          },
+          "result": {
+            "ky": "Жаңы кар ≈0,1 г/см³",
+            "ru": "Свежий снег ≈0,1 г/см³",
+            "en": "Fresh snow ≈0.1 g/cm³"
+          },
+          "description": {
+            "ky": "Топтолуу зонасында кыш бою кар жаап, катмар-катмар топтолот.",
+            "ru": "В области питания всю зиму идёт снег и копится слоями.",
+            "en": "All winter, snow falls in the accumulation zone and builds up layer by layer."
+          },
+          "conceptKey": "geo.accumulation-zone",
+          "altText": {
+            "ky": "Тоо чокуларында калың кар катмарлары.",
+            "ru": "Толстые слои снега на вершинах.",
+            "en": "Thick layers of snow on the peaks."
+          },
+          "duration": 2
+        },
+        {
+          "key": "firn",
+          "title": {
+            "ky": "Фирн",
+            "ru": "Фирн",
+            "en": "Firn"
+          },
+          "result": {
+            "ky": "≈0,4–0,8 г/см³",
+            "ru": "≈0,4–0,8 г/см³",
+            "en": "≈0.4–0.8 g/cm³"
+          },
+          "description": {
+            "ky": "Үстүндөгү кардын салмагынан төмөнкү кар тыгызданып, бүртүктүү фирнге айланат.",
+            "ru": "Под тяжестью верхних слоёв снег уплотняется в зернистый фирн.",
+            "en": "Under the weight of new snow, older snow compacts into grainy firn."
+          },
+          "conceptKey": "geo.accumulation-zone",
+          "altText": {
+            "ky": "Кардын төмөнкү катмарлары тыгызданган бүртүктөргө айланат.",
+            "ru": "Нижние слои снега становятся плотными зёрнами.",
+            "en": "The lower snow layers turn into dense grains."
+          },
+          "duration": 2
+        },
+        {
+          "key": "ice",
+          "title": {
+            "ky": "Мөңгү музу",
+            "ru": "Ледниковый лёд",
+            "en": "Glacier ice"
+          },
+          "result": {
+            "ky": "≈0,9 г/см³",
+            "ru": "≈0,9 г/см³",
+            "en": "≈0.9 g/cm³"
+          },
+          "description": {
+            "ky": "Көп жылдардан кийин фирндеги аба сыгылып чыгып, ал көк түстөгү тыгыз музга айланат.",
+            "ru": "Через много лет воздух вытесняется из фирна, и он превращается в плотный голубоватый лёд.",
+            "en": "After many years the air is squeezed out of the firn and it becomes dense bluish ice."
+          },
+          "conceptKey": "geo.glacier",
+          "altText": {
+            "ky": "Көгүш тыгыз муз катмары.",
+            "ru": "Плотный голубоватый слой льда.",
+            "en": "A dense bluish layer of ice."
+          },
+          "duration": 2
+        },
+        {
+          "key": "flow",
+          "title": {
+            "ky": "Муздун агышы",
+            "ru": "Течение льда",
+            "en": "Ice flow"
+          },
+          "result": {
+            "ky": "Мөңгү ылдый жылат",
+            "ru": "Ледник сползает вниз",
+            "en": "The glacier creeps downhill"
+          },
+          "description": {
+            "ky": "Өз салмагы менен муз капчыгай боюнча ылдый агып, таштарды сүрүп жүрөт.",
+            "ru": "Под собственным весом лёд течёт вниз по долине и тащит с собой камни.",
+            "en": "Under its own weight the ice flows down the valley, dragging rocks along."
+          },
+          "conceptKey": "geo.glacier",
+          "altText": {
+            "ky": "Капчыгай боюнча аккан муз дарыясы.",
+            "ru": "Ледяная река течёт по долине.",
+            "en": "A river of ice flowing down the valley."
+          },
+          "duration": 2
+        },
+        {
+          "key": "melt",
+          "title": {
+            "ky": "Эрүү",
+            "ru": "Таяние",
+            "en": "Melting"
+          },
+          "result": {
+            "ky": "Эриген суу пайда болот",
+            "ru": "Образуется талая вода",
+            "en": "Meltwater forms"
+          },
+          "description": {
+            "ky": "Эрүү зонасында жайкы жылуулук музду эритет; суу мөңгүнүн бетинде жана ичинде агат.",
+            "ru": "В области абляции летнее тепло растапливает лёд; вода бежит по поверхности и внутри ледника.",
+            "en": "In the ablation zone summer warmth melts the ice; water runs over and through the glacier."
+          },
+          "conceptKey": "geo.ablation-zone",
+          "altText": {
+            "ky": "Мөңгүнүн тилиндеги эриген суунун агымдары.",
+            "ru": "Ручьи талой воды на языке ледника.",
+            "en": "Meltwater streams on the glacier's tongue."
+          },
+          "duration": 2
+        },
+        {
+          "key": "runoff",
+          "title": {
+            "ky": "Дарыяга агуу",
+            "ru": "Сток в реку",
+            "en": "Flowing into rivers"
+          },
+          "result": {
+            "ky": "Дарыя толот",
+            "ru": "Река наполняется",
+            "en": "The river fills"
+          },
+          "description": {
+            "ky": "Эриген суу мөңгүнүн тилинен чыгып, дарыяны баштайт – мисалы, Нарындын башаттары.",
+            "ru": "Талая вода вытекает из-под языка ледника и даёт начало реке – например, истокам Нарына.",
+            "en": "Meltwater leaves the glacier's tongue and starts a river – such as the headwaters of the Naryn."
+          },
+          "conceptKey": "geo.meltwater",
+          "altText": {
+            "ky": "Мөңгүнүн алдынан агып чыккан ак-боз суу.",
+            "ru": "Молочно-голубая вода вытекает из-под ледника.",
+            "en": "Milky-blue water flowing out from under the glacier."
+          },
+          "duration": 2
+        },
+        {
+          "key": "retreat",
+          "title": {
+            "ky": "Мөңгүнүн чегиниши",
+            "ru": "Отступание ледника",
+            "en": "Glacier retreat"
+          },
+          "result": {
+            "ky": "Морена калат",
+            "ru": "Остаётся морена",
+            "en": "A moraine is left"
+          },
+          "description": {
+            "ky": "Жылуу жылдары эрүү топтолуудан көп болуп, мөңгүнүн тили кыскарат; анын мурунку чегинде морена калат.",
+            "ru": "В тёплые годы таяние превышает накопление, язык ледника укорачивается, а на прежней границе остаётся морена.",
+            "en": "In warm years melting exceeds accumulation, the tongue shortens and a moraine is left at the old edge."
+          },
+          "conceptKey": "geo.moraine",
+          "altText": {
+            "ky": "Мөңгүдөн бошогон жерде таш дөбөлөрү.",
+            "ru": "Каменные валы на освободившемся от льда месте.",
+            "en": "Ridges of rock where the ice used to be."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "thickness",
+          "label": {
+            "ky": "Муздун калыңдыгы",
+            "ru": "Толщина льда",
+            "en": "Ice thickness"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 300,
+          "precision": 0
+        },
+        {
+          "key": "density",
+          "label": {
+            "ky": "Тыгыздык",
+            "ru": "Плотность",
+            "en": "Density"
+          },
+          "unit": "g/cm³",
+          "min": 0,
+          "max": 0.92,
+          "precision": 2
+        },
+        {
+          "key": "balance",
+          "label": {
+            "ky": "Масса балансы",
+            "ru": "Баланс массы",
+            "en": "Mass balance"
+          },
+          "unit": "m w.e./yr",
+          "min": -2,
+          "max": 2,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "freshSnowDensity": 0.1,
+        "firnDensity": 0.6,
+        "iceDensity": 0.917,
+        "years": 100
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "geo.q.glacier-from",
+      "type": "single",
+      "prompt": {
+        "ky": "Мөңгү эмнеден пайда болот?",
+        "ru": "Из чего образуется ледник?",
+        "en": "What does a glacier form from?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Тоңгон көлдөн",
+            "ru": "Из замёрзшего озера",
+            "en": "A frozen lake"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Көп жыл топтолгон кардан",
+            "ru": "Из снега, копившегося много лет",
+            "en": "Snow that piled up over many years"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жер астындагы суудан",
+            "ru": "Из подземных вод",
+            "en": "Groundwater"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Кар тыгызданып фирнге, анан мөңгү музуна айланат.",
+        "ru": "Снег уплотняется в фирн, а затем в ледниковый лёд.",
+        "en": "Snow compacts into firn and then into glacier ice."
+      },
+      "objectiveKeys": [
+        "geo.g6.hydrosphere.o1"
+      ],
+      "misconceptionKey": "geo.m.glacier-frozen-lake",
+      "difficulty": 1
+    },
+    {
+      "key": "geo.q.glacier-truths",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Мөңгүлөр жөнүндө кайсы сүйлөмдөр туура?",
+        "ru": "Какие утверждения о ледниках верны?",
+        "en": "Which statements about glaciers are true?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Мөңгү ылдый жай агат",
+            "ru": "Ледник медленно течёт вниз",
+            "en": "A glacier slowly flows downhill"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Мөңгү кыймылсыз",
+            "ru": "Ледник неподвижен",
+            "en": "A glacier never moves"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Мөңгүлөр дарыяларды суу менен камсыздайт",
+            "ru": "Ледники питают реки",
+            "en": "Glaciers feed rivers"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Тянь-Шандын көп мөңгүлөрү кыскарып жатат",
+            "ru": "Многие ледники Тянь-Шаня сокращаются",
+            "en": "Many Tien Shan glaciers are shrinking"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "c",
+        "d"
+      ],
+      "explanation": {
+        "ky": "Мөңгү өз салмагы менен агат; анын эриген суусу дарыяларды толтурат; жылуу климатта алар кыскарат.",
+        "ru": "Ледник течёт под собственным весом, его талая вода питает реки, а в тёплом климате ледники сокращаются.",
+        "en": "A glacier flows under its own weight, its meltwater feeds rivers, and in a warming climate glaciers shrink."
+      },
+      "objectiveKeys": [
+        "geo.g6.hydrosphere.o1"
+      ],
+      "misconceptionKey": "geo.m.glacier-still",
+      "difficulty": 2
+    },
+    {
+      "key": "geo.q.match-glacier",
+      "type": "match",
+      "prompt": {
+        "ky": "Түшүнүктү анын сүрөттөлүшү менен дал келтир.",
+        "ru": "Сопоставь понятие и его описание.",
+        "en": "Match each term to its description."
+      },
+      "pairs": [
+        {
+          "key": "acc",
+          "left": {
+            "ky": "Топтолуу зонасы",
+            "ru": "Область питания",
+            "en": "Accumulation zone"
+          },
+          "right": {
+            "ky": "Кар эригенден көп жаайт",
+            "ru": "Снега выпадает больше, чем тает",
+            "en": "More snow falls than melts"
+          }
+        },
+        {
+          "key": "abl",
+          "left": {
+            "ky": "Эрүү зонасы",
+            "ru": "Область абляции",
+            "en": "Ablation zone"
+          },
+          "right": {
+            "ky": "Муз жайында эрийт",
+            "ru": "Летом лёд тает",
+            "en": "Ice melts in summer"
+          }
+        },
+        {
+          "key": "mor",
+          "left": {
+            "ky": "Морена",
+            "ru": "Морена",
+            "en": "Moraine"
+          },
+          "right": {
+            "ky": "Мөңгү сүрүп келген таштар",
+            "ru": "Камни, принесённые ледником",
+            "en": "Rocks pushed by the glacier"
+          }
+        },
+        {
+          "key": "melt",
+          "left": {
+            "ky": "Эриген суу",
+            "ru": "Талая вода",
+            "en": "Meltwater"
+          },
+          "right": {
+            "ky": "Дарыяны баштайт",
+            "ru": "Даёт начало реке",
+            "en": "Starts a river"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Мөңгү жогору жагынан «азыктанып», төмөн жагынан «сарпталат».",
+        "ru": "Ледник «питается» наверху и «тратится» внизу.",
+        "en": "A glacier is fed at the top and used up at the bottom."
+      },
+      "objectiveKeys": [
+        "geo.g6.hydrosphere.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "geo.q.find-moraine",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден мөңгү калтырган таш дөбөлөрүн тап.",
+        "ru": "Найди на модели каменные валы, оставленные ледником.",
+        "en": "Find the ridges of rock left by the glacier on the model."
+      },
+      "targetConceptKey": "geo.moraine",
+      "explanation": {
+        "ky": "Бул – морена; ал мөңгүнүн тилинин алдында жана капталдарында болот.",
+        "ru": "Это морена; она лежит перед языком и по бокам ледника.",
+        "en": "That is a moraine; it lies in front of and beside the glacier's tongue."
+      },
+      "objectiveKeys": [
+        "geo.g6.hydrosphere.o1"
+      ],
+      "misconceptionKey": "geo.m.moraine-river",
+      "difficulty": 2
+    },
+    {
+      "key": "geo.q.ice-water",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Мөңгү музунун тыгыздыгы ≈0,9 г/см³. Калыңдыгы 100 м болгон муз эрисе, канча метр суу катмары чыгат?",
+        "ru": "Плотность ледникового льда ≈0,9 г/см³. Слой воды какой толщины в метрах получится, если растает лёд толщиной 100 м?",
+        "en": "Glacier ice has a density of ≈0.9 g/cm³. How many metres of water would a 100 m layer of ice melt into?"
+      },
+      "answer": 90,
+      "tolerance": 2,
+      "unit": "m",
+      "explanation": {
+        "ky": "Масса өзгөрбөйт: 100 м × 0,9 = 90 м суу (суунун тыгыздыгы 1 г/см³).",
+        "ru": "Масса не меняется: 100 м × 0,9 = 90 м воды (плотность воды 1 г/см³).",
+        "en": "Mass stays the same: 100 m × 0.9 = 90 m of water (water's density is 1 g/cm³)."
+      },
+      "objectiveKeys": [
+        "geo.g6.hydrosphere.o1"
+      ],
+      "difficulty": 4
+    },
+    {
+      "key": "geo.q.retreat",
+      "type": "single",
+      "prompt": {
+        "ky": "Мөңгү «чегинет» дегенде эмне болот?",
+        "ru": "Что происходит, когда ледник «отступает»?",
+        "en": "What happens when a glacier retreats?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Муз өйдө карай агат",
+            "ru": "Лёд течёт вверх",
+            "en": "The ice flows uphill"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Эрүү топтолуудан көп болуп, тили кыскарат",
+            "ru": "Таяние превышает накопление, и язык укорачивается",
+            "en": "Melting exceeds accumulation and the tongue shortens"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Мөңгү жерге сиңип кетет",
+            "ru": "Ледник уходит под землю",
+            "en": "The glacier sinks underground"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Муз дайыма ылдый агат, бирок тили эрүүдөн улам кыскарат.",
+        "ru": "Лёд всегда течёт вниз, но язык укорачивается из-за таяния.",
+        "en": "Ice always flows downhill, but the tongue shortens because of melting."
+      },
+      "objectiveKeys": [
+        "geo.g6.hydrosphere.o1"
+      ],
+      "misconceptionKey": "geo.m.retreat-flows-back",
+      "difficulty": 3
+    },
+    {
+      "key": "geo.q.melt-future",
+      "type": "single",
+      "prompt": {
+        "ky": "Мөңгүлөр кыскара берсе, жайкы дарыяларда узак мөөнөттө эмне болот?",
+        "ru": "Что в долгосрочной перспективе произойдёт с летними реками, если ледники продолжат сокращаться?",
+        "en": "If glaciers keep shrinking, what happens to summer rivers in the long run?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Суу түбөлүк көбөйөт",
+            "ru": "Воды навсегда станет больше",
+            "en": "They will have more water forever"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Суу азаят",
+            "ru": "Воды станет меньше",
+            "en": "They will have less water"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эч нерсе өзгөрбөйт",
+            "ru": "Ничего не изменится",
+            "en": "Nothing will change"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Адегенде эриген суу көбөйөт, бирок мөңгү кичирейген сайын суу азаят.",
+        "ru": "Сначала талой воды больше, но по мере уменьшения ледника её становится меньше.",
+        "en": "At first there is more meltwater, but as the glacier shrinks there is less and less."
+      },
+      "objectiveKeys": [
+        "geo.g6.hydrosphere.o1"
+      ],
+      "misconceptionKey": "geo.m.more-melt-forever",
+      "difficulty": 4
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-geo-crust",
+      "ky": "Жер кыртышы",
+      "ru": "земная кора",
+      "en": "Earth's crust",
+      "forbidden": [
+        "Earth's bark"
+      ],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-mantle",
+      "ky": "мантия",
+      "ru": "мантия",
+      "en": "mantle",
+      "forbidden": [
+        "мантель"
+      ],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-core",
+      "ky": "Жердин ядросу",
+      "ru": "ядро Земли",
+      "en": "Earth's core",
+      "forbidden": [],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-lithosphere",
+      "ky": "литосфера",
+      "ru": "литосфера",
+      "en": "lithosphere",
+      "forbidden": [
+        "литосфэра",
+        "lithosfere"
+      ],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-plate",
+      "ky": "литосфералык плита",
+      "ru": "литосферная плита",
+      "en": "lithospheric plate",
+      "forbidden": [
+        "тектоническая плитка",
+        "tectonic plaque"
+      ],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-earthquake",
+      "ky": "жер титирөө",
+      "ru": "землетрясение",
+      "en": "earthquake",
+      "forbidden": [
+        "жер титироо",
+        "earth quake"
+      ],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-water-cycle",
+      "ky": "суунун айлануусу",
+      "ru": "круговорот воды",
+      "en": "water cycle",
+      "forbidden": [
+        "кругооборот воды"
+      ],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-evaporation",
+      "ky": "бууланыш",
+      "ru": "испарение",
+      "en": "evaporation",
+      "forbidden": [
+        "evaporization"
+      ],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-condensation",
+      "ky": "конденсация",
+      "ru": "конденсация",
+      "en": "condensation",
+      "forbidden": [
+        "конденсирование",
+        "condensating"
+      ],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-precipitation",
+      "ky": "жаан-чачын",
+      "ru": "атмосферные осадки",
+      "en": "precipitation",
+      "forbidden": [
+        "жаан чачын"
+      ],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-glacier",
+      "ky": "мөңгү",
+      "ru": "ледник",
+      "en": "glacier",
+      "forbidden": [
+        "мөнгү",
+        "ледяник"
+      ],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-groundwater",
+      "ky": "жер астындагы суу",
+      "ru": "подземные воды",
+      "en": "groundwater",
+      "forbidden": [],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-epicentre",
+      "ky": "эпицентр",
+      "ru": "эпицентр",
+      "en": "epicentre",
+      "forbidden": [
+        "эпицентер"
+      ],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-firn",
+      "ky": "фирн",
+      "ru": "фирн",
+      "en": "firn",
+      "forbidden": [],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-moraine",
+      "ky": "морена",
+      "ru": "морена",
+      "en": "moraine",
+      "forbidden": [
+        "morain"
+      ],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-ablation",
+      "ky": "абляция",
+      "ru": "абляция",
+      "en": "ablation",
+      "forbidden": [],
+      "approvedBy": "editor-geo"
+    },
+    {
+      "id": "g-geo-meltwater",
+      "ky": "мөңгүнүн эриген суусу",
+      "ru": "талая вода",
+      "en": "meltwater",
+      "forbidden": [],
+      "approvedBy": "editor-geo"
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "area",
+      "icon": "square",
+      "valueKind": "quantity",
+      "unit": "cm²",
+      "label": {
+        "ky": "Аянты",
+        "ru": "Площадь",
+        "en": "Area"
+      }
+    },
+    {
+      "key": "composition",
+      "icon": "flask-conical",
+      "valueKind": "text",
+      "label": {
+        "ky": "Курамы",
+        "ru": "Состав",
+        "en": "Composition"
+      }
+    },
+    {
+      "key": "depth",
+      "icon": "arrow-down-to-line",
+      "valueKind": "quantity",
+      "unit": "km",
+      "label": {
+        "ky": "Тереңдиги",
+        "ru": "Глубина",
+        "en": "Depth"
+      }
+    },
+    {
+      "key": "elevation",
+      "icon": "mountain",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Деңиз деңгээлинен бийиктиги",
+        "ru": "Высота над уровнем моря",
+        "en": "Elevation above sea level"
+      }
+    },
+    {
+      "key": "length",
+      "icon": "ruler",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Узундугу",
+        "ru": "Длина",
+        "en": "Length"
+      }
+    },
+    {
+      "key": "speed",
+      "icon": "gauge",
+      "valueKind": "quantity",
+      "unit": "m/s",
+      "label": {
+        "ky": "Ылдамдыгы",
+        "ru": "Скорость",
+        "en": "Speed"
+      }
+    },
+    {
+      "key": "state",
+      "icon": "droplet",
+      "valueKind": "text",
+      "label": {
+        "ky": "Агрегаттык абалы",
+        "ru": "Агрегатное состояние",
+        "en": "State of matter"
+      }
+    }
+  ]
+}

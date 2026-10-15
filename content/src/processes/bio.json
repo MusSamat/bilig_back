@@ -1,0 +1,689 @@
+{
+  "processes": [
+    {
+      "key": "bio.respiration",
+      "engine": "timeline",
+      "icon": "wind",
+      "title": {
+        "ky": "Клеткалык дем алуу",
+        "ru": "Клеточное дыхание",
+        "en": "Cellular respiration"
+      },
+      "description": {
+        "ky": "Клетка глюкозаны кычкылтек менен акырындык менен ажыратып, бөлүнгөн энергияны АТФ молекулаларына топтойт.",
+        "ru": "Клетка постепенно расщепляет глюкозу с участием кислорода и запасает выделившуюся энергию в молекулах АТФ.",
+        "en": "The cell breaks glucose down step by step using oxygen and stores the released energy in ATP molecules."
+      },
+      "equation": "C_6H_{12}O_6 + 6O_2 \\to 6CO_2 + 6H_2O",
+      "inputs": {
+        "ky": "Глюкоза + кычкылтек",
+        "ru": "Глюкоза + кислород",
+        "en": "Glucose + oxygen"
+      },
+      "outputs": {
+        "ky": "Көмүр кычкыл газы + суу",
+        "ru": "Углекислый газ + вода",
+        "en": "Carbon dioxide + water"
+      },
+      "energy": {
+        "ky": "≈ 30 АТФ бир глюкоза молекуласынан",
+        "ru": "≈ 30 АТФ на одну молекулу глюкозы",
+        "en": "≈ 30 ATP per glucose molecule"
+      },
+      "steps": [
+        {
+          "key": "glycolysis",
+          "title": {
+            "ky": "Гликолиз",
+            "ru": "Гликолиз",
+            "en": "Glycolysis"
+          },
+          "result": {
+            "ky": "2 АТФ",
+            "ru": "2 АТФ",
+            "en": "2 ATP"
+          },
+          "description": {
+            "ky": "Цитоплазмада бир глюкоза молекуласы пируваттын эки молекуласына ажырайт. Бул үчүн кычкылтек керек эмес.",
+            "ru": "В цитоплазме молекула глюкозы расщепляется на две молекулы пирувата. Кислород для этого не нужен.",
+            "en": "In the cytoplasm one glucose molecule is split into two pyruvate molecules. No oxygen is needed."
+          },
+          "conceptKey": "bio.cytoplasm",
+          "altText": {
+            "ky": "Цитоплазмадагы глюкоза экиге бөлүнөт.",
+            "ru": "Глюкоза в цитоплазме делится надвое.",
+            "en": "Glucose in the cytoplasm splits in two."
+          },
+          "duration": 2
+        },
+        {
+          "key": "krebs",
+          "title": {
+            "ky": "Кребс цикли",
+            "ru": "Цикл Кребса",
+            "en": "Krebs cycle"
+          },
+          "result": {
+            "ky": "2 АТФ + 6 CO₂",
+            "ru": "2 АТФ + 6 CO₂",
+            "en": "2 ATP + 6 CO₂"
+          },
+          "description": {
+            "ky": "Пируват митохондрияга кирип, толук кычкылданат; көмүр кычкыл газы бөлүнүп чыгат.",
+            "ru": "Пируват входит в митохондрию и полностью окисляется; выделяется углекислый газ.",
+            "en": "Pyruvate enters the mitochondrion and is fully oxidised; carbon dioxide is released."
+          },
+          "conceptKey": "bio.mitochondrion",
+          "altText": {
+            "ky": "Митохондриянын ичиндеги тегерек цикл, CO₂ чыгат.",
+            "ru": "Круговой цикл внутри митохондрии, выходит CO₂.",
+            "en": "A circular cycle inside the mitochondrion releasing CO₂."
+          },
+          "duration": 3
+        },
+        {
+          "key": "etc",
+          "title": {
+            "ky": "Электрон ташуучу чынжыр",
+            "ru": "Дыхательная цепь",
+            "en": "Electron transport chain"
+          },
+          "result": {
+            "ky": "≈ 26 АТФ + 6 H₂O",
+            "ru": "≈ 26 АТФ + 6 H₂O",
+            "en": "≈ 26 ATP + 6 H₂O"
+          },
+          "description": {
+            "ky": "Митохондриянын ички мембранасында кычкылтек электрондорду кабыл алып, сууга айланат. АТФтын көбү ушул жерде пайда болот.",
+            "ru": "На внутренней мембране митохондрии кислород принимает электроны и превращается в воду. Здесь образуется большая часть АТФ.",
+            "en": "On the inner mitochondrial membrane oxygen accepts electrons and becomes water. Most of the ATP is made here."
+          },
+          "conceptKey": "bio.mitochondrion",
+          "altText": {
+            "ky": "Митохондриянын ички мембранасындагы белоктор.",
+            "ru": "Белки на внутренней мембране митохондрии.",
+            "en": "Proteins on the inner membrane of the mitochondrion."
+          },
+          "duration": 3
+        }
+      ],
+      "metrics": [
+        {
+          "key": "atp",
+          "label": {
+            "ky": "АТФ",
+            "ru": "АТФ",
+            "en": "ATP"
+          },
+          "unit": "molecules",
+          "min": 0,
+          "max": 30,
+          "precision": 0
+        },
+        {
+          "key": "o2",
+          "label": {
+            "ky": "Сарпталган O₂",
+            "ru": "Израсходовано O₂",
+            "en": "O₂ used"
+          },
+          "unit": "mol",
+          "min": 0,
+          "max": 6,
+          "precision": 1
+        },
+        {
+          "key": "co2",
+          "label": {
+            "ky": "Бөлүнгөн CO₂",
+            "ru": "Выделено CO₂",
+            "en": "CO₂ released"
+          },
+          "unit": "mol",
+          "min": 0,
+          "max": 6,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "glucose": 1,
+        "o2": 6,
+        "co2": 6,
+        "h2o": 6,
+        "atpYield": 30
+      }
+    },
+    {
+      "key": "bio.photosynthesis",
+      "engine": "timeline",
+      "icon": "sun",
+      "title": {
+        "ky": "Фотосинтез",
+        "ru": "Фотосинтез",
+        "en": "Photosynthesis"
+      },
+      "description": {
+        "ky": "Жашыл өсүмдүктөр жарыктын энергиясын колдонуп, көмүр кычкыл газы менен суудан глюкоза жасап, абага кычкылтек бөлүп чыгарышат.",
+        "ru": "Зелёные растения с помощью энергии света превращают углекислый газ и воду в глюкозу и выделяют в воздух кислород.",
+        "en": "Green plants use light energy to turn carbon dioxide and water into glucose, releasing oxygen into the air."
+      },
+      "equation": "6CO_2 + 6H_2O \\xrightarrow{light} C_6H_{12}O_6 + 6O_2",
+      "inputs": {
+        "ky": "Көмүр кычкыл газы + суу + жарык",
+        "ru": "Углекислый газ + вода + свет",
+        "en": "Carbon dioxide + water + light"
+      },
+      "outputs": {
+        "ky": "Глюкоза + кычкылтек",
+        "ru": "Глюкоза + кислород",
+        "en": "Glucose + oxygen"
+      },
+      "energy": {
+        "ky": "≈ 2870 кДж жарык энергиясы 1 моль глюкозада сакталат",
+        "ru": "≈ 2870 кДж энергии света запасается в 1 моль глюкозы",
+        "en": "≈ 2870 kJ of light energy stored per mole of glucose"
+      },
+      "steps": [
+        {
+          "key": "co2-entry",
+          "title": {
+            "ky": "CO₂ устьице аркылуу кирет",
+            "ru": "CO₂ входит через устьица",
+            "en": "CO₂ enters through stomata"
+          },
+          "result": {
+            "ky": "6 CO₂ жалбырактын ичинде",
+            "ru": "6 CO₂ внутри листа",
+            "en": "6 CO₂ inside the leaf"
+          },
+          "description": {
+            "ky": "Абадагы көмүр кычкыл газы ачык устьицелер аркылуу жалбырактын ичине кирип, мезофилл клеткаларына жетет. Суу тамырдан келет.",
+            "ru": "Углекислый газ из воздуха проникает в лист через открытые устьица и доходит до клеток мезофилла. Вода поступает от корней.",
+            "en": "Carbon dioxide from the air enters the leaf through open stomata and reaches the mesophyll cells. Water arrives from the roots."
+          },
+          "conceptKey": "bio.leaf-stoma",
+          "altText": {
+            "ky": "Жалбырактын астындагы ачык устьицеге газ бөлүкчөлөрү кирет.",
+            "ru": "Частицы газа входят в открытое устьице на нижней стороне листа.",
+            "en": "Gas particles enter an open stoma on the underside of the leaf."
+          },
+          "duration": 2
+        },
+        {
+          "key": "light-capture",
+          "title": {
+            "ky": "Жарыкты кармоо",
+            "ru": "Поглощение света",
+            "en": "Capturing light"
+          },
+          "result": {
+            "ky": "Козголгон хлорофилл",
+            "ru": "Возбуждённый хлорофилл",
+            "en": "Excited chlorophyll"
+          },
+          "description": {
+            "ky": "Хлорофилл кызыл жана көк жарыкты сиңирет; анын электрондору энергияга ээ болот.",
+            "ru": "Хлорофилл поглощает красный и синий свет; его электроны получают энергию.",
+            "en": "Chlorophyll absorbs red and blue light, and its electrons gain energy."
+          },
+          "conceptKey": "bio.chlorophyll",
+          "altText": {
+            "ky": "Күн нурлары хлорофилл молекулаларына тийип, алар жаркырайт.",
+            "ru": "Солнечные лучи падают на молекулы хлорофилла, и те светятся.",
+            "en": "Sunbeams strike chlorophyll molecules, which glow."
+          },
+          "duration": 2
+        },
+        {
+          "key": "photolysis",
+          "title": {
+            "ky": "Суунун ажырашы",
+            "ru": "Фотолиз воды",
+            "en": "Splitting water"
+          },
+          "result": {
+            "ky": "6 O₂ абага чыгат",
+            "ru": "6 O₂ выходит в воздух",
+            "en": "6 O₂ released to the air"
+          },
+          "description": {
+            "ky": "Тилакоиддерде жарыктын энергиясы менен суу молекулалары ажырайт. Кычкылтек – кошумча продукт – устьицелер аркылуу чыгат.",
+            "ru": "В тилакоидах энергия света расщепляет молекулы воды. Кислород – побочный продукт – выходит через устьица.",
+            "en": "In the thylakoids, light energy splits water molecules. Oxygen, a by-product, leaves through the stomata."
+          },
+          "conceptKey": "bio.chloroplast",
+          "altText": {
+            "ky": "Хлоропласттын ичинде суу молекулалары бөлүнүп, кычкылтек көбүкчөлөрү чыгат.",
+            "ru": "Внутри хлоропласта молекулы воды распадаются, выходят пузырьки кислорода.",
+            "en": "Inside the chloroplast water molecules break up and oxygen bubbles out."
+          },
+          "duration": 2
+        },
+        {
+          "key": "atp-nadph",
+          "title": {
+            "ky": "АТФ жана НАДФН пайда болушу",
+            "ru": "Образование АТФ и НАДФН",
+            "en": "Making ATP and NADPH"
+          },
+          "result": {
+            "ky": "18 АТФ + 12 НАДФН",
+            "ru": "18 АТФ + 12 НАДФН",
+            "en": "18 ATP + 12 NADPH"
+          },
+          "description": {
+            "ky": "Жарык фазасынын аягында энергия АТФ жана НАДФН молекулаларына топтолот – алар кийинки фазанын «отуну».",
+            "ru": "В конце световой фазы энергия запасается в молекулах АТФ и НАДФН – это «топливо» для следующей фазы.",
+            "en": "At the end of the light-dependent stage, energy is stored in ATP and NADPH – the fuel for the next stage."
+          },
+          "conceptKey": "bio.chloroplast",
+          "altText": {
+            "ky": "Тилакоид мембранасында энергия ташуучу молекулалар топтолот.",
+            "ru": "На мембране тилакоида накапливаются молекулы-переносчики энергии.",
+            "en": "Energy-carrier molecules build up on the thylakoid membrane."
+          },
+          "duration": 2
+        },
+        {
+          "key": "calvin",
+          "title": {
+            "ky": "Кальвин цикли (караңгы фаза)",
+            "ru": "Цикл Кальвина (темновая фаза)",
+            "en": "Calvin cycle (light-independent stage)"
+          },
+          "result": {
+            "ky": "1 C₆H₁₂O₆",
+            "ru": "1 C₆H₁₂O₆",
+            "en": "1 C₆H₁₂O₆"
+          },
+          "description": {
+            "ky": "Хлоропласттын стромасында АТФ жана НАДФНдин энергиясы менен CO₂ байланып, глюкоза курулат. Бул фазага жарык түз керек эмес.",
+            "ru": "В строме хлоропласта за счёт энергии АТФ и НАДФН CO₂ связывается и собирается глюкоза. Свет на этой стадии напрямую не нужен.",
+            "en": "In the chloroplast stroma, the energy of ATP and NADPH is used to fix CO₂ and build glucose. This stage does not need light directly."
+          },
+          "conceptKey": "bio.chloroplast",
+          "altText": {
+            "ky": "Хлоропласттын стромасындагы тегерек цикл, андан глюкоза молекуласы чыгат.",
+            "ru": "Круговой цикл в строме хлоропласта, из которого выходит молекула глюкозы.",
+            "en": "A circular cycle in the chloroplast stroma producing a glucose molecule."
+          },
+          "duration": 3
+        }
+      ],
+      "metrics": [
+        {
+          "key": "co2",
+          "label": {
+            "ky": "Сиңирилген CO₂",
+            "ru": "Поглощено CO₂",
+            "en": "CO₂ absorbed"
+          },
+          "unit": "mol",
+          "min": 0,
+          "max": 6,
+          "precision": 1
+        },
+        {
+          "key": "o2",
+          "label": {
+            "ky": "Бөлүнгөн O₂",
+            "ru": "Выделено O₂",
+            "en": "O₂ released"
+          },
+          "unit": "mol",
+          "min": 0,
+          "max": 6,
+          "precision": 1
+        },
+        {
+          "key": "glucose",
+          "label": {
+            "ky": "Глюкоза",
+            "ru": "Глюкоза",
+            "en": "Glucose"
+          },
+          "unit": "mol",
+          "min": 0,
+          "max": 1,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "co2": 6,
+        "h2o": 6,
+        "glucose": 1,
+        "o2": 6,
+        "atp": 18,
+        "nadph": 12,
+        "energyKJ": 2870
+      }
+    },
+    {
+      "key": "bio.cardiac-cycle",
+      "engine": "timeline",
+      "icon": "heart-pulse",
+      "title": {
+        "ky": "Жүрөк цикли",
+        "ru": "Сердечный цикл",
+        "en": "Cardiac cycle"
+      },
+      "description": {
+        "ky": "Бир жүрөк согушу үч фазадан турат: жүрөкчөлөрдүн жыйрылышы, карынчалардын жыйрылышы жана жалпы бошоңдоо. 75 мүн⁻¹ жыштыкта цикл 0,8 секунд созулат.",
+        "ru": "Один удар сердца состоит из трёх фаз: сокращения предсердий, сокращения желудочков и общего расслабления. При частоте 75 уд/мин цикл длится 0,8 с.",
+        "en": "One heartbeat has three phases: the atria contract, the ventricles contract, then everything relaxes. At 75 beats/min the cycle lasts 0.8 s."
+      },
+      "inputs": {
+        "ky": "Веналардан келген кан",
+        "ru": "Кровь из вен",
+        "en": "Blood from the veins"
+      },
+      "outputs": {
+        "ky": "Аортага жана өпкө артериясына айдалган кан",
+        "ru": "Кровь, выброшенная в аорту и лёгочную артерию",
+        "en": "Blood pumped into the aorta and pulmonary artery"
+      },
+      "energy": {
+        "ky": "Ар бир согууда ≈ 1 Дж механикалык иш",
+        "ru": "≈ 1 Дж механической работы за удар",
+        "en": "≈ 1 J of mechanical work per beat"
+      },
+      "steps": [
+        {
+          "key": "atrial-systole",
+          "title": {
+            "ky": "Жүрөкчөлөрдүн систоласы",
+            "ru": "Систола предсердий",
+            "en": "Atrial systole"
+          },
+          "result": {
+            "ky": "Карынчалар толот",
+            "ru": "Желудочки заполнены",
+            "en": "Ventricles filled"
+          },
+          "description": {
+            "ky": "Жүрөкчөлөр жыйрылып, калган канды ачык капкактар аркылуу карынчаларга түртөт.",
+            "ru": "Предсердия сокращаются и через открытые клапаны проталкивают оставшуюся кровь в желудочки.",
+            "en": "The atria contract and push the remaining blood through the open valves into the ventricles."
+          },
+          "conceptKey": "bio.left-atrium",
+          "altText": {
+            "ky": "Жогорку эки камера кичирейип, кан төмөн агат.",
+            "ru": "Две верхние камеры сжимаются, кровь стекает вниз.",
+            "en": "The two upper chambers squeeze and blood flows down."
+          },
+          "duration": 0.1
+        },
+        {
+          "key": "ventricular-systole",
+          "title": {
+            "ky": "Карынчалардын систоласы",
+            "ru": "Систола желудочков",
+            "en": "Ventricular systole"
+          },
+          "result": {
+            "ky": "≈ 70 мл кан аортага",
+            "ru": "≈ 70 мл крови в аорту",
+            "en": "≈ 70 mL of blood into the aorta"
+          },
+          "description": {
+            "ky": "Жүрөкчө-карынча капкактары жабылып («тук»), карынчалар канды аорта менен өпкө артериясына айдайт. Сол карынчада басым ≈120 мм сымап мамычасына жетет.",
+            "ru": "Предсердно-желудочковые клапаны захлопываются (первый тон), желудочки выбрасывают кровь в аорту и лёгочную артерию. Давление в левом желудочке достигает ≈120 мм рт. ст.",
+            "en": "The valves between atria and ventricles snap shut ('lub') and the ventricles pump blood into the aorta and pulmonary artery. Left-ventricle pressure reaches ≈120 mmHg."
+          },
+          "conceptKey": "bio.left-ventricle",
+          "altText": {
+            "ky": "Төмөнкү камералар кысылып, кан чоң тамырларга атылып чыгат.",
+            "ru": "Нижние камеры сжимаются, кровь выталкивается в крупные сосуды.",
+            "en": "The lower chambers squeeze and blood shoots into the great vessels."
+          },
+          "duration": 0.3
+        },
+        {
+          "key": "diastole",
+          "title": {
+            "ky": "Жалпы диастола",
+            "ru": "Общая диастола",
+            "en": "Diastole"
+          },
+          "result": {
+            "ky": "Жүрөк эс алат жана кайра толот",
+            "ru": "Сердце отдыхает и снова наполняется",
+            "en": "The heart rests and refills"
+          },
+          "description": {
+            "ky": "Аорта жана өпкө капкактары жабылат («так»), бардык камералар бошоңдойт, веналардан кан жүрөкчөлөргө жана карынчаларга агып кирет.",
+            "ru": "Аортальный и лёгочный клапаны закрываются (второй тон), все камеры расслабляются, кровь из вен заполняет предсердия и желудочки.",
+            "en": "The aortic and pulmonary valves close ('dub'), all chambers relax and blood from the veins fills the atria and ventricles."
+          },
+          "conceptKey": "bio.heart-valve",
+          "altText": {
+            "ky": "Капкактар жабылып, бошоңдогон жүрөк кан менен толот.",
+            "ru": "Клапаны закрыты, расслабленное сердце наполняется кровью.",
+            "en": "The valves are shut and the relaxed heart fills with blood."
+          },
+          "duration": 0.4
+        }
+      ],
+      "metrics": [
+        {
+          "key": "heart-rate",
+          "label": {
+            "ky": "Жүрөктүн согуу жыштыгы",
+            "ru": "Частота сердечных сокращений",
+            "en": "Heart rate"
+          },
+          "unit": "bpm",
+          "min": 40,
+          "max": 200,
+          "precision": 0
+        },
+        {
+          "key": "stroke-volume",
+          "label": {
+            "ky": "Бир согуудагы көлөм",
+            "ru": "Ударный объём",
+            "en": "Stroke volume"
+          },
+          "unit": "mL",
+          "min": 0,
+          "max": 100,
+          "precision": 0
+        },
+        {
+          "key": "lv-pressure",
+          "label": {
+            "ky": "Сол карынчадагы басым",
+            "ru": "Давление в левом желудочке",
+            "en": "Left-ventricle pressure"
+          },
+          "unit": "mmHg",
+          "min": 0,
+          "max": 140,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "heartRate": 75,
+        "strokeVolume": 70,
+        "systolicPressure": 120,
+        "diastolicPressure": 80,
+        "cycleSeconds": 0.8
+      }
+    },
+    {
+      "key": "bio.dna-replication",
+      "engine": "timeline",
+      "icon": "copy",
+      "title": {
+        "ky": "ДНКнын репликациясы",
+        "ru": "Репликация ДНК",
+        "en": "DNA replication"
+      },
+      "description": {
+        "ky": "Клетка бөлүнөөр алдында ДНК эки эселенет: кош спираль ажырап, ар бир эски чынжырга комплементардуу жаңы чынжыр курулат.",
+        "ru": "Перед делением клетки ДНК удваивается: двойная спираль расплетается, и к каждой старой цепи достраивается новая комплементарная.",
+        "en": "Before a cell divides, its DNA is doubled: the double helix unwinds and a new complementary strand is built on each old one."
+      },
+      "inputs": {
+        "ky": "1 ДНК молекуласы + эркин нуклеотиддер",
+        "ru": "1 молекула ДНК + свободные нуклеотиды",
+        "en": "1 DNA molecule + free nucleotides"
+      },
+      "outputs": {
+        "ky": "2 бирдей ДНК молекуласы",
+        "ru": "2 одинаковые молекулы ДНК",
+        "en": "2 identical DNA molecules"
+      },
+      "energy": {
+        "ky": "Нуклеотиддердин өз энергиясы (дНТФ)",
+        "ru": "Энергия самих нуклеотидов (дНТФ)",
+        "en": "Energy carried by the nucleotides themselves (dNTPs)"
+      },
+      "steps": [
+        {
+          "key": "unwinding",
+          "title": {
+            "ky": "Спиралдын ачылышы",
+            "ru": "Расплетание спирали",
+            "en": "Unwinding"
+          },
+          "result": {
+            "ky": "Эки ачык чынжыр",
+            "ru": "Две разошедшиеся цепи",
+            "en": "Two separated strands"
+          },
+          "description": {
+            "ky": "Хеликаза ферменти негиздердин ортосундагы суутек байланыштарын үзүп, спиралды сыдырма сыяктуу ачат.",
+            "ru": "Фермент хеликаза разрывает водородные связи между основаниями и расстёгивает спираль, как молнию.",
+            "en": "The enzyme helicase breaks the hydrogen bonds between bases and unzips the helix."
+          },
+          "conceptKey": "bio.hydrogen-bond",
+          "altText": {
+            "ky": "Кош спираль ортосунан экиге ажырап, Y түрүндөгү айры пайда болот.",
+            "ru": "Двойная спираль расходится посередине, образуя вилку в форме буквы Y.",
+            "en": "The double helix splits down the middle into a Y-shaped fork."
+          },
+          "duration": 2
+        },
+        {
+          "key": "pairing",
+          "title": {
+            "ky": "Комплементардуу жупташуу",
+            "ru": "Комплементарное спаривание",
+            "en": "Complementary pairing"
+          },
+          "result": {
+            "ky": "A–T, G–C жуптары",
+            "ru": "Пары A–T и G–C",
+            "en": "A–T and G–C pairs"
+          },
+          "description": {
+            "ky": "Эркин нуклеотиддер ачылган чынжырдагы негиздерге комплементардуулук эрежеси боюнча кошулат: A – T га, G – C га.",
+            "ru": "Свободные нуклеотиды присоединяются к основаниям открытой цепи по правилу комплементарности: A – к T, G – к C.",
+            "en": "Free nucleotides attach to the exposed bases following the pairing rule: A to T, G to C."
+          },
+          "conceptKey": "bio.nucleotide",
+          "altText": {
+            "ky": "Түстүү нуклеотиддер ачык чынжырга бирден келип жабышат.",
+            "ru": "Цветные нуклеотиды по одному подходят и присоединяются к открытой цепи.",
+            "en": "Coloured nucleotides arrive one by one and join the open strand."
+          },
+          "duration": 3
+        },
+        {
+          "key": "elongation",
+          "title": {
+            "ky": "Жаңы чынжырдын курулушу",
+            "ru": "Сборка новой цепи",
+            "en": "Building the new strand"
+          },
+          "result": {
+            "ky": "≈ 50 нуклеотид/с (адамда)",
+            "ru": "≈ 50 нуклеотидов/с (у человека)",
+            "en": "≈ 50 nucleotides/s (in humans)"
+          },
+          "description": {
+            "ky": "ДНК-полимераза нуклеотиддерди бири-бирине туташтырып, жаңы кант-фосфат негизин курат жана каталарды текшерет.",
+            "ru": "ДНК-полимераза сшивает нуклеотиды между собой, строит новый сахарофосфатный остов и проверяет ошибки.",
+            "en": "DNA polymerase links the nucleotides into a new sugar-phosphate backbone and proofreads for mistakes."
+          },
+          "conceptKey": "bio.sugar-phosphate-backbone",
+          "altText": {
+            "ky": "Фермент чынжыр боюнча жылып, артынан жаңы туткасы пайда болот.",
+            "ru": "Фермент движется вдоль цепи, за ним появляется новый остов.",
+            "en": "An enzyme slides along the strand, leaving a new backbone behind it."
+          },
+          "duration": 3
+        },
+        {
+          "key": "two-copies",
+          "title": {
+            "ky": "Эки жаңы ДНК",
+            "ru": "Две новые ДНК",
+            "en": "Two new DNA molecules"
+          },
+          "result": {
+            "ky": "2 ДНК, ар биринде 1 эски + 1 жаңы чынжыр",
+            "ru": "2 ДНК, в каждой 1 старая + 1 новая цепь",
+            "en": "2 DNA molecules, each 1 old + 1 new strand"
+          },
+          "description": {
+            "ky": "Натыйжада эки бирдей кош спираль пайда болот. Ар биринде бир эски жана бир жаңы чынжыр бар – бул жарым консервативдүү репликация.",
+            "ru": "В итоге получаются две одинаковые двойные спирали, в каждой одна старая и одна новая цепь – это полуконсервативная репликация.",
+            "en": "The result is two identical double helices, each with one old and one new strand – semi-conservative replication."
+          },
+          "conceptKey": "bio.dna-helix",
+          "altText": {
+            "ky": "Жанаша турган эки бирдей кош спираль; эски чынжырлар бир түстө, жаңылары башка түстө.",
+            "ru": "Две одинаковые спирали рядом; старые цепи одного цвета, новые – другого.",
+            "en": "Two identical helices side by side; old strands in one colour, new ones in another."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "copied",
+          "label": {
+            "ky": "Көчүрүлгөн негиз жуптары",
+            "ru": "Скопировано пар оснований",
+            "en": "Base pairs copied"
+          },
+          "unit": "bp",
+          "min": 0,
+          "max": 10,
+          "precision": 0
+        },
+        {
+          "key": "unwound",
+          "label": {
+            "ky": "Ачылган узундук",
+            "ru": "Расплетённая длина",
+            "en": "Unwound length"
+          },
+          "unit": "nm",
+          "min": 0,
+          "max": 3.4,
+          "precision": 2
+        },
+        {
+          "key": "molecules",
+          "label": {
+            "ky": "ДНК молекулалары",
+            "ru": "Молекулы ДНК",
+            "en": "DNA molecules"
+          },
+          "unit": "molecules",
+          "min": 1,
+          "max": 2,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "basePairs": 10,
+        "rise": 0.34,
+        "polymeraseRate": 50
+      }
+    }
+  ]
+}
