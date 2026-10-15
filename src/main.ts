@@ -2,6 +2,7 @@
 import { buildApp } from './app.js';
 import { createDeps } from './bootstrap.js';
 import { loadConfig } from './config.js';
+import { seedDemo } from './services/demo-seed.js';
 import { importContent, loadContentDir } from './services/seed.js';
 import { runScheduledPublishes } from './services/workflow.js';
 
@@ -12,6 +13,8 @@ if (deps.repo.kind === 'memory') {
   const report = await importContent(deps.repo, deps.clock, loadContentDir(config.contentDir), config);
   process.stdout.write(`memory repo seeded: ${JSON.stringify(report)}\n`);
 }
+// DEV ONLY: demo school + accounts (throws when NODE_ENV=production).
+if (config.demoSeed) await seedDemo(deps.repo, deps);
 const app = await buildApp(deps);
 if (deps.limiter.kind === 'memory' && config.redisUrl) app.log.warn('REDIS_URL set but unreachable — using in-memory rate limits');
 if (!deps.tutor) app.log.warn('ANTHROPIC_API_KEY not set — tutor answers 503 (clients use the offline index)');

@@ -52,6 +52,36 @@ loads `content/**` on boot (data is lost on restart).
 The compose project uses its own containers (`bilig_postgres`, `bilig_redis`)
 and ports 55433 / 56379, so it does not collide with other local databases.
 
+## Try it locally
+
+A **dev-only** demo dataset lets you try the real app end to end
+(`src/services/demo-seed.ts`). It is idempotent: it does nothing if
+"Bilig Demo School" already exists, and it refuses to run when `NODE_ENV=production`.
+
+```bash
+STORAGE=memory DEMO_SEED=1 npm run start:dev   # in memory: content + demo data on every boot
+# or, with PostgreSQL:
+npm run db:seed && npm run db:seed:demo        # once; or set DEMO_SEED=1 to run it at startup
+```
+
+It creates "Bilig Demo School" (Bishkek), licensed for every live subject and
+grades 6–11 for one year, a class **7А** (grade 7) and an assignment on the
+animal-cell topic (tour + quiz, due in 7 days). The accounts are:
+
+| Role | Login | Password / PIN |
+|---|---|---|
+| School admin | `admin@demo.bilig.kg` | `bilig-demo-2026` |
+| Teacher (e-mail verified, teaches 7А) | `teacher@demo.bilig.kg` | `bilig-demo-2026` |
+| Students (Айбек Асанов, Айпери Токтогулова, Нурсултан Жумабеков, Мария Иванова, Дмитрий Ким) | class code `DEMO77`, then pick a name | PIN `1234` |
+| Superadmin | `super@demo.bilig.kg` | `bilig-demo-2026` + TOTP |
+
+The admin audience requires TOTP for a superadmin, so the seed enrols one
+and prints its secret and `otpauth://` URL. Add it to an authenticator app
+(scan the URL as a QR code or type in the secret). Later runs print the
+stored secret again. With `STORAGE=memory`, every restart creates a new secret,
+so you have to enrol again. On the client audience the superadmin logs in
+without TOTP.
+
 ## Scripts
 
 | Script | What it does |
@@ -62,6 +92,7 @@ and ports 55433 / 56379, so it does not collide with other local databases.
 | `npm run test:db` | the repository contract suite against PostgreSQL (`TEST_DATABASE_URL`; applies migrations first) |
 | `npm run typecheck` | `tsc --noEmit` for the app and the contract packages |
 | `npm run db:up` / `db:migrate` / `db:migrate:dev` / `db:seed` | database lifecycle |
+| `npm run db:seed:demo` | DEV ONLY: demo school, accounts, class and assignment (see [Try it locally](#try-it-locally)) |
 | `npm run contract:hash` | sha256 of `packages/permissions` + `packages/content-model`; must equal bilig_ft's |
 
 ### Testing strategy
@@ -85,6 +116,7 @@ All variables are documented in [`.env.example`](.env.example). The important on
 | `ANTHROPIC_API_KEY`, `TUTOR_MODEL` | tutor provider (`claude-opus-5-5`); unset → `/tutor/ask` answers 503 |
 | `TUTOR_DAILY_TOKEN_BUDGET` | daily token budget; once spent the tutor answers 503 |
 | `MAIL_TRANSPORT` | `console` prints verification / reset / invite links |
+| `DEMO_SEED` | `1` loads the demo dataset at startup (dev only; refused in production) |
 
 ## Architecture notes
 

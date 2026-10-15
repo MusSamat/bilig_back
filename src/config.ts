@@ -39,6 +39,8 @@ const EnvSchema = z.object({
   MAIL_TRANSPORT: z.enum(['console', 'memory']).default('console'),
   TRUST_PROXY: bool,
   GIT_COMMIT: z.string().optional(),
+  /** DEV ONLY: `1` loads the demo school/accounts at startup (src/services/demo-seed.ts); refused in production. */
+  DEMO_SEED: bool,
 });
 
 export type Env = z.infer<typeof EnvSchema>;
@@ -67,6 +69,7 @@ export interface Config {
   mailTransport: Env['MAIL_TRANSPORT'];
   trustProxy: boolean;
   commit?: string;
+  demoSeed: boolean;
 }
 
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
@@ -99,6 +102,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     mailTransport: e.MAIL_TRANSPORT,
     trustProxy: e.TRUST_PROXY,
     commit: e.GIT_COMMIT,
+    demoSeed: e.DEMO_SEED,
   };
 }
 
