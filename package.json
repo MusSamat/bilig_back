@@ -1,0 +1,33 @@
+{
+  "name": "bilig",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Bilig — data-driven, plugin-based 3D STEM learning platform for schools of Kyrgyzstan (ky/ru/en, offline-first).",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace apps/bilig_ft",
+    "dev:ft": "npm run dev --workspace apps/bilig_ft",
+    "dev:back": "npm run start:dev --workspace apps/bilig_back",
+    "build": "npm run build --workspaces --if-present",
+    "build:ft": "npm run build --workspace apps/bilig_ft",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.9"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  }
+}
