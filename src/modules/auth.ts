@@ -59,7 +59,7 @@ export function registerAuth(app: FastifyInstance, deps: Deps) {
     if (u.status === 'pending') fail('email_not_verified');
     if (u.status !== 'active') fail('forbidden', { detail: 'account_blocked' });
 
-    if (aud === 'admin') {
+    if (aud === 'admin' && !config.adminTotpDisabled) {
       const grants = await repo.listGrants(u.id);
       if (grants.some((g) => TOTP_ROLES.has(g.role))) {
         const totp = await repo.getCredential(u.id, 'totp');

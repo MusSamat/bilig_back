@@ -117,6 +117,7 @@ All variables are documented in [`.env.example`](.env.example). The important on
 | `TUTOR_DAILY_TOKEN_BUDGET` | daily token budget; once spent the tutor answers 503 |
 | `MAIL_TRANSPORT` | `console` prints verification / reset / invite links |
 | `DEMO_SEED` | `1` loads the demo dataset at startup (dev only; refused in production) |
+| `ADMIN_TOTP_DISABLED` | `1` skips the TOTP code on admin sign-in (dev only; refused in production — TZ §6 requires 2FA) |
 
 ## Architecture notes
 

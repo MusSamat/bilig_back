@@ -315,3 +315,21 @@ describe('invites', () => {
     expect((await t.repo.listAudit({ action: 'user.grants_changed' }, { limit: 5 })).items).toHaveLength(1);
   });
 });
+
+describe('ADMIN_TOTP_DISABLED (dev only)', () => {
+  it('lets an editor sign in to aud=admin without TOTP when the dev switch is on', async () => {
+    const dev = await makeTestApp({ config: { adminTotpDisabled: true } });
+    try {
+      await makeUser(dev.deps, { role: 'editor', scopeId: 'bio' }, { email: 'ed2@example.kg', password: PASSWORD });
+      const r = await dev.inject({ method: 'POST', url: `${API}/auth/login`, payload: { email: 'ed2@example.kg', password: PASSWORD }, headers: { 'x-bilig-audience': 'admin' } });
+      expect(r.statusCode, r.body).toBe(200);
+    } finally {
+      await dev.close();
+    }
+  });
+
+  it('is refused in production', async () => {
+    const { loadConfig } = await import('../../config.js');
+    expect(() => loadConfig({ NODE_ENV: 'production', JWT_SECRET: 'x'.repeat(32), PSEUDONYM_SECRET: 'y'.repeat(16), ADMIN_TOTP_DISABLED: '1' })).toThrow(/dev-only/);
+  });
+});

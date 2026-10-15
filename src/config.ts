@@ -41,6 +41,8 @@ const EnvSchema = z.object({
   GIT_COMMIT: z.string().optional(),
   /** DEV ONLY: `1` loads the demo school/accounts at startup (src/services/demo-seed.ts); refused in production. */
   DEMO_SEED: bool,
+  /** DEV ONLY: `1` skips the admin-audience TOTP check (TZ §6 requires it); refused in production. */
+  ADMIN_TOTP_DISABLED: bool,
 });
 
 export type Env = z.infer<typeof EnvSchema>;
@@ -70,12 +72,16 @@ export interface Config {
   trustProxy: boolean;
   commit?: string;
   demoSeed: boolean;
+  adminTotpDisabled: boolean;
 }
 
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
   const e = EnvSchema.parse(env);
   if (e.NODE_ENV === 'production' && (!e.JWT_SECRET || !e.PSEUDONYM_SECRET)) {
     throw new Error('JWT_SECRET and PSEUDONYM_SECRET are required in production');
+  }
+  if (e.NODE_ENV === 'production' && e.ADMIN_TOTP_DISABLED) {
+    throw new Error('ADMIN_TOTP_DISABLED is a dev-only switch and is refused in production');
   }
   return {
     env: e.NODE_ENV,
@@ -103,6 +109,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     trustProxy: e.TRUST_PROXY,
     commit: e.GIT_COMMIT,
     demoSeed: e.DEMO_SEED,
+    adminTotpDisabled: e.ADMIN_TOTP_DISABLED,
   };
 }
 
