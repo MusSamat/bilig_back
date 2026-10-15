@@ -113,7 +113,7 @@ export async function seedDemo(repo: Repository, deps: DemoSeedDeps): Promise<De
   const now = deps.clock.now();
 
   // School + licence: every live subject, grades 6–11, one year.
-  const school: SchoolRec = { id: newId(), name: DEMO_SCHOOL_NAME, region: 'Bishkek', type: 'state', language: 'ky', status: 'active', createdAt: now };
+  const school: SchoolRec = { id: newId(), name: DEMO_SCHOOL_NAME, region: 'Bishkek', type: 'state', language: 'ky', status: 'active', createdAt: now, version: 1 };
   await repo.createSchool(school);
   await audit.log(null, 'school.created', { type: 'school', id: school.id }, { diff: { name: school.name, demo: true } });
   const subjects = await liveSubjects(repo);

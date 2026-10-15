@@ -17,6 +17,7 @@ import {
   SubjectSchema,
   TopicSchema,
   UnitSchema,
+  LANGS,
   type I18nStatus,
   type Lang,
   type Localized,
@@ -30,8 +31,8 @@ import { parseCsv, toCsv } from '../../domain/csv.js';
 import { nextVersion } from '../../domain/semver.js';
 import { getAtPath, parseStringKey, setAtPath, sourceHash, SOURCE_LANG } from '../../domain/strings.js';
 import { parseXliff, toXliff } from '../../domain/xliff.js';
-import { pageArray } from '../../repo/paging.js';
-import type { ContentKind, LocaleStringRec } from '../../repo/types.js';
+import { pageArray, sortedPage } from '../../repo/paging.js';
+import type { ContentKind, LocaleStringRec, LocaleStringWrite } from '../../repo/types.js';
 import { toWrite } from '../../services/content-writes.js';
 import { authorizeSubject, isLocalizedValue, iso, reg, type AnyCtx } from './util.js';
 
@@ -80,7 +81,7 @@ export function registerStringsAdmin(app: FastifyInstance, deps: Deps) {
       g.edits.push({ ...e, path: p.path });
       groups.set(`${p.kind}/${p.entityKey}`, g);
     }
-    const rows: LocaleStringRec[] = [];
+    const rows: LocaleStringWrite[] = [];
     for (const g of groups.values()) {
       let doc: unknown;
       let subjectKey: string | null;
@@ -193,20 +194,89 @@ export function registerStringsAdmin(app: FastifyInstance, deps: Deps) {
     return rows.map((r) => ({ row: r, ru: ru.get(r.key), sourceChanged: locale !== SOURCE_LANG && !!ru.get(r.key) && r.sourceHash !== sourceHash(ru.get(r.key)!.value) }));
   }
 
+  /** v0.3.0 `q` (key or value, case-insensitive) and `prefix` (key) filters. */
+  const textFilter = (q: { q?: string; prefix?: string }) => {
+    const needle = q.q?.toLocaleLowerCase();
+    return (key: string, values: string[]) =>
+      (!q.prefix || key.startsWith(q.prefix)) && (!needle || key.toLocaleLowerCase().includes(needle) || values.some((v) => v.toLocaleLowerCase().includes(needle)));
+  };
+
   reg(app, deps, 'adminStrings', async (ctx) => {
-    const q = ctx.query as { locale: Lang; status?: I18nStatus; cursor?: string; limit?: number };
+    const q = ctx.query as { locale: Lang; status?: I18nStatus; cursor?: string; limit?: number; q?: string; prefix?: string; sort?: 'key' | 'updatedAt' | 'status' | 'value'; order?: 'asc' | 'desc' };
     let rows = await rowsFor(q.locale, q.status);
     if (flag(ctx, 'untranslated')) rows = rows.filter((r) => !r.row.value.trim());
     if (flag(ctx, 'sourceChanged')) rows = rows.filter((r) => r.sourceChanged);
-    const page = pageArray(rows, { cursor: q.cursor, limit: Math.min(500, q.limit ?? 100) }, (r) => r.row.key);
+    const match = textFilter(q);
+    if (q.q || q.prefix) rows = rows.filter((r) => match(r.row.key, [r.row.value, r.ru?.value ?? '']));
+    const pq = { cursor: q.cursor, limit: Math.min(500, q.limit ?? 100) };
+    const page =
+      q.sort || q.order === 'desc'
+        ? sortedPage(rows, { value: (r) => (q.sort === 'updatedAt' ? iso(r.row.updatedAt) : q.sort && q.sort !== 'key' ? r.row[q.sort] : r.row.key), tie: (r) => r.row.key, order: q.order }, pq)
+        : pageArray(rows, pq, (r) => r.row.key);
     return {
-      items: page.items.map(({ row, sourceChanged }) => ({ key: row.key, locale: row.locale, value: row.value, status: row.status, sourceHash: row.sourceHash, sourceChanged })),
+      items: page.items.map(({ row, sourceChanged }) => ({ key: row.key, locale: row.locale, value: row.value, status: row.status, sourceHash: row.sourceHash, sourceChanged, version: row.version, updatedAt: iso(row.updatedAt) })),
       nextCursor: page.nextCursor,
     };
   });
 
+  // v0.3.0: several locales side by side, one row per key (A-11 «ru → ky → en рядом»).
+  reg(app, deps, 'adminStringRows', async (ctx) => {
+    const q = ctx.query as { locales?: string; status?: I18nStatus; untranslated?: boolean; sourceChanged?: boolean; q?: string; prefix?: string; sort?: 'key' | 'updatedAt'; order?: 'asc' | 'desc'; cursor?: string; limit?: number };
+    const locales = q.locales ? ([...new Set(q.locales.split(','))] as Lang[]) : [...LANGS];
+    const all = (await repo.listStrings({}, { limit: 10_000_000 })).items;
+    const byKey = new Map<string, Map<Lang, LocaleStringRec>>();
+    for (const r of all) {
+      const m = byKey.get(r.key) ?? new Map<Lang, LocaleStringRec>();
+      m.set(r.locale, r);
+      byKey.set(r.key, m);
+    }
+    const match = textFilter(q);
+    const rows = [...byKey.entries()].flatMap(([key, m]) => {
+      const src = m.get(SOURCE_LANG);
+      const srcHash = src ? sourceHash(src.value) : '';
+      const present = locales.flatMap((l) => (m.has(l) ? [m.get(l)!] : []));
+      const stale = present.filter((r) => r.locale !== SOURCE_LANG && !!src && r.sourceHash !== srcHash).map((r) => r.locale);
+      if (q.status && !present.some((r) => r.status === q.status)) return [];
+      if (q.untranslated && !locales.some((l) => !m.get(l)?.value.trim())) return [];
+      if (q.sourceChanged && !stale.length) return [];
+      if (!match(key, [...m.values()].map((r) => r.value))) return [];
+      const updated = present.reduce<Date | null>((d, r) => (!d || r.updatedAt > d ? r.updatedAt : d), null);
+      return [
+        {
+          key,
+          values: Object.fromEntries(present.map((r) => [r.locale, r.value])),
+          status: Object.fromEntries(present.map((r) => [r.locale, r.status])),
+          versions: Object.fromEntries(present.map((r) => [r.locale, r.version])),
+          sourceHash: srcHash,
+          sourceChanged: stale.length > 0,
+          sourceChangedLocales: stale,
+          ...(updated ? { updatedAt: iso(updated) } : {}),
+        },
+      ];
+    });
+    const pq = { cursor: q.cursor, limit: Math.min(500, q.limit ?? 100) };
+    const page =
+      q.sort === 'updatedAt' || q.order === 'desc'
+        ? sortedPage(rows, { value: (r) => (q.sort === 'updatedAt' ? r.updatedAt : r.key), tie: (r) => r.key, order: q.order }, pq)
+        : pageArray(rows.sort((a, b) => (a.key < b.key ? -1 : 1)), pq, (r) => r.key);
+    return page;
+  });
+
   reg(app, deps, 'adminStringsPatch', async (ctx) => {
-    const b = ctx.body as { items: StringEdit[] };
+    const b = ctx.body as { items: (StringEdit & { version?: number; sourceHash?: string })[] };
+    // v0.3.0 preconditions: checked for every item before anything is written.
+    const guarded = b.items.filter((i) => i.version !== undefined || i.sourceHash !== undefined);
+    if (guarded.length) {
+      const cur = new Map((await repo.getStrings([...new Set(guarded.map((i) => i.key))])).map((r) => [`${r.key}\u0000${r.locale}`, r]));
+      for (const i of guarded) {
+        const row = cur.get(`${i.key}\u0000${i.locale}`);
+        if (i.version !== undefined && (row?.version ?? 0) !== i.version) fail('version_mismatch', { detail: `${i.key} (${i.locale}): version ${row?.version ?? 0}` });
+        if (i.sourceHash !== undefined) {
+          const src = cur.get(`${i.key}\u0000${SOURCE_LANG}`);
+          if (src && sourceHash(src.value) !== i.sourceHash) fail('version_mismatch', { detail: `${i.key}: source changed` });
+        }
+      }
+    }
     const r = await apply(ctx, b.items);
     if (r.unknownKeys.length) fail('validation_failed', { detail: `unknown keys: ${r.unknownKeys.slice(0, 10).join(', ')}` });
     if (r.errors.length) fail('validation_failed', { detail: r.errors[0].message });

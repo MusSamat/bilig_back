@@ -22,8 +22,8 @@ export function registerBuildAdmin(app: FastifyInstance, deps: Deps) {
   const { repo } = deps;
 
   reg(app, deps, 'adminBuildList', async (ctx) => {
-    const q = ctx.query as { topicKey?: string; cursor?: string; limit?: number };
-    const res = await repo.listBuilds({ topicKey: q.topicKey }, pageOf(q));
+    const q = ctx.query as { topicKey?: string; status?: BuildRec['status']; order?: 'asc' | 'desc'; cursor?: string; limit?: number };
+    const res = await repo.listBuilds({ topicKey: q.topicKey, status: q.status }, pageOf(q), q.order ?? 'asc');
     return { items: res.items.map(toBuildDto), nextCursor: res.nextCursor };
   });
 

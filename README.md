@@ -161,5 +161,7 @@ All variables are documented in [`.env.example`](.env.example). The important on
   signed offline results and offline session trust (TZ §6) are not implemented.
 - Exports run synchronously (no job queue yet); WebP snapshots show as placeholders in PDFs.
 - Asset processing (meshopt, KTX2, thumbnails) returns a stub report until `bilig_worker`
-  exists; local storage has no presigned multipart upload (the S3/MinIO adapter is pending).
+  exists; local storage has no presigned multipart upload (the S3/MinIO adapter is pending;
+  `POST /admin/assets/:id/complete` calls its `completeMultipart` once it exists).
+- Contract 0.3.0 changes (admin/client requests → resolutions): [`docs/CONTRACT_CHANGES-0.3.0.md`](docs/CONTRACT_CHANGES-0.3.0.md).
 - LearningEvent month partitioning, OpenTelemetry and Sentry are not wired up yet.

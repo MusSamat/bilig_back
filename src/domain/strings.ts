@@ -4,7 +4,7 @@
  * yields one row per (string key, locale). Keys look like
  * `concept/bio.nucleus/title` or `topic/animal-cell/activities.tour.steps.0.text`.
  */
-import { LANGS, type Lang, type Localized } from '@bilig/content-model';
+import { LANGS, isLocalizedValue, type Lang, type Localized } from '@bilig/content-model';
 import { sha256Hex } from './crypto.js';
 
 export interface ExtractedString {
@@ -13,9 +13,8 @@ export interface ExtractedString {
   value: Localized;
 }
 
-const isLocalized = (v: unknown): v is Localized =>
-  !!v && typeof v === 'object' && !Array.isArray(v) && LANGS.every((l) => typeof (v as Record<string, unknown>)[l] === 'string') &&
-  Object.keys(v as object).length === 3;
+/** Localized value (contract helper; tolerates future optional languages). */
+const isLocalized = (v: unknown): v is Localized => isLocalizedValue(v);
 
 export function extractLocalized(doc: unknown, path: (string | number)[] = []): { path: (string | number)[]; value: Localized }[] {
   if (isLocalized(doc)) return [{ path, value: doc }];

@@ -8,12 +8,12 @@ import { KeySchema, SemverSchema } from '../common.js';
 import { ConceptSchema } from '../concept.js';
 import { CourseSchema, ObjectiveSchema, SubjectGroupSchema, SubjectSchema, UnitSchema } from '../curriculum.js';
 import { GlossaryTermSchema } from '../glossary.js';
-import { I18nStatusSchema, LangSchema } from '../i18n.js';
-import { ItemSchema } from '../item.js';
+import { I18nStatusMapSchema, I18nStatusSchema, LANGS, LangSchema, LocalizedSchema } from '../i18n.js';
+import { ItemSchema, ItemTypeSchema } from '../item.js';
 import { ProcessSchema } from '../process.js';
 import { ComparisonSchema, ContentStatusSchema, TopicSchema, TourSchema, type ContentStatus } from '../topic.js';
 import { AuthorSubroleSchema, EmailSchema, RoleGrantSchema, RoleSchema, ScopeSchema } from './auth.js';
-import { DateTimeSchema, IdSchema, PageQuerySchema, QueryBoolSchema, VersionTagSchema, cursorPage } from './common.js';
+import { DateTimeSchema, IdSchema, PageQuerySchema, QueryBoolSchema, SortOrderSchema, VersionTagSchema, cursorPage, sortQuery } from './common.js';
 
 // ---------------------------------------------------------------------------
 // Publish workflow (A-13): draft → review → published → archived
@@ -84,8 +84,23 @@ export type WorkflowResponse = z.infer<typeof WorkflowResponseSchema>;
 // CRUD payloads. Create = full schema; update = partial + `version` (If-Match).
 // ---------------------------------------------------------------------------
 
+/** Optional fields of a patch accept `null` = remove the field (v0.3.0). */
+type NullableOptionals<T extends z.ZodRawShape> = {
+  [K in keyof T]: T[K] extends z.ZodOptional<z.ZodTypeAny> ? z.ZodNullable<T[K]> : T[K];
+};
+const nullableOptionals = <T extends z.ZodRawShape>(s: z.ZodObject<T>): z.ZodObject<NullableOptionals<T>> => {
+  const shape: Record<string, z.ZodTypeAny> = {};
+  for (const [k, v] of Object.entries(s.shape) as [string, z.ZodTypeAny][]) shape[k] = v.isOptional() ? v.nullable() : v;
+  return z.object(shape) as unknown as z.ZodObject<NullableOptionals<T>>;
+};
+
+/**
+ * Partial update + `version` (If-Match). Fields that are optional in the
+ * entity schema also accept `null`, which REMOVES the field (JSON has no
+ * `undefined`), e.g. `{ subtitle: null, version: 3 }` (v0.3.0).
+ */
 const withVersion = <T extends z.ZodRawShape>(s: z.ZodObject<T>) =>
-  s.partial().extend({ version: VersionTagSchema });
+  nullableOptionals(s).partial().extend({ version: VersionTagSchema });
 
 export const AdminSubjectCreateSchema = SubjectSchema;
 export const AdminSubjectPatchSchema = withVersion(SubjectSchema.omit({ key: true }));
@@ -107,7 +122,15 @@ export const adminRecord = <T extends z.ZodTypeAny>(data: T) =>
   z.object({ id: IdSchema, data, version: VersionTagSchema, updatedAt: DateTimeSchema, updatedBy: IdSchema.optional() });
 
 /** «Где используется» for a concept (A-04); deleting a used concept → 409. */
-export const ConceptUsageSchema = z.object({ conceptKey: KeySchema, topicKeys: z.array(KeySchema) });
+export const ConceptUsageSchema = z.object({
+  conceptKey: KeySchema,
+  topicKeys: z.array(KeySchema),
+  /**
+   * v0.3.0: everything that blocks deletion, as `topic:<key>`, `process:<key>`
+   * (a step highlights the concept) and `concept:<key>` (lists it in `related`).
+   */
+  usedBy: z.array(z.string()).optional(),
+});
 
 // Topics + versions
 export const AdminTopicCreateSchema = z.object({ key: KeySchema, unitKey: KeySchema });
@@ -120,6 +143,13 @@ export const AdminTopicSchema = z.object({
   latestVersion: SemverSchema.optional(),
   updatedAt: DateTimeSchema,
   version: VersionTagSchema,
+  /** v0.3.0: title of the latest version (absent while the topic has no versions). */
+  title: LocalizedSchema.optional(),
+  /** v0.3.0: who last changed the topic row or wrote its latest version. */
+  updatedBy: IdSchema.optional(),
+  /** v0.3.0: author of the latest version (A-01 «мои черновики»: `?mine=true`). */
+  authorId: IdSchema.optional(),
+  createdAt: DateTimeSchema.optional(),
 });
 export type AdminTopic = z.infer<typeof AdminTopicSchema>;
 export const AdminTopicListSchema = cursorPage(AdminTopicSchema);
@@ -143,15 +173,27 @@ export const TopicVersionSchema = z.object({
 export type TopicVersion = z.infer<typeof TopicVersionSchema>;
 
 // Review comments (A-14)
+export const REVIEW_TARGET_TYPES = ['topic', 'concept', 'process', 'item'] as const;
+export const ReviewTargetTypeSchema = z.enum(REVIEW_TARGET_TYPES);
 export const ReviewCommentSchema = z.object({
   id: IdSchema,
-  targetType: z.enum(['topic', 'concept', 'process', 'item']),
+  targetType: ReviewTargetTypeSchema,
+  /** Topic id or the dictionary record id (`adminRecord().id`). */
   targetId: IdSchema,
+  /** Field path in the document (`activities.tour.steps.2.text`); '' = the whole entity. */
   path: z.string(),
+  /** Point on the 3D model (scene coordinates). */
   anchor3d: z.tuple([z.number(), z.number(), z.number()]).optional(),
   body: z.string().min(1).max(4000),
   resolvedAt: DateTimeSchema.optional(),
+  // v0.3.0 (the server always sends both; optional so 0.2.1 client-side drafts still type-check)
+  authorId: IdSchema.optional(),
+  createdAt: DateTimeSchema.optional(),
+  resolvedBy: IdSchema.optional(),
+  /** Topic version (semver) the comment was written against. */
+  topicVersion: SemverSchema.optional(),
 });
+export type ReviewComment = z.infer<typeof ReviewCommentSchema>;
 
 // Assets (A-05)
 export const ASSET_KINDS = ['glb', 'image', 'molfile'] as const;
@@ -170,21 +212,38 @@ export const AssetUploadResponseSchema = z.object({
   uploadId: z.string(),
   partSize: z.number().int().positive(),
   partUrls: z.array(z.string()),
+  /** v0.3.0: the asset version this upload creates (1 for a new asset). */
+  version: z.number().int().min(1).optional(),
 });
+export const ASSET_STATUSES = ['uploaded', 'processing', 'ready', 'failed'] as const;
 export const AssetReportSchema = z.object({
   id: IdSchema,
   key: KeySchema,
-  status: z.enum(['uploaded', 'processing', 'ready', 'failed']),
+  status: z.enum(ASSET_STATUSES),
   sizeBefore: z.number().int().min(0),
   sizeAfter: z.number().int().min(0).optional(),
   triangles: z.number().int().min(0).optional(),
   nodes: z.array(z.string()),
   violations: z.array(z.string()),
   thumbUrl: z.string().optional(),
+  // v0.3.0: the metadata collected at upload + the current file version.
+  filename: z.string().optional(),
+  kind: z.enum(ASSET_KINDS).optional(),
+  contentType: z.string().optional(),
+  license: z.string().optional(),
+  author: z.string().optional(),
+  source: z.string().optional(),
+  createdAt: DateTimeSchema.optional(),
+  createdBy: IdSchema.optional(),
+  /** Current file version (1-based; see GET /admin/assets/:id/versions). */
+  version: z.number().int().min(1).optional(),
+  /** When the multipart upload of the current version was completed. */
+  completedAt: DateTimeSchema.optional(),
 });
 export type AssetReport = z.infer<typeof AssetReportSchema>;
 
 // Strings (A-11)
+export const STRING_SORTS = ['key', 'updatedAt', 'status', 'value'] as const;
 export const StringsQuerySchema = z.object({
   locale: LangSchema,
   status: I18nStatusSchema.optional(),
@@ -192,6 +251,12 @@ export const StringsQuerySchema = z.object({
   sourceChanged: QueryBoolSchema.optional(),
   cursor: z.string().optional(),
   limit: z.coerce.number().int().min(1).max(500).optional(),
+  // v0.3.0
+  /** Case-insensitive search in the key and in the value. */
+  q: z.string().trim().max(200).optional(),
+  /** Key prefix (one entity: `topic/animal-cell/`, `concept/bio.nucleus/`). */
+  prefix: z.string().max(300).optional(),
+  ...sortQuery(STRING_SORTS),
 });
 export const LocaleStringSchema = z.object({
   key: z.string().min(1),
@@ -200,15 +265,70 @@ export const LocaleStringSchema = z.object({
   status: I18nStatusSchema,
   sourceHash: z.string(),
   sourceChanged: z.boolean(),
+  /** v0.3.0: row version for the optimistic PATCH precondition. */
+  version: VersionTagSchema.optional(),
+  updatedAt: DateTimeSchema.optional(),
 });
 export type LocaleString = z.infer<typeof LocaleStringSchema>;
 export const StringsListSchema = cursorPage(LocaleStringSchema);
 export const StringsPatchRequestSchema = z.object({
   items: z
-    .array(z.object({ key: z.string().min(1), locale: LangSchema, value: z.string(), status: I18nStatusSchema }))
+    .array(
+      z.object({
+        key: z.string().min(1),
+        locale: LangSchema,
+        value: z.string(),
+        status: I18nStatusSchema,
+        /**
+         * v0.3.0 preconditions (409 `version_mismatch` when stale; the whole
+         * request is rejected before anything is written):
+         *  - `version`: the row version the editor saw (0 = the row did not exist);
+         *  - `sourceHash`: the source (ru) hash the translation was made from.
+         */
+        version: VersionTagSchema.optional(),
+        sourceHash: z.string().min(1).max(64).optional(),
+      }),
+    )
     .min(1)
     .max(1000),
 });
+
+/** v0.3.0: `locales=ru,ky,en` — a comma-separated list of content languages. */
+export const LocalesParamSchema = z
+  .string()
+  .regex(new RegExp(`^(?:${LANGS.join('|')})(?:,(?:${LANGS.join('|')}))*$`), 'Expected e.g. ru,ky,en');
+
+// GET /admin/strings/rows (v0.3.0): one row per key with several locales side by side (A-11).
+export const StringRowsQuerySchema = PageQuerySchema.extend({
+  /** Default: all content languages. */
+  locales: LocalesParamSchema.optional(),
+  /** Rows where one of the requested locales has this status. */
+  status: I18nStatusSchema.optional(),
+  /** Rows where one of the requested locales is empty. */
+  untranslated: QueryBoolSchema.optional(),
+  /** Rows where one of the requested locales was translated from an older source. */
+  sourceChanged: QueryBoolSchema.optional(),
+  q: z.string().trim().max(200).optional(),
+  prefix: z.string().max(300).optional(),
+  ...sortQuery(['key', 'updatedAt'] as const),
+}).extend({ limit: z.coerce.number().int().min(1).max(500).optional() });
+const langMap = <T extends z.ZodTypeAny>(v: T) => z.object({ ky: v, ru: v, en: v }).partial();
+export const StringRowSchema = z.object({
+  key: z.string().min(1),
+  /** Values of the requested locales (a locale without a row is absent). */
+  values: langMap(z.string()),
+  status: I18nStatusMapSchema,
+  /** Row versions (PATCH precondition). */
+  versions: langMap(VersionTagSchema),
+  /** Hash of the current source (ru) text. */
+  sourceHash: z.string(),
+  /** Some requested locale was translated from an older source. */
+  sourceChanged: z.boolean(),
+  sourceChangedLocales: z.array(LangSchema),
+  updatedAt: DateTimeSchema.optional(),
+});
+export type StringRow = z.infer<typeof StringRowSchema>;
+export const StringRowListSchema = cursorPage(StringRowSchema);
 
 // Org: schools, licenses, users, invites (A-15, A-16)
 export const SchoolSchema = z.object({
@@ -218,9 +338,11 @@ export const SchoolSchema = z.object({
   type: z.enum(['state', 'private']),
   language: LangSchema,
   status: z.enum(['active', 'suspended']),
+  /** v0.3.0: optimistic version (send it as If-Match or `version` on PATCH). */
+  version: VersionTagSchema.optional(),
 });
 export type School = z.infer<typeof SchoolSchema>;
-export const SchoolCreateSchema = SchoolSchema.omit({ id: true });
+export const SchoolCreateSchema = SchoolSchema.omit({ id: true, version: true });
 export const LicenseSchema = z
   .object({
     id: IdSchema,
@@ -230,6 +352,8 @@ export const LicenseSchema = z
     seats: z.number().int().positive(),
     startsAt: DateTimeSchema,
     endsAt: DateTimeSchema,
+    /** v0.3.0: optimistic version (ignored on create). */
+    version: VersionTagSchema.optional(),
   })
   .refine((l) => l.endsAt > l.startsAt, { message: 'endsAt must be after startsAt', path: ['endsAt'] });
 export type License = z.infer<typeof LicenseSchema>;
@@ -269,16 +393,42 @@ export const AuditListSchema = cursorPage(AuditEntrySchema);
 // workflow extras, builds, i18n import/export, org, analytics, tutor settings.
 // ---------------------------------------------------------------------------
 
+/** Field names accepted by `sort` on the generic admin lists. */
+export const ADMIN_SORT_FIELD_RE = /^[a-zA-Z][a-zA-Z0-9]{0,39}$/;
+
 /** Common admin list query: cursor page + free-text and the usual filters. */
 export const AdminListQuerySchema = PageQuerySchema.extend({
   q: z.string().trim().max(200).optional(),
   subjectKey: KeySchema.optional(),
+  /** Topics: a ContentStatus; subjects (v0.3.0): `soon` | `live` (an unknown value → 400); ignored by lists without a status. */
   status: z.string().max(40).optional(),
+  // v0.3.0
+  /**
+   * Sort field. Every list: `key`, `updatedAt`, `createdAt`, `title` (in the
+   * Accept-Language with the ky → ru → en chain); dictionary lists also any
+   * top-level field of the entity (`order`, `grade`, `kind`, `difficulty`,
+   * `ru`…; arrays sort by length); topics also `unitKey`, `status`,
+   * `publishedVersion`, `latestVersion`. Missing values sort last (asc).
+   * Without `sort` the order is `key` ascending (as before).
+   */
+  sort: z.string().regex(ADMIN_SORT_FIELD_RE).optional(),
+  order: SortOrderSchema.optional(),
+  /** Topics and objectives of one unit (A-13 «массовая публикация раздела»). */
+  unitKey: KeySchema.optional(),
+  /** Topics: author of the latest version; dictionary entries: the last editor. */
+  authorId: IdSchema.optional(),
+  /** Shorthand for `authorId` = the caller (A-01 «мои черновики»). */
+  mine: QueryBoolSchema.optional(),
 });
 export type AdminListQuery = z.infer<typeof AdminListQuerySchema>;
 
 /** Paginated list of admin records of one entity type. */
 export const adminRecordPage = <T extends z.ZodTypeAny>(data: T) => cursorPage(adminRecord(data));
+
+/** v0.3.0: GET /admin/concepts filters. */
+export const AdminConceptListQuerySchema = AdminListQuerySchema.extend({ kind: z.string().trim().min(1).max(60).optional() });
+/** v0.3.0: GET /admin/items filters. */
+export const AdminItemListQuerySchema = AdminListQuerySchema.extend({ type: ItemTypeSchema.optional(), objectiveKey: KeySchema.optional() });
 
 export const AdminSubjectGroupSchema = SubjectGroupSchema;
 export const AdminSubjectGroupPatchSchema = withVersion(SubjectGroupSchema.omit({ key: true }));
@@ -384,31 +534,59 @@ export const BuildSchema = z.object({
 });
 export type Build = z.infer<typeof BuildSchema>;
 export const BuildListSchema = cursorPage(BuildSchema);
-export const BuildListQuerySchema = PageQuerySchema.extend({ topicKey: KeySchema.optional() });
+export const BuildListQuerySchema = PageQuerySchema.extend({
+  topicKey: KeySchema.optional(),
+  /** v0.3.0 (A-01 «ошибки сборки»: `status=failed`). */
+  status: z.enum(BUILD_STATUSES).optional(),
+  /** v0.3.0: builds sort by creation time only; `order=desc` = newest first. */
+  ...sortQuery(['createdAt'] as const),
+});
 
 // Org (A-15, A-16)
 export const SchoolListSchema = cursorPage(SchoolSchema);
-export const SchoolPatchSchema = SchoolCreateSchema.partial();
+/**
+ * PATCH /admin/schools/:id. v0.3.0: optimistic locking is OPTIONAL — send
+ * `version` (or If-Match); a stale one → 409. Without it the last write wins.
+ */
+export const SchoolPatchSchema = SchoolCreateSchema.partial().extend({ version: VersionTagSchema.optional() });
+/** v0.3.0: GET /admin/schools filters and sort. */
+export const SchoolListQuerySchema = PageQuerySchema.extend({
+  q: z.string().trim().max(200).optional(),
+  region: z.string().trim().max(100).optional(),
+  status: z.enum(['active', 'suspended']).optional(),
+  ...sortQuery(['name', 'region', 'type', 'language', 'status', 'createdAt'] as const),
+});
 export const LicenseListSchema = cursorPage(LicenseSchema);
-export const LicenseListQuerySchema = PageQuerySchema.extend({ schoolId: IdSchema.optional() });
+export const LicenseListQuerySchema = PageQuerySchema.extend({
+  schoolId: IdSchema.optional(),
+  // v0.3.0
+  /** Licences valid now (true) or not valid now (false). */
+  active: QueryBoolSchema.optional(),
+  ...sortQuery(['startsAt', 'endsAt', 'seats', 'schoolId', 'createdAt'] as const),
+});
+/** PATCH /admin/licenses/:id. v0.3.0: optional `version` (or If-Match) precondition, as for schools. */
 export const LicensePatchSchema = z.object({
   subjects: z.array(KeySchema).min(1),
   grades: z.array(z.number().int().min(1).max(11)).min(1),
   seats: z.number().int().positive(),
   startsAt: DateTimeSchema,
   endsAt: DateTimeSchema,
+  version: VersionTagSchema,
 }).partial();
 export const AdminUserListQuerySchema = PageQuerySchema.extend({
   q: z.string().trim().max(200).optional(),
   schoolId: IdSchema.optional(),
   role: RoleSchema.optional(),
   status: z.enum(['active', 'blocked', 'invited']).optional(),
+  /** v0.3.0 */
+  ...sortQuery(['displayName', 'email', 'kind', 'status', 'createdAt'] as const),
 });
 export const AdminUserPatchSchema = z
   .object({ status: z.enum(['active', 'blocked']), displayName: z.string().trim().min(1).max(100) })
   .partial();
 /** PUT /admin/users/:id/grants — replaces the user's role grants (audited). */
 export const UserGrantsPutSchema = z.object({ grants: z.array(RoleGrantSchema).max(50) });
+export const INVITE_STATUSES = ['pending', 'accepted', 'revoked', 'expired'] as const;
 export const InviteSchema = z.object({
   id: IdSchema,
   email: EmailSchema,
@@ -417,14 +595,35 @@ export const InviteSchema = z.object({
   scopeId: z.string().optional(),
   expiresAt: DateTimeSchema,
   acceptedAt: DateTimeSchema.optional(),
+  // v0.3.0
+  revokedAt: DateTimeSchema.optional(),
+  createdAt: DateTimeSchema.optional(),
+  invitedBy: IdSchema.optional(),
+  status: z.enum(INVITE_STATUSES).optional(),
 });
+export type Invite = z.infer<typeof InviteSchema>;
 export const InviteListSchema = cursorPage(InviteSchema);
+/** v0.3.0: GET /admin/invites filters and sort. */
+export const InviteListQuerySchema = PageQuerySchema.extend({
+  status: z.enum(INVITE_STATUSES).optional(),
+  q: z.string().trim().max(200).optional(),
+  ...sortQuery(['email', 'role', 'expiresAt', 'acceptedAt', 'createdAt'] as const),
+});
 
 // Audit filters (A-19)
+export const AUDIT_SORTS = ['ts', 'action', 'target', 'targetType', 'actorId'] as const;
 export const AuditQuerySchema = PageQuerySchema.extend({
-  actorId: IdSchema.optional(),
+  /** A full UUID, or (v0.3.0) a hex prefix of one (≥ 4 chars). */
+  actorId: z.string().trim().regex(/^[0-9a-fA-F-]{4,36}$/, 'Expected a UUID or a UUID prefix').optional(),
   action: z.string().max(100).optional(),
   targetType: z.string().max(100).optional(),
+  // v0.3.0
+  targetId: z.string().min(1).max(200).optional(),
+  /** Entries at or after `from` and before `to`. */
+  from: DateTimeSchema.optional(),
+  to: DateTimeSchema.optional(),
+  /** `target` sorts by targetType, then targetId. Default `ts` ascending. */
+  ...sortQuery(AUDIT_SORTS),
 });
 
 // Analytics (A-17)
@@ -472,8 +671,145 @@ export const TutorSettingsSchema = z.object({
   dailyTokenBudget: z.number().int().min(0),
   stopTopics: z.array(z.string().min(1).max(100)).max(200),
   regressionQuestions: z
-    .array(z.object({ lang: LangSchema, question: z.string().min(1).max(2000), expectConcepts: z.array(KeySchema).optional() }))
+    .array(
+      z.object({
+        lang: LangSchema,
+        question: z.string().min(1).max(2000),
+        expectConcepts: z.array(KeySchema).optional(),
+        /** v0.3.0: topic whose published package grounds the answer (else the run's `topicKey`). */
+        topicKey: KeySchema.optional(),
+      }),
+    )
     .max(200),
   version: VersionTagSchema,
 });
 export type TutorSettings = z.infer<typeof TutorSettingsSchema>;
+
+// ---------------------------------------------------------------------------
+// v0.3.0 (additive)
+// ---------------------------------------------------------------------------
+
+// Review comments (A-14): GET/POST /admin/review-comments, PATCH /admin/review-comments/:id
+export const ReviewCommentListQuerySchema = PageQuerySchema.extend({
+  targetType: ReviewTargetTypeSchema.optional(),
+  targetId: IdSchema.optional(),
+  /** true = only resolved, false = only open. */
+  resolved: QueryBoolSchema.optional(),
+  authorId: IdSchema.optional(),
+});
+export const ReviewCommentListSchema = cursorPage(ReviewCommentSchema);
+export const ReviewCommentCreateSchema = z.object({
+  targetType: ReviewTargetTypeSchema,
+  targetId: IdSchema,
+  path: z.string().max(500),
+  anchor3d: z.tuple([z.number(), z.number(), z.number()]).optional(),
+  body: z.string().trim().min(1).max(4000),
+  /** Topic comments: the version the reviewer looked at (default: the latest). */
+  topicVersion: SemverSchema.optional(),
+});
+/** Resolve / reopen (`resolved`), or edit the text (author only). */
+export const ReviewCommentPatchSchema = z
+  .object({ resolved: z.boolean().optional(), body: z.string().trim().min(1).max(4000).optional() })
+  .refine((v) => v.resolved !== undefined || v.body !== undefined, { message: 'resolved or body is required' });
+
+// Assets (A-05): versions, multipart completion, list filters
+export const AssetListQuerySchema = PageQuerySchema.extend({
+  q: z.string().trim().max(200).optional(),
+  kind: z.enum(ASSET_KINDS).optional(),
+  status: z.enum(ASSET_STATUSES).optional(),
+  ...sortQuery(['key', 'status', 'sizeBefore', 'sizeAfter', 'triangles', 'violations', 'filename', 'createdAt'] as const),
+});
+export const AssetVersionSchema = z.object({
+  assetId: IdSchema,
+  version: z.number().int().min(1),
+  filename: z.string(),
+  contentType: z.string(),
+  status: z.enum(ASSET_STATUSES),
+  sizeBefore: z.number().int().min(0),
+  sizeAfter: z.number().int().min(0).optional(),
+  triangles: z.number().int().min(0).optional(),
+  nodes: z.array(z.string()),
+  violations: z.array(z.string()),
+  thumbUrl: z.string().optional(),
+  message: z.string().optional(),
+  createdAt: DateTimeSchema,
+  createdBy: IdSchema,
+  completedAt: DateTimeSchema.optional(),
+  /** This is the asset's current version. */
+  current: z.boolean(),
+});
+export type AssetVersion = z.infer<typeof AssetVersionSchema>;
+export const AssetVersionListSchema = z.object({ items: z.array(AssetVersionSchema) });
+/** POST /admin/assets/:id/versions — upload a new file for an existing asset (same key). */
+export const AssetVersionCreateRequestSchema = AssetUploadRequestSchema.pick({ filename: true, size: true, contentType: true }).extend({
+  /** Rights change with the new file (otherwise the asset's are kept). */
+  license: z.string().min(1).optional(),
+  author: z.string().min(1).optional(),
+  source: z.string().min(1).optional(),
+  message: z.string().max(2000).optional(),
+});
+/** POST /admin/assets/:id/complete — finish the presigned multipart upload of the current version. */
+export const AssetCompleteRequestSchema = z.object({
+  /** Must match the upload's id when given. */
+  uploadId: z.string().min(1).optional(),
+  /** Uploaded parts (ETag from each part PUT); empty for storages without multipart (`partUrls: []`). */
+  parts: z
+    .array(z.object({ partNumber: z.number().int().min(1).max(10_000), etag: z.string().min(1).max(200) }))
+    .max(10_000),
+});
+
+// Students: audited reveal of a pseudonymised pupil with grounds (A-16 «кроме запросов с основанием»)
+export const REVEAL_GROUNDS = ['parent_request', 'school_request', 'legal_request', 'safeguarding', 'support_incident'] as const;
+export const StudentRevealRequestSchema = z.object({
+  ground: z.enum(REVEAL_GROUNDS),
+  /** Why the real name is needed (stored in the audit log). */
+  reason: z.string().trim().min(10).max(1000),
+  /** Letter / ticket number of the request. */
+  reference: z.string().trim().max(200).optional(),
+});
+export const StudentRevealSchema = z.object({
+  userId: IdSchema,
+  displayName: z.string(),
+  classes: z.array(z.object({ classId: IdSchema, className: z.string(), schoolId: IdSchema, schoolName: z.string().optional() })),
+  revealedAt: DateTimeSchema,
+  /** Id of the audit entry that records this access. */
+  auditId: IdSchema,
+});
+export type StudentReveal = z.infer<typeof StudentRevealSchema>;
+
+// Tutor regression (A-18): POST /admin/tutor-settings/regression
+export const TUTOR_REGRESSION_MAX = 50;
+export const TutorRegressionRequestSchema = z.object({
+  /** Default topic for questions without `topicKey`. */
+  topicKey: KeySchema.optional(),
+  /** Indexes into `regressionQuestions` (default: all, at most TUTOR_REGRESSION_MAX per run). */
+  indexes: z.array(z.number().int().min(0)).min(1).max(TUTOR_REGRESSION_MAX).optional(),
+});
+export const TutorRegressionItemSchema = z.object({
+  index: z.number().int().min(0),
+  lang: LangSchema,
+  question: z.string(),
+  topicKey: KeySchema.optional(),
+  answer: z.string(),
+  /** Concept keys cited by the answer. */
+  citations: z.array(KeySchema),
+  expectConcepts: z.array(KeySchema),
+  /** Expected concepts that were not cited. */
+  missing: z.array(KeySchema),
+  /** Answered (not refused, not «no answer»), no provider error, nothing missing. */
+  passed: z.boolean(),
+  refused: z.boolean(),
+  noAnswer: z.boolean(),
+  /** `topic_not_found`, `provider_error`, `no_topic`… */
+  error: z.string().optional(),
+  inputTokens: z.number().int().min(0),
+  outputTokens: z.number().int().min(0),
+});
+export const TutorRegressionResultSchema = z.object({
+  ranAt: DateTimeSchema,
+  model: z.string(),
+  passed: z.number().int().min(0),
+  failed: z.number().int().min(0),
+  items: z.array(TutorRegressionItemSchema),
+});
+export type TutorRegressionResult = z.infer<typeof TutorRegressionResultSchema>;

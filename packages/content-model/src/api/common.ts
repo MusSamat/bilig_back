@@ -75,6 +75,11 @@ export const ProblemSchema = z.object({
     .optional(),
   /** Seconds until retry (rate limit / lockout). */
   retryAfter: z.number().int().min(0).optional(),
+  /**
+   * v0.3.0: with 403 `detail: totp_enrollment_required` on an admin login —
+   * a short-lived token for POST /auth/2fa/setup and /auth/2fa/verify.
+   */
+  enrollmentToken: z.string().optional(),
 });
 export type Problem = z.infer<typeof ProblemSchema>;
 
@@ -125,6 +130,17 @@ export const PageQuerySchema = z.object({
   limit: z.coerce.number().int().min(1).max(100).optional(),
 });
 export type PageQuery = z.infer<typeof PageQuerySchema>;
+
+/** v0.3.0: sort direction for list queries (`sort` + `order`; default `asc`). */
+export const SORT_ORDERS = ['asc', 'desc'] as const;
+export const SortOrderSchema = z.enum(SORT_ORDERS);
+export type SortOrder = z.infer<typeof SortOrderSchema>;
+
+/** v0.3.0: `sort` (one of `fields`) + `order` query keys for a list. */
+export const sortQuery = <F extends string>(fields: readonly [F, ...F[]]) => ({
+  sort: z.enum(fields).optional(),
+  order: SortOrderSchema.optional(),
+});
 
 /** Cursor-paginated list `{ items, nextCursor }` (null = last page). */
 export const cursorPage = <T extends z.ZodTypeAny>(item: T) =>

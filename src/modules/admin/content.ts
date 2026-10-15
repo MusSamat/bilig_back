@@ -31,10 +31,26 @@ import type { EndpointName } from '@bilig/content-model/api';
 import type { Permission } from '@bilig/permissions';
 import type { Deps } from '../../deps.js';
 import { fail, zodIssues } from '../../http/errors.js';
-import { pageOf } from '../../repo/paging.js';
-import type { ContentKind } from '../../repo/types.js';
+import { pageOf, sortedPage } from '../../repo/paging.js';
+import type { ContentKind, ContentRec } from '../../repo/types.js';
 import { toWrite } from '../../services/content-writes.js';
-import { assertFields, authorizeSubject, checkBodyVersion, reg, toRecord, topicsWhere, type AnyCtx } from './util.js';
+import { assertFields, authorFilter, authorizeSubject, checkBodyVersion, iso, reg, sortScalar, toRecord, topicsWhere, type AnyCtx } from './util.js';
+
+interface ListQuery {
+  q?: string;
+  subjectKey?: string;
+  status?: string;
+  sort?: string;
+  order?: 'asc' | 'desc';
+  unitKey?: string;
+  authorId?: string;
+  mine?: boolean;
+  kind?: string;
+  type?: string;
+  objectiveKey?: string;
+  cursor?: string;
+  limit?: number;
+}
 
 interface KindDef {
   schema: z.ZodTypeAny;
@@ -52,7 +68,7 @@ interface KindDef {
 }
 
 export const KINDS: Record<ContentKind, KindDef> = {
-  group: { schema: SubjectGroupSchema, keyField: 'key', write: 'platform.manage', scoped: false, list: 'adminGroupList', create: 'adminGroupCreate', patch: 'adminGroupPatch', del: 'adminGroupDelete' },
+  group: { schema: SubjectGroupSchema, keyField: 'key', write: 'platform.manage', scoped: false, list: 'adminGroupList', get: 'adminGroupGet', create: 'adminGroupCreate', patch: 'adminGroupPatch', del: 'adminGroupDelete' },
   subject: { schema: SubjectSchema, keyField: 'key', write: 'platform.manage', scoped: false, list: 'adminSubjectList', get: 'adminSubjectGet', create: 'adminSubjectCreate', patch: 'adminSubjectPatch', del: 'adminSubjectDelete' },
   course: { schema: CourseSchema, keyField: 'key', write: 'content.draft.edit', scoped: true, list: 'adminCourseList', get: 'adminCourseGet', create: 'adminCourseCreate', patch: 'adminCoursePatch', del: 'adminCourseDelete' },
   unit: { schema: UnitSchema, keyField: 'key', write: 'content.draft.edit', scoped: true, list: 'adminUnitList', get: 'adminUnitGet', create: 'adminUnitCreate', patch: 'adminUnitPatch', del: 'adminUnitDelete' },
@@ -60,7 +76,7 @@ export const KINDS: Record<ContentKind, KindDef> = {
   concept: { schema: ConceptSchema, keyField: 'key', write: 'content.draft.edit', scoped: true, list: 'adminConceptList', get: 'adminConceptGet', create: 'adminConceptCreate', patch: 'adminConceptPatch', del: 'adminConceptDelete' },
   process: { schema: ProcessSchema, keyField: 'key', write: 'content.draft.edit', scoped: true, list: 'adminProcessList', get: 'adminProcessGet', create: 'adminProcessCreate', patch: 'adminProcessPatch', del: 'adminProcessDelete' },
   item: { schema: ItemSchema, keyField: 'key', write: 'content.draft.edit', scoped: true, list: 'adminItemList', get: 'adminItemGet', create: 'adminItemCreate', patch: 'adminItemPatch', del: 'adminItemDelete', patchIsFull: true },
-  glossary: { schema: GlossaryTermSchema, keyField: 'id', write: 'content.publish', scoped: false, list: 'adminGlossaryList', create: 'adminGlossaryCreate', patch: 'adminGlossaryPatch', del: 'adminGlossaryDelete' },
+  glossary: { schema: GlossaryTermSchema, keyField: 'id', write: 'content.publish', scoped: false, list: 'adminGlossaryList', get: 'adminGlossaryGet', create: 'adminGlossaryCreate', patch: 'adminGlossaryPatch', del: 'adminGlossaryDelete' },
 };
 
 /** What still references a dictionary entry (empty = deletable). */
@@ -126,12 +142,43 @@ export function registerContentAdmin(app: FastifyInstance, deps: Deps) {
 
     if (def.list)
       reg(app, deps, def.list, async (ctx) => {
-        const q = ctx.query as { q?: string; subjectKey?: string; cursor?: string; limit?: number };
-        const res = await store.list({ q: q.q, subjectKey: q.subjectKey }, pageOf(q));
+        const q = ctx.query as ListQuery;
+        const author = authorFilter(ctx, q);
+        if (kind === 'subject' && q.status && q.status !== 'soon' && q.status !== 'live') fail('validation_failed', { detail: 'status' });
+        const status = kind === 'subject' ? q.status : undefined;
+        const filtered = !!(q.unitKey || author || q.kind || q.type || q.objectiveKey || status);
+        if (!filtered && !q.sort && q.order !== 'desc') {
+          const res = await store.list({ q: q.q, subjectKey: q.subjectKey }, pageOf(q));
+          return { items: res.items.map(toRecord), nextCursor: res.nextCursor };
+        }
+        // v0.3.0 filters / sort: evaluated over the (filtered) list, keyset-paged on (value, key).
+        const field = (r: ContentRec<unknown>, f: string) => (r.data as Record<string, unknown>)[f];
+        const rows = (await store.list({ q: q.q, subjectKey: q.subjectKey }, { limit: 100_000 })).items.filter(
+          (r) =>
+            (!q.unitKey || field(r, 'unitKey') === q.unitKey) &&
+            (!author || r.updatedBy === author) &&
+            (!q.kind || field(r, 'kind') === q.kind) &&
+            (!q.type || field(r, 'type') === q.type) &&
+            (!q.objectiveKey || (field(r, 'objectiveKeys') as string[] | undefined)?.includes(q.objectiveKey)) &&
+            (!status || field(r, 'status') === status),
+        );
+        const value = (r: ContentRec<unknown>) => {
+          switch (q.sort ?? 'key') {
+            case 'key':
+              return r.key;
+            case 'updatedAt':
+              return iso(r.updatedAt);
+            case 'createdAt':
+              return iso(r.createdAt);
+            default:
+              return sortScalar(field(r, q.sort!), ctx.lang);
+          }
+        };
+        const res = sortedPage(rows, { value, tie: (r) => r.key, order: q.order }, pageOf(q));
         return { items: res.items.map(toRecord), nextCursor: res.nextCursor };
       });
 
-    if (def.get) reg(app, deps, def.get, async (ctx) => toRecord(await load(ctx.params.key)));
+    if (def.get) reg(app, deps, def.get, async (ctx) => toRecord(await load(ctx.params[def.keyField === 'id' ? 'id' : 'key'])));
 
     if (def.create)
       reg(app, deps, def.create, async (ctx) => {
@@ -152,9 +199,11 @@ export function registerContentAdmin(app: FastifyInstance, deps: Deps) {
         const key = ctx.params[def.keyField === 'id' ? 'id' : 'key'];
         const cur = await load(key);
         const { version: _v, ...rest } = ctx.body as { version: number; data?: unknown };
-        const merged = def.patchIsFull
+        const merged: Record<string, unknown> = def.patchIsFull
           ? { ...(rest.data as object), key }
           : { ...(cur.data as object), ...rest, [def.keyField]: key };
+        // v0.3.0: `null` removes an optional field (the patch schemas only allow null on optional fields).
+        if (!def.patchIsFull) for (const [k, v] of Object.entries(rest)) if (v === null) delete merged[k];
         const next = parse(merged);
         const before = cur.subjectKey;
         await authWrite(ctx, before);
@@ -188,7 +237,12 @@ export function registerContentAdmin(app: FastifyInstance, deps: Deps) {
 
   reg(app, deps, 'adminConceptUsage', async (ctx) => {
     if (!(await repo.content('concept').get(ctx.params.key))) fail('not_found');
-    return { conceptKey: ctx.params.key, topicKeys: await repo.topicsUsingConcept(ctx.params.key) };
+    const usedBy = await usageOf(deps, 'concept', ctx.params.key);
+    return {
+      conceptKey: ctx.params.key,
+      topicKeys: usedBy.filter((u) => u.startsWith('topic:')).map((u) => u.slice('topic:'.length)),
+      usedBy,
+    };
   });
 
   reg(app, deps, 'adminItemStats', async (ctx) => {

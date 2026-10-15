@@ -1,5 +1,5 @@
 /** Accept-Language handling and fallback-chain localisation (TZ §9, §10: ky → ru → en). */
-import { FALLBACK_CHAIN, LANGS, isLang, type Lang, type Localized } from '@bilig/content-model';
+import { FALLBACK_CHAIN, LANGS, isLang, isLocalizedValue, type Lang, type Localized } from '@bilig/content-model';
 
 /** Pick the best supported language from an Accept-Language header (q-values honoured). */
 export function negotiateLang(header: string | undefined, fallback: Lang = 'ky'): Lang {
@@ -30,9 +30,8 @@ export function fillLocalized(v: Localized, lang: Lang): Localized {
   return out;
 }
 
-const isLocalized = (v: unknown): v is Localized =>
-  !!v && typeof v === 'object' && !Array.isArray(v) &&
-  Object.keys(v).length === 3 && LANGS.every((l) => typeof (v as Record<string, unknown>)[l] === 'string');
+/** Localized value (contract helper; tolerates future optional languages). */
+const isLocalized = (v: unknown): v is Localized => isLocalizedValue(v);
 
 /** Deep-apply `fillLocalized` to every Localized value inside a JSON document. */
 export function localizeDeep<T>(doc: T, lang: Lang): T {

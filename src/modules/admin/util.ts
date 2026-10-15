@@ -1,6 +1,6 @@
 /** Shared helpers for the admin modules. */
 import type { FastifyInstance } from 'fastify';
-import { LANGS, type Topic } from '@bilig/content-model';
+import { LANGS, isLocalizedValue as isLocalizedContract, t as tr, type Lang, type Topic } from '@bilig/content-model';
 import type { EndpointName } from '@bilig/content-model/api';
 import { canEditField, type ContentField, type Permission } from '@bilig/permissions';
 import type { Deps } from '../../deps.js';
@@ -30,8 +30,31 @@ export function checkBodyVersion(ctx: AnyCtx) {
   if (v !== undefined && v !== ctx.ifMatch) fail('validation_failed', { detail: 'body.version must equal If-Match' });
 }
 
-export const isLocalizedValue = (v: unknown): boolean =>
-  !!v && typeof v === 'object' && !Array.isArray(v) && Object.keys(v).length === 3 && LANGS.every((l) => typeof (v as Record<string, unknown>)[l] === 'string');
+export const isLocalizedValue = (v: unknown): boolean => isLocalizedContract(v);
+
+/** A sortable scalar from any JSON value: numbers/strings as-is, booleans 0/1, arrays by length, Localized in `lang`. */
+export function sortScalar(v: unknown, lang: Lang): string | number | undefined {
+  if (typeof v === 'number' || typeof v === 'string') return v;
+  if (typeof v === 'boolean') return v ? 1 : 0;
+  if (Array.isArray(v)) return v.length;
+  if (isLocalizedContract(v)) return tr(v, lang);
+  return undefined;
+}
+
+/** Semver as a sortable string (`1.10.0` after `1.9.0`). */
+export const semverSortKey = (v: string | undefined) =>
+  v ? v.split(/[.-]/).map((p) => (/^\d+$/.test(p) ? p.padStart(8, '0') : p)).join('.') : undefined;
+
+/** Optional If-Match / body `version`: the expected version, or null when neither was sent. 400 when they disagree. */
+export function optionalVersion(ctx: AnyCtx): number | null {
+  const body = (ctx.body as { version?: number } | undefined)?.version;
+  const header = ctx.ifMatch >= 0 ? ctx.ifMatch : undefined;
+  if (body !== undefined && header !== undefined && body !== header) fail('validation_failed', { detail: 'body.version must equal If-Match' });
+  return body ?? header ?? null;
+}
+
+/** `mine=true` → the caller; else `authorId`. */
+export const authorFilter = (ctx: AnyCtx, q: { authorId?: string; mine?: boolean }): string | undefined => (q.mine ? ctx.auth.user!.id : q.authorId);
 
 const ASSET_KEYS = new Set(['asset', 'thumb', 'thumbUrl', 'icon']);
 

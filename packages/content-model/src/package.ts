@@ -78,6 +78,10 @@ export const TopicSummarySchema = z.object({
   classification: LocalizedSchema.optional(),
   formula: z.string().optional(),
   durationMin: z.number().int().positive(),
+  /**
+   * Thumbnail. `summarizeTopic` yields the package-relative path; API catalog
+   * responses (v0.3.0) resolve it to an absolute, hash-addressed URL under `filesBaseUrl`.
+   */
   thumb: z.string().optional(),
   /** Current published package version + hash (for "update only what changed"). */
   version: SemverSchema,
@@ -85,6 +89,10 @@ export const TopicSummarySchema = z.object({
   counts: TopicCountsSchema,
   /** Open demo topic (guests may load its package). */
   demo: z.boolean().optional(),
+  /** v0.3.0: absolute base URL of the package files (as in the manifest response); API responses only. */
+  filesBaseUrl: z.string().min(1).optional(),
+  /** v0.3.0: the topic's concept keys («изучено N из M» without loading the package). */
+  conceptKeys: z.array(KeySchema).optional(),
 });
 export type TopicSummary = z.infer<typeof TopicSummarySchema>;
 
@@ -124,6 +132,7 @@ export function summarizeTopic(pkg: ContentPackage): TopicSummary {
       items: topic.activities.quiz?.itemKeys.length ?? 0,
     },
     ...(topic.demo !== undefined ? { demo: topic.demo } : {}),
+    conceptKeys: [...topic.conceptKeys],
   };
 }
 

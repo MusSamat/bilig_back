@@ -153,6 +153,15 @@ export function crossCheckPackage(pkg: ContentPackage): ValidationIssue[] {
     });
     issues.push(...checkExamples(c.examples, ['concepts', ci, 'examples']));
   });
+  // v0.3.0: topic-level and sample properties use the same property-type dictionary.
+  const checkProps = (props: readonly { type: string; kind: string }[] | undefined, path: (string | number)[]) =>
+    props?.forEach((p, pi) => {
+      const def = propertyType(p.type, extraTypes);
+      if (!def) err([...path, pi, 'type'], 'property_type_unknown', `Unknown property type "${p.type}"`);
+      else if (def.valueKind !== p.kind) err([...path, pi, 'kind'], 'property_kind_mismatch', `"${p.type}" expects ${def.valueKind}`);
+    });
+  checkProps(topic.props, ['topic', 'props']);
+  topic.samples.forEach((s, si) => checkProps(s.props, ['topic', 'samples', si, 'props']));
   Object.entries(topic.overrides).forEach(([k, o]) => {
     if (!topicConceptKeys.has(k)) err(['topic', 'overrides', k], 'override_unknown', `Override for "${k}" not in topic.conceptKeys`);
     o.props?.forEach((p, pi) => {

@@ -34,8 +34,8 @@ const respond = (topic: TopicRec, version: string, checklist?: Checklist): Workf
   ...(topic.scheduledAt ? { scheduledAt: topic.scheduledAt.toISOString() } : {}),
 });
 
-async function save(deps: Deps, topic: TopicRec, patch: Parameters<Deps['repo']['updateTopic']>[1]): Promise<TopicRec> {
-  const r = await deps.repo.updateTopic(topic.id, patch, topic.version);
+async function save(deps: Deps, topic: TopicRec, patch: Parameters<Deps['repo']['updateTopic']>[1], actorId?: string): Promise<TopicRec> {
+  const r = await deps.repo.updateTopic(topic.id, { ...patch, ...(actorId ? { updatedBy: actorId } : {}) }, topic.version);
   if (r === 'not_found') fail('not_found', { detail: 'topic' });
   if (r === 'version_mismatch') fail('version_mismatch');
   return r;
@@ -57,7 +57,7 @@ export async function publishVersion(deps: Deps, topic: TopicRec, ver: TopicVers
     publishedVersionId: ver.id,
     scheduledAt: null,
     scheduledVersionId: null,
-  });
+  }, input.actorId);
   deps.content.invalidate();
   await deps.audit.log(input.actorId, action === 'rollback' ? 'content.rollback' : 'content.publish', { type: 'topic', id: topic.id }, {
     ip: input.ip,
@@ -75,15 +75,15 @@ export async function runWorkflow(deps: Deps, topic: TopicRec, action: WorkflowA
       const checklist = deps.content.publishing.checklist(res);
       if (!checklist.schema) fail('conflict', { detail: 'checklist_failed', issues: checklist.issues.filter((i) => i.severity === 'error').slice(0, 50).map((i) => ({ path: i.path, message: `${i.code}: ${i.message}` })) });
       await deps.repo.updateTopicVersion(ver.id, { reviewState: 'review' });
-      const next = await save(deps, topic, { status: 'review' });
+      const next = await save(deps, topic, { status: 'review' }, input.actorId);
       await deps.audit.log(input.actorId, 'content.submit', { type: 'topic', id: topic.id }, { ip: input.ip, diff: { version: ver.version, message: input.message } });
       return respond(next, ver.version, checklist);
     }
     case 'reject': {
       const ver = await latestVersion(deps, topic);
       await deps.repo.updateTopicVersion(ver.id, { reviewState: 'draft' });
-      await deps.repo.createReviewComment({ id: newId(), targetType: 'topic', targetId: topic.id, path: '', body: input.reason ?? '', authorId: input.actorId, createdAt: deps.clock.now(), resolvedAt: null });
-      const next = await save(deps, topic, { status: 'draft', scheduledAt: null, scheduledVersionId: null });
+      await deps.repo.createReviewComment({ id: newId(), targetType: 'topic', targetId: topic.id, path: '', body: input.reason ?? '', authorId: input.actorId, createdAt: deps.clock.now(), resolvedAt: null, topicVersion: ver.version });
+      const next = await save(deps, topic, { status: 'draft', scheduledAt: null, scheduledVersionId: null }, input.actorId);
       await deps.audit.log(input.actorId, 'content.reject', { type: 'topic', id: topic.id }, { ip: input.ip, diff: { version: ver.version, reason: input.reason } });
       return respond(next, ver.version);
     }
@@ -94,21 +94,21 @@ export async function runWorkflow(deps: Deps, topic: TopicRec, action: WorkflowA
         const res = await deps.content.publishing.assemble(topic, ver);
         const checklist = deps.content.publishing.checklist(res);
         if (!PublishingService.passes(checklist)) fail('conflict', { detail: 'checklist_failed', issues: checklist.issues.filter((i) => i.severity === 'error').slice(0, 50).map((i) => ({ path: i.path, message: `${i.code}: ${i.message}` })) });
-        const next = await save(deps, topic, { scheduledAt: input.scheduledAt, scheduledVersionId: ver.id });
+        const next = await save(deps, topic, { scheduledAt: input.scheduledAt, scheduledVersionId: ver.id }, input.actorId);
         await deps.audit.log(input.actorId, 'content.schedule', { type: 'topic', id: topic.id }, { ip: input.ip, diff: { version: ver.version, scheduledAt: input.scheduledAt.toISOString() } });
         return respond(next, ver.version, checklist);
       }
       return publishVersion(deps, topic, ver, input);
     }
     case 'archive': {
-      const next = await save(deps, topic, { status: 'archived', publishedVersionId: null, scheduledAt: null, scheduledVersionId: null });
+      const next = await save(deps, topic, { status: 'archived', publishedVersionId: null, scheduledAt: null, scheduledVersionId: null }, input.actorId);
       if (topic.publishedVersionId) await deps.repo.updateTopicVersion(topic.publishedVersionId, { reviewState: 'archived' });
       deps.content.invalidate();
       await deps.audit.log(input.actorId, 'content.archive', { type: 'topic', id: topic.id }, { ip: input.ip, diff: { reason: input.reason } });
       return respond(next, (await latestVersion(deps, topic)).version);
     }
     case 'restore': {
-      const next = await save(deps, topic, { status: 'draft' });
+      const next = await save(deps, topic, { status: 'draft' }, input.actorId);
       await deps.audit.log(input.actorId, 'content.restore', { type: 'topic', id: topic.id }, { ip: input.ip });
       return respond(next, (await latestVersion(deps, topic)).version);
     }
@@ -124,7 +124,7 @@ export async function runWorkflow(deps: Deps, topic: TopicRec, action: WorkflowA
         const prev = topic.publishedVersionId;
         if (prev) await deps.repo.updateTopicVersion(prev, { reviewState: 'archived' });
         await deps.repo.updateTopicVersion(ver.id, { reviewState: 'published' });
-        const next = await save(deps, topic, { status: 'published', publishedVersionId: ver.id, scheduledAt: null, scheduledVersionId: null });
+        const next = await save(deps, topic, { status: 'published', publishedVersionId: ver.id, scheduledAt: null, scheduledVersionId: null }, input.actorId);
         deps.content.invalidate();
         await deps.audit.log(input.actorId, 'content.rollback', { type: 'topic', id: topic.id }, { ip: input.ip, diff: { topicKey: topic.key, version: ver.version, previousVersionId: prev } });
         return respond(next, ver.version);

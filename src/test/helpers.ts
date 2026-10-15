@@ -118,7 +118,7 @@ export async function makeUser(
 }
 
 export async function makeSchool(deps: Deps, name = 'Школа №1'): Promise<SchoolRec> {
-  const s: SchoolRec = { id: newId(), name, region: 'Бишкек', type: 'state', language: 'ky', status: 'active', createdAt: deps.clock.now() };
+  const s: SchoolRec = { id: newId(), name, region: 'Бишкек', type: 'state', language: 'ky', status: 'active', createdAt: deps.clock.now(), version: 1 };
   await deps.repo.createSchool(s);
   return s;
 }

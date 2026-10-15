@@ -57,3 +57,55 @@ export const ProcessSchema = z.object({
   params: z.record(z.string(), z.number()).optional(),
 });
 export type Process = z.infer<typeof ProcessSchema>;
+
+// ---------------------------------------------------------------------------
+// v0.3.0: engine parameter conventions (A-08). `Process.params` stays an open
+// number map; these are the keys the engines read. Unknown keys are kept as
+// domain parameters (e.g. `emf`, `resistance`, `radius` for the sim plugin).
+// ---------------------------------------------------------------------------
+
+export interface EngineParamConvention {
+  /** Literal key, or a pattern with `<metric>`, `<step>`, `<species>` placeholders. */
+  key: string;
+  description: string;
+}
+
+export const ENGINE_PARAMS: Readonly<Record<ProcessEngine, readonly EngineParamConvention[]>> = {
+  timeline: [
+    {
+      key: '<metric>@<step>',
+      description:
+        'Cumulative target of metric <metric> at the END of step <step> (e.g. `atp@glycolysis`: 2). The player interpolates between targets; without targets a metric runs from min to max over the summed step durations.',
+    },
+  ],
+  stoich: [
+    { key: 'n0.<species>', description: 'Initial amount (mol) of a species.' },
+    { key: 'nu.<species>', description: 'Stoichiometric coefficient: negative for reactants, positive for products.' },
+    {
+      key: '<species>',
+      description:
+        'Content form (alternative to n0./nu.): the coefficient of a species from the equation; reactants and products are taken from the equation sides.',
+    },
+    { key: 'M_<species>', description: 'Molar mass of a species, g/mol (content form).' },
+    { key: 'dH_kJ', description: 'Reaction enthalpy, kJ per mole of reaction (negative = exothermic).' },
+  ],
+  ode: [
+    { key: 'omega', description: 'Natural angular frequency, rad/s.' },
+    { key: 'zeta', description: 'Damping ratio (0 = undamped).' },
+    { key: 'x0', description: 'Initial displacement.' },
+    { key: 'v0', description: 'Initial velocity.' },
+    { key: 'mass', description: 'Mass, kg (energy readouts).' },
+  ],
+};
+
+/** Key of a per-step cumulative target for the `timeline` engine. */
+export const stepTargetKey = (metricKey: string, stepKey: string): string => `${metricKey}@${stepKey}`;
+
+/** Per-step targets of one metric (`<metric>@<step>` keys), in step order; steps without a target are omitted. */
+export function stepTargets(process: Pick<Process, 'params' | 'steps'>, metricKey: string): { stepKey: string; value: number }[] {
+  const params = process.params ?? {};
+  return process.steps.flatMap((s) => {
+    const v = params[stepTargetKey(metricKey, s.key)];
+    return typeof v === 'number' ? [{ stepKey: s.key, value: v }] : [];
+  });
+}

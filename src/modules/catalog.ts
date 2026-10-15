@@ -4,7 +4,7 @@
  * by Accept-Language with the ky → ru → en chain (empty locales are filled).
  */
 import type { FastifyInstance, FastifyReply } from 'fastify';
-import type { Lang } from '@bilig/content-model';
+import type { Lang, TopicSummary } from '@bilig/content-model';
 import type { Deps } from '../deps.js';
 import { route } from '../http/route.js';
 import { fail } from '../http/errors.js';
@@ -14,12 +14,21 @@ import type { AuthCtx } from '../http/auth-context.js';
 export function registerCatalog(app: FastifyInstance, deps: Deps) {
   const { content, repo } = deps;
 
+  /** v0.3.0: absolute, hash-addressed thumbnail URLs + `filesBaseUrl` on catalog topic cards. */
+  const withUrls = (topics: TopicSummary[]): TopicSummary[] =>
+    topics.map((t) => {
+      const filesBaseUrl = content.publishing.filesBaseUrl(t.hash);
+      const thumb = t.thumb && !/^[a-z][a-z0-9+.-]*:\/\//i.test(t.thumb) ? filesBaseUrl + t.thumb : t.thumb;
+      return { ...t, ...(thumb ? { thumb } : {}), filesBaseUrl };
+    });
+
   const localized = (reply: FastifyReply, lang: Lang) =>
     reply.header('Content-Language', lang).header('Vary', 'Accept-Language, Authorization').header('Cache-Control', 'public, max-age=60');
 
   route(app, deps, 'catalog', async ({ reply, lang }) => {
     localized(reply, lang);
-    return content.catalog(lang);
+    const c = await content.catalog(lang);
+    return { ...c, topics: withUrls(c.topics) };
   });
 
   route(app, deps, 'subjects', async ({ reply, lang }) => {
@@ -49,7 +58,7 @@ export function registerCatalog(app: FastifyInstance, deps: Deps) {
       course,
       units,
       objectives: localizeDeep(objectives, lang),
-      topics: c.topics.filter((t) => unitKeys.has(t.unitKey)),
+      topics: withUrls(c.topics.filter((t) => unitKeys.has(t.unitKey))),
     };
   });
 

@@ -10,6 +10,7 @@ import { newId } from '../ids.js';
 import type {
   AnswerRec,
   AssetRec,
+  AssetVersionRec,
   AssignmentRec,
   AttemptRec,
   AuditRec,
@@ -34,13 +35,16 @@ import type {
   LearningEventRec,
   LicenseRec,
   LocaleStringRec,
+  LocaleStringWrite,
   PageReq,
   PageRes,
   PresentationRec,
   ProgressRec,
   PublishedRec,
   Repository,
+  ReviewCommentFilter,
   ReviewCommentRec,
+  ReviewCommentWrite,
   SchoolRec,
   SessionRec,
   SettingRec,
@@ -141,6 +145,10 @@ class PrismaContentStore<T> implements ContentStore<T> {
     const r = await this.t.findUnique({ where: { key } });
     return r ? this.map(r) : null;
   }
+  async getById(id: Id) {
+    const r = await this.t.findUnique({ where: { id } });
+    return r ? this.map(r) : null;
+  }
   async getMany(keys: readonly string[]) {
     if (!keys.length) return [];
     const rows: Row[] = await this.t.findMany({ where: { key: { in: [...new Set(keys)] } } });
@@ -218,9 +226,10 @@ const mapInvite = (r: Row): InviteRec => ({
   createdAt: r.createdAt,
   expiresAt: r.expiresAt,
   acceptedAt: r.acceptedAt,
+  revokedAt: r.revokedAt,
 });
-const mapSchool = (r: Row): SchoolRec => ({ id: r.id, name: r.name, region: r.region, type: r.type, language: r.language, status: r.status, createdAt: r.createdAt });
-const mapLicense = (r: Row): LicenseRec => ({ id: r.id, schoolId: r.schoolId, subjects: r.subjects, grades: r.grades, seats: r.seats, startsAt: r.startsAt, endsAt: r.endsAt });
+const mapSchool = (r: Row): SchoolRec => ({ id: r.id, name: r.name, region: r.region, type: r.type, language: r.language, status: r.status, createdAt: r.createdAt, version: r.version });
+const mapLicense = (r: Row): LicenseRec => ({ id: r.id, schoolId: r.schoolId, subjects: r.subjects, grades: r.grades, seats: r.seats, startsAt: r.startsAt, endsAt: r.endsAt, version: r.version });
 const mapClass = (r: Row): ClassRec => ({
   id: r.id,
   schoolId: r.schoolId,
@@ -249,6 +258,7 @@ const mapTopic = (r: Row): TopicRec => ({
   createdAt: r.createdAt,
   updatedAt: r.updatedAt,
   deletedAt: r.deletedAt,
+  updatedBy: r.updatedBy ?? null,
 });
 const mapVersion = (r: Row): TopicVersionRec => ({
   id: r.id,
@@ -304,6 +314,40 @@ const mapAsset = (r: Row): AssetRec => ({
   uploadId: r.uploadId,
   createdBy: r.createdBy,
   createdAt: r.createdAt,
+  version: r.version,
+});
+const mapAssetVersion = (r: Row): AssetVersionRec => ({
+  assetId: r.assetId,
+  version: r.version,
+  filename: r.filename,
+  contentType: r.contentType,
+  status: r.status,
+  sizeBytes: r.sizeBytes,
+  sizeAfter: r.sizeAfter,
+  triangles: r.triangles,
+  nodes: r.nodes as string[],
+  violations: r.violations as string[],
+  originalUrl: r.originalUrl,
+  optimizedUrl: r.optimizedUrl,
+  thumbUrl: r.thumbUrl,
+  uploadId: r.uploadId,
+  message: r.message,
+  createdBy: r.createdBy,
+  createdAt: r.createdAt,
+  completedAt: r.completedAt,
+});
+const mapComment = (r: Row): ReviewCommentRec => ({
+  id: r.id,
+  targetType: r.targetType,
+  targetId: r.targetId,
+  path: r.path,
+  body: r.body,
+  authorId: r.authorId,
+  createdAt: r.createdAt,
+  resolvedAt: r.resolvedAt,
+  anchor3d: (r.anchor3d as [number, number, number] | null) ?? null,
+  resolvedBy: r.resolvedBy,
+  topicVersion: r.topicVersion,
 });
 function assetData(a: Partial<AssetRec>): Record<string, unknown> {
   return {
@@ -312,7 +356,7 @@ function assetData(a: Partial<AssetRec>): Record<string, unknown> {
     ...(a.violations !== undefined ? { violations: json(a.violations) } : {}),
   };
 }
-const mapString = (r: Row): LocaleStringRec => ({ key: r.key, locale: r.locale, value: r.value, status: r.status, sourceHash: r.sourceHash, updatedAt: r.updatedAt });
+const mapString = (r: Row): LocaleStringRec => ({ key: r.key, locale: r.locale, value: r.value, status: r.status, sourceHash: r.sourceHash, updatedAt: r.updatedAt, version: r.version });
 const mapProgress = (r: Row): ProgressRec => ({ userId: r.userId, topicKey: r.topicKey, visitedConcepts: r.visitedConcepts, completedActivities: r.completedActivities, updatedAt: r.updatedAt });
 const mapAssignment = (r: Row): AssignmentRec => ({ id: r.id, classId: r.classId, topicKey: r.topicKey, activities: r.activities, dueAt: r.dueAt, createdBy: r.createdBy, createdAt: r.createdAt });
 const mapAttempt = (r: Row): AttemptRec => ({
@@ -534,17 +578,33 @@ export class PrismaRepository implements Repository {
     const r = await this.db.authToken.findUnique({ where: { tokenHash } });
     return r ? mapAuthToken(r) : null;
   }
+  async findAuthToken(tokenHash: string, purpose: AuthTokenRec['purpose'], now: Date) {
+    const r = await this.db.authToken.findFirst({ where: { tokenHash, purpose, usedAt: null, expiresAt: { gt: now } } });
+    return r ? mapAuthToken(r) : null;
+  }
 
-  async createInvite(i: InviteRec) {
+  async createInvite(i: Omit<InviteRec, 'revokedAt'> & { revokedAt?: Date | null }) {
     const { scope, ...rest } = i;
-    await this.db.invite.create({ data: { ...rest, scopeType: scope } });
+    await this.db.invite.create({ data: { ...rest, revokedAt: i.revokedAt ?? null, scopeType: scope } });
+  }
+  async getInvite(id: Id) {
+    const r = await this.db.invite.findUnique({ where: { id } });
+    return r ? mapInvite(r) : null;
+  }
+  async updateInvite(id: Id, patch: Partial<Pick<InviteRec, 'tokenHash' | 'expiresAt' | 'revokedAt'>>) {
+    try {
+      return mapInvite(await this.db.invite.update({ where: { id }, data: patch }));
+    } catch (e) {
+      if (isNotFound(e)) return null;
+      throw e;
+    }
   }
   async getInviteByHash(tokenHash: string) {
     const r = await this.db.invite.findUnique({ where: { tokenHash } });
     return r ? mapInvite(r) : null;
   }
   async markInviteAccepted(id: Id, at: Date) {
-    return (await this.db.invite.updateMany({ where: { id, acceptedAt: null }, data: { acceptedAt: at } })).count === 1;
+    return (await this.db.invite.updateMany({ where: { id, acceptedAt: null, revokedAt: null }, data: { acceptedAt: at } })).count === 1;
   }
   async listInvites(filter: { scope?: InviteRec['scope']; scopeIds?: string[] }, p: PageReq) {
     const rows = await this.db.invite.findMany({
@@ -556,21 +616,18 @@ export class PrismaRepository implements Repository {
     return { items: res.items.map(mapInvite), nextCursor: res.nextCursor };
   }
 
-  async createSchool(s: SchoolRec) {
-    await this.db.school.create({ data: s });
+  async createSchool(s: Omit<SchoolRec, 'version'> & { version?: number }) {
+    await this.db.school.create({ data: { ...s, version: s.version ?? 1 } });
   }
   async getSchool(id: Id) {
     const r = await this.db.school.findUnique({ where: { id } });
     return r ? mapSchool(r) : null;
   }
-  async updateSchool(id: Id, patch: Partial<SchoolRec>) {
-    const { id: _i, createdAt: _c, ...data } = patch;
-    try {
-      return mapSchool(await this.db.school.update({ where: { id }, data }));
-    } catch (e) {
-      if (isNotFound(e)) return null;
-      throw e;
-    }
+  async updateSchool(id: Id, patch: Partial<SchoolRec>, expectedVersion: number | null = null) {
+    const { id: _i, createdAt: _c, version: _v, ...data } = patch;
+    const res = await this.db.school.updateMany({ where: { id, ...(expectedVersion !== null ? { version: expectedVersion } : {}) }, data: { ...data, version: { increment: 1 } } });
+    if (res.count === 0) return (await this.db.school.findUnique({ where: { id } })) ? ('version_mismatch' as const) : null;
+    return mapSchool(await this.db.school.findUniqueOrThrow({ where: { id } }));
   }
   async listSchools(filter: { ids?: Id[] }, p: PageReq) {
     const rows = await this.db.school.findMany({ where: idWhere(p, filter.ids), orderBy: { id: 'asc' }, take: p.limit + 1 });
@@ -578,9 +635,9 @@ export class PrismaRepository implements Repository {
     return { items: res.items.map(mapSchool), nextCursor: res.nextCursor };
   }
 
-  async createLicense(l: LicenseRec) {
+  async createLicense(l: Omit<LicenseRec, 'version'> & { version?: number }) {
     try {
-      return mapLicense(await this.db.license.create({ data: l }));
+      return mapLicense(await this.db.license.create({ data: { ...l, version: l.version ?? 1 } }));
     } catch (e) {
       if (isUnique(e)) return 'conflict' as const;
       throw e;
@@ -590,17 +647,16 @@ export class PrismaRepository implements Repository {
     const r = await this.db.license.findUnique({ where: { id } });
     return r ? mapLicense(r) : null;
   }
-  async updateLicense(id: Id, patch: Partial<LicenseRec>) {
-    const { id: _i, schoolId: _s, ...data } = patch;
-    try {
-      return mapLicense(await this.db.license.update({ where: { id }, data }));
-    } catch (e) {
-      if (isNotFound(e)) return null;
-      throw e;
-    }
+  async updateLicense(id: Id, patch: Partial<LicenseRec>, expectedVersion: number | null = null) {
+    const { id: _i, schoolId: _s, version: _v, ...data } = patch;
+    const res = await this.db.license.updateMany({ where: { id, ...(expectedVersion !== null ? { version: expectedVersion } : {}) }, data: { ...data, version: { increment: 1 } } });
+    if (res.count === 0) return (await this.db.license.findUnique({ where: { id } })) ? ('version_mismatch' as const) : null;
+    return mapLicense(await this.db.license.findUniqueOrThrow({ where: { id } }));
   }
-  async deleteLicense(id: Id) {
-    return (await this.db.license.deleteMany({ where: { id } })).count > 0;
+  async deleteLicense(id: Id, expectedVersion: number | null = null) {
+    const res = await this.db.license.deleteMany({ where: { id, ...(expectedVersion !== null ? { version: expectedVersion } : {}) } });
+    if (res.count > 0) return true;
+    return (await this.db.license.findUnique({ where: { id } })) ? ('version_mismatch' as const) : false;
   }
   async listLicenses(filter: { schoolIds?: Id[] }, p: PageReq) {
     const rows = await this.db.license.findMany({
@@ -684,10 +740,10 @@ export class PrismaRepository implements Repository {
     return s as unknown as ContentStore<ContentKinds[K]>;
   }
 
-  async createTopic(t: Omit<TopicRec, 'createdAt' | 'updatedAt' | 'deletedAt' | 'version'>) {
+  async createTopic(t: Omit<TopicRec, 'createdAt' | 'updatedAt' | 'deletedAt' | 'version' | 'updatedBy'> & { updatedBy?: Id | null }) {
     const now = new Date();
     try {
-      return mapTopic(await this.db.topic.create({ data: { ...t, version: 1, createdAt: now, updatedAt: now, deletedAt: null } }));
+      return mapTopic(await this.db.topic.create({ data: { ...t, updatedBy: t.updatedBy ?? null, version: 1, createdAt: now, updatedAt: now, deletedAt: null } }));
     } catch (e) {
       if (isUnique(e)) return 'conflict' as const;
       throw e;
@@ -799,10 +855,15 @@ export class PrismaRepository implements Repository {
     const r = await this.db.build.findFirst({ where: { topicVersionId, status: 'ready' }, orderBy: { id: 'desc' } });
     return r ? mapBuild(r) : null;
   }
-  async listBuilds(filter: { topicKey?: string }, p: PageReq) {
+  async listBuilds(filter: { topicKey?: string; status?: BuildRec['status'] }, p: PageReq, order: 'asc' | 'desc' = 'asc') {
+    const after = decodeCursor(p.cursor);
     const rows = await this.db.build.findMany({
-      where: { ...idWhere(p), ...(filter.topicKey ? { topicKey: filter.topicKey } : {}) },
-      orderBy: { id: 'asc' },
+      where: {
+        ...(after !== undefined ? { id: order === 'desc' ? { lt: after } : { gt: after } } : {}),
+        ...(filter.topicKey ? { topicKey: filter.topicKey } : {}),
+        ...(filter.status ? { status: filter.status } : {}),
+      },
+      orderBy: { id: order },
       take: p.limit + 1,
     });
     const res = page(rows, p.limit, (r) => r.id);
@@ -825,8 +886,8 @@ export class PrismaRepository implements Repository {
     return out;
   }
 
-  async createAsset(a: AssetRec) {
-    await this.db.asset.create({ data: assetData(a) as Prisma.AssetUncheckedCreateInput });
+  async createAsset(a: Omit<AssetRec, 'version'> & { version?: number }) {
+    await this.db.asset.create({ data: assetData({ ...a, version: a.version ?? 1 }) as Prisma.AssetUncheckedCreateInput });
   }
   async getAsset(id: Id) {
     const r = await this.db.asset.findUnique({ where: { id } });
@@ -845,6 +906,35 @@ export class PrismaRepository implements Repository {
     const rows = await this.db.asset.findMany({ where: idWhere(p), orderBy: { id: 'asc' }, take: p.limit + 1 });
     const res = page(rows, p.limit, (r) => r.id);
     return { items: res.items.map(mapAsset), nextCursor: res.nextCursor };
+  }
+  async deleteAsset(id: Id) {
+    // AssetVersion rows cascade.
+    return (await this.db.asset.deleteMany({ where: { id } })).count > 0;
+  }
+  async createAssetVersion(v: AssetVersionRec) {
+    try {
+      return mapAssetVersion(await this.db.assetVersion.create({ data: { ...v, nodes: json(v.nodes), violations: json(v.violations) } }));
+    } catch (e) {
+      if (isUnique(e)) return 'conflict' as const;
+      throw e;
+    }
+  }
+  async listAssetVersions(assetId: Id) {
+    return (await this.db.assetVersion.findMany({ where: { assetId }, orderBy: { version: 'asc' } })).map(mapAssetVersion);
+  }
+  async updateAssetVersion(assetId: Id, version: number, patch: Partial<AssetVersionRec>) {
+    const { assetId: _a, version: _v, ...rest } = patch;
+    const data = {
+      ...rest,
+      ...(rest.nodes !== undefined ? { nodes: json(rest.nodes) } : {}),
+      ...(rest.violations !== undefined ? { violations: json(rest.violations) } : {}),
+    };
+    try {
+      return mapAssetVersion(await this.db.assetVersion.update({ where: { assetId_version: { assetId, version } }, data }));
+    } catch (e) {
+      if (isNotFound(e)) return null;
+      throw e;
+    }
   }
 
   // Strings: ordered by (key, locale); the cursor is key + U+0000 + locale (as in memory).
@@ -870,23 +960,50 @@ export class PrismaRepository implements Repository {
     if (!keys.length) return [];
     return (await this.db.localeString.findMany({ where: { key: { in: [...new Set(keys)] } }, orderBy: [{ key: 'asc' }, { locale: 'asc' }] })).map(mapString);
   }
-  async upsertStrings(rows: readonly LocaleStringRec[]) {
+  async upsertStrings(rows: readonly LocaleStringWrite[]) {
     for (let i = 0; i < rows.length; i += 500) {
       const chunk = rows.slice(i, i + 500);
       await this.db.$transaction(
         chunk.map((r) =>
           this.db.localeString.upsert({
             where: { key_locale: { key: r.key, locale: r.locale } },
-            create: r,
-            update: { value: r.value, status: r.status, sourceHash: r.sourceHash, updatedAt: r.updatedAt },
+            create: { key: r.key, locale: r.locale, value: r.value, status: r.status, sourceHash: r.sourceHash, updatedAt: r.updatedAt, version: 1 },
+            update: { value: r.value, status: r.status, sourceHash: r.sourceHash, updatedAt: r.updatedAt, version: { increment: 1 } },
           }),
         ),
       );
     }
   }
 
-  async createReviewComment(c: ReviewCommentRec) {
-    await this.db.reviewComment.create({ data: c });
+  async createReviewComment(c: ReviewCommentWrite) {
+    await this.db.reviewComment.create({ data: { ...c, anchor3d: jsonOrNull(c.anchor3d), resolvedBy: c.resolvedBy ?? null, topicVersion: c.topicVersion ?? null } });
+  }
+  async getReviewComment(id: Id) {
+    const r = await this.db.reviewComment.findUnique({ where: { id } });
+    return r ? mapComment(r) : null;
+  }
+  async listReviewComments(filter: ReviewCommentFilter, p: PageReq) {
+    const rows = await this.db.reviewComment.findMany({
+      where: {
+        ...idWhere(p),
+        ...(filter.targetType ? { targetType: filter.targetType } : {}),
+        ...(filter.targetId ? { targetId: filter.targetId } : {}),
+        ...(filter.authorId ? { authorId: filter.authorId } : {}),
+        ...(filter.resolved === undefined ? {} : { resolvedAt: filter.resolved ? { not: null } : null }),
+      },
+      orderBy: { id: 'asc' },
+      take: p.limit + 1,
+    });
+    const res = page(rows, p.limit, (r) => r.id);
+    return { items: res.items.map(mapComment), nextCursor: res.nextCursor };
+  }
+  async updateReviewComment(id: Id, patch: Partial<Pick<ReviewCommentRec, 'body' | 'resolvedAt' | 'resolvedBy'>>) {
+    try {
+      return mapComment(await this.db.reviewComment.update({ where: { id }, data: patch }));
+    } catch (e) {
+      if (isNotFound(e)) return null;
+      throw e;
+    }
   }
 
   // --- learning ---------------------------------------------------------------

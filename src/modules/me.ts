@@ -1,6 +1,7 @@
 /** Me (TZ §9): profile, roles, permissions, sessions, 2FA, the student's assignments. */
 import type { FastifyInstance } from 'fastify';
 import { grantedPermissions } from '@bilig/permissions';
+import { t } from '@bilig/content-model';
 import type { MeResponse } from '@bilig/content-model/api';
 import type { Deps } from '../deps.js';
 import { route } from '../http/route.js';
@@ -89,7 +90,7 @@ export function registerMe(app: FastifyInstance, deps: Deps) {
   });
 
   // GET /me/assignments — student cabinet (W-54)
-  route(app, deps, 'meAssignments', async ({ auth }) => {
+  route(app, deps, 'meAssignments', async ({ auth, lang }) => {
     const uid = auth.user!.id;
     const enr = await repo.listEnrollments({ userId: uid, role: 'student' });
     if (!enr.length) return { items: [] };
@@ -97,9 +98,18 @@ export function registerMe(app: FastifyInstance, deps: Deps) {
     const names = new Map(classes.map((c) => [c.id, c.name]));
     const list = (await repo.listAssignments({ classIds: classes.map((c) => c.id) }, { limit: 100 })).items;
     const attempts = await repo.listAttempts({ userId: uid });
+    // v0.3.0: topic info from the published package (title in the request language).
+    const topics = new Map<string, { topicTitle: string; subjectKey: string; unitKey: string; grade?: number }>();
+    for (const key of new Set(list.map((a) => a.topicKey))) {
+      const pub = await deps.content.getPublished(key);
+      if (pub) {
+        const pkg = pub.build.pkg;
+        topics.set(key, { topicTitle: t(pkg.topic.title, lang), subjectKey: pkg.subject.key, unitKey: pkg.topic.unitKey, ...(pkg.course ? { grade: pkg.course.grade } : {}) });
+      }
+    }
     return {
       items: list.map((a) => {
-        const st = assignmentStatus(attempts.filter((t) => t.assignmentId === a.id));
+        const st = assignmentStatus(attempts.filter((x) => x.assignmentId === a.id));
         return {
           id: a.id,
           classId: a.classId,
@@ -111,6 +121,7 @@ export function registerMe(app: FastifyInstance, deps: Deps) {
           createdAt: a.createdAt.toISOString(),
           status: st.status,
           ...(st.score !== undefined ? { score: st.score } : {}),
+          ...(topics.get(a.topicKey) ?? {}),
         };
       }),
     };

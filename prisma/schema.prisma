@@ -103,6 +103,7 @@ model Invite {
   createdAt  DateTime  @db.Timestamptz(3)
   expiresAt  DateTime  @db.Timestamptz(3)
   acceptedAt DateTime? @db.Timestamptz(3)
+  revokedAt  DateTime? @db.Timestamptz(3)
 
   @@index([scopeType, scopeId])
 }
@@ -115,6 +116,7 @@ model School {
   language  String
   status    String // active | suspended
   createdAt DateTime @db.Timestamptz(3)
+  version   Int      @default(1)
 
   licenses License[]
   classes  Class[]
@@ -128,6 +130,7 @@ model License {
   seats    Int
   startsAt DateTime @db.Timestamptz(3)
   endsAt   DateTime @db.Timestamptz(3)
+  version  Int      @default(1)
   school   School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
 
   @@index([schoolId])
@@ -336,6 +339,7 @@ model Topic {
   createdAt          DateTime  @db.Timestamptz(3)
   updatedAt          DateTime  @db.Timestamptz(3)
   deletedAt          DateTime? @db.Timestamptz(3)
+  updatedBy          String?   @db.Uuid
 
   versions TopicVersion[]
 
@@ -399,6 +403,34 @@ model Asset {
   uploadId     String
   createdBy    String   @db.Uuid
   createdAt    DateTime @db.Timestamptz(3)
+  version      Int      @default(1) // current AssetVersion.version
+
+  versions AssetVersion[]
+}
+
+/// One uploaded file of an asset (TZ §8 AssetVersion); the Asset row mirrors the current one.
+model AssetVersion {
+  assetId      String    @db.Uuid
+  version      Int
+  filename     String
+  contentType  String
+  status       String
+  sizeBytes    Int
+  sizeAfter    Int?
+  triangles    Int?
+  nodes        Json
+  violations   Json
+  originalUrl  String?
+  optimizedUrl String?
+  thumbUrl     String?
+  uploadId     String
+  message      String?
+  createdBy    String    @db.Uuid
+  createdAt    DateTime  @db.Timestamptz(3)
+  completedAt  DateTime? @db.Timestamptz(3)
+  asset        Asset     @relation(fields: [assetId], references: [id], onDelete: Cascade)
+
+  @@id([assetId, version])
 }
 
 model LocaleString {
@@ -408,20 +440,24 @@ model LocaleString {
   status     String // machine | draft | reviewed
   sourceHash String
   updatedAt  DateTime @db.Timestamptz(3)
+  version    Int      @default(1)
 
   @@id([key, locale])
   @@index([locale, status])
 }
 
 model ReviewComment {
-  id         String    @id @db.Uuid
-  targetType String
-  targetId   String    @db.Uuid
-  path       String
-  body       String
-  authorId   String    @db.Uuid
-  createdAt  DateTime  @db.Timestamptz(3)
-  resolvedAt DateTime? @db.Timestamptz(3)
+  id           String    @id @db.Uuid
+  targetType   String
+  targetId     String    @db.Uuid
+  path         String
+  body         String
+  authorId     String    @db.Uuid
+  createdAt    DateTime  @db.Timestamptz(3)
+  resolvedAt   DateTime? @db.Timestamptz(3)
+  anchor3d     Json? // [x, y, z]
+  resolvedBy   String?   @db.Uuid
+  topicVersion String?
 
   @@index([targetType, targetId])
 }

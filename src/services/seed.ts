@@ -15,7 +15,7 @@ import {
   type PropertyTypeDef,
 } from '@bilig/content-model';
 import { newId } from '../ids.js';
-import type { ContentKind, ContentKinds, LocaleStringRec, Repository } from '../repo/types.js';
+import type { ContentKind, ContentKinds, LocaleStringWrite, Repository } from '../repo/types.js';
 import { extractStrings, sourceHash, SOURCE_LANG } from '../domain/strings.js';
 import type { Clock } from './clock.js';
 import { toWrite } from './content-writes.js';
@@ -144,7 +144,7 @@ export async function importContent(repo: Repository, clock: Clock, content: Loa
   if (propertyTypes.size) await repo.putSetting(PROPERTY_TYPES_SETTING, [...propertyTypes.values()], null);
 
   // Translation workspace rows (A-11): status from the topic's i18n map, else `reviewed`.
-  const rows: LocaleStringRec[] = [];
+  const rows: LocaleStringWrite[] = [];
   const seen = new Set<string>();
   for (const s of strings) {
     if (seen.has(s.key)) continue;

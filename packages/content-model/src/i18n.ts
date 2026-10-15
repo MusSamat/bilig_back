@@ -4,8 +4,22 @@
 import { z } from 'zod';
 
 /** Contract version shared by @bilig/content-model and @bilig/permissions. */
-export const CONTRACT_VERSION = '0.2.1';
+export const CONTRACT_VERSION = '0.3.0';
 
+/**
+ * The ACTIVE content languages: every Localized value carries exactly these
+ * keys, and the publish checklist requires all of them.
+ *
+ * More languages (v0.3.0 design, nothing changes for existing data):
+ *  - UI-only languages need no contract change: a client may ship UI strings
+ *    for any `UiLangCode` (`UiLangCodeSchema`, `isUiLangCode`) and shows content in
+ *    `contentLangFor(uiLang)` (exact match → base subtag → fallback).
+ *  - A new CONTENT language is added in a minor version as an OPTIONAL key of
+ *    `LocalizedSchema` (existing documents stay valid; `missingLangs` reports
+ *    the gap, `t()` falls back along FALLBACK_CHAIN). Code must therefore not
+ *    assume a Localized value has exactly three keys — use `isLocalizedValue`.
+ *    Only after the content is translated does the checklist start requiring it.
+ */
 export const LANGS = ['ky', 'ru', 'en'] as const;
 export const LangSchema = z.enum(LANGS);
 export type Lang = z.infer<typeof LangSchema>;
@@ -16,6 +30,35 @@ export const FALLBACK_CHAIN: readonly Lang[] = ['ky', 'ru', 'en'];
 
 export const isLang = (v: unknown): v is Lang =>
   typeof v === 'string' && (LANGS as readonly string[]).includes(v);
+
+// v0.3.0 (additive): UI languages beyond the content set.
+
+/** A UI language code (BCP 47 primary subtag + optional region): `ky`, `uz`, `kk`, `en-GB`. */
+export const UI_LANG_RE = /^[a-z]{2,3}(?:-[A-Z]{2})?$/;
+export const UiLangCodeSchema = z.string().regex(UI_LANG_RE, 'Invalid language code');
+export type UiLangCode = Lang | (string & {});
+export const isUiLangCode = (v: unknown): v is UiLangCode => typeof v === 'string' && UI_LANG_RE.test(v);
+
+/**
+ * Content language for a UI language: the language itself when content
+ * exists in it, else its base subtag (`ru-KG` → `ru`), else `fallback`.
+ */
+export function contentLangFor(uiLang: string, fallback: Lang = DEFAULT_LANG): Lang {
+  if (isLang(uiLang)) return uiLang;
+  const base = uiLang.split('-')[0]?.toLowerCase();
+  return isLang(base) ? base : fallback;
+}
+
+/**
+ * Is `v` a Localized value (a plain object whose keys are content languages,
+ * with every active language present as a string)? Tolerates future optional
+ * language keys (see LANGS).
+ */
+export function isLocalizedValue(v: unknown): v is Localized {
+  if (!v || typeof v !== 'object' || Array.isArray(v)) return false;
+  const o = v as Record<string, unknown>;
+  return LANGS.every((l) => typeof o[l] === 'string') && Object.keys(o).every((k) => isLang(k) && typeof o[k] === 'string');
+}
 
 /**
  * A localized string: all three locale keys are present (an untranslated

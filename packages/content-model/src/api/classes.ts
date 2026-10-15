@@ -2,7 +2,7 @@
 import { z } from 'zod';
 import { KeySchema } from '../common.js';
 import { PinSchema } from './auth.js';
-import { DateTimeSchema, IdSchema } from './common.js';
+import { DateTimeSchema, IdSchema, PageQuerySchema } from './common.js';
 
 export const ClassSchema = z.object({
   id: IdSchema,
@@ -81,7 +81,10 @@ export const AssignmentSchema = AssignmentCreateRequestSchema.extend({
 });
 export type Assignment = z.infer<typeof AssignmentSchema>;
 
-// GET /assignments/:id/results
+// GET /assignments/:id/results — v0.3.0: `?cursor=&limit=` pages `students`
+// (ordered by name); without them every student is returned (as before).
+// `averageScore` and `hardestItems` always cover the whole class.
+export const AssignmentResultsQuerySchema = PageQuerySchema;
 export const AssignmentResultsSchema = z.object({
   assignmentId: IdSchema,
   students: z.array(
@@ -101,8 +104,14 @@ export const AssignmentResultsSchema = z.object({
       correctRate: z.number().min(0).max(1),
       /** Most frequent wrong option key, if any. */
       commonWrong: z.string().optional(),
+      /** v0.3.0: the question text in the request language (from the published package). */
+      prompt: z.string().optional(),
     }),
   ),
+  /** v0.3.0: next page of `students` (null = last page); present when paging. */
+  nextCursor: z.string().nullable().optional(),
+  /** v0.3.0: students in the class. */
+  totalStudents: z.number().int().min(0).optional(),
 });
 export type AssignmentResults = z.infer<typeof AssignmentResultsSchema>;
 
@@ -129,6 +138,13 @@ export const MyAssignmentSchema = AssignmentSchema.extend({
   className: z.string(),
   status: z.enum(['not_started', 'in_progress', 'done']),
   score: z.number().min(0).max(1).optional(),
+  // v0.3.0: enough to show the title and build `/:lang/:subject/:grade/:topic`
+  // (absent when the topic is no longer published).
+  /** Topic title in the request language (Accept-Language, ky → ru → en). */
+  topicTitle: z.string().optional(),
+  subjectKey: KeySchema.optional(),
+  grade: z.number().int().min(1).max(11).optional(),
+  unitKey: KeySchema.optional(),
 });
 export type MyAssignment = z.infer<typeof MyAssignmentSchema>;
 export const MyAssignmentsResponseSchema = z.object({ items: z.array(MyAssignmentSchema) });

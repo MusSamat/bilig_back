@@ -40,7 +40,19 @@ export type AuditAction =
   | 'license.created'
   | 'license.updated'
   | 'license.deleted'
-  | 'tutor.settings_changed';
+  | 'tutor.settings_changed'
+  // v0.3.0
+  | 'tutor.regression_run'
+  | 'content.schedule_cancelled'
+  | 'review.comment_created'
+  | 'review.comment_updated'
+  | 'asset.uploaded'
+  | 'asset.version_created'
+  | 'asset.deleted'
+  | 'invite.revoked'
+  | 'invite.resent'
+  | 'student.data_reveal'
+  | 'auth.2fa_enrollment_started';
 
 export class AuditService {
   constructor(private repo: Repository, private clock: Clock) {}
@@ -49,9 +61,10 @@ export class AuditService {
     action: AuditAction,
     target: { type: string; id: string },
     opts: { diff?: unknown; ip?: string | null } = {},
-  ): Promise<void> {
+  ): Promise<string> {
+    const id = newId();
     await this.repo.appendAudit({
-      id: newId(),
+      id,
       actorId,
       action,
       targetType: target.type,
@@ -60,5 +73,6 @@ export class AuditService {
       ip: opts.ip ?? null,
       ts: this.clock.now(),
     });
+    return id;
   }
 }

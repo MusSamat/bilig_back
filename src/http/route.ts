@@ -44,7 +44,7 @@ export interface Ctx<N extends EndpointName> {
   params: Record<string, string>;
   /** Language from Accept-Language (or ?lang) — ky → ru → en fallback. */
   lang: Lang;
-  /** If-Match version (numeric), present when the endpoint declares ifMatch. */
+  /** If-Match version (numeric), present when the endpoint declares ifMatch; -1 when an optional If-Match was not sent. */
   ifMatch: number;
   idempotencyKey: string;
   ip: string;
@@ -81,6 +81,7 @@ export function route<N extends EndpointName>(
     response: z.ZodTypeAny;
     idempotent?: boolean;
     ifMatch?: boolean;
+    ifMatchOptional?: boolean;
     produces?: string;
   };
 
@@ -120,6 +121,10 @@ export function route<N extends EndpointName>(
         if (v === null) fail('precondition_required', { detail: HEADERS.ifMatch });
         else if (v === 'invalid') fail('validation_failed', { detail: HEADERS.ifMatch });
         else ifMatch = v;
+      } else if (def.ifMatchOptional) {
+        const v = parseIfMatch(req.headers['if-match'] as string | undefined);
+        if (v === 'invalid') fail('validation_failed', { detail: HEADERS.ifMatch });
+        else if (v !== null) ifMatch = v;
       }
       let idempotencyKey = '';
       if (def.idempotent) {

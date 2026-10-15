@@ -18,6 +18,7 @@ export function topicMaterial(pkg: ContentPackage, lang: Lang): string {
   if (tp.classification) lines.push(t(tp.classification, lang));
   lines.push(t(tp.description, lang));
   lines.push(`Goal: ${t(tp.goal, lang)}`);
+  for (const p of tp.props ?? []) lines.push(`- ${p.type}: ${formatPropValue(p, lang, pkg.propertyTypes ?? [])}`);
   lines.push('', '## Structures (cite as [[key]])');
   for (const c of topicConcepts(pkg)) {
     lines.push(`- [[${c.key}]] ${t(c.title, lang)}${c.subtitle ? ` — ${t(c.subtitle, lang)}` : ''}: ${t(c.description, lang)}`);

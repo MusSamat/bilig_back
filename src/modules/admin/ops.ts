@@ -10,12 +10,15 @@
  * their school, or whose target is one of their school's classes / the school.
  */
 import type { FastifyInstance } from 'fastify';
-import type { TutorSettings } from '@bilig/content-model/api';
+import { TUTOR_REGRESSION_MAX, type TutorSettings } from '@bilig/content-model/api';
 import type { Deps } from '../../deps.js';
 import { fail } from '../../http/errors.js';
-import { pageArray, pageOf } from '../../repo/paging.js';
+import { pageArray, pageOf, sortedPage } from '../../repo/paging.js';
 import type { AnswerRec, AuditRec } from '../../repo/types.js';
 import { getTutorSettings, putTutorSettings } from '../../services/tutor-settings.js';
+import { maskPii } from '../../domain/masking.js';
+import { CitationParser, buildSystemPrompt, looksLikeInjection, refusalText, stopTopicHit, wrapQuestion } from '../../domain/tutor.js';
+import { budgetKey } from '../tutor.js';
 import { adminSchools, isSuperadmin, iso, reg, type AnyCtx } from './util.js';
 
 const DAY = 86400_000;
@@ -123,11 +126,35 @@ export function registerOpsAdmin(app: FastifyInstance, deps: Deps) {
   }
 
   reg(app, deps, 'adminAudit', async (ctx) => {
-    const q = ctx.query as { actorId?: string; action?: string; targetType?: string; cursor?: string; limit?: number };
+    const q = ctx.query as { actorId?: string; action?: string; targetType?: string; targetId?: string; from?: string; to?: string; sort?: string; order?: 'asc' | 'desc'; cursor?: string; limit?: number };
     const scope = await auditScope(ctx);
-    let rows = (await repo.listAudit({ actorId: q.actorId, action: q.action, targetType: q.targetType }, { limit: 1_000_000 })).items;
+    const actor = q.actorId?.toLowerCase();
+    const fullActor = actor && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(actor) ? actor : undefined;
+    let rows = (await repo.listAudit({ actorId: fullActor, action: q.action, targetType: q.targetType }, { limit: 1_000_000 })).items;
     if (scope) rows = rows.filter(scope);
-    const page = pageArray(rows, pageOf(q), (a) => a.id);
+    // v0.3.0: actor prefix, target id and time range.
+    const from = q.from ? new Date(q.from) : null;
+    const to = q.to ? new Date(q.to) : null;
+    rows = rows.filter(
+      (a) =>
+        (!actor || fullActor || (a.actorId ?? '').startsWith(actor)) &&
+        (!q.targetId || a.targetId === q.targetId) &&
+        (!from || a.ts >= from) &&
+        (!to || a.ts < to),
+    );
+    const sortValue = (a: AuditRec) => {
+      switch (q.sort ?? 'ts') {
+        case 'ts':
+          return a.ts.toISOString();
+        case 'target':
+          return `${a.targetType}\u0000${a.targetId}`;
+        case 'actorId':
+          return a.actorId ?? undefined;
+        default:
+          return a[q.sort as 'action' | 'targetType'];
+      }
+    };
+    const page = q.sort || q.order === 'desc' ? sortedPage(rows, { value: sortValue, tie: (a) => a.id, order: q.order }, pageOf(q)) : pageArray(rows, pageOf(q), (a) => a.id);
     return {
       items: page.items.map((a) => ({
         id: a.id,
@@ -153,5 +180,79 @@ export function registerOpsAdmin(app: FastifyInstance, deps: Deps) {
     if (r === 'not_found' || r === 'version_mismatch') fail('version_mismatch');
     await audit.log(ctx.auth.user!.id, 'tutor.settings_changed', { type: 'setting', id: 'tutor.settings' }, { ip: ctx.ip, diff: { before: { ...before, version: undefined }, after: value } });
     return r;
+  });
+
+  // v0.3.0: regression run over the stored test questions (A-18). Same grounding and
+  // refusal rules as /tutor/ask; nothing is stored as a tutor thread; tokens count
+  // against the daily budget. Runs even while the tutor is switched off for users.
+  reg(app, deps, 'adminTutorRegression', async (ctx) => {
+    const provider = deps.tutor;
+    if (!provider) fail('tutor_unavailable', { detail: 'offline' });
+    const settings = await getTutorSettings(repo, config);
+    const b = ctx.body as { topicKey?: string; indexes?: number[] };
+    const all = settings.regressionQuestions;
+    const indexes = b.indexes ?? all.map((_, i) => i);
+    if (indexes.length > TUTOR_REGRESSION_MAX) fail('validation_failed', { detail: `at most ${TUTOR_REGRESSION_MAX} questions per run; pass indexes` });
+    const bad = indexes.find((i) => i >= all.length);
+    if (bad !== undefined) fail('validation_failed', { detail: `no regression question #${bad}` });
+    if ((await deps.limiter.get(budgetKey(clock.now()))) >= settings.dailyTokenBudget) fail('tutor_unavailable', { detail: 'budget_exhausted' });
+
+    const items = [];
+    for (const index of indexes) {
+      const q = all[index];
+      const topicKey = q.topicKey ?? b.topicKey;
+      const expect = q.expectConcepts ?? [];
+      const base = { index, lang: q.lang, question: q.question, ...(topicKey ? { topicKey } : {}), expectConcepts: expect };
+      const failed = (error: string) => ({ ...base, answer: '', citations: [], missing: expect, passed: false, refused: false, noAnswer: false, error, inputTokens: 0, outputTokens: 0 });
+      if (!topicKey) {
+        items.push(failed('no_topic'));
+        continue;
+      }
+      const pub = await deps.content.getPublished(topicKey);
+      if (!pub) {
+        items.push(failed('topic_not_found'));
+        continue;
+      }
+      const masked = maskPii(q.question, []);
+      if (stopTopicHit(masked, settings.stopTopics) || looksLikeInjection(q.question)) {
+        const answer = refusalText(q.lang, stopTopicHit(masked, settings.stopTopics) ? 'stop_topic' : 'injection');
+        items.push({ ...base, answer, citations: [], missing: expect, passed: false, refused: true, noAnswer: false, inputTokens: 0, outputTokens: 0 });
+        continue;
+      }
+      const pkg = pub.build.pkg;
+      const parser = new CitationParser(new Set(pkg.concepts.map((c) => c.key)));
+      const usage = { inputTokens: 0, outputTokens: 0 };
+      let refused = false;
+      let error: string | undefined;
+      try {
+        for await (const c of provider.stream({ model: settings.model, system: buildSystemPrompt(pkg, q.lang, settings.systemPrompts[q.lang]), messages: [{ role: 'user', text: wrapQuestion(masked) }], maxTokens: 700 })) {
+          if (c.type === 'text') parser.push(c.text);
+          else if (c.type === 'usage') {
+            usage.inputTokens += c.inputTokens;
+            usage.outputTokens += c.outputTokens;
+          } else if (c.type === 'refusal') refused = true;
+        }
+      } catch {
+        error = 'provider_error';
+      }
+      parser.end();
+      await deps.limiter.add(budgetKey(clock.now()), usage.inputTokens + usage.outputTokens, 2 * 86400);
+      const missing = expect.filter((k) => !parser.citations.includes(k));
+      const answer = refused && !parser.answer.trim() ? refusalText(q.lang, 'refused') : parser.answer.trim();
+      items.push({
+        ...base,
+        answer,
+        citations: parser.citations,
+        missing,
+        passed: !error && !refused && !parser.noAnswer && !!answer && missing.length === 0,
+        refused,
+        noAnswer: parser.noAnswer,
+        ...(error ? { error } : {}),
+        ...usage,
+      });
+    }
+    const passed = items.filter((i) => i.passed).length;
+    await audit.log(ctx.auth.user!.id, 'tutor.regression_run', { type: 'setting', id: 'tutor.settings' }, { ip: ctx.ip, diff: { questions: items.length, passed } });
+    return { ranAt: iso(clock.now()), model: settings.model, passed, failed: items.length - passed, items };
   });
 }

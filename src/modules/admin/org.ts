@@ -16,13 +16,23 @@ import { toRoleGrant } from '../../http/auth-context.js';
 import { newId } from '../../ids.js';
 import { hashToken, randomToken } from '../../domain/crypto.js';
 import { INVITE_TTL_MS } from '../auth.js';
-import { pageArray, pageOf } from '../../repo/paging.js';
+import { pageArray, pageOf, sortedPage, type SortValue } from '../../repo/paging.js';
 import type { GrantRec, InviteRec, LicenseRec, SchoolRec, UserRec } from '../../repo/types.js';
-import { adminSchools, iso, isSuperadmin, reg, type AnyCtx } from './util.js';
+import { adminSchools, iso, isSuperadmin, optionalVersion, reg, type AnyCtx } from './util.js';
 
-const toSchool = (s: SchoolRec) => ({ id: s.id, name: s.name, region: s.region, type: s.type, language: s.language, status: s.status });
-const toLicense = (l: LicenseRec) => ({ id: l.id, schoolId: l.schoolId, subjects: l.subjects, grades: l.grades, seats: l.seats, startsAt: iso(l.startsAt), endsAt: iso(l.endsAt) });
-const toInvite = (i: InviteRec) => ({
+type Order = 'asc' | 'desc';
+interface SortQ {
+  sort?: string;
+  order?: Order;
+  cursor?: string;
+  limit?: number;
+}
+
+const toSchool = (s: SchoolRec) => ({ id: s.id, name: s.name, region: s.region, type: s.type, language: s.language, status: s.status, version: s.version });
+const toLicense = (l: LicenseRec) => ({ id: l.id, schoolId: l.schoolId, subjects: l.subjects, grades: l.grades, seats: l.seats, startsAt: iso(l.startsAt), endsAt: iso(l.endsAt), version: l.version });
+export const inviteStatus = (i: InviteRec, now: Date) =>
+  i.acceptedAt ? ('accepted' as const) : i.revokedAt ? ('revoked' as const) : i.expiresAt <= now ? ('expired' as const) : ('pending' as const);
+const toInvite = (i: InviteRec, now: Date) => ({
   id: i.id,
   email: i.email,
   role: i.role,
@@ -30,7 +40,20 @@ const toInvite = (i: InviteRec) => ({
   ...(i.scopeId ? { scopeId: i.scopeId } : {}),
   expiresAt: iso(i.expiresAt),
   ...(i.acceptedAt ? { acceptedAt: iso(i.acceptedAt) } : {}),
+  ...(i.revokedAt ? { revokedAt: iso(i.revokedAt) } : {}),
+  createdAt: iso(i.createdAt),
+  invitedBy: i.invitedBy,
+  status: inviteStatus(i, now),
 });
+
+/** Legacy id-ordered page, or (v0.3.0) a sorted page when `sort`/`order` is given. */
+function pageBy<T extends { id: string }>(rows: T[], q: SortQ, value: (t: T, sort: string) => SortValue) {
+  if (!q.sort && q.order !== 'desc') return pageArray([...rows].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)), pageOf(q), (r) => r.id);
+  const sort = q.sort ?? 'createdAt';
+  return sortedPage(rows, { value: (t) => value(t, sort), tie: (t) => t.id, order: q.order }, pageOf(q));
+}
+
+const pseudonym = (u: UserRec) => `Ученик #${u.id.slice(-6)}`;
 
 /** Grants a school admin controls: teacher / school_admin on one of their schools. */
 const controls = (schools: string[], g: Pick<GrantRec, 'role' | 'scope' | 'scopeId'>) =>
@@ -69,7 +92,7 @@ export function registerOrgAdmin(app: FastifyInstance, deps: Deps) {
     return {
       id: u.id,
       kind: u.kind,
-      displayName: reveal ? u.displayName : `Ученик #${u.id.slice(-6)}`,
+      displayName: reveal ? u.displayName : pseudonym(u),
       ...(u.email ? { email: u.email } : {}),
       status: u.status === 'active' ? ('active' as const) : u.status === 'blocked' ? ('blocked' as const) : ('invited' as const),
       grants: grants.map(toRoleGrant),
@@ -82,8 +105,17 @@ export function registerOrgAdmin(app: FastifyInstance, deps: Deps) {
 
   // --- schools -------------------------------------------------------------------
   reg(app, deps, 'adminSchoolList', async (ctx) => {
-    const page = pageOf(ctx.query as { cursor?: string; limit?: number });
-    const res = await repo.listSchools(isSuperadmin(ctx) ? {} : { ids: adminSchools(ctx) }, page);
+    const q = ctx.query as SortQ & { q?: string; region?: string; status?: SchoolRec['status'] };
+    const scope = isSuperadmin(ctx) ? {} : { ids: adminSchools(ctx) };
+    if (!q.sort && q.order !== 'desc' && !q.q && !q.region && !q.status) {
+      const res = await repo.listSchools(scope, pageOf(q));
+      return { items: res.items.map(toSchool), nextCursor: res.nextCursor };
+    }
+    const needle = q.q?.toLocaleLowerCase();
+    const rows = (await repo.listSchools(scope, { limit: 100_000 })).items.filter(
+      (s) => (!needle || s.name.toLocaleLowerCase().includes(needle) || s.region.toLocaleLowerCase().includes(needle)) && (!q.region || s.region === q.region) && (!q.status || s.status === q.status),
+    );
+    const res = pageBy(rows, q, (s, f) => (f === 'createdAt' ? iso(s.createdAt) : (s as unknown as Record<string, SortValue>)[f]));
     return { items: res.items.map(toSchool), nextCursor: res.nextCursor };
   });
   reg(app, deps, 'adminSchoolGet', async (ctx) => {
@@ -99,25 +131,36 @@ export function registerOrgAdmin(app: FastifyInstance, deps: Deps) {
     return toSchool(s);
   });
   reg(app, deps, 'adminSchoolPatch', async (ctx) => {
-    const s = await repo.updateSchool(ctx.params.id, ctx.body as Partial<SchoolRec>);
+    const expected = optionalVersion(ctx);
+    const { version: _v, ...patch } = ctx.body as Partial<SchoolRec>;
+    const s = await repo.updateSchool(ctx.params.id, patch, expected);
     if (!s) fail('not_found', { detail: 'school' });
+    if (s === 'version_mismatch') fail('version_mismatch');
     await audit.log(ctx.auth.user!.id, 'school.updated', { type: 'school', id: s.id }, { ip: ctx.ip, diff: ctx.body });
     return toSchool(s);
   });
 
   // --- licences --------------------------------------------------------------------
   reg(app, deps, 'adminLicenseList', async (ctx) => {
-    const q = ctx.query as { schoolId?: string; cursor?: string; limit?: number };
+    const q = ctx.query as SortQ & { schoolId?: string; active?: boolean };
     let schoolIds = isSuperadmin(ctx) ? undefined : adminSchools(ctx);
     if (q.schoolId) {
       if (schoolIds && !schoolIds.includes(q.schoolId)) fail('forbidden');
       schoolIds = [q.schoolId];
     }
-    const res = await repo.listLicenses(schoolIds ? { schoolIds } : {}, pageOf(q));
+    if (!q.sort && q.order !== 'desc' && q.active === undefined) {
+      const res = await repo.listLicenses(schoolIds ? { schoolIds } : {}, pageOf(q));
+      return { items: res.items.map(toLicense), nextCursor: res.nextCursor };
+    }
+    const now = clock.now();
+    const rows = (await repo.listLicenses(schoolIds ? { schoolIds } : {}, { limit: 100_000 })).items.filter(
+      (l) => q.active === undefined || q.active === (l.startsAt <= now && now < l.endsAt),
+    );
+    const res = pageBy(rows, q, (l, f) => (f === 'startsAt' || f === 'endsAt' ? iso(l[f]) : f === 'createdAt' ? l.id : (l as unknown as Record<string, SortValue>)[f]));
     return { items: res.items.map(toLicense), nextCursor: res.nextCursor };
   });
   reg(app, deps, 'adminLicenseCreate', async (ctx) => {
-    const b = ctx.body as { id: string; schoolId: string; subjects: string[]; grades: number[]; seats: number; startsAt: string; endsAt: string };
+    const { version: _v, ...b } = ctx.body as { id: string; schoolId: string; subjects: string[]; grades: number[]; seats: number; startsAt: string; endsAt: string; version?: number };
     if (!(await repo.getSchool(b.schoolId))) fail('not_found', { detail: 'school' });
     const created = await repo.createLicense({ ...b, startsAt: new Date(b.startsAt), endsAt: new Date(b.endsAt) });
     if (created === 'conflict') fail('conflict', { detail: 'license exists' });
@@ -128,7 +171,9 @@ export function registerOrgAdmin(app: FastifyInstance, deps: Deps) {
   reg(app, deps, 'adminLicensePatch', async (ctx) => {
     const cur = await repo.getLicense(ctx.params.id);
     if (!cur) fail('not_found', { detail: 'license' });
-    const b = ctx.body as Partial<{ subjects: string[]; grades: number[]; seats: number; startsAt: string; endsAt: string }>;
+    const expected = optionalVersion(ctx);
+    const { version: _v, ...b } = ctx.body as Partial<{ subjects: string[]; grades: number[]; seats: number; startsAt: string; endsAt: string; version: number }>;
+    if (expected !== null && expected !== cur.version) fail('version_mismatch');
     const patch = {
       ...b,
       ...(b.startsAt ? { startsAt: new Date(b.startsAt) } : {}),
@@ -137,19 +182,24 @@ export function registerOrgAdmin(app: FastifyInstance, deps: Deps) {
     const start = patch.startsAt ?? cur.startsAt;
     const end = patch.endsAt ?? cur.endsAt;
     if (end <= start) fail('validation_failed', { detail: 'endsAt must be after startsAt' });
-    const l = await repo.updateLicense(cur.id, patch);
+    const l = await repo.updateLicense(cur.id, patch, expected);
+    if (!l) fail('not_found', { detail: 'license' });
+    if (l === 'version_mismatch') fail('version_mismatch');
+    deps.content.invalidate();
     await audit.log(ctx.auth.user!.id, 'license.updated', { type: 'license', id: cur.id }, { ip: ctx.ip, diff: b });
-    return toLicense(l!);
+    return toLicense(l);
   });
   reg(app, deps, 'adminLicenseDelete', async (ctx) => {
-    if (!(await repo.deleteLicense(ctx.params.id))) fail('not_found', { detail: 'license' });
+    const r = await repo.deleteLicense(ctx.params.id, optionalVersion(ctx));
+    if (r === 'version_mismatch') fail('version_mismatch');
+    if (!r) fail('not_found', { detail: 'license' });
     await audit.log(ctx.auth.user!.id, 'license.deleted', { type: 'license', id: ctx.params.id }, { ip: ctx.ip });
     return { ok: true as const };
   });
 
   // --- users -------------------------------------------------------------------------
   reg(app, deps, 'adminUsers', async (ctx) => {
-    const q = ctx.query as { q?: string; schoolId?: string; role?: string; status?: 'active' | 'blocked' | 'invited'; cursor?: string; limit?: number };
+    const q = ctx.query as SortQ & { q?: string; schoolId?: string; role?: string; status?: 'active' | 'blocked' | 'invited' };
     const vis = await visibleUserIds(ctx, q.schoolId);
     const status = q.status === 'invited' ? undefined : q.status;
     let users = (await repo.listUsers({ q: q.q, ...(vis ? { ids: [...vis] } : {}), ...(status ? { status } : {}) }, { limit: 1_000_000 })).items;
@@ -159,8 +209,10 @@ export function registerOrgAdmin(app: FastifyInstance, deps: Deps) {
       for (const u of users) if ((await repo.listGrants(u.id)).some((g) => g.role === q.role)) keep.push(u);
       users = keep;
     }
-    const page = pageArray(users, pageOf(q), (u) => u.id);
     const mine = await scopeSchoolUsers(ctx);
+    // Pupils sort by their pseudonym unless the viewer may see the name (no leak through ordering).
+    const visibleName = (u: UserRec) => (u.kind !== 'student' || (!!mine && mine.has(u.id) && !isSuperadmin(ctx)) ? u.displayName : `Ученик #${u.id.slice(-6)}`);
+    const page = pageBy(users, q, (u, f) => (f === 'createdAt' ? iso(u.createdAt) : f === 'displayName' ? visibleName(u) : f === 'status' ? (u.status === 'pending' ? 'invited' : u.status) : (u as unknown as Record<string, SortValue>)[f]));
     if (page.items.some((u) => u.kind === 'student')) {
       await audit.log(ctx.auth.user!.id, 'student.data_access', { type: 'users', id: q.schoolId ?? 'all' }, { ip: ctx.ip, diff: { count: page.items.filter((u) => u.kind === 'student').length } });
     }
@@ -250,9 +302,76 @@ export function registerOrgAdmin(app: FastifyInstance, deps: Deps) {
 
   // --- invites ---------------------------------------------------------------------------
   reg(app, deps, 'adminInviteList', async (ctx) => {
-    const page = pageOf(ctx.query as { cursor?: string; limit?: number });
-    const res = await repo.listInvites(isSuperadmin(ctx) ? {} : { scope: 'school', scopeIds: adminSchools(ctx) }, page);
-    return { items: res.items.map(toInvite), nextCursor: res.nextCursor };
+    const q = ctx.query as SortQ & { status?: ReturnType<typeof inviteStatus>; q?: string };
+    const scope = isSuperadmin(ctx) ? {} : { scope: 'school' as const, scopeIds: adminSchools(ctx) };
+    const now = clock.now();
+    if (!q.sort && q.order !== 'desc' && !q.status && !q.q) {
+      const res = await repo.listInvites(scope, pageOf(q));
+      return { items: res.items.map((i) => toInvite(i, now)), nextCursor: res.nextCursor };
+    }
+    const needle = q.q?.toLocaleLowerCase();
+    const rows = (await repo.listInvites(scope, { limit: 100_000 })).items.filter((i) => (!q.status || inviteStatus(i, now) === q.status) && (!needle || i.email.includes(needle)));
+    const res = pageBy(rows, q, (i, f) => (f === 'expiresAt' || f === 'createdAt' || f === 'acceptedAt' ? (i[f] ? iso(i[f]!) : undefined) : (i as unknown as Record<string, SortValue>)[f]));
+    return { items: res.items.map((i) => toInvite(i, now)), nextCursor: res.nextCursor };
+  });
+
+  /** Who may manage an existing invite: the same rule as creating it. */
+  function authorizeInvite(ctx: AnyCtx, inv: InviteRec) {
+    if (controls(adminSchools(ctx), inv)) ctx.authorize('school.teachers.manage', { schoolId: inv.scopeId! });
+    else ctx.authorize('platform.manage');
+  }
+  async function loadInvite(ctx: AnyCtx): Promise<InviteRec> {
+    const inv = await repo.getInvite(ctx.params.id);
+    if (!inv) fail('not_found', { detail: 'invite' });
+    if (!isSuperadmin(ctx) && !controls(adminSchools(ctx), inv)) fail('not_found', { detail: 'invite' });
+    authorizeInvite(ctx, inv);
+    return inv;
+  }
+
+  // v0.3.0: revoke (the link stops working) and resend (new link, new 7-day expiry).
+  reg(app, deps, 'adminInviteRevoke', async (ctx) => {
+    const inv = await loadInvite(ctx);
+    if (inv.acceptedAt) fail('conflict', { detail: 'invite_accepted' });
+    if (!inv.revokedAt) await repo.updateInvite(inv.id, { revokedAt: clock.now() });
+    await audit.log(ctx.auth.user!.id, 'invite.revoked', { type: 'invite', id: inv.id }, { ip: ctx.ip, diff: { email: inv.email } });
+    return { ok: true as const };
+  });
+
+  reg(app, deps, 'adminInviteResend', async (ctx) => {
+    const inv = await loadInvite(ctx);
+    if (inv.acceptedAt) fail('conflict', { detail: 'invite_accepted' });
+    const token = randomToken();
+    const now = clock.now();
+    const next = await repo.updateInvite(inv.id, { tokenHash: hashToken(token), expiresAt: new Date(now.getTime() + INVITE_TTL_MS), revokedAt: null });
+    await sendInvite(next!, token);
+    await audit.log(ctx.auth.user!.id, 'invite.resent', { type: 'invite', id: inv.id }, { ip: ctx.ip, diff: { email: inv.email } });
+    return toInvite(next!, now);
+  });
+
+  async function sendInvite(inv: InviteRec, token: string) {
+    const link = `${config.appUrl}/invite?token=${token}`;
+    await mailer.send({ to: inv.email, kind: 'invite', link, subject: 'Bilig: приглашение', text: `Вас пригласили в Bilig. Ссылка действует 7 дней:\n${link}` });
+  }
+
+  // v0.3.0: audited access to a pupil's real name «с основанием» (A-16). Superadmin only.
+  reg(app, deps, 'adminUserReveal', async (ctx) => {
+    const u = await loadUser(ctx, ctx.params.id);
+    if (u.kind !== 'student') fail('validation_failed', { detail: 'students only' });
+    const b = ctx.body as { ground: string; reason: string; reference?: string };
+    const enr = await repo.listEnrollments({ userId: u.id, role: 'student' });
+    const classes = (await repo.listClasses({ ids: enr.map((e) => e.classId) }, { limit: 100 })).items;
+    const schools = new Map((await repo.listSchools({ ids: [...new Set(classes.map((c) => c.schoolId))] }, { limit: 100 })).items.map((s) => [s.id, s.name]));
+    const auditId = await audit.log(ctx.auth.user!.id, 'student.data_reveal', { type: 'user', id: u.id }, {
+      ip: ctx.ip,
+      diff: { ground: b.ground, reason: b.reason, ...(b.reference ? { reference: b.reference } : {}), fields: ['displayName', 'classes'] },
+    });
+    return {
+      userId: u.id,
+      displayName: u.displayName,
+      classes: classes.map((c) => ({ classId: c.id, className: c.name, schoolId: c.schoolId, ...(schools.get(c.schoolId) ? { schoolName: schools.get(c.schoolId)! } : {}) })),
+      revealedAt: iso(clock.now()),
+      auditId,
+    };
   });
 
   reg(app, deps, 'adminInviteCreate', async (ctx) => {
@@ -277,10 +396,10 @@ export function registerOrgAdmin(app: FastifyInstance, deps: Deps) {
       createdAt: now,
       expiresAt: new Date(now.getTime() + INVITE_TTL_MS),
       acceptedAt: null,
+      revokedAt: null,
     };
     await repo.createInvite(inv);
-    const link = `${config.appUrl}/invite?token=${token}`;
-    await mailer.send({ to: inv.email, kind: 'invite', link, subject: 'Bilig: приглашение', text: `Вас пригласили в Bilig. Ссылка действует 7 дней:\n${link}` });
+    await sendInvite(inv, token);
     await audit.log(ctx.auth.user!.id, 'invite.created', { type: 'invite', id: inv.id }, { ip: ctx.ip, diff: { role: inv.role, scope: inv.scope, scopeId: inv.scopeId } });
     return { ok: true as const };
   });

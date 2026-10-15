@@ -11,7 +11,7 @@ import { route } from '../http/route.js';
 import { fail } from '../http/errors.js';
 import { hashToken, randomToken, sha256Hex } from '../domain/crypto.js';
 import { checkPassword, hashSecret, verifyDummy, verifySecret } from '../domain/passwords.js';
-import { verifyTotp } from '../domain/totp.js';
+import { newTotpSecret, otpauthUrl, verifyTotp } from '../domain/totp.js';
 import { SessionService, audienceOf } from '../services/sessions.js';
 import type { UserRec } from '../repo/types.js';
 
@@ -20,6 +20,8 @@ export const VERIFY_TTL_MS = 24 * 3600 * 1000;
 export const INVITE_TTL_MS = 7 * 24 * 3600 * 1000;
 export const PIN_MAX_FAILS = 5;
 export const PIN_LOCK_MS = 15 * 60 * 1000;
+/** v0.3.0: lifetime of the admin TOTP enrolment token. */
+export const ENROLL_TTL_MS = 10 * 60 * 1000;
 
 /** Roles that must use TOTP for the admin audience (TZ §6). */
 export const TOTP_ROLES = new Set(['author', 'editor', 'superadmin']);
@@ -61,7 +63,13 @@ export function registerAuth(app: FastifyInstance, deps: Deps) {
       const grants = await repo.listGrants(u.id);
       if (grants.some((g) => TOTP_ROLES.has(g.role))) {
         const totp = await repo.getCredential(u.id, 'totp');
-        if (!totp || totp.secretHash.startsWith('pending:')) fail('forbidden', { detail: 'totp_enrollment_required' });
+        if (!totp || totp.secretHash.startsWith('pending:')) {
+          // v0.3.0: a short-lived, single-user enrolment token (POST /auth/2fa/setup → /auth/2fa/verify).
+          const token = randomToken();
+          await repo.createAuthToken({ id: newId(), userId: u.id, purpose: 'totp_enroll', tokenHash: hashToken(token), expiresAt: new Date(clock.now().getTime() + ENROLL_TTL_MS), usedAt: null });
+          await audit.log(u.id, 'auth.2fa_enrollment_started', { type: 'user', id: u.id }, { ip });
+          fail('forbidden', { detail: 'totp_enrollment_required', enrollmentToken: token });
+        }
         if (!body.totp) fail('totp_required');
         await limit(`totp:${u.id}`, 10, 15 * 60);
         if (!verifyTotp(totp!.secretHash, body.totp!, clock.now())) {
@@ -72,6 +80,42 @@ export function registerAuth(app: FastifyInstance, deps: Deps) {
     }
     const issued = await sessions.start(req, reply, u, aud);
     await audit.log(u.id, 'auth.login', { type: 'user', id: u.id }, { ip, diff: { aud } });
+    return issued;
+  });
+
+  // v0.3.0: first-time TOTP enrolment for the admin audience with the token from the 403.
+  async function enrollee(token: string, ip: string): Promise<UserRec> {
+    await limit(`enroll:ip:${ip}`, 30, 15 * 60);
+    const t = await repo.findAuthToken(hashToken(token), 'totp_enroll', clock.now());
+    const user = t ? await repo.getUser(t.userId) : null;
+    if (!t || !user || user.deletedAt || user.status !== 'active' || user.kind !== 'adult' || !user.email) fail('unauthorized', { detail: 'enrollment_token_invalid' });
+    const active = await repo.getCredential(user!.id, 'totp');
+    if (active && !active.secretHash.startsWith('pending:')) fail('conflict', { detail: 'totp_already_enabled' });
+    return user!;
+  }
+
+  route(app, deps, 'authTotpEnrollSetup', async ({ body, ip }) => {
+    const user = await enrollee(body.enrollmentToken, ip);
+    const secret = newTotpSecret();
+    await repo.setCredential(user.id, 'totp', `pending:${secret}`);
+    return { enabled: false, otpauthUrl: otpauthUrl(secret, user.email!) };
+  });
+
+  route(app, deps, 'authTotpEnrollVerify', async ({ req, reply, body, ip }) => {
+    const user = await enrollee(body.enrollmentToken, ip);
+    await limit(`totp:${user.id}`, 10, 15 * 60);
+    const cur = await repo.getCredential(user.id, 'totp');
+    if (!cur) fail('conflict', { detail: 'totp_not_pending' });
+    const secret = cur!.secretHash.slice('pending:'.length);
+    if (!verifyTotp(secret, body.code, clock.now())) {
+      await audit.log(user.id, 'auth.login_failed', { type: 'user', id: user.id }, { ip, diff: { reason: 'totp_enroll' } });
+      fail('invalid_credentials');
+    }
+    if (!(await repo.consumeAuthToken(hashToken(body.enrollmentToken), 'totp_enroll', clock.now()))) fail('unauthorized', { detail: 'enrollment_token_invalid' });
+    await repo.setCredential(user.id, 'totp', secret);
+    await audit.log(user.id, 'auth.2fa_enabled', { type: 'user', id: user.id }, { ip, diff: { via: 'admin_enrollment' } });
+    const issued = await sessions.start(req, reply, user, 'admin');
+    await audit.log(user.id, 'auth.login', { type: 'user', id: user.id }, { ip, diff: { aud: 'admin' } });
     return issued;
   });
 

@@ -13,10 +13,10 @@ import { fail, zodIssues } from '../../http/errors.js';
 import { newId } from '../../ids.js';
 import { diffJson } from '../../domain/diff.js';
 import { nextVersion } from '../../domain/semver.js';
-import { pageOf } from '../../repo/paging.js';
+import { pageOf, sortedPage } from '../../repo/paging.js';
 import type { TopicRec, TopicVersionRec } from '../../repo/types.js';
 import { runWorkflow } from '../../services/workflow.js';
-import { assertFields, authorizeSubject, checkBodyVersion, iso, reg, type AnyCtx } from './util.js';
+import { assertFields, authorFilter, authorizeSubject, checkBodyVersion, iso, optionalVersion, reg, semverSortKey, sortScalar, type AnyCtx } from './util.js';
 
 export function registerTopicAdmin(app: FastifyInstance, deps: Deps) {
   const { repo, audit, clock } = deps;
@@ -26,16 +26,19 @@ export function registerTopicAdmin(app: FastifyInstance, deps: Deps) {
   }
 
   async function toAdminTopic(t: TopicRec) {
-    const [pub, latest] = await Promise.all([semverOf(t.publishedVersionId), semverOf(t.latestVersionId)]);
+    const [pub, latest] = await Promise.all([semverOf(t.publishedVersionId), t.latestVersionId ? repo.getTopicVersion(t.latestVersionId) : null]);
+    const updatedBy = t.updatedBy ?? latest?.authorId;
     return {
       id: t.id,
       key: t.key,
       unitKey: t.unitKey,
       status: t.status,
       ...(pub ? { publishedVersion: pub } : {}),
-      ...(latest ? { latestVersion: latest } : {}),
+      ...(latest ? { latestVersion: latest.version, title: latest.doc.title, authorId: latest.authorId } : {}),
       updatedAt: iso(t.updatedAt),
       version: t.version,
+      ...(updatedBy ? { updatedBy } : {}),
+      createdAt: iso(t.createdAt),
     };
   }
   async function toDetail(t: TopicRec) {
@@ -79,6 +82,7 @@ export function registerTopicAdmin(app: FastifyInstance, deps: Deps) {
   }
 
   /** Create a new draft version (If-Match = topic.version). */
+  // (also records the author as the topic's `updatedBy`)
   async function newVersion(ctx: AnyCtx, t: TopicRec, rawDoc: unknown, message?: string, basedOn?: string): Promise<TopicVersionRec> {
     authorizeSubject(ctx, 'content.draft.edit', t.subjectKey);
     if (t.version !== ctx.ifMatch) fail('version_mismatch');
@@ -104,7 +108,7 @@ export function registerTopicAdmin(app: FastifyInstance, deps: Deps) {
     };
     const created = await repo.createTopicVersion(ver);
     if (created === 'conflict') fail('conflict');
-    const r = await repo.updateTopic(t.id, { latestVersionId: ver.id, status: 'draft', scheduledAt: null, scheduledVersionId: null }, ctx.ifMatch);
+    const r = await repo.updateTopic(t.id, { latestVersionId: ver.id, status: 'draft', scheduledAt: null, scheduledVersionId: null, updatedBy: ctx.auth.user!.id }, ctx.ifMatch);
     if (r === 'not_found') fail('not_found');
     if (r === 'version_mismatch') fail('version_mismatch');
     await audit.log(ctx.auth.user!.id, 'content.updated', { type: 'topic', id: t.id }, { ip: ctx.ip, diff: { version: ver.version } });
@@ -113,11 +117,30 @@ export function registerTopicAdmin(app: FastifyInstance, deps: Deps) {
 
   // --- topics -------------------------------------------------------------------
   reg(app, deps, 'adminTopicList', async (ctx) => {
-    const q = ctx.query as { q?: string; subjectKey?: string; status?: string; cursor?: string; limit?: number };
+    const q = ctx.query as { q?: string; subjectKey?: string; status?: string; cursor?: string; limit?: number; sort?: string; order?: 'asc' | 'desc'; unitKey?: string; authorId?: string; mine?: boolean };
     const status = q.status && (CONTENT_STATUSES as readonly string[]).includes(q.status) ? (q.status as ContentStatus) : undefined;
     if (q.status && !status) fail('validation_failed', { detail: 'status' });
-    const res = await repo.listTopics({ q: q.q, subjectKey: q.subjectKey, status }, pageOf(q));
-    return { items: await Promise.all(res.items.map(toAdminTopic)), nextCursor: res.nextCursor };
+    const author = authorFilter(ctx, q);
+    if (!q.unitKey && !author && !q.sort && q.order !== 'desc') {
+      const res = await repo.listTopics({ q: q.q, subjectKey: q.subjectKey, status }, pageOf(q));
+      return { items: await Promise.all(res.items.map(toAdminTopic)), nextCursor: res.nextCursor };
+    }
+    // v0.3.0: unit / author filters and sorting over the filtered rows.
+    const all = (await repo.listTopics({ q: q.q, subjectKey: q.subjectKey, status }, { limit: 100_000 })).items.filter((t) => !q.unitKey || t.unitKey === q.unitKey);
+    const rows = (await Promise.all(all.map(toAdminTopic))).filter((t) => !author || t.authorId === author);
+    type Row = (typeof rows)[number];
+    const value = (r: Row) => {
+      switch (q.sort ?? 'key') {
+        case 'publishedVersion':
+        case 'latestVersion':
+          return semverSortKey(r[q.sort as 'publishedVersion' | 'latestVersion']);
+        case 'title':
+          return sortScalar(r.title, ctx.lang);
+        default:
+          return sortScalar((r as Record<string, unknown>)[q.sort ?? 'key'], ctx.lang);
+      }
+    };
+    return sortedPage(rows, { value, tie: (r) => r.key, order: q.order }, pageOf(q));
   });
 
   reg(app, deps, 'adminTopicCreate', async (ctx) => {
@@ -135,6 +158,7 @@ export function registerTopicAdmin(app: FastifyInstance, deps: Deps) {
       latestVersionId: null,
       scheduledAt: null,
       scheduledVersionId: null,
+      updatedBy: ctx.auth.user!.id,
     });
     if (created === 'conflict') fail('conflict', { detail: 'topic exists' });
     await audit.log(ctx.auth.user!.id, 'content.created', { type: 'topic', id: created.id }, { ip: ctx.ip, diff: { key: body.key } });
@@ -156,6 +180,7 @@ export function registerTopicAdmin(app: FastifyInstance, deps: Deps) {
       patch.subjectKey = subjectKey;
     }
     if (body.demo !== undefined) patch.demo = body.demo;
+    patch.updatedBy = ctx.auth.user!.id;
     const r = await repo.updateTopic(t.id, patch, ctx.ifMatch);
     if (r === 'not_found') fail('not_found');
     if (r === 'version_mismatch') fail('version_mismatch');
@@ -167,7 +192,7 @@ export function registerTopicAdmin(app: FastifyInstance, deps: Deps) {
   reg(app, deps, 'adminTopicDelete', async (ctx) => {
     const t = await loadTopic(ctx.params.id);
     authorizeSubject(ctx, 'content.publish', t.subjectKey);
-    const r = await repo.updateTopic(t.id, { deletedAt: clock.now(), publishedVersionId: null, scheduledAt: null, scheduledVersionId: null }, ctx.ifMatch);
+    const r = await repo.updateTopic(t.id, { deletedAt: clock.now(), publishedVersionId: null, scheduledAt: null, scheduledVersionId: null, updatedBy: ctx.auth.user!.id }, ctx.ifMatch);
     if (r === 'not_found') fail('not_found');
     if (r === 'version_mismatch') fail('version_mismatch');
     deps.content.invalidate();
@@ -250,6 +275,22 @@ export function registerTopicAdmin(app: FastifyInstance, deps: Deps) {
       });
     });
   }
+
+  // v0.3.0: cancel a scheduled publish (A-13). The topic stays in review.
+  reg(app, deps, 'adminTopicScheduleCancel', async (ctx) => {
+    const t = await loadTopic(ctx.params.id);
+    authorizeSubject(ctx, 'content.publish', t.subjectKey);
+    const expected = optionalVersion(ctx);
+    if (expected !== null && expected !== t.version) fail('version_mismatch');
+    if (!t.scheduledAt) fail('conflict', { detail: 'not_scheduled' });
+    const ver = t.scheduledVersionId ? await repo.getTopicVersion(t.scheduledVersionId) : null;
+    const r = await repo.updateTopic(t.id, { scheduledAt: null, scheduledVersionId: null, updatedBy: ctx.auth.user!.id }, t.version);
+    if (r === 'not_found') fail('not_found');
+    if (r === 'version_mismatch') fail('version_mismatch');
+    await audit.log(ctx.auth.user!.id, 'content.schedule_cancelled', { type: 'topic', id: t.id }, { ip: ctx.ip, diff: { version: ver?.version, scheduledAt: iso(t.scheduledAt) } });
+    const latest = await latestDoc(r);
+    return { topicKey: r.key, status: r.status, version: ver?.version ?? latest?.version ?? '0.0.0' };
+  });
 
   // --- tours & comparisons (inside the topic doc) ------------------------------------
   const activity = (field: 'tour' | 'comparison', names: { get: Parameters<typeof reg>[2]; put: Parameters<typeof reg>[2]; del: Parameters<typeof reg>[2] }) => {

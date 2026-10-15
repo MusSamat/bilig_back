@@ -46,6 +46,11 @@ export interface EndpointDef {
   idempotent?: boolean;
   /** Requires If-Match with the entity version. */
   ifMatch?: boolean;
+  /**
+   * v0.3.0: If-Match (or a body `version`) is accepted and checked (409 when
+   * stale) but not required; without it the last write wins.
+   */
+  ifMatchOptional?: boolean;
   /** Non-JSON response media type (PDF, PPTX, CSV…); `response` is then BinaryResponseSchema. */
   produces?: string;
 }
@@ -101,7 +106,7 @@ export const ENDPOINTS = {
   studentResetPin: e({ method: 'POST', path: '/students/:id/reset-pin', auth: 'class.manage', body: EmptySchema, response: classes.ResetPinResponseSchema }),
   assignmentList: e({ method: 'GET', path: '/classes/:id/assignments', auth: 'assignment.manage', query: PageQuerySchema, response: cursorPage(classes.AssignmentSchema) }),
   assignmentCreate: e({ method: 'POST', path: '/classes/:id/assignments', auth: 'assignment.manage', body: classes.AssignmentCreateRequestSchema, response: classes.AssignmentSchema }),
-  assignmentResults: e({ method: 'GET', path: '/assignments/:id/results', auth: 'assignment.manage', response: classes.AssignmentResultsSchema }),
+  assignmentResults: e({ method: 'GET', path: '/assignments/:id/results', auth: 'assignment.manage', query: classes.AssignmentResultsQuerySchema, response: classes.AssignmentResultsSchema }),
 
   // Tutor
   tutorAsk: e({ method: 'POST', path: '/tutor/ask', auth: 'assistant.ask.online', body: tutor.TutorAskRequestSchema, response: tutor.TutorAskResponseSchema, stream: tutor.TutorStreamEventSchema }),
@@ -186,7 +191,7 @@ export const ENDPOINTS = {
   adminObjectiveCreate: e({ method: 'POST', path: '/admin/objectives', auth: 'content.draft.edit', body: admin.AdminObjectiveCreateSchema, response: admin.adminRecord(ObjectiveSchema) }),
   adminObjectivePatch: e({ method: 'PATCH', path: '/admin/objectives/:key', auth: 'content.draft.edit', body: admin.AdminObjectivePatchSchema, response: admin.adminRecord(ObjectiveSchema), ifMatch: true }),
   adminObjectiveDelete: e({ method: 'DELETE', path: '/admin/objectives/:key', auth: 'content.draft.edit', response: OkSchema, ifMatch: true }),
-  adminConceptList: e({ method: 'GET', path: '/admin/concepts', auth: 'content.draft.edit', query: admin.AdminListQuerySchema, response: admin.adminRecordPage(ConceptSchema) }),
+  adminConceptList: e({ method: 'GET', path: '/admin/concepts', auth: 'content.draft.edit', query: admin.AdminConceptListQuerySchema, response: admin.adminRecordPage(ConceptSchema) }),
   adminConceptGet: e({ method: 'GET', path: '/admin/concepts/:key', auth: 'content.draft.edit', response: admin.adminRecord(ConceptSchema) }),
   /** 409 `in_use` while any topic version references the concept (A-04). */
   adminConceptDelete: e({ method: 'DELETE', path: '/admin/concepts/:key', auth: 'content.draft.edit', response: OkSchema, ifMatch: true }),
@@ -194,7 +199,7 @@ export const ENDPOINTS = {
   adminProcessGet: e({ method: 'GET', path: '/admin/processes/:key', auth: 'content.draft.edit', response: admin.adminRecord(ProcessSchema) }),
   adminProcessPatch: e({ method: 'PATCH', path: '/admin/processes/:key', auth: 'content.draft.edit', body: admin.AdminProcessPatchSchema, response: admin.adminRecord(ProcessSchema), ifMatch: true }),
   adminProcessDelete: e({ method: 'DELETE', path: '/admin/processes/:key', auth: 'content.draft.edit', response: OkSchema, ifMatch: true }),
-  adminItemList: e({ method: 'GET', path: '/admin/items', auth: 'content.draft.edit', query: admin.AdminListQuerySchema, response: admin.adminRecordPage(ItemSchema) }),
+  adminItemList: e({ method: 'GET', path: '/admin/items', auth: 'content.draft.edit', query: admin.AdminItemListQuerySchema, response: admin.adminRecordPage(ItemSchema) }),
   adminItemGet: e({ method: 'GET', path: '/admin/items/:key', auth: 'content.draft.edit', response: admin.adminRecord(ItemSchema) }),
   adminItemPatch: e({ method: 'PATCH', path: '/admin/items/:key', auth: 'content.draft.edit', body: admin.AdminItemPatchSchema, response: admin.adminRecord(ItemSchema), ifMatch: true }),
   adminItemDelete: e({ method: 'DELETE', path: '/admin/items/:key', auth: 'content.draft.edit', response: OkSchema, ifMatch: true }),
@@ -218,7 +223,7 @@ export const ENDPOINTS = {
   adminComparisonDelete: e({ method: 'DELETE', path: '/admin/comparisons/:topicKey', auth: 'content.draft.edit', response: admin.TopicVersionSchema, ifMatch: true }),
 
   // Admin: assets
-  adminAssetList: e({ method: 'GET', path: '/admin/assets', auth: 'model.upload', query: PageQuerySchema, response: admin.AssetListSchema }),
+  adminAssetList: e({ method: 'GET', path: '/admin/assets', auth: 'model.upload', query: admin.AssetListQuerySchema, response: admin.AssetListSchema }),
   /** Queue processing (validation, meshopt, KTX2, thumbnail). Stub report until bilig_worker exists. */
   adminAssetProcess: e({ method: 'POST', path: '/admin/assets/:id/process', auth: 'model.upload', body: EmptySchema, response: admin.AssetReportSchema }),
 
@@ -234,24 +239,63 @@ export const ENDPOINTS = {
   adminBuildCreate: e({ method: 'POST', path: '/admin/builds/:topicVersionId', auth: 'content.publish', body: EmptySchema, response: admin.BuildSchema }),
 
   // Admin: org
-  adminSchoolList: e({ method: 'GET', path: '/admin/schools', auth: 'school.teachers.manage', query: PageQuerySchema, response: admin.SchoolListSchema }),
+  adminSchoolList: e({ method: 'GET', path: '/admin/schools', auth: 'school.teachers.manage', query: admin.SchoolListQuerySchema, response: admin.SchoolListSchema }),
   adminSchoolGet: e({ method: 'GET', path: '/admin/schools/:id', auth: 'school.teachers.manage', response: admin.SchoolSchema }),
-  adminSchoolPatch: e({ method: 'PATCH', path: '/admin/schools/:id', auth: 'platform.manage', body: admin.SchoolPatchSchema, response: admin.SchoolSchema }),
+  adminSchoolPatch: e({ method: 'PATCH', path: '/admin/schools/:id', auth: 'platform.manage', body: admin.SchoolPatchSchema, response: admin.SchoolSchema, ifMatchOptional: true }),
   adminLicenseList: e({ method: 'GET', path: '/admin/licenses', auth: 'school.teachers.manage', query: admin.LicenseListQuerySchema, response: admin.LicenseListSchema }),
-  adminLicensePatch: e({ method: 'PATCH', path: '/admin/licenses/:id', auth: 'platform.manage', body: admin.LicensePatchSchema, response: admin.LicenseSchema }),
-  adminLicenseDelete: e({ method: 'DELETE', path: '/admin/licenses/:id', auth: 'platform.manage', response: OkSchema }),
+  adminLicensePatch: e({ method: 'PATCH', path: '/admin/licenses/:id', auth: 'platform.manage', body: admin.LicensePatchSchema, response: admin.LicenseSchema, ifMatchOptional: true }),
+  adminLicenseDelete: e({ method: 'DELETE', path: '/admin/licenses/:id', auth: 'platform.manage', response: OkSchema, ifMatchOptional: true }),
   adminUserGet: e({ method: 'GET', path: '/admin/users/:id', auth: 'school.teachers.manage', response: admin.AdminUserSchema }),
   adminUserPatch: e({ method: 'PATCH', path: '/admin/users/:id', auth: 'school.teachers.manage', body: admin.AdminUserPatchSchema, response: admin.AdminUserSchema }),
   adminUserGrants: e({ method: 'PUT', path: '/admin/users/:id/grants', auth: 'school.teachers.manage', body: admin.UserGrantsPutSchema, response: admin.AdminUserSchema }),
   adminUserRevokeSessions: e({ method: 'POST', path: '/admin/users/:id/revoke-sessions', auth: 'school.teachers.manage', body: EmptySchema, response: OkSchema }),
   adminUserReset2fa: e({ method: 'POST', path: '/admin/users/:id/reset-2fa', auth: 'platform.manage', body: EmptySchema, response: OkSchema }),
   adminUserPasswordReset: e({ method: 'POST', path: '/admin/users/:id/password-reset', auth: 'school.teachers.manage', body: EmptySchema, response: OkSchema }),
-  adminInviteList: e({ method: 'GET', path: '/admin/invites', auth: 'school.teachers.manage', query: PageQuerySchema, response: admin.InviteListSchema }),
+  adminInviteList: e({ method: 'GET', path: '/admin/invites', auth: 'school.teachers.manage', query: admin.InviteListQuerySchema, response: admin.InviteListSchema }),
 
   // Admin: ops
   adminAnalyticsOverview: e({ method: 'GET', path: '/admin/analytics/overview', auth: 'platform.manage', query: admin.AnalyticsQuerySchema, response: admin.AnalyticsOverviewSchema }),
   adminTutorSettingsGet: e({ method: 'GET', path: '/admin/tutor-settings', auth: 'platform.manage', response: admin.TutorSettingsSchema }),
   adminTutorSettingsPut: e({ method: 'PUT', path: '/admin/tutor-settings', auth: 'platform.manage', body: admin.TutorSettingsSchema, response: admin.TutorSettingsSchema, ifMatch: true }),
+
+  // ---------------------------------------------------------------------------
+  // v0.3.0 (additive) — see docs/CONTRACT_CHANGES-0.3.0.md in bilig_back
+  // ---------------------------------------------------------------------------
+
+  // Auth: first-time TOTP enrolment for the admin audience (token from the 403 problem)
+  authTotpEnrollSetup: e({ method: 'POST', path: '/auth/2fa/setup', auth: null, body: auth.TotpEnrollSetupRequestSchema, response: auth.TwoFactorResponseSchema }),
+  authTotpEnrollVerify: e({ method: 'POST', path: '/auth/2fa/verify', auth: null, body: auth.TotpEnrollVerifyRequestSchema, response: auth.TokenResponseSchema }),
+
+  // Admin: single GETs
+  adminGroupGet: e({ method: 'GET', path: '/admin/groups/:key', auth: 'platform.manage', response: admin.adminRecord(SubjectGroupSchema) }),
+  adminGlossaryGet: e({ method: 'GET', path: '/admin/glossary/:id', auth: 'content.draft.edit', response: admin.adminRecord(GlossaryTermSchema) }),
+
+  // Admin: cancel a scheduled publish (A-13); 409 when nothing is scheduled
+  adminTopicScheduleCancel: e({ method: 'DELETE', path: '/admin/topics/:id/schedule', auth: 'content.publish', response: admin.WorkflowResponseSchema, ifMatchOptional: true }),
+
+  // Admin: review comments (A-14)
+  adminReviewCommentList: e({ method: 'GET', path: '/admin/review-comments', auth: 'content.draft.edit', query: admin.ReviewCommentListQuerySchema, response: admin.ReviewCommentListSchema }),
+  adminReviewCommentCreate: e({ method: 'POST', path: '/admin/review-comments', auth: 'content.draft.edit', body: admin.ReviewCommentCreateSchema, response: admin.ReviewCommentSchema }),
+  adminReviewCommentPatch: e({ method: 'PATCH', path: '/admin/review-comments/:id', auth: 'content.draft.edit', body: admin.ReviewCommentPatchSchema, response: admin.ReviewCommentSchema }),
+
+  // Admin: assets (A-05) — versions, multipart completion, delete (409 in_use while a topic references it)
+  adminAssetVersions: e({ method: 'GET', path: '/admin/assets/:id/versions', auth: 'model.upload', response: admin.AssetVersionListSchema }),
+  adminAssetVersionCreate: e({ method: 'POST', path: '/admin/assets/:id/versions', auth: 'model.upload', body: admin.AssetVersionCreateRequestSchema, response: admin.AssetUploadResponseSchema }),
+  adminAssetComplete: e({ method: 'POST', path: '/admin/assets/:id/complete', auth: 'model.upload', body: admin.AssetCompleteRequestSchema, response: admin.AssetReportSchema }),
+  adminAssetDelete: e({ method: 'DELETE', path: '/admin/assets/:id', auth: 'model.upload', response: OkSchema }),
+
+  // Admin: translations side by side (A-11)
+  adminStringRows: e({ method: 'GET', path: '/admin/strings/rows', auth: 'content.draft.edit', query: admin.StringRowsQuerySchema, response: admin.StringRowListSchema }),
+
+  // Admin: invites (A-16)
+  adminInviteRevoke: e({ method: 'DELETE', path: '/admin/invites/:id', auth: 'school.teachers.manage', response: OkSchema }),
+  adminInviteResend: e({ method: 'POST', path: '/admin/invites/:id/resend', auth: 'school.teachers.manage', body: EmptySchema, response: admin.InviteSchema }),
+
+  // Admin: audited reveal of a pseudonymised pupil (A-16), superadmin only
+  adminUserReveal: e({ method: 'POST', path: '/admin/users/:id/reveal', auth: 'platform.manage', body: admin.StudentRevealRequestSchema, response: admin.StudentRevealSchema }),
+
+  // Admin: tutor regression run (A-18)
+  adminTutorRegression: e({ method: 'POST', path: '/admin/tutor-settings/regression', auth: 'platform.manage', body: admin.TutorRegressionRequestSchema, response: admin.TutorRegressionResultSchema }),
 } as const satisfies Record<string, EndpointDef>;
 
 export type EndpointName = keyof typeof ENDPOINTS;

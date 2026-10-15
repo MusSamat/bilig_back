@@ -5,7 +5,7 @@
  */
 import { z } from 'zod';
 import { CameraSchema, KeySchema, RelPathSchema } from './common.js';
-import { ConceptOverrideSchema, ExamplesSchema, PropertyTypeKeySchema } from './concept.js';
+import { ConceptOverrideSchema, ConceptPropSchema, ExamplesSchema, PropertyTypeKeySchema } from './concept.js';
 import { I18nStatusMapSchema, LocalizedSchema } from './i18n.js';
 
 /** Publish workflow states (A-13): черновик → на проверке → опубликовано → архив. */
@@ -50,6 +50,8 @@ export const SampleSchema = z.object({
   thumb: RelPathSchema,
   /** Topic that opens when the sample is clicked (W-44). */
   topicKey: KeySchema.optional(),
+  /** v0.3.0: properties of this sample (W-30: formula, molar mass, shape, volume…). */
+  props: z.array(ConceptPropSchema).optional(),
 });
 export type Sample = z.infer<typeof SampleSchema>;
 
@@ -116,6 +118,22 @@ export const ActivitiesSchema = z.object({
 });
 export type Activities = z.infer<typeof ActivitiesSchema>;
 
+/**
+ * v0.3.0: one «Права и источники» entry (A-06): licence, author and source of
+ * a model, image or text used by the topic.
+ */
+export const RightsEntrySchema = z.object({
+  /** SPDX id or licence name: `CC-BY-4.0`, `CC0-1.0`, `own`. */
+  license: z.string().min(1).max(200),
+  author: z.string().min(1).max(200),
+  /** URL or bibliographic reference. */
+  source: z.string().min(1).max(500),
+  notes: z.string().max(2000).optional(),
+  /** What the entry covers: a package-relative path (`models/cell.glb`) or an asset key; absent = the whole topic. */
+  covers: z.string().min(1).max(300).optional(),
+});
+export type RightsEntry = z.infer<typeof RightsEntrySchema>;
+
 export const TopicSchema = z.object({
   /** Global key, also the URL slug (`animal-cell`). */
   key: KeySchema,
@@ -143,5 +161,9 @@ export const TopicSchema = z.object({
   i18n: I18nStatusMapSchema.optional(),
   /** Open demo topic: guests and unlicensed schools may open it (TZ §2). Default false. */
   demo: z.boolean().optional(),
+  /** v0.3.0: properties of the topic's main sample (W-30 «свойства образца»), shown in the info card and the comparison column. */
+  props: z.array(ConceptPropSchema).optional(),
+  /** v0.3.0: «Права и источники» (A-06). The checklist warns when a 3D asset has no entry. */
+  rights: z.array(RightsEntrySchema).optional(),
 });
 export type Topic = z.infer<typeof TopicSchema>;

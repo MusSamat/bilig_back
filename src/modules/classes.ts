@@ -16,7 +16,8 @@ import { fail } from '../http/errors.js';
 import { joinCode, randomPin } from '../domain/crypto.js';
 import { parseStudentNames } from '../domain/csv.js';
 import { hashSecret } from '../domain/passwords.js';
-import { pageOf } from '../repo/paging.js';
+import { pageOf, sortedPage } from '../repo/paging.js';
+import { t } from '@bilig/content-model';
 import type { AssignmentRec, AttemptRec, ClassRec, Repository, UserRec } from '../repo/types.js';
 import type { AuthCtx } from '../http/auth-context.js';
 import { renderLoginCards } from '../export/login-cards.js';
@@ -340,6 +341,15 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
     const attempts = await repo.listAttempts({ assignmentId: a.id, userIds: students.map((s) => s.id) });
     const answers = await repo.listAnswers({ attemptIds: attempts.map((t) => t.id) });
     await audit.log(ctx.auth.user!.id, 'student.data_access', { type: 'assignment', id: a.id }, { ip: ctx.ip });
-    return aggregateResults(a.id, students, attempts, answers);
+    const res = aggregateResults(a.id, students, attempts, answers);
+    // v0.3.0: question texts in the request language from the published package.
+    const pub = await deps.content.getPublished(a.topicKey);
+    const prompts = new Map((pub?.build.pkg.items ?? []).map((i) => [i.key, t(i.prompt, ctx.lang)]));
+    const hardestItems = res.hardestItems.map((h) => (prompts.has(h.itemKey) ? { ...h, prompt: prompts.get(h.itemKey)! } : h));
+    // v0.3.0: optional paging of `students` (name order); aggregates always cover the class.
+    const q = ctx.query;
+    if (q.cursor === undefined && q.limit === undefined) return { ...res, hardestItems, totalStudents: res.students.length };
+    const page = sortedPage(res.students, { value: (s) => s.displayName, tie: (s) => s.studentId }, pageOf(q, 20, 100));
+    return { ...res, hardestItems, students: page.items, nextCursor: page.nextCursor, totalStudents: res.students.length };
   });
 }

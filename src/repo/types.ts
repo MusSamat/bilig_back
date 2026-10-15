@@ -102,7 +102,7 @@ export interface GrantRec {
   subrole: AuthorSubrole | null;
 }
 
-export type AuthTokenPurpose = 'email_verify' | 'password_reset';
+export type AuthTokenPurpose = 'email_verify' | 'password_reset' | 'totp_enroll';
 export interface AuthTokenRec {
   id: Id;
   userId: Id;
@@ -124,6 +124,7 @@ export interface InviteRec {
   createdAt: Date;
   expiresAt: Date;
   acceptedAt: Date | null;
+  revokedAt: Date | null;
 }
 
 export interface SchoolRec {
@@ -134,6 +135,8 @@ export interface SchoolRec {
   language: Lang;
   status: 'active' | 'suspended';
   createdAt: Date;
+  /** Optimistic version (starts at 1). */
+  version: number;
 }
 
 export interface LicenseRec {
@@ -144,6 +147,8 @@ export interface LicenseRec {
   seats: number;
   startsAt: Date;
   endsAt: Date;
+  /** Optimistic version (starts at 1). */
+  version: number;
 }
 
 export interface ClassRec {
@@ -227,6 +232,7 @@ export interface ContentFilter {
 export interface ContentStore<T> {
   list(filter: ContentFilter, page: PageReq): Promise<PageRes<ContentRec<T>>>;
   get(key: string): Promise<ContentRec<T> | null>;
+  getById(id: Id): Promise<ContentRec<T> | null>;
   getMany(keys: readonly string[]): Promise<ContentRec<T>[]>;
   /** Returns 'conflict' when the key exists. */
   create(key: string, w: ContentWrite<T>, actor: Id | null): Promise<ContentRec<T> | 'conflict'>;
@@ -251,11 +257,13 @@ export interface TopicRec {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date | null;
+  /** Last user who changed the row (or wrote a version through it). */
+  updatedBy: Id | null;
 }
 export type TopicPatch = Partial<
   Pick<
     TopicRec,
-    'unitKey' | 'subjectKey' | 'status' | 'demo' | 'publishedVersionId' | 'latestVersionId' | 'scheduledAt' | 'scheduledVersionId' | 'deletedAt'
+    'unitKey' | 'subjectKey' | 'status' | 'demo' | 'publishedVersionId' | 'latestVersionId' | 'scheduledAt' | 'scheduledVersionId' | 'deletedAt' | 'updatedBy'
   >
 >;
 
@@ -321,6 +329,30 @@ export interface AssetRec {
   uploadId: string;
   createdBy: Id;
   createdAt: Date;
+  /** Current file version (AssetVersionRec.version). */
+  version: number;
+}
+
+/** One uploaded file of an asset (TZ §8 AssetVersion). Version 1 is the first upload. */
+export interface AssetVersionRec {
+  assetId: Id;
+  version: number;
+  filename: string;
+  contentType: string;
+  status: AssetRec['status'];
+  sizeBytes: number;
+  sizeAfter: number | null;
+  triangles: number | null;
+  nodes: string[];
+  violations: string[];
+  originalUrl: string | null;
+  optimizedUrl: string | null;
+  thumbUrl: string | null;
+  uploadId: string;
+  message: string | null;
+  createdBy: Id;
+  createdAt: Date;
+  completedAt: Date | null;
 }
 
 export interface LocaleStringRec {
@@ -331,7 +363,10 @@ export interface LocaleStringRec {
   /** sha256 (hex, 16 chars) of the source (ru) text this value was translated from. */
   sourceHash: string;
   updatedAt: Date;
+  /** Row version, incremented by every upsert (starts at 1). */
+  version: number;
 }
+export type LocaleStringWrite = Omit<LocaleStringRec, 'version'>;
 export interface StringFilter {
   locale?: Lang;
   status?: I18nStatus;
@@ -347,6 +382,18 @@ export interface ReviewCommentRec {
   authorId: Id;
   createdAt: Date;
   resolvedAt: Date | null;
+  anchor3d: [number, number, number] | null;
+  resolvedBy: Id | null;
+  /** Topic version (semver) the comment refers to. */
+  topicVersion: string | null;
+}
+export type ReviewCommentWrite = Omit<ReviewCommentRec, 'anchor3d' | 'resolvedBy' | 'topicVersion'> &
+  Partial<Pick<ReviewCommentRec, 'anchor3d' | 'resolvedBy' | 'topicVersion'>>;
+export interface ReviewCommentFilter {
+  targetType?: ReviewCommentRec['targetType'];
+  targetId?: Id;
+  resolved?: boolean;
+  authorId?: Id;
 }
 
 // ---------------------------------------------------------------------------
@@ -547,21 +594,27 @@ export interface Repository {
   createAuthToken(t: AuthTokenRec): Promise<void>;
   /** Marks the token used and returns it, or null if unknown/expired/used. */
   consumeAuthToken(tokenHash: string, purpose: AuthTokenPurpose, now: Date): Promise<AuthTokenRec | null>;
+  /** The token when it exists, is unexpired and unused — without consuming it. */
+  findAuthToken(tokenHash: string, purpose: AuthTokenPurpose, now: Date): Promise<AuthTokenRec | null>;
 
-  createInvite(i: InviteRec): Promise<void>;
+  createInvite(i: Omit<InviteRec, 'revokedAt'> & { revokedAt?: Date | null }): Promise<void>;
+  getInvite(id: Id): Promise<InviteRec | null>;
   getInviteByHash(tokenHash: string): Promise<InviteRec | null>;
+  updateInvite(id: Id, patch: Partial<Pick<InviteRec, 'tokenHash' | 'expiresAt' | 'revokedAt'>>): Promise<InviteRec | null>;
+  /** False when unknown, already accepted or revoked. */
   markInviteAccepted(id: Id, at: Date): Promise<boolean>;
   listInvites(filter: { scope?: Scope; scopeIds?: string[] }, page: PageReq): Promise<PageRes<InviteRec>>;
 
-  createSchool(s: SchoolRec): Promise<void>;
+  createSchool(s: Omit<SchoolRec, 'version'> & { version?: number }): Promise<void>;
   getSchool(id: Id): Promise<SchoolRec | null>;
-  updateSchool(id: Id, patch: Partial<Omit<SchoolRec, 'id' | 'createdAt'>>): Promise<SchoolRec | null>;
+  /** Bumps `version`. `expectedVersion` (optional) → 'version_mismatch' when stale. */
+  updateSchool(id: Id, patch: Partial<Omit<SchoolRec, 'id' | 'createdAt' | 'version'>>, expectedVersion?: number | null): Promise<SchoolRec | null | 'version_mismatch'>;
   listSchools(filter: { ids?: Id[] }, page: PageReq): Promise<PageRes<SchoolRec>>;
 
-  createLicense(l: LicenseRec): Promise<LicenseRec | 'conflict'>;
+  createLicense(l: Omit<LicenseRec, 'version'> & { version?: number }): Promise<LicenseRec | 'conflict'>;
   getLicense(id: Id): Promise<LicenseRec | null>;
-  updateLicense(id: Id, patch: Partial<Omit<LicenseRec, 'id' | 'schoolId'>>): Promise<LicenseRec | null>;
-  deleteLicense(id: Id): Promise<boolean>;
+  updateLicense(id: Id, patch: Partial<Omit<LicenseRec, 'id' | 'schoolId' | 'version'>>, expectedVersion?: number | null): Promise<LicenseRec | null | 'version_mismatch'>;
+  deleteLicense(id: Id, expectedVersion?: number | null): Promise<boolean | 'version_mismatch'>;
   listLicenses(filter: { schoolIds?: Id[] }, page: PageReq): Promise<PageRes<LicenseRec>>;
 
   createClass(c: ClassRec): Promise<ClassRec | 'conflict'>;
@@ -580,7 +633,7 @@ export interface Repository {
   // content
   content<K extends ContentKind>(kind: K): ContentStore<ContentKinds[K]>;
 
-  createTopic(t: Omit<TopicRec, 'createdAt' | 'updatedAt' | 'deletedAt' | 'version'>): Promise<TopicRec | 'conflict'>;
+  createTopic(t: Omit<TopicRec, 'createdAt' | 'updatedAt' | 'deletedAt' | 'version' | 'updatedBy'> & { updatedBy?: Id | null }): Promise<TopicRec | 'conflict'>;
   getTopic(id: Id): Promise<TopicRec | null>;
   getTopicByKey(key: string): Promise<TopicRec | null>;
   updateTopic(id: Id, patch: TopicPatch, expectedVersion: number | null): Promise<WriteResult<TopicRec>>;
@@ -599,20 +652,32 @@ export interface Repository {
   getBuild(id: Id): Promise<BuildRec | null>;
   /** Latest `ready` build for a topic version. */
   readyBuildForVersion(topicVersionId: Id): Promise<BuildRec | null>;
-  listBuilds(filter: { topicKey?: string }, page: PageReq): Promise<PageRes<BuildRec>>;
+  listBuilds(filter: { topicKey?: string; status?: BuildStatus }, page: PageReq, order?: 'asc' | 'desc'): Promise<PageRes<BuildRec>>;
   /** Published topics with their ready build (catalog source). */
   listPublished(): Promise<PublishedRec[]>;
 
-  createAsset(a: AssetRec): Promise<void>;
+  createAsset(a: Omit<AssetRec, 'version'> & { version?: number }): Promise<void>;
   getAsset(id: Id): Promise<AssetRec | null>;
   updateAsset(id: Id, patch: Partial<Omit<AssetRec, 'id'>>): Promise<AssetRec | null>;
   listAssets(page: PageReq): Promise<PageRes<AssetRec>>;
+  /** Removes the asset and its versions. */
+  deleteAsset(id: Id): Promise<boolean>;
+  /** Returns 'conflict' when (assetId, version) exists. */
+  createAssetVersion(v: AssetVersionRec): Promise<AssetVersionRec | 'conflict'>;
+  /** Ascending by version. */
+  listAssetVersions(assetId: Id): Promise<AssetVersionRec[]>;
+  updateAssetVersion(assetId: Id, version: number, patch: Partial<Omit<AssetVersionRec, 'assetId' | 'version'>>): Promise<AssetVersionRec | null>;
 
   listStrings(filter: StringFilter, page: PageReq): Promise<PageRes<LocaleStringRec>>;
   getStrings(keys: readonly string[]): Promise<LocaleStringRec[]>;
-  upsertStrings(rows: readonly LocaleStringRec[]): Promise<void>;
+  /** Insert or replace; every write bumps the row `version`. */
+  upsertStrings(rows: readonly LocaleStringWrite[]): Promise<void>;
 
-  createReviewComment(c: ReviewCommentRec): Promise<void>;
+  createReviewComment(c: ReviewCommentWrite): Promise<void>;
+  getReviewComment(id: Id): Promise<ReviewCommentRec | null>;
+  /** Ascending by id (creation order). */
+  listReviewComments(filter: ReviewCommentFilter, page: PageReq): Promise<PageRes<ReviewCommentRec>>;
+  updateReviewComment(id: Id, patch: Partial<Pick<ReviewCommentRec, 'body' | 'resolvedAt' | 'resolvedBy'>>): Promise<ReviewCommentRec | null>;
 
   // learning
   getProgress(userId: Id, topicKey: string): Promise<ProgressRec | null>;

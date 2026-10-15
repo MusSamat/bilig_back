@@ -4,10 +4,11 @@
  * same contract suite. Every read returns a structured clone so callers can
  * never mutate stored state by accident.
  */
-import { pageArray } from './paging.js';
+import { decodeCursor, encodeCursor, pageArray } from './paging.js';
 import type {
   AnswerRec,
   AssetRec,
+  AssetVersionRec,
   AssignmentRec,
   AttemptRec,
   AuditRec,
@@ -32,13 +33,16 @@ import type {
   LearningEventRec,
   LicenseRec,
   LocaleStringRec,
+  LocaleStringWrite,
   PageReq,
   PageRes,
   PresentationRec,
   ProgressRec,
   PublishedRec,
   Repository,
+  ReviewCommentFilter,
   ReviewCommentRec,
+  ReviewCommentWrite,
   SchoolRec,
   SessionRec,
   SettingRec,
@@ -69,6 +73,10 @@ class MemoryContentStore<T> implements ContentStore<T> {
   }
   async get(key: string) {
     const r = this.rows.get(key);
+    return r ? strip(r) : null;
+  }
+  async getById(id: Id) {
+    const r = [...this.rows.values()].find((x) => x.id === id);
     return r ? strip(r) : null;
   }
   async getMany(keys: readonly string[]) {
@@ -124,6 +132,7 @@ export class MemoryRepository implements Repository {
   private versions = new Map<Id, TopicVersionRec>();
   private builds = new Map<Id, BuildRec>();
   private assets = new Map<Id, AssetRec>();
+  private assetVersions: AssetVersionRec[] = [];
   private strings = new Map<string, LocaleStringRec>();
   private comments: ReviewCommentRec[] = [];
   private progress = new Map<string, ProgressRec>();
@@ -272,9 +281,25 @@ export class MemoryRepository implements Repository {
     t.usedAt = now;
     return clone(t);
   }
+  async findAuthToken(tokenHash: string, purpose: AuthTokenRec['purpose'], now: Date) {
+    const t = this.authTokens.get(tokenHash);
+    if (!t || t.purpose !== purpose || t.usedAt || t.expiresAt <= now) return null;
+    return clone(t);
+  }
 
-  async createInvite(i: InviteRec) {
-    this.invites.set(i.id, clone(i));
+  async createInvite(i: Omit<InviteRec, 'revokedAt'> & { revokedAt?: Date | null }) {
+    this.invites.set(i.id, clone({ ...i, revokedAt: i.revokedAt ?? null }));
+  }
+  async getInvite(id: Id) {
+    const i = this.invites.get(id);
+    return i ? clone(i) : null;
+  }
+  async updateInvite(id: Id, patch: Partial<Pick<InviteRec, 'tokenHash' | 'expiresAt' | 'revokedAt'>>) {
+    const i = this.invites.get(id);
+    if (!i) return null;
+    const next = { ...i, ...clone(patch), id };
+    this.invites.set(id, next);
+    return clone(next);
   }
   async getInviteByHash(tokenHash: string) {
     const i = [...this.invites.values()].find((x) => x.tokenHash === tokenHash);
@@ -282,7 +307,7 @@ export class MemoryRepository implements Repository {
   }
   async markInviteAccepted(id: Id, at: Date) {
     const i = this.invites.get(id);
-    if (!i || i.acceptedAt) return false;
+    if (!i || i.acceptedAt || i.revokedAt) return false;
     i.acceptedAt = at;
     return true;
   }
@@ -295,17 +320,18 @@ export class MemoryRepository implements Repository {
     return { items: res.items.map(clone), nextCursor: res.nextCursor };
   }
 
-  async createSchool(s: SchoolRec) {
-    this.schools.set(s.id, clone(s));
+  async createSchool(s: Omit<SchoolRec, 'version'> & { version?: number }) {
+    this.schools.set(s.id, clone({ ...s, version: s.version ?? 1 }));
   }
   async getSchool(id: Id) {
     const s = this.schools.get(id);
     return s ? clone(s) : null;
   }
-  async updateSchool(id: Id, patch: Partial<SchoolRec>) {
+  async updateSchool(id: Id, patch: Partial<SchoolRec>, expectedVersion: number | null = null) {
     const s = this.schools.get(id);
     if (!s) return null;
-    const next = { ...s, ...patch, id };
+    if (expectedVersion !== null && s.version !== expectedVersion) return 'version_mismatch' as const;
+    const next = { ...s, ...patch, id, createdAt: s.createdAt, version: s.version + 1 };
     this.schools.set(id, next);
     return clone(next);
   }
@@ -315,23 +341,28 @@ export class MemoryRepository implements Repository {
     return { items: res.items.map(clone), nextCursor: res.nextCursor };
   }
 
-  async createLicense(l: LicenseRec) {
+  async createLicense(l: Omit<LicenseRec, 'version'> & { version?: number }) {
     if (this.licenses.has(l.id)) return 'conflict' as const;
-    this.licenses.set(l.id, clone(l));
-    return clone(l);
+    const rec: LicenseRec = { ...clone(l), version: l.version ?? 1 };
+    this.licenses.set(l.id, rec);
+    return clone(rec);
   }
   async getLicense(id: Id) {
     const l = this.licenses.get(id);
     return l ? clone(l) : null;
   }
-  async updateLicense(id: Id, patch: Partial<LicenseRec>) {
+  async updateLicense(id: Id, patch: Partial<LicenseRec>, expectedVersion: number | null = null) {
     const l = this.licenses.get(id);
     if (!l) return null;
-    const next = { ...l, ...patch, id, schoolId: l.schoolId };
+    if (expectedVersion !== null && l.version !== expectedVersion) return 'version_mismatch' as const;
+    const next = { ...l, ...patch, id, schoolId: l.schoolId, version: l.version + 1 };
     this.licenses.set(id, next);
     return clone(next);
   }
-  async deleteLicense(id: Id) {
+  async deleteLicense(id: Id, expectedVersion: number | null = null) {
+    const l = this.licenses.get(id);
+    if (!l) return false;
+    if (expectedVersion !== null && l.version !== expectedVersion) return 'version_mismatch' as const;
     return this.licenses.delete(id);
   }
   async listLicenses(filter: { schoolIds?: Id[] }, page: PageReq) {
@@ -405,10 +436,10 @@ export class MemoryRepository implements Repository {
     return s as unknown as ContentStore<ContentKinds[K]>;
   }
 
-  async createTopic(t: Omit<TopicRec, 'createdAt' | 'updatedAt' | 'deletedAt' | 'version'>) {
+  async createTopic(t: Omit<TopicRec, 'createdAt' | 'updatedAt' | 'deletedAt' | 'version' | 'updatedBy'> & { updatedBy?: Id | null }) {
     if ([...this.topics.values()].some((x) => x.key === t.key)) return 'conflict' as const;
     const now = new Date();
-    const rec: TopicRec = { ...t, version: 1, createdAt: now, updatedAt: now, deletedAt: null };
+    const rec: TopicRec = { ...t, updatedBy: t.updatedBy ?? null, version: 1, createdAt: now, updatedAt: now, deletedAt: null };
     this.topics.set(t.id, rec);
     return clone(rec);
   }
@@ -495,8 +526,20 @@ export class MemoryRepository implements Repository {
       .pop();
     return b ? clone(b) : null;
   }
-  async listBuilds(filter: { topicKey?: string }, page: PageReq) {
-    const rows = [...this.builds.values()].filter((b) => (filter.topicKey ? b.topicKey === filter.topicKey : true)).sort(byId);
+  async listBuilds(filter: { topicKey?: string; status?: BuildRec['status'] }, page: PageReq, order: 'asc' | 'desc' = 'asc') {
+    const rows = [...this.builds.values()]
+      .filter((b) => (filter.topicKey ? b.topicKey === filter.topicKey : true))
+      .filter((b) => (filter.status ? b.status === filter.status : true))
+      .sort(byId);
+    if (order === 'desc') {
+      rows.reverse();
+      const after = decodeCursor(page.cursor);
+      const from = after === undefined ? 0 : rows.findIndex((b) => b.id < after);
+      const start = from < 0 ? rows.length : from;
+      const slice = rows.slice(start, start + page.limit);
+      const more = start + page.limit < rows.length;
+      return { items: slice.map(clone), nextCursor: more && slice.length ? encodeCursor(slice[slice.length - 1].id) : null };
+    }
     const res = pageArray(rows, page, (b) => b.id);
     return { items: res.items.map(clone), nextCursor: res.nextCursor };
   }
@@ -510,8 +553,8 @@ export class MemoryRepository implements Repository {
     return out;
   }
 
-  async createAsset(a: AssetRec) {
-    this.assets.set(a.id, clone(a));
+  async createAsset(a: Omit<AssetRec, 'version'> & { version?: number }) {
+    this.assets.set(a.id, clone({ ...a, version: a.version ?? 1 }));
   }
   async getAsset(id: Id) {
     const a = this.assets.get(id);
@@ -528,6 +571,24 @@ export class MemoryRepository implements Repository {
     const res = pageArray([...this.assets.values()].sort(byId), page, (a) => a.id);
     return { items: res.items.map(clone), nextCursor: res.nextCursor };
   }
+  async deleteAsset(id: Id) {
+    this.assetVersions = this.assetVersions.filter((v) => v.assetId !== id);
+    return this.assets.delete(id);
+  }
+  async createAssetVersion(v: AssetVersionRec) {
+    if (this.assetVersions.some((x) => x.assetId === v.assetId && x.version === v.version)) return 'conflict' as const;
+    this.assetVersions.push(clone(v));
+    return clone(v);
+  }
+  async listAssetVersions(assetId: Id) {
+    return this.assetVersions.filter((v) => v.assetId === assetId).sort((a, b) => a.version - b.version).map(clone);
+  }
+  async updateAssetVersion(assetId: Id, version: number, patch: Partial<AssetVersionRec>) {
+    const i = this.assetVersions.findIndex((v) => v.assetId === assetId && v.version === version);
+    if (i < 0) return null;
+    this.assetVersions[i] = { ...this.assetVersions[i], ...clone(patch), assetId, version };
+    return clone(this.assetVersions[i]);
+  }
 
   private sk = (key: string, locale: string) => `${key}\u0000${locale}`;
   async listStrings(filter: { locale?: LocaleStringRec['locale']; status?: LocaleStringRec['status']; keyPrefix?: string }, page: PageReq) {
@@ -543,12 +604,35 @@ export class MemoryRepository implements Repository {
     const set = new Set(keys);
     return [...this.strings.values()].filter((s) => set.has(s.key)).map(clone);
   }
-  async upsertStrings(rows: readonly LocaleStringRec[]) {
-    for (const r of rows) this.strings.set(this.sk(r.key, r.locale), clone(r));
+  async upsertStrings(rows: readonly LocaleStringWrite[]) {
+    for (const r of rows) {
+      const k = this.sk(r.key, r.locale);
+      this.strings.set(k, { ...clone(r), version: (this.strings.get(k)?.version ?? 0) + 1 });
+    }
   }
 
-  async createReviewComment(c: ReviewCommentRec) {
-    this.comments.push(clone(c));
+  async createReviewComment(c: ReviewCommentWrite) {
+    this.comments.push(clone({ ...c, anchor3d: c.anchor3d ?? null, resolvedBy: c.resolvedBy ?? null, topicVersion: c.topicVersion ?? null }));
+  }
+  async getReviewComment(id: Id) {
+    const c = this.comments.find((x) => x.id === id);
+    return c ? clone(c) : null;
+  }
+  async listReviewComments(filter: ReviewCommentFilter, page: PageReq) {
+    const rows = this.comments
+      .filter((c) => (filter.targetType ? c.targetType === filter.targetType : true))
+      .filter((c) => (filter.targetId ? c.targetId === filter.targetId : true))
+      .filter((c) => (filter.authorId ? c.authorId === filter.authorId : true))
+      .filter((c) => (filter.resolved === undefined ? true : filter.resolved === (c.resolvedAt !== null)))
+      .sort(byId);
+    const res = pageArray(rows, page, (c) => c.id);
+    return { items: res.items.map(clone), nextCursor: res.nextCursor };
+  }
+  async updateReviewComment(id: Id, patch: Partial<Pick<ReviewCommentRec, 'body' | 'resolvedAt' | 'resolvedBy'>>) {
+    const i = this.comments.findIndex((x) => x.id === id);
+    if (i < 0) return null;
+    this.comments[i] = { ...this.comments[i], ...clone(patch), id };
+    return clone(this.comments[i]);
   }
 
   // --- learning ---------------------------------------------------------------

@@ -133,6 +133,9 @@ export class PublishingService {
             issues.push(issue([...root.split('.').map((p) => (/^\d+$/.test(p) ? Number(p) : p)), ...path], 'translation_missing', `Missing: ${miss.join(', ')}`));
         }
       }
+      // v0.3.0: «Права и источники» (A-06) — a 3D asset without a rights entry is a warning.
+      if (pkg.topic.scene.asset && !pkg.topic.rights?.length)
+        issues.push(issue(['topic', 'rights'], 'rights_missing', `No licence/author/source entry for "${pkg.topic.scene.asset}"`, 'warning'));
       // budgets
       const total = pkg.manifest.files.reduce((n, f) => n + f.size, 0);
       if (total > PACKAGE_BUDGET_BYTES) issues.push(issue(['manifest', 'files'], 'budget_package_size', `Package is ${total} bytes (budget ${PACKAGE_BUDGET_BYTES})`));

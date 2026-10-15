@@ -145,7 +145,9 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         const i = { id: newId(), email: 'x@example.kg', role: 'teacher' as const, scope: 'school' as const, scopeId: 's1', subrole: null, tokenHash: 'ih', invitedBy: newId(), createdAt: T0, expiresAt: at(100), acceptedAt: null };
         await repo.createInvite(i);
         await repo.createInvite({ ...i, id: newId(), tokenHash: 'ih2', scopeId: 's2' });
-        expect(await repo.getInviteByHash('ih')).toEqual(i);
+        expect(await repo.getInviteByHash('ih')).toEqual({ ...i, revokedAt: null });
+        expect(await repo.getInvite(i.id)).toEqual({ ...i, revokedAt: null });
+        expect(await repo.getInvite(newId())).toBeNull();
         expect(await repo.markInviteAccepted(i.id, at(1))).toBe(true);
         expect(await repo.markInviteAccepted(i.id, at(2))).toBe(false);
         expect((await repo.listInvites({ scope: 'school', scopeIds: ['s1'] }, { limit: 10 })).items.map((x) => x.id)).toEqual([i.id]);
@@ -153,20 +155,48 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         expect(all.items).toHaveLength(1);
         expect(all.nextCursor).not.toBeNull();
       });
+
+      it('invites: revoke blocks acceptance, update re-issues the token (v0.3.0)', async () => {
+        const i = { id: newId(), email: 'y@example.kg', role: 'teacher' as const, scope: 'school' as const, scopeId: 's1', subrole: null, tokenHash: 'r1', invitedBy: newId(), createdAt: T0, expiresAt: at(100), acceptedAt: null };
+        await repo.createInvite(i);
+        expect(await repo.updateInvite(i.id, { revokedAt: at(1) })).toMatchObject({ revokedAt: at(1) });
+        expect(await repo.markInviteAccepted(i.id, at(2))).toBe(false);
+        const re = await repo.updateInvite(i.id, { revokedAt: null, tokenHash: 'r2', expiresAt: at(200) });
+        expect(re).toMatchObject({ revokedAt: null, tokenHash: 'r2', expiresAt: at(200) });
+        expect(await repo.getInviteByHash('r1')).toBeNull();
+        expect(await repo.markInviteAccepted(i.id, at(3))).toBe(true);
+        expect(await repo.updateInvite(newId(), { revokedAt: T0 })).toBeNull();
+      });
+
+      it('auth tokens: find does not consume (v0.3.0)', async () => {
+        const u = await user();
+        await repo.createAuthToken({ id: newId(), userId: u.id, purpose: 'totp_enroll', tokenHash: 'e1', expiresAt: at(10), usedAt: null });
+        expect(await repo.findAuthToken('e1', 'totp_enroll', T0)).toMatchObject({ userId: u.id, usedAt: null });
+        expect(await repo.findAuthToken('e1', 'password_reset', T0)).toBeNull();
+        expect(await repo.findAuthToken('e1', 'totp_enroll', at(11))).toBeNull();
+        expect(await repo.consumeAuthToken('e1', 'totp_enroll', T0)).not.toBeNull();
+        expect(await repo.findAuthToken('e1', 'totp_enroll', T0)).toBeNull();
+      });
     });
 
     describe('schools & classes', () => {
       it('schools and licenses', async () => {
         const s = await school();
-        expect(await repo.getSchool(s.id)).toEqual(s);
-        expect(await repo.updateSchool(s.id, { name: 'Лицей' })).toMatchObject({ name: 'Лицей', id: s.id });
+        expect(await repo.getSchool(s.id)).toEqual({ ...s, version: 1 });
+        expect(await repo.updateSchool(s.id, { name: 'Лицей' })).toMatchObject({ name: 'Лицей', id: s.id, version: 2 });
+        expect(await repo.updateSchool(s.id, { name: 'x' }, 1)).toBe('version_mismatch');
+        expect(await repo.updateSchool(s.id, { region: 'Бишкек' }, 2)).toMatchObject({ region: 'Бишкек', name: 'Лицей', version: 3 });
         expect(await repo.updateSchool(newId(), { name: 'x' })).toBeNull();
         const s2 = await school();
         expect((await repo.listSchools({ ids: [s2.id] }, { limit: 10 })).items.map((x) => x.id)).toEqual([s2.id]);
         const l = { id: newId(), schoolId: s.id, subjects: ['bio', 'chem'], grades: [7, 8], seats: 30, startsAt: T0, endsAt: at(1000) };
-        expect(await repo.createLicense(l)).toEqual(l);
+        expect(await repo.createLicense(l)).toEqual({ ...l, version: 1 });
         expect(await repo.createLicense(l)).toBe('conflict');
-        expect(await repo.updateLicense(l.id, { seats: 40 })).toMatchObject({ seats: 40, schoolId: s.id });
+        expect(await repo.updateLicense(l.id, { seats: 40 })).toMatchObject({ seats: 40, schoolId: s.id, version: 2 });
+        expect(await repo.updateLicense(l.id, { seats: 50 }, 1)).toBe('version_mismatch');
+        expect(await repo.updateLicense(newId(), { seats: 50 }, 1)).toBeNull();
+        expect(await repo.deleteLicense(l.id, 1)).toBe('version_mismatch');
+        expect(await repo.deleteLicense(newId(), 1)).toBe(false);
         expect((await repo.listLicenses({ schoolIds: [s.id] }, { limit: 10 })).items).toHaveLength(1);
         expect((await repo.listLicenses({ schoolIds: [s2.id] }, { limit: 10 })).items).toHaveLength(0);
         expect(await repo.deleteLicense(l.id)).toBe(true);
@@ -256,6 +286,8 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         expect([...p1.items, ...p2.items].map((x) => x.key)).toEqual(['bio', 'chem', 'math']);
         expect(p2.nextCursor).toBeNull();
         expect(await store.count()).toBe(3);
+        expect((await store.getById((r as { id: string }).id))?.key).toBe('bio');
+        expect(await store.getById(newId())).toBeNull();
         expect(await store.delete('chem', 7)).toBe('version_mismatch');
         expect(await store.delete('chem', 1)).toBe('ok');
         expect(await store.delete('chem', null)).toBe('not_found');
@@ -302,9 +334,13 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
       it('topics: conflict, optimistic update, filters, soft delete', async () => {
         const t = await topicRow();
         expect(t.version).toBe(1);
+        expect(t.updatedBy).toBeNull();
         expect(await repo.createTopic({ ...t })).toBe('conflict');
-        const up = await repo.updateTopic(t.id, { status: 'review', scheduledAt: at(10) }, 1);
-        expect(up).toMatchObject({ status: 'review', version: 2, scheduledAt: at(10) });
+        const by = newId();
+        expect(await repo.updateTopic(t.id, { updatedBy: by }, null)).toMatchObject({ updatedBy: by });
+        await repo.updateTopic(t.id, {}, null);
+        const up = await repo.updateTopic(t.id, { status: 'review', scheduledAt: at(10) }, 3);
+        expect(up).toMatchObject({ status: 'review', version: 4, scheduledAt: at(10), updatedBy: by });
         expect(await repo.updateTopic(t.id, { status: 'draft' }, 1)).toBe('version_mismatch');
         expect(await repo.updateTopic(newId(), { status: 'draft' }, null)).toBe('not_found');
         const t2 = await topicRow('plant-cell');
@@ -345,6 +381,11 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         expect(await repo.updateBuild(failed.id, { log: ['a', 'b'] })).toMatchObject({ log: ['a', 'b'], pkg: null });
         expect((await repo.listBuilds({ topicKey: 'animal-cell' }, { limit: 10 })).items.map((b) => b.id)).toEqual([failed.id, b1.id, b1b.id]);
         expect((await repo.listBuilds({ topicKey: 'other' }, { limit: 10 })).items).toEqual([]);
+        expect((await repo.listBuilds({ status: 'failed' }, { limit: 10 })).items.map((b) => b.id)).toEqual([failed.id]);
+        const d1 = await repo.listBuilds({}, { limit: 2 }, 'desc');
+        const d2 = await repo.listBuilds({}, { limit: 2, cursor: d1.nextCursor! }, 'desc');
+        expect([...d1.items, ...d2.items].map((b) => b.id)).toEqual([b1b.id, b1.id, failed.id]);
+        expect(d2.nextCursor).toBeNull();
 
         expect(await repo.listPublished()).toEqual([]);
         await repo.updateTopic(t.id, { publishedVersionId: v1.id, status: 'published' }, null);
@@ -364,17 +405,54 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
       it('assets', async () => {
         const a = { id: newId(), key: 'cell-glb', kind: 'glb' as const, filename: 'cell.glb', contentType: 'model/gltf-binary', license: 'CC-BY', author: 'A', source: 'S', status: 'uploaded' as const, sizeBytes: 100, sizeAfter: null, triangles: null, nodes: [], violations: [], originalUrl: null, optimizedUrl: null, thumbUrl: null, uploadId: 'u1', createdBy: newId(), createdAt: T0 };
         await repo.createAsset(a);
-        expect(await repo.getAsset(a.id)).toEqual(a);
+        expect(await repo.getAsset(a.id)).toEqual({ ...a, version: 1 });
         expect(await repo.updateAsset(a.id, { status: 'ready', nodes: ['Nucleus', 'Mito_1'], triangles: 1200 })).toMatchObject({ status: 'ready', nodes: ['Nucleus', 'Mito_1'], triangles: 1200 });
         expect(await repo.updateAsset(newId(), { status: 'ready' })).toBeNull();
         expect((await repo.listAssets({ limit: 10 })).items).toHaveLength(1);
+        // v0.3.0: versions
+        const v = { assetId: a.id, version: 1, filename: 'cell.glb', contentType: 'model/gltf-binary', status: 'uploaded' as const, sizeBytes: 100, sizeAfter: null, triangles: null, nodes: [], violations: [], originalUrl: null, optimizedUrl: null, thumbUrl: null, uploadId: 'u1', message: null, createdBy: a.createdBy, createdAt: T0, completedAt: null };
+        expect(await repo.createAssetVersion(v)).toEqual(v);
+        expect(await repo.createAssetVersion(v)).toBe('conflict');
+        await repo.createAssetVersion({ ...v, version: 2, filename: 'cell2.glb', message: 'retopo' });
+        expect((await repo.listAssetVersions(a.id)).map((x) => x.version)).toEqual([1, 2]);
+        expect(await repo.updateAssetVersion(a.id, 2, { completedAt: at(5), nodes: ['A'] })).toMatchObject({ completedAt: at(5), nodes: ['A'], filename: 'cell2.glb' });
+        expect(await repo.updateAssetVersion(a.id, 9, { completedAt: at(5) })).toBeNull();
+        expect(await repo.updateAsset(a.id, { version: 2 })).toMatchObject({ version: 2 });
+        expect(await repo.deleteAsset(a.id)).toBe(true);
+        expect(await repo.deleteAsset(a.id)).toBe(false);
+        expect(await repo.getAsset(a.id)).toBeNull();
+        expect(await repo.listAssetVersions(a.id)).toEqual([]);
+      });
+
+      it('review comments: create, get, filters, resolve (v0.3.0)', async () => {
+        const target = newId();
+        const author = newId();
+        await repo.createReviewComment({ id: newId(), targetType: 'topic', targetId: target, path: '', body: 'legacy', authorId: author, createdAt: T0, resolvedAt: null });
+        const c = { id: newId(), targetType: 'topic' as const, targetId: target, path: 'title', body: 'fix', authorId: author, createdAt: T0, resolvedAt: null, anchor3d: [1, 2, 3] as [number, number, number], resolvedBy: null, topicVersion: '1.0.0' };
+        await repo.createReviewComment(c);
+        await repo.createReviewComment({ ...c, id: newId(), targetType: 'concept', targetId: newId() });
+        expect(await repo.getReviewComment(c.id)).toEqual(c);
+        expect(await repo.getReviewComment(newId())).toBeNull();
+        const list = await repo.listReviewComments({ targetType: 'topic', targetId: target }, { limit: 10 });
+        expect(list.items.map((x) => x.body)).toEqual(['legacy', 'fix']);
+        expect(list.items[0]).toMatchObject({ anchor3d: null, resolvedBy: null, topicVersion: null });
+        const r = newId();
+        expect(await repo.updateReviewComment(c.id, { resolvedAt: at(1), resolvedBy: r })).toMatchObject({ resolvedAt: at(1), resolvedBy: r, body: 'fix' });
+        expect((await repo.listReviewComments({ resolved: true }, { limit: 10 })).items.map((x) => x.id)).toEqual([c.id]);
+        expect((await repo.listReviewComments({ resolved: false }, { limit: 10 })).items).toHaveLength(2);
+        expect((await repo.listReviewComments({ authorId: newId() }, { limit: 10 })).items).toHaveLength(0);
+        const p1 = await repo.listReviewComments({}, { limit: 2 });
+        const p2 = await repo.listReviewComments({}, { limit: 2, cursor: p1.nextCursor! });
+        expect(p1.items.length + p2.items.length).toBe(3);
+        expect(await repo.updateReviewComment(newId(), { body: 'x' })).toBeNull();
       });
 
       it('locale strings: upsert, filters, getStrings, paginate', async () => {
         const row = (key: string, locale: 'ky' | 'ru' | 'en', status: 'machine' | 'draft' | 'reviewed' = 'draft') => ({ key, locale, value: `${key}:${locale}`, status, sourceHash: 'abc', updatedAt: T0 });
         await repo.upsertStrings([row('concept/bio.a/title', 'ky'), row('concept/bio.a/title', 'ru', 'reviewed'), row('topic/x/title', 'ky')]);
         await repo.upsertStrings([{ ...row('concept/bio.a/title', 'ky'), value: 'new', status: 'reviewed' }]);
-        expect((await repo.getStrings(['concept/bio.a/title'])).find((s) => s.locale === 'ky')).toMatchObject({ value: 'new', status: 'reviewed' });
+        expect((await repo.getStrings(['concept/bio.a/title'])).find((s) => s.locale === 'ky')).toMatchObject({ value: 'new', status: 'reviewed', version: 2 });
+        expect((await repo.getStrings(['concept/bio.a/title'])).find((s) => s.locale === 'ru')).toMatchObject({ version: 1 });
         expect((await repo.listStrings({ locale: 'ky' }, { limit: 10 })).items.map((s) => s.key)).toEqual(['concept/bio.a/title', 'topic/x/title']);
         expect((await repo.listStrings({ status: 'draft' }, { limit: 10 })).items.map((s) => s.key)).toEqual(['topic/x/title']);
         expect((await repo.listStrings({ keyPrefix: 'topic/' }, { limit: 10 })).items).toHaveLength(1);

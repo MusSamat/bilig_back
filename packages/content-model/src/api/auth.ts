@@ -150,3 +150,15 @@ export type RegisterRequest = z.infer<typeof RegisterRequestSchema>;
 
 // POST /auth/email/verify
 export const EmailVerifyRequestSchema = z.object({ token: z.string().min(1).max(200) });
+
+// ---------------------------------------------------------------------------
+// v0.3.0 (additive): first-time TOTP enrolment for the admin audience (TZ §6).
+// An author / editor / superadmin without TOTP who logs in with
+// `X-Bilig-Audience: admin` gets 403 `detail: totp_enrollment_required` with
+// `enrollmentToken` (valid 10 minutes, bound to that user). Then:
+//   POST /auth/2fa/setup  { enrollmentToken }        → { enabled: false, otpauthUrl }
+//   POST /auth/2fa/verify { enrollmentToken, code }  → TokenResponse (admin session)
+// ---------------------------------------------------------------------------
+export const EnrollmentTokenSchema = z.string().min(20).max(200);
+export const TotpEnrollSetupRequestSchema = z.object({ enrollmentToken: EnrollmentTokenSchema });
+export const TotpEnrollVerifyRequestSchema = z.object({ enrollmentToken: EnrollmentTokenSchema, code: TotpSchema });

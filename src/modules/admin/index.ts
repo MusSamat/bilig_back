@@ -11,6 +11,7 @@ import { registerBuildAdmin } from './builds.js';
 import { registerContentAdmin } from './content.js';
 import { registerOpsAdmin } from './ops.js';
 import { registerOrgAdmin } from './org.js';
+import { registerReviewAdmin } from './review.js';
 import { registerStringsAdmin } from './strings.js';
 import { registerTopicAdmin } from './topics.js';
 
@@ -22,4 +23,5 @@ export function registerAdmin(app: FastifyInstance, deps: Deps) {
   registerBuildAdmin(app, deps);
   registerOrgAdmin(app, deps);
   registerOpsAdmin(app, deps);
+  registerReviewAdmin(app, deps);
 }
