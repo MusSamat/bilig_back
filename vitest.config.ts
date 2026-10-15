@@ -17,10 +17,14 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    include: ['packages/**/*.{test,spec}.ts'],
+    include: ['packages/**/*.{test,spec}.ts', 'apps/**/*.{test,spec}.ts'],
     coverage: {
-      include: ['packages/*/src/**/*.ts'],
-      exclude: ['packages/*/src/**/*.{test,spec}.ts', 'packages/**/fixtures/**'],
+      include: ['packages/*/src/**/*.ts', 'apps/*/src/**/*.ts'],
+      exclude: [
+        '**/*.{test,spec}.ts',
+        'packages/**/fixtures/**',
+        'apps/*/src/main.ts',
+      ],
     },
   },
 });
