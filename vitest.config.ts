@@ -10,7 +10,7 @@ export default defineConfig({
       '@bilig/content-model/fixtures/animal-cell': r(
         './packages/content-model/src/fixtures/animal-cell.ts',
       ),
-      '@bilig/content-model/schema': r('./packages/content-model/src/schema.ts'),
+      '@bilig/content-model/api': r('./packages/content-model/src/api/index.ts'),
       '@bilig/content-model': r('./packages/content-model/src/index.ts'),
     },
   },
@@ -18,6 +18,8 @@ export default defineConfig({
     globals: true,
     include: ['packages/**/*.{test,spec}.ts', 'src/**/*.{test,spec}.ts'],
     coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json-summary'],
       include: ['packages/*/src/**/*.ts', 'src/**/*.ts'],
       exclude: [
         '**/*.{test,spec}.ts',

@@ -2,13 +2,36 @@
  * @bilig/permissions — RBAC with scope (TZ §2).
  *
  * Rule of implementation (TZ): permissions are checked ONLY on the backend
- * against this permission list. The frontend consumes the same list and merely
- * hides buttons the user cannot use. Keep this package framework-agnostic so
- * both bilig_back and bilig_ft import the exact same definitions.
+ * against this permission list. The frontend consumes the same list
+ * (`grantedPermissions`) and merely hides buttons the user cannot use. This
+ * package is framework-agnostic so bilig_back and bilig_ft import the exact
+ * same definitions (bilig_back vendors a byte-for-byte copy; see
+ * `npm run contract:hash`).
+ *
+ * Semantics (explicit and tested):
+ *  - Each role has exactly one legal scope type (ROLE_SCOPE). A grant whose
+ *    scope does not match its role (e.g. `teacher` on `platform`), or whose
+ *    non-platform scope has no `scopeId`, is INVALID and ignored entirely.
+ *    This closes the old hole where an 'own' grant with platform scope passed
+ *    every resource.
+ *  - 'all'   : allowed for any resource (no scope match needed).
+ *  - 'own'   : allowed only when the resource lies inside the grant's scope
+ *              instance ("своё" = only inside your own area): school grants
+ *              match `resource.schoolId`, subject grants `resource.subjectId`,
+ *              class grants `resource.classId`. Missing context => deny.
+ *  - 'limit' : allowed; the caller enforces the quota (guest tutor questions).
+ *  - false   : denied.
+ *  - Author sub-roles (methodist, artist, translator) are an optional
+ *    `subrole` on an author grant. They narrow which content permissions the
+ *    grant confers and which field groups it may edit (SUBROLE_FIELDS).
  */
+
+/** Contract version shared by @bilig/permissions and @bilig/content-model. */
+export const CONTRACT_VERSION = '0.2.0';
 
 /** A role is granted with a scope: the whole platform, a school, a subject, or a class. */
 export type Scope = 'platform' | 'school' | 'subject' | 'class';
+export const SCOPES: readonly Scope[] = ['platform', 'school', 'subject', 'class'];
 
 export type Role =
   | 'guest'
@@ -18,6 +41,34 @@ export type Role =
   | 'author'
   | 'editor'
   | 'superadmin';
+
+export const ROLES: readonly Role[] = [
+  'guest',
+  'student',
+  'teacher',
+  'school_admin',
+  'author',
+  'editor',
+  'superadmin',
+];
+
+/**
+ * The single legal scope type for each role (TZ §2 table, column «Область»).
+ * `guest` has no scope: it is the implicit role of a principal without grants.
+ */
+export const ROLE_SCOPE: Record<Role, Scope | null> = {
+  guest: null,
+  student: 'class',
+  teacher: 'school',
+  school_admin: 'school',
+  author: 'subject',
+  editor: 'subject',
+  superadmin: 'platform',
+};
+
+/** Author sub-roles (TZ §2: «Методист, 3D-художник или переводчик»). */
+export type AuthorSubrole = 'methodist' | 'artist' | 'translator';
+export const AUTHOR_SUBROLES: readonly AuthorSubrole[] = ['methodist', 'artist', 'translator'];
 
 /** Every protected action in the system. Checked by code, never by role name. */
 export type Permission =
@@ -34,18 +85,35 @@ export type Permission =
   | 'platform.manage' // Управлять предметами, школами, лицензиями
   | 'audit.view'; // Смотреть журнал аудита
 
+export const PERMISSIONS: readonly Permission[] = [
+  'demo.view',
+  'topic.view',
+  'assistant.ask.online',
+  'quiz.attempt.save',
+  'class.manage',
+  'assignment.manage',
+  'school.teachers.manage',
+  'content.draft.edit',
+  'model.upload',
+  'content.publish',
+  'platform.manage',
+  'audit.view',
+];
+
 /**
  * Grant level for a permission within a role:
- *  - 'all'   : allowed across the role's scope without ownership restriction
- *  - 'own'   : allowed only on resources inside the actor's own scope ("своё")
- *  - 'limit' : allowed but rate/quantity limited (e.g. guest assistant questions)
+ *  - 'all'   : allowed without a scope-instance check
+ *  - 'own'   : allowed only on resources inside the grant's own scope ("своё")
+ *  - 'limit' : allowed but rate/quantity limited (guest assistant questions)
  *  - false   : denied
  */
 export type Grant = 'all' | 'own' | 'limit' | false;
 
 /**
- * The permission matrix (TZ §2). Columns of the TZ table become rows here:
- * for each permission, the grant level per role.
+ * The permission matrix — a literal transcription of the TZ §2 table.
+ * «да» → 'all', «своё» → 'own', «лимит» → 'limit', «—» → false.
+ * NB: «Проходить тесты с сохранением» is granted ONLY to student and teacher;
+ * superadmin does NOT have it.
  */
 export const MATRIX: Record<Permission, Record<Role, Grant>> = {
   'demo.view': {
@@ -62,7 +130,7 @@ export const MATRIX: Record<Permission, Record<Role, Grant>> = {
   },
   'quiz.attempt.save': {
     guest: false, student: 'all', teacher: 'all', school_admin: false,
-    author: false, editor: false, superadmin: 'all',
+    author: false, editor: false, superadmin: false,
   },
   'class.manage': {
     guest: false, student: false, teacher: 'own', school_admin: 'own',
@@ -98,12 +166,45 @@ export const MATRIX: Record<Permission, Record<Role, Grant>> = {
   },
 };
 
+/**
+ * Editable field groups of a content document (topic/concept/process/item):
+ *  - 'structure': keys, scene binding, concepts, activities, items, props…
+ *  - 'strings'  : localized text (Localized values, i18n status)
+ *  - 'assets'   : 3D models, thumbnails, media and their licence metadata
+ */
+export type ContentField = 'structure' | 'strings' | 'assets';
+export const CONTENT_FIELDS: readonly ContentField[] = ['structure', 'strings', 'assets'];
+
+/**
+ * What each author sub-role may edit (TZ §2: «подроли сужают права
+ * редактирования»). An author without a subrole edits everything.
+ */
+export const SUBROLE_FIELDS: Record<AuthorSubrole, readonly ContentField[]> = {
+  methodist: ['structure', 'strings'],
+  artist: ['assets'],
+  translator: ['strings'],
+};
+
+/**
+ * Content permissions each author sub-role keeps. Non-content permissions
+ * (demo.view, topic.view, assistant.ask.online) are unaffected by subroles.
+ */
+export const SUBROLE_PERMISSIONS: Record<AuthorSubrole, readonly Permission[]> = {
+  methodist: ['content.draft.edit'],
+  artist: ['content.draft.edit', 'model.upload'],
+  translator: ['content.draft.edit'],
+};
+
+const CONTENT_PERMISSIONS: readonly Permission[] = ['content.draft.edit', 'model.upload'];
+
 /** A role granted to a user, bound to a concrete scope instance. */
 export interface RoleGrant {
   role: Role;
   scope: Scope;
-  /** Id of the scope instance (schoolId, subjectId, classId). Undefined for platform. */
+  /** Id of the scope instance (schoolId, subjectId, classId). Omitted for platform. */
   scopeId?: string;
+  /** Author sub-role; only meaningful when `role === 'author'` (ignored otherwise). */
+  subrole?: AuthorSubrole;
 }
 
 /** The resolved principal the backend builds from the auth token. */
@@ -117,27 +218,74 @@ export interface ResourceContext {
   schoolId?: string;
   subjectId?: string;
   classId?: string;
-  /** For 'own' checks: the id of the user/owner the resource belongs to. */
-  ownerId?: string;
 }
 
-/** The strongest grant a principal has for a permission (false if none). */
-export function grantFor(principal: Principal, permission: Permission): Grant {
-  let best: Grant = false;
-  for (const g of principal.grants) {
-    const level = MATRIX[permission]?.[g.role] ?? false;
-    best = strongest(best, level);
+export const GUEST: Principal = { userId: null, grants: [] };
+
+/**
+ * A grant is valid when its scope matches the role's legal scope and, for any
+ * non-platform scope, carries a concrete `scopeId`. Invalid grants are ignored
+ * by every check in this module.
+ */
+export function isValidGrant(g: RoleGrant): boolean {
+  if (!ROLES.includes(g.role) || g.role === 'guest') return false;
+  if (g.scope !== ROLE_SCOPE[g.role]) return false;
+  if (g.scope !== 'platform' && !g.scopeId) return false;
+  if (g.subrole !== undefined && !AUTHOR_SUBROLES.includes(g.subrole)) return false;
+  return true;
+}
+
+/** Grant level a single (valid) role grant confers for a permission, after subrole narrowing. */
+export function grantLevel(g: RoleGrant, permission: Permission): Grant {
+  if (!isValidGrant(g)) return false;
+  const base = MATRIX[permission]?.[g.role] ?? false;
+  if (
+    base !== false &&
+    g.role === 'author' &&
+    g.subrole &&
+    CONTENT_PERMISSIONS.includes(permission) &&
+    !SUBROLE_PERMISSIONS[g.subrole].includes(permission)
+  ) {
+    return false;
   }
-  // Guests have no explicit grant unless they carry the implicit guest role.
-  if (principal.grants.length === 0) {
-    return MATRIX[permission].guest;
-  }
-  return best;
+  return base;
 }
 
 const ORDER: Grant[] = [false, 'limit', 'own', 'all'];
 function strongest(a: Grant, b: Grant): Grant {
   return ORDER.indexOf(a) >= ORDER.indexOf(b) ? a : b;
+}
+
+const validGrants = (p: Principal): RoleGrant[] => p.grants.filter(isValidGrant);
+
+/** True when the principal has no valid grants and therefore acts as a guest. */
+export function isGuest(principal: Principal): boolean {
+  return validGrants(principal).length === 0;
+}
+
+/** The strongest grant level a principal has for a permission (false if none). */
+export function grantFor(principal: Principal, permission: Permission): Grant {
+  const grants = validGrants(principal);
+  if (grants.length === 0) return MATRIX[permission].guest;
+  let best: Grant = false;
+  for (const g of grants) best = strongest(best, grantLevel(g, permission));
+  return best;
+}
+
+/** Does the resource lie inside this grant's scope instance? */
+export function grantCoversResource(g: RoleGrant, resource: ResourceContext): boolean {
+  switch (g.scope) {
+    case 'platform':
+      return true;
+    case 'school':
+      return !!resource.schoolId && g.scopeId === resource.schoolId;
+    case 'subject':
+      return !!resource.subjectId && g.scopeId === resource.subjectId;
+    case 'class':
+      return !!resource.classId && g.scopeId === resource.classId;
+    default:
+      return false;
+  }
 }
 
 /**
@@ -149,35 +297,49 @@ export function can(
   permission: Permission,
   resource: ResourceContext = {},
 ): boolean {
-  const grant = grantFor(principal, permission);
-  if (grant === false) return false;
-  if (grant === 'all' || grant === 'limit') return true;
-
-  // grant === 'own': at least one role grant must match the resource's scope.
-  return principal.grants.some((g) => {
-    const level = MATRIX[permission][g.role];
-    if (level !== 'own' && level !== 'all') return false;
-    if (level === 'all') return true;
-    switch (g.scope) {
-      case 'platform':
-        return true;
-      case 'school':
-        return !!resource.schoolId && g.scopeId === resource.schoolId;
-      case 'subject':
-        return !!resource.subjectId && g.scopeId === resource.subjectId;
-      case 'class':
-        return !!resource.classId && g.scopeId === resource.classId;
-      default:
-        return false;
-    }
+  const grants = validGrants(principal);
+  if (grants.length === 0) return MATRIX[permission].guest !== false;
+  return grants.some((g) => {
+    const level = grantLevel(g, permission);
+    if (level === false) return false;
+    if (level === 'all' || level === 'limit') return true;
+    return grantCoversResource(g, resource); // 'own'
   });
 }
 
-/** Flat list of permissions the principal can perform (for the FE to hide buttons). */
-export function grantedPermissions(principal: Principal): Permission[] {
-  return (Object.keys(MATRIX) as Permission[]).filter(
-    (p) => grantFor(principal, p) !== false,
-  );
+/**
+ * Field groups the principal may edit on a content resource (A-06/A-11).
+ * Requires `content.draft.edit` on that resource; author sub-roles narrow it.
+ */
+export function editableFields(
+  principal: Principal,
+  resource: ResourceContext = {},
+): ContentField[] {
+  const out = new Set<ContentField>();
+  for (const g of validGrants(principal)) {
+    const level = grantLevel(g, 'content.draft.edit');
+    if (level === false) continue;
+    if (level === 'own' && !grantCoversResource(g, resource)) continue;
+    const fields =
+      g.role === 'author' && g.subrole ? SUBROLE_FIELDS[g.subrole] : CONTENT_FIELDS;
+    fields.forEach((f) => out.add(f));
+  }
+  return CONTENT_FIELDS.filter((f) => out.has(f));
 }
 
-export const GUEST: Principal = { userId: null, grants: [] };
+/** Convenience: may the principal edit this field group of the resource? */
+export function canEditField(
+  principal: Principal,
+  field: ContentField,
+  resource: ResourceContext = {},
+): boolean {
+  return editableFields(principal, resource).includes(field);
+}
+
+/**
+ * Flat list of permissions the principal holds anywhere (for the FE to hide
+ * buttons; returned by GET /me). Scope-instance checks still happen on the backend.
+ */
+export function grantedPermissions(principal: Principal): Permission[] {
+  return PERMISSIONS.filter((p) => grantFor(principal, p) !== false);
+}

@@ -1,46 +1,52 @@
 /**
- * Content repository (TZ §4 "Для масштаба": catalog & packages are data).
+ * Content repository (TZ §4 «Для масштаба»: catalog & packages are data).
  *
- * In the MVP packages are in-memory fixtures; later this reads built content
- * packages produced by the admin (apps/admin) + worker (apps/worker) pipeline.
- * The catalog is derived from the available packages so adding a subject is a
- * data change, never a code change (TZ W-02).
+ * MVP: built packages are JSON files under `content/packages/*.json`, validated
+ * with `validatePackage` (schema + cross-references) at load. The catalog base
+ * (groups, subjects, courses, units) is `content/catalog.json`; topic summaries
+ * are derived from the packages, so adding a topic is a data change only.
+ * Later this reads Build artifacts produced by the admin + worker pipeline.
  */
-import type { Catalog, ContentPackage, SubjectGroup } from '@bilig/content-model';
-import { animalCellPackage } from '@bilig/content-model/fixtures/animal-cell';
+import { readFileSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {
+  CatalogSchema,
+  assertValidPackage,
+  summarizeTopic,
+  type Catalog,
+  type ContentPackage,
+  type Manifest,
+} from '@bilig/content-model';
 
-/** Catalog groups (TZ W-02: естественные, точные, Земля и космос). Data, not layout. */
-const GROUPS: SubjectGroup[] = [
-  { id: 'natural', title: { ky: 'Табигый', ru: 'Естественные', en: 'Natural' }, order: 0 },
-  { id: 'exact', title: { ky: 'Так илимдер', ru: 'Точные', en: 'Exact' }, order: 1 },
-  { id: 'earth-space', title: { ky: 'Жер жана космос', ru: 'Земля и космос', en: 'Earth & Space' }, order: 2 },
-];
+const CONTENT_DIR = fileURLToPath(new URL('../content/', import.meta.url));
 
-/** Available content packages, keyed by subject id. */
-const PACKAGES: Record<string, ContentPackage> = {
-  [animalCellPackage.subject.id]: animalCellPackage,
-};
-
-export function getCatalog(): Catalog {
-  const subjects = Object.values(PACKAGES).map((p) => p.subject);
-  // A "coming soon" subject demonstrates the locked catalog card (TZ W-02).
-  subjects.push({
-    id: 'subj-chem',
-    slug: 'chem',
-    title: { ky: 'Химия', ru: 'Химия', en: 'Chemistry' },
-    icon: 'flask',
-    hue: 265,
-    group: 'natural',
-    status: 'coming',
-  });
-  return { groups: GROUPS, subjects };
+export interface ContentRepo {
+  catalog(): Catalog;
+  getPackage(topicKey: string): ContentPackage | undefined;
+  getManifest(topicKey: string): Manifest | undefined;
 }
 
-export function getPackage(subjectId: string): ContentPackage | undefined {
-  return PACKAGES[subjectId];
-}
-
-/** Find a package by subject slug (the client routes by slug, TZ W-05). */
-export function getPackageBySlug(slug: string): ContentPackage | undefined {
-  return Object.values(PACKAGES).find((p) => p.subject.slug === slug);
+/** Load and validate all packages + the catalog base from a content directory. */
+export function loadContentRepo(dir: string = CONTENT_DIR): ContentRepo {
+  const pkgDir = join(dir, 'packages');
+  const packages = new Map<string, ContentPackage>();
+  for (const file of readdirSync(pkgDir).filter((f) => f.endsWith('.json')).sort()) {
+    const pkg = assertValidPackage(JSON.parse(readFileSync(join(pkgDir, file), 'utf8')));
+    packages.set(pkg.topic.key, pkg);
+  }
+  const base = CatalogSchema.omit({ topics: true }).parse(
+    JSON.parse(readFileSync(join(dir, 'catalog.json'), 'utf8')),
+  );
+  const catalog: Catalog = {
+    ...base,
+    topics: [...packages.values()]
+      .filter((p) => p.topic.status === 'published')
+      .map(summarizeTopic),
+  };
+  return {
+    catalog: () => catalog,
+    getPackage: (key) => packages.get(key),
+    getManifest: (key) => packages.get(key)?.manifest,
+  };
 }
