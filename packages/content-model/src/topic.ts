@@ -141,5 +141,7 @@ export const TopicSchema = z.object({
   examples: ExamplesSchema,
   /** Translation status per locale (A-11). */
   i18n: I18nStatusMapSchema.optional(),
+  /** Open demo topic: guests and unlicensed schools may open it (TZ §2). Default false. */
+  demo: z.boolean().optional(),
 });
 export type Topic = z.infer<typeof TopicSchema>;

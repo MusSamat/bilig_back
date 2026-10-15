@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: bilig
+          POSTGRES_PASSWORD: bilig
+          POSTGRES_DB: bilig_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U bilig" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql://bilig:bilig@localhost:5432/bilig_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Contract hash (must equal bilig_ft's `npm run contract:hash`)
+        run: |
+          echo "contract hash: $(npm run -s contract:hash)"
+          echo "### Contract hash: \`$(npm run -s contract:hash)\`" >> "$GITHUB_STEP_SUMMARY"
+      - run: npm run typecheck
+      - name: Unit + route tests with coverage (in-memory repository)
+        run: npm run test:coverage
+      - name: Repository contract against PostgreSQL 16
+        run: npm run test:db

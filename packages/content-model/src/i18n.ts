@@ -4,7 +4,7 @@
 import { z } from 'zod';
 
 /** Contract version shared by @bilig/content-model and @bilig/permissions. */
-export const CONTRACT_VERSION = '0.2.0';
+export const CONTRACT_VERSION = '0.2.1';
 
 export const LANGS = ['ky', 'ru', 'en'] as const;
 export const LangSchema = z.enum(LANGS);

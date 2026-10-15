@@ -25,6 +25,8 @@ export default defineConfig({
         '**/*.{test,spec}.ts',
         'packages/**/fixtures/**',
         'src/main.ts',
+        'src/test/**',
+        'src/repo/prisma.ts',
       ],
     },
   },

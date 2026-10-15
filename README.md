@@ -1,29 +1,133 @@
 # bilig_back
 
 API for **Bilig**, a data-driven 3D STEM learning platform for schools of
-Kyrgyzstan (ky / ru / en, offline-first). The client is the separate repo
-[`bilig_ft`](../bilig_ft).
+Kyrgyzstan (ky / ru / en). The client is the separate repo
+[`bilig_ft`](../bilig_ft). The specification is [`docs/TZ.md`](docs/TZ.md).
+
+Stack: Node 20, Fastify 5, TypeScript (strict), Zod, Prisma 6 + PostgreSQL 16,
+Redis 7 (optional), argon2id, JWT (jose), pino JSON logs, pdfkit / pptxgenjs,
+Anthropic SDK (tutor).
 
 ## Layout
 
 ```
-src/                 Fastify API: catalog, content packages, /api/tutor, RBAC
-packages/
-  permissions/       RBAC matrix with scope            — @bilig/permissions
-  content-model/     content schema + zod validators   — @bilig/content-model
-docs/TZ.md           technical specification
+src/
+  app.ts               Fastify app: helmet CSP, CORS, cookies, trace ids, problem+json, auth hook
+  main.ts              entrypoint (config → deps → app → listen; scheduled publishes, 30-day purge)
+  bootstrap.ts         dependency wiring (repository, limiter, mailer, storage, tutor provider)
+  config.ts            env parsing (see .env.example)
+  http/                route() helper over the contract ENDPOINTS table, auth context, errors
+  domain/              pure logic: passwords, TOTP, JWT, masking, CSV, XLIFF, diff, tutor prompt/citations
+  repo/                Repository interface, MemoryRepository, PrismaRepository, contract test suite
+  services/            content/catalog, publishing + checklist, workflow, sessions, seed,
+                       rate limits (Redis | memory), mailer, object storage, audit, tutor provider/settings
+  modules/             auth, me, catalog, learning, classes, tutor, decks, admin/*
+  export/              PPTX / PDF decks and login cards (embedded Noto Sans: Ү Ө Ң)
+prisma/                schema.prisma + migrations
+packages/              shared contract (vendored, byte-identical in bilig_ft)
+  permissions/         @bilig/permissions — RBAC matrix with scope
+  content-model/       @bilig/content-model — content schemas; `/api` = ENDPOINTS + DTOs
+content/               content data (catalog.json, packages/*.json built from content/src)
+data/leaked-passwords.txt   bundled leaked-password list (≥10 chars, from SecLists)
+assets/fonts/          Noto Sans (OFL)
 ```
 
-`packages/*` is the **shared contract**, and `bilig_ft` holds a copy of it.
-Make every change to `packages/permissions` or `packages/content-model` in
-both repos, in the same version (see TZ §7).
+`packages/*` is the **shared contract**. Make every change in both repos at the
+same version and check that `npm run contract:hash` prints the same value (TZ §7).
 
-## Run / test
+## Run
 
 ```bash
-npm install
-cp .env.example .env      # ANTHROPIC_API_KEY — without it /api/tutor returns 503
-npm run start:dev         # http://localhost:3000
-npm test
-npm run typecheck
+npm install                 # also runs `prisma generate`
+cp .env.example .env        # set JWT_SECRET / PSEUDONYM_SECRET (openssl rand -hex 32)
+npm run db:up               # docker compose: postgres:16 → localhost:55433, redis:7 → localhost:56379
+npm run db:migrate          # prisma migrate deploy
+npm run db:seed             # import content/** as published TopicVersions + Builds
+npm run start:dev           # http://localhost:3000/api/v1/health
 ```
+
+No Docker? `STORAGE=memory npm run start:dev` keeps everything in memory and
+loads `content/**` on boot (data is lost on restart).
+
+The compose project uses its own containers (`bilig_postgres`, `bilig_redis`)
+and ports 55433 / 56379, so it does not collide with other local databases.
+
+## Scripts
+
+| Script | What it does |
+|---|---|
+| `npm run start` / `start:dev` | run the API (tsx / watch) |
+| `npm test` | all unit and route tests (vitest, in-memory repository, no Docker needed) |
+| `npm run test:coverage` | the same, with v8 coverage |
+| `npm run test:db` | the repository contract suite against PostgreSQL (`TEST_DATABASE_URL`; applies migrations first) |
+| `npm run typecheck` | `tsc --noEmit` for the app and the contract packages |
+| `npm run db:up` / `db:migrate` / `db:migrate:dev` / `db:seed` | database lifecycle |
+| `npm run contract:hash` | sha256 of `packages/permissions` + `packages/content-model`; must equal bilig_ft's |
+
+### Testing strategy
+
+`npm test` runs against `MemoryRepository`, so it is hermetic and fast. The
+same repository contract suite (`src/repo/repo.contract.ts`) also runs against
+`PrismaRepository` with `npm run test:db` (CI runs both, with a PostgreSQL 16
+service). Route tests use `fastify.inject()`, a manual clock (lockouts,
+expiries, schedules) and a mocked tutor provider.
+
+## Environment
+
+All variables are documented in [`.env.example`](.env.example). The important ones:
+
+| Variable | Notes |
+|---|---|
+| `DATABASE_URL`, `STORAGE` | PostgreSQL via Prisma (`prisma`) or `memory` |
+| `REDIS_URL` | rate limits and the tutor budget; unreachable → in-memory fallback (single instance only) |
+| `JWT_SECRET`, `PSEUDONYM_SECRET` | required in production |
+| `CORS_ORIGIN` | comma-separated client/admin origins (credentials allowed) |
+| `ANTHROPIC_API_KEY`, `TUTOR_MODEL` | tutor provider (`claude-opus-5-5`); unset → `/tutor/ask` answers 503 |
+| `TUTOR_DAILY_TOKEN_BUDGET` | daily token budget; once spent the tutor answers 503 |
+| `MAIL_TRANSPORT` | `console` prints verification / reset / invite links |
+
+## Architecture notes
+
+- **Contract first.** Every route is registered from `ENDPOINTS` in
+  `@bilig/content-model/api`. Bodies and queries are parsed, and responses are
+  serialised, with its Zod schemas, so the server cannot drift from the client.
+- **RBAC only on the backend**, through `@bilig/permissions` (`can()` with
+  school / subject / class scope). Teachers manage only the classes they teach;
+  school admins manage every class of their school. Subject scope ids are
+  subject keys (`bio`); dictionary entries belong to a subject by key prefix
+  (`bio.nucleus`).
+- **Auth (TZ §6).** argon2id for passwords and PINs; ≥10 characters plus a
+  bundled leaked-password list; JWT access tokens (15 min, `aud` = `client` |
+  `admin`, chosen with the `X-Bilig-Audience` header on login/refresh); opaque
+  refresh tokens in `HttpOnly; Secure; SameSite=Lax` cookies scoped to
+  `/api/v1/auth` (30 days sliding, students 8 hours fixed), rotated on every
+  refresh, with the whole family revoked on reuse; TOTP required for
+  author/editor/superadmin on the admin audience (enrol via `POST /me/2fa`);
+  PIN lockout of 15 min after 5 bad tries; identical answers for an unknown
+  e-mail and a wrong password; rate limits on login, reset, class codes and the
+  tutor. Logins, role changes, publishes and student-data access go to the
+  append-only audit log.
+- **Content.** Relational tables plus JSONB documents (TopicVersion.doc). The
+  client reads only built packages (Build). Publishing assembles the package
+  from the tables, runs the automatic checklist (schema, translations, budgets,
+  alt text), hashes it and moves the topic's published pointer. Catalog
+  responses are localised by `Accept-Language` with the ky → ru → en chain.
+  A topic is open to guests when `topic.demo` is true; other topics need an
+  active school licence for the subject and grade.
+- **Tutor.** `POST /api/v1/tutor/ask` streams SSE (`token`, `citation`, `done`)
+  or returns JSON with `Accept: application/json`. The prompt is built on the
+  server from the published package only; the question is wrapped as user
+  content; names, phones and e-mails are masked; no user ids are sent; stop
+  topics and injection attempts are refused without calling the model; limits
+  apply per IP, role and school, plus a daily token budget.
+- **Logs.** pino JSON with a trace id (`X-Request-Id` / `traceparent`); no
+  tokens, cookies, bodies or query strings.
+
+## Status / not yet implemented
+
+- Offline mode is out of scope for now. `POST /sync` exists (idempotent, deduplicated), but
+  signed offline results and offline session trust (TZ §6) are not implemented.
+- Exports run synchronously (no job queue yet); WebP snapshots show as placeholders in PDFs.
+- Asset processing (meshopt, KTX2, thumbnails) returns a stub report until `bilig_worker`
+  exists; local storage has no presigned multipart upload (the S3/MinIO adapter is pending).
+- LearningEvent month partitioning, OpenTelemetry and Sentry are not wired up yet.

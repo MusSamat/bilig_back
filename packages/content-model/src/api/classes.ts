@@ -105,3 +105,30 @@ export const AssignmentResultsSchema = z.object({
   ),
 });
 export type AssignmentResults = z.infer<typeof AssignmentResultsSchema>;
+
+// ---------------------------------------------------------------------------
+// v0.2.1 (additive)
+// ---------------------------------------------------------------------------
+
+// PATCH /students/:id — rename (pseudonym) or record the school's consent mark (TZ §6).
+export const StudentPatchRequestSchema = z
+  .object({ displayName: z.string().trim().min(1).max(80), hasConsent: z.boolean() })
+  .partial();
+export type StudentPatchRequest = z.infer<typeof StudentPatchRequestSchema>;
+
+// POST /classes/:id/login-cards → application/pdf.
+// PINs are stored hashed, so cards carry a PIN only when `resetPins` issues new ones.
+export const LoginCardsRequestSchema = z.object({
+  studentIds: z.array(IdSchema).max(200).optional(),
+  resetPins: z.boolean().optional(),
+});
+export type LoginCardsRequest = z.infer<typeof LoginCardsRequestSchema>;
+
+// GET /me/assignments — the student's cabinet (W-54).
+export const MyAssignmentSchema = AssignmentSchema.extend({
+  className: z.string(),
+  status: z.enum(['not_started', 'in_progress', 'done']),
+  score: z.number().min(0).max(1).optional(),
+});
+export type MyAssignment = z.infer<typeof MyAssignmentSchema>;
+export const MyAssignmentsResponseSchema = z.object({ items: z.array(MyAssignmentSchema) });

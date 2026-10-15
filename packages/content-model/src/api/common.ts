@@ -11,7 +11,16 @@ export const HEADERS = {
   ifMatch: 'If-Match',
   acceptLanguage: 'Accept-Language',
   authorization: 'Authorization',
+  /** Token audience for auth calls: `client` (default) or `admin` (TZ §6). */
+  audience: 'X-Bilig-Audience',
+  /** Trace id echoed on every response (TZ §10 «логи JSON с trace-id»). */
+  requestId: 'X-Request-Id',
 } as const;
+
+/** JWT `aud` values: the admin app gets its own audience (TZ §6). */
+export const AUDIENCES = ['client', 'admin'] as const;
+export const AudienceSchema = z.enum(AUDIENCES);
+export type Audience = z.infer<typeof AudienceSchema>;
 
 export const PROBLEM_CONTENT_TYPE = 'application/problem+json';
 export const SSE_CONTENT_TYPE = 'text/event-stream';
@@ -36,6 +45,16 @@ export const ERROR_CODES = [
   'tutor_unavailable',
   'payload_too_large',
   'internal',
+  // v0.2.1 (additive)
+  /** Admin login for a 2FA role needs a TOTP code (retry with `totp`). */
+  'totp_required',
+  'email_not_verified',
+  /** Password shorter than 10 chars or found in the leaked-password list. */
+  'password_weak',
+  /** If-Match header missing on a versioned write. */
+  'precondition_required',
+  /** Entity is referenced elsewhere (e.g. a concept used by topics) and cannot be deleted. */
+  'in_use',
 ] as const;
 export const ErrorCodeSchema = z.enum(ERROR_CODES);
 export type ErrorCode = z.infer<typeof ErrorCodeSchema>;
@@ -74,6 +93,11 @@ const DEFAULT_STATUS: Record<ErrorCode, number> = {
   rate_limited: 429,
   internal: 500,
   tutor_unavailable: 503,
+  totp_required: 401,
+  email_not_verified: 403,
+  password_weak: 400,
+  precondition_required: 428,
+  in_use: 409,
 };
 
 /** Build a problem body with defaults for `type`, `title`, `status`, `i18nKey`. */
@@ -90,6 +114,11 @@ export function problem(
     code,
   };
 }
+
+/** Query-string boolean: only `true`/`1` are true (z.coerce.boolean() would turn "false" into true). */
+export const QueryBoolSchema = z
+  .union([z.boolean(), z.enum(['true', 'false', '1', '0'])])
+  .transform((v) => v === true || v === 'true' || v === '1');
 
 export const PageQuerySchema = z.object({
   cursor: z.string().min(1).optional(),
@@ -115,6 +144,27 @@ export const HealthResponseSchema = z.object({
   contract: z.string(),
 });
 export type HealthResponse = z.infer<typeof HealthResponseSchema>;
+
+// GET /ready — dependencies reachable (DB, cache)
+export const ReadyResponseSchema = z.object({
+  status: z.enum(['ok', 'degraded']),
+  checks: z.record(z.string(), z.enum(['ok', 'fail', 'skipped'])),
+});
+export type ReadyResponse = z.infer<typeof ReadyResponseSchema>;
+
+// GET /version
+export const VersionResponseSchema = z.object({
+  version: z.string(),
+  contract: z.string(),
+  commit: z.string().optional(),
+  node: z.string(),
+});
+export type VersionResponse = z.infer<typeof VersionResponseSchema>;
+
+/** Binary responses (PDF, PPTX, CSV, XLIFF): the endpoint declares `produces`. */
+export const BinaryResponseSchema = z.custom<Uint8Array | string>(
+  (v) => typeof v === 'string' || v instanceof Uint8Array,
+);
 
 /** Optimistic-lock version used with If-Match (admin, presentations). */
 export const VersionTagSchema = z.number().int().min(0);

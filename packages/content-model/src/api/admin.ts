@@ -6,14 +6,14 @@ import { z } from 'zod';
 import type { Permission } from '@bilig/permissions';
 import { KeySchema, SemverSchema } from '../common.js';
 import { ConceptSchema } from '../concept.js';
-import { CourseSchema, ObjectiveSchema, SubjectSchema, UnitSchema } from '../curriculum.js';
+import { CourseSchema, ObjectiveSchema, SubjectGroupSchema, SubjectSchema, UnitSchema } from '../curriculum.js';
 import { GlossaryTermSchema } from '../glossary.js';
 import { I18nStatusSchema, LangSchema } from '../i18n.js';
 import { ItemSchema } from '../item.js';
 import { ProcessSchema } from '../process.js';
-import { ContentStatusSchema, TopicSchema, type ContentStatus } from '../topic.js';
+import { ComparisonSchema, ContentStatusSchema, TopicSchema, TourSchema, type ContentStatus } from '../topic.js';
 import { AuthorSubroleSchema, EmailSchema, RoleGrantSchema, RoleSchema, ScopeSchema } from './auth.js';
-import { DateTimeSchema, IdSchema, VersionTagSchema, cursorPage } from './common.js';
+import { DateTimeSchema, IdSchema, PageQuerySchema, QueryBoolSchema, VersionTagSchema, cursorPage } from './common.js';
 
 // ---------------------------------------------------------------------------
 // Publish workflow (A-13): draft → review → published → archived
@@ -188,8 +188,8 @@ export type AssetReport = z.infer<typeof AssetReportSchema>;
 export const StringsQuerySchema = z.object({
   locale: LangSchema,
   status: I18nStatusSchema.optional(),
-  untranslated: z.coerce.boolean().optional(),
-  sourceChanged: z.coerce.boolean().optional(),
+  untranslated: QueryBoolSchema.optional(),
+  sourceChanged: QueryBoolSchema.optional(),
   cursor: z.string().optional(),
   limit: z.coerce.number().int().min(1).max(500).optional(),
 });
@@ -253,7 +253,8 @@ export const AdminUserListSchema = cursorPage(AdminUserSchema);
 // Audit (A-19)
 export const AuditEntrySchema = z.object({
   id: IdSchema,
-  actorId: IdSchema,
+  /** null for anonymous actions (class-code access, PIN lockout). */
+  actorId: IdSchema.nullable(),
   action: z.string().min(1),
   targetType: z.string().min(1),
   targetId: z.string().min(1),
@@ -262,3 +263,217 @@ export const AuditEntrySchema = z.object({
   ts: DateTimeSchema,
 });
 export const AuditListSchema = cursorPage(AuditEntrySchema);
+
+// ---------------------------------------------------------------------------
+// v0.2.1 (additive): the rest of TZ §9 Admin:* — lists, patches, deletes,
+// workflow extras, builds, i18n import/export, org, analytics, tutor settings.
+// ---------------------------------------------------------------------------
+
+/** Common admin list query: cursor page + free-text and the usual filters. */
+export const AdminListQuerySchema = PageQuerySchema.extend({
+  q: z.string().trim().max(200).optional(),
+  subjectKey: KeySchema.optional(),
+  status: z.string().max(40).optional(),
+});
+export type AdminListQuery = z.infer<typeof AdminListQuerySchema>;
+
+/** Paginated list of admin records of one entity type. */
+export const adminRecordPage = <T extends z.ZodTypeAny>(data: T) => cursorPage(adminRecord(data));
+
+export const AdminSubjectGroupSchema = SubjectGroupSchema;
+export const AdminSubjectGroupPatchSchema = withVersion(SubjectGroupSchema.omit({ key: true }));
+export const AdminItemPatchSchema = z.object({ data: ItemSchema, version: VersionTagSchema });
+export const AdminGlossaryPatchSchema = withVersion(GlossaryTermSchema.omit({ id: true }));
+
+// Topics
+export const AdminTopicPatchSchema = z.object({
+  unitKey: KeySchema.optional(),
+  /** Open demo topic (TZ §2): guests may load it. Applied on the next publish/build. */
+  demo: z.boolean().optional(),
+  version: VersionTagSchema,
+});
+export const AdminTopicDetailSchema = AdminTopicSchema.extend({
+  demo: z.boolean(),
+  subjectKey: KeySchema,
+  scheduledAt: DateTimeSchema.optional(),
+  availableActions: z.array(WorkflowActionSchema),
+});
+export type AdminTopicDetail = z.infer<typeof AdminTopicDetailSchema>;
+export const TopicVersionListSchema = z.object({ items: z.array(TopicVersionSchema.omit({ doc: true })) });
+export const ArchiveRequestSchema = z.object({ reason: z.string().max(2000).optional() });
+
+// GET /admin/topics/:id/diff?from=&to= (A-13 «дифф с опубликованной версией»)
+export const TopicDiffQuerySchema = z.object({ from: SemverSchema.optional(), to: SemverSchema.optional() });
+export const TopicDiffSchema = z.object({
+  from: SemverSchema.nullable(),
+  to: SemverSchema,
+  changes: z.array(
+    z.object({
+      path: z.array(z.union([z.string(), z.number()])),
+      kind: z.enum(['added', 'removed', 'changed']),
+      before: z.unknown().optional(),
+      after: z.unknown().optional(),
+    }),
+  ),
+});
+export type TopicDiff = z.infer<typeof TopicDiffSchema>;
+
+// Tours & comparisons live inside the topic document; PUT writes a new draft version.
+export const TourPutRequestSchema = z.object({ tour: TourSchema, version: VersionTagSchema });
+export const ComparisonPutRequestSchema = z.object({ comparison: ComparisonSchema, version: VersionTagSchema });
+export const TourResponseSchema = z.object({ topicKey: KeySchema, tour: TourSchema.nullable(), version: SemverSchema.nullable() });
+export const ComparisonResponseSchema = z.object({
+  topicKey: KeySchema,
+  comparison: ComparisonSchema.nullable(),
+  version: SemverSchema.nullable(),
+});
+
+// Items: answer statistics (A-10)
+export const ItemStatsSchema = z.object({
+  itemKey: KeySchema,
+  answers: z.number().int().min(0),
+  correctRate: z.number().min(0).max(1).nullable(),
+  /** Most frequent wrong response (option key / concept key / number as string). */
+  commonWrong: z.string().optional(),
+  avgTimeMs: z.number().min(0).nullable(),
+});
+export type ItemStats = z.infer<typeof ItemStatsSchema>;
+
+// Assets (A-05)
+export const AssetListSchema = cursorPage(AssetReportSchema);
+
+// Strings import/export (A-11)
+export const STRINGS_FORMATS = ['csv', 'xliff'] as const;
+export const StringsImportRequestSchema = z.object({
+  format: z.enum(STRINGS_FORMATS),
+  /** Target locale of the file. */
+  locale: LangSchema,
+  content: z.string().min(1).max(5_000_000),
+  /** Status given to imported values (default `draft`). */
+  status: I18nStatusSchema.optional(),
+});
+export const StringsImportResponseSchema = z.object({
+  updated: z.number().int().min(0),
+  unchanged: z.number().int().min(0),
+  unknownKeys: z.array(z.string()),
+  errors: z.array(z.object({ line: z.number().int().optional(), message: z.string() })),
+});
+export const StringsExportQuerySchema = z.object({
+  format: z.enum(STRINGS_FORMATS),
+  locale: LangSchema,
+  /** Source language shown next to the target (default `ru`). */
+  source: LangSchema.optional(),
+  untranslated: QueryBoolSchema.optional(),
+});
+
+// Glossary
+export const GlossaryListSchema = adminRecordPage(GlossaryTermSchema);
+
+// Builds (§8 Build)
+export const BUILD_STATUSES = ['queued', 'building', 'ready', 'failed'] as const;
+export const BuildSchema = z.object({
+  id: IdSchema,
+  topicKey: KeySchema,
+  topicVersionId: IdSchema,
+  version: SemverSchema,
+  status: z.enum(BUILD_STATUSES),
+  hash: z.string().optional(),
+  packageUrl: z.string().optional(),
+  log: z.array(z.string()),
+  createdAt: DateTimeSchema,
+});
+export type Build = z.infer<typeof BuildSchema>;
+export const BuildListSchema = cursorPage(BuildSchema);
+export const BuildListQuerySchema = PageQuerySchema.extend({ topicKey: KeySchema.optional() });
+
+// Org (A-15, A-16)
+export const SchoolListSchema = cursorPage(SchoolSchema);
+export const SchoolPatchSchema = SchoolCreateSchema.partial();
+export const LicenseListSchema = cursorPage(LicenseSchema);
+export const LicenseListQuerySchema = PageQuerySchema.extend({ schoolId: IdSchema.optional() });
+export const LicensePatchSchema = z.object({
+  subjects: z.array(KeySchema).min(1),
+  grades: z.array(z.number().int().min(1).max(11)).min(1),
+  seats: z.number().int().positive(),
+  startsAt: DateTimeSchema,
+  endsAt: DateTimeSchema,
+}).partial();
+export const AdminUserListQuerySchema = PageQuerySchema.extend({
+  q: z.string().trim().max(200).optional(),
+  schoolId: IdSchema.optional(),
+  role: RoleSchema.optional(),
+  status: z.enum(['active', 'blocked', 'invited']).optional(),
+});
+export const AdminUserPatchSchema = z
+  .object({ status: z.enum(['active', 'blocked']), displayName: z.string().trim().min(1).max(100) })
+  .partial();
+/** PUT /admin/users/:id/grants — replaces the user's role grants (audited). */
+export const UserGrantsPutSchema = z.object({ grants: z.array(RoleGrantSchema).max(50) });
+export const InviteSchema = z.object({
+  id: IdSchema,
+  email: EmailSchema,
+  role: RoleSchema,
+  scope: ScopeSchema,
+  scopeId: z.string().optional(),
+  expiresAt: DateTimeSchema,
+  acceptedAt: DateTimeSchema.optional(),
+});
+export const InviteListSchema = cursorPage(InviteSchema);
+
+// Audit filters (A-19)
+export const AuditQuerySchema = PageQuerySchema.extend({
+  actorId: IdSchema.optional(),
+  action: z.string().max(100).optional(),
+  targetType: z.string().max(100).optional(),
+});
+
+// Analytics (A-17)
+export const AnalyticsQuerySchema = z.object({ from: DateTimeSchema.optional(), to: DateTimeSchema.optional() });
+const countBy = <K extends z.ZodTypeAny>(key: K) => z.array(z.object({ key, count: z.number().int().min(0) }));
+export const AnalyticsOverviewSchema = z.object({
+  from: DateTimeSchema,
+  to: DateTimeSchema,
+  activeSchools: z.number().int().min(0),
+  activeStudents: z.number().int().min(0),
+  attempts: z.number().int().min(0),
+  events: z.number().int().min(0),
+  daily: z.array(z.object({ date: z.string(), events: z.number().int().min(0), attempts: z.number().int().min(0) })),
+  bySchool: countBy(IdSchema),
+  byRegion: countBy(z.string()),
+  popularTopics: countBy(z.string()),
+  popularConcepts: countBy(z.string()),
+  hardestItems: z.array(ItemStatsSchema),
+  tutor: z.object({
+    questions: z.number().int().min(0),
+    refused: z.number().int().min(0),
+    inputTokens: z.number().int().min(0),
+    outputTokens: z.number().int().min(0),
+    /** Masked questions the tutor could not answer from the materials (content backlog). */
+    unanswered: z.array(z.object({ topicKey: z.string(), text: z.string(), ts: DateTimeSchema })),
+  }),
+});
+export type AnalyticsOverview = z.infer<typeof AnalyticsOverviewSchema>;
+
+// Tutor settings (A-18)
+export const TutorSettingsSchema = z.object({
+  enabled: z.boolean(),
+  provider: z.enum(['anthropic']),
+  model: z.string().min(1),
+  /** Extra per-language instructions appended to the fixed safety rules. */
+  systemPrompts: z.object({ ky: z.string().max(4000), ru: z.string().max(4000), en: z.string().max(4000) }),
+  limits: z.object({
+    guestPerHour: z.number().int().min(0),
+    studentPerHour: z.number().int().min(0),
+    adultPerHour: z.number().int().min(0),
+    ipPerHour: z.number().int().min(0),
+    schoolPerDay: z.number().int().min(0),
+  }),
+  /** Daily token budget (input + output); when spent the tutor goes offline (503). */
+  dailyTokenBudget: z.number().int().min(0),
+  stopTopics: z.array(z.string().min(1).max(100)).max(200),
+  regressionQuestions: z
+    .array(z.object({ lang: LangSchema, question: z.string().min(1).max(2000), expectConcepts: z.array(KeySchema).optional() }))
+    .max(200),
+  version: VersionTagSchema,
+});
+export type TutorSettings = z.infer<typeof TutorSettingsSchema>;

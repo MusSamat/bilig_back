@@ -134,3 +134,19 @@ export const TwoFactorResponseSchema = z.object({
   enabled: z.boolean(),
   otpauthUrl: z.string().optional(),
 });
+
+// ---------------------------------------------------------------------------
+// v0.2.1 (additive)
+// ---------------------------------------------------------------------------
+
+// POST /auth/register — teacher self-registration; the e-mail must be verified before login.
+export const RegisterRequestSchema = z.object({
+  email: EmailSchema,
+  password: PasswordSchema,
+  displayName: z.string().trim().min(1).max(100),
+  locale: LangSchema.optional(),
+});
+export type RegisterRequest = z.infer<typeof RegisterRequestSchema>;
+
+// POST /auth/email/verify
+export const EmailVerifyRequestSchema = z.object({ token: z.string().min(1).max(200) });

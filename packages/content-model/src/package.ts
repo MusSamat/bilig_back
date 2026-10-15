@@ -83,6 +83,8 @@ export const TopicSummarySchema = z.object({
   version: SemverSchema,
   hash: Sha256Schema,
   counts: TopicCountsSchema,
+  /** Open demo topic (guests may load its package). */
+  demo: z.boolean().optional(),
 });
 export type TopicSummary = z.infer<typeof TopicSummarySchema>;
 
@@ -121,6 +123,7 @@ export function summarizeTopic(pkg: ContentPackage): TopicSummary {
       processes: topic.activities.processKeys.length,
       items: topic.activities.quiz?.itemKeys.length ?? 0,
     },
+    ...(topic.demo !== undefined ? { demo: topic.demo } : {}),
   };
 }
 
