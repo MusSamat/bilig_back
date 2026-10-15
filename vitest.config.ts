@@ -12,18 +12,17 @@ export default defineConfig({
       ),
       '@bilig/content-model/schema': r('./packages/content-model/src/schema.ts'),
       '@bilig/content-model': r('./packages/content-model/src/index.ts'),
-      '@bilig/scene-core': r('./packages/scene-core/src/index.ts'),
     },
   },
   test: {
     globals: true,
-    include: ['packages/**/*.{test,spec}.ts', 'apps/**/*.{test,spec}.ts'],
+    include: ['packages/**/*.{test,spec}.ts', 'src/**/*.{test,spec}.ts'],
     coverage: {
-      include: ['packages/*/src/**/*.ts', 'apps/*/src/**/*.ts'],
+      include: ['packages/*/src/**/*.ts', 'src/**/*.ts'],
       exclude: [
         '**/*.{test,spec}.ts',
         'packages/**/fixtures/**',
-        'apps/*/src/main.ts',
+        'src/main.ts',
       ],
     },
   },
