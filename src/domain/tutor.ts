@@ -174,9 +174,11 @@ export class CitationParser {
     for (;;) {
       const open = this.buf.indexOf('[[');
       if (open < 0) {
-        // keep a trailing single '[' in case it starts a marker
-        const keep = !final && this.buf.endsWith('[') ? 1 : 0;
-        this.emitText(out, this.buf.slice(0, this.buf.length - keep));
+        // Keep a trailing '[' (it may start a marker) and the whitespace before it:
+        // a marker in the next chunk must not leave a double space behind.
+        const keep = final ? 0 : (/\s*\[?$/.exec(this.buf)?.[0].length ?? 0);
+        // Trailing whitespace at the very end of the answer carries nothing.
+        if (!(final && !this.buf.trim())) this.emitText(out, this.buf.slice(0, this.buf.length - keep));
         this.buf = this.buf.slice(this.buf.length - keep);
         if (final && this.pendingWs) this.pendingWs = '';
         return out;

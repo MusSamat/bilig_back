@@ -81,6 +81,8 @@ export function glossaryMatches(pkg: ContentPackage, text: string, max = 5): Glo
     })
     .filter((x) => x.len > 0)
     .sort((a, b) => b.len - a.len)
+    // The same term may be listed under several ids (per subject); show it once.
+    .filter((x, i, all) => all.findIndex((y) => y.g.ky === x.g.ky && y.g.ru === x.g.ru && y.g.en === x.g.en) === i)
     .slice(0, max)
     .map(({ g }) => ({ id: g.id, ky: g.ky, ru: g.ru, en: g.en }));
 }
