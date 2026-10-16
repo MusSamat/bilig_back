@@ -1,0 +1,74 @@
+{
+  "topicKey": "plant-cell",
+  "files": [
+    {
+      "path": "models/plant-cell.glb",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "bilig_back/scripts/assets/cells.mjs (authored, own geometry)",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "created": "2026-10-16",
+      "modifications": [
+        "no free model with separate, named structures was found: NIH 3D's \"Animal Cell\" is CC BY-NC-SA (non-commercial, excluded), other cell models are paid marketplace models (CGTrader, 3DCadBrowser, Free3D royalty-free) or physical teaching models; so the model is authored by the pipeline script",
+        "three.js geometry extending the procedural plant cell of the approved Bilig Workbench prototype (bilig_ft plugin-gltf cells.ts)",
+        "named nodes for the topic's masks: CellWall (two layers), Membrane, Cytoplasm, Vacuole, Nucleus (+ Nucleolus), Chloro_1…7 (grana + stroma lamellae), Mito_1…3",
+        "decorative, unnamed: plasmodesmata, smooth ER",
+        "organelles placed on the topic's concept anchors; colours from the concept hues (hsl(h, 62%, 62%))",
+        "gltf-transform: dedup, prune, weld, EXT_meshopt_compression + quantisation; KHR_materials_clearcoat"
+      ],
+      "pipeline": "bilig_back/scripts/assets/cells.mjs (plant)",
+      "report": {
+        "sizeBefore": 1152028,
+        "sizeAfter": 280092,
+        "trianglesAfter": 66460,
+        "textures": 0,
+        "nodes": [
+          "PlantCell",
+          "  CellWall",
+          "  Membrane",
+          "  Cytoplasm",
+          "  Vacuole",
+          "  Nucleus",
+          "  Chloro_1",
+          "  Chloro_2",
+          "  Chloro_3",
+          "  Chloro_4",
+          "  Chloro_5",
+          "  Chloro_6",
+          "  Chloro_7",
+          "  Mito_1",
+          "  Mito_2",
+          "  Mito_3",
+          "  (9 decorative parts, renamed <root>_Mesh by quantisation; bound to no concept)"
+        ]
+      }
+    },
+    {
+      "path": "thumbs/animal-cell.webp",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "bilig_back/scripts/assets/cells.mjs (authored, own geometry)",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "derivedFrom": "animal-cell/models/animal-cell.glb (render)",
+      "rendered": "2026-10-16"
+    },
+    {
+      "path": "thumbs/onion-skin.webp",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "bilig_back/scripts/assets/cells.mjs (authored, own geometry)",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "derivedFrom": "plant-cell/models/plant-cell.glb (render)",
+      "rendered": "2026-10-16"
+    },
+    {
+      "path": "thumbs/plant-cell.webp",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "bilig_back/scripts/assets/cells.mjs (authored, own geometry)",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "derivedFrom": "plant-cell/models/plant-cell.glb (render)",
+      "rendered": "2026-10-16"
+    }
+  ]
+}

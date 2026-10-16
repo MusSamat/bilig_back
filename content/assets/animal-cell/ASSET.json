@@ -1,0 +1,69 @@
+{
+  "topicKey": "animal-cell",
+  "files": [
+    {
+      "path": "models/animal-cell.glb",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "bilig_back/scripts/assets/cells.mjs (authored, own geometry)",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "created": "2026-10-16",
+      "modifications": [
+        "no free model with separate, named structures was found: NIH 3D's \"Animal Cell\" is CC BY-NC-SA (non-commercial, excluded), other cell models are paid marketplace models (CGTrader, 3DCadBrowser, Free3D royalty-free) or physical teaching models; so the model is authored by the pipeline script",
+        "three.js geometry extending the procedural animal cell of the approved Bilig Workbench prototype (bilig_ft plugin-gltf cells.ts)",
+        "named nodes for the topic's masks: Membrane, Cytoplasm, Nucleus (+ Nucleolus, pores, chromatin), Mito_1…4 (cristae), Ribo_1 (on rough ER), Ribo_2 (free), Golgi (cisternae + vesicles)",
+        "decorative, unnamed: rough and smooth ER, lysosomes, a centriole pair",
+        "organelles placed on the topic's concept anchors; colours from the concept hues (hsl(h, 62%, 62%))",
+        "gltf-transform: dedup, prune, weld, EXT_meshopt_compression + quantisation; KHR_materials_clearcoat"
+      ],
+      "pipeline": "bilig_back/scripts/assets/cells.mjs (animal)",
+      "report": {
+        "sizeBefore": 934044,
+        "sizeAfter": 244876,
+        "trianglesAfter": 64600,
+        "textures": 0,
+        "nodes": [
+          "AnimalCell",
+          "  Membrane",
+          "  Cytoplasm",
+          "  Nucleus",
+          "  Mito_1",
+          "  Mito_2",
+          "  Mito_3",
+          "  Mito_4",
+          "  Golgi",
+          "  Ribo_1",
+          "  Ribo_2",
+          "  (12 decorative parts, renamed <root>_Mesh by quantisation; bound to no concept)"
+        ]
+      }
+    },
+    {
+      "path": "thumbs/animal-cell.webp",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "bilig_back/scripts/assets/cells.mjs (authored, own geometry)",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "derivedFrom": "animal-cell/models/animal-cell.glb (render)",
+      "rendered": "2026-10-16"
+    },
+    {
+      "path": "thumbs/neuron.webp",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "bilig_back/scripts/assets/cells.mjs (authored, own geometry)",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "derivedFrom": "animal-cell/models/animal-cell.glb (render)",
+      "rendered": "2026-10-16"
+    },
+    {
+      "path": "thumbs/plant-cell.webp",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "bilig_back/scripts/assets/cells.mjs (authored, own geometry)",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "derivedFrom": "plant-cell/models/plant-cell.glb (render)",
+      "rendered": "2026-10-16"
+    }
+  ]
+}

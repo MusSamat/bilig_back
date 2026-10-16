@@ -2,27 +2,27 @@
   "manifest": {
     "topicKey": "glaciers",
     "version": "1.0.0",
-    "hash": "1ee8e6fee29ad0b31bc839df9cf9691bf1e8402b907adccab132417706af173c",
+    "hash": "9d7a5a721693f7722b0f28645601f833417f0c9e72d238d76d7e21fbdb10eb54",
     "files": [
       {
-        "path": "models/glaciers.glb",
-        "hash": "ce4136117fb25f8dc876dbf7bbdb584b889977e62219fabe6d5d14bcf755b165",
-        "size": 0
+        "path": "glaciers.glb",
+        "hash": "84df9c47280221f5b53578e107396310355ff6780cc139fdd2ebcc8ba18a5e3a",
+        "size": 532492
       },
       {
         "path": "thumbs/glaciers.webp",
-        "hash": "3a11dd07feec1f592f831af3b21670ff02a40aa0328984764163320ccae20ce0",
-        "size": 0
+        "hash": "41d5716e7d8b38658a449e8007741342af0b5dc551f315f68bde54c997edb8ba",
+        "size": 12652
       },
       {
         "path": "thumbs/inylchek.webp",
-        "hash": "6167841d852ac1e1df9fc0aeb3fa7ba36f4d6075bfadaa0f1dfcb9dc479d7fab",
-        "size": 0
+        "hash": "0fde003011163f5cc6b5ff119a69df6a61465b3253ab099232856391d3934784",
+        "size": 21432
       },
       {
         "path": "thumbs/water-cycle.webp",
-        "hash": "7222c8d8f4c57014d04136d18e4070e1d28abfda8c49905b9c22d028287821bc",
-        "size": 0
+        "hash": "993d6290abc1ee415359645b536203bba5b7e84117ba7314dbcc036a518f512d",
+        "size": 16500
       }
     ],
     "builtAt": "2026-10-15T00:00:00Z"
@@ -103,17 +103,17 @@
     "durationMin": 40,
     "scene": {
       "plugin": "gltf",
-      "asset": "models/glaciers.glb",
+      "asset": "glaciers.glb",
       "camera": {
         "position": [
-          0,
-          3,
-          8
+          0.6,
+          5.4,
+          6.9
         ],
         "target": [
           0,
-          1,
-          0
+          0.8,
+          0.1
         ],
         "fov": 45
       },
@@ -132,15 +132,20 @@
     ],
     "overrides": {
       "geo.glacier": {
+        "anchor": [
+          -1.5,
+          1.59,
+          -0.09
+        ],
         "nodes": [
           "Glacier"
         ]
       },
       "geo.accumulation-zone": {
         "anchor": [
-          -1.8,
-          2.6,
-          -0.6
+          -2.3,
+          1.85,
+          -0.15
         ],
         "nodes": [
           "Zone_Accumulation"
@@ -148,9 +153,9 @@
       },
       "geo.ablation-zone": {
         "anchor": [
-          0.8,
-          1.2,
-          0.4
+          0.35,
+          0.96,
+          0.25
         ],
         "nodes": [
           "Zone_Ablation"
@@ -158,9 +163,9 @@
       },
       "geo.moraine": {
         "anchor": [
-          1.9,
-          0.5,
-          1.1
+          1.61,
+          0.44,
+          0.44
         ],
         "nodes": [
           "Moraine_*"
@@ -168,9 +173,9 @@
       },
       "geo.meltwater": {
         "anchor": [
-          2.4,
-          0.2,
-          1.6
+          1.22,
+          0.46,
+          0.19
         ],
         "nodes": [
           "Melt_*"
@@ -178,9 +183,9 @@
       },
       "geo.river": {
         "anchor": [
-          3.2,
-          -0.1,
-          2.4
+          2.9,
+          0.17,
+          0.6
         ],
         "nodes": [
           "River_*"
@@ -239,14 +244,14 @@
             "key": "overview",
             "camera": {
               "position": [
-                0,
-                3,
-                8
+                0.6,
+                5.4,
+                6.9
               ],
               "target": [
                 0,
-                1,
-                0
+                0.8,
+                0.1
               ]
             },
             "modes": {
@@ -272,14 +277,14 @@
             "key": "accumulation",
             "camera": {
               "position": [
-                -2.6,
-                3.6,
-                1.6
+                -1,
+                4.1,
+                3.3
               ],
               "target": [
-                -1.8,
-                2.6,
-                -0.6
+                -2.3,
+                1.85,
+                -0.15
               ]
             },
             "focus": "geo.accumulation-zone",
@@ -301,6 +306,18 @@
           },
           {
             "key": "ice",
+            "camera": {
+              "position": [
+                0.3,
+                2.4,
+                5.6
+              ],
+              "target": [
+                -0.8,
+                0.9,
+                0
+              ]
+            },
             "modes": {
               "view": "section"
             },
@@ -325,14 +342,14 @@
             "key": "ablation",
             "camera": {
               "position": [
-                1.8,
-                2,
-                3
+                1.05,
+                2.2,
+                2.6
               ],
               "target": [
-                0.8,
-                1.2,
-                0.4
+                0.35,
+                0.96,
+                0.25
               ]
             },
             "focus": "geo.ablation-zone",
@@ -356,14 +373,14 @@
             "key": "moraine",
             "camera": {
               "position": [
-                2.8,
-                1.4,
-                3.4
+                2.4,
+                1.5,
+                2.5
               ],
               "target": [
-                1.9,
-                0.5,
-                1.1
+                1.61,
+                0.44,
+                0.44
               ]
             },
             "focus": "geo.moraine",
@@ -387,14 +404,14 @@
             "key": "river",
             "camera": {
               "position": [
-                4,
-                0.8,
-                4
+                3.4,
+                1.4,
+                2.8
               ],
               "target": [
-                3.2,
-                -0.1,
-                2.4
+                2.9,
+                0.17,
+                0.6
               ]
             },
             "focus": "geo.river",

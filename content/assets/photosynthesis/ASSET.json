@@ -1,0 +1,75 @@
+{
+  "topicKey": "photosynthesis",
+  "files": [
+    {
+      "path": "models/leaf.glb",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "bilig_back/scripts/assets/leaf.mjs (authored, own geometry)",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "created": "2026-10-16",
+      "modifications": [
+        "no free leaf cross-section model was found (CGTrader: paid royalty-free; BioRender: login-gated template; the rest are physical teaching models), so the block diagram is authored by the pipeline script",
+        "dicot leaf block, top to bottom: Cuticle, Epidermis_Upper, palisade mesophyll (55 columnar cells with chloroplasts along the walls), spongy mesophyll (loose cells, air spaces), Epidermis_Lower with 4 stomata (GuardCell_*a/b around Stoma_* = pore + substomatal air chamber), Cuticle",
+        "every mesophyll cell's chloroplasts are in Chloro_<cell>, their grana (thylakoid stacks, chlorophyll) in Thylakoid_<cell>",
+        "decorative, unnamed: the vein (bundle sheath, xylem, phloem)",
+        "the topic's stoma, mesophyll and chloroplast anchors sit on real parts; colours from the concept hues (hsl(h, 62%, 62%))",
+        "gltf-transform: dedup, prune, weld, EXT_meshopt_compression + quantisation; KHR_materials_clearcoat"
+      ],
+      "pipeline": "bilig_back/scripts/assets/leaf.mjs",
+      "report": {
+        "sizeBefore": 1049912,
+        "sizeAfter": 704040,
+        "trianglesAfter": 144980,
+        "textures": 0,
+        "nodes": [
+          "LeafSection",
+          "  Cuticle",
+          "  Epidermis_Upper",
+          "  Epidermis_Lower",
+          "  Stoma_1",
+          "  GuardCell_1a",
+          "  GuardCell_1b",
+          "  Stoma_2",
+          "  GuardCell_2a",
+          "  GuardCell_2b",
+          "  Stoma_3",
+          "  GuardCell_3a",
+          "  GuardCell_3b",
+          "  Stoma_4",
+          "  GuardCell_4a",
+          "  GuardCell_4b",
+          "  Palisade_1…55, Chloro_P1…P55, Thylakoid_P1…P55 (one per palisade cell)",
+          "  Spongy_1…n, Chloro_S1…Sn, Thylakoid_S1…Sn (one per spongy cell)"
+        ]
+      }
+    },
+    {
+      "path": "thumbs/chloroplast.webp",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "bilig_back/scripts/assets/cells.mjs (authored, own geometry)",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "derivedFrom": "plant-cell/models/plant-cell.glb (render)",
+      "rendered": "2026-10-16"
+    },
+    {
+      "path": "thumbs/leaf-section.webp",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "bilig_back/scripts/assets/leaf.mjs (authored, own geometry)",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "derivedFrom": "photosynthesis/models/leaf.glb (render)",
+      "rendered": "2026-10-16"
+    },
+    {
+      "path": "thumbs/plant-cell.webp",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "bilig_back/scripts/assets/cells.mjs (authored, own geometry)",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "derivedFrom": "plant-cell/models/plant-cell.glb (render)",
+      "rendered": "2026-10-16"
+    }
+  ]
+}

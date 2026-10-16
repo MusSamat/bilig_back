@@ -29,17 +29,17 @@
     "durationMin": 40,
     "scene": {
       "plugin": "gltf",
-      "asset": "models/glaciers.glb",
+      "asset": "glaciers.glb",
       "camera": {
         "position": [
-          0,
-          3,
-          8
+          0.6,
+          5.4,
+          6.9
         ],
         "target": [
           0,
-          1,
-          0
+          0.8,
+          0.1
         ],
         "fov": 45
       },
@@ -58,15 +58,20 @@
     ],
     "overrides": {
       "geo.glacier": {
+        "anchor": [
+          -1.5,
+          1.59,
+          -0.09
+        ],
         "nodes": [
           "Glacier"
         ]
       },
       "geo.accumulation-zone": {
         "anchor": [
-          -1.8,
-          2.6,
-          -0.6
+          -2.3,
+          1.85,
+          -0.15
         ],
         "nodes": [
           "Zone_Accumulation"
@@ -74,9 +79,9 @@
       },
       "geo.ablation-zone": {
         "anchor": [
-          0.8,
-          1.2,
-          0.4
+          0.35,
+          0.96,
+          0.25
         ],
         "nodes": [
           "Zone_Ablation"
@@ -84,9 +89,9 @@
       },
       "geo.moraine": {
         "anchor": [
-          1.9,
-          0.5,
-          1.1
+          1.61,
+          0.44,
+          0.44
         ],
         "nodes": [
           "Moraine_*"
@@ -94,9 +99,9 @@
       },
       "geo.meltwater": {
         "anchor": [
-          2.4,
-          0.2,
-          1.6
+          1.22,
+          0.46,
+          0.19
         ],
         "nodes": [
           "Melt_*"
@@ -104,9 +109,9 @@
       },
       "geo.river": {
         "anchor": [
-          3.2,
-          -0.1,
-          2.4
+          2.9,
+          0.17,
+          0.6
         ],
         "nodes": [
           "River_*"
@@ -165,14 +170,14 @@
             "key": "overview",
             "camera": {
               "position": [
-                0,
-                3,
-                8
+                0.6,
+                5.4,
+                6.9
               ],
               "target": [
                 0,
-                1,
-                0
+                0.8,
+                0.1
               ]
             },
             "modes": {
@@ -198,14 +203,14 @@
             "key": "accumulation",
             "camera": {
               "position": [
-                -2.6,
-                3.6,
-                1.6
+                -1.0,
+                4.1,
+                3.3
               ],
               "target": [
-                -1.8,
-                2.6,
-                -0.6
+                -2.3,
+                1.85,
+                -0.15
               ]
             },
             "focus": "geo.accumulation-zone",
@@ -227,6 +232,18 @@
           },
           {
             "key": "ice",
+            "camera": {
+              "position": [
+                0.3,
+                2.4,
+                5.6
+              ],
+              "target": [
+                -0.8,
+                0.9,
+                0
+              ]
+            },
             "modes": {
               "view": "section"
             },
@@ -251,14 +268,14 @@
             "key": "ablation",
             "camera": {
               "position": [
-                1.8,
-                2,
-                3
+                1.05,
+                2.2,
+                2.6
               ],
               "target": [
-                0.8,
-                1.2,
-                0.4
+                0.35,
+                0.96,
+                0.25
               ]
             },
             "focus": "geo.ablation-zone",
@@ -282,14 +299,14 @@
             "key": "moraine",
             "camera": {
               "position": [
-                2.8,
-                1.4,
-                3.4
+                2.4,
+                1.5,
+                2.5
               ],
               "target": [
-                1.9,
-                0.5,
-                1.1
+                1.61,
+                0.44,
+                0.44
               ]
             },
             "focus": "geo.moraine",
@@ -313,14 +330,14 @@
             "key": "river",
             "camera": {
               "position": [
-                4,
-                0.8,
-                4
+                3.4,
+                1.4,
+                2.8
               ],
               "target": [
-                3.2,
-                -0.1,
-                2.4
+                2.9,
+                0.17,
+                0.6
               ]
             },
             "focus": "geo.river",
