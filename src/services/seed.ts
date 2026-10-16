@@ -58,6 +58,8 @@ export interface SeedReport {
   subjects: number;
   topics: number;
   versionsCreated: number;
+  /** Seed-imported versions whose package changed without a version bump (new build). */
+  versionsRefreshed: number;
   strings: number;
 }
 
@@ -71,6 +73,7 @@ export async function importContent(repo: Repository, clock: Clock, content: Loa
 
   const propertyTypes = new Map<string, PropertyTypeDef>();
   let versionsCreated = 0;
+  let versionsRefreshed = 0;
   for (const pkg of content.packages) {
     strings.push(...(await upsert(repo, 'subject', pkg.subject.key, pkg.subject)));
     if (pkg.course) strings.push(...(await upsert(repo, 'course', pkg.course.key, pkg.course)));
@@ -101,6 +104,7 @@ export async function importContent(repo: Repository, clock: Clock, content: Loa
       topic = created;
     }
     let ver = await repo.getTopicVersionBySemver(topic.id, pkg.manifest.version);
+    let rebuild = false;
     if (!ver) {
       const v = await repo.createTopicVersion({
         id: newId(),
@@ -116,6 +120,16 @@ export async function importContent(repo: Repository, clock: Clock, content: Loa
       if (v === 'conflict') throw new Error(`version conflict ${doc.key}`);
       ver = v;
       versionsCreated++;
+      rebuild = true;
+    } else if (ver.message === 'seed import' && (await repo.readyBuildForVersion(ver.id))?.hash !== pkg.manifest.hash) {
+      // The content repo changed this package without a version bump (e.g. real assets
+      // replaced placeholders): refresh the imported version and give it a new build.
+      // Versions made in the admin are never touched.
+      await repo.updateTopicVersion(ver.id, { doc });
+      versionsRefreshed++;
+      rebuild = true;
+    }
+    if (rebuild) {
       await repo.createBuild({
         id: newId(),
         topicId: topic.id,
@@ -163,5 +177,5 @@ export async function importContent(repo: Repository, clock: Clock, content: Loa
     }
   }
   await repo.upsertStrings(rows);
-  return { subjects: content.base.subjects.length, topics: content.packages.length, versionsCreated, strings: seen.size };
+  return { subjects: content.base.subjects.length, topics: content.packages.length, versionsCreated, versionsRefreshed, strings: seen.size };
 }
