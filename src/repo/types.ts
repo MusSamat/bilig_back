@@ -483,6 +483,39 @@ export interface TutorThreadRec {
   topicKey: string;
   createdAt: Date;
 }
+/** v0.4.0: one AI-generated example or practice question in the pool (see /tutor/generate). */
+export type GeneratedKind = 'simple' | 'stem' | 'quiz';
+export type GeneratedStatusRec = 'new' | 'approved' | 'dismissed' | 'promoted';
+export interface GeneratedRec {
+  id: Id;
+  kind: GeneratedKind;
+  topicKey: string;
+  /** null = topic-level (no focus concept). */
+  conceptKey: string | null;
+  lang: 'ky' | 'ru' | 'en';
+  /** The example or quiz item without its id (contract shape). */
+  payload: unknown;
+  /** Normalised text used to avoid duplicates (`draftSignature`). */
+  signature: string;
+  status: GeneratedStatusRec;
+  good: number;
+  bad: number;
+  reasons: Record<string, number>;
+  served: number;
+  createdAt: Date;
+  reviewedAt: Date | null;
+  reviewedBy: Id | null;
+  promotedTo: string | null;
+}
+export interface GeneratedFilter {
+  topicKey?: string;
+  /** null = only topic-level rows; undefined = any. */
+  conceptKey?: string | null;
+  kind?: GeneratedKind;
+  lang?: 'ky' | 'ru' | 'en';
+  status?: GeneratedStatusRec;
+}
+
 export interface TutorMessageRec {
   id: Id;
   threadId: Id;
@@ -721,6 +754,14 @@ export interface Repository {
   getThread(id: Id): Promise<TutorThreadRec | null>;
   addTutorMessage(m: TutorMessageRec): Promise<void>;
   listTutorMessages(filter: { threadId?: Id; from?: Date; to?: Date; limit?: number }): Promise<TutorMessageRec[]>;
+  // generated content (v0.4.0)
+  addGenerated(rows: GeneratedRec[]): Promise<void>;
+  getGenerated(id: Id): Promise<GeneratedRec | null>;
+  /** Ordered by id (creation order). */
+  listGenerated(filter: GeneratedFilter, page: PageReq): Promise<PageRes<GeneratedRec>>;
+  updateGenerated(id: Id, patch: Partial<Pick<GeneratedRec, 'status' | 'reviewedAt' | 'reviewedBy' | 'promotedTo'>>): Promise<GeneratedRec | null>;
+  /** Atomic counters: times served, «хороший пример», reports (per reason). */
+  countGenerated(ids: Id[], delta: { served?: number; good?: number; bad?: number; reason?: string }): Promise<void>;
 
   // audit & settings
   appendAudit(a: AuditRec): Promise<void>;

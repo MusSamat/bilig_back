@@ -52,6 +52,8 @@ import type {
   TopicRec,
   TopicVersionRec,
   TutorMessageRec,
+  GeneratedFilter,
+  GeneratedRec,
   TutorThreadRec,
   UserRec,
   WriteResult,
@@ -409,6 +411,24 @@ const mapSnapshot = (r: Row): SnapshotRec => ({
   createdAt: r.createdAt,
 });
 const mapThread = (r: Row): TutorThreadRec => ({ id: r.id, userId: r.userId, topicKey: r.topicKey, createdAt: r.createdAt });
+const mapGenerated = (r: Row): GeneratedRec => ({
+  id: r.id,
+  kind: r.kind,
+  topicKey: r.topicKey,
+  conceptKey: r.conceptKey,
+  lang: r.lang,
+  payload: r.payload,
+  signature: r.signature,
+  status: r.status,
+  good: r.good,
+  bad: r.bad,
+  reasons: (r.reasons ?? {}) as Record<string, number>,
+  served: r.served,
+  createdAt: r.createdAt,
+  reviewedAt: r.reviewedAt,
+  reviewedBy: r.reviewedBy,
+  promotedTo: r.promotedTo,
+});
 const mapMessage = (r: Row): TutorMessageRec => ({
   id: r.id,
   threadId: r.threadId,
@@ -1159,6 +1179,47 @@ export class PrismaRepository implements Repository {
   async addTutorMessage(m: TutorMessageRec) {
     await this.db.tutorMessage.create({ data: m });
   }
+  async addGenerated(rows: GeneratedRec[]) {
+    if (!rows.length) return;
+    await this.db.generatedContent.createMany({ data: rows.map((g) => ({ ...g, payload: g.payload as object, reasons: g.reasons })) });
+  }
+  async getGenerated(id: Id) {
+    const r = await this.db.generatedContent.findUnique({ where: { id } });
+    return r ? mapGenerated(r) : null;
+  }
+  async listGenerated(filter: GeneratedFilter, p: PageReq) {
+    const rows = await this.db.generatedContent.findMany({
+      where: {
+        ...idWhere(p),
+        ...(filter.topicKey ? { topicKey: filter.topicKey } : {}),
+        ...(filter.conceptKey !== undefined ? { conceptKey: filter.conceptKey } : {}),
+        ...(filter.kind ? { kind: filter.kind } : {}),
+        ...(filter.lang ? { lang: filter.lang } : {}),
+        ...(filter.status ? { status: filter.status } : {}),
+      },
+      orderBy: { id: 'asc' },
+      take: p.limit + 1,
+    });
+    const res = page(rows, p.limit, (r) => r.id);
+    return { items: res.items.map(mapGenerated), nextCursor: res.nextCursor };
+  }
+  async updateGenerated(id: Id, patch: Partial<Pick<GeneratedRec, 'status' | 'reviewedAt' | 'reviewedBy' | 'promotedTo'>>) {
+    const r = await this.db.generatedContent.updateMany({ where: { id }, data: patch });
+    return r.count ? this.getGenerated(id) : null;
+  }
+  async countGenerated(ids: Id[], delta: { served?: number; good?: number; bad?: number; reason?: string }) {
+    if (!ids.length) return;
+    // One statement: counters and the per-reason JSON bump stay atomic under concurrent votes.
+    await this.db.$executeRaw`
+      UPDATE "GeneratedContent" SET
+        "served" = "served" + ${delta.served ?? 0},
+        "good" = "good" + ${delta.good ?? 0},
+        "bad" = "bad" + ${delta.bad ?? 0},
+        "reasons" = CASE WHEN ${delta.reason ?? null}::text IS NULL THEN "reasons"
+          ELSE jsonb_set("reasons", ARRAY[${delta.reason ?? ''}::text], to_jsonb(COALESCE(("reasons"->>${delta.reason ?? ''}::text)::int, 0) + 1)) END
+      WHERE "id" = ANY(${ids}::uuid[])`;
+  }
+
   async listTutorMessages(filter: { threadId?: Id; from?: Date; to?: Date; limit?: number }) {
     const r = range(filter.from, filter.to);
     const where = { ...(filter.threadId ? { threadId: filter.threadId } : {}), ...(r ? { createdAt: r } : {}) };

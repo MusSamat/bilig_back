@@ -115,7 +115,8 @@ All variables are documented in [`.env.example`](.env.example). The important on
 | `REDIS_URL` | rate limits and the tutor budget; unreachable → in-memory fallback (single instance only) |
 | `JWT_SECRET`, `PSEUDONYM_SECRET` | required in production |
 | `CORS_ORIGIN` | comma-separated client/admin origins (credentials allowed) |
-| `ANTHROPIC_API_KEY`, `TUTOR_MODEL` | tutor provider (`claude-opus-5-5`); unset → `/tutor/ask` answers 503 |
+| `ANTHROPIC_API_KEY`, `TUTOR_MODEL` | tutor provider (`claude-opus-5-5`) |
+| `TUTOR_PROVIDER` | `anthropic`, `dev` or `none`. Unset: `anthropic` with a key, else `dev` in development, else `none` (tutor answers 503). `dev` answers and generates from the package itself, without an LLM, and is refused in production |
 | `TUTOR_DAILY_TOKEN_BUDGET` | daily token budget; once spent the tutor answers 503 |
 | `MAIL_TRANSPORT` | `console` prints verification / reset / invite links |
 | `DEMO_SEED` | `1` loads the demo dataset at startup (dev only; refused in production) |
@@ -155,6 +156,17 @@ All variables are documented in [`.env.example`](.env.example). The important on
   content; names, phones and e-mails are masked; no user ids are sent; stop
   topics and injection attempts are refused without calling the model; limits
   apply per IP, role and school, plus a daily token budget.
+  Since 0.4.0 the request carries a context envelope (focus concept, sample,
+  process step, a quote the teacher selected, and a quick action: explain,
+  simpler, example). Keys are resolved against the package; the quote is
+  masked and treated as data. Off-topic answers end with a `suggestions` event
+  of follow-up questions about the topic.
+- **Generated examples and questions.** `POST /api/v1/tutor/generate` serves
+  «Ещё примеры» / «Ещё вопросы» from a pool (approved items first, reported
+  ones hidden) and tops it up with the model through structured outputs. Every
+  item is validated before it is stored or shown. Teachers rate items
+  (`/tutor/generated/:id/feedback`), and editors review them in
+  `/admin/generated` (approve, dismiss, or promote into the content).
 - **Logs.** pino JSON with a trace id (`X-Request-Id` / `traceparent`); no
   tokens, cookies, bodies or query strings.
 
@@ -167,4 +179,5 @@ All variables are documented in [`.env.example`](.env.example). The important on
   exists; local storage has no presigned multipart upload (the S3/MinIO adapter is pending;
   `POST /admin/assets/:id/complete` calls its `completeMultipart` once it exists).
 - Contract 0.3.0 changes (admin/client requests → resolutions): [`docs/CONTRACT_CHANGES-0.3.0.md`](docs/CONTRACT_CHANGES-0.3.0.md).
+- Contract 0.4.0 (assistant in the classroom: context, quick actions, generation, review): [`docs/CONTRACT_CHANGES-0.4.0.md`](docs/CONTRACT_CHANGES-0.4.0.md).
 - LearningEvent month partitioning, OpenTelemetry and Sentry are not wired up yet.

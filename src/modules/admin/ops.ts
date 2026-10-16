@@ -225,7 +225,7 @@ export function registerOpsAdmin(app: FastifyInstance, deps: Deps) {
       let refused = false;
       let error: string | undefined;
       try {
-        for await (const c of provider.stream({ model: settings.model, system: buildSystemPrompt(pkg, q.lang, settings.systemPrompts[q.lang]), messages: [{ role: 'user', text: wrapQuestion(masked) }], maxTokens: 700 })) {
+        for await (const c of provider.stream({ model: settings.model, system: buildSystemPrompt(pkg, q.lang, settings.systemPrompts[q.lang]), messages: [{ role: 'user', text: wrapQuestion(masked) }], maxTokens: 700, grounding: { pkg, lang: q.lang, question: masked } })) {
           if (c.type === 'text') parser.push(c.text);
           else if (c.type === 'usage') {
             usage.inputTokens += c.inputTokens;

@@ -608,6 +608,29 @@ model TutorMessage {
   @@index([createdAt])
 }
 
+/// v0.4.0: pool of AI-generated examples / practice questions (POST /tutor/generate) and their review state.
+model GeneratedContent {
+  id         String    @id @db.Uuid
+  kind       String
+  topicKey   String
+  conceptKey String?
+  lang       String
+  payload    Json
+  signature  String
+  status     String    @default("new")
+  good       Int       @default(0)
+  bad        Int       @default(0)
+  reasons    Json      @default("{}")
+  served     Int       @default(0)
+  createdAt  DateTime  @db.Timestamptz(3)
+  reviewedAt DateTime? @db.Timestamptz(3)
+  reviewedBy String?   @db.Uuid
+  promotedTo String?
+
+  @@index([topicKey, kind, lang])
+  @@index([status])
+}
+
 // ---------------------------------------------------------------------------
 // Audit & settings
 // ---------------------------------------------------------------------------

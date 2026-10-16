@@ -13,6 +13,7 @@ import { ItemSchema, ItemTypeSchema } from '../item.js';
 import { ProcessSchema } from '../process.js';
 import { ComparisonSchema, ContentStatusSchema, TopicSchema, TourSchema, type ContentStatus } from '../topic.js';
 import { AuthorSubroleSchema, EmailSchema, RoleGrantSchema, RoleSchema, ScopeSchema } from './auth.js';
+import { GenerateKindSchema, GeneratedExampleSchema, GeneratedQuizItemSchema, GeneratedReportReasonSchema } from './tutor.js';
 import { DateTimeSchema, IdSchema, PageQuerySchema, QueryBoolSchema, SortOrderSchema, VersionTagSchema, cursorPage, sortQuery } from './common.js';
 
 // ---------------------------------------------------------------------------
@@ -813,3 +814,62 @@ export const TutorRegressionResultSchema = z.object({
   items: z.array(TutorRegressionItemSchema),
 });
 export type TutorRegressionResult = z.infer<typeof TutorRegressionResultSchema>;
+
+// ---------------------------------------------------------------------------
+// v0.4.0 (additive): review queue for AI-generated examples and questions.
+// GET /admin/generated, PATCH /admin/generated/:id
+// ---------------------------------------------------------------------------
+
+/**
+ * `new` → served to teachers with an «ИИ» label; `approved` → served first;
+ * `dismissed` → never served again; `promoted` → copied into the content
+ * (item bank / concept examples) by an editor, no longer served from the pool.
+ */
+export const GENERATED_STATUSES = ['new', 'approved', 'dismissed', 'promoted'] as const;
+export const GeneratedStatusSchema = z.enum(GENERATED_STATUSES);
+export type GeneratedStatus = z.infer<typeof GeneratedStatusSchema>;
+
+export const AdminGeneratedSchema = z.object({
+  id: IdSchema,
+  kind: GenerateKindSchema,
+  topicKey: KeySchema,
+  conceptKey: KeySchema.optional(),
+  lang: LangSchema,
+  /** Set for `simple` / `stem`. */
+  example: GeneratedExampleSchema.optional(),
+  /** Set for `quiz`. */
+  quiz: GeneratedQuizItemSchema.optional(),
+  status: GeneratedStatusSchema,
+  /** Teachers who marked it «хороший пример». */
+  good: z.number().int().min(0),
+  /** Teachers who reported it, total and per reason. */
+  bad: z.number().int().min(0),
+  reasons: z.record(GeneratedReportReasonSchema, z.number().int().min(0)),
+  /** Times it was sent to a teacher. */
+  served: z.number().int().min(0),
+  createdAt: DateTimeSchema,
+  reviewedAt: DateTimeSchema.optional(),
+  reviewedBy: IdSchema.optional(),
+  /** Where it went on promotion, e.g. `item:bio.q-nucleus-1` or `concept:bio.nucleus`. */
+  promotedTo: z.string().max(200).optional(),
+});
+export type AdminGenerated = z.infer<typeof AdminGeneratedSchema>;
+
+export const GENERATED_SORT_FIELDS = ['createdAt', 'good', 'bad', 'served'] as const;
+export const AdminGeneratedListQuerySchema = PageQuerySchema.extend({
+  status: GeneratedStatusSchema.optional(),
+  kind: GenerateKindSchema.optional(),
+  topicKey: KeySchema.optional(),
+  lang: LangSchema.optional(),
+  /** true = only items with at least one report. */
+  reported: QueryBoolSchema.optional(),
+  ...sortQuery(GENERATED_SORT_FIELDS),
+});
+export type AdminGeneratedListQuery = z.input<typeof AdminGeneratedListQuerySchema>;
+export const AdminGeneratedListSchema = cursorPage(AdminGeneratedSchema);
+
+export const AdminGeneratedPatchSchema = z.object({
+  status: GeneratedStatusSchema,
+  promotedTo: z.string().trim().min(1).max(200).optional(),
+});
+export type AdminGeneratedPatch = z.infer<typeof AdminGeneratedPatchSchema>;

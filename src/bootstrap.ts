@@ -10,6 +10,7 @@ import { ContentService } from './services/content.js';
 import { ConsoleMailer, MemoryMailer, type Mailer } from './services/mailer.js';
 import { createLimiter, MemoryLimiter, type Limiter } from './services/rate-limit.js';
 import { LocalDiskStorage, MemoryStorage, type ObjectStorage } from './services/storage.js';
+import { DevProvider } from './services/tutor-dev-provider.js';
 import { AnthropicProvider, type TutorProvider } from './services/tutor-provider.js';
 
 export interface DepsOverrides {
@@ -36,7 +37,7 @@ export async function createDeps(config: Config, o: DepsOverrides = {}): Promise
   const mailer = o.mailer ?? (config.mailTransport === 'memory' ? new MemoryMailer() : new ConsoleMailer());
   const storage =
     o.storage ?? (config.env === 'test' ? new MemoryStorage(config.publicUrl) : new LocalDiskStorage(config.storageDir, config.publicUrl));
-  const tutor = o.tutor !== undefined ? o.tutor : config.anthropicApiKey ? new AnthropicProvider(config.anthropicApiKey) : null;
+  const tutor = o.tutor !== undefined ? o.tutor : createTutorProvider(config);
   return {
     config,
     repo,
@@ -49,4 +50,10 @@ export async function createDeps(config: Config, o: DepsOverrides = {}): Promise
     content: new ContentService(repo, clock, { publicUrl: config.publicUrl, cdnBaseUrl: config.cdnBaseUrl }),
     tutor,
   };
+}
+
+export function createTutorProvider(config: Pick<Config, 'tutorProvider' | 'anthropicApiKey'>): TutorProvider | null {
+  if (config.tutorProvider === 'anthropic' && config.anthropicApiKey) return new AnthropicProvider(config.anthropicApiKey);
+  if (config.tutorProvider === 'dev') return new DevProvider();
+  return null;
 }

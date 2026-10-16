@@ -8,7 +8,7 @@ import { afterAll, beforeEach, describe, expect, it } from 'vitest';
 import { animalCellPackage } from '@bilig/content-model/fixtures/animal-cell';
 import { newId } from '../ids.js';
 import type { ContentPackage } from '@bilig/content-model';
-import type { BuildRec, ClassRec, Repository, SessionRec, TopicVersionRec, UserRec } from './types.js';
+import type { BuildRec, ClassRec, GeneratedRec, Repository, SessionRec, TopicVersionRec, UserRec } from './types.js';
 
 const T0 = new Date('2026-10-15T08:00:00Z');
 const at = (min: number) => new Date(T0.getTime() + min * 60_000);
@@ -556,6 +556,38 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         expect((await repo.listTutorMessages({ threadId: th.id, limit: 2 })).map((m) => m.text)).toEqual(['a1', 'q2']);
         expect((await repo.listTutorMessages({ from: at(1), to: at(2) })).map((m) => m.text)).toEqual(['a1']);
         expect((await repo.listTutorMessages({ threadId: th.id }))[1].citations).toEqual(['bio.nucleus']);
+      });
+
+      it('generated content: pool filters, review patch, atomic counters (v0.4.0)', async () => {
+        const g = (patch: Partial<GeneratedRec> = {}): GeneratedRec => ({
+          id: newId(), kind: 'quiz', topicKey: 'methane', conceptKey: 'chem.bond', lang: 'ru',
+          payload: { prompt: 'p', options: [{ key: 'a', text: 'A' }, { key: 'b', text: 'B' }], answer: 'a', explanation: 'e' },
+          signature: 'p', status: 'new', good: 0, bad: 0, reasons: {}, served: 0, createdAt: T0, reviewedAt: null, reviewedBy: null, promotedTo: null, ...patch,
+        });
+        const a = g();
+        const b = g({ conceptKey: null, kind: 'simple', payload: { title: 't', text: 'x' } });
+        const c = g({ lang: 'ky' });
+        await repo.addGenerated([a, b, c]);
+        await repo.addGenerated([]);
+        expect(await repo.getGenerated(a.id)).toEqual(a);
+        expect(await repo.getGenerated(newId())).toBeNull();
+        expect((await repo.listGenerated({ topicKey: 'methane', conceptKey: 'chem.bond', kind: 'quiz', lang: 'ru' }, { limit: 10 })).items.map((x) => x.id)).toEqual([a.id]);
+        expect((await repo.listGenerated({ conceptKey: null }, { limit: 10 })).items.map((x) => x.id)).toEqual([b.id]);
+        const p1 = await repo.listGenerated({}, { limit: 2 });
+        expect(p1.items).toHaveLength(2);
+        expect((await repo.listGenerated({}, { limit: 2, cursor: p1.nextCursor! })).items).toHaveLength(1);
+
+        const reviewer = newId();
+        const up = await repo.updateGenerated(a.id, { status: 'promoted', reviewedAt: at(5), reviewedBy: reviewer, promotedTo: 'item:chem.q1' });
+        expect(up).toMatchObject({ status: 'promoted', reviewedBy: reviewer, promotedTo: 'item:chem.q1' });
+        expect(await repo.updateGenerated(newId(), { status: 'dismissed' })).toBeNull();
+        expect((await repo.listGenerated({ status: 'promoted' }, { limit: 10 })).items.map((x) => x.id)).toEqual([a.id]);
+
+        await repo.countGenerated([a.id, b.id], { served: 1 });
+        await Promise.all([repo.countGenerated([a.id], { bad: 1, reason: 'wrong' }), repo.countGenerated([a.id], { bad: 1, reason: 'wrong' }), repo.countGenerated([a.id], { good: 1 })]);
+        await repo.countGenerated([a.id], { bad: 1, reason: 'unclear' });
+        expect(await repo.getGenerated(a.id)).toMatchObject({ served: 1, good: 1, bad: 3, reasons: { wrong: 2, unclear: 1 } });
+        expect(await repo.getGenerated(b.id)).toMatchObject({ served: 1, bad: 0, reasons: {} });
       });
 
       it('audit append + filters + pagination', async () => {

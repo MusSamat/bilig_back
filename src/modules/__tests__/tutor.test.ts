@@ -127,6 +127,7 @@ describe('tutor', () => {
         yield { type: 'text' as const, text: 'Начало ' };
         throw new Error('cut');
       },
+      generate: async () => ({ data: null, usage: { inputTokens: 0, outputTokens: 0 } }),
     };
     t = await makeTestApp({ tutor: flaky });
     const r = await ask({});

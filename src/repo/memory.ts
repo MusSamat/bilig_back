@@ -18,6 +18,8 @@ import type {
   ConsentRec,
   ContentFilter,
   ContentKind,
+  GeneratedFilter,
+  GeneratedRec,
   ContentKinds,
   ContentRec,
   ContentStore,
@@ -145,6 +147,7 @@ export class MemoryRepository implements Repository {
   private snapshots = new Map<Id, SnapshotRec>();
   private threads = new Map<Id, TutorThreadRec>();
   private messages: TutorMessageRec[] = [];
+  private generated = new Map<Id, GeneratedRec>();
   private audit: AuditRec[] = [];
   private settings = new Map<string, SettingRec>();
 
@@ -777,6 +780,42 @@ export class MemoryRepository implements Repository {
   async addTutorMessage(m: TutorMessageRec) {
     this.messages.push(clone(m));
   }
+  async addGenerated(rows: GeneratedRec[]) {
+    for (const r of rows) this.generated.set(r.id, clone(r));
+  }
+  async getGenerated(id: Id) {
+    const r = this.generated.get(id);
+    return r ? clone(r) : null;
+  }
+  async listGenerated(filter: GeneratedFilter, page: PageReq) {
+    const rows = [...this.generated.values()]
+      .filter((g) => (filter.topicKey ? g.topicKey === filter.topicKey : true))
+      .filter((g) => (filter.conceptKey !== undefined ? g.conceptKey === filter.conceptKey : true))
+      .filter((g) => (filter.kind ? g.kind === filter.kind : true))
+      .filter((g) => (filter.lang ? g.lang === filter.lang : true))
+      .filter((g) => (filter.status ? g.status === filter.status : true))
+      .sort(byId);
+    const res = pageArray(rows, page, (g) => g.id);
+    return { items: res.items.map(clone), nextCursor: res.nextCursor };
+  }
+  async updateGenerated(id: Id, patch: Partial<Pick<GeneratedRec, 'status' | 'reviewedAt' | 'reviewedBy' | 'promotedTo'>>) {
+    const g = this.generated.get(id);
+    if (!g) return null;
+    const next = { ...g, ...patch };
+    this.generated.set(id, next);
+    return clone(next);
+  }
+  async countGenerated(ids: Id[], delta: { served?: number; good?: number; bad?: number; reason?: string }) {
+    for (const id of ids) {
+      const g = this.generated.get(id);
+      if (!g) continue;
+      g.served += delta.served ?? 0;
+      g.good += delta.good ?? 0;
+      g.bad += delta.bad ?? 0;
+      if (delta.reason) g.reasons = { ...g.reasons, [delta.reason]: (g.reasons[delta.reason] ?? 0) + 1 };
+    }
+  }
+
   async listTutorMessages(filter: { threadId?: Id; from?: Date; to?: Date; limit?: number }) {
     let rows = this.messages
       .filter((m) => (filter.threadId ? m.threadId === filter.threadId : true))

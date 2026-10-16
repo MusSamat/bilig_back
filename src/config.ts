@@ -36,6 +36,12 @@ const EnvSchema = z.object({
   STORAGE_DIR: z.string().default('./var/storage'),
   CONTENT_DIR: z.string().optional(),
   ANTHROPIC_API_KEY: z.string().optional(),
+  /**
+   * `anthropic` (needs ANTHROPIC_API_KEY), `dev` (answers and generates from the
+   * package itself, no LLM; refused in production) or `none` (offline 503).
+   * Unset: `anthropic` with a key, else `dev` in development, else `none`.
+   */
+  TUTOR_PROVIDER: z.enum(['anthropic', 'dev', 'none']).optional(),
   TUTOR_MODEL: z.string().default('claude-opus-5-5'),
   TUTOR_DAILY_TOKEN_BUDGET: z.coerce.number().int().min(0).default(2_000_000),
   MAIL_TRANSPORT: z.enum(['console', 'memory']).default('console'),
@@ -68,6 +74,7 @@ export interface Config {
   storageDir: string;
   contentDir?: string;
   anthropicApiKey?: string;
+  tutorProvider: 'anthropic' | 'dev' | 'none';
   tutorModel: string;
   tutorDailyTokenBudget: number;
   mailTransport: Env['MAIL_TRANSPORT'];
@@ -92,6 +99,12 @@ export function loadConfig(env?: NodeJS.ProcessEnv): Config {
   if (e.NODE_ENV === 'production' && (!e.JWT_SECRET || !e.PSEUDONYM_SECRET)) {
     throw new Error('JWT_SECRET and PSEUDONYM_SECRET are required in production');
   }
+  if (e.NODE_ENV === 'production' && e.TUTOR_PROVIDER === 'dev') {
+    throw new Error('TUTOR_PROVIDER=dev is a dev-only switch and is refused in production');
+  }
+  if (e.TUTOR_PROVIDER === 'anthropic' && !e.ANTHROPIC_API_KEY) {
+    throw new Error('TUTOR_PROVIDER=anthropic requires ANTHROPIC_API_KEY');
+  }
   if (e.NODE_ENV === 'production' && e.ADMIN_TOTP_DISABLED) {
     throw new Error('ADMIN_TOTP_DISABLED is a dev-only switch and is refused in production');
   }
@@ -115,6 +128,7 @@ export function loadConfig(env?: NodeJS.ProcessEnv): Config {
     storageDir: e.STORAGE_DIR,
     contentDir: e.CONTENT_DIR,
     anthropicApiKey: e.ANTHROPIC_API_KEY || undefined,
+    tutorProvider: e.TUTOR_PROVIDER ?? (e.ANTHROPIC_API_KEY ? 'anthropic' : e.NODE_ENV === 'development' ? 'dev' : 'none'),
     tutorModel: e.TUTOR_MODEL,
     tutorDailyTokenBudget: e.TUTOR_DAILY_TOKEN_BUDGET,
     mailTransport: e.MAIL_TRANSPORT,

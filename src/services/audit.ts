@@ -52,7 +52,12 @@ export type AuditAction =
   | 'invite.revoked'
   | 'invite.resent'
   | 'student.data_reveal'
-  | 'auth.2fa_enrollment_started';
+  | 'auth.2fa_enrollment_started'
+  // v0.4.0: review of AI-generated examples and questions
+  | 'generated.new'
+  | 'generated.approved'
+  | 'generated.dismissed'
+  | 'generated.promoted';
 
 export class AuditService {
   constructor(private repo: Repository, private clock: Clock) {}

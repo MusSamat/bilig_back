@@ -296,6 +296,18 @@ export const ENDPOINTS = {
 
   // Admin: tutor regression run (A-18)
   adminTutorRegression: e({ method: 'POST', path: '/admin/tutor-settings/regression', auth: 'platform.manage', body: admin.TutorRegressionRequestSchema, response: admin.TutorRegressionResultSchema }),
+
+  // ---------------------------------------------------------------------------
+  // v0.4.0 (additive) — see docs/CONTRACT_CHANGES-0.4.0.md in bilig_back
+  // ---------------------------------------------------------------------------
+
+  // Tutor: generated examples and practice questions; teacher feedback on them
+  tutorGenerate: e({ method: 'POST', path: '/tutor/generate', auth: 'assistant.ask.online', body: tutor.TutorGenerateRequestSchema, response: tutor.TutorGenerateResponseSchema }),
+  tutorGeneratedFeedback: e({ method: 'POST', path: '/tutor/generated/:id/feedback', auth: 'assistant.ask.online', body: tutor.GeneratedFeedbackRequestSchema, response: OkSchema }),
+
+  // Admin: review queue for generated content
+  adminGeneratedList: e({ method: 'GET', path: '/admin/generated', auth: 'content.draft.edit', query: admin.AdminGeneratedListQuerySchema, response: admin.AdminGeneratedListSchema }),
+  adminGeneratedPatch: e({ method: 'PATCH', path: '/admin/generated/:id', auth: 'content.draft.edit', body: admin.AdminGeneratedPatchSchema, response: admin.AdminGeneratedSchema }),
 } as const satisfies Record<string, EndpointDef>;
 
 export type EndpointName = keyof typeof ENDPOINTS;
