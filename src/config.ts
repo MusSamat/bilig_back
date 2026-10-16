@@ -1,5 +1,7 @@
 /** Environment configuration (parsed once with Zod; see .env.example). */
 import { randomBytes } from 'node:crypto';
+import { existsSync, readFileSync } from 'node:fs';
+import { parseEnv } from 'node:util';
 import { z } from 'zod';
 
 const bool = z
@@ -75,7 +77,17 @@ export interface Config {
   adminTotpDisabled: boolean;
 }
 
-export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
+/** Fill unset variables from `./.env` (the same file the Prisma CLI reads); the real environment wins. */
+export function loadDotEnv(file = '.env', env: NodeJS.ProcessEnv = process.env): void {
+  if (!existsSync(file)) return;
+  for (const [k, v] of Object.entries(parseEnv(readFileSync(file, 'utf8')))) if (env[k] === undefined) env[k] = v;
+}
+
+export function loadConfig(env?: NodeJS.ProcessEnv): Config {
+  if (!env) {
+    loadDotEnv();
+    env = process.env;
+  }
   const e = EnvSchema.parse(env);
   if (e.NODE_ENV === 'production' && (!e.JWT_SECRET || !e.PSEUDONYM_SECRET)) {
     throw new Error('JWT_SECRET and PSEUDONYM_SECRET are required in production');

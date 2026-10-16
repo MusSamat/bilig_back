@@ -46,6 +46,8 @@ npm run db:seed             # import content/** as published TopicVersions + Bui
 npm run start:dev           # http://localhost:3000/api/v1/health
 ```
 
+`npm start` and the seed scripts read `./.env` (git-ignored; real env vars win), e.g. `DATABASE_URL=postgresql://bilig:bilig@localhost:55433/bilig`.
+
 No Docker? `STORAGE=memory npm run start:dev` keeps everything in memory and
 loads `content/**` on boot (data is lost on restart).
 

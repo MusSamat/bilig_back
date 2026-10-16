@@ -4,6 +4,7 @@ services:
   postgres:
     image: postgres:16
     container_name: bilig_postgres
+    restart: unless-stopped
     environment:
       POSTGRES_USER: bilig
       POSTGRES_PASSWORD: bilig
@@ -21,6 +22,7 @@ services:
   redis:
     image: redis:7
     container_name: bilig_redis
+    restart: unless-stopped
     ports:
       - '56379:6379'
     volumes:
