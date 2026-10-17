@@ -10,20 +10,30 @@
  *
  *   node human-heart.mjs <heart.glb> <vasculature.glb> <out.glb> [report.json]
  *
- * What it does: keeps the heart + the great vessels at its base, renames the
- * nodes to the topic's concept masks (RightAtrium, Valve_*, Aorta_*), adds a
- * schematic pericardium shell (PCA-fitted ellipsoid, it is not in the source),
- * gives each tissue its own material, centres and scales the model to ~3.4
- * scene units, then simplifies + meshopt-compresses it (lib.optimise).
+ * What it does: keeps the heart + the great vessels and the coronary
+ * vessels on its surface, renames the nodes to the topic's concept masks
+ * (RightAtrium, Valve_*, Aorta_*), adds a schematic pericardium shell
+ * (PCA-fitted ellipsoid, it is not in the source), gives each tissue an
+ * atlas-style wet-tissue material (myocardium red-brown with clearcoat,
+ * arteries red, veins blue-purple, groove fat painted as vertex colour along
+ * the coronary vessels), simplifies each part to its own triangle budget,
+ * caps the closed walls where the client's «section» plane cuts them (world
+ * z = 0, so the cut myocardium reads as a solid wall, not a hollow shell),
+ * centres and scales the model to ~3.4 scene units and meshopt-compresses it.
  */
 import { writeFileSync } from 'node:fs';
 import { getBounds } from '@gltf-transform/core';
+import { KHRMaterialsClearcoat } from '@gltf-transform/extensions';
 import {
   clearNodeTransform,
   mergeDocuments,
   prune,
+  simplifyPrimitive,
   unpartition,
+  weld,
 } from '@gltf-transform/functions';
+import { MeshoptSimplifier } from 'meshoptimizer';
+import { ShapeUtils, Vector2 } from 'three';
 import {
   centreOf,
   checkBudget,
@@ -95,25 +105,79 @@ const VESSELS = {
     'Coronary_Diagonal',
     'coronary',
   ],
-  VH_M_coronary_sinus: ['CoronarySinus', 'vein'],
+  VH_M_left_marginal_branch: ['Coronary_LeftMarginal', 'coronary'],
+  VH_M_right_marginal_artery: ['Coronary_RightMarginal', 'coronary'],
+  VH_M_coronary_sinus: ['CoronarySinus', 'cardiacVein'],
+  VH_M_great_cardiac_vein: ['CardiacVein_Great', 'cardiacVein'],
+  VH_M_middle_cardiac_vein: ['CardiacVein_Middle', 'cardiacVein'],
+  VH_M_small_cardiac_vein: ['CardiacVein_Small', 'cardiacVein'],
+  VH_M_anterior_cardiac_vein: ['CardiacVein_Anterior', 'cardiacVein'],
 };
+/**
+ * Atlas palette (linear-ish sRGB hex; the client tone-maps with Neutral).
+ * Myocardium is a deep red-brown and carries vertex colours (groove fat), so
+ * its factor stays white and the colour lives in MYO below.
+ * `cc` = clearcoat (wet serous surface), `cut` = colour of the section cap.
+ */
 const MATERIALS = {
-  atrium: { color: '#c65a60', roughness: 0.6 },
-  ventricle: { color: '#a8323c', roughness: 0.6 },
-  septum: { color: '#93303a', roughness: 0.65 },
-  papillary: { color: '#9a2f38', roughness: 0.65 },
-  valve: { color: '#ead9a6', roughness: 0.5 },
-  aorta: { color: '#d8403f', roughness: 0.45 },
-  pulmArtery: { color: '#4a6fc4', roughness: 0.45 },
-  pulmVein: { color: '#d96a6a', roughness: 0.45 },
-  vein: { color: '#3b55a8', roughness: 0.45 },
-  coronary: { color: '#e5534b', roughness: 0.45 },
-  pericardium: { color: '#f3c9c4', roughness: 0.3, alpha: 0.3 },
+  atrium: { color: '#ffffff', roughness: 0.55, cc: 0.6, vc: true },
+  ventricle: { color: '#ffffff', roughness: 0.55, cc: 0.6, vc: true },
+  septum: { color: '#7c2622', roughness: 0.6, cc: 0.3 },
+  papillary: { color: '#8a2c27', roughness: 0.6, cc: 0.3 },
+  valve: { color: '#e9dcc0', roughness: 0.45, cc: 0.5 },
+  aorta: { color: '#c42a22', roughness: 0.42, cc: 0.7 },
+  pulmArtery: { color: '#3d58b8', roughness: 0.42, cc: 0.7 },
+  pulmVein: { color: '#c23a33', roughness: 0.42, cc: 0.7 },
+  vein: { color: '#4a3f9e', roughness: 0.42, cc: 0.7 },
+  coronary: { color: '#d8332a', roughness: 0.38, cc: 0.8 },
+  cardiacVein: { color: '#43409c', roughness: 0.38, cc: 0.8 },
+  pericardium: { color: '#c99a8e', roughness: 0.25, alpha: 0.3, cc: 0.6 },
+  // Section caps: cut tissue, a little lighter than the surface.
+  cutMuscle: { color: '#b4554a', roughness: 0.8 },
+  cutArtery: { color: '#d4554a', roughness: 0.7 },
+  cutVein: { color: '#5d57ad', roughness: 0.7 },
+  cutValve: { color: '#efe4cc', roughness: 0.7 },
+};
+/** Myocardium surface colours (vertex colours, sRGB). */
+const MYO = {
+  atrium: '#7c2e29',
+  ventricle: '#6c221e',
+  fat: '#d4ad5c',
+};
+/** Section cap material per source material. */
+const CUT_OF = {
+  atrium: 'cutMuscle',
+  ventricle: 'cutMuscle',
+  septum: 'cutMuscle',
+  papillary: 'cutMuscle',
+  valve: 'cutValve',
+  aorta: 'cutArtery',
+  pulmArtery: 'cutVein',
+  pulmVein: 'cutArtery',
+  vein: 'cutVein',
+  coronary: 'cutArtery',
+  cardiacVein: 'cutVein',
+};
+/** Share of source triangles kept, per material group (budget ≤ 150k in total). */
+const KEEP = {
+  atrium: 0.5,
+  ventricle: 0.7,
+  septum: 0.7,
+  papillary: 1,
+  valve: 0.3,
+  aorta: 0.6,
+  pulmArtery: 0.45,
+  pulmVein: 0.5,
+  vein: 0.3,
+  coronary: 0.5,
+  cardiacVein: 1,
 };
 /** Heart size in scene units (the topic camera frames ~±2.5). */
 const TARGET_SIZE = 3.4;
+/** The client's «section» plane is world z = 0 (z ≤ 0 kept); caps sit just behind it. */
+const CAP_Z = -0.004;
 
-const hex = (h) =>
+const srgb = (h) =>
   [1, 3, 5].map((i) => (parseInt(h.slice(i, i + 2), 16) / 255) ** 2.2);
 
 const io = await createIO();
@@ -145,14 +209,23 @@ const byName = new Map(
     .map((n) => [n.getName(), n]),
 );
 
+const clearcoat = doc.createExtension(KHRMaterialsClearcoat);
 const mats = Object.fromEntries(
   Object.entries(MATERIALS).map(([k, m]) => {
     const mat = doc
       .createMaterial(k)
-      .setBaseColorFactor([...hex(m.color), m.alpha ?? 1])
+      .setBaseColorFactor([...srgb(m.color), m.alpha ?? 1])
       .setRoughnessFactor(m.roughness)
       .setMetallicFactor(0);
     if (m.alpha) mat.setAlphaMode('BLEND').setDoubleSided(true);
+    if (m.cc)
+      mat.setExtension(
+        'KHR_materials_clearcoat',
+        clearcoat
+          .createClearcoat()
+          .setClearcoatFactor(m.cc)
+          .setClearcoatRoughnessFactor(0.22),
+      );
     return [k, mat];
   }),
 );
@@ -160,7 +233,9 @@ const mats = Object.fromEntries(
 const scene = root.listScenes()[0];
 const heart = doc.createNode('Heart');
 const missing = [];
-/** Re-parent a source node under `parent` with its world transform baked into its matrix. */
+/** node → material key, for budgets, caps and colours. */
+const groupOf = new Map();
+/** Re-parent a source node under `parent` with its world transform baked into its vertices. */
 function adopt(srcName, name, matKey, parent) {
   const n = byName.get(srcName);
   if (!n) return missing.push(srcName);
@@ -175,8 +250,14 @@ function adopt(srcName, name, matKey, parent) {
   n.getMesh()
     .setName(name)
     .listPrimitives()
-    .forEach((p) => p.setMaterial(mats[matKey]));
+    .forEach((p) => {
+      // Source vertex colours / UVs would tint our palette: drop them.
+      for (const sem of p.listSemantics())
+        if (sem !== 'POSITION' && sem !== 'NORMAL') p.setAttribute(sem, null);
+      p.setMaterial(mats[matKey]);
+    });
   parent.addChild(n);
+  groupOf.set(n, matKey);
   return n;
 }
 const created = new Map();
@@ -202,26 +283,23 @@ heart.traverse((n) => keep.add(n));
 for (const n of root.listNodes()) if (!keep.has(n)) n.dispose();
 
 // --- schematic pericardium: PCA-fitted ellipsoid around the four chambers -----------------
-const chamberPts = [];
-for (const name of [
+const CHAMBERS = [
   'RightAtrium',
   'LeftAtrium',
   'RightVentricle',
   'LeftVentricle',
   'InterventricularSeptum',
-]) {
-  const n = created.get(name);
-  const m = n.getMatrix();
-  const pos = n.getMesh().listPrimitives()[0].getAttribute('POSITION');
+];
+const chamberPts = [];
+for (const name of CHAMBERS) {
+  const pos = created
+    .get(name)
+    .getMesh()
+    .listPrimitives()[0]
+    .getAttribute('POSITION');
   const v = [0, 0, 0];
-  for (let i = 0; i < pos.getCount(); i += 3) {
-    pos.getElement(i, v);
-    chamberPts.push([
-      m[0] * v[0] + m[4] * v[1] + m[8] * v[2] + m[12],
-      m[1] * v[0] + m[5] * v[1] + m[9] * v[2] + m[13],
-      m[2] * v[0] + m[6] * v[1] + m[10] * v[2] + m[14],
-    ]);
-  }
+  for (let i = 0; i < pos.getCount(); i += 3)
+    chamberPts.push([...pos.getElement(i, v)]);
 }
 const mean = [0, 1, 2].map(
   (k) => chamberPts.reduce((s, p) => s + p[k], 0) / chamberPts.length,
@@ -245,7 +323,7 @@ const semi = ext.map((e) => e * k * 0.93); // the apex may poke through slightly
 const peri = doc
   .createNode('Pericardium')
   .setMesh(
-    ellipsoid(doc, 'Pericardium', mean, axes, semi, 48, 32, mats.pericardium),
+    ellipsoid(doc, 'Pericardium', mean, axes, semi, 64, 40, mats.pericardium),
   );
 heart.addChild(peri);
 
@@ -257,7 +335,70 @@ const size = Math.max(...chamberBox.max.map((v, i) => v - chamberBox.min[i]));
 const s = TARGET_SIZE / size;
 heart.setScale([s, s, s]).setTranslation(centre.map((c) => -c * s));
 
-await optimise(doc, { ratio: 0.35, error: 0.0008 });
+// --- clean + per-part simplification ------------------------------------------------------
+await doc.transform(weld());
+for (const [node, group] of groupOf) {
+  for (const prim of node.getMesh().listPrimitives()) {
+    dropDuplicateTriangles(prim);
+    const ratio = KEEP[group];
+    if (ratio < 1)
+      simplifyPrimitive(prim, {
+        simplifier: MeshoptSimplifier,
+        ratio,
+        error: 0.0015,
+        lockBorder: false,
+      });
+  }
+}
+
+// --- groove fat + muscle mottling as vertex colours on the chamber walls -------------------
+const vesselPts = [];
+for (const [node, group] of groupOf)
+  if (group === 'coronary' || group === 'cardiacVein') {
+    const pos = node.getMesh().listPrimitives()[0].getAttribute('POSITION');
+    const v = [0, 0, 0];
+    for (let i = 0; i < pos.getCount(); i++)
+      vesselPts.push([...pos.getElement(i, v)]);
+  }
+const vesselGrid = pointGrid(vesselPts, 0.008);
+for (const [node, group] of groupOf) {
+  if (group !== 'atrium' && group !== 'ventricle') continue;
+  for (const prim of node.getMesh().listPrimitives())
+    paintMyocardium(prim, MYO[group]);
+}
+
+// --- section caps at world z = 0 ------------------------------------------------------------
+const capZ = (CAP_Z - heart.getTranslation()[2]) / s; // source frame (metres)
+const capReport = {};
+for (const [node, group] of groupOf) {
+  if (group === 'valve') continue; // thin leaflets: a cap would fill the orifice
+  const prim = node.getMesh().listPrimitives()[0];
+  const cap = sectionCap(prim, capZ);
+  if (!cap) continue;
+  const p = doc
+    .createPrimitive()
+    .setAttribute(
+      'POSITION',
+      accessor('VEC3', new Float32Array(cap.positions)),
+    )
+    .setAttribute(
+      'NORMAL',
+      accessor(
+        'VEC3',
+        new Float32Array(cap.positions.length).map((_, i) =>
+          i % 3 === 2 ? 1 : 0,
+        ),
+      ),
+    )
+    .setIndices(
+      accessor('SCALAR', new Uint32Array(cap.indices)),
+    )
+    .setMaterial(mats[CUT_OF[group]]);
+  node.getMesh().addPrimitive(p);
+  capReport[node.getName()] = cap.indices.length / 3;
+}
+
+await optimise(doc, { ratio: 1 });
 const glb = await io.writeBinary(doc);
 const tris = docTriangles(doc);
 checkBudget('human-heart.glb', glb.byteLength, tris);
@@ -282,6 +423,7 @@ const report = {
   trianglesAfter: tris,
   sourceBounds: b,
   scale: s,
+  capTriangles: capReport,
   anchors,
   nodes: nodeTree(doc),
 };
@@ -290,6 +432,239 @@ if (reportPath)
 console.log(JSON.stringify({ ...report, nodes: report.nodes.length }, null, 2));
 
 // --- helpers -----------------------------------------------------------------------------
+
+function accessor(type, array) {
+  return doc
+    .createAccessor()
+    .setType(type)
+    .setArray(array)
+    .setBuffer(root.listBuffers()[0]);
+}
+
+/** Remove repeated triangles (same three vertices in any order); the source coronary mesh has many. */
+function dropDuplicateTriangles(prim) {
+  const idx = prim.getIndices();
+  if (!idx) return;
+  const a = idx.getArray();
+  const seen = new Set();
+  const out = [];
+  for (let t = 0; t < a.length; t += 3) {
+    const tri = [a[t], a[t + 1], a[t + 2]];
+    if (tri[0] === tri[1] || tri[1] === tri[2] || tri[0] === tri[2]) continue;
+    const key = [...tri].sort((x, y) => x - y).join(',');
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(...tri);
+  }
+  if (out.length !== a.length) idx.setArray(new Uint32Array(out));
+}
+
+/** Uniform hash grid over points, for nearest-point queries within `cell`. */
+function pointGrid(pts, cell) {
+  const g = new Map();
+  const key = (x, y, z) => `${x},${y},${z}`;
+  for (const p of pts) {
+    const kk = key(...p.map((c) => Math.floor(c / cell)));
+    if (!g.has(kk)) g.set(kk, []);
+    g.get(kk).push(p);
+  }
+  return {
+    /** Nearest point within one cell ring, or null. */
+    nearest(p) {
+      const c = p.map((x) => Math.floor(x / cell));
+      let best = null;
+      let bd = Infinity;
+      for (let dx = -1; dx <= 1; dx++)
+        for (let dy = -1; dy <= 1; dy++)
+          for (let dz = -1; dz <= 1; dz++) {
+            const list = g.get(key(c[0] + dx, c[1] + dy, c[2] + dz));
+            if (!list) continue;
+            for (const q of list) {
+              const d = (q[0] - p[0]) ** 2 + (q[1] - p[1]) ** 2 + (q[2] - p[2]) ** 2;
+              if (d < bd) ((bd = d), (best = q));
+            }
+          }
+      return best ? { point: best, dist: Math.sqrt(bd) } : null;
+    },
+  };
+}
+
+/**
+ * COLOR_0 for a chamber wall: the myocardium colour, a soft low-frequency
+ * mottling, and subepicardial fat (yellow) where a coronary vessel runs over
+ * the outer surface (the vessel must lie on the side the normal faces, so the
+ * inner wall of the chamber stays muscle-coloured).
+ */
+function paintMyocardium(prim, hex) {
+  const pos = prim.getAttribute('POSITION');
+  const nrm = prim.getAttribute('NORMAL');
+  const base = srgb(hex);
+  const fat = srgb(MYO.fat);
+  const out = new Float32Array(pos.getCount() * 4);
+  const v = [0, 0, 0];
+  const n = [0, 0, 0];
+  for (let i = 0; i < pos.getCount(); i++) {
+    pos.getElement(i, v);
+    if (nrm) nrm.getElement(i, n);
+    let w = 0;
+    const hit = vesselGrid.nearest(v);
+    if (hit) {
+      const d = hit.point.map((c, kk) => c - v[kk]);
+      const facing = nrm ? d[0] * n[0] + d[1] * n[1] + d[2] * n[2] : 1;
+      if (facing > -0.0005) w = 0.85 * smoothstep(0.0055, 0.0018, hit.dist);
+    }
+    // ±7 % mottling, 1–2 cm wavelength (deterministic)
+    const m =
+      1 +
+      0.045 * Math.sin(v[0] * 410 + Math.sin(v[1] * 230) * 2.1) +
+      0.03 * Math.sin(v[1] * 520 + v[2] * 310);
+    for (let c = 0; c < 3; c++)
+      out[i * 4 + c] = (base[c] * (1 - w) + fat[c] * w) * (w > 0.5 ? 1 : m);
+    out[i * 4 + 3] = 1;
+  }
+  prim.setAttribute('COLOR_0', accessor('VEC4', out));
+}
+
+function smoothstep(e0, e1, x) {
+  const t = Math.min(1, Math.max(0, (x - e0) / (e1 - e0)));
+  return t * t * (3 - 2 * t);
+}
+
+/**
+ * Flat cap where the plane z = z0 cuts a closed mesh: the cut edges are
+ * chained into loops, nested loops alternate solid / hole (even-odd), and the
+ * regions are triangulated facing +z. Open chains (holes in the source
+ * surface) are dropped. Returns null when nothing closed is cut.
+ */
+function sectionCap(prim, z0) {
+  const pos = prim.getAttribute('POSITION');
+  const idx = prim.getIndices().getArray();
+  const P = [];
+  const v = [0, 0, 0];
+  // Weld by position so edges shared across UV/normal seams match.
+  const weldKey = new Map();
+  const id = new Int32Array(pos.getCount());
+  for (let i = 0; i < pos.getCount(); i++) {
+    pos.getElement(i, v);
+    const kk = v.map((x) => Math.round(x * 1e6)).join(',');
+    if (!weldKey.has(kk)) {
+      weldKey.set(kk, P.length);
+      P.push([...v]);
+    }
+    id[i] = weldKey.get(kk);
+  }
+  // Nudge the plane off any vertex so every crossing is a proper edge crossing.
+  let z = z0;
+  for (let guard = 0; guard < 20; guard++) {
+    if (!P.some((p) => Math.abs(p[2] - z) < 1e-9)) break;
+    z += 3.7e-8;
+  }
+  const point = new Map(); // edge key → [x, y]
+  const adj = new Map(); // edge key → neighbouring edge keys
+  const link = (a, c) => {
+    if (!adj.has(a)) adj.set(a, []);
+    adj.get(a).push(c);
+  };
+  for (let t = 0; t < idx.length; t += 3) {
+    const tri = [id[idx[t]], id[idx[t + 1]], id[idx[t + 2]]];
+    const ks = [];
+    for (let e = 0; e < 3; e++) {
+      const a = tri[e];
+      const c = tri[(e + 1) % 3];
+      const da = P[a][2] - z;
+      const dc = P[c][2] - z;
+      if (da < 0 === dc < 0) continue;
+      const kk = a < c ? `${a}_${c}` : `${c}_${a}`;
+      if (!point.has(kk)) {
+        const f = da / (da - dc);
+        point.set(kk, [
+          P[a][0] + f * (P[c][0] - P[a][0]),
+          P[a][1] + f * (P[c][1] - P[a][1]),
+        ]);
+      }
+      ks.push(kk);
+    }
+    if (ks.length === 2) {
+      link(ks[0], ks[1]);
+      link(ks[1], ks[0]);
+    }
+  }
+  // Chain into closed loops.
+  const used = new Set();
+  const loops = [];
+  for (const start of adj.keys()) {
+    if (used.has(start)) continue;
+    const loop = [start];
+    used.add(start);
+    let prev = null;
+    let cur = start;
+    let closed = false;
+    for (;;) {
+      const next = (adj.get(cur) ?? []).find(
+        (x) => x !== prev && (!used.has(x) || (x === start && loop.length > 2)),
+      );
+      if (next === undefined) break;
+      if (next === start) {
+        closed = true;
+        break;
+      }
+      used.add(next);
+      loop.push(next);
+      prev = cur;
+      cur = next;
+    }
+    if (closed && loop.length >= 3 && adj.get(start).length === 2)
+      loops.push(loop.map((kk) => point.get(kk)));
+  }
+  if (!loops.length) return null;
+  const area = (l) =>
+    l.reduce((acc, p, i) => {
+      const q = l[(i + 1) % l.length];
+      return acc + p[0] * q[1] - q[0] * p[1];
+    }, 0) / 2;
+  const insidePoly = (poly, [x, y]) => {
+    let c = false;
+    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      const [xi, yi] = poly[i];
+      const [xj, yj] = poly[j];
+      if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi)
+        c = !c;
+    }
+    return c;
+  };
+  const info = loops
+    .map((l) => ({ l, a: Math.abs(area(l)) }))
+    .filter((o) => o.a > 1e-9)
+    .sort((p, q) => q.a - p.a);
+  for (const o of info) {
+    o.parents = info.filter((p) => p !== o && p.a > o.a && insidePoly(p.l, o.l[0]));
+    o.depth = o.parents.length;
+  }
+  const positions = [];
+  const indices = [];
+  for (const o of info) {
+    if (o.depth % 2) continue; // holes
+    const holes = info.filter(
+      (h) => h.depth === o.depth + 1 && h.parents.includes(o),
+    );
+    const contour = o.l.map(([x, y]) => new Vector2(x, y));
+    const hs = holes.map((h) => h.l.map(([x, y]) => new Vector2(x, y)));
+    const tris = ShapeUtils.triangulateShape(contour, hs);
+    const all = [...contour, ...hs.flat()];
+    const base = positions.length / 3;
+    for (const p of all) positions.push(p.x, p.y, z);
+    for (const [a, c, d] of tris) {
+      const A = all[a];
+      const B = all[c];
+      const C = all[d];
+      const nz = (B.x - A.x) * (C.y - A.y) - (B.y - A.y) * (C.x - A.x);
+      if (nz >= 0) indices.push(base + a, base + c, base + d);
+      else indices.push(base + a, base + d, base + c);
+    }
+  }
+  return indices.length ? { positions, indices } : null;
+}
+
 function boundsOfPoints(pts) {
   const min = [Infinity, Infinity, Infinity];
   const max = [-Infinity, -Infinity, -Infinity];

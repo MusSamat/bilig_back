@@ -10,17 +10,18 @@
       "created": "2026-10-16",
       "modifications": [
         "no free leaf cross-section model was found (CGTrader: paid royalty-free; BioRender: login-gated template; the rest are physical teaching models), so the block diagram is authored by the pipeline script",
-        "dicot leaf block, top to bottom: Cuticle, Epidermis_Upper, palisade mesophyll (55 columnar cells with chloroplasts along the walls), spongy mesophyll (loose cells, air spaces), Epidermis_Lower with 4 stomata (GuardCell_*a/b around Stoma_* = pore + substomatal air chamber), Cuticle",
+        "dicot leaf block, top to bottom: Cuticle, Epidermis_Upper (flat irregular tabular cells, Voronoi tiling), palisade mesophyll (78 irregular columns with rounded ends, chloroplasts set into their walls), spongy mesophyll (64 lobed cells joined by their arms around air spaces), Epidermis_Lower with 4 stomata (kidney-shaped GuardCell_*a/b with chloroplasts around Stoma_* = pore + substomatal air chamber), Cuticle",
         "every mesophyll cell's chloroplasts are in Chloro_<cell>, their grana (thylakoid stacks, chlorophyll) in Thylakoid_<cell>",
-        "decorative, unnamed: the vein (bundle sheath, xylem, phloem)",
-        "the topic's stoma, mesophyll and chloroplast anchors sit on real parts; colours from the concept hues (hsl(h, 62%, 62%))",
+        "decorative, unnamed: the vein (bundle sheath cells, open thick-walled xylem vessels, phloem sieve tubes and companion cells)",
+        "the topic's stoma, mesophyll and chloroplast anchors sit on real parts",
+        "look: cell shapes from seeded noise (deterministic), per-vertex colour (COLOR_0) in the concept hues (hsl(h, 62%, 62%)) with per-cell tone variation and baked cavity / base darkening",
         "gltf-transform: dedup, prune, weld, EXT_meshopt_compression + quantisation; KHR_materials_clearcoat"
       ],
       "pipeline": "bilig_back/scripts/assets/leaf.mjs",
       "report": {
-        "sizeBefore": 1049912,
-        "sizeAfter": 704040,
-        "trianglesAfter": 144980,
+        "sizeBefore": 4737620,
+        "sizeAfter": 1455512,
+        "trianglesAfter": 145276,
         "textures": 0,
         "nodes": [
           "LeafSection",
@@ -39,8 +40,8 @@
           "  Stoma_4",
           "  GuardCell_4a",
           "  GuardCell_4b",
-          "  Palisade_1…55, Chloro_P1…P55, Thylakoid_P1…P55 (one per palisade cell)",
-          "  Spongy_1…n, Chloro_S1…Sn, Thylakoid_S1…Sn (one per spongy cell)"
+          "  Palisade_1…78, Chloro_P1…P78, Thylakoid_P1…P78 (one per palisade cell)",
+          "  Spongy_1…64, Chloro_S1…S64, Thylakoid_S1…S64 (one per spongy cell)"
         ]
       }
     },

@@ -11,17 +11,18 @@
       "modifications": [
         "no free model with separate, named structures was found: NIH 3D's \"Animal Cell\" is CC BY-NC-SA (non-commercial, excluded), other cell models are paid marketplace models (CGTrader, 3DCadBrowser, Free3D royalty-free) or physical teaching models; so the model is authored by the pipeline script",
         "three.js geometry extending the procedural animal cell of the approved Bilig Workbench prototype (bilig_ft plugin-gltf cells.ts)",
-        "named nodes for the topic's masks: Membrane, Cytoplasm, Nucleus (+ Nucleolus, pores, chromatin), Mito_1…4 (cristae), Ribo_1 (on rough ER), Ribo_2 (free), Golgi (cisternae + vesicles)",
-        "decorative, unnamed: rough and smooth ER, lysosomes, a centriole pair",
-        "organelles placed on the topic's concept anchors; colours from the concept hues (hsl(h, 62%, 62%))",
-        "gltf-transform: dedup, prune, weld, EXT_meshopt_compression + quantisation; KHR_materials_clearcoat"
+        "named nodes for the topic's masks: Membrane (wavy, subtly bumpy), Cytoplasm, Nucleus (cut-away octant: double envelope rim, pores, chromatin; + Nucleolus), Mito_1…4 (bean-shaped, cut open lengthwise: double-membrane rim, cristae shelves from the inner wall), Ribo_1 (two-lobed granules on the rough ER), Ribo_2 (free), Golgi (curved cisternae with swollen rims, budding and free vesicles)",
+        "decorative, unnamed: rough ER (folded stacked sheets around the nucleus), smooth ER tubules, lysosomes, a centriole pair (9 microtubule triplets each)",
+        "cut-away organelles open towards the topic's default camera; organelles on the topic's concept anchors (Golgi and the rough ER moved slightly so they are not hidden behind the nucleus; anchors updated)",
+        "look: organic shapes from seeded 3D gradient noise + fbm (deterministic, mulberry32), per-vertex colour (COLOR_0) in the concept hue (hsl(h, 62%, 62%)) with noise tone variation and baked cavity / depth darkening; a small procedural tileable normal map (bumps) on organelles and membranes; organelles opaque, only the cell's shells translucent",
+        "gltf-transform: dedup, prune, weld, EXT_meshopt_compression + quantisation; KHR_materials_clearcoat, KHR_texture_transform"
       ],
       "pipeline": "bilig_back/scripts/assets/cells.mjs (animal)",
       "report": {
-        "sizeBefore": 934044,
-        "sizeAfter": 244876,
-        "trianglesAfter": 64600,
-        "textures": 0,
+        "sizeBefore": 3729856,
+        "sizeAfter": 999284,
+        "trianglesAfter": 112162,
+        "textures": 1,
         "nodes": [
           "AnimalCell",
           "  Membrane",
@@ -34,7 +35,7 @@
           "  Golgi",
           "  Ribo_1",
           "  Ribo_2",
-          "  (12 decorative parts, renamed <root>_Mesh by quantisation; bound to no concept)"
+          "  (4 decorative parts (rough ER, smooth ER, lysosomes, centrioles), renamed <root>_Mesh by quantisation; bound to no concept)"
         ]
       }
     },

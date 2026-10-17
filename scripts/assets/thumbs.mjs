@@ -91,7 +91,15 @@ async function render(spec) {
   try {
     // First frame, then let GLBs, textures and the camera framing settle.
     await page.waitForFunction(() => !!window.__thumbCapture?.(), null, { timeout: 90_000, polling: 500 });
-    await page.waitForTimeout(spec.assetBaseUrl ? 6000 : 3000);
+    // The viewer veils the stage while the model downloads and compiles (and on
+    // failure): wait for the real model instead of a fixed delay, so a large GLB
+    // on a slow machine is never captured as its stand-in.
+    await page.waitForTimeout(1000);
+    await page.waitForFunction(() => !document.querySelector('.stage__veil'), null, { timeout: 180_000, polling: 500 }).catch(async () => {
+      const failed = await page.evaluate(() => !!document.querySelector('.stage__progress--failed'));
+      throw new Error(failed ? 'model failed to load' : 'model still loading after 180 s');
+    });
+    await page.waitForTimeout(spec.assetBaseUrl ? 3000 : 2000);
     const data = await page.evaluate(() => window.__thumbCapture());
     if (!data) throw new Error('no frame');
     return Buffer.from(data.split(',')[1], 'base64');

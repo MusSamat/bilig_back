@@ -30,13 +30,32 @@ export interface AssetFile {
 
 export class AssetStore {
   private index: Map<string, AssetFile> | null = null;
+  private scannedAt = 0;
 
-  constructor(private readonly dir: string) {}
+  /**
+   * `rescanAfterMs`: a miss re-reads the folder when the index is at least this
+   * old, so a model rebuilt while the server runs (asset pipeline, re-seed) is
+   * served without a restart. Misses are rare (only paths a manifest lists
+   * get here), so this costs nothing in normal operation.
+   */
+  constructor(
+    private readonly dir: string,
+    private readonly rescanAfterMs = 5_000,
+    private readonly now: () => number = Date.now,
+  ) {}
 
   /** The file whose sha256 is `hash`, or null. */
   get(hash: string): AssetFile | null {
-    this.index ??= this.scan();
-    return this.index.get(hash) ?? null;
+    if (!this.index) this.rebuild();
+    const hit = this.index!.get(hash);
+    if (hit || this.now() - this.scannedAt < this.rescanAfterMs) return hit ?? null;
+    this.rebuild();
+    return this.index!.get(hash) ?? null;
+  }
+
+  private rebuild(): void {
+    this.index = this.scan();
+    this.scannedAt = this.now();
   }
 
   /** Forget the index (tests, or after the asset folder changed). */

@@ -11,17 +11,18 @@
       "modifications": [
         "no free model with separate, named structures was found: NIH 3D's \"Animal Cell\" is CC BY-NC-SA (non-commercial, excluded), other cell models are paid marketplace models (CGTrader, 3DCadBrowser, Free3D royalty-free) or physical teaching models; so the model is authored by the pipeline script",
         "three.js geometry extending the procedural plant cell of the approved Bilig Workbench prototype (bilig_ft plugin-gltf cells.ts)",
-        "named nodes for the topic's masks: CellWall (two layers), Membrane, Cytoplasm, Vacuole, Nucleus (+ Nucleolus), Chloro_1…7 (grana + stroma lamellae), Mito_1…3",
-        "decorative, unnamed: plasmodesmata, smooth ER",
-        "organelles placed on the topic's concept anchors; colours from the concept hues (hsl(h, 62%, 62%))",
-        "gltf-transform: dedup, prune, weld, EXT_meshopt_compression + quantisation; KHR_materials_clearcoat"
+        "named nodes for the topic's masks: CellWall, Membrane, Cytoplasm, Vacuole (lobed tonoplast), Nucleus (cut-away, double envelope, pores, chromatin; + Nucleolus), Chloro_1…7 (lens-shaped, cut open: double-envelope rim, grana stacks seen side-on, stroma lamellae, starch grain, plastoglobuli), Mito_1…3 (cut open, cristae)",
+        "decorative, unnamed: smooth ER, a small Golgi stack",
+        "cut-away organelles open towards the topic's default camera; organelles on the topic's concept anchors",
+        "look: organic shapes from seeded 3D gradient noise + fbm (deterministic, mulberry32), per-vertex colour (COLOR_0) in the concept hue (hsl(h, 62%, 62%)) with noise tone variation and baked cavity / depth darkening; a small procedural tileable normal map (bumps) on organelles and membranes; organelles opaque, only the cell's shells translucent",
+        "gltf-transform: dedup, prune, weld, EXT_meshopt_compression + quantisation; KHR_materials_clearcoat, KHR_texture_transform"
       ],
       "pipeline": "bilig_back/scripts/assets/cells.mjs (plant)",
       "report": {
-        "sizeBefore": 1152028,
-        "sizeAfter": 280092,
-        "trianglesAfter": 66460,
-        "textures": 0,
+        "sizeBefore": 3620568,
+        "sizeAfter": 953196,
+        "trianglesAfter": 108216,
+        "textures": 1,
         "nodes": [
           "PlantCell",
           "  CellWall",
@@ -39,7 +40,7 @@
           "  Mito_1",
           "  Mito_2",
           "  Mito_3",
-          "  (9 decorative parts, renamed <root>_Mesh by quantisation; bound to no concept)"
+          "  (2 decorative parts (smooth ER, Golgi stack), renamed <root>_Mesh by quantisation; bound to no concept)"
         ]
       }
     },

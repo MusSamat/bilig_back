@@ -13,6 +13,9 @@
  * hidden inside their volumes in «whole» view, exposed in «section».
  */
 import { Document } from '@gltf-transform/core';
+import { KHRMaterialsClearcoat } from '@gltf-transform/extensions';
+import { MeshoptSimplifier } from 'meshoptimizer';
+import sharp from 'sharp';
 
 export const CAP_Z = -0.004;
 
@@ -26,6 +29,7 @@ export function smoothstep(e0, e1, x) {
 
 // --- colour (sRGB hex in, linear RGB out: glTF COLOR_0 and baseColorFactor are linear) --------
 const toLinear = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+export const toSRGB = (c) => (c <= 0.0031308 ? c * 12.92 : 1.055 * Math.max(0, c) ** (1 / 2.4) - 0.055);
 export const rgb = (hex) => [1, 3, 5].map((i) => toLinear(parseInt(hex.slice(i, i + 2), 16) / 255));
 export const mix = (a, b, t) => a.map((v, i) => v + (b[i] - v) * clamp(t));
 export const shade = (c, k) => c.map((v) => clamp(v * k));
@@ -43,8 +47,9 @@ export function makeNoise(seed = 1) {
     const j = Math.floor(z);
     const fx = x - i;
     const fz = z - j;
-    const u = fx * fx * (3 - 2 * fx);
-    const v = fz * fz * (3 - 2 * fz);
+    // quintic fade: curvature stays continuous across cells (no grid lines in baked relief shading)
+    const u = fx * fx * fx * (fx * (fx * 6 - 15) + 10);
+    const v = fz * fz * fz * (fz * (fz * 6 - 15) + 10);
     return lerp(lerp(hash(i, j), hash(i + 1, j), u), lerp(hash(i, j + 1), hash(i + 1, j + 1), u), v) * 2 - 1;
   };
   /** Fractal value noise in [-1, 1]. */
@@ -76,7 +81,103 @@ export function makeNoise(seed = 1) {
     }
     return s / n;
   };
-  return { n2, fbm, ridged, rand: (i, j = 0) => hash(i, j) };
+  // octave rotation (≈37°) hides the value-noise grid
+  const R0 = 0.8;
+  const R1 = -0.6;
+  const R2 = 0.6;
+  const R3 = 0.8;
+  /**
+   * «Eroded» fbm (derivative damping): octaves are suppressed where the sum is
+   * already steep, so slopes stay smooth-gullied and detail gathers on flats
+   * and crests, like weathered rock. About [-1, 1].
+   */
+  const eroded = (x, z, oct = 6) => {
+    let s = 0;
+    let a = 0.5;
+    let n = 0;
+    let dx = 0;
+    let dz = 0;
+    let px = x;
+    let pz = z;
+    // accumulated frame: d(p)/d(x, z) = f · R^o
+    let m0 = 1;
+    let m1 = 0;
+    let m2 = 0;
+    let m3 = 1;
+    let f = 1;
+    for (let o = 0; o < oct; o++) {
+      const qx = px + o * 17.3;
+      const qz = pz - o * 9.1;
+      const i = Math.floor(qx);
+      const j = Math.floor(qz);
+      const fx = qx - i;
+      const fz = qz - j;
+      const u = fx * fx * fx * (fx * (fx * 6 - 15) + 10);
+      const v = fz * fz * fz * (fz * (fz * 6 - 15) + 10);
+      const du = 30 * fx * fx * (fx - 1) * (fx - 1);
+      const dv = 30 * fz * fz * (fz - 1) * (fz - 1);
+      const h00 = hash(i, j);
+      const k1 = hash(i + 1, j) - h00;
+      const k2 = hash(i, j + 1) - h00;
+      const k4 = hash(i + 1, j + 1) - hash(i, j + 1) - k1;
+      const val = (h00 + k1 * u + k2 * v + k4 * u * v) * 2 - 1;
+      const gx = 2 * du * (k1 + k4 * v);
+      const gz = 2 * dv * (k2 + k4 * u);
+      // gradient back in the input frame
+      dx += a * f * (gx * m0 + gz * m2);
+      dz += a * f * (gx * m1 + gz * m3);
+      s += (a * val) / (1 + 0.35 * (dx * dx + dz * dz));
+      n += a;
+      a *= 0.5;
+      const npx = 2 * (R0 * px + R1 * pz);
+      pz = 2 * (R2 * px + R3 * pz);
+      px = npx;
+      const t0 = R0 * m0 + R1 * m2;
+      const t1 = R0 * m1 + R1 * m3;
+      const t2 = R2 * m0 + R3 * m2;
+      const t3 = R2 * m1 + R3 * m3;
+      m0 = t0;
+      m1 = t1;
+      m2 = t2;
+      m3 = t3;
+      f *= 2;
+    }
+    return s / n;
+  };
+  /**
+   * Ridged multifractal (Musgrave): sharp crests whose detail is weighted by
+   * the octave below, so arêtes are crisp and valleys stay smooth. [0, ~1].
+   */
+  const ridgedMF = (x, z, oct = 6, opts = null) => {
+    const gain = opts?.gain ?? 2.2;
+    const offset = opts?.offset ?? 1;
+    const lac = opts?.lac ?? 2.05;
+    const H = opts?.H ?? 0.95;
+    let s = 0;
+    let w = 1;
+    let amp = 1;
+    const ampK = lac ** -H;
+    let n = 0;
+    let px = x;
+    let pz = z;
+    for (let o = 0; o < oct; o++) {
+      let sig = offset - Math.abs(n2(px + o * 31.7, pz + o * 12.9));
+      sig *= sig * w;
+      w = sig * gain;
+      if (w > 1) w = 1;
+      else if (w < 0) w = 0;
+      s += sig * amp;
+      n += amp;
+      amp *= ampK;
+      const npx = lac * (R0 * px + R1 * pz);
+      pz = lac * (R2 * px + R3 * pz);
+      px = npx;
+    }
+    return s / n;
+  };
+  /** Domain warp: [x', z'] displaced by fbm (amplitude `amt`, frequency `freq`). */
+  const warp = (x, z, amt, freq = 1) => [x + amt * fbm(x * freq + 4.1, z * freq - 7.7, 3), z + amt * fbm(x * freq - 2.3, z * freq + 5.9, 3)];
+  return { n2, fbm, ridged, ridgedMF, eroded, warp, rand: (i, j = 0) => hash(i, j) };
 }
 
 // --- polylines --------------------------------------------------------------------------------
@@ -270,7 +371,7 @@ const crossing = (p, q) => {
  * (marching triangles). Returns { geo, boundary } where boundary holds the
  * [[x,z],[x,z]] segments of the cut.
  */
-export function surface({ x0, x1, z0, z1, step, h, phi = null, color, normal = null, lift = 0 }) {
+export function surface({ x0, x1, z0, z1, step, h, phi = null, color, normal = null, lift = 0, uv = null }) {
   const g = new Geo();
   const nrm = normal ?? fieldNormal(h, step * 0.5);
   const cache = new Map();
@@ -279,7 +380,7 @@ export function surface({ x0, x1, z0, z1, step, h, phi = null, color, normal = n
     if (cache.has(k)) return cache.get(k);
     const y = h(p.x, p.z) + lift;
     const n = nrm(p.x, p.z);
-    const i = g.v([p.x, y, p.z], n, color ? color(p.x, y, p.z, n) : [1, 1, 1]);
+    const i = g.v([p.x, y, p.z], n, color ? color(p.x, y, p.z, n) : [1, 1, 1], uv ? uv(p.x, p.z) : null);
     cache.set(k, i);
     return i;
   };
@@ -311,6 +412,7 @@ export function surface({ x0, x1, z0, z1, step, h, phi = null, color, normal = n
       [cut[1].x, cut[1].z],
     ]);
   });
+  if (uv && !color) g.C = [];
   return { geo: g, boundary };
 }
 
@@ -366,9 +468,12 @@ export function curtain(segments, { top, bottom, phi, cTop, cBottom }) {
  * bandsAt(x, z) → [{ top, bottom, cTop, cBottom? }] with the same band count
  * at every column; empty bands (top ≤ bottom) are skipped.
  */
-export function bandWall(path, bandsAt, normal) {
+export function bandWall(path, bandsAt, normal, { dy = null } = {}) {
   const g = new Geo();
   const cols = path.map(([x, z]) => bandsAt(x, z));
+  // with `dy`, each band of each segment is split into rows about `dy` high
+  // and a band's `shade(x, y, z, f)` (f = 0 at its base, 1 at its top) colours every row
+  const colour = (B, x, y, z, f) => (B.shade ? B.shade(x, y, z, f) : f >= 1 ? B.cTop : f <= 0 ? (B.cBottom ?? B.cTop) : mix(B.cBottom ?? B.cTop, B.cTop, f));
   for (let i = 0; i < path.length - 1; i++) {
     const [ax, az] = path[i];
     const [bx, bz] = path[i + 1];
@@ -376,11 +481,16 @@ export function bandWall(path, bandsAt, normal) {
       const A = cols[i][k];
       const B = cols[i + 1][k];
       if (A.top - A.bottom < 1e-5 && B.top - B.bottom < 1e-5) continue;
-      const a = g.v([ax, A.bottom, az], normal, A.cBottom ?? A.cTop);
-      const b = g.v([bx, B.bottom, bz], normal, B.cBottom ?? B.cTop);
-      const c = g.v([bx, B.top, bz], normal, B.cTop);
-      const d = g.v([ax, A.top, az], normal, A.cTop);
-      g.quad(a, b, c, d, normal);
+      const n = dy ? Math.max(1, Math.ceil(Math.max(A.top - A.bottom, B.top - B.bottom) / dy)) : 1;
+      let prev = null;
+      for (let r = 0; r <= n; r++) {
+        const f = r / n;
+        const ya = lerp(A.bottom, A.top, f);
+        const yb = lerp(B.bottom, B.top, f);
+        const cur = [g.v([ax, ya, az], normal, colour(A, ax, ya, az, f)), g.v([bx, yb, bz], normal, colour(B, bx, yb, bz, f))];
+        if (prev) g.quad(prev[0], prev[1], cur[1], cur[0], normal);
+        prev = cur;
+      }
     }
   }
   return g;
@@ -393,27 +503,268 @@ export const line = (a, b, step) => {
 };
 
 /**
+ * A stack of `count` sedimentary beds from `from` up to `to` (then one last
+ * bed up to the surface): bed thickness varies per bed, boundaries undulate
+ * (gentle folds + per-boundary noise, never crossing), colours cycle through
+ * `palette` with per-bed and along-strike variation; each bed is graded
+ * (darker at its base). Returns `strata` layers.
+ */
+export function sedimentStack(N, { from, to, count, palette, seed = 0, fold = 0.06, wobble = 0.35, fadeFrom = 0.15 }) {
+  const w = Array.from({ length: count }, (_, k) => 0.45 + N.rand(k, seed + 1));
+  const sum = w.reduce((a, b) => a + b, 0);
+  let acc = 0;
+  const levels = w.map((v) => (acc += v) / sum).map((f) => from + (to - from) * f);
+  const thin = Math.min(...w) / sum * (to - from);
+  const folds = (x, z) => fold * (Math.sin(x * 0.55 + 0.8 + 0.4 * Math.sin(z * 0.7)) + 0.6 * N.fbm(x * 0.35 + seed, z * 0.35, 3));
+  return levels.map((lv, k) => {
+    const base = palette[Math.floor(N.rand(k, seed + 2) * palette.length) % palette.length];
+    const tone = 0.82 + 0.3 * N.rand(k, seed + 3);
+    const fade = smoothstep(from, from + fadeFrom, lv);
+    const at = (x, z) => lv + fade * folds(x, z) + thin * wobble * N.fbm(x * 2.3 + k * 7.1, z * 2.3 + seed, 3);
+    const c = (x, z, k2 = 1) => shade(base, tone * k2 * (0.9 + 0.2 * (0.5 + 0.5 * N.fbm(x * 1.7 + k, z * 1.7 - k, 3))));
+    // per-bed character: some beds finely laminated (shale), some massive and jointed (sandstone, limestone)
+    const lam = N.rand(k, seed + 4);
+    const lamF = 90 + 160 * N.rand(k, seed + 5);
+    const tint = palette[Math.floor(N.rand(k, seed + 6) * palette.length) % palette.length];
+    return {
+      to: k === count - 1 ? 99 : at,
+      color: (x, z) => c(x, z, 1.04),
+      colorBottom: (x, z) => c(x, z, 0.8),
+      /** Rich wall colour: grading, laminae, lenses of another tint, joints, grain. */
+      shade(x, y, z, f) {
+        const h = x + z; // along the wall, whichever wall it is
+        let col = c(x, z, lerp(0.8, 1.06, smoothstep(0, 0.55, f)));
+        // lenses of a second tint inside the bed
+        col = mix(col, shade(tint, tone), 0.45 * smoothstep(0.25, 0.7, N.fbm(h * 1.3 + k * 3.1, y * 6 + k, 3)));
+        // laminae: thin light/dark lines following the bed (only in laminated beds)
+        const lines = Math.sin((y - lv) * lamF + 2.2 * N.fbm(h * 0.9 + k, k * 1.7, 2));
+        col = shade(col, 1 + (lam > 0.45 ? 0.09 : 0.035) * lines);
+        // joints: sparse near-vertical dark cracks in massive beds
+        const j = 1 - Math.abs(N.n2(h * 9 + 0.6 * N.fbm(h * 3, y * 3, 2) + k * 13.7, y * 1.5 + k));
+        col = shade(col, 1 - (lam <= 0.45 ? 0.32 : 0.12) * smoothstep(0.93, 0.99, j));
+        // grain
+        return shade(col, 0.93 + 0.12 * (0.5 + 0.5 * N.n2(h * 60, y * 60 + k * 7)));
+      },
+    };
+  });
+}
+
+/**
  * Horizontal strata between `base` and `top`: `layers` = [{ to: y, color }]
  * bottom-up, plus a skin of `skin` thickness coloured `skinColor(x, z)` under
  * the surface. Returns a bandsAt function for bandWall.
  */
-export function strata({ base, top, layers, skin = 0.035, skinColor }) {
+export function strata({ base, top, layers, skin = 0.035, skinColor, skinBottom = null }) {
   return (x, z) => {
     const t = top(x, z);
     const under = t - skin;
     const bands = [];
     let from = base;
     for (const L of layers) {
+      const to = typeof L.to === 'function' ? L.to(x, z) : L.to;
       const b = Math.max(base, Math.min(from, under));
-      const tt = Math.max(b, Math.min(L.to, under));
+      const tt = Math.max(b, Math.min(to, under));
+      const col = (c) => (typeof c === 'function' ? c(x, z) : c);
       // `skip` leaves the band empty: another node draws it (an aquifer)
-      bands.push({ bottom: b, top: L.skip ? b : tt, cTop: L.color ?? [0, 0, 0] });
-      from = L.to;
+      bands.push({ bottom: b, top: L.skip ? b : tt, cTop: col(L.color) ?? [0, 0, 0], cBottom: col(L.colorBottom), shade: L.shade });
+      from = Math.max(from, to);
     }
     const sk = skinColor(x, z);
-    bands.push({ bottom: Math.max(base, under), top: Math.max(base, t), cTop: sk, cBottom: shade(sk, 0.8) });
+    bands.push({ bottom: Math.max(base, under), top: Math.max(base, t), cTop: sk, cBottom: skinBottom ? skinBottom(x, z) : shade(sk, 0.8) });
     return bands;
   };
+}
+
+// --- sampled fields and baked textures -------------------------------------------------------
+/**
+ * fn(x, z) sampled on a regular grid over [x0,x1]×[z0,z1] (row j = z): a
+ * cache for expensive height functions. at(x, z) interpolates bilinearly,
+ * normal(x, z) is the field's surface normal at about one cell.
+ */
+export function grid(fn, { x0, x1, z0, z1, step }) {
+  const nx = Math.round((x1 - x0) / step);
+  const nz = Math.round((z1 - z0) / step);
+  const W = nx + 1;
+  const sx = (x1 - x0) / nx;
+  const sz = (z1 - z0) / nz;
+  const data = new Float32Array(W * (nz + 1));
+  for (let j = 0; j <= nz; j++) for (let i = 0; i <= nx; i++) data[j * W + i] = fn(x0 + sx * i, z0 + sz * j);
+  const get = (i, j) => data[clamp(j, 0, nz) * W + clamp(i, 0, nx)];
+  const at = (x, z) => {
+    const fx = clamp((x - x0) / sx, 0, nx - 1e-9);
+    const fz = clamp((z - z0) / sz, 0, nz - 1e-9);
+    const i = Math.floor(fx);
+    const j = Math.floor(fz);
+    const u = fx - i;
+    const v = fz - j;
+    return lerp(lerp(data[j * W + i], data[j * W + i + 1], u), lerp(data[(j + 1) * W + i], data[(j + 1) * W + i + 1], u), v);
+  };
+  const normal = (x, z, e = sx) => {
+    const dx = (at(x + e, z) - at(x - e, z)) / (2 * e);
+    const dz = (at(x, z + e) - at(x, z - e)) / (2 * e);
+    const l = Math.hypot(dx, 1, dz);
+    return [-dx / l, 1 / l, -dz / l];
+  };
+  return { nx, nz, W, sx, sz, x0, z0, x1, z1, data, get, at, normal, x: (i) => x0 + sx * i, z: (j) => z0 + sz * j };
+}
+
+/**
+ * A top-down colour texture over [x0,x1]×[z0,z1]: texel (i, j) is
+ * color(x, z, i, j) in linear RGB at x = x0 + i·step, z = z0 + j·step.
+ * Returns { png, uv } where uv(x, z) maps a point to its texel centre.
+ */
+export async function bakeTexture({ x0, x1, z0, z1, step }, color) {
+  const nx = Math.round((x1 - x0) / step);
+  const nz = Math.round((z1 - z0) / step);
+  const W = nx + 1;
+  const H = nz + 1;
+  const px = Buffer.alloc(W * H * 3);
+  for (let j = 0; j < H; j++)
+    for (let i = 0; i < W; i++) {
+      const c = color(x0 + ((x1 - x0) * i) / nx, z0 + ((z1 - z0) * j) / nz, i, j);
+      for (let d = 0; d < 3; d++) px[(j * W + i) * 3 + d] = Math.round(255 * clamp(toSRGB(clamp(c[d]))));
+    }
+  const png = await sharp(px, { raw: { width: W, height: H, channels: 3 } }).png().toBuffer();
+  const uv = (x, z) => [(((x - x0) / (x1 - x0)) * nx + 0.5) / W, (((z - z0) / (z1 - z0)) * nz + 0.5) / H];
+  return { png, uv, width: W, height: H };
+}
+
+/**
+ * Simplify a mesh (meshoptimizer, positions only) towards `target`
+ * triangles without moving any vertex further than `error` (relative to the
+ * mesh extent); open borders stay locked so clipped edges still meet.
+ * Normals, colours and UVs of the kept vertices are unchanged.
+ */
+export async function simplifyGeo(g, { target, error = 0.003, lockBorder = true }) {
+  await MeshoptSimplifier.ready;
+  const tgt = Math.min(g.I.length, Math.floor(target) * 3);
+  const [out] = MeshoptSimplifier.simplify(new Uint32Array(g.I), new Float32Array(g.P), 3, tgt, error, lockBorder ? ['LockBorder'] : []);
+  const ng = new Geo();
+  const map = new Int32Array(g.count).fill(-1);
+  const hasC = g.C.length > 0;
+  const hasUV = g.UV.length > 0;
+  const I = [];
+  for (const i of out) {
+    if (map[i] < 0) map[i] = ng.v(g.P.slice(3 * i, 3 * i + 3), g.N.slice(3 * i, 3 * i + 3), hasC ? g.C.slice(3 * i, 3 * i + 3) : [1, 1, 1], hasUV ? g.UV.slice(2 * i, 2 * i + 2) : null);
+    I.push(map[i]);
+  }
+  ng.I = I;
+  if (!hasC) ng.C = [];
+  return ng;
+}
+
+// --- baked relief light ------------------------------------------------------------------------
+/**
+ * Bakes cheap «global illumination» terms of a height field on a grid, so
+ * vertex colours carry the shading a renderer without shadows/AO would miss:
+ *   ao(x, z)      horizon-based ambient occlusion, 1 = open sky, ~0.4 deep gorge
+ *   cavity(x, z)  local convexity in [-1, 1]: + crests and arêtes, − gullies and cirque floors
+ *   shadow(x, z)  soft cast shadow from the sun direction, 1 = lit
+ *   sunlit(x, z, n)  Lambert term max(0, n·sun)
+ * The block's outside is treated as open (no occluders beyond the edges).
+ */
+export function bakeRelief(h, { x0, x1, z0, z1, step, sun = [0.55, 0.62, -0.35], aoRadius = 0.7, dirs = 12, cavityRadius = null, cavityScale = 0.035 }) {
+  const nx = Math.round((x1 - x0) / step);
+  const nz = Math.round((z1 - z0) / step);
+  const W = nx + 1;
+  const H = new Float64Array(W * (nz + 1));
+  for (let j = 0; j <= nz; j++) for (let i = 0; i <= nx; i++) H[j * W + i] = h(x0 + ((x1 - x0) * i) / nx, z0 + ((z1 - z0) * j) / nz);
+  const sx = (x1 - x0) / nx;
+  const sz = (z1 - z0) / nz;
+  const bil = (A, x, z) => {
+    const fx = clamp((x - x0) / sx, 0, nx - 1e-9);
+    const fz = clamp((z - z0) / sz, 0, nz - 1e-9);
+    const i = Math.floor(fx);
+    const j = Math.floor(fz);
+    const u = fx - i;
+    const v = fz - j;
+    const a = A[j * W + i];
+    const b = A[j * W + i + 1];
+    const c = A[(j + 1) * W + i];
+    const d = A[(j + 1) * W + i + 1];
+    return lerp(lerp(a, b, u), lerp(c, d, u), v);
+  };
+  const inside = (x, z) => x >= x0 && x <= x1 && z >= z0 && z <= z1;
+  const AO = new Float64Array(H.length);
+  const CAV = new Float64Array(H.length);
+  const SH = new Float64Array(H.length);
+  const radii = [];
+  for (let r = step * 1.2; r <= aoRadius; r *= 1.35) radii.push(r);
+  const cr = cavityRadius ?? step * 2.5;
+  const sl = Math.hypot(sun[0], sun[2]) || 1;
+  const sdx = sun[0] / sl;
+  const sdz = sun[2] / sl;
+  const tanE = sun[1] / sl;
+  for (let j = 0; j <= nz; j++)
+    for (let i = 0; i <= nx; i++) {
+      const x = x0 + sx * i;
+      const z = z0 + sz * j;
+      const h0 = H[j * W + i];
+      // ambient occlusion: mean sine of the horizon angle over `dirs` azimuths (cosine-ish weighting)
+      let occ = 0;
+      for (let d = 0; d < dirs; d++) {
+        const a = ((d + 0.5) / dirs) * 2 * Math.PI;
+        const cx = Math.cos(a);
+        const cz = Math.sin(a);
+        let m = 0;
+        for (const r of radii) {
+          const px = x + cx * r;
+          const pz = z + cz * r;
+          if (!inside(px, pz)) break;
+          const dh = bil(H, px, pz) - h0;
+          if (dh > 0) m = Math.max(m, dh / Math.hypot(dh, r));
+        }
+        occ += m * m * 0.6 + m * 0.4;
+      }
+      AO[j * W + i] = 1 - occ / dirs;
+      // cavity: height above the ring average at two radii
+      let ring = 0;
+      let ring2 = 0;
+      for (let d = 0; d < 8; d++) {
+        const a = (d / 8) * 2 * Math.PI;
+        ring += bil(H, x + Math.cos(a) * cr, z + Math.sin(a) * cr);
+        ring2 += bil(H, x + Math.cos(a) * cr * 3, z + Math.sin(a) * cr * 3);
+      }
+      CAV[j * W + i] = clamp(((h0 - ring / 8) * 0.65 + (h0 - ring2 / 8) * 0.35 * 0.5) / cavityScale, -1, 1);
+      // soft shadow: march towards the sun, keep the smallest clearance/distance ratio
+      let lit = 1;
+      for (let t = step * 1.5; t < 3.5; t *= 1.12) {
+        const px = x + sdx * t;
+        const pz = z + sdz * t;
+        if (!inside(px, pz)) break;
+        const clear = h0 + 0.01 + t * tanE - bil(H, px, pz);
+        lit = Math.min(lit, clamp((clear / t) * 6 + 0.5));
+        if (lit <= 0) break;
+      }
+      SH[j * W + i] = lit * lit * (3 - 2 * lit);
+    }
+  const sn = norm(sun);
+  return {
+    height: (x, z) => bil(H, x, z),
+    ao: (x, z) => bil(AO, x, z),
+    cavity: (x, z) => bil(CAV, x, z),
+    shadow: (x, z) => bil(SH, x, z),
+    sun: sn,
+    sunlit: (n) => Math.max(0, n[0] * sn[0] + n[1] * sn[1] + n[2] * sn[2]),
+  };
+}
+
+/**
+ * Apply baked light to an albedo: ambient occlusion and cavity darken,
+ * cast shadow cools and darkens (sky-lit), sun-facing slopes warm slightly.
+ * `strength` scales everything (1 = default).
+ */
+export function lightBake(c, { ao = 1, cavity = 0, shadow = 1, sunlit = 0.6, strength = 1, cool = rgb('#9fb6d6') }) {
+  const k = strength;
+  const occl = lerp(1, 0.38 + 0.62 * ao ** 1.3, k);
+  const cav = lerp(1, 1 + 0.22 * clamp(cavity, -1, 1), k);
+  const sh = lerp(1, 0.62 + 0.38 * shadow, k);
+  // shadowed areas take the blue of the sky; lit sun-facing slopes a warm cast
+  const warm = clamp(sunlit * shadow);
+  let out = c.map((v, i) => v * occl * cav * sh);
+  out = mix(out, out.map((v, i) => v * cool[i] * 1.6), (1 - shadow) * 0.45 * k);
+  out = out.map((v, i) => v * lerp(1, [1.05, 1.01, 0.95][i], warm * k));
+  return out.map((v) => clamp(v));
 }
 
 // --- tubes, ribbons, blobs, cones -------------------------------------------------------------
@@ -509,6 +860,56 @@ export function cone(base, { radius, height, color, segs = 8, dir = [0, 1, 0], b
   return g;
 }
 
+/**
+ * Tien Shan spruce (Picea schrenkiana): a tall, narrow spire of drooping
+ * branch tiers on a short trunk. Each tier is a ragged skirt (darker
+ * underneath and inside, lighter at the sunlit tips), tiers shrink and
+ * lighten towards the slender leader; `rand(k)` in [0, 1) varies it.
+ */
+export function spruce([x, y, z], { height, radius, color, trunk, tiers = 7, segs = 7, phase = 0, rand = (k) => (((Math.sin(k * 12.9898 + phase * 78.233) * 43758.5453) % 1) + 1) % 1, lean = [0, 0], underside = false }) {
+  const g = new Geo();
+  g.append(tube([[x, y - 0.02, z], [x, y + height * 0.12, z]], { radius: radius * 0.13, color: trunk, segs: 4 }));
+  const off = (h) => [lean[0] * h, lean[1] * h];
+  for (let k = 0; k < tiers; k++) {
+    const t = k / (tiers - 1);
+    const by = y + height * (0.07 + 0.72 * t ** 0.92);
+    const top = k === tiers - 1 ? y + height : by + height * (0.27 - 0.1 * t);
+    const r = radius * (1 - 0.8 * t) ** 0.85 * (0.85 + 0.3 * rand(k));
+    const [ox, oz] = off((by - y) / height);
+    const [tx, tz] = off((top - y) / height);
+    const apex = [x + tx, top, z + tz];
+    const cIn = shade(color, 0.5 + 0.22 * t);
+    const cTip = shade(color, 0.92 + 0.3 * t);
+    const centre = underside ? g.v([x + ox, by + (top - by) * 0.25, z + oz], [0, -1, 0], cIn) : -1;
+    const ring = [];
+    for (let s = 0; s < segs; s++) {
+      const a = phase + k * 0.9 + (2 * Math.PI * (s + 0.3 * (rand(k * 31 + s) - 0.5))) / segs;
+      const rr = r * (0.78 + 0.4 * rand(k * 17 + s + 5));
+      // branch tips droop below the tier base
+      const droop = (top - by) * (0.12 + 0.18 * rand(k * 7 + s));
+      ring.push([x + ox + Math.cos(a) * rr, by - droop, z + oz + Math.sin(a) * rr]);
+    }
+    const slope = r / (top - by);
+    const ai = g.v(apex, [0, 1, 0], cTip);
+    for (let s = 0; s < segs; s++) {
+      const p = ring[s];
+      const q = ring[(s + 1) % segs];
+      const mx = (p[0] + q[0]) / 2 - x - ox;
+      const mz = (p[2] + q[2]) / 2 - z - oz;
+      const l = Math.hypot(mx, mz) || 1;
+      const n = norm([mx / l, slope * 0.9, mz / l]);
+      const np = norm([p[0] - x - ox, slope * 0.9 * Math.hypot(p[0] - x - ox, p[2] - z - oz) / (r || 1), p[2] - z - oz]);
+      const nq = norm([q[0] - x - ox, slope * 0.9 * Math.hypot(q[0] - x - ox, q[2] - z - oz) / (r || 1), q[2] - z - oz]);
+      const a = g.v(p, np, shade(cTip, 0.78 + 0.25 * rand(k * 13 + s)));
+      const b = g.v(q, nq, shade(cTip, 0.78 + 0.25 * rand(k * 13 + s + 1)));
+      g.tri(a, b, ai, n);
+      // underside: dark skirt back to the trunk
+      if (underside) g.tri(g.v(p, [0, -1, 0], cIn), g.v(q, [0, -1, 0], cIn), centre, [0, -1, 0]);
+    }
+  }
+  return g;
+}
+
 /** Arrow along a 3D path: tube shaft + cone head at the end. */
 export function arrow(pts, { radius, head = 3, headLength = 6, color, segs = 8 }) {
   const n = pts.length;
@@ -529,8 +930,10 @@ export function arrow(pts, { radius, head = 3, headLength = 6, color, segs = 8 }
     }
     remaining -= seg;
   }
-  const g = tube(shaft.length > 1 ? shaft : [pts[0], cut], { radius, color, segs, capStart: true });
-  g.append(cone(cut, { radius: radius * head, height: hl, color, segs, dir, baseCap: true }));
+  // `color` may be a function of the arc fraction t (tone gradient along the arrow); the head takes t = 1
+  const Cf = typeof color === 'function' ? color : () => color;
+  const g = tube(shaft.length > 1 ? shaft : [pts[0], cut], { radius, color: Cf, segs, capStart: true });
+  g.append(cone(cut, { radius: radius * head, height: hl, color: Cf(1), segs, dir, baseCap: true }));
   return g;
 }
 
@@ -538,13 +941,15 @@ export function arrow(pts, { radius, head = 3, headLength = 6, color, segs = 8 }
  * Ribbon draped on y(x, z) along a dense 2D path; width(t) may be a function.
  * `dashes` = [on, off] in samples makes a dashed line.
  */
-export function ribbon(path, { width, y, color, normal = () => [0, 1, 0], dashes = null }) {
+export function ribbon(path, { width, y, color, normal = () => [0, 1, 0], dashes = null, centre = null }) {
   const g = new Geo();
   const W = typeof width === 'function' ? width : () => width;
   const Cf = typeof color === 'function' ? color : () => color;
+  const Cc = centre && (typeof centre === 'function' ? centre : () => centre);
   const n = path.length;
   const L = [];
   const R = [];
+  const M = [];
   for (let i = 0; i < n; i++) {
     const p = path[Math.max(0, i - 1)];
     const q = path[Math.min(n - 1, i + 1)];
@@ -563,10 +968,14 @@ export function ribbon(path, { width, y, color, normal = () => [0, 1, 0], dashes
     const rz = z - nz * w;
     L.push(g.v([lx, y(lx, lz), lz], normal(lx, lz), c));
     R.push(g.v([rx, y(rx, rz), rz], normal(rx, rz), c));
+    if (Cc) M.push(g.v([x, y(x, z), z], normal(x, z), Cc(t, i)));
   }
   for (let i = 0; i < n - 1; i++) {
     if (dashes && i % (dashes[0] + dashes[1]) >= dashes[0]) continue;
-    g.quad(L[i], R[i], R[i + 1], L[i + 1], [0, 1, 0]);
+    if (Cc) {
+      g.quad(L[i], M[i], M[i + 1], L[i + 1], [0, 1, 0]);
+      g.quad(M[i], R[i], R[i + 1], M[i + 1], [0, 1, 0]);
+    } else g.quad(L[i], R[i], R[i + 1], L[i + 1], [0, 1, 0]);
   }
   return g;
 }
@@ -617,7 +1026,8 @@ export function gltf() {
   const doc = new Document();
   const buf = doc.createBuffer();
   const acc = (type, arr) => doc.createAccessor().setType(type).setArray(arr).setBuffer(buf);
-  const material = (name, { color = '#ffffff', rough = 0.85, metal = 0, alpha, emissive, ds = false, texture, emissiveTexture } = {}) => {
+  let clearcoatExt = null;
+  const material = (name, { color = '#ffffff', rough = 0.85, metal = 0, alpha, emissive, ds = false, texture, emissiveTexture, clearcoat } = {}) => {
     const m = doc
       .createMaterial(name)
       .setBaseColorFactor([...rgb(color), alpha ?? 1])
@@ -628,6 +1038,10 @@ export function gltf() {
     if (emissive) m.setEmissiveFactor(rgb(emissive));
     if (texture) m.setBaseColorTexture(texture);
     if (emissiveTexture) m.setEmissiveTexture(emissiveTexture);
+    if (clearcoat) {
+      clearcoatExt ??= doc.createExtension(KHRMaterialsClearcoat);
+      m.setExtension('KHR_materials_clearcoat', clearcoatExt.createClearcoat().setClearcoatFactor(clearcoat[0]).setClearcoatRoughnessFactor(clearcoat[1]));
+    }
     return m;
   };
   const mesh = (name, geo, mat) => {
@@ -639,17 +1053,25 @@ export function gltf() {
       .createPrimitive()
       .setAttribute('POSITION', acc('VEC3', new Float32Array(geo.P)))
       .setAttribute('NORMAL', acc('VEC3', new Float32Array(geo.N)))
-      .setAttribute('COLOR_0', acc('VEC3', new Float32Array(geo.C)))
       .setIndices(acc('SCALAR', new Uint32Array(geo.I)))
       .setMaterial(mat);
+    // textured surfaces carry no vertex colours (geo.C emptied)
+    if (geo.C.length) p.setAttribute('COLOR_0', acc('VEC3', new Float32Array(geo.C)));
     if (geo.UV.length) p.setAttribute('TEXCOORD_0', acc('VEC2', new Float32Array(geo.UV)));
-    return doc.createMesh(name).addPrimitive(p);
+    return p;
   };
+  /** Image (PNG/JPEG buffer) as a texture. */
+  const texture = (name, png) => doc.createTexture(name).setImage(new Uint8Array(png)).setMimeType('image/png');
+  /** A node; `geo` may be a list of [geo, material] pairs (one primitive each). */
   const node = (name, geo = null, mat = null, parent = null) => {
     const n = doc.createNode(name);
-    if (geo) n.setMesh(mesh(name, geo, mat));
+    if (geo) {
+      const m = doc.createMesh(name);
+      for (const [g, mt] of Array.isArray(geo) ? geo : [[geo, mat]]) if (g.I.length) m.addPrimitive(mesh(name, g, mt));
+      n.setMesh(m);
+    }
     parent?.addChild(n);
     return n;
   };
-  return { doc, material, mesh, node };
+  return { doc, material, mesh, node, texture };
 }
