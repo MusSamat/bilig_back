@@ -22,6 +22,7 @@ import { LocalizedSchema } from './i18n.js';
 import { ItemSchema } from './item.js';
 import { ProcessSchema } from './process.js';
 import { ContentStatusSchema, TopicSchema } from './topic.js';
+import { TextbookSchema } from './textbook.js';
 
 export const ManifestFileSchema = z.object({
   path: RelPathSchema,
@@ -102,6 +103,8 @@ export const CatalogSchema = z.object({
   courses: z.array(CourseSchema),
   units: z.array(UnitSchema),
   topics: z.array(TopicSummarySchema),
+  /** v0.5.0: textbooks mapped onto the topics (the teacher's menu). Lessons list published topics only. */
+  textbooks: z.array(TextbookSchema).optional(),
 });
 export type Catalog = z.infer<typeof CatalogSchema>;
 

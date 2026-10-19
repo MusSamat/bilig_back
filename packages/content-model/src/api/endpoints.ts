@@ -26,7 +26,9 @@ import {
 import { CourseSchema, ObjectiveSchema, SubjectGroupSchema, UnitSchema } from '../curriculum.js';
 import { GlossaryTermSchema } from '../glossary.js';
 import { ItemSchema } from '../item.js';
+import { TextbookSchema } from '../textbook.js';
 import * as decks from './decks.js';
+import * as ktp from './ktp.js';
 import * as learning from './learning.js';
 import * as tutor from './tutor.js';
 
@@ -86,6 +88,9 @@ export const ENDPOINTS = {
   topicManifest: e({ method: 'GET', path: '/topics/:key/manifest', auth: 'demo.view', response: catalog.TopicManifestResponseSchema }),
   /** Dev/offline-server stand-in for the CDN package URL. */
   topicPackage: e({ method: 'GET', path: '/packages/:key', auth: 'demo.view', response: ContentPackageSchema }),
+  /** v0.5.0: textbook menu. */
+  textbooks: e({ method: 'GET', path: '/textbooks', auth: 'demo.view', query: catalog.TextbooksQuerySchema, response: catalog.TextbooksResponseSchema }),
+  textbook: e({ method: 'GET', path: '/textbooks/:key', auth: 'demo.view', response: catalog.TextbookDetailResponseSchema }),
   search: e({ method: 'GET', path: '/search', auth: 'demo.view', query: catalog.SearchQuerySchema, response: catalog.SearchResponseSchema }),
 
   // Learning
@@ -117,6 +122,14 @@ export const ENDPOINTS = {
   presentationGet: e({ method: 'GET', path: '/presentations/:id', auth: 'session', response: decks.PresentationSchema }),
   presentationPatch: e({ method: 'PATCH', path: '/presentations/:id', auth: 'session', body: decks.PresentationPatchRequestSchema, response: decks.PresentationSchema, ifMatch: true }),
   presentationExport: e({ method: 'POST', path: '/presentations/:id/export', auth: 'session', query: decks.ExportQuerySchema, body: EmptySchema, response: decks.ExportResponseSchema }),
+  // v0.5.0: КТП → lesson plans (owner-only)
+  ktpList: e({ method: 'GET', path: '/ktp', auth: 'lesson.plan', query: PageQuerySchema, response: ktp.TeachingPlanListSchema }),
+  ktpCreate: e({ method: 'POST', path: '/ktp', auth: 'lesson.plan', body: ktp.KtpUploadRequestSchema, response: ktp.TeachingPlanSchema }),
+  ktpGet: e({ method: 'GET', path: '/ktp/:id', auth: 'lesson.plan', response: ktp.TeachingPlanSchema }),
+  ktpPatch: e({ method: 'PATCH', path: '/ktp/:id', auth: 'lesson.plan', body: ktp.KtpPatchRequestSchema, response: ktp.TeachingPlanSchema, ifMatch: true }),
+  ktpDelete: e({ method: 'DELETE', path: '/ktp/:id', auth: 'lesson.plan', response: OkSchema, ifMatch: true }),
+  ktpLessonPlan: e({ method: 'GET', path: '/ktp/:id/lessons/:index/plan', auth: 'lesson.plan', query: ktp.KtpLessonPlanQuerySchema, response: BinaryResponseSchema, produces: ktp.DOCX_MEDIA_TYPE }),
+  ktpLessonPlans: e({ method: 'GET', path: '/ktp/:id/plans', auth: 'lesson.plan', query: ktp.KtpLessonPlansQuerySchema, response: BinaryResponseSchema, produces: ktp.DOCX_MEDIA_TYPE }),
   snapshotCreate: e({ method: 'POST', path: '/snapshots', auth: 'session', body: decks.SnapshotCreateRequestSchema, response: decks.SnapshotResponseSchema }),
 
   // Admin: content
@@ -268,6 +281,12 @@ export const ENDPOINTS = {
 
   // Admin: single GETs
   adminGroupGet: e({ method: 'GET', path: '/admin/groups/:key', auth: 'platform.manage', response: admin.adminRecord(SubjectGroupSchema) }),
+  // v0.5.0 textbooks (shared across subjects → content.publish to write)
+  adminTextbookList: e({ method: 'GET', path: '/admin/textbooks', auth: 'content.draft.edit', query: admin.AdminListQuerySchema, response: admin.adminRecordPage(TextbookSchema) }),
+  adminTextbookGet: e({ method: 'GET', path: '/admin/textbooks/:key', auth: 'content.draft.edit', response: admin.adminRecord(TextbookSchema) }),
+  adminTextbookCreate: e({ method: 'POST', path: '/admin/textbooks', auth: 'content.publish', body: admin.AdminTextbookCreateSchema, response: admin.adminRecord(TextbookSchema) }),
+  adminTextbookPatch: e({ method: 'PATCH', path: '/admin/textbooks/:key', auth: 'content.publish', body: admin.AdminTextbookPatchSchema, response: admin.adminRecord(TextbookSchema), ifMatch: true }),
+  adminTextbookDelete: e({ method: 'DELETE', path: '/admin/textbooks/:key', auth: 'content.publish', response: OkSchema, ifMatch: true }),
   adminGlossaryGet: e({ method: 'GET', path: '/admin/glossary/:id', auth: 'content.draft.edit', response: admin.adminRecord(GlossaryTermSchema) }),
 
   // Admin: cancel a scheduled publish (A-13); 409 when nothing is scheduled

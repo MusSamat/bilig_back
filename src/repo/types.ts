@@ -25,6 +25,7 @@ import type {
   Process,
   Subject,
   SubjectGroup,
+  Textbook,
   Topic,
   Unit,
 } from '@bilig/content-model';
@@ -191,6 +192,8 @@ export interface ContentKinds {
   process: Process;
   item: Item;
   glossary: GlossaryTerm;
+  /** v0.5.0: shared (subjectKey null). */
+  textbook: Textbook;
 }
 export type ContentKind = keyof ContentKinds;
 export const CONTENT_KINDS: readonly ContentKind[] = [
@@ -203,6 +206,7 @@ export const CONTENT_KINDS: readonly ContentKind[] = [
   'process',
   'item',
   'glossary',
+  'textbook',
 ];
 
 export interface ContentRec<T> {
@@ -461,6 +465,17 @@ export interface PresentationRec {
   title: string;
   lang: Lang;
   slides: unknown[];
+  version: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+/** v0.5.0: an uploaded КТП with its lessons; `doc` = the TeachingPlan body without id/owner/timestamps/version. */
+export interface TeachingPlanRec {
+  id: Id;
+  ownerId: Id;
+  title: string;
+  doc: unknown;
   version: number;
   createdAt: Date;
   updatedAt: Date;
@@ -748,6 +763,15 @@ export interface Repository {
   createSnapshot(s: SnapshotRec): Promise<void>;
   getSnapshot(id: Id): Promise<SnapshotRec | null>;
   getSnapshots(ids: readonly Id[]): Promise<SnapshotRec[]>;
+
+  // КТП → lesson plans (v0.5.0)
+  createTeachingPlan(p: TeachingPlanRec): Promise<void>;
+  getTeachingPlan(id: Id): Promise<TeachingPlanRec | null>;
+  updateTeachingPlan(id: Id, patch: Partial<Pick<TeachingPlanRec, 'title' | 'doc'>>, expectedVersion: number): Promise<WriteResult<TeachingPlanRec>>;
+  /** Delete when the version matches (optimistic lock, like updates). */
+  deleteTeachingPlan(id: Id, expectedVersion: number): Promise<'ok' | 'not_found' | 'version_mismatch'>;
+  /** Owner's plans ordered by id. */
+  listTeachingPlans(ownerId: Id, page: PageReq): Promise<PageRes<TeachingPlanRec>>;
 
   // tutor
   createThread(t: TutorThreadRec): Promise<void>;

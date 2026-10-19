@@ -1,0 +1,4417 @@
+{
+  "manifest": {
+    "topicKey": "human-impact-ecosystems",
+    "version": "1.0.0",
+    "hash": "f8e888f5ab2d5234213190d72b062136dc0eb5a5e8c561b7ec0a8d318a194a24",
+    "files": [
+      {
+        "path": "thumbs/yellowstone-no-wolves.webp",
+        "hash": "998180b8129803c16c011ab4f521886dff0b65619bdf41d5a1ac15ae54e1c85c",
+        "size": 0
+      },
+      {
+        "path": "thumbs/yellowstone-wolves-back.webp",
+        "hash": "757828d20cc1931c53b77aa42a8824c64a52e1216c4a46e0e5fc531ddf44954b",
+        "size": 0
+      },
+      {
+        "path": "thumbs/archa-forest.webp",
+        "hash": "bb2d16e629df510d21b19feab20119106fd6591dab2bdfddeb16cd32f60d0e11",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "bio",
+    "icon": "cell",
+    "hue": 168,
+    "group": "natural",
+    "order": 0,
+    "status": "live",
+    "title": {
+      "ky": "Биология",
+      "ru": "Биология",
+      "en": "Biology"
+    }
+  },
+  "course": {
+    "key": "bio.g8",
+    "subjectKey": "bio",
+    "grade": 8,
+    "curriculum": "kg-2024",
+    "title": {
+      "ky": "Биология, 8-класс",
+      "ru": "Биология, 8 класс",
+      "en": "Biology, grade 8"
+    }
+  },
+  "unit": {
+    "key": "bio.g8.ecosystems",
+    "courseKey": "bio.g8",
+    "order": 3,
+    "title": {
+      "ky": "Экосистемалар",
+      "ru": "Экосистемы",
+      "en": "Ecosystems"
+    }
+  },
+  "objectives": [
+    {
+      "key": "bio.g8.ecosystems.o1",
+      "code": "BIO-8.3.1",
+      "unitKey": "bio.g8.ecosystems",
+      "text": {
+        "ky": "Экосистеманын компоненттерин жана азык чынжырларын сүрөттөө.",
+        "ru": "Описывать компоненты экосистемы и пищевые цепи.",
+        "en": "Describe the parts of an ecosystem and food chains."
+      }
+    },
+    {
+      "key": "bio.g8.ecosystems.o2",
+      "code": "BIO-8.3.2",
+      "unitKey": "bio.g8.ecosystems",
+      "text": {
+        "ky": "Адамдын экосистемага таасирин жана булгануунун азык чынжыры боюнча топтолушун түшүндүрүү.",
+        "ru": "Объяснять влияние человека на экосистемы и накопление загрязнителей по пищевой цепи.",
+        "en": "Explain human impact on ecosystems and how pollutants build up along a food chain."
+      }
+    }
+  ],
+  "topic": {
+    "key": "human-impact-ecosystems",
+    "unitKey": "bio.g8.ecosystems",
+    "status": "published",
+    "title": {
+      "ky": "Адамдын таасири жана экосистеманы калыбына келтирүү",
+      "ru": "Влияние человека и восстановление экосистем",
+      "en": "Human impact and ecosystem restoration"
+    },
+    "classification": {
+      "ky": "Экология",
+      "ru": "Экология",
+      "en": "Ecology"
+    },
+    "description": {
+      "ky": "Йеллоустон токоюнун азык торчосу карышкырсыз: бугулар көбөйүп, дарыя жээгиндеги талдар азаят. Карышкырлар кайтып келгенде эмне өзгөрдү? Ошондой эле Кыргызстандын мисалдары: Ысык-Көлгө киргизилген балыктар жана арча токойлорун сактоо.",
+      "ru": "Пищевая сеть леса Йеллоустона без волков: олени множатся, ив у рек становится меньше. Что изменилось, когда волки вернулись? А также примеры Кыргызстана: завезённые в Иссык-Куль рыбы и сохранение арчовых лесов.",
+      "en": "The food web of a Yellowstone forest without wolves: elk multiply and riverside willows dwindle. What changed when the wolves came back? Plus examples from Kyrgyzstan: fish introduced into Lake Issyk-Kul and protecting juniper forests."
+    },
+    "goal": {
+      "ky": "Адамдын экосистемага таасирин жана калыбына келтирүүнүн жолдорун түшүндүрүү (BIO-8.3.2), азык торчосундагы байланыштарды колдонуу (BIO-8.3.1).",
+      "ru": "Объяснить влияние человека на экосистемы и пути их восстановления (BIO-8.3.2), используя связи пищевой сети (BIO-8.3.1).",
+      "en": "Explain human impact on ecosystems and ways to restore them (BIO-8.3.2), using the links in a food web (BIO-8.3.1)."
+    },
+    "objectiveKeys": [
+      "bio.g8.ecosystems.o2",
+      "bio.g8.ecosystems.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "food-web",
+        "biome": "forest",
+        "organisms": [
+          {
+            "id": "grass",
+            "level": "producer",
+            "icon": "grass",
+            "count": 1000
+          },
+          {
+            "id": "willow",
+            "level": "producer",
+            "icon": "bush",
+            "count": 150
+          },
+          {
+            "id": "aspen",
+            "level": "producer",
+            "icon": "tree",
+            "count": 150
+          },
+          {
+            "id": "elk",
+            "level": "primary",
+            "icon": "deer",
+            "count": 60
+          },
+          {
+            "id": "beaver",
+            "level": "primary",
+            "icon": "beaver",
+            "count": 6
+          },
+          {
+            "id": "vole",
+            "level": "primary",
+            "icon": "mouse",
+            "count": 300
+          },
+          {
+            "id": "coyote",
+            "level": "secondary",
+            "icon": "coyote",
+            "count": 8
+          },
+          {
+            "id": "wolf",
+            "level": "secondary",
+            "icon": "wolf",
+            "count": 5
+          },
+          {
+            "id": "fungi",
+            "level": "decomposer",
+            "icon": "mushroom",
+            "count": 1000
+          }
+        ],
+        "links": [
+          [
+            "grass",
+            "elk"
+          ],
+          [
+            "willow",
+            "elk"
+          ],
+          [
+            "aspen",
+            "elk"
+          ],
+          [
+            "willow",
+            "beaver"
+          ],
+          [
+            "aspen",
+            "beaver"
+          ],
+          [
+            "grass",
+            "vole"
+          ],
+          [
+            "vole",
+            "coyote"
+          ],
+          [
+            "elk",
+            "wolf"
+          ],
+          [
+            "elk",
+            "fungi"
+          ],
+          [
+            "aspen",
+            "fungi"
+          ]
+        ],
+        "removed": [
+          "wolf"
+        ]
+      },
+      "camera": {
+        "position": [
+          0,
+          2.5,
+          7
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "energy",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "bio.keystone-species",
+      "bio.trophic-cascade",
+      "bio.producer",
+      "bio.primary-consumer",
+      "bio.decomposer",
+      "bio.human-impact",
+      "bio.habitat-loss",
+      "bio.invasive-species",
+      "bio.ecosystem-restoration",
+      "bio.protected-area"
+    ],
+    "overrides": {
+      "bio.keystone-species": {
+        "nodes": [
+          "Organism_wolf"
+        ]
+      },
+      "bio.trophic-cascade": {
+        "nodes": [
+          "Link_elk_wolf",
+          "Link_willow_elk",
+          "Link_aspen_elk"
+        ]
+      },
+      "bio.producer": {
+        "nodes": [
+          "Level_producer",
+          "Organism_grass",
+          "Organism_willow",
+          "Organism_aspen",
+          "Organism_juniper"
+        ]
+      },
+      "bio.primary-consumer": {
+        "nodes": [
+          "Level_primary",
+          "Organism_elk",
+          "Organism_vole",
+          "Organism_sheep",
+          "Organism_roe-deer",
+          "Organism_marmot"
+        ]
+      },
+      "bio.ecosystem-restoration": {
+        "nodes": [
+          "Organism_beaver"
+        ],
+        "description": {
+          "ky": "Калыбына келүүнүн белгиси: тал кайра өскөн жерлерде кундуздар кайтып, тосмо салып, жаңы көлмөлөрдү жаратат. Калыбына келтирүү – түрлөрдү кайтаруу, отургузуу жана коргоо аркылуу бузулган экосистемага жардам берүү.",
+          "ru": "Признак восстановления: там, где снова выросли ивы, возвращаются бобры, строят плотины и создают новые пруды. Восстановление – помощь повреждённой экосистеме через возвращение видов, посадки и охрану.",
+          "en": "A sign of recovery: where willows grow back, beavers return, build dams and make new ponds. Restoration means helping a damaged ecosystem by returning species, planting and protecting."
+        }
+      },
+      "bio.decomposer": {
+        "nodes": [
+          "Level_decomposer",
+          "Organism_fungi"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "yellowstone-no-wolves",
+        "title": {
+          "ky": "Йеллоустон карышкырсыз",
+          "ru": "Йеллоустон без волков",
+          "en": "Yellowstone without wolves"
+        },
+        "classification": {
+          "ky": "1920-ж. – 1995-ж.",
+          "ru": "1920-е – 1995",
+          "en": "1920s–1995"
+        },
+        "thumb": "thumbs/yellowstone-no-wolves.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Бугулар көп, жээктеги талдар аз",
+              "ru": "Оленей много, ив у берега мало",
+              "en": "Many elk, few riverside willows"
+            }
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "food-web",
+            "biome": "forest",
+            "organisms": [
+              {
+                "id": "grass",
+                "level": "producer",
+                "icon": "grass",
+                "count": 1000
+              },
+              {
+                "id": "willow",
+                "level": "producer",
+                "icon": "bush",
+                "count": 150
+              },
+              {
+                "id": "aspen",
+                "level": "producer",
+                "icon": "tree",
+                "count": 150
+              },
+              {
+                "id": "elk",
+                "level": "primary",
+                "icon": "deer",
+                "count": 60
+              },
+              {
+                "id": "beaver",
+                "level": "primary",
+                "icon": "beaver",
+                "count": 6
+              },
+              {
+                "id": "vole",
+                "level": "primary",
+                "icon": "mouse",
+                "count": 300
+              },
+              {
+                "id": "coyote",
+                "level": "secondary",
+                "icon": "coyote",
+                "count": 8
+              },
+              {
+                "id": "wolf",
+                "level": "secondary",
+                "icon": "wolf",
+                "count": 5
+              },
+              {
+                "id": "fungi",
+                "level": "decomposer",
+                "icon": "mushroom",
+                "count": 1000
+              }
+            ],
+            "links": [
+              [
+                "grass",
+                "elk"
+              ],
+              [
+                "willow",
+                "elk"
+              ],
+              [
+                "aspen",
+                "elk"
+              ],
+              [
+                "willow",
+                "beaver"
+              ],
+              [
+                "aspen",
+                "beaver"
+              ],
+              [
+                "grass",
+                "vole"
+              ],
+              [
+                "vole",
+                "coyote"
+              ],
+              [
+                "elk",
+                "wolf"
+              ],
+              [
+                "elk",
+                "fungi"
+              ],
+              [
+                "aspen",
+                "fungi"
+              ]
+            ],
+            "removed": [
+              "wolf"
+            ]
+          },
+          "modes": {
+            "energy": true,
+            "labels": true
+          }
+        }
+      },
+      {
+        "key": "yellowstone-wolves-back",
+        "title": {
+          "ky": "Карышкырлар кайтып келди",
+          "ru": "Волки вернулись",
+          "en": "Wolves are back"
+        },
+        "classification": {
+          "ky": "1995–1996-ж. кийин",
+          "ru": "После 1995–1996",
+          "en": "After 1995–1996"
+        },
+        "thumb": "thumbs/yellowstone-wolves-back.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Бугулар азыраак, кээ бир жерлерде тал жана кундуз көбөйдү",
+              "ru": "Оленей меньше, местами больше ив и бобров",
+              "en": "Fewer elk; more willows and beavers in places"
+            }
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "food-web",
+            "biome": "forest",
+            "organisms": [
+              {
+                "id": "grass",
+                "level": "producer",
+                "icon": "grass",
+                "count": 1000
+              },
+              {
+                "id": "willow",
+                "level": "producer",
+                "icon": "bush",
+                "count": 300
+              },
+              {
+                "id": "aspen",
+                "level": "producer",
+                "icon": "tree",
+                "count": 300
+              },
+              {
+                "id": "elk",
+                "level": "primary",
+                "icon": "deer",
+                "count": 60
+              },
+              {
+                "id": "beaver",
+                "level": "primary",
+                "icon": "beaver",
+                "count": 18
+              },
+              {
+                "id": "vole",
+                "level": "primary",
+                "icon": "mouse",
+                "count": 300
+              },
+              {
+                "id": "coyote",
+                "level": "secondary",
+                "icon": "coyote",
+                "count": 8
+              },
+              {
+                "id": "wolf",
+                "level": "secondary",
+                "icon": "wolf",
+                "count": 5
+              },
+              {
+                "id": "fungi",
+                "level": "decomposer",
+                "icon": "mushroom",
+                "count": 1000
+              }
+            ],
+            "links": [
+              [
+                "grass",
+                "elk"
+              ],
+              [
+                "willow",
+                "elk"
+              ],
+              [
+                "aspen",
+                "elk"
+              ],
+              [
+                "willow",
+                "beaver"
+              ],
+              [
+                "aspen",
+                "beaver"
+              ],
+              [
+                "grass",
+                "vole"
+              ],
+              [
+                "vole",
+                "coyote"
+              ],
+              [
+                "elk",
+                "wolf"
+              ],
+              [
+                "elk",
+                "fungi"
+              ],
+              [
+                "aspen",
+                "fungi"
+              ]
+            ],
+            "removed": []
+          },
+          "modes": {
+            "energy": true,
+            "labels": true
+          }
+        }
+      },
+      {
+        "key": "archa-forest",
+        "title": {
+          "ky": "Арча токою",
+          "ru": "Арчовый лес",
+          "en": "Juniper forest"
+        },
+        "classification": {
+          "ky": "Тянь-Шань",
+          "ru": "Тянь-Шань",
+          "en": "Tien Shan"
+        },
+        "thumb": "thumbs/archa-forest.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "function",
+            "value": {
+              "ky": "Топуракты кармайт, сууну жөнгө салат",
+              "ru": "Удерживает почву, регулирует сток",
+              "en": "Holds soil, regulates water run-off"
+            }
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "food-web",
+            "biome": "mountain",
+            "organisms": [
+              {
+                "id": "juniper",
+                "level": "producer",
+                "icon": "tree",
+                "count": 50
+              },
+              {
+                "id": "grass",
+                "level": "producer",
+                "icon": "grass",
+                "count": 1000
+              },
+              {
+                "id": "sheep",
+                "level": "primary",
+                "icon": "sheep",
+                "count": 300
+              },
+              {
+                "id": "roe-deer",
+                "level": "primary",
+                "icon": "deer",
+                "count": 20
+              },
+              {
+                "id": "marmot",
+                "level": "primary",
+                "icon": "marmot",
+                "count": 40
+              },
+              {
+                "id": "fox",
+                "level": "secondary",
+                "icon": "fox",
+                "count": 4
+              },
+              {
+                "id": "eagle",
+                "level": "tertiary",
+                "icon": "eagle",
+                "count": 2
+              },
+              {
+                "id": "fungi",
+                "level": "decomposer",
+                "icon": "mushroom",
+                "count": 1000
+              }
+            ],
+            "links": [
+              [
+                "grass",
+                "sheep"
+              ],
+              [
+                "juniper",
+                "sheep"
+              ],
+              [
+                "grass",
+                "roe-deer"
+              ],
+              [
+                "juniper",
+                "roe-deer"
+              ],
+              [
+                "grass",
+                "marmot"
+              ],
+              [
+                "marmot",
+                "fox"
+              ],
+              [
+                "marmot",
+                "eagle"
+              ],
+              [
+                "fox",
+                "eagle"
+              ],
+              [
+                "juniper",
+                "fungi"
+              ],
+              [
+                "grass",
+                "fungi"
+              ]
+            ],
+            "removed": []
+          },
+          "modes": {
+            "energy": true,
+            "labels": true
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "text",
+        "type": "location",
+        "value": {
+          "ky": "Йеллоустон (АКШ); Ысык-Көл жана арча токойлору (Кыргызстан)",
+          "ru": "Йеллоустон (США); Иссык-Куль и арчовые леса (Кыргызстан)",
+          "en": "Yellowstone (USA); Issyk-Kul and juniper forests (Kyrgyzstan)"
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "no-wolves",
+            "sample": "yellowstone-no-wolves",
+            "camera": {
+              "position": [
+                0,
+                2.5,
+                7
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "bio.keystone-species",
+            "text": {
+              "ky": "Йеллоустон, АКШ. 1920-жылдарга чейин мында карышкырлар аңчылык менен толук жок кылынган. Моделде карышкыр алынып салынган: анын жебелери өчкөн.",
+              "ru": "Йеллоустон, США. К 1920-м годам волков здесь полностью истребили охотой. В модели волк убран: его стрелки погасли.",
+              "en": "Yellowstone, USA. By the 1920s hunting had wiped out the wolves here. In the model the wolf has been removed and its arrows have faded."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: жырткычы жок болсо, бугулардын саны эмне болот? Божомолдорду тактага жазып, тур аягында текшериңиз.",
+              "ru": "Спросите: что станет с оленями без хищника? Запишите прогнозы на доске и проверьте в конце тура.",
+              "en": "Ask: what happens to the elk with no predator? Write predictions on the board and check them at the end."
+            },
+            "altText": {
+              "ky": "Токой экосистемасы, карышкыр бозоруп турат.",
+              "ru": "Лесная экосистема, значок волка бледный.",
+              "en": "A forest ecosystem with the wolf greyed out."
+            }
+          },
+          {
+            "key": "elk",
+            "camera": {
+              "position": [
+                0,
+                1,
+                6
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "bio.primary-consumer",
+            "text": {
+              "ky": "Карышкырсыз бугулар көбөйүп, дарыя жээгиндеги жаш тал менен бай теректи жеп салышкан. Дарактар азайып, жээктер бузула баштаган.",
+              "ru": "Без волков олени-вапити размножились и объедали молодые ивы и осины у рек. Деревьев стало меньше, берега начали разрушаться.",
+              "en": "Without wolves the elk multiplied and browsed young willows and aspens along the rivers. Trees thinned and riverbanks began to erode."
+            },
+            "teacherNote": {
+              "ky": "Түшүндүрүңүз: бул – азык торчосундагы байланыш, бир шакектин өзгөрүшү башкаларга өтөт.",
+              "ru": "Объясните: это связь пищевой сети – изменение одного звена передаётся другим.",
+              "en": "Explain: this is a food-web link – a change in one link passes to others."
+            },
+            "altText": {
+              "ky": "Бугу жана тал белгиленген, алардын ортосундагы жебе жоон.",
+              "ru": "Выделены олень и ива, стрелка между ними толстая.",
+              "en": "Elk and willow highlighted, with a thick arrow between them."
+            }
+          },
+          {
+            "key": "cascade",
+            "sample": "yellowstone-wolves-back",
+            "camera": {
+              "position": [
+                0,
+                2.5,
+                7
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "energy": true
+            },
+            "focus": "bio.trophic-cascade",
+            "text": {
+              "ky": "1995–1996-жылдары Канададан карышкырлар алып келинген. Бугулар азайып, сак болуп калышты; кээ бир жээктерде тал жана бай терек кайра өсө баштады. Мындай чынжыр таасири трофикалык каскад деп аталат.",
+              "ru": "В 1995–1996 годах волков привезли из Канады. Оленей стало меньше, они стали осторожнее; на некоторых берегах снова пошли в рост ивы и осины. Такая цепная реакция называется трофическим каскадом.",
+              "en": "In 1995–1996 wolves from Canada were released. Elk became fewer and warier, and along some rivers willows and aspens began to grow back. Such a chain reaction is called a trophic cascade."
+            },
+            "teacherNote": {
+              "ky": "Илимий так болуңуз: каскаддын күчү боюнча изилдөөчүлөр талашат – кээ бир жерлерде дарактар калыбына келген эмес; кургакчылык, аюулар жана аңчылык да таасир эткен.",
+              "ru": "Будьте научно точны: о силе каскада исследователи спорят – местами деревья не восстановились; влияли и засуха, медведи, охота.",
+              "en": "Be scientifically careful: researchers debate how strong the cascade was – in some places trees did not recover, and drought, bears and hunting also played a part."
+            },
+            "altText": {
+              "ky": "Карышкыр → бугу → тал байланыштары белгиленген.",
+              "ru": "Выделены связи волк → олень → ива.",
+              "en": "The wolf → elk → willow links are highlighted."
+            }
+          },
+          {
+            "key": "beaver",
+            "sample": "yellowstone-wolves-back",
+            "camera": {
+              "position": [
+                0,
+                1,
+                6
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "bio.ecosystem-restoration",
+            "text": {
+              "ky": "Тал көбөйгөн жерлерде кундуздар көбөйдү. Кундуз тосмо салып, көлмө жаратат – анда балык, бака жана куштар үчүн жаңы жашоо чөйрөсү пайда болот.",
+              "ru": "Там, где стало больше ив, стало больше и бобров. Бобр строит плотину и создаёт пруд – новый дом для рыб, лягушек и птиц.",
+              "en": "Where willows increased, so did beavers. A beaver builds a dam and makes a pond – a new home for fish, frogs and birds."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: карышкыр кундузду жебейт, анда эмне үчүн кундуздар карышкырдан «пайда» көрдү? (талдар аркылуу).",
+              "ru": "Спросите: волк не ест бобров – почему же бобры «выиграли» от волков? (через ивы).",
+              "en": "Ask: wolves don't eat beavers, so why did beavers benefit from wolves? (through the willows)."
+            },
+            "altText": {
+              "ky": "Кундуз белгиленген.",
+              "ru": "Выделен бобр.",
+              "en": "The beaver is highlighted."
+            }
+          },
+          {
+            "key": "issyk-kul",
+            "focus": "bio.invasive-species",
+            "text": {
+              "ky": "Кыргызстандын мисалы: XX кылымда Ысык-Көлгө судак сыяктуу жырткыч балыктар киргизилген. Ашыкча балык уулоо менен бирге бул көлдүн жергиликтүү балыктарынын азайышына алып келген.",
+              "ru": "Пример Кыргызстана: в XX веке в Иссык-Куль завезли хищных рыб, в том числе судака. Вместе с переловом это привело к сокращению местных рыб озера.",
+              "en": "A Kyrgyz example: in the 20th century predatory fish such as zander were introduced into Lake Issyk-Kul. Together with overfishing, this led to a decline of the lake's native fish."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: эмне үчүн «жаңы түр кошсо, экосистема байыйт» деген ой дайыма эле туура эмес?",
+              "ru": "Спросите: почему мысль «новый вид обогатит экосистему» не всегда верна?",
+              "en": "Ask: why is 'adding a new species enriches the ecosystem' not always true?"
+            },
+            "altText": {
+              "ky": "Ысык-Көлдүн картасы жана балыктардын белгилери.",
+              "ru": "Карта Иссык-Куля и значки рыб.",
+              "en": "A map of Issyk-Kul with fish icons."
+            }
+          },
+          {
+            "key": "archa",
+            "sample": "archa-forest",
+            "focus": "bio.habitat-loss",
+            "text": {
+              "ky": "Арча токойлору тоо капталында топуракты кармап, сууну жөнгө салат. Отун үчүн кыюу жана ашыкча мал жайуу аларды кыскартат, ал эми арча өтө жай өсөт – калыбына келүүгө ондогон жылдар керек.",
+              "ru": "Арчовые леса удерживают почву на склонах и регулируют сток воды. Вырубка на дрова и перевыпас сокращают их, а арча растёт очень медленно – на восстановление нужны десятилетия.",
+              "en": "Juniper forests hold soil on mountain slopes and regulate water. Cutting for firewood and overgrazing shrink them, and juniper grows very slowly – recovery takes decades."
+            },
+            "teacherNote": {
+              "ky": "Мини-долбоор: топ болуп жакынкы бир табигый аймактын көйгөйүн жана аны чечүүнүн 3 жолун сунуштагыла («Ачылыш жасагыла»).",
+              "ru": "Мини-проект: в группах описать проблему ближайшего природного участка и предложить 3 способа решения («Ачылыш жасагыла»).",
+              "en": "Mini-project: in groups, describe a problem in a nearby natural area and suggest 3 solutions ('Make a discovery')."
+            },
+            "altText": {
+              "ky": "Тоо капталындагы арча токою.",
+              "ru": "Арчовый лес на горном склоне.",
+              "en": "A juniper forest on a mountain slope."
+            }
+          },
+          {
+            "key": "protect",
+            "camera": {
+              "position": [
+                0,
+                4,
+                5
+              ],
+              "target": [
+                0,
+                2,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "bio.protected-area",
+            "text": {
+              "ky": "Корголуучу аймактар – Сары-Челек, Беш-Арал коруктары, Ысык-Көл биосфералык аймагы – экосистемаларды сактоого жардам берет. Ар бирибиз да салым кошо алабыз: таштанды таштабоо, көчөт отургузуу, суу үнөмдөө.",
+              "ru": "Охраняемые территории – заповедники Сары-Челек, Беш-Арал, биосферная территория «Иссык-Куль» – помогают сохранить экосистемы. Каждый может внести вклад: не мусорить, сажать деревья, беречь воду.",
+              "en": "Protected areas – the Sary-Chelek and Besh-Aral reserves and the Issyk-Kul biosphere reserve – help conserve ecosystems. Everyone can help: no littering, planting trees, saving water."
+            },
+            "teacherNote": {
+              "ky": "Дискуссия: окуучулар табиятка зыян келтирген бир иш-аракетти жана анын ордуна жасаса боло турган бир пайдалуу ишти аташсын.",
+              "ru": "Дискуссия: пусть ученики назовут одно вредное для природы действие и одно полезное, которым его можно заменить.",
+              "en": "Discussion: pupils name one action that harms nature and one helpful action to replace it."
+            },
+            "altText": {
+              "ky": "Корголуучу аймактардын картасы.",
+              "ru": "Карта охраняемых территорий.",
+              "en": "A map of protected areas."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "bio.yellowstone-cascade"
+      ],
+      "quiz": {
+        "itemKeys": [
+          "bio.q.human-impact-ecosystems-1",
+          "bio.q.human-impact-ecosystems-2",
+          "bio.q.human-impact-ecosystems-3",
+          "bio.q.human-impact-ecosystems-4",
+          "bio.q.human-impact-ecosystems-5",
+          "bio.q.human-impact-ecosystems-6",
+          "bio.q.human-impact-ecosystems-7",
+          "bio.q.human-impact-ecosystems-8",
+          "bio.q.human-impact-ecosystems-9",
+          "bio.q.human-impact-ecosystems-10"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "s",
+          "title": {
+            "ky": "Узак мөөнөттүү байкоо",
+            "ru": "Многолетний мониторинг",
+            "en": "Long-term monitoring"
+          },
+          "text": {
+            "ky": "Йеллоустондо илимпоздор он жылдар бою карышкыр, бугу жана дарактарды эсептеп, каскад жөнүндө маалымат чогултушат.",
+            "ru": "В Йеллоустоне учёные десятилетиями считают волков, оленей и деревья, собирая данные о каскаде.",
+            "en": "In Yellowstone scientists have counted wolves, elk and trees for decades to gather evidence about the cascade."
+          }
+        },
+        {
+          "field": "t",
+          "title": {
+            "ky": "GPS-каргылар",
+            "ru": "GPS-ошейники",
+            "en": "GPS collars"
+          },
+          "text": {
+            "ky": "Карышкырлар менен бугуларга тагылган GPS-каргылар алардын кыймылын жана аңчылык жерлерин көрсөтөт.",
+            "ru": "GPS-ошейники на волках и оленях показывают их перемещения и места охоты.",
+            "en": "GPS collars on wolves and elk show where they move and where hunts happen."
+          }
+        },
+        {
+          "field": "e",
+          "title": {
+            "ky": "Тосмо жана көлмө",
+            "ru": "Плотина и пруд",
+            "en": "Dams and ponds"
+          },
+          "text": {
+            "ky": "Кундуздун тосмосу – табигый инженердик курулма: ал суу агымын жайлатып, жер астындагы сууну толуктайт.",
+            "ru": "Бобровая плотина – природное инженерное сооружение: замедляет течение и пополняет грунтовые воды.",
+            "en": "A beaver dam is natural engineering: it slows the flow and recharges groundwater."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Домино",
+            "ru": "Домино",
+            "en": "Dominoes"
+          },
+          "text": {
+            "ky": "Бир доминону түртсөң, калгандары удаалаш кулайт – каскад ушундай.",
+            "ru": "Толкни одну костяшку – и упадут остальные: так работает каскад.",
+            "en": "Push one domino and the rest topple – that's a cascade."
+          }
+        },
+        {
+          "title": {
+            "ky": "Короодогу дарак",
+            "ru": "Дерево во дворе",
+            "en": "A tree in the yard"
+          },
+          "text": {
+            "ky": "Бир даракты кыйсаң, чымчыктар уясыз калат; бир көчөт отургузсаң, жылдардан кийин алар кайтып келет.",
+            "ru": "Срубишь дерево – птицы останутся без гнёзд; посадишь – через годы они вернутся.",
+            "en": "Cut a tree and birds lose their nests; plant one and years later they come back."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "concepts": [
+    {
+      "key": "bio.keystone-species",
+      "kind": "role",
+      "hue": 16,
+      "isContainer": false,
+      "title": {
+        "ky": "Негизги (ачкыч) түр",
+        "ru": "Ключевой вид",
+        "en": "Keystone species"
+      },
+      "subtitle": {
+        "ky": "Арканын «кулпу ташы»",
+        "ru": "«Замковый камень» арки",
+        "en": "The keystone of an arch"
+      },
+      "description": {
+        "ky": "Саны аз болсо да, экосистемага абдан чоң таасир эткен түр. Аны алып салса, экосистема кескин өзгөрөт. Мисалы, Йеллоустондогу карышкыр же дарыялардагы кундуз.",
+        "ru": "Вид, который при небольшой численности сильно влияет на всю экосистему. Если его убрать, экосистема резко меняется. Пример – волк в Йеллоустоне или бобр на реках.",
+        "en": "A species that has a huge effect on its ecosystem even though it may not be numerous. Remove it and the ecosystem changes sharply. Examples: the wolf in Yellowstone or the beaver on rivers."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Карышкыр, кундуз, илбирс",
+            "ru": "Волк, бобр, снежный барс",
+            "en": "Wolf, beaver, snow leopard"
+          }
+        }
+      ],
+      "related": [
+        "bio.trophic-cascade",
+        "bio.tertiary-consumer"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.keystone-biggest",
+          "text": {
+            "ky": "Негизги түр – эң чоң же эң көп түр.",
+            "ru": "Ключевой вид – самый большой или самый многочисленный.",
+            "en": "A keystone species is the biggest or most common one."
+          },
+          "correction": {
+            "ky": "Негизги түр анын өлчөмү же саны менен эмес, экосистемага тийгизген таасиринин күчү менен аныкталат.",
+            "ru": "Ключевой вид определяется не размером и не числом, а силой влияния на экосистему.",
+            "en": "A keystone species is defined by the size of its effect, not its body size or numbers."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "«Кулпу таш» – таш арканын чокусундагы таш: аны алсаң, арка кулайт.",
+        "ru": "«Замковый камень» – верхний камень каменной арки: вынь его – и арка рухнет.",
+        "en": "A keystone is the top stone of a stone arch: pull it out and the arch collapses."
+      },
+      "analogy": {
+        "ky": "Арканын чокусундагы таш",
+        "ru": "Верхний камень арки",
+        "en": "The top stone of an arch"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Кундуздун тосмолору",
+              "ru": "Плотины бобров",
+              "en": "Beaver dams"
+            },
+            "text": {
+              "ky": "Кундуз тосмо салып, көлмө жаратат; анда балык, бака жана куштар үчүн жаңы жашоо чөйрөсү пайда болот.",
+              "ru": "Бобр строит плотины и создаёт пруды – новые места обитания для рыб, лягушек и птиц.",
+              "en": "Beavers build dams that create ponds – new habitats for fish, frogs and birds."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Деңиз суусары",
+              "ru": "Калан",
+              "en": "Sea otters"
+            },
+            "text": {
+              "ky": "Калан деңиз кирпилерин жейт; калан жок болсо, кирпилер деңиз балыры токойлорун жеп бүтүрөт.",
+              "ru": "Калан ест морских ежей; без калана ежи съедают леса водорослей-ламинарий.",
+              "en": "Sea otters eat sea urchins; without otters the urchins devour kelp forests."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Команданын капитаны",
+              "ru": "Капитан команды",
+              "en": "The team captain"
+            },
+            "text": {
+              "ky": "Капитан бир гана оюнчу, бирок ал жок болсо, бүт команда начар ойнойт.",
+              "ru": "Капитан – всего один игрок, но без него вся команда играет хуже.",
+              "en": "The captain is just one player, but without them the whole team plays worse."
+            }
+          },
+          {
+            "title": {
+              "ky": "Боз үйдүн түндүгү",
+              "ru": "Тюндюк юрты",
+              "en": "The roof ring of a yurt"
+            },
+            "text": {
+              "ky": "Боз үйдүн түндүгү кичинекей, бирок аны алсаң, уук кулайт.",
+              "ru": "Тюндюк юрты маленький, но убери его – и жерди упадут.",
+              "en": "A yurt's roof ring is small, but take it away and the poles fall."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.trophic-cascade",
+      "kind": "process",
+      "hue": 172,
+      "isContainer": false,
+      "title": {
+        "ky": "Трофикалык каскад",
+        "ru": "Трофический каскад",
+        "en": "Trophic cascade"
+      },
+      "subtitle": {
+        "ky": "Домино эффекти",
+        "ru": "Эффект домино",
+        "en": "A domino effect"
+      },
+      "description": {
+        "ky": "Чоку жырткычтын санынын өзгөрүшү азык чынжыры боюнча ылдый карай бир нече деңгээлге таасир этиши. Йеллоустондо карышкыр кайтарылганда бугулар (вапити) азайып, жүрүм-турумун өзгөрттү; кээ бир дарыя жээктеринде тал жана бай терек кайра өсүп, кундуздар көбөйдү. Илимпоздор бул каскаддын күчү боюнча дагы эле талашып жатышат.",
+        "ru": "Изменение численности высшего хищника, которое по пищевой цепи затрагивает несколько уровней ниже. В Йеллоустоне после возвращения волков олени-вапити стали малочисленнее и осторожнее; на некоторых берегах рек снова выросли ивы и осины, стало больше бобров. Учёные до сих пор спорят, насколько сильным был этот каскад.",
+        "en": "A change in a top predator that ripples down several levels of the food chain. When wolves returned to Yellowstone, elk became fewer and warier; along some rivers willows and aspens grew back and beavers increased. Scientists still debate how strong this cascade was."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Йеллоустон улуттук паркы, АКШ",
+            "ru": "Йеллоустонский национальный парк, США",
+            "en": "Yellowstone National Park, USA"
+          }
+        }
+      ],
+      "related": [
+        "bio.keystone-species",
+        "bio.food-web",
+        "bio.ecosystem-restoration"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.predators-only-harm",
+          "text": {
+            "ky": "Жырткычтар экосистемага зыян гана келтирет, аларды жок кылса жакшы болот.",
+            "ru": "Хищники только вредят, лучше их уничтожить.",
+            "en": "Predators only do harm; it's better to get rid of them."
+          },
+          "correction": {
+            "ky": "Жырткычтар чөп жегичтердин санын жөнгө салып, өсүмдүктөрдү жана бүт экосистеманы сактоого жардам берет.",
+            "ru": "Хищники регулируют численность растительноядных и помогают сохранить растения и всю экосистему.",
+            "en": "Predators keep herbivore numbers in check and help protect plants and the whole ecosystem."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Йеллоустондо карышкырлар 1920-жылдарда толугу менен кырылып, 1995–1996-жылдары Канададан кайра алып келинген.",
+        "ru": "В Йеллоустоне волков истребили к 1920-м годам и вернули из Канады в 1995–1996 годах.",
+        "en": "Wolves were wiped out of Yellowstone by the 1920s and brought back from Canada in 1995–1996."
+      },
+      "analogy": {
+        "ky": "Тоодон түшкөн кар көчкү",
+        "ru": "Снежная лавина с горы",
+        "en": "An avalanche rolling downhill"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Узак мөөнөттүү байкоо",
+              "ru": "Многолетний мониторинг",
+              "en": "Long-term monitoring"
+            },
+            "text": {
+              "ky": "Йеллоустондо илимпоздор ондогон жылдар бою карышкыр, бугу жана дарактардын санын өлчөп, каскадды изилдешет.",
+              "ru": "В Йеллоустоне учёные десятилетиями считают волков, оленей и деревья, изучая каскад.",
+              "en": "Yellowstone scientists have counted wolves, elk and trees for decades to study the cascade."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Себеп жана байланыш",
+              "ru": "Причина и корреляция",
+              "en": "Cause and correlation"
+            },
+            "text": {
+              "ky": "Эки көрсөткүч бирге өзгөрсө, бири экинчисинин себеби экени дайыма эле далилденбейт – ошондуктан илимпоздор талашат.",
+              "ru": "Если два показателя меняются вместе, это ещё не доказывает, что один – причина другого; поэтому учёные спорят.",
+              "en": "Two numbers changing together doesn't prove one causes the other – that's why scientists debate."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Домино",
+              "ru": "Домино",
+              "en": "Dominoes"
+            },
+            "text": {
+              "ky": "Биринчи доминону түртсөң, калгандары удаалаш кулайт.",
+              "ru": "Толкни первую костяшку домино – и упадут все остальные по очереди.",
+              "en": "Push the first domino and the rest fall one after another."
+            }
+          },
+          {
+            "title": {
+              "ky": "Класстагы мугалим",
+              "ru": "Учитель в классе",
+              "en": "The teacher in class"
+            },
+            "text": {
+              "ky": "Мугалим чыгып кетсе, класстагы тартип да, окуу да өзгөрөт.",
+              "ru": "Выйдет учитель – изменится и порядок в классе, и учёба.",
+              "en": "When the teacher steps out, both order and learning in the class change."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.producer",
+      "kind": "trophic-level",
+      "hue": 112,
+      "isContainer": false,
+      "title": {
+        "ky": "Продуценттер",
+        "ru": "Продуценты",
+        "en": "Producers"
+      },
+      "subtitle": {
+        "ky": "Биринчи шакек",
+        "ru": "Первое звено",
+        "en": "The first link"
+      },
+      "description": {
+        "ky": "Күндүн жарык энергиясын фотосинтез аркылуу органикалык затка айландырган организмдер: жашыл өсүмдүктөр, балырлар, фитопланктон. Алар азык чынжырынын биринчи шакеги жана экосистемадагы бардык энергиянын булагы.",
+        "ru": "Организмы, которые с помощью фотосинтеза превращают энергию солнечного света в органическое вещество: зелёные растения, водоросли, фитопланктон. Это первое звено пищевой цепи и источник всей энергии экосистемы.",
+        "en": "Organisms that turn the energy of sunlight into organic matter by photosynthesis: green plants, algae, phytoplankton. They are the first link of every food chain and the source of all energy in the ecosystem."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Чөп, арча, карагай, балырлар, фитопланктон",
+            "ru": "Травы, арча, ель, водоросли, фитопланктон",
+            "en": "Grasses, juniper, spruce, algae, phytoplankton"
+          }
+        }
+      ],
+      "related": [
+        "bio.primary-consumer",
+        "bio.energy-flow",
+        "bio.food-chain"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.plants-eat-soil",
+          "text": {
+            "ky": "Өсүмдүктөр тамагын топурактан алышат.",
+            "ru": "Растения получают пищу из почвы.",
+            "en": "Plants get their food from the soil."
+          },
+          "correction": {
+            "ky": "Топурактан суу жана минералдар гана келет; органикалык затты өсүмдүк өзү жарыктын энергиясы менен CO₂ жана суудан жасайт.",
+            "ru": "Из почвы поступают только вода и минералы; органическое вещество растение само создаёт из CO₂ и воды за счёт света.",
+            "en": "Soil gives only water and minerals; the plant makes its own organic matter from CO₂ and water using light."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Океандагы микроскоптук фитопланктон Жердеги кычкылтектин болжол менен жарымын бөлүп чыгарат.",
+        "ru": "Микроскопический фитопланктон океана выделяет около половины кислорода Земли.",
+        "en": "Microscopic phytoplankton in the ocean releases about half of Earth's oxygen."
+      },
+      "analogy": {
+        "ky": "Күн батареясы",
+        "ru": "Солнечная батарея",
+        "en": "A solar panel"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Спутник аркылуу өсүмдүктү өлчөө",
+              "ru": "Растительность со спутника",
+              "en": "Plants from space"
+            },
+            "text": {
+              "ky": "Спутниктер жашыл өсүмдүктөрдүн жарыкты кантип чагылдырарын өлчөп, жайыттардын абалын картага түшүрөт.",
+              "ru": "Спутники измеряют, как зелёные растения отражают свет, и картируют состояние пастбищ.",
+              "en": "Satellites measure how green plants reflect light to map the state of pastures."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Фотосинтез",
+              "ru": "Фотосинтез",
+              "en": "Photosynthesis"
+            },
+            "text": {
+              "ky": "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂: продуценттер жарыктын энергиясын глюкозада сактайт.",
+              "ru": "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂: продуценты запасают энергию света в глюкозе.",
+              "en": "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂: producers store light energy in glucose."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Нан бышыруучу",
+              "ru": "Пекарь",
+              "en": "The baker"
+            },
+            "text": {
+              "ky": "Продуцент – экосистеманын наабайчысы: башкалар жеген «нанды» ал жасайт.",
+              "ru": "Продуцент – пекарь экосистемы: он печёт «хлеб», который едят все остальные.",
+              "en": "A producer is the ecosystem's baker: it makes the 'bread' everyone else eats."
+            }
+          },
+          {
+            "title": {
+              "ky": "Чөп",
+              "ru": "Трава",
+              "en": "Grass"
+            },
+            "text": {
+              "ky": "Жайлоодогу чөп күндүн нурунан өсөт, ал эми кой ошол чөптү жейт.",
+              "ru": "Трава на жайлоо растёт от солнечного света, а овцы едят эту траву.",
+              "en": "Pasture grass grows from sunlight, and sheep eat that grass."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.primary-consumer",
+      "kind": "trophic-level",
+      "hue": 62,
+      "isContainer": false,
+      "title": {
+        "ky": "Биринчи катардагы консументтер",
+        "ru": "Консументы первого порядка",
+        "en": "Primary consumers"
+      },
+      "subtitle": {
+        "ky": "Чөп жегичтер",
+        "ru": "Растительноядные",
+        "en": "Herbivores"
+      },
+      "description": {
+        "ky": "Өсүмдүк жеген жаныбарлар (чөп жегичтер): теке, суур, чегиртке, зоопланктон. Алар продуценттердеги энергияны кийинки шакекке өткөрүшөт.",
+        "ru": "Растительноядные животные: горный козёл, сурок, саранча, зоопланктон. Они передают энергию продуцентов следующему звену.",
+        "en": "Plant-eating animals (herbivores): ibex, marmots, grasshoppers, zooplankton. They pass the producers' energy on to the next link."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Теке, суур, чегиртке, бугу, зоопланктон",
+            "ru": "Козерог, сурок, саранча, олень, зоопланктон",
+            "en": "Ibex, marmot, grasshopper, deer, zooplankton"
+          }
+        }
+      ],
+      "related": [
+        "bio.producer",
+        "bio.secondary-consumer"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.herbivore-weak",
+          "text": {
+            "ky": "Чөп жегичтер маанилүү эмес, экосистемада жырткычтар гана башкы роль ойнойт.",
+            "ru": "Растительноядные не важны, главные в экосистеме – хищники.",
+            "en": "Herbivores don't matter; predators run the ecosystem."
+          },
+          "correction": {
+            "ky": "Чөп жегичтерсиз жырткычтар энергия ала албайт, ал эми өсүмдүктөр ченемсиз өсүп кетет.",
+            "ru": "Без растительноядных хищники не получат энергии, а растения разрастутся бесконтрольно.",
+            "en": "Without herbivores predators get no energy and plants grow unchecked."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Суур кышында 6 айга чейин уктап, жайында топтогон майы менен жашайт.",
+        "ru": "Сурок зимой спит до 6 месяцев и живёт за счёт жира, накопленного летом.",
+        "en": "A marmot hibernates for up to 6 months, living on fat stored in summer."
+      },
+      "analogy": {
+        "ky": "Көпүрө – өсүмдүктөн жырткычка",
+        "ru": "Мост от растения к хищнику",
+        "en": "A bridge from plants to predators"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Жайыттын жүктөмү",
+              "ru": "Нагрузка на пастбище",
+              "en": "Grazing pressure"
+            },
+            "text": {
+              "ky": "Илимпоздор бир гектар жайытта канча мал же теке тоё аларын эсептеп, ашыкча жайылтууну алдын алышат.",
+              "ru": "Учёные рассчитывают, сколько скота или козерогов прокормит гектар пастбища, чтобы не допустить перевыпаса.",
+              "en": "Scientists work out how many animals a hectare of pasture can feed to prevent overgrazing."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Чегиртке мониторинги",
+              "ru": "Мониторинг саранчи",
+              "en": "Locust monitoring"
+            },
+            "text": {
+              "ky": "Айыл чарба кызматтары чегиртке топторун дрондор жана спутниктер менен көзөмөлдөшөт.",
+              "ru": "Сельхозслужбы следят за стаями саранчи с дронов и спутников.",
+              "en": "Farm services track locust swarms with drones and satellites."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кой жана чөп",
+              "ru": "Овца и трава",
+              "en": "Sheep and grass"
+            },
+            "text": {
+              "ky": "Кой – чөп жегич: ал өсүмдүктүн энергиясын этке айлантат.",
+              "ru": "Овца – растительноядное: она превращает энергию растений в мясо.",
+              "en": "A sheep is a herbivore: it turns plant energy into meat."
+            }
+          },
+          {
+            "title": {
+              "ky": "Коён",
+              "ru": "Заяц",
+              "en": "A hare"
+            },
+            "text": {
+              "ky": "Коён сабизди жейт – ал биринчи катардагы консумент.",
+              "ru": "Заяц грызёт морковь – он консумент первого порядка.",
+              "en": "A hare nibbling a carrot is a primary consumer."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.decomposer",
+      "kind": "trophic-level",
+      "hue": 30,
+      "isContainer": false,
+      "title": {
+        "ky": "Редуценттер",
+        "ru": "Редуценты",
+        "en": "Decomposers"
+      },
+      "subtitle": {
+        "ky": "Табияттын тазалоочулары",
+        "ru": "Санитары природы",
+        "en": "Nature's recyclers"
+      },
+      "description": {
+        "ky": "Өлгөн организмдерди жана калдыктарды жөнөкөй органикалык эмес заттарга (суу, CO₂, минералдар) ажыраткан бактериялар менен козу карындар. Алар минералдарды топуракка кайтарып, зат айланышын жабышат.",
+        "ru": "Бактерии и грибы, которые разлагают мёртвые организмы и отходы до простых неорганических веществ (воды, CO₂, минеральных солей). Они возвращают минералы в почву и замыкают круговорот веществ.",
+        "en": "Bacteria and fungi that break dead organisms and waste down into simple inorganic substances (water, CO₂, minerals). They return minerals to the soil and close the cycle of matter."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Бактериялар, козу карындар (жана жаан курттары – детритофагдар)",
+            "ru": "Бактерии, грибы (и дождевые черви – детритофаги)",
+            "en": "Bacteria, fungi (and earthworms as detritivores)"
+          }
+        }
+      ],
+      "related": [
+        "bio.producer",
+        "bio.food-web"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.decomposers-harmful",
+          "text": {
+            "ky": "Чиритүүчү бактериялар жана козу карындар зыяндуу гана.",
+            "ru": "Гниющие бактерии и грибы только вредны.",
+            "en": "Rotting bacteria and fungi are only harmful."
+          },
+          "correction": {
+            "ky": "Редуценттерсиз жалбырактар жана өлүктөр топтолуп, өсүмдүктөр минералсыз калмак.",
+            "ru": "Без редуцентов мёртвые листья и трупы накапливались бы, а растения остались бы без минералов.",
+            "en": "Without decomposers dead leaves and bodies would pile up and plants would run out of minerals."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Бир чай кашык токой топурагында миллиарддаган бактерия жашайт.",
+        "ru": "В чайной ложке лесной почвы живут миллиарды бактерий.",
+        "en": "A teaspoon of forest soil holds billions of bacteria."
+      },
+      "analogy": {
+        "ky": "Кайра иштетүүчү завод",
+        "ru": "Завод по переработке",
+        "en": "A recycling plant"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Компост",
+              "ru": "Компост",
+              "en": "Composting"
+            },
+            "text": {
+              "ky": "Компост үймөгүндө бактериялар менен козу карындар тамак калдыктарын жер семирткичке айлантат.",
+              "ru": "В компостной куче бактерии и грибы превращают пищевые отходы в удобрение.",
+              "en": "In a compost heap bacteria and fungi turn food scraps into fertiliser."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Агынды сууну тазалоо",
+              "ru": "Очистка сточных вод",
+              "en": "Sewage treatment"
+            },
+            "text": {
+              "ky": "Тазалоочу курулмаларда бактериялар суудагы органикалык булганычты ажыратат.",
+              "ru": "На очистных сооружениях бактерии разлагают органические загрязнения воды.",
+              "en": "In treatment plants bacteria break down organic pollution in waste water."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Күзгү жалбырак",
+              "ru": "Осенние листья",
+              "en": "Autumn leaves"
+            },
+            "text": {
+              "ky": "Күзүндө түшкөн жалбырак жазга чейин чирип, топуракка айланат.",
+              "ru": "Опавшие осенью листья к весне перегнивают и становятся почвой.",
+              "en": "Leaves that fall in autumn rot into soil by spring."
+            }
+          },
+          {
+            "title": {
+              "ky": "Көгөргөн нан",
+              "ru": "Заплесневелый хлеб",
+              "en": "Mouldy bread"
+            },
+            "text": {
+              "ky": "Нандагы көк – козу карын: ал нанды ажыратып жатат.",
+              "ru": "Плесень на хлебе – гриб, который его разлагает.",
+              "en": "The mould on bread is a fungus breaking it down."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.human-impact",
+      "kind": "factor",
+      "hue": 8,
+      "isContainer": false,
+      "title": {
+        "ky": "Адамдын экосистемага таасири",
+        "ru": "Влияние человека на экосистемы",
+        "en": "Human impact on ecosystems"
+      },
+      "subtitle": {
+        "ky": "Зыян жана жардам",
+        "ru": "Вред и помощь",
+        "en": "Harm and help"
+      },
+      "description": {
+        "ky": "Адамдын иш-аракети экосистемаларды өзгөртөт: токой кыюу жана ашыкча жайытка салуу, мыйзамсыз аңчылык жана балык уулоо, бөтөн түрлөрдү киргизүү, булгануу, климаттын өзгөрүшү. Таасир оң да болушу мүмкүн: коруктар түзүү, токой отургузуу, түрлөрдү кайтаруу.",
+        "ru": "Деятельность человека меняет экосистемы: вырубка лесов и перевыпас, браконьерство и перелов рыбы, завоз чужих видов, загрязнение, изменение климата. Влияние бывает и положительным: заповедники, посадка лесов, возвращение видов.",
+        "en": "Human activity changes ecosystems: logging and overgrazing, poaching and overfishing, bringing in alien species, pollution, climate change. The impact can also be positive: nature reserves, tree planting, bringing species back."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Токой кыюу, ашыкча жайытка салуу, аңчылык, бөтөн түрлөр, булгануу",
+            "ru": "Вырубка, перевыпас, браконьерство, чужие виды, загрязнение",
+            "en": "Logging, overgrazing, poaching, alien species, pollution"
+          }
+        }
+      ],
+      "related": [
+        "bio.habitat-loss",
+        "bio.invasive-species",
+        "bio.ecosystem-restoration",
+        "bio.pollution"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.nature-recovers-itself",
+          "text": {
+            "ky": "Табият баарын өзү калыбына келтирет, адамдын жардамы керек эмес.",
+            "ru": "Природа всё восстановит сама, помощь человека не нужна.",
+            "en": "Nature always fixes itself; people needn't help."
+          },
+          "correction": {
+            "ky": "Кээ бир өзгөрүүлөр (түрдүн жок болушу) кайтарылгыс; калыбына келүү ондогон-жүздөгөн жылдарды алат жана көбүнчө адамдын жардамы керек.",
+            "ru": "Некоторые изменения (исчезновение вида) необратимы; восстановление занимает десятки и сотни лет и часто требует помощи человека.",
+            "en": "Some changes, such as extinction, are permanent; recovery takes decades or centuries and often needs human help."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Арча өтө жай өсөт: бийик тоодогу арча бадалы жүздөгөн жыл жашашы мүмкүн.",
+        "ru": "Арча растёт очень медленно: кусты арчи в высокогорье могут жить сотни лет.",
+        "en": "Juniper grows very slowly: high-mountain juniper bushes can live for hundreds of years."
+      },
+      "analogy": {
+        "ky": "Китепканадан китепти кайтарбай алуу",
+        "ru": "Брать книги из библиотеки и не возвращать",
+        "en": "Borrowing library books and never returning them"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Спутник карталары",
+              "ru": "Спутниковые карты",
+              "en": "Satellite maps"
+            },
+            "text": {
+              "ky": "Спутник сүрөттөрү токойлордун кыйылышын жана жайыттардын бузулушун жыл сайын салыштырууга мүмкүндүк берет.",
+              "ru": "Спутниковые снимки позволяют из года в год сравнивать вырубку лесов и деградацию пастбищ.",
+              "en": "Satellite images let us compare forest loss and pasture damage year by year."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Жайыт айландыруу",
+              "ru": "Пастбищеоборот",
+              "en": "Rotational grazing"
+            },
+            "text": {
+              "ky": "Малчылар жайыттарды кезектештирип колдонсо, чөп калыбына келип, топурак эрозиясы азаят.",
+              "ru": "Если пасти скот поочерёдно на разных участках, трава восстанавливается и эрозия почвы снижается.",
+              "en": "Rotating livestock between pastures lets grass recover and reduces soil erosion."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Короодогу дарак",
+              "ru": "Дерево во дворе",
+              "en": "A tree in the yard"
+            },
+            "text": {
+              "ky": "Короодогу бир даракты кыйсаң, чымчыктардын уясы жана көлөкө жоголот.",
+              "ru": "Срубишь одно дерево во дворе – пропадут птичьи гнёзда и тень.",
+              "en": "Cut down one tree in the yard and the birds' nests and shade are gone."
+            }
+          },
+          {
+            "title": {
+              "ky": "Таштанды жана дарыя",
+              "ru": "Мусор и река",
+              "en": "Litter and the river"
+            },
+            "text": {
+              "ky": "Дарыяга ыргытылган бөтөлкө ылдыйкы айылдарга, андан көлгө жетет.",
+              "ru": "Брошенная в реку бутылка доплывёт до сёл ниже по течению, а потом до озера.",
+              "en": "A bottle thrown in a river reaches villages downstream and then the lake."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.habitat-loss",
+      "kind": "threat",
+      "hue": 20,
+      "isContainer": false,
+      "title": {
+        "ky": "Жашоо чөйрөсүнүн бузулушу",
+        "ru": "Разрушение среды обитания",
+        "en": "Habitat loss"
+      },
+      "subtitle": {
+        "ky": "Үйүн жоготуу",
+        "ru": "Потеря дома",
+        "en": "Losing a home"
+      },
+      "description": {
+        "ky": "Токой кыюу, жерди айдоо, курулуш жана ашыкча жайытка салуу менен организмдердин жашоо чөйрөсүнүн кыскарышы же бөлүнүп калышы. Бул дүйнөдө түрлөрдүн азайышынын негизги себептеринин бири. Мисалы, арча токойлору отун үчүн кыйылып жана мал жайылып, жай калыбына келет.",
+        "ru": "Сокращение или раздробление мест обитания из-за вырубки, распашки, строительства и перевыпаса. Это одна из главных причин сокращения видов в мире. Например, арчовые леса, вырубаемые на дрова и страдающие от выпаса скота, восстанавливаются очень медленно.",
+        "en": "Shrinking or breaking up of habitats through logging, ploughing, building and overgrazing. It is one of the main causes of species loss worldwide. Juniper (archa) forests, for example, cut for firewood and grazed by livestock, recover very slowly."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Мисал: арча токойлору, Тянь-Шань",
+            "ru": "Пример: арчовые леса Тянь-Шаня",
+            "en": "Example: juniper forests of the Tien Shan"
+          }
+        }
+      ],
+      "related": [
+        "bio.habitat",
+        "bio.human-impact",
+        "bio.protected-area"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.plant-one-tree",
+          "text": {
+            "ky": "Бир кыйылган дарактын ордуна бир көчөт отургузсаң, токой ошол замат калыбына келет.",
+            "ru": "Посадил саженец вместо срубленного дерева – и лес сразу восстановлен.",
+            "en": "Plant one seedling for each tree cut and the forest is instantly restored."
+          },
+          "correction": {
+            "ky": "Көчөт чоң даракка айланганча ондогон жылдар өтөт, ал эми арча үчүн жүз жылдан ашык убакыт керек болушу мүмкүн.",
+            "ru": "Пока саженец станет большим деревом, пройдут десятилетия, а для арчи – возможно, больше ста лет.",
+            "en": "A seedling takes decades to become a big tree, and juniper may need over a hundred years."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Арча токойлору топуракты капталда кармап, суу агымын жөнгө салат – алар тоо суусунун «сактагычы».",
+        "ru": "Арчовые леса удерживают почву на склонах и регулируют сток – это «хранители» горной воды.",
+        "en": "Juniper forests hold soil on slopes and regulate run-off – they are 'keepers' of mountain water."
+      },
+      "analogy": {
+        "ky": "Үйдүн бөлмөлөрүн биринин артынан бирин бузуу",
+        "ru": "Разбирать дом комната за комнатой",
+        "en": "Knocking down a house room by room"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Жапайы жаныбарлардын көпүрөлөрү",
+              "ru": "Экодуки",
+              "en": "Wildlife bridges"
+            },
+            "text": {
+              "ky": "Жолдордун үстүнөн курулган жашыл көпүрөлөр бөлүнүп калган жашоо чөйрөлөрүн туташтырат.",
+              "ru": "Зелёные мосты над дорогами соединяют раздробленные места обитания.",
+              "en": "Green bridges over roads join up broken habitats."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Эрозияны өлчөө",
+              "ru": "Измерение эрозии",
+              "en": "Measuring erosion"
+            },
+            "text": {
+              "ky": "Илимпоздор өсүмдүгү жок капталдардан жаан суусу канча топурак агызарын өлчөшөт.",
+              "ru": "Учёные измеряют, сколько почвы смывает дождь с оголённых склонов.",
+              "en": "Scientists measure how much soil rain washes off bare slopes."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Короодогу чымчыктар",
+              "ru": "Птицы во дворе",
+              "en": "Birds in the yard"
+            },
+            "text": {
+              "ky": "Дарактар кыйылса, чымчыктар уя сала турган жер таппай кетишет.",
+              "ru": "Срубят деревья – птицам негде будет вить гнёзда.",
+              "en": "Cut the trees and the birds have nowhere to nest."
+            }
+          },
+          {
+            "title": {
+              "ky": "Пазлдын бөлүктөрү",
+              "ru": "Кусочки пазла",
+              "en": "Puzzle pieces"
+            },
+            "text": {
+              "ky": "Токойду майда бөлүктөргө бөлсө, ал чачылган пазлдай болуп, жаныбарлар бир бөлүгүнөн экинчисине өтө албайт.",
+              "ru": "Если лес разрезать на мелкие кусочки, он как рассыпанный пазл: животные не могут перейти из одного в другой.",
+              "en": "Chop a forest into small pieces and it's like a scattered puzzle: animals can't cross between them."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.invasive-species",
+      "kind": "threat",
+      "hue": 300,
+      "isContainer": false,
+      "title": {
+        "ky": "Бөтөн (инвазивдүү) түрлөр",
+        "ru": "Инвазивные (чужеродные) виды",
+        "en": "Invasive species"
+      },
+      "subtitle": {
+        "ky": "Чакырылбаган коноктор",
+        "ru": "Незваные гости",
+        "en": "Uninvited guests"
+      },
+      "description": {
+        "ky": "Адам башка аймактан алып келген жана жаңы жерде тез көбөйүп, жергиликтүү түрлөрдү кысымга алган түрлөр. Мисалы, XX кылымда Ысык-Көлгө судак сыяктуу жырткыч балыктар киргизилген; ашыкча балык уулоо менен бирге бул көлдүн жергиликтүү балыктарынын азайышына себеп болгон.",
+        "ru": "Виды, завезённые человеком из других мест, которые быстро размножаются на новом месте и теснят местные виды. Например, в XX веке в Иссык-Куль завезли хищных рыб, в том числе судака; вместе с переловом это стало причиной сокращения местных рыб озера.",
+        "en": "Species carried by people from elsewhere that spread fast in their new home and push out native species. In the 20th century, for example, predatory fish such as zander were introduced into Lake Issyk-Kul; together with overfishing this led to the decline of the lake's native fish."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Мисал: Ысык-Көлдөгү судак",
+            "ru": "Пример: судак в Иссык-Куле",
+            "en": "Example: zander in Lake Issyk-Kul"
+          }
+        }
+      ],
+      "related": [
+        "bio.human-impact",
+        "bio.food-web"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.more-species-better",
+          "text": {
+            "ky": "Жаңы түр кошулса, экосистема байыйт жана жакшырат.",
+            "ru": "Чем больше новых видов завезти, тем богаче и лучше экосистема.",
+            "en": "Adding new species always makes an ecosystem richer and better."
+          },
+          "correction": {
+            "ky": "Бөтөн түрдүн табигый душманы жок болушу мүмкүн; ал жергиликтүү түрлөрдү жеп же тамагын тартып алып, аларды жок кылышы мүмкүн.",
+            "ru": "У чужого вида может не быть естественных врагов; он поедает местные виды или отнимает у них пищу и может их вытеснить.",
+            "en": "An alien species may have no natural enemies; it can eat native species or take their food and wipe them out."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Австралияга алып келинген бир нече ондогон коёндон кийин бир нече он жылда миллиондогон коён көбөйүп кеткен.",
+        "ru": "От нескольких десятков кроликов, завезённых в Австралию, за несколько десятилетий расплодились миллионы.",
+        "en": "A few dozen rabbits released in Australia multiplied to many millions within decades."
+      },
+      "analogy": {
+        "ky": "Оюнга эрежени билбеген оюнчу кошулганда",
+        "ru": "Игрок, не знающий правил, вошёл в игру",
+        "en": "A player who ignores the rules joining a game"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "ДНК менен издөө",
+              "ru": "Поиск по ДНК",
+              "en": "eDNA surveys"
+            },
+            "text": {
+              "ky": "Суудан алынган үлгүдөгү ДНК издери аркылуу илимпоздор көлдө бөтөн балык бар-жогун аныкташат.",
+              "ru": "По следам ДНК в пробе воды учёные определяют, есть ли в озере чужая рыба.",
+              "en": "Traces of DNA in a water sample tell scientists whether alien fish are in a lake."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Кемелердин балласт суусу",
+              "ru": "Балластные воды судов",
+              "en": "Ship ballast water"
+            },
+            "text": {
+              "ky": "Кемелердин балласт суусун тазалоо системалары майда организмдердин бир деңизден экинчисине өтүшүн токтотот.",
+              "ru": "Системы очистки балластных вод не дают мелким организмам переплывать из моря в море.",
+              "en": "Ballast-water treatment stops tiny organisms travelling between seas in ships."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Бакчадагы отоо чөп",
+              "ru": "Сорняк на грядке",
+              "en": "A weed in the garden"
+            },
+            "text": {
+              "ky": "Бир отоо чөп бүт бакчаны басып, сабизге жер калтырбайт.",
+              "ru": "Один сорняк захватывает всю грядку и вытесняет морковь.",
+              "en": "One weed can take over a bed and crowd out the carrots."
+            }
+          },
+          {
+            "title": {
+              "ky": "Жаңы бала оюнда",
+              "ru": "Новенький в игре",
+              "en": "The new kid"
+            },
+            "text": {
+              "ky": "Жаңы келген бала эрежени бузса, оюн баарына бузулат.",
+              "ru": "Если новенький нарушает правила, игра портится для всех.",
+              "en": "If a newcomer breaks the rules, the game is spoiled for everyone."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.ecosystem-restoration",
+      "kind": "action",
+      "hue": 132,
+      "isContainer": false,
+      "title": {
+        "ky": "Экосистеманы калыбына келтирүү",
+        "ru": "Восстановление экосистем",
+        "en": "Ecosystem restoration"
+      },
+      "subtitle": {
+        "ky": "Табиятка жардам",
+        "ru": "Помощь природе",
+        "en": "Helping nature heal"
+      },
+      "description": {
+        "ky": "Бузулган экосистемага жардам берүү: жоголгон түрлөрдү кайтаруу (Йеллоустондогу карышкыр), жергиликтүү дарактарды отургузуу (арча, жаңгак), жайыттарга эс берүү, сууну тазалоо, бөтөн түрлөрдү чектөө. Калыбына келтирүү көп жылды талап кылат жана илимий байкоону керектейт.",
+        "ru": "Помощь повреждённой экосистеме: возвращение исчезнувших видов (волки в Йеллоустоне), посадка местных деревьев (арча, орех), отдых пастбищ, очистка воды, сдерживание чужих видов. Восстановление занимает много лет и требует научного наблюдения.",
+        "en": "Helping a damaged ecosystem: bringing back lost species (wolves in Yellowstone), planting native trees (juniper, walnut), resting pastures, cleaning water, controlling alien species. Restoration takes many years and needs scientific monitoring."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Түрлөрдү кайтаруу, токой отургузуу, жайытка эс берүү",
+            "ru": "Возвращение видов, лесопосадки, отдых пастбищ",
+            "en": "Returning species, tree planting, resting pastures"
+          }
+        }
+      ],
+      "related": [
+        "bio.trophic-cascade",
+        "bio.protected-area",
+        "bio.human-impact"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.restoration-fast",
+          "text": {
+            "ky": "Калыбына келтирүү бир-эки жылда бүтөт.",
+            "ru": "Восстановление занимает год-два.",
+            "en": "Restoration is done in a year or two."
+          },
+          "correction": {
+            "ky": "Токойлор жана жаныбарлардын популяциялары ондогон жылдарда калыбына келет; натыйжаны узак убакыт байкоо керек.",
+            "ru": "Леса и популяции животных восстанавливаются десятилетиями; результат нужно долго отслеживать.",
+            "en": "Forests and animal populations take decades to recover; results must be watched for a long time."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Арча уруктары кээде канаттуулардын ичегисинен өткөндөн кийин жакшыраак өнөт – куштар арчаны «отургузат».",
+        "ru": "Семена арчи иногда лучше прорастают после того, как пройдут через кишечник птиц – птицы «сажают» арчу.",
+        "en": "Juniper seeds sometimes sprout better after passing through a bird's gut – birds 'plant' juniper."
+      },
+      "analogy": {
+        "ky": "Сынган сөөктү гипс менен айыктыруу",
+        "ru": "Гипс на сломанной кости",
+        "en": "A cast on a broken bone"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Токой питомниктери",
+              "ru": "Лесные питомники",
+              "en": "Tree nurseries"
+            },
+            "text": {
+              "ky": "Токой чарбалары арча жана жаңгак көчөттөрүн питомниктерде өстүрүп, тоо капталдарына отургузушат.",
+              "ru": "Лесхозы выращивают саженцы арчи и ореха в питомниках и высаживают их на склонах.",
+              "en": "Forestry services grow juniper and walnut seedlings in nurseries and plant them on slopes."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Түрлөрдү кайра жерсиндирүү",
+              "ru": "Реинтродукция видов",
+              "en": "Reintroduction"
+            },
+            "text": {
+              "ky": "Жоголгон түрдү кайтаруудан мурун илимпоздор тамак, жашоо чөйрөсү жана коопсуздукту изилдешет.",
+              "ru": "Прежде чем вернуть исчезнувший вид, учёные изучают пищу, места обитания и угрозы.",
+              "en": "Before bringing a species back, scientists study its food, habitat and threats."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Бакча",
+              "ru": "Огород",
+              "en": "A garden"
+            },
+            "text": {
+              "ky": "Ташталган бакчаны кайра иреттеш үчүн отоо чөптү жулуп, сугарып, бир нече жыл кам көрүү керек.",
+              "ru": "Чтобы привести заброшенный огород в порядок, нужно полоть, поливать и ухаживать несколько лет.",
+              "en": "Bringing back a neglected garden takes weeding, watering and years of care."
+            }
+          },
+          {
+            "title": {
+              "ky": "Көчөт отургузуу",
+              "ru": "Посадка деревца",
+              "en": "Planting a tree"
+            },
+            "text": {
+              "ky": "Мектеп менен көчөт отургузсаңар – бул да кичинекей калыбына келтирүү.",
+              "ru": "Посадить деревце всем классом – тоже маленькое восстановление.",
+              "en": "Planting a tree with your class is a small act of restoration too."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.protected-area",
+      "kind": "place",
+      "hue": 155,
+      "isContainer": false,
+      "title": {
+        "ky": "Корголуучу аймак",
+        "ru": "Особо охраняемая территория",
+        "en": "Protected area"
+      },
+      "subtitle": {
+        "ky": "Табияттын «коопсуз үйү»",
+        "ru": "«Безопасный дом» природы",
+        "en": "Nature's safe home"
+      },
+      "description": {
+        "ky": "Табиятты сактоо үчүн иш-аракет чектелген аймак: корук, улуттук парк, биосфералык резерват. Кыргызстанда мисалы Ысык-Көл биосфералык аймагы жана Сары-Челек, Беш-Арал коруктары бар.",
+        "ru": "Территория, где деятельность человека ограничена ради сохранения природы: заповедник, национальный парк, биосферный резерват. В Кыргызстане это, например, биосферная территория «Иссык-Куль», заповедники Сары-Челек и Беш-Арал.",
+        "en": "An area where human activity is limited to protect nature: a nature reserve, a national park, a biosphere reserve. Examples in Kyrgyzstan are the Issyk-Kul biosphere reserve and the Sary-Chelek and Besh-Aral reserves."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Сары-Челек, Беш-Арал, Ысык-Көл биосфералык аймагы",
+            "ru": "Сары-Челек, Беш-Арал, биосферная территория «Иссык-Куль»",
+            "en": "Sary-Chelek, Besh-Aral, Issyk-Kul biosphere reserve"
+          }
+        }
+      ],
+      "related": [
+        "bio.ecosystem-restoration",
+        "bio.habitat-loss"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.reserve-no-people",
+          "text": {
+            "ky": "Корголуучу аймакка адамдарга такыр кирүүгө болбойт.",
+            "ru": "В охраняемые территории людям вообще нельзя.",
+            "en": "People are never allowed in protected areas."
+          },
+          "correction": {
+            "ky": "Корукта эреже катуу, бирок улуттук парктарда жана биосфералык аймактарда адамдар эрежени сактап эс ала, иштей алышат.",
+            "ru": "В заповеднике правила строгие, но в национальных парках и биосферных территориях люди могут отдыхать и работать по правилам.",
+            "en": "Strict reserves limit visits, but national parks and biosphere reserves let people visit and work by the rules."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Сары-Челек көлү жаңгак-мөмө токойлору менен курчалган жана анын айланасы ЮНЕСКОнун биосфералык резерваты.",
+        "ru": "Озеро Сары-Челек окружено орехово-плодовыми лесами, а его окрестности – биосферный резерват ЮНЕСКО.",
+        "en": "Lake Sary-Chelek is ringed by walnut-fruit forests and is a UNESCO biosphere reserve."
+      },
+      "analogy": {
+        "ky": "Китепкананын сейрек китептер бөлүмү",
+        "ru": "Отдел редких книг в библиотеке",
+        "en": "The rare-books room of a library"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Рейнджерлердин дрондору",
+              "ru": "Дроны рейнджеров",
+              "en": "Rangers' drones"
+            },
+            "text": {
+              "ky": "Корук кызматкерлери мыйзамсыз аңчылыкты байкоо үчүн дрон жана жылуулук камераларын колдонушат.",
+              "ru": "Сотрудники заповедников используют дроны и тепловизоры, чтобы выявлять браконьеров.",
+              "en": "Reserve staff use drones and thermal cameras to spot poachers."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Эталондук экосистема",
+              "ru": "Эталонная экосистема",
+              "en": "A reference ecosystem"
+            },
+            "text": {
+              "ky": "Корукта табият дээрлик өзгөрбөйт, ошондуктан илимпоздор аны бузулган аймактар менен салыштырышат.",
+              "ru": "В заповеднике природа почти не тронута, поэтому учёные сравнивают её с нарушенными территориями.",
+              "en": "Nature in a reserve is almost untouched, so scientists compare it with damaged areas."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Тынч зона",
+              "ru": "Тихая зона",
+              "en": "A quiet zone"
+            },
+            "text": {
+              "ky": "Китепканада тынч болгондой, корукта да табиятты тынч калтырабыз.",
+              "ru": "Как в библиотеке соблюдают тишину, так в заповеднике не тревожат природу.",
+              "en": "Just as a library is kept quiet, nature in a reserve is left undisturbed."
+            }
+          },
+          {
+            "title": {
+              "ky": "Бакча тосмосу",
+              "ru": "Забор вокруг сада",
+              "en": "A garden fence"
+            },
+            "text": {
+              "ky": "Тосмо бакчаны малдан коргогондой, корук табиятты коргойт.",
+              "ru": "Как забор защищает сад от скота, так заповедник защищает природу.",
+              "en": "Like a fence keeping livestock out of a garden, a reserve shields nature."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.tertiary-consumer",
+      "kind": "trophic-level",
+      "hue": 0,
+      "isContainer": false,
+      "title": {
+        "ky": "Үчүнчү катардагы консументтер",
+        "ru": "Консументы третьего порядка",
+        "en": "Tertiary consumers"
+      },
+      "subtitle": {
+        "ky": "Чоку жырткычтар",
+        "ru": "Высшие хищники",
+        "en": "Top predators"
+      },
+      "description": {
+        "ky": "Башка жырткычтарды жеген жана көбүнчө душманы жок чоку жырткычтар: илбирс, бүркүт, карышкыр. Аларга энергия эң аз жетет, ошондуктан алардын саны аз, ал эми булгоочу заттар аларда эң көп топтолот.",
+        "ru": "Хищники, поедающие других хищников, часто без естественных врагов (высшие хищники): снежный барс, беркут, волк. До них доходит меньше всего энергии, поэтому их мало, а загрязнители накапливаются в них сильнее всего.",
+        "en": "Predators that eat other predators, often with no natural enemies (top predators): snow leopards, golden eagles, wolves. They get the least energy, so there are few of them, and pollutants build up most in them."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Илбирс, бүркүт, карышкыр, баклан",
+            "ru": "Снежный барс, беркут, волк, баклан",
+            "en": "Snow leopard, golden eagle, wolf, cormorant"
+          }
+        }
+      ],
+      "related": [
+        "bio.secondary-consumer",
+        "bio.keystone-species"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.top-most-numerous",
+          "text": {
+            "ky": "Чоку жырткычтар эң күчтүү болгондуктан, алар эң көп.",
+            "ru": "Высшие хищники самые сильные, поэтому их больше всего.",
+            "en": "Top predators are the strongest, so there are the most of them."
+          },
+          "correction": {
+            "ky": "Тескерисинче: ар бир шакекте энергиянын 90 %ке жакыны жоголот, ошондуктан чоку жырткычтар эң аз.",
+            "ru": "Наоборот: на каждом звене теряется около 90 % энергии, поэтому высших хищников меньше всего.",
+            "en": "The opposite: about 90 % of energy is lost at each link, so top predators are the fewest."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Кыргызстандын тоолорунда илбирс бир нече жүз чарчы километр аймакта жүрө алат.",
+        "ru": "Снежный барс в горах Кыргызстана может обходить участок в несколько сотен квадратных километров.",
+        "en": "A snow leopard in Kyrgyzstan's mountains may roam an area of several hundred square kilometres."
+      },
+      "analogy": {
+        "ky": "Пирамиданын чокусу",
+        "ru": "Вершина пирамиды",
+        "en": "The tip of a pyramid"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Илбирсти коргоо",
+              "ru": "Охрана снежного барса",
+              "en": "Protecting the snow leopard"
+            },
+            "text": {
+              "ky": "Кыргызстан илбирсти коргоо боюнча эл аралык долбоорлорго катышып, анын санын фотоколкон менен эсептейт.",
+              "ru": "Кыргызстан участвует в международных программах охраны снежного барса и считает его фотоловушками.",
+              "en": "Kyrgyzstan takes part in international snow leopard programmes and counts the cats with camera traps."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Энергиянын үлүшү",
+              "ru": "Доля энергии",
+              "en": "Share of energy"
+            },
+            "text": {
+              "ky": "Продуценттердин энергиясынын болжол менен 0,1 %ы гана үчүнчү катардагы консументке жетет: 10 % × 10 % × 10 %.",
+              "ru": "До консумента третьего порядка доходит лишь около 0,1 % энергии продуцентов: 10 % × 10 % × 10 %.",
+              "en": "Only about 0.1 % of the producers' energy reaches a tertiary consumer: 10 % × 10 % × 10 %."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Пирамиданын чокусу",
+              "ru": "Верхушка пирамиды",
+              "en": "Top of the pyramid"
+            },
+            "text": {
+              "ky": "Акробаттардын пирамидасында төмөндө көп адам, чокусунда бирөө гана турат.",
+              "ru": "В пирамиде акробатов внизу много людей, наверху – один.",
+              "en": "In an acrobats' pyramid many people stand at the bottom and only one at the top."
+            }
+          },
+          {
+            "title": {
+              "ky": "Бүркүт",
+              "ru": "Беркут",
+              "en": "The golden eagle"
+            },
+            "text": {
+              "ky": "Бүркүт түлкүнү да кармай алат – ал азык чынжырынын эң башында.",
+              "ru": "Беркут может поймать даже лису – он на вершине пищевой цепи.",
+              "en": "A golden eagle can even catch a fox – it sits at the top of the chain."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.food-web",
+      "kind": "model",
+      "hue": 215,
+      "isContainer": false,
+      "title": {
+        "ky": "Азык торчосу",
+        "ru": "Пищевая сеть",
+        "en": "Food web"
+      },
+      "subtitle": {
+        "ky": "Кесилишкен чынжырлар",
+        "ru": "Переплетённые цепи",
+        "en": "Interlinked chains"
+      },
+      "description": {
+        "ky": "Экосистемадагы бири-бири менен кесилишкен көп азык чынжырлары. Торчо жөнөкөй чынжырга караганда туруктуу: бир түр азайса, жырткыч башка жемге өтө алат.",
+        "ru": "Множество переплетённых пищевых цепей экосистемы. Сеть устойчивее простой цепи: если один вид станет редким, хищник может переключиться на другую добычу.",
+        "en": "The many interlinked food chains of an ecosystem. A web is more stable than a single chain: if one species becomes scarce, a predator can switch to other prey."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Экосистеманын туруктуулугун көрсөтөт",
+            "ru": "Показывает устойчивость экосистемы",
+            "en": "Shows how stable an ecosystem is"
+          }
+        }
+      ],
+      "related": [
+        "bio.food-chain",
+        "bio.decomposer",
+        "bio.trophic-cascade"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.remove-no-effect",
+          "text": {
+            "ky": "Торчодон бир түрдү алып салса, калгандарына таасир болбойт.",
+            "ru": "Если убрать из сети один вид, остальных это не коснётся.",
+            "en": "Removing one species from a web doesn't affect the others."
+          },
+          "correction": {
+            "ky": "Түрлөр байланышкан: бир түр жоголсо, анын жеминин саны өсүп, жырткычтары ачка калат.",
+            "ru": "Виды связаны: исчезновение одного меняет численность его добычи и голодных хищников.",
+            "en": "Species are linked: losing one changes the numbers of its prey and leaves its predators hungry."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Тропикалык токойдун азык торчосунда миңдеген байланыш бар.",
+        "ru": "В пищевой сети тропического леса тысячи связей.",
+        "en": "A tropical forest food web has thousands of links."
+      },
+      "analogy": {
+        "ky": "Балык уулоочу тор",
+        "ru": "Рыболовная сеть",
+        "en": "A fishing net"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "m",
+            "title": {
+              "ky": "Тармактык анализ",
+              "ru": "Сетевой анализ",
+              "en": "Network analysis"
+            },
+            "text": {
+              "ky": "Илимпоздор азык торчосун интернеттин тармагындай компьютерде моделдеп, кайсы түр эң маанилүү экенин эсептешет.",
+              "ru": "Учёные моделируют пищевую сеть на компьютере, как сеть интернета, и вычисляют, какой вид самый важный.",
+              "en": "Scientists model food webs on computers like the internet's network to find the most important species."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Ысык-Көлдүн азык торчосу",
+              "ru": "Пищевая сеть Иссык-Куля",
+              "en": "Issyk-Kul's food web"
+            },
+            "text": {
+              "ky": "Көлгө жаңы балык түрлөрү киргизилгенде, жергиликтүү балыктардын азык торчосу өзгөргөн.",
+              "ru": "Когда в озеро завезли новые виды рыб, пищевая сеть местных рыб изменилась.",
+              "en": "When new fish species were brought into the lake, the food web of native fish changed."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Жөргөмүштүн торчосу",
+              "ru": "Паутина",
+              "en": "A spider's web"
+            },
+            "text": {
+              "ky": "Жөргөмүштүн торчосунун бир жибин үзсөң, бүт торчо дирилдейт.",
+              "ru": "Порви одну нить паутины – и задрожит вся паутина.",
+              "en": "Snap one thread of a spider's web and the whole web shakes."
+            }
+          },
+          {
+            "title": {
+              "ky": "Метро схемасы",
+              "ru": "Схема метро",
+              "en": "A metro map"
+            },
+            "text": {
+              "ky": "Метронун көп линиясы кесилишет: бир станция жабылса, башка жол менен барса болот.",
+              "ru": "Линии метро пересекаются: закроют одну станцию – можно доехать по-другому.",
+              "en": "Metro lines cross: if one station closes, you can go another way."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.energy-flow",
+      "kind": "process",
+      "hue": 50,
+      "isContainer": false,
+      "title": {
+        "ky": "Энергиянын агымы жана 10 % эрежеси",
+        "ru": "Поток энергии и правило 10 %",
+        "en": "Energy flow and the 10 % rule"
+      },
+      "subtitle": {
+        "ky": "Күндөн – бир багытта",
+        "ru": "От Солнца – в одну сторону",
+        "en": "From the Sun, one way"
+      },
+      "description": {
+        "ky": "Энергия экосистемага Күндөн кирет жана азык чынжыры боюнча бир багытта өтөт. Ар бир кийинки шакекке мурунку шакектин энергиясынын болжол менен 10 %ы гана өтөт; калганы дем алууга, кыймылга сарпталып, жылуулук болуп чыгат. Ошондуктан энергия пирамидасы ылдыйдан өйдө кичирейет.",
+        "ru": "Энергия входит в экосистему от Солнца и идёт по пищевой цепи в одном направлении. На каждое следующее звено переходит лишь около 10 % энергии предыдущего; остальное тратится на дыхание и движение и уходит в виде тепла. Поэтому пирамида энергии сужается кверху.",
+        "en": "Energy enters an ecosystem from the Sun and moves along the food chain in one direction. Only about 10 % of a level's energy passes to the next; the rest is used for respiration and movement and lost as heat. That is why the energy pyramid narrows towards the top."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "count",
+          "value": 10,
+          "unit": "% passed to the next level",
+          "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "energy",
+          "value": 10000,
+          "unit": "kJ → 10 kJ over 3 links (model)"
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "E_{n+1} \\approx 0.1\\,E_n"
+        }
+      ],
+      "related": [
+        "bio.producer",
+        "bio.food-chain",
+        "bio.tertiary-consumer"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.energy-recycled",
+          "text": {
+            "ky": "Энергия заттар сыяктуу экосистемада кайра айланат.",
+            "ru": "Энергия, как и вещества, совершает круговорот в экосистеме.",
+            "en": "Energy is recycled in an ecosystem, just like matter."
+          },
+          "correction": {
+            "ky": "Заттар айланат, ал эми энергия бир багытта өтүп, жылуулук болуп чыгып кетет; ошондуктан Күн керек.",
+            "ru": "Вещества совершают круговорот, а энергия идёт в одну сторону и уходит теплом; поэтому нужно Солнце.",
+            "en": "Matter cycles, but energy flows one way and leaves as heat; that's why the Sun is needed."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Бир килограмм илбирс «курулушу» үчүн болжол менен жүздөгөн килограмм өсүмдүк керек.",
+        "ru": "Чтобы «построить» килограмм снежного барса, нужны сотни килограммов растений.",
+        "en": "Building one kilogram of snow leopard takes hundreds of kilograms of plants."
+      },
+      "analogy": {
+        "ky": "Ар бир кол аркылуу өткөн суу толгон чака – ар бир жолу чачылат",
+        "ru": "Ведро воды, которое передают из рук в руки и каждый раз расплёскивают",
+        "en": "A bucket of water passed hand to hand, spilling each time"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "m",
+            "title": {
+              "ky": "Энергия пирамидасын эсептөө",
+              "ru": "Расчёт пирамиды энергии",
+              "en": "Calculating the pyramid"
+            },
+            "text": {
+              "ky": "10 000 кДж → 1000 кДж → 100 кДж → 10 кДж: ар бир шакекте 10 эсе азаят.",
+              "ru": "10 000 кДж → 1000 кДж → 100 кДж → 10 кДж: на каждом звене в 10 раз меньше.",
+              "en": "10,000 kJ → 1000 kJ → 100 kJ → 10 kJ: ten times less at each link."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Айыл чарбасы",
+              "ru": "Сельское хозяйство",
+              "en": "Farming"
+            },
+            "text": {
+              "ky": "Бир гектардан өсүмдүк азык алуу эт алууга караганда бир нече эсе көп адамды тойгузат – бул 10 % эрежесинин натыйжасы.",
+              "ru": "Растительная пища с гектара кормит в несколько раз больше людей, чем мясо с того же гектара, – следствие правила 10 %.",
+              "en": "Plant food from a hectare feeds several times more people than meat from it – a result of the 10 % rule."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Ысык чай",
+              "ru": "Горячий чай",
+              "en": "Hot tea"
+            },
+            "text": {
+              "ky": "Чай муздагандай, энергиянын бир бөлүгү ар бир шакекте жылуулук болуп абага кетет.",
+              "ru": "Как остывает чай, так на каждом звене часть энергии уходит теплом в воздух.",
+              "en": "Just as tea cools, at each link some energy escapes as heat."
+            }
+          },
+          {
+            "title": {
+              "ky": "Чөнтөк акча",
+              "ru": "Карманные деньги",
+              "en": "Pocket money"
+            },
+            "text": {
+              "ky": "100 сомдун 10 сомун гана досуңа берсең, ал дагы 10 %ын гана берсе, үчүнчүгө 1 сом жетет.",
+              "ru": "Если из 100 сомов ты отдаёшь другу только 10, а он следующему – тоже 10 %, то третьему достанется 1 сом.",
+              "en": "If you pass on only 10 of your 100 som and your friend passes on 10 %, the third person gets 1 som."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.food-chain",
+      "kind": "model",
+      "hue": 205,
+      "isContainer": false,
+      "title": {
+        "ky": "Азык чынжыры",
+        "ru": "Пищевая цепь",
+        "en": "Food chain"
+      },
+      "subtitle": {
+        "ky": "Ким кимди жейт",
+        "ru": "Кто кого ест",
+        "en": "Who eats whom"
+      },
+      "description": {
+        "ky": "Ким кимди жегенин көрсөткөн удаалаштык. Жебе энергия кайда өтөрүн көрсөтөт: чөп → теке → илбирс. Ар бир чынжыр продуценттен башталат.",
+        "ru": "Последовательность «кто кого ест». Стрелка показывает, куда переходит энергия: трава → козерог → снежный барс. Каждая цепь начинается с продуцента.",
+        "en": "A sequence showing who eats whom. Each arrow shows where energy goes: grass → ibex → snow leopard. Every chain starts with a producer."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "count",
+          "value": 3,
+          "max": 5,
+          "unit": "links"
+        }
+      ],
+      "related": [
+        "bio.food-web",
+        "bio.producer",
+        "bio.energy-flow"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.arrow-direction",
+          "text": {
+            "ky": "Жебе жеген жаныбардан жегенге карай багытталат (илбирс → теке).",
+            "ru": "Стрелка идёт от хищника к добыче (барс → козерог).",
+            "en": "The arrow points from the eater to the eaten (leopard → ibex)."
+          },
+          "correction": {
+            "ky": "Жебе энергиянын агымын көрсөтөт: жеген жаныбарга карай (теке → илбирс).",
+            "ru": "Стрелка показывает поток энергии – к тому, кто ест (козерог → барс).",
+            "en": "The arrow shows the flow of energy – towards the eater (ibex → leopard)."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Азык чынжырлары сейрек гана 5 шакектен узун болот – энергия жетпейт.",
+        "ru": "Пищевые цепи редко бывают длиннее 5 звеньев – не хватает энергии.",
+        "en": "Food chains rarely have more than 5 links – there isn't enough energy."
+      },
+      "analogy": {
+        "ky": "Домино",
+        "ru": "Домино",
+        "en": "A row of dominoes"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Ичеги-карын изилдөөсү",
+              "ru": "Анализ содержимого желудка",
+              "en": "Diet studies"
+            },
+            "text": {
+              "ky": "Экологдор жаныбардын тезегин изилдеп, анын эмне жегенин аныкташат жана азык чынжырын түзүшөт.",
+              "ru": "Экологи изучают помёт животных, выясняют, что они едят, и строят пищевые цепи.",
+              "en": "Ecologists study animal droppings to find out what they eat and build food chains."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Графтар",
+              "ru": "Графы",
+              "en": "Graphs"
+            },
+            "text": {
+              "ky": "Математикада азык чынжыры «багытталган граф» деп аталат: чокулар – организмдер, жебелер – байланыштар.",
+              "ru": "В математике пищевая цепь – это ориентированный граф: вершины – организмы, стрелки – связи.",
+              "en": "In maths a food chain is a directed graph: vertices are organisms, arrows are links."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Нан → адам",
+              "ru": "Хлеб → человек",
+              "en": "Bread → you"
+            },
+            "text": {
+              "ky": "Буудай → нан → сен: сен да азык чынжырынын шакегисиң.",
+              "ru": "Пшеница → хлеб → ты: ты тоже звено пищевой цепи.",
+              "en": "Wheat → bread → you: you are a link in a food chain too."
+            }
+          },
+          {
+            "title": {
+              "ky": "Чынжырдын шакектери",
+              "ru": "Звенья цепочки",
+              "en": "Links of a chain"
+            },
+            "text": {
+              "ky": "Бир шакек үзүлсө, чынжыр үзүлөт – бир түр жок болсо, чынжыр бузулат.",
+              "ru": "Порвётся одно звено – порвётся цепь: исчезнет вид – цепь нарушится.",
+              "en": "Break one link and the chain breaks – lose one species and the chain is disrupted."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.secondary-consumer",
+      "kind": "trophic-level",
+      "hue": 28,
+      "isContainer": false,
+      "title": {
+        "ky": "Экинчи катардагы консументтер",
+        "ru": "Консументы второго порядка",
+        "en": "Secondary consumers"
+      },
+      "subtitle": {
+        "ky": "Жырткычтар",
+        "ru": "Хищники",
+        "en": "Predators"
+      },
+      "description": {
+        "ky": "Чөп жегичтерди жеген жаныбарлар: түлкү, чабак жеген судак, курт-кумурска жеген чымчыктар. Кээ бирлери (мисалы, аюу) аралаш тамактанат.",
+        "ru": "Животные, которые едят растительноядных: лиса, судак, поедающий мелкую рыбу, насекомоядные птицы. Некоторые (например, медведь) питаются смешанно.",
+        "en": "Animals that eat herbivores: foxes, zander eating small fish, insect-eating birds. Some, such as bears, eat both plants and animals."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Түлкү, судак, кара чымчык, бака",
+            "ru": "Лиса, судак, дрозд, лягушка",
+            "en": "Fox, zander, thrush, frog"
+          }
+        }
+      ],
+      "related": [
+        "bio.primary-consumer",
+        "bio.tertiary-consumer"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.one-level-each",
+          "text": {
+            "ky": "Ар бир жаныбар азык чынжырында бир гана орунда турат.",
+            "ru": "Каждое животное всегда стоит только на одном уровне.",
+            "en": "Each animal always sits at only one level."
+          },
+          "correction": {
+            "ky": "Азык торчосунда бир жаныбар ар кандай деңгээлде болушу мүмкүн: түлкү жемиш жесе – биринчи, суур жесе – экинчи катардагы консумент.",
+            "ru": "В пищевой сети одно животное может быть на разных уровнях: лиса, поедая ягоды, – консумент первого порядка, а поедая сурка – второго.",
+            "en": "In a food web an animal can feed at several levels: a fox eating berries is a primary consumer, but eating a marmot a secondary one."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Түлкү кардын астында жүргөн чычканды угуп, секирип туура кармай алат.",
+        "ru": "Лиса слышит мышь под снегом и точно ныряет за ней.",
+        "en": "A fox can hear a mouse under the snow and pounce right on it."
+      },
+      "analogy": {
+        "ky": "Эстафетанын экинчи чуркоочусу",
+        "ru": "Второй бегун эстафеты",
+        "en": "The second runner in a relay"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Зыянкечтерге каршы биологиялык күрөш",
+              "ru": "Биологическая защита растений",
+              "en": "Biological pest control"
+            },
+            "text": {
+              "ky": "Бакчаларда химия ордуна курт-кумурска жеген чымчыктар жана зыянкеч жеген коңуздар колдонулат – алар зыянкечтерди жейт.",
+              "ru": "В садах вместо химикатов используют насекомоядных птиц и божьих коровок, поедающих вредителей.",
+              "en": "Gardens use insect-eating birds and ladybirds instead of chemicals to eat pests."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Популяцияларды моделдөө",
+              "ru": "Моделирование популяций",
+              "en": "Population models"
+            },
+            "text": {
+              "ky": "Жырткыч-жем моделинде жырткыч көбөйсө, жем азаят, андан кийин жырткыч да азаят – сандар толкун сыяктуу өзгөрөт.",
+              "ru": "В модели «хищник–жертва» рост числа хищников уменьшает жертв, затем сокращаются и хищники – численность колеблется волнами.",
+              "en": "In a predator–prey model more predators mean fewer prey, then fewer predators – numbers rise and fall in waves."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Мышык жана чычкан",
+              "ru": "Кот и мышь",
+              "en": "Cat and mouse"
+            },
+            "text": {
+              "ky": "Мышык данды жеген чычканды кармайт – ал экинчи катардагы консумент.",
+              "ru": "Кот ловит мышь, которая ест зерно, – он консумент второго порядка.",
+              "en": "A cat catching a grain-eating mouse is a secondary consumer."
+            }
+          },
+          {
+            "title": {
+              "ky": "Бака жана чымын",
+              "ru": "Лягушка и муха",
+              "en": "Frog and fly"
+            },
+            "text": {
+              "ky": "Бака гүлдүн ширесин ичкен чымынды жейт.",
+              "ru": "Лягушка ест муху, которая пила нектар.",
+              "en": "A frog eats a fly that fed on nectar."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.pollution",
+      "kind": "threat",
+      "hue": 285,
+      "isContainer": false,
+      "title": {
+        "ky": "Булгануу",
+        "ru": "Загрязнение",
+        "en": "Pollution"
+      },
+      "subtitle": {
+        "ky": "Аба, суу, топурак",
+        "ru": "Воздух, вода, почва",
+        "en": "Air, water, soil"
+      },
+      "description": {
+        "ky": "Чөйрөгө зыяндуу заттардын же энергиянын (ызы-чуу, жылуулук) түшүшү. Аба булганат – унаалардын жана көмүр жаккан мештердин түтүнү; суу булганат – агынды суу, жер семирткич, мунай; топурак булганат – таштанды, пестициддер, оор металлдар. Бишкекте кышында көмүр жагуудан смог пайда болот.",
+        "ru": "Попадание в среду вредных веществ или энергии (шум, тепло). Загрязнение воздуха – выхлопы машин и дым угольных печей; воды – сточные воды, удобрения, нефть; почвы – мусор, пестициды, тяжёлые металлы. В Бишкеке зимой из-за сжигания угля возникает смог.",
+        "en": "Harmful substances or energy (noise, heat) getting into the environment. Air pollution: vehicle exhaust and smoke from coal stoves; water pollution: sewage, fertiliser, oil; soil pollution: litter, pesticides, heavy metals. In Bishkek, burning coal in winter causes smog."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Түтүн, агынды суу, жер семирткич, пестицид, оор металлдар, пластик",
+            "ru": "Дым, стоки, удобрения, пестициды, тяжёлые металлы, пластик",
+            "en": "Smoke, sewage, fertiliser, pesticides, heavy metals, plastic"
+          }
+        }
+      ],
+      "related": [
+        "bio.human-impact"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.dilution-solves",
+          "text": {
+            "ky": "Булганычты чоң көлгө төксө, ал эрип жок болот.",
+            "ru": "Если вылить загрязнение в большое озеро, оно растворится и исчезнет.",
+            "en": "Pour pollution into a big lake and it dissolves away."
+          },
+          "correction": {
+            "ky": "Эриген заттар жок болбойт: туруктуу булгоочулар организмдерде топтолуп, азык чынжыры боюнча көбөйөт.",
+            "ru": "Растворённые вещества не исчезают: стойкие загрязнители накапливаются в организмах и растут по пищевой цепи.",
+            "en": "Dissolved substances don't vanish: persistent pollutants build up in organisms and increase up the food chain."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Жер семирткич көлгө агып кирсе, балырлар ченемсиз өсүп, суу «гүлдөйт» жана андагы кычкылтек азаят.",
+        "ru": "Если удобрения попадают в озеро, водоросли разрастаются, вода «цветёт», и кислорода в ней становится меньше.",
+        "en": "When fertiliser runs into a lake, algae bloom and the water loses oxygen."
+      },
+      "analogy": {
+        "ky": "Таза сууга бир тамчы сыя",
+        "ru": "Капля чернил в стакане воды",
+        "en": "A drop of ink in a glass of water"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Абанын сапатын өлчөөчүлөр",
+              "ru": "Датчики качества воздуха",
+              "en": "Air-quality sensors"
+            },
+            "text": {
+              "ky": "Шаардагы сенсорлор абадагы PM2.5 майда бөлүкчөлөрүн өлчөп, телефонго маалымат берет.",
+              "ru": "Городские датчики измеряют мелкие частицы PM2.5 в воздухе и передают данные в телефоны.",
+              "en": "City sensors measure fine PM2.5 particles in the air and send the data to phones."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Суунун pH көрсөткүчү",
+              "ru": "pH воды",
+              "en": "Water pH"
+            },
+            "text": {
+              "ky": "Таза суунун pH ≈ 7. Кислоталуу жаандар жана өндүрүш агындылары pHты өзгөртүп, балыктарга зыян келтириши мүмкүн.",
+              "ru": "pH чистой воды ≈ 7. Кислотные дожди и промышленные стоки меняют pH и могут вредить рыбам.",
+              "en": "Clean water has pH ≈ 7. Acid rain and industrial waste can change pH and harm fish."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Сыя тамчысы",
+              "ru": "Капля чернил",
+              "en": "A drop of ink"
+            },
+            "text": {
+              "ky": "Бир тамчы сыя бүт стакан сууну боёйт – булгануу ушундай жайылат.",
+              "ru": "Одна капля чернил окрашивает весь стакан воды – так распространяется загрязнение.",
+              "en": "One drop of ink colours a whole glass of water – that is how pollution spreads."
+            }
+          },
+          {
+            "title": {
+              "ky": "Кышкы түтүн",
+              "ru": "Зимний дым",
+              "en": "Winter smoke"
+            },
+            "text": {
+              "ky": "Кышында шаардын үстүндөгү боз туман – мештердин жана унаалардын түтүнү.",
+              "ru": "Серая дымка над городом зимой – это дым печей и машин.",
+              "en": "The grey haze over the city in winter is smoke from stoves and cars."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "bio.habitat",
+      "kind": "place",
+      "hue": 98,
+      "isContainer": false,
+      "title": {
+        "ky": "Жашоо чөйрөсү",
+        "ru": "Среда обитания",
+        "en": "Habitat"
+      },
+      "subtitle": {
+        "ky": "Организмдин «дареги»",
+        "ru": "«Адрес» организма",
+        "en": "An organism's address"
+      },
+      "description": {
+        "ky": "Организм жашаган жана өзүнө керектүүнү – тамак, суу, баш паана, көбөйүүчү жерди – тапкан жер. Илбирстин жашоо чөйрөсү – бийик тоолордун аскалуу капталдары, чабактыкы – көлдүн тайыз суусу.",
+        "ru": "Место, где живёт организм и находит всё нужное: пищу, воду, укрытие, место для размножения. Среда обитания снежного барса – скалистые склоны высокогорья, чебака – мелководье озера.",
+        "en": "The place where an organism lives and finds what it needs: food, water, shelter and a place to breed. A snow leopard's habitat is rocky high-mountain slopes; a dace's is the shallow water of a lake."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Суу, кургак жер, топурак, башка организмдин ичи",
+            "ru": "Водная, наземно-воздушная, почвенная, организменная среда",
+            "en": "Water, land and air, soil, inside another organism"
+          }
+        }
+      ],
+      "related": [
+        "bio.habitat-loss"
+      ],
+      "misconceptions": [
+        {
+          "key": "bio.m.habitat-move",
+          "text": {
+            "ky": "Жашоо чөйрөсү бузулса, жаныбар башка жерге көчүп кетет, коркунуч жок.",
+            "ru": "Если среду обитания разрушить, животное просто переселится.",
+            "en": "If a habitat is destroyed, the animal just moves somewhere else."
+          },
+          "correction": {
+            "ky": "Көп түрлөр белгилүү бир шартка ыңгайлашкан; жакын жерде ылайыктуу чөйрө болбосо, алар жок болуп кетиши мүмкүн.",
+            "ru": "Многие виды приспособлены к определённым условиям; если рядом нет подходящей среды, они могут исчезнуть.",
+            "en": "Many species are adapted to particular conditions; without a suitable habitat nearby they may die out."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Ысык-Көлдүн суусу бир аз туздуу, ошондуктан кышында катуу суукта да толук тоңбойт – «Ысык» деген аты ошондон.",
+        "ru": "Вода Иссык-Куля слегка солёная и даже в сильные морозы озеро не замерзает целиком – отсюда и название «тёплое озеро».",
+        "en": "Lake Issyk-Kul is slightly salty and never freezes over even in hard frosts – hence its name, 'warm lake'."
+      },
+      "analogy": {
+        "ky": "Үй жана анын айланасы",
+        "ru": "Дом и его окрестности",
+        "en": "A home and its neighbourhood"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "GPS-каргылар",
+              "ru": "GPS-ошейники",
+              "en": "GPS collars"
+            },
+            "text": {
+              "ky": "Илимпоздор илбирстерге GPS-каргы тагып, алардын жашоо чөйрөсүнүн чегин жана жолдорун картага түшүрүшөт.",
+              "ru": "Учёные надевают снежным барсам GPS-ошейники и наносят на карту их участки и пути.",
+              "en": "Scientists fit snow leopards with GPS collars to map their home ranges and routes."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Фотоколкондор",
+              "ru": "Фотоловушки",
+              "en": "Camera traps"
+            },
+            "text": {
+              "ky": "Кыргызстандын тоолорунда автоматтык камералар сейрек жаныбарлардын кайсы жерде жашаганын көрсөтөт.",
+              "ru": "Автоматические камеры в горах Кыргызстана показывают, где живут редкие животные.",
+              "en": "Automatic cameras in Kyrgyzstan's mountains reveal where rare animals live."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Балыктын үйү",
+              "ru": "Дом рыбы",
+              "en": "A fish's home"
+            },
+            "text": {
+              "ky": "Балыкты кургак жерге чыгарсаң жашабайт – анын үйү суу.",
+              "ru": "Рыба на суше не выживет – её дом вода.",
+              "en": "A fish cannot live on land – its home is water."
+            }
+          },
+          {
+            "title": {
+              "ky": "Кактус жана чөл",
+              "ru": "Кактус и пустыня",
+              "en": "A cactus and the desert"
+            },
+            "text": {
+              "ky": "Кактус кургак чөлгө, ал эми камыш нымдуу көл жээгине ыңгайлашкан.",
+              "ru": "Кактус приспособлен к сухой пустыне, а камыш – к влажному берегу озера.",
+              "en": "A cactus suits a dry desert, while reeds suit a damp lake shore."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "bio.yellowstone-cascade",
+      "engine": "timeline",
+      "title": {
+        "ky": "Йеллоустондогу трофикалык каскад",
+        "ru": "Трофический каскад в Йеллоустоне",
+        "en": "The Yellowstone trophic cascade"
+      },
+      "icon": "trees",
+      "description": {
+        "ky": "Карышкырлардын жок болушу жана кайра келиши Йеллоустондун азык торчосун кантип өзгөрткөнү. Каскаддын күчү боюнча илимпоздор дагы эле талашып жатышат.",
+        "ru": "Как исчезновение и возвращение волков изменили пищевую сеть Йеллоустона. О силе каскада учёные спорят до сих пор.",
+        "en": "How the loss and return of wolves changed Yellowstone's food web. Scientists still debate how strong the cascade is."
+      },
+      "inputs": {
+        "ky": "Карышкырлар (кайтарылган)",
+        "ru": "Волки (возвращённые)",
+        "en": "Wolves (brought back)"
+      },
+      "outputs": {
+        "ky": "Бугулардын жүрүм-туруму жана саны, дарыя жээгиндеги өсүмдүктөр, кундуздар",
+        "ru": "Поведение и численность оленей, прибрежная растительность, бобры",
+        "en": "Elk behaviour and numbers, riverside plants, beavers"
+      },
+      "steps": [
+        {
+          "key": "wolves-gone",
+          "title": {
+            "ky": "Карышкырлар жок",
+            "ru": "Волков нет",
+            "en": "No wolves"
+          },
+          "description": {
+            "ky": "1920-жылдарга чейин Йеллоустондо карышкырлар аңчылык менен толук жок кылынган.",
+            "ru": "К 1920-м годам волков в Йеллоустоне полностью истребили охотой.",
+            "en": "By the 1920s hunting had wiped out Yellowstone's wolves."
+          },
+          "conceptKey": "bio.keystone-species",
+          "altText": {
+            "ky": "Карышкыр сүрөтү бозоруп, андан чыккан жебелер өчөт.",
+            "ru": "Значок волка бледнеет, его стрелки гаснут.",
+            "en": "The wolf icon fades and its arrows disappear."
+          },
+          "duration": 2
+        },
+        {
+          "key": "elk-boom",
+          "title": {
+            "ky": "Бугулар көбөйөт",
+            "ru": "Олени множатся",
+            "en": "Elk increase"
+          },
+          "description": {
+            "ky": "Жырткычы жок бугулар көбөйүп, дарыя жээгиндеги жаш тал менен бай теректи жеп салышкан.",
+            "ru": "Без хищника олени-вапити размножились и объедали молодые ивы и осины у рек.",
+            "en": "With no predator, elk multiplied and browsed young willows and aspens by the rivers."
+          },
+          "conceptKey": "bio.primary-consumer",
+          "altText": {
+            "ky": "Бугулардын саны өсүп, жээктеги дарактар азаят.",
+            "ru": "Число оленей растёт, деревьев у берега становится меньше.",
+            "en": "Elk numbers rise while riverside trees thin out."
+          },
+          "duration": 2
+        },
+        {
+          "key": "wolves-back",
+          "title": {
+            "ky": "Карышкырлар кайтып келет",
+            "ru": "Волки возвращаются",
+            "en": "Wolves return"
+          },
+          "description": {
+            "ky": "1995–1996-жылдары Канададан карышкырлар алып келинип, паркка коё берилген.",
+            "ru": "В 1995–1996 годах волков привезли из Канады и выпустили в парк.",
+            "en": "In 1995–1996 wolves from Canada were released into the park."
+          },
+          "conceptKey": "bio.ecosystem-restoration",
+          "altText": {
+            "ky": "Карышкыр кайра пайда болот, бугуга карай жебе жанат.",
+            "ru": "Волк появляется снова, загорается стрелка к оленю.",
+            "en": "The wolf reappears and the arrow from elk to wolf lights up."
+          },
+          "duration": 2
+        },
+        {
+          "key": "elk-wary",
+          "title": {
+            "ky": "Бугулар азаят жана сак болот",
+            "ru": "Оленей меньше, они осторожнее",
+            "en": "Fewer, warier elk"
+          },
+          "description": {
+            "ky": "Бугулардын саны азайып, алар ачык жээктерде азыраак убакыт өткөрө башташкан.",
+            "ru": "Оленей стало меньше, и они стали реже задерживаться на открытых берегах.",
+            "en": "Elk numbers fell and they spent less time on open riverbanks."
+          },
+          "conceptKey": "bio.trophic-cascade",
+          "altText": {
+            "ky": "Бугулардын саны кичирейет.",
+            "ru": "Число оленей уменьшается.",
+            "en": "The elk count shrinks."
+          },
+          "duration": 2
+        },
+        {
+          "key": "trees-regrow",
+          "title": {
+            "ky": "Дарактар кайра өсөт",
+            "ru": "Деревья отрастают",
+            "en": "Trees regrow"
+          },
+          "description": {
+            "ky": "Кээ бир дарыя жээктеринде тал жана бай терек кайра өсө баштаган, бирок бардык жерде эмес.",
+            "ru": "На некоторых берегах снова начали расти ивы и осины, хотя и не везде.",
+            "en": "Willows and aspens began to grow back along some rivers – though not everywhere."
+          },
+          "conceptKey": "bio.producer",
+          "altText": {
+            "ky": "Жээктеги дарактар кайра көбөйөт.",
+            "ru": "Деревьев у берега снова больше.",
+            "en": "More trees appear along the bank."
+          },
+          "duration": 2
+        },
+        {
+          "key": "beavers",
+          "title": {
+            "ky": "Кундуздар кайтат",
+            "ru": "Возвращаются бобры",
+            "en": "Beavers return"
+          },
+          "description": {
+            "ky": "Талдар көбөйгөндө кундуздардын колониялары өскөн; алардын тосмолору жаңы көлмөлөрдү жаратат.",
+            "ru": "С ростом ив стало больше колоний бобров; их плотины создают новые пруды.",
+            "en": "With more willows, beaver colonies increased; their dams create new ponds."
+          },
+          "conceptKey": "bio.keystone-species",
+          "altText": {
+            "ky": "Кундуз жана жаңы көлмө пайда болот.",
+            "ru": "Появляются бобр и новый пруд.",
+            "en": "A beaver and a new pond appear."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": []
+    }
+  ],
+  "items": [
+    {
+      "key": "bio.q.human-impact-ecosystems-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Йеллоустондо карышкырлар жок болгондо бугулар эмне болду?",
+        "ru": "Что произошло с оленями в Йеллоустоне, когда исчезли волки?",
+        "en": "What happened to the elk in Yellowstone after the wolves were gone?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Азайып, жок болуп кетишти",
+            "ru": "Сократились и исчезли",
+            "en": "They declined and vanished"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Көбөйүп, жаш дарактарды жеп салышты",
+            "ru": "Размножились и объедали молодые деревья",
+            "en": "They multiplied and ate young trees"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эч нерсе өзгөргөн жок",
+            "ru": "Ничего не изменилось",
+            "en": "Nothing changed"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Эт жегич болуп калышты",
+            "ru": "Стали хищниками",
+            "en": "They became meat-eaters"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Жырткычы жок бугулар көбөйүп, жээктеги жаш дарактарды жеп салышкан.",
+        "ru": "Без хищника олени размножились и объедали молодые деревья у рек.",
+        "en": "With no predator the elk multiplied and browsed young riverside trees."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "misconceptionKey": "bio.m.predators-only-harm",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.human-impact-ecosystems-2",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден Йеллоустондогу «негизги (ачкыч) түрдү» тап.",
+        "ru": "Найди на модели «ключевой вид» Йеллоустона.",
+        "en": "Find Yellowstone's keystone species on the model."
+      },
+      "targetConceptKey": "bio.keystone-species",
+      "explanation": {
+        "ky": "Карышкыр: саны аз болсо да, анын жок болушу же кайтып келиши бүт торчону өзгөрттү.",
+        "ru": "Волк: хотя волков немного, их исчезновение и возвращение изменили всю сеть.",
+        "en": "The wolf: although few in number, its loss and return changed the whole web."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "misconceptionKey": "bio.m.keystone-biggest",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.human-impact-ecosystems-3",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден трофикалык каскад өткөн байланыштарды (жырткыч → чөп жегич → өсүмдүк) тап.",
+        "ru": "Найди на модели связи, по которым прошёл трофический каскад (хищник → растительноядное → растение).",
+        "en": "Find the links the trophic cascade travelled along (predator → herbivore → plant)."
+      },
+      "targetConceptKey": "bio.trophic-cascade",
+      "explanation": {
+        "ky": "Карышкыр – бугу – тал/бай терек байланыштары.",
+        "ru": "Связи волк – олень – ива/осина.",
+        "en": "The wolf – elk – willow/aspen links."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.human-impact-ecosystems-4",
+      "type": "match",
+      "prompt": {
+        "ky": "Адамдын иш-аракетин анын экосистемага таасири менен дал келтир.",
+        "ru": "Сопоставь действие человека и его влияние на экосистему.",
+        "en": "Match each human action to its effect on the ecosystem."
+      },
+      "pairs": [
+        {
+          "key": "archa",
+          "left": {
+            "ky": "Арчаны отун үчүн кыюу",
+            "ru": "Вырубка арчи на дрова",
+            "en": "Cutting juniper for firewood"
+          },
+          "right": {
+            "ky": "Жашоо чөйрөсүнүн бузулушу",
+            "ru": "Разрушение среды обитания",
+            "en": "Habitat loss"
+          }
+        },
+        {
+          "key": "zander",
+          "left": {
+            "ky": "Ысык-Көлгө судак киргизүү",
+            "ru": "Завоз судака в Иссык-Куль",
+            "en": "Bringing zander into Issyk-Kul"
+          },
+          "right": {
+            "ky": "Бөтөн (инвазивдүү) түр",
+            "ru": "Инвазивный вид",
+            "en": "Invasive species"
+          }
+        },
+        {
+          "key": "wolves",
+          "left": {
+            "ky": "Карышкырларды кайтаруу",
+            "ru": "Возвращение волков",
+            "en": "Returning wolves"
+          },
+          "right": {
+            "ky": "Экосистеманы калыбына келтирүү",
+            "ru": "Восстановление экосистемы",
+            "en": "Ecosystem restoration"
+          }
+        },
+        {
+          "key": "reserve",
+          "left": {
+            "ky": "Сары-Челек коругу",
+            "ru": "Заповедник Сары-Челек",
+            "en": "Sary-Chelek reserve"
+          },
+          "right": {
+            "ky": "Корголуучу аймак",
+            "ru": "Охраняемая территория",
+            "en": "Protected area"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Отун үчүн арча кыюу – жашоо чөйрөсүнүн бузулушу; Ысык-Көлгө судак киргизүү – бөтөн түр; карышкырларды кайтаруу – калыбына келтирүү; корук түзүү – табиятты коргоо.",
+        "ru": "Вырубка арчи на дрова – разрушение среды обитания; завоз судака в Иссык-Куль – инвазивный вид; возвращение волков – восстановление; создание заповедника – охрана природы.",
+        "en": "Cutting juniper for firewood – habitat loss; bringing zander into Issyk-Kul – an invasive species; returning wolves – restoration; founding a reserve – protecting nature."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.human-impact-ecosystems-5",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы иш-аракеттер экосистемаларды калыбына келтирүүгө жардам берет? Бардыгын танда.",
+        "ru": "Какие действия помогают восстановлению экосистем? Выбери все.",
+        "en": "Which actions help restore ecosystems? Choose all."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Арча жана жаңгак көчөттөрүн отургузуу",
+            "ru": "Посадка саженцев арчи и ореха",
+            "en": "Planting juniper and walnut seedlings"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жайыттарга эс берүү",
+            "ru": "Отдых пастбищ",
+            "en": "Resting pastures"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жоголгон түрдү кайтаруу",
+            "ru": "Возвращение исчезнувшего вида",
+            "en": "Bringing back a lost species"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Көлгө бөтөн жырткыч балык коё берүү",
+            "ru": "Выпуск в озеро чужой хищной рыбы",
+            "en": "Releasing alien predatory fish into a lake"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Арчаны отунга кыюу",
+            "ru": "Рубка арчи на дрова",
+            "en": "Cutting juniper for firewood"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Жергиликтүү дарактарды отургузуу, жайыттарга эс берүү жана жоголгон түрлөрдү кайтаруу жардам берет. Бөтөн балык киргизүү жана арча кыюу зыян келтирет.",
+        "ru": "Помогают посадка местных деревьев, отдых пастбищ и возвращение исчезнувших видов. Завоз чужих рыб и вырубка арчи вредят.",
+        "en": "Planting native trees, resting pastures and returning lost species help. Bringing in alien fish and cutting juniper do harm."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "misconceptionKey": "bio.m.more-species-better",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.human-impact-ecosystems-6",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн кундуздар карышкырлар кайтып келгенден кийин көбөйгөн?",
+        "ru": "Почему после возвращения волков стало больше бобров?",
+        "en": "Why did beavers increase after the wolves came back?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Карышкырлар кундуздарды коргошот",
+            "ru": "Волки охраняют бобров",
+            "en": "Wolves protect beavers"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Бугулар азайып, тал көбөйгөн",
+            "ru": "Оленей стало меньше, а ив больше",
+            "en": "Fewer elk meant more willows"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Кундуздар карышкырды жешет",
+            "ru": "Бобры едят волков",
+            "en": "Beavers eat wolves"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Кундуздарды адамдар тойгузган",
+            "ru": "Бобров подкармливали люди",
+            "en": "People fed the beavers"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Карышкырлар бугуларды азайтып, тал кайра өскөн; талдар кундуздарга тамак жана курулуш материалы.",
+        "ru": "Волки сократили число оленей, и ивы снова выросли; ивы – корм и стройматериал для бобров.",
+        "en": "Wolves reduced the elk, so willows grew back; willows are food and building material for beavers."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.human-impact-ecosystems-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "1995–1996-жылдары Йеллоустонго карышкырлар кайтарылган. Алар 1920-жылдардын ортосунда жок кылынган деп эсептесек (1926-ж.), парк карышкырсыз болжол менен канча жыл турган (1995-жылга чейин)?",
+        "ru": "Волков вернули в Йеллоустон в 1995–1996 годах. Если считать, что их истребили к 1926 году, сколько лет парк был без волков (до 1995 года)?",
+        "en": "Wolves returned to Yellowstone in 1995–1996. If they were wiped out by 1926, how many years was the park without wolves (until 1995)?"
+      },
+      "answer": 69,
+      "tolerance": 1,
+      "unit": "years",
+      "explanation": {
+        "ky": "1995 − 1926 = 69 жыл – дээрлик 70 жыл.",
+        "ru": "1995 − 1926 = 69 лет – почти 70 лет.",
+        "en": "1995 − 1926 = 69 years – almost 70 years."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.human-impact-ecosystems-8",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн отун үчүн кыйылган арча токойлору калыбына келиши өтө узак?",
+        "ru": "Почему вырубленные на дрова арчовые леса восстанавливаются очень долго?",
+        "en": "Why do juniper forests cut for firewood take so long to recover?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Арча өтө жай өсөт жана көчөттөрүн мал жейт",
+            "ru": "Арча растёт очень медленно, а побеги поедает скот",
+            "en": "Juniper grows very slowly and livestock eat seedlings"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Арча уруктары таптакыр өнбөйт",
+            "ru": "Семена арчи вообще не прорастают",
+            "en": "Juniper seeds never sprout"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Тоодо жарык жок",
+            "ru": "В горах нет света",
+            "en": "There is no light in the mountains"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Арчаны карышкырлар жейт",
+            "ru": "Арчу едят волки",
+            "en": "Wolves eat juniper"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Арча өтө жай өсөт жана мал жаш көчөттөрдү жеп салат; калыбына келүүгө ондогон жылдар керек.",
+        "ru": "Арча растёт очень медленно, а скот поедает молодые побеги; на восстановление нужны десятилетия.",
+        "en": "Juniper grows very slowly and livestock eat the young shoots; recovery takes decades."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "misconceptionKey": "bio.m.plant-one-tree",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.human-impact-ecosystems-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Ысык-Көлгө судак киргизилгенден кийин эмне үчүн жергиликтүү балыктар азайган?",
+        "ru": "Почему после завоза судака в Иссык-Куль местных рыб стало меньше?",
+        "en": "Why did native fish decline after zander were brought into Issyk-Kul?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Судак сууну булгаган",
+            "ru": "Судак загрязнил воду",
+            "en": "Zander polluted the water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Судак жергиликтүү балыктарды жеп, алар менен атаандашкан",
+            "ru": "Судак поедал местных рыб и конкурировал с ними",
+            "en": "Zander ate native fish and competed with them"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жергиликтүү балыктар башка көлгө сүзүп кетишкен",
+            "ru": "Местные рыбы уплыли в другое озеро",
+            "en": "Native fish swam to another lake"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Судак суунун температурасын көтөргөн",
+            "ru": "Судак повысил температуру воды",
+            "en": "Zander warmed the water"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Судак – жырткыч балык: ал жергиликтүү балыктарды жейт жана алар менен тамак үчүн атаандашат; ашыкча балык уулоо да таасир эткен.",
+        "ru": "Судак – хищная рыба: он поедает местных рыб и конкурирует с ними за пищу; сказался и перелов.",
+        "en": "Zander is a predatory fish: it eats native fish and competes with them for food; overfishing also played a part."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "misconceptionKey": "bio.m.more-species-better",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.human-impact-ecosystems-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Йеллоустондогу трофикалык каскад жөнүндө кайсы ырастоо илимий жактан эң так?",
+        "ru": "Какое утверждение о трофическом каскаде в Йеллоустоне научно точнее всего?",
+        "en": "Which statement about the Yellowstone trophic cascade is most scientifically accurate?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Карышкырлар бардык дарактарды бир жылда калыбына келтиришкен",
+            "ru": "Волки за год восстановили все деревья",
+            "en": "Wolves restored every tree within a year"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Карышкырлар таасир эткен, бирок анын күчү боюнча илимпоздор талашат",
+            "ru": "Волки повлияли, но о силе влияния учёные спорят",
+            "en": "Wolves had an effect, but scientists debate how strong it was"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Карышкырлар эч кандай таасир эткен эмес",
+            "ru": "Волки ни на что не повлияли",
+            "en": "Wolves had no effect at all"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Карышкырлар бугуларды толук жок кылышкан",
+            "ru": "Волки полностью истребили оленей",
+            "en": "Wolves wiped out the elk"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Карышкырлар экосистемага таасир эткени аныкталган, бирок анын күчү боюнча изилдөөчүлөр талашат: кургакчылык, аюулар жана аңчылык да маанилүү.",
+        "ru": "Влияние волков на экосистему установлено, но о его силе исследователи спорят: важны и засуха, медведи, охота.",
+        "en": "Wolves clearly affected the ecosystem, but researchers debate how strongly: drought, bears and hunting matter too."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "difficulty": 3
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-cell",
+      "ky": "клетка",
+      "ru": "клетка",
+      "en": "cell",
+      "forbidden": [
+        "жасуша",
+        "уяча"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-organelle",
+      "ky": "органелла",
+      "ru": "органелла",
+      "en": "organelle",
+      "forbidden": [
+        "органоид"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-nucleus",
+      "ky": "ядро",
+      "ru": "ядро",
+      "en": "nucleus",
+      "forbidden": [
+        "nucleous"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-membrane",
+      "ky": "клетка мембранасы",
+      "ru": "клеточная мембрана",
+      "en": "cell membrane",
+      "forbidden": [
+        "клетка кабыгы",
+        "cell skin"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-cytoplasm",
+      "ky": "цитоплазма",
+      "ru": "цитоплазма",
+      "en": "cytoplasm",
+      "forbidden": [
+        "цитоплазм",
+        "cytoplasma"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-mitochondrion",
+      "ky": "митохондрия",
+      "ru": "митохондрия",
+      "en": "mitochondrion",
+      "forbidden": [
+        "a mitochondria",
+        "mitochondrias"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-ribosome",
+      "ky": "рибосома",
+      "ru": "рибосома",
+      "en": "ribosome",
+      "forbidden": [
+        "рибозома",
+        "ribozome"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-atp",
+      "ky": "АТФ (аденозинтрифосфат)",
+      "ru": "АТФ (аденозинтрифосфат)",
+      "en": "ATP (adenosine triphosphate)",
+      "forbidden": [
+        "АТП"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-cell-wall",
+      "ky": "клетка дубалы",
+      "ru": "клеточная стенка",
+      "en": "cell wall",
+      "forbidden": [],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-chloroplast",
+      "ky": "хлоропласт",
+      "ru": "хлоропласт",
+      "en": "chloroplast",
+      "forbidden": [
+        "хлоропласть"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-vacuole",
+      "ky": "вакуоль",
+      "ru": "вакуоль",
+      "en": "vacuole",
+      "forbidden": [
+        "вакуола",
+        "vacuol"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-chlorophyll",
+      "ky": "хлорофилл",
+      "ru": "хлорофилл",
+      "en": "chlorophyll",
+      "forbidden": [
+        "хлорофил",
+        "chlorophyl"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-photosynthesis",
+      "ky": "фотосинтез",
+      "ru": "фотосинтез",
+      "en": "photosynthesis",
+      "forbidden": [
+        "фотосинтес",
+        "photosinthesis"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-stoma",
+      "ky": "устьице",
+      "ru": "устьице",
+      "en": "stoma",
+      "forbidden": [
+        "устице"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-atrium",
+      "ky": "жүрөкчө",
+      "ru": "предсердие",
+      "en": "atrium",
+      "forbidden": [
+        "предсердье"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-ventricle",
+      "ky": "карынча",
+      "ru": "желудочек",
+      "en": "ventricle",
+      "forbidden": [
+        "ventrical"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-aorta",
+      "ky": "аорта",
+      "ru": "аорта",
+      "en": "aorta",
+      "forbidden": [
+        "aortha"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-valve",
+      "ky": "жүрөк капкагы",
+      "ru": "клапан сердца",
+      "en": "heart valve",
+      "forbidden": [],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-systole",
+      "ky": "систола",
+      "ru": "систола",
+      "en": "systole",
+      "forbidden": [],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-diastole",
+      "ky": "диастола",
+      "ru": "диастола",
+      "en": "diastole",
+      "forbidden": [],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-dna",
+      "ky": "ДНК (дезоксирибонуклеин кислотасы)",
+      "ru": "ДНК (дезоксирибонуклеиновая кислота)",
+      "en": "DNA (deoxyribonucleic acid)",
+      "forbidden": [
+        "дезоксирибонуклеинавая"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-nucleotide",
+      "ky": "нуклеотид",
+      "ru": "нуклеотид",
+      "en": "nucleotide",
+      "forbidden": [
+        "нуклиотид",
+        "nucleotid"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-complementarity",
+      "ky": "комплементардуулук",
+      "ru": "комплементарность",
+      "en": "complementarity",
+      "forbidden": [
+        "комплиментарность",
+        "complimentarity"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-replication",
+      "ky": "репликация",
+      "ru": "репликация",
+      "en": "replication",
+      "forbidden": [
+        "рапликация"
+      ],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-hydrogen-bond",
+      "ky": "суутек байланышы",
+      "ru": "водородная связь",
+      "en": "hydrogen bond",
+      "forbidden": [],
+      "approvedBy": "editor-bio"
+    },
+    {
+      "id": "g-bio-skeleton",
+      "ky": "скелет",
+      "ru": "скелет",
+      "en": "skeleton",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-bone",
+      "ky": "сөөк",
+      "ru": "кость",
+      "en": "bone",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-joint",
+      "ky": "муун",
+      "ru": "сустав",
+      "en": "joint",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-ball-joint",
+      "ky": "шар сымал муун",
+      "ru": "шаровидный сустав",
+      "en": "ball-and-socket joint",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-hinge-joint",
+      "ky": "шарнир сымал муун",
+      "ru": "шарнирный (блоковидный) сустав",
+      "en": "hinge joint",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-muscle",
+      "ky": "булчуң",
+      "ru": "мышца",
+      "en": "muscle",
+      "forbidden": [
+        "muscule"
+      ]
+    },
+    {
+      "id": "g-bio-tendon",
+      "ky": "тарамыш",
+      "ru": "сухожилие",
+      "en": "tendon",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-ligament",
+      "ky": "байлам",
+      "ru": "связка",
+      "en": "ligament",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-antagonist-muscles",
+      "ky": "антагонист булчуңдар",
+      "ru": "мышцы-антагонисты",
+      "en": "antagonistic muscles",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-biceps",
+      "ky": "эки баштуу булчуң (бицепс)",
+      "ru": "двуглавая мышца (бицепс)",
+      "en": "biceps",
+      "forbidden": [
+        "bicep"
+      ]
+    },
+    {
+      "id": "g-bio-triceps",
+      "ky": "үч баштуу булчуң (трицепс)",
+      "ru": "трёхглавая мышца (трицепс)",
+      "en": "triceps",
+      "forbidden": [
+        "tricep"
+      ]
+    },
+    {
+      "id": "g-bio-skull",
+      "ky": "баш сөөк",
+      "ru": "череп",
+      "en": "skull",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-spine",
+      "ky": "омуртка мамычасы",
+      "ru": "позвоночник",
+      "en": "spine",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-vertebra",
+      "ky": "омуртка",
+      "ru": "позвонок",
+      "en": "vertebra",
+      "forbidden": [
+        "vertebraes"
+      ]
+    },
+    {
+      "id": "g-bio-rib-cage",
+      "ky": "көкүрөк капасы",
+      "ru": "грудная клетка",
+      "en": "rib cage",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-femur",
+      "ky": "сан сөөгү",
+      "ru": "бедренная кость",
+      "en": "femur",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-bone-marrow",
+      "ky": "жилик чучугу",
+      "ru": "костный мозг",
+      "en": "bone marrow",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-nasal-cavity",
+      "ky": "мурун көңдөйү",
+      "ru": "носовая полость",
+      "en": "nasal cavity",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-larynx",
+      "ky": "кекиртек",
+      "ru": "гортань",
+      "en": "larynx",
+      "forbidden": [
+        "larynks"
+      ]
+    },
+    {
+      "id": "g-bio-epiglottis",
+      "ky": "кекиртек капкагы",
+      "ru": "надгортанник",
+      "en": "epiglottis",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-trachea",
+      "ky": "трахея",
+      "ru": "трахея",
+      "en": "trachea",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-bronchus",
+      "ky": "бронх",
+      "ru": "бронх",
+      "en": "bronchus",
+      "forbidden": [
+        "bronchuses",
+        "bronchis"
+      ]
+    },
+    {
+      "id": "g-bio-bronchiole",
+      "ky": "бронхиола",
+      "ru": "бронхиола",
+      "en": "bronchiole",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-alveolus",
+      "ky": "альвеола",
+      "ru": "альвеола",
+      "en": "alveolus",
+      "forbidden": [
+        "alveolas",
+        "alveolis"
+      ]
+    },
+    {
+      "id": "g-bio-lung",
+      "ky": "өпкө",
+      "ru": "лёгкое",
+      "en": "lung",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-diaphragm",
+      "ky": "диафрагма",
+      "ru": "диафрагма",
+      "en": "diaphragm",
+      "forbidden": [
+        "diaphram"
+      ]
+    },
+    {
+      "id": "g-bio-inhalation",
+      "ky": "дем алуу",
+      "ru": "вдох",
+      "en": "inhalation",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-exhalation",
+      "ky": "дем чыгаруу",
+      "ru": "выдох",
+      "en": "exhalation",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-gas-exchange",
+      "ky": "газ алмашуу",
+      "ru": "газообмен",
+      "en": "gas exchange",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-diffusion",
+      "ky": "диффузия",
+      "ru": "диффузия",
+      "en": "diffusion",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-capillary",
+      "ky": "капилляр",
+      "ru": "капилляр",
+      "en": "capillary",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-vital-capacity",
+      "ky": "өпкөнүн тиричилик сыйымдуулугу",
+      "ru": "жизненная ёмкость лёгких",
+      "en": "vital capacity",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-spirometer",
+      "ky": "спирометр",
+      "ru": "спирометр",
+      "en": "spirometer",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-nutrient",
+      "ky": "азык зат",
+      "ru": "питательное вещество",
+      "en": "nutrient",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-carbohydrate",
+      "ky": "углевод",
+      "ru": "углевод",
+      "en": "carbohydrate",
+      "forbidden": [
+        "көмүрсуу"
+      ]
+    },
+    {
+      "id": "g-bio-protein",
+      "ky": "белок",
+      "ru": "белок",
+      "en": "protein",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-fat",
+      "ky": "май",
+      "ru": "жир",
+      "en": "fat",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-vitamin",
+      "ky": "витамин",
+      "ru": "витамин",
+      "en": "vitamin",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-mineral-substance",
+      "ky": "минералдык зат",
+      "ru": "минеральное вещество",
+      "en": "mineral",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-dietary-fibre",
+      "ky": "клетчатка",
+      "ru": "клетчатка",
+      "en": "dietary fibre",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-starch",
+      "ky": "крахмал",
+      "ru": "крахмал",
+      "en": "starch",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-food-energy",
+      "ky": "энергиялык баалуулук",
+      "ru": "энергетическая ценность",
+      "en": "energy value",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-kilocalorie",
+      "ky": "килокалория",
+      "ru": "килокалория",
+      "en": "kilocalorie",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-food-label",
+      "ky": "этикетка",
+      "ru": "этикетка",
+      "en": "food label",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-balanced-diet",
+      "ky": "тең салмактуу тамактануу",
+      "ru": "сбалансированное питание",
+      "en": "balanced diet",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-malnutrition",
+      "ky": "туура эмес тамактануу",
+      "ru": "неправильное питание",
+      "en": "malnutrition",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-added-sugar",
+      "ky": "кошулган кант",
+      "ru": "добавленный сахар",
+      "en": "added sugar",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-physical-activity",
+      "ky": "кыймыл-аракет",
+      "ru": "физическая активность",
+      "en": "physical activity",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-nicotine",
+      "ky": "никотин",
+      "ru": "никотин",
+      "en": "nicotine",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-ecosystem",
+      "ky": "экосистема",
+      "ru": "экосистема",
+      "en": "ecosystem",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-habitat",
+      "ky": "жашоо чөйрөсү",
+      "ru": "среда обитания",
+      "en": "habitat",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-abiotic-factor",
+      "ky": "абиотикалык фактор",
+      "ru": "абиотический фактор",
+      "en": "abiotic factor",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-producer",
+      "ky": "продуцент",
+      "ru": "продуцент",
+      "en": "producer",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-consumer",
+      "ky": "консумент",
+      "ru": "консумент",
+      "en": "consumer",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-decomposer",
+      "ky": "редуцент",
+      "ru": "редуцент",
+      "en": "decomposer",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-food-chain",
+      "ky": "азык чынжыры",
+      "ru": "пищевая цепь",
+      "en": "food chain",
+      "forbidden": [
+        "тамак чынжыры"
+      ]
+    },
+    {
+      "id": "g-bio-food-web",
+      "ky": "азык торчосу",
+      "ru": "пищевая сеть",
+      "en": "food web",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-trophic-level",
+      "ky": "трофикалык деңгээл",
+      "ru": "трофический уровень",
+      "en": "trophic level",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-keystone-species",
+      "ky": "негизги түр",
+      "ru": "ключевой вид",
+      "en": "keystone species",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-trophic-cascade",
+      "ky": "трофикалык каскад",
+      "ru": "трофический каскад",
+      "en": "trophic cascade",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-invasive-species",
+      "ky": "инвазивдүү түр",
+      "ru": "инвазивный вид",
+      "en": "invasive species",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-protected-area",
+      "ky": "корголуучу аймак",
+      "ru": "особо охраняемая территория",
+      "en": "protected area",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-pollution",
+      "ky": "булгануу",
+      "ru": "загрязнение",
+      "en": "pollution",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-pollutant",
+      "ky": "булгоочу зат",
+      "ru": "загрязнитель",
+      "en": "pollutant",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-bioaccumulation",
+      "ky": "биоаккумуляция",
+      "ru": "биоаккумуляция",
+      "en": "bioaccumulation",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-biomagnification",
+      "ky": "биомагнификация",
+      "ru": "биомагнификация",
+      "en": "biomagnification",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-greenhouse-effect",
+      "ky": "парник эффекти",
+      "ru": "парниковый эффект",
+      "en": "greenhouse effect",
+      "forbidden": []
+    },
+    {
+      "id": "g-bio-climate-change",
+      "ky": "климаттын өзгөрүшү",
+      "ru": "изменение климата",
+      "en": "climate change",
+      "forbidden": []
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "composition",
+      "icon": "flask-conical",
+      "valueKind": "text",
+      "label": {
+        "ky": "Курамы",
+        "ru": "Состав",
+        "en": "Composition"
+      }
+    },
+    {
+      "key": "energy",
+      "icon": "battery",
+      "valueKind": "quantity",
+      "unit": "J",
+      "label": {
+        "ky": "Энергия",
+        "ru": "Энергия",
+        "en": "Energy"
+      }
+    }
+  ]
+}

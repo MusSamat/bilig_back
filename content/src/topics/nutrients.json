@@ -1,0 +1,1140 @@
+{
+  "topic": {
+    "key": "nutrients",
+    "unitKey": "bio.g8.nutrition",
+    "status": "published",
+    "title": {
+      "ky": "Тамак-аштагы азык заттар",
+      "ru": "Питательные вещества в пище",
+      "en": "Nutrients in food"
+    },
+    "classification": {
+      "ky": "Тамактануу",
+      "ru": "Питание",
+      "en": "Nutrition"
+    },
+    "description": {
+      "ky": "Тамак-ашта азык заттардын беш тобу бар: углеводдор, белоктор, майлар, витаминдер жана минералдык заттар; ошондой эле суу жана клетчатка керек. Тарелкадагы ар бир тамакты басып, анын курамын, энергиясын жана виртуалдык сыноолордун натыйжасын көрөбүз.",
+      "ru": "В пище есть пять групп питательных веществ: углеводы, белки, жиры, витамины и минеральные вещества; кроме того, нужны вода и клетчатка. Нажимая на продукты на тарелке, видим их состав, энергию и результат виртуальных проб.",
+      "en": "Food contains five groups of nutrients – carbohydrates, proteins, fats, vitamins and minerals – and we also need water and fibre. Tap each food on the plate to see what it contains, its energy and the result of virtual food tests."
+    },
+    "goal": {
+      "ky": "Азык заттардын беш тобун атап, алардын организмдеги милдетин түшүндүрүү (BIO-8.1.1) жана этикетка боюнча тамактын энергиясын эсептөө (BIO-8.1.2).",
+      "ru": "Назвать пять групп питательных веществ и объяснить их роль (BIO-8.1.1), рассчитать энергию продукта по этикетке (BIO-8.1.2).",
+      "en": "Name the five nutrient groups and explain their roles (BIO-8.1.1), and work out a food's energy from its label (BIO-8.1.2)."
+    },
+    "objectiveKeys": [
+      "bio.g8.nutrition.o1",
+      "bio.g8.nutrition.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "nutrition-plate",
+        "foods": [
+          {
+            "id": "bread",
+            "group": "carbs",
+            "grams": 50,
+            "kcal": 130
+          },
+          {
+            "id": "rice",
+            "group": "carbs",
+            "grams": 150,
+            "kcal": 195
+          },
+          {
+            "id": "chicken",
+            "group": "proteins",
+            "grams": 100,
+            "kcal": 165
+          },
+          {
+            "id": "egg",
+            "group": "proteins",
+            "grams": 50,
+            "kcal": 75
+          },
+          {
+            "id": "butter",
+            "group": "fats",
+            "grams": 10,
+            "kcal": 75
+          },
+          {
+            "id": "walnuts",
+            "group": "fats",
+            "grams": 30,
+            "kcal": 195
+          },
+          {
+            "id": "orange",
+            "group": "vitamins",
+            "grams": 150,
+            "kcal": 70
+          },
+          {
+            "id": "milk",
+            "group": "minerals",
+            "grams": 200,
+            "kcal": 105
+          },
+          {
+            "id": "carrot",
+            "group": "fibre",
+            "grams": 80,
+            "kcal": 33
+          },
+          {
+            "id": "water",
+            "group": "water",
+            "grams": 250,
+            "kcal": 0
+          }
+        ],
+        "test": "iodine"
+      },
+      "camera": {
+        "position": [
+          0,
+          3.2,
+          4.2
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "groups",
+        "energy",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "bio.carbohydrates",
+      "bio.proteins",
+      "bio.fats",
+      "bio.vitamins",
+      "bio.minerals",
+      "bio.water-in-diet",
+      "bio.dietary-fibre",
+      "bio.food-energy",
+      "bio.food-tests",
+      "bio.food-label"
+    ],
+    "overrides": {
+      "bio.carbohydrates": {
+        "nodes": [
+          "Sector_carbs",
+          "Bar_carbs",
+          "Food_bread",
+          "Food_rice"
+        ]
+      },
+      "bio.proteins": {
+        "nodes": [
+          "Sector_proteins",
+          "Bar_proteins",
+          "Food_chicken",
+          "Food_egg"
+        ]
+      },
+      "bio.fats": {
+        "nodes": [
+          "Sector_fats",
+          "Bar_fats",
+          "Food_butter",
+          "Food_walnuts"
+        ]
+      },
+      "bio.vitamins": {
+        "nodes": [
+          "Sector_vitamins",
+          "Bar_vitamins",
+          "Food_orange"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 53,
+            "unit": "mg vitamin C / 100 g orange",
+            "approx": true
+          },
+          {
+            "kind": "text",
+            "type": "foundIn",
+            "value": {
+              "ky": "Апельсин, ит мурун, кара карагат, капуста",
+              "ru": "Апельсин, шиповник, чёрная смородина, капуста",
+              "en": "Orange, rose hip, blackcurrant, cabbage"
+            }
+          }
+        ]
+      },
+      "bio.minerals": {
+        "nodes": [
+          "Sector_minerals",
+          "Bar_minerals",
+          "Food_milk"
+        ]
+      },
+      "bio.water-in-diet": {
+        "nodes": [
+          "Sector_water",
+          "Food_water"
+        ]
+      },
+      "bio.dietary-fibre": {
+        "nodes": [
+          "Sector_fibre",
+          "Bar_fibre",
+          "Food_carrot"
+        ]
+      },
+      "bio.food-energy": {
+        "nodes": [
+          "Scale"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "orange-100g",
+        "title": {
+          "ky": "Апельсин, 100 г",
+          "ru": "Апельсин, 100 г",
+          "en": "Orange, 100 g"
+        },
+        "classification": {
+          "ky": "Витаминдерге бай",
+          "ru": "Богат витаминами",
+          "en": "Rich in vitamins"
+        },
+        "thumb": "thumbs/orange-100g.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 47,
+            "unit": "kcal",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 87,
+            "unit": "g water",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 12,
+            "unit": "g carbohydrate",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2.4,
+            "unit": "g fibre",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 53,
+            "unit": "mg vitamin C",
+            "approx": true
+          }
+        ]
+      },
+      {
+        "key": "bread-100g",
+        "title": {
+          "ky": "Буудай наны, 100 г",
+          "ru": "Пшеничный хлеб, 100 г",
+          "en": "Wheat bread, 100 g"
+        },
+        "classification": {
+          "ky": "Крахмалга бай",
+          "ru": "Богат крахмалом",
+          "en": "Rich in starch"
+        },
+        "thumb": "thumbs/bread-100g.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 260,
+            "unit": "kcal",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 50,
+            "unit": "g carbohydrate",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 8,
+            "unit": "g protein",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 3,
+            "unit": "g fat",
+            "approx": true
+          }
+        ]
+      },
+      {
+        "key": "walnuts-100g",
+        "title": {
+          "ky": "Жаңгак, 100 г",
+          "ru": "Грецкий орех, 100 г",
+          "en": "Walnuts, 100 g"
+        },
+        "classification": {
+          "ky": "Майга бай",
+          "ru": "Богат жирами",
+          "en": "Rich in fat"
+        },
+        "thumb": "thumbs/walnuts-100g.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 650,
+            "unit": "kcal",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 65,
+            "unit": "g fat",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 15,
+            "unit": "g protein",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 14,
+            "unit": "g carbohydrate",
+            "approx": true
+          }
+        ]
+      },
+      {
+        "key": "chicken-100g",
+        "title": {
+          "ky": "Тоок төшү, 100 г",
+          "ru": "Куриная грудка, 100 г",
+          "en": "Chicken breast, 100 g"
+        },
+        "classification": {
+          "ky": "Белокко бай",
+          "ru": "Богата белком",
+          "en": "Rich in protein"
+        },
+        "thumb": "thumbs/chicken-100g.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 165,
+            "unit": "kcal",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 31,
+            "unit": "g protein",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 3.6,
+            "unit": "g fat",
+            "approx": true
+          }
+        ]
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "energy",
+        "value": 47,
+        "unit": "kcal / 100 g orange",
+        "approx": true
+      },
+      {
+        "kind": "text",
+        "type": "composition",
+        "value": {
+          "ky": "Апельсин: ≈ 87 % суу, 12 % углевод, клетчатка, C витамини",
+          "ru": "Апельсин: ≈ 87 % воды, 12 % углеводов, клетчатка, витамин C",
+          "en": "Orange: ≈ 87 % water, 12 % carbohydrate, fibre, vitamin C"
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "plate",
+            "camera": {
+              "position": [
+                0,
+                3.2,
+                4.2
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "groups": true,
+              "labels": true
+            },
+            "text": {
+              "ky": "Бул тарелкада он тамак бар. Түстүү секторлор аларды азык заттардын топторуна бөлөт. Эмне үчүн бизге бир эле эмес, ар түрдүү тамак керек?",
+              "ru": "На тарелке десять продуктов. Цветные секторы делят их на группы питательных веществ. Почему нам нужна разная еда, а не один продукт?",
+              "en": "This plate holds ten foods. Coloured sectors sort them into nutrient groups. Why do we need many kinds of food, not just one?"
+            },
+            "teacherNote": {
+              "ky": "Окуучулардан бүгүн эртең менен эмне жегенин сурап, ар бир тамакты кайсы топко коёрун тактага жазыңыз.",
+              "ru": "Спросите, что ученики ели на завтрак, и запишите на доске, в какую группу попадает каждый продукт.",
+              "en": "Ask what pupils had for breakfast and list on the board which group each food belongs to."
+            },
+            "altText": {
+              "ky": "Тамак-аш коюлган тарелка, түстүү секторлорго бөлүнгөн.",
+              "ru": "Тарелка с продуктами, разделённая на цветные секторы.",
+              "en": "A plate of food divided into coloured sectors."
+            }
+          },
+          {
+            "key": "carbs",
+            "modes": {
+              "groups": true
+            },
+            "focus": "bio.carbohydrates",
+            "text": {
+              "ky": "Нан менен күрүч – углеводдор, негизги энергия булагы. Нанга йод тамызсак, ал көк-кара болот: бул – крахмал.",
+              "ru": "Хлеб и рис – углеводы, главный источник энергии. Капнем на хлеб йодом – он станет сине-чёрным: это крахмал.",
+              "en": "Bread and rice are carbohydrates, the main energy source. A drop of iodine on bread turns blue-black – that's starch."
+            },
+            "teacherNote": {
+              "ky": "Йод сыноосу симуляцияда; реалдуу сабакта йодду мугалим гана тамызат, ал колду жана кийимди боёйт. Канттын йод менен көгөрбөй турганын да айтыңыз.",
+              "ru": "Йодная проба – в симуляции; на настоящем уроке йод капает учитель: он окрашивает руки и одежду. Отметьте, что сахар с йодом не синеет.",
+              "en": "The iodine test is simulated; in a real lesson only the teacher drips iodine, which stains skin and clothes. Point out that sugar does not turn iodine blue."
+            },
+            "altText": {
+              "ky": "Нандын кесиндиси йод тийген жерде көк-кара.",
+              "ru": "Ломтик хлеба сине-чёрный в месте капли йода.",
+              "en": "A slice of bread turns blue-black where the iodine touched."
+            }
+          },
+          {
+            "key": "proteins",
+            "sample": "chicken-100g",
+            "modes": {
+              "groups": true
+            },
+            "focus": "bio.proteins",
+            "text": {
+              "ky": "Тоок эти жана жумуртка – белоктор, организмдин курулуш материалы. Биурет реактиви белок менен көктөн күлгүнгө өтөт.",
+              "ru": "Курица и яйцо – белки, строительный материал организма. Биуретовый реактив с белком меняет цвет с голубого на фиолетовый.",
+              "en": "Chicken and egg are proteins, the body's building material. Biuret reagent changes from blue to purple with protein."
+            },
+            "teacherNote": {
+              "ky": "Биурет реактиви жегич – аны көрсөтмө үчүн гана колдонуңуз. Сураңыз: белок өсүмдүктөрдө да барбы? (буурчак, жасмык).",
+              "ru": "Биуретовый реактив едкий – только для демонстрации. Спросите: бывает ли белок в растениях? (фасоль, чечевица).",
+              "en": "Biuret reagent is corrosive – demonstration only. Ask: do plants have protein too? (beans, lentils)."
+            },
+            "altText": {
+              "ky": "Белоктор сектору жана күлгүн түскө өткөн пробирка.",
+              "ru": "Сектор белков и пробирка, ставшая фиолетовой.",
+              "en": "The protein sector and a test tube turned purple."
+            }
+          },
+          {
+            "key": "fats",
+            "sample": "walnuts-100g",
+            "camera": {
+              "position": [
+                0,
+                1.6,
+                5.2
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "energy": true
+            },
+            "focus": "bio.fats",
+            "text": {
+              "ky": "Каймак май жана жаңгак – майлар. 1 г май 9 ккал берет, углевод менен белок болсо 4 ккалдан. Кагазга сүртсөк, кургабаган тунук так калат.",
+              "ru": "Сливочное масло и орехи – жиры. 1 г жира даёт 9 ккал, а углеводы и белки – по 4 ккал. На бумаге жир оставляет невысыхающее прозрачное пятно.",
+              "en": "Butter and walnuts are fats. 1 g of fat gives 9 kcal; carbohydrate and protein give 4 kcal. On paper fat leaves a see-through spot that never dries."
+            },
+            "teacherNote": {
+              "ky": "Кагаз сыноосун класста коопсуз жасаса болот: жаңгакты кагазга сүртүп, терезеге каратып көргүлө.",
+              "ru": "Бумажную пробу можно безопасно сделать в классе: потрите орех о бумагу и посмотрите на свет.",
+              "en": "The paper test is safe in class: rub a walnut on paper and hold it up to the window."
+            },
+            "altText": {
+              "ky": "Майлар сектору жана энергия тилкелери.",
+              "ru": "Сектор жиров и столбики энергии.",
+              "en": "The fat sector and energy bars."
+            }
+          },
+          {
+            "key": "vitamins-minerals",
+            "sample": "orange-100g",
+            "camera": {
+              "position": [
+                0,
+                3.2,
+                4.2
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "groups": true,
+              "labels": true
+            },
+            "focus": "bio.vitamins",
+            "text": {
+              "ky": "Апельсинди басып көрөлү: 100 г апельсинде ≈ 87 г суу, 12 г углевод, клетчатка жана ≈ 53 мг C витамини бар. Витаминдер жана минералдар энергия бербейт, бирок аларсыз организм туура иштебейт.",
+              "ru": "Нажмём на апельсин: в 100 г ≈ 87 г воды, 12 г углеводов, клетчатка и ≈ 53 мг витамина C. Витамины и минералы энергии не дают, но без них организм не работает правильно.",
+              "en": "Tap the orange: 100 g holds ≈ 87 g water, 12 g carbohydrate, fibre and ≈ 53 mg vitamin C. Vitamins and minerals give no energy, but the body can't work properly without them."
+            },
+            "teacherNote": {
+              "ky": "Туура эмес түшүнүк: «витаминдер энергия берет». Сураңыз: апельсинде эмне көп – витаминби же суубу?",
+              "ru": "Частая ошибка: «витамины дают энергию». Спросите: чего в апельсине больше – витаминов или воды?",
+              "en": "Common mistake: 'vitamins give energy'. Ask: what does an orange contain most of – vitamins or water?"
+            },
+            "altText": {
+              "ky": "Апельсиндин курамы көрсөтүлгөн карточка.",
+              "ru": "Карточка состава апельсина.",
+              "en": "A card showing what an orange contains."
+            }
+          },
+          {
+            "key": "water-fibre",
+            "modes": {
+              "groups": true
+            },
+            "focus": "bio.dietary-fibre",
+            "text": {
+              "ky": "Суу жана клетчатка да зарыл. Сабиздеги жипчелер ичегиге жардам берет, ал эми суу заттарды ташып, денени муздатат.",
+              "ru": "Вода и клетчатка тоже необходимы. Волокна моркови помогают кишечнику, а вода переносит вещества и охлаждает тело.",
+              "en": "Water and fibre are essential too. The fibres in carrots help the gut, and water carries substances and cools the body."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: клетчатка сиңбесе, эмне үчүн керек? Жоопту ичегидеги бактериялар менен байланыштырыңыз.",
+              "ru": "Спросите: зачем клетчатка, если она не переваривается? Свяжите ответ с бактериями кишечника.",
+              "en": "Ask: why eat fibre if we can't digest it? Link the answer to gut bacteria."
+            },
+            "altText": {
+              "ky": "Суу стаканы жана сабиз белгиленген.",
+              "ru": "Выделены стакан воды и морковь.",
+              "en": "A glass of water and a carrot are highlighted."
+            }
+          },
+          {
+            "key": "label",
+            "camera": {
+              "position": [
+                0,
+                1.6,
+                5.2
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "energy": true
+            },
+            "focus": "bio.food-energy",
+            "text": {
+              "ky": "Энергия шкаласы тарелканын жалпы энергиясын көрсөтөт. Этикеткадагы сандар менен эсептейбиз: E ≈ 4·углевод + 4·белок + 9·май (ккал).",
+              "ru": "Шкала показывает общую энергию тарелки. По цифрам этикетки считаем: E ≈ 4·углеводы + 4·белки + 9·жиры (ккал).",
+              "en": "The gauge shows the plate's total energy. From a label we calculate E ≈ 4·carbs + 4·protein + 9·fat (kcal)."
+            },
+            "teacherNote": {
+              "ky": "Окуучулар үйдөн бир таңгак алып келип, 100 г үчүн энергияны текшерсин: эсептелген жана жазылган сан дал келеби?",
+              "ru": "Пусть ученики принесут упаковку и проверят энергию на 100 г: совпадает ли расчёт с надписью?",
+              "en": "Have pupils bring a packet and check the energy per 100 g: does their calculation match the label?"
+            },
+            "altText": {
+              "ky": "Энергия шкаласы жана тилкелер.",
+              "ru": "Шкала энергии и столбики.",
+              "en": "The energy gauge and bars."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "bio.food-test-run"
+      ],
+      "quiz": {
+        "itemKeys": [
+          "bio.q.nutrients-1",
+          "bio.q.nutrients-2",
+          "bio.q.nutrients-3",
+          "bio.q.nutrients-4",
+          "bio.q.nutrients-5",
+          "bio.q.nutrients-6",
+          "bio.q.nutrients-7",
+          "bio.q.nutrients-8",
+          "bio.q.nutrients-9",
+          "bio.q.nutrients-10",
+          "bio.q.nutrients-11"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "s",
+          "title": {
+            "ky": "Космонавттардын тамагы",
+            "ru": "Питание космонавтов",
+            "en": "Astronaut food"
+          },
+          "text": {
+            "ky": "Космонавттардын менюсу энергия, белок, витамин жана минералдар боюнча так эсептелет: салмаксыздыкта сөөктөр кальцийди жоготот.",
+            "ru": "Меню космонавтов точно рассчитано по энергии, белкам, витаминам и минералам: в невесомости кости теряют кальций.",
+            "en": "Astronauts' menus are calculated precisely for energy, protein, vitamins and minerals, because bones lose calcium in weightlessness."
+          }
+        },
+        {
+          "field": "m",
+          "title": {
+            "ky": "Этикетка боюнча эсептөө",
+            "ru": "Расчёт по этикетке",
+            "en": "Label maths"
+          },
+          "text": {
+            "ky": "20 г углевод, 5 г белок жана 3 г май: 4·20 + 4·5 + 9·3 = 127 ккал.",
+            "ru": "20 г углеводов, 5 г белков и 3 г жиров: 4·20 + 4·5 + 9·3 = 127 ккал.",
+            "en": "20 g carbohydrate, 5 g protein, 3 g fat: 4·20 + 4·5 + 9·3 = 127 kcal."
+          }
+        },
+        {
+          "field": "t",
+          "title": {
+            "ky": "Азык-түлүк өнөр жайы",
+            "ru": "Пищевая промышленность",
+            "en": "Food industry"
+          },
+          "text": {
+            "ky": "Заводдор лабораторияда продукттун курамын өлчөп, этикеткага жазышат.",
+            "ru": "Заводы измеряют состав продукта в лаборатории и печатают его на этикетке.",
+            "en": "Factories measure a product's composition in the lab and print it on the label."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Үй курулушу",
+            "ru": "Стройка дома",
+            "en": "Building a house"
+          },
+          "text": {
+            "ky": "Үйгө кирпич (белок), отун (углевод), жылуулук сактагыч (май) жана мык-бурама (витамин, минерал) керек.",
+            "ru": "Для дома нужны кирпичи (белки), топливо (углеводы), утеплитель (жиры) и гвозди-шурупы (витамины, минералы).",
+            "en": "A house needs bricks (proteins), fuel (carbohydrates), insulation (fats) and nails and screws (vitamins, minerals)."
+          }
+        },
+        {
+          "title": {
+            "ky": "Машина",
+            "ru": "Машина",
+            "en": "A car"
+          },
+          "text": {
+            "ky": "Машинага бензин, мотор майы жана суу керек болгондой, организмге да ар түрдүү заттар керек.",
+            "ru": "Как машине нужны бензин, масло и вода, так и организму нужны разные вещества.",
+            "en": "Just as a car needs petrol, oil and water, the body needs different substances."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "bio.q.nutrients-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Кайсы азык заттар организм үчүн негизги жана тез энергия булагы?",
+        "ru": "Какие питательные вещества – главный и быстрый источник энергии?",
+        "en": "Which nutrients are the body's main, quick source of energy?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Углеводдор",
+            "ru": "Углеводы",
+            "en": "Carbohydrates"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Витаминдер",
+            "ru": "Витамины",
+            "en": "Vitamins"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Минералдык заттар",
+            "ru": "Минеральные вещества",
+            "en": "Minerals"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Суу",
+            "ru": "Вода",
+            "en": "Water"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Углеводдор (крахмал, канттар) – негизги тез энергия булагы. Витаминдер энергия бербейт.",
+        "ru": "Углеводы (крахмал, сахара) – главный быстрый источник энергии. Витамины энергии не дают.",
+        "en": "Carbohydrates (starch, sugars) are the main quick energy source. Vitamins give no energy."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o1"
+      ],
+      "misconceptionKey": "bio.m.vitamins-energy",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.nutrients-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы заттар организмге энергия берет? Бардык туура жоопторду танда.",
+        "ru": "Какие вещества дают организму энергию? Выбери все верные ответы.",
+        "en": "Which substances give the body energy? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Углеводдор",
+            "ru": "Углеводы",
+            "en": "Carbohydrates"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Белоктор",
+            "ru": "Белки",
+            "en": "Proteins"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Майлар",
+            "ru": "Жиры",
+            "en": "Fats"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Витаминдер",
+            "ru": "Витамины",
+            "en": "Vitamins"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Минералдык заттар",
+            "ru": "Минеральные вещества",
+            "en": "Minerals"
+          }
+        },
+        {
+          "key": "f",
+          "text": {
+            "ky": "Суу",
+            "ru": "Вода",
+            "en": "Water"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Энергияны углеводдор (4 ккал/г), белоктор (4 ккал/г) жана майлар (9 ккал/г) берет. Витаминдер, минералдар жана суу энергия бербейт.",
+        "ru": "Энергию дают углеводы (4 ккал/г), белки (4 ккал/г) и жиры (9 ккал/г). Витамины, минералы и вода энергии не дают.",
+        "en": "Carbohydrates (4 kcal/g), proteins (4 kcal/g) and fats (9 kcal/g) give energy. Vitamins, minerals and water do not."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o1"
+      ],
+      "misconceptionKey": "bio.m.vitamins-energy",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.nutrients-3",
+      "type": "match",
+      "prompt": {
+        "ky": "Сыноону анын оң натыйжасы менен дал келтир.",
+        "ru": "Сопоставь пробу и её положительный результат.",
+        "en": "Match each food test to its positive result."
+      },
+      "pairs": [
+        {
+          "key": "iodine",
+          "left": {
+            "ky": "Йод эритмеси (крахмал)",
+            "ru": "Раствор йода (крахмал)",
+            "en": "Iodine solution (starch)"
+          },
+          "right": {
+            "ky": "Көк-кара түс",
+            "ru": "Сине-чёрный цвет",
+            "en": "Blue-black colour"
+          }
+        },
+        {
+          "key": "biuret",
+          "left": {
+            "ky": "Биурет реактиви (белок)",
+            "ru": "Биуретовый реактив (белок)",
+            "en": "Biuret reagent (protein)"
+          },
+          "right": {
+            "ky": "Көктөн күлгүнгө",
+            "ru": "С голубого на фиолетовый",
+            "en": "Blue to purple"
+          }
+        },
+        {
+          "key": "paper",
+          "left": {
+            "ky": "Кагаз сыноосу (май)",
+            "ru": "Бумажная проба (жир)",
+            "en": "Paper test (fat)"
+          },
+          "right": {
+            "ky": "Кургабаган тунук так",
+            "ru": "Невысыхающее прозрачное пятно",
+            "en": "A see-through spot that doesn't dry"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Йод + крахмал → көк-кара; биурет + белок → күлгүн; май кагазда тунук так калтырат.",
+        "ru": "Йод + крахмал → сине-чёрный; биурет + белок → фиолетовый; жир оставляет на бумаге прозрачное пятно.",
+        "en": "Iodine + starch → blue-black; biuret + protein → purple; fat leaves a see-through spot on paper."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.nutrients-4",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Тарелкадан организмдин «курулуш материалы» болгон азык заттардын секторун тап.",
+        "ru": "Найди на тарелке сектор питательных веществ – «строительного материала» организма.",
+        "en": "Find the sector of the nutrients that are the body's building material."
+      },
+      "targetConceptKey": "bio.proteins",
+      "explanation": {
+        "ky": "Бул – белоктор: тоок эти, жумуртка. Булчуң, тери жана ферменттер белоктон курулат.",
+        "ru": "Это белки: курица, яйцо. Из белков строятся мышцы, кожа и ферменты.",
+        "en": "These are proteins – chicken and egg. Muscles, skin and enzymes are built from protein."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o1"
+      ],
+      "misconceptionKey": "bio.m.protein-only-meat",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.nutrients-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Тарелкадан 1 граммы эң көп энергия берген азык заттардын тобун тап.",
+        "ru": "Найди на тарелке группу веществ, 1 грамм которой даёт больше всего энергии.",
+        "en": "Find the nutrient group that gives the most energy per gram."
+      },
+      "targetConceptKey": "bio.fats",
+      "explanation": {
+        "ky": "Майлар: 1 г ≈ 9 ккал (37 кДж), углевод менен белок 4 ккалдан.",
+        "ru": "Жиры: 1 г ≈ 9 ккал (37 кДж), углеводы и белки – по 4 ккал.",
+        "en": "Fats: 1 g ≈ 9 kcal (37 kJ); carbohydrate and protein 4 kcal each."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o1"
+      ],
+      "misconceptionKey": "bio.m.kcal-weight",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.nutrients-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "10 г каймак майда болжол менен канча килокалория бар? (1 г май ≈ 9 ккал, башка заттарды эске албай)",
+        "ru": "Сколько примерно килокалорий в 10 г сливочного масла? (1 г жира ≈ 9 ккал, прочее не учитывать)",
+        "en": "About how many kilocalories are in 10 g of butter? (1 g fat ≈ 9 kcal; ignore everything else)"
+      },
+      "answer": 90,
+      "tolerance": 2,
+      "unit": "kcal",
+      "explanation": {
+        "ky": "E = 10 г × 9 ккал/г = 90 ккал.",
+        "ru": "E = 10 г × 9 ккал/г = 90 ккал.",
+        "en": "E = 10 g × 9 kcal/g = 90 kcal."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.nutrients-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Этикеткада 100 г үчүн: углевод 60 г, белок 8 г, май 2 г. 100 г продукттун энергиясы канча ккал?",
+        "ru": "На этикетке на 100 г: углеводы 60 г, белки 8 г, жиры 2 г. Какова энергия 100 г продукта, ккал?",
+        "en": "A label gives per 100 g: carbohydrate 60 g, protein 8 g, fat 2 g. What is the energy of 100 g in kcal?"
+      },
+      "answer": 290,
+      "tolerance": 3,
+      "unit": "kcal",
+      "explanation": {
+        "ky": "E = 4·60 + 4·8 + 9·2 = 240 + 32 + 18 = 290 ккал.",
+        "ru": "E = 4·60 + 4·8 + 9·2 = 240 + 32 + 18 = 290 ккал.",
+        "en": "E = 4·60 + 4·8 + 9·2 = 240 + 32 + 18 = 290 kcal."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.nutrients-8",
+      "type": "single",
+      "prompt": {
+        "ky": "Апельсиндин курамынын таблицасына кара (100 г: суу 87 г, углевод 12 г, клетчатка 2,4 г, белок 0,9 г, C витамини 0,053 г). Апельсинде эмне эң көп?",
+        "ru": "Посмотри таблицу состава апельсина (100 г: вода 87 г, углеводы 12 г, клетчатка 2,4 г, белки 0,9 г, витамин C 0,053 г). Чего в апельсине больше всего?",
+        "en": "Look at the orange's composition (100 g: water 87 g, carbohydrate 12 g, fibre 2.4 g, protein 0.9 g, vitamin C 0.053 g). What does an orange contain most of?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "C витамини",
+            "ru": "Витамин C",
+            "en": "Vitamin C"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Суу",
+            "ru": "Вода",
+            "en": "Water"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Углеводдор",
+            "ru": "Углеводы",
+            "en": "Carbohydrates"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Клетчатка",
+            "ru": "Клетчатка",
+            "en": "Fibre"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Суу – 87 г. C витамини маанилүү, бирок анын массасы 0,053 г гана.",
+        "ru": "Вода – 87 г. Витамин C важен, но его масса всего 0,053 г.",
+        "en": "Water – 87 g. Vitamin C matters, but it weighs only 0.053 g."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.nutrients-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Глюкоза эритмесине йод тамызышты. Түс күрөң бойдон калды. Кандай жыйынтык чыгарабыз?",
+        "ru": "В раствор глюкозы капнули йод. Цвет остался бурым. Какой вывод?",
+        "en": "Iodine was added to a glucose solution and stayed brown. What can we conclude?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Эритмеде углевод жок",
+            "ru": "В растворе нет углеводов",
+            "en": "There is no carbohydrate in the solution"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Эритмеде крахмал жок",
+            "ru": "В растворе нет крахмала",
+            "en": "There is no starch in the solution"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эритмеде белок бар",
+            "ru": "В растворе есть белок",
+            "en": "There is protein in the solution"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Йод бузулган",
+            "ru": "Йод испорчен",
+            "en": "The iodine has gone off"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Йод крахмалды гана көрсөтөт. Глюкоза – углевод, бирок крахмал эмес, ошондуктан түс өзгөрбөйт.",
+        "ru": "Йод показывает только крахмал. Глюкоза – углевод, но не крахмал, поэтому цвет не меняется.",
+        "en": "Iodine detects only starch. Glucose is a carbohydrate but not starch, so the colour doesn't change."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o1"
+      ],
+      "misconceptionKey": "bio.m.iodine-sugar",
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.nutrients-10",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Шоколад батончигинде 250 ккал. Бул канча килоджоуль? (1 ккал = 4,184 кДж)",
+        "ru": "В шоколадном батончике 250 ккал. Сколько это килоджоулей? (1 ккал = 4,184 кДж)",
+        "en": "A chocolate bar has 250 kcal. How many kilojoules is that? (1 kcal = 4.184 kJ)"
+      },
+      "answer": 1046,
+      "tolerance": 10,
+      "unit": "kJ",
+      "explanation": {
+        "ky": "250 × 4,184 = 1046 кДж.",
+        "ru": "250 × 4,184 = 1046 кДж.",
+        "en": "250 × 4.184 = 1046 kJ."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.nutrients-11",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Чипстин этикеткасында: 100 г үчүн 530 ккал. Таңгактын массасы 50 г. Бүт таңгакта канча ккал?",
+        "ru": "На этикетке чипсов: 530 ккал на 100 г. Масса пачки 50 г. Сколько ккал во всей пачке?",
+        "en": "A crisp packet label says 530 kcal per 100 g. The packet weighs 50 g. How many kcal are in the whole packet?"
+      },
+      "answer": 265,
+      "tolerance": 3,
+      "unit": "kcal",
+      "explanation": {
+        "ky": "Маалымат 100 г үчүн: 530 × 50 / 100 = 265 ккал.",
+        "ru": "Данные на 100 г: 530 × 50 / 100 = 265 ккал.",
+        "en": "The value is per 100 g: 530 × 50 / 100 = 265 kcal."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "misconceptionKey": "bio.m.label-per-pack",
+      "difficulty": 2
+    }
+  ]
+}

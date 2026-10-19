@@ -300,6 +300,38 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         expect((await repo.content('item').get(animalCellPackage.items[0].key))?.data).toEqual(animalCellPackage.items[0]);
       });
 
+      it('textbook store (v0.5.0): shared rows, doc round-trip, optimistic update/delete', async () => {
+        const L = (s: string) => ({ ky: s, ru: s, en: s });
+        const tb = {
+          key: 'nat-8-1',
+          title: L('Табигый илимдер'),
+          grade: 8,
+          lang: 'ky' as const,
+          order: 1,
+          chapters: [
+            {
+              key: 'ch1',
+              number: '1',
+              title: L('Тамактануу'),
+              subjectKey: 'bio',
+              pages: { from: 8, to: 29 },
+              lessons: [{ key: 'ch1.l1', number: '1.1', kind: 'lesson' as const, title: L('Азык'), topicKeys: ['animal-cell'] }],
+            },
+          ],
+        };
+        const store = repo.content('textbook');
+        const r = await store.create(tb.key, { data: tb, subjectKey: null, searchText: 'табигый' }, null);
+        expect(r).toMatchObject({ key: 'nat-8-1', version: 1, subjectKey: null, data: tb });
+        expect(await store.create(tb.key, { data: tb, subjectKey: null, searchText: '' }, null)).toBe('conflict');
+        expect((await store.list({ q: 'табиг' }, { limit: 10 })).items.map((x) => x.key)).toEqual(['nat-8-1']);
+        const up = await store.update(tb.key, { data: { ...tb, grade: 9, order: 2 }, subjectKey: null, searchText: '' }, 1, null);
+        expect(up).toMatchObject({ version: 2, data: { grade: 9, order: 2 } });
+        expect(await store.update(tb.key, { data: tb, subjectKey: null, searchText: '' }, 1, null)).toBe('version_mismatch');
+        expect(await store.delete(tb.key, 1)).toBe('version_mismatch');
+        expect(await store.delete(tb.key, 2)).toBe('ok');
+        expect(await store.count()).toBe(0);
+      });
+
       const topicRow = async (key = 'animal-cell') => {
         const t = await repo.createTopic({ id: newId(), key, unitKey: 'bio.g7.cells', subjectKey: 'bio', status: 'draft', demo: false, publishedVersionId: null, latestVersionId: null, scheduledAt: null, scheduledVersionId: null });
         if (t === 'conflict') throw new Error('conflict');
@@ -541,6 +573,31 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         await repo.createSnapshot(s2);
         expect(await repo.getSnapshot(s.id)).toEqual(s);
         expect((await repo.getSnapshots([s2.id, newId(), s.id])).map((x) => x.id)).toEqual([s2.id, s.id]);
+      });
+
+      it('teaching plans (КТП): JSON doc round-trip, optimistic update and delete, list per owner', async () => {
+        const owner = newId();
+        const doc = { subjectName: 'алгебра', classes: ['8б', '8в'], rows: [{ index: 1, number: 1, title: 'Сандар', dates: { '8б': '2026-09-15', '8в': null } }], issues: [] };
+        const p = { id: newId(), ownerId: owner, title: 'КТП 8', doc, version: 1, createdAt: T0, updatedAt: T0 };
+        await repo.createTeachingPlan(p);
+        expect(await repo.getTeachingPlan(p.id)).toEqual(p);
+        expect(await repo.getTeachingPlan(newId())).toBeNull();
+        const doc2 = { ...doc, subjectName: 'геометрия' };
+        expect(await repo.updateTeachingPlan(p.id, { doc: doc2, title: 'Жаңы' }, 1)).toMatchObject({ title: 'Жаңы', version: 2, doc: doc2, ownerId: owner });
+        expect(await repo.updateTeachingPlan(p.id, { title: 'x' }, 1)).toBe('version_mismatch');
+        expect(await repo.updateTeachingPlan(newId(), { title: 'x' }, 1)).toBe('not_found');
+        const other = { ...p, id: newId(), ownerId: newId() };
+        await repo.createTeachingPlan(other);
+        const mine2 = { ...p, id: newId() };
+        await repo.createTeachingPlan(mine2);
+        const page1 = await repo.listTeachingPlans(owner, { limit: 1 });
+        expect(page1.items).toHaveLength(1);
+        const page2 = await repo.listTeachingPlans(owner, { limit: 10, cursor: page1.nextCursor ?? undefined });
+        expect([...page1.items, ...page2.items].map((x) => x.id).sort()).toEqual([p.id, mine2.id].sort());
+        expect(await repo.deleteTeachingPlan(p.id, 1)).toBe('version_mismatch');
+        expect(await repo.deleteTeachingPlan(p.id, 2)).toBe('ok');
+        expect(await repo.deleteTeachingPlan(p.id, 2)).toBe('not_found');
+        expect(await repo.getTeachingPlan(other.id)).toEqual(other);
       });
 
       it('tutor threads and messages (limit keeps the latest)', async () => {

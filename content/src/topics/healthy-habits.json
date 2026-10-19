@@ -1,0 +1,964 @@
+{
+  "topic": {
+    "key": "healthy-habits",
+    "unitKey": "bio.g8.nutrition",
+    "status": "published",
+    "title": {
+      "ky": "Пайдалуу жана зыяндуу адаттар",
+      "ru": "Полезные и вредные привычки",
+      "en": "Healthy and harmful habits"
+    },
+    "classification": {
+      "ky": "Ден соолук",
+      "ru": "Здоровье",
+      "en": "Health"
+    },
+    "description": {
+      "ky": "Тарелкада эки түшкү тамак жанаша: тең салмактуу түшкү тамак жана чипс, газдалган суусундук, шоколаддан турган «закуска». Аларды салыштырып, кант, кыймыл, уйку жана экран убактысы жөнүндө сүйлөшөбүз, тамеки, вейп жана спирттин зыянын фактылар менен карайбыз.",
+      "ru": "На тарелке два обеда рядом: сбалансированный и «перекус» из чипсов, газировки и шоколада. Сравниваем их и говорим о сахаре, движении, сне и экранном времени, а вред табака, вейпов и алкоголя разбираем по фактам.",
+      "en": "Two lunches share the plate: a balanced one and a 'snack lunch' of crisps, a fizzy drink and chocolate. We compare them, talk about sugar, activity, sleep and screen time, and look at the facts on the harm from tobacco, vapes and alcohol."
+    },
+    "goal": {
+      "ky": "Пайдалуу жана зыяндуу адаттардын ден соолукка таасирин баалоо (BIO-8.1.3) жана тамак тандоодо этикетканы колдонуу (BIO-8.1.2).",
+      "ru": "Оценить влияние полезных и вредных привычек на здоровье (BIO-8.1.3) и использовать этикетку при выборе еды (BIO-8.1.2).",
+      "en": "Assess how healthy and harmful habits affect health (BIO-8.1.3) and use labels when choosing food (BIO-8.1.2)."
+    },
+    "objectiveKeys": [
+      "bio.g8.nutrition.o3",
+      "bio.g8.nutrition.o2"
+    ],
+    "durationMin": 40,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "nutrition-plate",
+        "foods": [
+          {
+            "id": "lunch-rice",
+            "group": "carbs",
+            "grams": 150,
+            "kcal": 195
+          },
+          {
+            "id": "lunch-chicken",
+            "group": "proteins",
+            "grams": 100,
+            "kcal": 165
+          },
+          {
+            "id": "lunch-salad",
+            "group": "fibre",
+            "grams": 150,
+            "kcal": 30
+          },
+          {
+            "id": "lunch-apple",
+            "group": "vitamins",
+            "grams": 150,
+            "kcal": 78
+          },
+          {
+            "id": "lunch-water",
+            "group": "water",
+            "grams": 250,
+            "kcal": 0
+          },
+          {
+            "id": "snack-chips",
+            "group": "fats",
+            "grams": 50,
+            "kcal": 270
+          },
+          {
+            "id": "snack-soda",
+            "group": "carbs",
+            "grams": 330,
+            "kcal": 140
+          },
+          {
+            "id": "snack-candy",
+            "group": "carbs",
+            "grams": 50,
+            "kcal": 260
+          }
+        ]
+      },
+      "camera": {
+        "position": [
+          0,
+          3.2,
+          4.2
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "groups",
+        "energy",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "bio.balanced-diet",
+      "bio.added-sugar",
+      "bio.fats",
+      "bio.water-in-diet",
+      "bio.physical-activity",
+      "bio.sleep",
+      "bio.screen-time",
+      "bio.smoking-vaping",
+      "bio.alcohol-harm",
+      "bio.energy-balance"
+    ],
+    "overrides": {
+      "bio.balanced-diet": {
+        "nodes": [
+          "Food_lunch-rice",
+          "Food_lunch-chicken",
+          "Food_lunch-salad",
+          "Food_lunch-apple"
+        ]
+      },
+      "bio.added-sugar": {
+        "nodes": [
+          "Food_snack-soda",
+          "Food_snack-candy"
+        ]
+      },
+      "bio.fats": {
+        "nodes": [
+          "Food_snack-chips",
+          "Sector_fats",
+          "Bar_fats"
+        ],
+        "description": {
+          "ky": "Чипс сыяктуу куурулган закускаларда май жана туз көп: 50 г таңгак болжол менен 270 ккал берет, бирок витамин жана клетчатка аз.",
+          "ru": "В жареных закусках вроде чипсов много жира и соли: пачка 50 г даёт около 270 ккал, а витаминов и клетчатки в ней мало.",
+          "en": "Fried snacks such as crisps are high in fat and salt: a 50 g packet gives about 270 kcal but little vitamin or fibre."
+        }
+      },
+      "bio.water-in-diet": {
+        "nodes": [
+          "Food_lunch-water",
+          "Sector_water"
+        ]
+      },
+      "bio.physical-activity": {
+        "nodes": [
+          "Scale"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "lunch-vs-snack",
+        "title": {
+          "ky": "Түшкү тамак жана закуска",
+          "ru": "Обед и перекус",
+          "en": "Lunch vs snacks"
+        },
+        "classification": {
+          "ky": "Салыштыруу",
+          "ru": "Сравнение",
+          "en": "Comparison"
+        },
+        "thumb": "thumbs/lunch-vs-snack.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 468,
+            "unit": "kcal (balanced lunch)",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 670,
+            "unit": "kcal (snack lunch)",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 63,
+            "unit": "g sugar (snack lunch)",
+            "approx": true
+          }
+        ]
+      },
+      {
+        "key": "soda-can",
+        "title": {
+          "ky": "Газдалган таттуу суусундук, 330 мл",
+          "ru": "Сладкая газировка, 330 мл",
+          "en": "Sugary fizzy drink, 330 ml"
+        },
+        "classification": {
+          "ky": "Кошулган кант",
+          "ru": "Добавленный сахар",
+          "en": "Added sugar"
+        },
+        "thumb": "thumbs/soda-can.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 140,
+            "unit": "kcal",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 35,
+            "unit": "g sugar",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "count",
+            "value": 9,
+            "unit": "teaspoons of sugar",
+            "approx": true
+          }
+        ]
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "period",
+        "value": 60,
+        "unit": "min activity / day"
+      },
+      {
+        "kind": "quantity",
+        "type": "period",
+        "value": 8,
+        "max": 10,
+        "unit": "h sleep / day"
+      },
+      {
+        "kind": "quantity",
+        "type": "period",
+        "value": 2,
+        "unit": "h recreational screens / day",
+        "approx": true
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "two-lunches",
+            "camera": {
+              "position": [
+                0,
+                3.2,
+                4.2
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "groups": true,
+              "labels": true
+            },
+            "focus": "bio.balanced-diet",
+            "text": {
+              "ky": "Тарелкада эки түшкү тамак: күрүч, тоок эти, салат, алма жана суу – же чипс, газдалган суусундук жана шоколад. Кайсынысы көбүрөөк энергия берет? Кайсынысы организмге көбүрөөк пайда берет?",
+              "ru": "На тарелке два обеда: рис, курица, салат, яблоко и вода – или чипсы, газировка и шоколад. Какой даёт больше энергии? Какой полезнее организму?",
+              "en": "Two lunches on the plate: rice, chicken, salad, an apple and water – or crisps, a fizzy drink and chocolate. Which gives more energy? Which does the body more good?"
+            },
+            "teacherNote": {
+              "ky": "Окуучулар добуш беришсин: кайсы түшкү тамак көбүрөөк ккал берет? Көбү туура эмес жооп берет – закуска 670 ккал, түшкү тамак 468 ккал.",
+              "ru": "Устройте голосование: какой обед калорийнее? Многие ошибаются: перекус – 670 ккал, обед – 468 ккал.",
+              "en": "Hold a quick vote: which lunch has more kcal? Many get it wrong – the snacks are 670 kcal, the lunch 468 kcal."
+            },
+            "altText": {
+              "ky": "Бир тарелкада тең салмактуу тамак жана закускалар.",
+              "ru": "На одной тарелке сбалансированный обед и перекусы.",
+              "en": "A balanced lunch and snacks on one plate."
+            }
+          },
+          {
+            "key": "sugar",
+            "sample": "soda-can",
+            "modes": {
+              "labels": true
+            },
+            "focus": "bio.added-sugar",
+            "text": {
+              "ky": "Бир банка газдалган суусундукта ≈ 35 г кант – болжол менен 9 чай кашык. ДСУ эркин канттарды суткалык энергиянын 10 %ынан азыраак кармоону сунуштайт.",
+              "ru": "В банке газировки ≈ 35 г сахара – около 9 чайных ложек. ВОЗ советует, чтобы свободные сахара давали меньше 10 % суточной энергии.",
+              "en": "One can of fizzy drink holds ≈ 35 g of sugar – about 9 teaspoons. The WHO advises keeping free sugars below 10 % of daily energy."
+            },
+            "teacherNote": {
+              "ky": "Көрсөтмө: стаканга 9 кашык кант салып көрсөтүңүз. Таңгактагы ширелерде да кант көп экенин эскертиңиз.",
+              "ru": "Демонстрация: насыпьте в стакан 9 ложек сахара. Напомните, что в пакетированных соках сахара тоже много.",
+              "en": "Demo: spoon 9 teaspoons of sugar into a glass. Mention that packaged juices are sugary too."
+            },
+            "altText": {
+              "ky": "Газдалган суусундук белгиленген, жанында 9 кашык кант.",
+              "ru": "Выделена газировка, рядом 9 ложек сахара.",
+              "en": "The fizzy drink is highlighted, with 9 teaspoons of sugar beside it."
+            }
+          },
+          {
+            "key": "activity",
+            "camera": {
+              "position": [
+                0,
+                1.6,
+                5.2
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "energy": true
+            },
+            "focus": "bio.physical-activity",
+            "text": {
+              "ky": "Энергия шкаласы тамактын энергиясын көрсөтөт. Аны сарптоо үчүн кыймыл керек: ДСУ 5–17 жаштагыларга күнүнө орто эсеп менен кеминде 60 мүнөт активдүү кыймылды сунуштайт.",
+              "ru": "Шкала показывает энергию еды. Чтобы её потратить, нужно двигаться: ВОЗ рекомендует детям 5–17 лет в среднем не менее 60 минут активного движения в день.",
+              "en": "The gauge shows the food's energy. Using it takes movement: the WHO advises 5–17-year-olds to average at least 60 minutes of active movement a day."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: мектепке жөө басуу, тепкич, бий – кыймылга киреби? Ооба. Ар бир окуучу күнүнө канча мүнөт кыймылдаарын эсептесин.",
+              "ru": "Спросите: считаются ли ходьба в школу, лестница, танцы? Да. Пусть каждый посчитает свои активные минуты за день.",
+              "en": "Ask: do walking to school, stairs and dancing count? Yes. Have each pupil add up their active minutes for a day."
+            },
+            "altText": {
+              "ky": "Энергия шкаласы жана тилкелер.",
+              "ru": "Шкала энергии и столбики.",
+              "en": "The energy gauge and bars."
+            }
+          },
+          {
+            "key": "sleep-screens",
+            "camera": {
+              "position": [
+                0,
+                3.2,
+                4.2
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "bio.sleep",
+            "text": {
+              "ky": "Уйку – мээнин жана дененин калыбына келүүсү: 13–18 жаштагыларга 8–10 саат сунушталат. Уктаар алдындагы экран уйкуну кечеңдетет; көп сунуштар эс алуу үчүн экранды күнүнө ≈ 2 сааттан ашырбоону кеңеш берет.",
+              "ru": "Сон – восстановление мозга и тела: подросткам 13–18 лет рекомендуют 8–10 часов. Экран перед сном сдвигает засыпание; многие рекомендации советуют ограничивать развлекательные экраны ≈ 2 часами в день.",
+              "en": "Sleep is recovery time for brain and body: 8–10 hours is advised for 13–18-year-olds. Screens before bed delay sleep; many guidelines suggest about 2 hours of recreational screen time a day at most."
+            },
+            "teacherNote": {
+              "ky": "Класстан сурамжылоо: ким канча саат уктайт? Жыйынтыкты анонимдүү гистограмма кылып көрсөтүңүз.",
+              "ru": "Анонимный опрос класса: кто сколько спит? Покажите итог гистограммой.",
+              "en": "Run an anonymous class poll on hours of sleep and show the results as a histogram."
+            },
+            "altText": {
+              "ky": "Ай жана саат; телефон өчүрүлгөн.",
+              "ru": "Луна и часы; телефон выключен.",
+              "en": "A moon and a clock; the phone is switched off."
+            }
+          },
+          {
+            "key": "smoking",
+            "focus": "bio.smoking-vaping",
+            "text": {
+              "ky": "Тамеки түтүнүндө никотин (көз карандылык жаратат), ыш газы (кандын кычкылтек ташуусун азайтат) жана чайыр бар. Вейптин буусунда да көбүнчө никотин болот, ал өсүп жаткан мээге өзгөчө зыяндуу.",
+              "ru": "В табачном дыме есть никотин (вызывает зависимость), угарный газ (мешает крови переносить кислород) и смолы. Аэрозоль вейпов тоже обычно содержит никотин, особенно вредный для растущего мозга.",
+              "en": "Tobacco smoke contains nicotine (addictive), carbon monoxide (cuts the blood's oxygen supply) and tar. Vape aerosol usually contains nicotine too, which is especially harmful to a growing brain."
+            },
+            "teacherNote": {
+              "ky": "Нейтралдуу тон: адамдарды эмес, заттарды талкуулаңыз. Медициналык кеңеш бербеңиз; суроолор болсо мектеп медайымына же ата-энеге кайрылууну сунуштаңыз.",
+              "ru": "Нейтральный тон: обсуждайте вещества, а не людей. Не давайте медицинских советов; с личными вопросами направляйте к школьной медсестре или родителям.",
+              "en": "Keep the tone neutral: discuss substances, not people. Give no medical advice; refer personal questions to the school nurse or parents."
+            },
+            "altText": {
+              "ky": "Тамеки түтүнүнүн курамы көрсөтүлгөн карточка.",
+              "ru": "Карточка с составом табачного дыма.",
+              "en": "A card showing what is in tobacco smoke."
+            }
+          },
+          {
+            "key": "alcohol",
+            "focus": "bio.alcohol-harm",
+            "text": {
+              "ky": "Спирт нерв системасынын ишин басаңдатат: реакция жана координация начарлайт. Аны боор ажыратат. Өспүрүмдүн мээси дагы өнүгүп жаткандыктан, спирт ага өзгөчө зыяндуу.",
+              "ru": "Алкоголь угнетает нервную систему: ухудшаются реакция и координация. Его разлагает печень. Мозг подростка ещё развивается, поэтому алкоголь для него особенно вреден.",
+              "en": "Alcohol slows the nervous system: reactions and coordination get worse. The liver breaks it down. A teenager's brain is still developing, so alcohol is especially harmful."
+            },
+            "teacherNote": {
+              "ky": "Сызгычты кармоо оюну менен реакция убактысын өлчөп, «реакцияны эмне жайлатат?» деп талкуулаңыз (уйкусуздук, чарчоо, спирт).",
+              "ru": "Измерьте время реакции игрой «поймай линейку» и обсудите, что её замедляет (недосып, усталость, алкоголь).",
+              "en": "Measure reaction time with the ruler-drop game and discuss what slows it (lack of sleep, tiredness, alcohol)."
+            },
+            "altText": {
+              "ky": "Мээ жана боор белгиленген схема.",
+              "ru": "Схема с выделенными мозгом и печенью.",
+              "en": "A diagram with the brain and liver highlighted."
+            }
+          },
+          {
+            "key": "plan",
+            "camera": {
+              "position": [
+                0,
+                3.2,
+                4.2
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "groups": true
+            },
+            "focus": "bio.water-in-diet",
+            "text": {
+              "ky": "Пайдалуу адаттар бири-бирине жардам берет: тең салмактуу тамак, суу, күнүнө 60 мүнөт кыймыл, 8–10 саат уйку жана экранга ченем. Өзүңө бир жаңы адат танда.",
+              "ru": "Полезные привычки поддерживают друг друга: сбалансированная еда, вода, 60 минут движения, 8–10 часов сна и мера в экранах. Выбери себе одну новую привычку.",
+              "en": "Healthy habits support each other: balanced meals, water, 60 minutes of activity, 8–10 hours of sleep and limits on screens. Pick one new habit for yourself."
+            },
+            "teacherNote": {
+              "ky": "Мини-долбоор: бир жума бою бир адатты (мисалы, суусундук ордуна суу) журналга жазып, жыйынтыгын класска айтып берүү.",
+              "ru": "Мини-проект: неделю вести дневник одной привычки (например, вода вместо газировки) и рассказать классу о результате.",
+              "en": "Mini-project: keep a one-week diary of one habit (e.g. water instead of fizzy drinks) and report back to the class."
+            },
+            "altText": {
+              "ky": "Тең салмактуу түшкү тамак жана суу белгиленген.",
+              "ru": "Выделены сбалансированный обед и вода.",
+              "en": "The balanced lunch and water are highlighted."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "bio.daily-energy-intake"
+      ],
+      "quiz": {
+        "itemKeys": [
+          "bio.q.healthy-habits-1",
+          "bio.q.healthy-habits-2",
+          "bio.q.healthy-habits-3",
+          "bio.q.healthy-habits-4",
+          "bio.q.healthy-habits-5",
+          "bio.q.healthy-habits-6",
+          "bio.q.healthy-habits-7",
+          "bio.q.healthy-habits-8",
+          "bio.q.healthy-habits-9",
+          "bio.q.healthy-habits-10"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "s",
+          "title": {
+            "ky": "Уйку жана эс тутум",
+            "ru": "Сон и память",
+            "en": "Sleep and memory"
+          },
+          "text": {
+            "ky": "Изилдөөлөр жакшы уктаган окуучулар жаңы материалды жакшыраак эстеп каларын көрсөтөт.",
+            "ru": "Исследования показывают, что выспавшиеся ученики лучше запоминают новый материал.",
+            "en": "Studies show that well-rested pupils remember new material better."
+          }
+        },
+        {
+          "field": "t",
+          "title": {
+            "ky": "Кадам эсептегичтер",
+            "ru": "Шагомеры",
+            "en": "Step counters"
+          },
+          "text": {
+            "ky": "Телефондун акселерометри кадамды санап, күндүк кыймылды байкоого жардам берет.",
+            "ru": "Акселерометр телефона считает шаги и помогает следить за дневной активностью.",
+            "en": "A phone's accelerometer counts steps and helps track daily activity."
+          }
+        },
+        {
+          "field": "m",
+          "title": {
+            "ky": "Кантты эсептөө",
+            "ru": "Считаем сахар",
+            "en": "Counting sugar"
+          },
+          "text": {
+            "ky": "2000 ккал рациондун 10 %ы = 200 ккал = 50 г кант (1 г = 4 ккал). Бир банка суусундук бул чектин ≈ 70 %ын ээлейт.",
+            "ru": "10 % от 2000 ккал = 200 ккал = 50 г сахара (1 г = 4 ккал). Одна банка газировки – ≈ 70 % этого предела.",
+            "en": "10 % of 2000 kcal = 200 kcal = 50 g of sugar (1 g = 4 kcal). One can of soda uses ≈ 70 % of that limit."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Телефондун батареясы",
+            "ru": "Батарея телефона",
+            "en": "A phone battery"
+          },
+          "text": {
+            "ky": "Уйку – түнкү кубаттоо: толук кубаттабасаң, эртең «батарея» эрте отурат.",
+            "ru": "Сон – ночная зарядка: не зарядишься полностью – завтра «батарея» сядет рано.",
+            "en": "Sleep is overnight charging: skip it and tomorrow your 'battery' runs flat early."
+          }
+        },
+        {
+          "title": {
+            "ky": "Велосипед",
+            "ru": "Велосипед",
+            "en": "A bicycle"
+          },
+          "text": {
+            "ky": "Дайыма тебилген велосипед жакшы жүрөт, ал эми таштап койгону дат басат – дене да ошондой.",
+            "ru": "Велосипед, на котором катаются, едет хорошо, а брошенный ржавеет – с телом так же.",
+            "en": "A bike that's ridden runs well; one left alone rusts – the body is the same."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "bio.q.healthy-habits-1",
+      "type": "single",
+      "prompt": {
+        "ky": "13–18 жаштагы өспүрүмдөргө күнүнө канча саат уйку сунушталат?",
+        "ru": "Сколько часов сна в сутки рекомендуют подросткам 13–18 лет?",
+        "en": "How many hours of sleep a day are advised for 13–18-year-olds?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "4–5 саат",
+            "ru": "4–5 часов",
+            "en": "4–5 hours"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "6 саат",
+            "ru": "6 часов",
+            "en": "6 hours"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "8–10 саат",
+            "ru": "8–10 часов",
+            "en": "8–10 hours"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "12–14 саат",
+            "ru": "12–14 часов",
+            "en": "12–14 hours"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "8–10 саат. Уйку учурунда мээ маалыматты иреттеп, организм калыбына келет.",
+        "ru": "8–10 часов. Во сне мозг упорядочивает информацию, а организм восстанавливается.",
+        "en": "8–10 hours. During sleep the brain sorts information and the body recovers."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o3"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.healthy-habits-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Тамеки түтүнүндө кайсы зыяндуу заттар бар? Бардыгын танда.",
+        "ru": "Какие вредные вещества есть в табачном дыме? Выбери все.",
+        "en": "Which harmful substances are in tobacco smoke? Choose all."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Никотин",
+            "ru": "Никотин",
+            "en": "Nicotine"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ыш газы (CO)",
+            "ru": "Угарный газ (CO)",
+            "en": "Carbon monoxide (CO)"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Чайыр",
+            "ru": "Смолы",
+            "en": "Tar"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Кычкылтек",
+            "ru": "Кислород",
+            "en": "Oxygen"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "C витамини",
+            "ru": "Витамин C",
+            "en": "Vitamin C"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Никотин (көз карандылык), ыш газы CO (кандын кычкылтек ташуусун азайтат) жана чайыр (өпкөгө отурат). Кычкылтек жана C витамини түтүндүн зыяндуу бөлүгү эмес.",
+        "ru": "Никотин (зависимость), угарный газ CO (мешает переносу кислорода) и смолы (оседают в лёгких). Кислород и витамин C – не вредные компоненты дыма.",
+        "en": "Nicotine (addiction), carbon monoxide CO (cuts oxygen transport) and tar (settles in the lungs). Oxygen and vitamin C are not harmful parts of smoke."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o3"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.healthy-habits-3",
+      "type": "match",
+      "prompt": {
+        "ky": "Адатты анын организмге таасири менен дал келтир.",
+        "ru": "Сопоставь привычку и её влияние на организм.",
+        "en": "Match each habit to its effect on the body."
+      },
+      "pairs": [
+        {
+          "key": "sleep",
+          "left": {
+            "ky": "8–10 саат уйку",
+            "ru": "8–10 часов сна",
+            "en": "8–10 hours of sleep"
+          },
+          "right": {
+            "ky": "Мээ маалыматты иреттейт",
+            "ru": "Мозг упорядочивает информацию",
+            "en": "The brain sorts information"
+          }
+        },
+        {
+          "key": "activity",
+          "left": {
+            "ky": "Күнүнө 60 мүнөт кыймыл",
+            "ru": "60 минут движения в день",
+            "en": "60 minutes of activity a day"
+          },
+          "right": {
+            "ky": "Жүрөк жана сөөк бекемделет",
+            "ru": "Укрепляются сердце и кости",
+            "en": "Heart and bones get stronger"
+          }
+        },
+        {
+          "key": "soda",
+          "left": {
+            "ky": "Күн сайын таттуу суусундук",
+            "ru": "Сладкая газировка каждый день",
+            "en": "A sugary drink every day"
+          },
+          "right": {
+            "ky": "Тиштин жешилиш коркунучу",
+            "ru": "Риск кариеса",
+            "en": "Risk of tooth decay"
+          }
+        },
+        {
+          "key": "screen",
+          "left": {
+            "ky": "Уктаар алдында телефон",
+            "ru": "Телефон перед сном",
+            "en": "Phone before bed"
+          },
+          "right": {
+            "ky": "Уйку кечеңдейт",
+            "ru": "Засыпание откладывается",
+            "en": "Sleep is delayed"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Уйку – мээнин калыбына келиши; кыймыл – жүрөк менен сөөктү бекемдейт; таттуу суусундук – тиштин жешилишине коркунуч; уктаар алдындагы экран – уйкуну кечеңдетет.",
+        "ru": "Сон – восстановление мозга; движение – укрепляет сердце и кости; сладкие напитки – риск кариеса; экран перед сном – позже засыпаешь.",
+        "en": "Sleep – the brain recovers; activity – strengthens heart and bones; sugary drinks – risk of tooth decay; screens before bed – you fall asleep later."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o3"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.healthy-habits-4",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Тарелкадан кошулган кантка эң бай тамактарды тап.",
+        "ru": "Найди на тарелке продукты, в которых больше всего добавленного сахара.",
+        "en": "Find the foods on the plate with the most added sugar."
+      },
+      "targetConceptKey": "bio.added-sugar",
+      "explanation": {
+        "ky": "Газдалган суусундук жана шоколад: аларда кант көп, витамин жана клетчатка дээрлик жок.",
+        "ru": "Газировка и шоколад: много сахара, почти нет витаминов и клетчатки.",
+        "en": "The fizzy drink and the chocolate: lots of sugar, hardly any vitamins or fibre."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "misconceptionKey": "bio.m.juice-no-sugar",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.healthy-habits-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Тарелкадан тең салмактуу түшкү тамактын бөлүгү болгон тамакты тап.",
+        "ru": "Найди на тарелке продукт из сбалансированного обеда.",
+        "en": "Find a food that belongs to the balanced lunch."
+      },
+      "targetConceptKey": "bio.balanced-diet",
+      "explanation": {
+        "ky": "Күрүч, тоок эти, салат жана алма бирге бардык негизги топторду берет.",
+        "ru": "Рис, курица, салат и яблоко вместе дают все основные группы.",
+        "en": "Rice, chicken, salad and apple together cover all the main groups."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "misconceptionKey": "bio.m.one-superfood",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.healthy-habits-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Бир банка суусундукта 35 г кант бар. 1 чай кашыкта ≈ 4 г кант. Бул болжол менен канча кашык?",
+        "ru": "В банке напитка 35 г сахара. В 1 чайной ложке ≈ 4 г. Сколько это примерно ложек?",
+        "en": "A can contains 35 g of sugar. One teaspoon holds ≈ 4 g. About how many teaspoons is that?"
+      },
+      "answer": 8.75,
+      "tolerance": 0.5,
+      "unit": "tsp",
+      "explanation": {
+        "ky": "35 / 4 ≈ 8,75 ≈ 9 кашык.",
+        "ru": "35 / 4 ≈ 8,75 ≈ 9 ложек.",
+        "en": "35 / 4 ≈ 8.75 ≈ 9 teaspoons."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.healthy-habits-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Айбек 22:30да жатып, 06:30да турат. Ал канча саат уктайт?",
+        "ru": "Айбек ложится в 22:30 и встаёт в 06:30. Сколько часов он спит?",
+        "en": "Aibek goes to bed at 22:30 and gets up at 06:30. How many hours does he sleep?"
+      },
+      "answer": 8,
+      "tolerance": 0,
+      "unit": "h",
+      "explanation": {
+        "ky": "22:30дан 06:30га чейин 8 саат – сунушталган 8–10 сааттын төмөнкү чеги.",
+        "ru": "С 22:30 до 06:30 – 8 часов, нижняя граница рекомендуемых 8–10 часов.",
+        "en": "From 22:30 to 06:30 is 8 hours – the lower end of the advised 8–10 hours."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o3"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.healthy-habits-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Чипстин таңгагы 270 ккал берет. Ылдам басканда өспүрүм мүнөтүнө болжол менен 4,5 ккал сарптайт. Бул энергияны сарптоо үчүн канча мүнөт басуу керек?",
+        "ru": "Пачка чипсов даёт 270 ккал. При быстрой ходьбе подросток тратит около 4,5 ккал в минуту. Сколько минут нужно идти, чтобы потратить эту энергию?",
+        "en": "A packet of crisps gives 270 kcal. Walking briskly, a teenager uses about 4.5 kcal per minute. How many minutes of walking uses up that energy?"
+      },
+      "answer": 60,
+      "tolerance": 1,
+      "unit": "min",
+      "explanation": {
+        "ky": "270 / 4,5 = 60 мүнөт.",
+        "ru": "270 / 4,5 = 60 минут.",
+        "en": "270 / 4.5 = 60 minutes."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o3",
+        "bio.g8.nutrition.o2"
+      ],
+      "misconceptionKey": "bio.m.sport-only",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.healthy-habits-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Кайсы ырастоо вейптер жөнүндө туура?",
+        "ru": "Какое утверждение о вейпах верно?",
+        "en": "Which statement about vapes is correct?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Вейп – жыпар жыттуу суу буусу гана",
+            "ru": "Вейп – это просто ароматный водяной пар",
+            "en": "A vape is just flavoured water vapour"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Вейптин буусунда көбүнчө никотин болот жана ал көз карандылык жаратат",
+            "ru": "В аэрозоле вейпа обычно есть никотин, и он вызывает зависимость",
+            "en": "Vape aerosol usually contains nicotine and is addictive"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Вейп өпкөнү тазалайт",
+            "ru": "Вейп очищает лёгкие",
+            "en": "Vaping cleans the lungs"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Вейп спорттук көрсөткүчтөрдү жакшыртат",
+            "ru": "Вейп улучшает спортивные результаты",
+            "en": "Vaping improves sports performance"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Вейптин буусу суу буусу эмес: анда көбүнчө никотин бар, ал көз карандылык жаратат жана өсүп жаткан мээге зыяндуу.",
+        "ru": "Аэрозоль вейпа – не водяной пар: обычно в нём есть никотин, вызывающий зависимость и вредный для растущего мозга.",
+        "en": "Vape aerosol isn't water vapour: it usually contains nicotine, which is addictive and harms a growing brain."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o3"
+      ],
+      "misconceptionKey": "bio.m.vape-safe",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.healthy-habits-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Таблицага кара: закуска түшкү тамагы (чипс, суусундук, шоколад) – 670 ккал, кант ≈ 63 г, клетчатка ≈ 3 г; тең салмактуу түшкү тамак – 468 ккал, кант ≈ 15 г, клетчатка ≈ 6 г. Туура жыйынтыкты танда.",
+        "ru": "Посмотри таблицу: перекус (чипсы, газировка, шоколад) – 670 ккал, сахар ≈ 63 г, клетчатка ≈ 3 г; сбалансированный обед – 468 ккал, сахар ≈ 15 г, клетчатка ≈ 6 г. Выбери верный вывод.",
+        "en": "Look at the table: snack lunch (crisps, soda, chocolate) – 670 kcal, sugar ≈ 63 g, fibre ≈ 3 g; balanced lunch – 468 kcal, sugar ≈ 15 g, fibre ≈ 6 g. Choose the correct conclusion."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Закуска пайдалуураак, анткени энергиясы көп",
+            "ru": "Перекус полезнее, потому что в нём больше энергии",
+            "en": "The snacks are healthier because they have more energy"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Закускада энергия жана кант көп, клетчатка аз",
+            "ru": "В перекусе больше энергии и сахара, меньше клетчатки",
+            "en": "The snacks have more energy and sugar and less fibre"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эки түшкү тамак бирдей",
+            "ru": "Оба обеда одинаковы",
+            "en": "The two lunches are the same"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Тең салмактуу тамакта кант көбүрөөк",
+            "ru": "В сбалансированном обеде больше сахара",
+            "en": "The balanced lunch has more sugar"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Закуска энергияга бай, бирок кант көп жана клетчатка аз – анда «бош» калориялар көп.",
+        "ru": "Перекус калорийнее, но в нём много сахара и мало клетчатки – это «пустые» калории.",
+        "en": "The snack lunch has more energy but lots of sugar and little fibre – 'empty' calories."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2",
+        "bio.g8.nutrition.o3"
+      ],
+      "difficulty": 3
+    }
+  ]
+}

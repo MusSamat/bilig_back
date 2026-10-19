@@ -41,6 +41,29 @@ export const SceneSpecSchema = z
   });
 export type SceneSpec = z.infer<typeof SceneSpecSchema>;
 
+/**
+ * v0.5.0: what changes on the stage when a sample is selected: `params` are
+ * shallow-merged over `topic.scene.params` (same plugin), `camera` replaces
+ * the initial camera, `modes` sets scene modes. Absent = the topic scene.
+ */
+export const SampleSceneSchema = z.object({
+  params: z.record(z.string(), z.unknown()).optional(),
+  camera: CameraSchema.optional(),
+  modes: z.record(z.string(), z.union([z.boolean(), z.string()])).optional(),
+});
+export type SampleScene = z.infer<typeof SampleSceneSchema>;
+
+/** The scene spec for a sample: the topic scene with the sample's overrides applied. */
+export function sceneForSample(scene: SceneSpec, sample?: Pick<Sample, 'scene'> | null): SceneSpec {
+  const o = sample?.scene;
+  if (!o) return scene;
+  return {
+    ...scene,
+    ...(o.params ? { params: { ...(scene.params ?? {}), ...o.params } } : {}),
+    ...(o.camera ? { camera: o.camera } : {}),
+  };
+}
+
 /** A sample in the topic ribbon (W-12): pre-rendered WebP thumbnail. */
 export const SampleSchema = z.object({
   key: KeySchema,
@@ -52,6 +75,8 @@ export const SampleSchema = z.object({
   topicKey: KeySchema.optional(),
   /** v0.3.0: properties of this sample (W-30: formula, molar mass, shape, volume…). */
   props: z.array(ConceptPropSchema).optional(),
+  /** v0.5.0: the scene of this sample on the live stage (and its thumbnail). */
+  scene: SampleSceneSchema.optional(),
 });
 export type Sample = z.infer<typeof SampleSchema>;
 
@@ -71,6 +96,8 @@ export const TourStepSchema = z.object({
   modes: z.record(z.string(), z.union([z.boolean(), z.string()])).optional(),
   /** Concept focused at this step. */
   focus: KeySchema.optional(),
+  /** v0.5.0: sample shown on the stage at this step (its `scene` applies). */
+  sample: KeySchema.optional(),
   text: LocalizedSchema,
   teacherNote: LocalizedSchema.optional(),
   altText: LocalizedSchema,

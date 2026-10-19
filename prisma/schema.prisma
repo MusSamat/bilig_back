@@ -241,6 +241,24 @@ model Unit {
   @@index([courseKey])
 }
 
+/// v0.5.0: textbooks mapped onto topics (shared across subjects).
+model Textbook {
+  id         String   @id @db.Uuid
+  key        String   @unique
+  doc        Json
+  subjectKey String?
+  searchText String   @default("")
+  version    Int
+  grade      Int?
+  order      Int      @default(0)
+  createdAt  DateTime @db.Timestamptz(3)
+  updatedAt  DateTime @db.Timestamptz(3)
+  updatedBy  String?  @db.Uuid
+
+  @@index([subjectKey])
+  @@index([grade])
+}
+
 model Objective {
   id         String   @id @db.Uuid
   key        String   @unique
@@ -562,6 +580,19 @@ model Presentation {
   title     String
   lang      String
   slides    Json
+  version   Int
+  createdAt DateTime @db.Timestamptz(3)
+  updatedAt DateTime @db.Timestamptz(3)
+
+  @@index([ownerId])
+}
+
+/// v0.5.0: an uploaded КТП (календарно-тематический план); `doc` = TeachingPlan DTO body
+model TeachingPlan {
+  id        String   @id @db.Uuid
+  ownerId   String   @db.Uuid
+  title     String
+  doc       Json
   version   Int
   createdAt DateTime @db.Timestamptz(3)
   updatedAt DateTime @db.Timestamptz(3)

@@ -2,7 +2,7 @@
   "manifest": {
     "topicKey": "inclined-plane",
     "version": "1.0.0",
-    "hash": "c576f9ba187412e59de9ef6cd1217a0a4dd42e420844fc80040125f3c6bb4028",
+    "hash": "793aa67aad087d516dfe53023dcd2f2d9a0044cbb82d07e363ca51798004eebd",
     "files": [
       {
         "path": "thumbs/ramp-30.webp",
@@ -231,7 +231,13 @@
           "ru": "С трением",
           "en": "With friction"
         },
-        "thumb": "thumbs/ramp-30.webp"
+        "thumb": "thumbs/ramp-30.webp",
+        "scene": {
+          "modes": {
+            "vectors": true,
+            "trace": true
+          }
+        }
       },
       {
         "key": "ramp-ice",
@@ -245,7 +251,21 @@
           "ru": "Малое трение",
           "en": "Low friction"
         },
-        "thumb": "thumbs/ramp-ice.webp"
+        "thumb": "thumbs/ramp-ice.webp",
+        "scene": {
+          "params": {
+            "model": "inclined-plane",
+            "angleDeg": 30,
+            "mass": 2,
+            "mu": 0.05,
+            "g": 9.81,
+            "length": 3
+          },
+          "modes": {
+            "vectors": true,
+            "trace": true
+          }
+        }
       },
       {
         "key": "ramp-15",
@@ -259,7 +279,21 @@
           "ru": "С трением",
           "en": "With friction"
         },
-        "thumb": "thumbs/ramp-15.webp"
+        "thumb": "thumbs/ramp-15.webp",
+        "scene": {
+          "params": {
+            "model": "inclined-plane",
+            "angleDeg": 15,
+            "mass": 2,
+            "mu": 0.2,
+            "g": 9.81,
+            "length": 3
+          },
+          "modes": {
+            "vectors": true,
+            "trace": true
+          }
+        }
       }
     ],
     "activities": {
@@ -2112,6 +2146,164 @@
         "electric key"
       ],
       "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-distance-travelled",
+      "ky": "басып өткөн жол",
+      "ru": "пройденный путь",
+      "en": "distance travelled",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-time",
+      "ky": "убакыт",
+      "ru": "время",
+      "en": "time",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-uniform-motion",
+      "ky": "бир калыптагы кыймыл",
+      "ru": "равномерное движение",
+      "en": "uniform motion",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-average-speed",
+      "ky": "орточо ылдамдык",
+      "ru": "средняя скорость",
+      "en": "average speed",
+      "forbidden": [
+        "medium speed"
+      ]
+    },
+    {
+      "id": "g-phys-speed-radar",
+      "ky": "ылдамдык радары",
+      "ru": "радар скорости",
+      "en": "speed radar",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-stopwatch",
+      "ky": "секундомер",
+      "ru": "секундомер",
+      "en": "stopwatch",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-distance-time-graph",
+      "ky": "жолдун убакыттан көз карандылык графиги",
+      "ru": "график зависимости пути от времени",
+      "en": "distance–time graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-graph-slope",
+      "ky": "графиктин тиктиги",
+      "ru": "наклон графика",
+      "en": "slope of a graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-rest",
+      "ky": "тынч абал",
+      "ru": "покой",
+      "en": "rest",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-force",
+      "ky": "күч",
+      "ru": "сила",
+      "en": "force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-vector",
+      "ky": "вектор",
+      "ru": "вектор",
+      "en": "vector",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-newton",
+      "ky": "ньютон (Н)",
+      "ru": "ньютон (Н)",
+      "en": "newton (N)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-dynamometer",
+      "ky": "динамометр",
+      "ru": "динамометр",
+      "en": "dynamometer (spring scale)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-weight",
+      "ky": "салмак",
+      "ru": "вес тела",
+      "en": "weight",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-resultant",
+      "ky": "тең аракеттүү күч",
+      "ru": "равнодействующая сила",
+      "en": "resultant force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-elastic-force",
+      "ky": "серпилгичтик күчү",
+      "ru": "сила упругости",
+      "en": "elastic force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-point-of-application",
+      "ky": "күчтүн коюлган чекити",
+      "ru": "точка приложения силы",
+      "en": "point of application",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever",
+      "ky": "рычаг",
+      "ru": "рычаг",
+      "en": "lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-pivot",
+      "ky": "таяныч чекити",
+      "ru": "точка опоры",
+      "en": "pivot (fulcrum)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever-arm",
+      "ky": "күчтүн ийини",
+      "ru": "плечо силы",
+      "en": "lever arm",
+      "forbidden": [
+        "shoulder of force"
+      ]
+    },
+    {
+      "id": "g-phys-moment",
+      "ky": "күчтүн моменти",
+      "ru": "момент силы",
+      "en": "moment of a force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-equilibrium-lever",
+      "ky": "рычагдын тең салмактуулугу",
+      "ru": "равновесие рычага",
+      "en": "equilibrium of a lever",
+      "forbidden": []
     }
   ],
   "propertyTypes": [

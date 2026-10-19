@@ -2,7 +2,7 @@
   "manifest": {
     "topicKey": "atom-structure",
     "version": "1.0.0",
-    "hash": "7d1c58ade3b0e7e7f1cefdd77c0e8cdcfbdfd144dda28430b7303f0e4745cfa0",
+    "hash": "366a8865ad6efdb7d076c9b09408193ffd2ebf97e8a8276d81bafc4d037ee5b4",
     "files": [
       {
         "path": "thumbs/atom-h.webp",
@@ -80,6 +80,16 @@
         "ky": "Биринчи 20 элементтин электрон катмарлары боюнча бөлүштүрүлүшүн түзүү.",
         "ru": "Составлять распределение электронов по слоям для первых 20 элементов.",
         "en": "Write the electron shell arrangement for the first 20 elements."
+      }
+    },
+    {
+      "key": "chem.g8.atoms.o3",
+      "code": "CHEM-8.1.3",
+      "unitKey": "chem.g8.atoms",
+      "text": {
+        "ky": "Атом моделинин өнүгүшүн (Дальтон, Томсон, Резерфорд, Бор) сүрөттөө.",
+        "ru": "Описывать развитие модели атома (Дальтон, Томсон, Резерфорд, Бор).",
+        "en": "Describe how the model of the atom developed (Dalton, Thomson, Rutherford, Bohr)."
       }
     }
   ],
@@ -224,7 +234,43 @@
           "ru": "Z = 1 · 1",
           "en": "Z = 1 · 1"
         },
-        "thumb": "thumbs/atom-h.webp"
+        "thumb": "thumbs/atom-h.webp",
+        "scene": {
+          "params": {
+            "formula": "H",
+            "atoms": [
+              {
+                "id": "H1",
+                "element": "H",
+                "position": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "bonds": [],
+            "showNucleus": true,
+            "protons": 1,
+            "neutrons": 0,
+            "shells": [
+              1
+            ]
+          },
+          "camera": {
+            "position": [
+              0,
+              1.2,
+              3.4
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "fov": 45
+          }
+        }
       },
       {
         "key": "atom-c",
@@ -238,7 +284,31 @@
           "ru": "Z = 6 · 2, 4",
           "en": "Z = 6 · 2, 4"
         },
-        "thumb": "thumbs/atom-c.webp"
+        "thumb": "thumbs/atom-c.webp",
+        "scene": {
+          "params": {
+            "formula": "C",
+            "atoms": [
+              {
+                "id": "C1",
+                "element": "C",
+                "position": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "bonds": [],
+            "showNucleus": true,
+            "protons": 6,
+            "neutrons": 6,
+            "shells": [
+              2,
+              4
+            ]
+          }
+        }
       },
       {
         "key": "atom-o",
@@ -252,7 +322,31 @@
           "ru": "Z = 8 · 2, 6",
           "en": "Z = 8 · 2, 6"
         },
-        "thumb": "thumbs/atom-o.webp"
+        "thumb": "thumbs/atom-o.webp",
+        "scene": {
+          "params": {
+            "formula": "O",
+            "atoms": [
+              {
+                "id": "O1",
+                "element": "O",
+                "position": [
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "bonds": [],
+            "showNucleus": true,
+            "protons": 8,
+            "neutrons": 8,
+            "shells": [
+              2,
+              6
+            ]
+          }
+        }
       },
       {
         "key": "atom-na",
@@ -2025,6 +2119,468 @@
         "electrolisys"
       ],
       "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-atomic-model",
+      "ky": "атомдун модели",
+      "ru": "модель атома",
+      "en": "atomic model",
+      "forbidden": [
+        "атомная модель"
+      ]
+    },
+    {
+      "id": "g-chem-alpha-particle",
+      "ky": "альфа-бөлүкчө",
+      "ru": "альфа-частица",
+      "en": "alpha particle",
+      "forbidden": [
+        "альфа-частичка",
+        "alfa particle"
+      ]
+    },
+    {
+      "id": "g-chem-pure-substance",
+      "ky": "таза зат",
+      "ru": "чистое вещество",
+      "en": "pure substance",
+      "forbidden": [
+        "чистая субстанция"
+      ]
+    },
+    {
+      "id": "g-chem-simple-substance",
+      "ky": "жөнөкөй зат",
+      "ru": "простое вещество",
+      "en": "element (substance)",
+      "forbidden": [
+        "элементарное вещество"
+      ]
+    },
+    {
+      "id": "g-chem-compound",
+      "ky": "татаал зат (химиялык бирикме)",
+      "ru": "сложное вещество (химическое соединение)",
+      "en": "compound",
+      "forbidden": [
+        "составное вещество",
+        "compaund"
+      ]
+    },
+    {
+      "id": "g-chem-mixture",
+      "ky": "аралашма",
+      "ru": "смесь",
+      "en": "mixture",
+      "forbidden": [
+        "mixure"
+      ]
+    },
+    {
+      "id": "g-chem-homogeneous-mixture",
+      "ky": "бир тектүү аралашма",
+      "ru": "однородная смесь",
+      "en": "homogeneous mixture",
+      "forbidden": [
+        "homogenous mixture"
+      ]
+    },
+    {
+      "id": "g-chem-heterogeneous-mixture",
+      "ky": "бир тектүү эмес аралашма",
+      "ru": "неоднородная смесь",
+      "en": "heterogeneous mixture",
+      "forbidden": [
+        "heterogenous mixture"
+      ]
+    },
+    {
+      "id": "g-chem-filtration",
+      "ky": "чыпкалоо",
+      "ru": "фильтрование",
+      "en": "filtration",
+      "forbidden": [
+        "filtering out"
+      ]
+    },
+    {
+      "id": "g-chem-filtrate",
+      "ky": "фильтрат",
+      "ru": "фильтрат",
+      "en": "filtrate",
+      "forbidden": [
+        "filtrat"
+      ]
+    },
+    {
+      "id": "g-chem-residue",
+      "ky": "калдык (чыпкадагы)",
+      "ru": "осадок на фильтре",
+      "en": "residue",
+      "forbidden": [
+        "residual"
+      ]
+    },
+    {
+      "id": "g-chem-evaporation-method",
+      "ky": "буулантуу",
+      "ru": "выпаривание",
+      "en": "evaporation",
+      "forbidden": [
+        "испарение досуха"
+      ]
+    },
+    {
+      "id": "g-chem-distillation",
+      "ky": "айдоо (дистилляция)",
+      "ru": "перегонка (дистилляция)",
+      "en": "distillation",
+      "forbidden": [
+        "дистиляция",
+        "distilation"
+      ]
+    },
+    {
+      "id": "g-chem-distillate",
+      "ky": "дистиллят",
+      "ru": "дистиллят",
+      "en": "distillate",
+      "forbidden": [
+        "дистилят",
+        "distilate"
+      ]
+    },
+    {
+      "id": "g-chem-condenser",
+      "ky": "муздаткыч",
+      "ru": "холодильник (конденсатор)",
+      "en": "condenser",
+      "forbidden": [
+        "condensor"
+      ]
+    },
+    {
+      "id": "g-chem-chromatography",
+      "ky": "хроматография",
+      "ru": "хроматография",
+      "en": "chromatography",
+      "forbidden": [
+        "хромотография",
+        "cromatography"
+      ]
+    },
+    {
+      "id": "g-chem-decanting",
+      "ky": "тундуруу жана куюп алуу (декантация)",
+      "ru": "отстаивание и декантация",
+      "en": "settling and decanting",
+      "forbidden": [
+        "decantating"
+      ]
+    },
+    {
+      "id": "g-chem-spirit-burner",
+      "ky": "спирт чырагы",
+      "ru": "спиртовка",
+      "en": "spirit burner",
+      "forbidden": [
+        "спиртовая горелка-лампа"
+      ]
+    },
+    {
+      "id": "g-chem-safety-goggles",
+      "ky": "коргоочу көз айнек",
+      "ru": "защитные очки",
+      "en": "safety goggles",
+      "forbidden": [
+        "safety glasses goggles"
+      ]
+    },
+    {
+      "id": "g-chem-solution",
+      "ky": "эритме",
+      "ru": "раствор",
+      "en": "solution",
+      "forbidden": [
+        "разтвор"
+      ]
+    },
+    {
+      "id": "g-chem-solvent",
+      "ky": "эриткич",
+      "ru": "растворитель",
+      "en": "solvent",
+      "forbidden": [
+        "растворяющее вещество",
+        "dissolver"
+      ]
+    },
+    {
+      "id": "g-chem-solute",
+      "ky": "эриген зат",
+      "ru": "растворённое вещество",
+      "en": "solute",
+      "forbidden": [
+        "solvend"
+      ]
+    },
+    {
+      "id": "g-chem-solubility",
+      "ky": "эригичтик",
+      "ru": "растворимость",
+      "en": "solubility",
+      "forbidden": [
+        "solvability"
+      ]
+    },
+    {
+      "id": "g-chem-saturated-solution",
+      "ky": "каныккан эритме",
+      "ru": "насыщенный раствор",
+      "en": "saturated solution",
+      "forbidden": [
+        "насыщеный раствор",
+        "satured solution"
+      ]
+    },
+    {
+      "id": "g-chem-unsaturated-solution",
+      "ky": "каныкпаган эритме",
+      "ru": "ненасыщенный раствор",
+      "en": "unsaturated solution",
+      "forbidden": [
+        "ненасыщеный раствор"
+      ]
+    },
+    {
+      "id": "g-chem-solubility-curve",
+      "ky": "эригичтиктин ийри сызыгы",
+      "ru": "кривая растворимости",
+      "en": "solubility curve",
+      "forbidden": [
+        "график растворения"
+      ]
+    },
+    {
+      "id": "g-chem-metal",
+      "ky": "металл",
+      "ru": "металл",
+      "en": "metal",
+      "forbidden": [
+        "метал"
+      ]
+    },
+    {
+      "id": "g-chem-reactivity-series",
+      "ky": "металлдардын активдүүлүк катары",
+      "ru": "ряд активности металлов",
+      "en": "reactivity series",
+      "forbidden": [
+        "reactivity row"
+      ]
+    },
+    {
+      "id": "g-chem-oxide",
+      "ky": "оксид",
+      "ru": "оксид",
+      "en": "oxide",
+      "forbidden": [
+        "окись металла",
+        "oxid"
+      ]
+    },
+    {
+      "id": "g-chem-hydroxide",
+      "ky": "гидроксид",
+      "ru": "гидроксид",
+      "en": "hydroxide",
+      "forbidden": [
+        "hydrooxide"
+      ]
+    },
+    {
+      "id": "g-chem-alkali",
+      "ky": "щелочь",
+      "ru": "щёлочь",
+      "en": "alkali",
+      "forbidden": [
+        "alkaline substance"
+      ]
+    },
+    {
+      "id": "g-chem-acid",
+      "ky": "кислота",
+      "ru": "кислота",
+      "en": "acid",
+      "forbidden": [
+        "кычкыл зат"
+      ]
+    },
+    {
+      "id": "g-chem-hydrochloric-acid",
+      "ky": "туз кислотасы",
+      "ru": "соляная кислота",
+      "en": "hydrochloric acid",
+      "forbidden": [
+        "хлордуу кислота",
+        "chloric acid"
+      ]
+    },
+    {
+      "id": "g-chem-salt",
+      "ky": "туз",
+      "ru": "соль",
+      "en": "salt",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-indicator",
+      "ky": "индикатор",
+      "ru": "индикатор",
+      "en": "indicator",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-phenolphthalein",
+      "ky": "фенолфталеин",
+      "ru": "фенолфталеин",
+      "en": "phenolphthalein",
+      "forbidden": [
+        "фенолфталин",
+        "phenolphtalein"
+      ]
+    },
+    {
+      "id": "g-chem-displacement-reaction",
+      "ky": "орун басуу реакциясы",
+      "ru": "реакция замещения",
+      "en": "displacement reaction",
+      "forbidden": [
+        "алмашуу реакциясы",
+        "replacement reaction"
+      ]
+    },
+    {
+      "id": "g-chem-magnesium",
+      "ky": "магний",
+      "ru": "магний",
+      "en": "magnesium",
+      "forbidden": [
+        "magnesia"
+      ]
+    },
+    {
+      "id": "g-chem-calcium",
+      "ky": "кальций",
+      "ru": "кальций",
+      "en": "calcium",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-zinc",
+      "ky": "цинк",
+      "ru": "цинк",
+      "en": "zinc",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-iron",
+      "ky": "темир",
+      "ru": "железо",
+      "en": "iron",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-copper",
+      "ky": "жез",
+      "ru": "медь",
+      "en": "copper",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-gold",
+      "ky": "алтын",
+      "ru": "золото",
+      "en": "gold",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-silver",
+      "ky": "күмүш",
+      "ru": "серебро",
+      "en": "silver",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-exothermic",
+      "ky": "экзотермикалык",
+      "ru": "экзотермический",
+      "en": "exothermic",
+      "forbidden": [
+        "exothermal"
+      ]
+    },
+    {
+      "id": "g-chem-endothermic",
+      "ky": "эндотермикалык",
+      "ru": "эндотермический",
+      "en": "endothermic",
+      "forbidden": [
+        "endothermal"
+      ]
+    },
+    {
+      "id": "g-chem-activation-energy",
+      "ky": "активдешүү энергиясы",
+      "ru": "энергия активации",
+      "en": "activation energy",
+      "forbidden": [
+        "активация энергиясы"
+      ]
+    },
+    {
+      "id": "g-chem-energy-diagram",
+      "ky": "энергетикалык диаграмма",
+      "ru": "энергетическая диаграмма",
+      "en": "energy level diagram",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-enthalpy-change",
+      "ky": "реакциянын жылуулук эффекти (ΔH)",
+      "ru": "тепловой эффект реакции (ΔH)",
+      "en": "energy change of a reaction (ΔH)",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-thermal-decomposition",
+      "ky": "термикалык ажыроо",
+      "ru": "термическое разложение",
+      "en": "thermal decomposition",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-ammonium-nitrate",
+      "ky": "аммоний нитраты",
+      "ru": "нитрат аммония",
+      "en": "ammonium nitrate",
+      "forbidden": [
+        "аммоний нитрат"
+      ]
+    },
+    {
+      "id": "g-chem-plaster-of-paris",
+      "ky": "гипс (CaSO₄·½H₂O)",
+      "ru": "гипс (CaSO₄·½H₂O)",
+      "en": "plaster of Paris",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-crystallisation",
+      "ky": "кристаллдашуу",
+      "ru": "кристаллизация",
+      "en": "crystallisation",
+      "forbidden": []
     }
   ],
   "propertyTypes": [

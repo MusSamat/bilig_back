@@ -6,6 +6,7 @@
  */
 import {
   LANGS,
+  filterTextbookTopics,
   summarizeTopic,
   t,
   topicConcepts,
@@ -13,6 +14,7 @@ import {
   type ContentPackage,
   type Lang,
   type Localized,
+  type Textbook,
 } from '@bilig/content-model';
 import type { SearchHit } from '@bilig/content-model/api';
 import { grantFor, type Principal } from '@bilig/permissions';
@@ -26,7 +28,9 @@ const CACHE_TTL_MS = 30_000;
 
 interface Snapshot {
   at: number;
-  base: Omit<Catalog, 'topics'>;
+  base: Omit<Catalog, 'topics' | 'textbooks'>;
+  /** v0.5.0: lessons list published topics only. */
+  textbooks: Textbook[];
   published: Map<string, PublishedRec>;
   topics: Catalog['topics'];
   index: SearchDoc[];
@@ -66,13 +70,14 @@ export class ContentService {
   private async snapshot(): Promise<Snapshot> {
     const now = this.clock.now().getTime();
     if (this.snap && now - this.snap.at < CACHE_TTL_MS) return this.snap;
-    const all = async <K extends 'group' | 'subject' | 'course' | 'unit'>(k: K) =>
+    const all = async <K extends 'group' | 'subject' | 'course' | 'unit' | 'textbook'>(k: K) =>
       (await this.repo.content(k).list({}, { limit: 100_000 })).items.map((r) => r.data);
-    const [groups, subjects, courses, units, published] = await Promise.all([
+    const [groups, subjects, courses, units, textbooks, published] = await Promise.all([
       all('group'),
       all('subject'),
       all('course'),
       all('unit'),
+      all('textbook'),
       this.repo.listPublished(),
     ]);
     const map = new Map(published.map((p) => [p.topic.key, p]));
@@ -85,6 +90,9 @@ export class ContentService {
         courses: [...courses].sort((a, b) => a.grade - b.grade || a.key.localeCompare(b.key)),
         units: [...units].sort((a, b) => a.order - b.order),
       },
+      textbooks: [...textbooks]
+        .sort((a, b) => a.order - b.order || a.grade - b.grade || a.key.localeCompare(b.key))
+        .map((tb) => filterTextbookTopics(tb, (k) => map.has(k))),
       published: map,
       topics,
       index: buildIndex(published.map((p) => p.build.pkg)),
@@ -94,7 +102,20 @@ export class ContentService {
 
   async catalog(lang: Lang): Promise<Catalog> {
     const s = await this.snapshot();
-    return localizeDeep({ ...s.base, topics: s.topics }, lang);
+    return localizeDeep({ ...s.base, topics: s.topics, textbooks: s.textbooks }, lang);
+  }
+
+  /**
+   * v0.5.0 (КТП): every published package, the textbooks (all languages, lessons
+   * list published topics only) and the subject keys — topic matching and lesson plans.
+   */
+  async ktpSources(): Promise<{ packages: ContentPackage[]; textbooks: Textbook[]; subjectKeys: Set<string> }> {
+    const s = await this.snapshot();
+    return {
+      packages: [...s.published.values()].map((p) => p.build.pkg),
+      textbooks: s.textbooks,
+      subjectKeys: new Set(s.base.subjects.map((x) => x.key)),
+    };
   }
 
   async getPublished(topicKey: string): Promise<PublishedRec | null> {

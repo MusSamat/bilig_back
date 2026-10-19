@@ -1,0 +1,1043 @@
+{
+  "topic": {
+    "key": "pure-substances-mixtures",
+    "unitKey": "chem.g8.mixtures",
+    "status": "published",
+    "title": {
+      "ky": "Таза заттар жана аралашмалар",
+      "ru": "Чистые вещества и смеси",
+      "en": "Pure substances and mixtures"
+    },
+    "formula": "Fe + S",
+    "classification": {
+      "ky": "Темир менен күкүрттүн аралашмасы жана темир сульфиди FeS",
+      "ru": "Смесь железа и серы и сульфид железа FeS",
+      "en": "An iron–sulfur mixture and iron sulfide FeS"
+    },
+    "description": {
+      "ky": "Бизди курчаган заттардын көбү – аралашмалар. Бөлүкчөлөрдүн моделинде жөнөкөй затты, татаал затты (бирикмени) жана аралашманы салыштырабыз, аралашмалардын бир тектүү жана бир тектүү эмес түрлөрүн айырмалайбыз.",
+      "ru": "Большинство веществ вокруг нас – смеси. На модели частиц сравниваем простое вещество, сложное вещество (соединение) и смесь и различаем однородные и неоднородные смеси.",
+      "en": "Most of the materials around us are mixtures. Using a particle model we compare an element, a compound and a mixture and tell homogeneous mixtures from heterogeneous ones."
+    },
+    "goal": {
+      "ky": "Таза заттарды аралашмалардан, жөнөкөй заттарды бирикмелерден, бир тектүү аралашмаларды бир тектүү эместерден айырмалоо (CHEM-8.3.1).",
+      "ru": "Отличать чистые вещества от смесей, простые вещества от соединений, однородные смеси от неоднородных (CHEM-8.3.1).",
+      "en": "Tell pure substances from mixtures, elements from compounds and homogeneous from heterogeneous mixtures (CHEM-8.3.1)."
+    },
+    "objectiveKeys": [
+      "chem.g8.mixtures.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "particles",
+        "species": [
+          {
+            "id": "fe",
+            "element": "Fe",
+            "count": 24,
+            "place": "clump"
+          },
+          {
+            "id": "s",
+            "element": "S",
+            "count": 24,
+            "place": "clump"
+          },
+          {
+            "id": "fes_fe",
+            "element": "Fe",
+            "count": 8,
+            "place": "mixed"
+          },
+          {
+            "id": "fes_s",
+            "element": "S",
+            "count": 8,
+            "place": "mixed"
+          }
+        ],
+        "bonded": [
+          {
+            "a": "fes_fe",
+            "b": "fes_s"
+          }
+        ],
+        "temperature": 20
+      },
+      "camera": {
+        "position": [
+          0,
+          1.5,
+          7
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "motion",
+        "labels",
+        "zoom"
+      ]
+    },
+    "conceptKeys": [
+      "chem.mixture",
+      "chem.element",
+      "chem.compound",
+      "chem.pure-substance",
+      "chem.heterogeneous-mixture",
+      "chem.homogeneous-mixture"
+    ],
+    "overrides": {
+      "chem.mixture": {
+        "nodes": [
+          "Container"
+        ]
+      },
+      "chem.element": {
+        "nodes": [
+          "Species_fe",
+          "Species_s"
+        ],
+        "anchor": [
+          -1.2,
+          -0.6,
+          0
+        ]
+      },
+      "chem.compound": {
+        "nodes": [
+          "Species_fes_fe",
+          "Species_fes_s"
+        ],
+        "anchor": [
+          0.8,
+          0.4,
+          0
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "mix-iron-sulfur",
+        "title": {
+          "ky": "Темир + күкүрт",
+          "ru": "Железо + сера",
+          "en": "Iron + sulfur"
+        },
+        "classification": {
+          "ky": "Бир тектүү эмес аралашма",
+          "ru": "Неоднородная смесь",
+          "en": "Heterogeneous mixture"
+        },
+        "thumb": "thumbs/mix-iron-sulfur.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Fe жана S күкүмдөрү, ар кандай катышта",
+              "ru": "Порошки Fe и S в любом соотношении",
+              "en": "Fe and S powders in any ratio"
+            }
+          }
+        ]
+      },
+      {
+        "key": "compound-fes",
+        "title": {
+          "ky": "Темир сульфиди",
+          "ru": "Сульфид железа",
+          "en": "Iron sulfide"
+        },
+        "classification": {
+          "ky": "Татаал зат (бирикме)",
+          "ru": "Сложное вещество (соединение)",
+          "en": "Compound"
+        },
+        "thumb": "thumbs/compound-fes.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "FeS"
+          },
+          {
+            "kind": "quantity",
+            "type": "molarMass",
+            "value": 88,
+            "approx": true
+          }
+        ]
+      },
+      {
+        "key": "solution-salt-water",
+        "title": {
+          "ky": "Туздуу суу",
+          "ru": "Солёная вода",
+          "en": "Salt water"
+        },
+        "classification": {
+          "ky": "Бир тектүү аралашма",
+          "ru": "Однородная смесь",
+          "en": "Homogeneous mixture"
+        },
+        "thumb": "thumbs/solution-salt-water.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Суу + эриген NaCl",
+              "ru": "Вода + растворённая NaCl",
+              "en": "Water + dissolved NaCl"
+            }
+          }
+        ]
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                7
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "motion": true
+            },
+            "focus": "chem.mixture",
+            "text": {
+              "ky": "Кутучада темир (боз) жана күкүрт (сары) бөлүкчөлөрү, ошондой эле жуп-жуп биригип калган боз-сары бөлүкчөлөр бар. Бүгүн ушул сүрөттү «окуганды» үйрөнөбүз: кайсысы жөнөкөй зат, кайсысы бирикме, кайсысы аралашма?",
+              "ru": "В коробке частицы железа (серые) и серы (жёлтые), а также серо-жёлтые пары. Сегодня научимся «читать» такую картинку: где простое вещество, где соединение, где смесь?",
+              "en": "The box holds iron particles (grey), sulfur particles (yellow) and some grey–yellow pairs. Today we learn to «read» this picture: which is an element, which a compound and which a mixture?"
+            },
+            "teacherNote": {
+              "ky": "Темир күкүмү менен күкүрттүн чыныгы аралашмасын пробиркада көрсөтүңүз. Сураңыз: «Бул бир затпы же бир нечеби? Кантип билебиз?»",
+              "ru": "Покажите настоящую смесь порошков железа и серы в пробирке. Спросите: «Это одно вещество или несколько? Как узнать?»",
+              "en": "Show a real mixture of iron and sulfur powders in a test tube. Ask: “Is this one substance or several? How can we tell?”"
+            },
+            "altText": {
+              "ky": "Тунук кутучада боз жана сары шарчалардын топтору жана жуп-жуп шарчалар кыймылдайт.",
+              "ru": "В прозрачной коробке движутся скопления серых и жёлтых шариков и пары шариков.",
+              "en": "Clumps of grey and yellow balls and some joined pairs move about in a clear box."
+            }
+          },
+          {
+            "key": "element",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                7
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "visibility": {
+              "isolate": [
+                "chem.element"
+              ]
+            },
+            "focus": "chem.element",
+            "text": {
+              "ky": "Боз шарчалардын баары – темирдин атомдору, сары шарчалардын баары – күкүрттүн атомдору. Бир гана элементтин атомдорунан турган зат – жөнөкөй зат.",
+              "ru": "Все серые шарики – атомы железа, все жёлтые – атомы серы. Вещество из атомов только одного элемента – простое вещество.",
+              "en": "All the grey balls are iron atoms and all the yellow ones are sulfur atoms. A substance made of atoms of only one element is an element."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: «Кычкылтек O₂ жуп атомдордон турат. Ал жөнөкөй затпы?» – Ооба, анткени атомдордун баары бир элементке таандык.",
+              "ru": "Спросите: «Кислород O₂ состоит из пар атомов. Это простое вещество?» – Да, ведь все атомы одного элемента.",
+              "en": "Ask: “Oxygen O₂ is made of pairs of atoms. Is it an element?” – Yes, because all the atoms belong to one element."
+            },
+            "altText": {
+              "ky": "Боз жана сары шарчалардын топтору бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделены скопления серых и жёлтых шариков.",
+              "en": "The clumps of grey and yellow balls are highlighted."
+            }
+          },
+          {
+            "key": "compound",
+            "camera": {
+              "position": [
+                1.5,
+                0.8,
+                4
+              ],
+              "target": [
+                0.5,
+                -0.3,
+                0
+              ]
+            },
+            "visibility": {
+              "isolate": [
+                "chem.compound"
+              ]
+            },
+            "focus": "chem.compound",
+            "text": {
+              "ky": "Боз-сары жуптар – темир сульфиди FeS. Мында ар бир темир атому күкүрт атому менен химиялык байланышкан, катышы дайыма 1 : 1. Бул – татаал зат, же бирикме.",
+              "ru": "Серо-жёлтые пары – сульфид железа FeS. Каждый атом железа химически связан с атомом серы, соотношение всегда 1 : 1. Это сложное вещество, или соединение.",
+              "en": "The grey–yellow pairs are iron sulfide, FeS. Each iron atom is chemically bonded to a sulfur atom, always in a 1 : 1 ratio. This is a compound."
+            },
+            "teacherNote": {
+              "ky": "«Темир менен күкүрттүн реакциясы» процессин ишке киргизиңиз. Бул тажрыйбада зыяндуу газ бөлүнүшү мүмкүн, ошондуктан класста ал симуляция катары гана көрсөтүлөт.",
+              "ru": "Запустите процесс «Реакция железа с серой». В этом опыте может выделяться вредный газ, поэтому в классе его показывают только как симуляцию.",
+              "en": "Run the «Iron reacting with sulfur» process. This experiment can give off a harmful gas, so in class it is shown only as a simulation."
+            },
+            "altText": {
+              "ky": "Жуп-жуп биригип кыймылдаган шарчалар бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделены движущиеся пары шариков.",
+              "en": "The moving pairs of balls are highlighted."
+            }
+          },
+          {
+            "key": "pure",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                7
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "chem.pure-substance",
+            "text": {
+              "ky": "Жөнөкөй заттар да, бирикмелер да – таза заттар: алардын курамы туруктуу, касиеттери так. Таза суу 100 °C та кайнайт, ал эми туздуу суу андан жогору температурада кайнайт.",
+              "ru": "И простые вещества, и соединения – чистые вещества: состав постоянен, свойства точны. Чистая вода кипит при 100 °C, а солёная – при более высокой температуре.",
+              "en": "Elements and compounds are both pure substances with a fixed make-up and exact properties. Pure water boils at 100 °C, while salt water boils at a higher temperature."
+            },
+            "teacherNote": {
+              "ky": "Тактага схема чийиңиз: Заттар → таза заттар (жөнөкөй, татаал) жана аралашмалар (бир тектүү, бир тектүү эмес). Окуучулар ар бир бутакка мисал кошсун.",
+              "ru": "Нарисуйте на доске схему: Вещества → чистые (простые, сложные) и смеси (однородные, неоднородные). Пусть ученики добавят пример к каждой ветке.",
+              "en": "Draw the tree on the board: Substances → pure (elements, compounds) and mixtures (homogeneous, heterogeneous). Have students add an example to each branch."
+            },
+            "altText": {
+              "ky": "Бөлүкчөлөрдүн аттары көрсөтүлгөн кутуча.",
+              "ru": "Коробка с подписанными частицами.",
+              "en": "The box with every kind of particle labelled."
+            }
+          },
+          {
+            "key": "heterogeneous",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                7
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "zoom": true
+            },
+            "focus": "chem.heterogeneous-mixture",
+            "text": {
+              "ky": "Темир жана күкүрт топ-топ болуп жатат – аларды көз менен ажыратса болот. Бул бир тектүү эмес аралашма. Магнит темирди тартып алат, анткени аралашмада ар бир зат өз касиетин сактайт.",
+              "ru": "Железо и сера лежат кучками – их можно различить глазом. Это неоднородная смесь. Магнит вытянет железо, ведь в смеси каждое вещество сохраняет свои свойства.",
+              "en": "The iron and sulfur lie in separate clumps you can tell apart by eye. This is a heterogeneous mixture. A magnet pulls out the iron, because each substance in a mixture keeps its properties."
+            },
+            "teacherNote": {
+              "ky": "Кагазга оролгон магнитти аралашманын үстүнөн жүргүзүп көрсөтүңүз. Андан кийин сураңыз: «FeS бирикмесинен темирди магнит менен бөлүп алса болобу?»",
+              "ru": "Проведите магнитом, обёрнутым бумагой, над смесью. Затем спросите: «А из соединения FeS можно вытянуть железо магнитом?»",
+              "en": "Pass a paper-wrapped magnet over the mixture. Then ask: “Could a magnet pull iron out of the compound FeS?”"
+            },
+            "altText": {
+              "ky": "Макро көрүнүш: боз жана сары күкүмдөрдүн тактары.",
+              "ru": "Макровид: пятна серого и жёлтого порошка.",
+              "en": "Macro view: patches of grey and yellow powder."
+            }
+          },
+          {
+            "key": "homogeneous",
+            "sample": "solution-salt-water",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                7
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "zoom": false,
+              "motion": true
+            },
+            "focus": "chem.homogeneous-mixture",
+            "text": {
+              "ky": "Туздуу сууда туздун бөлүкчөлөрү суунун бүт көлөмүнө бирдей таралат – аларды микроскоп менен да көрө албайсың. Бул бир тектүү аралашма. Аба, шекерлүү чай, латунь да бир тектүү аралашмалар.",
+              "ru": "В солёной воде частицы соли равномерно распределены по всему объёму – их не увидеть даже в микроскоп. Это однородная смесь. Воздух, сладкий чай, латунь – тоже однородные смеси.",
+              "en": "In salt water the salt particles spread evenly through the whole volume – you cannot see them even under a microscope. This is a homogeneous mixture, like air, sweet tea and brass."
+            },
+            "teacherNote": {
+              "ky": "Эки стакан көрсөтүңүз: таза суу жана туздуу суу. Сураңыз: «Кайсынысы таза зат? Көз менен билсе болобу?» Бир тамчыны айнекте буулантып, ак так калганын көрсөтүңүз.",
+              "ru": "Покажите два стакана: чистую и солёную воду. Спросите: «Где чистое вещество? Можно ли понять на глаз?» Выпарите каплю на стекле и покажите белый след.",
+              "en": "Show two glasses, pure water and salt water. Ask: “Which is a pure substance? Can you tell by looking?” Evaporate a drop on glass and show the white mark."
+            },
+            "altText": {
+              "ky": "Бөлүкчөлөр кайра кыймылда; текстте туздуу суу жөнүндө айтылат.",
+              "ru": "Частицы снова в движении; в тексте – о солёной воде.",
+              "en": "The particles are moving again; the text describes salt water."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.iron-sulfur-reaction"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.element"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.compound"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.mixture"
+          }
+        ],
+        "rows": [
+          "composition"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.pure-substances-mixtures-1",
+          "chem.q.pure-substances-mixtures-2",
+          "chem.q.pure-substances-mixtures-3",
+          "chem.q.pure-substances-mixtures-4",
+          "chem.q.pure-substances-mixtures-5",
+          "chem.q.pure-substances-mixtures-6",
+          "chem.q.pure-substances-mixtures-7",
+          "chem.q.pure-substances-mixtures-8",
+          "chem.q.pure-substances-mixtures-9",
+          "chem.q.pure-substances-mixtures-10",
+          "chem.q.pure-substances-mixtures-11"
+        ],
+        "sampleSize": 6
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Куймалар",
+            "ru": "Сплавы",
+            "en": "Alloys"
+          },
+          "text": {
+            "ky": "Инженерлер металлдарды аралаштырып, куймаларды алышат: болот – темир менен көмүртектин, латунь – жез менен цинктин аралашмасы.",
+            "ru": "Инженеры смешивают металлы и получают сплавы: сталь – смесь железа с углеродом, латунь – меди с цинком.",
+            "en": "Engineers mix metals to make alloys: steel is iron with carbon, brass is copper with zinc."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Ичүүчү суунун сапаты",
+            "ru": "Качество питьевой воды",
+            "en": "Drinking-water quality"
+          },
+          "text": {
+            "ky": "Лабораторияларда суудагы туздардын жана кошулмалардын өлчөмүн текшерип, суу ичүүгө жарактуу экенин аныкташат.",
+            "ru": "Лаборатории проверяют количество солей и примесей в воде и решают, пригодна ли она для питья.",
+            "en": "Laboratories measure the salts and impurities in water to decide whether it is safe to drink."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Абадан кычкылтек алуу",
+            "ru": "Кислород из воздуха",
+            "en": "Oxygen from air"
+          },
+          "text": {
+            "ky": "Ооруканалар үчүн кычкылтекти абадан – газдардын аралашмасынан – атайын аппараттар менен бөлүп алышат.",
+            "ru": "Кислород для больниц получают из воздуха – смеси газов – с помощью специальных установок.",
+            "en": "Oxygen for hospitals is separated from air, a mixture of gases, by special plants."
+          },
+          "field": "t"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Палоо",
+            "ru": "Плов",
+            "en": "Plov"
+          },
+          "text": {
+            "ky": "Палоодо күрүч, сабиз жана эт аралашкан, бирок ар бирин көрүп, тандап алса болот – бул бир тектүү эмес аралашма.",
+            "ru": "В плове рис, морковь и мясо перемешаны, но каждый ингредиент видно и можно выбрать – это неоднородная смесь.",
+            "en": "In plov the rice, carrots and meat are mixed, but you can see and pick out each one – a heterogeneous mixture."
+          }
+        },
+        {
+          "title": {
+            "ky": "Таттуу чай",
+            "ru": "Сладкий чай",
+            "en": "Sweet tea"
+          },
+          "text": {
+            "ky": "Кант чайда эрип, көрүнбөй калат, бирок чай бүт жеринде бирдей таттуу – бул бир тектүү аралашма.",
+            "ru": "Сахар растворяется и исчезает из виду, но чай везде одинаково сладкий – это однородная смесь.",
+            "en": "Sugar dissolves out of sight, but the tea is equally sweet everywhere – a homogeneous mixture."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "chem.q.pure-substances-mixtures-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Төмөнкүлөрдүн кайсынысы таза зат?",
+        "ru": "Что из перечисленного – чистое вещество?",
+        "en": "Which of these is a pure substance?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Булак суусу",
+            "ru": "Родниковая вода",
+            "en": "Spring water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Деңиз суусу",
+            "ru": "Морская вода",
+            "en": "Sea water"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Дистилденген суу",
+            "ru": "Дистиллированная вода",
+            "en": "Distilled water"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Гранит",
+            "ru": "Гранит",
+            "en": "Granite"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Дистилденген сууда бир гана зат – H₂O бар. Булак суусунда жана деңиз суусунда туздар эриген, гранит – минералдардын аралашмасы.",
+        "ru": "В дистиллированной воде только одно вещество – H₂O. В родниковой и морской воде растворены соли, гранит – смесь минералов.",
+        "en": "Distilled water contains just one substance, H₂O. Spring and sea water have salts dissolved in them, and granite is a mixture of minerals."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.pure-natural",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.pure-substances-mixtures-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсылары аралашмалар? Бардык туура жоопторду танда.",
+        "ru": "Что из этого – смеси? Выбери все верные ответы.",
+        "en": "Which of these are mixtures? Choose all that are correct."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Аба",
+            "ru": "Воздух",
+            "en": "Air"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Сүт",
+            "ru": "Молоко",
+            "en": "Milk"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Деңиз суусу",
+            "ru": "Морская вода",
+            "en": "Sea water"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Кычкылтек O₂",
+            "ru": "Кислород O₂",
+            "en": "Oxygen O₂"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Темир сульфиди FeS",
+            "ru": "Сульфид железа FeS",
+            "en": "Iron sulfide FeS"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Аба, сүт жана деңиз суусу – аралашмалар. Кычкылтек O₂ – жөнөкөй зат, темир сульфиди FeS – бирикме.",
+        "ru": "Воздух, молоко и морская вода – смеси. Кислород O₂ – простое вещество, сульфид железа FeS – соединение.",
+        "en": "Air, milk and sea water are mixtures. Oxygen O₂ is an element and iron sulfide FeS is a compound."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.compound-is-mixture",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.pure-substances-mixtures-3",
+      "type": "match",
+      "prompt": {
+        "ky": "Затты анын түрүнө дал келтир.",
+        "ru": "Сопоставь вещество и его тип.",
+        "en": "Match each substance to its type."
+      },
+      "pairs": [
+        {
+          "key": "el",
+          "left": {
+            "ky": "Кычкылтек O₂",
+            "ru": "Кислород O₂",
+            "en": "Oxygen O₂"
+          },
+          "right": {
+            "ky": "Жөнөкөй зат",
+            "ru": "Простое вещество",
+            "en": "Element"
+          }
+        },
+        {
+          "key": "cmp",
+          "left": {
+            "ky": "Суу H₂O",
+            "ru": "Вода H₂O",
+            "en": "Water H₂O"
+          },
+          "right": {
+            "ky": "Бирикме",
+            "ru": "Соединение",
+            "en": "Compound"
+          }
+        },
+        {
+          "key": "hom",
+          "left": {
+            "ky": "Туздуу суу",
+            "ru": "Солёная вода",
+            "en": "Salt water"
+          },
+          "right": {
+            "ky": "Бир тектүү аралашма",
+            "ru": "Однородная смесь",
+            "en": "Homogeneous mixture"
+          }
+        },
+        {
+          "key": "het",
+          "left": {
+            "ky": "Суу менен кум",
+            "ru": "Вода с песком",
+            "en": "Sand in water"
+          },
+          "right": {
+            "ky": "Бир тектүү эмес аралашма",
+            "ru": "Неоднородная смесь",
+            "en": "Heterogeneous mixture"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "O₂ – жөнөкөй зат, H₂O – бирикме, туздуу суу – бир тектүү аралашма, суу менен кум – бир тектүү эмес аралашма.",
+        "ru": "O₂ – простое вещество, H₂O – соединение, солёная вода – однородная смесь, вода с песком – неоднородная смесь.",
+        "en": "O₂ is an element, H₂O a compound, salt water a homogeneous mixture and sand in water a heterogeneous mixture."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.pure-substances-mixtures-4",
+      "type": "single",
+      "prompt": {
+        "ky": "Темир менен күкүрттүн аралашмасын ысытып, FeS алдык. Ага магнит жакындатсак, эмне болот?",
+        "ru": "Смесь железа и серы нагрели и получили FeS. Что будет, если поднести к нему магнит?",
+        "en": "A mixture of iron and sulfur was heated to make FeS. What happens if you bring a magnet near it?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Магнит темирди тартып алат, күкүрт калат",
+            "ru": "Магнит вытянет железо, сера останется",
+            "en": "The magnet pulls the iron out and leaves the sulfur"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Магнит FeSти тартпайт",
+            "ru": "Магнит не притянет FeS",
+            "en": "The magnet does not attract FeS"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Магнит күкүрттү тартат",
+            "ru": "Магнит притянет серу",
+            "en": "The magnet attracts the sulfur"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "FeS кайра темирге жана күкүрткө ажырайт",
+            "ru": "FeS снова распадётся на железо и серу",
+            "en": "FeS splits back into iron and sulfur"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "FeS – жаңы касиеттери бар бирикме: темир өз алдынча жок болгондуктан, магнит аны тартпайт.",
+        "ru": "FeS – соединение с новыми свойствами: железа как отдельного вещества больше нет, и магнит его не притягивает.",
+        "en": "FeS is a compound with new properties: there is no separate iron any more, so the magnet does not attract it."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.compound-is-mixture",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.pure-substances-mixtures-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден бирикменин бөлүкчөлөрүн тап.",
+        "ru": "Найди на модели частицы соединения.",
+        "en": "Find the particles of the compound on the model."
+      },
+      "targetConceptKey": "chem.compound",
+      "explanation": {
+        "ky": "Бирикме – FeS: ар бир темир атому күкүрт атому менен байланышкан боз-сары жуптар.",
+        "ru": "Соединение – FeS: серо-жёлтые пары, где атом железа связан с атомом серы.",
+        "en": "The compound is FeS: the grey–yellow pairs in which an iron atom is bonded to a sulfur atom."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.pure-substances-mixtures-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден жөнөкөй заттын бөлүкчөлөрүн тап.",
+        "ru": "Найди на модели частицы простого вещества.",
+        "en": "Find the particles of an element on the model."
+      },
+      "targetConceptKey": "chem.element",
+      "explanation": {
+        "ky": "Боз темир атомдорунун тобу же сары күкүрт атомдорунун тобу – жөнөкөй заттар.",
+        "ru": "Скопление серых атомов железа или жёлтых атомов серы – простые вещества.",
+        "en": "The clump of grey iron atoms or of yellow sulfur atoms is an element."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.element-single-atoms",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.pure-substances-mixtures-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "7 г темир 4 г күкүрт менен толук реакцияга кирип, FeS пайда болду. Канча грамм FeS алынды?",
+        "ru": "7 г железа полностью прореагировали с 4 г серы, образовался FeS. Сколько граммов FeS получилось?",
+        "en": "7 g of iron reacts completely with 4 g of sulfur to make FeS. How many grams of FeS form?"
+      },
+      "answer": 11,
+      "tolerance": 0,
+      "unit": "g",
+      "explanation": {
+        "ky": "Реакцияда атомдор жоголбойт: 7 г + 4 г = 11 г FeS.",
+        "ru": "В реакции атомы не теряются: 7 г + 4 г = 11 г FeS.",
+        "en": "No atoms are lost in a reaction: 7 g + 4 g = 11 g of FeS."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.pure-substances-mixtures-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Абада көлөм боюнча ≈21 % кычкылтек бар. 50 л абада болжол менен канча литр кычкылтек бар?",
+        "ru": "В воздухе ≈21 % кислорода по объёму. Сколько примерно литров кислорода в 50 л воздуха?",
+        "en": "Air is ≈21 % oxygen by volume. About how many litres of oxygen are in 50 L of air?"
+      },
+      "answer": 10.5,
+      "tolerance": 0.5,
+      "unit": "L",
+      "explanation": {
+        "ky": "50 л × 0,21 = 10,5 л.",
+        "ru": "50 л × 0,21 = 10,5 л.",
+        "en": "50 L × 0.21 = 10.5 L."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.pure-substances-mixtures-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Сүт бир түстүү көрүнөт. Ал аралашманын кайсы түрүнө кирет?",
+        "ru": "Молоко выглядит однородным по цвету. К какому типу смесей оно относится?",
+        "en": "Milk looks all one colour. What kind of mixture is it?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Бир тектүү аралашма",
+            "ru": "Однородная смесь",
+            "en": "Homogeneous mixture"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Бир тектүү эмес аралашма",
+            "ru": "Неоднородная смесь",
+            "en": "Heterogeneous mixture"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Таза зат",
+            "ru": "Чистое вещество",
+            "en": "Pure substance"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Жөнөкөй зат",
+            "ru": "Простое вещество",
+            "en": "Element"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Микроскоптон сүттөгү майдын тамчылары көрүнөт, ошондуктан ал бир тектүү эмес аралашма.",
+        "ru": "В микроскоп видны капельки жира, поэтому молоко – неоднородная смесь.",
+        "en": "Under a microscope you can see fat droplets, so milk is a heterogeneous mixture."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.milk-homogeneous",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.pure-substances-mixtures-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Аралашма жөнүндө кайсы пикир туура?",
+        "ru": "Какое утверждение о смеси верно?",
+        "en": "Which statement about a mixture is true?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Компоненттер өз касиеттерин сактайт",
+            "ru": "Компоненты сохраняют свои свойства",
+            "en": "The parts keep their own properties"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Аралаштырганда дайыма жаңы зат пайда болот",
+            "ru": "При смешивании всегда образуется новое вещество",
+            "en": "Mixing always makes a new substance"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Компоненттердин катышы дайыма туруктуу",
+            "ru": "Соотношение компонентов всегда постоянно",
+            "en": "The ratio of the parts is always fixed"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Аралашманы химиялык реакция менен гана бөлүүгө болот",
+            "ru": "Смесь можно разделить только химической реакцией",
+            "en": "A mixture can only be separated by a chemical reaction"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Аралашмада жаңы зат пайда болбойт: ар бир компонент өз касиеттерин сактайт, ошондуктан аларды физикалык жол менен бөлүүгө болот.",
+        "ru": "В смеси новое вещество не образуется: каждый компонент сохраняет свои свойства, поэтому их можно разделить физическими способами.",
+        "en": "No new substance forms in a mixture: each part keeps its own properties, so they can be separated by physical methods."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.mixture-new-substance",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.pure-substances-mixtures-11",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Бирикменин белгилерин танда.",
+        "ru": "Выбери признаки соединения.",
+        "en": "Choose the features of a compound."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Элементтердин катышы туруктуу",
+            "ru": "Постоянное соотношение элементов",
+            "en": "A fixed ratio of elements"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Касиеттери аны түзгөн элементтердикинен башка",
+            "ru": "Свойства отличаются от свойств его элементов",
+            "en": "Properties differ from those of its elements"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Химиялык реакция менен гана ажырайт",
+            "ru": "Разлагается только химической реакцией",
+            "en": "Can only be split by a chemical reaction"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Чыпка менен бөлүнөт",
+            "ru": "Разделяется фильтрованием",
+            "en": "Can be separated by filtering"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Компоненттер каалаган катышта болот",
+            "ru": "Компоненты в любом соотношении",
+            "en": "The parts can be in any ratio"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Бирикменин курамы туруктуу, касиеттери элементтердикинен башка, аны химиялык реакция менен гана ажыратууга болот.",
+        "ru": "У соединения постоянный состав, свойства отличаются от свойств элементов, разложить его можно только химической реакцией.",
+        "en": "A compound has a fixed make-up, properties unlike its elements and can only be broken down by a chemical reaction."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.compound-is-mixture",
+      "difficulty": 3
+    }
+  ]
+}

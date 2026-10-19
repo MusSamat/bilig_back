@@ -15,7 +15,7 @@ import { CONTRACT_VERSION } from './i18n.js';
 const ID = '018f2d4e-1a2b-7c3d-8e4f-5a6b7c8d9e0f';
 
 describe('contract 0.4.0', () => {
-  it('version', () => expect(CONTRACT_VERSION).toBe('0.4.0'));
+  it('version is 0.4.0 or later', () => expect(CONTRACT_VERSION >= '0.4.0').toBe(true));
 
   it('ask: context envelope and intent are optional and validated', () => {
     const base = { topicKey: 'methane', question: 'А сколько атомов?', lang: 'ru' };

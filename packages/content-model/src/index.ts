@@ -15,6 +15,7 @@ export * from './process.js';
 export * from './item.js';
 export * from './glossary.js';
 export * from './topic.js';
+export * from './textbook.js';
 export * from './scene-state.js';
 export * from './package.js';
 export * from './validate.js';

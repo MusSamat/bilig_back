@@ -39,6 +39,7 @@ import type {
   PageReq,
   PageRes,
   PresentationRec,
+  TeachingPlanRec,
   ProgressRec,
   PublishedRec,
   Repository,
@@ -144,6 +145,7 @@ export class MemoryRepository implements Repository {
   private events = new Map<Id, LearningEventRec>();
   private idem = new Map<string, IdempotencyRec>();
   private presentations = new Map<Id, PresentationRec>();
+  private teachingPlans = new Map<Id, TeachingPlanRec>();
   private snapshots = new Map<Id, SnapshotRec>();
   private threads = new Map<Id, TutorThreadRec>();
   private messages: TutorMessageRec[] = [];
@@ -758,6 +760,35 @@ export class MemoryRepository implements Repository {
     const res = pageArray(rows, page, (p) => p.id);
     return { items: res.items.map(clone), nextCursor: res.nextCursor };
   }
+  // --- КТП ----------------------------------------------------------------------
+  async createTeachingPlan(p: TeachingPlanRec) {
+    this.teachingPlans.set(p.id, clone(p));
+  }
+  async getTeachingPlan(id: Id) {
+    const p = this.teachingPlans.get(id);
+    return p ? clone(p) : null;
+  }
+  async updateTeachingPlan(id: Id, patch: Partial<Pick<TeachingPlanRec, 'title' | 'doc'>>, expectedVersion: number): Promise<WriteResult<TeachingPlanRec>> {
+    const p = this.teachingPlans.get(id);
+    if (!p) return 'not_found';
+    if (p.version !== expectedVersion) return 'version_mismatch';
+    const next: TeachingPlanRec = { ...p, ...clone(patch), id, version: p.version + 1, updatedAt: new Date() };
+    this.teachingPlans.set(id, next);
+    return clone(next);
+  }
+  async deleteTeachingPlan(id: Id, expectedVersion: number) {
+    const p = this.teachingPlans.get(id);
+    if (!p) return 'not_found' as const;
+    if (p.version !== expectedVersion) return 'version_mismatch' as const;
+    this.teachingPlans.delete(id);
+    return 'ok' as const;
+  }
+  async listTeachingPlans(ownerId: Id, page: PageReq) {
+    const rows = [...this.teachingPlans.values()].filter((p) => p.ownerId === ownerId).sort(byId);
+    const res = pageArray(rows, page, (p) => p.id);
+    return { items: res.items.map(clone), nextCursor: res.nextCursor };
+  }
+
   async createSnapshot(s: SnapshotRec) {
     this.snapshots.set(s.id, clone(s));
   }

@@ -254,6 +254,7 @@ export function crossCheckPackage(pkg: ContentPackage): ValidationIssue[] {
         if (!topicConceptKeys.has(ck)) err(at('visibility', k, i), 'concept_missing', `"${ck}" not in topic`);
       }),
     );
+    if (s.sample && !sampleKeys.has(s.sample)) err(at('sample'), 'sample_missing', `Sample "${s.sample}" not in topic`);
     if (missingLangs(s.altText).length) warn(at('altText'), 'alt_text_incomplete', 'Alt text not in all languages');
   });
   if (acts.tour) dupes(acts.tour.steps.map((s) => s.key), ['topic', 'activities', 'tour', 'steps'], 'tour step');

@@ -1,0 +1,3300 @@
+{
+  "manifest": {
+    "topicKey": "forces",
+    "version": "1.0.0",
+    "hash": "03255de7ed3dbba118cd0fd9c5c483997203555c393565e3c183e4d65442f9e1",
+    "files": [
+      {
+        "path": "thumbs/forces-pull-8n.webp",
+        "hash": "8d5b17ff68d4a1adddaae2d0f0ff49af87dc56f9e159279bbedd906af32ec017",
+        "size": 0
+      },
+      {
+        "path": "thumbs/forces-tug-of-war.webp",
+        "hash": "60f267dac1ae68d40364de9f938b05da04e2ba30cdaf02da093a0e2c6f5c9184",
+        "size": 0
+      },
+      {
+        "path": "thumbs/forces-hanging-1kg.webp",
+        "hash": "42049c0ba997e7534ba9c8567a94b64fb61409d769c6da9f41de3c65d5fa749e",
+        "size": 0
+      },
+      {
+        "path": "thumbs/forces-balanced.webp",
+        "hash": "2597a73e16fd32b5810f3683d91a68b1773569c535cbfece57cb2635c3bc09ac",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "phys",
+    "icon": "orbit",
+    "hue": 28,
+    "group": "natural",
+    "order": 2,
+    "status": "live",
+    "title": {
+      "ky": "Физика",
+      "ru": "Физика",
+      "en": "Physics"
+    }
+  },
+  "course": {
+    "key": "phys.g8",
+    "subjectKey": "phys",
+    "grade": 8,
+    "curriculum": "kg-2024",
+    "title": {
+      "ky": "Физика, 8-класс",
+      "ru": "Физика, 8 класс",
+      "en": "Physics, grade 8"
+    }
+  },
+  "unit": {
+    "key": "phys.g8.motion",
+    "courseKey": "phys.g8",
+    "order": 2,
+    "title": {
+      "ky": "Күчтөр жана кыймыл",
+      "ru": "Силы и движение",
+      "en": "Forces and motion"
+    }
+  },
+  "objectives": [
+    {
+      "key": "phys.g8.motion.o1",
+      "code": "PHYS-8.4.1",
+      "unitKey": "phys.g8.motion",
+      "text": {
+        "ky": "Ылдамдыкты эсептөө жана аралыктын убакыттан көз карандылык графигин окуу.",
+        "ru": "Вычислять скорость и читать график зависимости пути от времени.",
+        "en": "Calculate speed and read a distance–time graph."
+      }
+    },
+    {
+      "key": "phys.g8.motion.o2",
+      "code": "PHYS-8.4.2",
+      "unitKey": "phys.g8.motion",
+      "text": {
+        "ky": "Күчтөрдү векторлор менен сүрөттөө, тең аракеттүү күчтү жана күчтүн моментин табуу.",
+        "ru": "Изображать силы векторами, находить равнодействующую и момент силы.",
+        "en": "Draw forces as vectors, find the resultant force and the moment of a force."
+      }
+    }
+  ],
+  "topic": {
+    "key": "forces",
+    "unitKey": "phys.g8.motion",
+    "status": "published",
+    "title": {
+      "ky": "Күчтөрдүн мүнөздөмөлөрү",
+      "ru": "Характеристики сил",
+      "en": "Describing forces"
+    },
+    "formula": "F = m·g",
+    "classification": {
+      "ky": "Динамика",
+      "ru": "Динамика",
+      "en": "Dynamics"
+    },
+    "description": {
+      "ky": "Столдогу 2 кг брусокту динамометр менен тартабыз. Ага тартуу күчү, оордук күчү, таянычтын реакция күчү жана сүрүлүү күчү таасир этет. Ар бир күч – чоңдугу, багыты жана коюлган чекити бар вектор; бир түз сызыктагы күчтөрдөн тең аракеттүү күчтү табабыз.",
+      "ru": "Тянем динамометром брусок массой 2 кг по столу. На него действуют сила тяги, сила тяжести, сила реакции опоры и сила трения. Каждая сила – вектор с модулем, направлением и точкой приложения; находим равнодействующую сил, действующих вдоль одной прямой.",
+      "en": "We pull a 2 kg block across a table with a dynamometer. The pull, gravity, the normal force and friction act on it. Each force is a vector with a size, a direction and a point of application; we find the resultant of forces acting along one line."
+    },
+    "goal": {
+      "ky": "Күчтү вектор катары сүрөттөө, динамометр менен ченөө, оордук күчүн жана салмакты F = m·g боюнча эсептөө, бир түз сызыкта аракет эткен күчтөрдүн тең аракеттүүсүн табуу (PHYS-8.4.2).",
+      "ru": "Изображать силу вектором, измерять её динамометром, вычислять силу тяжести и вес по формуле F = m·g, находить равнодействующую сил, действующих вдоль одной прямой (PHYS-8.4.2).",
+      "en": "Draw a force as a vector, measure it with a dynamometer, calculate gravity and weight with F = mg, and find the resultant of forces acting along one line (PHYS-8.4.2)."
+    },
+    "objectiveKeys": [
+      "phys.g8.motion.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "forces",
+        "mass": 2,
+        "forces": [
+          {
+            "id": "pull",
+            "magnitude": 8,
+            "angleDeg": 0
+          }
+        ],
+        "gravity": true,
+        "friction": 0.25,
+        "dynamometer": true
+      },
+      "camera": {
+        "position": [
+          0,
+          1.4,
+          4.5
+        ],
+        "target": [
+          0,
+          0.6,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "resultant",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.block",
+      "phys.force",
+      "phys.dynamometer",
+      "phys.gravity",
+      "phys.normal-force",
+      "phys.friction-force",
+      "phys.net-force",
+      "phys.weight"
+    ],
+    "overrides": {
+      "phys.block": {
+        "nodes": [
+          "Block"
+        ],
+        "description": {
+          "ky": "Горизонталдык столдо жаткан 2 кг брусок. Ага тартуу күчү (8 Н, оңго), оордук күчү (19,6 Н, ылдый), таянычтын реакция күчү (19,6 Н, өйдө) жана сүрүлүү күчү (4,9 Н, солго) таасир этет.",
+          "ru": "Брусок массой 2 кг на горизонтальном столе. На него действуют сила тяги (8 Н, вправо), сила тяжести (19,6 Н, вниз), сила реакции опоры (19,6 Н, вверх) и сила трения (4,9 Н, влево).",
+          "en": "A 2 kg block on a level table. Acting on it are the pull (8 N, right), gravity (19.6 N, down), the normal force (19.6 N, up) and friction (4.9 N, left)."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.25
+          }
+        ]
+      },
+      "phys.force": {
+        "nodes": [
+          "Arrow_pull",
+          "Arrow_team-a",
+          "Arrow_team-b",
+          "Arrow_hold"
+        ],
+        "description": {
+          "ky": "Динамометр брусокту 8 Н күч менен оңго тартат. Күч – вектор: чоңдугу 8 Н, багыты – горизонталдык оңго, коюлган чекити – брусоктогу илгич. Жебенин узундугу күчтүн чоңдугуна пропорционалдуу.",
+          "ru": "Динамометр тянет брусок вправо с силой 8 Н. Сила – вектор: модуль 8 Н, направление – горизонтально вправо, точка приложения – крючок на бруске. Длина стрелки пропорциональна модулю силы.",
+          "en": "The dynamometer pulls the block to the right with 8 N. Force is a vector: size 8 N, direction horizontally to the right, point of application the hook on the block. The arrow's length is proportional to the size of the force."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 8
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\vec{F}"
+          }
+        ]
+      },
+      "phys.dynamometer": {
+        "nodes": [
+          "Dynamometer",
+          "Spring"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 8
+          }
+        ]
+      },
+      "phys.gravity": {
+        "nodes": [
+          "Arrow_Gravity"
+        ],
+        "description": {
+          "ky": "Жер брусокту өзүнө тартат: F = m·g = 2 кг · 9,8 Н/кг = 19,6 Н. Оордук күчү дайыма тик ылдый багытталат жана дененин өзүнө (анын борборуна) коюлат.",
+          "ru": "Земля притягивает брусок: F = m·g = 2 кг · 9,8 Н/кг = 19,6 Н. Сила тяжести всегда направлена вертикально вниз и приложена к самому телу (к его центру).",
+          "en": "The Earth pulls the block: F = mg = 2 kg × 9.8 N/kg = 19.6 N. Gravity always points straight down and acts on the body itself (at its centre)."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 19.6
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F = m \\cdot g"
+          },
+          {
+            "kind": "quantity",
+            "type": "gravity",
+            "value": 9.8,
+            "unit": "N/kg",
+            "approx": true
+          }
+        ]
+      },
+      "phys.normal-force": {
+        "nodes": [
+          "Arrow_Normal"
+        ],
+        "description": {
+          "ky": "Стол брусокту өйдө түртөт. Горизонталдык столдо, башка тик күчтөр жок болсо, N = m·g = 19,6 Н: ал оордук күчүн теңдейт, ошондуктан брусок столго батып кетпейт жана өйдө учуп кетпейт.",
+          "ru": "Стол давит на брусок вверх. На горизонтальном столе, если других вертикальных сил нет, N = m·g = 19,6 Н: она уравновешивает силу тяжести, поэтому брусок не проваливается и не взлетает.",
+          "en": "The table pushes the block up. On a level table with no other vertical forces, N = mg = 19.6 N: it balances gravity, so the block neither sinks into the table nor rises."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 19.6
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "N = m g"
+          }
+        ]
+      },
+      "phys.friction-force": {
+        "nodes": [
+          "Arrow_Friction"
+        ],
+        "description": {
+          "ky": "Брусок менен столдун беттеринин ортосундагы күч, кыймылга каршы – солго. Жылган брусок үчүн F_сүр = μN = 0,25 · 19,6 = 4,9 Н.",
+          "ru": "Сила между поверхностями бруска и стола, направлена против движения – влево. Для скользящего бруска F_тр = μN = 0,25 · 19,6 = 4,9 Н.",
+          "en": "The force between the block and the table surface, acting against the motion – to the left. For the sliding block F = μN = 0.25 × 19.6 = 4.9 N."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 4.9
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.25
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F = \\mu N"
+          }
+        ]
+      },
+      "phys.net-force": {
+        "nodes": [
+          "Arrow_Resultant"
+        ],
+        "description": {
+          "ky": "Бардык күчтөрдү алмаштыра турган бир күч. Бир түз сызыктагы күчтөр бир багытта болсо кошулат, карама-каршы болсо чоңунан кичинеси кемитилет жана тең аракеттүү күч чоңунун багытында болот. Бул жерде: горизонталь боюнча 8 − 4,9 = 3,1 Н оңго, тик боюнча 19,6 − 19,6 = 0.",
+          "ru": "Одна сила, которая заменяет все силы. Силы вдоль одной прямой в одну сторону складываются, в противоположные – из большей вычитают меньшую, и равнодействующая направлена в сторону большей. Здесь: по горизонтали 8 − 4,9 = 3,1 Н вправо, по вертикали 19,6 − 19,6 = 0.",
+          "en": "The single force that could replace all the others. Forces along one line in the same direction add; in opposite directions the smaller is taken from the larger, and the resultant points the way of the larger. Here: horizontally 8 − 4.9 = 3.1 N to the right, vertically 19.6 − 19.6 = 0."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 3.1
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "R = F_1 - F_2"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "forces-pull-8n",
+        "title": {
+          "ky": "Брусокту 8 Н менен тартуу",
+          "ru": "Тянем брусок с силой 8 Н",
+          "en": "Pulling a block with 8 N"
+        },
+        "classification": {
+          "ky": "Тең аракеттүү күч 3,1 Н",
+          "ru": "Равнодействующая 3,1 Н",
+          "en": "Resultant 3.1 N"
+        },
+        "thumb": "thumbs/forces-pull-8n.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 8
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.25
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "forces",
+            "mass": 2,
+            "forces": [
+              {
+                "id": "pull",
+                "magnitude": 8,
+                "angleDeg": 0
+              }
+            ],
+            "gravity": true,
+            "friction": 0.25,
+            "dynamometer": true
+          },
+          "camera": {
+            "position": [
+              -0.5,
+              1.3,
+              3.8
+            ],
+            "target": [
+              -0.5,
+              0.45,
+              0
+            ],
+            "fov": 45
+          }
+        }
+      },
+      {
+        "key": "forces-tug-of-war",
+        "title": {
+          "ky": "Аркан тартыш: 300 Н жана 250 Н",
+          "ru": "Перетягивание каната: 300 Н и 250 Н",
+          "en": "Tug of war: 300 N and 250 N"
+        },
+        "classification": {
+          "ky": "Карама-каршы күчтөр, R = 50 Н",
+          "ru": "Противоположные силы, R = 50 Н",
+          "en": "Opposite forces, R = 50 N"
+        },
+        "thumb": "thumbs/forces-tug-of-war.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 50
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "forces",
+            "mass": 10,
+            "forces": [
+              {
+                "id": "team-a",
+                "magnitude": 300,
+                "angleDeg": 0
+              },
+              {
+                "id": "team-b",
+                "magnitude": 250,
+                "angleDeg": 180
+              }
+            ],
+            "gravity": false,
+            "friction": 0,
+            "dynamometer": false
+          },
+          "camera": {
+            "position": [
+              -0.5,
+              1.3,
+              3.8
+            ],
+            "target": [
+              -0.5,
+              0.45,
+              0
+            ],
+            "fov": 45
+          }
+        }
+      },
+      {
+        "key": "forces-hanging-1kg",
+        "title": {
+          "ky": "Динамометрдеги 1 кг жүк",
+          "ru": "Груз 1 кг на динамометре",
+          "en": "A 1 kg load on a dynamometer"
+        },
+        "classification": {
+          "ky": "Салмагы ≈ 9,8 Н",
+          "ru": "Вес ≈ 9,8 Н",
+          "en": "Weight ≈ 9.8 N"
+        },
+        "thumb": "thumbs/forces-hanging-1kg.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 9.8,
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 1
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "forces",
+            "mass": 1,
+            "forces": [
+              {
+                "id": "hold",
+                "magnitude": 9.8,
+                "angleDeg": 90
+              }
+            ],
+            "gravity": true,
+            "friction": 0,
+            "dynamometer": true
+          },
+          "camera": {
+            "position": [
+              0,
+              1.5,
+              4.2
+            ],
+            "target": [
+              0,
+              0.9,
+              0
+            ],
+            "fov": 45
+          }
+        }
+      },
+      {
+        "key": "forces-balanced",
+        "title": {
+          "ky": "Тартуу сүрүлүүгө барабар: 4,9 Н",
+          "ru": "Тяга равна трению: 4,9 Н",
+          "en": "Pull equals friction: 4.9 N"
+        },
+        "classification": {
+          "ky": "Тең аракеттүү күч 0 – ылдамдык өзгөрбөйт",
+          "ru": "Равнодействующая 0 – скорость не меняется",
+          "en": "Resultant 0 – constant speed"
+        },
+        "thumb": "thumbs/forces-balanced.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 4.9
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.25
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "forces",
+            "mass": 2,
+            "forces": [
+              {
+                "id": "pull",
+                "magnitude": 4.9,
+                "angleDeg": 0
+              }
+            ],
+            "gravity": true,
+            "friction": 0.25,
+            "dynamometer": true
+          },
+          "modes": {
+            "vectors": true,
+            "resultant": true,
+            "labels": true
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "mass",
+        "value": 2
+      },
+      {
+        "kind": "quantity",
+        "type": "force",
+        "value": 8
+      },
+      {
+        "kind": "quantity",
+        "type": "frictionCoefficient",
+        "value": 0.25
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "F = m \\cdot g"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false,
+              "resultant": false,
+              "labels": false
+            },
+            "focus": "phys.block",
+            "text": {
+              "ky": "Столдо 2 кг брусок жатат, ага динамометр илинген. Брусокту тартабыз. Ага кандай күчтөр таасир этет – сиздин божомолуңуз?",
+              "ru": "На столе лежит брусок массой 2 кг, к нему прицеплен динамометр. Тянем брусок. Какие силы на него действуют – ваши предположения?",
+              "en": "A 2 kg block lies on a table with a dynamometer hooked to it. We pull. Which forces act on it – what do you think?"
+            },
+            "teacherNote": {
+              "ky": "Жебелерди көрсөтүүдөн мурун окуучулар брусокту дептерге чийип, өздөрү билген күчтөрдү белгилешсин. Кийин сахна менен салыштырыңыз.",
+              "ru": "До показа стрелок пусть ученики нарисуют брусок в тетради и отметят силы, которые знают. Потом сравните со сценой.",
+              "en": "Before showing the arrows, have pupils sketch the block and mark the forces they know. Then compare with the scene."
+            },
+            "altText": {
+              "ky": "Столдогу брусок жана ага илинген динамометр.",
+              "ru": "Брусок на столе и прицепленный к нему динамометр.",
+              "en": "A block on a table with a dynamometer hooked to it."
+            }
+          },
+          {
+            "key": "vector",
+            "camera": {
+              "position": [
+                0.6,
+                1,
+                2.6
+              ],
+              "target": [
+                0.3,
+                0.7,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.force",
+            "text": {
+              "ky": "Тартуу күчү – 8 Н, горизонталдык оңго, илгичке коюлган. Күчтүн үч мүнөздөмөсү бар: чоңдугу, багыты жана коюлган чекити. Ошондуктан аны жебе – вектор менен сүрөттөйбүз.",
+              "ru": "Сила тяги – 8 Н, горизонтально вправо, приложена к крючку. У силы три характеристики: модуль, направление и точка приложения. Поэтому её изображают стрелкой – вектором.",
+              "en": "The pull is 8 N, horizontally to the right, applied at the hook. A force has three features: size, direction and point of application. That is why we draw it as an arrow – a vector."
+            },
+            "teacherNote": {
+              "ky": "Масштабды тактага чийиңиз: 1 см = 2 Н, демек 8 Н – 4 см жебе. Сураңыз: ошол эле 8 Н солго тартса, эмне өзгөрөт? (Багыты – ал эми натыйжа такыр башка.)",
+              "ru": "Покажите масштаб на доске: 1 см = 2 Н, значит, 8 Н – стрелка 4 см. Спросите: что изменится, если те же 8 Н тянут влево? (Направление – и результат совсем другой.)",
+              "en": "Show a scale on the board: 1 cm = 2 N, so 8 N is a 4 cm arrow. Ask: what changes if the same 8 N pulls to the left? (The direction – and a completely different outcome.)"
+            },
+            "altText": {
+              "ky": "Брусоктун илгичинен оңго караган 8 Н жебе.",
+              "ru": "Стрелка 8 Н от крючка бруска вправо.",
+              "en": "An 8 N arrow from the block's hook pointing right."
+            }
+          },
+          {
+            "key": "dynamometer",
+            "camera": {
+              "position": [
+                0.6,
+                1,
+                2.6
+              ],
+              "target": [
+                0.3,
+                0.7,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.dynamometer",
+            "text": {
+              "ky": "Динамометрдин пружинасы чоюлду, шкала 8 Н көрсөтөт. Күч канча чоң болсо, пружина ошончо көп чоюлат – динамометр ушул касиетке негизделген.",
+              "ru": "Пружина динамометра растянулась, шкала показывает 8 Н. Чем больше сила, тем сильнее растягивается пружина – на этом основан динамометр.",
+              "en": "The dynamometer's spring has stretched and the scale reads 8 N. The bigger the force, the more the spring stretches – that is how a dynamometer works."
+            },
+            "teacherNote": {
+              "ky": "Чыныгы динамометрди көрсөтүңүз: адегенде жебени нөлгө коюу керек, анан приборду күчтүн багыты боюнча кармоо керек. «Динамометрдеги 1 кг жүк» үлгүсүн ачыңыз: ал 9,8 Н көрсөтөт, 1 кг эмес!",
+              "ru": "Покажите настоящий динамометр: сначала указатель ставят на ноль, затем прибор держат вдоль силы. Откройте образец «Груз 1 кг на динамометре»: он показывает 9,8 Н, а не 1 кг!",
+              "en": "Show a real dynamometer: set the pointer to zero first, then hold it along the force. Open the '1 kg load on a dynamometer' sample: it reads 9.8 N, not 1 kg!"
+            },
+            "altText": {
+              "ky": "Чоюлган пружиналуу динамометр, шкаласында 8 Н.",
+              "ru": "Динамометр с растянутой пружиной, на шкале 8 Н.",
+              "en": "A dynamometer with its spring stretched; the scale shows 8 N."
+            }
+          },
+          {
+            "key": "vertical",
+            "camera": {
+              "position": [
+                -1.2,
+                1.1,
+                3.2
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.gravity",
+            "text": {
+              "ky": "Оордук күчү: F = m·g = 2 кг · 9,8 Н/кг = 19,6 Н, тик ылдый. Стол брусокту ошондой эле 19,6 Н менен өйдө түртөт. Тик багыттагы бул эки күч теңделет. Брусок столду 19,6 Н менен басат – бул анын салмагы, ал столго коюлган.",
+              "ru": "Сила тяжести: F = m·g = 2 кг · 9,8 Н/кг = 19,6 Н, вертикально вниз. Стол давит на брусок вверх с такой же силой 19,6 Н. Эти две вертикальные силы уравновешены. Брусок давит на стол с силой 19,6 Н – это его вес, он приложен к столу.",
+              "en": "Gravity: F = mg = 2 kg × 9.8 N/kg = 19.6 N, straight down. The table pushes the block up with the same 19.6 N. These two vertical forces balance. The block presses on the table with 19.6 N – that is its weight, and it acts on the table."
+            },
+            "teacherNote": {
+              "ky": "Салмак менен массаны айырмалаңыз: масса – кг, салмак – Н. Сураңыз: Айда брусоктун массасы канча болот? (2 кг – өзгөрбөйт.) Салмагычы? (≈ 3,2 Н.)",
+              "ru": "Разведите вес и массу: масса – в кг, вес – в Н. Спросите: какой будет масса бруска на Луне? (2 кг – не изменится.) А вес? (≈ 3,2 Н.)",
+              "en": "Separate weight from mass: mass in kg, weight in N. Ask: what is the block's mass on the Moon? (Still 2 kg.) And its weight? (About 3.2 N.)"
+            },
+            "altText": {
+              "ky": "Брусоктон ылдый жана өйдө караган бирдей узундуктагы эки жебе.",
+              "ru": "Две стрелки одинаковой длины от бруска вниз и вверх.",
+              "en": "Two equal arrows from the block, one down and one up."
+            }
+          },
+          {
+            "key": "friction",
+            "camera": {
+              "position": [
+                -1.2,
+                1.1,
+                3.2
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.friction-force",
+            "text": {
+              "ky": "Сүрүлүү күчү брусок менен столдун ортосунда пайда болуп, кыймылга каршы – солго багытталат: F = μN = 0,25 · 19,6 = 4,9 Н. Ал беттерге жана таянычтын реакция күчүнө көз каранды.",
+              "ru": "Сила трения возникает между бруском и столом и направлена против движения – влево: F = μN = 0,25 · 19,6 = 4,9 Н. Она зависит от поверхностей и силы реакции опоры.",
+              "en": "Friction arises between the block and the table and acts against the motion – to the left: F = μN = 0.25 × 19.6 = 4.9 N. It depends on the surfaces and on the normal force."
+            },
+            "teacherNote": {
+              "ky": "Сүрүлүү «дайыма зыяндуу» эмес экенин талкуулаңыз: ансыз баса албайбыз, машина токтобойт. Кыска тажрыйба: китепти парта үстүндө жана кагаз үстүндө динамометр менен тартып салыштыргыла.",
+              "ru": "Обсудите, что трение не «всегда вредно»: без него не пойти и не затормозить. Мини-опыт: протащите книгу динамометром по парте и по бумаге и сравните.",
+              "en": "Discuss why friction is not 'always bad': without it we could not walk or brake. Quick test: drag a book with a dynamometer across a desk and across paper and compare."
+            },
+            "altText": {
+              "ky": "Брусоктун астынан солго караган кыска жебе.",
+              "ru": "Короткая стрелка влево у основания бруска.",
+              "en": "A short arrow pointing left at the base of the block."
+            }
+          },
+          {
+            "key": "resultant",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "resultant": true,
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.net-force",
+            "text": {
+              "ky": "Күчтөрдү кошобуз. Горизонталь боюнча: 8 Н оңго жана 4,9 Н солго – карама-каршы, ошондуктан R = 8 − 4,9 = 3,1 Н оңго. Тик боюнча: 19,6 − 19,6 = 0. Брусок оңго тездейт.",
+              "ru": "Складываем силы. По горизонтали: 8 Н вправо и 4,9 Н влево – навстречу, поэтому R = 8 − 4,9 = 3,1 Н вправо. По вертикали: 19,6 − 19,6 = 0. Брусок разгоняется вправо.",
+              "en": "Add the forces. Horizontally: 8 N right and 4.9 N left – opposite, so R = 8 − 4.9 = 3.1 N to the right. Vertically: 19.6 − 19.6 = 0. The block speeds up to the right."
+            },
+            "teacherNote": {
+              "ky": "«Аркан тартыш» үлгүсүн көрсөтүңүз: 300 Н жана 250 Н → 50 Н күчтүү команданын тарабына. Андан кийин сураңыз: эки бала бир тарапка 300 Н жана 250 Н менен түртсө? (550 Н.)",
+              "ru": "Покажите образец «Перетягивание каната»: 300 Н и 250 Н → 50 Н в сторону сильной команды. Затем спросите: а если двое толкают в одну сторону с силами 300 Н и 250 Н? (550 Н.)",
+              "en": "Show the 'Tug of war' sample: 300 N and 250 N → 50 N towards the stronger team. Then ask: what if two children push the same way with 300 N and 250 N? (550 N.)"
+            },
+            "altText": {
+              "ky": "Оңго караган 3,1 Н тең аракеттүү күчтүн жебеси.",
+              "ru": "Стрелка равнодействующей 3,1 Н вправо.",
+              "en": "The 3.1 N resultant arrow pointing right."
+            }
+          },
+          {
+            "key": "balanced",
+            "sample": "forces-balanced",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "resultant": true
+            },
+            "focus": "phys.net-force",
+            "text": {
+              "ky": "Эгер тартууну 4,9 Н ге чейин азайтсак, тең аракеттүү күч нөл болот – брусок токтобойт, бирдей ылдамдык менен жыла берет. Кыймыл үчүн күч керек эмес, ылдамдыкты өзгөртүү үчүн керек.",
+              "ru": "Если уменьшить тягу до 4,9 Н, равнодействующая станет нулевой – брусок не остановится, а будет скользить с постоянной скоростью. Сила нужна не для движения, а для изменения скорости.",
+              "en": "If we reduce the pull to 4.9 N the resultant becomes zero – the block does not stop but slides on at a constant speed. A force is needed to change speed, not to keep moving."
+            },
+            "teacherNote": {
+              "ky": "«Брусокту динамометр менен тартуу» процессин иштетип, метрикаларды бирге караңыз. Бул – 9-класстагы Ньютондун биринчи мыйзамына көпүрө.",
+              "ru": "Запустите процесс «Тянем брусок динамометром» и посмотрите показатели вместе. Это мостик к первому закону Ньютона в 9 классе.",
+              "en": "Run the 'Pulling a block with a dynamometer' process and read the values together. This is a bridge to Newton's first law in grade 9."
+            },
+            "altText": {
+              "ky": "Тартуу жана сүрүлүү жебелери бирдей, тең аракеттүү күч жок.",
+              "ru": "Стрелки тяги и трения равны, равнодействующей нет.",
+              "en": "The pull and friction arrows are equal; there is no resultant."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.dynamometer-pull"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "forces-pull-8n"
+          },
+          {
+            "kind": "sample",
+            "key": "forces-tug-of-war"
+          },
+          {
+            "kind": "sample",
+            "key": "forces-hanging-1kg"
+          }
+        ],
+        "rows": [
+          "force",
+          "mass"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.forces-1",
+          "phys.q.forces-2",
+          "phys.q.forces-3",
+          "phys.q.forces-4",
+          "phys.q.forces-5",
+          "phys.q.forces-6",
+          "phys.q.forces-7",
+          "phys.q.forces-8",
+          "phys.q.forces-9",
+          "phys.q.forces-10",
+          "phys.q.forces-11",
+          "phys.q.forces-12",
+          "phys.q.forces-13"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Көпүрөлөр жана имараттар",
+            "ru": "Мосты и здания",
+            "en": "Bridges and buildings"
+          },
+          "text": {
+            "ky": "Инженерлер көпүрөгө таасир эткен бардык күчтөрдү – анын салмагын, машиналардын жүгүн, шамалды – векторлор менен кошуп, тең аракеттүү күчтү тиреклер көтөрө алабы деп текшеришет.",
+            "ru": "Инженеры складывают все силы, действующие на мост, – его вес, нагрузку от машин, ветер – как векторы и проверяют, выдержат ли опоры равнодействующую.",
+            "en": "Engineers add up every force on a bridge – its own weight, the traffic, the wind – as vectors, and check that the supports can carry the resultant."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Дөңгөлөктүн протектору",
+            "ru": "Протектор шины",
+            "en": "Tyre tread"
+          },
+          "text": {
+            "ky": "Кышкы шиналардын протектору жана резинасы муз үстүндө сүрүлүүнү чоңойтот: тормоздук жол кыскарат, машина тайгаланбайт.",
+            "ru": "Протектор и резина зимних шин увеличивают трение на льду: тормозной путь короче, машину меньше заносит.",
+            "en": "Winter tyre tread and rubber raise friction on ice: braking distances shrink and the car skids less."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Айдагы салмак",
+            "ru": "Вес на Луне",
+            "en": "Weight on the Moon"
+          },
+          "text": {
+            "ky": "Айда g ≈ 1,6 Н/кг, ошондуктан скафандрдагы 120 кг космонавттын салмагы Жердегидей ≈ 1180 Н эмес, ≈ 190 Н гана болгон.",
+            "ru": "На Луне g ≈ 1,6 Н/кг, поэтому космонавт в скафандре массой 120 кг весил там не ≈ 1180 Н, как на Земле, а лишь ≈ 190 Н.",
+            "en": "On the Moon g ≈ 1.6 N/kg, so a 120 kg astronaut in a spacesuit weighed only about 190 N there instead of about 1180 N on Earth."
+          },
+          "field": "s"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Аркан тартыш",
+            "ru": "Перетягивание каната",
+            "en": "Tug of war"
+          },
+          "text": {
+            "ky": "Эки команда тең күч менен тартса, аркан ордунан жылбайт – тең аракеттүү күч нөл. Бир команда 50 Н күчтүүрөөк тартса, аркан ошол тарапка жылат.",
+            "ru": "Если команды тянут с равной силой, канат не двигается – равнодействующая равна нулю. Если одна тянет на 50 Н сильнее, канат поедет к ней.",
+            "en": "When both teams pull equally, the rope does not move – the resultant is zero. If one team pulls 50 N harder, the rope moves its way."
+          }
+        },
+        {
+          "title": {
+            "ky": "Шкафты жылдыруу",
+            "ru": "Двигаем шкаф",
+            "en": "Moving a wardrobe"
+          },
+          "text": {
+            "ky": "Оор шкафты эки адам бир тараптан түртсө, алардын күчтөрү кошулат. Бирок шкаф ордунан жылышы үчүн жалпы күч сүрүлүүдөн чоң болушу керек.",
+            "ru": "Когда двое толкают тяжёлый шкаф с одной стороны, их силы складываются. Но шкаф сдвинется, только если общая сила больше трения.",
+            "en": "When two people push a heavy wardrobe from the same side their forces add. But it only moves if their total force beats friction."
+          }
+        }
+      ]
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "phys.block",
+      "kind": "body",
+      "hue": 20,
+      "isContainer": false,
+      "title": {
+        "ky": "Брусок",
+        "ru": "Брусок",
+        "en": "Block"
+      },
+      "subtitle": {
+        "ky": "Кыймылдаган дене",
+        "ru": "Движущееся тело",
+        "en": "The moving body"
+      },
+      "description": {
+        "ky": "Жантайма тегиздикте жаткан 2 кг брусок. Ага үч күч таасир этет: оордук күчү, таянычтын реакция күчү жана сүрүлүү күчү. Алардын суммасы ылдамданууну берет: a = F/m.",
+        "ru": "Брусок массой 2 кг на наклонной плоскости. На него действуют три силы: тяжести, реакции опоры и трения. Их сумма задаёт ускорение: a = F/m.",
+        "en": "A 2 kg block on the incline. Three forces act on it – gravity, the normal force and friction – and their sum gives the acceleration: a = F/m."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "mass",
+          "value": 2
+        },
+        {
+          "kind": "quantity",
+          "type": "acceleration",
+          "value": 3.21,
+          "approx": true
+        },
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Тик бурчтуу параллелепипед",
+            "ru": "Прямоугольный параллелепипед",
+            "en": "Rectangular box"
+          }
+        }
+      ],
+      "related": [
+        "phys.gravity",
+        "phys.friction-force",
+        "phys.net-force"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.motion-needs-force",
+          "text": {
+            "ky": "Дене кыймылдашы үчүн ага дайыма күч таасир этиши керек.",
+            "ru": "Чтобы тело двигалось, на него всё время должна действовать сила.",
+            "en": "A body needs a constant force to keep moving."
+          },
+          "correction": {
+            "ky": "Ньютондун биринчи мыйзамы: эгер күчтөр теңделсе, дене бир калыпта түз сызыктуу кыймылын улантат. Күч ылдамдыкты өзгөртүү үчүн керек.",
+            "ru": "Первый закон Ньютона: если силы скомпенсированы, тело продолжает двигаться равномерно и прямолинейно. Сила нужна, чтобы изменить скорость.",
+            "en": "Newton's first law: if the forces balance, a body keeps moving at a steady speed in a straight line. A force is needed to change the speed."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Эгер сүрүлүү болбосо, 30° жантайма тегиздиктеги ар кандай брусок g·sin 30° = 4,9 м/с² ылдамдануу менен тайгаланат – массасынан көз карандысыз.",
+        "ru": "Без трения любой брусок на склоне 30° скользил бы с ускорением g·sin 30° = 4,9 м/с² – независимо от массы.",
+        "en": "Without friction any block on a 30° slope would slide with an acceleration of g·sin 30° = 4.9 m/s², whatever its mass."
+      },
+      "analogy": {
+        "ky": "Тоодон түшкөн чана",
+        "ru": "Санки с горки",
+        "en": "A sled going downhill"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Каракол лыжа базасы",
+              "ru": "Лыжная база Каракола",
+              "en": "Karakol ski base"
+            },
+            "text": {
+              "ky": "Каракол лыжа базасынын тик трассаларында лыжачы жантык трассаларга караганда тезирээк ылдамдайт.",
+              "ru": "На крутых трассах лыжной базы Каракола лыжник разгоняется быстрее, чем на пологих.",
+              "en": "On the steep runs at the Karakol ski base a skier speeds up faster than on the gentle ones."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Конвейерлер",
+              "ru": "Конвейеры",
+              "en": "Conveyor belts"
+            },
+            "text": {
+              "ky": "Кендерде көмүр жана руда жантык конвейерлер менен көтөрүлөт; инженерлер жүк тайгаланбашы үчүн бурчту жана сүрүлүүнү эсептешет.",
+              "ru": "На рудниках уголь и руду поднимают наклонными конвейерами; инженеры рассчитывают угол и трение, чтобы груз не съезжал.",
+              "en": "In mines coal and ore are carried up sloping conveyors; engineers work out the angle and friction so the load does not slide back."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Чана",
+              "ru": "Санки",
+              "en": "A sled"
+            },
+            "text": {
+              "ky": "Кышында чана менен дөңсөөдөн түшкөндө, ылдыйда эң тез болосуң – ылдамдануу ушул.",
+              "ru": "Зимой, съезжая на санках с горки, внизу ты едешь быстрее всего – это и есть ускорение.",
+              "en": "Sledding down a hill in winter, you are fastest at the bottom – that is acceleration."
+            }
+          },
+          {
+            "title": {
+              "ky": "Китеп жантык столдо",
+              "ru": "Книга на наклонной парте",
+              "en": "A book on a tilted desk"
+            },
+            "text": {
+              "ky": "Партаны бир аз жантайтсаң китеп турат, катуураак жантайтсаң – тайгаланып кетет.",
+              "ru": "Чуть наклони парту – книга лежит, наклони сильнее – соскользнёт.",
+              "en": "Tilt the desk a little and the book stays; tilt it more and it slides off."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.force",
+      "kind": "force",
+      "hue": 15,
+      "isContainer": false,
+      "title": {
+        "ky": "Күч",
+        "ru": "Сила",
+        "en": "Force"
+      },
+      "subtitle": {
+        "ky": "F, ньютон (Н)",
+        "ru": "F, ньютон (Н)",
+        "en": "F, newton (N)"
+      },
+      "description": {
+        "ky": "Бир дененин экинчи денеге таасиринин чени. Күч – вектор: анын чоңдугу (ньютон менен), багыты жана коюлган чекити бар. Сүрөттө аны жебе менен көрсөтөбүз: жебенин узундугу – чоңдугу, учу – багыты, башталышы – коюлган чекити. Күч дененин ылдамдыгын же формасын өзгөртөт.",
+        "ru": "Мера действия одного тела на другое. Сила – вектор: у неё есть модуль (в ньютонах), направление и точка приложения. На рисунке её изображают стрелкой: длина – модуль, остриё – направление, начало – точка приложения. Сила меняет скорость тела или его форму.",
+        "en": "A measure of how one body acts on another. Force is a vector: it has a magnitude (in newtons), a direction and a point of application. We draw it as an arrow: its length is the magnitude, its tip the direction and its tail the point of application. A force changes a body's speed or its shape."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "\\vec{F}"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Ылдамдыкты же форманы өзгөртөт",
+            "ru": "Меняет скорость или форму тела",
+            "en": "Changes speed or shape"
+          }
+        }
+      ],
+      "related": [
+        "phys.dynamometer",
+        "phys.net-force",
+        "phys.gravity"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.force-inside-body",
+          "text": {
+            "ky": "Күч дененин ичинде сакталат: ыргытылган топ колдун «күчүн» өзү менен ала кетет.",
+            "ru": "Сила хранится внутри тела: брошенный мяч уносит с собой «силу» руки.",
+            "en": "Force is stored inside a body: a thrown ball carries the 'force' of the hand with it."
+          },
+          "correction": {
+            "ky": "Күч – эки дененин өз ара аракети. Топ колдон чыккандан кийин ага кол таасир этпейт; анын кыймылын оордук күчү жана абанын каршылыгы өзгөртөт.",
+            "ru": "Сила – это взаимодействие двух тел. Когда мяч покинул руку, рука на него больше не действует; его движение меняют сила тяжести и сопротивление воздуха.",
+            "en": "A force is an interaction between two bodies. Once the ball leaves the hand, the hand no longer acts on it; gravity and air resistance change its motion."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Көпүрөнүн тростору",
+              "ru": "Тросы моста",
+              "en": "Bridge cables"
+            },
+            "text": {
+              "ky": "Аспалуу көпүрөнү долбоорлоодо инженерлер ар бир тростогу күчтү вектор катары эсептеп, аларды кошуп, тиреклер көтөрө турган жүктү табышат.",
+              "ru": "Проектируя подвесной мост, инженеры считают силу в каждом тросе как вектор и складывают их, чтобы найти нагрузку на опоры.",
+              "en": "When designing a suspension bridge, engineers treat the force in every cable as a vector and add them up to find the load on the towers."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Күч датчиги",
+              "ru": "Датчик силы",
+              "en": "Force sensor"
+            },
+            "text": {
+              "ky": "Электрондук таразанын ичинде күч датчиги бар: ал басымдан бир аз ийилип, күчтү электр сигналына айлантат.",
+              "ru": "Внутри электронных весов стоит датчик силы: он чуть прогибается под нагрузкой и превращает силу в электрический сигнал.",
+              "en": "Inside electronic scales is a force sensor: it bends slightly under the load and turns the force into an electrical signal."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Алма жана 1 ньютон",
+              "ru": "Яблоко и 1 ньютон",
+              "en": "An apple and 1 newton"
+            },
+            "text": {
+              "ky": "100 г алманы алаканыңда кармап турганда, ага болжол менен 1 Н күч менен таасир этесиң.",
+              "ru": "Держа на ладони яблоко массой 100 г, ты действуешь на него с силой примерно 1 Н.",
+              "en": "Holding a 100 g apple on your palm, you push up on it with about 1 N."
+            }
+          },
+          {
+            "title": {
+              "ky": "Супермаркеттин арабасы",
+              "ru": "Тележка в супермаркете",
+              "en": "A shopping trolley"
+            },
+            "text": {
+              "ky": "Арабаны алдыга түртсөң – алдыга жүрөт, капталдан түртсөң – бурулат: күчтүн багыты маанилүү.",
+              "ru": "Толкнёшь тележку вперёд – поедет вперёд, толкнёшь сбоку – повернёт: направление силы важно.",
+              "en": "Push a trolley forwards and it goes forwards; push it from the side and it turns: the direction of a force matters."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.dynamometer",
+      "kind": "instrument",
+      "hue": 45,
+      "isContainer": false,
+      "title": {
+        "ky": "Динамометр",
+        "ru": "Динамометр",
+        "en": "Dynamometer (spring scale)"
+      },
+      "description": {
+        "ky": "Күчтү ченөөчү прибор. Ичинде пружина бар: ага канча чоң күч таасир этсе, ал ошончо көп чоюлат, ал эми шкала чоюлууну ньютонго айлантып көрсөтөт. Ченөөдөн мурун жебени нөлгө коюп, динамометрди ченелүүчү күчтүн багыты боюнча кармайбыз.",
+        "ru": "Прибор для измерения силы. Внутри – пружина: чем больше сила, тем сильнее она растягивается, а шкала переводит растяжение в ньютоны. Перед измерением ставят указатель на ноль и держат динамометр вдоль измеряемой силы.",
+        "en": "An instrument that measures force. Inside is a spring: the bigger the force, the more it stretches, and the scale turns the stretch into newtons. Before measuring, set the pointer to zero and hold the dynamometer along the force you are measuring."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Күчтү ньютон менен ченейт",
+            "ru": "Измеряет силу в ньютонах",
+            "en": "Measures force in newtons"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Пружина, шкала, жебе, илгич",
+            "ru": "Пружина, шкала, указатель, крючок",
+            "en": "Spring, scale, pointer, hook"
+          }
+        }
+      ],
+      "related": [
+        "phys.force",
+        "phys.weight"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.dynamometer-measures-mass",
+          "text": {
+            "ky": "Динамометр массаны ченейт.",
+            "ru": "Динамометр измеряет массу.",
+            "en": "A dynamometer measures mass."
+          },
+          "correction": {
+            "ky": "Динамометр күчтү ньютон менен ченейт. 1 кг жүк илинсе, Жерде ≈ 9,8 Н көрсөтөт, ал эми Айда ошол эле жүк ≈ 1,6 Н көрсөтөт.",
+            "ru": "Динамометр измеряет силу в ньютонах. Груз 1 кг на Земле растягивает его на ≈ 9,8 Н, а на Луне тот же груз покажет ≈ 1,6 Н.",
+            "en": "A dynamometer measures force in newtons. A 1 kg load reads about 9.8 N on Earth, but the same load would read about 1.6 N on the Moon."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Жүк таразасы",
+              "ru": "Багажный безмен",
+              "en": "Luggage scale"
+            },
+            "text": {
+              "ky": "Аэропортко барардан мурун чемоданды пружиналуу кол таразага илип, анын 23 кгдан ашпаганын текшеришет.",
+              "ru": "Перед поездкой в аэропорт чемодан подвешивают на пружинный безмен и проверяют, что он не тяжелее 23 кг.",
+              "en": "Before a flight people hang a suitcase on a spring luggage scale to check it is under 23 kg."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Крандын датчиги",
+              "ru": "Датчик крана",
+              "en": "Crane load cell"
+            },
+            "text": {
+              "ky": "Көтөргүч крандын илгичинде күч датчиги турат: жүк чектен ашса, кран көтөрүүнү токтотот.",
+              "ru": "На крюке подъёмного крана стоит датчик силы: если груз превышает предел, кран останавливает подъём.",
+              "en": "A crane hook has a load cell: if the load is over the limit, the crane stops lifting."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Резина",
+              "ru": "Резинка",
+              "en": "A rubber band"
+            },
+            "text": {
+              "ky": "Резинага оор баштыкты илсең, ал жеңил баштыкка караганда көбүрөөк чоюлат – динамометр ушул эле принцип менен иштейт.",
+              "ru": "Повесь на резинку тяжёлый пакет – она растянется сильнее, чем с лёгким. Динамометр работает так же.",
+              "en": "Hang a heavy bag on a rubber band and it stretches more than with a light one – a dynamometer works the same way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Базардагы илме тараза",
+              "ru": "Безмен на базаре",
+              "en": "A market spring balance"
+            },
+            "text": {
+              "ky": "Базарда кээде эт же картөшкөнү пружиналуу илме тараза менен тартышат: жүк канча оор болсо, пружина ошончо узарат.",
+              "ru": "На базаре иногда взвешивают мясо или картошку пружинным безменом: чем тяжелее груз, тем сильнее растянута пружина.",
+              "en": "At the bazaar meat or potatoes are sometimes weighed with a spring balance: the heavier the load, the longer the spring."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.gravity",
+      "kind": "force",
+      "hue": 260,
+      "isContainer": false,
+      "title": {
+        "ky": "Оордук күчү",
+        "ru": "Сила тяжести",
+        "en": "Force of gravity"
+      },
+      "subtitle": {
+        "ky": "Жер тартат",
+        "ru": "Притяжение Земли",
+        "en": "Earth's pull"
+      },
+      "description": {
+        "ky": "Жер бардык денелерди өзүнө тарткан күч: F = mg, мында g ≈ 9,81 м/с². Ал дайыма тик ылдый багытталат.",
+        "ru": "Сила, с которой Земля притягивает все тела: F = mg, где g ≈ 9,81 м/с². Она всегда направлена вертикально вниз.",
+        "en": "The force with which the Earth pulls every body: F = mg, where g ≈ 9.81 m/s². It always points straight down."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "acceleration",
+          "value": 9.81
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "F = mg"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Денелерди Жерге тартат",
+            "ru": "Притягивает тела к Земле",
+            "en": "Pulls bodies towards the Earth"
+          }
+        }
+      ],
+      "related": [
+        "phys.bob",
+        "phys.block"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.gravity-only-falling",
+          "text": {
+            "ky": "Оордук күчү кулап жаткан денелерге гана таасир этет.",
+            "ru": "Сила тяжести действует только на падающие тела.",
+            "en": "Gravity only acts on falling objects."
+          },
+          "correction": {
+            "ky": "Оордук күчү бардык денелерге – столдогу китепке да, учуп бараткан учакка да дайыма таасир этет.",
+            "ru": "Сила тяжести всегда действует на все тела – и на книгу на столе, и на летящий самолёт.",
+            "en": "Gravity always acts on every body – a book on a table and a plane in flight alike."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Айда g Жердегиден болжол менен 6 эсе аз – 1,62 м/с².",
+        "ru": "На Луне g примерно в 6 раз меньше, чем на Земле, – 1,62 м/с².",
+        "en": "On the Moon g is about 6 times smaller than on Earth – 1.62 m/s²."
+      },
+      "analogy": {
+        "ky": "Көрүнбөгөн магнит",
+        "ru": "Невидимый магнит",
+        "en": "An invisible magnet"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Токтогул ГЭСи",
+              "ru": "Токтогульская ГЭС",
+              "en": "Toktogul hydropower plant"
+            },
+            "text": {
+              "ky": "Нарын дарыясынын суусу оордук күчүнүн таасиринен бийиктен түшүп, турбиналарды айлантат – Кыргызстандын электринин чоң бөлүгү ушинтип алынат.",
+              "ru": "Вода Нарына под действием силы тяжести падает с высоты и вращает турбины – так получают большую часть электричества Кыргызстана.",
+              "en": "Naryn river water falls from a height under gravity and spins the turbines – that is how much of Kyrgyzstan's electricity is made."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Салмакты эсептөө",
+              "ru": "Расчёт силы тяжести",
+              "en": "Calculating weight"
+            },
+            "text": {
+              "ky": "2 кг брусокко таасир эткен оордук күчү: F = 2 · 9,81 ≈ 19,6 Н.",
+              "ru": "Сила тяжести, действующая на брусок 2 кг: F = 2 · 9,81 ≈ 19,6 Н.",
+              "en": "The force of gravity on a 2 kg block: F = 2 × 9.81 ≈ 19.6 N."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Алманын түшүшү",
+              "ru": "Падающее яблоко",
+              "en": "A falling apple"
+            },
+            "text": {
+              "ky": "Бактагы алма ылдый түшөт, жогору учпайт – аны Жер тартат.",
+              "ru": "Яблоко в саду падает вниз, а не улетает вверх – его притягивает Земля.",
+              "en": "An apple in the orchard falls down, not up – the Earth pulls it."
+            }
+          },
+          {
+            "title": {
+              "ky": "Топ ыргытуу",
+              "ru": "Бросок мяча",
+              "en": "Throwing a ball"
+            },
+            "text": {
+              "ky": "Топту канчалык бийик ыргытсаң да, ал кайра колуңа кайтып келет.",
+              "ru": "Как высоко ни подбрось мяч, он вернётся обратно.",
+              "en": "However high you throw a ball, it always comes back down."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.normal-force",
+      "kind": "force",
+      "hue": 170,
+      "isContainer": false,
+      "title": {
+        "ky": "Таянычтын реакция күчү",
+        "ru": "Сила реакции опоры",
+        "en": "Normal force"
+      },
+      "subtitle": {
+        "ky": "Тегиздик түртөт",
+        "ru": "Опора давит в ответ",
+        "en": "The surface pushes back"
+      },
+      "description": {
+        "ky": "Тегиздик брусокту ага перпендикуляр түрткөн күч: N = mg·cos α. Ньютондун үчүнчү мыйзамы боюнча брусок да тегиздикке ошондой күч менен басат.",
+        "ru": "Сила, с которой плоскость давит на брусок перпендикулярно своей поверхности: N = mg·cos α. По третьему закону Ньютона брусок давит на плоскость с такой же силой.",
+        "en": "The force with which the surface pushes on the block at right angles to itself: N = mg·cos α. By Newton's third law the block pushes back on the surface just as hard."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "force",
+          "value": 16.99,
+          "approx": true
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "N = mg\\cos\\alpha"
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Тегиздикке перпендикуляр",
+            "ru": "Перпендикулярно плоскости",
+            "en": "Perpendicular to the surface"
+          }
+        }
+      ],
+      "related": [
+        "phys.ramp",
+        "phys.friction-force"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.normal-equals-weight",
+          "text": {
+            "ky": "Таянычтын реакция күчү дайыма mg ге барабар.",
+            "ru": "Сила реакции опоры всегда равна mg.",
+            "en": "The normal force always equals mg."
+          },
+          "correction": {
+            "ky": "Жантайма тегиздикте N = mg·cos α, башкача айтканда mg ден аз; 30° үчүн ≈ 0,87 mg.",
+            "ru": "На наклонной плоскости N = mg·cos α, то есть меньше mg; при 30° – около 0,87 mg.",
+            "en": "On an incline N = mg·cos α, which is less than mg; at 30° it is about 0.87 mg."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Лифт ылдамдап жогору көтөрүлгөндө таянычтын реакция күчү чоңоет – ошондуктан өзүбүздү оор сезебиз.",
+        "ru": "Когда лифт разгоняется вверх, сила реакции опоры растёт – поэтому мы чувствуем себя тяжелее.",
+        "en": "When a lift accelerates upwards, the normal force grows – that is why we feel heavier."
+      },
+      "analogy": {
+        "ky": "Батуттун түртүшү",
+        "ru": "Упругий батут",
+        "en": "A bouncy trampoline"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Көпүрөлөрдүн таянычтары",
+              "ru": "Опоры мостов",
+              "en": "Bridge supports"
+            },
+            "text": {
+              "ky": "Инженерлер көпүрөнүн таянычтары машиналардын салмагына жооп кайтара турган реакция күчүн көтөрө алышын эсептешет.",
+              "ru": "Инженеры рассчитывают, чтобы опоры моста выдерживали силу реакции, отвечающую на вес машин.",
+              "en": "Engineers check that bridge supports can provide the reaction force that balances the weight of the traffic."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Таразалар",
+              "ru": "Весы",
+              "en": "Scales"
+            },
+            "text": {
+              "ky": "Үйдөгү электрондук тараза чындыгында таянычтын реакция күчүн өлчөйт, анан аны килограммга айлантат.",
+              "ru": "Напольные электронные весы на самом деле измеряют силу реакции опоры и пересчитывают её в килограммы.",
+              "en": "Bathroom scales actually measure the normal force and convert it into kilograms."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Колду дубалга таяп",
+              "ru": "Ладонь на стене",
+              "en": "Pushing a wall"
+            },
+            "text": {
+              "ky": "Дубалды түртсөң, дубал да сени түртөт – ошондуктан колуң ичине кирбейт.",
+              "ru": "Ты давишь на стену – стена давит на тебя, поэтому рука не проваливается.",
+              "en": "Push a wall and the wall pushes you back – that is why your hand does not go through."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тоңгон көлдүн музу",
+              "ru": "Лёд на озере",
+              "en": "Ice on a lake"
+            },
+            "text": {
+              "ky": "Калың муз сени көтөрүп турат – ал астыңдан жогору карай түртөт.",
+              "ru": "Толстый лёд держит тебя – он толкает тебя снизу вверх.",
+              "en": "Thick ice holds you up – it pushes up on you from below."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.friction-force",
+      "kind": "force",
+      "hue": 340,
+      "isContainer": false,
+      "title": {
+        "ky": "Сүрүлүү күчү",
+        "ru": "Сила трения",
+        "en": "Friction force"
+      },
+      "subtitle": {
+        "ky": "Кыймылга тоскоол",
+        "ru": "Мешает скольжению",
+        "en": "Resists sliding"
+      },
+      "description": {
+        "ky": "Тийишип турган беттердин ортосунда пайда болуп, кыймылга каршы багытталган күч: F = μN, мында μ – сүрүлүү коэффициенти.",
+        "ru": "Сила, возникающая между соприкасающимися поверхностями и направленная против движения: F = μN, где μ – коэффициент трения.",
+        "en": "A force between touching surfaces that acts against the motion: F = μN, where μ is the coefficient of friction."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "force",
+          "value": 3.4,
+          "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "frictionCoefficient",
+          "value": 0.2
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "F_{тр} = \\mu N"
+        }
+      ],
+      "related": [
+        "phys.normal-force",
+        "phys.block"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.friction-always-bad",
+          "text": {
+            "ky": "Сүрүлүү дайыма зыяндуу.",
+            "ru": "Трение всегда вредно.",
+            "en": "Friction is always harmful."
+          },
+          "correction": {
+            "ky": "Сүрүлүүсүз биз баса албайт элек, машиналар токтой албайт эле, мык да кармалбайт эле.",
+            "ru": "Без трения мы не смогли бы ходить, машины – тормозить, а гвозди – держаться в доске.",
+            "en": "Without friction we could not walk, cars could not brake and nails would not stay in wood."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Музда μ болжол менен 0,03–0,05 гана, ошондуктан коньки ушунчалык жеңил тайгаланат.",
+        "ru": "У льда μ всего около 0,03–0,05, поэтому коньки так легко скользят.",
+        "en": "On ice μ is only about 0.03–0.05, which is why skates glide so easily."
+      },
+      "analogy": {
+        "ky": "Кийиз басуудагы жүн",
+        "ru": "Шерсть при валянии войлока",
+        "en": "Wool in felt-making"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Кышкы дөңгөлөктөр",
+              "ru": "Зимние шины",
+              "en": "Winter tyres"
+            },
+            "text": {
+              "ky": "Төө-Ашуудагы кышкы жолдо машиналарга тиштүү же чегелүү дөңгөлөк коюлат – алар сүрүлүүнү көбөйтөт.",
+              "ru": "На зимней дороге через Тоо-Ашуу ставят шипованные шины – они увеличивают трение.",
+              "en": "For the winter road over Too-Ashuu cars use studded tyres, which increase friction."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Кийиз басуу",
+              "ru": "Валяние войлока",
+              "en": "Felt-making"
+            },
+            "text": {
+              "ky": "Шырдак жана ала-кийиз жасаганда жүндү суу менен тоголотуп, сүрүлтүшөт – сүрүлүүдөн жүн жипчелери бири-бирине чырмалып, кийиз болот.",
+              "ru": "Делая шырдак и ала-кийиз, шерсть катают и трут с водой – от трения волокна сцепляются и получается войлок.",
+              "en": "Making shyrdak and ala-kiyiz felt, women roll and rub wet wool – friction makes the fibres lock together into felt."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Буттун тайгаланышы",
+              "ru": "Скользкий пол",
+              "en": "A slippery floor"
+            },
+            "text": {
+              "ky": "Жаңы жуулган полдо тайгаланасың – сүрүлүү азайып калды.",
+              "ru": "На только что вымытом полу легко поскользнуться – трение стало меньше.",
+              "en": "You slip on a freshly mopped floor – the friction has dropped."
+            }
+          },
+          {
+            "title": {
+              "ky": "Колду ышкылоо",
+              "ru": "Потереть ладони",
+              "en": "Rubbing your hands"
+            },
+            "text": {
+              "ky": "Суукта алаканыңды ышкыласаң, алар жылыйт – сүрүлүү жылуулук берет.",
+              "ru": "Потри ладони на морозе – они согреются: трение даёт тепло.",
+              "en": "Rub your palms together on a cold day and they warm up – friction makes heat."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.net-force",
+      "kind": "force",
+      "hue": 300,
+      "isContainer": false,
+      "title": {
+        "ky": "Тең аракеттүү күч",
+        "ru": "Равнодействующая сила",
+        "en": "Net force"
+      },
+      "subtitle": {
+        "ky": "Бардык күчтөрдүн суммасы",
+        "ru": "Сумма всех сил",
+        "en": "The sum of all forces"
+      },
+      "description": {
+        "ky": "Денеге таасир эткен бардык күчтөрдүн вектордук суммасы. Ньютондун экинчи мыйзамы: F = ma. Брусок үчүн тегиздик боюнча F = mg·sin α − μmg·cos α ≈ 6,4 Н.",
+        "ru": "Векторная сумма всех сил, действующих на тело. Второй закон Ньютона: F = ma. Для бруска вдоль плоскости F = mg·sin α − μmg·cos α ≈ 6,4 Н.",
+        "en": "The vector sum of all the forces on a body. Newton's second law: F = ma. For the block along the slope F = mg·sin α − μmg·cos α ≈ 6.4 N."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "force",
+          "value": 6.41,
+          "approx": true
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "F = ma"
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Тегиздик боюнча ылдый",
+            "ru": "Вдоль плоскости вниз",
+            "en": "Down along the slope"
+          }
+        }
+      ],
+      "related": [
+        "phys.block",
+        "phys.gravity"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.net-force-velocity",
+          "text": {
+            "ky": "Тең аракеттүү күч дайыма кыймылдын багыты менен дал келет.",
+            "ru": "Равнодействующая всегда направлена туда, куда движется тело.",
+            "en": "The net force always points the way the body is moving."
+          },
+          "correction": {
+            "ky": "Күч ылдамдануунун багытын аныктайт, ылдамдыктын эмес: жогору ыргытылган топтун кыймылы жогору, ал эми күч ылдый.",
+            "ru": "Сила задаёт направление ускорения, а не скорости: подброшенный мяч летит вверх, а сила направлена вниз.",
+            "en": "Force sets the direction of acceleration, not velocity: a ball thrown up moves upwards while the force points down."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Ньютон өзүнүн үч мыйзамын 1687-жылы «Натурфилософиянын математикалык негиздери» китебинде жарыялаган.",
+        "ru": "Ньютон опубликовал три закона в 1687 году в книге «Математические начала натуральной философии».",
+        "en": "Newton published his three laws in 1687 in the 'Mathematical Principles of Natural Philosophy'."
+      },
+      "analogy": {
+        "ky": "Аркан тартуу",
+        "ru": "Перетягивание каната",
+        "en": "A tug of war"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Ракеталар",
+              "ru": "Ракеты",
+              "en": "Rockets"
+            },
+            "text": {
+              "ky": "Ракета учушу үчүн кыймылдаткычтын тартуу күчү оордук күчүнөн чоң болушу керек: тең аракеттүү күч жогору карай.",
+              "ru": "Чтобы ракета взлетела, тяга двигателя должна превышать силу тяжести: равнодействующая направлена вверх.",
+              "en": "For a rocket to lift off, engine thrust must beat gravity, so the net force points up."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Векторлорду кошуу",
+              "ru": "Сложение векторов",
+              "en": "Adding vectors"
+            },
+            "text": {
+              "ky": "Күчтөр жебе-векторлор менен кошулат: 9,8 Н ылдый тартылуу жана 3,4 Н сүрүлүү тегиздик боюнча 6,4 Н тең аракеттүү күч берет.",
+              "ru": "Силы складывают как векторы-стрелки: 9,8 Н скатывающей силы и 3,4 Н трения дают вдоль плоскости 6,4 Н.",
+              "en": "Forces add as vector arrows: a 9.8 N downhill pull and 3.4 N of friction leave a 6.4 N net force along the slope."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Аркан тартуу",
+              "ru": "Перетягивание каната",
+              "en": "Tug of war"
+            },
+            "text": {
+              "ky": "Эки команда тең күч менен тартса, аркан ордунан жылбайт. Бир команда күчтүү болсо – ошол тарапка жылат.",
+              "ru": "Если команды тянут одинаково, канат стоит на месте. Сильнее одна – канат поедет к ней.",
+              "en": "If both teams pull equally, the rope stays put. If one is stronger, the rope moves its way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Арабаны түртүү",
+              "ru": "Толкать тележку",
+              "en": "Pushing a cart"
+            },
+            "text": {
+              "ky": "Дүкөндөгү арабаны эки адам бир жакка түртсө, ал тезирээк ылдамдайт.",
+              "ru": "Если тележку в магазине толкают двое в одну сторону, она разгоняется быстрее.",
+              "en": "If two people push a shopping trolley the same way, it speeds up faster."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.weight",
+      "kind": "force",
+      "hue": 270,
+      "isContainer": false,
+      "title": {
+        "ky": "Салмак",
+        "ru": "Вес тела",
+        "en": "Weight"
+      },
+      "subtitle": {
+        "ky": "P = m·g, ньютон (Н)",
+        "ru": "P = m·g, ньютон (Н)",
+        "en": "W = mg, newton (N)"
+      },
+      "description": {
+        "ky": "Дене Жерге тартылгандыктан таянычка басым кылган же илгичти тарткан күч. Дене тынч турса, анын салмагы оордук күчүнө барабар: P = m·g, мында g ≈ 9,8 Н/кг. Айырмасы: оордук күчү денеге коюлат, ал эми салмак – таянычка же илгичке.",
+        "ru": "Сила, с которой тело из-за притяжения к Земле давит на опору или растягивает подвес. Если тело покоится, его вес равен силе тяжести: P = m·g, где g ≈ 9,8 Н/кг. Разница: сила тяжести приложена к телу, а вес – к опоре или подвесу.",
+        "en": "The force with which a body, pulled by the Earth, presses on its support or pulls on its hanger. When the body is at rest its weight equals the force of gravity: W = mg, where g ≈ 9.8 N/kg. The difference: gravity acts on the body, weight acts on the support or hanger."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "P = m \\cdot g"
+        },
+        {
+          "kind": "quantity",
+          "type": "gravity",
+          "value": 9.8,
+          "unit": "N/kg",
+          "approx": true
+        }
+      ],
+      "related": [
+        "phys.gravity",
+        "phys.normal-force",
+        "phys.dynamometer"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.weight-is-mass",
+          "text": {
+            "ky": "Салмак менен масса – бир эле нерсе, экөө тең килограмм менен ченелет.",
+            "ru": "Вес и масса – одно и то же, обе измеряются в килограммах.",
+            "en": "Weight and mass are the same thing, both measured in kilograms."
+          },
+          "correction": {
+            "ky": "Масса (кг) – дененин өзүнүн касиети, Айда да өзгөрбөйт. Салмак – күч, ал ньютон менен ченелет: 60 кг адамдын салмагы Жерде ≈ 588 Н, Айда ≈ 97 Н.",
+            "ru": "Масса (кг) – свойство самого тела, на Луне она та же. Вес – сила, его измеряют в ньютонах: вес человека массой 60 кг на Земле ≈ 588 Н, на Луне ≈ 97 Н.",
+            "en": "Mass (kg) belongs to the body itself and is the same on the Moon. Weight is a force measured in newtons: a 60 kg person weighs about 588 N on Earth and about 97 N on the Moon."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Эл аралык космос станциясындагы космонавттар салмаксыз абалда: оордук күчү аларга таасир этет, бирок алар станция менен кошо «кулап» бараткандыктан, эч нерсеге баспайт.",
+        "ru": "Космонавты на МКС находятся в невесомости: сила тяжести на них действует, но они вместе со станцией непрерывно «падают» и ни на что не давят.",
+        "en": "Astronauts on the ISS are weightless: gravity still acts on them, but they and the station are falling together, so they press on nothing."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Лифттеги тараза",
+              "ru": "Весы в лифте",
+              "en": "Scales in a lift"
+            },
+            "text": {
+              "ky": "Лифт өйдө тездеп жөнөгөндө таразанын көрсөткүчү чоңоёт, ылдый жөнөгөндө азаят: масса өзгөрбөйт, ал эми салмак өзгөрөт.",
+              "ru": "Когда лифт разгоняется вверх, весы показывают больше, когда вниз – меньше: масса не меняется, а вес меняется.",
+              "en": "When a lift speeds up going up the scales read more, going down they read less: the mass stays the same but the weight changes."
+            },
+            "field": "s"
+          },
+          {
+            "title": {
+              "ky": "Текчелердин жүгү",
+              "ru": "Нагрузка на полки",
+              "en": "Shelf loads"
+            },
+            "text": {
+              "ky": "Инженерлер текче же көпүрө канча салмакка чыдай турганын ньютон (же килоньютон) менен эсептешет.",
+              "ru": "Инженеры рассчитывают, какой вес выдержит полка или мост, в ньютонах (или килоньютонах).",
+              "en": "Engineers work out what weight a shelf or a bridge can bear in newtons (or kilonewtons)."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Мектеп рюкзагы",
+              "ru": "Школьный рюкзак",
+              "en": "A school backpack"
+            },
+            "text": {
+              "ky": "5 кг рюкзак ийиниңди ≈ 49 Н күч менен басат – бул анын салмагы.",
+              "ru": "Рюкзак массой 5 кг давит на плечи с силой ≈ 49 Н – это его вес.",
+              "en": "A 5 kg backpack presses on your shoulders with about 49 N – that is its weight."
+            }
+          },
+          {
+            "title": {
+              "ky": "Батуттагы секирүү",
+              "ru": "Прыжок на батуте",
+              "en": "Jumping on a trampoline"
+            },
+            "text": {
+              "ky": "Батуттан секирип абада учуп баратканда сен эч нерсеге баспайсың – бул көз ирмемде салмагың нөл, бирок массаң ошол эле.",
+              "ru": "В полёте после прыжка с батута ты ни на что не давишь – в этот миг твой вес равен нулю, а масса прежняя.",
+              "en": "While flying through the air off a trampoline you press on nothing – your weight is zero for that moment, but your mass is unchanged."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.bob",
+      "kind": "body",
+      "hue": 0,
+      "isContainer": false,
+      "title": {
+        "ky": "Жүк",
+        "ru": "Груз",
+        "en": "Bob"
+      },
+      "subtitle": {
+        "ky": "Термелген дене",
+        "ru": "Колеблющееся тело",
+        "en": "The swinging body"
+      },
+      "description": {
+        "ky": "Жиптин учундагы оор кичинекей шар. Ал тең салмак абалынан эки тарапка термелет, анын энергиясы потенциалдыктан кинетикалыкка жана кайра айланат.",
+        "ru": "Тяжёлый маленький шарик на конце нити. Он качается по обе стороны от положения равновесия, его энергия переходит из потенциальной в кинетическую и обратно.",
+        "en": "A small heavy ball at the end of the string. It swings to both sides of the equilibrium position, and its energy turns from potential to kinetic and back."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "mass",
+          "value": 0.2
+        },
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Шар",
+            "ru": "Шар",
+            "en": "Sphere"
+          }
+        },
+        {
+          "kind": "quantity",
+          "type": "speed",
+          "value": 0.546,
+          "approx": true
+        }
+      ],
+      "related": [
+        "phys.gravity"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.heavier-faster",
+          "text": {
+            "ky": "Оор жүк тезирээк термелет.",
+            "ru": "Тяжёлый груз качается быстрее.",
+            "en": "A heavier bob swings faster."
+          },
+          "correction": {
+            "ky": "Математикалык маятниктин мезгили жүктүн массасынан көз каранды эмес.",
+            "ru": "Период математического маятника не зависит от массы груза.",
+            "en": "The period of a simple pendulum does not depend on the mass of the bob."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Галилей чиркөөдө термелип жаткан чыракты карап, маятниктин мыйзамын байкаган деп айтылат.",
+        "ru": "Говорят, Галилей заметил закон маятника, глядя на качающуюся люстру в соборе.",
+        "en": "Galileo is said to have noticed the pendulum law by watching a lamp swing in a cathedral."
+      },
+      "analogy": {
+        "ky": "Селкинчекте отурган бала",
+        "ru": "Ребёнок на качелях",
+        "en": "A child on a swing"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Фуко маятниги",
+              "ru": "Маятник Фуко",
+              "en": "Foucault pendulum"
+            },
+            "text": {
+              "ky": "1851-жылы Фуко 28 кг жүктү 67 м жипке илип, Жердин айланышын көрсөткөн.",
+              "ru": "В 1851 году Фуко подвесил груз 28 кг на тросе 67 м и показал вращение Земли.",
+              "en": "In 1851 Foucault hung a 28 kg bob on a 67 m wire and showed that the Earth rotates."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Сейсмографтар",
+              "ru": "Сейсмографы",
+              "en": "Seismographs"
+            },
+            "text": {
+              "ky": "Эски сейсмографтарда оор жүк кыймылсыз калып, жер титирөөдө жер өзү жылат – ушул айырма жазылат. Кыргызстандын сейсмостанцияларында мындай приборлор колдонулган.",
+              "ru": "В старых сейсмографах тяжёлый груз остаётся на месте, а при землетрясении движется сама земля – эту разницу и записывают. Такие приборы работали и на сейсмостанциях Кыргызстана.",
+              "en": "In old seismographs a heavy mass stays put while the ground moves in an earthquake, and that difference is recorded. Such instruments were used at seismic stations in Kyrgyzstan."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Селкинчек",
+              "ru": "Качели",
+              "en": "A swing"
+            },
+            "text": {
+              "ky": "Селкинчекте отурсаң, сен – жүксүң: ылдыйда эң тез, четте бир азга токтойсуң.",
+              "ru": "На качелях ты сам – груз: внизу летишь быстрее всего, а на краю на миг замираешь.",
+              "en": "On a swing you are the bob: fastest at the bottom, stopping for a moment at each end."
+            }
+          },
+          {
+            "title": {
+              "ky": "Чайкалган чака",
+              "ru": "Качающееся ведро",
+              "en": "A swinging bucket"
+            },
+            "text": {
+              "ky": "Сууга толгон чака кудуктун жибинде чайкалса, ал да маятник болуп калат.",
+              "ru": "Полное ведро, качающееся на верёвке колодца, – тоже маятник.",
+              "en": "A full bucket swinging on a well rope is a pendulum too."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.ramp",
+      "kind": "body",
+      "hue": 90,
+      "isContainer": false,
+      "title": {
+        "ky": "Жантайма тегиздик",
+        "ru": "Наклонная плоскость",
+        "en": "Inclined plane"
+      },
+      "subtitle": {
+        "ky": "Жөнөкөй механизм",
+        "ru": "Простой механизм",
+        "en": "A simple machine"
+      },
+      "description": {
+        "ky": "Горизонтко α бурч менен жантайган жылмакай тегиздик. Ал оор нерсени азыраак күч менен көтөрүүгө жардам берет, бирок жол узарат.",
+        "ru": "Ровная поверхность, наклонённая к горизонту под углом α. Она помогает поднимать груз меньшей силой, но путь при этом длиннее.",
+        "en": "A flat surface tilted at an angle α to the horizontal. It lets you raise a load with less force, but over a longer path."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "angle",
+          "value": 30
+        },
+        {
+          "kind": "quantity",
+          "type": "length",
+          "value": 3
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Күчтөн утуш берет, жолдон уттурат",
+            "ru": "Даёт выигрыш в силе, но проигрыш в пути",
+            "en": "Trades a longer path for a smaller force"
+          }
+        }
+      ],
+      "related": [
+        "phys.block",
+        "phys.normal-force"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.ramp-saves-work",
+          "text": {
+            "ky": "Жантайма тегиздик жумушту да азайтат.",
+            "ru": "Наклонная плоскость уменьшает и работу.",
+            "en": "An inclined plane reduces the work done too."
+          },
+          "correction": {
+            "ky": "Күч азаят, бирок жол узарат – сүрүлүүсүз жумуш ошол эле бойдон калат (механиканын «алтын эрежеси»).",
+            "ru": "Сила уменьшается, но путь удлиняется – без трения работа та же («золотое правило» механики).",
+            "en": "The force drops but the path grows – without friction the work stays the same (the 'golden rule' of mechanics)."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Байыркы египеттиктер пирамидаларды курууда таштарды жантайма тегиздиктер менен көтөргөн деп эсептелет.",
+        "ru": "Считается, что древние египтяне поднимали камни для пирамид по наклонным насыпям.",
+        "en": "Ancient Egyptians are thought to have raised the stones of the pyramids along ramps."
+      },
+      "analogy": {
+        "ky": "Тоо жолунун серпантини",
+        "ru": "Серпантин горной дороги",
+        "en": "A winding mountain road"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Тоо жолдору",
+              "ru": "Горные дороги",
+              "en": "Mountain roads"
+            },
+            "text": {
+              "ky": "Бишкек – Ош жолу Төө-Ашуу ашуусуна серпантин менен чыгат: жол узун, бирок жантаюу аз болгондуктан машина тоого оңой чыгат.",
+              "ru": "Дорога Бишкек – Ош поднимается на перевал Тоо-Ашуу серпантином: путь длиннее, но уклон меньше, и машине легче.",
+              "en": "The Bishkek–Osh road climbs the Too-Ashuu pass in hairpin bends: the road is longer, but the gentle slope makes the climb easier."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Пандустар",
+              "ru": "Пандусы",
+              "en": "Wheelchair ramps"
+            },
+            "text": {
+              "ky": "Майыптык коляскадагы адамдар үчүн пандустар аз жантаюу менен курулат – ошондо аларды чоң күч жумшабай эле чыгууга болот.",
+              "ru": "Для людей на колясках строят пандусы с маленьким уклоном – чтобы подниматься можно было без большой силы.",
+              "en": "Ramps for wheelchair users are built with a gentle slope so they can be climbed without a lot of force."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Тепкичтин ордуна тактай",
+              "ru": "Доска вместо ступенек",
+              "en": "A plank instead of stairs"
+            },
+            "text": {
+              "ky": "Оор чемоданды тепкичтен көтөргөндөн көрө, тактай боюнча сүйрөп чыгуу оңой.",
+              "ru": "Тяжёлый чемодан легче закатить по доске, чем поднять по ступенькам.",
+              "en": "It is easier to roll a heavy suitcase up a plank than to lift it up the stairs."
+            }
+          },
+          {
+            "title": {
+              "ky": "Балдардын тайгаланчыгы",
+              "ru": "Детская горка",
+              "en": "A playground slide"
+            },
+            "text": {
+              "ky": "Тайгаланчык – жантайма тегиздик: тик болсо тез, жантык болсо жай тайгаланасың.",
+              "ru": "Горка – это наклонная плоскость: крутая – едешь быстро, пологая – медленно.",
+              "en": "A slide is an inclined plane: steep means fast, gentle means slow."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "phys.dynamometer-pull",
+      "engine": "timeline",
+      "icon": "move-right",
+      "title": {
+        "ky": "Брусокту динамометр менен тартуу",
+        "ru": "Тянем брусок динамометром",
+        "en": "Pulling a block with a dynamometer"
+      },
+      "description": {
+        "ky": "2 кг брусокту столдо динамометр менен тартабыз. Тартуу күчү сүрүлүүнүн эң чоң маанисинен ашмайынча брусок жылбайт. Бир түз сызык боюнча аракет эткен күчтөрдүн тең аракеттүүсү брусоктун кыймылын аныктайт.",
+        "ru": "Тянем динамометром брусок массой 2 кг по столу. Пока сила тяги не превысит наибольшую силу трения, брусок не сдвинется. Равнодействующая сил, действующих вдоль одной прямой, определяет движение бруска.",
+        "en": "We pull a 2 kg block across a table with a dynamometer. Until the pull exceeds the largest friction force, the block does not move. The resultant of the forces along one line decides how the block moves."
+      },
+      "equation": "R = F - F_{fr},\\quad F_{fr} = \\mu m g",
+      "inputs": {
+        "ky": "m = 2 кг, μ = 0,25, g ≈ 9,8 Н/кг",
+        "ru": "m = 2 кг, μ = 0,25, g ≈ 9,8 Н/кг",
+        "en": "m = 2 kg, μ = 0.25, g ≈ 9.8 N/kg"
+      },
+      "outputs": {
+        "ky": "F = 8 Н, сүрүлүү 4,9 Н, тең аракеттүү күч 3,1 Н оңго",
+        "ru": "F = 8 Н, трение 4,9 Н, равнодействующая 3,1 Н вправо",
+        "en": "F = 8 N, friction 4.9 N, resultant 3.1 N to the right"
+      },
+      "steps": [
+        {
+          "key": "hook",
+          "title": {
+            "ky": "Динамометрди илүү",
+            "ru": "Цепляем динамометр",
+            "en": "Hook on the dynamometer"
+          },
+          "result": {
+            "ky": "F = 0",
+            "ru": "F = 0",
+            "en": "F = 0"
+          },
+          "description": {
+            "ky": "Динамометрдин жебесин нөлгө коюп, илгичин брусокко илебиз. Тик багытта оордук күчү 19,6 Н жана таянычтын реакция күчү 19,6 Н теңделет.",
+            "ru": "Ставим указатель динамометра на ноль и цепляем крючок за брусок. По вертикали сила тяжести 19,6 Н и сила реакции опоры 19,6 Н уравновешены.",
+            "en": "We zero the dynamometer and hook it onto the block. Vertically, gravity (19.6 N) and the normal force (19.6 N) balance."
+          },
+          "conceptKey": "phys.dynamometer",
+          "altText": {
+            "ky": "Брусокко илинген динамометр, пружина чоюлган эмес.",
+            "ru": "Динамометр прицеплен к бруску, пружина не растянута.",
+            "en": "A dynamometer hooked to the block; the spring is not stretched."
+          },
+          "duration": 1
+        },
+        {
+          "key": "gentle",
+          "title": {
+            "ky": "Акырын тартуу",
+            "ru": "Тянем слабо",
+            "en": "A gentle pull"
+          },
+          "result": {
+            "ky": "F = 3 Н, брусок турат",
+            "ru": "F = 3 Н, брусок стоит",
+            "en": "F = 3 N, the block stays put"
+          },
+          "description": {
+            "ky": "Динамометр 3 Н көрсөтөт, бирок брусок жылбайт: тынчтыктагы сүрүлүү да 3 Н, ал тартууга каршы. Тең аракеттүү күч нөл.",
+            "ru": "Динамометр показывает 3 Н, но брусок не сдвигается: трение покоя тоже 3 Н и направлено против тяги. Равнодействующая равна нулю.",
+            "en": "The dynamometer reads 3 N, yet the block does not move: static friction is also 3 N and opposes the pull. The resultant is zero."
+          },
+          "conceptKey": "phys.friction-force",
+          "altText": {
+            "ky": "Пружина бир аз чоюлган, брусок ордунда.",
+            "ru": "Пружина немного растянута, брусок на месте.",
+            "en": "The spring is slightly stretched; the block has not moved."
+          },
+          "duration": 1
+        },
+        {
+          "key": "slip",
+          "title": {
+            "ky": "Брусок жыла баштайт",
+            "ru": "Брусок трогается",
+            "en": "The block starts to slide"
+          },
+          "result": {
+            "ky": "F ≈ 4,9 Н",
+            "ru": "F ≈ 4,9 Н",
+            "en": "F ≈ 4.9 N"
+          },
+          "description": {
+            "ky": "Сүрүлүү күчү чексиз чоңое албайт: анын эң чоң мааниси μN = 0,25 · 19,6 = 4,9 Н. Тартуу ушул чекке жеткенде брусок жыла баштайт.",
+            "ru": "Сила трения не может расти бесконечно: её наибольшее значение μN = 0,25 · 19,6 = 4,9 Н. Когда тяга достигает этого предела, брусок трогается.",
+            "en": "Friction cannot grow without limit: its largest value is μN = 0.25 × 19.6 = 4.9 N. When the pull reaches it, the block begins to slide."
+          },
+          "conceptKey": "phys.normal-force",
+          "altText": {
+            "ky": "Брусок жыла баштады, сүрүлүүнүн жебеси солго.",
+            "ru": "Брусок тронулся, стрелка трения влево.",
+            "en": "The block starts moving; the friction arrow points left."
+          },
+          "duration": 1
+        },
+        {
+          "key": "pull8",
+          "title": {
+            "ky": "8 Н менен тартуу",
+            "ru": "Тянем с силой 8 Н",
+            "en": "Pulling with 8 N"
+          },
+          "result": {
+            "ky": "R = 8 − 4,9 = 3,1 Н оңго",
+            "ru": "R = 8 − 4,9 = 3,1 Н вправо",
+            "en": "R = 8 − 4.9 = 3.1 N to the right"
+          },
+          "description": {
+            "ky": "Тартуу 8 Н оңго, сүрүлүү 4,9 Н солго – бир түз сызыкта, карама-каршы. Тең аракеттүү күч 3,1 Н оңго, ошондуктан брусок тездейт.",
+            "ru": "Тяга 8 Н вправо, трение 4,9 Н влево – вдоль одной прямой, навстречу. Равнодействующая 3,1 Н вправо, поэтому брусок разгоняется.",
+            "en": "The pull is 8 N to the right and friction 4.9 N to the left – along one line, opposite ways. The resultant is 3.1 N to the right, so the block speeds up."
+          },
+          "conceptKey": "phys.net-force",
+          "altText": {
+            "ky": "Тең аракеттүү күчтүн 3,1 Н жебеси оңго.",
+            "ru": "Стрелка равнодействующей 3,1 Н вправо.",
+            "en": "The 3.1 N resultant arrow pointing right."
+          },
+          "duration": 1
+        },
+        {
+          "key": "steady",
+          "title": {
+            "ky": "Бир калыпта тартуу",
+            "ru": "Тянем равномерно",
+            "en": "Pulling at a steady speed"
+          },
+          "result": {
+            "ky": "F = 4,9 Н, R = 0",
+            "ru": "F = 4,9 Н, R = 0",
+            "en": "F = 4.9 N, R = 0"
+          },
+          "description": {
+            "ky": "Тартууну 4,9 Н ге чейин азайтсак, күчтөр теңделет: брусок токтобойт, бирдей ылдамдык менен жыла берет. Ушундай жол менен сүрүлүү күчүн ченешет.",
+            "ru": "Если уменьшить тягу до 4,9 Н, силы уравновесятся: брусок не остановится, а будет скользить с постоянной скоростью. Так и измеряют силу трения.",
+            "en": "Reduce the pull to 4.9 N and the forces balance: the block does not stop but slides on at a constant speed. This is how friction is measured."
+          },
+          "conceptKey": "phys.force",
+          "altText": {
+            "ky": "Тартуу жана сүрүлүү жебелери бирдей узундукта.",
+            "ru": "Стрелки тяги и трения одинаковой длины.",
+            "en": "The pull and friction arrows are the same length."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "pull",
+          "label": {
+            "ky": "Тартуу күчү",
+            "ru": "Сила тяги",
+            "en": "Pulling force"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 8,
+          "precision": 1
+        },
+        {
+          "key": "friction",
+          "label": {
+            "ky": "Сүрүлүү күчү",
+            "ru": "Сила трения",
+            "en": "Friction"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 8,
+          "precision": 1
+        },
+        {
+          "key": "resultant",
+          "label": {
+            "ky": "Тең аракеттүү күч",
+            "ru": "Равнодействующая",
+            "en": "Resultant force"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 8,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "mass": 2,
+        "mu": 0.25,
+        "g": 9.8,
+        "pull@hook": 0,
+        "pull@gentle": 3,
+        "pull@slip": 4.9,
+        "pull@pull8": 8,
+        "pull@steady": 4.9,
+        "friction@hook": 0,
+        "friction@gentle": 3,
+        "friction@slip": 4.9,
+        "friction@pull8": 4.9,
+        "friction@steady": 4.9,
+        "resultant@hook": 0,
+        "resultant@gentle": 0,
+        "resultant@slip": 0,
+        "resultant@pull8": 3.1,
+        "resultant@steady": 0
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "phys.q.forces-1",
+      "type": "single",
+      "prompt": {
+        "ky": "SI системасында күч кайсы бирдик менен ченелет?",
+        "ru": "В каких единицах измеряют силу в СИ?",
+        "en": "What is the SI unit of force?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Килограмм (кг)",
+            "ru": "Килограмм (кг)",
+            "en": "Kilogram (kg)"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ньютон (Н)",
+            "ru": "Ньютон (Н)",
+            "en": "Newton (N)"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Джоуль (Дж)",
+            "ru": "Джоуль (Дж)",
+            "en": "Joule (J)"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Ватт (Вт)",
+            "ru": "Ватт (Вт)",
+            "en": "Watt (W)"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Күчтүн бирдиги – ньютон (Н). Килограмм – массанын бирдиги, джоуль – энергиянын, ватт – кубаттуулуктун.",
+        "ru": "Единица силы – ньютон (Н). Килограмм – единица массы, джоуль – энергии, ватт – мощности.",
+        "en": "The unit of force is the newton (N). The kilogram is for mass, the joule for energy and the watt for power."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.forces-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Күчтү толук сүрөттөө үчүн эмнелерди көрсөтүү керек? Бардык туура жоопторду тандаңыз.",
+        "ru": "Что нужно указать, чтобы полностью описать силу? Выберите все верные ответы.",
+        "en": "What must you give to describe a force completely? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Чоңдугун (модулун)",
+            "ru": "Модуль (величину)",
+            "en": "Its size (magnitude)"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Багытын",
+            "ru": "Направление",
+            "en": "Its direction"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Коюлган чекитин",
+            "ru": "Точку приложения",
+            "en": "Its point of application"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Дененин түсүн",
+            "ru": "Цвет тела",
+            "en": "The body's colour"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Дененин ылдамдыгын",
+            "ru": "Скорость тела",
+            "en": "The body's speed"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Күч – вектор: анын чоңдугу (модулу), багыты жана коюлган чекити бар. Дененин түсү же ылдамдыгы күчтүн мүнөздөмөсү эмес.",
+        "ru": "Сила – вектор: у неё есть модуль, направление и точка приложения. Цвет тела или его скорость – не характеристики силы.",
+        "en": "Force is a vector: it has a size, a direction and a point of application. The body's colour or speed are not features of the force."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.forces-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Окуучунун массасы 50 кг. Ага таасир эткен оордук күчү канча ньютон? g = 9,8 Н/кг деп алыңыз.",
+        "ru": "Масса ученика 50 кг. Какая сила тяжести на него действует, в ньютонах? Примите g = 9,8 Н/кг.",
+        "en": "A pupil has a mass of 50 kg. What is the force of gravity on them, in newtons? Take g = 9.8 N/kg."
+      },
+      "answer": 490,
+      "tolerance": 2,
+      "unit": "N",
+      "explanation": {
+        "ky": "F = m·g = 50 кг · 9,8 Н/кг = 490 Н.",
+        "ru": "F = m·g = 50 кг · 9,8 Н/кг = 490 Н.",
+        "en": "F = mg = 50 kg × 9.8 N/kg = 490 N."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.forces-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Динамометрге 300 г жүк илинди. Динамометр канча ньютон көрсөтөт? g = 9,8 Н/кг.",
+        "ru": "На динамометр подвесили груз массой 300 г. Сколько ньютонов покажет динамометр? g = 9,8 Н/кг.",
+        "en": "A 300 g load hangs on a dynamometer. What does it read, in newtons? g = 9.8 N/kg."
+      },
+      "answer": 2.94,
+      "tolerance": 0.05,
+      "unit": "N",
+      "explanation": {
+        "ky": "300 г = 0,3 кг. Жүк тынч илинип турса, динамометр анын салмагын көрсөтөт: P = m·g = 0,3 · 9,8 = 2,94 Н.",
+        "ru": "300 г = 0,3 кг. Если груз висит неподвижно, динамометр показывает его вес: P = m·g = 0,3 · 9,8 = 2,94 Н.",
+        "en": "300 g = 0.3 kg. When the load hangs still, the dynamometer shows its weight: W = mg = 0.3 × 9.8 = 2.94 N."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "misconceptionKey": "phys.m.dynamometer-measures-mass",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.forces-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Эки бала арабаны бир тарапка 30 Н жана 45 Н күч менен түртөт. Тең аракеттүү күч канча ньютон?",
+        "ru": "Двое ребят толкают тележку в одну сторону с силами 30 Н и 45 Н. Чему равна равнодействующая, Н?",
+        "en": "Two children push a cart the same way with 30 N and 45 N. What is the resultant force in newtons?"
+      },
+      "answer": 75,
+      "tolerance": 0.5,
+      "unit": "N",
+      "explanation": {
+        "ky": "Бир түз сызыкта бир багытка аракет эткен күчтөр кошулат: R = 30 + 45 = 75 Н, ошол эле багытта.",
+        "ru": "Силы, направленные вдоль одной прямой в одну сторону, складываются: R = 30 + 45 = 75 Н в ту же сторону.",
+        "en": "Forces along one line in the same direction add up: R = 30 + 45 = 75 N, in that direction."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.forces-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Аркан тартышта бир команда 300 Н, экинчиси карама-каршы тарапка 260 Н менен тартат. Тең аракеттүү күч канча ньютон?",
+        "ru": "В перетягивании каната одна команда тянет с силой 300 Н, другая в противоположную сторону – 260 Н. Чему равна равнодействующая, Н?",
+        "en": "In a tug of war one team pulls with 300 N and the other the opposite way with 260 N. What is the resultant in newtons?"
+      },
+      "answer": 40,
+      "tolerance": 0.5,
+      "unit": "N",
+      "explanation": {
+        "ky": "Карама-каршы күчтөрдө чоңунан кичинесин кемитебиз: R = 300 − 260 = 40 Н, күчтүү команданын тарабына.",
+        "ru": "Для противоположных сил из большей вычитаем меньшую: R = 300 − 260 = 40 Н в сторону сильной команды.",
+        "en": "For opposite forces take the smaller from the larger: R = 300 − 260 = 40 N, towards the stronger team."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.forces-7",
+      "type": "single",
+      "prompt": {
+        "ky": "Аркан тартышта 300 Н жана 260 Н. Аркан кайсы тарапка жылат?",
+        "ru": "При перетягивании каната силы 300 Н и 260 Н. Куда сдвинется канат?",
+        "en": "A tug of war: 300 N against 260 N. Which way does the rope move?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "300 Н менен тарткан команданын тарабына",
+            "ru": "К команде, тянущей с силой 300 Н",
+            "en": "Towards the 300 N team"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "260 Н менен тарткан команданын тарабына",
+            "ru": "К команде, тянущей с силой 260 Н",
+            "en": "Towards the 260 N team"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Аркан жылбайт",
+            "ru": "Канат не сдвинется",
+            "en": "The rope does not move"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Тең аракеттүү күч чоң күчтүн багытында – 300 Н менен тарткан команданын тарабына.",
+        "ru": "Равнодействующая направлена в сторону большей силы – к команде, которая тянет с силой 300 Н.",
+        "en": "The resultant points the way of the larger force – towards the team pulling with 300 N."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.forces-8",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден брусоктун кыймылына каршы багытталган күчтү тап.",
+        "ru": "Найдите на модели силу, направленную против движения бруска.",
+        "en": "Find the force in the model that acts against the block's motion."
+      },
+      "targetConceptKey": "phys.friction-force",
+      "explanation": {
+        "ky": "Бул – сүрүлүү күчү: ал брусок менен столдун ортосунда пайда болуп, кыймылга каршы багытталат.",
+        "ru": "Это сила трения: она возникает между бруском и столом и направлена против движения.",
+        "en": "That is friction: it arises between the block and the table and acts against the motion."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.forces-9",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден күчтү ченөөчү приборду тап.",
+        "ru": "Найдите на модели прибор для измерения силы.",
+        "en": "Find the instrument in the model that measures force."
+      },
+      "targetConceptKey": "phys.dynamometer",
+      "explanation": {
+        "ky": "Бул – динамометр: анын пружинасы күчкө жараша чоюлат, ал эми шкаласы ньютон менен көрсөтөт.",
+        "ru": "Это динамометр: его пружина растягивается в зависимости от силы, а шкала показывает ньютоны.",
+        "en": "That is the dynamometer: its spring stretches according to the force and its scale shows newtons."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.forces-10",
+      "type": "match",
+      "prompt": {
+        "ky": "Күчтү анын багыты менен дал келтириңиз.",
+        "ru": "Сопоставьте силу и её направление.",
+        "en": "Match each force to its direction."
+      },
+      "pairs": [
+        {
+          "key": "grav",
+          "left": {
+            "ky": "Оордук күчү",
+            "ru": "Сила тяжести",
+            "en": "Gravity"
+          },
+          "right": {
+            "ky": "Тик ылдый",
+            "ru": "Вертикально вниз",
+            "en": "Straight down"
+          }
+        },
+        {
+          "key": "norm",
+          "left": {
+            "ky": "Таянычтын реакция күчү",
+            "ru": "Сила реакции опоры",
+            "en": "Normal force"
+          },
+          "right": {
+            "ky": "Бетке перпендикуляр, таянычтан",
+            "ru": "Перпендикулярно поверхности, от опоры",
+            "en": "At right angles, away from the surface"
+          }
+        },
+        {
+          "key": "fric",
+          "left": {
+            "ky": "Сүрүлүү күчү",
+            "ru": "Сила трения",
+            "en": "Friction"
+          },
+          "right": {
+            "ky": "Бет боюнча, кыймылга каршы",
+            "ru": "Вдоль поверхности против движения",
+            "en": "Along the surface, against the motion"
+          }
+        },
+        {
+          "key": "elas",
+          "left": {
+            "ky": "Пружинанын серпилгичтик күчү",
+            "ru": "Сила упругости пружины",
+            "en": "Spring's elastic force"
+          },
+          "right": {
+            "ky": "Чоюлууга каршы",
+            "ru": "Против растяжения",
+            "en": "Against the stretch"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Оордук күчү – тик ылдый; таянычтын реакция күчү – бетке перпендикуляр, таянычтан; сүрүлүү күчү – бет боюнча, кыймылга каршы; пружинанын серпилгичтик күчү – чоюлууга каршы.",
+        "ru": "Сила тяжести – вертикально вниз; сила реакции опоры – перпендикулярно поверхности, от опоры; сила трения – вдоль поверхности против движения; сила упругости пружины – против растяжения.",
+        "en": "Gravity – straight down; normal force – at right angles to the surface, away from it; friction – along the surface, against the motion; the spring's elastic force – against the stretch."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.forces-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Брусокту динамометр менен бирдей ылдамдык менен тартып жатабыз, динамометр 4,9 Н көрсөтөт, сүрүлүү да 4,9 Н. Тең аракеттүү күч эмнеге барабар?",
+        "ru": "Брусок тянут динамометром с постоянной скоростью, динамометр показывает 4,9 Н, трение тоже 4,9 Н. Чему равна равнодействующая?",
+        "en": "A block is pulled at a constant speed; the dynamometer reads 4.9 N and friction is also 4.9 N. What is the resultant force?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "0 Н",
+            "ru": "0 Н",
+            "en": "0 N"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "4,9 Н кыймылдын багытында",
+            "ru": "4,9 Н по направлению движения",
+            "en": "4.9 N in the direction of motion"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "9,8 Н кыймылдын багытында",
+            "ru": "9,8 Н по направлению движения",
+            "en": "9.8 N in the direction of motion"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Карама-каршы бирдей күчтөр: 4,9 − 4,9 = 0. Тең аракеттүү күч нөл болсо, ылдамдык өзгөрбөйт – брусок бирдей ылдамдык менен жыла берет. Күч кыймылдын багыты боюнча болушу шарт эмес.",
+        "ru": "Равные противоположные силы: 4,9 − 4,9 = 0. При нулевой равнодействующей скорость не меняется – брусок движется равномерно. Сила не обязана быть направлена по движению.",
+        "en": "Equal and opposite forces: 4.9 − 4.9 = 0. With a zero resultant the speed does not change – the block keeps sliding steadily. The resultant need not point along the motion."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "misconceptionKey": "phys.m.net-force-velocity",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.forces-12",
+      "type": "single",
+      "prompt": {
+        "ky": "2 кг брусокту Айга алып барышты. Эмне өзгөрөт?",
+        "ru": "Брусок массой 2 кг доставили на Луну. Что изменится?",
+        "en": "A 2 kg block is taken to the Moon. What changes?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Массасы да, салмагы да азаят",
+            "ru": "Уменьшатся и масса, и вес",
+            "en": "Both its mass and its weight drop"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Массасы өзгөрбөйт, салмагы азаят",
+            "ru": "Масса не изменится, вес уменьшится",
+            "en": "Its mass stays the same, its weight drops"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Массасы азаят, салмагы өзгөрбөйт",
+            "ru": "Масса уменьшится, вес не изменится",
+            "en": "Its mass drops, its weight stays the same"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Эч нерсе өзгөрбөйт",
+            "ru": "Ничего не изменится",
+            "en": "Nothing changes"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Масса – дененин өзүнүн касиети, ал 2 кг бойдон калат. Айда g ≈ 1,6 Н/кг, ошондуктан салмак 19,6 Н дан ≈ 3,2 Н га чейин азаят.",
+        "ru": "Масса – свойство самого тела, она остаётся 2 кг. На Луне g ≈ 1,6 Н/кг, поэтому вес уменьшается с 19,6 Н до ≈ 3,2 Н.",
+        "en": "Mass belongs to the body and stays 2 kg. On the Moon g ≈ 1.6 N/kg, so the weight falls from 19.6 N to about 3.2 N."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "misconceptionKey": "phys.m.weight-is-mass",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.forces-13",
+      "type": "single",
+      "prompt": {
+        "ky": "Столдо тынч жаткан брусокко оордук күчү таасир этеби?",
+        "ru": "Действует ли сила тяжести на брусок, который неподвижно лежит на столе?",
+        "en": "Does gravity act on a block lying still on a table?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жок, оордук күчү кулап жаткан денелерге гана таасир этет",
+            "ru": "Нет, сила тяжести действует только на падающие тела",
+            "en": "No, gravity only acts on falling bodies"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ооба, бирок аны таянычтын реакция күчү теңдейт",
+            "ru": "Да, но её уравновешивает сила реакции опоры",
+            "en": "Yes, but the normal force balances it"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жок, анткени брусок кыймылдабайт",
+            "ru": "Нет, потому что брусок не движется",
+            "en": "No, because the block is not moving"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Ооба. Оордук күчү бардык денелерге дайыма таасир этет. Брусок кулабайт, анткени аны таянычтын реакция күчү теңдейт: 19,6 − 19,6 = 0.",
+        "ru": "Да. Сила тяжести действует на все тела всегда. Брусок не падает, потому что её уравновешивает сила реакции опоры: 19,6 − 19,6 = 0.",
+        "en": "Yes. Gravity always acts on every body. The block does not fall because the normal force balances it: 19.6 − 19.6 = 0."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "misconceptionKey": "phys.m.gravity-only-falling",
+      "difficulty": 2
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-phys-pendulum",
+      "ky": "маятник",
+      "ru": "маятник",
+      "en": "pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-period",
+      "ky": "термелүү мезгили",
+      "ru": "период колебаний",
+      "en": "period of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-amplitude",
+      "ky": "амплитуда",
+      "ru": "амплитуда",
+      "en": "amplitude",
+      "forbidden": [
+        "amplitud"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gravity",
+      "ky": "оордук күчү",
+      "ru": "сила тяжести",
+      "en": "force of gravity",
+      "forbidden": [
+        "attraction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction",
+      "ky": "сүрүлүү күчү",
+      "ru": "сила трения",
+      "en": "friction force",
+      "forbidden": [
+        "force of rubbing"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-force",
+      "ky": "таянычтын реакция күчү",
+      "ru": "сила реакции опоры",
+      "en": "normal force",
+      "forbidden": [
+        "support reaction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-acceleration",
+      "ky": "ылдамдануу",
+      "ru": "ускорение",
+      "en": "acceleration",
+      "forbidden": [
+        "тездетүү"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-speed",
+      "ky": "ылдамдык",
+      "ru": "скорость",
+      "en": "speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinetic-energy",
+      "ky": "кинетикалык энергия",
+      "ru": "кинетическая энергия",
+      "en": "kinetic energy",
+      "forbidden": [
+        "кинетический энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-potential-energy",
+      "ky": "потенциалдык энергия",
+      "ru": "потенциальная энергия",
+      "en": "potential energy",
+      "forbidden": [
+        "потенциальный энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-voltage",
+      "ky": "чыңалуу",
+      "ru": "напряжение",
+      "en": "voltage",
+      "forbidden": [
+        "electric tension"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-current",
+      "ky": "ток күчү",
+      "ru": "сила тока",
+      "en": "electric current",
+      "forbidden": [
+        "current force",
+        "current strength"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-resistance",
+      "ky": "каршылык",
+      "ru": "сопротивление",
+      "en": "resistance",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-circuit",
+      "ky": "электр чынжыры",
+      "ru": "электрическая цепь",
+      "en": "electric circuit",
+      "forbidden": [
+        "electric chain",
+        "электрическая цепочка"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-source",
+      "ky": "ток булагы",
+      "ru": "источник тока",
+      "en": "power source",
+      "forbidden": [
+        "source of current"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-switch",
+      "ky": "ачкыч",
+      "ru": "ключ (выключатель)",
+      "en": "switch",
+      "forbidden": [
+        "electric key"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-distance-travelled",
+      "ky": "басып өткөн жол",
+      "ru": "пройденный путь",
+      "en": "distance travelled",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-time",
+      "ky": "убакыт",
+      "ru": "время",
+      "en": "time",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-uniform-motion",
+      "ky": "бир калыптагы кыймыл",
+      "ru": "равномерное движение",
+      "en": "uniform motion",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-average-speed",
+      "ky": "орточо ылдамдык",
+      "ru": "средняя скорость",
+      "en": "average speed",
+      "forbidden": [
+        "medium speed"
+      ]
+    },
+    {
+      "id": "g-phys-speed-radar",
+      "ky": "ылдамдык радары",
+      "ru": "радар скорости",
+      "en": "speed radar",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-stopwatch",
+      "ky": "секундомер",
+      "ru": "секундомер",
+      "en": "stopwatch",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-distance-time-graph",
+      "ky": "жолдун убакыттан көз карандылык графиги",
+      "ru": "график зависимости пути от времени",
+      "en": "distance–time graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-graph-slope",
+      "ky": "графиктин тиктиги",
+      "ru": "наклон графика",
+      "en": "slope of a graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-rest",
+      "ky": "тынч абал",
+      "ru": "покой",
+      "en": "rest",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-force",
+      "ky": "күч",
+      "ru": "сила",
+      "en": "force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-vector",
+      "ky": "вектор",
+      "ru": "вектор",
+      "en": "vector",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-newton",
+      "ky": "ньютон (Н)",
+      "ru": "ньютон (Н)",
+      "en": "newton (N)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-dynamometer",
+      "ky": "динамометр",
+      "ru": "динамометр",
+      "en": "dynamometer (spring scale)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-weight",
+      "ky": "салмак",
+      "ru": "вес тела",
+      "en": "weight",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-resultant",
+      "ky": "тең аракеттүү күч",
+      "ru": "равнодействующая сила",
+      "en": "resultant force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-elastic-force",
+      "ky": "серпилгичтик күчү",
+      "ru": "сила упругости",
+      "en": "elastic force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-point-of-application",
+      "ky": "күчтүн коюлган чекити",
+      "ru": "точка приложения силы",
+      "en": "point of application",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever",
+      "ky": "рычаг",
+      "ru": "рычаг",
+      "en": "lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-pivot",
+      "ky": "таяныч чекити",
+      "ru": "точка опоры",
+      "en": "pivot (fulcrum)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever-arm",
+      "ky": "күчтүн ийини",
+      "ru": "плечо силы",
+      "en": "lever arm",
+      "forbidden": [
+        "shoulder of force"
+      ]
+    },
+    {
+      "id": "g-phys-moment",
+      "ky": "күчтүн моменти",
+      "ru": "момент силы",
+      "en": "moment of a force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-equilibrium-lever",
+      "ky": "рычагдын тең салмактуулугу",
+      "ru": "равновесие рычага",
+      "en": "equilibrium of a lever",
+      "forbidden": []
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "acceleration",
+      "icon": "trending-up",
+      "valueKind": "quantity",
+      "unit": "m/s²",
+      "label": {
+        "ky": "Ылдамдануу",
+        "ru": "Ускорение",
+        "en": "Acceleration"
+      }
+    },
+    {
+      "key": "angle",
+      "icon": "triangle-right",
+      "valueKind": "quantity",
+      "unit": "°",
+      "label": {
+        "ky": "Бурчу",
+        "ru": "Угол",
+        "en": "Angle"
+      }
+    },
+    {
+      "key": "composition",
+      "icon": "flask-conical",
+      "valueKind": "text",
+      "label": {
+        "ky": "Курамы",
+        "ru": "Состав",
+        "en": "Composition"
+      }
+    },
+    {
+      "key": "force",
+      "icon": "arrow-big-right",
+      "valueKind": "quantity",
+      "unit": "N",
+      "label": {
+        "ky": "Күч",
+        "ru": "Сила",
+        "en": "Force"
+      }
+    },
+    {
+      "key": "frictionCoefficient",
+      "icon": "grip",
+      "valueKind": "quantity",
+      "label": {
+        "ky": "Сүрүлүү коэффициенти",
+        "ru": "Коэффициент трения",
+        "en": "Coefficient of friction"
+      }
+    },
+    {
+      "key": "gravity",
+      "icon": "arrow-down",
+      "valueKind": "quantity",
+      "unit": "m/s²",
+      "label": {
+        "ky": "Эркин түшүү ылдамдануусу",
+        "ru": "Ускорение свободного падения",
+        "en": "Surface gravity"
+      }
+    },
+    {
+      "key": "length",
+      "icon": "ruler",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Узундугу",
+        "ru": "Длина",
+        "en": "Length"
+      }
+    },
+    {
+      "key": "speed",
+      "icon": "gauge",
+      "valueKind": "quantity",
+      "unit": "m/s",
+      "label": {
+        "ky": "Ылдамдыгы",
+        "ru": "Скорость",
+        "en": "Speed"
+      }
+    }
+  ]
+}

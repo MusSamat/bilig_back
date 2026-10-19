@@ -6,7 +6,7 @@
  *  - Writes are scoped to the entry's owning subject (`subjectKeyFor`):
  *    authors/editors only inside their subject; shared entries (no subject)
  *    only with a platform grant. Subjects and groups need `platform.manage`.
- *    Glossary writes need `content.publish` (any subject's editor) — terms are shared.
+ *    Glossary and textbook writes need `content.publish` (any subject's editor) — they are shared.
  *  - PATCH = partial merge onto the stored doc, re-validated with the full
  *    schema; If-Match (and `body.version`) must equal the stored version.
  *  - Author sub-roles: the changed paths are classified into field groups
@@ -25,6 +25,7 @@ import {
   ProcessSchema,
   SubjectGroupSchema,
   SubjectSchema,
+  TextbookSchema,
   UnitSchema,
 } from '@bilig/content-model';
 import type { EndpointName } from '@bilig/content-model/api';
@@ -77,6 +78,8 @@ export const KINDS: Record<ContentKind, KindDef> = {
   process: { schema: ProcessSchema, keyField: 'key', write: 'content.draft.edit', scoped: true, list: 'adminProcessList', get: 'adminProcessGet', create: 'adminProcessCreate', patch: 'adminProcessPatch', del: 'adminProcessDelete' },
   item: { schema: ItemSchema, keyField: 'key', write: 'content.draft.edit', scoped: true, list: 'adminItemList', get: 'adminItemGet', create: 'adminItemCreate', patch: 'adminItemPatch', del: 'adminItemDelete', patchIsFull: true },
   glossary: { schema: GlossaryTermSchema, keyField: 'id', write: 'content.publish', scoped: false, list: 'adminGlossaryList', get: 'adminGlossaryGet', create: 'adminGlossaryCreate', patch: 'adminGlossaryPatch', del: 'adminGlossaryDelete' },
+  // v0.5.0: textbooks are shared across subjects (content.publish, like the glossary).
+  textbook: { schema: TextbookSchema, keyField: 'key', write: 'content.publish', scoped: false, list: 'adminTextbookList', get: 'adminTextbookGet', create: 'adminTextbookCreate', patch: 'adminTextbookPatch', del: 'adminTextbookDelete' },
 };
 
 /** What still references a dictionary entry (empty = deletable). */
@@ -127,7 +130,7 @@ export function registerContentAdmin(app: FastifyInstance, deps: Deps) {
     const authWrite = async (ctx: AnyCtx, subjectKey: string | null) => {
       if (def.scoped) authorizeSubject(ctx, def.write, subjectKey);
       else if (def.write === 'platform.manage') ctx.authorize('platform.manage');
-      // content.publish on shared glossary: the route's coarse check suffices.
+      // content.publish on shared glossary / textbooks: the route's coarse check suffices.
     };
     const parse = (data: unknown) => {
       const r = def.schema.safeParse(data);

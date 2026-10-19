@@ -1,0 +1,1220 @@
+{
+  "topic": {
+    "key": "separating-mixtures",
+    "unitKey": "chem.g8.mixtures",
+    "status": "published",
+    "title": {
+      "ky": "Аралашмаларды бөлүү",
+      "ru": "Разделение смесей",
+      "en": "Separating mixtures"
+    },
+    "classification": {
+      "ky": "Чыпкалоо, буулантуу, айдоо, хроматография, магнит, тундуруу",
+      "ru": "Фильтрование, выпаривание, перегонка, хроматография, магнит, отстаивание",
+      "en": "Filtration, evaporation, distillation, chromatography, magnet, settling"
+    },
+    "description": {
+      "ky": "Аралашманын компоненттери өз касиеттерин сактайт, ошондуктан аларды ушул касиеттердин айырмасы боюнча бөлүүгө болот. Виртуалдык лабораторияда алты ыкманы карайбыз жана ар бир аралашма үчүн туура ыкманы тандаганды үйрөнөбүз.",
+      "ru": "Компоненты смеси сохраняют свои свойства, поэтому их можно разделить, опираясь на разницу в свойствах. В виртуальной лаборатории разбираем шесть способов и учимся выбирать нужный для каждой смеси.",
+      "en": "The parts of a mixture keep their own properties, so they can be separated by using the differences between them. In a virtual lab we look at six methods and learn to choose the right one for each mixture."
+    },
+    "goal": {
+      "ky": "Аралашмаларды бөлүүнүн ыкмаларын сүрөттөө жана компоненттердин касиеттерине карап ылайыктуу ыкманы тандоо (CHEM-8.3.1); ысытууда коопсуздук эрежелерин сактоо.",
+      "ru": "Описать способы разделения смесей и выбрать подходящий по свойствам компонентов (CHEM-8.3.1); соблюдать правила безопасности при нагревании.",
+      "en": "Describe ways of separating mixtures and choose the right one from the properties of the parts (CHEM-8.3.1); follow safety rules when heating."
+    },
+    "objectiveKeys": [
+      "chem.g8.mixtures.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "separation",
+        "method": "filtration",
+        "mixture": "sand + salt water"
+      },
+      "camera": {
+        "position": [
+          0,
+          1.2,
+          5
+        ],
+        "target": [
+          0,
+          0.5,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "run",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "chem.filtration",
+      "chem.residue",
+      "chem.filtrate",
+      "chem.evaporation-method",
+      "chem.distillation",
+      "chem.distillate",
+      "chem.chromatography",
+      "chem.magnetic-separation",
+      "chem.decanting",
+      "chem.lab-heating-safety"
+    ],
+    "overrides": {
+      "chem.filtration": {
+        "nodes": [
+          "Funnel",
+          "FilterPaper"
+        ],
+        "anchor": [
+          0,
+          1.2,
+          0
+        ]
+      },
+      "chem.residue": {
+        "nodes": [
+          "Residue"
+        ],
+        "anchor": [
+          0,
+          1.0,
+          0
+        ]
+      },
+      "chem.filtrate": {
+        "nodes": [
+          "Filtrate"
+        ],
+        "anchor": [
+          0,
+          0.15,
+          0
+        ]
+      },
+      "chem.evaporation-method": {
+        "nodes": [
+          "Dish",
+          "Crystals",
+          "Vapour"
+        ]
+      },
+      "chem.distillation": {
+        "nodes": [
+          "Flask",
+          "Condenser",
+          "Thermometer",
+          "Receiver"
+        ]
+      },
+      "chem.distillate": {
+        "nodes": [
+          "Distillate"
+        ]
+      },
+      "chem.chromatography": {
+        "nodes": [
+          "Paper",
+          "Spot_*",
+          "SolventFront"
+        ]
+      },
+      "chem.magnetic-separation": {
+        "nodes": [
+          "Magnet",
+          "IronFilings"
+        ]
+      },
+      "chem.decanting": {
+        "nodes": [
+          "Sediment",
+          "Liquid"
+        ]
+      },
+      "chem.lab-heating-safety": {
+        "nodes": [
+          "Burner"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "sep-filtration",
+        "title": {
+          "ky": "Чыпкалоо",
+          "ru": "Фильтрование",
+          "en": "Filtration"
+        },
+        "classification": {
+          "ky": "Кум + туздуу суу",
+          "ru": "Песок + солёная вода",
+          "en": "Sand + salt water"
+        },
+        "thumb": "thumbs/sep-filtration.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Кум чыпкада калат, туздуу суу өтөт",
+              "ru": "Песок остаётся на фильтре, солёная вода проходит",
+              "en": "Sand stays on the filter, salt water passes"
+            }
+          }
+        ]
+      },
+      {
+        "key": "sep-evaporation",
+        "title": {
+          "ky": "Буулантуу",
+          "ru": "Выпаривание",
+          "en": "Evaporation"
+        },
+        "classification": {
+          "ky": "Туздуу суу",
+          "ru": "Солёная вода",
+          "en": "Salt water"
+        },
+        "thumb": "thumbs/sep-evaporation.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Суу бууланат, туз калат",
+              "ru": "Вода испаряется, соль остаётся",
+              "en": "Water evaporates, salt is left"
+            }
+          }
+        ]
+      },
+      {
+        "key": "sep-distillation",
+        "title": {
+          "ky": "Айдоо",
+          "ru": "Перегонка",
+          "en": "Distillation"
+        },
+        "classification": {
+          "ky": "Туздуу суу → таза суу",
+          "ru": "Солёная вода → чистая вода",
+          "en": "Salt water → pure water"
+        },
+        "thumb": "thumbs/sep-distillation.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Суу 100 °C та кайнайт, туз колбада калат",
+              "ru": "Вода кипит при 100 °C, соль остаётся в колбе",
+              "en": "Water boils at 100 °C, salt stays in the flask"
+            }
+          }
+        ]
+      },
+      {
+        "key": "sep-chromatography",
+        "title": {
+          "ky": "Хроматография",
+          "ru": "Хроматография",
+          "en": "Chromatography"
+        },
+        "classification": {
+          "ky": "Фломастердин сыясы",
+          "ru": "Чернила фломастера",
+          "en": "Felt-tip ink"
+        },
+        "thumb": "thumbs/sep-chromatography.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Сыя бир нече боёкко бөлүнөт",
+              "ru": "Чернила делятся на несколько красителей",
+              "en": "The ink splits into several dyes"
+            }
+          }
+        ]
+      },
+      {
+        "key": "sep-magnet",
+        "title": {
+          "ky": "Магнит менен бөлүү",
+          "ru": "Разделение магнитом",
+          "en": "Magnetic separation"
+        },
+        "classification": {
+          "ky": "Темир күкүмү + кум",
+          "ru": "Железные опилки + песок",
+          "en": "Iron filings + sand"
+        },
+        "thumb": "thumbs/sep-magnet.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Темир магнитке тартылат, кум калат",
+              "ru": "Железо притягивается магнитом, песок остаётся",
+              "en": "Iron is pulled out, sand stays"
+            }
+          }
+        ]
+      },
+      {
+        "key": "sep-decanting",
+        "title": {
+          "ky": "Тундуруу",
+          "ru": "Отстаивание",
+          "en": "Settling"
+        },
+        "classification": {
+          "ky": "Ылай суу",
+          "ru": "Мутная вода",
+          "en": "Muddy water"
+        },
+        "thumb": "thumbs/sep-decanting.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Ылай түбүнө чөгөт, суу куюлуп алынат",
+              "ru": "Ил оседает, воду сливают",
+              "en": "Mud settles, water is poured off"
+            }
+          }
+        ]
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                5
+              ],
+              "target": [
+                0,
+                0.5,
+                0
+              ]
+            },
+            "modes": {
+              "run": false,
+              "labels": true
+            },
+            "focus": "chem.filtration",
+            "text": {
+              "ky": "Столдо кум аралашкан туздуу суу турат. Аны кантип бөлөбүз? Ыкма компоненттердин касиетине жараша тандалат: өлчөмү, эригичтиги, кайноо температурасы, магниттик касиети.",
+              "ru": "На столе солёная вода с песком. Как её разделить? Способ выбирают по свойствам компонентов: размеру частиц, растворимости, температуре кипения, магнитным свойствам.",
+              "en": "On the bench is salt water with sand in it. How can we separate it? We pick a method from the properties of the parts: particle size, solubility, boiling point, magnetism."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: «Кумду туздуу суудан кантип бөлөбүз? Андан кийин тузду суудан кантип алабыз?» Жоопторду кадамдар катары тактага жазыңыз.",
+              "ru": "Спросите: «Как отделить песок от солёной воды? А потом соль от воды?» Запишите ответы на доске как шаги.",
+              "en": "Ask: “How can we get the sand out of the salt water? And then the salt out of the water?” Write the answers on the board as steps."
+            },
+            "altText": {
+              "ky": "Лабораториялык стол: штативдеги воронка, анын астында стакан.",
+              "ru": "Лабораторный стол: воронка на штативе, под ней стакан.",
+              "en": "A lab bench: a funnel on a stand with a beaker below."
+            }
+          },
+          {
+            "key": "filtration",
+            "camera": {
+              "position": [
+                0.8,
+                1.6,
+                2.6
+              ],
+              "target": [
+                0,
+                1.0,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.filtration",
+            "text": {
+              "ky": "Чыпкалоо: аралашманы чыпка кагаз салынган воронкага таякча боюнча акырын куябыз. Суу жана анда эриген туз кагаздын майда тешикчелеринен өтөт, кумдун бөлүкчөлөрү өтпөйт.",
+              "ru": "Фильтрование: смесь осторожно наливаем по палочке в воронку с бумажным фильтром. Вода и растворённая в ней соль проходят через мелкие поры бумаги, а песчинки – нет.",
+              "en": "Filtration: pour the mixture slowly down a glass rod into a funnel lined with filter paper. Water and the salt dissolved in it pass through the tiny holes; the sand grains do not."
+            },
+            "teacherNote": {
+              "ky": "Чыпка кагазды төрткө бүктөп, воронкага кантип салууну көрсөтүңүз. Суюктуктун деңгээли кагаздын четинен төмөн болушу керек.",
+              "ru": "Покажите, как сложить фильтр вчетверо и вложить в воронку. Уровень жидкости должен быть ниже края бумаги.",
+              "en": "Show how to fold filter paper into quarters and fit it in the funnel. Keep the liquid below the top edge of the paper."
+            },
+            "altText": {
+              "ky": "Воронкадан стаканга тамчылар агат.",
+              "ru": "Капли стекают из воронки в стакан.",
+              "en": "Drops run from the funnel into the beaker."
+            }
+          },
+          {
+            "key": "residue",
+            "camera": {
+              "position": [
+                0.6,
+                0.4,
+                2.6
+              ],
+              "target": [
+                0,
+                0.1,
+                0
+              ]
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "chem.residue",
+            "text": {
+              "ky": "Кагазда калган кум – калдык. Стаканга аккан тунук суюктук – фильтрат. Ал тунук, бирок таза суу эмес: анда туз эриген.",
+              "ru": "Песок на бумаге – осадок. Прозрачная жидкость в стакане – фильтрат. Она прозрачная, но это не чистая вода: в ней растворена соль.",
+              "en": "The sand on the paper is the residue. The clear liquid in the beaker is the filtrate. It is clear but not pure water – salt is dissolved in it."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: «Фильтратта туз бар экенин кантип текшеребиз?» – бир тамчыны айнекте буулантып көрүү керек. Фильтраттын даамын татууга болбойт – лабораторияда эч нерсе татылбайт.",
+              "ru": "Спросите: «Как проверить, что в фильтрате есть соль?» – выпарить каплю на стекле. Пробовать фильтрат на вкус нельзя – в лаборатории ничего не пробуют.",
+              "en": "Ask: “How can we check there is salt in the filtrate?” – evaporate a drop on glass. Never taste it – nothing in a lab is tasted."
+            },
+            "altText": {
+              "ky": "Чыпкадагы нымдуу кум жана стакандагы тунук суюктук.",
+              "ru": "Влажный песок на фильтре и прозрачная жидкость в стакане.",
+              "en": "Damp sand on the filter and clear liquid in the beaker."
+            }
+          },
+          {
+            "key": "evaporation",
+            "sample": "sep-evaporation",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                3.6
+              ],
+              "target": [
+                0,
+                0.7,
+                0
+              ]
+            },
+            "focus": "chem.evaporation-method",
+            "text": {
+              "ky": "Тузду алуу үчүн фильтратты фарфор чөйчөкчөдө буулантабыз: суу бууга айланат, ал эми туз кристалл болуп калат. Мындай учурда суу жоголот.",
+              "ru": "Чтобы получить соль, выпариваем фильтрат в фарфоровой чашке: вода превращается в пар, а соль остаётся кристаллами. Вода при этом теряется.",
+              "en": "To get the salt we evaporate the filtrate in an evaporating dish: the water turns to vapour and the salt is left as crystals. The water is lost."
+            },
+            "teacherNote": {
+              "ky": "Коопсуздук: көз айнек тагынылат, чөйчөкчөгө ылдый карабайт. Кристаллдар пайда болгондо ысытууну токтотуңуз – калган суу өзү бууланат. «Кум аралашкан тузду бөлүү» процессин көрсөтүңүз.",
+              "ru": "Безопасность: работаем в очках, не наклоняемся над чашкой. Выключите нагрев, когда появятся кристаллы, – остаток испарится сам. Покажите процесс «Разделение соли и песка».",
+              "en": "Safety: goggles on and do not lean over the dish. Stop heating once crystals appear – the rest evaporates on its own. Show the «Separating salt from sand» process."
+            },
+            "altText": {
+              "ky": "Текст буулантууну сүрөттөйт; сахнада азыр чыпкалоо прибору.",
+              "ru": "Текст описывает выпаривание; на сцене пока прибор для фильтрования.",
+              "en": "The text describes evaporation; the scene still shows the filtration set-up."
+            }
+          },
+          {
+            "key": "distillation",
+            "sample": "sep-distillation",
+            "camera": {
+              "position": [
+                -0.2,
+                1.9,
+                5.6
+              ],
+              "target": [
+                -0.2,
+                1.3,
+                0
+              ]
+            },
+            "focus": "chem.distillation",
+            "text": {
+              "ky": "Сууну да сактап калуу керек болсо – айдоо. Туздуу суу колбада кайнайт, буу муздаткычта кайра сууга айланат жана кабыл алгычка дистиллят болуп чогулат. Туз колбада калат.",
+              "ru": "Если нужна и вода – перегонка. Солёная вода кипит в колбе, пар в холодильнике снова становится водой и собирается в приёмнике как дистиллят. Соль остаётся в колбе.",
+              "en": "If we want the water too, we distil. Salt water boils in the flask, the vapour turns back to water in the condenser and collects in the receiver as distillate. The salt stays in the flask."
+            },
+            "teacherNote": {
+              "ky": "«Туздуу сууну айдоо» процессин ишке киргизиңиз. Эскертиңиз: прибор эч качан толук жабылбайт, колбага кайнатуучу таштар салынат, колбаны кургатып ийбейт.",
+              "ru": "Запустите процесс «Перегонка солёной воды». Напомните: прибор никогда не закрывают наглухо, в колбу кладут кипелки и не дают ей выкипеть досуха.",
+              "en": "Run the «Distilling salt water» process. Stress that the apparatus is never sealed, anti-bumping granules go in the flask and it must never boil dry."
+            },
+            "altText": {
+              "ky": "Текст айдоону сүрөттөйт: колба, муздаткыч жана кабыл алгыч.",
+              "ru": "Текст описывает перегонку: колба, холодильник и приёмник.",
+              "en": "The text describes distillation: flask, condenser and receiver."
+            }
+          },
+          {
+            "key": "chromatography",
+            "sample": "sep-chromatography",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                4.2
+              ],
+              "target": [
+                0,
+                1.1,
+                0
+              ]
+            },
+            "focus": "chem.chromatography",
+            "text": {
+              "ky": "Хроматография: фломастердин тагы коюлган кагаздын четин сууга малабыз. Суу жогору көтөрүлүп, сыянын курамындагы боёкторду ар кандай аралыкка алып барат.",
+              "ru": "Хроматография: край бумаги с пятном фломастера опускаем в воду. Вода поднимается и уносит красители чернил на разное расстояние.",
+              "en": "Chromatography: dip the edge of a paper strip with a felt-tip spot into water. The water climbs and carries the dyes in the ink different distances."
+            },
+            "teacherNote": {
+              "ky": "Тез тажрыйба: кофе чыпкасына же салфеткага кара фломастер менен чекит коюп, четин сууга малыңыз. 5–10 мүнөттө түстүү тилкелер көрүнөт.",
+              "ru": "Быстрый опыт: поставьте точку чёрным фломастером на кофейный фильтр или салфетку и опустите край в воду. Через 5–10 минут появятся цветные полосы.",
+              "en": "Quick demo: put a black felt-tip dot on a coffee filter or paper towel and dip the edge in water. Coloured bands appear within 5–10 minutes."
+            },
+            "altText": {
+              "ky": "Текст хроматографияны сүрөттөйт: кагазда бир нече түстүү тактар.",
+              "ru": "Текст описывает хроматографию: несколько цветных пятен на бумаге.",
+              "en": "The text describes chromatography: several coloured spots on paper."
+            }
+          },
+          {
+            "key": "magnet-settling",
+            "sample": "sep-magnet",
+            "camera": {
+              "position": [
+                0,
+                1.6,
+                4.2
+              ],
+              "target": [
+                0,
+                1.0,
+                0
+              ]
+            },
+            "focus": "chem.magnetic-separation",
+            "text": {
+              "ky": "Темир күкүмүн кумдан магнит менен бөлөбүз – темир гана магнитке тартылат. Ылай сууну тундуруп, тунук бөлүгүн куюп алабыз; аралашпаган суюктуктар (май жана суу) да ушинтип бөлүнөт.",
+              "ru": "Железные опилки отделяем от песка магнитом – притягивается только железо. Мутную воду отстаиваем и сливаем прозрачную часть; несмешивающиеся жидкости (масло и вода) делят так же.",
+              "en": "Iron filings are taken out of sand with a magnet – only the iron is attracted. Muddy water is left to settle and the clear part poured off; liquids that do not mix, like oil and water, are separated the same way."
+            },
+            "teacherNote": {
+              "ky": "Ыкманы тандоо оюну: «туздуу суу», «ылай суу», «кара сыя», «темир + кум», «спирт + суу» деген карточкаларды көрсөтүп, окуучулар ыкманы атасын.",
+              "ru": "Игра «выбери способ»: показывайте карточки «солёная вода», «мутная вода», «чёрные чернила», «железо + песок», «спирт + вода», а ученики называют способ.",
+              "en": "«Pick the method» game: hold up cards – salt water, muddy water, black ink, iron + sand, ethanol + water – and students name the method."
+            },
+            "altText": {
+              "ky": "Текст магнит менен бөлүүнү жана тундурууну сүрөттөйт.",
+              "ru": "Текст описывает разделение магнитом и отстаивание.",
+              "en": "The text describes magnetic separation and settling."
+            }
+          },
+          {
+            "key": "safety",
+            "sample": "sep-evaporation",
+            "camera": {
+              "position": [
+                0.8,
+                0.9,
+                3.0
+              ],
+              "target": [
+                0,
+                0.5,
+                0
+              ]
+            },
+            "focus": "chem.lab-heating-safety",
+            "text": {
+              "ky": "Ысытуу менен иштегенде: көз айнек, байланган чач, пробирканын оозу адамдардан башка тарапка. Спирт чырагы ширеңке менен күйгүзүлүп, капкак менен өчүрүлөт. Ысык айнекти кармагыч менен кармайбыз.",
+              "ru": "При нагревании: очки, убранные волосы, отверстие пробирки – в сторону от людей. Спиртовку зажигают спичкой и гасят колпачком. Горячее стекло берут держателем.",
+              "en": "When heating: goggles, hair tied back, the mouth of the tube pointing away from people. A spirit burner is lit with a match and put out with its cap. Hot glass is held with a holder."
+            },
+            "teacherNote": {
+              "ky": "Эрежелерди окуучулардын өздөрүнө айттырыңыз. Спирт чырагын үйлөп өчүрүүгө жана бир чырактан экинчисин күйгүзүүгө болбостугун өзүнчө белгилеңиз.",
+              "ru": "Пусть ученики сами назовут правила. Отдельно подчеркните: спиртовку нельзя задувать и нельзя зажигать от другой спиртовки.",
+              "en": "Have students state the rules themselves. Stress that a spirit burner must never be blown out or lit from another burner."
+            },
+            "altText": {
+              "ky": "Спирт чырагы бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделена спиртовка.",
+              "en": "The burner is highlighted."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.salt-sand-separation",
+        "chem.distillation-run"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.filtration"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.evaporation-method"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.distillation"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.chromatography"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.magnetic-separation"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.decanting"
+          }
+        ],
+        "rows": [
+          "function"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.separating-mixtures-1",
+          "chem.q.separating-mixtures-2",
+          "chem.q.separating-mixtures-3",
+          "chem.q.separating-mixtures-4",
+          "chem.q.separating-mixtures-5",
+          "chem.q.separating-mixtures-6",
+          "chem.q.separating-mixtures-7",
+          "chem.q.separating-mixtures-8",
+          "chem.q.separating-mixtures-9",
+          "chem.q.separating-mixtures-10",
+          "chem.q.separating-mixtures-11",
+          "chem.q.separating-mixtures-12"
+        ],
+        "sampleSize": 7
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Суу тазалоочу станция",
+            "ru": "Водоочистная станция",
+            "en": "Water treatment"
+          },
+          "text": {
+            "ky": "Шаардын суусу бир нече кадамда тазаланат: тундуруу, кум чыпкалары, андан кийин зыянсыздандыруу.",
+            "ru": "Городскую воду очищают в несколько шагов: отстаивание, песчаные фильтры, затем обеззараживание.",
+            "en": "City water is cleaned in several steps: settling, sand filters and then disinfection."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Мунай заводу",
+            "ru": "Нефтеперерабатывающий завод",
+            "en": "Oil refinery"
+          },
+          "text": {
+            "ky": "Мунайды айдоо мунараларында кайноо температурасы боюнча бензинге, керосинге жана башка отундарга бөлүшөт.",
+            "ru": "В ректификационных колоннах нефть делят по температуре кипения на бензин, керосин и другое топливо.",
+            "en": "In distillation towers crude oil is split by boiling point into petrol, kerosene and other fuels."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Криминалистика",
+            "ru": "Криминалистика",
+            "en": "Forensic science"
+          },
+          "text": {
+            "ky": "Хроматография сыянын, боёктун же дарынын курамын аныктап, тергөөчүлөргө жардам берет.",
+            "ru": "Хроматография определяет состав чернил, красок или лекарств и помогает следователям.",
+            "en": "Chromatography reveals what is in inks, paints or drugs and helps investigators."
+          },
+          "field": "s"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Макаронду электекке төгүү",
+            "ru": "Макароны на дуршлаге",
+            "en": "Draining pasta"
+          },
+          "text": {
+            "ky": "Электек – чыпка: суу агып кетет, макарон калат.",
+            "ru": "Дуршлаг – это фильтр: вода стекает, макароны остаются.",
+            "en": "A colander is a filter: the water runs off and the pasta stays."
+          }
+        },
+        {
+          "title": {
+            "ky": "Шорпонун майы",
+            "ru": "Жир на бульоне",
+            "en": "Fat on soup"
+          },
+          "text": {
+            "ky": "Муздаган шорпонун үстүнө чыккан майды кашык менен алуу – тундуруу жана бөлүү.",
+            "ru": "Снять ложкой жир с остывшего бульона – это отстаивание и разделение.",
+            "en": "Skimming the fat off cooled soup is settling and separating."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "chem.q.separating-mixtures-1",
+      "type": "match",
+      "prompt": {
+        "ky": "Аралашманы аны бөлүүнүн ылайыктуу ыкмасына дал келтир.",
+        "ru": "Сопоставь смесь и подходящий способ её разделения.",
+        "en": "Match each mixture to the best way of separating it."
+      },
+      "pairs": [
+        {
+          "key": "filt",
+          "left": {
+            "ky": "Суу менен кум",
+            "ru": "Вода с песком",
+            "en": "Sand and water"
+          },
+          "right": {
+            "ky": "Чыпкалоо",
+            "ru": "Фильтрование",
+            "en": "Filtration"
+          }
+        },
+        {
+          "key": "evap",
+          "left": {
+            "ky": "Туздуу суудан туз алуу",
+            "ru": "Получить соль из солёной воды",
+            "en": "Getting salt from salt water"
+          },
+          "right": {
+            "ky": "Буулантуу",
+            "ru": "Выпаривание",
+            "en": "Evaporation"
+          }
+        },
+        {
+          "key": "dist",
+          "left": {
+            "ky": "Деңиз суусунан таза суу алуу",
+            "ru": "Получить чистую воду из морской",
+            "en": "Getting pure water from sea water"
+          },
+          "right": {
+            "ky": "Айдоо",
+            "ru": "Перегонка",
+            "en": "Distillation"
+          }
+        },
+        {
+          "key": "chrom",
+          "left": {
+            "ky": "Сыянын боёктору",
+            "ru": "Красители в чернилах",
+            "en": "Dyes in ink"
+          },
+          "right": {
+            "ky": "Хроматография",
+            "ru": "Хроматография",
+            "en": "Chromatography"
+          }
+        },
+        {
+          "key": "mag",
+          "left": {
+            "ky": "Темир күкүмү менен кум",
+            "ru": "Железные опилки с песком",
+            "en": "Iron filings and sand"
+          },
+          "right": {
+            "ky": "Магнит",
+            "ru": "Магнит",
+            "en": "A magnet"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Кум эрибейт – чыпкалоо; тузду сактоо – буулантуу; таза суу алуу – айдоо; боёктор – хроматография; темир – магнит.",
+        "ru": "Песок не растворяется – фильтрование; соль – выпаривание; чистая вода – перегонка; красители – хроматография; железо – магнит.",
+        "en": "Sand is insoluble – filtration; keep the salt – evaporation; get pure water – distillation; dyes – chromatography; iron – a magnet."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.separating-mixtures-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Кум аралашкан туздуу сууну чыпкаладык. Фильтратта эмне бар?",
+        "ru": "Солёную воду с песком отфильтровали. Что в фильтрате?",
+        "en": "Salt water with sand in it is filtered. What is in the filtrate?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Таза суу",
+            "ru": "Чистая вода",
+            "en": "Pure water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Туздуу суу",
+            "ru": "Солёная вода",
+            "en": "Salt water"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Кум жана суу",
+            "ru": "Песок и вода",
+            "en": "Sand and water"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Туз гана",
+            "ru": "Только соль",
+            "en": "Just salt"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Эриген туз чыпкадан өтөт, ошондуктан фильтрат – туздуу суу. Кум чыпкада калат.",
+        "ru": "Растворённая соль проходит через фильтр, поэтому фильтрат – солёная вода. Песок остаётся на фильтре.",
+        "en": "Dissolved salt passes through the filter, so the filtrate is salt water. The sand stays on the filter."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.filter-salt",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.separating-mixtures-3",
+      "type": "single",
+      "prompt": {
+        "ky": "Айдоо компоненттердин кайсы касиетинин айырмасына негизделген?",
+        "ru": "На различии какого свойства основана перегонка?",
+        "en": "Distillation relies on a difference in which property?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кайноо температурасы",
+            "ru": "Температура кипения",
+            "en": "Boiling point"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Магниттик касиети",
+            "ru": "Магнитные свойства",
+            "en": "Magnetism"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Бөлүкчөлөрдүн өлчөмү",
+            "ru": "Размер частиц",
+            "en": "Particle size"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Түсү",
+            "ru": "Цвет",
+            "en": "Colour"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Айдоодо суюктуктар ар кандай температурада кайнайт; кайноо температурасы төмөн зат биринчи бууга айланат.",
+        "ru": "При перегонке жидкости кипят при разных температурах; вещество с меньшей температурой кипения испаряется первым.",
+        "en": "In distillation liquids boil at different temperatures; the one with the lower boiling point vaporises first."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.separating-mixtures-4",
+      "type": "single",
+      "prompt": {
+        "ky": "Суу (100 °C) менен этил спиртинин (78 °C) аралашмасын айдаганда кабыл алгычка адегенде эмне чогулат?",
+        "ru": "При перегонке смеси воды (100 °C) и этилового спирта (78 °C) что первым соберётся в приёмнике?",
+        "en": "When a mixture of water (100 °C) and ethanol (78 °C) is distilled, what collects in the receiver first?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Суу",
+            "ru": "Вода",
+            "en": "Water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Этил спирти",
+            "ru": "Этиловый спирт",
+            "en": "Ethanol"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Экөө бирге, бирдей",
+            "ru": "Обе сразу поровну",
+            "en": "Both equally at once"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Жаңы зат",
+            "ru": "Новое вещество",
+            "en": "A new substance"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Спирттин кайноо температурасы төмөн (78 °C), ошондуктан ал биринчи бууланып, биринчи чогулат.",
+        "ru": "У спирта температура кипения ниже (78 °C), поэтому он испаряется и собирается первым.",
+        "en": "Ethanol has the lower boiling point (78 °C), so it vaporises and collects first."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.distillation-reaction",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.separating-mixtures-5",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Ысытууда кайсы эрежелер туура? Бардыгын танда.",
+        "ru": "Какие правила при нагревании верны? Выбери все.",
+        "en": "Which rules for heating are correct? Choose all that apply."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Коргоочу көз айнек тагынуу",
+            "ru": "Надеть защитные очки",
+            "en": "Wear safety goggles"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Пробирканын оозун адамдардан башка тарапка буруу",
+            "ru": "Направить отверстие пробирки в сторону от людей",
+            "en": "Point the test tube away from people"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Спирт чырагын капкагы менен өчүрүү",
+            "ru": "Гасить спиртовку колпачком",
+            "en": "Put the burner out with its cap"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Спирт чырагын үйлөп өчүрүү",
+            "ru": "Задуть спиртовку",
+            "en": "Blow the burner out"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Чыракты башка күйүп турган чырактан күйгүзүү",
+            "ru": "Зажечь спиртовку от другой горящей",
+            "en": "Light it from another lit burner"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Көз айнек тагынылат, пробирканын оозу адамдардан башка тарапка каралат, спирт чырагы капкак менен өчүрүлөт. Чыракты үйлөп өчүрүүгө жана башка чырактан күйгүзүүгө болбойт.",
+        "ru": "Надевают очки, отверстие пробирки направляют в сторону от людей, спиртовку гасят колпачком. Задувать спиртовку и зажигать от другой нельзя.",
+        "en": "Wear goggles, point the tube away from people and put the burner out with its cap. Never blow it out or light it from another burner."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.glass-cool",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.separating-mixtures-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден катуу бөлүкчөлөрдү кармап калуучу бөлүктү – чыпка кагазды тап.",
+        "ru": "Найди на модели часть, которая задерживает твёрдые частицы, – бумажный фильтр.",
+        "en": "Find the part that holds back solid particles – the filter paper."
+      },
+      "targetConceptKey": "chem.filtration",
+      "explanation": {
+        "ky": "Воронкадагы чыпка кагаз кумду кармайт, суюктукту өткөрөт.",
+        "ru": "Бумажный фильтр в воронке задерживает песок и пропускает жидкость.",
+        "en": "The filter paper in the funnel holds back the sand and lets the liquid through."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.separating-mixtures-7",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден калдыкты тап.",
+        "ru": "Найди на модели осадок на фильтре.",
+        "en": "Find the residue on the model."
+      },
+      "targetConceptKey": "chem.residue",
+      "explanation": {
+        "ky": "Калдык – чыпка кагазда калган кум.",
+        "ru": "Осадок – песок, оставшийся на фильтре.",
+        "en": "The residue is the sand left on the filter paper."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.separating-mixtures-8",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден фильтратты тап.",
+        "ru": "Найди на модели фильтрат.",
+        "en": "Find the filtrate on the model."
+      },
+      "targetConceptKey": "chem.filtrate",
+      "explanation": {
+        "ky": "Фильтрат – чыпкадан өтүп, стаканга аккан суюктук.",
+        "ru": "Фильтрат – жидкость, прошедшая через фильтр в стакан.",
+        "en": "The filtrate is the liquid that ran through the filter into the beaker."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.filtrate-pure",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.separating-mixtures-9",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Деңиз суусунда массасы боюнча ≈3,5 % туз бар. 200 г деңиз суусун толук буулантсак, канча грамм туз калат?",
+        "ru": "В морской воде ≈3,5 % солей по массе. Сколько граммов соли останется, если полностью выпарить 200 г морской воды?",
+        "en": "Sea water is ≈3.5 % salt by mass. How many grams of salt are left after evaporating 200 g of sea water completely?"
+      },
+      "answer": 7,
+      "tolerance": 0.2,
+      "unit": "g",
+      "explanation": {
+        "ky": "200 г × 0,035 = 7 г.",
+        "ru": "200 г × 0,035 = 7 г.",
+        "en": "200 g × 0.035 = 7 g."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.salt-evaporates",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.separating-mixtures-10",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Хроматограммада эриткичтин чеги 6,0 см жылды, ал эми көк так 3,0 см жылды. Көк боёктун R_f мааниси кандай?",
+        "ru": "На хроматограмме фронт растворителя прошёл 6,0 см, а синее пятно – 3,0 см. Чему равно R_f синего красителя?",
+        "en": "On a chromatogram the solvent front moved 6.0 cm and the blue spot moved 3.0 cm. What is the R_f of the blue dye?"
+      },
+      "answer": 0.5,
+      "tolerance": 0.02,
+      "explanation": {
+        "ky": "R_f = тактын аралыгы / эриткичтин чегинин аралыгы = 3,0 / 6,0 = 0,5.",
+        "ru": "R_f = путь пятна / путь фронта растворителя = 3,0 / 6,0 = 0,5.",
+        "en": "R_f = distance moved by the spot / distance moved by the solvent front = 3.0 / 6.0 = 0.5."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.separating-mixtures-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Кум, туз жана темир күкүмүнүн аралашмасы бар. Аны бөлүүнүн туура ирети кайсы?",
+        "ru": "Есть смесь песка, соли и железных опилок. Какой порядок разделения верный?",
+        "en": "You have a mixture of sand, salt and iron filings. Which order of steps separates it?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Магнит → сууда эритүү → чыпкалоо → буулантуу",
+            "ru": "Магнит → растворение → фильтрование → выпаривание",
+            "en": "Magnet → dissolve → filter → evaporate"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Чыпкалоо → магнит → буулантуу",
+            "ru": "Фильтрование → магнит → выпаривание",
+            "en": "Filter → magnet → evaporate"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Буулантуу → магнит → чыпкалоо",
+            "ru": "Выпаривание → магнит → фильтрование",
+            "en": "Evaporate → magnet → filter"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Айдоо гана",
+            "ru": "Только перегонка",
+            "en": "Distillation alone"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Адегенде магнит менен темирди алабыз, андан кийин сууда эритип, кумду чыпкалайбыз, акырында фильтратты буулантып тузду алабыз.",
+        "ru": "Сначала магнитом убираем железо, затем растворяем в воде и отфильтровываем песок, наконец выпариваем фильтрат и получаем соль.",
+        "en": "First remove the iron with a magnet, then dissolve in water and filter off the sand, and finally evaporate the filtrate to get the salt."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.separating-mixtures-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Ылай сууну тундуруп, үстүндөгү суюктукту куюп алдык. Ал дагы эле бир аз ылай. Эми эмне кылуу керек?",
+        "ru": "Мутную воду отстояли и слили. Она всё ещё немного мутная. Что сделать дальше?",
+        "en": "Muddy water was left to settle and poured off, but it is still a little cloudy. What should you do next?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Чыпкалоо",
+            "ru": "Отфильтровать",
+            "en": "Filter it"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Магнит колдонуу",
+            "ru": "Применить магнит",
+            "en": "Use a magnet"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Хроматография",
+            "ru": "Хроматография",
+            "en": "Chromatography"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Туз кошуу",
+            "ru": "Добавить соль",
+            "en": "Add salt"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Майда бөлүкчөлөр суюктукта калат; аларды чыпкалоо менен кармап калышат.",
+        "ru": "Мелкие частицы остаются в жидкости; их задерживают фильтрованием.",
+        "en": "Fine particles stay in the liquid; filtering traps them."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o1"
+      ],
+      "misconceptionKey": "chem.m.decant-perfect",
+      "difficulty": 2
+    }
+  ]
+}

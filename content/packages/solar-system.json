@@ -2,7 +2,7 @@
   "manifest": {
     "topicKey": "solar-system",
     "version": "1.0.0",
-    "hash": "842234d075eecc8765c6696bc2efc8b20c5cb075f375288e49d39ec3b9a8c608",
+    "hash": "d6bc293f2d62c1e316d58bdf1618e251d429affb16f5d54299d698a624b89d90",
     "files": [
       {
         "path": "thumbs/solar-system.webp",
@@ -223,7 +223,32 @@
           "ru": "Каменные планеты",
           "en": "Rocky planets"
         },
-        "thumb": "thumbs/inner-planets.webp"
+        "thumb": "thumbs/inner-planets.webp",
+        "scene": {
+          "params": {
+            "model": "orbits",
+            "bodies": [
+              "sun",
+              "mercury",
+              "venus",
+              "earth",
+              "mars"
+            ]
+          },
+          "camera": {
+            "position": [
+              0,
+              9,
+              11
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "fov": 45
+          }
+        }
       },
       {
         "key": "gas-giants",
@@ -237,7 +262,35 @@
           "ru": "Внешние планеты",
           "en": "Outer planets"
         },
-        "thumb": "thumbs/gas-giants.webp"
+        "thumb": "thumbs/gas-giants.webp",
+        "scene": {
+          "params": {
+            "model": "orbits",
+            "bodies": [
+              "jupiter",
+              "saturn",
+              "uranus",
+              "neptune"
+            ]
+          },
+          "camera": {
+            "position": [
+              3,
+              9,
+              30
+            ],
+            "target": [
+              3,
+              0,
+              5
+            ],
+            "fov": 60
+          },
+          "modes": {
+            "orbits": false,
+            "true-scale": true
+          }
+        }
       },
       {
         "key": "moon-phases",

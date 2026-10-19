@@ -1,0 +1,214 @@
+{
+  "processes": [
+    {
+      "key": "bio.elbow-flexion",
+      "engine": "timeline",
+      "icon": "biceps-flexed",
+      "title": { "ky": "Чыканактын бүгүлүшү жана жазылышы", "ru": "Сгибание и разгибание локтя", "en": "Bending and straightening the elbow" },
+      "description": {
+        "ky": "Бицепс менен трицепс антагонист жуп катары иштейт: колду бүгүүдө бицепс жыйрылып, трицепс бошоңдойт; колду жазууда тескерисинче. Чыканак – шарнир сымал муун, ал билекти бир тегиздикте гана буруп берет.",
+        "ru": "Бицепс и трицепс работают как пара антагонистов: при сгибании бицепс сокращается, а трицепс расслабляется; при разгибании – наоборот. Локоть – шарнирный сустав, он поворачивает предплечье только в одной плоскости.",
+        "en": "The biceps and triceps work as an antagonistic pair: to bend the arm the biceps contracts while the triceps relaxes; to straighten it, the reverse. The elbow is a hinge joint that lets the forearm swing in one plane only."
+      },
+      "inputs": { "ky": "Мээден келген нерв сигналы, булчуңдагы энергия (АТФ)", "ru": "Нервный сигнал от мозга, энергия в мышце (АТФ)", "en": "A nerve signal from the brain, energy in the muscle (ATP)" },
+      "outputs": { "ky": "Билектин кыймылы, жылуулук", "ru": "Движение предплечья, тепло", "en": "Forearm movement, heat" },
+      "energy": { "ky": "Булчуң химиялык энергиянын төрттөн бирине жакынын гана кыймылга айлантат, калганы жылуулук болот", "ru": "Мышца превращает в движение лишь около четверти химической энергии, остальное уходит в тепло", "en": "A muscle turns only about a quarter of its chemical energy into movement; the rest becomes heat" },
+      "steps": [
+        {
+          "key": "nerve-signal",
+          "title": { "ky": "Нерв сигналы", "ru": "Нервный сигнал", "en": "Nerve signal" },
+          "result": { "ky": "Бицепс «буйрук» алды", "ru": "Бицепс получил «команду»", "en": "The biceps gets the command" },
+          "description": { "ky": "Мээден нерв аркылуу бицепске сигнал келет. Кол али түз, булчуңдар бошоң.", "ru": "От мозга по нерву к бицепсу приходит сигнал. Рука ещё прямая, мышцы расслаблены.", "en": "A signal travels from the brain along a nerve to the biceps. The arm is still straight and relaxed." },
+          "conceptKey": "bio.biceps",
+          "altText": { "ky": "Түз кол; ийиндин алдыңкы булчуңу акырын жарык болот.", "ru": "Прямая рука; передняя мышца плеча слегка подсвечивается.", "en": "A straight arm; the front upper-arm muscle glows faintly." },
+          "duration": 0.5
+        },
+        {
+          "key": "biceps-contracts",
+          "title": { "ky": "Бицепс жыйрылат", "ru": "Бицепс сокращается", "en": "The biceps contracts" },
+          "result": { "ky": "Билек 90°ка көтөрүлдү", "ru": "Предплечье поднято на 90°", "en": "Forearm raised to 90°" },
+          "description": { "ky": "Бицепс кыскарып, жоонойт жана тарамышы аркылуу кары жиликти өйдө тартат.", "ru": "Бицепс укорачивается, утолщается и через сухожилие тянет лучевую кость вверх.", "en": "The biceps shortens and thickens, pulling the radius upwards through its tendon." },
+          "conceptKey": "bio.biceps",
+          "altText": { "ky": "Ийиндин алдыңкы булчуңу томпоюп, билек тик бурчка чейин көтөрүлөт.", "ru": "Передняя мышца плеча вздувается, предплечье поднимается до прямого угла.", "en": "The front upper-arm muscle bulges and the forearm lifts to a right angle." },
+          "duration": 1
+        },
+        {
+          "key": "triceps-relaxes",
+          "title": { "ky": "Трицепс бошоңдойт", "ru": "Трицепс расслабляется", "en": "The triceps relaxes" },
+          "result": { "ky": "Кол толук бүгүлдү", "ru": "Рука полностью согнута", "en": "Arm fully bent" },
+          "description": { "ky": "Ушул эле учурда трицепс бошоңдоп, чоюлат – ал кыймылга тоскоол болбойт жана аны жумшак кылат.", "ru": "В это же время трицепс расслабляется и растягивается – он не мешает движению и делает его плавным.", "en": "At the same time the triceps relaxes and stretches, letting the movement happen smoothly." },
+          "conceptKey": "bio.triceps",
+          "altText": { "ky": "Ийиндин арткы булчуңу ичкерип, чоюлат; кол толук бүгүлөт.", "ru": "Задняя мышца плеча становится тоньше и вытягивается; рука сгибается полностью.", "en": "The back upper-arm muscle thins and lengthens; the arm bends fully." },
+          "duration": 0.8
+        },
+        {
+          "key": "hinge-holds",
+          "title": { "ky": "Чыканак – шарнир", "ru": "Локоть – шарнир", "en": "The elbow hinge" },
+          "result": { "ky": "Кыймыл бир тегиздикте", "ru": "Движение в одной плоскости", "en": "Movement in one plane" },
+          "description": { "ky": "Шарнир сымал чыканак билекти өйдө-ылдый гана бурат; байламдар аны капталга кетирбейт.", "ru": "Шарнирный локоть поворачивает предплечье только вверх-вниз; связки не дают ему уйти вбок.", "en": "The hinge-shaped elbow only lets the forearm swing up and down; ligaments stop it moving sideways." },
+          "conceptKey": "bio.hinge-joint",
+          "altText": { "ky": "Чыканак муун жарык болуп, кыймылдын жаасы көрсөтүлөт.", "ru": "Подсвечен локтевой сустав и дуга движения.", "en": "The elbow joint is highlighted with the arc of movement." },
+          "duration": 0.7
+        },
+        {
+          "key": "triceps-contracts",
+          "title": { "ky": "Трицепс жыйрылат – кол жазылат", "ru": "Трицепс сокращается – рука разгибается", "en": "The triceps contracts – the arm straightens" },
+          "result": { "ky": "Кол кайра түз", "ru": "Рука снова прямая", "en": "Arm straight again" },
+          "description": { "ky": "Эми трицепс жыйрылып, чыканак сөөгүн тартат, бицепс бошоңдойт. Булчуң түртө албагандыктан, колду жазуу үчүн экинчи булчуң керек.", "ru": "Теперь трицепс сокращается и тянет локтевую кость, а бицепс расслабляется. Мышца не умеет толкать, поэтому для разгибания нужна вторая мышца.", "en": "Now the triceps contracts and pulls on the ulna while the biceps relaxes. Muscles cannot push, so straightening needs the second muscle." },
+          "conceptKey": "bio.triceps",
+          "altText": { "ky": "Арткы булчуң томпоюп, билек ылдый түшүп, кол түздөлөт.", "ru": "Задняя мышца вздувается, предплечье опускается, рука выпрямляется.", "en": "The back muscle bulges, the forearm lowers and the arm straightens." },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        { "key": "flex-angle", "label": { "ky": "Ийилүү бурчу", "ru": "Угол сгибания", "en": "Bending angle" }, "unit": "°", "min": 0, "max": 145, "precision": 0 },
+        { "key": "biceps-tension", "label": { "ky": "Бицепстин чыңалуусу", "ru": "Напряжение бицепса", "en": "Biceps effort" }, "unit": "%", "min": 0, "max": 100, "precision": 0 }
+      ],
+      "params": {
+        "flex-angle@nerve-signal": 0,
+        "flex-angle@biceps-contracts": 90,
+        "flex-angle@triceps-relaxes": 135,
+        "flex-angle@hinge-holds": 135,
+        "flex-angle@triceps-contracts": 0,
+        "biceps-tension@nerve-signal": 10,
+        "biceps-tension@biceps-contracts": 60,
+        "biceps-tension@triceps-relaxes": 50,
+        "biceps-tension@hinge-holds": 40,
+        "biceps-tension@triceps-contracts": 0
+      }
+    },
+    {
+      "key": "bio.breathing-cycle",
+      "engine": "timeline",
+      "icon": "wind",
+      "title": { "ky": "Дем алуу жана дем чыгаруу", "ru": "Вдох и выдох", "en": "Breathing in and out" },
+      "description": {
+        "ky": "Дем алганда диафрагма жана кабырга аралык булчуңдар жыйрылып, көкүрөк көңдөйүнүн көлөмү чоңоёт; өпкөдөгү басым атмосфералык басымдан төмөндөп, аба ичине агып кирет. Дем чыгарганда булчуңдар бошоңдоп, көлөм кичирейет жана аба сыртка чыгат. Тынч абалда бир дем менен 500 мл жакын аба кирет.",
+        "ru": "При вдохе диафрагма и межрёберные мышцы сокращаются, объём грудной полости растёт; давление в лёгких становится ниже атмосферного, и воздух входит внутрь. При выдохе мышцы расслабляются, объём уменьшается, и воздух выходит. В покое за один вдох входит около 500 мл воздуха.",
+        "en": "Breathing in, the diaphragm and rib muscles contract and the chest gets bigger; pressure in the lungs drops below atmospheric pressure and air flows in. Breathing out, the muscles relax, the chest gets smaller and air flows out. At rest each breath moves about 500 mL of air."
+      },
+      "inputs": { "ky": "Атмосфералык аба (≈21 % O₂, 0,04 % CO₂)", "ru": "Атмосферный воздух (≈21 % O₂, 0,04 % CO₂)", "en": "Outside air (≈21 % O₂, 0.04 % CO₂)" },
+      "outputs": { "ky": "Чыгарылган аба (≈16 % O₂, ≈4 % CO₂, суу буусу)", "ru": "Выдыхаемый воздух (≈16 % O₂, ≈4 % CO₂, водяной пар)", "en": "Exhaled air (≈16 % O₂, ≈4 % CO₂, water vapour)" },
+      "energy": { "ky": "Тынч дем алуу активдүү (булчуңдар иштейт), тынч дем чыгаруу дээрлик пассивдүү", "ru": "Спокойный вдох – активный (работают мышцы), спокойный выдох – почти пассивный", "en": "Quiet breathing in is active (muscles work); quiet breathing out is almost passive" },
+      "steps": [
+        {
+          "key": "diaphragm-contracts",
+          "title": { "ky": "Диафрагма жыйрылат", "ru": "Диафрагма сокращается", "en": "The diaphragm contracts" },
+          "result": { "ky": "Көкүрөк көңдөйү узарды", "ru": "Грудная полость удлинилась", "en": "The chest gets deeper" },
+          "description": { "ky": "Күмбөз сымал диафрагма жыйрылып, жалпайат жана ылдый түшөт.", "ru": "Куполообразная диафрагма сокращается, уплощается и опускается.", "en": "The dome-shaped diaphragm contracts, flattens and moves down." },
+          "conceptKey": "bio.diaphragm",
+          "altText": { "ky": "Өпкөнүн астындагы күмбөз жалпайып, ылдый жылат.", "ru": "Купол под лёгкими уплощается и сдвигается вниз.", "en": "The dome under the lungs flattens and moves down." },
+          "duration": 1
+        },
+        {
+          "key": "ribs-rise",
+          "title": { "ky": "Кабыргалар көтөрүлөт – аба кирет", "ru": "Рёбра поднимаются – воздух входит", "en": "Ribs lift – air flows in" },
+          "result": { "ky": "≈500 мл аба кирди", "ru": "Вошло ≈500 мл воздуха", "en": "≈500 mL of air in" },
+          "description": { "ky": "Кабырга аралык булчуңдар кабыргаларды өйдө жана алдыга көтөрөт. Көкүрөк көңдөйү чоңоюп, өпкөдөгү басым атмосфералыктан бир аз төмөндөйт, аба мурун аркылуу кирет.", "ru": "Межрёберные мышцы поднимают рёбра вверх и вперёд. Грудная полость увеличивается, давление в лёгких становится чуть ниже атмосферного, и воздух входит через нос.", "en": "The rib muscles lift the ribs up and out. The chest grows, pressure in the lungs falls slightly below atmospheric and air comes in through the nose." },
+          "conceptKey": "bio.rib-cage",
+          "altText": { "ky": "Кабыргалар көтөрүлүп, өпкөлөр толот, аба жолу боюнча жебелер ичин көздөй багытталат.", "ru": "Рёбра поднимаются, лёгкие наполняются, стрелки вдоль дыхательных путей направлены внутрь.", "en": "The ribs rise, the lungs fill and arrows along the airway point inwards." },
+          "duration": 1
+        },
+        {
+          "key": "muscles-relax",
+          "title": { "ky": "Булчуңдар бошоңдойт", "ru": "Мышцы расслабляются", "en": "The muscles relax" },
+          "result": { "ky": "Көлөм кичирейди", "ru": "Объём уменьшился", "en": "The chest gets smaller" },
+          "description": { "ky": "Диафрагма бошоңдоп, кайра күмбөз сымал өйдө көтөрүлөт, кабыргалар өз салмагы менен түшөт.", "ru": "Диафрагма расслабляется и снова поднимается куполом, рёбра опускаются под своей тяжестью.", "en": "The diaphragm relaxes and domes back up, and the ribs drop under their own weight." },
+          "conceptKey": "bio.diaphragm",
+          "altText": { "ky": "Күмбөз өйдө көтөрүлүп, кабыргалар түшөт.", "ru": "Купол поднимается, рёбра опускаются.", "en": "The dome rises and the ribs drop." },
+          "duration": 1.5
+        },
+        {
+          "key": "air-out",
+          "title": { "ky": "Аба чыгат", "ru": "Воздух выходит", "en": "Air flows out" },
+          "result": { "ky": "Дем чыгаруу аяктады", "ru": "Выдох завершён", "en": "Breath out complete" },
+          "description": { "ky": "Ийкемдүү өпкөлөр кичирейип, басым атмосфералыктан жогорулайт жана аба сыртка чыгат.", "ru": "Упругие лёгкие сжимаются, давление становится выше атмосферного, и воздух выходит наружу.", "en": "The elastic lungs shrink back, pressure rises above atmospheric and air flows out." },
+          "conceptKey": "bio.lungs",
+          "altText": { "ky": "Өпкөлөр кичирейип, жебелер сыртты көздөй багытталат.", "ru": "Лёгкие уменьшаются, стрелки направлены наружу.", "en": "The lungs shrink and arrows point outwards." },
+          "duration": 1.5
+        }
+      ],
+      "metrics": [
+        { "key": "air-in", "label": { "ky": "Кирген абанын көлөмү", "ru": "Объём вдохнутого воздуха", "en": "Air breathed in" }, "unit": "mL", "min": 0, "max": 500, "precision": 0 },
+        { "key": "diaphragm-shift", "label": { "ky": "Диафрагманын түшүшү", "ru": "Смещение диафрагмы", "en": "Diaphragm movement" }, "unit": "cm", "min": 0, "max": 2, "precision": 1 }
+      ],
+      "params": {
+        "air-in@diaphragm-contracts": 200,
+        "air-in@ribs-rise": 500,
+        "air-in@muscles-relax": 250,
+        "air-in@air-out": 0,
+        "diaphragm-shift@diaphragm-contracts": 1.5,
+        "diaphragm-shift@ribs-rise": 1.5,
+        "diaphragm-shift@muscles-relax": 0.4,
+        "diaphragm-shift@air-out": 0,
+        "breathsPerMinute": 15,
+        "tidalVolume": 500
+      }
+    },
+    {
+      "key": "bio.gas-exchange",
+      "engine": "timeline",
+      "icon": "arrow-left-right",
+      "title": { "ky": "Альвеоладагы газ алмашуу", "ru": "Газообмен в альвеоле", "en": "Gas exchange in an alveolus" },
+      "description": {
+        "ky": "Газдар диффузия аркылуу – көп жерден аз жерге карай өтөт. Альвеоладагы абада кычкылтек көп, ал канга өтөт; канда көмүр кычкыл газы көп, ал альвеолага өтөт. Альвеола менен капиллярдын дубалдары абдан жука, ошондуктан бул бир секунданын бөлүгүндө ишке ашат.",
+        "ru": "Газы переходят путём диффузии – оттуда, где их много, туда, где мало. В воздухе альвеолы много кислорода, и он переходит в кровь; в крови много углекислого газа, и он переходит в альвеолу. Стенки альвеолы и капилляра очень тонкие, поэтому это занимает доли секунды.",
+        "en": "Gases move by diffusion – from where there is more to where there is less. Air in the alveolus is rich in oxygen, so oxygen passes into the blood; blood is rich in carbon dioxide, so it passes into the alveolus. The walls are so thin that this takes a fraction of a second."
+      },
+      "inputs": { "ky": "Альвеоладагы аба жана кычкылтеги аз кан", "ru": "Воздух в альвеоле и бедная кислородом кровь", "en": "Air in the alveolus and oxygen-poor blood" },
+      "outputs": { "ky": "Кычкылтекке бай кан жана CO₂га байыган аба", "ru": "Богатая кислородом кровь и обогащённый CO₂ воздух", "en": "Oxygen-rich blood and CO₂-enriched air" },
+      "steps": [
+        {
+          "key": "air-arrives",
+          "title": { "ky": "Таза аба келди", "ru": "Пришёл свежий воздух", "en": "Fresh air arrives" },
+          "result": { "ky": "Альвеола аба менен толду", "ru": "Альвеола наполнилась воздухом", "en": "The alveolus fills" },
+          "description": { "ky": "Бронхиола аркылуу кычкылтекке бай аба альвеолага жетет. Капиллярда өпкө артериясынан келген, кычкылтеги аз кан агат.", "ru": "По бронхиоле в альвеолу поступает богатый кислородом воздух. В капилляре течёт бедная кислородом кровь из лёгочной артерии.", "en": "Oxygen-rich air reaches the alveolus through a bronchiole. Oxygen-poor blood from the pulmonary artery flows in the capillary around it." },
+          "conceptKey": "bio.alveoli",
+          "altText": { "ky": "Көбүкчө аба менен толуп, анын тегерегинде көгүш-кызыл капилляр.", "ru": "Пузырёк наполняется воздухом, вокруг – синевато-красный капилляр.", "en": "A tiny sac fills with air, wrapped in a bluish-red capillary." },
+          "duration": 1
+        },
+        {
+          "key": "oxygen-in",
+          "title": { "ky": "O₂ канга өтөт", "ru": "O₂ переходит в кровь", "en": "O₂ moves into the blood" },
+          "result": { "ky": "Кан кычкылтекке каныкты", "ru": "Кровь насыщена кислородом", "en": "Blood loaded with oxygen" },
+          "description": { "ky": "Кычкылтек жука дубалдар аркылуу канга диффузияланып, кызыл кан клеткаларындагы гемоглобин менен байланышат.", "ru": "Кислород диффундирует через тонкие стенки в кровь и связывается с гемоглобином эритроцитов.", "en": "Oxygen diffuses through the thin walls into the blood and binds to haemoglobin in the red blood cells." },
+          "conceptKey": "chem.o2",
+          "altText": { "ky": "Кызыл чекиттер (O₂) альвеоладан капиллярга өтөт, кан ачык кызыл болот.", "ru": "Красные точки (O₂) переходят из альвеолы в капилляр, кровь становится ярко-алой.", "en": "Red dots (O₂) pass from the alveolus into the capillary and the blood turns bright red." },
+          "duration": 1.5
+        },
+        {
+          "key": "co2-out",
+          "title": { "ky": "CO₂ альвеолага өтөт", "ru": "CO₂ переходит в альвеолу", "en": "CO₂ moves into the alveolus" },
+          "result": { "ky": "CO₂ абага берилди", "ru": "CO₂ отдан в воздух", "en": "CO₂ released into the air" },
+          "description": { "ky": "Ошол эле учурда клеткаларда пайда болгон көмүр кычкыл газы кандан альвеолага диффузияланат.", "ru": "Одновременно углекислый газ, образовавшийся в клетках, диффундирует из крови в альвеолу.", "en": "At the same time carbon dioxide made by the body's cells diffuses from the blood into the alveolus." },
+          "conceptKey": "chem.carbon-dioxide",
+          "altText": { "ky": "Боз чекиттер (CO₂) капиллярдан альвеолага өтөт.", "ru": "Серые точки (CO₂) переходят из капилляра в альвеолу.", "en": "Grey dots (CO₂) pass from the capillary into the alveolus." },
+          "duration": 1.5
+        },
+        {
+          "key": "blood-leaves",
+          "title": { "ky": "Кан жүрөккө кетет", "ru": "Кровь уходит к сердцу", "en": "Blood heads to the heart" },
+          "result": { "ky": "Кычкылтекке бай кан – денеге", "ru": "Богатая кислородом кровь – к телу", "en": "Oxygen-rich blood goes to the body" },
+          "description": { "ky": "Кычкылтекке байыган кан өпкө веналары аркылуу жүрөктүн сол жагына, андан бүт денеге барат. CO₂ дем чыгарганда сыртка чыгат.", "ru": "Обогащённая кислородом кровь по лёгочным венам идёт в левую половину сердца, а оттуда – ко всему телу. CO₂ уходит наружу с выдохом.", "en": "The oxygen-rich blood flows through the pulmonary veins to the left side of the heart and on to the whole body. The CO₂ leaves with the next breath out." },
+          "conceptKey": "bio.lungs",
+          "altText": { "ky": "Ачык кызыл кан капиллярдан агып кетет, альвеоладан аба чыгат.", "ru": "Алая кровь утекает из капилляра, воздух выходит из альвеолы.", "en": "Bright red blood flows away and air leaves the alveolus." },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        { "key": "blood-o2", "label": { "ky": "Кандын кычкылтекке каныгуусу", "ru": "Насыщение крови кислородом", "en": "Blood oxygen saturation" }, "unit": "%", "min": 75, "max": 100, "precision": 0 },
+        { "key": "co2-released", "label": { "ky": "Бир демде берилген CO₂", "ru": "Отдано CO₂ за вдох", "en": "CO₂ released per breath" }, "unit": "mL", "min": 0, "max": 20, "precision": 0 }
+      ],
+      "params": {
+        "blood-o2@air-arrives": 75,
+        "blood-o2@oxygen-in": 97,
+        "blood-o2@co2-out": 97,
+        "blood-o2@blood-leaves": 97,
+        "co2-released@air-arrives": 0,
+        "co2-released@oxygen-in": 0,
+        "co2-released@co2-out": 17,
+        "co2-released@blood-leaves": 17
+      }
+    }
+  ]
+}

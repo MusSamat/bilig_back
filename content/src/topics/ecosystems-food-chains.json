@@ -1,0 +1,1116 @@
+{
+  "topic": {
+    "key": "ecosystems-food-chains",
+    "unitKey": "bio.g8.ecosystems",
+    "status": "published",
+    "title": {
+      "ky": "Экосистемалар жана азык чынжырлары",
+      "ru": "Экосистемы и пищевые цепи",
+      "en": "Ecosystems and food chains"
+    },
+    "classification": {
+      "ky": "Экология",
+      "ru": "Экология",
+      "en": "Ecology"
+    },
+    "description": {
+      "ky": "Тянь-Шандын тоо экосистемасы: чөп жана арча, теке, суур, чегиртке, кеклик, түлкү, илбирс жана бүркүт. Продуценттер, консументтер жана редуценттер, азык чынжырлары жана торчосу, Күндөн келген энергиянын агымы жана 10 % эрежеси.",
+      "ru": "Горная экосистема Тянь-Шаня: трава и арча, козерог, сурок, саранча, кеклик, лиса, снежный барс и беркут. Продуценты, консументы и редуценты, пищевые цепи и сеть, поток энергии от Солнца и правило 10 %.",
+      "en": "A Tien Shan mountain ecosystem: grass and juniper, ibex, marmots, grasshoppers, chukar partridges, a fox, a snow leopard and a golden eagle. Producers, consumers and decomposers, food chains and webs, energy flow from the Sun and the 10 % rule."
+    },
+    "goal": {
+      "ky": "Экосистеманын компоненттерин жана азык чынжырларын сүрөттөө, 10 % эрежеси менен энергияны эсептөө (BIO-8.3.1).",
+      "ru": "Описать компоненты экосистемы и пищевые цепи, рассчитать энергию по правилу 10 % (BIO-8.3.1).",
+      "en": "Describe the parts of an ecosystem and its food chains, and calculate energy with the 10 % rule (BIO-8.3.1)."
+    },
+    "objectiveKeys": [
+      "bio.g8.ecosystems.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "food-web",
+        "biome": "mountain",
+        "organisms": [
+          {
+            "id": "grass",
+            "level": "producer",
+            "icon": "grass",
+            "count": 1000
+          },
+          {
+            "id": "juniper",
+            "level": "producer",
+            "icon": "tree",
+            "count": 200
+          },
+          {
+            "id": "grasshopper",
+            "level": "primary",
+            "icon": "grasshopper",
+            "count": 500
+          },
+          {
+            "id": "marmot",
+            "level": "primary",
+            "icon": "marmot",
+            "count": 40
+          },
+          {
+            "id": "ibex",
+            "level": "primary",
+            "icon": "ibex",
+            "count": 30
+          },
+          {
+            "id": "chukar",
+            "level": "secondary",
+            "icon": "bird",
+            "count": 25
+          },
+          {
+            "id": "fox",
+            "level": "secondary",
+            "icon": "fox",
+            "count": 4
+          },
+          {
+            "id": "snow-leopard",
+            "level": "tertiary",
+            "icon": "snow-leopard",
+            "count": 1
+          },
+          {
+            "id": "eagle",
+            "level": "tertiary",
+            "icon": "eagle",
+            "count": 2
+          },
+          {
+            "id": "fungi",
+            "level": "decomposer",
+            "icon": "mushroom",
+            "count": 1000
+          }
+        ],
+        "links": [
+          [
+            "grass",
+            "grasshopper"
+          ],
+          [
+            "grass",
+            "marmot"
+          ],
+          [
+            "grass",
+            "ibex"
+          ],
+          [
+            "juniper",
+            "chukar"
+          ],
+          [
+            "grasshopper",
+            "chukar"
+          ],
+          [
+            "marmot",
+            "fox"
+          ],
+          [
+            "chukar",
+            "fox"
+          ],
+          [
+            "ibex",
+            "snow-leopard"
+          ],
+          [
+            "marmot",
+            "snow-leopard"
+          ],
+          [
+            "marmot",
+            "eagle"
+          ],
+          [
+            "fox",
+            "eagle"
+          ],
+          [
+            "ibex",
+            "fungi"
+          ],
+          [
+            "grass",
+            "fungi"
+          ]
+        ]
+      },
+      "camera": {
+        "position": [
+          0,
+          2.5,
+          7
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "energy",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "bio.ecosystem",
+      "bio.habitat",
+      "bio.abiotic-factors",
+      "bio.energy-flow",
+      "bio.producer",
+      "bio.primary-consumer",
+      "bio.secondary-consumer",
+      "bio.tertiary-consumer",
+      "bio.decomposer",
+      "bio.food-chain",
+      "bio.food-web"
+    ],
+    "overrides": {
+      "bio.energy-flow": {
+        "nodes": [
+          "Sun"
+        ]
+      },
+      "bio.producer": {
+        "nodes": [
+          "Level_producer",
+          "Organism_grass",
+          "Organism_juniper"
+        ]
+      },
+      "bio.primary-consumer": {
+        "nodes": [
+          "Level_primary",
+          "Organism_grasshopper",
+          "Organism_marmot",
+          "Organism_ibex"
+        ]
+      },
+      "bio.secondary-consumer": {
+        "nodes": [
+          "Level_secondary",
+          "Organism_chukar",
+          "Organism_fox"
+        ]
+      },
+      "bio.tertiary-consumer": {
+        "nodes": [
+          "Level_tertiary",
+          "Organism_snow-leopard",
+          "Organism_eagle"
+        ]
+      },
+      "bio.decomposer": {
+        "nodes": [
+          "Level_decomposer",
+          "Organism_fungi"
+        ]
+      },
+      "bio.food-chain": {
+        "nodes": [
+          "Link_grass_ibex",
+          "Link_ibex_snow-leopard"
+        ]
+      },
+      "bio.food-web": {
+        "nodes": [
+          "Link_*"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "web-mountain",
+        "title": {
+          "ky": "Тоо экосистемасы",
+          "ru": "Горная экосистема",
+          "en": "Mountain ecosystem"
+        },
+        "classification": {
+          "ky": "Тянь-Шань",
+          "ru": "Тянь-Шань",
+          "en": "Tien Shan"
+        },
+        "thumb": "thumbs/web-mountain.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "count",
+            "value": 10,
+            "unit": "species"
+          },
+          {
+            "kind": "quantity",
+            "type": "count",
+            "value": 13,
+            "unit": "feeding links"
+          }
+        ]
+      },
+      {
+        "key": "chain-grass-ibex-leopard",
+        "title": {
+          "ky": "Чөп → теке → илбирс",
+          "ru": "Трава → козерог → барс",
+          "en": "Grass → ibex → snow leopard"
+        },
+        "classification": {
+          "ky": "Азык чынжыры",
+          "ru": "Пищевая цепь",
+          "en": "Food chain"
+        },
+        "thumb": "thumbs/chain-grass-ibex-leopard.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "count",
+            "value": 3,
+            "unit": "links"
+          },
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 10000,
+            "unit": "kJ (grass)"
+          },
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 100,
+            "unit": "kJ (snow leopard)"
+          }
+        ]
+      },
+      {
+        "key": "energy-pyramid",
+        "title": {
+          "ky": "Энергия пирамидасы",
+          "ru": "Пирамида энергии",
+          "en": "Energy pyramid"
+        },
+        "classification": {
+          "ky": "10 % эрежеси",
+          "ru": "Правило 10 %",
+          "en": "10 % rule"
+        },
+        "thumb": "thumbs/energy-pyramid.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "count",
+            "value": 10,
+            "unit": "% to next level",
+            "approx": true
+          }
+        ]
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "count",
+        "value": 10,
+        "unit": "species"
+      },
+      {
+        "kind": "text",
+        "type": "location",
+        "value": {
+          "ky": "Тянь-Шань, болжол менен 2500–3500 м бийиктик",
+          "ru": "Тянь-Шань, высота около 2500–3500 м",
+          "en": "Tien Shan, about 2500–3500 m above sea level"
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "ecosystem",
+            "camera": {
+              "position": [
+                0,
+                2.5,
+                7
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "bio.ecosystem",
+            "text": {
+              "ky": "Бул – Тянь-Шандын тоо экосистемасы. Ага тирүү организмдер гана эмес, жансыз чөйрө да кирет: Күн, суу, топурак, суук жана бийиктик.",
+              "ru": "Это горная экосистема Тянь-Шаня. В неё входят не только живые организмы, но и неживая среда: Солнце, вода, почва, холод и высота.",
+              "en": "This is a Tien Shan mountain ecosystem. It includes not only living things but also the non-living surroundings: the Sun, water, soil, cold and altitude."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: экосистемадагы жансыз нерселерди атагыла. Кийин бийиктик менен температура кантип өзгөрөрүн айтыңыз (≈ 0,6 °C ар 100 м).",
+              "ru": "Спросите: назовите неживые части экосистемы. Затем расскажите, как меняется температура с высотой (≈ 0,6 °C на 100 м).",
+              "en": "Ask: name the non-living parts of the ecosystem. Then explain how temperature falls with altitude (≈ 0.6 °C per 100 m)."
+            },
+            "altText": {
+              "ky": "Тоо капталындагы организмдер жана үстүндө Күн.",
+              "ru": "Организмы на горном склоне и Солнце над ними.",
+              "en": "Organisms on a mountain slope with the Sun above."
+            }
+          },
+          {
+            "key": "producers",
+            "camera": {
+              "position": [
+                0,
+                1,
+                6
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "bio.producer",
+            "text": {
+              "ky": "Чөп жана арча – продуценттер. Алар фотосинтез аркылуу Күндүн энергиясын органикалык затка айлантышат. Ар бир азык чынжыры ушулардан башталат.",
+              "ru": "Трава и арча – продуценты. При фотосинтезе они запасают энергию Солнца в органическом веществе. С них начинается каждая пищевая цепь.",
+              "en": "Grass and juniper are producers. Through photosynthesis they store the Sun's energy in organic matter. Every food chain starts with them."
+            },
+            "teacherNote": {
+              "ky": "Туура эмес түшүнүк: «өсүмдүк тамагын топурактан алат». Топурактан суу жана минерал гана келерин эскертиңиз.",
+              "ru": "Частая ошибка: «растение берёт пищу из почвы». Напомните: из почвы только вода и минералы.",
+              "en": "Common mistake: 'plants get food from the soil'. Remind pupils that soil supplies only water and minerals."
+            },
+            "altText": {
+              "ky": "Чөп жана арча белгиленген.",
+              "ru": "Выделены трава и арча.",
+              "en": "Grass and juniper are highlighted."
+            }
+          },
+          {
+            "key": "consumers",
+            "camera": {
+              "position": [
+                0,
+                2.5,
+                7
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "bio.primary-consumer",
+            "text": {
+              "ky": "Теке, суур жана чегиртке – чөп жегичтер (I катар). Кеклик жана түлкү аларды жейт (II катар). Илбирс жана бүркүт – чоку жырткычтар (III катар).",
+              "ru": "Козерог, сурок и саранча – растительноядные (I порядок). Кеклик и лиса едят их (II порядок). Снежный барс и беркут – высшие хищники (III порядок).",
+              "en": "Ibex, marmots and grasshoppers are herbivores (primary). Chukar and the fox eat them (secondary). The snow leopard and golden eagle are top predators (tertiary)."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: суурду түлкү жесе, түлкү кайсы катарда? Ал эми түлкү жемиш жесечи? Бир жаныбар ар кайсы катарда болушу мүмкүн.",
+              "ru": "Спросите: лиса ест сурка – какой это порядок? А если лиса ест ягоды? Одно животное может быть на разных уровнях.",
+              "en": "Ask: a fox eating a marmot – which level? And eating berries? One animal can feed at different levels."
+            },
+            "altText": {
+              "ky": "Консументтердин үч катары түстүү белгиленген.",
+              "ru": "Три порядка консументов выделены цветом.",
+              "en": "The three consumer levels are colour-coded."
+            }
+          },
+          {
+            "key": "chain",
+            "sample": "chain-grass-ibex-leopard",
+            "modes": {
+              "energy": false
+            },
+            "focus": "bio.food-chain",
+            "text": {
+              "ky": "Азык чынжыры: чөп → теке → илбирс. Жебе энергиянын агымын көрсөтөт – жеген жаныбарга карай.",
+              "ru": "Пищевая цепь: трава → козерог → снежный барс. Стрелка показывает поток энергии – к тому, кто ест.",
+              "en": "A food chain: grass → ibex → snow leopard. Each arrow shows energy flowing towards the eater."
+            },
+            "teacherNote": {
+              "ky": "Окуучулар карточкалар менен «ким кимди жейт» деген чынжырларды өздөрү түзүшсүн. Жебенин багытын текшериңиз.",
+              "ru": "Пусть ученики сами соберут цепи из карточек «кто кого ест». Проверьте направление стрелок.",
+              "en": "Let pupils build chains from 'who eats whom' cards and check the arrow direction."
+            },
+            "altText": {
+              "ky": "Чөптөн текеге, текеден илбирске жебелер.",
+              "ru": "Стрелки от травы к козерогу и от козерога к барсу.",
+              "en": "Arrows from grass to ibex and from ibex to snow leopard."
+            }
+          },
+          {
+            "key": "web",
+            "focus": "bio.food-web",
+            "text": {
+              "ky": "Бардык чынжырлар кесилишип, азык торчосун түзөт. Суурду түлкү, илбирс жана бүркүт жейт: эгер суурлар азайса, бул үч жырткычка тең таасир этет.",
+              "ru": "Все цепи переплетаются в пищевую сеть. Сурка едят лиса, барс и беркут: если сурков станет меньше, это коснётся всех троих.",
+              "en": "All the chains interlink into a food web. Marmots are eaten by the fox, the snow leopard and the eagle: fewer marmots would affect all three."
+            },
+            "teacherNote": {
+              "ky": "Ойлонтуучу суроо: суурлар жоголсо, эмне болот? Жыйынтыктарды тактага «себеп → натыйжа» түрүндө жазыңыз.",
+              "ru": "Вопрос на размышление: что будет, если исчезнут сурки? Запишите выводы на доске в виде «причина → следствие».",
+              "en": "Thinking question: what if the marmots disappeared? Record answers on the board as cause → effect."
+            },
+            "altText": {
+              "ky": "Организмдерди байланыштырган көп жебелер.",
+              "ru": "Множество стрелок, связывающих организмы.",
+              "en": "Many arrows connecting the organisms."
+            }
+          },
+          {
+            "key": "energy",
+            "sample": "energy-pyramid",
+            "camera": {
+              "position": [
+                0,
+                4,
+                5
+              ],
+              "target": [
+                0,
+                2,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "energy": true
+            },
+            "focus": "bio.energy-flow",
+            "text": {
+              "ky": "Энергия Күндөн келип, бир багытта өтөт. Ар бир кийинки шакекке болжол менен 10 %ы гана жетет: 10 000 кДж → 1000 → 100 → 10 кДж. Калганы жылуулук болуп чыгат.",
+              "ru": "Энергия приходит от Солнца и идёт в одном направлении. На каждое следующее звено доходит лишь около 10 %: 10 000 кДж → 1000 → 100 → 10 кДж. Остальное уходит теплом.",
+              "en": "Energy comes from the Sun and flows one way. Only about 10 % reaches each next link: 10,000 kJ → 1000 → 100 → 10 kJ. The rest is lost as heat."
+            },
+            "teacherNote": {
+              "ky": "Ушул жерде «Энергиянын агымы» процессин иштетиңиз. Сураңыз: эмне үчүн илбирстер аз жана аларга чоң аймак керек?",
+              "ru": "Запустите здесь процесс «Поток энергии». Спросите: почему снежных барсов мало и им нужна большая территория?",
+              "en": "Run the 'Energy flow' process here. Ask: why are there so few snow leopards, and why do they need so much space?"
+            },
+            "altText": {
+              "ky": "Жебелердин жоондугу ар бир шакекте 10 эсе кичирейет.",
+              "ru": "Толщина стрелок уменьшается в 10 раз на каждом звене.",
+              "en": "Arrow thickness shrinks tenfold at each link."
+            }
+          },
+          {
+            "key": "decomposers",
+            "camera": {
+              "position": [
+                0,
+                1,
+                6
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "bio.decomposer",
+            "text": {
+              "ky": "Козу карындар жана бактериялар – редуценттер. Алар өлгөн организмдерди ажыратып, минералдарды топуракка кайтарат: заттар айланат, энергия болсо жылуулук болуп кетет.",
+              "ru": "Грибы и бактерии – редуценты. Они разлагают мёртвые организмы и возвращают минералы в почву: вещества совершают круговорот, а энергия уходит теплом.",
+              "en": "Fungi and bacteria are decomposers. They break down dead organisms and return minerals to the soil: matter cycles, while energy leaves as heat."
+            },
+            "teacherNote": {
+              "ky": "Туура эмес түшүнүк: «энергия да айланат». Айырманы тактага эки жебе менен көрсөтүңүз: заттар – айлана, энергия – түз сызык.",
+              "ru": "Частая ошибка: «энергия тоже совершает круговорот». Покажите на доске: вещества – по кругу, энергия – по прямой.",
+              "en": "Common mistake: 'energy is recycled too'. Show it on the board: matter goes round in a circle, energy in a straight line."
+            },
+            "altText": {
+              "ky": "Топурактагы козу карындар белгиленген.",
+              "ru": "Выделены грибы в почве.",
+              "en": "Fungi in the soil are highlighted."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "bio.energy-flow-chain"
+      ],
+      "quiz": {
+        "itemKeys": [
+          "bio.q.ecosystems-food-chains-1",
+          "bio.q.ecosystems-food-chains-2",
+          "bio.q.ecosystems-food-chains-3",
+          "bio.q.ecosystems-food-chains-4",
+          "bio.q.ecosystems-food-chains-5",
+          "bio.q.ecosystems-food-chains-6",
+          "bio.q.ecosystems-food-chains-7",
+          "bio.q.ecosystems-food-chains-8",
+          "bio.q.ecosystems-food-chains-9",
+          "bio.q.ecosystems-food-chains-10",
+          "bio.q.ecosystems-food-chains-11"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "s",
+          "title": {
+            "ky": "Илбирсти эсептөө",
+            "ru": "Учёт снежного барса",
+            "en": "Counting snow leopards"
+          },
+          "text": {
+            "ky": "Фотоколкондор жана тезектин ДНКсы аркылуу илимпоздор Кыргызстандагы илбирстердин санын аныкташат.",
+            "ru": "По фотоловушкам и ДНК из помёта учёные оценивают численность снежных барсов в Кыргызстане.",
+            "en": "Scientists estimate snow leopard numbers in Kyrgyzstan from camera traps and DNA in droppings."
+          }
+        },
+        {
+          "field": "m",
+          "title": {
+            "ky": "Энергия пирамидасы",
+            "ru": "Пирамида энергии",
+            "en": "Energy pyramid"
+          },
+          "text": {
+            "ky": "10 000 × 0,1 × 0,1 × 0,1 = 10 кДж – үчүнчү катардагы консументке жеткен энергия.",
+            "ru": "10 000 × 0,1 × 0,1 × 0,1 = 10 кДж – энергия консумента третьего порядка.",
+            "en": "10,000 × 0.1 × 0.1 × 0.1 = 10 kJ – the energy that reaches a tertiary consumer."
+          }
+        },
+        {
+          "field": "e",
+          "title": {
+            "ky": "Жайыттарды пландоо",
+            "ru": "Планирование пастбищ",
+            "en": "Pasture planning"
+          },
+          "text": {
+            "ky": "Жайыттын канча малды тойгузарын эсептөөдө азык чынжыры жана энергия агымы эске алынат.",
+            "ru": "При расчёте, сколько скота прокормит пастбище, учитывают пищевые цепи и поток энергии.",
+            "en": "Working out how many animals a pasture can feed uses food chains and energy flow."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Эстафета",
+            "ru": "Эстафета",
+            "en": "A relay race"
+          },
+          "text": {
+            "ky": "Энергия эстафета таякчасындай колдон колго өтөт, бирок ар бир жолу бир бөлүгү түшүп калат.",
+            "ru": "Энергия передаётся из рук в руки, как эстафетная палочка, но каждый раз часть теряется.",
+            "en": "Energy is passed on like a relay baton, but some is dropped each time."
+          }
+        },
+        {
+          "title": {
+            "ky": "Үй-бүлөлүк дасторкон",
+            "ru": "Семейный дастархан",
+            "en": "The family table"
+          },
+          "text": {
+            "ky": "Дасторкондогу нан буудайдан келет, буудай Күндүн нурунан өскөн – биз да азык чынжырындабыз.",
+            "ru": "Хлеб на дастархане – из пшеницы, а пшеница выросла от солнечного света: мы тоже в пищевой цепи.",
+            "en": "The bread on the table comes from wheat that grew in sunlight – we are part of a food chain too."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "bio.q.ecosystems-food-chains-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Кайсы организмдер азык чынжырынын биринчи шакеги болот?",
+        "ru": "Какие организмы – первое звено пищевой цепи?",
+        "en": "Which organisms form the first link of a food chain?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Чөп жегичтер",
+            "ru": "Растительноядные",
+            "en": "Herbivores"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Продуценттер",
+            "ru": "Продуценты",
+            "en": "Producers"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Редуценттер",
+            "ru": "Редуценты",
+            "en": "Decomposers"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Чоку жырткычтар",
+            "ru": "Высшие хищники",
+            "en": "Top predators"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Продуценттер – жашыл өсүмдүктөр жана балырлар: алар Күндүн энергиясын органикалык затка айлантат.",
+        "ru": "Продуценты – зелёные растения и водоросли: они превращают энергию Солнца в органическое вещество.",
+        "en": "Producers – green plants and algae – turn the Sun's energy into organic matter."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "misconceptionKey": "bio.m.plants-eat-soil",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.ecosystems-food-chains-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Кайсы азык чынжыры туура жазылган?",
+        "ru": "Какая пищевая цепь записана правильно?",
+        "en": "Which food chain is written correctly?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Түлкү → суур → чөп",
+            "ru": "Лиса → сурок → трава",
+            "en": "Fox → marmot → grass"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Чөп → суур → түлкү",
+            "ru": "Трава → сурок → лиса",
+            "en": "Grass → marmot → fox"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Суур → чөп → түлкү",
+            "ru": "Сурок → трава → лиса",
+            "en": "Marmot → grass → fox"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Чөп → түлкү → суур",
+            "ru": "Трава → лиса → сурок",
+            "en": "Grass → fox → marmot"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Жебе энергия кайда өтөрүн көрсөтөт – жеген жаныбарга карай: чөп → суур → түлкү.",
+        "ru": "Стрелка показывает, куда переходит энергия, – к тому, кто ест: трава → сурок → лиса.",
+        "en": "The arrow shows where energy goes – towards the eater: grass → marmot → fox."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "misconceptionKey": "bio.m.arrow-direction",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.ecosystems-food-chains-3",
+      "type": "match",
+      "prompt": {
+        "ky": "Организмди анын азык чынжырындагы ролу менен дал келтир.",
+        "ru": "Сопоставь организм и его роль в пищевой цепи.",
+        "en": "Match each organism to its role in the food chain."
+      },
+      "pairs": [
+        {
+          "key": "juniper",
+          "left": {
+            "ky": "Арча",
+            "ru": "Арча",
+            "en": "Juniper"
+          },
+          "right": {
+            "ky": "Продуцент",
+            "ru": "Продуцент",
+            "en": "Producer"
+          }
+        },
+        {
+          "key": "ibex",
+          "left": {
+            "ky": "Теке",
+            "ru": "Козерог",
+            "en": "Ibex"
+          },
+          "right": {
+            "ky": "I катардагы консумент",
+            "ru": "Консумент I порядка",
+            "en": "Primary consumer"
+          }
+        },
+        {
+          "key": "fox",
+          "left": {
+            "ky": "Түлкү (суур жейт)",
+            "ru": "Лиса (ест сурка)",
+            "en": "Fox (eats marmots)"
+          },
+          "right": {
+            "ky": "II катардагы консумент",
+            "ru": "Консумент II порядка",
+            "en": "Secondary consumer"
+          }
+        },
+        {
+          "key": "fungi",
+          "left": {
+            "ky": "Козу карындар",
+            "ru": "Грибы",
+            "en": "Fungi"
+          },
+          "right": {
+            "ky": "Редуцент",
+            "ru": "Редуцент",
+            "en": "Decomposer"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Арча – продуцент; теке – I катардагы консумент; түлкү (суурду жегенде) – II катар; козу карындар – редуцент.",
+        "ru": "Арча – продуцент; козерог – консумент I порядка; лиса (поедая сурка) – II порядка; грибы – редуцент.",
+        "en": "Juniper – producer; ibex – primary consumer; fox (eating a marmot) – secondary consumer; fungi – decomposer."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.ecosystems-food-chains-4",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден чоку жырткычтардын бирин тап.",
+        "ru": "Найди на модели одного из высших хищников.",
+        "en": "Find one of the top predators on the model."
+      },
+      "targetConceptKey": "bio.tertiary-consumer",
+      "explanation": {
+        "ky": "Илбирс жана бүркүт – үчүнчү катардагы консументтер, азык чынжырынын эң башында.",
+        "ru": "Снежный барс и беркут – консументы третьего порядка, на вершине пищевой цепи.",
+        "en": "The snow leopard and golden eagle are tertiary consumers at the top of the chain."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "misconceptionKey": "bio.m.top-most-numerous",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.ecosystems-food-chains-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден өлгөн организмдерди ажыратып, минералдарды топуракка кайтарган организмдерди тап.",
+        "ru": "Найди на модели организмы, которые разлагают мёртвые остатки и возвращают минералы в почву.",
+        "en": "Find the organisms that break down dead remains and return minerals to the soil."
+      },
+      "targetConceptKey": "bio.decomposer",
+      "explanation": {
+        "ky": "Козу карындар жана бактериялар – редуценттер.",
+        "ru": "Грибы и бактерии – редуценты.",
+        "en": "Fungi and bacteria are decomposers."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "misconceptionKey": "bio.m.decomposers-harmful",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.ecosystems-food-chains-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден экосистемадагы бардык энергиянын булагын тап.",
+        "ru": "Найди на модели источник всей энергии экосистемы.",
+        "en": "Find the source of all the energy in the ecosystem."
+      },
+      "targetConceptKey": "bio.energy-flow",
+      "explanation": {
+        "ky": "Күн: анын энергиясын продуценттер кармап, чынжыр боюнча өткөрүшөт.",
+        "ru": "Солнце: его энергию улавливают продуценты и передают по цепи.",
+        "en": "The Sun: producers capture its energy and pass it along the chain."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "misconceptionKey": "bio.m.energy-recycled",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.ecosystems-food-chains-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Чөп 10 000 кДж энергия топтоду. 10 % эрежеси боюнча чөп → теке → илбирс чынжырында илбирске канча кДж жетет?",
+        "ru": "Трава запасла 10 000 кДж энергии. По правилу 10 % сколько кДж дойдёт до барса в цепи трава → козерог → барс?",
+        "en": "Grass stores 10,000 kJ. Using the 10 % rule, how many kJ reach the snow leopard in the chain grass → ibex → snow leopard?"
+      },
+      "answer": 100,
+      "tolerance": 0,
+      "unit": "kJ",
+      "explanation": {
+        "ky": "10 000 × 0,1 = 1000 кДж (теке); 1000 × 0,1 = 100 кДж (илбирс).",
+        "ru": "10 000 × 0,1 = 1000 кДж (козерог); 1000 × 0,1 = 100 кДж (барс).",
+        "en": "10,000 × 0.1 = 1000 kJ (ibex); 1000 × 0.1 = 100 kJ (snow leopard)."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.ecosystems-food-chains-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Бүркүт 20 кДж энергия алды. 10 % эрежеси боюнча чынжыр продуценттен башталып, бүркүт 4-шакек болсо, продуценттер канча кДж топтогон?",
+        "ru": "Беркут получил 20 кДж. Если по правилу 10 % цепь начинается с продуцента, а беркут – 4-е звено, сколько кДж запасли продуценты?",
+        "en": "An eagle received 20 kJ. If, by the 10 % rule, the chain starts with a producer and the eagle is the 4th link, how many kJ did the producers store?"
+      },
+      "answer": 20000,
+      "tolerance": 0,
+      "unit": "kJ",
+      "explanation": {
+        "ky": "Үч өтүү: 20 × 10 × 10 × 10 = 20 000 кДж.",
+        "ru": "Три перехода: 20 × 10 × 10 × 10 = 20 000 кДж.",
+        "en": "Three transfers: 20 × 10 × 10 × 10 = 20,000 kJ."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.ecosystems-food-chains-9",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсылар экосистеманын абиотикалык (жансыз) факторлору? Бардыгын танда.",
+        "ru": "Что относится к абиотическим (неживым) факторам экосистемы? Выбери все.",
+        "en": "Which are abiotic (non-living) factors of an ecosystem? Choose all."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Температура",
+            "ru": "Температура",
+            "en": "Temperature"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жарык",
+            "ru": "Свет",
+            "en": "Light"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Топурактын курамы",
+            "ru": "Состав почвы",
+            "en": "Soil composition"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Суур",
+            "ru": "Сурок",
+            "en": "Marmot"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Козу карындар",
+            "ru": "Грибы",
+            "en": "Fungi"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Температура, жарык жана топурактын курамы – жансыз шарттар. Суур жана козу карын – тирүү организмдер.",
+        "ru": "Температура, свет и состав почвы – неживые условия. Сурок и грибы – живые организмы.",
+        "en": "Temperature, light and soil composition are non-living. Marmots and fungi are living things."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "misconceptionKey": "bio.m.ecosystem-only-living",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.ecosystems-food-chains-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн тоо экосистемасында илбирстер текелерден бир топ аз?",
+        "ru": "Почему в горной экосистеме снежных барсов намного меньше, чем козерогов?",
+        "en": "Why are there far fewer snow leopards than ibex in a mountain ecosystem?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Илбирстер аз көбөйөт, башка себеп жок",
+            "ru": "Барсы мало размножаются, других причин нет",
+            "en": "Leopards just breed slowly, nothing else"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жогорку деңгээлге энергия аз жетет",
+            "ru": "До верхнего уровня доходит мало энергии",
+            "en": "Little energy reaches the top level"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Текелер илбирстерди жейт",
+            "ru": "Козероги едят барсов",
+            "en": "Ibex eat snow leopards"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Илбирстерге энергия керек эмес",
+            "ru": "Барсам не нужна энергия",
+            "en": "Leopards need no energy"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Ар бир шакекте энергиянын ≈ 90 %ы жылуулук болуп жоголот, ошондуктан жогорку деңгээлдерге энергия аз жетет.",
+        "ru": "На каждом звене ≈ 90 % энергии теряется теплом, поэтому до верхних уровней доходит мало энергии.",
+        "en": "About 90 % of the energy is lost as heat at each link, so little reaches the upper levels."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "misconceptionKey": "bio.m.top-most-numerous",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.ecosystems-food-chains-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Таблицада тоо экосистемасындагы сандар: чөп – 1000 бирдик, чегиртке – 500, кеклик – 25, түлкү – 4. Сандар чынжыр боюнча кандай өзгөрөт?",
+        "ru": "В таблице численность в горной экосистеме: трава – 1000 единиц, саранча – 500, кеклик – 25, лиса – 4. Как меняется численность вдоль цепи?",
+        "en": "A table gives numbers in a mountain ecosystem: grass 1000 units, grasshoppers 500, chukar 25, fox 4. How do the numbers change along the chain?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Өйдө карай көбөйөт",
+            "ru": "Растёт к вершине",
+            "en": "They rise towards the top"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Өйдө карай азаят",
+            "ru": "Уменьшается к вершине",
+            "en": "They fall towards the top"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не меняется",
+            "en": "They stay the same"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Кокустан өзгөрөт",
+            "ru": "Меняется случайно",
+            "en": "They change at random"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Чынжырдын жогору карай саны азаят – бул энергия пирамидасына туура келет.",
+        "ru": "К вершине цепи численность уменьшается – это согласуется с пирамидой энергии.",
+        "en": "Numbers fall towards the top of the chain – consistent with the energy pyramid."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o1"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

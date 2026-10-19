@@ -1,0 +1,828 @@
+{
+  "processes": [
+    {
+      "key": "bio.food-test-run",
+      "engine": "timeline",
+      "title": {
+        "ky": "Тамактагы заттарды виртуалдык сыноо",
+        "ru": "Виртуальные пробы на вещества пищи",
+        "en": "Virtual food tests"
+      },
+      "icon": "flask",
+      "description": {
+        "ky": "Бир тамак үлгүсүн удаалаш үч сыноодон өткөрөбүз: йод (крахмал), биурет (белок) жана кагаз (май). Сыноолор симуляцияда гана жасалат.",
+        "ru": "Один образец пищи по очереди проходит три пробы: йодную (крахмал), биуретовую (белок) и бумажную (жир). Пробы выполняются только в симуляции.",
+        "en": "One food sample goes through three tests in turn: iodine (starch), biuret (protein) and paper (fat). The tests are done in the simulation only."
+      },
+      "inputs": {
+        "ky": "Тамак үлгүсү, йод эритмеси, биурет реактиви, кагаз",
+        "ru": "Образец пищи, раствор йода, биуретовый реактив, бумага",
+        "en": "Food sample, iodine solution, biuret reagent, paper"
+      },
+      "outputs": {
+        "ky": "Крахмал, белок жана май бар-жогу жөнүндө жыйынтык",
+        "ru": "Вывод о наличии крахмала, белка и жира",
+        "en": "A result for starch, protein and fat"
+      },
+      "steps": [
+        {
+          "key": "prepare",
+          "title": {
+            "ky": "Үлгүнү даярдоо",
+            "ru": "Подготовка образца",
+            "en": "Preparing the sample"
+          },
+          "result": {
+            "ky": "Үлгү даяр",
+            "ru": "Образец готов",
+            "en": "Sample ready"
+          },
+          "description": {
+            "ky": "Тамакты майдалап, бир бөлүгүн суу менен аралаштырабыз: эритме биурет сыноосуна, катуу бөлүгү йод жана кагаз сыноосуна керек.",
+            "ru": "Измельчаем продукт и часть смешиваем с водой: раствор нужен для биуретовой пробы, твёрдые кусочки – для йодной и бумажной.",
+            "en": "We chop the food and mix part of it with water: the liquid is for the biuret test, solid pieces for the iodine and paper tests."
+          },
+          "altText": {
+            "ky": "Майдаланган тамак жана суу куюлган пробирка.",
+            "ru": "Измельчённый продукт и пробирка с водой.",
+            "en": "Chopped food and a test tube of water."
+          },
+          "duration": 2
+        },
+        {
+          "key": "iodine",
+          "title": {
+            "ky": "Йод сыноосу",
+            "ru": "Йодная проба",
+            "en": "Iodine test"
+          },
+          "result": {
+            "ky": "Крахмал: көк-кара",
+            "ru": "Крахмал: сине-чёрный",
+            "en": "Starch: blue-black"
+          },
+          "description": {
+            "ky": "Үлгүгө бир-эки тамчы күрөң-сары йод тамызабыз. Көк-кара түс крахмал бар экенин, күрөң бойдон калса – жок экенин көрсөтөт.",
+            "ru": "Капаем на образец одну-две капли жёлто-бурого йода. Сине-чёрный цвет – крахмал есть; если цвет остался бурым – крахмала нет.",
+            "en": "We add one or two drops of yellow-brown iodine. Blue-black means starch is present; if it stays brown, there is none."
+          },
+          "conceptKey": "bio.carbohydrates",
+          "altText": {
+            "ky": "Йод тамчысы тийген жерде тамак көк-кара болуп өзгөрөт.",
+            "ru": "В месте капли йода продукт становится сине-чёрным.",
+            "en": "Where the iodine drop lands the food turns blue-black."
+          },
+          "duration": 2
+        },
+        {
+          "key": "biuret",
+          "title": {
+            "ky": "Биурет сыноосу",
+            "ru": "Биуретовая проба",
+            "en": "Biuret test"
+          },
+          "result": {
+            "ky": "Белок: күлгүн",
+            "ru": "Белок: фиолетовый",
+            "en": "Protein: purple"
+          },
+          "description": {
+            "ky": "Эритмеге көк түстөгү биурет реактивин кошобуз. Күлгүн түс белок бар экенин көрсөтөт. Реактив жегич болгондуктан, мектепте аны мугалим гана колдонот.",
+            "ru": "Добавляем к раствору голубой биуретовый реактив. Фиолетовый цвет показывает белок. Реактив едкий, поэтому в школе с ним работает только учитель.",
+            "en": "We add blue biuret reagent to the liquid. Purple shows protein. The reagent is corrosive, so at school only the teacher handles it."
+          },
+          "conceptKey": "bio.proteins",
+          "altText": {
+            "ky": "Пробиркадагы көк суюктук күлгүн түскө өтөт.",
+            "ru": "Голубая жидкость в пробирке становится фиолетовой.",
+            "en": "The blue liquid in the tube turns purple."
+          },
+          "duration": 2
+        },
+        {
+          "key": "paper",
+          "title": {
+            "ky": "Кагаз сыноосу",
+            "ru": "Бумажная проба",
+            "en": "Paper test"
+          },
+          "result": {
+            "ky": "Май: тунук так",
+            "ru": "Жир: прозрачное пятно",
+            "en": "Fat: translucent spot"
+          },
+          "description": {
+            "ky": "Тамакты кагазга сүртүп, кургатабыз. Суу изи кургап жоголот, ал эми май тунук так калтырат.",
+            "ru": "Растираем продукт на бумаге и сушим. След воды высыхает, а жир оставляет прозрачное пятно.",
+            "en": "We rub the food on paper and let it dry. A water mark dries away; fat leaves a see-through spot."
+          },
+          "conceptKey": "bio.fats",
+          "altText": {
+            "ky": "Кагаздагы тунук так аркылуу жарык өтүп турат.",
+            "ru": "Сквозь прозрачное пятно на бумаге просвечивает свет.",
+            "en": "Light shines through a see-through spot on the paper."
+          },
+          "duration": 2
+        },
+        {
+          "key": "record",
+          "title": {
+            "ky": "Жыйынтык чыгаруу",
+            "ru": "Вывод",
+            "en": "Recording the result"
+          },
+          "description": {
+            "ky": "Үч сыноонун жыйынтыгын таблицага жазып, тамактын кайсы азык заттарга бай экенин аныктайбыз.",
+            "ru": "Записываем результаты трёх проб в таблицу и делаем вывод, какими веществами богат продукт.",
+            "en": "We write the three results in a table and decide which nutrients the food is rich in."
+          },
+          "conceptKey": "bio.food-tests",
+          "altText": {
+            "ky": "Үч тилкелүү таблица: крахмал, белок, май.",
+            "ru": "Таблица из трёх столбцов: крахмал, белок, жир.",
+            "en": "A three-column table: starch, protein, fat."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "tests",
+          "label": {
+            "ky": "Аткарылган сыноолор",
+            "ru": "Выполнено проб",
+            "en": "Tests done"
+          },
+          "min": 0,
+          "max": 3,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "tests@prepare": 0,
+        "tests@iodine": 1,
+        "tests@biuret": 2,
+        "tests@paper": 3,
+        "tests@record": 3
+      }
+    },
+    {
+      "key": "bio.daily-energy-intake",
+      "engine": "timeline",
+      "title": {
+        "ky": "Бир күндүн энергиясы",
+        "ru": "Энергия за день",
+        "en": "A day's energy intake"
+      },
+      "icon": "utensils",
+      "description": {
+        "ky": "Өспүрүмдүн бир күндүк менюсу: ар бир тамактануудан кийин топтолгон энергия суткалык муктаждыкка (болжол менен 2200 ккал) жакындайт. Мисалдагы сандар болжолдуу.",
+        "ru": "Меню подростка на день: после каждого приёма пищи накопленная энергия приближается к суточной потребности (около 2200 ккал). Числа в примере приблизительные.",
+        "en": "A teenager's menu for one day: after each meal the energy total approaches the daily need (about 2200 kcal). The numbers are approximate."
+      },
+      "inputs": {
+        "ky": "Эртең мененки, түшкү, бешим жана кечки тамак",
+        "ru": "Завтрак, обед, полдник, ужин",
+        "en": "Breakfast, lunch, snack, dinner"
+      },
+      "outputs": {
+        "ky": "Суткалык энергия ≈ 2200 ккал",
+        "ru": "Суточная энергия ≈ 2200 ккал",
+        "en": "Daily energy ≈ 2200 kcal"
+      },
+      "steps": [
+        {
+          "key": "breakfast",
+          "title": {
+            "ky": "Эртең мененки тамак",
+            "ru": "Завтрак",
+            "en": "Breakfast"
+          },
+          "result": {
+            "ky": "≈ 550 ккал",
+            "ru": "≈ 550 ккал",
+            "en": "≈ 550 kcal"
+          },
+          "description": {
+            "ky": "Сүттөгү сулу боткосу, жумуртка жана алма – суткалык энергиянын болжол менен төрттөн бири.",
+            "ru": "Овсяная каша на молоке, яйцо и яблоко – около четверти суточной энергии.",
+            "en": "Oat porridge with milk, an egg and an apple – about a quarter of the day's energy."
+          },
+          "conceptKey": "bio.food-energy",
+          "altText": {
+            "ky": "Ботко, жумуртка жана алма коюлган табак.",
+            "ru": "Тарелка с кашей, яйцом и яблоком.",
+            "en": "A plate with porridge, an egg and an apple."
+          },
+          "duration": 2
+        },
+        {
+          "key": "lunch",
+          "title": {
+            "ky": "Түшкү тамак",
+            "ru": "Обед",
+            "en": "Lunch"
+          },
+          "result": {
+            "ky": "Жыйынтык ≈ 1250 ккал",
+            "ru": "Итого ≈ 1250 ккал",
+            "en": "Total ≈ 1250 kcal"
+          },
+          "description": {
+            "ky": "Күрүч, уй эти, жашылча салаты, нан, айран жана алма – эң чоң тамактануу.",
+            "ru": "Рис, говядина, овощной салат, хлеб, айран и яблоко – самый большой приём пищи.",
+            "en": "Rice, beef, vegetable salad, bread, ayran and an apple – the biggest meal."
+          },
+          "conceptKey": "bio.balanced-diet",
+          "altText": {
+            "ky": "Тең салмактуу түшкү тамак коюлган тарелка.",
+            "ru": "Тарелка со сбалансированным обедом.",
+            "en": "A plate with a balanced lunch."
+          },
+          "duration": 2
+        },
+        {
+          "key": "snack",
+          "title": {
+            "ky": "Бешим",
+            "ru": "Полдник",
+            "en": "Afternoon snack"
+          },
+          "result": {
+            "ky": "Жыйынтык ≈ 1550 ккал",
+            "ru": "Итого ≈ 1550 ккал",
+            "en": "Total ≈ 1550 kcal"
+          },
+          "description": {
+            "ky": "Сүзмө же жаңгак менен жемиш – чипстин ордуна.",
+            "ru": "Творог или орехи с фруктом – вместо чипсов.",
+            "en": "Cottage cheese or nuts with fruit – instead of crisps."
+          },
+          "conceptKey": "bio.energy-balance",
+          "altText": {
+            "ky": "Бир ууч жаңгак жана алмурут.",
+            "ru": "Горсть орехов и груша.",
+            "en": "A handful of nuts and a pear."
+          },
+          "duration": 2
+        },
+        {
+          "key": "dinner",
+          "title": {
+            "ky": "Кечки тамак",
+            "ru": "Ужин",
+            "en": "Dinner"
+          },
+          "result": {
+            "ky": "Жыйынтык ≈ 2200 ккал",
+            "ru": "Итого ≈ 2200 ккал",
+            "en": "Total ≈ 2200 kcal"
+          },
+          "description": {
+            "ky": "Жашылча менен бышырылган балык же эт, нан, чай. Күндүн жыйынтыгы муктаждыкка жакын.",
+            "ru": "Рыба или мясо с тушёными овощами, хлеб, чай. Итог дня близок к потребности.",
+            "en": "Fish or meat with stewed vegetables, bread and tea. The day's total is close to the need."
+          },
+          "conceptKey": "bio.energy-balance",
+          "altText": {
+            "ky": "Шкалада энергия 2200 ккал белгисине жетет.",
+            "ru": "Шкала энергии доходит до отметки 2200 ккал.",
+            "en": "The energy gauge reaches the 2200 kcal mark."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "kcal",
+          "label": {
+            "ky": "Топтолгон энергия",
+            "ru": "Накопленная энергия",
+            "en": "Energy so far"
+          },
+          "unit": "kcal",
+          "min": 0,
+          "max": 2200,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "kcal@breakfast": 550,
+        "kcal@lunch": 1250,
+        "kcal@snack": 1550,
+        "kcal@dinner": 2200
+      }
+    },
+    {
+      "key": "bio.energy-flow-chain",
+      "engine": "timeline",
+      "title": {
+        "ky": "Азык чынжыры боюнча энергиянын агымы",
+        "ru": "Поток энергии по пищевой цепи",
+        "en": "Energy flow along a food chain"
+      },
+      "icon": "sun",
+      "description": {
+        "ky": "Продуценттер топтогон 10 000 кДж энергия чынжыр боюнча өтөт; ар бир шакекке болжол менен 10 %ы гана жетет, калганы жылуулук болуп чыгат (10 % эрежеси, модель).",
+        "ru": "10 000 кДж энергии, запасённой продуцентами, идёт по цепи; на каждое звено доходит лишь около 10 %, остальное уходит теплом (правило 10 %, модель).",
+        "en": "10,000 kJ stored by producers passes along the chain; only about 10 % reaches each next link and the rest is lost as heat (the 10 % rule, a model)."
+      },
+      "inputs": {
+        "ky": "Күндүн жарыгы → продуценттер (10 000 кДж)",
+        "ru": "Солнечный свет → продуценты (10 000 кДж)",
+        "en": "Sunlight → producers (10,000 kJ)"
+      },
+      "outputs": {
+        "ky": "Чоку жырткычка ≈ 10 кДж, калганы жылуулук",
+        "ru": "Высшему хищнику ≈ 10 кДж, остальное – тепло",
+        "en": "≈ 10 kJ reach the top predator; the rest is heat"
+      },
+      "steps": [
+        {
+          "key": "capture",
+          "title": {
+            "ky": "Продуценттер",
+            "ru": "Продуценты",
+            "en": "Producers"
+          },
+          "result": {
+            "ky": "10 000 кДж",
+            "ru": "10 000 кДж",
+            "en": "10,000 kJ"
+          },
+          "description": {
+            "ky": "Чөп жана арча фотосинтез аркылуу күндүн энергиясын органикалык затка айлантат: моделде 10 000 кДж.",
+            "ru": "Трава и арча при фотосинтезе запасают энергию Солнца в органическом веществе: в модели 10 000 кДж.",
+            "en": "Grass and juniper store the Sun's energy in organic matter by photosynthesis: 10,000 kJ in the model."
+          },
+          "conceptKey": "bio.producer",
+          "altText": {
+            "ky": "Күндөн чөпкө карай жоон жебе.",
+            "ru": "Толстая стрелка от Солнца к траве.",
+            "en": "A thick arrow from the Sun to the grass."
+          },
+          "duration": 2
+        },
+        {
+          "key": "primary",
+          "title": {
+            "ky": "Чөп жегичтер",
+            "ru": "Растительноядные",
+            "en": "Herbivores"
+          },
+          "result": {
+            "ky": "1000 кДж",
+            "ru": "1000 кДж",
+            "en": "1000 kJ"
+          },
+          "description": {
+            "ky": "Теке, суур жана чегиртке чөптү жешет. Энергиянын болжол менен 10 %ы гана алардын денесине өтөт.",
+            "ru": "Козерог, сурок и саранча едят траву. В их тело переходит лишь около 10 % энергии.",
+            "en": "Ibex, marmots and grasshoppers eat the grass. Only about 10 % of the energy ends up in their bodies."
+          },
+          "conceptKey": "bio.primary-consumer",
+          "altText": {
+            "ky": "Чөптөн текеге карай ичкерээк жебе, жанында жылуулук толкундары.",
+            "ru": "Стрелка потоньше от травы к козерогу и волны тепла рядом.",
+            "en": "A thinner arrow from grass to ibex with heat waves beside it."
+          },
+          "duration": 2
+        },
+        {
+          "key": "secondary",
+          "title": {
+            "ky": "Жырткычтар",
+            "ru": "Хищники",
+            "en": "Predators"
+          },
+          "result": {
+            "ky": "100 кДж",
+            "ru": "100 кДж",
+            "en": "100 kJ"
+          },
+          "description": {
+            "ky": "Түлкү суурду жейт: дагы 90 %ы дем алууга жана кыймылга сарпталып, жылуулук болуп кетет.",
+            "ru": "Лиса ест сурка: ещё 90 % тратится на дыхание и движение и уходит теплом.",
+            "en": "A fox eats a marmot: another 90 % is used for respiration and movement and lost as heat."
+          },
+          "conceptKey": "bio.secondary-consumer",
+          "altText": {
+            "ky": "Суурдан түлкүгө карай ичке жебе.",
+            "ru": "Тонкая стрелка от сурка к лисе.",
+            "en": "A thin arrow from marmot to fox."
+          },
+          "duration": 2
+        },
+        {
+          "key": "tertiary",
+          "title": {
+            "ky": "Чоку жырткыч",
+            "ru": "Высший хищник",
+            "en": "Top predator"
+          },
+          "result": {
+            "ky": "10 кДж",
+            "ru": "10 кДж",
+            "en": "10 kJ"
+          },
+          "description": {
+            "ky": "Бүркүткө баштапкы энергиянын 0,1 %ы гана жетет. Ошондуктан чоку жырткычтар аз жана чоң аймак керек.",
+            "ru": "Беркуту достаётся лишь 0,1 % исходной энергии. Поэтому высших хищников мало и им нужна большая территория.",
+            "en": "Only 0.1 % of the original energy reaches the golden eagle. That is why top predators are few and need large territories."
+          },
+          "conceptKey": "bio.tertiary-consumer",
+          "altText": {
+            "ky": "Түлкүдөн бүркүткө карай эң ичке жебе.",
+            "ru": "Самая тонкая стрелка от лисы к беркуту.",
+            "en": "The thinnest arrow, from fox to eagle."
+          },
+          "duration": 2
+        },
+        {
+          "key": "decay",
+          "title": {
+            "ky": "Редуценттер",
+            "ru": "Редуценты",
+            "en": "Decomposers"
+          },
+          "result": {
+            "ky": "Минералдар топуракка",
+            "ru": "Минералы – в почву",
+            "en": "Minerals back to soil"
+          },
+          "description": {
+            "ky": "Өлгөн организмдер менен калдыктарды бактериялар жана козу карындар ажыратып, минералдарды топуракка кайтарат. Заттар айланат, энергия болсо жылуулук болуп кетет.",
+            "ru": "Бактерии и грибы разлагают мёртвые остатки и возвращают минералы в почву. Вещества совершают круговорот, а энергия уходит теплом.",
+            "en": "Bacteria and fungi break down dead remains and return minerals to the soil. Matter cycles; energy leaves as heat."
+          },
+          "conceptKey": "bio.decomposer",
+          "altText": {
+            "ky": "Топурактагы козу карындар жана топуракка кайткан жебелер.",
+            "ru": "Грибы в почве и стрелки, возвращающиеся в почву.",
+            "en": "Fungi in the soil and arrows looping back into it."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "level",
+          "label": {
+            "ky": "Шакектеги энергия",
+            "ru": "Энергия звена",
+            "en": "Energy at this link"
+          },
+          "unit": "kJ",
+          "min": 0,
+          "max": 10000,
+          "precision": 0
+        },
+        {
+          "key": "heat",
+          "label": {
+            "ky": "Жылуулук болуп жоголгон",
+            "ru": "Потеряно в виде тепла",
+            "en": "Lost as heat"
+          },
+          "unit": "kJ",
+          "min": 0,
+          "max": 10000,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "level@capture": 10000,
+        "level@primary": 1000,
+        "level@secondary": 100,
+        "level@tertiary": 10,
+        "level@decay": 0,
+        "heat@capture": 0,
+        "heat@primary": 9000,
+        "heat@secondary": 9900,
+        "heat@tertiary": 9990,
+        "heat@decay": 10000
+      }
+    },
+    {
+      "key": "bio.yellowstone-cascade",
+      "engine": "timeline",
+      "title": {
+        "ky": "Йеллоустондогу трофикалык каскад",
+        "ru": "Трофический каскад в Йеллоустоне",
+        "en": "The Yellowstone trophic cascade"
+      },
+      "icon": "trees",
+      "description": {
+        "ky": "Карышкырлардын жок болушу жана кайра келиши Йеллоустондун азык торчосун кантип өзгөрткөнү. Каскаддын күчү боюнча илимпоздор дагы эле талашып жатышат.",
+        "ru": "Как исчезновение и возвращение волков изменили пищевую сеть Йеллоустона. О силе каскада учёные спорят до сих пор.",
+        "en": "How the loss and return of wolves changed Yellowstone's food web. Scientists still debate how strong the cascade is."
+      },
+      "inputs": {
+        "ky": "Карышкырлар (кайтарылган)",
+        "ru": "Волки (возвращённые)",
+        "en": "Wolves (brought back)"
+      },
+      "outputs": {
+        "ky": "Бугулардын жүрүм-туруму жана саны, дарыя жээгиндеги өсүмдүктөр, кундуздар",
+        "ru": "Поведение и численность оленей, прибрежная растительность, бобры",
+        "en": "Elk behaviour and numbers, riverside plants, beavers"
+      },
+      "steps": [
+        {
+          "key": "wolves-gone",
+          "title": {
+            "ky": "Карышкырлар жок",
+            "ru": "Волков нет",
+            "en": "No wolves"
+          },
+          "description": {
+            "ky": "1920-жылдарга чейин Йеллоустондо карышкырлар аңчылык менен толук жок кылынган.",
+            "ru": "К 1920-м годам волков в Йеллоустоне полностью истребили охотой.",
+            "en": "By the 1920s hunting had wiped out Yellowstone's wolves."
+          },
+          "conceptKey": "bio.keystone-species",
+          "altText": {
+            "ky": "Карышкыр сүрөтү бозоруп, андан чыккан жебелер өчөт.",
+            "ru": "Значок волка бледнеет, его стрелки гаснут.",
+            "en": "The wolf icon fades and its arrows disappear."
+          },
+          "duration": 2
+        },
+        {
+          "key": "elk-boom",
+          "title": {
+            "ky": "Бугулар көбөйөт",
+            "ru": "Олени множатся",
+            "en": "Elk increase"
+          },
+          "description": {
+            "ky": "Жырткычы жок бугулар көбөйүп, дарыя жээгиндеги жаш тал менен бай теректи жеп салышкан.",
+            "ru": "Без хищника олени-вапити размножились и объедали молодые ивы и осины у рек.",
+            "en": "With no predator, elk multiplied and browsed young willows and aspens by the rivers."
+          },
+          "conceptKey": "bio.primary-consumer",
+          "altText": {
+            "ky": "Бугулардын саны өсүп, жээктеги дарактар азаят.",
+            "ru": "Число оленей растёт, деревьев у берега становится меньше.",
+            "en": "Elk numbers rise while riverside trees thin out."
+          },
+          "duration": 2
+        },
+        {
+          "key": "wolves-back",
+          "title": {
+            "ky": "Карышкырлар кайтып келет",
+            "ru": "Волки возвращаются",
+            "en": "Wolves return"
+          },
+          "description": {
+            "ky": "1995–1996-жылдары Канададан карышкырлар алып келинип, паркка коё берилген.",
+            "ru": "В 1995–1996 годах волков привезли из Канады и выпустили в парк.",
+            "en": "In 1995–1996 wolves from Canada were released into the park."
+          },
+          "conceptKey": "bio.ecosystem-restoration",
+          "altText": {
+            "ky": "Карышкыр кайра пайда болот, бугуга карай жебе жанат.",
+            "ru": "Волк появляется снова, загорается стрелка к оленю.",
+            "en": "The wolf reappears and the arrow from elk to wolf lights up."
+          },
+          "duration": 2
+        },
+        {
+          "key": "elk-wary",
+          "title": {
+            "ky": "Бугулар азаят жана сак болот",
+            "ru": "Оленей меньше, они осторожнее",
+            "en": "Fewer, warier elk"
+          },
+          "description": {
+            "ky": "Бугулардын саны азайып, алар ачык жээктерде азыраак убакыт өткөрө башташкан.",
+            "ru": "Оленей стало меньше, и они стали реже задерживаться на открытых берегах.",
+            "en": "Elk numbers fell and they spent less time on open riverbanks."
+          },
+          "conceptKey": "bio.trophic-cascade",
+          "altText": {
+            "ky": "Бугулардын саны кичирейет.",
+            "ru": "Число оленей уменьшается.",
+            "en": "The elk count shrinks."
+          },
+          "duration": 2
+        },
+        {
+          "key": "trees-regrow",
+          "title": {
+            "ky": "Дарактар кайра өсөт",
+            "ru": "Деревья отрастают",
+            "en": "Trees regrow"
+          },
+          "description": {
+            "ky": "Кээ бир дарыя жээктеринде тал жана бай терек кайра өсө баштаган, бирок бардык жерде эмес.",
+            "ru": "На некоторых берегах снова начали расти ивы и осины, хотя и не везде.",
+            "en": "Willows and aspens began to grow back along some rivers – though not everywhere."
+          },
+          "conceptKey": "bio.producer",
+          "altText": {
+            "ky": "Жээктеги дарактар кайра көбөйөт.",
+            "ru": "Деревьев у берега снова больше.",
+            "en": "More trees appear along the bank."
+          },
+          "duration": 2
+        },
+        {
+          "key": "beavers",
+          "title": {
+            "ky": "Кундуздар кайтат",
+            "ru": "Возвращаются бобры",
+            "en": "Beavers return"
+          },
+          "description": {
+            "ky": "Талдар көбөйгөндө кундуздардын колониялары өскөн; алардын тосмолору жаңы көлмөлөрдү жаратат.",
+            "ru": "С ростом ив стало больше колоний бобров; их плотины создают новые пруды.",
+            "en": "With more willows, beaver colonies increased; their dams create new ponds."
+          },
+          "conceptKey": "bio.keystone-species",
+          "altText": {
+            "ky": "Кундуз жана жаңы көлмө пайда болот.",
+            "ru": "Появляются бобр и новый пруд.",
+            "en": "A beaver and a new pond appear."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": []
+    },
+    {
+      "key": "bio.biomagnification-chain",
+      "engine": "timeline",
+      "title": {
+        "ky": "Азык чынжыры боюнча булгоочунун топтолушу",
+        "ru": "Накопление загрязнителя по пищевой цепи",
+        "en": "A pollutant moving up a food chain"
+      },
+      "icon": "droplet",
+      "description": {
+        "ky": "Көлдүн суусундагы туруктуу булгоочу зат (мисалы, сымап) азык чынжыры боюнча өйдө жылып, ар бир шакекте концентрациясы көбөйөт. Модельде ар бир деңгээлде 10 эсе өсөт; чыныгы көбөйүү зат жана экосистемага жараша ар башка.",
+        "ru": "Стойкий загрязнитель из воды озера (например, ртуть) поднимается по пищевой цепи, и на каждом звене его концентрация растёт. В модели – в 10 раз на уровень; в природе рост зависит от вещества и экосистемы.",
+        "en": "A persistent pollutant in lake water (such as mercury) moves up the food chain and its concentration rises at every link. In the model it grows 10× per level; in nature the increase depends on the substance and the ecosystem."
+      },
+      "inputs": {
+        "ky": "Суудагы булгоочу зат, 0,001 ppm (модель)",
+        "ru": "Загрязнитель в воде, 0,001 ppm (модель)",
+        "en": "Pollutant in water, 0.001 ppm (model)"
+      },
+      "outputs": {
+        "ky": "Чоку жырткычта ≈ 10 ppm (10 000 эсе көп)",
+        "ru": "У высшего хищника ≈ 10 ppm (в 10 000 раз больше)",
+        "en": "≈ 10 ppm in the top predator (10,000× more)"
+      },
+      "steps": [
+        {
+          "key": "water",
+          "title": {
+            "ky": "Суу",
+            "ru": "Вода",
+            "en": "Water"
+          },
+          "result": {
+            "ky": "0,001 ppm",
+            "ru": "0,001 ppm",
+            "en": "0.001 ppm"
+          },
+          "description": {
+            "ky": "Булгоочу зат агынды суу же аба аркылуу көлгө түшөт. Суудагы концентрациясы өтө аз.",
+            "ru": "Загрязнитель попадает в озеро со стоками или из воздуха. Концентрация в воде очень мала.",
+            "en": "The pollutant reaches the lake in waste water or from the air. Its concentration in the water is tiny."
+          },
+          "conceptKey": "bio.pollution",
+          "altText": {
+            "ky": "Суудагы майда чекиттер.",
+            "ru": "Мелкие точки в воде.",
+            "en": "Tiny dots in the water."
+          },
+          "duration": 2
+        },
+        {
+          "key": "phytoplankton",
+          "title": {
+            "ky": "Фитопланктон",
+            "ru": "Фитопланктон",
+            "en": "Phytoplankton"
+          },
+          "result": {
+            "ky": "≈ 0,01 ppm",
+            "ru": "≈ 0,01 ppm",
+            "en": "≈ 0.01 ppm"
+          },
+          "description": {
+            "ky": "Микроскоптук балырлар затты суудан сиңирип, бөлүп чыгара алышпайт – биоаккумуляция.",
+            "ru": "Микроскопические водоросли поглощают вещество из воды и не выводят его – биоаккумуляция.",
+            "en": "Microscopic algae absorb the substance from the water and cannot get rid of it – bioaccumulation."
+          },
+          "conceptKey": "bio.bioaccumulation",
+          "altText": {
+            "ky": "Планктондун ичинде чекиттер көбөйөт.",
+            "ru": "В клетках планктона становится больше точек.",
+            "en": "More dots appear inside the plankton."
+          },
+          "duration": 2
+        },
+        {
+          "key": "zooplankton",
+          "title": {
+            "ky": "Зоопланктон",
+            "ru": "Зоопланктон",
+            "en": "Zooplankton"
+          },
+          "result": {
+            "ky": "≈ 0,1 ppm",
+            "ru": "≈ 0,1 ppm",
+            "en": "≈ 0.1 ppm"
+          },
+          "description": {
+            "ky": "Ар бир майда рак көп балырды жейт жана алардын затын өзүнө чогултат.",
+            "ru": "Каждый рачок съедает множество водорослей и собирает в себе их загрязнитель.",
+            "en": "Each tiny crustacean eats many algae and collects their pollutant."
+          },
+          "conceptKey": "bio.primary-consumer",
+          "altText": {
+            "ky": "Зоопланктондо чекиттер дагы көп.",
+            "ru": "В зоопланктоне ещё больше точек.",
+            "en": "Even more dots in the zooplankton."
+          },
+          "duration": 2
+        },
+        {
+          "key": "small-fish",
+          "title": {
+            "ky": "Майда балык (чабак)",
+            "ru": "Мелкая рыба (чебак)",
+            "en": "Small fish (dace)"
+          },
+          "result": {
+            "ky": "≈ 1 ppm",
+            "ru": "≈ 1 ppm",
+            "en": "≈ 1 ppm"
+          },
+          "description": {
+            "ky": "Чабак күнүнө миңдеген зоопланктон жейт – концентрация дагы өсөт.",
+            "ru": "Чебак съедает тысячи рачков – концентрация растёт снова.",
+            "en": "A dace eats thousands of zooplankton – the concentration rises again."
+          },
+          "conceptKey": "bio.secondary-consumer",
+          "altText": {
+            "ky": "Балыктын ичиндеги чекиттер.",
+            "ru": "Точки внутри рыбы.",
+            "en": "Dots inside the fish."
+          },
+          "duration": 2
+        },
+        {
+          "key": "top",
+          "title": {
+            "ky": "Ири жырткыч балык жана балык жеген куш",
+            "ru": "Крупная хищная рыба и рыбоядная птица",
+            "en": "Large predatory fish and fish-eating bird"
+          },
+          "result": {
+            "ky": "≈ 10 ppm",
+            "ru": "≈ 10 ppm",
+            "en": "≈ 10 ppm"
+          },
+          "description": {
+            "ky": "Судак жана баклан көп майда балыкты жешет – аларда концентрация суудагыдан 10 000 эсе жогору (модель). Ушундай заттар куштардын көбөйүшүнө зыян келтириши мүмкүн.",
+            "ru": "Судак и баклан едят много мелкой рыбы – у них концентрация в 10 000 раз выше, чем в воде (модель). Такие вещества могут мешать размножению птиц.",
+            "en": "Zander and cormorants eat many small fish – their concentration is 10,000× that of the water (model). Such substances can harm birds' breeding."
+          },
+          "conceptKey": "bio.biomagnification",
+          "altText": {
+            "ky": "Чоку жырткычтар кызыл чекиттерге толгон.",
+            "ru": "Высшие хищники полны красных точек.",
+            "en": "The top predators are full of red dots."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "ppm",
+          "label": {
+            "ky": "Булгоочунун концентрациясы",
+            "ru": "Концентрация загрязнителя",
+            "en": "Pollutant concentration"
+          },
+          "unit": "ppm",
+          "min": 0,
+          "max": 10,
+          "precision": 3
+        }
+      ],
+      "params": {
+        "ppm@water": 0.001,
+        "ppm@phytoplankton": 0.01,
+        "ppm@zooplankton": 0.1,
+        "ppm@small-fish": 1,
+        "ppm@top": 10
+      }
+    }
+  ]
+}

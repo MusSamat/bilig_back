@@ -2,7 +2,7 @@
   "manifest": {
     "topicKey": "sphere-cylinder",
     "version": "1.0.0",
-    "hash": "81b52841a79ea119781122b8c2520b8299bf82a94c19fd6a04f13c53fd820d2c",
+    "hash": "c6f7ce4f0fd784af601767ce82f8c6665b92e9e278166bf9051da2be8ee04a79",
     "files": [
       {
         "path": "thumbs/sphere.webp",
@@ -254,7 +254,33 @@
           "ru": "Тело вращения",
           "en": "Solid of revolution"
         },
-        "thumb": "thumbs/sphere.webp"
+        "thumb": "thumbs/sphere.webp",
+        "scene": {
+          "params": {
+            "solids": [
+              {
+                "id": "sphere",
+                "type": "sphere",
+                "radius": 3
+              }
+            ],
+            "showDimensions": false,
+            "unit": "cm"
+          },
+          "camera": {
+            "position": [
+              5,
+              4,
+              9
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "fov": 45
+          }
+        }
       },
       {
         "key": "cylinder",
@@ -268,7 +294,34 @@
           "ru": "Тело вращения",
           "en": "Solid of revolution"
         },
-        "thumb": "thumbs/cylinder.webp"
+        "thumb": "thumbs/cylinder.webp",
+        "scene": {
+          "params": {
+            "solids": [
+              {
+                "id": "cylinder",
+                "type": "cylinder",
+                "radius": 3,
+                "height": 6
+              }
+            ],
+            "showDimensions": false,
+            "unit": "cm"
+          },
+          "camera": {
+            "position": [
+              6,
+              5,
+              11
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "fov": 45
+          }
+        }
       },
       {
         "key": "cone",
@@ -282,7 +335,34 @@
           "ru": "Тело вращения",
           "en": "Solid of revolution"
         },
-        "thumb": "thumbs/cone.webp"
+        "thumb": "thumbs/cone.webp",
+        "scene": {
+          "params": {
+            "solids": [
+              {
+                "id": "cone",
+                "type": "cone",
+                "radius": 3,
+                "height": 6
+              }
+            ],
+            "showDimensions": false,
+            "unit": "cm"
+          },
+          "camera": {
+            "position": [
+              6,
+              5,
+              11
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "fov": 45
+          }
+        }
       },
       {
         "key": "yurt",
@@ -296,7 +376,50 @@
           "ru": "Цилиндр + конус",
           "en": "Cylinder + cone"
         },
-        "thumb": "thumbs/yurt.webp"
+        "thumb": "thumbs/yurt.webp",
+        "scene": {
+          "params": {
+            "solids": [
+              {
+                "id": "cylinder",
+                "type": "cylinder",
+                "radius": 3,
+                "height": 2.2,
+                "position": [
+                  0,
+                  -1.1,
+                  0
+                ]
+              },
+              {
+                "id": "cone",
+                "type": "cone",
+                "radius": 3.3,
+                "height": 1.8,
+                "position": [
+                  0,
+                  0.9,
+                  0
+                ]
+              }
+            ],
+            "showDimensions": false,
+            "unit": "cm"
+          },
+          "camera": {
+            "position": [
+              6,
+              4,
+              10
+            ],
+            "target": [
+              0,
+              0,
+              0
+            ],
+            "fov": 45
+          }
+        }
       }
     ],
     "activities": {

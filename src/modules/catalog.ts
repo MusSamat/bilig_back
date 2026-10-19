@@ -4,7 +4,7 @@
  * by Accept-Language with the ky → ru → en chain (empty locales are filled).
  */
 import type { FastifyInstance, FastifyReply } from 'fastify';
-import type { Lang, TopicSummary } from '@bilig/content-model';
+import { textbookSubjects, textbookTopicKeys, type Lang, type TopicSummary } from '@bilig/content-model';
 import type { Deps } from '../deps.js';
 import { route } from '../http/route.js';
 import { fail } from '../http/errors.js';
@@ -59,6 +59,29 @@ export function registerCatalog(app: FastifyInstance, deps: Deps) {
       units,
       objectives: localizeDeep(objectives, lang),
       topics: withUrls(c.topics.filter((t) => unitKeys.has(t.unitKey))),
+    };
+  });
+
+  // v0.5.0: the textbook menu (lessons list published topics only).
+  route(app, deps, 'textbooks', async ({ reply, lang, query }) => {
+    localized(reply, lang);
+    const c = await content.catalog(lang);
+    return {
+      items: (c.textbooks ?? []).filter(
+        (tb) => (query.grade === undefined || tb.grade === query.grade) && (!query.subjectKey || textbookSubjects(tb).includes(query.subjectKey)),
+      ),
+    };
+  });
+
+  route(app, deps, 'textbook', async ({ reply, lang, params }) => {
+    const c = await content.catalog(lang);
+    const textbook = (c.textbooks ?? []).find((x) => x.key === params.key);
+    if (!textbook) fail('not_found', { detail: 'textbook' });
+    const byKey = new Map(c.topics.map((t) => [t.key, t]));
+    localized(reply, lang);
+    return {
+      textbook,
+      topics: withUrls(textbookTopicKeys(textbook).flatMap((k) => (byKey.has(k) ? [byKey.get(k)!] : []))),
     };
   });
 

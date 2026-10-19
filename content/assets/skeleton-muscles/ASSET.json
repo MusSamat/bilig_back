@@ -1,0 +1,70 @@
+{
+  "topicKey": "skeleton-muscles",
+  "files": [
+    {
+      "path": "skeleton.glb",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "procedural, scripts/assets/skeleton.mjs",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "created": "2026-10-19",
+      "modifications": [
+        "authored by the pipeline script, no third-party geometry or textures: a full adult skeleton (1.75 m, built in metres, scaled x2 to 3.5 scene units, centred on the hips), standing in the anatomical position (palms forward), arms slightly abducted; the figure faces +z, so _L (subject's left) is +x",
+        "node names are the content contract: Skel_* (skull with mandible and teeth, cervical and thoracolumbar spine with discs, clavicles, scapulae, 12 rib pairs with costal cartilage, sternum, long bones, hands, pelvis with sacrum, coccyx, patellae, feet), Joint_Ball_Shoulder/Hip_* and Joint_Hinge_Elbow/Knee_* (articular cartilage, subtly highlighted), Muscle_Biceps_R and Muscle_Triceps_R (semi-translucent over the right upper arm); every node is one mesh (one primitive per material)",
+        "skull: one implicit (signed-distance) solid for cranium and face with real orbits, nasal aperture and zygomatic arches, meshed by surface nets and simplified with meshoptimizer; mandible likewise; bones elsewhere are seeded-noise tubes, (super)ellipsoids and thick sheets",
+        "look: ivory bone (per-vertex colour with seeded noise tone, baked cavity shading, darkened orbits and faint cranial sutures; tileable procedural bump normal map; faint clearcoat), pale blue-white glossy cartilage with a slight emissive lift on the joint nodes, red translucent muscle with fibre streaks and white tendons",
+        "deterministic (mulberry32 / seeded gradient noise): a rebuild gives the same bytes",
+        "gltf-transform: dedup, prune, weld, EXT_meshopt_compression + quantisation; KHR_materials_clearcoat, KHR_texture_transform"
+      ],
+      "pipeline": "bilig_back/scripts/assets/skeleton.mjs (shared kit anatomy.mjs, three-gltf.mjs, lib.mjs)",
+      "report": {
+        "sizeBefore": 4389248,
+        "sizeAfter": 1316772,
+        "trianglesAfter": 139544,
+        "textures": 1,
+        "nodes": [
+          "Skeleton",
+          "  Skel_Skull [22840]",
+          "  Skel_Cervical [5656]",
+          "  Skel_Spine [13736]",
+          "  Skel_Sternum [1440]",
+          "  Skel_Ribs [15456]",
+          "  Skel_Clavicle_L [720]",
+          "  Skel_Scapula_L [2992]",
+          "  Joint_Ball_Shoulder_L [1008]",
+          "  Skel_Humerus_L [2928]",
+          "  Joint_Hinge_Elbow_L [672]",
+          "  Skel_Ulna_L [1216]",
+          "  Skel_Radius_L [1536]",
+          "  Skel_Hand_L [4320]",
+          "  Skel_Clavicle_R [720]",
+          "  Skel_Scapula_R [2992]",
+          "  Joint_Ball_Shoulder_R [1008]",
+          "  Skel_Humerus_R [2928]",
+          "  Joint_Hinge_Elbow_R [672]",
+          "  Skel_Ulna_R [1216]",
+          "  Skel_Radius_R [1536]",
+          "  Skel_Hand_R [4320]",
+          "  Skel_Pelvis [12704]",
+          "  Skel_Coccyx [768]",
+          "  Joint_Ball_Hip_L [1008]",
+          "  Skel_Femur_L [4240]",
+          "  Joint_Hinge_Knee_L [784]",
+          "  Skel_Patella_L [504]",
+          "  Skel_Tibia_L [2512]",
+          "  Skel_Fibula_L [1232]",
+          "  Skel_Foot_L [4872]",
+          "  Joint_Ball_Hip_R [1008]",
+          "  Skel_Femur_R [4240]",
+          "  Joint_Hinge_Knee_R [784]",
+          "  Skel_Patella_R [504]",
+          "  Skel_Tibia_R [2512]",
+          "  Skel_Fibula_R [1232]",
+          "  Skel_Foot_R [4872]",
+          "  Muscle_Biceps_R [2592]",
+          "  Muscle_Triceps_R [3264]"
+        ]
+      }
+    }
+  ]
+}

@@ -27,7 +27,7 @@
  */
 
 /** Contract version shared by @bilig/permissions and @bilig/content-model. */
-export const CONTRACT_VERSION = '0.4.0';
+export const CONTRACT_VERSION = '0.5.0';
 
 /** A role is granted with a scope: the whole platform, a school, a subject, or a class. */
 export type Scope = 'platform' | 'school' | 'subject' | 'class';
@@ -83,7 +83,8 @@ export type Permission =
   | 'model.upload' // Загружать 3D-модели
   | 'content.publish' // Публиковать и снимать с публикации
   | 'platform.manage' // Управлять предметами, школами, лицензиями
-  | 'audit.view'; // Смотреть журнал аудита
+  | 'audit.view' // Смотреть журнал аудита
+  | 'lesson.plan'; // v0.5.0: КТП и планы уроков (своё)
 
 export const PERMISSIONS: readonly Permission[] = [
   'demo.view',
@@ -98,6 +99,7 @@ export const PERMISSIONS: readonly Permission[] = [
   'content.publish',
   'platform.manage',
   'audit.view',
+  'lesson.plan',
 ];
 
 /**
@@ -162,6 +164,11 @@ export const MATRIX: Record<Permission, Record<Role, Grant>> = {
   },
   'audit.view': {
     guest: false, student: false, teacher: false, school_admin: 'own',
+    author: false, editor: false, superadmin: 'all',
+  },
+  // v0.5.0 (beyond the TZ §2 table): a teacher's own КТП and lesson plans; records are owner-only.
+  'lesson.plan': {
+    guest: false, student: false, teacher: 'all', school_admin: 'all',
     author: false, editor: false, superadmin: 'all',
   },
 };

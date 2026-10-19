@@ -16,6 +16,7 @@
  *   src/glossary/<subject>.json    { glossary: GlossaryTerm[] }   — shipped with that subject's packages
  *   src/property-types/*.json      { propertyTypes: PropertyTypeDef[] } — extends PROPERTY_TYPES
  *   src/topics/<topicKey>.json     { topic: Topic, items: Item[], version?: semver }
+ *   src/textbooks/<key>.json       { textbook: Textbook }         — chapters/lessons mapped onto topic keys (v0.5.0)
  *   assets/<topicKey>/<path>       binary files of manifest path <path> (real sha256/size), ASSET.json = licence/author/source
  *
  * Runs under tsx because it imports the TypeScript contract (@bilig/content-model).
@@ -28,6 +29,8 @@ import {
   CatalogSchema,
   PROPERTY_TYPES,
   PropertyTypeDefSchema,
+  TextbookSchema,
+  textbookTopicKeys,
   validatePackage,
 } from '@bilig/content-model';
 
@@ -93,6 +96,17 @@ const units = new Map(cur.units.map((u) => [u.key, u]));
 const concepts = indexDir(join(SRC, 'concepts'), 'concepts').map;
 const processes = indexDir(join(SRC, 'processes'), 'processes').map;
 const propTypes = indexDir(join(SRC, 'property-types'), 'propertyTypes').map;
+// v0.5.0: sample scenes default to the thumbnail specs, so a sample shows on the stage what its thumbnail shows.
+const thumbSpecs = existsSync(join(SRC, 'thumbs.json')) ? readJson(join(SRC, 'thumbs.json')) : {};
+const sampleSceneFromSpec = (spec) => {
+  if (!spec) return undefined;
+  const scene = {
+    ...(spec.scene?.params ? { params: spec.scene.params } : {}),
+    ...(spec.scene?.camera ? { camera: spec.scene.camera } : {}),
+    ...(spec.modes ? { modes: spec.modes } : {}),
+  };
+  return Object.keys(scene).length ? scene : undefined;
+};
 for (const [k, def] of propTypes) {
   if (PROPERTY_TYPES[k]) fail('property-types', `"${k}" already exists in the built-in PROPERTY_TYPES`);
   const r = PropertyTypeDefSchema.safeParse(def);
@@ -137,6 +151,13 @@ for (const file of jsonFiles(join(SRC, 'topics'))) {
   }
   if (basename(file, '.json') !== topic.key) fail(where, `file name must be ${topic.key}.json`);
   topic.i18n ??= DEFAULT_I18N;
+  for (const k of Object.keys(thumbSpecs[topic.key] ?? {}))
+    if (!(topic.samples ?? []).some((smp) => smp.key === k)) fail(where, `thumbs.json names sample "${k}", which the topic does not have`);
+  topic.samples = (topic.samples ?? []).map((smp) => {
+    if (smp.scene) return smp;
+    const scene = sampleSceneFromSpec(thumbSpecs[topic.key]?.[smp.key]);
+    return scene ? { ...smp, scene } : smp;
+  });
   const unit = units.get(topic.unitKey);
   const course = unit && courses.get(unit.courseKey);
   const subject = course && subjects.get(course.subjectKey);
@@ -185,6 +206,8 @@ for (const file of jsonFiles(join(SRC, 'topics'))) {
   for (const c of pkgConcepts) for (const p of c.props) usedTypes.add(p.type);
   for (const o of Object.values(topic.overrides ?? {})) for (const p of o.props ?? []) usedTypes.add(p.type);
   for (const r of topic.activities?.comparison?.rows ?? []) usedTypes.add(r);
+  for (const p of topic.props ?? []) usedTypes.add(p.type);
+  for (const smp of topic.samples ?? []) for (const p of smp.props ?? []) usedTypes.add(p.type);
   const extraTypes = [...usedTypes].filter((k) => propTypes.has(k)).sort().map((k) => propTypes.get(k));
 
   // manifest: scene asset + thumbnails. Files present in content/assets/<topicKey>/ get their real
@@ -278,7 +301,29 @@ for (const s of PARTIAL ? [] : subjects.values()) {
   if (s.status === 'soon' && n > 0) fail('curriculum.json', `subject "${s.key}" is "soon" but has topics`);
 }
 
-const catalog = { groups: cur.groups, subjects: cur.subjects, courses: cur.courses, units: cur.units };
+// --- textbooks (v0.5.0) ----------------------------------------------------------
+// Schema + file name = key + chapter subjects; topic keys must exist among the
+// built topics (skipped with --only / --partial, where not every topic is built).
+const textbooks = [];
+for (const file of jsonFiles(join(SRC, 'textbooks'))) {
+  const where = `textbooks/${basename(file)}`;
+  const src = readJson(file);
+  if (!src) continue;
+  const r = TextbookSchema.safeParse(src.textbook);
+  if (!r.success) {
+    fail(where, r.error.issues.slice(0, 5).map((i) => `${i.path.join('.')}: ${i.message}`).join('; '));
+    continue;
+  }
+  const tb = r.data;
+  if (basename(file, '.json') !== tb.key) fail(where, `file name must equal the textbook key "${tb.key}"`);
+  for (const c of tb.chapters) if (!subjects.has(c.subjectKey)) fail(where, `chapter "${c.key}": unknown subjectKey "${c.subjectKey}"`);
+  if (!PARTIAL) for (const k of textbookTopicKeys(tb)) if (!built.has(k)) fail(where, `unknown topic "${k}"`);
+  if (textbooks.some((x) => x.key === tb.key)) fail(where, `duplicate textbook key "${tb.key}"`);
+  textbooks.push(tb);
+}
+textbooks.sort((a, b) => a.order - b.order || a.grade - b.grade || (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
+
+const catalog = { groups: cur.groups, subjects: cur.subjects, courses: cur.courses, units: cur.units, textbooks };
 const cat = CatalogSchema.omit({ topics: true }).strict().safeParse(catalog);
 if (!cat.success) fail('catalog', cat.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; '));
 
@@ -292,7 +337,7 @@ problems.forEach((p) => console.error(p));
 const glossaryCount = [...glossaryBySubject.values()].reduce((n, l) => n + l.length, 0);
 console.log(
   `topics=${stats.topics} concepts=${stats.concepts.size} (dictionary ${concepts.size}) processes=${stats.processes.size} ` +
-    `items=${stats.items} glossary=${glossaryCount} warnings=${warnings.length} errors=${problems.length}`,
+    `items=${stats.items} glossary=${glossaryCount} textbooks=${textbooks.length} warnings=${warnings.length} errors=${problems.length}`,
 );
 if (problems.length) process.exit(1);
 if (PARTIAL) process.exit(0);

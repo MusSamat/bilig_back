@@ -1,0 +1,3201 @@
+{
+  "manifest": {
+    "topicKey": "moment-of-force",
+    "version": "1.0.0",
+    "hash": "1daee815ec8a70905ffdedc4f3982e80d5cf48d235188c123bf43f53d52aa4b9",
+    "files": [
+      {
+        "path": "thumbs/lever-balanced.webp",
+        "hash": "b52f758fa50ff3533c32f44d8e132b33e580f68b4a215e147d7f27d3a235311a",
+        "size": 0
+      },
+      {
+        "path": "thumbs/lever-unbalanced.webp",
+        "hash": "4ae2531f13ac08cca139d0e60f6976f748b0c1a9397d69aacc1d6f668b5d14a1",
+        "size": 0
+      },
+      {
+        "path": "thumbs/lever-spanner.webp",
+        "hash": "e613ff370adfee4ae583accea0e5de6575481c4f44702b68538c3c64e0250199",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "phys",
+    "icon": "orbit",
+    "hue": 28,
+    "group": "natural",
+    "order": 2,
+    "status": "live",
+    "title": {
+      "ky": "Физика",
+      "ru": "Физика",
+      "en": "Physics"
+    }
+  },
+  "course": {
+    "key": "phys.g8",
+    "subjectKey": "phys",
+    "grade": 8,
+    "curriculum": "kg-2024",
+    "title": {
+      "ky": "Физика, 8-класс",
+      "ru": "Физика, 8 класс",
+      "en": "Physics, grade 8"
+    }
+  },
+  "unit": {
+    "key": "phys.g8.motion",
+    "courseKey": "phys.g8",
+    "order": 2,
+    "title": {
+      "ky": "Күчтөр жана кыймыл",
+      "ru": "Силы и движение",
+      "en": "Forces and motion"
+    }
+  },
+  "objectives": [
+    {
+      "key": "phys.g8.motion.o1",
+      "code": "PHYS-8.4.1",
+      "unitKey": "phys.g8.motion",
+      "text": {
+        "ky": "Ылдамдыкты эсептөө жана аралыктын убакыттан көз карандылык графигин окуу.",
+        "ru": "Вычислять скорость и читать график зависимости пути от времени.",
+        "en": "Calculate speed and read a distance–time graph."
+      }
+    },
+    {
+      "key": "phys.g8.motion.o2",
+      "code": "PHYS-8.4.2",
+      "unitKey": "phys.g8.motion",
+      "text": {
+        "ky": "Күчтөрдү векторлор менен сүрөттөө, тең аракеттүү күчтү жана күчтүн моментин табуу.",
+        "ru": "Изображать силы векторами, находить равнодействующую и момент силы.",
+        "en": "Draw forces as vectors, find the resultant force and the moment of a force."
+      }
+    }
+  ],
+  "topic": {
+    "key": "moment-of-force",
+    "unitKey": "phys.g8.motion",
+    "status": "published",
+    "title": {
+      "ky": "Күчтүн моменти",
+      "ru": "Момент силы",
+      "en": "Moment of a force"
+    },
+    "formula": "M = F·d",
+    "classification": {
+      "ky": "Статика",
+      "ru": "Статика",
+      "en": "Statics"
+    },
+    "description": {
+      "ky": "2 м тактай ортосунан таянат – тактай селкинчек. Сол жагында 3 кг, оң жагында 2 кг жүк турат, бирок тактай тең салмакта. Эмне үчүн? Жоопту күчтүн моменти M = F·d жана рычагдын тең салмактуулук эрежеси F₁·d₁ = F₂·d₂ берет.",
+      "ru": "Доска длиной 2 м опирается серединой – это качели-доска. Слева груз 3 кг, справа 2 кг, но доска в равновесии. Почему? Ответ дают момент силы M = F·d и правило равновесия рычага F₁·d₁ = F₂·d₂.",
+      "en": "A 2 m board rests on its middle – a seesaw. There is 3 kg on the left and 2 kg on the right, yet it balances. Why? The moment of a force, M = F·d, and the law of the lever, F₁·d₁ = F₂·d₂, explain it."
+    },
+    "goal": {
+      "ky": "Күчтүн ийинин жана моментин табуу, рычагдын тең салмактуулук эрежесин колдонуу жана турмуштагы рычагдарды (эшик, гайка ачкычы, адамдын билеги) түшүндүрүү (PHYS-8.4.2).",
+      "ru": "Находить плечо и момент силы, применять правило равновесия рычага и объяснять рычаги в быту (дверь, гаечный ключ, предплечье человека) (PHYS-8.4.2).",
+      "en": "Find the arm and moment of a force, apply the law of the lever and explain everyday levers (a door, a spanner, the human forearm) (PHYS-8.4.2)."
+    },
+    "objectiveKeys": [
+      "phys.g8.motion.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "lever",
+        "length": 2,
+        "pivot": 1,
+        "loads": [
+          {
+            "id": "left",
+            "position": 0.4,
+            "mass": 3
+          },
+          {
+            "id": "right",
+            "position": 1.9,
+            "mass": 2
+          }
+        ],
+        "g": 9.8
+      },
+      "camera": {
+        "position": [
+          0,
+          1.2,
+          3.6
+        ],
+        "target": [
+          0,
+          0.6,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "arms",
+        "balance"
+      ]
+    },
+    "conceptKeys": [
+      "phys.lever",
+      "phys.pivot",
+      "phys.weight",
+      "phys.lever-arm",
+      "phys.moment-of-force",
+      "phys.lever-rule"
+    ],
+    "overrides": {
+      "phys.lever": {
+        "nodes": [
+          "Beam"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 2
+          },
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Тактай, таяныч ортодо",
+              "ru": "Доска, опора посередине",
+              "en": "Board, pivot in the middle"
+            }
+          }
+        ]
+      },
+      "phys.pivot": {
+        "nodes": [
+          "Pivot"
+        ],
+        "title": {
+          "ky": "Таяныч чекити",
+          "ru": "Точка опоры",
+          "en": "Pivot (fulcrum)"
+        },
+        "subtitle": {
+          "ky": "Рычаг ушул чекиттин айланасында бурулат",
+          "ru": "Вокруг неё поворачивается рычаг",
+          "en": "The point the lever turns about"
+        },
+        "description": {
+          "ky": "Рычаг айланасында бурула турган кыймылсыз чекит. Күчтөрдүн ийиндери ушул чекиттен ченелет. Биздин тактайда ал так ортодо – сол учунан 1 м аралыкта.",
+          "ru": "Неподвижная точка, вокруг которой поворачивается рычаг. Плечи сил отсчитывают от неё. У нашей доски она точно посередине – в 1 м от левого края.",
+          "en": "The fixed point a lever turns about. The arms of the forces are measured from it. On our board it is exactly in the middle – 1 m from the left end."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 1
+          },
+          {
+            "kind": "text",
+            "type": "location",
+            "value": {
+              "ky": "Тактайдын ортосу",
+              "ru": "Середина доски",
+              "en": "The middle of the board"
+            }
+          }
+        ],
+        "analogy": {
+          "ky": "Таяныч чекити – эшиктин топсосу: эшик ушул сызыктын айланасында ачылат.",
+          "ru": "Точка опоры – как дверные петли: дверь поворачивается вокруг них.",
+          "en": "A pivot is like a door's hinges: the door turns about them."
+        },
+        "examples": {
+          "stem": [
+            {
+              "title": {
+                "ky": "Мунаралуу кран",
+                "ru": "Башенный кран",
+                "en": "Tower crane"
+              },
+              "text": {
+                "ky": "Крандын стреласы мунаранын башындагы таяныч чекитинин айланасында бурулат; эки ийиндеги моменттер теңделиши керек.",
+                "ru": "Стрела крана поворачивается вокруг опоры на вершине башни; моменты двух плеч должны уравновешиваться.",
+                "en": "A crane's jib turns about the pivot at the top of the tower; the moments on its two arms must balance."
+              },
+              "field": "e"
+            },
+            {
+              "title": {
+                "ky": "Чыканак мууну",
+                "ru": "Локтевой сустав",
+                "en": "The elbow joint"
+              },
+              "text": {
+                "ky": "Билек – рычаг, ал эми чыканак мууну анын таяныч чекити: бицепс билекти ушул чекиттин айланасында көтөрөт.",
+                "ru": "Предплечье – рычаг, а локтевой сустав – его точка опоры: бицепс поднимает предплечье вокруг этой точки.",
+                "en": "The forearm is a lever and the elbow joint is its pivot: the biceps lifts the forearm about that point."
+              },
+              "field": "s"
+            }
+          ],
+          "simple": [
+            {
+              "title": {
+                "ky": "Тактай селкинчек",
+                "ru": "Качели-доска",
+                "en": "A seesaw"
+              },
+              "text": {
+                "ky": "Селкинчектин ортосундагы тирек – таяныч чекити.",
+                "ru": "Опора посередине качелей – точка опоры.",
+                "en": "The support in the middle of a seesaw is its pivot."
+              }
+            },
+            {
+              "title": {
+                "ky": "Кайчы",
+                "ru": "Ножницы",
+                "en": "Scissors"
+              },
+              "text": {
+                "ky": "Кайчынын эки бөлүгүн бириктирген бурама – таяныч чекити.",
+                "ru": "Винт, соединяющий половинки ножниц, – точка опоры.",
+                "en": "The screw joining the two blades of scissors is the pivot."
+              }
+            }
+          ]
+        }
+      },
+      "phys.weight": {
+        "nodes": [
+          "Arrow_left",
+          "Arrow_right",
+          "Load_left",
+          "Load_right"
+        ],
+        "description": {
+          "ky": "Жүктөр тактайды өз салмагы менен басат: P = m·g. Сол жүк 3 кг · 9,8 Н/кг = 29,4 Н, оң жүк 2 кг · 9,8 Н/кг = 19,6 Н. Бул күчтөр тактайга коюлат жана аны айлантат.",
+          "ru": "Грузы давят на доску своим весом: P = m·g. Левый груз 3 кг · 9,8 Н/кг = 29,4 Н, правый 2 кг · 9,8 Н/кг = 19,6 Н. Эти силы приложены к доске и поворачивают её.",
+          "en": "The loads press on the board with their weight: W = mg. The left load gives 3 kg × 9.8 N/kg = 29.4 N, the right one 2 kg × 9.8 N/kg = 19.6 N. These forces act on the board and turn it."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 29.4
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 19.6
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P = m \\cdot g"
+          }
+        ]
+      },
+      "phys.lever-arm": {
+        "nodes": [
+          "Arm_left",
+          "Arm_right",
+          "Arm_hand"
+        ],
+        "description": {
+          "ky": "Сол жүк таяныч чекитинен 0,6 м, оң жүк 0,9 м аралыкта турат. Жүктөрдүн салмагы тактайга тик бурч менен таасир эткендиктен, ийиндер ушул аралыктарга барабар.",
+          "ru": "Левый груз стоит в 0,6 м от точки опоры, правый – в 0,9 м. Вес грузов действует на доску под прямым углом, поэтому плечи равны этим расстояниям.",
+          "en": "The left load sits 0.6 m from the pivot and the right one 0.9 m. The loads' weights act at right angles to the board, so the arms equal these distances."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.6
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.9
+          }
+        ]
+      },
+      "phys.moment-of-force": {
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "M = F \\cdot d"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "M_1 = 29.4 \\cdot 0.6 \\approx 17.6"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "M_2 = 19.6 \\cdot 0.9 \\approx 17.6"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "lever-balanced",
+        "title": {
+          "ky": "Тең салмактагы селкинчек",
+          "ru": "Качели в равновесии",
+          "en": "Balanced seesaw"
+        },
+        "classification": {
+          "ky": "M₁ = M₂ ≈ 17,6 Н·м",
+          "ru": "M₁ = M₂ ≈ 17,6 Н·м",
+          "en": "M₁ = M₂ ≈ 17.6 N·m"
+        },
+        "thumb": "thumbs/lever-balanced.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "3 кг жүк 0,6 м ийинде, 2 кг жүк 0,9 м ийинде",
+              "ru": "Груз 3 кг на плече 0,6 м, груз 2 кг на плече 0,9 м",
+              "en": "3 kg on a 0.6 m arm, 2 kg on a 0.9 m arm"
+            }
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 2
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "lever",
+            "length": 2,
+            "pivot": 1,
+            "loads": [
+              {
+                "id": "left",
+                "position": 0.4,
+                "mass": 3
+              },
+              {
+                "id": "right",
+                "position": 1.9,
+                "mass": 2
+              }
+            ],
+            "g": 9.8
+          }
+        }
+      },
+      {
+        "key": "lever-unbalanced",
+        "title": {
+          "ky": "Тең салмаксыз селкинчек",
+          "ru": "Качели без равновесия",
+          "en": "Unbalanced seesaw"
+        },
+        "classification": {
+          "ky": "17,6 > 11,8 Н·м – солго кыйшаят",
+          "ru": "17,6 > 11,8 Н·м – наклон влево",
+          "en": "17.6 > 11.8 N·m – tips to the left"
+        },
+        "thumb": "thumbs/lever-unbalanced.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "3 кг жүк 0,6 м ийинде, 2 кг жүк 0,6 м ийинде",
+              "ru": "Груз 3 кг на плече 0,6 м, груз 2 кг на плече 0,6 м",
+              "en": "3 kg on a 0.6 m arm, 2 kg on a 0.6 m arm"
+            }
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 2
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "lever",
+            "length": 2,
+            "pivot": 1,
+            "loads": [
+              {
+                "id": "left",
+                "position": 0.4,
+                "mass": 3
+              },
+              {
+                "id": "right",
+                "position": 1.6,
+                "mass": 2
+              }
+            ],
+            "g": 9.8
+          }
+        }
+      },
+      {
+        "key": "lever-spanner",
+        "title": {
+          "ky": "Гайка ачкычы",
+          "ru": "Гаечный ключ",
+          "en": "Spanner"
+        },
+        "classification": {
+          "ky": "50 Н · 0,25 м = 12,5 Н·м",
+          "ru": "50 Н · 0,25 м = 12,5 Н·м",
+          "en": "50 N × 0.25 m = 12.5 N·m"
+        },
+        "thumb": "thumbs/lever-spanner.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 50
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.25
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "lever",
+            "length": 0.3,
+            "pivot": 0.025,
+            "loads": [
+              {
+                "id": "hand",
+                "position": 0.275,
+                "mass": 5.1
+              }
+            ],
+            "g": 9.8
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "length",
+        "value": 2
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "M = F \\cdot d"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "F_1 d_1 = F_2 d_2"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "seesaw",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.6
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "balance": true,
+              "arms": false,
+              "vectors": false
+            },
+            "focus": "phys.lever",
+            "text": {
+              "ky": "Тактай селкинчек: 2 м тактай ортосунан таянат. Сол жагында 3 кг, оң жагында 2 кг жүк – бирок тактай түз турат. Оор жүк эмне үчүн ылдый түшпөйт?",
+              "ru": "Качели-доска: доска 2 м опирается серединой. Слева груз 3 кг, справа 2 кг – но доска стоит ровно. Почему тяжёлый груз не опускается?",
+              "en": "A seesaw: a 2 m board rests on its middle. 3 kg on the left, 2 kg on the right – yet the board is level. Why doesn't the heavier load go down?"
+            },
+            "teacherNote": {
+              "ky": "Окуучулардын божомолдорун тактага жазыңыз. Көбү «жүктөр бирдей болушу керек» деп айтышат – бул ката сабактын аягында чечилет.",
+              "ru": "Запишите версии учеников на доске. Многие скажут «грузы должны быть одинаковыми» – эта ошибка разрешится к концу урока.",
+              "en": "Write the pupils' guesses on the board. Many will say 'the loads must be equal' – that idea gets resolved by the end of the lesson."
+            },
+            "altText": {
+              "ky": "Ортосунан таянган горизонталдык тактай, эки жагында ар башка жүктөр.",
+              "ru": "Горизонтальная доска на опоре посередине, по краям разные грузы.",
+              "en": "A level board on a central pivot with different loads on each side."
+            }
+          },
+          {
+            "key": "pivot",
+            "camera": {
+              "position": [
+                0.4,
+                0.9,
+                1.8
+              ],
+              "target": [
+                0,
+                0.5,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.pivot",
+            "text": {
+              "ky": "Тактай таяныч чекитинин айланасында бурула алат. Ийиндер жана моменттер дайыма ушул чекиттен эсептелет.",
+              "ru": "Доска может поворачиваться вокруг точки опоры. Плечи и моменты всегда отсчитывают от этой точки.",
+              "en": "The board can turn about the pivot. Arms and moments are always measured from this point."
+            },
+            "teacherNote": {
+              "ky": "Эшикти топсонун жанынан жана туткасынан түртүп көрсөтүңүз: таяныч чекити (топсо) бир эле, бирок натыйжа ар башка.",
+              "ru": "Покажите на двери: толкните её у петель и у ручки. Точка опоры (петли) одна, а результат разный.",
+              "en": "Demonstrate with the classroom door: push near the hinges and then at the handle. Same pivot, very different result."
+            },
+            "altText": {
+              "ky": "Тактайдын ортосундагы үч бурчтуу тирек.",
+              "ru": "Треугольная опора под серединой доски.",
+              "en": "A triangular support under the middle of the board."
+            }
+          },
+          {
+            "key": "weights",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.6
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.weight",
+            "text": {
+              "ky": "Жүктөр тактайды салмагы менен басат: сол жүк 3 · 9,8 = 29,4 Н, оң жүк 2 · 9,8 = 19,6 Н. Сол жактагы күч чоңураак – бирок бул азырынча жетишсиз маалымат.",
+              "ru": "Грузы давят на доску своим весом: левый 3 · 9,8 = 29,4 Н, правый 2 · 9,8 = 19,6 Н. Слева сила больше – но этих данных пока мало.",
+              "en": "The loads press on the board with their weight: left 3 × 9.8 = 29.4 N, right 2 × 9.8 = 19.6 N. The left force is bigger – but that is not the whole story."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: «Эгер күч гана маанилүү болсо, тактай кайсы тарапка кыйшаймак?» (Солго.) Бирок ал кыйшайбай турат – демек дагы бир нерсе маанилүү.",
+              "ru": "Спросите: «Если важна только сила, куда наклонилась бы доска?» (Влево.) Но она стоит ровно – значит, важно что-то ещё.",
+              "en": "Ask: 'If only the force mattered, which way would the board tip?' (Left.) But it stays level – so something else matters too."
+            },
+            "altText": {
+              "ky": "Жүктөрдөн тик ылдый караган эки жебе, сол жагындагысы узунураак.",
+              "ru": "Две стрелки от грузов вниз, левая длиннее.",
+              "en": "Two downward arrows from the loads; the left one is longer."
+            }
+          },
+          {
+            "key": "arms",
+            "camera": {
+              "position": [
+                0.9,
+                1,
+                2.4
+              ],
+              "target": [
+                0.5,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "arms": true,
+              "vectors": true
+            },
+            "focus": "phys.lever-arm",
+            "text": {
+              "ky": "Күчтүн ийини – таяныч чекитинен күчтүн аракет сызыгына чейинки аралык. Сол жүктүн ийини 0,6 м, оң жүктүкү 0,9 м: жеңил жүк алыстараак турат.",
+              "ru": "Плечо силы – расстояние от точки опоры до линии действия силы. Плечо левого груза 0,6 м, правого – 0,9 м: лёгкий груз стоит дальше.",
+              "en": "The arm of a force is the distance from the pivot to the force's line of action. The left load's arm is 0.6 m, the right one's 0.9 m: the lighter load sits further out."
+            },
+            "teacherNote": {
+              "ky": "Ката: ийинди тактайдын учунан ченөө. Ийин дайыма таяныч чекитинен ченеле турганын эскертиңиз.",
+              "ru": "Ошибка: мерить плечо от края доски. Напомните: плечо всегда отсчитывается от точки опоры.",
+              "en": "Watch for pupils measuring the arm from the end of the board. The arm is always measured from the pivot."
+            },
+            "altText": {
+              "ky": "Таяныч чекитинен ар бир жүккө чейин белгиленген кесиндилер – ийиндер.",
+              "ru": "Отрезки от точки опоры до каждого груза – плечи.",
+              "en": "Marked segments from the pivot to each load – the arms."
+            }
+          },
+          {
+            "key": "moments",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.6
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "arms": true,
+              "vectors": true
+            },
+            "focus": "phys.moment-of-force",
+            "text": {
+              "ky": "Күчтүн моменти M = F·d. Сол жак: 29,4 Н · 0,6 м ≈ 17,6 Н·м (саат жебесине каршы бурат). Оң жак: 19,6 Н · 0,9 м ≈ 17,6 Н·м (саат жебеси боюнча бурат). Моменттер барабар!",
+              "ru": "Момент силы M = F·d. Слева: 29,4 Н · 0,6 м ≈ 17,6 Н·м (поворачивает против часовой стрелки). Справа: 19,6 Н · 0,9 м ≈ 17,6 Н·м (по часовой). Моменты равны!",
+              "en": "The moment of a force is M = F·d. Left: 29.4 N × 0.6 m ≈ 17.6 N·m (turning anticlockwise). Right: 19.6 N × 0.9 m ≈ 17.6 N·m (turning clockwise). The moments are equal!"
+            },
+            "teacherNote": {
+              "ky": "Окуучулар эсептөөнү өздөрү жасашсын. Бирдикке көңүл буруңуз: Н·м – ньютон көбөйтүлгөн метр, «ньютон метрге бөлүнгөн» эмес.",
+              "ru": "Пусть ученики посчитают сами. Обратите внимание на единицу: Н·м – ньютон, умноженный на метр, а не «ньютон на метр».",
+              "en": "Let the pupils do the arithmetic. Point out the unit: N·m is newtons multiplied by metres, not 'newtons per metre'."
+            },
+            "altText": {
+              "ky": "Ийиндер жана жебелер, жанында M₁ ≈ 17,6 Н·м жана M₂ ≈ 17,6 Н·м деген жазуулар.",
+              "ru": "Плечи и стрелки с подписями M₁ ≈ 17,6 Н·м и M₂ ≈ 17,6 Н·м.",
+              "en": "Arms and arrows labelled M₁ ≈ 17.6 N·m and M₂ ≈ 17.6 N·m."
+            }
+          },
+          {
+            "key": "rule",
+            "sample": "lever-unbalanced",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.6
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "balance": true,
+              "arms": true
+            },
+            "focus": "phys.lever-rule",
+            "text": {
+              "ky": "Рычагдын тең салмактуулук эрежеси: F₁·d₁ = F₂·d₂. Оң жүктү 0,6 м ге жакындатсак, анын моменти 11,8 Н·м болуп калат – тактай солго кыйшаят.",
+              "ru": "Правило равновесия рычага: F₁·d₁ = F₂·d₂. Если придвинуть правый груз до 0,6 м, его момент станет 11,8 Н·м – доска наклонится влево.",
+              "en": "The law of the lever: F₁·d₁ = F₂·d₂. Move the right load in to 0.6 m and its moment drops to 11.8 N·m – the board tips to the left."
+            },
+            "teacherNote": {
+              "ky": "«Тең салмаксыз селкинчек» үлгүсүн ачып, «Тактай селкинчекти теңдөө» процессин иштетиңиз. Тапшырма: 2 кг жүктү кайда койсок, тактай кайра түздөлөт? (0,9 м.)",
+              "ru": "Откройте образец «Качели без равновесия» и запустите процесс «Уравновешиваем качели-доску». Задача: куда поставить груз 2 кг, чтобы доска выровнялась? (0,9 м.)",
+              "en": "Open the 'Unbalanced seesaw' sample and run the 'Balancing a seesaw' process. Task: where must the 2 kg load go for the board to level again? (0.9 m.)"
+            },
+            "altText": {
+              "ky": "Тактай сол жагына кыйшайган, оң жүк таянычка жакын.",
+              "ru": "Доска наклонена влево, правый груз ближе к опоре.",
+              "en": "The board tilts left; the right load is closer to the pivot."
+            }
+          },
+          {
+            "key": "everyday",
+            "sample": "lever-spanner",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.6
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "balance": true,
+              "vectors": false,
+              "arms": false
+            },
+            "focus": "phys.lever",
+            "text": {
+              "ky": "Рычагдар бардык жерде: эшиктин туткасы топсодон алыс, гайка ачкычынын сабы узун, ал эми билегиң – чыканак муунунун айланасында бурулган рычаг. Бицепс чыканактан ≈ 4 см жерде бекийт, ошондуктан колдогу жүктөн ≈ 7,5 эсе чоң күч менен тартат.",
+              "ru": "Рычаги повсюду: ручка двери далеко от петель, у гаечного ключа длинная рукоять, а предплечье – рычаг, поворачивающийся вокруг локтя. Бицепс крепится в ≈ 4 см от локтя, поэтому тянет с силой ≈ в 7,5 раза больше веса груза в руке.",
+              "en": "Levers are everywhere: a door handle sits far from the hinges, a spanner has a long handle, and your forearm is a lever turning about the elbow. The biceps attaches about 4 cm from the elbow, so it pulls about 7.5 times harder than the weight in your hand."
+            },
+            "teacherNote": {
+              "ky": "Биология менен байланыш: «Скелет жана булчуңдар» темасында (2.1) колду рычаг катары карадык. Окуучулар 2 кг китепти колунда кармап, бицепстин чыңалышын сезип көрүшсүн.",
+              "ru": "Связь с биологией: в теме «Скелет и мышцы» (2.1) мы рассматривали руку как рычаг. Пусть ученики подержат в руке книгу 2 кг и почувствуют напряжение бицепса.",
+              "en": "Link to biology: in 'Skeleton and muscles' (2.1) we treated the arm as a lever. Have pupils hold a 2 kg book and feel their biceps working."
+            },
+            "altText": {
+              "ky": "Тактай селкинчек жана рычагдардын мисалдары: эшик, гайка ачкычы, адамдын колу.",
+              "ru": "Качели-доска и примеры рычагов: дверь, гаечный ключ, рука человека.",
+              "en": "The seesaw alongside examples of levers: a door, a spanner, a human arm."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.seesaw-balance"
+      ],
+      "quiz": {
+        "itemKeys": [
+          "phys.q.moment-of-force-1",
+          "phys.q.moment-of-force-2",
+          "phys.q.moment-of-force-3",
+          "phys.q.moment-of-force-4",
+          "phys.q.moment-of-force-5",
+          "phys.q.moment-of-force-6",
+          "phys.q.moment-of-force-7",
+          "phys.q.moment-of-force-8",
+          "phys.q.moment-of-force-9",
+          "phys.q.moment-of-force-10",
+          "phys.q.moment-of-force-11",
+          "phys.q.moment-of-force-12",
+          "phys.q.moment-of-force-13"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Динамометрдик ачкыч",
+            "ru": "Динамометрический ключ",
+            "en": "Torque wrench"
+          },
+          "text": {
+            "ky": "Дөңгөлөктүн гайкаларын так моментке чейин бурашат (мисалы, ≈ 110 Н·м): өтө бош болсо дөңгөлөк чыгып кетет, өтө катуу болсо бурама сынат.",
+            "ru": "Гайки колеса затягивают до точного момента (например, ≈ 110 Н·м): слабо – колесо открутится, слишком туго – сорвётся резьба.",
+            "en": "Wheel nuts are tightened to an exact moment (about 110 N·m, say): too loose and the wheel can come off, too tight and the thread strips."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Мунаралуу кран",
+            "ru": "Башенный кран",
+            "en": "Tower crane"
+          },
+          "text": {
+            "ky": "Кран оператору жүк канчалык алыс болсо, ошончолук жеңил жүк көтөрө алат: жүктүн моменти каршы жүктүн моментинен ашпашы керек.",
+            "ru": "Чем дальше от башни груз, тем меньшую массу может поднять кран: момент груза не должен превышать момент противовеса.",
+            "en": "The further out the load, the lighter it must be: the load's moment must not exceed the counterweight's moment."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Адамдын билеги",
+            "ru": "Предплечье человека",
+            "en": "The human forearm"
+          },
+          "text": {
+            "ky": "Бицепс чыканактан ≈ 4 см жерде бекийт. Колдо 30 см аралыкта 2 кг жүк кармаганда, ал 19,6 · 0,30 : 0,04 ≈ 147 Н күч менен тартат.",
+            "ru": "Бицепс крепится примерно в 4 см от локтя. Удерживая груз 2 кг в 30 см от локтя, он тянет с силой 19,6 · 0,30 : 0,04 ≈ 147 Н.",
+            "en": "The biceps attaches about 4 cm from the elbow. Holding 2 kg at 30 cm from the elbow, it pulls with 19.6 × 0.30 ÷ 0.04 ≈ 147 N."
+          },
+          "field": "s"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Эшик",
+            "ru": "Дверь",
+            "en": "A door"
+          },
+          "text": {
+            "ky": "Эшикти туткасынан түртсөң оңой ачылат, топсонун жанынан түртсөң – араң: күч бирдей, ийин ар башка.",
+            "ru": "Дверь легко открыть за ручку и трудно – толкая у петель: сила та же, плечо разное.",
+            "en": "A door opens easily at the handle and barely near the hinges: same force, different arm."
+          }
+        },
+        {
+          "title": {
+            "ky": "Тактай селкинчек",
+            "ru": "Качели-доска",
+            "en": "A seesaw"
+          },
+          "text": {
+            "ky": "Чоң бала таянычка жакын, кичинекей бала алыс отурса, селкинчек тең салмакта болот.",
+            "ru": "Если старший ребёнок сядет ближе к опоре, а младший – дальше, качели уравновесятся.",
+            "en": "If the bigger child sits closer to the middle and the smaller one further out, the seesaw balances."
+          }
+        }
+      ]
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "phys.lever",
+      "kind": "body",
+      "hue": 25,
+      "isContainer": false,
+      "title": {
+        "ky": "Рычаг",
+        "ru": "Рычаг",
+        "en": "Lever"
+      },
+      "description": {
+        "ky": "Таяныч чекитинин айланасында айлана алган катуу тактай же таяк. Рычаг аз күч менен оор жүктү көтөрүүгө же күчтүн багытын өзгөртүүгө жардам берет. Ал тең салмакта турат, эгер F₁·d₁ = F₂·d₂ болсо.",
+        "ru": "Твёрдая доска или стержень, который может поворачиваться вокруг точки опоры. Рычаг помогает поднять тяжёлый груз малой силой или изменить направление силы. Он в равновесии, если F₁·d₁ = F₂·d₂.",
+        "en": "A rigid board or bar that can turn about a pivot. A lever lets a small force lift a heavy load or changes the direction of a force. It balances when F₁·d₁ = F₂·d₂."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Тактай (таяк), таяныч чекити, ийиндер",
+            "ru": "Доска (стержень), точка опоры, плечи",
+            "en": "Beam (bar), pivot, arms"
+          }
+        }
+      ],
+      "related": [
+        "phys.pivot",
+        "phys.lever-arm",
+        "phys.lever-rule"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.lever-free-work",
+          "text": {
+            "ky": "Рычаг ишти «бекер» азайтат: аз күч – аз иш.",
+            "ru": "Рычаг «бесплатно» уменьшает работу: меньше сила – меньше работа.",
+            "en": "A lever saves work 'for free': less force means less work."
+          },
+          "correction": {
+            "ky": "Рычаг күчтөн утат, бирок жолдон ошончо эсе утулат: узун ийиндин учу ошончо көп жол басат. Иш өзгөрбөйт – бул механиканын «алтын эрежеси».",
+            "ru": "Рычаг даёт выигрыш в силе, но во столько же раз проигрыш в пути: конец длинного плеча проходит больший путь. Работа не меняется – это «золотое правило» механики.",
+            "en": "A lever gains in force but loses just as much in distance: the end of the long arm travels further. The work stays the same – the 'golden rule' of mechanics."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Архимедге таандык деп айтылган сөз: «Мага таяныч чекитин бергиле, мен Жерди ордунан козгойм».",
+        "ru": "Архимеду приписывают слова: «Дайте мне точку опоры, и я сдвину Землю».",
+        "en": "Archimedes is said to have claimed: 'Give me a place to stand and I will move the Earth.'"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Мунаралуу кран",
+              "ru": "Башенный кран",
+              "en": "Tower crane"
+            },
+            "text": {
+              "ky": "Крандын кыска ийининде оор бетон каршы жүк турат: ал узун ийиндеги жүктүн моментин теңдеп, кранды кулатпайт.",
+              "ru": "На коротком плече крана стоит тяжёлый бетонный противовес: он уравновешивает момент груза на длинном плече и не даёт крану опрокинуться.",
+              "en": "A heavy concrete counterweight sits on a crane's short arm: it balances the moment of the load on the long arm and stops the crane toppling."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Дене – рычагдар системасы",
+              "ru": "Тело – система рычагов",
+              "en": "The body as levers"
+            },
+            "text": {
+              "ky": "Сөөктөр – рычагдар, муундар – таяныч чекиттери, булчуңдар – күч. Билек чыканак мууну айланасында бурулат.",
+              "ru": "Кости – рычаги, суставы – точки опоры, мышцы – силы. Предплечье поворачивается вокруг локтевого сустава.",
+              "en": "Bones are levers, joints are pivots and muscles supply the forces. The forearm turns about the elbow joint."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Тактай селкинчек",
+              "ru": "Качели-доска",
+              "en": "A seesaw"
+            },
+            "text": {
+              "ky": "Ата менен кичинекей бала тактай селкинчекте тең салмакта болушу үчүн ата таяныч чекитине жакыныраак отурат.",
+              "ru": "Чтобы папа и малыш уравновесились на качелях-доске, папа садится ближе к опоре.",
+              "en": "For a dad and a small child to balance on a seesaw, the dad sits closer to the middle."
+            }
+          },
+          {
+            "title": {
+              "ky": "Бөтөлкө ачкыч",
+              "ru": "Открывашка",
+              "en": "Bottle opener"
+            },
+            "text": {
+              "ky": "Ачкычтын узун сабы капкакты аз күч менен ачууга мүмкүндүк берет.",
+              "ru": "Длинная ручка открывашки позволяет снять крышку малой силой.",
+              "en": "The long handle of a bottle opener lets you lift the cap with a small force."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.pivot",
+      "kind": "part",
+      "hue": 30,
+      "isContainer": false,
+      "title": {
+        "ky": "Илинүү чекити",
+        "ru": "Точка подвеса",
+        "en": "Pivot"
+      },
+      "subtitle": {
+        "ky": "Маятник ушул жерде бекитилет",
+        "ru": "Здесь закреплён маятник",
+        "en": "Where the pendulum hangs from"
+      },
+      "description": {
+        "ky": "Жип бекитилген кыймылсыз чекит. Маятник ушул чекиттин айланасында термелет.",
+        "ru": "Неподвижная точка, к которой привязана нить. Маятник качается вокруг неё.",
+        "en": "The fixed point the string is tied to. The pendulum swings around it."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Маятниктин эң жогорку бөлүгү",
+            "ru": "Верхняя часть маятника",
+            "en": "Top of the pendulum"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Жипти кармап, термелүүнүн огу болот",
+            "ru": "Удерживает нить и служит осью качаний",
+            "en": "Holds the string and acts as the swing axis"
+          }
+        }
+      ],
+      "related": [
+        "phys.string",
+        "phys.bob"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.pivot-moves",
+          "text": {
+            "ky": "Илинүү чекити да жүк менен кошо термелет.",
+            "ru": "Точка подвеса тоже качается вместе с грузом.",
+            "en": "The pivot swings together with the bob."
+          },
+          "correction": {
+            "ky": "Илинүү чекити кыймылсыз; эгер ал кыймылдаса, маятник башкача термелет.",
+            "ru": "Точка подвеса неподвижна; если она двигается, маятник качается иначе.",
+            "en": "The pivot stays still; if it moved, the pendulum would swing differently."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Илинүү чекитинде сүрүлүү аз болгон сайын маятник узагыраак термелет.",
+        "ru": "Чем меньше трение в точке подвеса, тем дольше качается маятник.",
+        "en": "The less friction there is at the pivot, the longer the pendulum keeps swinging."
+      },
+      "analogy": {
+        "ky": "Селкинчектин үстүндөгү устун",
+        "ru": "Перекладина качелей",
+        "en": "The crossbar of a swing"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Подшипниктер",
+              "ru": "Подшипники",
+              "en": "Bearings"
+            },
+            "text": {
+              "ky": "Инженерлер илинүү чекитине подшипник коюп, сүрүлүүнү азайтышат – ошондо саат маятниги узак жылдар бою туруктуу термелет.",
+              "ru": "Инженеры ставят в точку подвеса подшипник, чтобы уменьшить трение, – тогда маятник часов качается ровно много лет.",
+              "en": "Engineers put a bearing at the pivot to cut friction, so a clock pendulum swings evenly for years."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Көтөрүүчү крандар",
+              "ru": "Подъёмные краны",
+              "en": "Cranes"
+            },
+            "text": {
+              "ky": "Курулуштагы крандын жүгү да маятник сыяктуу илинүү чекитинин айланасында чайкалат; кранчы муну эске алышы керек.",
+              "ru": "Груз строительного крана тоже раскачивается вокруг точки подвеса, как маятник; крановщик должен это учитывать.",
+              "en": "A load on a building crane also sways around its pivot like a pendulum, and the operator has to allow for it."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Мык жана сумка",
+              "ru": "Гвоздь и сумка",
+              "en": "A nail and a bag"
+            },
+            "text": {
+              "ky": "Сумканы мыкка илсең, ал мыктын айланасында чайкалат. Мык – илинүү чекити.",
+              "ru": "Повесь сумку на гвоздь – она качается вокруг гвоздя. Гвоздь и есть точка подвеса.",
+              "en": "Hang a bag on a nail and it swings around the nail. The nail is the pivot."
+            }
+          },
+          {
+            "title": {
+              "ky": "Колдогу жип",
+              "ru": "Нитка в руке",
+              "en": "A string in your hand"
+            },
+            "text": {
+              "ky": "Жиптин учун кармап, ылдыйына ачкыч байласаң, сенин колуң илинүү чекити болуп калат.",
+              "ru": "Если держать нитку с ключом на конце, твоя рука станет точкой подвеса.",
+              "en": "Hold a string with a key tied to the end, and your hand becomes the pivot."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.weight",
+      "kind": "force",
+      "hue": 270,
+      "isContainer": false,
+      "title": {
+        "ky": "Салмак",
+        "ru": "Вес тела",
+        "en": "Weight"
+      },
+      "subtitle": {
+        "ky": "P = m·g, ньютон (Н)",
+        "ru": "P = m·g, ньютон (Н)",
+        "en": "W = mg, newton (N)"
+      },
+      "description": {
+        "ky": "Дене Жерге тартылгандыктан таянычка басым кылган же илгичти тарткан күч. Дене тынч турса, анын салмагы оордук күчүнө барабар: P = m·g, мында g ≈ 9,8 Н/кг. Айырмасы: оордук күчү денеге коюлат, ал эми салмак – таянычка же илгичке.",
+        "ru": "Сила, с которой тело из-за притяжения к Земле давит на опору или растягивает подвес. Если тело покоится, его вес равен силе тяжести: P = m·g, где g ≈ 9,8 Н/кг. Разница: сила тяжести приложена к телу, а вес – к опоре или подвесу.",
+        "en": "The force with which a body, pulled by the Earth, presses on its support or pulls on its hanger. When the body is at rest its weight equals the force of gravity: W = mg, where g ≈ 9.8 N/kg. The difference: gravity acts on the body, weight acts on the support or hanger."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "P = m \\cdot g"
+        },
+        {
+          "kind": "quantity",
+          "type": "gravity",
+          "value": 9.8,
+          "unit": "N/kg",
+          "approx": true
+        }
+      ],
+      "related": [
+        "phys.gravity",
+        "phys.normal-force",
+        "phys.dynamometer"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.weight-is-mass",
+          "text": {
+            "ky": "Салмак менен масса – бир эле нерсе, экөө тең килограмм менен ченелет.",
+            "ru": "Вес и масса – одно и то же, обе измеряются в килограммах.",
+            "en": "Weight and mass are the same thing, both measured in kilograms."
+          },
+          "correction": {
+            "ky": "Масса (кг) – дененин өзүнүн касиети, Айда да өзгөрбөйт. Салмак – күч, ал ньютон менен ченелет: 60 кг адамдын салмагы Жерде ≈ 588 Н, Айда ≈ 97 Н.",
+            "ru": "Масса (кг) – свойство самого тела, на Луне она та же. Вес – сила, его измеряют в ньютонах: вес человека массой 60 кг на Земле ≈ 588 Н, на Луне ≈ 97 Н.",
+            "en": "Mass (kg) belongs to the body itself and is the same on the Moon. Weight is a force measured in newtons: a 60 kg person weighs about 588 N on Earth and about 97 N on the Moon."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Эл аралык космос станциясындагы космонавттар салмаксыз абалда: оордук күчү аларга таасир этет, бирок алар станция менен кошо «кулап» бараткандыктан, эч нерсеге баспайт.",
+        "ru": "Космонавты на МКС находятся в невесомости: сила тяжести на них действует, но они вместе со станцией непрерывно «падают» и ни на что не давят.",
+        "en": "Astronauts on the ISS are weightless: gravity still acts on them, but they and the station are falling together, so they press on nothing."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Лифттеги тараза",
+              "ru": "Весы в лифте",
+              "en": "Scales in a lift"
+            },
+            "text": {
+              "ky": "Лифт өйдө тездеп жөнөгөндө таразанын көрсөткүчү чоңоёт, ылдый жөнөгөндө азаят: масса өзгөрбөйт, ал эми салмак өзгөрөт.",
+              "ru": "Когда лифт разгоняется вверх, весы показывают больше, когда вниз – меньше: масса не меняется, а вес меняется.",
+              "en": "When a lift speeds up going up the scales read more, going down they read less: the mass stays the same but the weight changes."
+            },
+            "field": "s"
+          },
+          {
+            "title": {
+              "ky": "Текчелердин жүгү",
+              "ru": "Нагрузка на полки",
+              "en": "Shelf loads"
+            },
+            "text": {
+              "ky": "Инженерлер текче же көпүрө канча салмакка чыдай турганын ньютон (же килоньютон) менен эсептешет.",
+              "ru": "Инженеры рассчитывают, какой вес выдержит полка или мост, в ньютонах (или килоньютонах).",
+              "en": "Engineers work out what weight a shelf or a bridge can bear in newtons (or kilonewtons)."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Мектеп рюкзагы",
+              "ru": "Школьный рюкзак",
+              "en": "A school backpack"
+            },
+            "text": {
+              "ky": "5 кг рюкзак ийиниңди ≈ 49 Н күч менен басат – бул анын салмагы.",
+              "ru": "Рюкзак массой 5 кг давит на плечи с силой ≈ 49 Н – это его вес.",
+              "en": "A 5 kg backpack presses on your shoulders with about 49 N – that is its weight."
+            }
+          },
+          {
+            "title": {
+              "ky": "Батуттагы секирүү",
+              "ru": "Прыжок на батуте",
+              "en": "Jumping on a trampoline"
+            },
+            "text": {
+              "ky": "Батуттан секирип абада учуп баратканда сен эч нерсеге баспайсың – бул көз ирмемде салмагың нөл, бирок массаң ошол эле.",
+              "ru": "В полёте после прыжка с батута ты ни на что не давишь – в этот миг твой вес равен нулю, а масса прежняя.",
+              "en": "While flying through the air off a trampoline you press on nothing – your weight is zero for that moment, but your mass is unchanged."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.lever-arm",
+      "kind": "quantity",
+      "hue": 55,
+      "isContainer": false,
+      "title": {
+        "ky": "Күчтүн ийини",
+        "ru": "Плечо силы",
+        "en": "Lever arm"
+      },
+      "subtitle": {
+        "ky": "d, метр (м)",
+        "ru": "d, метр (м)",
+        "en": "d, metre (m)"
+      },
+      "description": {
+        "ky": "Таяныч чекитинен күчтүн аракет сызыгына чейинки эң кыска (перпендикуляр) аралык. d тамгасы менен белгиленет, бирдиги – метр. Күч тактайга тик бурч менен таасир этсе, ийин таяныч чекитинен күч коюлган чекитке чейинки аралыкка барабар.",
+        "ru": "Кратчайшее (перпендикулярное) расстояние от точки опоры до линии действия силы. Обозначается d, единица – метр. Если сила действует на доску под прямым углом, плечо равно расстоянию от опоры до точки приложения силы.",
+        "en": "The shortest (perpendicular) distance from the pivot to the line along which the force acts. It is written d and measured in metres. If the force acts at right angles to the beam, the arm equals the distance from the pivot to where the force is applied."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "d \\perp F"
+        }
+      ],
+      "related": [
+        "phys.moment-of-force",
+        "phys.pivot"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.arm-is-beam-length",
+          "text": {
+            "ky": "Күчтүн ийини – бүт тактайдын узундугу.",
+            "ru": "Плечо силы – это длина всей доски.",
+            "en": "The lever arm is the length of the whole beam."
+          },
+          "correction": {
+            "ky": "Ийин таяныч чекитинен ченелет: 2 м тактайдын таянычы ортодо болсо, учтагы жүктүн ийини 1 м гана.",
+            "ru": "Плечо отсчитывают от точки опоры: если опора у доски длиной 2 м посередине, плечо груза на краю – всего 1 м.",
+            "en": "The arm is measured from the pivot: on a 2 m beam pivoted in the middle, a load at the end has an arm of only 1 m."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Зым кескич",
+              "ru": "Болторез",
+              "en": "Bolt cutters"
+            },
+            "text": {
+              "ky": "Узун саптуу кескич менен жоон зымды кесүү оңой: колдун ийини узун, ал эми кесүүчү мизи таяныч чекитине өтө жакын.",
+              "ru": "Длинными ручками болтореза легко перекусить толстую проволоку: плечо руки длинное, а режущие кромки совсем близко к оси.",
+              "en": "Long-handled bolt cutters snip thick wire easily: the hands have a long arm, while the blades sit right next to the pivot."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Велосипеддин педалы",
+              "ru": "Педаль велосипеда",
+              "en": "Bicycle pedal"
+            },
+            "text": {
+              "ky": "Педалдын кривошиби ≈ 17 см. Педал эң алдыңкы абалда турганда бут күчүнүн ийини эң чоң – ошол жерде түртүү эң пайдалуу.",
+              "ru": "Шатун педали ≈ 17 см. Когда педаль впереди, плечо силы ноги наибольшее – давить выгоднее всего именно там.",
+              "en": "A pedal crank is about 17 cm long. When the pedal is forward, the leg's force has its biggest arm – the best place to push."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Эшиктин туткасы",
+              "ru": "Дверная ручка",
+              "en": "A door handle"
+            },
+            "text": {
+              "ky": "Тутканы топсолордон алыс орнотушат: ийин узун болгондо эшикти ачуу жеңил.",
+              "ru": "Ручку ставят подальше от петель: с длинным плечом дверь открывать легче.",
+              "en": "Handles are fitted far from the hinges: with a long arm the door is easier to open."
+            }
+          },
+          {
+            "title": {
+              "ky": "Кашык менен капкак",
+              "ru": "Ложка и крышка",
+              "en": "A spoon and a lid"
+            },
+            "text": {
+              "ky": "Банканын катуу капкагын кашыктын сабы менен ачканда, кол учуна жакын кармасаң, күч азыраак керек.",
+              "ru": "Поддевая тугую крышку банки ложкой, держи ручку дальше от края – понадобится меньше силы.",
+              "en": "Levering a tight lid with a spoon, hold the handle further from the rim – you will need less force."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.moment-of-force",
+      "kind": "quantity",
+      "hue": 320,
+      "isContainer": false,
+      "title": {
+        "ky": "Күчтүн моменти",
+        "ru": "Момент силы",
+        "en": "Moment of a force"
+      },
+      "subtitle": {
+        "ky": "M = F·d, Н·м",
+        "ru": "M = F·d, Н·м",
+        "en": "M = F·d, N·m"
+      },
+      "description": {
+        "ky": "Күчтүн денени таяныч чекитинин айланасында айландыруу жөндөмдүүлүгүнүн чени: M = F·d, бирдиги – ньютон-метр (Н·м). Ошол эле күч ийин узун болгондо денени күчтүүрөөк айлантат. Моменттер денени саат жебеси боюнча же ага каршы айлантат.",
+        "ru": "Мера способности силы поворачивать тело вокруг точки опоры: M = F·d, единица – ньютон-метр (Н·м). Одна и та же сила поворачивает сильнее, если плечо длиннее. Моменты вращают тело по часовой стрелке или против неё.",
+        "en": "A measure of how strongly a force turns a body about a pivot: M = F·d, measured in newton-metres (N·m). The same force turns harder when its arm is longer. Moments turn a body clockwise or anticlockwise."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "M = F \\cdot d"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Айландыруучу таасирди көрсөтөт",
+            "ru": "Показывает вращающее действие силы",
+            "en": "Shows the turning effect of a force"
+          }
+        }
+      ],
+      "related": [
+        "phys.lever-arm",
+        "phys.lever-rule",
+        "phys.weight"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.moment-only-force",
+          "text": {
+            "ky": "Айлантуу үчүн күчтүн чоңдугу гана маанилүү.",
+            "ru": "Для поворота важна только величина силы.",
+            "en": "Only the size of the force matters for turning."
+          },
+          "correction": {
+            "ky": "Момент күчкө да, ийинге да көз каранды: эшикти топсонун жанынан түртсөң чоң күч керек, туткасынан түртсөң – кичине.",
+            "ru": "Момент зависит и от силы, и от плеча: толкаешь дверь у петель – нужна большая сила, у ручки – малая.",
+            "en": "The moment depends on both the force and the arm: push a door near the hinges and you need a big force; at the handle, a small one."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Динамометрдик ачкыч",
+              "ru": "Динамометрический ключ",
+              "en": "Torque wrench"
+            },
+            "text": {
+              "ky": "Машинанын дөңгөлөгүнүн гайкаларын белгилүү момент менен, мисалы ≈ 110 Н·м, бурашат: ачкыч ошол моментке жеткенде «чык» этет.",
+              "ru": "Гайки колеса машины затягивают с заданным моментом, например ≈ 110 Н·м: ключ щёлкает, когда момент достигнут.",
+              "en": "Car wheel nuts are tightened to a set moment, for example about 110 N·m: the wrench clicks when it gets there."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Шамал турбинасы",
+              "ru": "Ветряк",
+              "en": "Wind turbine"
+            },
+            "text": {
+              "ky": "Шамал турбинасынын калактары узун: шамалдын күчүнүн ийини чоң болгондуктан, момент чоң болуп, генератор күчтүү айланат.",
+              "ru": "Лопасти ветряка длинные: у силы ветра большое плечо, момент велик, и генератор вращается мощно.",
+              "en": "Wind-turbine blades are long: the wind's force has a big arm, so the moment is large and the generator turns powerfully."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кран",
+              "ru": "Водопроводный кран",
+              "en": "A tap"
+            },
+            "text": {
+              "ky": "Узун туткалуу кранды бир манжа менен бурасың, кичинекей тегерек кранды буроо кыйыныраак.",
+              "ru": "Кран с длинным рычажком поворачиваешь одним пальцем, а маленький круглый вентиль – с трудом.",
+              "en": "You can turn a tap with a long lever with one finger, but a small round knob is harder."
+            }
+          },
+          {
+            "title": {
+              "ky": "Гайка ачкычы",
+              "ru": "Гаечный ключ",
+              "en": "A spanner"
+            },
+            "text": {
+              "ky": "Катуу бураган гайканы узун ачкыч менен бураш оңой, кыска ачкыч менен – кыйын.",
+              "ru": "Тугую гайку легче открутить длинным ключом, чем коротким.",
+              "en": "A tight nut is easier to undo with a long spanner than with a short one."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.lever-rule",
+      "kind": "law",
+      "hue": 160,
+      "isContainer": false,
+      "title": {
+        "ky": "Рычагдын тең салмактуулук эрежеси",
+        "ru": "Правило равновесия рычага",
+        "en": "Law of the lever"
+      },
+      "subtitle": {
+        "ky": "F₁·d₁ = F₂·d₂",
+        "ru": "F₁·d₁ = F₂·d₂",
+        "en": "F₁·d₁ = F₂·d₂"
+      },
+      "description": {
+        "ky": "Рычаг тең салмакта турат, эгер аны саат жебесине каршы айланткан момент саат жебеси боюнча айланткан моментке барабар болсо: F₁·d₁ = F₂·d₂. Демек, ийин канча эсе узун болсо, күч ошончо эсе кичине болот.",
+        "ru": "Рычаг находится в равновесии, если момент, вращающий его против часовой стрелки, равен моменту, вращающему по часовой: F₁·d₁ = F₂·d₂. Значит, во сколько раз плечо длиннее, во столько раз сила меньше.",
+        "en": "A lever balances when the moment turning it anticlockwise equals the moment turning it clockwise: F₁·d₁ = F₂·d₂. So the longer the arm, the smaller the force needed, in the same ratio."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "F_1 d_1 = F_2 d_2"
+        }
+      ],
+      "related": [
+        "phys.moment-of-force",
+        "phys.lever"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.equal-masses-balance",
+          "text": {
+            "ky": "Тең салмакта болуш үчүн эки жактагы жүктөр бирдей болушу керек.",
+            "ru": "Для равновесия грузы с двух сторон должны быть одинаковыми.",
+            "en": "To balance, the loads on both sides must be the same."
+          },
+          "correction": {
+            "ky": "Моменттер бирдей болушу керек: 3 кг жүк 0,6 м ийинде жана 2 кг жүк 0,9 м ийинде тең салмакта турат, анткени 29,4 · 0,6 = 19,6 · 0,9 ≈ 17,6 Н·м.",
+            "ru": "Равны должны быть моменты: груз 3 кг на плече 0,6 м уравновешивает груз 2 кг на плече 0,9 м, ведь 29,4 · 0,6 = 19,6 · 0,9 ≈ 17,6 Н·м.",
+            "en": "The moments must be equal: 3 kg on a 0.6 m arm balances 2 kg on a 0.9 m arm, because 29.4 × 0.6 = 19.6 × 0.9 ≈ 17.6 N·m."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Безмен",
+              "ru": "Безмен",
+              "en": "Steelyard"
+            },
+            "text": {
+              "ky": "Байыркы рычагдуу таразада бир эле кичинекей жүктү узун ийин боюнча жылдырып, ар кандай оордуктагы товарды тартышкан.",
+              "ru": "На старинном рычажном безмене одну маленькую гирю двигали вдоль длинного плеча и так взвешивали товары разной тяжести.",
+              "en": "On an old steelyard a single small weight was slid along the long arm to weigh goods of many different weights."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Тескери пропорция",
+              "ru": "Обратная пропорциональность",
+              "en": "Inverse proportion"
+            },
+            "text": {
+              "ky": "F·d = const болгондо F менен d тескери пропорционалдуу: ийин 2 эсе узарса, күч 2 эсе азаят. Бул математикадагы y = k/x функциясы.",
+              "ru": "При F·d = const сила и плечо обратно пропорциональны: плечо вдвое длиннее – сила вдвое меньше. Это функция y = k/x из математики.",
+              "en": "With F·d constant, force and arm are inversely proportional: double the arm and the force halves. That is the function y = k/x from maths."
+            },
+            "field": "m"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Ата жана бала",
+              "ru": "Папа и малыш",
+              "en": "Dad and child"
+            },
+            "text": {
+              "ky": "Атанын салмагы баланыкынан 3 эсе чоң болсо, тактай селкинчек тең салмакта болушу үчүн ата таянычтан 3 эсе жакын отурат.",
+              "ru": "Если папа в 3 раза тяжелее малыша, для равновесия на качелях-доске он садится в 3 раза ближе к опоре.",
+              "en": "If dad is 3 times heavier than the child, he sits 3 times closer to the middle for the seesaw to balance."
+            }
+          },
+          {
+            "title": {
+              "ky": "Мобиль-оюнчук",
+              "ru": "Мобиль над кроваткой",
+              "en": "A hanging mobile"
+            },
+            "text": {
+              "ky": "Бала бешигинин үстүндөгү илинме оюнчуктун ар бир таякчасы тең салмакта: оор фигура жипке жакын, жеңили – алыс илинет.",
+              "ru": "Каждая палочка мобиля над детской кроваткой в равновесии: тяжёлая фигурка висит ближе к нити, лёгкая – дальше.",
+              "en": "Each rod of a mobile over a cot balances: the heavy figure hangs close to the string, the light one further out."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.string",
+      "kind": "part",
+      "hue": 45,
+      "isContainer": false,
+      "title": {
+        "ky": "Жип",
+        "ru": "Нить",
+        "en": "String"
+      },
+      "subtitle": {
+        "ky": "Жүктү кармап турат",
+        "ru": "Удерживает груз",
+        "en": "Holds the bob"
+      },
+      "description": {
+        "ky": "Жеңил, созулбаган жип. Анын узундугу l маятниктин термелүү мезгилин аныктайт.",
+        "ru": "Лёгкая нерастяжимая нить. Её длина l определяет период колебаний маятника.",
+        "en": "A light, non-stretching string. Its length l sets the pendulum's period."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "length",
+          "value": 1
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Жүктү илинүү чекитине байлайт, тартылуу күчүн берет",
+            "ru": "Связывает груз с точкой подвеса, создаёт силу натяжения",
+            "en": "Connects the bob to the pivot and provides the tension force"
+          }
+        }
+      ],
+      "related": [
+        "phys.pivot",
+        "phys.bob"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.length-no-effect",
+          "text": {
+            "ky": "Жиптин узундугу термелүүгө таасир этпейт.",
+            "ru": "Длина нити не влияет на колебания.",
+            "en": "The string length does not affect the swing."
+          },
+          "correction": {
+            "ky": "Жип узун болсо, мезгил да узун: T жиптин узундугунун квадраттык тамырына пропорциялуу.",
+            "ru": "Чем длиннее нить, тем больше период: T пропорционален корню из длины.",
+            "en": "A longer string gives a longer period: T is proportional to the square root of the length."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Жипти 4 эсе узартсаң, термелүү мезгили 2 эсе гана узарат.",
+        "ru": "Если удлинить нить в 4 раза, период вырастет только в 2 раза.",
+        "en": "Make the string 4 times longer and the period only doubles."
+      },
+      "analogy": {
+        "ky": "Селкинчектин чынжыры",
+        "ru": "Цепи качелей",
+        "en": "The chains of a swing"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "m",
+            "title": {
+              "ky": "Тамыр жана мезгил",
+              "ru": "Корень и период",
+              "en": "Square roots and the period"
+            },
+            "text": {
+              "ky": "T = 2π√(l/g) формуласы боюнча 1 м жип ≈ 2,0 с, 0,25 м жип ≈ 1,0 с мезгил берет.",
+              "ru": "По формуле T = 2π√(l/g) нить 1 м даёт период ≈ 2,0 с, а 0,25 м – ≈ 1,0 с.",
+              "en": "By T = 2π√(l/g), a 1 m string gives a period of ≈ 2.0 s and a 0.25 m string ≈ 1.0 s."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Саатты тууралоо",
+              "ru": "Настройка часов",
+              "en": "Adjusting a clock"
+            },
+            "text": {
+              "ky": "Маятниктүү саат шашып калса, уста маятникти бир аз узартат – ошондо саат жайыраак жүрөт.",
+              "ru": "Если маятниковые часы спешат, мастер немного удлиняет маятник – и часы идут медленнее.",
+              "en": "If a pendulum clock runs fast, the clockmaker lengthens the pendulum slightly and the clock slows down."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Узун жана кыска селкинчек",
+              "ru": "Длинные и короткие качели",
+              "en": "Long and short swings"
+            },
+            "text": {
+              "ky": "Узун чынжырлуу селкинчек жай, кыска чынжырлуусу тез термелет.",
+              "ru": "Качели на длинных цепях качаются медленно, на коротких – быстро.",
+              "en": "A swing on long chains moves slowly; one on short chains moves fast."
+            }
+          },
+          {
+            "title": {
+              "ky": "Ачкыч байланган жип",
+              "ru": "Ключ на верёвочке",
+              "en": "A key on a cord"
+            },
+            "text": {
+              "ky": "Мойнуңдагы ачкычтын жибин кыскартсаң, ачкыч тезирээк чайкалат.",
+              "ru": "Укороти верёвочку с ключом на шее – и ключ будет качаться быстрее.",
+              "en": "Shorten the cord of the key around your neck and the key swings faster."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.bob",
+      "kind": "body",
+      "hue": 0,
+      "isContainer": false,
+      "title": {
+        "ky": "Жүк",
+        "ru": "Груз",
+        "en": "Bob"
+      },
+      "subtitle": {
+        "ky": "Термелген дене",
+        "ru": "Колеблющееся тело",
+        "en": "The swinging body"
+      },
+      "description": {
+        "ky": "Жиптин учундагы оор кичинекей шар. Ал тең салмак абалынан эки тарапка термелет, анын энергиясы потенциалдыктан кинетикалыкка жана кайра айланат.",
+        "ru": "Тяжёлый маленький шарик на конце нити. Он качается по обе стороны от положения равновесия, его энергия переходит из потенциальной в кинетическую и обратно.",
+        "en": "A small heavy ball at the end of the string. It swings to both sides of the equilibrium position, and its energy turns from potential to kinetic and back."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "mass",
+          "value": 0.2
+        },
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Шар",
+            "ru": "Шар",
+            "en": "Sphere"
+          }
+        },
+        {
+          "kind": "quantity",
+          "type": "speed",
+          "value": 0.546,
+          "approx": true
+        }
+      ],
+      "related": [
+        "phys.string",
+        "phys.gravity"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.heavier-faster",
+          "text": {
+            "ky": "Оор жүк тезирээк термелет.",
+            "ru": "Тяжёлый груз качается быстрее.",
+            "en": "A heavier bob swings faster."
+          },
+          "correction": {
+            "ky": "Математикалык маятниктин мезгили жүктүн массасынан көз каранды эмес.",
+            "ru": "Период математического маятника не зависит от массы груза.",
+            "en": "The period of a simple pendulum does not depend on the mass of the bob."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Галилей чиркөөдө термелип жаткан чыракты карап, маятниктин мыйзамын байкаган деп айтылат.",
+        "ru": "Говорят, Галилей заметил закон маятника, глядя на качающуюся люстру в соборе.",
+        "en": "Galileo is said to have noticed the pendulum law by watching a lamp swing in a cathedral."
+      },
+      "analogy": {
+        "ky": "Селкинчекте отурган бала",
+        "ru": "Ребёнок на качелях",
+        "en": "A child on a swing"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Фуко маятниги",
+              "ru": "Маятник Фуко",
+              "en": "Foucault pendulum"
+            },
+            "text": {
+              "ky": "1851-жылы Фуко 28 кг жүктү 67 м жипке илип, Жердин айланышын көрсөткөн.",
+              "ru": "В 1851 году Фуко подвесил груз 28 кг на тросе 67 м и показал вращение Земли.",
+              "en": "In 1851 Foucault hung a 28 kg bob on a 67 m wire and showed that the Earth rotates."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Сейсмографтар",
+              "ru": "Сейсмографы",
+              "en": "Seismographs"
+            },
+            "text": {
+              "ky": "Эски сейсмографтарда оор жүк кыймылсыз калып, жер титирөөдө жер өзү жылат – ушул айырма жазылат. Кыргызстандын сейсмостанцияларында мындай приборлор колдонулган.",
+              "ru": "В старых сейсмографах тяжёлый груз остаётся на месте, а при землетрясении движется сама земля – эту разницу и записывают. Такие приборы работали и на сейсмостанциях Кыргызстана.",
+              "en": "In old seismographs a heavy mass stays put while the ground moves in an earthquake, and that difference is recorded. Such instruments were used at seismic stations in Kyrgyzstan."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Селкинчек",
+              "ru": "Качели",
+              "en": "A swing"
+            },
+            "text": {
+              "ky": "Селкинчекте отурсаң, сен – жүксүң: ылдыйда эң тез, четте бир азга токтойсуң.",
+              "ru": "На качелях ты сам – груз: внизу летишь быстрее всего, а на краю на миг замираешь.",
+              "en": "On a swing you are the bob: fastest at the bottom, stopping for a moment at each end."
+            }
+          },
+          {
+            "title": {
+              "ky": "Чайкалган чака",
+              "ru": "Качающееся ведро",
+              "en": "A swinging bucket"
+            },
+            "text": {
+              "ky": "Сууга толгон чака кудуктун жибинде чайкалса, ал да маятник болуп калат.",
+              "ru": "Полное ведро, качающееся на верёвке колодца, – тоже маятник.",
+              "en": "A full bucket swinging on a well rope is a pendulum too."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.gravity",
+      "kind": "force",
+      "hue": 260,
+      "isContainer": false,
+      "title": {
+        "ky": "Оордук күчү",
+        "ru": "Сила тяжести",
+        "en": "Force of gravity"
+      },
+      "subtitle": {
+        "ky": "Жер тартат",
+        "ru": "Притяжение Земли",
+        "en": "Earth's pull"
+      },
+      "description": {
+        "ky": "Жер бардык денелерди өзүнө тарткан күч: F = mg, мында g ≈ 9,81 м/с². Ал дайыма тик ылдый багытталат.",
+        "ru": "Сила, с которой Земля притягивает все тела: F = mg, где g ≈ 9,81 м/с². Она всегда направлена вертикально вниз.",
+        "en": "The force with which the Earth pulls every body: F = mg, where g ≈ 9.81 m/s². It always points straight down."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "acceleration",
+          "value": 9.81
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "F = mg"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Денелерди Жерге тартат",
+            "ru": "Притягивает тела к Земле",
+            "en": "Pulls bodies towards the Earth"
+          }
+        }
+      ],
+      "related": [
+        "phys.bob"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.gravity-only-falling",
+          "text": {
+            "ky": "Оордук күчү кулап жаткан денелерге гана таасир этет.",
+            "ru": "Сила тяжести действует только на падающие тела.",
+            "en": "Gravity only acts on falling objects."
+          },
+          "correction": {
+            "ky": "Оордук күчү бардык денелерге – столдогу китепке да, учуп бараткан учакка да дайыма таасир этет.",
+            "ru": "Сила тяжести всегда действует на все тела – и на книгу на столе, и на летящий самолёт.",
+            "en": "Gravity always acts on every body – a book on a table and a plane in flight alike."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Айда g Жердегиден болжол менен 6 эсе аз – 1,62 м/с².",
+        "ru": "На Луне g примерно в 6 раз меньше, чем на Земле, – 1,62 м/с².",
+        "en": "On the Moon g is about 6 times smaller than on Earth – 1.62 m/s²."
+      },
+      "analogy": {
+        "ky": "Көрүнбөгөн магнит",
+        "ru": "Невидимый магнит",
+        "en": "An invisible magnet"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Токтогул ГЭСи",
+              "ru": "Токтогульская ГЭС",
+              "en": "Toktogul hydropower plant"
+            },
+            "text": {
+              "ky": "Нарын дарыясынын суусу оордук күчүнүн таасиринен бийиктен түшүп, турбиналарды айлантат – Кыргызстандын электринин чоң бөлүгү ушинтип алынат.",
+              "ru": "Вода Нарына под действием силы тяжести падает с высоты и вращает турбины – так получают большую часть электричества Кыргызстана.",
+              "en": "Naryn river water falls from a height under gravity and spins the turbines – that is how much of Kyrgyzstan's electricity is made."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Салмакты эсептөө",
+              "ru": "Расчёт силы тяжести",
+              "en": "Calculating weight"
+            },
+            "text": {
+              "ky": "2 кг брусокко таасир эткен оордук күчү: F = 2 · 9,81 ≈ 19,6 Н.",
+              "ru": "Сила тяжести, действующая на брусок 2 кг: F = 2 · 9,81 ≈ 19,6 Н.",
+              "en": "The force of gravity on a 2 kg block: F = 2 × 9.81 ≈ 19.6 N."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Алманын түшүшү",
+              "ru": "Падающее яблоко",
+              "en": "A falling apple"
+            },
+            "text": {
+              "ky": "Бактагы алма ылдый түшөт, жогору учпайт – аны Жер тартат.",
+              "ru": "Яблоко в саду падает вниз, а не улетает вверх – его притягивает Земля.",
+              "en": "An apple in the orchard falls down, not up – the Earth pulls it."
+            }
+          },
+          {
+            "title": {
+              "ky": "Топ ыргытуу",
+              "ru": "Бросок мяча",
+              "en": "Throwing a ball"
+            },
+            "text": {
+              "ky": "Топту канчалык бийик ыргытсаң да, ал кайра колуңа кайтып келет.",
+              "ru": "Как высоко ни подбрось мяч, он вернётся обратно.",
+              "en": "However high you throw a ball, it always comes back down."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.normal-force",
+      "kind": "force",
+      "hue": 170,
+      "isContainer": false,
+      "title": {
+        "ky": "Таянычтын реакция күчү",
+        "ru": "Сила реакции опоры",
+        "en": "Normal force"
+      },
+      "subtitle": {
+        "ky": "Тегиздик түртөт",
+        "ru": "Опора давит в ответ",
+        "en": "The surface pushes back"
+      },
+      "description": {
+        "ky": "Тегиздик брусокту ага перпендикуляр түрткөн күч: N = mg·cos α. Ньютондун үчүнчү мыйзамы боюнча брусок да тегиздикке ошондой күч менен басат.",
+        "ru": "Сила, с которой плоскость давит на брусок перпендикулярно своей поверхности: N = mg·cos α. По третьему закону Ньютона брусок давит на плоскость с такой же силой.",
+        "en": "The force with which the surface pushes on the block at right angles to itself: N = mg·cos α. By Newton's third law the block pushes back on the surface just as hard."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "force",
+          "value": 16.99,
+          "approx": true
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "N = mg\\cos\\alpha"
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Тегиздикке перпендикуляр",
+            "ru": "Перпендикулярно плоскости",
+            "en": "Perpendicular to the surface"
+          }
+        }
+      ],
+      "related": [],
+      "misconceptions": [
+        {
+          "key": "phys.m.normal-equals-weight",
+          "text": {
+            "ky": "Таянычтын реакция күчү дайыма mg ге барабар.",
+            "ru": "Сила реакции опоры всегда равна mg.",
+            "en": "The normal force always equals mg."
+          },
+          "correction": {
+            "ky": "Жантайма тегиздикте N = mg·cos α, башкача айтканда mg ден аз; 30° үчүн ≈ 0,87 mg.",
+            "ru": "На наклонной плоскости N = mg·cos α, то есть меньше mg; при 30° – около 0,87 mg.",
+            "en": "On an incline N = mg·cos α, which is less than mg; at 30° it is about 0.87 mg."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Лифт ылдамдап жогору көтөрүлгөндө таянычтын реакция күчү чоңоет – ошондуктан өзүбүздү оор сезебиз.",
+        "ru": "Когда лифт разгоняется вверх, сила реакции опоры растёт – поэтому мы чувствуем себя тяжелее.",
+        "en": "When a lift accelerates upwards, the normal force grows – that is why we feel heavier."
+      },
+      "analogy": {
+        "ky": "Батуттун түртүшү",
+        "ru": "Упругий батут",
+        "en": "A bouncy trampoline"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Көпүрөлөрдүн таянычтары",
+              "ru": "Опоры мостов",
+              "en": "Bridge supports"
+            },
+            "text": {
+              "ky": "Инженерлер көпүрөнүн таянычтары машиналардын салмагына жооп кайтара турган реакция күчүн көтөрө алышын эсептешет.",
+              "ru": "Инженеры рассчитывают, чтобы опоры моста выдерживали силу реакции, отвечающую на вес машин.",
+              "en": "Engineers check that bridge supports can provide the reaction force that balances the weight of the traffic."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Таразалар",
+              "ru": "Весы",
+              "en": "Scales"
+            },
+            "text": {
+              "ky": "Үйдөгү электрондук тараза чындыгында таянычтын реакция күчүн өлчөйт, анан аны килограммга айлантат.",
+              "ru": "Напольные электронные весы на самом деле измеряют силу реакции опоры и пересчитывают её в килограммы.",
+              "en": "Bathroom scales actually measure the normal force and convert it into kilograms."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Колду дубалга таяп",
+              "ru": "Ладонь на стене",
+              "en": "Pushing a wall"
+            },
+            "text": {
+              "ky": "Дубалды түртсөң, дубал да сени түртөт – ошондуктан колуң ичине кирбейт.",
+              "ru": "Ты давишь на стену – стена давит на тебя, поэтому рука не проваливается.",
+              "en": "Push a wall and the wall pushes you back – that is why your hand does not go through."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тоңгон көлдүн музу",
+              "ru": "Лёд на озере",
+              "en": "Ice on a lake"
+            },
+            "text": {
+              "ky": "Калың муз сени көтөрүп турат – ал астыңдан жогору карай түртөт.",
+              "ru": "Толстый лёд держит тебя – он толкает тебя снизу вверх.",
+              "en": "Thick ice holds you up – it pushes up on you from below."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.dynamometer",
+      "kind": "instrument",
+      "hue": 45,
+      "isContainer": false,
+      "title": {
+        "ky": "Динамометр",
+        "ru": "Динамометр",
+        "en": "Dynamometer (spring scale)"
+      },
+      "description": {
+        "ky": "Күчтү ченөөчү прибор. Ичинде пружина бар: ага канча чоң күч таасир этсе, ал ошончо көп чоюлат, ал эми шкала чоюлууну ньютонго айлантып көрсөтөт. Ченөөдөн мурун жебени нөлгө коюп, динамометрди ченелүүчү күчтүн багыты боюнча кармайбыз.",
+        "ru": "Прибор для измерения силы. Внутри – пружина: чем больше сила, тем сильнее она растягивается, а шкала переводит растяжение в ньютоны. Перед измерением ставят указатель на ноль и держат динамометр вдоль измеряемой силы.",
+        "en": "An instrument that measures force. Inside is a spring: the bigger the force, the more it stretches, and the scale turns the stretch into newtons. Before measuring, set the pointer to zero and hold the dynamometer along the force you are measuring."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Күчтү ньютон менен ченейт",
+            "ru": "Измеряет силу в ньютонах",
+            "en": "Measures force in newtons"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Пружина, шкала, жебе, илгич",
+            "ru": "Пружина, шкала, указатель, крючок",
+            "en": "Spring, scale, pointer, hook"
+          }
+        }
+      ],
+      "related": [
+        "phys.weight"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.dynamometer-measures-mass",
+          "text": {
+            "ky": "Динамометр массаны ченейт.",
+            "ru": "Динамометр измеряет массу.",
+            "en": "A dynamometer measures mass."
+          },
+          "correction": {
+            "ky": "Динамометр күчтү ньютон менен ченейт. 1 кг жүк илинсе, Жерде ≈ 9,8 Н көрсөтөт, ал эми Айда ошол эле жүк ≈ 1,6 Н көрсөтөт.",
+            "ru": "Динамометр измеряет силу в ньютонах. Груз 1 кг на Земле растягивает его на ≈ 9,8 Н, а на Луне тот же груз покажет ≈ 1,6 Н.",
+            "en": "A dynamometer measures force in newtons. A 1 kg load reads about 9.8 N on Earth, but the same load would read about 1.6 N on the Moon."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Жүк таразасы",
+              "ru": "Багажный безмен",
+              "en": "Luggage scale"
+            },
+            "text": {
+              "ky": "Аэропортко барардан мурун чемоданды пружиналуу кол таразага илип, анын 23 кгдан ашпаганын текшеришет.",
+              "ru": "Перед поездкой в аэропорт чемодан подвешивают на пружинный безмен и проверяют, что он не тяжелее 23 кг.",
+              "en": "Before a flight people hang a suitcase on a spring luggage scale to check it is under 23 kg."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Крандын датчиги",
+              "ru": "Датчик крана",
+              "en": "Crane load cell"
+            },
+            "text": {
+              "ky": "Көтөргүч крандын илгичинде күч датчиги турат: жүк чектен ашса, кран көтөрүүнү токтотот.",
+              "ru": "На крюке подъёмного крана стоит датчик силы: если груз превышает предел, кран останавливает подъём.",
+              "en": "A crane hook has a load cell: if the load is over the limit, the crane stops lifting."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Резина",
+              "ru": "Резинка",
+              "en": "A rubber band"
+            },
+            "text": {
+              "ky": "Резинага оор баштыкты илсең, ал жеңил баштыкка караганда көбүрөөк чоюлат – динамометр ушул эле принцип менен иштейт.",
+              "ru": "Повесь на резинку тяжёлый пакет – она растянется сильнее, чем с лёгким. Динамометр работает так же.",
+              "en": "Hang a heavy bag on a rubber band and it stretches more than with a light one – a dynamometer works the same way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Базардагы илме тараза",
+              "ru": "Безмен на базаре",
+              "en": "A market spring balance"
+            },
+            "text": {
+              "ky": "Базарда кээде эт же картөшкөнү пружиналуу илме тараза менен тартышат: жүк канча оор болсо, пружина ошончо узарат.",
+              "ru": "На базаре иногда взвешивают мясо или картошку пружинным безменом: чем тяжелее груз, тем сильнее растянута пружина.",
+              "en": "At the bazaar meat or potatoes are sometimes weighed with a spring balance: the heavier the load, the longer the spring."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "phys.seesaw-balance",
+      "engine": "timeline",
+      "icon": "scale",
+      "title": {
+        "ky": "Тактай селкинчекти теңдөө",
+        "ru": "Уравновешиваем качели-доску",
+        "en": "Balancing a seesaw"
+      },
+      "description": {
+        "ky": "2 м тактай ортосунан таянат. Жүктөрдү коюп жана жылдырып, тактай качан тең салмакта турарын моменттер аркылуу текшеребиз.",
+        "ru": "Доска длиной 2 м опирается серединой. Ставим и передвигаем грузы и по моментам проверяем, когда доска будет в равновесии.",
+        "en": "A 2 m board rests on its middle. We add and move loads and use moments to check when the board balances."
+      },
+      "equation": "F_1 d_1 = F_2 d_2",
+      "inputs": {
+        "ky": "Тактай 2 м, таяныч ортодо; жүктөр 3 кг жана 2 кг; g ≈ 9,8 Н/кг",
+        "ru": "Доска 2 м, опора посередине; грузы 3 кг и 2 кг; g ≈ 9,8 Н/кг",
+        "en": "Board 2 m, pivot in the middle; loads 3 kg and 2 kg; g ≈ 9.8 N/kg"
+      },
+      "outputs": {
+        "ky": "3 кг 0,6 м ийинде жана 2 кг 0,9 м ийинде: M₁ = M₂ ≈ 17,6 Н·м – тең салмак",
+        "ru": "3 кг на плече 0,6 м и 2 кг на плече 0,9 м: M₁ = M₂ ≈ 17,6 Н·м – равновесие",
+        "en": "3 kg on a 0.6 m arm and 2 kg on a 0.9 m arm: M₁ = M₂ ≈ 17.6 N·m – balanced"
+      },
+      "steps": [
+        {
+          "key": "empty",
+          "title": {
+            "ky": "Бош тактай",
+            "ru": "Пустая доска",
+            "en": "Empty board"
+          },
+          "result": {
+            "ky": "M₁ = M₂ = 0",
+            "ru": "M₁ = M₂ = 0",
+            "en": "M₁ = M₂ = 0"
+          },
+          "description": {
+            "ky": "Тактай так ортосунан таянат, ошондуктан бош тактай тең салмакта турат.",
+            "ru": "Доска опирается точно серединой, поэтому пустая доска в равновесии.",
+            "en": "The board rests exactly on its middle, so the empty board balances."
+          },
+          "conceptKey": "phys.pivot",
+          "altText": {
+            "ky": "Ортосунда таянычы бар горизонталдык тактай.",
+            "ru": "Горизонтальная доска с опорой посередине.",
+            "en": "A level board with a pivot in the middle."
+          },
+          "duration": 1
+        },
+        {
+          "key": "left-load",
+          "title": {
+            "ky": "Солго 3 кг",
+            "ru": "Слева 3 кг",
+            "en": "3 kg on the left"
+          },
+          "result": {
+            "ky": "M₁ = 29,4 · 0,6 ≈ 17,6 Н·м",
+            "ru": "M₁ = 29,4 · 0,6 ≈ 17,6 Н·м",
+            "en": "M₁ = 29.4 × 0.6 ≈ 17.6 N·m"
+          },
+          "description": {
+            "ky": "3 кг жүктүн салмагы 3 · 9,8 = 29,4 Н, ийини 0,6 м. Анын моменти тактайды саат жебесине каршы бурат – сол учу ылдый түшөт.",
+            "ru": "Вес груза 3 кг равен 3 · 9,8 = 29,4 Н, плечо 0,6 м. Его момент поворачивает доску против часовой стрелки – левый край опускается.",
+            "en": "The 3 kg load weighs 3 × 9.8 = 29.4 N and has a 0.6 m arm. Its moment turns the board anticlockwise – the left end goes down."
+          },
+          "conceptKey": "phys.weight",
+          "altText": {
+            "ky": "Сол жакта жүк, тактайдын сол учу ылдый.",
+            "ru": "Слева груз, левый край доски опущен.",
+            "en": "A load on the left; the left end of the board is down."
+          },
+          "duration": 1
+        },
+        {
+          "key": "right-near",
+          "title": {
+            "ky": "Оңго 2 кг, 0,6 м",
+            "ru": "Справа 2 кг на 0,6 м",
+            "en": "2 kg on the right at 0.6 m"
+          },
+          "result": {
+            "ky": "M₂ = 19,6 · 0,6 ≈ 11,8 Н·м < M₁",
+            "ru": "M₂ = 19,6 · 0,6 ≈ 11,8 Н·м < M₁",
+            "en": "M₂ = 19.6 × 0.6 ≈ 11.8 N·m < M₁"
+          },
+          "description": {
+            "ky": "2 кг жүктү оң жакка ошол эле 0,6 м аралыкка койдук. Анын моменти кичине, ошондуктан тактай дагы эле солго кыйшайып турат.",
+            "ru": "Груз 2 кг поставили справа на то же расстояние 0,6 м. Его момент меньше, поэтому доска всё ещё наклонена влево.",
+            "en": "The 2 kg load goes on the right at the same 0.6 m. Its moment is smaller, so the board still tips to the left."
+          },
+          "conceptKey": "phys.moment-of-force",
+          "altText": {
+            "ky": "Эки жакта жүк, тактай солго кыйшайган.",
+            "ru": "Грузы с обеих сторон, доска наклонена влево.",
+            "en": "Loads on both sides; the board tips left."
+          },
+          "duration": 1
+        },
+        {
+          "key": "right-far",
+          "title": {
+            "ky": "2 кг жүктү 0,9 м ге жылдыруу",
+            "ru": "Сдвигаем 2 кг на 0,9 м",
+            "en": "Move the 2 kg load to 0.9 m"
+          },
+          "result": {
+            "ky": "M₂ = 19,6 · 0,9 ≈ 17,6 Н·м = M₁",
+            "ru": "M₂ = 19,6 · 0,9 ≈ 17,6 Н·м = M₁",
+            "en": "M₂ = 19.6 × 0.9 ≈ 17.6 N·m = M₁"
+          },
+          "description": {
+            "ky": "Жеңил жүктү таяныч чекитинен алыстатып, анын ийинин 0,9 м ге узарттык. Эми моменттер барабар – тактай түздөлдү.",
+            "ru": "Отодвинули лёгкий груз от опоры и удлинили его плечо до 0,9 м. Теперь моменты равны – доска выровнялась.",
+            "en": "Moving the light load away from the pivot lengthens its arm to 0.9 m. Now the moments are equal and the board levels out."
+          },
+          "conceptKey": "phys.lever-arm",
+          "altText": {
+            "ky": "Тактай горизонталдык, оң жүк учуна жакын.",
+            "ru": "Доска горизонтальна, правый груз ближе к краю.",
+            "en": "The board is level; the right load is near the end."
+          },
+          "duration": 1
+        },
+        {
+          "key": "rule",
+          "title": {
+            "ky": "Эрежени текшерүү",
+            "ru": "Проверяем правило",
+            "en": "Check the rule"
+          },
+          "result": {
+            "ky": "29,4 · 0,6 = 19,6 · 0,9",
+            "ru": "29,4 · 0,6 = 19,6 · 0,9",
+            "en": "29.4 × 0.6 = 19.6 × 0.9"
+          },
+          "description": {
+            "ky": "F₁·d₁ = F₂·d₂: оор жүккө кыска ийин, жеңил жүккө узун ийин. Күчтөрдүн катышы 3 : 2, ийиндердики – 2 : 3.",
+            "ru": "F₁·d₁ = F₂·d₂: тяжёлому грузу – короткое плечо, лёгкому – длинное. Силы относятся как 3 : 2, плечи – как 2 : 3.",
+            "en": "F₁·d₁ = F₂·d₂: the heavy load gets the short arm, the light load the long one. The forces are in the ratio 3 : 2, the arms 2 : 3."
+          },
+          "conceptKey": "phys.lever-rule",
+          "altText": {
+            "ky": "Ийиндер жана моменттер жазылган тең салмактагы тактай.",
+            "ru": "Доска в равновесии с подписанными плечами и моментами.",
+            "en": "The balanced board with the arms and moments labelled."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "moment-left",
+          "label": {
+            "ky": "Сол моменти",
+            "ru": "Момент слева",
+            "en": "Left moment"
+          },
+          "unit": "N·m",
+          "min": 0,
+          "max": 20,
+          "precision": 1
+        },
+        {
+          "key": "moment-right",
+          "label": {
+            "ky": "Оң моменти",
+            "ru": "Момент справа",
+            "en": "Right moment"
+          },
+          "unit": "N·m",
+          "min": 0,
+          "max": 20,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "length": 2,
+        "pivot": 1,
+        "g": 9.8,
+        "moment-left@empty": 0,
+        "moment-left@left-load": 17.64,
+        "moment-left@right-near": 17.64,
+        "moment-left@right-far": 17.64,
+        "moment-left@rule": 17.64,
+        "moment-right@empty": 0,
+        "moment-right@left-load": 0,
+        "moment-right@right-near": 11.76,
+        "moment-right@right-far": 17.64,
+        "moment-right@rule": 17.64
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "phys.q.moment-of-force-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Күчтүн моменти кайсы формула менен эсептелет?",
+        "ru": "По какой формуле вычисляют момент силы?",
+        "en": "Which formula gives the moment of a force?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "M = F · d",
+            "ru": "M = F · d",
+            "en": "M = F × d"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "M = F / d",
+            "ru": "M = F / d",
+            "en": "M = F / d"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "M = F + d",
+            "ru": "M = F + d",
+            "en": "M = F + d"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "M = m · g",
+            "ru": "M = m · g",
+            "en": "M = m × g"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Момент – күч менен анын ийининин көбөйтүндүсү: M = F·d.",
+        "ru": "Момент – произведение силы на её плечо: M = F·d.",
+        "en": "The moment is the force times its arm: M = F·d."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.moment-of-force-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Күчтүн моментинин бирдиги кайсы?",
+        "ru": "В каких единицах измеряют момент силы?",
+        "en": "What is the unit of the moment of a force?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Н/м",
+            "ru": "Н/м",
+            "en": "N/m"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Н·м",
+            "ru": "Н·м",
+            "en": "N·m"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "кг·м",
+            "ru": "кг·м",
+            "en": "kg·m"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Н",
+            "ru": "Н",
+            "en": "N"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "M = F·d, ошондуктан бирдиги ньютон көбөйтүлгөн метр: Н·м.",
+        "ru": "M = F·d, поэтому единица – ньютон, умноженный на метр: Н·м.",
+        "en": "M = F·d, so the unit is newtons times metres: N·m."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.moment-of-force-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Гайка ачкычынын сабынын учуна 40 Н күч тик бурч менен коюлду. Гайкадан ал чекитке чейин 0,25 м. Күчтүн моменти канча Н·м?",
+        "ru": "К концу рукояти гаечного ключа под прямым углом приложили силу 40 Н. От гайки до этой точки 0,25 м. Чему равен момент силы, Н·м?",
+        "en": "A 40 N force is applied at right angles to the end of a spanner, 0.25 m from the nut. What is the moment in N·m?"
+      },
+      "answer": 10,
+      "tolerance": 0.1,
+      "unit": "N·m",
+      "explanation": {
+        "ky": "M = F·d = 40 Н · 0,25 м = 10 Н·м.",
+        "ru": "M = F·d = 40 Н · 0,25 м = 10 Н·м.",
+        "en": "M = F·d = 40 N × 0.25 m = 10 N·m."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.moment-of-force-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Тактай селкинчекте салмагы 300 Н кыз таянычтан 1,5 м аралыкта отурат. Салмагы 450 Н бала тең салмак үчүн таянычтан канча метр аралыкта отурушу керек?",
+        "ru": "На качелях-доске девочка весом 300 Н сидит в 1,5 м от опоры. На каком расстоянии от опоры должен сесть мальчик весом 450 Н, чтобы было равновесие, м?",
+        "en": "On a seesaw a girl weighing 300 N sits 1.5 m from the pivot. How far from the pivot must a boy weighing 450 N sit to balance, in metres?"
+      },
+      "answer": 1,
+      "tolerance": 0.02,
+      "unit": "m",
+      "explanation": {
+        "ky": "F₁·d₁ = F₂·d₂: 300 · 1,5 = 450 · d₂, d₂ = 450 : 450 = 1,0 м. Оорураак бала таянычка жакыныраак отурат.",
+        "ru": "F₁·d₁ = F₂·d₂: 300 · 1,5 = 450 · d₂, d₂ = 450 : 450 = 1,0 м. Более тяжёлый садится ближе к опоре.",
+        "en": "F₁·d₁ = F₂·d₂: 300 × 1.5 = 450 × d₂, so d₂ = 450 ÷ 450 = 1.0 m. The heavier child sits closer to the pivot."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "misconceptionKey": "phys.m.equal-masses-balance",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.moment-of-force-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Эшикти ачуу үчүн 4 Н·м момент керек. Тутка топсодон 0,8 м аралыкта. Туткага тик бурч менен канча ньютон күч коюу керек?",
+        "ru": "Чтобы открыть дверь, нужен момент 4 Н·м. Ручка находится в 0,8 м от петель. Какую силу нужно приложить к ручке под прямым углом, Н?",
+        "en": "Opening a door needs a moment of 4 N·m. The handle is 0.8 m from the hinges. What force at right angles to the door is needed at the handle, in newtons?"
+      },
+      "answer": 5,
+      "tolerance": 0.05,
+      "unit": "N",
+      "explanation": {
+        "ky": "F = M/d = 4 Н·м : 0,8 м = 5 Н. Топсодон 0,1 м аралыкта түртсөк, 40 Н керек болмок – 8 эсе көп.",
+        "ru": "F = M/d = 4 Н·м : 0,8 м = 5 Н. Если толкать в 0,1 м от петель, понадобилось бы 40 Н – в 8 раз больше.",
+        "en": "F = M/d = 4 N·m ÷ 0.8 m = 5 N. Pushing 0.1 m from the hinges would take 40 N – eight times more."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "misconceptionKey": "phys.m.moment-only-force",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.moment-of-force-6",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Гайканы бураган моментти кантип чоңойтууга болот? Бардык туура жоопторду тандаңыз.",
+        "ru": "Как можно увеличить момент, который поворачивает гайку? Выберите все верные ответы.",
+        "en": "How can you increase the moment that turns a nut? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Күчтү чоңойтуу",
+            "ru": "Увеличить силу",
+            "en": "Push harder"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Узунураак ачкыч алуу",
+            "ru": "Взять ключ длиннее",
+            "en": "Use a longer spanner"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ачкычты гайкага жакын кармоо",
+            "ru": "Держать ключ ближе к гайке",
+            "en": "Grip the spanner closer to the nut"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Күчтү сапка тик бурч менен коюу",
+            "ru": "Прикладывать силу перпендикулярно рукояти",
+            "en": "Push at right angles to the handle"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": {
+        "ky": "M = F·d: күчтү чоңойтуу же ийинди узартуу (узун ачкыч, сапты учунан кармоо) жардам берет. Күчтү сапка тик бурч менен коюу ийинди эң чоң кылат. Гайкага жакын кармоо ийинди кыскартат.",
+        "ru": "M = F·d: помогает увеличить силу или удлинить плечо (длинный ключ, хват за конец рукояти). Сила под прямым углом к рукояти даёт наибольшее плечо. Хват ближе к гайке плечо уменьшает.",
+        "en": "M = F·d: increase the force or lengthen the arm (a longer spanner, gripping the end of the handle). Pushing at right angles to the handle gives the biggest arm. Gripping near the nut shortens the arm."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.moment-of-force-7",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден тактай айланасында бурула турган чекитти тап.",
+        "ru": "Найдите на модели точку, вокруг которой поворачивается доска.",
+        "en": "Find the point in the model that the board turns about."
+      },
+      "targetConceptKey": "phys.pivot",
+      "explanation": {
+        "ky": "Бул – таяныч чекити. Ийиндер жана моменттер ушул чекиттен эсептелет.",
+        "ru": "Это точка опоры. Плечи и моменты отсчитывают от неё.",
+        "en": "That is the pivot. Arms and moments are measured from it."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.moment-of-force-8",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден күчтүн ийинин тап.",
+        "ru": "Найдите на модели плечо силы.",
+        "en": "Find a lever arm in the model."
+      },
+      "targetConceptKey": "phys.lever-arm",
+      "explanation": {
+        "ky": "Ийин – таяныч чекитинен күчтүн аракет сызыгына чейинки аралык; ал тактайдын бүт узундугу эмес.",
+        "ru": "Плечо – расстояние от точки опоры до линии действия силы; это не вся длина доски.",
+        "en": "The arm is the distance from the pivot to the force's line of action – not the whole length of the board."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "misconceptionKey": "phys.m.arm-is-beam-length",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.moment-of-force-9",
+      "type": "match",
+      "prompt": {
+        "ky": "Рычагды анын таяныч чекити менен дал келтириңиз.",
+        "ru": "Сопоставьте рычаг и его точку опоры.",
+        "en": "Match each lever to its pivot."
+      },
+      "pairs": [
+        {
+          "key": "door",
+          "left": {
+            "ky": "Эшик",
+            "ru": "Дверь",
+            "en": "Door"
+          },
+          "right": {
+            "ky": "Топсолор",
+            "ru": "Петли",
+            "en": "Hinges"
+          }
+        },
+        {
+          "key": "spanner",
+          "left": {
+            "ky": "Гайка ачкычы",
+            "ru": "Гаечный ключ",
+            "en": "Spanner"
+          },
+          "right": {
+            "ky": "Гайканын огу",
+            "ru": "Ось гайки",
+            "en": "The axis of the nut"
+          }
+        },
+        {
+          "key": "seesaw",
+          "left": {
+            "ky": "Тактай селкинчек",
+            "ru": "Качели-доска",
+            "en": "Seesaw"
+          },
+          "right": {
+            "ky": "Ортосундагы тирек",
+            "ru": "Опора посередине",
+            "en": "The support in the middle"
+          }
+        },
+        {
+          "key": "arm",
+          "left": {
+            "ky": "Адамдын билеги",
+            "ru": "Предплечье человека",
+            "en": "Human forearm"
+          },
+          "right": {
+            "ky": "Чыканак мууну",
+            "ru": "Локтевой сустав",
+            "en": "Elbow joint"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Эшик – топсолор; гайка ачкычы – гайканын огу; тактай селкинчек – ортосундагы тирек; билек – чыканак мууну.",
+        "ru": "Дверь – петли; гаечный ключ – ось гайки; качели-доска – опора посередине; предплечье – локтевой сустав.",
+        "en": "Door – hinges; spanner – the axis of the nut; seesaw – the support in the middle; forearm – the elbow joint."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.moment-of-force-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Сол жакта 3 кг жүк таянычтан 0,6 м, оң жакта 2 кг жүк да 0,6 м аралыкта. Тактай эмне болот?",
+        "ru": "Слева груз 3 кг в 0,6 м от опоры, справа груз 2 кг тоже в 0,6 м. Что будет с доской?",
+        "en": "3 kg sits 0.6 m left of the pivot and 2 kg sits 0.6 m to the right. What does the board do?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Солго кыйшаят",
+            "ru": "Наклонится влево",
+            "en": "Tips to the left"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Оңго кыйшаят",
+            "ru": "Наклонится вправо",
+            "en": "Tips to the right"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Тең салмакта калат",
+            "ru": "Останется в равновесии",
+            "en": "Stays balanced"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "M₁ = 29,4 · 0,6 ≈ 17,6 Н·м, M₂ = 19,6 · 0,6 ≈ 11,8 Н·м. Сол моменти чоң – тактай солго кыйшаят.",
+        "ru": "M₁ = 29,4 · 0,6 ≈ 17,6 Н·м, M₂ = 19,6 · 0,6 ≈ 11,8 Н·м. Момент слева больше – доска наклонится влево.",
+        "en": "M₁ = 29.4 × 0.6 ≈ 17.6 N·m, M₂ = 19.6 × 0.6 ≈ 11.8 N·m. The left moment is larger – the board tips left."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.moment-of-force-11",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Колдо чыканактан 30 см аралыкта 2 кг жүк кармалып турат. Бицепс чыканактан 4 см аралыкта бекийт жана билекке тик бурч менен тартат. Бицепс канча ньютон күч менен тартат? Билектин өз салмагын эсепке албаңыз, g = 9,8 Н/кг.",
+        "ru": "В руке в 30 см от локтя удерживается груз 2 кг. Бицепс крепится в 4 см от локтя и тянет перпендикулярно предплечью. С какой силой тянет бицепс, Н? Вес предплечья не учитывайте, g = 9,8 Н/кг.",
+        "en": "A hand holds 2 kg at 30 cm from the elbow. The biceps attaches 4 cm from the elbow and pulls at right angles to the forearm. What force does the biceps exert, in newtons? Ignore the forearm's own weight; g = 9.8 N/kg."
+      },
+      "answer": 147,
+      "tolerance": 2,
+      "unit": "N",
+      "explanation": {
+        "ky": "Жүктүн салмагы 2 · 9,8 = 19,6 Н. Моменттер барабар: F · 0,04 = 19,6 · 0,30, F = 5,88 : 0,04 = 147 Н – жүктүн салмагынан 7,5 эсе чоң. Колубуз күчтөн утулуп, ылдамдыктан жана кыймылдын чоңдугунан утат.",
+        "ru": "Вес груза 2 · 9,8 = 19,6 Н. Моменты равны: F · 0,04 = 19,6 · 0,30, F = 5,88 : 0,04 = 147 Н – в 7,5 раза больше веса груза. Рука проигрывает в силе, но выигрывает в скорости и размахе движения.",
+        "en": "The load weighs 2 × 9.8 = 19.6 N. Moments balance: F × 0.04 = 19.6 × 0.30, so F = 5.88 ÷ 0.04 = 147 N – 7.5 times the load's weight. The arm loses in force but gains in speed and range of movement."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.moment-of-force-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Узун рычаг менен оор ташты аз күч жумшап көтөрдүк. Эмнеден «утулдук»?",
+        "ru": "Длинным рычагом подняли тяжёлый камень, приложив малую силу. В чём мы «проиграли»?",
+        "en": "We lifted a heavy rock with a long lever using a small force. What did we 'pay' for that?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Эч нерседен – рычаг бекер күч берет",
+            "ru": "Ни в чём – рычаг даёт силу даром",
+            "en": "Nothing – a lever gives force for free"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Колубуз басып өткөн жолдон: ал таш көтөрүлгөн бийиктиктен көп",
+            "ru": "В пути руки: он больше, чем высота подъёма камня",
+            "en": "In distance: our hand moves further than the rock rises"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Таштын массасынан: ал азайып калды",
+            "ru": "В массе камня: она уменьшилась",
+            "en": "In the rock's mass: it got smaller"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Рычаг күчтөн утат, бирок жолдон ошончо эсе утулат: колубуз басып өткөн жол таштын көтөрүлгөн бийиктигинен көп. Иш өзгөрбөйт.",
+        "ru": "Рычаг даёт выигрыш в силе, но во столько же раз проигрыш в пути: рука проходит больший путь, чем поднимается камень. Работа не меняется.",
+        "en": "A lever gains in force but loses just as much in distance: your hand moves further than the rock rises. The work stays the same."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "misconceptionKey": "phys.m.lever-free-work",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.moment-of-force-13",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден жүктөрдүн тактайга таасир эткен күчүн тап.",
+        "ru": "Найдите на модели силу, с которой грузы действуют на доску.",
+        "en": "Find the force with which the loads act on the board."
+      },
+      "targetConceptKey": "phys.weight",
+      "explanation": {
+        "ky": "Бул – жүктөрдүн салмагы: P = m·g, ал тактайга коюлган жана аны айлантат.",
+        "ru": "Это вес грузов: P = m·g, он приложен к доске и поворачивает её.",
+        "en": "That is the loads' weight: W = mg, which acts on the board and turns it."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o2"
+      ],
+      "difficulty": 1
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-phys-pendulum",
+      "ky": "маятник",
+      "ru": "маятник",
+      "en": "pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-period",
+      "ky": "термелүү мезгили",
+      "ru": "период колебаний",
+      "en": "period of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-amplitude",
+      "ky": "амплитуда",
+      "ru": "амплитуда",
+      "en": "amplitude",
+      "forbidden": [
+        "amplitud"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gravity",
+      "ky": "оордук күчү",
+      "ru": "сила тяжести",
+      "en": "force of gravity",
+      "forbidden": [
+        "attraction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction",
+      "ky": "сүрүлүү күчү",
+      "ru": "сила трения",
+      "en": "friction force",
+      "forbidden": [
+        "force of rubbing"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-force",
+      "ky": "таянычтын реакция күчү",
+      "ru": "сила реакции опоры",
+      "en": "normal force",
+      "forbidden": [
+        "support reaction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-acceleration",
+      "ky": "ылдамдануу",
+      "ru": "ускорение",
+      "en": "acceleration",
+      "forbidden": [
+        "тездетүү"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-speed",
+      "ky": "ылдамдык",
+      "ru": "скорость",
+      "en": "speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinetic-energy",
+      "ky": "кинетикалык энергия",
+      "ru": "кинетическая энергия",
+      "en": "kinetic energy",
+      "forbidden": [
+        "кинетический энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-potential-energy",
+      "ky": "потенциалдык энергия",
+      "ru": "потенциальная энергия",
+      "en": "potential energy",
+      "forbidden": [
+        "потенциальный энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-voltage",
+      "ky": "чыңалуу",
+      "ru": "напряжение",
+      "en": "voltage",
+      "forbidden": [
+        "electric tension"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-current",
+      "ky": "ток күчү",
+      "ru": "сила тока",
+      "en": "electric current",
+      "forbidden": [
+        "current force",
+        "current strength"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-resistance",
+      "ky": "каршылык",
+      "ru": "сопротивление",
+      "en": "resistance",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-circuit",
+      "ky": "электр чынжыры",
+      "ru": "электрическая цепь",
+      "en": "electric circuit",
+      "forbidden": [
+        "electric chain",
+        "электрическая цепочка"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-source",
+      "ky": "ток булагы",
+      "ru": "источник тока",
+      "en": "power source",
+      "forbidden": [
+        "source of current"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-switch",
+      "ky": "ачкыч",
+      "ru": "ключ (выключатель)",
+      "en": "switch",
+      "forbidden": [
+        "electric key"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-distance-travelled",
+      "ky": "басып өткөн жол",
+      "ru": "пройденный путь",
+      "en": "distance travelled",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-time",
+      "ky": "убакыт",
+      "ru": "время",
+      "en": "time",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-uniform-motion",
+      "ky": "бир калыптагы кыймыл",
+      "ru": "равномерное движение",
+      "en": "uniform motion",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-average-speed",
+      "ky": "орточо ылдамдык",
+      "ru": "средняя скорость",
+      "en": "average speed",
+      "forbidden": [
+        "medium speed"
+      ]
+    },
+    {
+      "id": "g-phys-speed-radar",
+      "ky": "ылдамдык радары",
+      "ru": "радар скорости",
+      "en": "speed radar",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-stopwatch",
+      "ky": "секундомер",
+      "ru": "секундомер",
+      "en": "stopwatch",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-distance-time-graph",
+      "ky": "жолдун убакыттан көз карандылык графиги",
+      "ru": "график зависимости пути от времени",
+      "en": "distance–time graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-graph-slope",
+      "ky": "графиктин тиктиги",
+      "ru": "наклон графика",
+      "en": "slope of a graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-rest",
+      "ky": "тынч абал",
+      "ru": "покой",
+      "en": "rest",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-force",
+      "ky": "күч",
+      "ru": "сила",
+      "en": "force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-vector",
+      "ky": "вектор",
+      "ru": "вектор",
+      "en": "vector",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-newton",
+      "ky": "ньютон (Н)",
+      "ru": "ньютон (Н)",
+      "en": "newton (N)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-dynamometer",
+      "ky": "динамометр",
+      "ru": "динамометр",
+      "en": "dynamometer (spring scale)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-weight",
+      "ky": "салмак",
+      "ru": "вес тела",
+      "en": "weight",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-resultant",
+      "ky": "тең аракеттүү күч",
+      "ru": "равнодействующая сила",
+      "en": "resultant force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-elastic-force",
+      "ky": "серпилгичтик күчү",
+      "ru": "сила упругости",
+      "en": "elastic force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-point-of-application",
+      "ky": "күчтүн коюлган чекити",
+      "ru": "точка приложения силы",
+      "en": "point of application",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever",
+      "ky": "рычаг",
+      "ru": "рычаг",
+      "en": "lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-pivot",
+      "ky": "таяныч чекити",
+      "ru": "точка опоры",
+      "en": "pivot (fulcrum)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever-arm",
+      "ky": "күчтүн ийини",
+      "ru": "плечо силы",
+      "en": "lever arm",
+      "forbidden": [
+        "shoulder of force"
+      ]
+    },
+    {
+      "id": "g-phys-moment",
+      "ky": "күчтүн моменти",
+      "ru": "момент силы",
+      "en": "moment of a force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-equilibrium-lever",
+      "ky": "рычагдын тең салмактуулугу",
+      "ru": "равновесие рычага",
+      "en": "equilibrium of a lever",
+      "forbidden": []
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "acceleration",
+      "icon": "trending-up",
+      "valueKind": "quantity",
+      "unit": "m/s²",
+      "label": {
+        "ky": "Ылдамдануу",
+        "ru": "Ускорение",
+        "en": "Acceleration"
+      }
+    },
+    {
+      "key": "composition",
+      "icon": "flask-conical",
+      "valueKind": "text",
+      "label": {
+        "ky": "Курамы",
+        "ru": "Состав",
+        "en": "Composition"
+      }
+    },
+    {
+      "key": "force",
+      "icon": "arrow-big-right",
+      "valueKind": "quantity",
+      "unit": "N",
+      "label": {
+        "ky": "Күч",
+        "ru": "Сила",
+        "en": "Force"
+      }
+    },
+    {
+      "key": "gravity",
+      "icon": "arrow-down",
+      "valueKind": "quantity",
+      "unit": "m/s²",
+      "label": {
+        "ky": "Эркин түшүү ылдамдануусу",
+        "ru": "Ускорение свободного падения",
+        "en": "Surface gravity"
+      }
+    },
+    {
+      "key": "length",
+      "icon": "ruler",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Узундугу",
+        "ru": "Длина",
+        "en": "Length"
+      }
+    },
+    {
+      "key": "speed",
+      "icon": "gauge",
+      "valueKind": "quantity",
+      "unit": "m/s",
+      "label": {
+        "ky": "Ылдамдыгы",
+        "ru": "Скорость",
+        "en": "Speed"
+      }
+    }
+  ]
+}

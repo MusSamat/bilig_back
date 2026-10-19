@@ -70,6 +70,8 @@ export async function importContent(repo: Repository, clock: Clock, content: Loa
   for (const s of content.base.subjects) strings.push(...(await upsert(repo, 'subject', s.key, s)));
   for (const c of content.base.courses) strings.push(...(await upsert(repo, 'course', c.key, c)));
   for (const u of content.base.units) strings.push(...(await upsert(repo, 'unit', u.key, u)));
+  // v0.5.0: textbooks (shared; their strings stay out of the translation workspace).
+  for (const tb of content.base.textbooks ?? []) await upsert(repo, 'textbook', tb.key, tb);
 
   const propertyTypes = new Map<string, PropertyTypeDef>();
   let versionsCreated = 0;

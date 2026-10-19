@@ -1,0 +1,1112 @@
+{
+  "topic": {
+    "key": "atomic-models",
+    "unitKey": "chem.g8.atoms",
+    "status": "published",
+    "title": {
+      "ky": "Атом моделинин өнүгүшү",
+      "ru": "Развитие модели атома",
+      "en": "How the model of the atom developed"
+    },
+    "formula": "^{7}_{3}Li",
+    "classification": {
+      "ky": "Атомдун моделдери: Дальтон → Томсон → Резерфорд → Бор",
+      "ru": "Модели атома: Дальтон → Томсон → Резерфорд → Бор",
+      "en": "Models of the atom: Dalton → Thomson → Rutherford → Bohr"
+    },
+    "description": {
+      "ky": "Атомду эч ким көзү менен көрө элек, бирок окумуштуулар тажрыйбалардын жардамы менен анын моделин түзүшкөн. Литий атомунун мисалында төрт моделди катар карайбыз жана ар бир жаңы тажрыйба моделди кантип өзгөрткөнүн түшүнөбүз.",
+      "ru": "Атом никто не видел глазами, но учёные построили его модель по результатам опытов. На примере атома лития проходим четыре модели по очереди и разбираемся, как каждый новый опыт менял представление об атоме.",
+      "en": "No one has ever seen an atom with their own eyes, yet scientists built a model of it from experiments. Using a lithium atom, we go through four models in turn and see how each new experiment changed the picture."
+    },
+    "goal": {
+      "ky": "Атом моделинин өнүгүшүн (Дальтон, Томсон, Резерфорд, Бор) сүрөттөө жана ар бир моделди кайсы тажрыйба өзгөрткөнүн түшүндүрүү (CHEM-8.1.3).",
+      "ru": "Описать развитие модели атома (Дальтон, Томсон, Резерфорд, Бор) и объяснить, какой опыт изменил каждую модель (CHEM-8.1.3).",
+      "en": "Describe how the model of the atom developed (Dalton, Thomson, Rutherford, Bohr) and explain which experiment changed each model (CHEM-8.1.3)."
+    },
+    "objectiveKeys": [
+      "chem.g8.atoms.o3"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "molecule",
+      "params": {
+        "formula": "Li",
+        "atoms": [
+          {
+            "id": "Li1",
+            "element": "Li",
+            "position": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "bonds": [],
+        "showNucleus": true,
+        "protons": 3,
+        "neutrons": 4,
+        "shells": [
+          2,
+          1
+        ]
+      },
+      "camera": {
+        "position": [
+          0,
+          2,
+          8
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "shells",
+        "spacefill"
+      ]
+    },
+    "conceptKeys": [
+      "chem.dalton-model",
+      "chem.thomson-model",
+      "chem.rutherford-model",
+      "chem.bohr-model",
+      "chem.alpha-particle",
+      "chem.atomic-nucleus",
+      "chem.proton",
+      "chem.neutron",
+      "chem.electron",
+      "chem.electron-shell"
+    ],
+    "overrides": {
+      "chem.dalton-model": {
+        "nodes": [
+          "Atom_*"
+        ],
+        "anchor": [
+          0,
+          1.2,
+          0
+        ]
+      },
+      "chem.atomic-nucleus": {
+        "nodes": [
+          "Nucleus_*"
+        ],
+        "anchor": [
+          0,
+          0.3,
+          0
+        ]
+      },
+      "chem.proton": {
+        "nodes": [
+          "Proton_*"
+        ]
+      },
+      "chem.neutron": {
+        "nodes": [
+          "Neutron_*"
+        ]
+      },
+      "chem.electron": {
+        "nodes": [
+          "Electron_*"
+        ],
+        "anchor": [
+          1.2,
+          0,
+          0
+        ]
+      },
+      "chem.electron-shell": {
+        "nodes": [
+          "Shell_*"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "model-dalton",
+        "title": {
+          "ky": "Дальтондун атому",
+          "ru": "Атом Дальтона",
+          "en": "Dalton's atom"
+        },
+        "classification": {
+          "ky": "Катуу шар · 1803",
+          "ru": "Твёрдый шар · 1803",
+          "en": "Solid ball · 1803"
+        },
+        "thumb": "thumbs/model-dalton.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "shape",
+            "value": {
+              "ky": "Бөлүнбөс катуу шар",
+              "ru": "Неделимый твёрдый шар",
+              "en": "An indivisible solid ball"
+            }
+          }
+        ]
+      },
+      {
+        "key": "model-rutherford-au",
+        "title": {
+          "ky": "Алтын атому",
+          "ru": "Атом золота",
+          "en": "Gold atom"
+        },
+        "classification": {
+          "ky": "Резерфорддун фольгасы · Z = 79",
+          "ru": "Фольга Резерфорда · Z = 79",
+          "en": "Rutherford's foil · Z = 79"
+        },
+        "thumb": "thumbs/model-rutherford-au.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "atomicNumber",
+            "value": 79
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "^{197}_{79}Au"
+          }
+        ]
+      },
+      {
+        "key": "model-bohr-h",
+        "title": {
+          "ky": "Бордун суутек атому",
+          "ru": "Атом водорода Бора",
+          "en": "Bohr's hydrogen atom"
+        },
+        "classification": {
+          "ky": "Бир электрон, бир деңгээл · 1913",
+          "ru": "Один электрон, один уровень · 1913",
+          "en": "One electron, one level · 1913"
+        },
+        "thumb": "thumbs/model-bohr-h.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "atomicNumber",
+            "value": 1
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "^{1}_{1}H"
+          }
+        ]
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                2,
+                8
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "shells": true
+            },
+            "focus": "chem.atomic-nucleus",
+            "text": {
+              "ky": "Бул – литий атомунун азыркы модели: борбордо ядро, айланасында эки катмарда үч электрон. Окумуштуулар бул сүрөткө 100 жылдан ашык убакытта жетишкен.",
+              "ru": "Это современная модель атома лития: в центре ядро, вокруг – три электрона на двух слоях. К этой картине учёные шли больше 100 лет.",
+              "en": "This is today's model of a lithium atom: a nucleus in the centre and three electrons in two shells. It took scientists more than 100 years to reach this picture."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: «Атомду эч ким көрбөсө, анын түзүлүшүн кантип билебиз?» Жоопторду тактага жазып, сабактын аягында кайра кайрылыңыз.",
+              "ru": "Спросите: «Если атом никто не видел, откуда мы знаем его строение?» Запишите ответы на доске и вернитесь к ним в конце урока.",
+              "en": "Ask: “If no one has seen an atom, how do we know what it is like?” Write the answers on the board and come back to them at the end."
+            },
+            "altText": {
+              "ky": "Борбордо кичинекей ядро, айланасында эки шакек жана үч электрон.",
+              "ru": "Маленькое ядро в центре, вокруг два кольца и три электрона.",
+              "en": "A small nucleus in the centre with two rings and three electrons around it."
+            }
+          },
+          {
+            "key": "dalton",
+            "sample": "model-dalton",
+            "camera": {
+              "position": [
+                0,
+                2,
+                8
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "shells": false,
+              "rep": "spacefill"
+            },
+            "focus": "chem.dalton-model",
+            "text": {
+              "ky": "1803-жыл. Жон Дальтон: атом – бөлүнбөгөн кичинекей катуу шар, ар бир элементтин өз атомдору бар. Ушундай шарды экранда көрүп турасыңар.",
+              "ru": "1803 год. Джон Дальтон: атом – неделимый крошечный твёрдый шарик, у каждого элемента свои атомы. Такой шар вы видите на экране.",
+              "en": "1803. John Dalton: an atom is a tiny solid ball that cannot be split, and each element has its own atoms. That is the ball on the screen."
+            },
+            "teacherNote": {
+              "ky": "Дальтондун модели реакцияларда массанын сакталышын түшүндүргөнүн белгилеңиз – ал «ката» эмес, өз убагы үчүн жакшы модель болгон.",
+              "ru": "Подчеркните, что модель Дальтона объясняла сохранение массы в реакциях – это не «ошибка», а хорошая для своего времени модель.",
+              "en": "Point out that Dalton's model explained why mass is conserved in reactions – not a «mistake», but a good model for its time."
+            },
+            "altText": {
+              "ky": "Ичинде эч нерсе көрүнбөгөн бир түстүү катуу шар.",
+              "ru": "Сплошной шар одного цвета, внутри ничего не видно.",
+              "en": "A solid ball of one colour with nothing visible inside."
+            }
+          },
+          {
+            "key": "thomson",
+            "sample": "model-dalton",
+            "camera": {
+              "position": [
+                0,
+                2,
+                8
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "shells": false,
+              "rep": "spacefill"
+            },
+            "focus": "chem.thomson-model",
+            "text": {
+              "ky": "1897-жылы Томсон атомдон кичине терс бөлүкчөнү – электронду ачкан. Анын модели: бул шар – оң заряддуу «камыр», ал эми электрондор ага мейиздей чачылып жайгашкан.",
+              "ru": "В 1897 году Томсон открыл электрон – отрицательную частицу меньше атома. Его модель: этот шар – положительное «тесто», а электроны вкраплены в него, как изюм.",
+              "en": "In 1897 Thomson discovered the electron, a negative particle smaller than an atom. His model: this ball is positive «dough» with electrons dotted through it like raisins."
+            },
+            "teacherNote": {
+              "ky": "Мейиздүү булочканы же дарбыздын кесиндисин көрсөтүңүз. Сураңыз: «Атом нейтралдуу болсо, терс электрондордон тышкары анда эмне болушу керек?»",
+              "ru": "Покажите булочку с изюмом или ломтик арбуза. Спросите: «Если атом нейтрален, что ещё, кроме отрицательных электронов, в нём должно быть?»",
+              "en": "Show a raisin bun or a slice of watermelon. Ask: “If the atom is neutral, what else must it contain besides negative electrons?”"
+            },
+            "altText": {
+              "ky": "Ошол эле катуу шар; текстте анын ичинде электрондор бар экени айтылат.",
+              "ru": "Тот же сплошной шар; в тексте говорится, что внутри него электроны.",
+              "en": "The same solid ball; the text explains that electrons are inside it."
+            }
+          },
+          {
+            "key": "gold-foil",
+            "sample": "model-rutherford-au",
+            "camera": {
+              "position": [
+                0,
+                0.8,
+                4.2
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "visibility": {
+              "hide": [
+                "chem.electron-shell"
+              ]
+            },
+            "modes": {
+              "shells": true
+            },
+            "focus": "chem.alpha-particle",
+            "text": {
+              "ky": "1909–1911-жылдары Резерфорддун лабораториясында жука алтын фольганы альфа-бөлүкчөлөр менен аткылашкан. Дээрлик баары түз өтүп, болжол менен 8000дин бирөө гана артка кайткан.",
+              "ru": "В 1909–1911 годах в лаборатории Резерфорда тонкую золотую фольгу обстреливали альфа-частицами. Почти все пролетали насквозь, и лишь примерно одна из 8000 отскакивала назад.",
+              "en": "In 1909–1911 Rutherford's laboratory fired alpha particles at thin gold foil. Almost all went straight through, and only about one in 8000 bounced back."
+            },
+            "teacherNote": {
+              "ky": "«Резерфорддун тажрыйбасы» процессин ишке киргизиңиз. Жыйынтыкты окуучулар өздөрү чыгарсын: эмне үчүн көбү өтөт, эмне үчүн айрымдары кайтат? Чыныгы радиоактивдүү булак мектепте колдонулбайт – бул симуляция.",
+              "ru": "Запустите процесс «Опыт Резерфорда». Пусть ученики сами сделают выводы: почему большинство пролетает и почему некоторые отскакивают? Настоящий радиоактивный источник в школе не используют – это симуляция.",
+              "en": "Run the «Rutherford's gold-foil experiment» process. Let students draw the conclusions: why do most get through and why do a few bounce back? Real radioactive sources are not used in school – this is a simulation."
+            },
+            "altText": {
+              "ky": "Ядро жакындан көрсөтүлөт; катмарлар жашырылган.",
+              "ru": "Ядро крупным планом; слои скрыты.",
+              "en": "A close-up of the nucleus with the shells hidden."
+            }
+          },
+          {
+            "key": "nucleus",
+            "sample": "model-rutherford-au",
+            "camera": {
+              "position": [
+                0,
+                3,
+                18
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "visibility": {
+              "hide": [
+                "chem.electron-shell"
+              ]
+            },
+            "modes": {
+              "shells": true
+            },
+            "focus": "chem.atomic-nucleus",
+            "text": {
+              "ky": "Резерфорддун жыйынтыгы (1911): атомдун ортосунда кичинекей, оор, оң заряддуу ядро бар, ал эми электрондор анын айланасында кыймылдайт. Атомдун калган көлөмү дээрлик бош.",
+              "ru": "Вывод Резерфорда (1911): в центре атома крошечное тяжёлое положительное ядро, а электроны движутся вокруг него. Остальной объём атома почти пуст.",
+              "en": "Rutherford's conclusion (1911): at the centre of the atom is a tiny, heavy, positive nucleus with electrons moving around it. The rest of the atom is almost empty."
+            },
+            "teacherNote": {
+              "ky": "Чыныгы атомдо ядро моделдегиден алда канча кичине экенин эскертиңиз: ядро 1 см болсо, атом 1 км болмок.",
+              "ru": "Напомните, что настоящее ядро намного меньше, чем на модели: если ядро – 1 см, атом был бы размером в 1 км.",
+              "en": "Remind the class that a real nucleus is far smaller than shown: if the nucleus were 1 cm across, the atom would be 1 km across."
+            },
+            "altText": {
+              "ky": "Ядро жана анын айланасындагы үч электрон, катмарлар жок.",
+              "ru": "Ядро и три электрона вокруг, без колец слоёв.",
+              "en": "The nucleus with three electrons around it and no shell rings."
+            }
+          },
+          {
+            "key": "bohr",
+            "camera": {
+              "position": [
+                0,
+                5,
+                6
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "shells": true
+            },
+            "focus": "chem.electron-shell",
+            "text": {
+              "ky": "1913-жыл. Нильс Бор: электрондор каалаган жерде эмес, белгилүү энергетикалык деңгээлдерде – катмарларда гана болот. Литийде 1-катмарда 2, 2-катмарда 1 электрон.",
+              "ru": "1913 год. Нильс Бор: электроны находятся не где угодно, а только на определённых энергетических уровнях – слоях. У лития на первом слое 2 электрона, на втором – 1.",
+              "en": "1913. Niels Bohr: electrons are not just anywhere but only on certain energy levels – shells. Lithium has 2 electrons in the first shell and 1 in the second."
+            },
+            "teacherNote": {
+              "ky": "Тепкичтин аналогиясын колдонуңуз: электрон баскычта турат, баскычтардын ортосунда эмес. Атом түзүлүшү темасындагы катмарлардын толушу менен байланыштырыңыз.",
+              "ru": "Используйте аналогию с лестницей: электрон стоит на ступеньке, а не между ними. Свяжите с заполнением слоёв из темы «Строение атома».",
+              "en": "Use the staircase analogy: an electron stands on a step, never between steps. Link it to filling shells from the «Structure of the atom» topic."
+            },
+            "altText": {
+              "ky": "Ядронун айланасында эки шакек: ичкисинде 2, сырткысында 1 электрон.",
+              "ru": "Два кольца вокруг ядра: на внутреннем 2 электрона, на внешнем 1.",
+              "en": "Two rings around the nucleus: 2 electrons on the inner one, 1 on the outer."
+            }
+          },
+          {
+            "key": "neutron",
+            "camera": {
+              "position": [
+                0,
+                0.5,
+                2.2
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "visibility": {
+              "isolate": [
+                "chem.atomic-nucleus",
+                "chem.proton",
+                "chem.neutron"
+              ]
+            },
+            "modes": {
+              "shells": true
+            },
+            "focus": "chem.neutron",
+            "text": {
+              "ky": "1932-жылы Джеймс Чедвик ядродо заряды жок бөлүкчөнү – нейтронду ачкан. Литий-7дин ядросунда 3 протон жана 4 нейтрон бар. Ушинтип атомдун азыркы модели толукталды.",
+              "ru": "В 1932 году Джеймс Чедвик открыл в ядре незаряженную частицу – нейтрон. В ядре лития-7 3 протона и 4 нейтрона. Так современная модель атома стала полной.",
+              "en": "In 1932 James Chadwick discovered the neutron, the uncharged particle in the nucleus. A lithium-7 nucleus has 3 protons and 4 neutrons. That completed today's model of the atom."
+            },
+            "teacherNote": {
+              "ky": "«Атом моделинин өнүгүшү» процессин көрсөтүп, убакыт сызыгын бирге толтуруңуз. Сабактын башындагы суроого кайтыңыз: биз атомду тажрыйбалар аркылуу «көрөбүз».",
+              "ru": "Покажите процесс «Развитие модели атома» и вместе заполните ленту времени. Вернитесь к вопросу из начала урока: мы «видим» атом через опыты.",
+              "en": "Show the «How the model of the atom developed» process and fill in the timeline together. Return to the opening question: we «see» atoms through experiments."
+            },
+            "altText": {
+              "ky": "Ядро жакындан: үч кызыл протон жана төрт боз нейтрон.",
+              "ru": "Ядро крупным планом: три красных протона и четыре серых нейтрона.",
+              "en": "A close-up of the nucleus: three red protons and four grey neutrons."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.atom-model-history",
+        "chem.gold-foil"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.dalton-model"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.thomson-model"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.rutherford-model"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.bohr-model"
+          }
+        ],
+        "rows": [
+          "shape",
+          "composition"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.atomic-models-1",
+          "chem.q.atomic-models-2",
+          "chem.q.atomic-models-3",
+          "chem.q.atomic-models-4",
+          "chem.q.atomic-models-5",
+          "chem.q.atomic-models-6",
+          "chem.q.atomic-models-7",
+          "chem.q.atomic-models-8",
+          "chem.q.atomic-models-9",
+          "chem.q.atomic-models-10",
+          "chem.q.atomic-models-11"
+        ],
+        "sampleSize": 6
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Илим кантип иштейт",
+            "ru": "Как работает наука",
+            "en": "How science works"
+          },
+          "text": {
+            "ky": "Атом моделинин тарыхы илимдин ыкмасын көрсөтөт: гипотеза → тажрыйба → жаңы фактылар → тактала турган модель.",
+            "ru": "История модели атома показывает метод науки: гипотеза → опыт → новые факты → уточнённая модель.",
+            "en": "The story of the atomic model shows the scientific method: idea → experiment → new evidence → a better model."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Сканерлөөчү туннелдик микроскоп",
+            "ru": "Сканирующий туннельный микроскоп",
+            "en": "Scanning tunnelling microscope"
+          },
+          "text": {
+            "ky": "Бүгүн атайын микроскоптор айрым атомдордун «сүрөтүн» тартат – Дальтон муну кыялдана да алган эмес.",
+            "ru": "Сегодня особые микроскопы получают «снимки» отдельных атомов – Дальтон о таком и мечтать не мог.",
+            "en": "Today special microscopes can make «pictures» of single atoms – something Dalton could never have dreamed of."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Ядролук медицина",
+            "ru": "Ядерная медицина",
+            "en": "Nuclear medicine"
+          },
+          "text": {
+            "ky": "Ядро жөнүндөгү билимдин негизинде инженерлер томография аппараттарын жана нурлантуу менен дарылоочу жабдууларды курушат.",
+            "ru": "На знаниях о ядре инженеры строят томографы и установки для лучевой терапии.",
+            "en": "Engineers use what we know about the nucleus to build scanners and radiotherapy machines."
+          },
+          "field": "e"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Кутучадагы белек",
+            "ru": "Подарок в коробке",
+            "en": "A wrapped present"
+          },
+          "text": {
+            "ky": "Белекти ачпай эле, аны чайкап, салмагын сезип, ичинде эмне бар экенин божомолдойсуң. Окумуштуулар да атомду ачпай «изилдешкен».",
+            "ru": "Не открывая подарка, его трясут и взвешивают в руках, чтобы угадать, что внутри. Так и учёные «изучали» атом, не видя его.",
+            "en": "Without opening a present you shake it and feel its weight to guess what is inside. Scientists studied the atom the same way."
+          }
+        },
+        {
+          "title": {
+            "ky": "Картанын жаңы басылышы",
+            "ru": "Новое издание карты",
+            "en": "A new edition of a map"
+          },
+          "text": {
+            "ky": "Саякатчылар жаңы жерлерди ачкан сайын карта тактала берет. Атомдун модели да ушинтип жаңыланган.",
+            "ru": "С каждым открытием путешественников карта уточняется. Так же обновлялась и модель атома.",
+            "en": "Each time explorers find something new the map is redrawn. The model of the atom was updated in the same way."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "chem.q.atomic-models-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Атомдо электрон бар экенин биринчи болуп ким ачкан?",
+        "ru": "Кто первым открыл, что в атоме есть электроны?",
+        "en": "Who first discovered that atoms contain electrons?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Дальтон",
+            "ru": "Дальтон",
+            "en": "Dalton"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Томсон",
+            "ru": "Томсон",
+            "en": "Thomson"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Резерфорд",
+            "ru": "Резерфорд",
+            "en": "Rutherford"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Бор",
+            "ru": "Бор",
+            "en": "Bohr"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Дж. Дж. Томсон электронду 1897-жылы ачкан жана «мейиздүү пудинг» моделин сунуштаган.",
+        "ru": "Дж. Дж. Томсон открыл электрон в 1897 году и предложил модель «пудинг с изюмом».",
+        "en": "J. J. Thomson discovered the electron in 1897 and proposed the «plum pudding» model."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o3"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.atomic-models-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Альфа-бөлүкчөлөрдүн дээрлик баары алтын фольгадан түз өтүп кеткен. Мындан кандай жыйынтык чыгат?",
+        "ru": "Почти все альфа-частицы пролетели сквозь золотую фольгу. Какой из этого вывод?",
+        "en": "Almost all the alpha particles went straight through the gold foil. What does this show?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Атомдун көлөмү дээрлик бош",
+            "ru": "Атом почти пустой",
+            "en": "An atom is mostly empty space"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Атом – катуу толо шар",
+            "ru": "Атом – сплошной твёрдый шар",
+            "en": "An atom is a solid, filled ball"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Фольганын тешиктери бар болгон",
+            "ru": "В фольге были дырки",
+            "en": "The foil had holes in it"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Альфа-бөлүкчөлөр заряддуу эмес",
+            "ru": "Альфа-частицы не заряжены",
+            "en": "Alpha particles have no charge"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Бөлүкчөлөр эч нерсеге урунбай өткөн, демек атомдун көлөмү дээрлик бош.",
+        "ru": "Частицы ни на что не наткнулись, значит объём атома почти пуст.",
+        "en": "The particles hit nothing, so most of an atom is empty space."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o3"
+      ],
+      "misconceptionKey": "chem.m.atom-solid",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.atomic-models-3",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн айрым альфа-бөлүкчөлөр артка кайткан?",
+        "ru": "Почему некоторые альфа-частицы отскакивали назад?",
+        "en": "Why did a few alpha particles bounce back?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Электрондорго урунуп",
+            "ru": "Ударились об электроны",
+            "en": "They hit electrons"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Кичинекей, оор, оң заряддуу ядро аларды түрткөн",
+            "ru": "Их оттолкнуло маленькое тяжёлое положительное ядро",
+            "en": "A small, heavy, positive nucleus repelled them"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Фольга өтө калың болгон",
+            "ru": "Фольга была слишком толстой",
+            "en": "The foil was too thick"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Ядро терс заряддуу болуп, аларды тарткан",
+            "ru": "Ядро отрицательное и притянуло их",
+            "en": "The nucleus was negative and pulled them in"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Альфа-бөлүкчө оң заряддуу жана оор. Аны кичинекей, оор, оң заряддуу ядро гана артка түртө алат; жеңил электрон аны кайтара албайт.",
+        "ru": "Альфа-частица положительная и тяжёлая. Отбросить её назад может только маленькое тяжёлое положительное ядро; лёгкий электрон на это не способен.",
+        "en": "An alpha particle is positive and heavy. Only a small, heavy, positive nucleus can push it back; a light electron cannot."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o3"
+      ],
+      "misconceptionKey": "chem.m.alpha-hit-electrons",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.atomic-models-4",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Резерфорддун тажрыйбасынан кайсы жыйынтыктар чыккан? Бардык туура жоопторду танда.",
+        "ru": "Какие выводы сделал Резерфорд из своего опыта? Выбери все верные.",
+        "en": "Which conclusions came from Rutherford's experiment? Choose all that are correct."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ядро өтө кичинекей",
+            "ru": "Ядро очень маленькое",
+            "en": "The nucleus is very small"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ядро оң заряддуу",
+            "ru": "Ядро заряжено положительно",
+            "en": "The nucleus is positive"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Атомдун массасы дээрлик толугу менен ядродо",
+            "ru": "Почти вся масса атома в ядре",
+            "en": "Nearly all the atom's mass is in the nucleus"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Электрондор белгилүү энергетикалык деңгээлдерде гана болот",
+            "ru": "Электроны бывают только на определённых уровнях энергии",
+            "en": "Electrons can only be on fixed energy levels"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Атом бөлүнбөйт",
+            "ru": "Атом неделим",
+            "en": "The atom cannot be divided"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Тажрыйба кичинекей, оң, массасы чоң ядрону жана бош мейкиндикти ачкан. Энергетикалык деңгээлдерди кийин Бор сунуштаган; атомдун бөлүнбөстүгү – Дальтондун идеясы.",
+        "ru": "Опыт открыл маленькое положительное массивное ядро и пустоту вокруг. Энергетические уровни позже предложил Бор; неделимость атома – идея Дальтона.",
+        "en": "The experiment revealed a small, positive, massive nucleus surrounded by empty space. Energy levels came later from Bohr; an indivisible atom was Dalton's idea."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o3"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.atomic-models-5",
+      "type": "match",
+      "prompt": {
+        "ky": "Окумуштууну анын атом моделине дал келтир.",
+        "ru": "Сопоставь учёного и его модель атома.",
+        "en": "Match each scientist to their model of the atom."
+      },
+      "pairs": [
+        {
+          "key": "dalton",
+          "left": {
+            "ky": "Дальтон",
+            "ru": "Дальтон",
+            "en": "Dalton"
+          },
+          "right": {
+            "ky": "Бөлүнбөс катуу шар",
+            "ru": "Неделимый твёрдый шар",
+            "en": "An indivisible solid ball"
+          }
+        },
+        {
+          "key": "thomson",
+          "left": {
+            "ky": "Томсон",
+            "ru": "Томсон",
+            "en": "Thomson"
+          },
+          "right": {
+            "ky": "Электрондор оң «камырда»",
+            "ru": "Электроны в положительном «тесте»",
+            "en": "Electrons in positive «dough»"
+          }
+        },
+        {
+          "key": "rutherford",
+          "left": {
+            "ky": "Резерфорд",
+            "ru": "Резерфорд",
+            "en": "Rutherford"
+          },
+          "right": {
+            "ky": "Кичинекей оң ядро жана бош мейкиндик",
+            "ru": "Крошечное положительное ядро и пустота",
+            "en": "A tiny positive nucleus and empty space"
+          }
+        },
+        {
+          "key": "bohr",
+          "left": {
+            "ky": "Бор",
+            "ru": "Бор",
+            "en": "Bohr"
+          },
+          "right": {
+            "ky": "Электрондор энергетикалык деңгээлдерде",
+            "ru": "Электроны на энергетических уровнях",
+            "en": "Electrons on energy levels"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Дальтон – катуу шар; Томсон – «мейиздүү пудинг»; Резерфорд – ядролук модель; Бор – энергетикалык деңгээлдер.",
+        "ru": "Дальтон – твёрдый шар; Томсон – «пудинг с изюмом»; Резерфорд – ядерная модель; Бор – энергетические уровни.",
+        "en": "Dalton – solid ball; Thomson – plum pudding; Rutherford – nuclear model; Bohr – energy levels."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o3"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.atomic-models-6",
+      "type": "match",
+      "prompt": {
+        "ky": "Моделди ал сунушталган жылга дал келтир.",
+        "ru": "Сопоставь модель и год, когда её предложили.",
+        "en": "Match each model to the year it was proposed."
+      },
+      "pairs": [
+        {
+          "key": "y1803",
+          "left": {
+            "ky": "Дальтондун модели",
+            "ru": "Модель Дальтона",
+            "en": "Dalton's model"
+          },
+          "right": {
+            "ky": "1803",
+            "ru": "1803",
+            "en": "1803"
+          }
+        },
+        {
+          "key": "y1904",
+          "left": {
+            "ky": "Томсондун модели",
+            "ru": "Модель Томсона",
+            "en": "Thomson's model"
+          },
+          "right": {
+            "ky": "1904",
+            "ru": "1904",
+            "en": "1904"
+          }
+        },
+        {
+          "key": "y1911",
+          "left": {
+            "ky": "Резерфорддун модели",
+            "ru": "Модель Резерфорда",
+            "en": "Rutherford's model"
+          },
+          "right": {
+            "ky": "1911",
+            "ru": "1911",
+            "en": "1911"
+          }
+        },
+        {
+          "key": "y1913",
+          "left": {
+            "ky": "Бордун модели",
+            "ru": "Модель Бора",
+            "en": "Bohr's model"
+          },
+          "right": {
+            "ky": "1913",
+            "ru": "1913",
+            "en": "1913"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Моделдер мындай иреттелет: 1803 – Дальтон, 1904 – Томсон, 1911 – Резерфорд, 1913 – Бор.",
+        "ru": "Модели идут так: 1803 – Дальтон, 1904 – Томсон, 1911 – Резерфорд, 1913 – Бор.",
+        "en": "The order is: 1803 Dalton, 1904 Thomson, 1911 Rutherford, 1913 Bohr."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o3"
+      ],
+      "misconceptionKey": "chem.m.models-wrong",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.atomic-models-7",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Резерфорд ачкан атомдун бөлүгүн моделден тап.",
+        "ru": "Найди на модели часть атома, которую открыл Резерфорд.",
+        "en": "Find the part of the atom that Rutherford discovered."
+      },
+      "targetConceptKey": "chem.atomic-nucleus",
+      "explanation": {
+        "ky": "Резерфорд атомдун борборундагы кичинекей оң заряддуу ядрону ачкан.",
+        "ru": "Резерфорд открыл маленькое положительное ядро в центре атома.",
+        "en": "Rutherford discovered the small positive nucleus at the centre of the atom."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o3"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.atomic-models-8",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Бор атомдун моделине кошкон энергетикалык деңгээлди (катмарды) моделден тап.",
+        "ru": "Найди на модели энергетический уровень (слой), который добавил в модель Бор.",
+        "en": "Find an energy level (shell) – the feature Bohr added to the model."
+      },
+      "targetConceptKey": "chem.electron-shell",
+      "explanation": {
+        "ky": "Бор электрондор белгилүү деңгээлдерде – катмарларда гана болот деп көрсөткөн; моделде алар шакек сыяктуу.",
+        "ru": "Бор показал, что электроны находятся только на определённых уровнях – слоях; на модели это кольца.",
+        "en": "Bohr showed that electrons are only found on certain levels – the shells, drawn as rings on the model."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o3"
+      ],
+      "misconceptionKey": "chem.m.bohr-final",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.atomic-models-9",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Атомдун диаметри ядронукунан болжол менен 100 000 эсе чоң. Ядро 1 см (мончок) болсо, атомдун диаметри канча метр болмок?",
+        "ru": "Диаметр атома примерно в 100 000 раз больше диаметра ядра. Если бы ядро было размером 1 см (бусина), каким был бы диаметр атома в метрах?",
+        "en": "An atom is about 100,000 times wider than its nucleus. If the nucleus were 1 cm across (a bead), how many metres across would the atom be?"
+      },
+      "answer": 1000,
+      "tolerance": 0,
+      "unit": "m",
+      "explanation": {
+        "ky": "1 см × 100 000 = 100 000 см = 1000 м, б. а. 1 км.",
+        "ru": "1 см × 100 000 = 100 000 см = 1000 м, то есть 1 км.",
+        "en": "1 cm × 100,000 = 100,000 cm = 1000 m, i.e. 1 km."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o3"
+      ],
+      "misconceptionKey": "chem.m.atom-solid",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.atomic-models-10",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Литий-7 атомунун ядросунда 3 протон бар. Анда канча нейтрон бар?",
+        "ru": "В ядре атома лития-7 3 протона. Сколько в нём нейтронов?",
+        "en": "A lithium-7 nucleus has 3 protons. How many neutrons does it have?"
+      },
+      "answer": 4,
+      "tolerance": 0,
+      "explanation": {
+        "ky": "Нейтрондор = массалык сан − протондор = 7 − 3 = 4.",
+        "ru": "Нейтроны = массовое число − протоны = 7 − 3 = 4.",
+        "en": "Neutrons = mass number − protons = 7 − 3 = 4."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.atomic-models-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн Томсондун моделин алмаштырууга туура келген?",
+        "ru": "Почему от модели Томсона пришлось отказаться?",
+        "en": "Why did Thomson's model have to be replaced?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Электрондор жок экени далилденген",
+            "ru": "Доказали, что электронов нет",
+            "en": "Electrons were shown not to exist"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Айрым альфа-бөлүкчөлөрдүн артка кайтышын түшүндүрө алган эмес",
+            "ru": "Она не объясняла отскок альфа-частиц назад",
+            "en": "It could not explain alpha particles bouncing back"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ал өтө татаал болгон",
+            "ru": "Она была слишком сложной",
+            "en": "It was too complicated"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Атомдун массасын ченөө мүмкүн болгон эмес",
+            "ru": "Массу атома нельзя было измерить",
+            "en": "Atomic mass could not be measured"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Оң заряд бүт шарга чачылган болсо, альфа-бөлүкчөлөр бир аз гана бурулмак. Артка кайтышы оң заряд кичинекей ядрого топтолгонун көрсөткөн.",
+        "ru": "Если бы положительный заряд был размазан по всему шару, альфа-частицы отклонялись бы совсем немного. Отскок назад показал, что заряд собран в крошечном ядре.",
+        "en": "If the positive charge were spread through the whole ball, alpha particles would only be nudged slightly. Bouncing back showed the charge is packed into a tiny nucleus."
+      },
+      "objectiveKeys": [
+        "chem.g8.atoms.o3"
+      ],
+      "misconceptionKey": "chem.m.models-wrong",
+      "difficulty": 3
+    }
+  ]
+}

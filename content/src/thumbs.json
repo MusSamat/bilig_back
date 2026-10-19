@@ -2536,5 +2536,2532 @@
         "view": "section"
       }
     }
+  },
+  "speed": {
+    "speed-city-car": {
+      "scene": {
+        "params": {
+          "model": "kinematics",
+          "segments": [
+            {
+              "v": 15,
+              "t": 10
+            }
+          ],
+          "radar": true,
+          "showGraph": true,
+          "markEvery": 10
+        }
+      },
+      "process": {
+        "key": "phys.speed-measurement",
+        "fraction": 0.7
+      }
+    },
+    "speed-cyclist": {
+      "scene": {
+        "params": {
+          "model": "kinematics",
+          "segments": [
+            {
+              "v": 5,
+              "t": 10
+            }
+          ],
+          "radar": true,
+          "showGraph": true,
+          "markEvery": 10
+        }
+      },
+      "process": {
+        "key": "phys.speed-measurement",
+        "fraction": 0.7
+      }
+    },
+    "speed-pedestrian": {
+      "scene": {
+        "params": {
+          "model": "kinematics",
+          "segments": [
+            {
+              "v": 1.5,
+              "t": 10
+            }
+          ],
+          "radar": false,
+          "showGraph": true,
+          "markEvery": 2
+        }
+      },
+      "process": {
+        "key": "phys.speed-measurement",
+        "fraction": 0.7
+      }
+    }
+  },
+  "distance-time-graphs": {
+    "dtg-city-trip": {
+      "scene": {
+        "params": {
+          "model": "kinematics",
+          "segments": [
+            {
+              "v": 10,
+              "t": 10
+            },
+            {
+              "v": 0,
+              "t": 10
+            },
+            {
+              "v": 20,
+              "t": 10
+            }
+          ],
+          "radar": false,
+          "showGraph": true,
+          "markEvery": 20
+        }
+      },
+      "process": {
+        "key": "phys.car-trip",
+        "fraction": 1
+      }
+    },
+    "dtg-walk": {
+      "scene": {
+        "params": {
+          "model": "kinematics",
+          "segments": [
+            {
+              "v": 1.5,
+              "t": 60
+            }
+          ],
+          "radar": false,
+          "showGraph": true,
+          "markEvery": 10
+        }
+      },
+      "process": {
+        "key": "phys.car-trip",
+        "fraction": 1
+      }
+    },
+    "dtg-bus": {
+      "scene": {
+        "params": {
+          "model": "kinematics",
+          "segments": [
+            {
+              "v": 10,
+              "t": 20
+            },
+            {
+              "v": 0,
+              "t": 15
+            },
+            {
+              "v": 10,
+              "t": 20
+            }
+          ],
+          "radar": false,
+          "showGraph": true,
+          "markEvery": 50
+        }
+      },
+      "process": {
+        "key": "phys.car-trip",
+        "fraction": 1
+      }
+    }
+  },
+  "forces": {
+    "forces-pull-8n": {
+      "scene": {
+        "params": {
+          "model": "forces",
+          "mass": 2,
+          "forces": [
+            {
+              "id": "pull",
+              "magnitude": 8,
+              "angleDeg": 0
+            }
+          ],
+          "gravity": true,
+          "friction": 0.25,
+          "dynamometer": true
+        },
+        "camera": {
+          "position": [
+            -0.5,
+            1.3,
+            3.8
+          ],
+          "target": [
+            -0.5,
+            0.45,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "process": {
+        "key": "phys.dynamometer-pull",
+        "fraction": 0
+      }
+    },
+    "forces-tug-of-war": {
+      "scene": {
+        "params": {
+          "model": "forces",
+          "mass": 10,
+          "forces": [
+            {
+              "id": "team-a",
+              "magnitude": 300,
+              "angleDeg": 0
+            },
+            {
+              "id": "team-b",
+              "magnitude": 250,
+              "angleDeg": 180
+            }
+          ],
+          "gravity": false,
+          "friction": 0,
+          "dynamometer": false
+        },
+        "camera": {
+          "position": [
+            -0.5,
+            1.3,
+            3.8
+          ],
+          "target": [
+            -0.5,
+            0.45,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "process": {
+        "key": "phys.dynamometer-pull",
+        "fraction": 0
+      }
+    },
+    "forces-hanging-1kg": {
+      "scene": {
+        "params": {
+          "model": "forces",
+          "mass": 1,
+          "forces": [
+            {
+              "id": "hold",
+              "magnitude": 9.8,
+              "angleDeg": 90
+            }
+          ],
+          "gravity": true,
+          "friction": 0,
+          "dynamometer": true
+        },
+        "camera": {
+          "position": [
+            0,
+            1.5,
+            4.2
+          ],
+          "target": [
+            0,
+            0.9,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "process": {
+        "key": "phys.dynamometer-pull",
+        "fraction": 0
+      }
+    },
+    "forces-balanced": {
+      "scene": {
+        "params": {
+          "model": "forces",
+          "mass": 2,
+          "forces": [
+            {
+              "id": "pull",
+              "magnitude": 4.9,
+              "angleDeg": 0
+            }
+          ],
+          "gravity": true,
+          "friction": 0.25,
+          "dynamometer": true
+        }
+      },
+      "modes": {
+        "vectors": true,
+        "resultant": true,
+        "labels": true
+      },
+      "process": {
+        "key": "phys.dynamometer-pull",
+        "fraction": 0
+      }
+    }
+  },
+  "moment-of-force": {
+    "lever-balanced": {
+      "scene": {
+        "params": {
+          "model": "lever",
+          "length": 2,
+          "pivot": 1,
+          "loads": [
+            {
+              "id": "left",
+              "position": 0.4,
+              "mass": 3
+            },
+            {
+              "id": "right",
+              "position": 1.9,
+              "mass": 2
+            }
+          ],
+          "g": 9.8
+        }
+      }
+    },
+    "lever-unbalanced": {
+      "scene": {
+        "params": {
+          "model": "lever",
+          "length": 2,
+          "pivot": 1,
+          "loads": [
+            {
+              "id": "left",
+              "position": 0.4,
+              "mass": 3
+            },
+            {
+              "id": "right",
+              "position": 1.6,
+              "mass": 2
+            }
+          ],
+          "g": 9.8
+        }
+      }
+    },
+    "lever-spanner": {
+      "scene": {
+        "params": {
+          "model": "lever",
+          "length": 0.3,
+          "pivot": 0.025,
+          "loads": [
+            {
+              "id": "hand",
+              "position": 0.275,
+              "mass": 5.1
+            }
+          ],
+          "g": 9.8
+        }
+      }
+    }
+  },
+  "atomic-models": {
+    "model-dalton": {
+      "scene": {
+        "params": {
+          "formula": "Li",
+          "atoms": [
+            {
+              "id": "Li1",
+              "element": "Li",
+              "position": [
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "bonds": [],
+          "showNucleus": false,
+          "protons": 3,
+          "neutrons": 4,
+          "shells": [
+            2,
+            1
+          ]
+        },
+        "camera": {
+          "position": [
+            0,
+            2,
+            8
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "shells": false,
+        "rep": "spacefill"
+      }
+    },
+    "model-rutherford-au": {
+      "scene": {
+        "params": {
+          "formula": "Au",
+          "atoms": [
+            {
+              "id": "Au1",
+              "element": "Au",
+              "position": [
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "bonds": [],
+          "showNucleus": true,
+          "protons": 79,
+          "neutrons": 118,
+          "shells": [
+            2,
+            8,
+            18,
+            32,
+            18,
+            1
+          ]
+        },
+        "camera": {
+          "position": [
+            0,
+            3,
+            18
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "shells": true
+      }
+    },
+    "model-bohr-h": {
+      "scene": {
+        "params": {
+          "formula": "H",
+          "atoms": [
+            {
+              "id": "H1",
+              "element": "H",
+              "position": [
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "bonds": [],
+          "showNucleus": true,
+          "protons": 1,
+          "neutrons": 0,
+          "shells": [
+            1
+          ]
+        },
+        "camera": {
+          "position": [
+            0,
+            1.2,
+            4.5
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "shells": true
+      }
+    }
+  },
+  "pure-substances-mixtures": {
+    "mix-iron-sulfur": {
+      "scene": {
+        "params": {
+          "model": "particles",
+          "species": [
+            {
+              "id": "fe",
+              "element": "Fe",
+              "count": 30,
+              "place": "clump"
+            },
+            {
+              "id": "s",
+              "element": "S",
+              "count": 30,
+              "place": "clump"
+            }
+          ],
+          "bonded": [],
+          "temperature": 20
+        }
+      }
+    },
+    "compound-fes": {
+      "scene": {
+        "params": {
+          "model": "particles",
+          "species": [
+            {
+              "id": "fes_fe",
+              "element": "Fe",
+              "count": 20,
+              "place": "mixed"
+            },
+            {
+              "id": "fes_s",
+              "element": "S",
+              "count": 20,
+              "place": "mixed"
+            }
+          ],
+          "bonded": [
+            {
+              "a": "fes_fe",
+              "b": "fes_s"
+            }
+          ],
+          "temperature": 20
+        }
+      }
+    },
+    "solution-salt-water": {
+      "scene": {
+        "params": {
+          "model": "particles",
+          "species": [
+            {
+              "id": "water",
+              "hue": 205,
+              "count": 90,
+              "radius": 0.8,
+              "place": "mixed"
+            },
+            {
+              "id": "na",
+              "element": "Na",
+              "count": 8,
+              "place": "mixed"
+            },
+            {
+              "id": "cl",
+              "element": "Cl",
+              "count": 8,
+              "place": "mixed"
+            }
+          ],
+          "bonded": [],
+          "temperature": 20,
+          "dissolve": 1
+        }
+      }
+    }
+  },
+  "separating-mixtures": {
+    "sep-filtration": {
+      "scene": {
+        "params": {
+          "model": "separation",
+          "method": "filtration",
+          "mixture": "sand + salt water"
+        },
+        "camera": {
+          "position": [
+            0,
+            1.4,
+            5
+          ],
+          "target": [
+            0,
+            0.9,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    },
+    "sep-evaporation": {
+      "scene": {
+        "params": {
+          "model": "separation",
+          "method": "evaporation",
+          "mixture": "salt water"
+        },
+        "camera": {
+          "position": [
+            0,
+            1.5,
+            3.6
+          ],
+          "target": [
+            0,
+            0.7,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    },
+    "sep-distillation": {
+      "scene": {
+        "params": {
+          "model": "separation",
+          "method": "distillation",
+          "mixture": "salt water"
+        },
+        "camera": {
+          "position": [
+            -0.2,
+            1.9,
+            5.6
+          ],
+          "target": [
+            -0.2,
+            1.3,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    },
+    "sep-chromatography": {
+      "scene": {
+        "params": {
+          "model": "separation",
+          "method": "chromatography",
+          "mixture": "felt-tip ink"
+        },
+        "camera": {
+          "position": [
+            0,
+            1.5,
+            4.2
+          ],
+          "target": [
+            0,
+            1.1,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    },
+    "sep-magnet": {
+      "scene": {
+        "params": {
+          "model": "separation",
+          "method": "magnet",
+          "mixture": "iron filings + sand"
+        },
+        "camera": {
+          "position": [
+            0,
+            1.6,
+            4.2
+          ],
+          "target": [
+            0,
+            1.0,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    },
+    "sep-decanting": {
+      "scene": {
+        "params": {
+          "model": "separation",
+          "method": "decanting",
+          "mixture": "muddy water"
+        },
+        "camera": {
+          "position": [
+            0,
+            1.3,
+            4.0
+          ],
+          "target": [
+            0,
+            0.7,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    }
+  },
+  "solutions": {
+    "nacl-unsaturated": {
+      "scene": {
+        "params": {
+          "model": "particles",
+          "species": [
+            {
+              "id": "water",
+              "hue": 205,
+              "count": 90,
+              "radius": 0.8,
+              "place": "mixed"
+            },
+            {
+              "id": "na",
+              "element": "Na",
+              "count": 6,
+              "place": "mixed"
+            },
+            {
+              "id": "cl",
+              "element": "Cl",
+              "count": 6,
+              "place": "mixed"
+            }
+          ],
+          "temperature": 20,
+          "dissolve": 1
+        }
+      }
+    },
+    "nacl-saturated": {
+      "scene": {
+        "params": {
+          "model": "particles",
+          "species": [
+            {
+              "id": "water",
+              "hue": 205,
+              "count": 90,
+              "radius": 0.8,
+              "place": "mixed"
+            },
+            {
+              "id": "na",
+              "element": "Na",
+              "count": 16,
+              "place": "bottom"
+            },
+            {
+              "id": "cl",
+              "element": "Cl",
+              "count": 16,
+              "place": "bottom"
+            }
+          ],
+          "temperature": 20,
+          "dissolve": 0.85
+        }
+      }
+    },
+    "kno3-hot": {
+      "scene": {
+        "params": {
+          "model": "particles",
+          "species": [
+            {
+              "id": "water",
+              "hue": 205,
+              "count": 90,
+              "radius": 0.8,
+              "place": "mixed"
+            },
+            {
+              "id": "k",
+              "element": "K",
+              "count": 20,
+              "place": "mixed"
+            },
+            {
+              "id": "no3",
+              "hue": 120,
+              "count": 20,
+              "place": "mixed"
+            }
+          ],
+          "temperature": 60,
+          "dissolve": 1
+        }
+      }
+    }
+  },
+  "nutrients": {
+    "orange-100g": {
+      "scene": {
+        "params": {
+          "model": "nutrition-plate",
+          "foods": [
+            {
+              "id": "orange",
+              "group": "vitamins",
+              "grams": 100,
+              "kcal": 47
+            }
+          ],
+          "test": null
+        }
+      },
+      "modes": {
+        "groups": true,
+        "labels": true
+      }
+    },
+    "bread-100g": {
+      "scene": {
+        "params": {
+          "model": "nutrition-plate",
+          "foods": [
+            {
+              "id": "bread",
+              "group": "carbs",
+              "grams": 100,
+              "kcal": 260
+            }
+          ],
+          "test": "iodine"
+        }
+      },
+      "modes": {
+        "groups": true,
+        "labels": true
+      }
+    },
+    "walnuts-100g": {
+      "scene": {
+        "params": {
+          "model": "nutrition-plate",
+          "foods": [
+            {
+              "id": "walnuts",
+              "group": "fats",
+              "grams": 100,
+              "kcal": 650
+            }
+          ],
+          "test": "paper"
+        }
+      },
+      "modes": {
+        "groups": true,
+        "labels": true
+      }
+    },
+    "chicken-100g": {
+      "scene": {
+        "params": {
+          "model": "nutrition-plate",
+          "foods": [
+            {
+              "id": "chicken",
+              "group": "proteins",
+              "grams": 100,
+              "kcal": 165
+            }
+          ],
+          "test": "biuret"
+        }
+      },
+      "modes": {
+        "groups": true,
+        "labels": true
+      }
+    }
+  },
+  "balanced-diet": {
+    "lunch-balanced": {
+      "scene": {
+        "params": {
+          "model": "nutrition-plate",
+          "foods": [
+            {
+              "id": "rice",
+              "group": "carbs",
+              "grams": 150,
+              "kcal": 195
+            },
+            {
+              "id": "bread",
+              "group": "carbs",
+              "grams": 30,
+              "kcal": 78
+            },
+            {
+              "id": "beef",
+              "group": "proteins",
+              "grams": 80,
+              "kcal": 200
+            },
+            {
+              "id": "oil",
+              "group": "fats",
+              "grams": 5,
+              "kcal": 45
+            },
+            {
+              "id": "salad",
+              "group": "fibre",
+              "grams": 150,
+              "kcal": 30
+            },
+            {
+              "id": "apple",
+              "group": "vitamins",
+              "grams": 150,
+              "kcal": 78
+            },
+            {
+              "id": "ayran",
+              "group": "minerals",
+              "grams": 200,
+              "kcal": 80
+            },
+            {
+              "id": "water",
+              "group": "water",
+              "grams": 250,
+              "kcal": 0
+            }
+          ],
+          "target": {
+            "kcal": 700,
+            "carbs": 50,
+            "proteins": 20,
+            "fats": 30
+          }
+        }
+      },
+      "modes": {
+        "groups": true,
+        "energy": true
+      }
+    },
+    "breakfast-porridge": {
+      "scene": {
+        "params": {
+          "model": "nutrition-plate",
+          "foods": [
+            {
+              "id": "porridge",
+              "group": "carbs",
+              "grams": 250,
+              "kcal": 380
+            },
+            {
+              "id": "egg",
+              "group": "proteins",
+              "grams": 60,
+              "kcal": 90
+            },
+            {
+              "id": "apple",
+              "group": "vitamins",
+              "grams": 150,
+              "kcal": 78
+            },
+            {
+              "id": "tea",
+              "group": "water",
+              "grams": 200,
+              "kcal": 0
+            }
+          ],
+          "target": {
+            "kcal": 550,
+            "carbs": 50,
+            "proteins": 20,
+            "fats": 30
+          }
+        }
+      },
+      "modes": {
+        "groups": true,
+        "energy": true
+      }
+    },
+    "day-menu": {
+      "scene": {
+        "params": {
+          "model": "nutrition-plate",
+          "foods": [
+            {
+              "id": "porridge",
+              "group": "carbs",
+              "grams": 250,
+              "kcal": 320
+            },
+            {
+              "id": "bread",
+              "group": "carbs",
+              "grams": 150,
+              "kcal": 390
+            },
+            {
+              "id": "rice",
+              "group": "carbs",
+              "grams": 200,
+              "kcal": 260
+            },
+            {
+              "id": "beef",
+              "group": "proteins",
+              "grams": 150,
+              "kcal": 375
+            },
+            {
+              "id": "egg",
+              "group": "proteins",
+              "grams": 60,
+              "kcal": 90
+            },
+            {
+              "id": "oil",
+              "group": "fats",
+              "grams": 15,
+              "kcal": 135
+            },
+            {
+              "id": "butter",
+              "group": "fats",
+              "grams": 10,
+              "kcal": 75
+            },
+            {
+              "id": "walnuts",
+              "group": "fats",
+              "grams": 30,
+              "kcal": 195
+            },
+            {
+              "id": "salad",
+              "group": "fibre",
+              "grams": 300,
+              "kcal": 60
+            },
+            {
+              "id": "apple",
+              "group": "vitamins",
+              "grams": 150,
+              "kcal": 78
+            },
+            {
+              "id": "orange",
+              "group": "vitamins",
+              "grams": 150,
+              "kcal": 70
+            },
+            {
+              "id": "ayran",
+              "group": "minerals",
+              "grams": 400,
+              "kcal": 160
+            },
+            {
+              "id": "water",
+              "group": "water",
+              "grams": 1500,
+              "kcal": 0
+            }
+          ],
+          "target": {
+            "kcal": 2200,
+            "carbs": 55,
+            "proteins": 15,
+            "fats": 30
+          }
+        }
+      },
+      "modes": {
+        "groups": true,
+        "energy": true
+      }
+    }
+  },
+  "healthy-habits": {
+    "lunch-vs-snack": {
+      "scene": {
+        "params": {
+          "model": "nutrition-plate",
+          "foods": [
+            {
+              "id": "lunch-rice",
+              "group": "carbs",
+              "grams": 150,
+              "kcal": 195
+            },
+            {
+              "id": "lunch-chicken",
+              "group": "proteins",
+              "grams": 100,
+              "kcal": 165
+            },
+            {
+              "id": "lunch-salad",
+              "group": "fibre",
+              "grams": 150,
+              "kcal": 30
+            },
+            {
+              "id": "lunch-apple",
+              "group": "vitamins",
+              "grams": 150,
+              "kcal": 78
+            },
+            {
+              "id": "lunch-water",
+              "group": "water",
+              "grams": 250,
+              "kcal": 0
+            },
+            {
+              "id": "snack-chips",
+              "group": "fats",
+              "grams": 50,
+              "kcal": 270
+            },
+            {
+              "id": "snack-soda",
+              "group": "carbs",
+              "grams": 330,
+              "kcal": 140
+            },
+            {
+              "id": "snack-candy",
+              "group": "carbs",
+              "grams": 50,
+              "kcal": 260
+            }
+          ]
+        }
+      },
+      "modes": {
+        "groups": true,
+        "energy": true
+      }
+    },
+    "soda-can": {
+      "scene": {
+        "params": {
+          "model": "nutrition-plate",
+          "foods": [
+            {
+              "id": "snack-soda",
+              "group": "carbs",
+              "grams": 330,
+              "kcal": 140
+            }
+          ]
+        }
+      },
+      "modes": {
+        "groups": true,
+        "energy": true,
+        "labels": true
+      }
+    }
+  },
+  "skeleton-muscles": {
+    "skeleton-muscles": {
+      "scene": {
+        "camera": {
+          "position": [
+            0,
+            0.1,
+            5.2
+          ],
+          "target": [
+            0,
+            0,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "view": "whole"
+      }
+    },
+    "arm-muscles": {
+      "scene": {
+        "camera": {
+          "position": [
+            -1.8,
+            0.9,
+            1.4
+          ],
+          "target": [
+            -0.42,
+            0.72,
+            -0.05
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "view": "whole"
+      }
+    },
+    "newborn-skeleton": {
+      "scene": {
+        "camera": {
+          "position": [
+            1,
+            1.65,
+            1.6
+          ],
+          "target": [
+            0,
+            1.5,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "view": "whole"
+      }
+    }
+  },
+  "respiratory-system": {
+    "respiratory-system": {
+      "scene": {
+        "camera": {
+          "position": [
+            -0.35,
+            0.3,
+            6.0
+          ],
+          "target": [
+            -0.35,
+            0.05,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "view": "whole"
+      }
+    },
+    "lungs-section": {
+      "scene": {
+        "camera": {
+          "position": [
+            0.4,
+            -0.3,
+            3.4
+          ],
+          "target": [
+            0,
+            -0.65,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "view": "section"
+      }
+    }
+  },
+  "ecosystems-food-chains": {
+    "web-mountain": {
+      "scene": {
+        "params": {
+          "model": "food-web",
+          "biome": "mountain",
+          "organisms": [
+            {
+              "id": "grass",
+              "level": "producer",
+              "icon": "grass",
+              "count": 1000
+            },
+            {
+              "id": "juniper",
+              "level": "producer",
+              "icon": "tree",
+              "count": 200
+            },
+            {
+              "id": "grasshopper",
+              "level": "primary",
+              "icon": "grasshopper",
+              "count": 500
+            },
+            {
+              "id": "marmot",
+              "level": "primary",
+              "icon": "marmot",
+              "count": 40
+            },
+            {
+              "id": "ibex",
+              "level": "primary",
+              "icon": "ibex",
+              "count": 30
+            },
+            {
+              "id": "chukar",
+              "level": "secondary",
+              "icon": "bird",
+              "count": 25
+            },
+            {
+              "id": "fox",
+              "level": "secondary",
+              "icon": "fox",
+              "count": 4
+            },
+            {
+              "id": "snow-leopard",
+              "level": "tertiary",
+              "icon": "snow-leopard",
+              "count": 1
+            },
+            {
+              "id": "eagle",
+              "level": "tertiary",
+              "icon": "eagle",
+              "count": 2
+            },
+            {
+              "id": "fungi",
+              "level": "decomposer",
+              "icon": "mushroom",
+              "count": 1000
+            }
+          ],
+          "links": [
+            [
+              "grass",
+              "grasshopper"
+            ],
+            [
+              "grass",
+              "marmot"
+            ],
+            [
+              "grass",
+              "ibex"
+            ],
+            [
+              "juniper",
+              "chukar"
+            ],
+            [
+              "grasshopper",
+              "chukar"
+            ],
+            [
+              "marmot",
+              "fox"
+            ],
+            [
+              "chukar",
+              "fox"
+            ],
+            [
+              "ibex",
+              "snow-leopard"
+            ],
+            [
+              "marmot",
+              "snow-leopard"
+            ],
+            [
+              "marmot",
+              "eagle"
+            ],
+            [
+              "fox",
+              "eagle"
+            ],
+            [
+              "ibex",
+              "fungi"
+            ],
+            [
+              "grass",
+              "fungi"
+            ]
+          ]
+        }
+      },
+      "modes": {
+        "energy": true,
+        "labels": false
+      }
+    },
+    "chain-grass-ibex-leopard": {
+      "scene": {
+        "params": {
+          "model": "food-web",
+          "biome": "mountain",
+          "organisms": [
+            {
+              "id": "grass",
+              "level": "producer",
+              "icon": "grass",
+              "count": 1000
+            },
+            {
+              "id": "ibex",
+              "level": "primary",
+              "icon": "ibex",
+              "count": 30
+            },
+            {
+              "id": "snow-leopard",
+              "level": "tertiary",
+              "icon": "snow-leopard",
+              "count": 1
+            }
+          ],
+          "links": [
+            [
+              "grass",
+              "ibex"
+            ],
+            [
+              "ibex",
+              "snow-leopard"
+            ]
+          ]
+        }
+      },
+      "modes": {
+        "energy": true,
+        "labels": true
+      }
+    },
+    "energy-pyramid": {
+      "scene": {
+        "params": {
+          "model": "food-web",
+          "biome": "mountain",
+          "organisms": [
+            {
+              "id": "grass",
+              "level": "producer",
+              "icon": "grass",
+              "count": 1000
+            },
+            {
+              "id": "marmot",
+              "level": "primary",
+              "icon": "marmot",
+              "count": 40
+            },
+            {
+              "id": "fox",
+              "level": "secondary",
+              "icon": "fox",
+              "count": 4
+            },
+            {
+              "id": "eagle",
+              "level": "tertiary",
+              "icon": "eagle",
+              "count": 2
+            }
+          ],
+          "links": [
+            [
+              "grass",
+              "marmot"
+            ],
+            [
+              "marmot",
+              "fox"
+            ],
+            [
+              "fox",
+              "eagle"
+            ]
+          ]
+        }
+      },
+      "modes": {
+        "energy": true,
+        "labels": true
+      }
+    }
+  },
+  "human-impact-ecosystems": {
+    "yellowstone-no-wolves": {
+      "scene": {
+        "params": {
+          "model": "food-web",
+          "biome": "forest",
+          "organisms": [
+            {
+              "id": "grass",
+              "level": "producer",
+              "icon": "grass",
+              "count": 1000
+            },
+            {
+              "id": "willow",
+              "level": "producer",
+              "icon": "bush",
+              "count": 150
+            },
+            {
+              "id": "aspen",
+              "level": "producer",
+              "icon": "tree",
+              "count": 150
+            },
+            {
+              "id": "elk",
+              "level": "primary",
+              "icon": "deer",
+              "count": 60
+            },
+            {
+              "id": "beaver",
+              "level": "primary",
+              "icon": "beaver",
+              "count": 6
+            },
+            {
+              "id": "vole",
+              "level": "primary",
+              "icon": "mouse",
+              "count": 300
+            },
+            {
+              "id": "coyote",
+              "level": "secondary",
+              "icon": "coyote",
+              "count": 8
+            },
+            {
+              "id": "wolf",
+              "level": "secondary",
+              "icon": "wolf",
+              "count": 5
+            },
+            {
+              "id": "fungi",
+              "level": "decomposer",
+              "icon": "mushroom",
+              "count": 1000
+            }
+          ],
+          "links": [
+            [
+              "grass",
+              "elk"
+            ],
+            [
+              "willow",
+              "elk"
+            ],
+            [
+              "aspen",
+              "elk"
+            ],
+            [
+              "willow",
+              "beaver"
+            ],
+            [
+              "aspen",
+              "beaver"
+            ],
+            [
+              "grass",
+              "vole"
+            ],
+            [
+              "vole",
+              "coyote"
+            ],
+            [
+              "elk",
+              "wolf"
+            ],
+            [
+              "elk",
+              "fungi"
+            ],
+            [
+              "aspen",
+              "fungi"
+            ]
+          ],
+          "removed": [
+            "wolf"
+          ]
+        }
+      },
+      "modes": {
+        "energy": true,
+        "labels": true
+      }
+    },
+    "yellowstone-wolves-back": {
+      "scene": {
+        "params": {
+          "model": "food-web",
+          "biome": "forest",
+          "organisms": [
+            {
+              "id": "grass",
+              "level": "producer",
+              "icon": "grass",
+              "count": 1000
+            },
+            {
+              "id": "willow",
+              "level": "producer",
+              "icon": "bush",
+              "count": 300
+            },
+            {
+              "id": "aspen",
+              "level": "producer",
+              "icon": "tree",
+              "count": 300
+            },
+            {
+              "id": "elk",
+              "level": "primary",
+              "icon": "deer",
+              "count": 60
+            },
+            {
+              "id": "beaver",
+              "level": "primary",
+              "icon": "beaver",
+              "count": 18
+            },
+            {
+              "id": "vole",
+              "level": "primary",
+              "icon": "mouse",
+              "count": 300
+            },
+            {
+              "id": "coyote",
+              "level": "secondary",
+              "icon": "coyote",
+              "count": 8
+            },
+            {
+              "id": "wolf",
+              "level": "secondary",
+              "icon": "wolf",
+              "count": 5
+            },
+            {
+              "id": "fungi",
+              "level": "decomposer",
+              "icon": "mushroom",
+              "count": 1000
+            }
+          ],
+          "links": [
+            [
+              "grass",
+              "elk"
+            ],
+            [
+              "willow",
+              "elk"
+            ],
+            [
+              "aspen",
+              "elk"
+            ],
+            [
+              "willow",
+              "beaver"
+            ],
+            [
+              "aspen",
+              "beaver"
+            ],
+            [
+              "grass",
+              "vole"
+            ],
+            [
+              "vole",
+              "coyote"
+            ],
+            [
+              "elk",
+              "wolf"
+            ],
+            [
+              "elk",
+              "fungi"
+            ],
+            [
+              "aspen",
+              "fungi"
+            ]
+          ],
+          "removed": []
+        }
+      },
+      "modes": {
+        "energy": true,
+        "labels": true
+      }
+    },
+    "archa-forest": {
+      "scene": {
+        "params": {
+          "model": "food-web",
+          "biome": "mountain",
+          "organisms": [
+            {
+              "id": "juniper",
+              "level": "producer",
+              "icon": "tree",
+              "count": 50
+            },
+            {
+              "id": "grass",
+              "level": "producer",
+              "icon": "grass",
+              "count": 1000
+            },
+            {
+              "id": "sheep",
+              "level": "primary",
+              "icon": "sheep",
+              "count": 300
+            },
+            {
+              "id": "roe-deer",
+              "level": "primary",
+              "icon": "deer",
+              "count": 20
+            },
+            {
+              "id": "marmot",
+              "level": "primary",
+              "icon": "marmot",
+              "count": 40
+            },
+            {
+              "id": "fox",
+              "level": "secondary",
+              "icon": "fox",
+              "count": 4
+            },
+            {
+              "id": "eagle",
+              "level": "tertiary",
+              "icon": "eagle",
+              "count": 2
+            },
+            {
+              "id": "fungi",
+              "level": "decomposer",
+              "icon": "mushroom",
+              "count": 1000
+            }
+          ],
+          "links": [
+            [
+              "grass",
+              "sheep"
+            ],
+            [
+              "juniper",
+              "sheep"
+            ],
+            [
+              "grass",
+              "roe-deer"
+            ],
+            [
+              "juniper",
+              "roe-deer"
+            ],
+            [
+              "grass",
+              "marmot"
+            ],
+            [
+              "marmot",
+              "fox"
+            ],
+            [
+              "marmot",
+              "eagle"
+            ],
+            [
+              "fox",
+              "eagle"
+            ],
+            [
+              "juniper",
+              "fungi"
+            ],
+            [
+              "grass",
+              "fungi"
+            ]
+          ],
+          "removed": []
+        }
+      },
+      "modes": {
+        "energy": true,
+        "labels": true
+      }
+    }
+  },
+  "pollution-bioaccumulation": {
+    "lake-mercury": {
+      "scene": {
+        "params": {
+          "model": "food-web",
+          "biome": "lake",
+          "organisms": [
+            {
+              "id": "phytoplankton",
+              "level": "producer",
+              "icon": "algae",
+              "count": 10000
+            },
+            {
+              "id": "zooplankton",
+              "level": "primary",
+              "icon": "plankton",
+              "count": 1000
+            },
+            {
+              "id": "dace",
+              "level": "secondary",
+              "icon": "fish",
+              "count": 100
+            },
+            {
+              "id": "zander",
+              "level": "tertiary",
+              "icon": "fish",
+              "count": 10
+            },
+            {
+              "id": "cormorant",
+              "level": "tertiary",
+              "icon": "bird",
+              "count": 4
+            },
+            {
+              "id": "bacteria",
+              "level": "decomposer",
+              "icon": "bacteria",
+              "count": 10000
+            }
+          ],
+          "links": [
+            [
+              "phytoplankton",
+              "zooplankton"
+            ],
+            [
+              "zooplankton",
+              "dace"
+            ],
+            [
+              "dace",
+              "zander"
+            ],
+            [
+              "dace",
+              "cormorant"
+            ],
+            [
+              "zander",
+              "bacteria"
+            ],
+            [
+              "phytoplankton",
+              "bacteria"
+            ]
+          ],
+          "pollutant": {
+            "name": "Hg",
+            "start": 0.001,
+            "factor": 10
+          }
+        }
+      },
+      "modes": {
+        "energy": false,
+        "pollutant": true,
+        "labels": true
+      }
+    },
+    "city-smog": {
+      "scene": {
+        "params": {
+          "model": "food-web",
+          "biome": "steppe",
+          "organisms": [
+            {
+              "id": "grass",
+              "level": "producer",
+              "icon": "grass",
+              "count": 1000
+            },
+            {
+              "id": "grasshopper",
+              "level": "primary",
+              "icon": "grasshopper",
+              "count": 300
+            },
+            {
+              "id": "lark",
+              "level": "secondary",
+              "icon": "bird",
+              "count": 20
+            },
+            {
+              "id": "hawk",
+              "level": "tertiary",
+              "icon": "hawk",
+              "count": 2
+            },
+            {
+              "id": "fungi",
+              "level": "decomposer",
+              "icon": "mushroom",
+              "count": 1000
+            }
+          ],
+          "links": [
+            [
+              "grass",
+              "grasshopper"
+            ],
+            [
+              "grasshopper",
+              "lark"
+            ],
+            [
+              "lark",
+              "hawk"
+            ],
+            [
+              "hawk",
+              "fungi"
+            ],
+            [
+              "grass",
+              "fungi"
+            ]
+          ],
+          "pollutant": {
+            "name": "Pb",
+            "start": 0.05,
+            "factor": 2
+          }
+        }
+      },
+      "modes": {
+        "energy": false,
+        "pollutant": true,
+        "labels": true
+      }
+    },
+    "glacier-retreat": {
+      "scene": {
+        "params": {
+          "model": "food-web",
+          "biome": "mountain",
+          "organisms": [
+            {
+              "id": "grass",
+              "level": "producer",
+              "icon": "grass",
+              "count": 1000
+            },
+            {
+              "id": "ibex",
+              "level": "primary",
+              "icon": "ibex",
+              "count": 30
+            },
+            {
+              "id": "marmot",
+              "level": "primary",
+              "icon": "marmot",
+              "count": 40
+            },
+            {
+              "id": "snow-leopard",
+              "level": "tertiary",
+              "icon": "leopard",
+              "count": 1
+            },
+            {
+              "id": "fungi",
+              "level": "decomposer",
+              "icon": "mushroom",
+              "count": 1000
+            }
+          ],
+          "links": [
+            [
+              "grass",
+              "ibex"
+            ],
+            [
+              "grass",
+              "marmot"
+            ],
+            [
+              "ibex",
+              "snow-leopard"
+            ],
+            [
+              "marmot",
+              "snow-leopard"
+            ],
+            [
+              "grass",
+              "fungi"
+            ]
+          ],
+          "pollutant": null
+        }
+      },
+      "modes": {
+        "energy": true,
+        "pollutant": false,
+        "labels": true
+      }
+    }
+  },
+  "metals-oxygen": {
+    "mg-burning": {
+      "scene": {
+        "params": {
+          "model": "reaction-vessel",
+          "metal": "Mg",
+          "reagent": "oxygen",
+          "compare": []
+        },
+        "camera": {
+          "position": [
+            0,
+            1.3,
+            3.5
+          ],
+          "target": [
+            0,
+            0.8,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    },
+    "cu-heated": {
+      "scene": {
+        "params": {
+          "model": "reaction-vessel",
+          "metal": "Cu",
+          "reagent": "oxygen",
+          "compare": []
+        },
+        "camera": {
+          "position": [
+            0,
+            1.3,
+            3.5
+          ],
+          "target": [
+            0,
+            0.8,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    },
+    "au-unchanged": {
+      "scene": {
+        "params": {
+          "model": "reaction-vessel",
+          "metal": "Au",
+          "reagent": "oxygen",
+          "compare": [
+            "Ag"
+          ]
+        },
+        "camera": {
+          "position": [
+            0,
+            1.3,
+            4.0
+          ],
+          "target": [
+            0,
+            0.8,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    }
+  },
+  "metals-water": {
+    "ca-water": {
+      "scene": {
+        "params": {
+          "model": "reaction-vessel",
+          "metal": "Ca",
+          "reagent": "water",
+          "compare": []
+        },
+        "camera": {
+          "position": [
+            0,
+            1.2,
+            3.5
+          ],
+          "target": [
+            0,
+            0.8,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    },
+    "na-water": {
+      "scene": {
+        "params": {
+          "model": "reaction-vessel",
+          "metal": "Na",
+          "reagent": "water",
+          "compare": []
+        },
+        "camera": {
+          "position": [
+            0,
+            1.2,
+            3.5
+          ],
+          "target": [
+            0,
+            0.8,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    },
+    "mg-steam": {
+      "scene": {
+        "params": {
+          "model": "reaction-vessel",
+          "metal": "Mg",
+          "reagent": "steam",
+          "compare": []
+        },
+        "camera": {
+          "position": [
+            0.2,
+            1.3,
+            3.6
+          ],
+          "target": [
+            0.2,
+            0.8,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    }
+  },
+  "metals-acids": {
+    "zn-hcl": {
+      "scene": {
+        "params": {
+          "model": "reaction-vessel",
+          "metal": "Zn",
+          "reagent": "acid",
+          "compare": []
+        },
+        "camera": {
+          "position": [
+            0,
+            1.2,
+            3.5
+          ],
+          "target": [
+            0,
+            0.8,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    },
+    "mg-hcl": {
+      "scene": {
+        "params": {
+          "model": "reaction-vessel",
+          "metal": "Mg",
+          "reagent": "acid",
+          "compare": []
+        },
+        "camera": {
+          "position": [
+            0,
+            1.2,
+            3.5
+          ],
+          "target": [
+            0,
+            0.8,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    },
+    "cu-hcl": {
+      "scene": {
+        "params": {
+          "model": "reaction-vessel",
+          "metal": "Cu",
+          "reagent": "acid",
+          "compare": []
+        },
+        "camera": {
+          "position": [
+            0,
+            1.2,
+            3.5
+          ],
+          "target": [
+            0,
+            0.8,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": false
+      }
+    }
+  },
+  "reactivity-series": {
+    "series-acid": {
+      "scene": {
+        "params": {
+          "model": "reaction-vessel",
+          "metal": "K",
+          "reagent": "acid",
+          "compare": [
+            "Mg",
+            "Zn",
+            "Fe",
+            "Cu",
+            "Au"
+          ]
+        },
+        "camera": {
+          "position": [
+            0,
+            2.2,
+            9
+          ],
+          "target": [
+            0,
+            0.6,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": true
+      }
+    },
+    "fe-cuso4": {
+      "scene": {
+        "params": {
+          "model": "reaction-vessel",
+          "metal": "Fe",
+          "reagent": "acid",
+          "compare": [
+            "Cu"
+          ]
+        },
+        "camera": {
+          "position": [
+            0,
+            1.2,
+            3.8
+          ],
+          "target": [
+            0,
+            0.6,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "run": true,
+        "labels": true
+      }
+    }
+  },
+  "exothermic-reactions": {
+    "exo-methane": {
+      "scene": {
+        "params": {
+          "model": "energy-profile",
+          "kind": "exo",
+          "reactants": 1000,
+          "products": 110,
+          "activation": 250,
+          "startTemp": 20,
+          "deltaT": 40
+        }
+      },
+      "modes": {
+        "graph": true,
+        "temperature": true,
+        "labels": true
+      }
+    },
+    "exo-plaster": {
+      "scene": {
+        "params": {
+          "model": "energy-profile",
+          "kind": "exo",
+          "reactants": 100,
+          "products": 83,
+          "activation": 20,
+          "startTemp": 20,
+          "deltaT": 14
+        }
+      },
+      "modes": {
+        "graph": true,
+        "temperature": true,
+        "labels": true
+      }
+    },
+    "exo-magnesium": {
+      "scene": {
+        "params": {
+          "model": "energy-profile",
+          "kind": "exo",
+          "reactants": 1300,
+          "products": 97,
+          "activation": 300,
+          "startTemp": 20,
+          "deltaT": 30
+        }
+      },
+      "modes": {
+        "graph": true,
+        "temperature": true,
+        "labels": true
+      }
+    }
+  },
+  "endothermic-changes": {
+    "cold-pack": {
+      "scene": {
+        "params": {
+          "model": "energy-profile",
+          "kind": "endo",
+          "reactants": 100,
+          "products": 126,
+          "activation": 30,
+          "startTemp": 20,
+          "deltaT": -12,
+          "compare": false
+        }
+      },
+      "modes": {
+        "graph": true,
+        "temperature": true,
+        "labels": true
+      }
+    },
+    "photosynthesis": {
+      "scene": {
+        "params": {
+          "model": "energy-profile",
+          "kind": "endo",
+          "reactants": 100,
+          "products": 2900,
+          "activation": 2900,
+          "startTemp": 20,
+          "deltaT": 0,
+          "compare": false
+        }
+      },
+      "modes": {
+        "graph": true,
+        "temperature": false,
+        "labels": true
+      }
+    },
+    "limestone": {
+      "scene": {
+        "params": {
+          "model": "energy-profile",
+          "kind": "endo",
+          "reactants": 100,
+          "products": 278,
+          "activation": 250,
+          "startTemp": 20,
+          "deltaT": 0,
+          "compare": false
+        }
+      },
+      "modes": {
+        "graph": true,
+        "temperature": false,
+        "labels": true
+      }
+    },
+    "exo-vs-endo": {
+      "scene": {
+        "params": {
+          "model": "energy-profile",
+          "kind": "endo",
+          "reactants": 100,
+          "products": 160,
+          "activation": 100,
+          "startTemp": 20,
+          "deltaT": -12,
+          "compare": true
+        },
+        "camera": {
+          "position": [
+            0,
+            1.5,
+            12.5
+          ],
+          "target": [
+            0,
+            1,
+            0
+          ],
+          "fov": 45
+        }
+      },
+      "modes": {
+        "graph": true,
+        "temperature": true,
+        "labels": true
+      }
+    }
   }
 }

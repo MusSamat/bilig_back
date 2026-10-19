@@ -1,0 +1,1085 @@
+{
+  "topic": {
+    "key": "exothermic-reactions",
+    "unitKey": "chem.g8.energy-changes",
+    "status": "published",
+    "title": {
+      "ky": "Экзотермикалык реакциялар",
+      "ru": "Экзотермические реакции",
+      "en": "Exothermic reactions"
+    },
+    "formula": "\\Delta H < 0,\\;\\Delta T > 0",
+    "classification": {
+      "ky": "Жылуулук бөлүнөт",
+      "ru": "Тепло выделяется",
+      "en": "Heat is released"
+    },
+    "description": {
+      "ky": "Экзотермикалык реакцияларда заттар жылуулук бөлүп чыгарат: продуктулардын энергиясы реагенттердикинен аз, ошондуктан айлана ысыйт. Күйүү, бенгал оту, гипстин катышы, биогаздын күйүшү, ысык эритмеден кристаллдардын пайда болушу – мунун мисалдары. Энергетикалык диаграмманы окуп, ΔT ны термометр менен өлчөйбүз.",
+      "ru": "В экзотермических реакциях вещества выделяют тепло: энергия продуктов меньше энергии реагентов, и вокруг становится теплее. Горение, бенгальский огонь, схватывание гипса, сжигание биогаза, кристаллизация из пересыщенного раствора – всё это примеры. Читаем энергетическую диаграмму и измеряем ΔT термометром.",
+      "en": "In exothermic reactions substances give out heat: the products have less energy than the reactants, so the surroundings warm up. Burning, sparklers, plaster of Paris setting, burning biogas and crystals forming in a supersaturated solution are all examples. We read an energy diagram and measure ΔT with a thermometer."
+    },
+    "goal": {
+      "ky": "Экзотермикалык процесстерди тааныш, энергетикалык диаграмманы окуу жана температуранын өзгөрүшүн (ΔT) өлчөө (CHEM-8.5.1).",
+      "ru": "Узнавать экзотермические процессы, читать энергетическую диаграмму и измерять изменение температуры ΔT (CHEM-8.5.1).",
+      "en": "Recognise exothermic processes, read an energy diagram and measure the temperature change ΔT (CHEM-8.5.1)."
+    },
+    "objectiveKeys": [
+      "chem.g8.energy-changes.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "energy-profile",
+        "kind": "exo",
+        "reactants": 100,
+        "products": 40,
+        "activation": 60,
+        "startTemp": 20,
+        "deltaT": 25
+      },
+      "camera": {
+        "position": [
+          0,
+          1.5,
+          8
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "graph",
+        "temperature",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "chem.exothermic-reaction",
+      "chem.energy-diagram",
+      "chem.energy-of-reactants",
+      "chem.energy-of-products",
+      "chem.activation-energy",
+      "chem.enthalpy-change",
+      "chem.temperature-change",
+      "chem.combustion"
+    ],
+    "overrides": {
+      "chem.exothermic-reaction": {
+        "nodes": [
+          "Beaker"
+        ]
+      },
+      "chem.energy-diagram": {
+        "nodes": [
+          "Axis_Energy",
+          "Axis_Progress"
+        ]
+      },
+      "chem.energy-of-reactants": {
+        "nodes": [
+          "Level_Reactants"
+        ]
+      },
+      "chem.energy-of-products": {
+        "nodes": [
+          "Level_Products"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 40,
+            "unit": "kJ"
+          }
+        ]
+      },
+      "chem.activation-energy": {
+        "nodes": [
+          "Hump",
+          "Arrow_Activation"
+        ]
+      },
+      "chem.enthalpy-change": {
+        "nodes": [
+          "Arrow_DeltaH"
+        ]
+      },
+      "chem.temperature-change": {
+        "nodes": [
+          "Thermometer",
+          "Graph_Temperature"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "exo-methane",
+        "title": {
+          "ky": "Метандын (биогаздын) күйүшү",
+          "ru": "Горение метана (биогаза)",
+          "en": "Burning methane (biogas)"
+        },
+        "classification": {
+          "ky": "ΔH ≈ −890 кДж/моль",
+          "ru": "ΔH ≈ −890 кДж/моль",
+          "en": "ΔH ≈ −890 kJ/mol"
+        },
+        "thumb": "thumbs/exo-methane.webp",
+        "topicKey": "methane-combustion",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "CH_4 + 2O_2 \\to CO_2 + 2H_2O"
+          },
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": -890,
+            "unit": "kJ/mol",
+            "approx": true
+          }
+        ]
+      },
+      {
+        "key": "exo-plaster",
+        "title": {
+          "ky": "Гипстин катышы",
+          "ru": "Схватывание гипса",
+          "en": "Plaster of Paris setting"
+        },
+        "classification": {
+          "ky": "ΔT ≈ +14 °C (болжолдуу)",
+          "ru": "ΔT ≈ +14 °C (примерно)",
+          "en": "ΔT ≈ +14 °C (typical)"
+        },
+        "thumb": "thumbs/exo-plaster.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "CaSO_4\\cdot\\tfrac{1}{2}H_2O + 1\\tfrac{1}{2}H_2O \\to CaSO_4\\cdot 2H_2O"
+          },
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": -17,
+            "unit": "kJ/mol",
+            "approx": true
+          }
+        ]
+      },
+      {
+        "key": "exo-magnesium",
+        "title": {
+          "ky": "Магнийдин күйүшү",
+          "ru": "Горение магния",
+          "en": "Burning magnesium"
+        },
+        "classification": {
+          "ky": "ΔH ≈ −1200 кДж (2 моль Mg)",
+          "ru": "ΔH ≈ −1200 кДж (2 моль Mg)",
+          "en": "ΔH ≈ −1200 kJ (2 mol Mg)"
+        },
+        "thumb": "thumbs/exo-magnesium.webp",
+        "topicKey": "metals-oxygen",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "2Mg + O_2 \\to 2MgO"
+          },
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": -1203,
+            "unit": "kJ",
+            "approx": true
+          }
+        ]
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                8
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "graph": true,
+              "temperature": false
+            },
+            "focus": "chem.exothermic-reaction",
+            "text": {
+              "ky": "Коло, бенгал оту, чөнтөк жылыткычы – баары жылуулук берет. Жылуулук бөлүнүп чыккан реакциялар экзотермикалык деп аталат.",
+              "ru": "Костёр, бенгальский огонь, грелка для рук – всё это даёт тепло. Реакции, в которых выделяется тепло, называют экзотермическими.",
+              "en": "A campfire, a sparkler, a hand warmer – they all give out heat. Reactions that release heat are called exothermic."
+            },
+            "teacherNote": {
+              "ky": "Окуучулардан күнүмдүк жашоодон жылуулук берген 3 процессти айтып берүүнү сураңыз. Сөздүн тегин түшүндүрүңүз: «экзо» – сыртка, «терм» – жылуулук.",
+              "ru": "Попросите назвать 3 процесса из жизни, которые дают тепло. Разберите слово: «экзо» – наружу, «терм» – тепло.",
+              "en": "Ask for three everyday processes that give out heat. Break down the word: «exo» means out, «thermic» means heat."
+            },
+            "altText": {
+              "ky": "Сол жакта энергетикалык диаграмма, оң жакта термометр салынган стакан.",
+              "ru": "Слева энергетическая диаграмма, справа стакан с термометром.",
+              "en": "An energy diagram on the left and a beaker with a thermometer on the right."
+            }
+          },
+          {
+            "key": "axes",
+            "camera": {
+              "position": [
+                -1,
+                1.5,
+                5.5
+              ],
+              "target": [
+                -1,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "graph": true,
+              "labels": true
+            },
+            "focus": "chem.energy-diagram",
+            "text": {
+              "ky": "Энергетикалык диаграмма: тик огу – заттардын энергиясы (кДж), туура огу – реакциянын жүрүшү, башынан аягына чейин.",
+              "ru": "Энергетическая диаграмма: по вертикали – энергия веществ (кДж), по горизонтали – ход реакции от начала к концу.",
+              "en": "The energy diagram: the vertical axis is the energy of the substances (kJ); the horizontal axis is the progress of the reaction, start to finish."
+            },
+            "teacherNote": {
+              "ky": "Диаграммадагы сандар (100, 40, 60 кДж) – шарттуу, түшүнүү үчүн тандалган. Чыныгы маалыматтар үлгүлөрдө жазылган.",
+              "ru": "Числа на диаграмме (100, 40, 60 кДж) условные, выбраны для наглядности. Реальные данные – в образцах.",
+              "en": "The numbers on the diagram (100, 40, 60 kJ) are illustrative. Real data are given in the samples."
+            },
+            "altText": {
+              "ky": "Энергия жана реакциянын жүрүшү октору бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделены оси энергии и хода реакции.",
+              "en": "The energy and reaction-progress axes are highlighted."
+            }
+          },
+          {
+            "key": "levels",
+            "camera": {
+              "position": [
+                -1,
+                1.5,
+                5.5
+              ],
+              "target": [
+                -1,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "graph": true,
+              "labels": true
+            },
+            "focus": "chem.energy-of-products",
+            "text": {
+              "ky": "Сол жакта реагенттер (100 кДж), оң жакта продуктулар (40 кДж). Продуктулар төмөн турат – алар энергиянын бир бөлүгүн жоготушту.",
+              "ru": "Слева реагенты (100 кДж), справа продукты (40 кДж). Продукты ниже – они потеряли часть энергии.",
+              "en": "Reactants on the left (100 kJ), products on the right (40 kJ). The products are lower – they have lost some energy."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: жоголгон энергия кайда кетти? Жооп: айланага жылуулук болуп өттү – энергия жок болбойт.",
+              "ru": "Спросите: куда делась «потерянная» энергия? Ответ: ушла в окружающую среду теплом – энергия не исчезает.",
+              "en": "Ask: where did the lost energy go? Answer: into the surroundings as heat – energy is never destroyed."
+            },
+            "altText": {
+              "ky": "Сол жакта жогорку, оң жакта төмөнкү горизонталдык сызык.",
+              "ru": "Высокая горизонтальная линия слева и низкая справа.",
+              "en": "A high horizontal line on the left and a low one on the right."
+            }
+          },
+          {
+            "key": "dh",
+            "camera": {
+              "position": [
+                -1,
+                1.5,
+                5.5
+              ],
+              "target": [
+                -1,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "graph": true,
+              "labels": true
+            },
+            "focus": "chem.enthalpy-change",
+            "text": {
+              "ky": "Ылдый караган жебе – реакциянын жылуулук эффекти: ΔH = 40 − 100 = −60 кДж. Терс белги жылуулук бөлүнгөнүн билдирет. Чыныгы мисал: 1 моль метан күйгөндө ≈ 890 кДж бөлүнөт.",
+              "ru": "Стрелка вниз – тепловой эффект: ΔH = 40 − 100 = −60 кДж. Знак минус означает, что тепло выделилось. Реальный пример: моль метана при сгорании даёт ≈ 890 кДж.",
+              "en": "The downward arrow is the energy change: ΔH = 40 − 100 = −60 kJ. The minus sign means heat was released. A real example: burning 1 mol of methane releases ≈ 890 kJ."
+            },
+            "teacherNote": {
+              "ky": "«Терс ΔH – муздак реакция» деген жаңылыштыкты текшериңиз. Белги заттар үчүн жазылат: алар энергия жоготту, айлана ысыды.",
+              "ru": "Проверьте ошибку «минус ΔH – холодная реакция». Знак записан для веществ: они потеряли энергию, а окружающая среда нагрелась.",
+              "en": "Check for the idea that negative ΔH means cold. The sign is from the substances' view: they lost energy and the surroundings got hotter."
+            },
+            "altText": {
+              "ky": "Реагенттерден продуктуларга ылдый караган жебе.",
+              "ru": "Стрелка вниз от реагентов к продуктам.",
+              "en": "An arrow pointing down from reactants to products."
+            }
+          },
+          {
+            "key": "activation",
+            "camera": {
+              "position": [
+                -1,
+                1.5,
+                5.5
+              ],
+              "target": [
+                -1,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "graph": true,
+              "labels": true
+            },
+            "focus": "chem.activation-energy",
+            "text": {
+              "ky": "Ортодогу дөбө – активдешүү энергиясы (60 кДж). Ошондуктан метан, магний же бенгал оту өзүнөн-өзү күйбөйт – аларды ширеңке менен тутандыруу керек.",
+              "ru": "«Горб» посередине – энергия активации (60 кДж). Поэтому метан, магний или бенгальский огонь сами не загораются – их нужно поджечь спичкой.",
+              "en": "The hump in the middle is the activation energy (60 kJ). That is why methane, magnesium or a sparkler do not light by themselves – they need a match."
+            },
+            "teacherNote": {
+              "ky": "Ширеңкени тутандырып көрсөтүңүз: ширеңке «дөбөдөн ашырат», андан ары реакция өзүнүн жылуулугу менен уланат.",
+              "ru": "Зажгите спичку: она «перебрасывает через горб», а дальше реакция поддерживает себя своим теплом.",
+              "en": "Strike a match: it gets the reaction over the hump, and after that the reaction keeps itself going with its own heat."
+            },
+            "altText": {
+              "ky": "Диаграммадагы дөбө жана өйдө караган жебе.",
+              "ru": "«Горб» на диаграмме и стрелка вверх.",
+              "en": "The hump on the diagram and an upward arrow."
+            }
+          },
+          {
+            "key": "temperature",
+            "camera": {
+              "position": [
+                2.5,
+                1,
+                4
+              ],
+              "target": [
+                2.5,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "temperature": true,
+              "graph": false
+            },
+            "focus": "chem.temperature-change",
+            "text": {
+              "ky": "Реакцияны пенопласт стаканда жүргүзүп, температураны өлчөйбүз: 20 °C → 45 °C. ΔT = 45 − 20 = +25 °C. Температура көтөрүлдү – реакция экзотермикалык.",
+              "ru": "Проводим реакцию в пенопластовом стаканчике и измеряем температуру: 20 °C → 45 °C. ΔT = 45 − 20 = +25 °C. Температура выросла – реакция экзотермическая.",
+              "en": "Run the reaction in a polystyrene cup and measure the temperature: 20 °C → 45 °C. ΔT = 45 − 20 = +25 °C. The temperature went up, so the reaction is exothermic."
+            },
+            "teacherNote": {
+              "ky": "Эң жогорку температураны жазуу маанилүү экенин көрсөтүңүз: андан кийин стакан айланага жылуулук берип муздайт. Пенопласт жылуулуктун жоголушун азайтат.",
+              "ru": "Покажите, что важно записать максимум: потом стакан остывает, отдавая тепло. Пенопласт уменьшает потери тепла.",
+              "en": "Show why the maximum must be recorded: afterwards the cup cools as it loses heat. Polystyrene cuts down heat loss."
+            },
+            "altText": {
+              "ky": "Термометр жана температуранын өсүп, анан түшкөн графиги.",
+              "ru": "Термометр и график температуры, которая растёт, а потом падает.",
+              "en": "A thermometer and a graph of temperature rising, then falling."
+            }
+          },
+          {
+            "key": "burning",
+            "sample": "exo-methane",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                8
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "graph": true,
+              "temperature": true
+            },
+            "focus": "chem.combustion",
+            "text": {
+              "ky": "Күйүү – эң белгилүү экзотермикалык реакция. Биогаз (негизинен метан) айылдарда үйдү жылытат: CH₄ + 2O₂ → CO₂ + 2H₂O. Бенгал отунда металл күкүмү күйүп, учкун чачат.",
+              "ru": "Горение – самая известная экзотермическая реакция. Биогаз (в основном метан) греет дома в сёлах: CH₄ + 2O₂ → CO₂ + 2H₂O. В бенгальском огне горит металлический порошок, разбрасывая искры.",
+              "en": "Burning is the best-known exothermic reaction. Biogas (mostly methane) heats village homes: CH₄ + 2O₂ → CO₂ + 2H₂O. In a sparkler, metal powder burns and throws sparks."
+            },
+            "teacherNote": {
+              "ky": "Коопсуздук: күйүү жана бенгал оту менен тажрыйбалар класста симуляцияда гана көрсөтүлөт. «Метандын күйүшү» процессин ишке киргизиңиз.",
+              "ru": "Безопасность: опыты с горением и бенгальским огнём в классе – только в симуляции. Запустите процесс «Горение метана».",
+              "en": "Safety: burning and sparklers are shown only as simulations in class. Run the «Combustion of methane» process."
+            },
+            "altText": {
+              "ky": "Диаграмма жана жылуулук бөлүп жаткан стакан.",
+              "ru": "Диаграмма и стакан, выделяющий тепло.",
+              "en": "The diagram and a beaker giving off heat."
+            }
+          },
+          {
+            "key": "plaster",
+            "sample": "exo-plaster",
+            "camera": {
+              "position": [
+                2.5,
+                1,
+                4
+              ],
+              "target": [
+                2.5,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "temperature": true
+            },
+            "focus": "chem.exothermic-reaction",
+            "text": {
+              "ky": "Гипс күкүмү суу менен аралашканда катып, жылуулук бөлөт: 20 °C → 34 °C. Ысык эритмеден кристаллдар пайда болгондо да жылуулук бөлүнөт – чөнтөк жылыткычтары ушинтип иштейт.",
+              "ru": "Порошок гипса с водой схватывается и выделяет тепло: 20 °C → 34 °C. Тепло выделяется и при кристаллизации пересыщенного раствора – так работают многоразовые грелки.",
+              "en": "Plaster powder mixed with water sets and gives off heat: 20 °C → 34 °C. Crystals forming in a supersaturated solution also release heat – that is how reusable hand warmers work."
+            },
+            "teacherNote": {
+              "ky": "«Гипстин катышы» процессин ишке киргизиңиз. Бул тажрыйбаны класста коопсуз жасаса болот, бирок колду гипстин ичине салбоо керек – ал катуу ысып кетиши мүмкүн.",
+              "ru": "Запустите процесс «Схватывание гипса». Этот опыт безопасен в классе, но руку в гипс погружать нельзя – он может сильно нагреться.",
+              "en": "Run the «Plaster of Paris setting» process. It is safe in class, but never put a hand inside setting plaster – it can get very hot."
+            },
+            "altText": {
+              "ky": "Температуранын графиги көтөрүлүп, анан акырындап түшөт.",
+              "ru": "График температуры поднимается, затем медленно опускается.",
+              "en": "The temperature graph climbs, then slowly falls."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.plaster-setting",
+        "chem.methane-combustion"
+      ],
+      "quiz": {
+        "itemKeys": [
+          "chem.q.exothermic-reactions-1",
+          "chem.q.exothermic-reactions-2",
+          "chem.q.exothermic-reactions-3",
+          "chem.q.exothermic-reactions-4",
+          "chem.q.exothermic-reactions-5",
+          "chem.q.exothermic-reactions-6",
+          "chem.q.exothermic-reactions-7",
+          "chem.q.exothermic-reactions-8",
+          "chem.q.exothermic-reactions-9",
+          "chem.q.exothermic-reactions-10",
+          "chem.q.exothermic-reactions-11",
+          "chem.q.exothermic-reactions-12"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Чөнтөк жылыткычы",
+            "ru": "Грелка для рук",
+            "en": "Hand warmers"
+          },
+          "text": {
+            "ky": "Бир жолку жылыткычта темир күкүмү кычкылданат, көп жолкусунда натрий ацетатынын ысык эритмеси кристаллдашып, жылуулук берет.",
+            "ru": "В одноразовой грелке окисляется железный порошок, в многоразовой – кристаллизуется пересыщенный раствор ацетата натрия и выделяет тепло.",
+            "en": "Disposable hand warmers use iron powder oxidising; reusable ones use supersaturated sodium acetate crystallising and releasing heat."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Биогаз реактору",
+            "ru": "Биогазовая установка",
+            "en": "Biogas digester"
+          },
+          "text": {
+            "ky": "Кыргызстандын айылдарында кыктан биогаз алып, ашкана менен үйдү жылытышат.",
+            "ru": "В сёлах Кыргызстана из навоза получают биогаз и отапливают им дома и кухни.",
+            "en": "In Kyrgyz villages, biogas made from manure is used for cooking and heating."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Калориметрия",
+            "ru": "Калориметрия",
+            "en": "Calorimetry"
+          },
+          "text": {
+            "ky": "Тамактын энергиясын (кДж) калориметрде аны күйгүзүп, суунун ΔT сы боюнча табышат.",
+            "ru": "Энергию пищи (кДж) определяют, сжигая её в калориметре и измеряя ΔT воды.",
+            "en": "The energy in food (kJ) is found by burning it in a calorimeter and measuring the water's ΔT."
+          },
+          "field": "s"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Коло",
+            "ru": "Костёр",
+            "en": "A campfire"
+          },
+          "text": {
+            "ky": "Колого жакын отурсаң, бетиң ысыйт – күйүү жылуулукту сыртка берет.",
+            "ru": "Сядешь ближе к костру – лицу жарко: горение отдаёт тепло наружу.",
+            "en": "Sit near a campfire and your face gets hot: burning gives heat outwards."
+          }
+        },
+        {
+          "title": {
+            "ky": "Гипс таңуу",
+            "ru": "Гипсовая повязка",
+            "en": "A plaster cast"
+          },
+          "text": {
+            "ky": "Колго гипс таңганда ал катып жатып жылуу сезилет.",
+            "ru": "Когда накладывают гипс, он, застывая, становится тёплым.",
+            "en": "A plaster cast feels warm while it sets on your arm."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "chem.q.exothermic-reactions-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Экзотермикалык реакция деген эмне?",
+        "ru": "Что такое экзотермическая реакция?",
+        "en": "What is an exothermic reaction?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жылуулук бөлүнүп чыккан реакция",
+            "ru": "Реакция, при которой выделяется тепло",
+            "en": "A reaction that releases heat"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жылуулук сиңирилген реакция",
+            "ru": "Реакция, при которой поглощается тепло",
+            "en": "A reaction that absorbs heat"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жылуулук катышпаган реакция",
+            "ru": "Реакция без участия тепла",
+            "en": "A reaction with no heat change"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Сууда гана жүргөн реакция",
+            "ru": "Реакция, идущая только в воде",
+            "en": "A reaction that only happens in water"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Экзотермикалык реакцияда жылуулук айланага бөлүнөт, ошондуктан температура көтөрүлөт.",
+        "ru": "В экзотермической реакции тепло выделяется в окружающую среду, поэтому температура растёт.",
+        "en": "An exothermic reaction gives heat out to its surroundings, so the temperature rises."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.exothermic-reactions-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы процесстер экзотермикалык?",
+        "ru": "Какие процессы экзотермические?",
+        "en": "Which processes are exothermic?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Метандын күйүшү",
+            "ru": "Горение метана",
+            "en": "Burning methane"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Бенгал оту",
+            "ru": "Бенгальский огонь",
+            "en": "A sparkler"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Гипстин катышы",
+            "ru": "Схватывание гипса",
+            "en": "Plaster setting"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Аммоний нитратынын сууда эриши",
+            "ru": "Растворение нитрата аммония",
+            "en": "Dissolving ammonium nitrate"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Фотосинтез",
+            "ru": "Фотосинтез",
+            "en": "Photosynthesis"
+          }
+        },
+        {
+          "key": "f",
+          "text": {
+            "ky": "Ысык эритмеден кристаллдашуу",
+            "ru": "Кристаллизация пересыщенного раствора",
+            "en": "Crystallising a supersaturated solution"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c",
+        "f"
+      ],
+      "explanation": {
+        "ky": "Метандын күйүшү, бенгал оту, гипстин катышы жана ысык эритмеден кристаллдашуу жылуулук берет. Аммоний нитратынын эриши жана фотосинтез – эндотермикалык.",
+        "ru": "Горение метана, бенгальский огонь, схватывание гипса и кристаллизация пересыщенного раствора дают тепло. Растворение нитрата аммония и фотосинтез – эндотермические.",
+        "en": "Burning methane, a sparkler, plaster setting and crystallisation from a supersaturated solution all give out heat. Dissolving ammonium nitrate and photosynthesis are endothermic."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.exothermic-reactions-3",
+      "type": "match",
+      "prompt": {
+        "ky": "Диаграмманын бөлүгүн анын мааниси менен дал келтир.",
+        "ru": "Сопоставь часть диаграммы и её смысл.",
+        "en": "Match each part of the diagram to what it shows."
+      },
+      "pairs": [
+        {
+          "key": "react",
+          "left": {
+            "ky": "Сол жактагы сызык",
+            "ru": "Левая линия",
+            "en": "Left-hand line"
+          },
+          "right": {
+            "ky": "Реагенттердин энергиясы",
+            "ru": "Энергия реагентов",
+            "en": "Energy of the reactants"
+          }
+        },
+        {
+          "key": "hump",
+          "left": {
+            "ky": "Ортодогу дөбө",
+            "ru": "«Горб» посередине",
+            "en": "Hump in the middle"
+          },
+          "right": {
+            "ky": "Активдешүү энергиясы",
+            "ru": "Энергия активации",
+            "en": "Activation energy"
+          }
+        },
+        {
+          "key": "arrow",
+          "left": {
+            "ky": "Ылдый караган жебе",
+            "ru": "Стрелка вниз",
+            "en": "Downward arrow"
+          },
+          "right": {
+            "ky": "Бөлүнгөн жылуулук (ΔH < 0)",
+            "ru": "Выделенное тепло (ΔH < 0)",
+            "en": "Heat released (ΔH < 0)"
+          }
+        },
+        {
+          "key": "thermo",
+          "left": {
+            "ky": "Термометр",
+            "ru": "Термометр",
+            "en": "Thermometer"
+          },
+          "right": {
+            "ky": "Температуранын өзгөрүшү ΔT",
+            "ru": "Изменение температуры ΔT",
+            "en": "Temperature change ΔT"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Сол сызык – реагенттер; дөбө – активдешүү энергиясы; ылдый жебе – бөлүнгөн жылуулук ΔH; термометр – ΔT.",
+        "ru": "Левая линия – реагенты; горб – энергия активации; стрелка вниз – выделенное тепло ΔH; термометр – ΔT.",
+        "en": "Left line – reactants; hump – activation energy; down arrow – heat released, ΔH; thermometer – ΔT."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.exothermic-reactions-4",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Диаграммада реакцияны баштоо үчүн керек болгон энергияны тап.",
+        "ru": "Найди на диаграмме энергию, нужную для запуска реакции.",
+        "en": "Find the energy needed to start the reaction on the diagram."
+      },
+      "targetConceptKey": "chem.activation-energy",
+      "explanation": {
+        "ky": "Бул – активдешүү энергиясынын дөбөсү.",
+        "ru": "Это «горб» энергии активации.",
+        "en": "It is the activation energy hump."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.activation-equals-dh",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.exothermic-reactions-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Реакцияда бөлүнгөн жылуулукту (ΔH) көрсөткөн жебени тап.",
+        "ru": "Найди стрелку, показывающую выделенное тепло (ΔH).",
+        "en": "Find the arrow that shows the heat released (ΔH)."
+      },
+      "targetConceptKey": "chem.enthalpy-change",
+      "explanation": {
+        "ky": "ΔH жебеси реагенттердин деңгээлинен продуктулардыкына ылдый карайт.",
+        "ru": "Стрелка ΔH направлена вниз от уровня реагентов к уровню продуктов.",
+        "en": "The ΔH arrow points down from the reactants' level to the products' level."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.negative-dh-cold",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.exothermic-reactions-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Продуктулардын энергиясынын деңгээлин тап.",
+        "ru": "Найди уровень энергии продуктов.",
+        "en": "Find the energy level of the products."
+      },
+      "targetConceptKey": "chem.energy-of-products",
+      "explanation": {
+        "ky": "Оң жактагы төмөнкү сызык – продуктулар; экзотермикалык реакцияда ал реагенттерден төмөн.",
+        "ru": "Нижняя правая линия – продукты; в экзотермической реакции она ниже реагентов.",
+        "en": "The lower right-hand line is the products; in an exothermic reaction it is below the reactants."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.products-always-lower",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.exothermic-reactions-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Тажрыйбада баштапкы температура 20 °C, эң жогорку температура 45 °C болду. ΔT канча?",
+        "ru": "В опыте начальная температура 20 °C, максимальная – 45 °C. Чему равно ΔT?",
+        "en": "In an experiment the starting temperature was 20 °C and the highest was 45 °C. What is ΔT?"
+      },
+      "answer": 25,
+      "tolerance": 0.5,
+      "unit": "°C",
+      "explanation": {
+        "ky": "ΔT = 45 − 20 = +25 °C.",
+        "ru": "ΔT = 45 − 20 = +25 °C.",
+        "en": "ΔT = 45 − 20 = +25 °C."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.dt-reads-final-only",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.exothermic-reactions-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Диаграммада реагенттердин энергиясы 100 кДж, продуктулардыкы 40 кДж (шарттуу сандар). ΔH канча?",
+        "ru": "На диаграмме энергия реагентов 100 кДж, продуктов – 40 кДж (условные числа). Чему равен ΔH?",
+        "en": "On the diagram the reactants have 100 kJ and the products 40 kJ (illustrative numbers). What is ΔH?"
+      },
+      "answer": -60,
+      "tolerance": 0,
+      "unit": "kJ",
+      "explanation": {
+        "ky": "ΔH = E(продуктулар) − E(реагенттер) = 40 − 100 = −60 кДж.",
+        "ru": "ΔH = E(продуктов) − E(реагентов) = 40 − 100 = −60 кДж.",
+        "en": "ΔH = E(products) − E(reactants) = 40 − 100 = −60 kJ."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.negative-dh-cold",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.exothermic-reactions-9",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Реагенттердин энергиясы 100 кДж, дөбөнүн чокусу 160 кДж (шарттуу сандар). Активдешүү энергиясы канча?",
+        "ru": "Энергия реагентов 100 кДж, вершина «горба» – 160 кДж (условные числа). Чему равна энергия активации?",
+        "en": "The reactants have 100 kJ and the top of the hump is at 160 kJ (illustrative numbers). What is the activation energy?"
+      },
+      "answer": 60,
+      "tolerance": 0,
+      "unit": "kJ",
+      "explanation": {
+        "ky": "Eₐ = 160 − 100 = 60 кДж – реагенттерден чокуга чейинки бийиктик.",
+        "ru": "Eₐ = 160 − 100 = 60 кДж – высота от реагентов до вершины.",
+        "en": "Eₐ = 160 − 100 = 60 kJ – the height from the reactants up to the top."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.activation-equals-dh",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.exothermic-reactions-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Бенгал отунун реакциясы экзотермикалык болсо, эмне үчүн аны ширеңке менен тутандыруу керек?",
+        "ru": "Если реакция бенгальского огня экзотермическая, зачем его поджигать спичкой?",
+        "en": "If a sparkler's reaction is exothermic, why does it need a match to light it?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Активдешүү энергиясын берүү үчүн",
+            "ru": "Чтобы дать энергию активации",
+            "en": "To supply the activation energy"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Реакция эндотермикалык болгондуктан",
+            "ru": "Потому что реакция эндотермическая",
+            "en": "Because the reaction is endothermic"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ширеңке кычкылтек берет",
+            "ru": "Спичка даёт кислород",
+            "en": "The match supplies oxygen"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Жарык болушу үчүн гана",
+            "ru": "Только ради света",
+            "en": "Just to make light"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Реакцияны баштоо үчүн активдешүү энергиясы керек; андан кийин реакция өзүнүн жылуулугу менен уланат.",
+        "ru": "Для начала нужна энергия активации; дальше реакция поддерживает себя своим теплом.",
+        "en": "Activation energy is needed to start it; then the reaction keeps going with its own heat."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.exo-needs-no-start",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.exothermic-reactions-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Экзотермикалык реакцияда ΔH кандай белгиде болот?",
+        "ru": "Какой знак имеет ΔH экзотермической реакции?",
+        "en": "What is the sign of ΔH for an exothermic reaction?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Терс (ΔH < 0)",
+            "ru": "Отрицательный (ΔH < 0)",
+            "en": "Negative (ΔH < 0)"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Оң (ΔH > 0)",
+            "ru": "Положительный (ΔH > 0)",
+            "en": "Positive (ΔH > 0)"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Нөл",
+            "ru": "Ноль",
+            "en": "Zero"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Ар кандай болушу мүмкүн",
+            "ru": "Может быть любым",
+            "en": "It can be either"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Заттар энергия жоготот, ошондуктан ΔH терс; айлана ысыйт.",
+        "ru": "Вещества теряют энергию, поэтому ΔH отрицательный; окружающая среда нагревается.",
+        "en": "The substances lose energy, so ΔH is negative; the surroundings warm up."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.negative-dh-cold",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.exothermic-reactions-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Гипс менен тажрыйбада температура 20 °C тан 34 °C ка көтөрүлдү. Кандай корутунду туура?",
+        "ru": "В опыте с гипсом температура выросла с 20 °C до 34 °C. Какой вывод верный?",
+        "en": "In the plaster experiment the temperature rose from 20 °C to 34 °C. Which conclusion is correct?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Экзотермикалык, ΔT = +14 °C",
+            "ru": "Экзотермический, ΔT = +14 °C",
+            "en": "Exothermic, ΔT = +14 °C"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Эндотермикалык, ΔT = −14 °C",
+            "ru": "Эндотермический, ΔT = −14 °C",
+            "en": "Endothermic, ΔT = −14 °C"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Экзотермикалык, ΔT = +34 °C",
+            "ru": "Экзотермический, ΔT = +34 °C",
+            "en": "Exothermic, ΔT = +34 °C"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Реакция болгон жок",
+            "ru": "Реакции не было",
+            "en": "No reaction happened"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "ΔT = +14 °C > 0, демек жылуулук бөлүндү – процесс экзотермикалык.",
+        "ru": "ΔT = +14 °C > 0, значит, тепло выделилось – процесс экзотермический.",
+        "en": "ΔT = +14 °C > 0, so heat was released – the process is exothermic."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

@@ -1,0 +1,1202 @@
+{
+  "processes": [
+    {
+      "key": "chem.magnesium-combustion",
+      "engine": "stoich",
+      "icon": "flame",
+      "title": {
+        "ky": "Магнийдин күйүшү",
+        "ru": "Горение магния",
+        "en": "Burning magnesium"
+      },
+      "description": {
+        "ky": "Магний кычкылтекте жаркыраган ак жалын менен күйүп, ак магний оксидин пайда кылат. Оксиддин массасы магнийдикинен көп: кычкылтек кошулду.",
+        "ru": "Магний сгорает в кислороде ослепительно белым пламенем и превращается в белый оксид магния. Масса оксида больше массы магния: присоединился кислород.",
+        "en": "Magnesium burns in oxygen with a dazzling white flame and becomes white magnesium oxide. The oxide weighs more than the magnesium because oxygen has joined it."
+      },
+      "equation": "2Mg + O_2 \\to 2MgO",
+      "inputs": {
+        "ky": "2 моль Mg (48,6 г) + 1 моль O₂ (32 г)",
+        "ru": "2 моль Mg (48,6 г) + 1 моль O₂ (32 г)",
+        "en": "2 mol Mg (48.6 g) + 1 mol O₂ (32 g)"
+      },
+      "outputs": {
+        "ky": "2 моль MgO (80,6 г)",
+        "ru": "2 моль MgO (80,6 г)",
+        "en": "2 mol MgO (80.6 g)"
+      },
+      "energy": {
+        "ky": "≈ 1200 кДж бөлүнөт (2 моль магнийге)",
+        "ru": "≈ 1200 кДж выделяется (на 2 моль магния)",
+        "en": "≈ 1200 kJ released (per 2 mol magnesium)"
+      },
+      "steps": [
+        {
+          "key": "heat",
+          "title": {
+            "ky": "Тутандыруу",
+            "ru": "Поджигание",
+            "en": "Lighting"
+          },
+          "result": {
+            "ky": "2Mg + O₂",
+            "ru": "2Mg + O₂",
+            "en": "2Mg + O₂"
+          },
+          "description": {
+            "ky": "Магний тасмасын кычкачка кысып, жалынга кармайбыз: реакцияны баштоо үчүн активдешүү энергиясы керек.",
+            "ru": "Ленту магния держим щипцами в пламени: для начала реакции нужна энергия активации.",
+            "en": "Hold the magnesium ribbon in tongs in a flame: activation energy is needed to start the reaction."
+          },
+          "conceptKey": "chem.magnesium",
+          "altText": {
+            "ky": "Кычкачтагы күмүш түстүү тасма жалынга жакындатылды.",
+            "ru": "Серебристая лента в щипцах поднесена к пламени.",
+            "en": "A silvery ribbon in tongs is held to a flame."
+          },
+          "duration": 1
+        },
+        {
+          "key": "burn",
+          "title": {
+            "ky": "Ак жалын",
+            "ru": "Белое пламя",
+            "en": "White flame"
+          },
+          "description": {
+            "ky": "Магний көздү уялткан ак жарык менен күйөт. Түз карабагыла – көз үчүн коркунучтуу!",
+            "ru": "Магний горит ослепительно белым светом. Не смотрите прямо – это вредно для глаз!",
+            "en": "Magnesium burns with a blinding white light. Do not look straight at it – it can harm your eyes."
+          },
+          "conceptKey": "chem.combustion",
+          "altText": {
+            "ky": "Тасманын учунда ачык ак жалын.",
+            "ru": "Яркое белое пламя на конце ленты.",
+            "en": "A bright white flame at the end of the ribbon."
+          },
+          "duration": 2
+        },
+        {
+          "key": "oxide",
+          "title": {
+            "ky": "Ак күкүм",
+            "ru": "Белый порошок",
+            "en": "White powder"
+          },
+          "result": {
+            "ky": "2MgO",
+            "ru": "2MgO",
+            "en": "2MgO"
+          },
+          "description": {
+            "ky": "Күйүп бүткөндө ак, морт магний оксиди калат: 2Mg + O₂ → 2MgO.",
+            "ru": "После сгорания остаётся белый хрупкий оксид магния: 2Mg + O₂ → 2MgO.",
+            "en": "After burning, a white, crumbly magnesium oxide is left: 2Mg + O₂ → 2MgO."
+          },
+          "conceptKey": "chem.metal-oxide",
+          "altText": {
+            "ky": "Кычкачта ак күкүм калды.",
+            "ru": "В щипцах остался белый порошок.",
+            "en": "White powder is left in the tongs."
+          },
+          "duration": 2
+        },
+        {
+          "key": "mass",
+          "title": {
+            "ky": "Масса өстү",
+            "ru": "Масса выросла",
+            "en": "Mass went up"
+          },
+          "result": {
+            "ky": "−1200 кДж",
+            "ru": "−1200 кДж",
+            "en": "−1200 kJ"
+          },
+          "description": {
+            "ky": "48,6 г Mg + 32 г O₂ = 80,6 г MgO. Оксид металлдан оор, анткени ага абадагы кычкылтек кошулду; ≈ 1200 кДж жылуулук бөлүндү.",
+            "ru": "48,6 г Mg + 32 г O₂ = 80,6 г MgO. Оксид тяжелее металла, потому что к нему присоединился кислород воздуха; выделилось ≈ 1200 кДж тепла.",
+            "en": "48.6 g Mg + 32 g O₂ = 80.6 g MgO. The oxide is heavier than the metal because oxygen from the air joined it; ≈ 1200 kJ of heat was released."
+          },
+          "conceptKey": "chem.oxygen",
+          "altText": {
+            "ky": "Тараза магнийге караганда оор ак күкүмдү көрсөтөт.",
+            "ru": "Весы показывают, что белый порошок тяжелее магния.",
+            "en": "Scales show the white powder is heavier than the magnesium."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "mg",
+          "label": {
+            "ky": "Магний",
+            "ru": "Магний",
+            "en": "Magnesium"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 48.62,
+          "precision": 1
+        },
+        {
+          "key": "o2",
+          "label": {
+            "ky": "Кычкылтек",
+            "ru": "Кислород",
+            "en": "Oxygen"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 32,
+          "precision": 1
+        },
+        {
+          "key": "mgo",
+          "label": {
+            "ky": "Магний оксиди",
+            "ru": "Оксид магния",
+            "en": "Magnesium oxide"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 80.6,
+          "precision": 1
+        },
+        {
+          "key": "heat",
+          "label": {
+            "ky": "Жылуулук",
+            "ru": "Теплота",
+            "en": "Heat"
+          },
+          "unit": "kJ",
+          "min": 0,
+          "max": 1203,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "Mg": 2,
+        "O2": 1,
+        "MgO": 2,
+        "M_Mg": 24.31,
+        "M_O2": 32.0,
+        "M_MgO": 40.3,
+        "dH_kJ": -1203
+      }
+    },
+    {
+      "key": "chem.calcium-water",
+      "engine": "stoich",
+      "icon": "droplet",
+      "title": {
+        "ky": "Кальций жана суу",
+        "ru": "Кальций и вода",
+        "en": "Calcium and water"
+      },
+      "description": {
+        "ky": "Кальций муздак суу менен бир калыпта реакцияга кирет: суутек газы көбүкчө болуп чыгат, эритмеде кальций гидроксиди пайда болот, фенолфталеин кызгылт түскө боёлот.",
+        "ru": "Кальций ровно реагирует с холодной водой: пузырьками выделяется водород, в растворе образуется гидроксид кальция, фенолфталеин становится малиновым.",
+        "en": "Calcium reacts steadily with cold water: hydrogen gas bubbles off, calcium hydroxide forms in the solution, and phenolphthalein turns pink."
+      },
+      "equation": "Ca + 2H_2O \\to Ca(OH)_2 + H_2",
+      "inputs": {
+        "ky": "1 моль Ca (40 г) + 2 моль H₂O (36 г)",
+        "ru": "1 моль Ca (40 г) + 2 моль H₂O (36 г)",
+        "en": "1 mol Ca (40 g) + 2 mol H₂O (36 g)"
+      },
+      "outputs": {
+        "ky": "1 моль Ca(OH)₂ (74 г) + 1 моль H₂ (2 г)",
+        "ru": "1 моль Ca(OH)₂ (74 г) + 1 моль H₂ (2 г)",
+        "en": "1 mol Ca(OH)₂ (74 g) + 1 mol H₂ (2 g)"
+      },
+      "energy": {
+        "ky": "≈ 410 кДж бөлүнөт (1 моль кальцийге, болжолдуу)",
+        "ru": "≈ 410 кДж выделяется (на 1 моль кальция, примерно)",
+        "en": "≈ 410 kJ released (per mole of calcium, approximate)"
+      },
+      "steps": [
+        {
+          "key": "drop",
+          "title": {
+            "ky": "Кальций сууда",
+            "ru": "Кальций в воде",
+            "en": "Calcium in water"
+          },
+          "result": {
+            "ky": "Ca + 2H₂O",
+            "ru": "Ca + 2H₂O",
+            "en": "Ca + 2H₂O"
+          },
+          "description": {
+            "ky": "Кальций түйүрүн суу куюлган идишке салабыз. Ал чөгөт жана дароо көбүкчө чыгара баштайт.",
+            "ru": "Опускаем кусочек кальция в сосуд с водой. Он тонет и сразу начинает выделять пузырьки.",
+            "en": "Drop a piece of calcium into a beaker of water. It sinks and starts giving off bubbles at once."
+          },
+          "conceptKey": "chem.calcium",
+          "altText": {
+            "ky": "Суунун түбүндөгү боз түйүр.",
+            "ru": "Серый кусочек на дне воды.",
+            "en": "A grey lump at the bottom of the water."
+          },
+          "duration": 1
+        },
+        {
+          "key": "bubbles",
+          "title": {
+            "ky": "Суутек чыгат",
+            "ru": "Выделяется водород",
+            "en": "Hydrogen bubbles"
+          },
+          "result": {
+            "ky": "+H₂",
+            "ru": "+H₂",
+            "en": "+H₂"
+          },
+          "description": {
+            "ky": "Металлдын бетинен суутек көбүкчөлөрү көтөрүлөт. Пробиркага чогултуп, күйүп турган чыпты жакындатса, «тырс» деген үн чыгат.",
+            "ru": "С поверхности металла поднимаются пузырьки водорода. Если собрать их в пробирку и поднести горящую лучинку, раздастся хлопок.",
+            "en": "Hydrogen bubbles rise from the metal. Collected in a test tube and tested with a lit splint, it goes off with a squeaky pop."
+          },
+          "conceptKey": "chem.hydrogen",
+          "altText": {
+            "ky": "Түйүрдөн көп көбүкчөлөр көтөрүлүүдө.",
+            "ru": "Много пузырьков поднимается от кусочка.",
+            "en": "Many bubbles rise from the lump."
+          },
+          "duration": 2
+        },
+        {
+          "key": "hydroxide",
+          "title": {
+            "ky": "Бүдөмүк эритме",
+            "ru": "Мутный раствор",
+            "en": "Cloudy solution"
+          },
+          "result": {
+            "ky": "+Ca(OH)₂",
+            "ru": "+Ca(OH)₂",
+            "en": "+Ca(OH)₂"
+          },
+          "description": {
+            "ky": "Суу ак бүдөмүк болуп калат: аз эрүүчү кальций гидроксиди Ca(OH)₂ пайда болду.",
+            "ru": "Вода мутнеет: образовался малорастворимый гидроксид кальция Ca(OH)₂.",
+            "en": "The water turns cloudy white: barely soluble calcium hydroxide, Ca(OH)₂, has formed."
+          },
+          "conceptKey": "chem.metal-hydroxide",
+          "altText": {
+            "ky": "Суюктук сүттөй ак түскө өттү.",
+            "ru": "Жидкость стала молочно-белой.",
+            "en": "The liquid has turned milky white."
+          },
+          "duration": 2
+        },
+        {
+          "key": "indicator",
+          "title": {
+            "ky": "Индикатор",
+            "ru": "Индикатор",
+            "en": "Indicator"
+          },
+          "description": {
+            "ky": "Фенолфталеин тамчысы эритмени кызгылт-малина түскө боёйт: щелочь пайда болду.",
+            "ru": "Капля фенолфталеина окрашивает раствор в малиновый цвет: образовалась щёлочь.",
+            "en": "A drop of phenolphthalein turns the solution pink: an alkali has formed."
+          },
+          "conceptKey": "chem.indicator",
+          "altText": {
+            "ky": "Эритме кызгылт түскө боёлду.",
+            "ru": "Раствор окрасился в малиновый цвет.",
+            "en": "The solution has turned pink."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "ca",
+          "label": {
+            "ky": "Кальций",
+            "ru": "Кальций",
+            "en": "Calcium"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 40.08,
+          "precision": 1
+        },
+        {
+          "key": "caoh2",
+          "label": {
+            "ky": "Кальций гидроксиди",
+            "ru": "Гидроксид кальция",
+            "en": "Calcium hydroxide"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 74.09,
+          "precision": 1
+        },
+        {
+          "key": "h2",
+          "label": {
+            "ky": "Суутек",
+            "ru": "Водород",
+            "en": "Hydrogen"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 2.016,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "Ca": 1,
+        "H2O": 2,
+        "CaOH2": 1,
+        "H2": 1,
+        "M_Ca": 40.08,
+        "M_H2O": 18.02,
+        "M_CaOH2": 74.09,
+        "M_H2": 2.016,
+        "dH_kJ": -414
+      }
+    },
+    {
+      "key": "chem.zinc-hydrochloric-acid",
+      "engine": "stoich",
+      "icon": "flask-conical",
+      "title": {
+        "ky": "Цинк жана туз кислотасы",
+        "ru": "Цинк и соляная кислота",
+        "en": "Zinc and hydrochloric acid"
+      },
+      "description": {
+        "ky": "Цинк туз кислотасында көбүрөп, суутек газын бөлүп чыгарат; эритмеде цинк хлориди калат. Металл + кислота → туз + суутек.",
+        "ru": "Цинк в соляной кислоте шипит и выделяет водород; в растворе остаётся хлорид цинка. Металл + кислота → соль + водород.",
+        "en": "Zinc fizzes in hydrochloric acid and gives off hydrogen; zinc chloride stays in the solution. Metal + acid → salt + hydrogen."
+      },
+      "equation": "Zn + 2HCl \\to ZnCl_2 + H_2",
+      "inputs": {
+        "ky": "1 моль Zn (65,4 г) + 2 моль HCl (72,9 г)",
+        "ru": "1 моль Zn (65,4 г) + 2 моль HCl (72,9 г)",
+        "en": "1 mol Zn (65.4 g) + 2 mol HCl (72.9 g)"
+      },
+      "outputs": {
+        "ky": "1 моль ZnCl₂ (136,3 г) + 1 моль H₂ (2 г)",
+        "ru": "1 моль ZnCl₂ (136,3 г) + 1 моль H₂ (2 г)",
+        "en": "1 mol ZnCl₂ (136.3 g) + 1 mol H₂ (2 g)"
+      },
+      "energy": {
+        "ky": "≈ 150 кДж бөлүнөт (1 моль цинкке, болжолдуу)",
+        "ru": "≈ 150 кДж выделяется (на 1 моль цинка, примерно)",
+        "en": "≈ 150 kJ released (per mole of zinc, approximate)"
+      },
+      "steps": [
+        {
+          "key": "add",
+          "title": {
+            "ky": "Цинк кислотада",
+            "ru": "Цинк в кислоте",
+            "en": "Zinc in acid"
+          },
+          "result": {
+            "ky": "Zn + 2HCl",
+            "ru": "Zn + 2HCl",
+            "en": "Zn + 2HCl"
+          },
+          "description": {
+            "ky": "Цинк гранулаларын суюлтулган туз кислотасына салабыз.",
+            "ru": "Опускаем гранулы цинка в разбавленную соляную кислоту.",
+            "en": "Add zinc granules to dilute hydrochloric acid."
+          },
+          "conceptKey": "chem.hydrochloric-acid",
+          "altText": {
+            "ky": "Пробиркадагы түссүз суюктукка боз гранулалар түштү.",
+            "ru": "В бесцветную жидкость в пробирке опущены серые гранулы.",
+            "en": "Grey granules drop into a colourless liquid in a test tube."
+          },
+          "duration": 1
+        },
+        {
+          "key": "fizz",
+          "title": {
+            "ky": "Көбүрүү",
+            "ru": "Шипение",
+            "en": "Fizzing"
+          },
+          "description": {
+            "ky": "Цинктин бетинде суутек көбүкчөлөрү пайда болот. Цинк акырындап «эрийт» – ал туз болуп эритмеге өтөт.",
+            "ru": "На поверхности цинка появляются пузырьки водорода. Цинк постепенно «растворяется» – переходит в раствор в виде соли.",
+            "en": "Hydrogen bubbles form on the zinc. The zinc slowly disappears as it goes into solution as a salt."
+          },
+          "conceptKey": "chem.zinc",
+          "altText": {
+            "ky": "Гранулалардан көбүкчөлөр көтөрүлүүдө.",
+            "ru": "От гранул поднимаются пузырьки.",
+            "en": "Bubbles rise from the granules."
+          },
+          "duration": 2
+        },
+        {
+          "key": "test",
+          "title": {
+            "ky": "Суутекти сыноо",
+            "ru": "Проба на водород",
+            "en": "Testing for hydrogen"
+          },
+          "result": {
+            "ky": "+H₂",
+            "ru": "+H₂",
+            "en": "+H₂"
+          },
+          "description": {
+            "ky": "Газды пробиркага чогултуп, күйүп турган чыпты жакындатабыз: «тырс» деген үн – суутек кычкылтек менен күйүп, суу пайда кылды (2H₂ + O₂ → 2H₂O).",
+            "ru": "Собираем газ в пробирку и подносим горящую лучинку: хлопок – водород сгорел с кислородом, образовав воду (2H₂ + O₂ → 2H₂O).",
+            "en": "Collect the gas and hold a lit splint to it: a squeaky pop means hydrogen burned with oxygen to make water (2H₂ + O₂ → 2H₂O)."
+          },
+          "conceptKey": "chem.hydrogen",
+          "altText": {
+            "ky": "Пробирканын оозуна күйүп турган чып жакындатылды.",
+            "ru": "К горлышку пробирки поднесена горящая лучинка.",
+            "en": "A burning splint is held at the mouth of a test tube."
+          },
+          "duration": 2
+        },
+        {
+          "key": "salt",
+          "title": {
+            "ky": "Туз эритмеде",
+            "ru": "Соль в растворе",
+            "en": "Salt in solution"
+          },
+          "result": {
+            "ky": "ZnCl₂",
+            "ru": "ZnCl₂",
+            "en": "ZnCl₂"
+          },
+          "description": {
+            "ky": "Реакция бүткөндө эритмеде цинк хлориди ZnCl₂ калат; аны буулантсак, ак кристаллдар чыгат.",
+            "ru": "После реакции в растворе остаётся хлорид цинка ZnCl₂; при выпаривании выпадают белые кристаллы.",
+            "en": "When the reaction ends, zinc chloride, ZnCl₂, stays in the solution; evaporating it leaves white crystals."
+          },
+          "conceptKey": "chem.metal-chloride",
+          "altText": {
+            "ky": "Чөйчөктө ак кристаллдар.",
+            "ru": "Белые кристаллы в чашке.",
+            "en": "White crystals in a dish."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "zn",
+          "label": {
+            "ky": "Цинк",
+            "ru": "Цинк",
+            "en": "Zinc"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 65.38,
+          "precision": 1
+        },
+        {
+          "key": "zncl2",
+          "label": {
+            "ky": "Цинк хлориди",
+            "ru": "Хлорид цинка",
+            "en": "Zinc chloride"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 136.29,
+          "precision": 1
+        },
+        {
+          "key": "h2",
+          "label": {
+            "ky": "Суутек",
+            "ru": "Водород",
+            "en": "Hydrogen"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 2.016,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "Zn": 1,
+        "HCl": 2,
+        "ZnCl2": 1,
+        "H2": 1,
+        "M_Zn": 65.38,
+        "M_HCl": 36.46,
+        "M_ZnCl2": 136.29,
+        "M_H2": 2.016,
+        "dH_kJ": -154
+      }
+    },
+    {
+      "key": "chem.iron-copper-displacement",
+      "engine": "stoich",
+      "icon": "repeat",
+      "title": {
+        "ky": "Темир жезди сүрүп чыгарат",
+        "ru": "Железо вытесняет медь",
+        "en": "Iron displaces copper"
+      },
+      "description": {
+        "ky": "Темир мык жез (II) сульфатынын көк эритмесинде кызгылт-күрөң жез менен капталат, эритме ачык жашыл болуп калат. Темир жезден активдүү.",
+        "ru": "Железный гвоздь в синем растворе сульфата меди(II) покрывается розово-бурой медью, раствор становится бледно-зелёным. Железо активнее меди.",
+        "en": "An iron nail in blue copper(II) sulfate solution gets coated with pinkish-brown copper, and the solution turns pale green. Iron is more reactive than copper."
+      },
+      "equation": "Fe + CuSO_4 \\to FeSO_4 + Cu",
+      "inputs": {
+        "ky": "1 моль Fe (55,8 г) + 1 моль CuSO₄ (159,6 г)",
+        "ru": "1 моль Fe (55,8 г) + 1 моль CuSO₄ (159,6 г)",
+        "en": "1 mol Fe (55.8 g) + 1 mol CuSO₄ (159.6 g)"
+      },
+      "outputs": {
+        "ky": "1 моль FeSO₄ (151,9 г) + 1 моль Cu (63,5 г)",
+        "ru": "1 моль FeSO₄ (151,9 г) + 1 моль Cu (63,5 г)",
+        "en": "1 mol FeSO₄ (151.9 g) + 1 mol Cu (63.5 g)"
+      },
+      "energy": {
+        "ky": "≈ 150 кДж бөлүнөт (болжолдуу)",
+        "ru": "≈ 150 кДж выделяется (примерно)",
+        "en": "≈ 150 kJ released (approximate)"
+      },
+      "steps": [
+        {
+          "key": "nail",
+          "title": {
+            "ky": "Мык эритмеде",
+            "ru": "Гвоздь в растворе",
+            "en": "Nail in solution"
+          },
+          "result": {
+            "ky": "Fe + CuSO₄",
+            "ru": "Fe + CuSO₄",
+            "en": "Fe + CuSO₄"
+          },
+          "description": {
+            "ky": "Тазаланган темир мыкты жез купоросунун көк эритмесине салабыз.",
+            "ru": "Опускаем очищенный железный гвоздь в синий раствор медного купороса.",
+            "en": "Put a clean iron nail into blue copper sulfate solution."
+          },
+          "conceptKey": "chem.iron",
+          "altText": {
+            "ky": "Көк эритмедеги боз мык.",
+            "ru": "Серый гвоздь в синем растворе.",
+            "en": "A grey nail in a blue solution."
+          },
+          "duration": 1
+        },
+        {
+          "key": "coat",
+          "title": {
+            "ky": "Жез катмары",
+            "ru": "Слой меди",
+            "en": "Copper coating"
+          },
+          "result": {
+            "ky": "+Cu",
+            "ru": "+Cu",
+            "en": "+Cu"
+          },
+          "description": {
+            "ky": "Бир нече мүнөттө мыктын бети кызгылт-күрөң жез менен капталат: темир жездин ордун ээледи.",
+            "ru": "Через несколько минут гвоздь покрывается розово-бурой медью: железо заняло место меди.",
+            "en": "Within minutes the nail is coated in pinkish-brown copper: iron has taken copper's place."
+          },
+          "conceptKey": "chem.displacement-reaction",
+          "altText": {
+            "ky": "Мыктын бети кызгылт-күрөң болуп калды.",
+            "ru": "Поверхность гвоздя стала розово-бурой.",
+            "en": "The nail's surface has turned pinkish-brown."
+          },
+          "duration": 2
+        },
+        {
+          "key": "colour",
+          "title": {
+            "ky": "Эритменин түсү",
+            "ru": "Цвет раствора",
+            "en": "Solution colour"
+          },
+          "result": {
+            "ky": "FeSO₄",
+            "ru": "FeSO₄",
+            "en": "FeSO₄"
+          },
+          "description": {
+            "ky": "Көк түс акырындап ачык жашылга өтөт – эритмеде темир (II) сульфаты FeSO₄ пайда болду.",
+            "ru": "Синий цвет постепенно бледнеет и становится зеленоватым – в растворе сульфат железа(II) FeSO₄.",
+            "en": "The blue slowly fades to pale green – iron(II) sulfate, FeSO₄, is now in the solution."
+          },
+          "conceptKey": "chem.reactivity-series",
+          "altText": {
+            "ky": "Эритме көктөн ачык жашылга өттү.",
+            "ru": "Раствор из синего стал бледно-зелёным.",
+            "en": "The solution has changed from blue to pale green."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "fe",
+          "label": {
+            "ky": "Темир",
+            "ru": "Железо",
+            "en": "Iron"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 55.85,
+          "precision": 1
+        },
+        {
+          "key": "cuso4",
+          "label": {
+            "ky": "Жез (II) сульфаты",
+            "ru": "Сульфат меди(II)",
+            "en": "Copper(II) sulfate"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 159.61,
+          "precision": 1
+        },
+        {
+          "key": "cu",
+          "label": {
+            "ky": "Жез",
+            "ru": "Медь",
+            "en": "Copper"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 63.55,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "Fe": 1,
+        "CuSO4": 1,
+        "FeSO4": 1,
+        "Cu": 1,
+        "M_Fe": 55.85,
+        "M_CuSO4": 159.61,
+        "M_FeSO4": 151.91,
+        "M_Cu": 63.55,
+        "dH_kJ": -153
+      }
+    },
+    {
+      "key": "chem.plaster-setting",
+      "engine": "timeline",
+      "icon": "thermometer",
+      "title": {
+        "ky": "Гипстин катышы",
+        "ru": "Схватывание гипса",
+        "en": "Plaster of Paris setting"
+      },
+      "description": {
+        "ky": "Гипс күкүмү (CaSO₄·½H₂O) суу менен аралашып, кайра катуу гипске (CaSO₄·2H₂O) айланат жана жылуулук бөлөт. Термометр температуранын көтөрүлүп, анан төмөндөшүн көрсөтөт. Температуралар – мектеп тажрыйбасынын болжолдуу сандары.",
+        "ru": "Порошок гипса (CaSO₄·½H₂O) смешивают с водой: он снова превращается в твёрдый гипс (CaSO₄·2H₂O) и выделяет тепло. Термометр показывает подъём, а затем спад температуры. Температуры – примерные значения школьного опыта.",
+        "en": "Plaster of Paris powder (CaSO₄·½H₂O) is mixed with water; it turns back into solid gypsum (CaSO₄·2H₂O) and gives out heat. A thermometer shows the temperature rising, then falling. The temperatures are typical school-lab values, not exact data."
+      },
+      "equation": "CaSO_4\\cdot\\tfrac{1}{2}H_2O + 1\\tfrac{1}{2}H_2O \\to CaSO_4\\cdot 2H_2O",
+      "inputs": {
+        "ky": "Гипс күкүмү + суу, 20 °C",
+        "ru": "Порошок гипса + вода, 20 °C",
+        "en": "Plaster powder + water, 20 °C"
+      },
+      "outputs": {
+        "ky": "Катуу гипс, жылуулук",
+        "ru": "Твёрдый гипс, тепло",
+        "en": "Solid gypsum, heat"
+      },
+      "energy": {
+        "ky": "≈ 17 кДж бөлүнөт (1 моль гипс күкүмүнө)",
+        "ru": "≈ 17 кДж выделяется (на 1 моль полугидрата)",
+        "en": "≈ 17 kJ released (per mole of hemihydrate)"
+      },
+      "steps": [
+        {
+          "key": "mix",
+          "title": {
+            "ky": "Аралаштыруу",
+            "ru": "Смешивание",
+            "en": "Mixing"
+          },
+          "result": {
+            "ky": "20 °C",
+            "ru": "20 °C",
+            "en": "20 °C"
+          },
+          "description": {
+            "ky": "Пенопласт стаканга гипс күкүмүн жана сууну салып, аралаштырабыз; термометр 20 °C көрсөтөт.",
+            "ru": "В пенопластовом стаканчике смешиваем порошок гипса с водой; термометр показывает 20 °C.",
+            "en": "Mix plaster powder and water in a polystyrene cup; the thermometer reads 20 °C."
+          },
+          "conceptKey": "chem.energy-of-reactants",
+          "altText": {
+            "ky": "Стакандагы ак ботко жана термометр.",
+            "ru": "Белая кашица в стаканчике и термометр.",
+            "en": "White paste in a cup with a thermometer."
+          },
+          "duration": 1
+        },
+        {
+          "key": "warm",
+          "title": {
+            "ky": "Жылый баштады",
+            "ru": "Начинает теплеть",
+            "en": "Warming up"
+          },
+          "description": {
+            "ky": "Гипс суу молекулаларын кристаллына кошуп ала баштайт; жылуулук бөлүнүп, температура көтөрүлөт.",
+            "ru": "Гипс начинает связывать воду в кристаллы; выделяется тепло, температура растёт.",
+            "en": "The plaster starts locking water into its crystals; heat is released and the temperature rises."
+          },
+          "conceptKey": "chem.exothermic-reaction",
+          "altText": {
+            "ky": "Термометрдин көрсөткүчү көтөрүлүүдө.",
+            "ru": "Столбик термометра поднимается.",
+            "en": "The thermometer reading is climbing."
+          },
+          "duration": 2
+        },
+        {
+          "key": "peak",
+          "title": {
+            "ky": "Эң жогорку температура",
+            "ru": "Максимум температуры",
+            "en": "Peak temperature"
+          },
+          "result": {
+            "ky": "ΔT = +14 °C",
+            "ru": "ΔT = +14 °C",
+            "en": "ΔT = +14 °C"
+          },
+          "description": {
+            "ky": "Болжол менен 15 мүнөттөн кийин температура эң жогору – 34 °C. ΔT = 34 − 20 = +14 °C.",
+            "ru": "Примерно через 15 минут температура максимальна – 34 °C. ΔT = 34 − 20 = +14 °C.",
+            "en": "After about 15 minutes the temperature peaks at 34 °C. ΔT = 34 − 20 = +14 °C."
+          },
+          "conceptKey": "chem.temperature-change",
+          "altText": {
+            "ky": "Графиктин эң бийик чекити.",
+            "ru": "Самая высокая точка графика.",
+            "en": "The highest point of the graph."
+          },
+          "duration": 2
+        },
+        {
+          "key": "set",
+          "title": {
+            "ky": "Катып бүттү",
+            "ru": "Застыл",
+            "en": "Set hard"
+          },
+          "result": {
+            "ky": "24 °C",
+            "ru": "24 °C",
+            "en": "24 °C"
+          },
+          "description": {
+            "ky": "Реакция бүттү, гипс катуу. Жылуулук айланага тарап, температура кайра бөлмөнүкүнө жакындайт.",
+            "ru": "Реакция закончилась, гипс твёрдый. Тепло уходит в окружающую среду, температура снова приближается к комнатной.",
+            "en": "The reaction is over and the plaster is hard. Heat spreads into the room and the temperature falls back towards room temperature."
+          },
+          "conceptKey": "chem.energy-of-products",
+          "altText": {
+            "ky": "Графиктин сызыгы акырындап ылдыйлайт.",
+            "ru": "Линия графика медленно опускается.",
+            "en": "The graph line slowly drops."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "temp",
+          "label": {
+            "ky": "Температура",
+            "ru": "Температура",
+            "en": "Temperature"
+          },
+          "unit": "°C",
+          "min": 15,
+          "max": 40,
+          "precision": 1
+        },
+        {
+          "key": "time",
+          "label": {
+            "ky": "Убакыт",
+            "ru": "Время",
+            "en": "Time"
+          },
+          "unit": "min",
+          "min": 0,
+          "max": 40,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "temp@mix": 20,
+        "temp@warm": 27,
+        "temp@peak": 34,
+        "temp@set": 24,
+        "time@mix": 0,
+        "time@warm": 8,
+        "time@peak": 15,
+        "time@set": 40
+      }
+    },
+    {
+      "key": "chem.cold-pack",
+      "engine": "timeline",
+      "icon": "snowflake",
+      "title": {
+        "ky": "Муздатуучу пакет",
+        "ru": "Охлаждающий пакет",
+        "en": "Instant cold pack"
+      },
+      "description": {
+        "ky": "Аммоний нитраты сууда эригенде айланадан жылуулук алат, эритме 20 °C тан болжол менен 8 °C ка чейин муздайт (20 г NH₄NO₃ + 100 мл суу). Анан бөлмөдөн жылуулук келип, акырындап жылыйт.",
+        "ru": "Нитрат аммония при растворении забирает тепло, и раствор охлаждается с 20 °C примерно до 8 °C (20 г NH₄NO₃ + 100 мл воды). Затем тепло из комнаты постепенно его нагревает.",
+        "en": "Ammonium nitrate takes in heat as it dissolves, cooling the solution from 20 °C to about 8 °C (20 g NH₄NO₃ + 100 mL water). Then heat from the room slowly warms it again."
+      },
+      "equation": "NH_4NO_3(s) \\to NH_4^+(aq) + NO_3^-(aq)",
+      "inputs": {
+        "ky": "20 г NH₄NO₃ + 100 мл суу, 20 °C",
+        "ru": "20 г NH₄NO₃ + 100 мл воды, 20 °C",
+        "en": "20 g NH₄NO₃ + 100 mL water, 20 °C"
+      },
+      "outputs": {
+        "ky": "Муздак эритме, ≈ 8 °C",
+        "ru": "Холодный раствор, ≈ 8 °C",
+        "en": "Cold solution, ≈ 8 °C"
+      },
+      "energy": {
+        "ky": "≈ 26 кДж сиңирилет (1 моль NH₄NO₃ эригенде)",
+        "ru": "≈ 26 кДж поглощается (при растворении 1 моль NH₄NO₃)",
+        "en": "≈ 26 kJ absorbed (per mole of NH₄NO₃ dissolved)"
+      },
+      "steps": [
+        {
+          "key": "start",
+          "title": {
+            "ky": "Баштапкы абал",
+            "ru": "Начало",
+            "en": "Start"
+          },
+          "result": {
+            "ky": "20 °C",
+            "ru": "20 °C",
+            "en": "20 °C"
+          },
+          "description": {
+            "ky": "Пенопласт стаканда 100 мл суу, термометр 20 °C көрсөтөт. Жанында 20 г ак кристаллдар.",
+            "ru": "В пенопластовом стаканчике 100 мл воды, термометр показывает 20 °C. Рядом 20 г белых кристаллов.",
+            "en": "A polystyrene cup holds 100 mL of water at 20 °C. Next to it are 20 g of white crystals."
+          },
+          "conceptKey": "chem.ammonium-nitrate",
+          "altText": {
+            "ky": "Суу куюлган стакан, термометр жана ак кристаллдар.",
+            "ru": "Стаканчик с водой, термометр и белые кристаллы.",
+            "en": "A cup of water, a thermometer and white crystals."
+          },
+          "duration": 1
+        },
+        {
+          "key": "dissolve",
+          "title": {
+            "ky": "Эрүү",
+            "ru": "Растворение",
+            "en": "Dissolving"
+          },
+          "result": {
+            "ky": "14 °C",
+            "ru": "14 °C",
+            "en": "14 °C"
+          },
+          "description": {
+            "ky": "Кристаллдарды салып аралаштырабыз. Эрүү үчүн энергия керек, аны суу өзүнүн жылуулугунан берет – температура төмөндөйт.",
+            "ru": "Высыпаем кристаллы и перемешиваем. На растворение нужна энергия, и вода отдаёт своё тепло – температура падает.",
+            "en": "Tip in the crystals and stir. Dissolving needs energy, and the water gives up its own heat – the temperature falls."
+          },
+          "conceptKey": "chem.endothermic-process",
+          "altText": {
+            "ky": "Термометрдин көрсөткүчү ылдыйлоодо.",
+            "ru": "Столбик термометра опускается.",
+            "en": "The thermometer reading is falling."
+          },
+          "duration": 2
+        },
+        {
+          "key": "coldest",
+          "title": {
+            "ky": "Эң муздак",
+            "ru": "Самая низкая",
+            "en": "Coldest point"
+          },
+          "result": {
+            "ky": "ΔT = −12 °C",
+            "ru": "ΔT = −12 °C",
+            "en": "ΔT = −12 °C"
+          },
+          "description": {
+            "ky": "Эң төмөнкү температура – 8 °C: ΔT = 8 − 20 = −12 °C. Стаканды кармаган кол муздайт.",
+            "ru": "Самая низкая температура – 8 °C: ΔT = 8 − 20 = −12 °C. Рука, держащая стаканчик, мёрзнет.",
+            "en": "The lowest temperature is 8 °C: ΔT = 8 − 20 = −12 °C. The hand holding the cup feels cold."
+          },
+          "conceptKey": "chem.temperature-change",
+          "altText": {
+            "ky": "Графиктин эң төмөнкү чекити.",
+            "ru": "Самая низкая точка графика.",
+            "en": "The lowest point of the graph."
+          },
+          "duration": 2
+        },
+        {
+          "key": "warm",
+          "title": {
+            "ky": "Кайра жылыйт",
+            "ru": "Нагревается обратно",
+            "en": "Warming back"
+          },
+          "result": {
+            "ky": "15 °C",
+            "ru": "15 °C",
+            "en": "15 °C"
+          },
+          "description": {
+            "ky": "Бөлмөнүн жылуулугу эритмеге акырындап өтүп, температура кайра көтөрүлөт.",
+            "ru": "Тепло комнаты постепенно переходит в раствор, и температура снова растёт.",
+            "en": "Heat from the room slowly flows into the solution and the temperature climbs again."
+          },
+          "conceptKey": "chem.energy-of-products",
+          "altText": {
+            "ky": "График акырындап өйдө көтөрүлөт.",
+            "ru": "График медленно поднимается.",
+            "en": "The graph slowly rises."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "temp",
+          "label": {
+            "ky": "Температура",
+            "ru": "Температура",
+            "en": "Temperature"
+          },
+          "unit": "°C",
+          "min": 0,
+          "max": 25,
+          "precision": 1
+        },
+        {
+          "key": "time",
+          "label": {
+            "ky": "Убакыт",
+            "ru": "Время",
+            "en": "Time"
+          },
+          "unit": "min",
+          "min": 0,
+          "max": 20,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "temp@start": 20,
+        "temp@dissolve": 14,
+        "temp@coldest": 8,
+        "temp@warm": 15,
+        "time@start": 0,
+        "time@dissolve": 1,
+        "time@coldest": 3,
+        "time@warm": 20
+      }
+    },
+    {
+      "key": "chem.limestone-decomposition",
+      "engine": "stoich",
+      "icon": "flame",
+      "title": {
+        "ky": "Акиташ ташынын ажырашы",
+        "ru": "Разложение известняка",
+        "en": "Breaking down limestone"
+      },
+      "description": {
+        "ky": "Кальций карбонаты катуу ысытканда гана кальций оксидине жана көмүр кычкыл газына ажырайт. Энергияны тынымсыз берип туруу керек – бул эндотермикалык реакция.",
+        "ru": "Карбонат кальция разлагается на оксид кальция и углекислый газ только при сильном нагревании. Энергию нужно подводить всё время – это эндотермическая реакция.",
+        "en": "Calcium carbonate breaks down into calcium oxide and carbon dioxide only when strongly heated. Energy has to be supplied all the time – it is an endothermic reaction."
+      },
+      "equation": "CaCO_3 \\to CaO + CO_2",
+      "inputs": {
+        "ky": "1 моль CaCO₃ (100 г) + жылуулук",
+        "ru": "1 моль CaCO₃ (100 г) + тепло",
+        "en": "1 mol CaCO₃ (100 g) + heat"
+      },
+      "outputs": {
+        "ky": "1 моль CaO (56 г) + 1 моль CO₂ (44 г)",
+        "ru": "1 моль CaO (56 г) + 1 моль CO₂ (44 г)",
+        "en": "1 mol CaO (56 g) + 1 mol CO₂ (44 g)"
+      },
+      "energy": {
+        "ky": "≈ 178 кДж сиңирилет (1 моль CaCO₃ үчүн)",
+        "ru": "≈ 178 кДж поглощается (на 1 моль CaCO₃)",
+        "en": "≈ 178 kJ absorbed (per mole of CaCO₃)"
+      },
+      "steps": [
+        {
+          "key": "heat",
+          "title": {
+            "ky": "Катуу ысытуу",
+            "ru": "Сильный нагрев",
+            "en": "Strong heating"
+          },
+          "result": {
+            "ky": "CaCO₃",
+            "ru": "CaCO₃",
+            "en": "CaCO₃"
+          },
+          "description": {
+            "ky": "Акиташ ташын (бор, мрамор) ≈ 900 °C ка чейин ысытабыз: реакция энергияны сиңирет.",
+            "ru": "Нагреваем известняк (мел, мрамор) примерно до 900 °C: реакция поглощает энергию.",
+            "en": "Heat limestone (chalk, marble) to about 900 °C: the reaction takes in energy."
+          },
+          "conceptKey": "chem.endothermic-process",
+          "altText": {
+            "ky": "Мештин ичиндеги ак таштар.",
+            "ru": "Белые камни в печи.",
+            "en": "White stones in a kiln."
+          },
+          "duration": 2
+        },
+        {
+          "key": "split",
+          "title": {
+            "ky": "Ажыроо",
+            "ru": "Разложение",
+            "en": "Splitting"
+          },
+          "result": {
+            "ky": "+CO₂",
+            "ru": "+CO₂",
+            "en": "+CO₂"
+          },
+          "description": {
+            "ky": "CaCO₃ → CaO + CO₂: көмүр кычкыл газы чыгып кетет, таш жеңилдейт.",
+            "ru": "CaCO₃ → CaO + CO₂: углекислый газ уходит, камень становится легче.",
+            "en": "CaCO₃ → CaO + CO₂: carbon dioxide escapes and the stone gets lighter."
+          },
+          "conceptKey": "chem.carbon-dioxide",
+          "altText": {
+            "ky": "Таштардан газ чыгууда.",
+            "ru": "Из камней выходит газ.",
+            "en": "Gas is leaving the stones."
+          },
+          "duration": 2
+        },
+        {
+          "key": "lime",
+          "title": {
+            "ky": "Сөндүрүлбөгөн акиташ",
+            "ru": "Негашёная известь",
+            "en": "Quicklime"
+          },
+          "result": {
+            "ky": "CaO, +178 кДж",
+            "ru": "CaO, +178 кДж",
+            "en": "CaO, +178 kJ"
+          },
+          "description": {
+            "ky": "Калган ак зат – кальций оксиди CaO (сөндүрүлбөгөн акиташ). Ысытууну токтотсок, ажыроо да токтойт.",
+            "ru": "Остаётся белый оксид кальция CaO (негашёная известь). Если прекратить нагрев, разложение остановится.",
+            "en": "What is left is white calcium oxide, CaO (quicklime). Stop heating and the breakdown stops too."
+          },
+          "conceptKey": "chem.energy-of-products",
+          "altText": {
+            "ky": "Мештен ак, морт таштар алынды.",
+            "ru": "Из печи достали белые хрупкие камни.",
+            "en": "White, crumbly lumps are taken from the kiln."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "caco3",
+          "label": {
+            "ky": "Кальций карбонаты",
+            "ru": "Карбонат кальция",
+            "en": "Calcium carbonate"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 100.09,
+          "precision": 1
+        },
+        {
+          "key": "cao",
+          "label": {
+            "ky": "Кальций оксиди",
+            "ru": "Оксид кальция",
+            "en": "Calcium oxide"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 56.08,
+          "precision": 1
+        },
+        {
+          "key": "co2",
+          "label": {
+            "ky": "Көмүр кычкыл газы",
+            "ru": "Углекислый газ",
+            "en": "Carbon dioxide"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 44.01,
+          "precision": 1
+        },
+        {
+          "key": "energy",
+          "label": {
+            "ky": "Сиңирилген энергия",
+            "ru": "Поглощённая энергия",
+            "en": "Energy absorbed"
+          },
+          "unit": "kJ",
+          "min": 0,
+          "max": 178,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "CaCO3": 1,
+        "CaO": 1,
+        "CO2": 1,
+        "M_CaCO3": 100.09,
+        "M_CaO": 56.08,
+        "M_CO2": 44.01,
+        "dH_kJ": 178
+      }
+    }
+  ]
+}

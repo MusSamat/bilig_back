@@ -1,0 +1,1068 @@
+{
+  "topic": {
+    "key": "balanced-diet",
+    "unitKey": "bio.g8.nutrition",
+    "status": "published",
+    "title": {
+      "ky": "Тең салмактуу тамактануу",
+      "ru": "Сбалансированное питание",
+      "en": "A balanced diet"
+    },
+    "classification": {
+      "ky": "Тамактануу",
+      "ru": "Питание",
+      "en": "Nutrition"
+    },
+    "description": {
+      "ky": "Тең салмактуу түшкү тамакты чогултуп, анын энергиясын жана углевод, белок, май үлүштөрүн максат менен салыштырабыз. Тамак тарелкасынын эрежеси, энергиялык тең салмак жана туура эмес тамактануунун кесепеттери.",
+      "ru": "Собираем сбалансированный обед и сравниваем его энергию и доли углеводов, белков и жиров с целью. Правило тарелки, энергетический баланс и последствия неправильного питания.",
+      "en": "We build a balanced lunch and compare its energy and its shares of carbohydrate, protein and fat with a target. The plate rule, energy balance and what happens with a poor diet."
+    },
+    "goal": {
+      "ky": "Тең салмактуу рацион түзүп, этикетка жана таблица боюнча аны баалоо (BIO-8.1.2); азык заттардын ролун колдонуу (BIO-8.1.1).",
+      "ru": "Составить сбалансированный рацион и оценить его по этикетке и таблице (BIO-8.1.2); применить знания о роли питательных веществ (BIO-8.1.1).",
+      "en": "Plan a balanced diet and judge it from labels and tables (BIO-8.1.2), using what you know about nutrients (BIO-8.1.1)."
+    },
+    "objectiveKeys": [
+      "bio.g8.nutrition.o1",
+      "bio.g8.nutrition.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "nutrition-plate",
+        "foods": [
+          {
+            "id": "rice",
+            "group": "carbs",
+            "grams": 150,
+            "kcal": 195
+          },
+          {
+            "id": "bread",
+            "group": "carbs",
+            "grams": 30,
+            "kcal": 78
+          },
+          {
+            "id": "beef",
+            "group": "proteins",
+            "grams": 80,
+            "kcal": 200
+          },
+          {
+            "id": "oil",
+            "group": "fats",
+            "grams": 5,
+            "kcal": 45
+          },
+          {
+            "id": "salad",
+            "group": "fibre",
+            "grams": 150,
+            "kcal": 30
+          },
+          {
+            "id": "apple",
+            "group": "vitamins",
+            "grams": 150,
+            "kcal": 78
+          },
+          {
+            "id": "ayran",
+            "group": "minerals",
+            "grams": 200,
+            "kcal": 80
+          },
+          {
+            "id": "water",
+            "group": "water",
+            "grams": 250,
+            "kcal": 0
+          }
+        ],
+        "target": {
+          "kcal": 700,
+          "carbs": 50,
+          "proteins": 20,
+          "fats": 30
+        }
+      },
+      "camera": {
+        "position": [
+          0,
+          3.2,
+          4.2
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "groups",
+        "energy",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "bio.balanced-diet",
+      "bio.carbohydrates",
+      "bio.proteins",
+      "bio.fats",
+      "bio.vitamins",
+      "bio.minerals",
+      "bio.dietary-fibre",
+      "bio.water-in-diet",
+      "bio.food-energy",
+      "bio.energy-balance",
+      "bio.malnutrition",
+      "bio.food-label"
+    ],
+    "overrides": {
+      "bio.balanced-diet": {
+        "nodes": [
+          "Plate"
+        ]
+      },
+      "bio.carbohydrates": {
+        "nodes": [
+          "Sector_carbs",
+          "Food_rice",
+          "Food_bread"
+        ]
+      },
+      "bio.proteins": {
+        "nodes": [
+          "Sector_proteins",
+          "Food_beef"
+        ]
+      },
+      "bio.fats": {
+        "nodes": [
+          "Sector_fats",
+          "Food_oil"
+        ]
+      },
+      "bio.vitamins": {
+        "nodes": [
+          "Sector_vitamins",
+          "Food_apple"
+        ]
+      },
+      "bio.minerals": {
+        "nodes": [
+          "Sector_minerals",
+          "Food_ayran"
+        ]
+      },
+      "bio.dietary-fibre": {
+        "nodes": [
+          "Sector_fibre",
+          "Food_salad"
+        ]
+      },
+      "bio.water-in-diet": {
+        "nodes": [
+          "Sector_water",
+          "Food_water"
+        ]
+      },
+      "bio.food-energy": {
+        "nodes": [
+          "Bar_*"
+        ]
+      },
+      "bio.energy-balance": {
+        "nodes": [
+          "Scale"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "lunch-balanced",
+        "title": {
+          "ky": "Тең салмактуу түшкү тамак",
+          "ru": "Сбалансированный обед",
+          "en": "Balanced lunch"
+        },
+        "classification": {
+          "ky": "≈ 700 ккал",
+          "ru": "≈ 700 ккал",
+          "en": "≈ 700 kcal"
+        },
+        "thumb": "thumbs/lunch-balanced.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 706,
+            "unit": "kcal",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "count",
+            "value": 51,
+            "unit": "% energy from carbs",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "count",
+            "value": 20,
+            "unit": "% energy from protein",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "count",
+            "value": 26,
+            "unit": "% energy from fat",
+            "approx": true
+          }
+        ]
+      },
+      {
+        "key": "breakfast-porridge",
+        "title": {
+          "ky": "Сулу боткосу менен эртең мененки тамак",
+          "ru": "Завтрак с овсяной кашей",
+          "en": "Porridge breakfast"
+        },
+        "classification": {
+          "ky": "≈ 550 ккал",
+          "ru": "≈ 550 ккал",
+          "en": "≈ 550 kcal"
+        },
+        "thumb": "thumbs/breakfast-porridge.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 550,
+            "unit": "kcal",
+            "approx": true
+          },
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Сүттөгү сулу боткосу, жумуртка, алма, чай",
+              "ru": "Овсянка на молоке, яйцо, яблоко, чай",
+              "en": "Oat porridge with milk, an egg, an apple, tea"
+            }
+          }
+        ]
+      },
+      {
+        "key": "day-menu",
+        "title": {
+          "ky": "Бир күндүк меню",
+          "ru": "Меню на день",
+          "en": "A day's menu"
+        },
+        "classification": {
+          "ky": "≈ 2200 ккал",
+          "ru": "≈ 2200 ккал",
+          "en": "≈ 2200 kcal"
+        },
+        "thumb": "thumbs/day-menu.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 2200,
+            "unit": "kcal",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "count",
+            "value": 4,
+            "unit": "meals"
+          }
+        ]
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "energy",
+        "value": 706,
+        "unit": "kcal",
+        "approx": true
+      },
+      {
+        "kind": "text",
+        "type": "composition",
+        "value": {
+          "ky": "Күрүч, нан, уй эти, салат, алма, айран, суу",
+          "ru": "Рис, хлеб, говядина, салат, яблоко, айран, вода",
+          "en": "Rice, bread, beef, salad, apple, ayran, water"
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "plate-rule",
+            "camera": {
+              "position": [
+                0,
+                3.2,
+                4.2
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "groups": true,
+              "labels": true
+            },
+            "focus": "bio.balanced-diet",
+            "text": {
+              "ky": "Тең салмактуу тарелканын эрежеси: жарымы – жашылча жана жемиш, чейреги – дан азыктары, чейреги – белоктуу тамак. Суусундук – суу.",
+              "ru": "Правило сбалансированной тарелки: половина – овощи и фрукты, четверть – зерновые, четверть – белковая пища. Напиток – вода.",
+              "en": "The balanced-plate rule: half vegetables and fruit, a quarter grains, a quarter protein foods. Drink water."
+            },
+            "teacherNote": {
+              "ky": "Тактага тегерек чийип, окуучулар өз түшкү тамагын бөлүктөргө бөлсүн. Пирамида жана тарелка – бир эле идеянын эки сүрөтү экенин айтыңыз.",
+              "ru": "Нарисуйте круг на доске, пусть ученики разделят на нём свой обед. Скажите, что пирамида и тарелка – два изображения одной идеи.",
+              "en": "Draw a circle on the board and let pupils divide their own lunch on it. Explain that the pyramid and the plate are two pictures of one idea."
+            },
+            "altText": {
+              "ky": "Тарелка жарымга жана эки чейрекке бөлүнгөн.",
+              "ru": "Тарелка, разделённая на половину и две четверти.",
+              "en": "A plate divided into one half and two quarters."
+            }
+          },
+          {
+            "key": "groups",
+            "modes": {
+              "groups": true
+            },
+            "focus": "bio.carbohydrates",
+            "text": {
+              "ky": "Бул түшкү тамакта ар бир топ бар: күрүч жана нан (углевод), уй эти (белок), өсүмдүк майы (май), салат (клетчатка), алма (витаминдер), айран (кальций) жана суу.",
+              "ru": "В этом обеде есть все группы: рис и хлеб (углеводы), говядина (белки), растительное масло (жиры), салат (клетчатка), яблоко (витамины), айран (кальций) и вода.",
+              "en": "This lunch has every group: rice and bread (carbohydrate), beef (protein), vegetable oil (fat), salad (fibre), apple (vitamins), ayran (calcium) and water."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: кайсы тамакты алып салсак, кайсы топ жетишпей калат?",
+              "ru": "Спросите: какой продукт убрать, чтобы не хватило какой-то группы?",
+              "en": "Ask: which food could we remove so that a group goes missing?"
+            },
+            "altText": {
+              "ky": "Ар бир тамак өз секторунда белгиленген.",
+              "ru": "Каждый продукт выделен в своём секторе.",
+              "en": "Each food is highlighted in its own sector."
+            }
+          },
+          {
+            "key": "energy",
+            "camera": {
+              "position": [
+                0,
+                1.6,
+                5.2
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "energy": true
+            },
+            "focus": "bio.energy-balance",
+            "text": {
+              "ky": "Энергия шкаласы: тамактын жалпы энергиясы ≈ 706 ккал, максат – 700 ккал. Түшкү тамак суткалык энергиянын болжол менен үчтөн бирин берет.",
+              "ru": "Шкала энергии: обед даёт ≈ 706 ккал при цели 700 ккал. Обед – примерно треть суточной энергии.",
+              "en": "The gauge: the lunch gives ≈ 706 kcal against a target of 700 kcal. Lunch is roughly a third of the day's energy."
+            },
+            "teacherNote": {
+              "ky": "Окуучулар таблицадан энергияны өздөрү кошуп чыгышсын: 195 + 78 + 200 + 45 + 30 + 78 + 80 = 706.",
+              "ru": "Пусть ученики сами сложат энергию по таблице: 195 + 78 + 200 + 45 + 30 + 78 + 80 = 706.",
+              "en": "Let pupils add the energy themselves: 195 + 78 + 200 + 45 + 30 + 78 + 80 = 706."
+            },
+            "altText": {
+              "ky": "Шкаланын жебеси максат белгисинин жанында.",
+              "ru": "Стрелка шкалы рядом с отметкой цели.",
+              "en": "The gauge needle sits next to the target mark."
+            }
+          },
+          {
+            "key": "shares",
+            "modes": {
+              "energy": true
+            },
+            "focus": "bio.food-energy",
+            "text": {
+              "ky": "Тилкелер энергиянын кайдан келерин көрсөтөт: болжол менен 51 % углевод, 20 % белок жана 26 % май. Бул сунушталган чектерге (углевод 45–65 %, май 20–35 %) туура келет.",
+              "ru": "Столбики показывают, откуда энергия: около 51 % – углеводы, 20 % – белки, 26 % – жиры. Это в рекомендуемых пределах (углеводы 45–65 %, жиры 20–35 %).",
+              "en": "The bars show where the energy comes from: about 51 % carbohydrate, 20 % protein, 26 % fat – within the advised ranges (carbohydrate 45–65 %, fat 20–35 %)."
+            },
+            "teacherNote": {
+              "ky": "Үлүштү эсептөө: майдын энергиясы = 9 × майдын граммы; аны жалпы энергияга бөлүп, 100гө көбөйтөбүз.",
+              "ru": "Расчёт доли: энергия жиров = 9 × граммы жира; делим на общую энергию и умножаем на 100.",
+              "en": "Working out a share: fat energy = 9 × grams of fat; divide by total energy and multiply by 100."
+            },
+            "altText": {
+              "ky": "Үч түстүү энергия тилкелери жана максат сызыгы.",
+              "ru": "Три цветных столбика энергии и линия цели.",
+              "en": "Three coloured energy bars and a target line."
+            }
+          },
+          {
+            "key": "balance",
+            "sample": "day-menu",
+            "modes": {
+              "energy": true
+            },
+            "focus": "bio.energy-balance",
+            "text": {
+              "ky": "Энергиялык тең салмак: 13–14 жаштагы өспүрүмгө күнүнө болжол менен 2000–2600 ккал керек. Ашыкча энергия майга айланат, жетишсиз болсо – чарчоо жана өсүүнүн жайлашы.",
+              "ru": "Энергетический баланс: подростку 13–14 лет нужно около 2000–2600 ккал в день. Избыток энергии уходит в жир, нехватка – усталость и замедление роста.",
+              "en": "Energy balance: a 13–14-year-old needs roughly 2000–2600 kcal a day. Extra energy is stored as fat; too little causes tiredness and slower growth."
+            },
+            "teacherNote": {
+              "ky": "Сандар жаш, жыныс жана кыймылга жараша өзгөрөрүн баса белгилеңиз; жеке сандарды талкуулабаңыз, салмак тууралуу комментарий бербеңиз.",
+              "ru": "Подчеркните, что числа зависят от возраста, пола и активности; не обсуждайте личные данные и вес учеников.",
+              "en": "Stress that the numbers depend on age, sex and activity; avoid discussing individual pupils' figures or weight."
+            },
+            "altText": {
+              "ky": "Тараза: бир жагында тамак, экинчи жагында кыймыл.",
+              "ru": "Весы: на одной чаше еда, на другой движение.",
+              "en": "A balance: food on one side, activity on the other."
+            }
+          },
+          {
+            "key": "imbalance",
+            "camera": {
+              "position": [
+                0,
+                3.2,
+                4.2
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "groups": true
+            },
+            "focus": "bio.malnutrition",
+            "text": {
+              "ky": "Туура эмес тамактануу – жетишсиздик же ашыкча. Тамак тоюмдуу болсо да, бир түрдүү болсо, темир, йод же витаминдер жетишпей калышы мүмкүн.",
+              "ru": "Неправильное питание – это недостаток или избыток. Даже сытная, но однообразная еда может не дать железа, йода или витаминов.",
+              "en": "Malnutrition means too little or too much. Food can be filling yet so monotonous that it lacks iron, iodine or vitamins."
+            },
+            "teacherNote": {
+              "ky": "Мини-тапшырма: «бир гана макарон жана таттуу чай» менюсун тарелкага коюп, кайсы секторлор бош калганын табышсын.",
+              "ru": "Мини-задание: разложить на тарелке меню «только макароны и сладкий чай» и найти пустые секторы.",
+              "en": "Mini-task: put a 'pasta and sweet tea only' menu on the plate and find the empty sectors."
+            },
+            "altText": {
+              "ky": "Секторлордун бири бош калган тарелка.",
+              "ru": "Тарелка с одним пустым сектором.",
+              "en": "A plate with one empty sector."
+            }
+          },
+          {
+            "key": "label",
+            "modes": {
+              "labels": true
+            },
+            "focus": "bio.food-label",
+            "text": {
+              "ky": "Этикетка эки йогуртту салыштырууга жардам берет: 100 г үчүн кант жана белокту карап, пайдалуусун тандайбыз.",
+              "ru": "Этикетка помогает сравнить два йогурта: смотрим сахар и белок на 100 г и выбираем полезный.",
+              "en": "Labels help compare two yoghurts: check sugar and protein per 100 g and choose the better one."
+            },
+            "teacherNote": {
+              "ky": "Үйгө тапшырма: «бир күндүк рацион» баракчасын толтуруп, ар бир топту белгилегиле.",
+              "ru": "Домашнее задание: заполнить лист «рацион дня» и отметить все группы.",
+              "en": "Homework: fill in a 'my day's menu' sheet and tick every group."
+            },
+            "altText": {
+              "ky": "Эки этикетка жанаша.",
+              "ru": "Две этикетки рядом.",
+              "en": "Two labels side by side."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "bio.daily-energy-intake"
+      ],
+      "quiz": {
+        "itemKeys": [
+          "bio.q.balanced-diet-1",
+          "bio.q.balanced-diet-2",
+          "bio.q.balanced-diet-3",
+          "bio.q.balanced-diet-4",
+          "bio.q.balanced-diet-5",
+          "bio.q.balanced-diet-6",
+          "bio.q.balanced-diet-7",
+          "bio.q.balanced-diet-8",
+          "bio.q.balanced-diet-9",
+          "bio.q.balanced-diet-10",
+          "bio.q.balanced-diet-11"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "m",
+          "title": {
+            "ky": "Пайыз менен эсептөө",
+            "ru": "Расчёт в процентах",
+            "en": "Working with percentages"
+          },
+          "text": {
+            "ky": "Түшкү тамакта 20 г май болсо: 20 × 9 = 180 ккал; 180 / 700 × 100 ≈ 26 % энергия майдан келет.",
+            "ru": "Если в обеде 20 г жира: 20 × 9 = 180 ккал; 180 / 700 × 100 ≈ 26 % энергии – от жиров.",
+            "en": "A lunch with 20 g of fat: 20 × 9 = 180 kcal; 180 / 700 × 100 ≈ 26 % of the energy is from fat."
+          }
+        },
+        {
+          "field": "e",
+          "title": {
+            "ky": "Ашкананын менюсу",
+            "ru": "Меню столовой",
+            "en": "Canteen menus"
+          },
+          "text": {
+            "ky": "Мектеп ашканалары үчүн менюну технолог-диетологдор таблица жана программалар менен түзүшөт.",
+            "ru": "Меню школьных столовых составляют технологи-диетологи с помощью таблиц и программ.",
+            "en": "School canteen menus are planned by dietitians using tables and software."
+          }
+        },
+        {
+          "field": "s",
+          "title": {
+            "ky": "Спортчулардын рациону",
+            "ru": "Рацион спортсменов",
+            "en": "Athletes' diets"
+          },
+          "text": {
+            "ky": "Спорт түрүнө жараша углевод жана белоктун үлүшү өзгөрөт: марафончуга углевод, күрөшчүгө белок көбүрөөк.",
+            "ru": "В зависимости от вида спорта меняются доли: марафонцу больше углеводов, борцу – белков.",
+            "en": "The shares change with the sport: more carbohydrate for a marathon runner, more protein for a wrestler."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Түстүү тарелка",
+            "ru": "Разноцветная тарелка",
+            "en": "A rainbow plate"
+          },
+          "text": {
+            "ky": "Тарелкаңда канча түс болсо, ошончо ар түрдүү заттар.",
+            "ru": "Чем больше цветов на тарелке, тем больше разных веществ.",
+            "en": "The more colours on your plate, the more different nutrients."
+          }
+        },
+        {
+          "title": {
+            "ky": "Чөнтөк акча",
+            "ru": "Карманные деньги",
+            "en": "Pocket money"
+          },
+          "text": {
+            "ky": "Акчаны бир эле таттуу нерсеге эмес, керектүүлөргө бөлгөндөй, энергияны да топторго бөлөбүз.",
+            "ru": "Как деньги делят на нужное, а не тратят всё на сладкое, так и энергию делят между группами.",
+            "en": "Just as you share out money for what you need rather than spending it all on sweets, energy is shared between groups."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "bio.q.balanced-diet-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Тең салмактуу тарелканын болжол менен жарымын эмне түзүшү керек?",
+        "ru": "Что должно занимать примерно половину сбалансированной тарелки?",
+        "en": "What should fill about half of a balanced plate?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Эт жана балык",
+            "ru": "Мясо и рыба",
+            "en": "Meat and fish"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жашылча жана жемиш",
+            "ru": "Овощи и фрукты",
+            "en": "Vegetables and fruit"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Нан жана макарон",
+            "ru": "Хлеб и макароны",
+            "en": "Bread and pasta"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Таттуулар",
+            "ru": "Сладости",
+            "en": "Sweets"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Жарымы – жашылча жана жемиш; дан жана белоктуу тамак чейректен.",
+        "ru": "Половина – овощи и фрукты; зерновые и белковая пища – по четверти.",
+        "en": "Half is vegetables and fruit; grains and protein foods a quarter each."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.balanced-diet-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Бир окуучу бир жума бою макарон, ак нан жана таттуу чай гана жеди. Кайсы азык заттар жетишпей калышы мүмкүн? Бардыгын танда.",
+        "ru": "Ученик неделю ел только макароны, белый хлеб и сладкий чай. Каких веществ ему может не хватать? Выбери все.",
+        "en": "A pupil ate only pasta, white bread and sweet tea for a week. Which nutrients might be lacking? Choose all."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Белоктор",
+            "ru": "Белки",
+            "en": "Proteins"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "C витамини",
+            "ru": "Витамин C",
+            "en": "Vitamin C"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Кальций жана темир",
+            "ru": "Кальций и железо",
+            "en": "Calcium and iron"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Клетчатка",
+            "ru": "Клетчатка",
+            "en": "Fibre"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Углеводдор",
+            "ru": "Углеводы",
+            "en": "Carbohydrates"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "explanation": {
+        "ky": "Бул менюда углевод көп, бирок белок, витаминдер (C), минералдар (кальций, темир) жана клетчатка аз.",
+        "ru": "В таком меню много углеводов, но мало белков, витаминов (C), минералов (кальция, железа) и клетчатки.",
+        "en": "This menu is high in carbohydrate but low in protein, vitamins (C), minerals (calcium, iron) and fibre."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o1"
+      ],
+      "misconceptionKey": "bio.m.malnutrition-hunger",
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.balanced-diet-3",
+      "type": "match",
+      "prompt": {
+        "ky": "Тамакты анын негизги азык зат тобу менен дал келтир.",
+        "ru": "Сопоставь продукт с его главной группой веществ.",
+        "en": "Match each food to its main nutrient group."
+      },
+      "pairs": [
+        {
+          "key": "rice",
+          "left": {
+            "ky": "Күрүч",
+            "ru": "Рис",
+            "en": "Rice"
+          },
+          "right": {
+            "ky": "Углеводдор",
+            "ru": "Углеводы",
+            "en": "Carbohydrates"
+          }
+        },
+        {
+          "key": "beef",
+          "left": {
+            "ky": "Уй эти",
+            "ru": "Говядина",
+            "en": "Beef"
+          },
+          "right": {
+            "ky": "Белоктор",
+            "ru": "Белки",
+            "en": "Proteins"
+          }
+        },
+        {
+          "key": "oil",
+          "left": {
+            "ky": "Өсүмдүк майы",
+            "ru": "Растительное масло",
+            "en": "Vegetable oil"
+          },
+          "right": {
+            "ky": "Майлар",
+            "ru": "Жиры",
+            "en": "Fats"
+          }
+        },
+        {
+          "key": "ayran",
+          "left": {
+            "ky": "Айран",
+            "ru": "Айран",
+            "en": "Ayran"
+          },
+          "right": {
+            "ky": "Кальций (минерал)",
+            "ru": "Кальций (минерал)",
+            "en": "Calcium (mineral)"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Күрүч – углевод, уй эти – белок, өсүмдүк майы – май, айран – кальций (минерал).",
+        "ru": "Рис – углеводы, говядина – белки, масло – жиры, айран – кальций (минерал).",
+        "en": "Rice – carbohydrate, beef – protein, oil – fat, ayran – calcium (a mineral)."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.balanced-diet-4",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден түшкү тамактын жалпы энергиясын максат менен салыштырган бөлүктү тап.",
+        "ru": "Найди на модели часть, которая сравнивает общую энергию обеда с целью.",
+        "en": "Find the part of the model that compares the lunch's total energy with the target."
+      },
+      "targetConceptKey": "bio.energy-balance",
+      "explanation": {
+        "ky": "Бул – энергия шкаласы: ал келген энергияны муктаждык менен салыштырат.",
+        "ru": "Это шкала энергии: она сравнивает полученную энергию с потребностью.",
+        "en": "That is the energy gauge: it compares energy taken in with the need."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.balanced-diet-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Тарелкадан ичегинин иштешине жардам берген тамакты тап.",
+        "ru": "Найди на тарелке продукт, который помогает работе кишечника.",
+        "en": "Find the food on the plate that keeps the gut working."
+      },
+      "targetConceptKey": "bio.dietary-fibre",
+      "explanation": {
+        "ky": "Жашылча салаты клетчаткага бай.",
+        "ru": "Овощной салат богат клетчаткой.",
+        "en": "The vegetable salad is rich in fibre."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o1"
+      ],
+      "misconceptionKey": "bio.m.fibre-useless",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.balanced-diet-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Түшкү тамак: күрүч 195 ккал, нан 78 ккал, уй эти 200 ккал, май 45 ккал, салат 30 ккал, алма 78 ккал, айран 80 ккал, суу 0. Жалпы энергия канча ккал?",
+        "ru": "Обед: рис 195 ккал, хлеб 78 ккал, говядина 200 ккал, масло 45 ккал, салат 30 ккал, яблоко 78 ккал, айран 80 ккал, вода 0. Сколько всего ккал?",
+        "en": "Lunch: rice 195 kcal, bread 78 kcal, beef 200 kcal, oil 45 kcal, salad 30 kcal, apple 78 kcal, ayran 80 kcal, water 0. What is the total in kcal?"
+      },
+      "answer": 706,
+      "tolerance": 2,
+      "unit": "kcal",
+      "explanation": {
+        "ky": "195 + 78 + 200 + 45 + 30 + 78 + 80 + 0 = 706 ккал.",
+        "ru": "195 + 78 + 200 + 45 + 30 + 78 + 80 + 0 = 706 ккал.",
+        "en": "195 + 78 + 200 + 45 + 30 + 78 + 80 + 0 = 706 kcal."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.balanced-diet-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Суткалык муктаждык 2400 ккал. Эртең мененки тамак анын 25 %ын бериши керек. Эртең мененки тамак канча ккал болушу керек?",
+        "ru": "Суточная потребность 2400 ккал. Завтрак должен давать 25 % от неё. Сколько ккал должно быть в завтраке?",
+        "en": "The daily need is 2400 kcal. Breakfast should provide 25 % of it. How many kcal should breakfast have?"
+      },
+      "answer": 600,
+      "tolerance": 1,
+      "unit": "kcal",
+      "explanation": {
+        "ky": "2400 × 0,25 = 600 ккал.",
+        "ru": "2400 × 0,25 = 600 ккал.",
+        "en": "2400 × 0.25 = 600 kcal."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.balanced-diet-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "600 ккал тамакта 20 г май бар (1 г май = 9 ккал). Энергиянын канча пайызы майдан келет?",
+        "ru": "В блюде на 600 ккал 20 г жира (1 г жира = 9 ккал). Какой процент энергии даёт жир?",
+        "en": "A 600 kcal meal contains 20 g of fat (1 g fat = 9 kcal). What percentage of the energy comes from fat?"
+      },
+      "answer": 30,
+      "tolerance": 1,
+      "unit": "%",
+      "explanation": {
+        "ky": "20 × 9 = 180 ккал; 180 / 600 × 100 = 30 %.",
+        "ru": "20 × 9 = 180 ккал; 180 / 600 × 100 = 30 %.",
+        "en": "20 × 9 = 180 kcal; 180 / 600 × 100 = 30 %."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "bio.q.balanced-diet-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Бир өспүрүм бир нече апта бою муктаждыгынан бир топ аз жеди. Эмне болушу ыктымал?",
+        "ru": "Подросток несколько недель ел намного меньше, чем ему нужно. Что вероятнее всего?",
+        "en": "A teenager ate much less than they needed for several weeks. What is most likely?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ден соолугу чыңдалат",
+            "ru": "Здоровье укрепится",
+            "en": "Their health improves"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Чарчап, көңүл буруусу начарлап, өсүүсү жайлайт",
+            "ru": "Появится усталость, хуже внимание, замедлится рост",
+            "en": "They feel tired, concentrate worse and grow more slowly"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эч нерсе өзгөрбөйт",
+            "ru": "Ничего не изменится",
+            "en": "Nothing changes"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Булчуңдары тезирээк өсөт",
+            "ru": "Мышцы будут расти быстрее",
+            "en": "Their muscles grow faster"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Энергия жана курулуш материалы жетишпейт: чарчоо, көңүл буруунун начарлашы, өсүүнүн жайлашы. «Канчалык аз, ошончолук пайдалуу» – туура эмес.",
+        "ru": "Не хватает энергии и строительного материала: усталость, хуже внимание, медленнее рост. «Чем меньше, тем полезнее» – неверно.",
+        "en": "Energy and building material run short: tiredness, poorer concentration, slower growth. 'Less is always healthier' is wrong."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o1"
+      ],
+      "misconceptionKey": "bio.m.less-food-better",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.balanced-diet-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Эки йогурттун этикеткасы (100 г үчүн): A – кант 12 г, белок 3 г; B – кант 4 г, белок 5 г. Кайсынысы тең салмактуу тамактанууга ылайыктуу?",
+        "ru": "Этикетки двух йогуртов (на 100 г): A – сахар 12 г, белок 3 г; B – сахар 4 г, белок 5 г. Какой лучше подходит для сбалансированного питания?",
+        "en": "Two yoghurt labels (per 100 g): A – sugar 12 g, protein 3 g; B – sugar 4 g, protein 5 g. Which suits a balanced diet better?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "A",
+            "ru": "A",
+            "en": "A"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "B",
+            "ru": "B",
+            "en": "B"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Экөө бирдей",
+            "ru": "Одинаковы",
+            "en": "They're the same"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Этикетка боюнча айтууга болбойт",
+            "ru": "По этикетке сказать нельзя",
+            "en": "You can't tell from a label"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "B: канты 3 эсе аз, белогу көп.",
+        "ru": "B: сахара в 3 раза меньше, белка больше.",
+        "en": "B: three times less sugar and more protein."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.balanced-diet-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Бир күнү 2500 ккал жеп, 2200 ккал сарптадың. Энергиялык тең салмак кандай?",
+        "ru": "За день съедено 2500 ккал, потрачено 2200 ккал. Каков энергетический баланс?",
+        "en": "In one day you eat 2500 kcal and use 2200 kcal. What is your energy balance?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "+300 ккал, ашыкчасы запаска кетет",
+            "ru": "+300 ккал, избыток уходит в запас",
+            "en": "+300 kcal, the extra is stored"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "−300 ккал, организм запасын колдонот",
+            "ru": "−300 ккал, организм тратит запасы",
+            "en": "−300 kcal, the body uses reserves"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "0, тең салмак сакталды",
+            "ru": "0, баланс соблюдён",
+            "en": "0, it's balanced"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "+4700 ккал",
+            "ru": "+4700 ккал",
+            "en": "+4700 kcal"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "+300 ккал: ашыкча энергия запас (май) болуп топтолот.",
+        "ru": "+300 ккал: лишняя энергия запасается в виде жира.",
+        "en": "+300 kcal: the extra energy is stored, mainly as fat."
+      },
+      "objectiveKeys": [
+        "bio.g8.nutrition.o2"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

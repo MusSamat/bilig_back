@@ -9,7 +9,7 @@ not touch any TypeScript.
 
 ```
 content/
-  catalog.json               BUILD OUTPUT: groups, subjects, courses, units (server catalog base)
+  catalog.json               BUILD OUTPUT: groups, subjects, courses, units, textbooks (server catalog base)
   packages/<topicKey>.json   BUILD OUTPUT: one validated ContentPackage per topic
   build.mjs                  assembles + validates packages from src/
   assets/<topicKey>/         binary files of a topic (GLB, thumbs/*.webp) + ASSET.json (licence, author, source)
@@ -21,12 +21,13 @@ content/
     glossary/<subject>.json  { "glossary": GlossaryTerm[] }  shipped in every package of that subject
     property-types/*.json    { "propertyTypes": PropertyTypeDef[] }  extends the built-in PROPERTY_TYPES
     topics/<topicKey>.json   { "topic": Topic, "items": Item[], "version"?: "1.0.0" }
+    textbooks/<key>.json     { "textbook": Textbook }  chapters/lessons of a printed book mapped onto topic keys
 ```
 
 The schemas are in `packages/content-model/src` (the shared contract, don't
 edit it from here). Field-by-field, a source entity is exactly the schema
 object: `Concept` in `concept.ts`, `Process` in `process.ts`, `Item` in
-`item.ts`, `Topic` in `topic.ts`. Every localized string is
+`item.ts`, `Topic` in `topic.ts`, `Textbook` in `textbook.ts`. Every localized string is
 `{ "ky": "…", "ru": "…", "en": "…" }`.
 
 `packages/` and `catalog.json` are generated files. Never edit them by hand,
@@ -76,6 +77,24 @@ For each `topics/<key>.json`:
 It also checks that every unit has at least one topic, that every `live`
 subject has topics and that `soon` subjects have none. Keys must be unique
 across files: concepts, processes, items and glossary ids.
+
+## Textbooks
+
+A topic lives on its own; a textbook only maps its chapters and lessons (with
+page ranges) onto topic keys, so one topic can appear in many books. The
+teacher's menu is textbook → chapter → lesson → topic.
+
+- `textbooks/<key>.json` holds `{ "textbook": Textbook }`; the file name is the key.
+- Each chapter has a `subjectKey` (an integrated book spans several subjects)
+  and `lessons[]` with `kind` `lesson | review | extra`, the printed `number`,
+  `pages: { from, to }` and `topicKeys` in display order. A review lesson lists
+  every topic of its chapter. Chapter and lesson keys are unique in the book.
+- The build validates the schema and the chapter subjects; every topic key
+  must exist among the built topics (an error in a full build, skipped with
+  `--only` / `--partial`). Textbooks go into `catalog.json` (`textbooks`,
+  sorted by `order`, then grade, then key) and the server seeds them as the
+  `textbook` content kind. API responses list only published topics in lessons;
+  a lesson without one shows as «скоро».
 
 ## Authoring rules (enforced)
 

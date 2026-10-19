@@ -39,6 +39,7 @@ import type {
   PageReq,
   PageRes,
   PresentationRec,
+  TeachingPlanRec,
   ProgressRec,
   PublishedRec,
   Repository,
@@ -107,6 +108,7 @@ const CONTENT_TABLES: Record<ContentKind, { delegate: string; columns: (d: any) 
   process: { delegate: 'process', columns: (d) => ({ engine: d.engine ?? null }) },
   item: { delegate: 'item', columns: (d) => ({ type: d.type ?? null, difficulty: d.difficulty ?? null, objectiveKeys: d.objectiveKeys ?? [] }) },
   glossary: { delegate: 'glossaryTerm', columns: () => ({}) },
+  textbook: { delegate: 'textbook', columns: (d) => ({ grade: d.grade ?? null, order: d.order ?? 0 }) },
 };
 
 class PrismaContentStore<T> implements ContentStore<T> {
@@ -388,6 +390,15 @@ const mapEvent = (r: Row): LearningEventRec => ({
   context: r.context ?? null,
   ts: r.ts,
   receivedAt: r.receivedAt,
+});
+const mapTeachingPlan = (r: Row): TeachingPlanRec => ({
+  id: r.id,
+  ownerId: r.ownerId,
+  title: r.title,
+  doc: r.doc,
+  version: r.version,
+  createdAt: r.createdAt,
+  updatedAt: r.updatedAt,
 });
 const mapPresentation = (r: Row): PresentationRec => ({
   id: r.id,
@@ -1155,6 +1166,34 @@ export class PrismaRepository implements Repository {
     const res = page(rows, p.limit, (r) => r.id);
     return { items: res.items.map(mapPresentation), nextCursor: res.nextCursor };
   }
+  // --- КТП ----------------------------------------------------------------------
+  async createTeachingPlan(p: TeachingPlanRec) {
+    await this.db.teachingPlan.create({ data: { ...p, doc: json(p.doc) } });
+  }
+  async getTeachingPlan(id: Id) {
+    const r = await this.db.teachingPlan.findUnique({ where: { id } });
+    return r ? mapTeachingPlan(r) : null;
+  }
+  async updateTeachingPlan(id: Id, patch: Partial<Pick<TeachingPlanRec, 'title' | 'doc'>>, expectedVersion: number): Promise<WriteResult<TeachingPlanRec>> {
+    const data = {
+      ...(patch.title !== undefined ? { title: patch.title } : {}),
+      ...(patch.doc !== undefined ? { doc: json(patch.doc) } : {}),
+    };
+    const res = await this.db.teachingPlan.updateMany({ where: { id, version: expectedVersion }, data: { ...data, version: { increment: 1 }, updatedAt: new Date() } });
+    if (res.count === 0) return (await this.db.teachingPlan.findUnique({ where: { id } })) ? 'version_mismatch' : 'not_found';
+    return mapTeachingPlan(await this.db.teachingPlan.findUniqueOrThrow({ where: { id } }));
+  }
+  async deleteTeachingPlan(id: Id, expectedVersion: number) {
+    const res = await this.db.teachingPlan.deleteMany({ where: { id, version: expectedVersion } });
+    if (res.count > 0) return 'ok' as const;
+    return (await this.db.teachingPlan.findUnique({ where: { id } })) ? ('version_mismatch' as const) : ('not_found' as const);
+  }
+  async listTeachingPlans(ownerId: Id, p: PageReq) {
+    const rows = await this.db.teachingPlan.findMany({ where: { ...idWhere(p), ownerId }, orderBy: { id: 'asc' }, take: p.limit + 1 });
+    const res = page(rows, p.limit, (r) => r.id);
+    return { items: res.items.map(mapTeachingPlan), nextCursor: res.nextCursor };
+  }
+
   async createSnapshot(s: SnapshotRec) {
     await this.db.snapshot.create({ data: { ...s, sceneState: json(s.sceneState) } });
   }

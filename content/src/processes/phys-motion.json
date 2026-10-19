@@ -1,0 +1,799 @@
+{
+  "processes": [
+    {
+      "key": "phys.speed-measurement",
+      "engine": "timeline",
+      "icon": "gauge",
+      "title": {
+        "ky": "Машинанын ылдамдыгын ченөө",
+        "ru": "Измерение скорости машины",
+        "en": "Measuring a car's speed"
+      },
+      "description": {
+        "ky": "Жолдо эки белгинин ортосундагы аралыкты ченеп, машина аны канча убакытта өткөнүн секундомер менен ченейбиз, анан v = s/t формуласы боюнча ылдамдыкты эсептеп, км/саатка которобуз жана радардын көрсөткүчү менен салыштырабыз.",
+        "ru": "Измеряем расстояние между двумя отметками на дороге, секундомером засекаем, за какое время машина его проезжает, по формуле v = s/t находим скорость, переводим её в км/ч и сверяем с показанием радара.",
+        "en": "We measure the distance between two road markers, time the car between them with a stopwatch, work out the speed with v = s/t, convert it to km/h and check it against the radar."
+      },
+      "equation": "v = \\frac{s}{t}",
+      "inputs": {
+        "ky": "s = 60 м (эки белгинин ортосу), секундомер",
+        "ru": "s = 60 м (между отметками), секундомер",
+        "en": "s = 60 m (between the markers), a stopwatch"
+      },
+      "outputs": {
+        "ky": "t = 4,0 с, v = 15 м/с = 54 км/саат",
+        "ru": "t = 4,0 с, v = 15 м/с = 54 км/ч",
+        "en": "t = 4.0 s, v = 15 m/s = 54 km/h"
+      },
+      "steps": [
+        {
+          "key": "markers",
+          "title": {
+            "ky": "Аралыкты белгилөө",
+            "ru": "Отмечаем расстояние",
+            "en": "Mark the distance"
+          },
+          "result": {
+            "ky": "s = 60 м",
+            "ru": "s = 60 м",
+            "en": "s = 60 m"
+          },
+          "description": {
+            "ky": "Рулетка менен жолдо эки белгинин ортосун ченейбиз: 60 м. Аралык канчалык узун болсо, убакытты ченөөнүн катасы ошончолук аз таасир этет.",
+            "ru": "Рулеткой отмеряем на дороге расстояние между двумя отметками: 60 м. Чем длиннее участок, тем меньше влияет ошибка измерения времени.",
+            "en": "With a tape measure we mark 60 m between two points on the road. The longer the stretch, the less the timing error matters."
+          },
+          "conceptKey": "phys.distance",
+          "altText": {
+            "ky": "Жолдо эки белги, алардын ортосунда 60 м деген жазуу.",
+            "ru": "Две отметки на дороге и надпись 60 м между ними.",
+            "en": "Two markers on the road with '60 m' written between them."
+          },
+          "duration": 1
+        },
+        {
+          "key": "start",
+          "title": {
+            "ky": "Секундомер иштейт",
+            "ru": "Запускаем секундомер",
+            "en": "Start the stopwatch"
+          },
+          "result": {
+            "ky": "t = 0",
+            "ru": "t = 0",
+            "en": "t = 0"
+          },
+          "description": {
+            "ky": "Машинанын алдыңкы дөңгөлөгү биринчи белгиден өткөн замат секундомерди басабыз.",
+            "ru": "Как только переднее колесо машины пересекает первую отметку, нажимаем секундомер.",
+            "en": "The moment the car's front wheel crosses the first marker, we press the stopwatch."
+          },
+          "conceptKey": "phys.travel-time",
+          "altText": {
+            "ky": "Машина биринчи белгинин тушунда, секундомер 0,0 көрсөтөт.",
+            "ru": "Машина у первой отметки, секундомер показывает 0,0.",
+            "en": "The car at the first marker; the stopwatch shows 0.0."
+          },
+          "duration": 1
+        },
+        {
+          "key": "finish",
+          "title": {
+            "ky": "Секундомер токтойт",
+            "ru": "Останавливаем секундомер",
+            "en": "Stop the stopwatch"
+          },
+          "result": {
+            "ky": "t = 4,0 с",
+            "ru": "t = 4,0 с",
+            "en": "t = 4.0 s"
+          },
+          "description": {
+            "ky": "Ошол эле дөңгөлөк экинчи белгиден өткөндө секундомерди токтотобуз: 4,0 с. Ченөөнү үч жолу кайталап, орточосун алабыз.",
+            "ru": "Когда то же колесо пересекает вторую отметку, останавливаем секундомер: 4,0 с. Повторяем измерение трижды и берём среднее.",
+            "en": "When the same wheel crosses the second marker we stop the watch: 4.0 s. We repeat three times and take the average."
+          },
+          "conceptKey": "phys.travel-time",
+          "altText": {
+            "ky": "Машина экинчи белгиде, секундомер 4,0 с көрсөтөт.",
+            "ru": "Машина у второй отметки, секундомер показывает 4,0 с.",
+            "en": "The car at the second marker; the stopwatch shows 4.0 s."
+          },
+          "duration": 1
+        },
+        {
+          "key": "compute",
+          "title": {
+            "ky": "Ылдамдыкты эсептөө",
+            "ru": "Вычисляем скорость",
+            "en": "Work out the speed"
+          },
+          "result": {
+            "ky": "v = 15 м/с",
+            "ru": "v = 15 м/с",
+            "en": "v = 15 m/s"
+          },
+          "description": {
+            "ky": "v = s/t = 60 м : 4,0 с = 15 м/с. Машина ар бир секундда 15 м жол өтөт.",
+            "ru": "v = s/t = 60 м : 4,0 с = 15 м/с. Каждую секунду машина проезжает 15 м.",
+            "en": "v = s/t = 60 m ÷ 4.0 s = 15 m/s. The car covers 15 m every second."
+          },
+          "conceptKey": "phys.speed",
+          "altText": {
+            "ky": "v = s/t формуласы жана ылдамдыктын жебеси.",
+            "ru": "Формула v = s/t и стрелка скорости.",
+            "en": "The formula v = s/t and the velocity arrow."
+          },
+          "duration": 1
+        },
+        {
+          "key": "convert",
+          "title": {
+            "ky": "км/саатка которуу жана радар",
+            "ru": "Перевод в км/ч и радар",
+            "en": "Convert to km/h and check the radar"
+          },
+          "result": {
+            "ky": "15 м/с = 54 км/саат",
+            "ru": "15 м/с = 54 км/ч",
+            "en": "15 m/s = 54 km/h"
+          },
+          "description": {
+            "ky": "1 м/с = 3600 м/саат = 3,6 км/саат, ошондуктан 15 · 3,6 = 54 км/саат. Радар да 54 км/саат көрсөтөт – ченөө туура.",
+            "ru": "1 м/с = 3600 м/ч = 3,6 км/ч, поэтому 15 · 3,6 = 54 км/ч. Радар тоже показывает 54 км/ч – измерение верное.",
+            "en": "1 m/s = 3600 m/h = 3.6 km/h, so 15 × 3.6 = 54 km/h. The radar also reads 54 km/h – our measurement is right."
+          },
+          "conceptKey": "phys.speed-radar",
+          "altText": {
+            "ky": "Радардын экранында 54 км/саат.",
+            "ru": "На экране радара 54 км/ч.",
+            "en": "The radar display shows 54 km/h."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "distance",
+          "label": {
+            "ky": "Басып өткөн жол",
+            "ru": "Пройденный путь",
+            "en": "Distance travelled"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 60,
+          "precision": 0
+        },
+        {
+          "key": "time",
+          "label": {
+            "ky": "Убакыт",
+            "ru": "Время",
+            "en": "Time"
+          },
+          "unit": "s",
+          "min": 0,
+          "max": 4,
+          "precision": 1
+        },
+        {
+          "key": "speed",
+          "label": {
+            "ky": "Эсептелген ылдамдык",
+            "ru": "Вычисленная скорость",
+            "en": "Calculated speed"
+          },
+          "unit": "m/s",
+          "min": 0,
+          "max": 15,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "s": 60,
+        "v": 15,
+        "distance@markers": 0,
+        "distance@start": 0,
+        "distance@finish": 60,
+        "distance@compute": 60,
+        "distance@convert": 60,
+        "time@markers": 0,
+        "time@start": 0,
+        "time@finish": 4,
+        "time@compute": 4,
+        "time@convert": 4,
+        "speed@markers": 0,
+        "speed@start": 0,
+        "speed@finish": 0,
+        "speed@compute": 15,
+        "speed@convert": 15
+      }
+    },
+    {
+      "key": "phys.car-trip",
+      "engine": "timeline",
+      "icon": "line-chart",
+      "title": {
+        "ky": "Шаардагы сапар: s(t) графиги",
+        "ru": "Поездка по городу: график s(t)",
+        "en": "A city trip: the s(t) graph"
+      },
+      "description": {
+        "ky": "Машина 10 с ичинде 10 м/с менен жүрөт, 10 с светофордо турат, анан 10 с 20 м/с менен жүрөт. Ар бир бөлүк графикте өз тиктигиндеги түз кесинди болот.",
+        "ru": "Машина 10 с едет со скоростью 10 м/с, 10 с стоит у светофора, затем 10 с едет со скоростью 20 м/с. Каждый участок на графике – прямой отрезок со своим наклоном.",
+        "en": "The car drives at 10 m/s for 10 s, waits at a traffic light for 10 s, then drives at 20 m/s for 10 s. Each part is a straight segment of the graph with its own slope."
+      },
+      "equation": "v = \\frac{\\Delta s}{\\Delta t}",
+      "inputs": {
+        "ky": "1-бөлүк: 10 м/с, 10 с; 2-бөлүк: 0 м/с, 10 с; 3-бөлүк: 20 м/с, 10 с",
+        "ru": "Участок 1: 10 м/с, 10 с; участок 2: 0 м/с, 10 с; участок 3: 20 м/с, 10 с",
+        "en": "Part 1: 10 m/s for 10 s; part 2: 0 m/s for 10 s; part 3: 20 m/s for 10 s"
+      },
+      "outputs": {
+        "ky": "s = 300 м, t = 30 с, орточо ылдамдык 10 м/с",
+        "ru": "s = 300 м, t = 30 с, средняя скорость 10 м/с",
+        "en": "s = 300 m, t = 30 s, average speed 10 m/s"
+      },
+      "steps": [
+        {
+          "key": "start",
+          "title": {
+            "ky": "Старт",
+            "ru": "Старт",
+            "en": "Start"
+          },
+          "result": {
+            "ky": "t = 0, s = 0",
+            "ru": "t = 0, s = 0",
+            "en": "t = 0, s = 0"
+          },
+          "description": {
+            "ky": "Машина старт сызыгында. Графиктин чекити координаталар башталышында: t = 0, s = 0.",
+            "ru": "Машина на линии старта. Точка графика в начале координат: t = 0, s = 0.",
+            "en": "The car is on the start line. The graph's dot is at the origin: t = 0, s = 0."
+          },
+          "conceptKey": "phys.distance-time-graph",
+          "altText": {
+            "ky": "Бош график, чекит координаталар башталышында.",
+            "ru": "Пустой график, точка в начале координат.",
+            "en": "An empty graph with the dot at the origin."
+          },
+          "duration": 0.5
+        },
+        {
+          "key": "drive",
+          "title": {
+            "ky": "10 м/с менен жүрүү",
+            "ru": "Едем 10 м/с",
+            "en": "Driving at 10 m/s"
+          },
+          "result": {
+            "ky": "10 с ичинде 100 м",
+            "ru": "100 м за 10 с",
+            "en": "100 m in 10 s"
+          },
+          "description": {
+            "ky": "Ар бир секундда 10 м: график 0дон 100 м ге чейин көтөрүлгөн түз кесинди. Тиктиги 100 м : 10 с = 10 м/с.",
+            "ru": "Каждую секунду 10 м: график – прямой отрезок от 0 до 100 м. Его наклон 100 м : 10 с = 10 м/с.",
+            "en": "10 m every second: the graph is a straight segment rising from 0 to 100 m. Its slope is 100 m ÷ 10 s = 10 m/s."
+          },
+          "conceptKey": "phys.graph-slope",
+          "altText": {
+            "ky": "Графикте жантайып көтөрүлгөн түз кесинди.",
+            "ru": "На графике прямой отрезок, идущий вверх.",
+            "en": "A straight segment sloping upwards on the graph."
+          },
+          "duration": 2
+        },
+        {
+          "key": "stop",
+          "title": {
+            "ky": "Светофордо токтоо",
+            "ru": "Стоим у светофора",
+            "en": "Waiting at a light"
+          },
+          "result": {
+            "ky": "v = 0, s = 100 м бойдон",
+            "ru": "v = 0, s остаётся 100 м",
+            "en": "v = 0, s stays at 100 m"
+          },
+          "description": {
+            "ky": "10 с өтөт, бирок жол көбөйбөйт: график s = 100 м деңгээлинде горизонталдык.",
+            "ru": "Проходит 10 с, но путь не растёт: график горизонтален на уровне s = 100 м.",
+            "en": "10 s pass but the distance does not grow: the graph is flat at s = 100 m."
+          },
+          "conceptKey": "phys.state-of-rest",
+          "altText": {
+            "ky": "Графикте s = 100 м деңгээлиндеги горизонталдык кесинди.",
+            "ru": "Горизонтальный отрезок на уровне s = 100 м.",
+            "en": "A flat segment at the s = 100 m level."
+          },
+          "duration": 2
+        },
+        {
+          "key": "fast",
+          "title": {
+            "ky": "20 м/с менен жүрүү",
+            "ru": "Едем 20 м/с",
+            "en": "Driving at 20 m/s"
+          },
+          "result": {
+            "ky": "10 с ичинде дагы 200 м",
+            "ru": "ещё 200 м за 10 с",
+            "en": "another 200 m in 10 s"
+          },
+          "description": {
+            "ky": "Машина эки эсе тез жүрөт: 10 с ичинде 200 м. Кесинди биринчисинен эки эсе тик, акырында s = 300 м, t = 30 с.",
+            "ru": "Машина едет вдвое быстрее: 200 м за 10 с. Отрезок вдвое круче первого, в конце s = 300 м, t = 30 с.",
+            "en": "The car goes twice as fast: 200 m in 10 s. The segment is twice as steep as the first; at the end s = 300 m and t = 30 s."
+          },
+          "conceptKey": "phys.speed",
+          "altText": {
+            "ky": "Графикте эң тик кесинди 300 м ге чейин көтөрүлөт.",
+            "ru": "Самый крутой отрезок графика поднимается до 300 м.",
+            "en": "The steepest segment of the graph rises to 300 m."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "distance",
+          "label": {
+            "ky": "Басып өткөн жол",
+            "ru": "Пройденный путь",
+            "en": "Distance travelled"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 300,
+          "precision": 0
+        },
+        {
+          "key": "time",
+          "label": {
+            "ky": "Убакыт",
+            "ru": "Время",
+            "en": "Time"
+          },
+          "unit": "s",
+          "min": 0,
+          "max": 30,
+          "precision": 0
+        },
+        {
+          "key": "speed",
+          "label": {
+            "ky": "Ылдамдык",
+            "ru": "Скорость",
+            "en": "Speed"
+          },
+          "unit": "m/s",
+          "min": 0,
+          "max": 20,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "distance@start": 0,
+        "distance@drive": 100,
+        "distance@stop": 100,
+        "distance@fast": 300,
+        "time@start": 0,
+        "time@drive": 10,
+        "time@stop": 20,
+        "time@fast": 30,
+        "speed@start": 10,
+        "speed@drive": 10,
+        "speed@stop": 0,
+        "speed@fast": 20
+      }
+    },
+    {
+      "key": "phys.dynamometer-pull",
+      "engine": "timeline",
+      "icon": "move-right",
+      "title": {
+        "ky": "Брусокту динамометр менен тартуу",
+        "ru": "Тянем брусок динамометром",
+        "en": "Pulling a block with a dynamometer"
+      },
+      "description": {
+        "ky": "2 кг брусокту столдо динамометр менен тартабыз. Тартуу күчү сүрүлүүнүн эң чоң маанисинен ашмайынча брусок жылбайт. Бир түз сызык боюнча аракет эткен күчтөрдүн тең аракеттүүсү брусоктун кыймылын аныктайт.",
+        "ru": "Тянем динамометром брусок массой 2 кг по столу. Пока сила тяги не превысит наибольшую силу трения, брусок не сдвинется. Равнодействующая сил, действующих вдоль одной прямой, определяет движение бруска.",
+        "en": "We pull a 2 kg block across a table with a dynamometer. Until the pull exceeds the largest friction force, the block does not move. The resultant of the forces along one line decides how the block moves."
+      },
+      "equation": "R = F - F_{fr},\\quad F_{fr} = \\mu m g",
+      "inputs": {
+        "ky": "m = 2 кг, μ = 0,25, g ≈ 9,8 Н/кг",
+        "ru": "m = 2 кг, μ = 0,25, g ≈ 9,8 Н/кг",
+        "en": "m = 2 kg, μ = 0.25, g ≈ 9.8 N/kg"
+      },
+      "outputs": {
+        "ky": "F = 8 Н, сүрүлүү 4,9 Н, тең аракеттүү күч 3,1 Н оңго",
+        "ru": "F = 8 Н, трение 4,9 Н, равнодействующая 3,1 Н вправо",
+        "en": "F = 8 N, friction 4.9 N, resultant 3.1 N to the right"
+      },
+      "steps": [
+        {
+          "key": "hook",
+          "title": {
+            "ky": "Динамометрди илүү",
+            "ru": "Цепляем динамометр",
+            "en": "Hook on the dynamometer"
+          },
+          "result": {
+            "ky": "F = 0",
+            "ru": "F = 0",
+            "en": "F = 0"
+          },
+          "description": {
+            "ky": "Динамометрдин жебесин нөлгө коюп, илгичин брусокко илебиз. Тик багытта оордук күчү 19,6 Н жана таянычтын реакция күчү 19,6 Н теңделет.",
+            "ru": "Ставим указатель динамометра на ноль и цепляем крючок за брусок. По вертикали сила тяжести 19,6 Н и сила реакции опоры 19,6 Н уравновешены.",
+            "en": "We zero the dynamometer and hook it onto the block. Vertically, gravity (19.6 N) and the normal force (19.6 N) balance."
+          },
+          "conceptKey": "phys.dynamometer",
+          "altText": {
+            "ky": "Брусокко илинген динамометр, пружина чоюлган эмес.",
+            "ru": "Динамометр прицеплен к бруску, пружина не растянута.",
+            "en": "A dynamometer hooked to the block; the spring is not stretched."
+          },
+          "duration": 1
+        },
+        {
+          "key": "gentle",
+          "title": {
+            "ky": "Акырын тартуу",
+            "ru": "Тянем слабо",
+            "en": "A gentle pull"
+          },
+          "result": {
+            "ky": "F = 3 Н, брусок турат",
+            "ru": "F = 3 Н, брусок стоит",
+            "en": "F = 3 N, the block stays put"
+          },
+          "description": {
+            "ky": "Динамометр 3 Н көрсөтөт, бирок брусок жылбайт: тынчтыктагы сүрүлүү да 3 Н, ал тартууга каршы. Тең аракеттүү күч нөл.",
+            "ru": "Динамометр показывает 3 Н, но брусок не сдвигается: трение покоя тоже 3 Н и направлено против тяги. Равнодействующая равна нулю.",
+            "en": "The dynamometer reads 3 N, yet the block does not move: static friction is also 3 N and opposes the pull. The resultant is zero."
+          },
+          "conceptKey": "phys.friction-force",
+          "altText": {
+            "ky": "Пружина бир аз чоюлган, брусок ордунда.",
+            "ru": "Пружина немного растянута, брусок на месте.",
+            "en": "The spring is slightly stretched; the block has not moved."
+          },
+          "duration": 1
+        },
+        {
+          "key": "slip",
+          "title": {
+            "ky": "Брусок жыла баштайт",
+            "ru": "Брусок трогается",
+            "en": "The block starts to slide"
+          },
+          "result": {
+            "ky": "F ≈ 4,9 Н",
+            "ru": "F ≈ 4,9 Н",
+            "en": "F ≈ 4.9 N"
+          },
+          "description": {
+            "ky": "Сүрүлүү күчү чексиз чоңое албайт: анын эң чоң мааниси μN = 0,25 · 19,6 = 4,9 Н. Тартуу ушул чекке жеткенде брусок жыла баштайт.",
+            "ru": "Сила трения не может расти бесконечно: её наибольшее значение μN = 0,25 · 19,6 = 4,9 Н. Когда тяга достигает этого предела, брусок трогается.",
+            "en": "Friction cannot grow without limit: its largest value is μN = 0.25 × 19.6 = 4.9 N. When the pull reaches it, the block begins to slide."
+          },
+          "conceptKey": "phys.normal-force",
+          "altText": {
+            "ky": "Брусок жыла баштады, сүрүлүүнүн жебеси солго.",
+            "ru": "Брусок тронулся, стрелка трения влево.",
+            "en": "The block starts moving; the friction arrow points left."
+          },
+          "duration": 1
+        },
+        {
+          "key": "pull8",
+          "title": {
+            "ky": "8 Н менен тартуу",
+            "ru": "Тянем с силой 8 Н",
+            "en": "Pulling with 8 N"
+          },
+          "result": {
+            "ky": "R = 8 − 4,9 = 3,1 Н оңго",
+            "ru": "R = 8 − 4,9 = 3,1 Н вправо",
+            "en": "R = 8 − 4.9 = 3.1 N to the right"
+          },
+          "description": {
+            "ky": "Тартуу 8 Н оңго, сүрүлүү 4,9 Н солго – бир түз сызыкта, карама-каршы. Тең аракеттүү күч 3,1 Н оңго, ошондуктан брусок тездейт.",
+            "ru": "Тяга 8 Н вправо, трение 4,9 Н влево – вдоль одной прямой, навстречу. Равнодействующая 3,1 Н вправо, поэтому брусок разгоняется.",
+            "en": "The pull is 8 N to the right and friction 4.9 N to the left – along one line, opposite ways. The resultant is 3.1 N to the right, so the block speeds up."
+          },
+          "conceptKey": "phys.net-force",
+          "altText": {
+            "ky": "Тең аракеттүү күчтүн 3,1 Н жебеси оңго.",
+            "ru": "Стрелка равнодействующей 3,1 Н вправо.",
+            "en": "The 3.1 N resultant arrow pointing right."
+          },
+          "duration": 1
+        },
+        {
+          "key": "steady",
+          "title": {
+            "ky": "Бир калыпта тартуу",
+            "ru": "Тянем равномерно",
+            "en": "Pulling at a steady speed"
+          },
+          "result": {
+            "ky": "F = 4,9 Н, R = 0",
+            "ru": "F = 4,9 Н, R = 0",
+            "en": "F = 4.9 N, R = 0"
+          },
+          "description": {
+            "ky": "Тартууну 4,9 Н ге чейин азайтсак, күчтөр теңделет: брусок токтобойт, бирдей ылдамдык менен жыла берет. Ушундай жол менен сүрүлүү күчүн ченешет.",
+            "ru": "Если уменьшить тягу до 4,9 Н, силы уравновесятся: брусок не остановится, а будет скользить с постоянной скоростью. Так и измеряют силу трения.",
+            "en": "Reduce the pull to 4.9 N and the forces balance: the block does not stop but slides on at a constant speed. This is how friction is measured."
+          },
+          "conceptKey": "phys.force",
+          "altText": {
+            "ky": "Тартуу жана сүрүлүү жебелери бирдей узундукта.",
+            "ru": "Стрелки тяги и трения одинаковой длины.",
+            "en": "The pull and friction arrows are the same length."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "pull",
+          "label": {
+            "ky": "Тартуу күчү",
+            "ru": "Сила тяги",
+            "en": "Pulling force"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 8,
+          "precision": 1
+        },
+        {
+          "key": "friction",
+          "label": {
+            "ky": "Сүрүлүү күчү",
+            "ru": "Сила трения",
+            "en": "Friction"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 8,
+          "precision": 1
+        },
+        {
+          "key": "resultant",
+          "label": {
+            "ky": "Тең аракеттүү күч",
+            "ru": "Равнодействующая",
+            "en": "Resultant force"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 8,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "mass": 2,
+        "mu": 0.25,
+        "g": 9.8,
+        "pull@hook": 0,
+        "pull@gentle": 3,
+        "pull@slip": 4.9,
+        "pull@pull8": 8,
+        "pull@steady": 4.9,
+        "friction@hook": 0,
+        "friction@gentle": 3,
+        "friction@slip": 4.9,
+        "friction@pull8": 4.9,
+        "friction@steady": 4.9,
+        "resultant@hook": 0,
+        "resultant@gentle": 0,
+        "resultant@slip": 0,
+        "resultant@pull8": 3.1,
+        "resultant@steady": 0
+      }
+    },
+    {
+      "key": "phys.seesaw-balance",
+      "engine": "timeline",
+      "icon": "scale",
+      "title": {
+        "ky": "Тактай селкинчекти теңдөө",
+        "ru": "Уравновешиваем качели-доску",
+        "en": "Balancing a seesaw"
+      },
+      "description": {
+        "ky": "2 м тактай ортосунан таянат. Жүктөрдү коюп жана жылдырып, тактай качан тең салмакта турарын моменттер аркылуу текшеребиз.",
+        "ru": "Доска длиной 2 м опирается серединой. Ставим и передвигаем грузы и по моментам проверяем, когда доска будет в равновесии.",
+        "en": "A 2 m board rests on its middle. We add and move loads and use moments to check when the board balances."
+      },
+      "equation": "F_1 d_1 = F_2 d_2",
+      "inputs": {
+        "ky": "Тактай 2 м, таяныч ортодо; жүктөр 3 кг жана 2 кг; g ≈ 9,8 Н/кг",
+        "ru": "Доска 2 м, опора посередине; грузы 3 кг и 2 кг; g ≈ 9,8 Н/кг",
+        "en": "Board 2 m, pivot in the middle; loads 3 kg and 2 kg; g ≈ 9.8 N/kg"
+      },
+      "outputs": {
+        "ky": "3 кг 0,6 м ийинде жана 2 кг 0,9 м ийинде: M₁ = M₂ ≈ 17,6 Н·м – тең салмак",
+        "ru": "3 кг на плече 0,6 м и 2 кг на плече 0,9 м: M₁ = M₂ ≈ 17,6 Н·м – равновесие",
+        "en": "3 kg on a 0.6 m arm and 2 kg on a 0.9 m arm: M₁ = M₂ ≈ 17.6 N·m – balanced"
+      },
+      "steps": [
+        {
+          "key": "empty",
+          "title": {
+            "ky": "Бош тактай",
+            "ru": "Пустая доска",
+            "en": "Empty board"
+          },
+          "result": {
+            "ky": "M₁ = M₂ = 0",
+            "ru": "M₁ = M₂ = 0",
+            "en": "M₁ = M₂ = 0"
+          },
+          "description": {
+            "ky": "Тактай так ортосунан таянат, ошондуктан бош тактай тең салмакта турат.",
+            "ru": "Доска опирается точно серединой, поэтому пустая доска в равновесии.",
+            "en": "The board rests exactly on its middle, so the empty board balances."
+          },
+          "conceptKey": "phys.pivot",
+          "altText": {
+            "ky": "Ортосунда таянычы бар горизонталдык тактай.",
+            "ru": "Горизонтальная доска с опорой посередине.",
+            "en": "A level board with a pivot in the middle."
+          },
+          "duration": 1
+        },
+        {
+          "key": "left-load",
+          "title": {
+            "ky": "Солго 3 кг",
+            "ru": "Слева 3 кг",
+            "en": "3 kg on the left"
+          },
+          "result": {
+            "ky": "M₁ = 29,4 · 0,6 ≈ 17,6 Н·м",
+            "ru": "M₁ = 29,4 · 0,6 ≈ 17,6 Н·м",
+            "en": "M₁ = 29.4 × 0.6 ≈ 17.6 N·m"
+          },
+          "description": {
+            "ky": "3 кг жүктүн салмагы 3 · 9,8 = 29,4 Н, ийини 0,6 м. Анын моменти тактайды саат жебесине каршы бурат – сол учу ылдый түшөт.",
+            "ru": "Вес груза 3 кг равен 3 · 9,8 = 29,4 Н, плечо 0,6 м. Его момент поворачивает доску против часовой стрелки – левый край опускается.",
+            "en": "The 3 kg load weighs 3 × 9.8 = 29.4 N and has a 0.6 m arm. Its moment turns the board anticlockwise – the left end goes down."
+          },
+          "conceptKey": "phys.weight",
+          "altText": {
+            "ky": "Сол жакта жүк, тактайдын сол учу ылдый.",
+            "ru": "Слева груз, левый край доски опущен.",
+            "en": "A load on the left; the left end of the board is down."
+          },
+          "duration": 1
+        },
+        {
+          "key": "right-near",
+          "title": {
+            "ky": "Оңго 2 кг, 0,6 м",
+            "ru": "Справа 2 кг на 0,6 м",
+            "en": "2 kg on the right at 0.6 m"
+          },
+          "result": {
+            "ky": "M₂ = 19,6 · 0,6 ≈ 11,8 Н·м < M₁",
+            "ru": "M₂ = 19,6 · 0,6 ≈ 11,8 Н·м < M₁",
+            "en": "M₂ = 19.6 × 0.6 ≈ 11.8 N·m < M₁"
+          },
+          "description": {
+            "ky": "2 кг жүктү оң жакка ошол эле 0,6 м аралыкка койдук. Анын моменти кичине, ошондуктан тактай дагы эле солго кыйшайып турат.",
+            "ru": "Груз 2 кг поставили справа на то же расстояние 0,6 м. Его момент меньше, поэтому доска всё ещё наклонена влево.",
+            "en": "The 2 kg load goes on the right at the same 0.6 m. Its moment is smaller, so the board still tips to the left."
+          },
+          "conceptKey": "phys.moment-of-force",
+          "altText": {
+            "ky": "Эки жакта жүк, тактай солго кыйшайган.",
+            "ru": "Грузы с обеих сторон, доска наклонена влево.",
+            "en": "Loads on both sides; the board tips left."
+          },
+          "duration": 1
+        },
+        {
+          "key": "right-far",
+          "title": {
+            "ky": "2 кг жүктү 0,9 м ге жылдыруу",
+            "ru": "Сдвигаем 2 кг на 0,9 м",
+            "en": "Move the 2 kg load to 0.9 m"
+          },
+          "result": {
+            "ky": "M₂ = 19,6 · 0,9 ≈ 17,6 Н·м = M₁",
+            "ru": "M₂ = 19,6 · 0,9 ≈ 17,6 Н·м = M₁",
+            "en": "M₂ = 19.6 × 0.9 ≈ 17.6 N·m = M₁"
+          },
+          "description": {
+            "ky": "Жеңил жүктү таяныч чекитинен алыстатып, анын ийинин 0,9 м ге узарттык. Эми моменттер барабар – тактай түздөлдү.",
+            "ru": "Отодвинули лёгкий груз от опоры и удлинили его плечо до 0,9 м. Теперь моменты равны – доска выровнялась.",
+            "en": "Moving the light load away from the pivot lengthens its arm to 0.9 m. Now the moments are equal and the board levels out."
+          },
+          "conceptKey": "phys.lever-arm",
+          "altText": {
+            "ky": "Тактай горизонталдык, оң жүк учуна жакын.",
+            "ru": "Доска горизонтальна, правый груз ближе к краю.",
+            "en": "The board is level; the right load is near the end."
+          },
+          "duration": 1
+        },
+        {
+          "key": "rule",
+          "title": {
+            "ky": "Эрежени текшерүү",
+            "ru": "Проверяем правило",
+            "en": "Check the rule"
+          },
+          "result": {
+            "ky": "29,4 · 0,6 = 19,6 · 0,9",
+            "ru": "29,4 · 0,6 = 19,6 · 0,9",
+            "en": "29.4 × 0.6 = 19.6 × 0.9"
+          },
+          "description": {
+            "ky": "F₁·d₁ = F₂·d₂: оор жүккө кыска ийин, жеңил жүккө узун ийин. Күчтөрдүн катышы 3 : 2, ийиндердики – 2 : 3.",
+            "ru": "F₁·d₁ = F₂·d₂: тяжёлому грузу – короткое плечо, лёгкому – длинное. Силы относятся как 3 : 2, плечи – как 2 : 3.",
+            "en": "F₁·d₁ = F₂·d₂: the heavy load gets the short arm, the light load the long one. The forces are in the ratio 3 : 2, the arms 2 : 3."
+          },
+          "conceptKey": "phys.lever-rule",
+          "altText": {
+            "ky": "Ийиндер жана моменттер жазылган тең салмактагы тактай.",
+            "ru": "Доска в равновесии с подписанными плечами и моментами.",
+            "en": "The balanced board with the arms and moments labelled."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "moment-left",
+          "label": {
+            "ky": "Сол моменти",
+            "ru": "Момент слева",
+            "en": "Left moment"
+          },
+          "unit": "N·m",
+          "min": 0,
+          "max": 20,
+          "precision": 1
+        },
+        {
+          "key": "moment-right",
+          "label": {
+            "ky": "Оң моменти",
+            "ru": "Момент справа",
+            "en": "Right moment"
+          },
+          "unit": "N·m",
+          "min": 0,
+          "max": 20,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "length": 2,
+        "pivot": 1,
+        "g": 9.8,
+        "moment-left@empty": 0,
+        "moment-left@left-load": 17.64,
+        "moment-left@right-near": 17.64,
+        "moment-left@right-far": 17.64,
+        "moment-left@rule": 17.64,
+        "moment-right@empty": 0,
+        "moment-right@left-load": 0,
+        "moment-right@right-near": 11.76,
+        "moment-right@right-far": 17.64,
+        "moment-right@rule": 17.64
+      }
+    }
+  ]
+}

@@ -1,0 +1,1114 @@
+{
+  "topic": {
+    "key": "metals-water",
+    "unitKey": "chem.g8.metals",
+    "status": "published",
+    "title": {
+      "ky": "Металлдардын суу менен реакциясы",
+      "ru": "Реакции металлов с водой",
+      "en": "Metals and water"
+    },
+    "formula": "Ca + 2H_2O \\to Ca(OH)_2 + H_2",
+    "classification": {
+      "ky": "Металл + суу → гидроксид + суутек",
+      "ru": "Металл + вода → гидроксид + водород",
+      "en": "Metal + water → hydroxide + hydrogen"
+    },
+    "description": {
+      "ky": "Эң активдүү металлдар (K, Na, Ca) муздак суу менен реакцияга кирип, суутек газын жана щелочту пайда кылат. Кальций бир калыпта көбүрөйт, эритме бүдөмүк болуп, фенолфталеинден кызгылт түскө боёлот. Магний муздак суу менен өтө жай, ал эми буу менен тезирээк реакцияга кирет; жез суу менен такыр реакцияга кирбейт.",
+      "ru": "Самые активные металлы (K, Na, Ca) реагируют с холодной водой, образуя водород и щёлочь. Кальций ровно выделяет пузырьки, раствор мутнеет и окрашивает фенолфталеин в малиновый цвет. Магний с холодной водой реагирует очень медленно, с паром – быстрее; медь с водой не реагирует вовсе.",
+      "en": "The most reactive metals (K, Na, Ca) react with cold water to give hydrogen gas and an alkali. Calcium bubbles steadily, the water turns cloudy, and phenolphthalein turns pink. Magnesium reacts very slowly with cold water but faster with steam; copper does not react with water at all."
+    },
+    "goal": {
+      "ky": "Металлдардын суу жана буу менен реакцияларын салыштырып, теңдемелерин жазуу; щелочту индикатор менен аныктоо (CHEM-8.4.1).",
+      "ru": "Сравнить реакции металлов с водой и паром, записать их уравнения; обнаружить щёлочь индикатором (CHEM-8.4.1).",
+      "en": "Compare how metals react with water and steam, write the equations, and detect the alkali with an indicator (CHEM-8.4.1)."
+    },
+    "objectiveKeys": [
+      "chem.g8.metals.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "reaction-vessel",
+        "metal": "Ca",
+        "reagent": "water",
+        "compare": [
+          "Na",
+          "Mg",
+          "Cu"
+        ]
+      },
+      "camera": {
+        "position": [
+          0,
+          1.8,
+          7.5
+        ],
+        "target": [
+          0,
+          0.6,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "run",
+        "labels",
+        "indicator"
+      ]
+    },
+    "conceptKeys": [
+      "chem.calcium",
+      "chem.hydrogen",
+      "chem.metal-hydroxide",
+      "chem.indicator",
+      "chem.sodium",
+      "chem.magnesium",
+      "chem.copper",
+      "chem.water"
+    ],
+    "overrides": {
+      "chem.calcium": {
+        "nodes": [
+          "Metal_Ca"
+        ]
+      },
+      "chem.hydrogen": {
+        "nodes": [
+          "Bubbles"
+        ],
+        "title": {
+          "ky": "Суутек газы (H₂)",
+          "ru": "Газ водород (H₂)",
+          "en": "Hydrogen gas (H₂)"
+        },
+        "description": {
+          "ky": "Металл суу менен реакцияга киргенде бөлүнүп чыккан түссүз газ. Пробиркага чогултуп, күйүп турган чыпты жакындатса, «тырс» деген үн менен күйөт: 2H₂ + O₂ → 2H₂O.",
+          "ru": "Бесцветный газ, который выделяется при реакции металла с водой. Если собрать его в пробирку и поднести горящую лучинку, он сгорает с хлопком: 2H₂ + O₂ → 2H₂O.",
+          "en": "The colourless gas given off when a metal reacts with water. Collected in a test tube and tested with a lit splint, it burns with a squeaky pop: 2H₂ + O₂ → 2H₂O."
+        }
+      },
+      "chem.metal-hydroxide": {
+        "nodes": [
+          "Product"
+        ]
+      },
+      "chem.indicator": {
+        "nodes": [
+          "Indicator"
+        ]
+      },
+      "chem.sodium": {
+        "nodes": [
+          "Metal_Na"
+        ],
+        "subtitle": {
+          "ky": "Na · щелочтуу металл (симуляцияда гана)",
+          "ru": "Na · щелочной металл (только в симуляции)",
+          "en": "Na · an alkali metal (simulation only)"
+        },
+        "description": {
+          "ky": "Жумшак, жеңил металл, суудан жеңил. Суу менен катуу реакцияга кирет: суунун бетинде чуркап, эрип шарга айланат, суутек бөлүнөт: 2Na + 2H₂O → 2NaOH + H₂. Калий ого бетер күчтүү – суутек кызгылт-көгүш жалын менен тутанат. Мектепте бул тажрыйбалар симуляцияда гана көрсөтүлөт.",
+          "ru": "Мягкий лёгкий металл, легче воды. Бурно реагирует с водой: бегает по поверхности, плавится в шарик, выделяет водород: 2Na + 2H₂O → 2NaOH + H₂. Калий ещё активнее – водород вспыхивает сиреневым пламенем. В школе эти опыты показывают только в симуляции.",
+          "en": "A soft, light metal that floats on water. It reacts violently: it whizzes over the surface, melts into a ball and gives off hydrogen: 2Na + 2H₂O → 2NaOH + H₂. Potassium is even more violent – the hydrogen catches fire with a lilac flame. In school these reactions are shown only as simulations."
+        }
+      },
+      "chem.magnesium": {
+        "nodes": [
+          "Metal_Mg"
+        ]
+      },
+      "chem.copper": {
+        "nodes": [
+          "Metal_Cu"
+        ]
+      },
+      "chem.water": {
+        "nodes": [
+          "Liquid"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "ca-water",
+        "title": {
+          "ky": "Кальций сууда",
+          "ru": "Кальций в воде",
+          "en": "Calcium in water"
+        },
+        "classification": {
+          "ky": "Бир калыпта көбүрөйт",
+          "ru": "Ровное выделение газа",
+          "en": "Steady bubbling"
+        },
+        "thumb": "thumbs/ca-water.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "Ca + 2H_2O \\to Ca(OH)_2 + H_2"
+          }
+        ]
+      },
+      {
+        "key": "na-water",
+        "title": {
+          "ky": "Натрий сууда (симуляция)",
+          "ru": "Натрий в воде (симуляция)",
+          "en": "Sodium in water (simulation)"
+        },
+        "classification": {
+          "ky": "Катуу реакция",
+          "ru": "Бурная реакция",
+          "en": "Violent reaction"
+        },
+        "thumb": "thumbs/na-water.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "2Na + 2H_2O \\to 2NaOH + H_2"
+          }
+        ]
+      },
+      {
+        "key": "mg-steam",
+        "title": {
+          "ky": "Магний жана буу",
+          "ru": "Магний и пар",
+          "en": "Magnesium and steam"
+        },
+        "classification": {
+          "ky": "Ысык буу менен",
+          "ru": "С горячим паром",
+          "en": "With hot steam"
+        },
+        "thumb": "thumbs/mg-steam.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "Mg + H_2O \\to MgO + H_2"
+          }
+        ]
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                1.8,
+                7.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ]
+            },
+            "modes": {
+              "run": false,
+              "labels": true
+            },
+            "text": {
+              "ky": "Төрт идиште суу жана төрт металл: кальций, натрий, магний, жез. Кайсынысы суу менен реакцияга кирет?",
+              "ru": "В четырёх сосудах вода и четыре металла: кальций, натрий, магний и медь. Какой из них реагирует с водой?",
+              "en": "Four beakers of water with four metals: calcium, sodium, magnesium and copper. Which of them react with water?"
+            },
+            "teacherNote": {
+              "ky": "Мурунку сабакты эске салыңыз: магний кычкылтек менен жакшы реакцияга кирген. Суу менен да ошондой болобу? Божомолдорду чогултуңуз.",
+              "ru": "Напомните прошлый урок: магний хорошо реагировал с кислородом. Будет ли так же с водой? Соберите прогнозы.",
+              "en": "Recall last lesson: magnesium reacted well with oxygen. Will it do the same with water? Collect predictions."
+            },
+            "altText": {
+              "ky": "Суу куюлган төрт идиш, ар биринде металл.",
+              "ru": "Четыре сосуда с водой, в каждом металл.",
+              "en": "Four beakers of water, each with a metal."
+            }
+          },
+          {
+            "key": "calcium",
+            "sample": "ca-water",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.calcium",
+            "text": {
+              "ky": "Кальций сууда чөгүп, дароо бир калыпта көбүкчө чыгара баштайт. Металлдын түйүрү акырындап кичирейет.",
+              "ru": "Кальций тонет и сразу начинает ровно выделять пузырьки. Кусочек металла постепенно уменьшается.",
+              "en": "Calcium sinks and at once starts bubbling steadily. The lump of metal slowly gets smaller."
+            },
+            "teacherNote": {
+              "ky": "Кальций менен тажрыйбаны мугалим коргоочу көз айнек менен, кичинекей түйүр менен гана көрсөтөт. Колго алууга болбойт – пинцет колдонулат.",
+              "ru": "Опыт с кальцием показывает учитель в защитных очках и только с маленьким кусочком. Брать руками нельзя – только пинцетом.",
+              "en": "The teacher shows the calcium demo with goggles and only a small piece. Never touch it – use tweezers."
+            },
+            "altText": {
+              "ky": "Суунун түбүндөгү кальций түйүрүнөн көбүкчөлөр көтөрүлүүдө.",
+              "ru": "От кусочка кальция на дне поднимаются пузырьки.",
+              "en": "Bubbles rise from a lump of calcium at the bottom."
+            }
+          },
+          {
+            "key": "hydrogen",
+            "sample": "ca-water",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.hydrogen",
+            "text": {
+              "ky": "Көбүкчөлөр – суутек газы. Пробиркага чогултуп, күйүп турган чыпты жакындатсак, «тырс» деген үн чыгат.",
+              "ru": "Пузырьки – это водород. Если собрать его в пробирку и поднести горящую лучинку, раздастся хлопок.",
+              "en": "The bubbles are hydrogen. Collect it in a test tube and hold a lit splint to it – you hear a squeaky pop."
+            },
+            "teacherNote": {
+              "ky": "«Тырс» деген үн – суутектин кычкылтек менен күйүп, суу пайда кылганы: 2H₂ + O₂ → 2H₂O. Кычкылтек үчүн сыноо (күйүп жаткан чыптын жалындап кетиши) менен чаташтырбаңыз.",
+              "ru": "Хлопок – это водород сгорает с кислородом, образуя воду: 2H₂ + O₂ → 2H₂O. Не путайте с пробой на кислород (тлеющая лучинка вспыхивает).",
+              "en": "The pop is hydrogen burning with oxygen to make water: 2H₂ + O₂ → 2H₂O. Don't confuse it with the oxygen test (a glowing splint relights)."
+            },
+            "altText": {
+              "ky": "Пробирканын оозуна күйүп турган чып жакындатылды.",
+              "ru": "К пробирке поднесена горящая лучинка.",
+              "en": "A lit splint at the mouth of a test tube."
+            }
+          },
+          {
+            "key": "hydroxide",
+            "sample": "ca-water",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true,
+              "labels": true
+            },
+            "focus": "chem.metal-hydroxide",
+            "text": {
+              "ky": "Суу сүттөй бүдөмүк болуп калды: кальций гидроксиди пайда болду. Ca + 2H₂O → Ca(OH)₂ + H₂.",
+              "ru": "Вода помутнела, как молоко: образовался гидроксид кальция. Ca + 2H₂O → Ca(OH)₂ + H₂.",
+              "en": "The water has turned milky: calcium hydroxide has formed. Ca + 2H₂O → Ca(OH)₂ + H₂."
+            },
+            "teacherNote": {
+              "ky": "«Кальций жана суу» процессин ишке киргизиңиз. Атомдорду санатыңыз: Ca 1 = 1, H 4 = 2 + 2, O 2 = 2.",
+              "ru": "Запустите процесс «Кальций и вода». Попросите посчитать атомы: Ca 1 = 1, H 4 = 2 + 2, O 2 = 2.",
+              "en": "Run the «Calcium and water» process. Have pupils count atoms: Ca 1 = 1, H 4 = 2 + 2, O 2 = 2."
+            },
+            "altText": {
+              "ky": "Идиштеги суюктук ак бүдөмүк.",
+              "ru": "Жидкость в сосуде стала белой и мутной.",
+              "en": "The liquid in the beaker is cloudy white."
+            }
+          },
+          {
+            "key": "indicator",
+            "sample": "ca-water",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "indicator": true
+            },
+            "focus": "chem.indicator",
+            "text": {
+              "ky": "Фенолфталеиндин бир тамчысы эритмени кызгылт-малина түскө боёйт: эритмеде щелочь бар.",
+              "ru": "Одна капля фенолфталеина окрашивает раствор в малиновый цвет: в растворе щёлочь.",
+              "en": "One drop of phenolphthalein turns the solution pink: there is an alkali in it."
+            },
+            "teacherNote": {
+              "ky": "Салыштыруу үчүн таза сууга да индикатор тамчылатыңыз – ал түссүз калат. Индикатор щелочту «жаратпайт», аны «көрсөтөт».",
+              "ru": "Для сравнения капните индикатор в чистую воду – она останется бесцветной. Индикатор не «создаёт» щёлочь, а показывает её.",
+              "en": "For comparison, add indicator to pure water – it stays colourless. An indicator does not make an alkali; it reveals one."
+            },
+            "altText": {
+              "ky": "Кальций турган идиштеги эритме кызгылт түскө боёлду.",
+              "ru": "Раствор в сосуде с кальцием стал малиновым.",
+              "en": "The solution in the calcium beaker has turned pink."
+            }
+          },
+          {
+            "key": "sodium",
+            "sample": "na-water",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true,
+              "indicator": true
+            },
+            "focus": "chem.sodium",
+            "text": {
+              "ky": "Натрий суунун бетинде чуркап, эрип шарга айланат: 2Na + 2H₂O → 2NaOH + H₂. Калий ого бетер күчтүү – суутек кызгылт-көгүш жалын менен тутанат.",
+              "ru": "Натрий бегает по поверхности воды и плавится в шарик: 2Na + 2H₂O → 2NaOH + H₂. Калий ещё активнее – водород вспыхивает сиреневым пламенем.",
+              "en": "Sodium whizzes over the water and melts into a ball: 2Na + 2H₂O → 2NaOH + H₂. Potassium is even more violent – the hydrogen bursts into a lilac flame."
+            },
+            "teacherNote": {
+              "ky": "Коопсуздук: щелочтуу металлдар менен тажрыйбалар класста жүргүзүлбөйт – симуляцияны гана көрсөтүңүз. Реакция жарылып, ысык щелочь чачырашы мүмкүн.",
+              "ru": "Безопасность: опыты со щелочными металлами в классе не проводятся – показывайте только симуляцию. Возможны взрыв и брызги горячей щёлочи.",
+              "en": "Safety: alkali metal experiments are not done in class – show the simulation only. They can explode and spray hot alkali."
+            },
+            "altText": {
+              "ky": "Натрий шары суунун бетинде чуркап жүрөт.",
+              "ru": "Шарик натрия бегает по поверхности воды.",
+              "en": "A ball of sodium races over the water surface."
+            }
+          },
+          {
+            "key": "magnesium",
+            "sample": "mg-steam",
+            "camera": {
+              "position": [
+                0.2,
+                1.3,
+                3.6
+              ],
+              "target": [
+                0.2,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.magnesium",
+            "text": {
+              "ky": "Магний муздак сууда өтө жай реакцияга кирет – бир нече күндө гана бир аз көбүкчө чогулат. Ысык буу менен тез реакцияга кирет: Mg + H₂O → MgO + H₂. Жез сууда да, бууда да өзгөрбөйт.",
+              "ru": "Магний с холодной водой реагирует очень медленно – за несколько дней набирается немного пузырьков. С горячим паром реагирует быстро: Mg + H₂O → MgO + H₂. Медь не меняется ни в воде, ни в паре.",
+              "en": "Magnesium reacts very slowly with cold water – only a few bubbles collect over several days. With hot steam it reacts quickly: Mg + H₂O → MgO + H₂. Copper does not change in water or steam."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: эмне үчүн бууда продукту гидроксид эмес, оксид болот? (Жогорку температурада гидроксид туруксуз.)",
+              "ru": "Спросите: почему с паром получается оксид, а не гидроксид? (При высокой температуре гидроксид неустойчив.)",
+              "en": "Ask: why does steam give an oxide, not a hydroxide? (At high temperature the hydroxide is not stable.)"
+            },
+            "altText": {
+              "ky": "Магнийдин бетинде бир-эки гана көбүкчө, жез өзгөрүүсүз.",
+              "ru": "На магнии лишь пара пузырьков, медь без изменений.",
+              "en": "Just a couple of bubbles on the magnesium; the copper is unchanged."
+            }
+          },
+          {
+            "key": "summary",
+            "camera": {
+              "position": [
+                0,
+                1.8,
+                7.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ]
+            },
+            "modes": {
+              "labels": true,
+              "indicator": true
+            },
+            "text": {
+              "ky": "Жыйынтык: металл + суу → металл гидроксиди + суутек. Суу менен реакцияга кирүү жөндөмү: K > Na > Ca > Mg (жай) > Cu (жок).",
+              "ru": "Итог: металл + вода → гидроксид металла + водород. Способность реагировать с водой: K > Na > Ca > Mg (медленно) > Cu (нет).",
+              "en": "Summary: metal + water → metal hydroxide + hydrogen. Reactivity with water: K > Na > Ca > Mg (slow) > Cu (none)."
+            },
+            "teacherNote": {
+              "ky": "Мурунку сабактагы кычкылтек менен катарды салыштырыңыз – тартип бирдей. Кийинки сабакта кислоталарды карайбыз.",
+              "ru": "Сравните с порядком для кислорода с прошлого урока – он тот же. На следующем уроке – кислоты.",
+              "en": "Compare with the order for oxygen from last lesson – it is the same. Next lesson: acids."
+            },
+            "altText": {
+              "ky": "Төрт идиш жана алардын жыйынтыгы жазылган белгилер.",
+              "ru": "Четыре сосуда с подписями результатов.",
+              "en": "Four beakers labelled with their results."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.calcium-water"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.sodium"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.calcium"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.magnesium"
+          }
+        ],
+        "rows": [
+          "density",
+          "meltingPoint",
+          "molarMass"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.metals-water-1",
+          "chem.q.metals-water-2",
+          "chem.q.metals-water-3",
+          "chem.q.metals-water-4",
+          "chem.q.metals-water-5",
+          "chem.q.metals-water-6",
+          "chem.q.metals-water-7",
+          "chem.q.metals-water-8",
+          "chem.q.metals-water-9",
+          "chem.q.metals-water-10",
+          "chem.q.metals-water-11",
+          "chem.q.metals-water-12"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Акиташ суусу",
+            "ru": "Известковая вода",
+            "en": "Limewater"
+          },
+          "text": {
+            "ky": "Ca(OH)₂ эритмеси – лабораториядагы CO₂ сыноосунун негизги реактиви.",
+            "ru": "Раствор Ca(OH)₂ – главный реактив для обнаружения CO₂ в лаборатории.",
+            "en": "Ca(OH)₂ solution is the standard lab reagent for testing for CO₂."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Натрийди сактоо",
+            "ru": "Хранение натрия",
+            "en": "Storing sodium"
+          },
+          "text": {
+            "ky": "Натрий менен калий нымдан жана абадан сакталуу үчүн керосинге салынган бекем идиштерде ташылат.",
+            "ru": "Натрий и калий перевозят в герметичной таре под керосином, защищая от влаги и воздуха.",
+            "en": "Sodium and potassium are shipped in sealed containers under paraffin oil, away from moisture and air."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Суутектин булагы",
+            "ru": "Источник водорода",
+            "en": "A source of hydrogen"
+          },
+          "text": {
+            "ky": "Кальций гидриди жана кальций суу менен суутек берет; мурда аэростаттарды талаада толтуруу үчүн колдонулган.",
+            "ru": "Кальций и гидрид кальция дают с водой водород; раньше так наполняли аэростаты в полевых условиях.",
+            "en": "Calcium and calcium hydride give hydrogen with water; this was once used to fill weather balloons in the field."
+          },
+          "field": "s"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Шыпылдаган таблетка",
+            "ru": "Шипучая таблетка",
+            "en": "A fizzy tablet"
+          },
+          "text": {
+            "ky": "Кальций сууда шыпылдак витамин таблеткасындай көбүрөйт, бирок газы башка – суутек.",
+            "ru": "Кальций в воде шипит, как витаминная таблетка, только газ другой – водород.",
+            "en": "Calcium fizzes in water like a vitamin tablet – but the gas is hydrogen."
+          }
+        },
+        {
+          "title": {
+            "ky": "Темир чака",
+            "ru": "Железное ведро",
+            "en": "A metal bucket"
+          },
+          "text": {
+            "ky": "Суу ташыган жез же темир идиш суу менен «жарылбайт» – алар активдүүлүгү төмөн металлдар.",
+            "ru": "Медный или железный бидон не «взрывается» от воды – это малоактивные металлы.",
+            "en": "A copper or iron water can does not fizz in water – those metals are not reactive enough."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "chem.q.metals-water-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Кальций суу менен реакцияга киргенде кайсы газ бөлүнүп чыгат?",
+        "ru": "Какой газ выделяется при реакции кальция с водой?",
+        "en": "Which gas is given off when calcium reacts with water?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кычкылтек",
+            "ru": "Кислород",
+            "en": "Oxygen"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Суутек",
+            "ru": "Водород",
+            "en": "Hydrogen"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Көмүр кычкыл газы",
+            "ru": "Углекислый газ",
+            "en": "Carbon dioxide"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Буу",
+            "ru": "Водяной пар",
+            "en": "Steam"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Ca + 2H₂O → Ca(OH)₂ + H₂: суутек.",
+        "ru": "Ca + 2H₂O → Ca(OH)₂ + H₂: водород.",
+        "en": "Ca + 2H₂O → Ca(OH)₂ + H₂: hydrogen."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.hydrogen-in-water-gas",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.metals-water-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Ca + 2H₂O → ? теңдемесин бүтүр.",
+        "ru": "Допиши уравнение Ca + 2H₂O → ?",
+        "en": "Complete the equation Ca + 2H₂O → ?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "CaO + H₂O",
+            "ru": "CaO + H₂O",
+            "en": "CaO + H₂O"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ca(OH)₂ + H₂",
+            "ru": "Ca(OH)₂ + H₂",
+            "en": "Ca(OH)₂ + H₂"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "CaH₂ + O₂",
+            "ru": "CaH₂ + O₂",
+            "en": "CaH₂ + O₂"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Ca(OH)₂ + O₂",
+            "ru": "Ca(OH)₂ + O₂",
+            "en": "Ca(OH)₂ + O₂"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Активдүү металл суу менен гидроксид жана суутек берет: Ca(OH)₂ + H₂.",
+        "ru": "Активный металл с водой даёт гидроксид и водород: Ca(OH)₂ + H₂.",
+        "en": "A reactive metal and water give a hydroxide and hydrogen: Ca(OH)₂ + H₂."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-water-3",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы металлдар муздак суу менен даана байкала турган реакцияга кирет?",
+        "ru": "Какие металлы заметно реагируют с холодной водой?",
+        "en": "Which metals react visibly with cold water?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Калий",
+            "ru": "Калий",
+            "en": "Potassium"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Натрий",
+            "ru": "Натрий",
+            "en": "Sodium"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Кальций",
+            "ru": "Кальций",
+            "en": "Calcium"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Жез",
+            "ru": "Медь",
+            "en": "Copper"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Алтын",
+            "ru": "Золото",
+            "en": "Gold"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Активдүүлүк катарынын башындагы K, Na, Ca муздак суу менен реакцияга кирет. Магний – өтө жай, жез менен алтын – такыр кирбейт.",
+        "ru": "K, Na, Ca из начала ряда активности реагируют с холодной водой. Магний – очень медленно, медь и золото – вовсе нет.",
+        "en": "K, Na and Ca, at the top of the series, react with cold water. Magnesium reacts very slowly; copper and gold not at all."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-water-4",
+      "type": "match",
+      "prompt": {
+        "ky": "Байкоону анын түшүндүрмөсү менен дал келтир.",
+        "ru": "Сопоставь наблюдение и его объяснение.",
+        "en": "Match each observation to what it means."
+      },
+      "pairs": [
+        {
+          "key": "pop",
+          "left": {
+            "ky": "Күйүп турган чып «тырс» этет",
+            "ru": "Горящая лучинка даёт хлопок",
+            "en": "A lit splint gives a squeaky pop"
+          },
+          "right": {
+            "ky": "Суутек бар",
+            "ru": "Есть водород",
+            "en": "Hydrogen is present"
+          }
+        },
+        {
+          "key": "pink",
+          "left": {
+            "ky": "Фенолфталеин кызгылт түскө боёлду",
+            "ru": "Фенолфталеин стал малиновым",
+            "en": "Phenolphthalein turned pink"
+          },
+          "right": {
+            "ky": "Щелочь пайда болду",
+            "ru": "Образовалась щёлочь",
+            "en": "An alkali has formed"
+          }
+        },
+        {
+          "key": "cloudy",
+          "left": {
+            "ky": "Суу сүттөй бүдөмүк болду",
+            "ru": "Вода помутнела, как молоко",
+            "en": "The water turned milky"
+          },
+          "right": {
+            "ky": "Ca(OH)₂ аз эрийт",
+            "ru": "Ca(OH)₂ мало растворим",
+            "en": "Ca(OH)₂ is barely soluble"
+          }
+        },
+        {
+          "key": "steam",
+          "left": {
+            "ky": "Магний ысык бууда",
+            "ru": "Магний в горячем паре",
+            "en": "Magnesium in hot steam"
+          },
+          "right": {
+            "ky": "MgO + H₂ пайда болот",
+            "ru": "Образуются MgO + H₂",
+            "en": "MgO + H₂ form"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Тырс деген үн – суутек; кызгылт фенолфталеин – щелочь; бүдөмүк эритме – аз эрүүчү Ca(OH)₂; буудагы магний – MgO жана H₂.",
+        "ru": "Хлопок – водород; малиновый фенолфталеин – щёлочь; мутный раствор – малорастворимый Ca(OH)₂; магний в паре – MgO и H₂.",
+        "en": "Squeaky pop – hydrogen; pink phenolphthalein – alkali; cloudy liquid – barely soluble Ca(OH)₂; magnesium in steam – MgO and H₂."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.metals-water-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Эритмеде щелочь пайда болгонун көрсөткөн затты тап.",
+        "ru": "Найди вещество, которое показывает, что в растворе образовалась щёлочь.",
+        "en": "Find the substance that shows an alkali has formed in the solution."
+      },
+      "targetConceptKey": "chem.indicator",
+      "explanation": {
+        "ky": "Фенолфталеин щелочто кызгылт-малина түскө боёлот.",
+        "ru": "Фенолфталеин в щёлочи становится малиновым.",
+        "en": "Phenolphthalein turns pink in an alkali."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.indicator-makes-alkali",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.metals-water-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Реакцияда бөлүнүп чыккан газды тап.",
+        "ru": "Найди газ, который выделяется в реакции.",
+        "en": "Find the gas given off in the reaction."
+      },
+      "targetConceptKey": "chem.hydrogen",
+      "explanation": {
+        "ky": "Металлдан көтөрүлгөн көбүкчөлөр – суутек H₂.",
+        "ru": "Пузырьки, поднимающиеся от металла, – водород H₂.",
+        "en": "The bubbles rising from the metal are hydrogen, H₂."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.metals-water-7",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Класста эмес, симуляцияда гана көрсөтүлө турган металлды тап.",
+        "ru": "Найди металл, опыт с которым показывают только в симуляции, а не в классе.",
+        "en": "Find the metal whose reaction with water is shown only as a simulation, not in class."
+      },
+      "targetConceptKey": "chem.sodium",
+      "explanation": {
+        "ky": "Натрий суу менен катуу реакцияга кирет: суутек тутанып, ысык щелочь чачырашы мүмкүн.",
+        "ru": "Натрий бурно реагирует с водой: водород может вспыхнуть, разбрызгивая горячую щёлочь.",
+        "en": "Sodium reacts violently with water: the hydrogen can ignite and spray hot alkali."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-water-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "4 г кальций суу менен толук реакцияга кирди. Канча грамм суутек бөлүндү? (M(Ca) = 40 г/моль, M(H₂) = 2 г/моль)",
+        "ru": "4 г кальция полностью прореагировали с водой. Сколько граммов водорода выделилось? (M(Ca) = 40 г/моль, M(H₂) = 2 г/моль)",
+        "en": "4 g of calcium reacts completely with water. How many grams of hydrogen are given off? (M(Ca) = 40 g/mol, M(H₂) = 2 g/mol)"
+      },
+      "answer": 0.2,
+      "tolerance": 0.01,
+      "unit": "g",
+      "explanation": {
+        "ky": "4 г : 40 г/моль = 0,1 моль Ca → 0,1 моль H₂ × 2 г/моль = 0,2 г.",
+        "ru": "4 г : 40 г/моль = 0,1 моль Ca → 0,1 моль H₂ × 2 г/моль = 0,2 г.",
+        "en": "4 g ÷ 40 g/mol = 0.1 mol Ca → 0.1 mol H₂ × 2 g/mol = 0.2 g."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.metals-water-9",
+      "type": "numeric",
+      "prompt": {
+        "ky": "2Na + __H₂O → 2NaOH + H₂. Суунун алдына кандай коэффициент жазылат?",
+        "ru": "2Na + __H₂O → 2NaOH + H₂. Какой коэффициент нужно поставить перед водой?",
+        "en": "2Na + __H₂O → 2NaOH + H₂. What coefficient goes in front of water?"
+      },
+      "answer": 2,
+      "tolerance": 0,
+      "explanation": {
+        "ky": "Оң жакта H: 2 + 2 = 4, O: 2 – демек 2H₂O.",
+        "ru": "Справа H: 2 + 2 = 4, O: 2 – значит, 2H₂O.",
+        "en": "On the right H: 2 + 2 = 4 and O: 2, so 2H₂O."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-water-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн натрий жана калий менен суудагы тажрыйбалар класста эмес, симуляцияда көрсөтүлөт?",
+        "ru": "Почему опыты натрия и калия с водой показывают в симуляции, а не в классе?",
+        "en": "Why are sodium and potassium with water shown as a simulation rather than in class?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Алар суу менен реакцияга кирбейт",
+            "ru": "Они не реагируют с водой",
+            "en": "They do not react with water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Реакция өтө катуу, суутек тутанат",
+            "ru": "Реакция очень бурная, водород вспыхивает",
+            "en": "The reaction is violent and hydrogen ignites"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Бул металлдар өтө кымбат",
+            "ru": "Эти металлы слишком дорогие",
+            "en": "These metals are too expensive"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Реакция бир нече күнгө созулат",
+            "ru": "Реакция длится несколько дней",
+            "en": "The reaction takes several days"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Реакция өтө катуу: суутек тутанып, ысык щелочь чачырайт.",
+        "ru": "Реакция очень бурная: водород вспыхивает, разбрызгивается горячая щёлочь.",
+        "en": "The reaction is very violent: hydrogen catches fire and hot alkali sprays out."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.alkali-is-harmless-water",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-water-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Таза сууга фенолфталеин тамчылатса, эритме кандай түскө боёлот?",
+        "ru": "Какого цвета станет чистая вода, если капнуть в неё фенолфталеин?",
+        "en": "What colour does pure water turn with a drop of phenolphthalein?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кызгылт-малина",
+            "ru": "Малиновый",
+            "en": "Pink"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Түссүз калат",
+            "ru": "Остаётся бесцветной",
+            "en": "Stays colourless"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Көк",
+            "ru": "Синий",
+            "en": "Blue"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Сары",
+            "ru": "Жёлтый",
+            "en": "Yellow"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Таза суу нейтралдуу – фенолфталеин түссүз калат. Кызгылт түс щелочь болгондо гана пайда болот.",
+        "ru": "Чистая вода нейтральна – фенолфталеин остаётся бесцветным. Малиновый цвет появляется только в щёлочи.",
+        "en": "Pure water is neutral, so phenolphthalein stays colourless. Pink appears only in an alkali."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.indicator-makes-alkali",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-water-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Магний ысык буу менен реакцияга киргенде эмне пайда болот?",
+        "ru": "Что образуется при реакции магния с горячим паром?",
+        "en": "What forms when magnesium reacts with hot steam?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "MgO + H₂",
+            "ru": "MgO + H₂",
+            "en": "MgO + H₂"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Mg(OH)₂ + O₂",
+            "ru": "Mg(OH)₂ + O₂",
+            "en": "Mg(OH)₂ + O₂"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "MgH₂ + O₂",
+            "ru": "MgH₂ + O₂",
+            "en": "MgH₂ + O₂"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Реакция жүрбөйт",
+            "ru": "Реакция не идёт",
+            "en": "No reaction"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Mg + H₂O → MgO + H₂: жогорку температурада оксид пайда болот.",
+        "ru": "Mg + H₂O → MgO + H₂: при высокой температуре образуется оксид.",
+        "en": "Mg + H₂O → MgO + H₂: at high temperature an oxide forms."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 3
+    }
+  ]
+}

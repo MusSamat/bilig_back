@@ -1,0 +1,1049 @@
+{
+  "topic": {
+    "key": "metals-acids",
+    "unitKey": "chem.g8.metals",
+    "status": "published",
+    "title": {
+      "ky": "Металлдардын кислоталар менен реакциясы",
+      "ru": "Реакции металлов с кислотами",
+      "en": "Metals and acids"
+    },
+    "formula": "Zn + 2HCl \\to ZnCl_2 + H_2",
+    "classification": {
+      "ky": "Металл + кислота → туз + суутек",
+      "ru": "Металл + кислота → соль + водород",
+      "en": "Metal + acid → salt + hydrogen"
+    },
+    "description": {
+      "ky": "Суутектен мурун турган металлдар (Mg, Zn, Fe) суюлтулган туз кислотасы менен реакцияга кирип, туз жана суутек газын пайда кылат. Магний эң тез, темир эң жай көбүрөйт; жез такыр реакцияга кирбейт. Суутекти күйүп турган чыптын «тырс» деген үнү менен аныктайбыз.",
+      "ru": "Металлы, стоящие до водорода (Mg, Zn, Fe), реагируют с разбавленной соляной кислотой, образуя соль и водород. Магний шипит быстрее всех, железо медленнее всех; медь не реагирует вовсе. Водород узнаём по хлопку горящей лучинки.",
+      "en": "Metals above hydrogen (Mg, Zn, Fe) react with dilute hydrochloric acid to give a salt and hydrogen gas. Magnesium fizzes fastest and iron slowest; copper does not react at all. We identify hydrogen by the squeaky pop with a lit splint."
+    },
+    "goal": {
+      "ky": "Металлдардын кислота менен реакцияларын салыштырып, теңдемелерин жазуу; суутекти аныктоо (CHEM-8.4.1).",
+      "ru": "Сравнить реакции металлов с кислотой, записать уравнения и распознать водород (CHEM-8.4.1).",
+      "en": "Compare how metals react with acid, write the equations and identify hydrogen (CHEM-8.4.1)."
+    },
+    "objectiveKeys": [
+      "chem.g8.metals.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "reaction-vessel",
+        "metal": "Zn",
+        "reagent": "acid",
+        "compare": [
+          "Mg",
+          "Fe",
+          "Cu"
+        ]
+      },
+      "camera": {
+        "position": [
+          0,
+          1.8,
+          7.5
+        ],
+        "target": [
+          0,
+          0.6,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "run",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "chem.zinc",
+      "chem.hydrochloric-acid",
+      "chem.hydrogen",
+      "chem.metal-chloride",
+      "chem.magnesium",
+      "chem.iron",
+      "chem.copper"
+    ],
+    "overrides": {
+      "chem.zinc": {
+        "nodes": [
+          "Metal_Zn"
+        ]
+      },
+      "chem.hydrochloric-acid": {
+        "nodes": [
+          "Liquid"
+        ]
+      },
+      "chem.hydrogen": {
+        "nodes": [
+          "Bubbles"
+        ],
+        "title": {
+          "ky": "Суутек газы (H₂)",
+          "ru": "Газ водород (H₂)",
+          "en": "Hydrogen gas (H₂)"
+        },
+        "description": {
+          "ky": "Металл кислота менен реакцияга киргенде бөлүнүп чыккан түссүз, абадан жеңил газ. Сыноо: пробиркага чогултуп, күйүп турган чыпты жакындатса, «тырс» деген үн чыгат (2H₂ + O₂ → 2H₂O).",
+          "ru": "Бесцветный газ легче воздуха, который выделяется при реакции металла с кислотой. Проба: собрать в пробирку и поднести горящую лучинку – раздаётся хлопок (2H₂ + O₂ → 2H₂O).",
+          "en": "The colourless gas, lighter than air, given off when a metal reacts with an acid. Test: collect it in a test tube and bring a lit splint – it burns with a squeaky pop (2H₂ + O₂ → 2H₂O)."
+        }
+      },
+      "chem.metal-chloride": {
+        "nodes": [
+          "Product"
+        ]
+      },
+      "chem.magnesium": {
+        "nodes": [
+          "Metal_Mg"
+        ]
+      },
+      "chem.iron": {
+        "nodes": [
+          "Metal_Fe"
+        ]
+      },
+      "chem.copper": {
+        "nodes": [
+          "Metal_Cu"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "zn-hcl",
+        "title": {
+          "ky": "Цинк + туз кислотасы",
+          "ru": "Цинк + соляная кислота",
+          "en": "Zinc + hydrochloric acid"
+        },
+        "classification": {
+          "ky": "Бир калыпта көбүрөйт",
+          "ru": "Ровное шипение",
+          "en": "Steady fizzing"
+        },
+        "thumb": "thumbs/zn-hcl.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "Zn + 2HCl \\to ZnCl_2 + H_2"
+          }
+        ]
+      },
+      {
+        "key": "mg-hcl",
+        "title": {
+          "ky": "Магний + туз кислотасы",
+          "ru": "Магний + соляная кислота",
+          "en": "Magnesium + hydrochloric acid"
+        },
+        "classification": {
+          "ky": "Тез, жылуулук бөлөт",
+          "ru": "Бурно, с нагревом",
+          "en": "Fast, gets warm"
+        },
+        "thumb": "thumbs/mg-hcl.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "Mg + 2HCl \\to MgCl_2 + H_2"
+          }
+        ]
+      },
+      {
+        "key": "cu-hcl",
+        "title": {
+          "ky": "Жез + туз кислотасы",
+          "ru": "Медь + соляная кислота",
+          "en": "Copper + hydrochloric acid"
+        },
+        "classification": {
+          "ky": "Реакция жок",
+          "ru": "Реакции нет",
+          "en": "No reaction"
+        },
+        "thumb": "thumbs/cu-hcl.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "state",
+            "value": {
+              "ky": "Көбүкчө жок",
+              "ru": "Пузырьков нет",
+              "en": "No bubbles"
+            }
+          }
+        ]
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                1.8,
+                7.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ]
+            },
+            "modes": {
+              "run": false,
+              "labels": true
+            },
+            "text": {
+              "ky": "Төрт пробиркада суюлтулган туз кислотасы жана төрт металл: цинк, магний, темир, жез. Кайсынысы көбүрөйт?",
+              "ru": "В четырёх пробирках разбавленная соляная кислота и четыре металла: цинк, магний, железо и медь. Какой из них зашипит?",
+              "en": "Four test tubes of dilute hydrochloric acid with four metals: zinc, magnesium, iron and copper. Which will fizz?"
+            },
+            "teacherNote": {
+              "ky": "Окуучуларга мурунку эки сабактагы тартипти (Mg > Cu) эстетип, ушул негизде божомолдоп көрүүнү сунуштаңыз.",
+              "ru": "Напомните порядок из прошлых уроков (Mg > Cu) и предложите сделать прогноз на его основе.",
+              "en": "Remind pupils of the order from earlier lessons (Mg > Cu) and ask them to predict using it."
+            },
+            "altText": {
+              "ky": "Кислота куюлган төрт пробирка, ар биринде металл.",
+              "ru": "Четыре пробирки с кислотой, в каждой металл.",
+              "en": "Four test tubes of acid, each with a metal."
+            }
+          },
+          {
+            "key": "acid",
+            "sample": "zn-hcl",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": false
+            },
+            "focus": "chem.hydrochloric-acid",
+            "text": {
+              "ky": "Туз кислотасы – түссүз суюктук. Биз суюлтулган эритмени колдонобуз, бирок ал да теринин жана көздүн ткандарына зыян.",
+              "ru": "Соляная кислота – бесцветная жидкость. Мы берём разбавленный раствор, но и он опасен для кожи и глаз.",
+              "en": "Hydrochloric acid is a colourless liquid. We use a dilute solution, but even that can harm skin and eyes."
+            },
+            "teacherNote": {
+              "ky": "Коопсуздук: кислота менен иштөөнү окуучулар симуляцияда жасашат; мугалим демонстрацияда коргоочу көз айнек жана кол кап кийет. Сууну кислотага эмес, кислотаны сууга куюшат.",
+              "ru": "Безопасность: ученики работают с кислотой в симуляции; учитель на демонстрации – в очках и перчатках. Кислоту льют в воду, а не воду в кислоту.",
+              "en": "Safety: pupils work with acid in the simulation; the teacher wears goggles and gloves for any demo. Always add acid to water, never water to acid."
+            },
+            "altText": {
+              "ky": "Пробиркадагы түссүз суюктук бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделена бесцветная жидкость в пробирке.",
+              "en": "The colourless liquid in the test tube is highlighted."
+            }
+          },
+          {
+            "key": "zinc",
+            "sample": "zn-hcl",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.zinc",
+            "text": {
+              "ky": "Цинк кислотада бир калыпта көбүрөйт: Zn + 2HCl → ZnCl₂ + H₂. Гранулалар акырындап кичирейет.",
+              "ru": "Цинк ровно шипит в кислоте: Zn + 2HCl → ZnCl₂ + H₂. Гранулы постепенно уменьшаются.",
+              "en": "Zinc fizzes steadily in the acid: Zn + 2HCl → ZnCl₂ + H₂. The granules slowly shrink."
+            },
+            "teacherNote": {
+              "ky": "«Цинк жана туз кислотасы» процессин ишке киргизип, цинктин массасы азайып, ZnCl₂ нин массасы өскөнүн көрсөтүңүз.",
+              "ru": "Запустите процесс «Цинк и соляная кислота» и покажите, как масса цинка уменьшается, а ZnCl₂ растёт.",
+              "en": "Run the «Zinc and hydrochloric acid» process and show the zinc mass falling while the ZnCl₂ mass grows."
+            },
+            "altText": {
+              "ky": "Цинк гранулаларынан көбүкчөлөр көтөрүлүүдө.",
+              "ru": "От гранул цинка поднимаются пузырьки.",
+              "en": "Bubbles rise from the zinc granules."
+            }
+          },
+          {
+            "key": "hydrogen",
+            "sample": "zn-hcl",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.hydrogen",
+            "text": {
+              "ky": "Газды пробиркага чогултуп, күйүп турган чыпты жакындатабыз – «тырс»! Бул суутек: 2H₂ + O₂ → 2H₂O.",
+              "ru": "Собираем газ в пробирку и подносим горящую лучинку – хлопок! Это водород: 2H₂ + O₂ → 2H₂O.",
+              "en": "Collect the gas and bring a lit splint – pop! It is hydrogen: 2H₂ + O₂ → 2H₂O."
+            },
+            "teacherNote": {
+              "ky": "Пробирканы оозу менен ылдый кармоо керектигин сураңыз: суутек абадан жеңил, өйдө качып кетет.",
+              "ru": "Спросите, почему пробирку держат вверх дном: водород легче воздуха и улетает вверх.",
+              "en": "Ask why the tube is held upside down: hydrogen is lighter than air and escapes upwards."
+            },
+            "altText": {
+              "ky": "Пробирканын оозунда кичинекей жалын.",
+              "ru": "Маленькая вспышка у горлышка пробирки.",
+              "en": "A small flash at the mouth of the tube."
+            }
+          },
+          {
+            "key": "compare",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                5
+              ],
+              "target": [
+                0,
+                0.5,
+                0
+              ]
+            },
+            "modes": {
+              "run": true,
+              "labels": true
+            },
+            "focus": "chem.magnesium",
+            "text": {
+              "ky": "Магний эң тез көбүрөйт жана пробирка жылыйт: Mg + 2HCl → MgCl₂ + H₂. Темир өтө жай: Fe + 2HCl → FeCl₂ + H₂.",
+              "ru": "Магний шипит быстрее всех, и пробирка нагревается: Mg + 2HCl → MgCl₂ + H₂. Железо – очень медленно: Fe + 2HCl → FeCl₂ + H₂.",
+              "en": "Magnesium fizzes fastest and the tube warms up: Mg + 2HCl → MgCl₂ + H₂. Iron reacts very slowly: Fe + 2HCl → FeCl₂ + H₂."
+            },
+            "teacherNote": {
+              "ky": "Көбүкчөлөрдүн санын «ылдамдыктын» белгиси катары колдонууну сунуштаңыз: окуучулар металлдарды тез → жай тартибинде тизишсин.",
+              "ru": "Предложите считать пузырьки как меру скорости: пусть ученики расставят металлы от быстрого к медленному.",
+              "en": "Use the number of bubbles as a measure of speed: have pupils rank the metals from fastest to slowest."
+            },
+            "altText": {
+              "ky": "Магний турган пробиркада көбүкчө көп, темирде аз.",
+              "ru": "В пробирке с магнием много пузырьков, с железом – мало.",
+              "en": "Lots of bubbles with magnesium, few with iron."
+            }
+          },
+          {
+            "key": "copper",
+            "sample": "cu-hcl",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.copper",
+            "text": {
+              "ky": "Жез турган пробиркада эч нерсе болбойт – көбүкчө жок. Жез активдүүлүк катарында суутектен кийин турат.",
+              "ru": "В пробирке с медью ничего не происходит – пузырьков нет. Медь стоит в ряду активности после водорода.",
+              "en": "Nothing happens with copper – no bubbles. Copper is below hydrogen in the reactivity series."
+            },
+            "teacherNote": {
+              "ky": "«Бардык металлдар кислотада эрийт» деген жаңылыштыкты талкуулаңыз. Алтын шакек да туз кислотасында өзгөрбөйт.",
+              "ru": "Обсудите ошибку «все металлы растворяются в кислоте». Золотое кольцо в соляной кислоте тоже не изменится.",
+              "en": "Tackle the idea that all metals dissolve in acid. A gold ring would not change in hydrochloric acid either."
+            },
+            "altText": {
+              "ky": "Жез пластинка тынч суюктукта жатат.",
+              "ru": "Медная пластинка лежит в спокойной жидкости.",
+              "en": "A copper strip lies in still liquid."
+            }
+          },
+          {
+            "key": "salt",
+            "camera": {
+              "position": [
+                0,
+                1.8,
+                7.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ]
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "chem.metal-chloride",
+            "text": {
+              "ky": "Реакциядан кийин эритмеде туз калат: ZnCl₂, MgCl₂, FeCl₂. Жалпы эреже: металл + кислота → туз + суутек (металл суутектен мурун турса).",
+              "ru": "После реакции в растворе остаётся соль: ZnCl₂, MgCl₂, FeCl₂. Общее правило: металл + кислота → соль + водород (если металл стоит до водорода).",
+              "en": "After the reaction a salt stays in solution: ZnCl₂, MgCl₂, FeCl₂. The rule: metal + acid → salt + hydrogen (if the metal is above hydrogen)."
+            },
+            "teacherNote": {
+              "ky": "Эритменин бир тамчысын айнек пластинкада буулантып, ак кристаллдарды көрсөтүңүз. Кийинки сабакта бардык тажрыйбаларды бир катарга бириктиребиз.",
+              "ru": "Выпарьте каплю раствора на стекле и покажите белые кристаллы. На следующем уроке соберём все опыты в один ряд.",
+              "en": "Evaporate a drop on a glass slide to show white crystals. Next lesson we put all the results into one series."
+            },
+            "altText": {
+              "ky": "Төрт пробирка жана алардын продуктуларынын белгилери.",
+              "ru": "Четыре пробирки с подписями продуктов.",
+              "en": "Four test tubes labelled with their products."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.zinc-hydrochloric-acid"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.magnesium"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.zinc"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.iron"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.copper"
+          }
+        ],
+        "rows": [
+          "density",
+          "meltingPoint",
+          "molarMass"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.metals-acids-1",
+          "chem.q.metals-acids-2",
+          "chem.q.metals-acids-3",
+          "chem.q.metals-acids-4",
+          "chem.q.metals-acids-5",
+          "chem.q.metals-acids-6",
+          "chem.q.metals-acids-7",
+          "chem.q.metals-acids-8",
+          "chem.q.metals-acids-9",
+          "chem.q.metals-acids-10",
+          "chem.q.metals-acids-11"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Суутек алуу",
+            "ru": "Получение водорода",
+            "en": "Making hydrogen"
+          },
+          "text": {
+            "ky": "Лабораторияларда суутекти цинк менен туз кислотасынан Кипп аппаратында алышат.",
+            "ru": "В лабораториях водород получают из цинка и соляной кислоты в аппарате Киппа.",
+            "en": "Labs make hydrogen from zinc and hydrochloric acid in a Kipp's apparatus."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Кислоталуу тазалоо",
+            "ru": "Кислотное травление",
+            "en": "Acid pickling"
+          },
+          "text": {
+            "ky": "Заводдо болот барактарды туз кислотасына салып, бетиндеги тотту жана оксидди тазалашат.",
+            "ru": "На заводе стальные листы опускают в соляную кислоту, снимая ржавчину и окалину.",
+            "en": "Factories dip steel sheets in hydrochloric acid to remove rust and scale."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Кислотага чыдамдуу идиштер",
+            "ru": "Кислотостойкая тара",
+            "en": "Acid-proof tanks"
+          },
+          "text": {
+            "ky": "Кислотаны темир эмес, пластик же айнек идиштерде сакташат – темир аны менен реакцияга кирет.",
+            "ru": "Кислоту хранят не в железной, а в пластиковой или стеклянной таре – железо с ней реагирует.",
+            "en": "Acid is stored in plastic or glass, not iron, because iron reacts with it."
+          },
+          "field": "e"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Газдалган суусундук",
+            "ru": "Газировка",
+            "en": "A fizzy drink"
+          },
+          "text": {
+            "ky": "Кислотадагы цинк газдалган суусундуктай көбүрөйт, бирок көбүкчөлөр – суутек.",
+            "ru": "Цинк в кислоте шипит, как газировка, только пузырьки – водород.",
+            "en": "Zinc in acid fizzes like a soft drink, but the bubbles are hydrogen."
+          }
+        },
+        {
+          "title": {
+            "ky": "Лимон жана тыйын",
+            "ru": "Лимон и монетка",
+            "en": "Lemon and a coin"
+          },
+          "text": {
+            "ky": "Жез тыйынды лимон ширесине салсаң, ал көбүрбөйт – жез кислота менен реакцияга кирбейт, бир гана бети тазаланат.",
+            "ru": "Положи медную монетку в лимонный сок – она не зашипит: медь не реагирует, только очищается.",
+            "en": "Put a copper coin in lemon juice and it will not fizz: copper does not react, it just gets cleaner."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "chem.q.metals-acids-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Цинк туз кислотасы менен реакцияга киргенде кайсы газ бөлүнөт?",
+        "ru": "Какой газ выделяется при реакции цинка с соляной кислотой?",
+        "en": "Which gas is given off when zinc reacts with hydrochloric acid?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Хлор",
+            "ru": "Хлор",
+            "en": "Chlorine"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Кычкылтек",
+            "ru": "Кислород",
+            "en": "Oxygen"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Суутек",
+            "ru": "Водород",
+            "en": "Hydrogen"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Көмүр кычкыл газы",
+            "ru": "Углекислый газ",
+            "en": "Carbon dioxide"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Zn + 2HCl → ZnCl₂ + H₂: суутек.",
+        "ru": "Zn + 2HCl → ZnCl₂ + H₂: водород.",
+        "en": "Zn + 2HCl → ZnCl₂ + H₂: hydrogen."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.metals-acids-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Mg + 2HCl → ? теңдемесин бүтүр.",
+        "ru": "Допиши уравнение Mg + 2HCl → ?",
+        "en": "Complete Mg + 2HCl → ?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "MgCl₂ + H₂",
+            "ru": "MgCl₂ + H₂",
+            "en": "MgCl₂ + H₂"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "MgCl + H",
+            "ru": "MgCl + H",
+            "en": "MgCl + H"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "MgH₂ + Cl₂",
+            "ru": "MgH₂ + Cl₂",
+            "en": "MgH₂ + Cl₂"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "MgO + H₂O",
+            "ru": "MgO + H₂O",
+            "en": "MgO + H₂O"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Магний хлориди жана суутек: Mg + 2HCl → MgCl₂ + H₂.",
+        "ru": "Хлорид магния и водород: Mg + 2HCl → MgCl₂ + H₂.",
+        "en": "Magnesium chloride and hydrogen: Mg + 2HCl → MgCl₂ + H₂."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-acids-3",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы металлдар суюлтулган туз кислотасы менен реакцияга кирип, суутек бөлөт?",
+        "ru": "Какие металлы реагируют с разбавленной соляной кислотой с выделением водорода?",
+        "en": "Which metals react with dilute hydrochloric acid to give hydrogen?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Магний",
+            "ru": "Магний",
+            "en": "Magnesium"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Цинк",
+            "ru": "Цинк",
+            "en": "Zinc"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Темир",
+            "ru": "Железо",
+            "en": "Iron"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Жез",
+            "ru": "Медь",
+            "en": "Copper"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Күмүш",
+            "ru": "Серебро",
+            "en": "Silver"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Суутектен мурун турган Mg, Zn, Fe реакцияга кирет; Cu жана Ag – суутектен кийин, реакция жок.",
+        "ru": "Mg, Zn, Fe стоят до водорода и реагируют; Cu и Ag – после водорода, реакции нет.",
+        "en": "Mg, Zn and Fe are above hydrogen and react; Cu and Ag are below it and do not."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.all-metals-react-acid",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-acids-4",
+      "type": "match",
+      "prompt": {
+        "ky": "Газды аны аныктоочу сыноо менен дал келтир.",
+        "ru": "Сопоставь газ (вещество) и пробу, по которой его узнают.",
+        "en": "Match each substance to the test that identifies it."
+      },
+      "pairs": [
+        {
+          "key": "h2",
+          "left": {
+            "ky": "Суутек",
+            "ru": "Водород",
+            "en": "Hydrogen"
+          },
+          "right": {
+            "ky": "Күйүп турган чып «тырс» этет",
+            "ru": "Горящая лучинка – хлопок",
+            "en": "A lit splint gives a squeaky pop"
+          }
+        },
+        {
+          "key": "o2",
+          "left": {
+            "ky": "Кычкылтек",
+            "ru": "Кислород",
+            "en": "Oxygen"
+          },
+          "right": {
+            "ky": "Чогу калган чып кайра жалындайт",
+            "ru": "Тлеющая лучинка вспыхивает",
+            "en": "A glowing splint relights"
+          }
+        },
+        {
+          "key": "co2",
+          "left": {
+            "ky": "Көмүр кычкыл газы",
+            "ru": "Углекислый газ",
+            "en": "Carbon dioxide"
+          },
+          "right": {
+            "ky": "Акиташ суусу бүдөмүктөнөт",
+            "ru": "Известковая вода мутнеет",
+            "en": "Limewater turns cloudy"
+          }
+        },
+        {
+          "key": "alkali",
+          "left": {
+            "ky": "Щелочь",
+            "ru": "Щёлочь",
+            "en": "Alkali"
+          },
+          "right": {
+            "ky": "Фенолфталеин кызгылт болот",
+            "ru": "Фенолфталеин малиновый",
+            "en": "Phenolphthalein turns pink"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "H₂ – күйүп турган чып «тырс» этет; O₂ – чогун гана калган чып кайра жалындайт; CO₂ – акиташ суусу бүдөмүктөнөт; щелочь – фенолфталеин кызгылт болот.",
+        "ru": "H₂ – горящая лучинка даёт хлопок; O₂ – тлеющая лучинка вспыхивает; CO₂ – известковая вода мутнеет; щёлочь – фенолфталеин малиновый.",
+        "en": "H₂ – a lit splint pops; O₂ – a glowing splint relights; CO₂ – limewater turns cloudy; alkali – phenolphthalein turns pink."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.metals-acids-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Туз кислотасы менен реакцияга кирбеген металлды тап.",
+        "ru": "Найди металл, который не реагирует с соляной кислотой.",
+        "en": "Find the metal that does not react with hydrochloric acid."
+      },
+      "targetConceptKey": "chem.copper",
+      "explanation": {
+        "ky": "Жез суутектен кийин турат – көбүкчө жок.",
+        "ru": "Медь стоит после водорода – пузырьков нет.",
+        "en": "Copper is below hydrogen – no bubbles."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.all-metals-react-acid",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.metals-acids-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Металлдар менен реакцияга кирип жаткан кислотаны тап.",
+        "ru": "Найди кислоту, с которой реагируют металлы.",
+        "en": "Find the acid the metals are reacting with."
+      },
+      "targetConceptKey": "chem.hydrochloric-acid",
+      "explanation": {
+        "ky": "Пробиркалардагы түссүз суюктук – суюлтулган туз кислотасы.",
+        "ru": "Бесцветная жидкость в пробирках – разбавленная соляная кислота.",
+        "en": "The colourless liquid in the tubes is dilute hydrochloric acid."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.acid-burns-everything",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.metals-acids-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "6,5 г цинк туз кислотасы менен толук реакцияга кирди. Канча грамм цинк хлориди пайда болду? (M(Zn) = 65 г/моль, M(ZnCl₂) = 136 г/моль)",
+        "ru": "6,5 г цинка полностью прореагировали с соляной кислотой. Сколько граммов хлорида цинка образовалось? (M(Zn) = 65 г/моль, M(ZnCl₂) = 136 г/моль)",
+        "en": "6.5 g of zinc reacts completely with hydrochloric acid. How many grams of zinc chloride form? (M(Zn) = 65 g/mol, M(ZnCl₂) = 136 g/mol)"
+      },
+      "answer": 13.6,
+      "tolerance": 0.2,
+      "unit": "g",
+      "explanation": {
+        "ky": "6,5 : 65 = 0,1 моль Zn → 0,1 моль ZnCl₂ × 136 = 13,6 г.",
+        "ru": "6,5 : 65 = 0,1 моль Zn → 0,1 моль ZnCl₂ × 136 = 13,6 г.",
+        "en": "6.5 ÷ 65 = 0.1 mol Zn → 0.1 mol ZnCl₂ × 136 = 13.6 g."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.metals-acids-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "2,4 г магний кислотада толук эрисе, канча грамм суутек бөлүнөт? (M(Mg) = 24 г/моль, M(H₂) = 2 г/моль)",
+        "ru": "Сколько граммов водорода выделится, если 2,4 г магния полностью прореагируют с кислотой? (M(Mg) = 24 г/моль, M(H₂) = 2 г/моль)",
+        "en": "How many grams of hydrogen are given off when 2.4 g of magnesium reacts completely with acid? (M(Mg) = 24 g/mol, M(H₂) = 2 g/mol)"
+      },
+      "answer": 0.2,
+      "tolerance": 0.01,
+      "unit": "g",
+      "explanation": {
+        "ky": "Mg + 2HCl → MgCl₂ + H₂: 0,1 моль Mg → 0,1 моль H₂ = 0,2 г.",
+        "ru": "Mg + 2HCl → MgCl₂ + H₂: 0,1 моль Mg → 0,1 моль H₂ = 0,2 г.",
+        "en": "Mg + 2HCl → MgCl₂ + H₂: 0.1 mol Mg → 0.1 mol H₂ = 0.2 g."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.metals-acids-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Металлдардын туз кислотасындагы көбүрүшүнүн тездиги боюнча туура тартипти танда.",
+        "ru": "Выбери правильный порядок металлов по скорости выделения газа в соляной кислоте.",
+        "en": "Choose the correct order of how fast the metals fizz in hydrochloric acid."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Mg > Zn > Fe > Cu (жок)",
+            "ru": "Mg > Zn > Fe > Cu (нет)",
+            "en": "Mg > Zn > Fe > Cu (none)"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Cu > Fe > Zn > Mg",
+            "ru": "Cu > Fe > Zn > Mg",
+            "en": "Cu > Fe > Zn > Mg"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Fe > Mg > Cu > Zn",
+            "ru": "Fe > Mg > Cu > Zn",
+            "en": "Fe > Mg > Cu > Zn"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Баары бирдей",
+            "ru": "Все одинаково",
+            "en": "All the same"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Активдүүлүк катары боюнча: Mg > Zn > Fe; Cu реакцияга кирбейт.",
+        "ru": "По ряду активности: Mg > Zn > Fe; Cu не реагирует.",
+        "en": "Following the reactivity series: Mg > Zn > Fe; Cu does not react."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-acids-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Металл + кислота реакциясынын жалпы схемасы кандай?",
+        "ru": "Какова общая схема реакции металла с кислотой?",
+        "en": "What is the general word equation for a metal reacting with an acid?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "туз + суутек",
+            "ru": "соль + водород",
+            "en": "salt + hydrogen"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "оксид + суу",
+            "ru": "оксид + вода",
+            "en": "oxide + water"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "гидроксид + кычкылтек",
+            "ru": "гидроксид + кислород",
+            "en": "hydroxide + oxygen"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "туз + суу",
+            "ru": "соль + вода",
+            "en": "salt + water"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Металл + кислота → туз + суутек (металл суутектен мурун турса).",
+        "ru": "Металл + кислота → соль + водород (если металл стоит до водорода).",
+        "en": "Metal + acid → salt + hydrogen (if the metal is above hydrogen)."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.metals-acids-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Цинк кислотада «жок болуп кетти». Бул эмне?",
+        "ru": "Цинк в кислоте «исчез». Что это?",
+        "en": "The zinc disappeared in the acid. What happened?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кант сыяктуу жөн гана эрип кетти",
+            "ru": "Просто растворился, как сахар",
+            "en": "It just dissolved like sugar"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Химиялык реакция: туз жана суутек пайда болду",
+            "ru": "Химическая реакция: образовались соль и водород",
+            "en": "A chemical reaction: a salt and hydrogen formed"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Буу болуп учуп кетти",
+            "ru": "Испарился",
+            "en": "It evaporated"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Түбүнө чөгүп, көрүнбөй калды",
+            "ru": "Осел на дно и не виден",
+            "en": "It sank out of sight"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Жаңы заттар (ZnCl₂ жана H₂) пайда болду – бул химиялык реакция, жөнөкөй эрүү эмес.",
+        "ru": "Образовались новые вещества (ZnCl₂ и H₂) – это химическая реакция, а не простое растворение.",
+        "en": "New substances (ZnCl₂ and H₂) formed – a chemical reaction, not simple dissolving."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.zinc-dissolves-like-sugar",
+      "difficulty": 2
+    }
+  ]
+}

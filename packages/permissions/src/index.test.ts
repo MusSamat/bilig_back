@@ -49,6 +49,8 @@ const TZ: Record<Permission, Grant[]> = {
   'content.publish': [false, false, false, false, false, 'own', 'all'],
   'platform.manage': [false, false, false, false, false, false, 'all'],
   'audit.view': [false, false, false, 'own', false, false, 'all'],
+  // v0.5.0, beyond TZ §2: КТП and lesson plans (records are owner-only)
+  'lesson.plan': [false, false, 'all', 'all', false, false, 'all'],
 };
 
 describe('contract version', () => {

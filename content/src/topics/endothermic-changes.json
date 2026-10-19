@@ -1,0 +1,1196 @@
+{
+  "topic": {
+    "key": "endothermic-changes",
+    "unitKey": "chem.g8.energy-changes",
+    "status": "published",
+    "title": {
+      "ky": "Эндотермикалык өзгөрүүлөр",
+      "ru": "Эндотермические процессы",
+      "en": "Endothermic changes"
+    },
+    "formula": "\\Delta H > 0,\\;\\Delta T < 0",
+    "classification": {
+      "ky": "Жылуулук сиңирилет",
+      "ru": "Тепло поглощается",
+      "en": "Heat is taken in"
+    },
+    "description": {
+      "ky": "Эндотермикалык процесстерде заттар айланадан жылуулук алат: продуктулардын энергиясы реагенттердикинен көп. Аммоний нитраты сууда эригенде эритме муздайт – муздатуучу пакеттер ушундай иштейт. Фотосинтез жана акиташ ташынын ажырашы энергияны тынымсыз берип турууну талап кылат. Экзо- жана эндотермикалык процесстерди диаграмма жана ΔT боюнча салыштырабыз.",
+      "ru": "В эндотермических процессах вещества забирают тепло из окружающей среды: энергия продуктов больше энергии реагентов. При растворении нитрата аммония раствор охлаждается – так работают охлаждающие пакеты. Фотосинтез и разложение известняка требуют постоянного подвода энергии. Сравниваем экзо- и эндотермические процессы по диаграмме и ΔT.",
+      "en": "In endothermic changes substances take heat in from their surroundings: the products have more energy than the reactants. Dissolving ammonium nitrate makes the solution cold – that is how instant cold packs work. Photosynthesis and breaking down limestone need a constant supply of energy. We compare exothermic and endothermic changes using the diagram and ΔT."
+    },
+    "goal": {
+      "ky": "Эндотермикалык процесстерди тааныш, аларды энергетикалык диаграмма жана ΔT боюнча экзотермикалык процесстерден айырмалоо (CHEM-8.5.1).",
+      "ru": "Узнавать эндотермические процессы и отличать их от экзотермических по энергетической диаграмме и ΔT (CHEM-8.5.1).",
+      "en": "Recognise endothermic changes and tell them apart from exothermic ones using the energy diagram and ΔT (CHEM-8.5.1)."
+    },
+    "objectiveKeys": [
+      "chem.g8.energy-changes.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "energy-profile",
+        "kind": "endo",
+        "reactants": 100,
+        "products": 160,
+        "activation": 100,
+        "startTemp": 20,
+        "deltaT": -12,
+        "compare": false
+      },
+      "camera": {
+        "position": [
+          0,
+          1.5,
+          8
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "graph",
+        "temperature",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "chem.endothermic-process",
+      "chem.ammonium-nitrate",
+      "chem.energy-diagram",
+      "chem.energy-of-reactants",
+      "chem.energy-of-products",
+      "chem.activation-energy",
+      "chem.enthalpy-change",
+      "chem.temperature-change",
+      "chem.exothermic-reaction"
+    ],
+    "overrides": {
+      "chem.ammonium-nitrate": {
+        "nodes": [
+          "Beaker"
+        ]
+      },
+      "chem.energy-diagram": {
+        "nodes": [
+          "Axis_Energy",
+          "Axis_Progress"
+        ]
+      },
+      "chem.energy-of-reactants": {
+        "nodes": [
+          "Level_Reactants"
+        ]
+      },
+      "chem.energy-of-products": {
+        "nodes": [
+          "Level_Products"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 160,
+            "unit": "kJ"
+          },
+          {
+            "kind": "text",
+            "type": "location",
+            "value": {
+              "ky": "Диаграмманын оң жагы",
+              "ru": "Правая часть диаграммы",
+              "en": "Right side of the diagram"
+            }
+          }
+        ]
+      },
+      "chem.activation-energy": {
+        "nodes": [
+          "Hump",
+          "Arrow_Activation"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 100,
+            "unit": "kJ"
+          },
+          {
+            "kind": "text",
+            "type": "location",
+            "value": {
+              "ky": "Диаграммадагы дөбө",
+              "ru": "«Горб» на диаграмме",
+              "en": "The hump on the diagram"
+            }
+          }
+        ]
+      },
+      "chem.enthalpy-change": {
+        "nodes": [
+          "Arrow_DeltaH"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 60,
+            "unit": "kJ"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\Delta H = E_{prod} - E_{react}"
+          }
+        ]
+      },
+      "chem.temperature-change": {
+        "nodes": [
+          "Thermometer",
+          "Graph_Temperature"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "temperature",
+            "value": -12
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\Delta T = T_2 - T_1"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "cold-pack",
+        "title": {
+          "ky": "Муздатуучу пакет",
+          "ru": "Охлаждающий пакет",
+          "en": "Instant cold pack"
+        },
+        "classification": {
+          "ky": "NH₄NO₃ эрийт · ΔT ≈ −12 °C",
+          "ru": "Растворение NH₄NO₃ · ΔT ≈ −12 °C",
+          "en": "NH₄NO₃ dissolving · ΔT ≈ −12 °C"
+        },
+        "thumb": "thumbs/cold-pack.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "NH_4NO_3(s) \\to NH_4^+(aq) + NO_3^-(aq)"
+          },
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 26,
+            "unit": "kJ/mol",
+            "approx": true
+          }
+        ]
+      },
+      {
+        "key": "photosynthesis",
+        "title": {
+          "ky": "Фотосинтез",
+          "ru": "Фотосинтез",
+          "en": "Photosynthesis"
+        },
+        "classification": {
+          "ky": "Жарыктын энергиясы сиңирилет",
+          "ru": "Поглощается энергия света",
+          "en": "Light energy is absorbed"
+        },
+        "thumb": "thumbs/photosynthesis.webp",
+        "topicKey": "photosynthesis",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "6CO_2 + 6H_2O \\to C_6H_{12}O_6 + 6O_2"
+          },
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 2800,
+            "unit": "kJ/mol",
+            "approx": true
+          }
+        ]
+      },
+      {
+        "key": "limestone",
+        "title": {
+          "ky": "Акиташ ташынын ажырашы",
+          "ru": "Разложение известняка",
+          "en": "Breaking down limestone"
+        },
+        "classification": {
+          "ky": "≈ 900 °C та гана",
+          "ru": "Только при ≈ 900 °C",
+          "en": "Only at ≈ 900 °C"
+        },
+        "thumb": "thumbs/limestone.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "CaCO_3 \\to CaO + CO_2"
+          },
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 178,
+            "unit": "kJ/mol",
+            "approx": true
+          }
+        ]
+      },
+      {
+        "key": "exo-vs-endo",
+        "title": {
+          "ky": "Экзо жана эндо",
+          "ru": "Экзо и эндо",
+          "en": "Exo vs endo"
+        },
+        "classification": {
+          "ky": "Эки диаграмманы салыштыруу",
+          "ru": "Сравнение двух диаграмм",
+          "en": "Two diagrams compared"
+        },
+        "thumb": "thumbs/exo-vs-endo.webp"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                8
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "graph": true,
+              "temperature": false
+            },
+            "focus": "chem.endothermic-process",
+            "text": {
+              "ky": "Спортчу жаракат алды. Дарыгер пакетти бүгүп, бир аз силкилдетти – пакет бир нече секундда муздак болуп калды. Муздаткычсыз муздак кайдан келди?",
+              "ru": "Спортсмен получил травму. Врач сжал пакет, встряхнул – и через несколько секунд пакет стал холодным. Откуда холод без морозилки?",
+              "en": "An athlete is hurt. The medic squeezes a pack and shakes it – seconds later it is cold. Where does the cold come from without a freezer?"
+            },
+            "teacherNote": {
+              "ky": "Мүмкүн болсо, чыныгы муздатуучу пакетти класска алып келип, колдон колго өткөрүңүз. Окуучулардын божомолдорун угуңуз.",
+              "ru": "Если можно, принесите настоящий охлаждающий пакет и передайте по рядам. Выслушайте догадки учеников.",
+              "en": "If you can, bring a real cold pack and pass it around. Listen to the pupils' guesses."
+            },
+            "altText": {
+              "ky": "Сол жакта энергетикалык диаграмма, оң жакта термометр салынган стакан.",
+              "ru": "Слева энергетическая диаграмма, справа стакан с термометром.",
+              "en": "An energy diagram on the left and a beaker with a thermometer on the right."
+            }
+          },
+          {
+            "key": "dissolve",
+            "camera": {
+              "position": [
+                2.5,
+                1,
+                4
+              ],
+              "target": [
+                2.5,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "temperature": true
+            },
+            "focus": "chem.ammonium-nitrate",
+            "text": {
+              "ky": "Пакеттин ичинде суу жана аммоний нитраты NH₄NO₃. Алар аралашканда туз эрийт жана эрүү үчүн энергияны суудан алат.",
+              "ru": "Внутри пакета вода и нитрат аммония NH₄NO₃. При смешивании соль растворяется и забирает энергию на растворение у воды.",
+              "en": "Inside the pack are water and ammonium nitrate, NH₄NO₃. When they mix, the salt dissolves and takes the energy it needs from the water."
+            },
+            "teacherNote": {
+              "ky": "«Муздатуучу пакет» процессин ишке киргизиңиз. Аммоний нитраты – жер семирткич; класста аны жутууга, ысытууга болбойт – тажрыйбаны мугалим кол кап менен жасайт же симуляцияны колдонот.",
+              "ru": "Запустите процесс «Охлаждающий пакет». Нитрат аммония – удобрение; его нельзя пробовать и нагревать – опыт делает учитель в перчатках или показывается симуляция.",
+              "en": "Run the «Instant cold pack» process. Ammonium nitrate is a fertiliser; it must not be tasted or heated – the teacher handles it with gloves, or use the simulation."
+            },
+            "altText": {
+              "ky": "Стакандагы сууга ак кристаллдар салынды.",
+              "ru": "В стакан с водой насыпаны белые кристаллы.",
+              "en": "White crystals are tipped into a beaker of water."
+            }
+          },
+          {
+            "key": "temperature",
+            "camera": {
+              "position": [
+                2.5,
+                1,
+                4
+              ],
+              "target": [
+                2.5,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "temperature": true,
+              "graph": false
+            },
+            "focus": "chem.temperature-change",
+            "text": {
+              "ky": "Термометр: 20 °C → 8 °C. ΔT = 8 − 20 = −12 °C. Температура түштү – процесс эндотермикалык. Андан кийин бөлмөнүн жылуулугу эритмени акырындап жылытат.",
+              "ru": "Термометр: 20 °C → 8 °C. ΔT = 8 − 20 = −12 °C. Температура упала – процесс эндотермический. Потом тепло комнаты постепенно нагревает раствор.",
+              "en": "Thermometer: 20 °C → 8 °C. ΔT = 8 − 20 = −12 °C. The temperature fell – the change is endothermic. Afterwards heat from the room slowly warms the solution."
+            },
+            "teacherNote": {
+              "ky": "«Суук бөлүнүп чыкты» деген жаңылыштыкты талкуулаңыз: суук деген энергия жок, процесс жылуулукту колубуздан жана суудан алат.",
+              "ru": "Обсудите ошибку «выделился холод»: холода как энергии нет, процесс забирает тепло у воды и у нашей руки.",
+              "en": "Tackle the idea that cold is given out: cold is not a form of energy; the process takes heat from the water and from your hand."
+            },
+            "altText": {
+              "ky": "Температуранын графиги ылдый түшүп, анан акырындап көтөрүлөт.",
+              "ru": "График температуры опускается, затем медленно поднимается.",
+              "en": "The temperature graph drops, then slowly rises."
+            }
+          },
+          {
+            "key": "levels",
+            "camera": {
+              "position": [
+                -1,
+                1.5,
+                5.5
+              ],
+              "target": [
+                -1,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "graph": true,
+              "labels": true
+            },
+            "focus": "chem.energy-of-products",
+            "text": {
+              "ky": "Эндотермикалык диаграммада продуктулар (160 кДж) реагенттерден (100 кДж) жогору турат: заттар энергия алышты.",
+              "ru": "На эндотермической диаграмме продукты (160 кДж) выше реагентов (100 кДж): вещества получили энергию.",
+              "en": "On an endothermic diagram the products (160 kJ) are above the reactants (100 kJ): the substances have gained energy."
+            },
+            "teacherNote": {
+              "ky": "Экзотермикалык диаграмманы эстетиңиз: ал жакта продуктулар төмөн эле. Сандар (100, 160 кДж) шарттуу экенин айтыңыз.",
+              "ru": "Напомните экзотермическую диаграмму: там продукты были ниже. Скажите, что числа (100, 160 кДж) условные.",
+              "en": "Recall the exothermic diagram, where the products were lower. Say that the numbers (100, 160 kJ) are illustrative."
+            },
+            "altText": {
+              "ky": "Сол жакта төмөнкү, оң жакта жогорку горизонталдык сызык.",
+              "ru": "Низкая горизонтальная линия слева и высокая справа.",
+              "en": "A low horizontal line on the left and a high one on the right."
+            }
+          },
+          {
+            "key": "dh",
+            "camera": {
+              "position": [
+                -1,
+                1.5,
+                5.5
+              ],
+              "target": [
+                -1,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "graph": true,
+              "labels": true
+            },
+            "focus": "chem.enthalpy-change",
+            "text": {
+              "ky": "Өйдө караган жебе: ΔH = 160 − 100 = +60 кДж. Оң белги – жылуулук сиңирилди. Чыныгы маалымат: 1 моль NH₄NO₃ эригенде ≈ 26 кДж, 1 моль CaCO₃ ажыраганда ≈ 178 кДж сиңирилет.",
+              "ru": "Стрелка вверх: ΔH = 160 − 100 = +60 кДж. Плюс – тепло поглощено. Реальные данные: при растворении 1 моль NH₄NO₃ поглощается ≈ 26 кДж, при разложении 1 моль CaCO₃ – ≈ 178 кДж.",
+              "en": "The arrow points up: ΔH = 160 − 100 = +60 kJ. The plus sign means heat was taken in. Real data: dissolving 1 mol of NH₄NO₃ absorbs ≈ 26 kJ; breaking down 1 mol of CaCO₃ absorbs ≈ 178 kJ."
+            },
+            "teacherNote": {
+              "ky": "Тактага эки эрежени жазыңыз: экзо – ΔH < 0, ΔT > 0; эндо – ΔH > 0, ΔT < 0 (же энергияны тынымсыз берүү керек).",
+              "ru": "Запишите на доске два правила: экзо – ΔH < 0, ΔT > 0; эндо – ΔH > 0, ΔT < 0 (или нужен постоянный подвод энергии).",
+              "en": "Write two rules on the board: exo – ΔH < 0, ΔT > 0; endo – ΔH > 0, ΔT < 0 (or energy must be supplied all the time)."
+            },
+            "altText": {
+              "ky": "Реагенттерден продуктуларга өйдө караган жебе.",
+              "ru": "Стрелка вверх от реагентов к продуктам.",
+              "en": "An arrow pointing up from reactants to products."
+            }
+          },
+          {
+            "key": "activation",
+            "camera": {
+              "position": [
+                -1,
+                1.5,
+                5.5
+              ],
+              "target": [
+                -1,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "graph": true,
+              "labels": true
+            },
+            "focus": "chem.activation-energy",
+            "text": {
+              "ky": "Бул жерде да дөбө бар – активдешүү энергиясы (100 кДж). Эндотермикалык реакцияларда ал көбүнчө бийик болот.",
+              "ru": "Здесь тоже есть «горб» – энергия активации (100 кДж). У эндотермических реакций он обычно высокий.",
+              "en": "There is a hump here too – the activation energy (100 kJ). For endothermic reactions it is usually high."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: дөбөнүн чокусу канча кДж? (100 + 100 = 200 кДж.) Окуучулар активдешүү энергиясын ΔH менен чаташтырбашы керек.",
+              "ru": "Спросите: на какой высоте вершина горба? (100 + 100 = 200 кДж.) Следите, чтобы энергию активации не путали с ΔH.",
+              "en": "Ask: how high is the top of the hump? (100 + 100 = 200 kJ.) Make sure pupils don't confuse activation energy with ΔH."
+            },
+            "altText": {
+              "ky": "Диаграммадагы бийик дөбө.",
+              "ru": "Высокий «горб» на диаграмме.",
+              "en": "A tall hump on the diagram."
+            }
+          },
+          {
+            "key": "supply",
+            "sample": "limestone",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                8
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "graph": true,
+              "temperature": true
+            },
+            "focus": "chem.endothermic-process",
+            "text": {
+              "ky": "Кээ бир эндотермикалык реакциялар энергияны тынымсыз алып турушу керек: өсүмдүк фотосинтезде жарыкты сиңирет, акиташ ташы CaCO₃ → CaO + CO₂ меште ≈ 900 °C та гана ажырайт. Энергия токтосо – реакция да токтойт.",
+              "ru": "Некоторым эндотермическим реакциям энергию нужно подводить постоянно: растение поглощает свет при фотосинтезе, известняк CaCO₃ → CaO + CO₂ разлагается в печи только при ≈ 900 °C. Нет энергии – нет реакции.",
+              "en": "Some endothermic reactions need energy all the time: a plant absorbs light in photosynthesis, and limestone, CaCO₃ → CaO + CO₂, only breaks down in a kiln at about 900 °C. Stop the energy and the reaction stops."
+            },
+            "teacherNote": {
+              "ky": "«Акиташ ташынын ажырашы» процессин ишке киргизиңиз. Бул тажрыйба жогорку температурада жүрөт – класста симуляцияда гана көрсөтүлөт.",
+              "ru": "Запустите процесс «Разложение известняка». Опыт идёт при высокой температуре – в классе только в симуляции.",
+              "en": "Run the «Breaking down limestone» process. It needs very high temperatures – show it only as a simulation in class."
+            },
+            "altText": {
+              "ky": "Диаграмма жана энергия берилип жаткан идиш.",
+              "ru": "Диаграмма и сосуд, к которому подводится энергия.",
+              "en": "The diagram and a vessel being supplied with energy."
+            }
+          },
+          {
+            "key": "compare",
+            "sample": "exo-vs-endo",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                12.5
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ]
+            },
+            "modes": {
+              "graph": true,
+              "temperature": true,
+              "labels": true
+            },
+            "focus": "chem.exothermic-reaction",
+            "text": {
+              "ky": "Салыштыруу: экзотермикалык – жылуулук бөлүнөт, продуктулар төмөн, ΔH < 0, ΔT > 0. Эндотермикалык – жылуулук сиңирилет, продуктулар жогору, ΔH > 0, ΔT < 0.",
+              "ru": "Сравнение: экзотермический – тепло выделяется, продукты ниже, ΔH < 0, ΔT > 0. Эндотермический – тепло поглощается, продукты выше, ΔH > 0, ΔT < 0.",
+              "en": "Compare: exothermic – heat released, products lower, ΔH < 0, ΔT > 0. Endothermic – heat taken in, products higher, ΔH > 0, ΔT < 0."
+            },
+            "teacherNote": {
+              "ky": "«Салыштыруу» таблицасын ачыңыз. Окуучулар ар бир мисалды (күйүү, гипс, муздатуучу пакет, фотосинтез) туура тилкеге жайгаштырышсын.",
+              "ru": "Откройте таблицу «Сравнение». Пусть ученики разнесут примеры (горение, гипс, охлаждающий пакет, фотосинтез) по нужным столбцам.",
+              "en": "Open the comparison table. Have pupils sort the examples (burning, plaster, cold pack, photosynthesis) into the right column."
+            },
+            "altText": {
+              "ky": "Белгилери бар диаграмма жана термометр.",
+              "ru": "Диаграмма с подписями и термометр.",
+              "en": "The labelled diagram and the thermometer."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.cold-pack",
+        "chem.limestone-decomposition"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.exothermic-reaction"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.endothermic-process"
+          }
+        ],
+        "rows": [
+          "function",
+          "temperature",
+          "energy"
+        ],
+        "manual": [
+          {
+            "column": "chem.exothermic-reaction",
+            "row": "temperature",
+            "value": {
+              "ky": "Көтөрүлөт (ΔT > 0)",
+              "ru": "Растёт (ΔT > 0)",
+              "en": "Rises (ΔT > 0)"
+            }
+          },
+          {
+            "column": "chem.exothermic-reaction",
+            "row": "energy",
+            "value": {
+              "ky": "Бөлүнөт (ΔH < 0)",
+              "ru": "Выделяется (ΔH < 0)",
+              "en": "Released (ΔH < 0)"
+            }
+          },
+          {
+            "column": "chem.endothermic-process",
+            "row": "temperature",
+            "value": {
+              "ky": "Төмөндөйт (ΔT < 0)",
+              "ru": "Падает (ΔT < 0)",
+              "en": "Falls (ΔT < 0)"
+            }
+          },
+          {
+            "column": "chem.endothermic-process",
+            "row": "energy",
+            "value": {
+              "ky": "Сиңирилет (ΔH > 0)",
+              "ru": "Поглощается (ΔH > 0)",
+              "en": "Absorbed (ΔH > 0)"
+            }
+          }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.endothermic-changes-1",
+          "chem.q.endothermic-changes-2",
+          "chem.q.endothermic-changes-3",
+          "chem.q.endothermic-changes-4",
+          "chem.q.endothermic-changes-5",
+          "chem.q.endothermic-changes-6",
+          "chem.q.endothermic-changes-7",
+          "chem.q.endothermic-changes-8",
+          "chem.q.endothermic-changes-9",
+          "chem.q.endothermic-changes-10",
+          "chem.q.endothermic-changes-11",
+          "chem.q.endothermic-changes-12"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Муздатуучу пакет",
+            "ru": "Охлаждающий пакет",
+            "en": "Instant cold packs"
+          },
+          "text": {
+            "ky": "Спорттук дарыгерлер муздаткычсыз жерде да жаракатты муздатуу үчүн аммоний нитраты салынган пакеттерди колдонушат.",
+            "ru": "Спортивные врачи охлаждают травмы пакетами с нитратом аммония там, где нет морозилки.",
+            "en": "Sports medics use ammonium nitrate packs to cool injuries where there is no freezer."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Фотосинтез",
+            "ru": "Фотосинтез",
+            "en": "Photosynthesis"
+          },
+          "text": {
+            "ky": "Жалбырак жарыктын энергиясын сиңирип, аны глюкозанын химиялык энергиясына айлантат – жер бетиндеги дээрлик бардык тамактын булагы.",
+            "ru": "Лист поглощает энергию света и превращает её в химическую энергию глюкозы – источник почти всей пищи на Земле.",
+            "en": "A leaf absorbs light energy and stores it as chemical energy in glucose – the source of almost all food on Earth."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Цемент заводу",
+            "ru": "Цементный завод",
+            "en": "Cement works"
+          },
+          "text": {
+            "ky": "Цемент алуу үчүн акиташ ташын айлануучу мештерде 1400 °C ка чейин ысытышат – эндотермикалык ажыроого көп отун кетет.",
+            "ru": "Для цемента известняк обжигают во вращающихся печах до 1400 °C – эндотермическое разложение требует много топлива.",
+            "en": "To make cement, limestone is heated to 1400 °C in rotary kilns – the endothermic breakdown uses a lot of fuel."
+          },
+          "field": "e"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Муз эригенде",
+            "ru": "Тающий лёд",
+            "en": "Melting ice"
+          },
+          "text": {
+            "ky": "Алаканыңдагы муз эрип жатканда колуң муздайт – муз сенин жылуулугуңду алат.",
+            "ru": "Лёд тает на ладони, и рука мёрзнет – лёд забирает твоё тепло.",
+            "en": "Ice melting in your palm makes your hand cold – the ice takes your heat."
+          }
+        },
+        {
+          "title": {
+            "ky": "Сууга түшкөндөн кийин",
+            "ru": "После купания",
+            "en": "After a swim"
+          },
+          "text": {
+            "ky": "Көлдөн чыкканда шамалда калтырайсың: териңдеги суу бууланып, денеңдин жылуулугун алат.",
+            "ru": "Вышел из озера на ветер – знобит: вода на коже испаряется и забирает тепло тела.",
+            "en": "Step out of a lake into the wind and you shiver: the water on your skin evaporates and takes your body heat."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "chem.q.endothermic-changes-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Эндотермикалык процесс деген эмне?",
+        "ru": "Что такое эндотермический процесс?",
+        "en": "What is an endothermic change?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жылуулук сиңирилген процесс",
+            "ru": "Процесс, при котором тепло поглощается",
+            "en": "A change that takes in heat"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "«Суук» бөлүнүп чыккан процесс",
+            "ru": "Процесс, при котором выделяется «холод»",
+            "en": "A change that gives out cold"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жылуулук бөлүнгөн процесс",
+            "ru": "Процесс, при котором выделяется тепло",
+            "en": "A change that gives out heat"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Энергия өзгөрбөгөн процесс",
+            "ru": "Процесс без изменения энергии",
+            "en": "A change with no energy change"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Эндотермикалык процессте жылуулук айланадан сиңирилет, ошондуктан айлана муздайт.",
+        "ru": "В эндотермическом процессе тепло поглощается из окружающей среды, и она охлаждается.",
+        "en": "In an endothermic change heat is taken in from the surroundings, so they cool down."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.endo-gives-cold",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.endothermic-changes-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы процесстер эндотермикалык?",
+        "ru": "Какие процессы эндотермические?",
+        "en": "Which changes are endothermic?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Аммоний нитратынын сууда эриши",
+            "ru": "Растворение нитрата аммония в воде",
+            "en": "Dissolving ammonium nitrate in water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Фотосинтез",
+            "ru": "Фотосинтез",
+            "en": "Photosynthesis"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Акиташ ташынын ажырашы",
+            "ru": "Разложение известняка",
+            "en": "Breaking down limestone"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Метандын күйүшү",
+            "ru": "Горение метана",
+            "en": "Burning methane"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Гипстин катышы",
+            "ru": "Схватывание гипса",
+            "en": "Plaster setting"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "NH₄NO₃ эриши, фотосинтез жана CaCO₃ ажырашы энергияны сиңирет. Метандын күйүшү жана гипстин катышы – экзотермикалык.",
+        "ru": "Растворение NH₄NO₃, фотосинтез и разложение CaCO₃ поглощают энергию. Горение метана и схватывание гипса – экзотермические.",
+        "en": "Dissolving NH₄NO₃, photosynthesis and breaking down CaCO₃ take in energy. Burning methane and plaster setting are exothermic."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.endothermic-changes-3",
+      "type": "match",
+      "prompt": {
+        "ky": "Процессти анын түрү менен дал келтир.",
+        "ru": "Сопоставь процесс и его тип.",
+        "en": "Match each change to its type."
+      },
+      "pairs": [
+        {
+          "key": "burn",
+          "left": {
+            "ky": "Биогаздын күйүшү",
+            "ru": "Горение биогаза",
+            "en": "Burning biogas"
+          },
+          "right": {
+            "ky": "Экзо: ΔH < 0, жалын жана жылуулук",
+            "ru": "Экзо: ΔH < 0, пламя и тепло",
+            "en": "Exo: ΔH < 0, flame and heat"
+          }
+        },
+        {
+          "key": "pack",
+          "left": {
+            "ky": "Муздатуучу пакет",
+            "ru": "Охлаждающий пакет",
+            "en": "Instant cold pack"
+          },
+          "right": {
+            "ky": "Эндо: ΔT < 0, эритме муздайт",
+            "ru": "Эндо: ΔT < 0, раствор холодеет",
+            "en": "Endo: ΔT < 0, the solution cools"
+          }
+        },
+        {
+          "key": "photo",
+          "left": {
+            "ky": "Фотосинтез",
+            "ru": "Фотосинтез",
+            "en": "Photosynthesis"
+          },
+          "right": {
+            "ky": "Эндо: жарыкты тынымсыз сиңирет",
+            "ru": "Эндо: постоянно поглощает свет",
+            "en": "Endo: needs light all the time"
+          }
+        },
+        {
+          "key": "plaster",
+          "left": {
+            "ky": "Гипстин катышы",
+            "ru": "Схватывание гипса",
+            "en": "Plaster setting"
+          },
+          "right": {
+            "ky": "Экзо: ΔT > 0, жылыйт",
+            "ru": "Экзо: ΔT > 0, нагревается",
+            "en": "Exo: ΔT > 0, warms up"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Күйүү жана гипс – экзотермикалык; муздатуучу пакет жана фотосинтез – эндотермикалык.",
+        "ru": "Горение и гипс – экзотермические; охлаждающий пакет и фотосинтез – эндотермические.",
+        "en": "Burning and plaster are exothermic; the cold pack and photosynthesis are endothermic."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.endothermic-changes-4",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Эндотермикалык диаграммада продуктулардын энергиясынын деңгээлин тап.",
+        "ru": "Найди на эндотермической диаграмме уровень энергии продуктов.",
+        "en": "Find the products' energy level on the endothermic diagram."
+      },
+      "targetConceptKey": "chem.energy-of-products",
+      "explanation": {
+        "ky": "Оң жактагы сызык – продуктулар; эндотермикалык процессте ал реагенттерден жогору.",
+        "ru": "Правая линия – продукты; в эндотермическом процессе она выше реагентов.",
+        "en": "The right-hand line is the products; in an endothermic change it is above the reactants."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.products-always-lower",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.endothermic-changes-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "ΔT ны өлчөөгө жардам берген бөлүктү тап.",
+        "ru": "Найди часть установки, которая помогает измерить ΔT.",
+        "en": "Find the part that helps you measure ΔT."
+      },
+      "targetConceptKey": "chem.temperature-change",
+      "explanation": {
+        "ky": "Термометр жана температура графиги ΔT ны көрсөтөт.",
+        "ru": "Термометр и график температуры показывают ΔT.",
+        "en": "The thermometer and the temperature graph show ΔT."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.dt-reads-final-only",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.endothermic-changes-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Сиңирилген жылуулукту (ΔH > 0) көрсөткөн жебени тап.",
+        "ru": "Найди стрелку, показывающую поглощённое тепло (ΔH > 0).",
+        "en": "Find the arrow that shows the heat taken in (ΔH > 0)."
+      },
+      "targetConceptKey": "chem.enthalpy-change",
+      "explanation": {
+        "ky": "ΔH жебеси реагенттерден продуктуларга өйдө карайт.",
+        "ru": "Стрелка ΔH направлена вверх от реагентов к продуктам.",
+        "en": "The ΔH arrow points up from the reactants to the products."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.endothermic-changes-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Аммоний нитраты эригенде температура 20 °C тан 8 °C ка түштү. ΔT канча?",
+        "ru": "При растворении нитрата аммония температура упала с 20 °C до 8 °C. Чему равно ΔT?",
+        "en": "When ammonium nitrate dissolved, the temperature fell from 20 °C to 8 °C. What is ΔT?"
+      },
+      "answer": -12,
+      "tolerance": 0.5,
+      "unit": "°C",
+      "explanation": {
+        "ky": "ΔT = 8 − 20 = −12 °C. Терс белги температуранын түшкөнүн көрсөтөт.",
+        "ru": "ΔT = 8 − 20 = −12 °C. Минус показывает, что температура упала.",
+        "en": "ΔT = 8 − 20 = −12 °C. The minus sign shows the temperature fell."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.dt-reads-final-only",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.endothermic-changes-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Диаграммада реагенттер 100 кДж, продуктулар 160 кДж (шарттуу сандар). ΔH канча?",
+        "ru": "На диаграмме реагенты 100 кДж, продукты 160 кДж (условные числа). Чему равен ΔH?",
+        "en": "On the diagram the reactants are at 100 kJ and the products at 160 kJ (illustrative numbers). What is ΔH?"
+      },
+      "answer": 60,
+      "tolerance": 0,
+      "unit": "kJ",
+      "explanation": {
+        "ky": "ΔH = 160 − 100 = +60 кДж: жылуулук сиңирилди.",
+        "ru": "ΔH = 160 − 100 = +60 кДж: тепло поглощено.",
+        "en": "ΔH = 160 − 100 = +60 kJ: heat was taken in."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.endothermic-changes-9",
+      "type": "numeric",
+      "prompt": {
+        "ky": "10 г кальций карбонаты толук ажыраганда канча грамм көмүр кычкыл газы бөлүнөт? (M(CaCO₃) = 100 г/моль, M(CO₂) = 44 г/моль)",
+        "ru": "Сколько граммов углекислого газа выделится при полном разложении 10 г карбоната кальция? (M(CaCO₃) = 100 г/моль, M(CO₂) = 44 г/моль)",
+        "en": "How many grams of carbon dioxide are given off when 10 g of calcium carbonate breaks down completely? (M(CaCO₃) = 100 g/mol, M(CO₂) = 44 g/mol)"
+      },
+      "answer": 4.4,
+      "tolerance": 0.1,
+      "unit": "g",
+      "explanation": {
+        "ky": "CaCO₃ → CaO + CO₂: 0,1 моль CaCO₃ → 0,1 моль CO₂ × 44 = 4,4 г.",
+        "ru": "CaCO₃ → CaO + CO₂: 0,1 моль CaCO₃ → 0,1 моль CO₂ × 44 = 4,4 г.",
+        "en": "CaCO₃ → CaO + CO₂: 0.1 mol CaCO₃ → 0.1 mol CO₂ × 44 = 4.4 g."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "difficulty": 4
+    },
+    {
+      "key": "chem.q.endothermic-changes-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн муздатуучу пакет колго муздак сезилет?",
+        "ru": "Почему охлаждающий пакет холодит руку?",
+        "en": "Why does an instant cold pack feel cold on your hand?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Пакеттен «суук» бөлүнүп чыгат",
+            "ru": "Пакет выделяет «холод»",
+            "en": "The pack gives out cold"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Процесс колдон жана суудан жылуулукту алат",
+            "ru": "Процесс забирает тепло у руки и воды",
+            "en": "The process takes heat from your hand and the water"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ичинде муз бар",
+            "ru": "Внутри лёд",
+            "en": "There is ice inside"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Пакет муздаткычта сакталган",
+            "ru": "Пакет хранили в морозилке",
+            "en": "The pack was kept in a freezer"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Эрүү процесси жылуулукту айланадан – суудан жана колуңдан – алат.",
+        "ru": "Растворение забирает тепло из окружающей среды – у воды и у руки.",
+        "en": "Dissolving takes heat from its surroundings – from the water and from your hand."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.endo-gives-cold",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.endothermic-changes-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Мештеги акиташ ташын ысытууну токтотсок, эмне болот?",
+        "ru": "Что будет, если прекратить нагрев известняка в печи?",
+        "en": "What happens if the kiln stops heating the limestone?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ажыроо токтойт",
+            "ru": "Разложение остановится",
+            "en": "The breakdown stops"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Реакция өзү тезирээк жүрөт",
+            "ru": "Реакция пойдёт сама и быстрее",
+            "en": "It speeds up by itself"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Таш күйүп кетет",
+            "ru": "Камень загорится",
+            "en": "The stone catches fire"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Эч нерсе өзгөрбөйт",
+            "ru": "Ничего не изменится",
+            "en": "Nothing changes"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Реакция эндотермикалык – энергияны тынымсыз алып турушу керек. Ысытуу токтосо, ажыроо да токтойт.",
+        "ru": "Реакция эндотермическая – ей нужен постоянный подвод энергии. Нет нагрева – разложение останавливается.",
+        "en": "The reaction is endothermic and needs a constant energy supply. No heat, no breakdown."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.endothermic-changes-12",
+      "type": "single",
+      "prompt": {
+        "ky": "NaOH сууда эригенде эритме ысыйт, NH₄NO₃ эригенде муздайт. Кайсы корутунду туура?",
+        "ru": "При растворении NaOH раствор нагревается, а при растворении NH₄NO₃ охлаждается. Какой вывод верный?",
+        "en": "Dissolving NaOH warms the water, while dissolving NH₄NO₃ cools it. Which conclusion is correct?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Эрүүдө энергия эч качан өзгөрбөйт",
+            "ru": "При растворении энергия никогда не меняется",
+            "en": "Dissolving never involves an energy change"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Эрүү экзотермикалык да, эндотермикалык да болушу мүмкүн",
+            "ru": "Растворение может быть и экзо-, и эндотермическим",
+            "en": "Dissolving can be exothermic or endothermic"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Бардык туздар эригенде муздатат",
+            "ru": "Все соли при растворении охлаждают",
+            "en": "All salts cool water when they dissolve"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Термометр туура эмес көрсөттү",
+            "ru": "Термометр ошибся",
+            "en": "The thermometer was wrong"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Эрүү экзотермикалык да, эндотермикалык да болушу мүмкүн – термометр аны көрсөтөт.",
+        "ru": "Растворение бывает и экзо-, и эндотермическим – это показывает термометр.",
+        "en": "Dissolving can be exothermic or endothermic – the thermometer tells you which."
+      },
+      "objectiveKeys": [
+        "chem.g8.energy-changes.o1"
+      ],
+      "misconceptionKey": "chem.m.dissolving-not-energy",
+      "difficulty": 3
+    }
+  ]
+}

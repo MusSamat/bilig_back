@@ -22,6 +22,7 @@ import { registerLearning } from './modules/learning.js';
 import { registerClasses } from './modules/classes.js';
 import { registerTutor } from './modules/tutor.js';
 import { registerDecks } from './modules/decks.js';
+import { registerKtp } from './modules/ktp.js';
 import { registerAdmin } from './modules/admin/index.js';
 import { registerCdn } from './modules/cdn.js';
 
@@ -163,6 +164,7 @@ export async function buildApp(deps: Deps): Promise<FastifyInstance> {
   registerClasses(app, deps);
   registerTutor(app, deps);
   registerDecks(app, deps);
+  registerKtp(app, deps);
   registerAdmin(app, deps);
   registerCdn(app, deps);
 

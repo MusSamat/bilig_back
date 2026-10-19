@@ -1,0 +1,1043 @@
+{
+  "topic": {
+    "key": "reactivity-series",
+    "unitKey": "chem.g8.metals",
+    "status": "published",
+    "title": {
+      "ky": "Металлдардын активдүүлүк катары",
+      "ru": "Ряд активности металлов",
+      "en": "The reactivity series of metals"
+    },
+    "formula": "K\\;Na\\;Ca\\;Mg\\;Al\\;Zn\\;Fe\\;(H)\\;Cu\\;Ag\\;Au",
+    "classification": {
+      "ky": "Реакцияларды алдын ала айтуу",
+      "ru": "Предсказание реакций",
+      "en": "Predicting reactions"
+    },
+    "description": {
+      "ky": "Кычкылтек, суу жана кислоталар менен жасалган тажрыйбалар металлдарды бир катарга тизүүгө мүмкүндүк берет: K > Na > Ca > Mg > Al > Zn > Fe > (H) > Cu > Ag > Au. Катар менен реакциянын жүрөрүн тажрыйбасыз эле айтса болот: суутектен мурунку металлдар кислотадан суутекти сүрүп чыгарат, ал эми активдүүрөк металл активдүүлүгү төмөн металлды анын тузунан сүрүп чыгарат (Fe + CuSO₄ → FeSO₄ + Cu).",
+      "ru": "Опыты с кислородом, водой и кислотами позволяют выстроить металлы в один ряд: K > Na > Ca > Mg > Al > Zn > Fe > (H) > Cu > Ag > Au. По ряду можно предсказать реакцию без опыта: металлы до водорода вытесняют водород из кислот, а более активный металл вытесняет менее активный из его соли (Fe + CuSO₄ → FeSO₄ + Cu).",
+      "en": "Experiments with oxygen, water and acids let us put metals in one list: K > Na > Ca > Mg > Al > Zn > Fe > (H) > Cu > Ag > Au. The series predicts reactions without doing them: metals above hydrogen push hydrogen out of acids, and a more reactive metal pushes a less reactive one out of its salt (Fe + CuSO₄ → FeSO₄ + Cu)."
+    },
+    "goal": {
+      "ky": "Активдүүлүк катарын колдонуп, металлдын кычкылтек, суу, кислота жана туз эритмелери менен реакциясы жүрөрүн алдын ала айтуу (CHEM-8.4.2).",
+      "ru": "Предсказывать по ряду активности, пойдёт ли реакция металла с кислородом, водой, кислотой и раствором соли (CHEM-8.4.2).",
+      "en": "Use the reactivity series to predict whether a metal reacts with oxygen, water, acid or a salt solution (CHEM-8.4.2)."
+    },
+    "objectiveKeys": [
+      "chem.g8.metals.o1",
+      "chem.g8.metals.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "reaction-vessel",
+        "metal": "Mg",
+        "reagent": "acid",
+        "compare": [
+          "K",
+          "Zn",
+          "Fe",
+          "Cu",
+          "Au"
+        ]
+      },
+      "camera": {
+        "position": [
+          0,
+          2.2,
+          9
+        ],
+        "target": [
+          0,
+          0.6,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "run",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "chem.reactivity-series",
+      "chem.magnesium",
+      "chem.zinc",
+      "chem.iron",
+      "chem.hydrogen",
+      "chem.copper",
+      "chem.gold",
+      "chem.displacement-reaction"
+    ],
+    "overrides": {
+      "chem.reactivity-series": {
+        "anchor": [
+          0,
+          2.2,
+          0
+        ]
+      },
+      "chem.magnesium": {
+        "nodes": [
+          "Metal_Mg"
+        ]
+      },
+      "chem.zinc": {
+        "nodes": [
+          "Metal_Zn"
+        ]
+      },
+      "chem.iron": {
+        "nodes": [
+          "Metal_Fe"
+        ]
+      },
+      "chem.hydrogen": {
+        "nodes": [
+          "Bubbles"
+        ],
+        "title": {
+          "ky": "Суутек – катардагы чек ара",
+          "ru": "Водород – граница в ряду",
+          "en": "Hydrogen – the dividing line"
+        },
+        "description": {
+          "ky": "Суутек металл эмес, бирок катарга салыштыруу үчүн коюлат. Андан мурун турган металлдар кислотадан суутекти сүрүп чыгарат (көбүкчөлөр), андан кийинкилер сүрүп чыгара албайт.",
+          "ru": "Водород не металл, но его ставят в ряд для сравнения. Металлы до него вытесняют водород из кислот (пузырьки), металлы после него – нет.",
+          "en": "Hydrogen is not a metal but is placed in the series for comparison. Metals above it push hydrogen out of acids (bubbles); metals below it cannot."
+        }
+      },
+      "chem.copper": {
+        "nodes": [
+          "Metal_Cu"
+        ]
+      },
+      "chem.gold": {
+        "nodes": [
+          "Metal_Au"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "series-acid",
+        "title": {
+          "ky": "Металлдар кислотада",
+          "ru": "Металлы в кислоте",
+          "en": "Metals in acid"
+        },
+        "classification": {
+          "ky": "K > Mg > Zn > Fe > Cu, Au",
+          "ru": "K > Mg > Zn > Fe > Cu, Au",
+          "en": "K > Mg > Zn > Fe > Cu, Au"
+        },
+        "thumb": "thumbs/series-acid.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "K, Mg, Zn, Fe, Cu, Au",
+              "ru": "K, Mg, Zn, Fe, Cu, Au",
+              "en": "K, Mg, Zn, Fe, Cu, Au"
+            }
+          }
+        ]
+      },
+      {
+        "key": "fe-cuso4",
+        "title": {
+          "ky": "Темир мык жез купоросунда",
+          "ru": "Железный гвоздь в медном купоросе",
+          "en": "Iron nail in copper sulfate"
+        },
+        "classification": {
+          "ky": "Орун басуу реакциясы",
+          "ru": "Реакция замещения",
+          "en": "Displacement reaction"
+        },
+        "thumb": "thumbs/fe-cuso4.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "Fe + CuSO_4 \\to FeSO_4 + Cu"
+          }
+        ]
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "sample": "series-acid",
+            "camera": {
+              "position": [
+                0,
+                2.2,
+                9
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ]
+            },
+            "modes": {
+              "run": false,
+              "labels": true
+            },
+            "focus": "chem.reactivity-series",
+            "text": {
+              "ky": "Бул – металлдардын активдүүлүк катары: K Na Ca Mg Al Zn Fe (H) Cu Ag Au. Сол жактан оңго металлдардын реакцияга кирүү жөндөмү азаят.",
+              "ru": "Это ряд активности металлов: K Na Ca Mg Al Zn Fe (H) Cu Ag Au. Слева направо способность металлов вступать в реакции уменьшается.",
+              "en": "This is the reactivity series: K Na Ca Mg Al Zn Fe (H) Cu Ag Au. From left to right, metals become less ready to react."
+            },
+            "teacherNote": {
+              "ky": "Мурунку үч сабактын жыйынтыгын тактага таблица кылып жазыңыз (кычкылтек / суу / кислота) – катар ошол таблицадан өзү келип чыгат.",
+              "ru": "Запишите на доске итоги трёх прошлых уроков таблицей (кислород / вода / кислота) – ряд сам вытекает из неё.",
+              "en": "Put the results of the last three lessons in a table on the board (oxygen / water / acid) – the series falls straight out of it."
+            },
+            "altText": {
+              "ky": "Кислота куюлган алты идиш катары: калий, магний, цинк, темир, жез, алтын.",
+              "ru": "Ряд из шести сосудов с кислотой: калий, магний, цинк, железо, медь, золото.",
+              "en": "A row of six vessels of acid: potassium, magnesium, zinc, iron, copper, gold."
+            }
+          },
+          {
+            "key": "top",
+            "sample": "series-acid",
+            "camera": {
+              "position": [
+                -2.5,
+                1.4,
+                4
+              ],
+              "target": [
+                -2.5,
+                0.5,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "text": {
+              "ky": "Катардын башындагы калий кислотада жарылуу менен реакцияга кирет – ал муздак суу менен да катуу реакцияга кирет. Натрий жана кальций да ушул топто.",
+              "ru": "Калий из начала ряда реагирует с кислотой со взрывом – он бурно реагирует даже с холодной водой. Натрий и кальций – из той же компании.",
+              "en": "Potassium, at the top, reacts explosively with acid – it reacts violently even with cold water. Sodium and calcium belong to the same group."
+            },
+            "teacherNote": {
+              "ky": "Коопсуздук: калий менен натрийдин кислота жана суу менен реакциялары симуляцияда гана көрсөтүлөт; мектеп лабораториясында алар жүргүзүлбөйт.",
+              "ru": "Безопасность: реакции калия и натрия с кислотой и водой показываются только в симуляции; в школьной лаборатории их не проводят.",
+              "en": "Safety: potassium and sodium with acid or water are shown only as simulations; they are never done in a school lab."
+            },
+            "altText": {
+              "ky": "Калий турган идиште катуу көбүрүү жана жалын.",
+              "ru": "Бурное вскипание и вспышка в сосуде с калием.",
+              "en": "Violent fizzing and a flash in the potassium vessel."
+            }
+          },
+          {
+            "key": "middle",
+            "sample": "series-acid",
+            "camera": {
+              "position": [
+                -0.5,
+                1.4,
+                4.5
+              ],
+              "target": [
+                -0.5,
+                0.5,
+                0
+              ]
+            },
+            "modes": {
+              "run": true,
+              "labels": true
+            },
+            "focus": "chem.zinc",
+            "text": {
+              "ky": "Ортодогу металлдар: магний тез, цинк орточо, темир жай көбүрөйт. Көбүкчөлөр канчалык көп болсо, металл ошончолук активдүү.",
+              "ru": "Металлы середины ряда: магний шипит быстро, цинк – умеренно, железо – медленно. Чем больше пузырьков, тем активнее металл.",
+              "en": "Metals in the middle: magnesium fizzes fast, zinc moderately, iron slowly. The more bubbles, the more reactive the metal."
+            },
+            "teacherNote": {
+              "ky": "Алюминий тууралуу сураңыз: эмне үчүн алюминий идиш сууда өзгөрбөйт? Жооп: бети бекем оксид пленкасы менен капталган.",
+              "ru": "Спросите об алюминии: почему алюминиевая кастрюля не реагирует с водой? Ответ: она покрыта прочной оксидной плёнкой.",
+              "en": "Ask about aluminium: why doesn't an aluminium pan react with water? Answer: it is covered by a tough oxide layer."
+            },
+            "altText": {
+              "ky": "Магнийде көбүкчө көп, цинкте азыраак, темирде аз.",
+              "ru": "Много пузырьков у магния, меньше у цинка, мало у железа.",
+              "en": "Many bubbles on magnesium, fewer on zinc, few on iron."
+            }
+          },
+          {
+            "key": "hydrogen",
+            "sample": "series-acid",
+            "camera": {
+              "position": [
+                1.0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                1.0,
+                0.5,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.hydrogen",
+            "text": {
+              "ky": "Суутек – катардагы чек ара. Андан мурунку металлдар кислотадан суутекти сүрүп чыгарат: Zn + 2HCl → ZnCl₂ + H₂. Андан кийинкилер (Cu, Ag, Au) сүрүп чыгара албайт.",
+              "ru": "Водород – граница в ряду. Металлы до него вытесняют водород из кислоты: Zn + 2HCl → ZnCl₂ + H₂. Металлы после него (Cu, Ag, Au) – нет.",
+              "en": "Hydrogen is the dividing line. Metals above it push hydrogen out of acid: Zn + 2HCl → ZnCl₂ + H₂. Metals below it (Cu, Ag, Au) cannot."
+            },
+            "teacherNote": {
+              "ky": "Суутек металл эмес экенин белгилеп, анын катардагы ролу – «өлчөөчү сызык» экенин түшүндүрүңүз.",
+              "ru": "Подчеркните, что водород не металл, а «мерная черта» для сравнения.",
+              "en": "Point out that hydrogen is not a metal – it is a measuring line for comparison."
+            },
+            "altText": {
+              "ky": "Көбүкчөлөр бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделены пузырьки газа.",
+              "en": "The gas bubbles are highlighted."
+            }
+          },
+          {
+            "key": "bottom",
+            "sample": "series-acid",
+            "camera": {
+              "position": [
+                2.0,
+                1.4,
+                4
+              ],
+              "target": [
+                2.0,
+                0.5,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.gold",
+            "text": {
+              "ky": "Жез жана алтын кислотада өзгөрбөйт. Алтын эч нерсе менен дээрлик реакцияга кирбегендиктен, жаратылышта таза түрүндө, кесек болуп табылат.",
+              "ru": "Медь и золото в кислоте не меняются. Золото почти ни с чем не реагирует, поэтому в природе встречается в чистом виде – самородками.",
+              "en": "Copper and gold do not change in the acid. Gold reacts with almost nothing, so it is found in nature as pure nuggets."
+            },
+            "teacherNote": {
+              "ky": "Байланыш түзүңүз: катардын аягындагы металлдарды адамзат эң эрте тапкан (алтын, күмүш, жез), башындагыларды (Na, K) электр тогу ачылгандан кийин гана алган.",
+              "ru": "Свяжите с историей: металлы конца ряда люди нашли раньше всех (золото, серебро, медь), а натрий и калий получили только после открытия электричества.",
+              "en": "Link to history: metals at the bottom were found first (gold, silver, copper); sodium and potassium were only isolated after electricity was discovered."
+            },
+            "altText": {
+              "ky": "Жез жана алтын турган идиштер тынч.",
+              "ru": "Сосуды с медью и золотом спокойны.",
+              "en": "The copper and gold vessels are still."
+            }
+          },
+          {
+            "key": "predict",
+            "sample": "series-acid",
+            "camera": {
+              "position": [
+                0,
+                2.2,
+                9
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ]
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "chem.reactivity-series",
+            "text": {
+              "ky": "Катар менен алдын ала айтабыз: Zn + CuSO₄ – жүрөт (Zn жогору); Cu + ZnSO₄ – жүрбөйт; Ag + HCl – жүрбөйт (Ag суутектен кийин).",
+              "ru": "Предсказываем по ряду: Zn + CuSO₄ – идёт (Zn выше); Cu + ZnSO₄ – не идёт; Ag + HCl – не идёт (Ag после водорода).",
+              "en": "Predict with the series: Zn + CuSO₄ – yes (Zn is higher); Cu + ZnSO₄ – no; Ag + HCl – no (Ag is below hydrogen)."
+            },
+            "teacherNote": {
+              "ky": "Окуучуларга 4–5 жуп берип, «жүрөт / жүрбөйт» деп карточка көтөртүңүз. Ар бир жоопту катардагы орун менен негиздөөнү талап кылыңыз.",
+              "ru": "Дайте 4–5 пар и попросите поднять карточку «идёт / не идёт». Требуйте обоснования положением в ряду.",
+              "en": "Give 4–5 pairs and have pupils hold up «yes / no» cards. Ask them to justify each answer by the positions in the series."
+            },
+            "altText": {
+              "ky": "Металлдардын катары жана суроо белгилери.",
+              "ru": "Ряд металлов и вопросительные знаки.",
+              "en": "The row of metals with question marks."
+            }
+          },
+          {
+            "key": "displacement",
+            "sample": "fe-cuso4",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.8
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.displacement-reaction",
+            "text": {
+              "ky": "Кошумча тажрыйба: темир мыкты жез купоросуна салсак, мык жез менен капталат, көк эритме ачык жашылга өтөт: Fe + CuSO₄ → FeSO₄ + Cu. Активдүүрөк темир жездин ордун ээледи.",
+              "ru": "Дополнительный опыт: железный гвоздь в медном купоросе покрывается медью, синий раствор становится зеленоватым: Fe + CuSO₄ → FeSO₄ + Cu. Более активное железо заняло место меди.",
+              "en": "Extension: an iron nail in copper sulfate gets coated with copper and the blue solution turns pale green: Fe + CuSO₄ → FeSO₄ + Cu. The more reactive iron has taken copper's place."
+            },
+            "teacherNote": {
+              "ky": "«Темир жезди сүрүп чыгарат» процессин ишке киргизиңиз. Бул тажрыйбаны класста коопсуз жасаса болот (кол кап, көз айнек); жез купоросун жутууга болбойт.",
+              "ru": "Запустите процесс «Железо вытесняет медь». Этот опыт можно безопасно сделать в классе (перчатки, очки); медный купорос нельзя глотать.",
+              "en": "Run the «Iron displaces copper» process. This one is safe to do in class with gloves and goggles; copper sulfate must not be swallowed."
+            },
+            "altText": {
+              "ky": "Темир мыктын бети кызгылт-күрөң болуп калды.",
+              "ru": "Поверхность железного гвоздя стала розово-бурой.",
+              "en": "The iron nail's surface has turned pinkish-brown."
+            }
+          },
+          {
+            "key": "summary",
+            "sample": "series-acid",
+            "camera": {
+              "position": [
+                0,
+                2.2,
+                9
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ]
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "chem.reactivity-series",
+            "text": {
+              "ky": "Жыйынтык: катарда жогору турган металл – кычкылтек, суу жана кислоталар менен оңой реакцияга кирет жана төмөнкү металлды тузунан сүрүп чыгарат.",
+              "ru": "Итог: чем выше металл в ряду, тем легче он реагирует с кислородом, водой и кислотами и тем легче вытесняет нижние металлы из их солей.",
+              "en": "Summary: the higher a metal is in the series, the more easily it reacts with oxygen, water and acids, and the more easily it displaces lower metals from their salts."
+            },
+            "teacherNote": {
+              "ky": "Эсте сактоо үчүн окуучулар өздөрүнүн мнемоникасын ойлоп табышсын. Бөлүм боюнча кайталоо сабагына даярдануу: катарды жатка билүү.",
+              "ru": "Пусть ученики придумают свою запоминалку для ряда. Подготовка к повторению главы: знать ряд наизусть.",
+              "en": "Have pupils invent their own mnemonic for the series. For the chapter review they should know it by heart."
+            },
+            "altText": {
+              "ky": "Белгилери бар металлдардын толук катары.",
+              "ru": "Полный ряд металлов с подписями.",
+              "en": "The full row of metals with labels."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.iron-copper-displacement"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.magnesium"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.zinc"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.iron"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.copper"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.gold"
+          }
+        ],
+        "rows": [
+          "molarMass",
+          "density",
+          "meltingPoint"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.reactivity-series-1",
+          "chem.q.reactivity-series-2",
+          "chem.q.reactivity-series-3",
+          "chem.q.reactivity-series-4",
+          "chem.q.reactivity-series-5",
+          "chem.q.reactivity-series-6",
+          "chem.q.reactivity-series-7",
+          "chem.q.reactivity-series-8",
+          "chem.q.reactivity-series-9",
+          "chem.q.reactivity-series-10",
+          "chem.q.reactivity-series-11"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Курмандык анод",
+            "ru": "Протекторная защита",
+            "en": "Sacrificial anodes"
+          },
+          "text": {
+            "ky": "Кемелердин жана газ түтүктөрүнүн темирине магний же цинк блоктору бекитилет: активдүүрөк металл темирдин ордуна бузулат.",
+            "ru": "К железу судов и газопроводов крепят блоки магния или цинка: более активный металл разрушается вместо железа.",
+            "en": "Magnesium or zinc blocks are fixed to ships and gas pipes: the more reactive metal corrodes instead of the iron."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Металл алуу",
+            "ru": "Металлургия",
+            "en": "Extracting metals"
+          },
+          "text": {
+            "ky": "Катардын ортосундагы металлдар (Fe, Zn) көмүр менен эритилип алынат, ал эми катардын башындагылар (Al, Na) – электролиз менен гана.",
+            "ru": "Металлы середины ряда (Fe, Zn) выплавляют с углём, а металлы начала ряда (Al, Na) – только электролизом.",
+            "en": "Metals in the middle (Fe, Zn) are extracted by heating with carbon; those at the top (Al, Na) only by electrolysis."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Масса эсеби",
+            "ru": "Расчёт массы",
+            "en": "Mass calculation"
+          },
+          "text": {
+            "ky": "5,6 г темир 6,4 г жезди сүрүп чыгарат: 0,1 моль Fe → 0,1 моль Cu.",
+            "ru": "5,6 г железа вытесняют 6,4 г меди: 0,1 моль Fe → 0,1 моль Cu.",
+            "en": "5.6 g of iron displaces 6.4 g of copper: 0.1 mol Fe → 0.1 mol Cu."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Спорт рейтинги",
+            "ru": "Спортивный рейтинг",
+            "en": "A sports ranking"
+          },
+          "text": {
+            "ky": "Рейтингде жогору турган күрөшчү төмөнкүнү утат; катарда жогору турган металл төмөнкүнү тузунан «утуп» чыгарат.",
+            "ru": "Борец выше в рейтинге побеждает того, кто ниже; металл выше в ряду «побеждает» нижний и вытесняет его из соли.",
+            "en": "A wrestler higher in the ranking beats one lower down; a metal higher in the series beats a lower one out of its salt."
+          }
+        },
+        {
+          "title": {
+            "ky": "Тынч жана шамдагай",
+            "ru": "Спокойный и шустрый",
+            "en": "Calm and lively"
+          },
+          "text": {
+            "ky": "Алтын – эч нерсеге кызыкпаган тынч кошуна, калий – бир секунд да отура албаган шамдагай бала.",
+            "ru": "Золото – спокойный сосед, которого ничто не волнует, а калий – непоседа, который секунды не может усидеть.",
+            "en": "Gold is the calm neighbour nothing bothers; potassium is the kid who can't sit still for a second."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "chem.q.reactivity-series-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Төмөнкү металлдардын кайсынысы эң активдүү?",
+        "ru": "Какой из этих металлов самый активный?",
+        "en": "Which of these metals is the most reactive?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Темир",
+            "ru": "Железо",
+            "en": "Iron"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Калий",
+            "ru": "Калий",
+            "en": "Potassium"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Цинк",
+            "ru": "Цинк",
+            "en": "Zinc"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Жез",
+            "ru": "Медь",
+            "en": "Copper"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Калий катардын эң башында турат.",
+        "ru": "Калий стоит в самом начале ряда.",
+        "en": "Potassium is at the very top of the series."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.reactivity-series-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Кайсы металл суюлтулган туз кислотасынан суутекти сүрүп чыгарат?",
+        "ru": "Какой металл вытесняет водород из разбавленной соляной кислоты?",
+        "en": "Which metal pushes hydrogen out of dilute hydrochloric acid?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жез",
+            "ru": "Медь",
+            "en": "Copper"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Күмүш",
+            "ru": "Серебро",
+            "en": "Silver"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Цинк",
+            "ru": "Цинк",
+            "en": "Zinc"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Алтын",
+            "ru": "Золото",
+            "en": "Gold"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Цинк суутектен мурун турат. Cu, Ag, Au – суутектен кийин.",
+        "ru": "Цинк стоит до водорода. Cu, Ag, Au – после водорода.",
+        "en": "Zinc is above hydrogen. Cu, Ag and Au are below it."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o2"
+      ],
+      "misconceptionKey": "chem.m.all-metals-react-acid",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.reactivity-series-3",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы реакциялар жүрөт?",
+        "ru": "Какие реакции пойдут?",
+        "en": "Which reactions will happen?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Fe + CuSO₄",
+            "ru": "Fe + CuSO₄",
+            "en": "Fe + CuSO₄"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Zn + CuSO₄",
+            "ru": "Zn + CuSO₄",
+            "en": "Zn + CuSO₄"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Cu + FeSO₄",
+            "ru": "Cu + FeSO₄",
+            "en": "Cu + FeSO₄"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Mg + ZnCl₂",
+            "ru": "Mg + ZnCl₂",
+            "en": "Mg + ZnCl₂"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Ag + HCl",
+            "ru": "Ag + HCl",
+            "en": "Ag + HCl"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": {
+        "ky": "Жогору турган металл төмөнкүнү сүрүп чыгарат: Fe → Cu, Zn → Cu, Mg → Zn. Cu темирди, Ag суутекти сүрүп чыгара албайт.",
+        "ru": "Верхний металл вытесняет нижний: Fe → Cu, Zn → Cu, Mg → Zn. Cu не вытесняет железо, Ag – водород.",
+        "en": "A higher metal displaces a lower one: Fe → Cu, Zn → Cu, Mg → Zn. Cu cannot displace iron, and Ag cannot displace hydrogen."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o2"
+      ],
+      "misconceptionKey": "chem.m.displacement-any-direction",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.reactivity-series-4",
+      "type": "match",
+      "prompt": {
+        "ky": "Металлды анын мүнөздүү касиети менен дал келтир.",
+        "ru": "Сопоставь металл и его характерное поведение.",
+        "en": "Match each metal to how it behaves."
+      },
+      "pairs": [
+        {
+          "key": "k",
+          "left": {
+            "ky": "K",
+            "ru": "K",
+            "en": "K"
+          },
+          "right": {
+            "ky": "Муздак суу менен катуу реакцияга кирет",
+            "ru": "Бурно реагирует с холодной водой",
+            "en": "Reacts violently with cold water"
+          }
+        },
+        {
+          "key": "mg",
+          "left": {
+            "ky": "Mg",
+            "ru": "Mg",
+            "en": "Mg"
+          },
+          "right": {
+            "ky": "Ак жалын менен күйөт, буу менен реакцияга кирет",
+            "ru": "Горит белым пламенем, реагирует с паром",
+            "en": "Burns with a white flame, reacts with steam"
+          }
+        },
+        {
+          "key": "cu",
+          "left": {
+            "ky": "Cu",
+            "ru": "Cu",
+            "en": "Cu"
+          },
+          "right": {
+            "ky": "Суюлтулган кислота менен реакцияга кирбейт",
+            "ru": "Не реагирует с разбавленной кислотой",
+            "en": "Does not react with dilute acid"
+          }
+        },
+        {
+          "key": "au",
+          "left": {
+            "ky": "Au",
+            "ru": "Au",
+            "en": "Au"
+          },
+          "right": {
+            "ky": "Жаратылышта таза түрүндө табылат",
+            "ru": "В природе встречается в чистом виде",
+            "en": "Found pure in nature"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "K – муздак суу менен катуу; Mg – ак жалын менен күйөт, буу менен реакцияга кирет; Cu – суюлтулган кислота менен реакцияга кирбейт; Au – жаратылышта таза түрүндө.",
+        "ru": "K – бурно с холодной водой; Mg – горит белым пламенем, реагирует с паром; Cu – не реагирует с разбавленной кислотой; Au – в природе в чистом виде.",
+        "en": "K – violent with cold water; Mg – burns with a white flame, reacts with steam; Cu – no reaction with dilute acid; Au – found pure in nature."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1",
+        "chem.g8.metals.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.reactivity-series-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Жаратылышта таза кесек түрүндө табылган металлды тап.",
+        "ru": "Найди металл, который в природе встречается самородками.",
+        "en": "Find the metal that is found in nature as pure nuggets."
+      },
+      "targetConceptKey": "chem.gold",
+      "explanation": {
+        "ky": "Алтын катардын эң аягында – эч нерсе менен дээрлик реакцияга кирбейт.",
+        "ru": "Золото – в самом конце ряда, почти ни с чем не реагирует.",
+        "en": "Gold is at the very bottom of the series and reacts with almost nothing."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.reactivity-series-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Суутектен кийин турган, зымдар жасалуучу металлды тап.",
+        "ru": "Найди металл, стоящий после водорода, из которого делают провода.",
+        "en": "Find the metal below hydrogen that is used for electric wires."
+      },
+      "targetConceptKey": "chem.copper",
+      "explanation": {
+        "ky": "Жез суутектен кийин турат, кислотада көбүрбөйт.",
+        "ru": "Медь стоит после водорода и не шипит в кислоте.",
+        "en": "Copper is below hydrogen and does not fizz in acid."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.reactivity-series-7",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Жез купоросунан жезди сүрүп чыгарган, ным абада тот баскан металлды тап.",
+        "ru": "Найди металл, который вытесняет медь из медного купороса и ржавеет во влажном воздухе.",
+        "en": "Find the metal that displaces copper from copper sulfate and rusts in damp air."
+      },
+      "targetConceptKey": "chem.iron",
+      "explanation": {
+        "ky": "Темир: Fe + CuSO₄ → FeSO₄ + Cu.",
+        "ru": "Железо: Fe + CuSO₄ → FeSO₄ + Cu.",
+        "en": "Iron: Fe + CuSO₄ → FeSO₄ + Cu."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o2"
+      ],
+      "misconceptionKey": "chem.m.copper-coating-is-paint",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.reactivity-series-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "5,6 г темир жез (II) сульфатынын эритмесинен канча грамм жезди сүрүп чыгарат? (M(Fe) = 56 г/моль, M(Cu) = 64 г/моль)",
+        "ru": "Сколько граммов меди вытеснят 5,6 г железа из раствора сульфата меди(II)? (M(Fe) = 56 г/моль, M(Cu) = 64 г/моль)",
+        "en": "How many grams of copper does 5.6 g of iron displace from copper(II) sulfate solution? (M(Fe) = 56 g/mol, M(Cu) = 64 g/mol)"
+      },
+      "answer": 6.4,
+      "tolerance": 0.1,
+      "unit": "g",
+      "explanation": {
+        "ky": "5,6 : 56 = 0,1 моль Fe → 0,1 моль Cu × 64 = 6,4 г.",
+        "ru": "5,6 : 56 = 0,1 моль Fe → 0,1 моль Cu × 64 = 6,4 г.",
+        "en": "5.6 ÷ 56 = 0.1 mol Fe → 0.1 mol Cu × 64 = 6.4 g."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o2"
+      ],
+      "difficulty": 4
+    },
+    {
+      "key": "chem.q.reactivity-series-9",
+      "type": "numeric",
+      "prompt": {
+        "ky": "K Na Ca Mg Al Zn Fe (H) Cu Ag Au катарында суутектен мурун канча металл турат?",
+        "ru": "Сколько металлов стоит до водорода в ряду K Na Ca Mg Al Zn Fe (H) Cu Ag Au?",
+        "en": "How many metals are above hydrogen in the series K Na Ca Mg Al Zn Fe (H) Cu Ag Au?"
+      },
+      "answer": 7,
+      "tolerance": 0,
+      "explanation": {
+        "ky": "K, Na, Ca, Mg, Al, Zn, Fe – 7 металл; алардын баары суюлтулган кислотадан суутекти сүрүп чыгарат.",
+        "ru": "K, Na, Ca, Mg, Al, Zn, Fe – 7 металлов; все они вытесняют водород из разбавленных кислот.",
+        "en": "K, Na, Ca, Mg, Al, Zn, Fe – 7 metals; all of them push hydrogen out of dilute acids."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.reactivity-series-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Алюминий катарда цинктен жогору турат, бирок алюминий идиш сууда өзгөрбөйт. Эмне үчүн?",
+        "ru": "Алюминий в ряду выше цинка, но алюминиевая кастрюля не реагирует с водой. Почему?",
+        "en": "Aluminium is above zinc in the series, yet an aluminium pan does not react with water. Why?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Алюминий – аз активдүү металл",
+            "ru": "Алюминий – малоактивный металл",
+            "en": "Aluminium is unreactive"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Бети коргоочу оксид пленкасы менен капталган",
+            "ru": "Он покрыт защитной оксидной плёнкой",
+            "en": "A protective oxide layer covers it"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Суу алюминийден жеңил",
+            "ru": "Вода легче алюминия",
+            "en": "Water is lighter than aluminium"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Алюминий металл эмес",
+            "ru": "Алюминий не металл",
+            "en": "Aluminium is not a metal"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Алюминийдин бети жука, бекем оксид пленкасы менен капталган – ал металлды коргойт.",
+        "ru": "Алюминий покрыт тонкой прочной оксидной плёнкой, которая его защищает.",
+        "en": "Aluminium is covered by a thin, tough oxide layer that protects it."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o2"
+      ],
+      "misconceptionKey": "chem.m.aluminium-unreactive",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.reactivity-series-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Темир мыкты жез купоросуна салганда эмне байкалат?",
+        "ru": "Что наблюдается, если опустить железный гвоздь в медный купорос?",
+        "en": "What do you see when an iron nail is put in copper sulfate solution?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Мык кызгылт-күрөң жез менен капталат, эритме ачык жашыл болот",
+            "ru": "Гвоздь покрывается розово-бурой медью, раствор бледно-зелёный",
+            "en": "The nail gets a pinkish-brown copper coat and the solution turns pale green"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Эч нерсе өзгөрбөйт",
+            "ru": "Ничего не меняется",
+            "en": "Nothing changes"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Мык эрип, эритме кызарат",
+            "ru": "Гвоздь растворяется, раствор краснеет",
+            "en": "The nail dissolves and the solution turns red"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Суутек көбүкчөлөрү катуу чыгат",
+            "ru": "Бурно выделяется водород",
+            "en": "Lots of hydrogen bubbles appear"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Мыкта жез металлы пайда болот, эритмеде FeSO₄ пайда болуп, көк түс ачык жашылга өтөт.",
+        "ru": "На гвозде оседает медь, в растворе образуется FeSO₄, и синий цвет становится бледно-зелёным.",
+        "en": "Copper metal forms on the nail and FeSO₄ forms in solution, so the blue fades to pale green."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o2"
+      ],
+      "misconceptionKey": "chem.m.copper-coating-is-paint",
+      "difficulty": 2
+    }
+  ]
+}

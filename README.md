@@ -21,15 +21,17 @@ src/
   repo/                Repository interface, MemoryRepository, PrismaRepository, contract test suite
   services/            content/catalog, publishing + checklist, workflow, sessions, seed,
                        rate limits (Redis | memory), mailer, object storage, audit, tutor provider/settings
-  modules/             auth, me, catalog, learning, classes, tutor, decks, admin/*
+  modules/             auth, me, catalog, learning, classes, tutor, decks, ktp, admin/*
+  ktp/                 КТП → lesson plans: safe .docx reader, КТП parser/checks, topic matching, plan content + .docx
   export/              PPTX / PDF decks and login cards (embedded Noto Sans: Ү Ө Ң)
 prisma/                schema.prisma + migrations
 packages/              shared contract (vendored, byte-identical in bilig_ft)
   permissions/         @bilig/permissions — RBAC matrix with scope
   content-model/       @bilig/content-model — content schemas; `/api` = ENDPOINTS + DTOs
-content/               content data (catalog.json, packages/*.json built from content/src)
+content/               content data (catalog.json with textbooks, packages/*.json built from content/src)
 data/leaked-passwords.txt   bundled leaked-password list (≥10 chars, from SecLists)
 assets/fonts/          Noto Sans (OFL)
+assets/templates/      official lesson-plan form, tagged for docxtemplater (provenance in its README)
 ```
 
 `packages/*` is the **shared contract**. Make every change in both repos at the

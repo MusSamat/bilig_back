@@ -58,6 +58,34 @@ export interface RouteOptions {
   bodyLimit?: number;
 }
 
+/**
+ * `attachment` with an ASCII fallback `filename` and the exact UTF-8 name in
+ * `filename*` (RFC 6266 / RFC 5987), so «plan_8б_2026-09-15_1.docx» survives.
+ */
+const CYR: Record<string, string> = {
+  а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'e', ж: 'zh', з: 'z', и: 'i', й: 'y', к: 'k', л: 'l', м: 'm', н: 'n', ң: 'ng',
+  о: 'o', ө: 'o', п: 'p', р: 'r', с: 's', т: 't', у: 'u', ү: 'u', ф: 'f', х: 'h', ц: 'ts', ч: 'ch', ш: 'sh', щ: 'sch', ъ: '',
+  ы: 'y', ь: '', э: 'e', ю: 'yu', я: 'ya',
+};
+/** ASCII stand-in for old clients: Cyrillic (incl. Kyrgyz ң ө ү) transliterated, anything else `_`. */
+const asciiName = (s: string): string =>
+  [...s]
+    .map((ch) => {
+      const lower = ch.toLowerCase();
+      const t = CYR[lower];
+      if (t === undefined) return ch;
+      return ch !== lower && t ? t[0]!.toUpperCase() + t.slice(1) : t;
+    })
+    .join('')
+    .replace(/[^\w.-]/g, '_');
+
+export function contentDisposition(filename: string): string {
+  const ascii = asciiName(filename);
+  if (ascii === filename) return `attachment; filename="${ascii}"`;
+  const star = encodeURIComponent(filename).replace(/['()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`);
+  return `attachment; filename="${ascii}"; filename*=UTF-8''${star}`;
+}
+
 /** Parse `If-Match: "3"`, `W/"3"` or `3` into a version number. */
 export function parseIfMatch(v: string | undefined): number | null | 'invalid' {
   if (v === undefined || v === '') return null;
@@ -162,7 +190,7 @@ export function route<N extends EndpointName>(
       if (def.produces) {
         const bin = result as BinaryResult;
         reply.type(bin.contentType);
-        if (bin.filename) reply.header('Content-Disposition', `attachment; filename="${bin.filename.replace(/[^\w.-]/g, '_')}"`);
+        if (bin.filename) reply.header('Content-Disposition', contentDisposition(bin.filename));
         return reply.send(bin.body);
       }
       const out = def.response.safeParse(result);

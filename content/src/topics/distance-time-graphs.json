@@ -1,0 +1,1071 @@
+{
+  "topic": {
+    "key": "distance-time-graphs",
+    "unitKey": "phys.g8.motion",
+    "status": "published",
+    "title": {
+      "ky": "Жолдун убакыттан көз карандылык графиги",
+      "ru": "График зависимости пути от времени",
+      "en": "Distance–time graphs"
+    },
+    "formula": "v = Δs/Δt",
+    "classification": {
+      "ky": "Кинематика",
+      "ru": "Кинематика",
+      "en": "Kinematics"
+    },
+    "description": {
+      "ky": "Машина жүрүп баратканда экранда анын жол–убакыт графиги тартылат: адегенде 10 м/с менен жүрөт, анан светофордо токтойт, кийин эки эсе тез жүрөт. Графиктин тиктиги – ылдамдык, горизонталдык кесинди – тынч абал.",
+      "ru": "Пока машина едет, на экране рисуется её график путь–время: сначала она едет 10 м/с, потом стоит у светофора, затем едет вдвое быстрее. Наклон графика – это скорость, горизонтальный отрезок – покой.",
+      "en": "As the car drives, its distance–time graph is drawn on screen: first at 10 m/s, then it waits at a traffic light, then it goes twice as fast. The slope of the graph is the speed; a flat segment means rest."
+    },
+    "goal": {
+      "ky": "s(t) графигин окуу: графиктен жолду, убакытты жана ылдамдыкты табуу, тынч абалды жана тезирээк кыймылды таануу, графикке карап кыймылды сүрөттөп берүү (PHYS-8.4.1).",
+      "ru": "Читать график s(t): находить по нему путь, время и скорость, узнавать покой и более быстрое движение, описывать движение по графику (PHYS-8.4.1).",
+      "en": "Read an s(t) graph: find distance, time and speed from it, recognise rest and faster motion, and describe the motion a graph shows (PHYS-8.4.1)."
+    },
+    "objectiveKeys": [
+      "phys.g8.motion.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "kinematics",
+        "segments": [
+          {
+            "v": 10,
+            "t": 10
+          },
+          {
+            "v": 0,
+            "t": 10
+          },
+          {
+            "v": 20,
+            "t": 10
+          }
+        ],
+        "radar": false,
+        "showGraph": true,
+        "markEvery": 20
+      },
+      "camera": {
+        "position": [
+          0,
+          5,
+          14
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "graph",
+        "trace",
+        "vectors"
+      ]
+    },
+    "conceptKeys": [
+      "phys.distance-time-graph",
+      "phys.graph-slope",
+      "phys.state-of-rest",
+      "phys.car",
+      "phys.distance",
+      "phys.speed",
+      "phys.average-speed"
+    ],
+    "overrides": {
+      "phys.distance-time-graph": {
+        "nodes": [
+          "Graph_Axes",
+          "Graph_Point"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "eventDuration",
+            "value": 30,
+            "unit": "s"
+          },
+          {
+            "kind": "quantity",
+            "type": "distance",
+            "value": 300,
+            "unit": "m"
+          }
+        ]
+      },
+      "phys.graph-slope": {
+        "nodes": [
+          "Graph_Line"
+        ],
+        "description": {
+          "ky": "Графиктин үч кесиндиси үч башка тиктикте: 0–10 с – 10 м/с, 10–20 с – горизонталдык (0 м/с), 20–30 с – эң тик (20 м/с). Ылдамдык = кесиндинин бийиктиги : узундугу, v = Δs/Δt.",
+          "ru": "Три отрезка графика имеют разный наклон: 0–10 с – 10 м/с, 10–20 с – горизонтальный (0 м/с), 20–30 с – самый крутой (20 м/с). Скорость = подъём отрезка : его длительность, v = Δs/Δt.",
+          "en": "The graph's three segments have different slopes: 0–10 s – 10 m/s, 10–20 s – flat (0 m/s), 20–30 s – the steepest (20 m/s). Speed = rise of the segment ÷ its duration, v = Δs/Δt."
+        },
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "v = \\frac{\\Delta s}{\\Delta t}"
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 0,
+            "max": 20
+          }
+        ]
+      },
+      "phys.state-of-rest": {
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 0
+          },
+          {
+            "kind": "quantity",
+            "type": "eventDuration",
+            "value": 10,
+            "unit": "s"
+          },
+          {
+            "kind": "quantity",
+            "type": "distance",
+            "value": 100,
+            "unit": "m"
+          }
+        ]
+      },
+      "phys.car": {
+        "nodes": [
+          "Car"
+        ]
+      },
+      "phys.distance": {
+        "nodes": [
+          "Road",
+          "Marker_*"
+        ],
+        "description": {
+          "ky": "Машина басып өткөн жол – графиктин тик огундагы чоңдук. Жолдогу белгилер ар бир 20 м сайын коюлган.",
+          "ru": "Путь, пройденный машиной, – величина на вертикальной оси графика. Отметки на дороге стоят через каждые 20 м.",
+          "en": "The distance the car has covered – the quantity on the graph's vertical axis. The road markers are 20 m apart."
+        }
+      },
+      "phys.speed": {
+        "nodes": [
+          "Arrow_Velocity"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 0,
+            "max": 20
+          }
+        ]
+      },
+      "phys.average-speed": {
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 10
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "v = \\frac{300}{30} = 10"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "dtg-city-trip",
+        "title": {
+          "ky": "Шаардагы сапар",
+          "ru": "Поездка по городу",
+          "en": "City trip"
+        },
+        "classification": {
+          "ky": "Жүрүү – токтоо – тез жүрүү",
+          "ru": "Едет – стоит – едет быстрее",
+          "en": "Drive – stop – drive faster"
+        },
+        "thumb": "thumbs/dtg-city-trip.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "distance",
+            "value": 300,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "eventDuration",
+            "value": 30,
+            "unit": "s"
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 10
+          }
+        ]
+      },
+      {
+        "key": "dtg-walk",
+        "title": {
+          "ky": "Жөө басуу",
+          "ru": "Прогулка пешком",
+          "en": "A steady walk"
+        },
+        "classification": {
+          "ky": "Бир калыптагы кыймыл",
+          "ru": "Равномерное движение",
+          "en": "Uniform motion"
+        },
+        "thumb": "thumbs/dtg-walk.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "distance",
+            "value": 90,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "eventDuration",
+            "value": 60,
+            "unit": "s"
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 1.5
+          }
+        ]
+      },
+      {
+        "key": "dtg-bus",
+        "title": {
+          "ky": "Аялдамалуу автобус",
+          "ru": "Автобус с остановкой",
+          "en": "Bus with a stop"
+        },
+        "classification": {
+          "ky": "10 м/с, 15 с токтоо, 10 м/с",
+          "ru": "10 м/с, остановка 15 с, 10 м/с",
+          "en": "10 m/s, a 15 s stop, 10 m/s"
+        },
+        "thumb": "thumbs/dtg-bus.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "distance",
+            "value": 400,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "eventDuration",
+            "value": 55,
+            "unit": "s"
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 7.3,
+            "approx": true
+          }
+        ]
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "distance",
+        "value": 300,
+        "unit": "m"
+      },
+      {
+        "kind": "quantity",
+        "type": "eventDuration",
+        "value": 30,
+        "unit": "s"
+      },
+      {
+        "kind": "quantity",
+        "type": "speed",
+        "value": 10
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "v = \\frac{\\Delta s}{\\Delta t}"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "axes",
+            "camera": {
+              "position": [
+                0,
+                3,
+                9
+              ],
+              "target": [
+                0,
+                2,
+                0
+              ],
+              "fov": 40
+            },
+            "modes": {
+              "graph": true,
+              "vectors": false,
+              "trace": false
+            },
+            "focus": "phys.distance-time-graph",
+            "text": {
+              "ky": "Бул – жолдун убакыттан көз карандылык графиги. Горизонталдык огунда убакыт t (с), тик огунда басып өткөн жол s (м). Машина жүргөн сайын чекит сызык тартат.",
+              "ru": "Это график зависимости пути от времени. По горизонтали – время t (с), по вертикали – пройденный путь s (м). Пока машина едет, точка рисует линию.",
+              "en": "This is a distance–time graph. Time t (s) runs along the horizontal axis and distance s (m) up the vertical one. As the car moves, the dot draws a line."
+            },
+            "teacherNote": {
+              "ky": "Машина жөнөгөнгө чейин сураңыз: «Машина 10 м/с менен жүрсө, график кандай болот?» Окуучулар дептерге алдын ала чийип көрүшсүн.",
+              "ru": "Перед стартом спросите: «Какой будет график, если машина едет 10 м/с?» Пусть ученики заранее набросают его в тетради.",
+              "en": "Before the car sets off ask: 'What will the graph look like if the car drives at 10 m/s?' Let pupils sketch their guess first."
+            },
+            "altText": {
+              "ky": "Бош координаталык тор: t жана s огулары, чекит башталышта.",
+              "ru": "Пустая координатная сетка: оси t и s, точка в начале.",
+              "en": "An empty grid with t and s axes and the dot at the origin."
+            }
+          },
+          {
+            "key": "first",
+            "camera": {
+              "position": [
+                0,
+                3,
+                9
+              ],
+              "target": [
+                0,
+                2,
+                0
+              ],
+              "fov": 40
+            },
+            "modes": {
+              "graph": true
+            },
+            "focus": "phys.graph-slope",
+            "text": {
+              "ky": "0–10 с: график – жантайып көтөрүлгөн түз кесинди, 0дон 100 м ге чейин. Ылдамдык = 100 м : 10 с = 10 м/с. Түз сызык – ылдамдык туруктуу.",
+              "ru": "0–10 с: график – прямой отрезок, поднимающийся от 0 до 100 м. Скорость = 100 м : 10 с = 10 м/с. Прямая линия – скорость постоянна.",
+              "en": "0–10 s: the graph is a straight segment rising from 0 to 100 m. Speed = 100 m ÷ 10 s = 10 m/s. A straight line means a constant speed."
+            },
+            "teacherNote": {
+              "ky": "Ылдамдыкты графиктен табуунун ыкмасын көрсөтүңүз: тордун ыңгайлуу эки чекитин тандап, «бийиктикти узундукка» бөлөбүз.",
+              "ru": "Покажите приём: выбираем две удобные точки на сетке и делим «подъём на длину».",
+              "en": "Show the method: pick two convenient grid points and divide the 'rise' by the 'run'."
+            },
+            "altText": {
+              "ky": "Графиктин биринчи кесиндиси (0; 0) чекитинен (10 с; 100 м) чекитине чейин.",
+              "ru": "Первый отрезок графика от точки (0; 0) до (10 с; 100 м).",
+              "en": "The first segment from (0, 0) to (10 s, 100 m)."
+            }
+          },
+          {
+            "key": "rest",
+            "camera": {
+              "position": [
+                0,
+                3,
+                9
+              ],
+              "target": [
+                0,
+                2,
+                0
+              ],
+              "fov": 40
+            },
+            "focus": "phys.state-of-rest",
+            "text": {
+              "ky": "10–20 с: сызык горизонталдык, s = 100 м бойдон калат – машина светофордо турат. Убакыт өтүп жатат, жол көбөйбөйт: v = 0.",
+              "ru": "10–20 с: линия горизонтальна, s остаётся 100 м – машина стоит у светофора. Время идёт, путь не растёт: v = 0.",
+              "en": "10–20 s: the line is flat and s stays at 100 m – the car is waiting at a traffic light. Time passes, the distance does not grow: v = 0."
+            },
+            "teacherNote": {
+              "ky": "Көп кездешкен ката: «токтоо – бул s = 0». Сураңыз: «Машина токтогондо ал кайда турат – стартта бы?» Горизонталдык сызык ар кандай бийиктикте болушу мүмкүн.",
+              "ru": "Частая ошибка: «остановка – это s = 0». Спросите: «Где стоит машина – на старте?» Горизонтальная линия может быть на любой высоте.",
+              "en": "A common mistake: 'stopping means s = 0'. Ask: 'Where is the car standing – at the start?' A flat line can be at any height."
+            },
+            "altText": {
+              "ky": "s = 100 м деңгээлиндеги горизонталдык кесинди.",
+              "ru": "Горизонтальный отрезок на уровне s = 100 м.",
+              "en": "A flat segment at s = 100 m."
+            }
+          },
+          {
+            "key": "faster",
+            "camera": {
+              "position": [
+                0,
+                5,
+                14
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "trace": true,
+              "graph": true
+            },
+            "focus": "phys.graph-slope",
+            "text": {
+              "ky": "20–30 с: эң тик кесинди – 10 с ичинде 200 м, демек 20 м/с. Кесинди биринчисинен эки эсе тик, анткени машина эки эсе тез жүрөт.",
+              "ru": "20–30 с: самый крутой отрезок – 200 м за 10 с, то есть 20 м/с. Он вдвое круче первого, потому что машина едет вдвое быстрее.",
+              "en": "20–30 s: the steepest segment – 200 m in 10 s, so 20 m/s. It is twice as steep as the first because the car goes twice as fast."
+            },
+            "teacherNote": {
+              "ky": "Жолдогу издерди (trace) графикке салыштырыңыз: издер сейрегирээк болгон жерде сызык тигирээк. Колуңуз менен эки кесиндинин тиктигин көрсөтүңүз.",
+              "ru": "Сравните следы на дороге с графиком: где следы реже, там линия круче. Покажите рукой наклон двух отрезков.",
+              "en": "Compare the trace on the road with the graph: where the marks are further apart, the line is steeper. Show the two slopes with your hand."
+            },
+            "altText": {
+              "ky": "Эң тик кесинди (20 с; 100 м) чекитинен (30 с; 300 м) чекитине чейин, машинанын издери сейрек.",
+              "ru": "Самый крутой отрезок от (20 с; 100 м) до (30 с; 300 м), следы машины реже.",
+              "en": "The steepest segment from (20 s, 100 m) to (30 s, 300 m); the car's trace marks are further apart."
+            }
+          },
+          {
+            "key": "average",
+            "camera": {
+              "position": [
+                0,
+                3,
+                9
+              ],
+              "target": [
+                0,
+                2,
+                0
+              ],
+              "fov": 40
+            },
+            "focus": "phys.average-speed",
+            "text": {
+              "ky": "Бүт сапар: 300 м жол 30 с ичинде. Орточо ылдамдык = 300 м : 30 с = 10 м/с. Токтоп турган 10 с да эсепке кирет!",
+              "ru": "Вся поездка: 300 м за 30 с. Средняя скорость = 300 м : 30 с = 10 м/с. 10 секунд стоянки тоже учитываются!",
+              "en": "The whole trip: 300 m in 30 s. Average speed = 300 m ÷ 30 s = 10 m/s. The 10 s spent waiting count too!"
+            },
+            "teacherNote": {
+              "ky": "Окуучулар көбүнчө (10 + 20) : 2 = 15 м/с деп эсептешет. Сураңыз: «15 м/с менен 30 с ичинде канча жол өтөт элек?» (450 м – 300 м эмес.)",
+              "ru": "Ученики часто считают (10 + 20) : 2 = 15 м/с. Спросите: «Сколько бы мы проехали за 30 с со скоростью 15 м/с?» (450 м, а не 300 м.)",
+              "en": "Pupils often compute (10 + 20) ÷ 2 = 15 m/s. Ask: 'How far would we go in 30 s at 15 m/s?' (450 m, not 300 m.)"
+            },
+            "altText": {
+              "ky": "Графиктин башынан акырына чейин үзүк сызык – орточо ылдамдык.",
+              "ru": "Пунктир от начала до конца графика – средняя скорость.",
+              "en": "A dashed line from the start to the end of the graph – the average speed."
+            }
+          },
+          {
+            "key": "story",
+            "camera": {
+              "position": [
+                0,
+                5,
+                14
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "graph": true
+            },
+            "focus": "phys.car",
+            "text": {
+              "ky": "Тескери маселе: графикке карап кыймылды айтып беребиз. «Машина 10 с ичинде 10 м/с менен 100 м жүрдү, 10 с токтоду, анан 10 с ичинде 20 м/с менен дагы 200 м жүрдү.»",
+              "ru": "Обратная задача: по графику рассказываем о движении. «Машина 10 с ехала со скоростью 10 м/с и проехала 100 м, 10 с стояла, затем 10 с ехала со скоростью 20 м/с и проехала ещё 200 м.»",
+              "en": "The reverse task: tell the story of the motion from the graph. 'The car drove 100 m at 10 m/s for 10 s, waited 10 s, then drove another 200 m at 20 m/s in 10 s.'"
+            },
+            "teacherNote": {
+              "ky": "Тактага жаңы график чийиңиз (мисалы, «Аялдамалуу автобус» үлгүсүндөгүдөй) жана жуп-жуп болуп анын «окуясын» жазгызыңыз. Жол түз экенин, график жолдун сүрөтү эмес экенин баса белгилеңиз.",
+              "ru": "Нарисуйте на доске новый график (например, как в образце «Автобус с остановкой») и попросите пары написать его «историю». Подчеркните: дорога прямая, график – не рисунок дороги.",
+              "en": "Draw a new graph on the board (for example the 'Bus with a stop' sample) and have pairs write its 'story'. Stress that the road is straight – the graph is not a picture of the road."
+            },
+            "altText": {
+              "ky": "Толук график жана жолдо ылдамдыктын жебеси менен машина.",
+              "ru": "Полный график и машина со стрелкой скорости на дороге.",
+              "en": "The complete graph and the car with its velocity arrow on the road."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.car-trip"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "dtg-city-trip"
+          },
+          {
+            "kind": "sample",
+            "key": "dtg-walk"
+          },
+          {
+            "kind": "sample",
+            "key": "dtg-bus"
+          }
+        ],
+        "rows": [
+          "distance",
+          "eventDuration",
+          "speed"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.distance-time-graphs-1",
+          "phys.q.distance-time-graphs-2",
+          "phys.q.distance-time-graphs-3",
+          "phys.q.distance-time-graphs-4",
+          "phys.q.distance-time-graphs-5",
+          "phys.q.distance-time-graphs-6",
+          "phys.q.distance-time-graphs-7",
+          "phys.q.distance-time-graphs-8",
+          "phys.q.distance-time-graphs-9",
+          "phys.q.distance-time-graphs-10",
+          "phys.q.distance-time-graphs-11"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Темир жол графиги",
+            "ru": "График движения поездов",
+            "en": "Railway timetable graph"
+          },
+          "text": {
+            "ky": "Диспетчерлер бардык поезддердин s(t) сызыктарын бир баракка чийишет. Эки сызык кесилишсе, поезддер ошол жерде жолугат – аларды өз убагында ар башка жолдорго бөлүү керек.",
+            "ru": "Диспетчеры чертят линии s(t) всех поездов на одном листе. Где две линии пересекаются, поезда встречаются – их нужно вовремя развести по разным путям.",
+            "en": "Dispatchers draw every train's s(t) line on one sheet. Where two lines cross the trains meet, so they must be sent to different tracks in time."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Навигатордун болжолу",
+            "ru": "Прогноз навигатора",
+            "en": "Sat-nav arrival time"
+          },
+          "text": {
+            "ky": "Навигатор жолдун ар бир бөлүгүндөгү орточо ылдамдыкты билип, сапардын s(t) графигин «ичинен» түзүп, качан жетериңди эсептейт.",
+            "ru": "Навигатор знает среднюю скорость на каждом участке, «про себя» строит график s(t) поездки и вычисляет время прибытия.",
+            "en": "A sat-nav knows the average speed on each stretch, builds the trip's s(t) graph internally and works out when you will arrive."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Графиктен ылдамдык",
+            "ru": "Скорость по графику",
+            "en": "Speed from a graph"
+          },
+          "text": {
+            "ky": "Түз сызыктын тиктиги k = Δy/Δx – алгебрадагы сызыктуу функциянын коэффициенти; физикада ал ылдамдык болот.",
+            "ru": "Наклон прямой k = Δy/Δx – коэффициент линейной функции из алгебры; в физике это скорость.",
+            "en": "The slope of a line, k = Δy/Δx, is the coefficient of a linear function in algebra; in physics it is the speed."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Мектепке жол",
+            "ru": "Дорога в школу",
+            "en": "The way to school"
+          },
+          "text": {
+            "ky": "Үйдөн чыгып, досуңду 3 мүнөт күтүп, анан тезирээк бассаң, сенин графигиң да «жантык – горизонталдык – тигирээк» болот.",
+            "ru": "Если ты вышел из дома, 3 минуты ждал друга, а потом пошёл быстрее, твой график тоже будет «наклонный – горизонтальный – круче».",
+            "en": "Leave home, wait 3 minutes for a friend, then walk faster: your graph too goes 'sloping – flat – steeper'."
+          }
+        },
+        {
+          "title": {
+            "ky": "Таш бака менен коён",
+            "ru": "Черепаха и заяц",
+            "en": "The tortoise and the hare"
+          },
+          "text": {
+            "ky": "Жомоктогу коёндун графиги тик башталып, анан узак горизонталдык (уктап калды), ал эми таш бакаңыкы – жантык, бирок үзгүлтүксүз түз сызык.",
+            "ru": "График зайца из сказки начинается круто, потом долго горизонтален (уснул), а у черепахи – пологая, но непрерывная прямая.",
+            "en": "In the fable the hare's graph starts steep and then stays flat for ages (he fell asleep), while the tortoise's is a gentle but unbroken straight line."
+          }
+        }
+      ]
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.distance-time-graphs-1",
+      "type": "single",
+      "prompt": {
+        "ky": "s(t) графигиндеги горизонталдык кесинди эмнени билдирет?",
+        "ru": "Что означает горизонтальный отрезок на графике s(t)?",
+        "en": "What does a horizontal segment on an s(t) graph mean?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Дене бир калыпта кыймылдап жатат",
+            "ru": "Тело движется равномерно",
+            "en": "The body moves at a steady speed"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Дене тынч турат",
+            "ru": "Тело покоится",
+            "en": "The body is at rest"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Дене стартка кайтып келди",
+            "ru": "Тело вернулось на старт",
+            "en": "The body has returned to the start"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Дене эң чоң ылдамдык менен кыймылдайт",
+            "ru": "Тело движется с наибольшей скоростью",
+            "en": "The body moves at its top speed"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Убакыт өтүп жатат, бирок жол көбөйбөйт – дене тынч турат, анын ылдамдыгы нөл. Ал s = 0 дө гана эмес, каалаган бийиктикте болушу мүмкүн.",
+        "ru": "Время идёт, а путь не растёт – тело стоит, его скорость равна нулю. Это может быть на любой высоте, не только при s = 0.",
+        "en": "Time passes but the distance does not grow – the body is at rest with zero speed. This can happen at any height, not only at s = 0."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "misconceptionKey": "phys.m.rest-line-zero",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.distance-time-graphs-2",
+      "type": "single",
+      "prompt": {
+        "ky": "s(t) графигинин кайсы белгиси дененин ылдамдыгын көрсөтөт?",
+        "ru": "Какой признак графика s(t) показывает скорость тела?",
+        "en": "Which feature of an s(t) graph shows the body's speed?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Сызыктын тиктиги",
+            "ru": "Наклон (крутизна) линии",
+            "en": "How steep the line is"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Сызыктын бийиктиги",
+            "ru": "Высота линии",
+            "en": "How high the line is"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Сызыктын узундугу",
+            "ru": "Длина линии",
+            "en": "How long the line is"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Огулардын узундугу",
+            "ru": "Длина осей",
+            "en": "How long the axes are"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Ылдамдыкты сызыктын тиктиги көрсөтөт: v = Δs/Δt. Сызыктын бийиктиги – бул басып өткөн жол, ылдамдык эмес.",
+        "ru": "Скорость показывает наклон линии: v = Δs/Δt. Высота линии – это пройденный путь, а не скорость.",
+        "en": "The slope of the line shows the speed: v = Δs/Δt. The height of the line is the distance travelled, not the speed."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "misconceptionKey": "phys.m.higher-is-faster",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.distance-time-graphs-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Сахнадагы графикти караңыз: 0 дөн 10 с ка чейин машина 100 м жол өттү. Ушул бөлүктө анын ылдамдыгы канча м/с?",
+        "ru": "Посмотрите на график в сцене: с 0 до 10 с машина проехала 100 м. Какова её скорость на этом участке, м/с?",
+        "en": "Look at the graph in the scene: from 0 to 10 s the car covers 100 m. What is its speed on this part, in m/s?"
+      },
+      "answer": 10,
+      "tolerance": 0.1,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "v = Δs/Δt = 100 м : 10 с = 10 м/с.",
+        "ru": "v = Δs/Δt = 100 м : 10 с = 10 м/с.",
+        "en": "v = Δs/Δt = 100 m ÷ 10 s = 10 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.distance-time-graphs-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Машина 10 с 10 м/с менен жүрдү, 10 с токтоп турду, анан 10 с 20 м/с менен жүрдү. Бүт сапардагы орточо ылдамдык канча м/с?",
+        "ru": "Машина 10 с ехала 10 м/с, 10 с стояла, затем 10 с ехала 20 м/с. Какова средняя скорость за всю поездку, м/с?",
+        "en": "A car drives 10 s at 10 m/s, stands 10 s, then drives 10 s at 20 m/s. What is the average speed for the whole trip, in m/s?"
+      },
+      "answer": 10,
+      "tolerance": 0.1,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "Жалпы жол 100 + 0 + 200 = 300 м, жалпы убакыт 30 с. v = 300 : 30 = 10 м/с. (10 + 20) : 2 = 15 м/с – туура эмес, анткени токтоо убактысы эсептелген жок.",
+        "ru": "Весь путь 100 + 0 + 200 = 300 м, всё время 30 с. v = 300 : 30 = 10 м/с. (10 + 20) : 2 = 15 м/с – неверно: не учтено время стоянки.",
+        "en": "Total distance 100 + 0 + 200 = 300 m, total time 30 s. v = 300 ÷ 30 = 10 m/s. (10 + 20) ÷ 2 = 15 m/s is wrong: it ignores the time spent standing."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "misconceptionKey": "phys.m.average-of-speeds",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.distance-time-graphs-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Велосипедчинин s(t) графиги – (0 с; 0 м) чекитинен (40 с; 200 м) чекитине чейинки түз сызык. Анын ылдамдыгы канча м/с?",
+        "ru": "График s(t) велосипедиста – прямая от точки (0 с; 0 м) до точки (40 с; 200 м). Какова его скорость, м/с?",
+        "en": "A cyclist's s(t) graph is a straight line from (0 s, 0 m) to (40 s, 200 m). What is the speed in m/s?"
+      },
+      "answer": 5,
+      "tolerance": 0.05,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "v = Δs/Δt = 200 м : 40 с = 5 м/с. Сызык түз болгондуктан, ылдамдык бүт убакытта бирдей.",
+        "ru": "v = Δs/Δt = 200 м : 40 с = 5 м/с. Линия прямая, значит, скорость всё время одна и та же.",
+        "en": "v = Δs/Δt = 200 m ÷ 40 s = 5 m/s. The line is straight, so the speed is the same throughout."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.distance-time-graphs-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Сахнадагы сапарда t = 25 с болгондо машина канча метр жол өткөн болот?",
+        "ru": "Сколько метров проедет машина в сцене к моменту t = 25 с?",
+        "en": "In the scene's trip, how many metres has the car covered at t = 25 s?"
+      },
+      "answer": 200,
+      "tolerance": 2,
+      "unit": "m",
+      "explanation": {
+        "ky": "20 с ка чейин машина 100 м өттү (10 с жүрүп, 10 с турду). Анан 5 с ичинде 20 м/с менен: 20 · 5 = 100 м. Бардыгы 100 + 100 = 200 м.",
+        "ru": "К 20 с машина проехала 100 м (10 с ехала, 10 с стояла). Затем 5 с со скоростью 20 м/с: 20 · 5 = 100 м. Всего 100 + 100 = 200 м.",
+        "en": "By 20 s the car has covered 100 m (10 s driving, 10 s standing). Then 5 s at 20 m/s: 20 × 5 = 100 m. In total 100 + 100 = 200 m."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.distance-time-graphs-7",
+      "type": "match",
+      "prompt": {
+        "ky": "Графиктин формасын кыймыл менен дал келтириңиз.",
+        "ru": "Сопоставьте вид графика s(t) и движение.",
+        "en": "Match the shape of the s(t) graph to the motion."
+      },
+      "pairs": [
+        {
+          "key": "flat",
+          "left": {
+            "ky": "Горизонталдык сызык",
+            "ru": "Горизонтальная линия",
+            "en": "Horizontal line"
+          },
+          "right": {
+            "ky": "Дене тынч турат",
+            "ru": "Тело покоится",
+            "en": "The body is at rest"
+          }
+        },
+        {
+          "key": "slope",
+          "left": {
+            "ky": "Жантык түз сызык",
+            "ru": "Пологая прямая",
+            "en": "Gently sloping straight line"
+          },
+          "right": {
+            "ky": "Жай бир калыптагы кыймыл",
+            "ru": "Медленное равномерное движение",
+            "en": "Slow uniform motion"
+          }
+        },
+        {
+          "key": "steep",
+          "left": {
+            "ky": "Тик түз сызык",
+            "ru": "Крутая прямая",
+            "en": "Steep straight line"
+          },
+          "right": {
+            "ky": "Тез бир калыптагы кыймыл",
+            "ru": "Быстрое равномерное движение",
+            "en": "Fast uniform motion"
+          }
+        },
+        {
+          "key": "curve",
+          "left": {
+            "ky": "Барган сайын тигирээк ийри сызык",
+            "ru": "Кривая, всё круче",
+            "en": "Curve that gets steeper"
+          },
+          "right": {
+            "ky": "Ылдамдык өсүп жатат",
+            "ru": "Скорость растёт",
+            "en": "The speed is increasing"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Горизонталдык – тынч абал; жантык түз сызык – бир калыптагы кыймыл; тигирээк түз сызык – тезирээк бир калыптагы кыймыл; барган сайын тигирээк болгон ийри – ылдамдык өсүп жатат.",
+        "ru": "Горизонтальная – покой; наклонная прямая – равномерное движение; более крутая прямая – более быстрое равномерное движение; кривая, становящаяся всё круче, – скорость растёт.",
+        "en": "Flat – at rest; a sloping straight line – uniform motion; a steeper straight line – faster uniform motion; a curve that keeps getting steeper – the speed is increasing."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.distance-time-graphs-8",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Сахнадагы графикке карата кайсы ырастоолор туура? Бардык туура жоопторду тандаңыз.",
+        "ru": "Какие утверждения о графике в сцене верны? Выберите все верные ответы.",
+        "en": "Which statements about the graph in the scene are true? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "10–20 с аралыгында машина токтоп турду",
+            "ru": "С 10 до 20 с машина стояла",
+            "en": "From 10 to 20 s the car stood still"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "20–30 с аралыгында ылдамдык 20 м/с",
+            "ru": "С 20 до 30 с скорость 20 м/с",
+            "en": "From 20 to 30 s the speed was 20 m/s"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "10–20 с аралыгында машина артка жүрдү",
+            "ru": "С 10 до 20 с машина ехала назад",
+            "en": "From 10 to 20 s the car drove backwards"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "30 с ичинде машина 300 м жол өттү",
+            "ru": "За 30 с машина проехала 300 м",
+            "en": "In 30 s the car covered 300 m"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Эң чоң ылдамдык биринчи бөлүктө болду",
+            "ru": "Наибольшая скорость была на первом участке",
+            "en": "The top speed was on the first part"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": {
+        "ky": "10–20 с аралыгында машина турат; 20–30 с ичинде ылдамдык 20 м/с; 30 с та жол 300 м. Ал артка жүргөн эмес (s азайган жок) жана эң чоң ылдамдык биринчи эмес, үчүнчү бөлүктө.",
+        "ru": "С 10 до 20 с машина стоит; с 20 до 30 с скорость 20 м/с; к 30 с путь 300 м. Назад она не ехала (s не уменьшался), а наибольшая скорость – на третьем участке, не на первом.",
+        "en": "From 10 to 20 s the car stands still; from 20 to 30 s its speed is 20 m/s; at 30 s it has covered 300 m. It never went backwards (s never fell), and its top speed is on the third part, not the first."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.distance-time-graphs-9",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден тиктиги машинанын ылдамдыгын көрсөткөн сызыкты тап.",
+        "ru": "Найдите на модели линию, наклон которой показывает скорость машины.",
+        "en": "Find the line in the model whose slope shows the car's speed."
+      },
+      "targetConceptKey": "phys.graph-slope",
+      "explanation": {
+        "ky": "Бул – s(t) графигинин сызыгы: анын ар бир кесиндисинин тиктиги ошол убакыттагы ылдамдыкка барабар.",
+        "ru": "Это линия графика s(t): наклон каждого её отрезка равен скорости в это время.",
+        "en": "That is the line of the s(t) graph: the slope of each of its segments equals the speed at that time."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.distance-time-graphs-10",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден графиктин огуларын тап: алардын бирөөндө убакыт, экинчисинде жол.",
+        "ru": "Найдите на модели оси графика: на одной время, на другой путь.",
+        "en": "Find the graph's axes in the model: one for time, one for distance."
+      },
+      "targetConceptKey": "phys.distance-time-graph",
+      "explanation": {
+        "ky": "Огулар графиктин негизи: горизонталдыгы – t (с), тиги – s (м).",
+        "ru": "Оси – основа графика: горизонтальная – t (с), вертикальная – s (м).",
+        "en": "The axes are the frame of the graph: horizontal – t (s), vertical – s (m)."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.distance-time-graphs-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Окуучунун графиги 0–10 с аралыгында өйдө көтөрүлөт. Бул эмнени билдирет?",
+        "ru": "График ученика с 0 до 10 с идёт вверх. Что это означает?",
+        "en": "A pupil's s(t) graph rises from 0 to 10 s. What does that mean?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Окуучу тоого чыгып жатат",
+            "ru": "Ученик поднимается в гору",
+            "en": "The pupil is walking uphill"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Басып өткөн жол убакыт менен көбөйүп жатат",
+            "ru": "Пройденный путь растёт со временем",
+            "en": "The distance travelled is growing with time"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Окуучу тынч турат",
+            "ru": "Ученик стоит на месте",
+            "en": "The pupil is standing still"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Окуучунун ылдамдыгы азайып жатат",
+            "ru": "Скорость ученика уменьшается",
+            "en": "The pupil is slowing down"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "s(t) графиги жолдун сүрөтү эмес. Сызык өйдө көтөрүлсө, басып өткөн жол убакыт менен көбөйүп жатат – дене кыймылдайт, түз жолдо болсо да.",
+        "ru": "График s(t) – не рисунок дороги. Линия идёт вверх – значит, пройденный путь растёт со временем: тело движется, даже по ровной дороге.",
+        "en": "An s(t) graph is not a picture of the road. A rising line means the distance travelled is growing with time – the body is moving, even on flat ground."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "misconceptionKey": "phys.m.graph-is-picture",
+      "difficulty": 2
+    }
+  ]
+}

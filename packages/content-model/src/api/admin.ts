@@ -8,6 +8,7 @@ import { KeySchema, SemverSchema } from '../common.js';
 import { ConceptSchema } from '../concept.js';
 import { CourseSchema, ObjectiveSchema, SubjectGroupSchema, SubjectSchema, UnitSchema } from '../curriculum.js';
 import { GlossaryTermSchema } from '../glossary.js';
+import { TextbookObjectSchema, TextbookSchema } from '../textbook.js';
 import { I18nStatusMapSchema, I18nStatusSchema, LANGS, LangSchema, LocalizedSchema } from '../i18n.js';
 import { ItemSchema, ItemTypeSchema } from '../item.js';
 import { ProcessSchema } from '../process.js';
@@ -117,6 +118,9 @@ export const AdminProcessCreateSchema = ProcessSchema;
 export const AdminProcessPatchSchema = withVersion(ProcessSchema.omit({ key: true }));
 export const AdminItemSchema = ItemSchema;
 export const AdminGlossaryTermSchema = GlossaryTermSchema;
+/** v0.5.0: textbook create body (PATCH = partial doc, re-validated with the full schema). */
+export const AdminTextbookCreateSchema = TextbookSchema;
+export const AdminTextbookPatchSchema = withVersion(TextbookObjectSchema.omit({ key: true }));
 
 /** Envelope for a stored entity row: data + optimistic version + audit fields. */
 export const adminRecord = <T extends z.ZodTypeAny>(data: T) =>

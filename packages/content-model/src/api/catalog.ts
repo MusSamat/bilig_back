@@ -7,6 +7,7 @@ import { KeySchema } from '../common.js';
 import { CourseSchema, ObjectiveSchema, SubjectGroupSchema, SubjectSchema, UnitSchema } from '../curriculum.js';
 import { LangSchema } from '../i18n.js';
 import { CatalogSchema, ManifestSchema, TopicSummarySchema } from '../package.js';
+import { TextbookSchema } from '../textbook.js';
 
 // GET /catalog — the whole catalog in one payload (offline-cacheable).
 export const CatalogResponseSchema = CatalogSchema;
@@ -65,3 +66,19 @@ export const SearchHitSchema = z.object({
 export type SearchHit = z.infer<typeof SearchHitSchema>;
 export const SearchResponseSchema = z.object({ items: z.array(SearchHitSchema) });
 export type SearchResponse = z.infer<typeof SearchResponseSchema>;
+
+// v0.5.0 GET /textbooks?grade=&subjectKey= — the textbook menu (lessons list published topics only)
+export const TextbooksQuerySchema = z.object({
+  grade: z.coerce.number().int().min(1).max(11).optional(),
+  subjectKey: KeySchema.optional(),
+});
+export type TextbooksQuery = z.infer<typeof TextbooksQuerySchema>;
+export const TextbooksResponseSchema = z.object({ items: z.array(TextbookSchema) });
+export type TextbooksResponse = z.infer<typeof TextbooksResponseSchema>;
+
+// v0.5.0 GET /textbooks/:key — one textbook with the cards of the topics it maps to
+export const TextbookDetailResponseSchema = z.object({
+  textbook: TextbookSchema,
+  topics: z.array(TopicSummarySchema),
+});
+export type TextbookDetailResponse = z.infer<typeof TextbookDetailResponseSchema>;

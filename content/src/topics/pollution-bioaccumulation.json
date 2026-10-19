@@ -1,0 +1,1085 @@
+{
+  "topic": {
+    "key": "pollution-bioaccumulation",
+    "unitKey": "bio.g8.ecosystems",
+    "status": "published",
+    "title": {
+      "ky": "Булгануу, биоаккумуляция жана климат",
+      "ru": "Загрязнение, биоаккумуляция и климат",
+      "en": "Pollution, bioaccumulation and climate"
+    },
+    "classification": {
+      "ky": "Экология",
+      "ru": "Экология",
+      "en": "Ecology"
+    },
+    "description": {
+      "ky": "Аба, суу жана топурак кантип булганат. Туруктуу булгоочу зат көлдүн азык чынжыры боюнча өйдө жылып, ар бир шакекте анын концентрациясы өсөт: фитопланктон → зоопланктон → чабак → судак жана баклан. Климаттын өзгөрүшү жана анын тоо экосистемаларына таасири.",
+      "ru": "Как загрязняются воздух, вода и почва. Стойкий загрязнитель поднимается по пищевой цепи озера, и на каждом звене его концентрация растёт: фитопланктон → зоопланктон → чебак → судак и баклан. Изменение климата и его влияние на горные экосистемы.",
+      "en": "How air, water and soil become polluted. A persistent pollutant climbs a lake food chain and its concentration rises at each link: phytoplankton → zooplankton → dace → zander and cormorant. Climate change and its effect on mountain ecosystems."
+    },
+    "goal": {
+      "ky": "Булгоочу заттардын азык чынжыры боюнча топтолушун түшүндүрүү жана эсептөө, адамдын климатка таасирин баалоо (BIO-8.3.2).",
+      "ru": "Объяснить и рассчитать накопление загрязнителей по пищевой цепи, оценить влияние человека на климат (BIO-8.3.2).",
+      "en": "Explain and calculate how pollutants build up along a food chain, and assess human influence on climate (BIO-8.3.2)."
+    },
+    "objectiveKeys": [
+      "bio.g8.ecosystems.o2",
+      "bio.g8.ecosystems.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "food-web",
+        "biome": "lake",
+        "organisms": [
+          {
+            "id": "phytoplankton",
+            "level": "producer",
+            "icon": "algae",
+            "count": 10000
+          },
+          {
+            "id": "zooplankton",
+            "level": "primary",
+            "icon": "plankton",
+            "count": 1000
+          },
+          {
+            "id": "dace",
+            "level": "secondary",
+            "icon": "fish",
+            "count": 100
+          },
+          {
+            "id": "zander",
+            "level": "tertiary",
+            "icon": "fish",
+            "count": 10
+          },
+          {
+            "id": "cormorant",
+            "level": "tertiary",
+            "icon": "bird",
+            "count": 4
+          },
+          {
+            "id": "bacteria",
+            "level": "decomposer",
+            "icon": "bacteria",
+            "count": 10000
+          }
+        ],
+        "links": [
+          [
+            "phytoplankton",
+            "zooplankton"
+          ],
+          [
+            "zooplankton",
+            "dace"
+          ],
+          [
+            "dace",
+            "zander"
+          ],
+          [
+            "dace",
+            "cormorant"
+          ],
+          [
+            "zander",
+            "bacteria"
+          ],
+          [
+            "phytoplankton",
+            "bacteria"
+          ]
+        ],
+        "pollutant": {
+          "name": "Hg",
+          "start": 0.001,
+          "factor": 10
+        }
+      },
+      "camera": {
+        "position": [
+          0,
+          2.5,
+          7
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "energy",
+        "pollutant",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "bio.pollution",
+      "bio.bioaccumulation",
+      "bio.biomagnification",
+      "bio.producer",
+      "bio.primary-consumer",
+      "bio.secondary-consumer",
+      "bio.decomposer",
+      "bio.food-chain",
+      "bio.climate-change"
+    ],
+    "overrides": {
+      "bio.bioaccumulation": {
+        "nodes": [
+          "Pollutant_*"
+        ]
+      },
+      "bio.biomagnification": {
+        "nodes": [
+          "Level_tertiary",
+          "Organism_zander",
+          "Organism_cormorant"
+        ]
+      },
+      "bio.producer": {
+        "nodes": [
+          "Level_producer",
+          "Organism_phytoplankton"
+        ]
+      },
+      "bio.primary-consumer": {
+        "nodes": [
+          "Level_primary",
+          "Organism_zooplankton"
+        ]
+      },
+      "bio.secondary-consumer": {
+        "nodes": [
+          "Level_secondary",
+          "Organism_dace"
+        ]
+      },
+      "bio.decomposer": {
+        "nodes": [
+          "Level_decomposer",
+          "Organism_bacteria"
+        ]
+      },
+      "bio.food-chain": {
+        "nodes": [
+          "Link_*"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "lake-mercury",
+        "title": {
+          "ky": "Көлдөгү сымап (модель)",
+          "ru": "Ртуть в озере (модель)",
+          "en": "Mercury in a lake (model)"
+        },
+        "classification": {
+          "ky": "Биомагнификация",
+          "ru": "Биомагнификация",
+          "en": "Biomagnification"
+        },
+        "thumb": "thumbs/lake-mercury.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "count",
+            "value": 0.001,
+            "unit": "ppm in water"
+          },
+          {
+            "kind": "quantity",
+            "type": "count",
+            "value": 10,
+            "unit": "ppm in top predators"
+          },
+          {
+            "kind": "quantity",
+            "type": "count",
+            "value": 10,
+            "unit": "× per level"
+          }
+        ]
+      },
+      {
+        "key": "city-smog",
+        "title": {
+          "ky": "Шаардагы кышкы смог",
+          "ru": "Зимний смог в городе",
+          "en": "Winter smog in a city"
+        },
+        "classification": {
+          "ky": "Абанын булганышы",
+          "ru": "Загрязнение воздуха",
+          "en": "Air pollution"
+        },
+        "thumb": "thumbs/city-smog.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Көмүр жана унаалардын түтүнү, майда бөлүкчөлөр (PM2.5)",
+              "ru": "Дым угля и выхлопы, мелкие частицы (PM2.5)",
+              "en": "Coal smoke and exhaust, fine particles (PM2.5)"
+            }
+          }
+        ]
+      },
+      {
+        "key": "glacier-retreat",
+        "title": {
+          "ky": "Мөңгүнүн кичирейиши",
+          "ru": "Отступление ледника",
+          "en": "A retreating glacier"
+        },
+        "classification": {
+          "ky": "Климат",
+          "ru": "Климат",
+          "en": "Climate"
+        },
+        "thumb": "thumbs/glacier-retreat.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "location",
+            "value": {
+              "ky": "Тянь-Шань",
+              "ru": "Тянь-Шань",
+              "en": "Tien Shan"
+            }
+          }
+        ]
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "count",
+        "value": 0.001,
+        "unit": "ppm in water (model)"
+      },
+      {
+        "kind": "quantity",
+        "type": "count",
+        "value": 10,
+        "unit": "× per level (model)"
+      },
+      {
+        "kind": "quantity",
+        "type": "count",
+        "value": 4,
+        "unit": "levels"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "pollution",
+            "camera": {
+              "position": [
+                0,
+                2.5,
+                7
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "bio.pollution",
+            "text": {
+              "ky": "Булгануу – чөйрөгө зыяндуу заттардын түшүшү. Аба (көмүр жана унаалардын түтүнү), суу (агынды суу, жер семирткич) жана топурак (таштанды, пестициддер, оор металлдар) булганат.",
+              "ru": "Загрязнение – попадание в среду вредных веществ. Загрязняются воздух (дым угля, выхлопы), вода (стоки, удобрения) и почва (мусор, пестициды, тяжёлые металлы).",
+              "en": "Pollution means harmful substances entering the environment. Air (coal smoke, exhaust), water (sewage, fertiliser) and soil (litter, pesticides, heavy metals) all get polluted."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: биздин шаарда же айылда кандай булгануу бар? Жоопторду аба/суу/топурак деп үч тилкеге бөлүңүз.",
+              "ru": "Спросите: какое загрязнение есть в нашем городе или селе? Разложите ответы на три столбца: воздух/вода/почва.",
+              "en": "Ask: what pollution is there in our town or village? Sort answers into three columns: air, water, soil."
+            },
+            "altText": {
+              "ky": "Көлдүн экосистемасы, жээгинде агынды түтүк.",
+              "ru": "Экосистема озера, у берега – труба стока.",
+              "en": "A lake ecosystem with a waste pipe on the shore."
+            }
+          },
+          {
+            "key": "chain",
+            "modes": {
+              "energy": true
+            },
+            "focus": "bio.food-chain",
+            "text": {
+              "ky": "Көлдүн азык чынжыры: фитопланктон → зоопланктон → чабак → судак жана баклан. Энергия агымы ар бир шакекте азаят.",
+              "ru": "Пищевая цепь озера: фитопланктон → зоопланктон → чебак → судак и баклан. Поток энергии уменьшается на каждом звене.",
+              "en": "The lake food chain: phytoplankton → zooplankton → dace → zander and cormorant. Energy flow shrinks at each link."
+            },
+            "teacherNote": {
+              "ky": "Мурунку сабакты эске салыңыз: 10 % эрежеси. Эми энергия эмес, зат кантип жылаарын карайбыз.",
+              "ru": "Напомните прошлый урок: правило 10 %. Теперь следим не за энергией, а за веществом.",
+              "en": "Recall the 10 % rule from last lesson. Now we follow a substance, not energy."
+            },
+            "altText": {
+              "ky": "Көлдөгү организмдерди байланыштырган жебелер.",
+              "ru": "Стрелки, связывающие организмы озера.",
+              "en": "Arrows linking the lake organisms."
+            }
+          },
+          {
+            "key": "bioaccumulation",
+            "camera": {
+              "position": [
+                0,
+                1,
+                6
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "pollutant": true
+            },
+            "focus": "bio.bioaccumulation",
+            "text": {
+              "ky": "Сымап сыяктуу туруктуу зат суудан фитопланктонго өтөт. Организм аны ажырата да, чыгара да албайт, ошондуктан ал денеде топтолот – бул биоаккумуляция.",
+              "ru": "Стойкое вещество, например ртуть, переходит из воды в фитопланктон. Организм не может ни разложить, ни вывести его, и оно накапливается – это биоаккумуляция.",
+              "en": "A persistent substance such as mercury passes from the water into phytoplankton. The organism can neither break it down nor get rid of it, so it builds up – bioaccumulation."
+            },
+            "teacherNote": {
+              "ky": "Туура эмес түшүнүк: «чоң көлдө булганыч эрип жок болот». Эрүү жок болуу эмес экенин айтыңыз.",
+              "ru": "Частая ошибка: «в большом озере загрязнение растворится и исчезнет». Растворение – не исчезновение.",
+              "en": "Common mistake: 'in a big lake pollution dissolves away'. Dissolving is not disappearing."
+            },
+            "altText": {
+              "ky": "Планктондун ичинде булгоочунун чекиттери пайда болот.",
+              "ru": "Внутри планктона появляются точки загрязнителя.",
+              "en": "Pollutant dots appear inside the plankton."
+            }
+          },
+          {
+            "key": "biomagnification",
+            "camera": {
+              "position": [
+                0,
+                4,
+                5
+              ],
+              "target": [
+                0,
+                2,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "pollutant": true,
+              "labels": true
+            },
+            "focus": "bio.biomagnification",
+            "text": {
+              "ky": "Ар бир жырткыч көп жемди жеп, алардын затын өзүнө чогултат. Моделде концентрация ар бир деңгээлде 10 эсе өсөт: суу 0,001 ppm → чоку жырткычтар ≈ 10 ppm, б.а. 10 000 эсе көп. Бул – биомагнификация.",
+              "ru": "Каждый хищник съедает много жертв и собирает в себе их загрязнитель. В модели концентрация растёт в 10 раз на каждом уровне: вода 0,001 ppm → высшие хищники ≈ 10 ppm, то есть в 10 000 раз больше. Это биомагнификация.",
+              "en": "Each predator eats many prey and collects their pollutant. In the model concentration grows tenfold per level: water 0.001 ppm → top predators ≈ 10 ppm, i.e. 10,000 times more. That is biomagnification."
+            },
+            "teacherNote": {
+              "ky": "Модель жөнөкөйлөтүлгөн: чыныгы өсүү зат жана экосистемага жараша ар башка. Ушул жерде «Булгоочунун топтолушу» процессин иштетиңиз.",
+              "ru": "Модель упрощена: реальный рост зависит от вещества и экосистемы. Здесь запустите процесс «Накопление загрязнителя».",
+              "en": "The model is simplified: the real increase depends on the substance and ecosystem. Run the 'Pollutant moving up a food chain' process here."
+            },
+            "altText": {
+              "ky": "Чоку жырткычтарда кызыл чекиттер эң көп.",
+              "ru": "Больше всего красных точек у высших хищников.",
+              "en": "The top predators hold the most red dots."
+            }
+          },
+          {
+            "key": "ddt",
+            "modes": {
+              "pollutant": true
+            },
+            "focus": "bio.biomagnification",
+            "text": {
+              "ky": "Тарыхый мисал: DDT пестициди жырткыч куштарда топтолуп, алардын жумурткасынын кабыгын жукарткан, ошондуктан алардын саны кескин азайган. Көп өлкөлөр DDTга тыюу салгандан кийин куштар кайра көбөйгөн.",
+              "ru": "Исторический пример: пестицид ДДТ накапливался в хищных птицах и истончал скорлупу их яиц, и численность птиц резко упала. После запрета ДДТ во многих странах птицы восстановились.",
+              "en": "A historical example: the pesticide DDT built up in birds of prey and thinned their eggshells, so their numbers crashed. After many countries banned DDT, the birds recovered."
+            },
+            "teacherNote": {
+              "ky": "Рейчел Карсондун «Унчукпаган жаз» (1962) китеби жөнүндө кыскача айтып бериңиз: бир изилдөөчү коомдун пикирин өзгөртө алат.",
+              "ru": "Кратко расскажите о книге Рейчел Карсон «Безмолвная весна» (1962): один исследователь может изменить мнение общества.",
+              "en": "Briefly mention Rachel Carson's Silent Spring (1962): one scientist can change public opinion."
+            },
+            "altText": {
+              "ky": "Баклан белгиленген, жанында жумуртка.",
+              "ru": "Выделен баклан, рядом яйцо.",
+              "en": "The cormorant is highlighted with an egg beside it."
+            }
+          },
+          {
+            "key": "climate",
+            "sample": "glacier-retreat",
+            "camera": {
+              "position": [
+                0,
+                2.5,
+                7
+              ],
+              "target": [
+                0,
+                1,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "bio.climate-change",
+            "text": {
+              "ky": "Көмүр, мунай жана газ жагылганда абага CO₂ көбүрөөк түшүп, парник эффекти күчөйт жана Жердин орточо температурасы жогорулайт. Тянь-Шандын мөңгүлөрү кичирейип, түрлөр тоого бийиктеп көчүүдө.",
+              "ru": "При сжигании угля, нефти и газа в воздух поступает больше CO₂, парниковый эффект усиливается, и средняя температура Земли растёт. Ледники Тянь-Шаня сокращаются, виды смещаются выше в горы.",
+              "en": "Burning coal, oil and gas adds CO₂ to the air, strengthening the greenhouse effect and raising Earth's average temperature. Tien Shan glaciers are shrinking and species are moving higher up the mountains."
+            },
+            "teacherNote": {
+              "ky": "Аба ырайы жана климаттын айырмасын түшүндүрүңүз. Тактык үчүн сандарды ишенимдүү булактан (мисалы, Кыргызгидромет же IPCC) датасы менен гана келтириңиз.",
+              "ru": "Объясните разницу между погодой и климатом. Конкретные числа приводите только из проверяемого источника с датой (например, Кыргызгидромет или МГЭИК).",
+              "en": "Explain weather versus climate. Quote specific figures only from a dated, checkable source (e.g. Kyrgyzhydromet or the IPCC)."
+            },
+            "altText": {
+              "ky": "Күн нурлары жана Жерди курчаган парник газдарынын катмары.",
+              "ru": "Солнечные лучи и слой парниковых газов вокруг Земли.",
+              "en": "Sunbeams and a layer of greenhouse gases around the Earth."
+            }
+          },
+          {
+            "key": "action",
+            "camera": {
+              "position": [
+                0,
+                1,
+                6
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "pollutant": false
+            },
+            "focus": "bio.pollution",
+            "text": {
+              "ky": "Эмне кыла алабыз? Булгоочу заттарды сууга төкпөө, батарейкаларды атайын жерге өткөрүү, таштанды бөлүү, үйдү жылуулоо жана көмүрдү азыраак жагуу, көбүрөөк жөө басуу.",
+              "ru": "Что мы можем сделать? Не сливать вредные вещества в воду, сдавать батарейки в пункты приёма, сортировать мусор, утеплять дом и меньше жечь уголь, больше ходить пешком.",
+              "en": "What can we do? Don't pour harmful substances into water, take batteries to collection points, sort waste, insulate homes and burn less coal, walk more."
+            },
+            "teacherNote": {
+              "ky": "Иш барагы «булгоочуну ээрчи»: окуучулар бир затты (батарейка, жер семирткич) суудан бакланга чейин ээрчип, схема чийишет.",
+              "ru": "Рабочий лист «следи за загрязнителем»: ученики прослеживают одно вещество (батарейка, удобрение) от воды до баклана и рисуют схему.",
+              "en": "Worksheet 'follow the pollutant': pupils trace one substance (a battery, fertiliser) from the water to the cormorant and draw a diagram."
+            },
+            "altText": {
+              "ky": "Тазаланган көл жана бош чекиттер.",
+              "ru": "Очищенное озеро без точек загрязнения.",
+              "en": "A clean lake with no pollutant dots."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "bio.biomagnification-chain"
+      ],
+      "quiz": {
+        "itemKeys": [
+          "bio.q.pollution-bioaccumulation-1",
+          "bio.q.pollution-bioaccumulation-2",
+          "bio.q.pollution-bioaccumulation-3",
+          "bio.q.pollution-bioaccumulation-4",
+          "bio.q.pollution-bioaccumulation-5",
+          "bio.q.pollution-bioaccumulation-6",
+          "bio.q.pollution-bioaccumulation-7",
+          "bio.q.pollution-bioaccumulation-8",
+          "bio.q.pollution-bioaccumulation-9",
+          "bio.q.pollution-bioaccumulation-10",
+          "bio.q.pollution-bioaccumulation-11"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "t",
+          "title": {
+            "ky": "Абанын сапатын өлчөө",
+            "ru": "Мониторинг воздуха",
+            "en": "Air monitoring"
+          },
+          "text": {
+            "ky": "Шаарлардагы сенсорлор PM2.5 бөлүкчөлөрүн өлчөп, телефон тиркемелерине маалымат беришет.",
+            "ru": "Городские датчики измеряют частицы PM2.5 и передают данные в приложения.",
+            "en": "City sensors measure PM2.5 particles and send data to phone apps."
+          }
+        },
+        {
+          "field": "s",
+          "title": {
+            "ky": "Балыктагы сымапты текшерүү",
+            "ru": "Контроль ртути в рыбе",
+            "en": "Testing fish for mercury"
+          },
+          "text": {
+            "ky": "Лабораториялар ири жырткыч балыктагы сымапты өлчөшөт, анткени ал азык чынжыры боюнча топтолот.",
+            "ru": "Лаборатории измеряют ртуть в крупной хищной рыбе, потому что она накапливается по пищевой цепи.",
+            "en": "Labs measure mercury in large predatory fish because it builds up along food chains."
+          }
+        },
+        {
+          "field": "m",
+          "title": {
+            "ky": "10дун даражалары",
+            "ru": "Степени десяти",
+            "en": "Powers of ten"
+          },
+          "text": {
+            "ky": "0,001 × 10⁴ = 10 ppm: төрт деңгээлден кийин концентрация 10 000 эсе өстү.",
+            "ru": "0,001 × 10⁴ = 10 ppm: через четыре уровня концентрация выросла в 10 000 раз.",
+            "en": "0.001 × 10⁴ = 10 ppm: after four levels the concentration is 10,000 times higher."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Тыйын кутуча",
+            "ru": "Копилка",
+            "en": "A piggy bank"
+          },
+          "text": {
+            "ky": "Ар күнү бир тыйын салып, эч качан албасаң, кутуча толот – зат организмде ушундай топтолот.",
+            "ru": "Каждый день монетка, и ни одной обратно – копилка наполняется; так вещество копится в организме.",
+            "en": "A coin every day and none taken out – the piggy bank fills; that's how a substance builds up in a body."
+          }
+        },
+        {
+          "title": {
+            "ky": "Сыя тамчысы",
+            "ru": "Капля чернил",
+            "en": "A drop of ink"
+          },
+          "text": {
+            "ky": "Бир тамчы сыя бүт стакан сууну боёйт: булганыч жоголбойт, жайылат.",
+            "ru": "Одна капля чернил окрашивает весь стакан: загрязнение не исчезает, а расходится.",
+            "en": "One drop of ink colours a whole glass: pollution doesn't vanish, it spreads."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "bio.q.pollution-bioaccumulation-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Биомагнификация деген эмне?",
+        "ru": "Что такое биомагнификация?",
+        "en": "What is biomagnification?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Булгоочунун чынжыр боюнча өйдө карай көбөйүшү",
+            "ru": "Рост концентрации загрязнителя вверх по цепи",
+            "en": "A pollutant's concentration rising up the chain"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Организмдердин санынын өсүшү",
+            "ru": "Рост численности организмов",
+            "en": "Organisms becoming more numerous"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Энергиянын чынжыр боюнча көбөйүшү",
+            "ru": "Рост энергии вдоль цепи",
+            "en": "Energy increasing along the chain"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Булганычтын сууда эрип жок болушу",
+            "ru": "Растворение и исчезновение загрязнения",
+            "en": "Pollution dissolving away"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Туруктуу булгоочу заттын концентрациясынын азык чынжырынын ар бир кийинки шакегинде өсүшү.",
+        "ru": "Рост концентрации стойкого загрязнителя на каждом следующем звене пищевой цепи.",
+        "en": "The rise in concentration of a persistent pollutant at each higher link of a food chain."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.pollution-bioaccumulation-2",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден булгоочу заттын концентрациясы эң жогору болгон организмдерди тап.",
+        "ru": "Найди на модели организмы с наибольшей концентрацией загрязнителя.",
+        "en": "Find the organisms with the highest pollutant concentration."
+      },
+      "targetConceptKey": "bio.biomagnification",
+      "explanation": {
+        "ky": "Судак жана баклан – чоку жырткычтар; аларда зат эң көп топтолот.",
+        "ru": "Судак и баклан – высшие хищники; в них вещества больше всего.",
+        "en": "Zander and cormorant are the top predators; they hold the most."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "misconceptionKey": "bio.m.biomag-producers",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.pollution-bioaccumulation-3",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден организмдердин ичинде топтолгон булгоочу заттын чекиттерин тап.",
+        "ru": "Найди на модели точки загрязнителя, накопленного внутри организмов.",
+        "en": "Find the dots of pollutant built up inside the organisms."
+      },
+      "targetConceptKey": "bio.bioaccumulation",
+      "explanation": {
+        "ky": "Бул – биоаккумуляция: зат организмден чыкпай, топтолот.",
+        "ru": "Это биоаккумуляция: вещество не выводится и накапливается.",
+        "en": "That is bioaccumulation: the substance isn't removed, so it builds up."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "misconceptionKey": "bio.m.bioacc-same",
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.pollution-bioaccumulation-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Суудагы булгоочунун концентрациясы 0,002 ppm. Ар бир деңгээлде ал 10 эсе өссө, 3 деңгээлден кийин (суу → фитопланктон → зоопланктон → чабак) чабакта канча ppm болот?",
+        "ru": "Концентрация загрязнителя в воде 0,002 ppm. Если на каждом уровне она растёт в 10 раз, сколько ppm будет у чебака через 3 уровня (вода → фитопланктон → зоопланктон → чебак)?",
+        "en": "A pollutant is at 0.002 ppm in the water. If it grows 10× per level, what is the concentration in the dace after 3 levels (water → phytoplankton → zooplankton → dace), in ppm?"
+      },
+      "answer": 2,
+      "tolerance": 0.01,
+      "unit": "ppm",
+      "explanation": {
+        "ky": "0,002 × 10 × 10 × 10 = 2 ppm.",
+        "ru": "0,002 × 10 × 10 × 10 = 2 ppm.",
+        "en": "0.002 × 10 × 10 × 10 = 2 ppm."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.pollution-bioaccumulation-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Суудагы концентрация 0,001 ppm, бакланда – 10 ppm. Бакландагы концентрация суудагыдан канча эсе жогору?",
+        "ru": "В воде 0,001 ppm, у баклана – 10 ppm. Во сколько раз концентрация у баклана выше, чем в воде?",
+        "en": "Water has 0.001 ppm and the cormorant 10 ppm. How many times higher is the cormorant's concentration?"
+      },
+      "answer": 10000,
+      "tolerance": 0,
+      "unit": "×",
+      "explanation": {
+        "ky": "10 / 0,001 = 10 000 эсе.",
+        "ru": "10 / 0,001 = 10 000 раз.",
+        "en": "10 / 0.001 = 10,000 times."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.pollution-bioaccumulation-6",
+      "type": "match",
+      "prompt": {
+        "ky": "Булгоочуну ал көбүнчө булгаган чөйрө менен дал келтир.",
+        "ru": "Сопоставь загрязнитель со средой, которую он чаще всего загрязняет.",
+        "en": "Match each pollutant to the part of the environment it mainly pollutes."
+      },
+      "pairs": [
+        {
+          "key": "coal",
+          "left": {
+            "ky": "Мештеги көмүрдүн түтүнү",
+            "ru": "Дым угля из печей",
+            "en": "Smoke from coal stoves"
+          },
+          "right": {
+            "ky": "Аба (смог)",
+            "ru": "Воздух (смог)",
+            "en": "Air (smog)"
+          }
+        },
+        {
+          "key": "fert",
+          "left": {
+            "ky": "Талаадан аккан жер семирткич",
+            "ru": "Смыв удобрений с полей",
+            "en": "Fertiliser washing off fields"
+          },
+          "right": {
+            "ky": "Суу (балырлардын ашыкча өсүшү)",
+            "ru": "Вода (цветение водорослей)",
+            "en": "Water (algal bloom)"
+          }
+        },
+        {
+          "key": "battery",
+          "left": {
+            "ky": "Ыргытылган батарейкалар",
+            "ru": "Выброшенные батарейки",
+            "en": "Discarded batteries"
+          },
+          "right": {
+            "ky": "Топурак (оор металлдар)",
+            "ru": "Почва (тяжёлые металлы)",
+            "en": "Soil (heavy metals)"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Көмүр түтүнү – аба; жер семирткичтин агындысы – суу; батарейкалар жана таштанды – топурак; унаалардын түтүнү – аба (CO₂ жана майда бөлүкчөлөр).",
+        "ru": "Дым угля – воздух; смыв удобрений – вода; батарейки и мусор – почва; выхлопы машин – воздух (CO₂ и мелкие частицы).",
+        "en": "Coal smoke – air; fertiliser run-off – water; batteries and litter – soil; car exhaust – air (CO₂ and fine particles)."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "bio.q.pollution-bioaccumulation-7",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн булгоочу заттын концентрациясы чоку жырткычтарда эң жогору?",
+        "ru": "Почему концентрация загрязнителя выше всего у высших хищников?",
+        "en": "Why is the pollutant concentration highest in top predators?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Алар булганган сууну көбүрөөк ичишет",
+            "ru": "Они пьют больше загрязнённой воды",
+            "en": "They drink more polluted water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Алар көп жемди жеп, алардын затын чогултушат",
+            "ru": "Они съедают много жертв и собирают их загрязнитель",
+            "en": "They eat many prey and collect their pollutant"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Аларда зат пайда болот",
+            "ru": "Вещество в них образуется само",
+            "en": "Their bodies make the pollutant"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Алар эң чоң организмдер",
+            "ru": "Они самые крупные организмы",
+            "en": "They are the largest organisms"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Ар бир жырткыч көп жемди жейт жана алардын затын чыгарбай өзүнө чогултат.",
+        "ru": "Каждый хищник съедает много жертв и собирает их загрязнитель, не выводя его.",
+        "en": "Each predator eats many prey and collects their pollutant without getting rid of it."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "misconceptionKey": "bio.m.biomag-producers",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.pollution-bioaccumulation-8",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы заттар азык чынжыры боюнча топтолушу мүмкүн (туруктуу булгоочулар)? Бардыгын танда.",
+        "ru": "Какие вещества могут накапливаться по пищевой цепи (стойкие загрязнители)? Выбери все.",
+        "en": "Which substances can build up along a food chain (persistent pollutants)? Choose all."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Сымап",
+            "ru": "Ртуть",
+            "en": "Mercury"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Коргошун",
+            "ru": "Свинец",
+            "en": "Lead"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "DDT пестициди",
+            "ru": "Пестицид ДДТ",
+            "en": "The pesticide DDT"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Кычкылтек",
+            "ru": "Кислород",
+            "en": "Oxygen"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Глюкоза",
+            "ru": "Глюкоза",
+            "en": "Glucose"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Сымап, коргошун жана DDT организмде ажырабай топтолот. Кычкылтек жана глюкоза организмде колдонулуп, топтолбойт.",
+        "ru": "Ртуть, свинец и ДДТ не разлагаются в организме и накапливаются. Кислород и глюкоза используются организмом и не накапливаются.",
+        "en": "Mercury, lead and DDT are not broken down and build up. Oxygen and glucose are used by the body and don't build up."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.pollution-bioaccumulation-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Кайсы ырастоо туура?",
+        "ru": "Какое утверждение верно?",
+        "en": "Which statement is correct?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Бүгүн суук болсо, климат жылыбай жатат",
+            "ru": "Если сегодня холодно, климат не теплеет",
+            "en": "If today is cold, the climate isn't warming"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Климат – көп жылдардын орточо аба ырайы",
+            "ru": "Климат – средняя погода за многие годы",
+            "en": "Climate is the average weather over many years"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Климат жана аба ырайы – бир эле нерсе",
+            "ru": "Климат и погода – одно и то же",
+            "en": "Climate and weather are the same"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Климат бир жумада өзгөрөт",
+            "ru": "Климат меняется за неделю",
+            "en": "Climate changes within a week"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Аба ырайы – бир күндүн абалы, климат – көп жылдардын орточосу. Бир суук күн климаттын жылуулашын жокко чыгарбайт.",
+        "ru": "Погода – состояние за день, климат – среднее за многие годы. Один холодный день не опровергает потепление климата.",
+        "en": "Weather is one day's conditions; climate is the long-term average. One cold day doesn't disprove warming."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "misconceptionKey": "bio.m.weather-climate",
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.pollution-bioaccumulation-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн Тянь-Шандын мөңгүлөрүнүн кичирейиши Кыргызстандын дарыялары үчүн маанилүү?",
+        "ru": "Почему сокращение ледников Тянь-Шаня важно для рек Кыргызстана?",
+        "en": "Why does the shrinking of Tien Shan glaciers matter for Kyrgyzstan's rivers?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Мөңгүлөр дарыяларды суу менен камсыз кылат",
+            "ru": "Ледники питают реки водой",
+            "en": "Glaciers feed the rivers with water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Мөңгүлөр дарыяларды булгайт",
+            "ru": "Ледники загрязняют реки",
+            "en": "Glaciers pollute the rivers"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Мөңгүлөрдүн дарыяларга эч кандай байланышы жок",
+            "ru": "Ледники никак не связаны с реками",
+            "en": "Glaciers have nothing to do with rivers"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Мөңгүлөр балыктарды тамактандырат",
+            "ru": "Ледники кормят рыбу",
+            "en": "Glaciers feed the fish"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Дарыялардын суусунун олуттуу бөлүгү мөңгүлөрдөн жана кардан келет; мөңгүлөр азайса, узак мөөнөттө суу азаят.",
+        "ru": "Значительная часть воды рек – от ледников и снега; если ледников станет меньше, в долгосрочной перспективе воды станет меньше.",
+        "en": "A large share of river water comes from glaciers and snow; with less glacier ice, there will be less water in the long run."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "bio.q.pollution-bioaccumulation-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Окуучулар балыктагы сымапты салыштырышты: майда чабакта – 0,05 ppm, ири судакта – 0,5 ppm. Кандай жыйынтык туура?",
+        "ru": "Ученики сравнили ртуть в рыбе: у мелкого чебака – 0,05 ppm, у крупного судака – 0,5 ppm. Какой вывод верен?",
+        "en": "Pupils compared mercury in fish: small dace 0.05 ppm, large zander 0.5 ppm. Which conclusion is correct?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Судакта 10 эсе көп – ал чынжырда жогору турат",
+            "ru": "У судака в 10 раз больше – он выше в цепи",
+            "en": "Zander has 10× more – it is higher in the chain"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Чабакта көбүрөөк",
+            "ru": "У чебака больше",
+            "en": "The dace has more"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Экөөндө бирдей",
+            "ru": "Одинаково",
+            "en": "They are the same"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Сымап жырткычтарда топтолбойт",
+            "ru": "Ртуть не накапливается в хищниках",
+            "en": "Mercury doesn't build up in predators"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Судак – жырткыч, ал чабактарды жейт: анын концентрациясы 10 эсе жогору, бул биомагнификацияга туура келет.",
+        "ru": "Судак – хищник, который ест чебаков: у него концентрация в 10 раз выше, что согласуется с биомагнификацией.",
+        "en": "Zander is a predator that eats dace: its concentration is 10× higher, consistent with biomagnification."
+      },
+      "objectiveKeys": [
+        "bio.g8.ecosystems.o2"
+      ],
+      "difficulty": 3
+    }
+  ]
+}

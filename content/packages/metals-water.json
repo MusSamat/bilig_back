@@ -1,0 +1,4226 @@
+{
+  "manifest": {
+    "topicKey": "metals-water",
+    "version": "1.0.0",
+    "hash": "33a9474c624898c8c3940541bed9d5e3fe9444bc5c9053c13a696fb92f63f6f9",
+    "files": [
+      {
+        "path": "thumbs/ca-water.webp",
+        "hash": "f460096019528e065d157f56be3fd939d49920b1c63a06490efa2590fc277929",
+        "size": 0
+      },
+      {
+        "path": "thumbs/na-water.webp",
+        "hash": "f3d677ad44549706cc40b660deb2d81e502d455f815b5af641fbdce562b4979b",
+        "size": 0
+      },
+      {
+        "path": "thumbs/mg-steam.webp",
+        "hash": "4bbf68a5b3375bcf129f76f760cdd8467051c12256d656215e9d205fa631010d",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "chem",
+    "icon": "flask",
+    "hue": 236,
+    "group": "natural",
+    "order": 1,
+    "status": "live",
+    "title": {
+      "ky": "Химия",
+      "ru": "Химия",
+      "en": "Chemistry"
+    }
+  },
+  "course": {
+    "key": "chem.g8",
+    "subjectKey": "chem",
+    "grade": 8,
+    "curriculum": "kg-2024",
+    "title": {
+      "ky": "Химия, 8-класс",
+      "ru": "Химия, 8 класс",
+      "en": "Chemistry, grade 8"
+    }
+  },
+  "unit": {
+    "key": "chem.g8.metals",
+    "courseKey": "chem.g8",
+    "order": 4,
+    "title": {
+      "ky": "Металлдар",
+      "ru": "Металлы",
+      "en": "Metals"
+    }
+  },
+  "objectives": [
+    {
+      "key": "chem.g8.metals.o1",
+      "code": "CHEM-8.4.1",
+      "unitKey": "chem.g8.metals",
+      "text": {
+        "ky": "Металлдардын кычкылтек, суу жана кислоталар менен реакцияларын сүрөттөө жана теңдемесин жазуу.",
+        "ru": "Описывать реакции металлов с кислородом, водой и кислотами и записывать их уравнения.",
+        "en": "Describe how metals react with oxygen, water and acids and write the equations."
+      }
+    },
+    {
+      "key": "chem.g8.metals.o2",
+      "code": "CHEM-8.4.2",
+      "unitKey": "chem.g8.metals",
+      "text": {
+        "ky": "Активдүүлүк катарын колдонуп реакциянын жүрөрүн алдын ала айтуу.",
+        "ru": "Предсказывать реакцию по ряду активности металлов.",
+        "en": "Use the reactivity series to predict whether a reaction happens."
+      }
+    }
+  ],
+  "topic": {
+    "key": "metals-water",
+    "unitKey": "chem.g8.metals",
+    "status": "published",
+    "title": {
+      "ky": "Металлдардын суу менен реакциясы",
+      "ru": "Реакции металлов с водой",
+      "en": "Metals and water"
+    },
+    "formula": "Ca + 2H_2O \\to Ca(OH)_2 + H_2",
+    "classification": {
+      "ky": "Металл + суу → гидроксид + суутек",
+      "ru": "Металл + вода → гидроксид + водород",
+      "en": "Metal + water → hydroxide + hydrogen"
+    },
+    "description": {
+      "ky": "Эң активдүү металлдар (K, Na, Ca) муздак суу менен реакцияга кирип, суутек газын жана щелочту пайда кылат. Кальций бир калыпта көбүрөйт, эритме бүдөмүк болуп, фенолфталеинден кызгылт түскө боёлот. Магний муздак суу менен өтө жай, ал эми буу менен тезирээк реакцияга кирет; жез суу менен такыр реакцияга кирбейт.",
+      "ru": "Самые активные металлы (K, Na, Ca) реагируют с холодной водой, образуя водород и щёлочь. Кальций ровно выделяет пузырьки, раствор мутнеет и окрашивает фенолфталеин в малиновый цвет. Магний с холодной водой реагирует очень медленно, с паром – быстрее; медь с водой не реагирует вовсе.",
+      "en": "The most reactive metals (K, Na, Ca) react with cold water to give hydrogen gas and an alkali. Calcium bubbles steadily, the water turns cloudy, and phenolphthalein turns pink. Magnesium reacts very slowly with cold water but faster with steam; copper does not react with water at all."
+    },
+    "goal": {
+      "ky": "Металлдардын суу жана буу менен реакцияларын салыштырып, теңдемелерин жазуу; щелочту индикатор менен аныктоо (CHEM-8.4.1).",
+      "ru": "Сравнить реакции металлов с водой и паром, записать их уравнения; обнаружить щёлочь индикатором (CHEM-8.4.1).",
+      "en": "Compare how metals react with water and steam, write the equations, and detect the alkali with an indicator (CHEM-8.4.1)."
+    },
+    "objectiveKeys": [
+      "chem.g8.metals.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "reaction-vessel",
+        "metal": "Ca",
+        "reagent": "water",
+        "compare": [
+          "Na",
+          "Mg",
+          "Cu"
+        ]
+      },
+      "camera": {
+        "position": [
+          0,
+          1.8,
+          7.5
+        ],
+        "target": [
+          0,
+          0.6,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "run",
+        "labels",
+        "indicator"
+      ]
+    },
+    "conceptKeys": [
+      "chem.calcium",
+      "chem.hydrogen",
+      "chem.metal-hydroxide",
+      "chem.indicator",
+      "chem.sodium",
+      "chem.magnesium",
+      "chem.copper",
+      "chem.water"
+    ],
+    "overrides": {
+      "chem.calcium": {
+        "nodes": [
+          "Metal_Ca"
+        ]
+      },
+      "chem.hydrogen": {
+        "nodes": [
+          "Bubbles"
+        ],
+        "title": {
+          "ky": "Суутек газы (H₂)",
+          "ru": "Газ водород (H₂)",
+          "en": "Hydrogen gas (H₂)"
+        },
+        "description": {
+          "ky": "Металл суу менен реакцияга киргенде бөлүнүп чыккан түссүз газ. Пробиркага чогултуп, күйүп турган чыпты жакындатса, «тырс» деген үн менен күйөт: 2H₂ + O₂ → 2H₂O.",
+          "ru": "Бесцветный газ, который выделяется при реакции металла с водой. Если собрать его в пробирку и поднести горящую лучинку, он сгорает с хлопком: 2H₂ + O₂ → 2H₂O.",
+          "en": "The colourless gas given off when a metal reacts with water. Collected in a test tube and tested with a lit splint, it burns with a squeaky pop: 2H₂ + O₂ → 2H₂O."
+        }
+      },
+      "chem.metal-hydroxide": {
+        "nodes": [
+          "Product"
+        ]
+      },
+      "chem.indicator": {
+        "nodes": [
+          "Indicator"
+        ]
+      },
+      "chem.sodium": {
+        "nodes": [
+          "Metal_Na"
+        ],
+        "subtitle": {
+          "ky": "Na · щелочтуу металл (симуляцияда гана)",
+          "ru": "Na · щелочной металл (только в симуляции)",
+          "en": "Na · an alkali metal (simulation only)"
+        },
+        "description": {
+          "ky": "Жумшак, жеңил металл, суудан жеңил. Суу менен катуу реакцияга кирет: суунун бетинде чуркап, эрип шарга айланат, суутек бөлүнөт: 2Na + 2H₂O → 2NaOH + H₂. Калий ого бетер күчтүү – суутек кызгылт-көгүш жалын менен тутанат. Мектепте бул тажрыйбалар симуляцияда гана көрсөтүлөт.",
+          "ru": "Мягкий лёгкий металл, легче воды. Бурно реагирует с водой: бегает по поверхности, плавится в шарик, выделяет водород: 2Na + 2H₂O → 2NaOH + H₂. Калий ещё активнее – водород вспыхивает сиреневым пламенем. В школе эти опыты показывают только в симуляции.",
+          "en": "A soft, light metal that floats on water. It reacts violently: it whizzes over the surface, melts into a ball and gives off hydrogen: 2Na + 2H₂O → 2NaOH + H₂. Potassium is even more violent – the hydrogen catches fire with a lilac flame. In school these reactions are shown only as simulations."
+        }
+      },
+      "chem.magnesium": {
+        "nodes": [
+          "Metal_Mg"
+        ]
+      },
+      "chem.copper": {
+        "nodes": [
+          "Metal_Cu"
+        ]
+      },
+      "chem.water": {
+        "nodes": [
+          "Liquid"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "ca-water",
+        "title": {
+          "ky": "Кальций сууда",
+          "ru": "Кальций в воде",
+          "en": "Calcium in water"
+        },
+        "classification": {
+          "ky": "Бир калыпта көбүрөйт",
+          "ru": "Ровное выделение газа",
+          "en": "Steady bubbling"
+        },
+        "thumb": "thumbs/ca-water.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "Ca + 2H_2O \\to Ca(OH)_2 + H_2"
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "reaction-vessel",
+            "metal": "Ca",
+            "reagent": "water",
+            "compare": []
+          },
+          "camera": {
+            "position": [
+              0,
+              1.2,
+              3.5
+            ],
+            "target": [
+              0,
+              0.8,
+              0
+            ],
+            "fov": 45
+          },
+          "modes": {
+            "run": true,
+            "labels": false
+          }
+        }
+      },
+      {
+        "key": "na-water",
+        "title": {
+          "ky": "Натрий сууда (симуляция)",
+          "ru": "Натрий в воде (симуляция)",
+          "en": "Sodium in water (simulation)"
+        },
+        "classification": {
+          "ky": "Катуу реакция",
+          "ru": "Бурная реакция",
+          "en": "Violent reaction"
+        },
+        "thumb": "thumbs/na-water.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "2Na + 2H_2O \\to 2NaOH + H_2"
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "reaction-vessel",
+            "metal": "Na",
+            "reagent": "water",
+            "compare": []
+          },
+          "camera": {
+            "position": [
+              0,
+              1.2,
+              3.5
+            ],
+            "target": [
+              0,
+              0.8,
+              0
+            ],
+            "fov": 45
+          },
+          "modes": {
+            "run": true,
+            "labels": false
+          }
+        }
+      },
+      {
+        "key": "mg-steam",
+        "title": {
+          "ky": "Магний жана буу",
+          "ru": "Магний и пар",
+          "en": "Magnesium and steam"
+        },
+        "classification": {
+          "ky": "Ысык буу менен",
+          "ru": "С горячим паром",
+          "en": "With hot steam"
+        },
+        "thumb": "thumbs/mg-steam.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "Mg + H_2O \\to MgO + H_2"
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "reaction-vessel",
+            "metal": "Mg",
+            "reagent": "steam",
+            "compare": []
+          },
+          "camera": {
+            "position": [
+              0.2,
+              1.3,
+              3.6
+            ],
+            "target": [
+              0.2,
+              0.8,
+              0
+            ],
+            "fov": 45
+          },
+          "modes": {
+            "run": true,
+            "labels": false
+          }
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                1.8,
+                7.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ]
+            },
+            "modes": {
+              "run": false,
+              "labels": true
+            },
+            "text": {
+              "ky": "Төрт идиште суу жана төрт металл: кальций, натрий, магний, жез. Кайсынысы суу менен реакцияга кирет?",
+              "ru": "В четырёх сосудах вода и четыре металла: кальций, натрий, магний и медь. Какой из них реагирует с водой?",
+              "en": "Four beakers of water with four metals: calcium, sodium, magnesium and copper. Which of them react with water?"
+            },
+            "teacherNote": {
+              "ky": "Мурунку сабакты эске салыңыз: магний кычкылтек менен жакшы реакцияга кирген. Суу менен да ошондой болобу? Божомолдорду чогултуңуз.",
+              "ru": "Напомните прошлый урок: магний хорошо реагировал с кислородом. Будет ли так же с водой? Соберите прогнозы.",
+              "en": "Recall last lesson: magnesium reacted well with oxygen. Will it do the same with water? Collect predictions."
+            },
+            "altText": {
+              "ky": "Суу куюлган төрт идиш, ар биринде металл.",
+              "ru": "Четыре сосуда с водой, в каждом металл.",
+              "en": "Four beakers of water, each with a metal."
+            }
+          },
+          {
+            "key": "calcium",
+            "sample": "ca-water",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.calcium",
+            "text": {
+              "ky": "Кальций сууда чөгүп, дароо бир калыпта көбүкчө чыгара баштайт. Металлдын түйүрү акырындап кичирейет.",
+              "ru": "Кальций тонет и сразу начинает ровно выделять пузырьки. Кусочек металла постепенно уменьшается.",
+              "en": "Calcium sinks and at once starts bubbling steadily. The lump of metal slowly gets smaller."
+            },
+            "teacherNote": {
+              "ky": "Кальций менен тажрыйбаны мугалим коргоочу көз айнек менен, кичинекей түйүр менен гана көрсөтөт. Колго алууга болбойт – пинцет колдонулат.",
+              "ru": "Опыт с кальцием показывает учитель в защитных очках и только с маленьким кусочком. Брать руками нельзя – только пинцетом.",
+              "en": "The teacher shows the calcium demo with goggles and only a small piece. Never touch it – use tweezers."
+            },
+            "altText": {
+              "ky": "Суунун түбүндөгү кальций түйүрүнөн көбүкчөлөр көтөрүлүүдө.",
+              "ru": "От кусочка кальция на дне поднимаются пузырьки.",
+              "en": "Bubbles rise from a lump of calcium at the bottom."
+            }
+          },
+          {
+            "key": "hydrogen",
+            "sample": "ca-water",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.hydrogen",
+            "text": {
+              "ky": "Көбүкчөлөр – суутек газы. Пробиркага чогултуп, күйүп турган чыпты жакындатсак, «тырс» деген үн чыгат.",
+              "ru": "Пузырьки – это водород. Если собрать его в пробирку и поднести горящую лучинку, раздастся хлопок.",
+              "en": "The bubbles are hydrogen. Collect it in a test tube and hold a lit splint to it – you hear a squeaky pop."
+            },
+            "teacherNote": {
+              "ky": "«Тырс» деген үн – суутектин кычкылтек менен күйүп, суу пайда кылганы: 2H₂ + O₂ → 2H₂O. Кычкылтек үчүн сыноо (күйүп жаткан чыптын жалындап кетиши) менен чаташтырбаңыз.",
+              "ru": "Хлопок – это водород сгорает с кислородом, образуя воду: 2H₂ + O₂ → 2H₂O. Не путайте с пробой на кислород (тлеющая лучинка вспыхивает).",
+              "en": "The pop is hydrogen burning with oxygen to make water: 2H₂ + O₂ → 2H₂O. Don't confuse it with the oxygen test (a glowing splint relights)."
+            },
+            "altText": {
+              "ky": "Пробирканын оозуна күйүп турган чып жакындатылды.",
+              "ru": "К пробирке поднесена горящая лучинка.",
+              "en": "A lit splint at the mouth of a test tube."
+            }
+          },
+          {
+            "key": "hydroxide",
+            "sample": "ca-water",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true,
+              "labels": true
+            },
+            "focus": "chem.metal-hydroxide",
+            "text": {
+              "ky": "Суу сүттөй бүдөмүк болуп калды: кальций гидроксиди пайда болду. Ca + 2H₂O → Ca(OH)₂ + H₂.",
+              "ru": "Вода помутнела, как молоко: образовался гидроксид кальция. Ca + 2H₂O → Ca(OH)₂ + H₂.",
+              "en": "The water has turned milky: calcium hydroxide has formed. Ca + 2H₂O → Ca(OH)₂ + H₂."
+            },
+            "teacherNote": {
+              "ky": "«Кальций жана суу» процессин ишке киргизиңиз. Атомдорду санатыңыз: Ca 1 = 1, H 4 = 2 + 2, O 2 = 2.",
+              "ru": "Запустите процесс «Кальций и вода». Попросите посчитать атомы: Ca 1 = 1, H 4 = 2 + 2, O 2 = 2.",
+              "en": "Run the «Calcium and water» process. Have pupils count atoms: Ca 1 = 1, H 4 = 2 + 2, O 2 = 2."
+            },
+            "altText": {
+              "ky": "Идиштеги суюктук ак бүдөмүк.",
+              "ru": "Жидкость в сосуде стала белой и мутной.",
+              "en": "The liquid in the beaker is cloudy white."
+            }
+          },
+          {
+            "key": "indicator",
+            "sample": "ca-water",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "indicator": true
+            },
+            "focus": "chem.indicator",
+            "text": {
+              "ky": "Фенолфталеиндин бир тамчысы эритмени кызгылт-малина түскө боёйт: эритмеде щелочь бар.",
+              "ru": "Одна капля фенолфталеина окрашивает раствор в малиновый цвет: в растворе щёлочь.",
+              "en": "One drop of phenolphthalein turns the solution pink: there is an alkali in it."
+            },
+            "teacherNote": {
+              "ky": "Салыштыруу үчүн таза сууга да индикатор тамчылатыңыз – ал түссүз калат. Индикатор щелочту «жаратпайт», аны «көрсөтөт».",
+              "ru": "Для сравнения капните индикатор в чистую воду – она останется бесцветной. Индикатор не «создаёт» щёлочь, а показывает её.",
+              "en": "For comparison, add indicator to pure water – it stays colourless. An indicator does not make an alkali; it reveals one."
+            },
+            "altText": {
+              "ky": "Кальций турган идиштеги эритме кызгылт түскө боёлду.",
+              "ru": "Раствор в сосуде с кальцием стал малиновым.",
+              "en": "The solution in the calcium beaker has turned pink."
+            }
+          },
+          {
+            "key": "sodium",
+            "sample": "na-water",
+            "camera": {
+              "position": [
+                0,
+                1.2,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true,
+              "indicator": true
+            },
+            "focus": "chem.sodium",
+            "text": {
+              "ky": "Натрий суунун бетинде чуркап, эрип шарга айланат: 2Na + 2H₂O → 2NaOH + H₂. Калий ого бетер күчтүү – суутек кызгылт-көгүш жалын менен тутанат.",
+              "ru": "Натрий бегает по поверхности воды и плавится в шарик: 2Na + 2H₂O → 2NaOH + H₂. Калий ещё активнее – водород вспыхивает сиреневым пламенем.",
+              "en": "Sodium whizzes over the water and melts into a ball: 2Na + 2H₂O → 2NaOH + H₂. Potassium is even more violent – the hydrogen bursts into a lilac flame."
+            },
+            "teacherNote": {
+              "ky": "Коопсуздук: щелочтуу металлдар менен тажрыйбалар класста жүргүзүлбөйт – симуляцияны гана көрсөтүңүз. Реакция жарылып, ысык щелочь чачырашы мүмкүн.",
+              "ru": "Безопасность: опыты со щелочными металлами в классе не проводятся – показывайте только симуляцию. Возможны взрыв и брызги горячей щёлочи.",
+              "en": "Safety: alkali metal experiments are not done in class – show the simulation only. They can explode and spray hot alkali."
+            },
+            "altText": {
+              "ky": "Натрий шары суунун бетинде чуркап жүрөт.",
+              "ru": "Шарик натрия бегает по поверхности воды.",
+              "en": "A ball of sodium races over the water surface."
+            }
+          },
+          {
+            "key": "magnesium",
+            "sample": "mg-steam",
+            "camera": {
+              "position": [
+                0.2,
+                1.3,
+                3.6
+              ],
+              "target": [
+                0.2,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.magnesium",
+            "text": {
+              "ky": "Магний муздак сууда өтө жай реакцияга кирет – бир нече күндө гана бир аз көбүкчө чогулат. Ысык буу менен тез реакцияга кирет: Mg + H₂O → MgO + H₂. Жез сууда да, бууда да өзгөрбөйт.",
+              "ru": "Магний с холодной водой реагирует очень медленно – за несколько дней набирается немного пузырьков. С горячим паром реагирует быстро: Mg + H₂O → MgO + H₂. Медь не меняется ни в воде, ни в паре.",
+              "en": "Magnesium reacts very slowly with cold water – only a few bubbles collect over several days. With hot steam it reacts quickly: Mg + H₂O → MgO + H₂. Copper does not change in water or steam."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: эмне үчүн бууда продукту гидроксид эмес, оксид болот? (Жогорку температурада гидроксид туруксуз.)",
+              "ru": "Спросите: почему с паром получается оксид, а не гидроксид? (При высокой температуре гидроксид неустойчив.)",
+              "en": "Ask: why does steam give an oxide, not a hydroxide? (At high temperature the hydroxide is not stable.)"
+            },
+            "altText": {
+              "ky": "Магнийдин бетинде бир-эки гана көбүкчө, жез өзгөрүүсүз.",
+              "ru": "На магнии лишь пара пузырьков, медь без изменений.",
+              "en": "Just a couple of bubbles on the magnesium; the copper is unchanged."
+            }
+          },
+          {
+            "key": "summary",
+            "camera": {
+              "position": [
+                0,
+                1.8,
+                7.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ]
+            },
+            "modes": {
+              "labels": true,
+              "indicator": true
+            },
+            "text": {
+              "ky": "Жыйынтык: металл + суу → металл гидроксиди + суутек. Суу менен реакцияга кирүү жөндөмү: K > Na > Ca > Mg (жай) > Cu (жок).",
+              "ru": "Итог: металл + вода → гидроксид металла + водород. Способность реагировать с водой: K > Na > Ca > Mg (медленно) > Cu (нет).",
+              "en": "Summary: metal + water → metal hydroxide + hydrogen. Reactivity with water: K > Na > Ca > Mg (slow) > Cu (none)."
+            },
+            "teacherNote": {
+              "ky": "Мурунку сабактагы кычкылтек менен катарды салыштырыңыз – тартип бирдей. Кийинки сабакта кислоталарды карайбыз.",
+              "ru": "Сравните с порядком для кислорода с прошлого урока – он тот же. На следующем уроке – кислоты.",
+              "en": "Compare with the order for oxygen from last lesson – it is the same. Next lesson: acids."
+            },
+            "altText": {
+              "ky": "Төрт идиш жана алардын жыйынтыгы жазылган белгилер.",
+              "ru": "Четыре сосуда с подписями результатов.",
+              "en": "Four beakers labelled with their results."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.calcium-water"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.sodium"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.calcium"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.magnesium"
+          }
+        ],
+        "rows": [
+          "density",
+          "meltingPoint",
+          "molarMass"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.metals-water-1",
+          "chem.q.metals-water-2",
+          "chem.q.metals-water-3",
+          "chem.q.metals-water-4",
+          "chem.q.metals-water-5",
+          "chem.q.metals-water-6",
+          "chem.q.metals-water-7",
+          "chem.q.metals-water-8",
+          "chem.q.metals-water-9",
+          "chem.q.metals-water-10",
+          "chem.q.metals-water-11",
+          "chem.q.metals-water-12"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Акиташ суусу",
+            "ru": "Известковая вода",
+            "en": "Limewater"
+          },
+          "text": {
+            "ky": "Ca(OH)₂ эритмеси – лабораториядагы CO₂ сыноосунун негизги реактиви.",
+            "ru": "Раствор Ca(OH)₂ – главный реактив для обнаружения CO₂ в лаборатории.",
+            "en": "Ca(OH)₂ solution is the standard lab reagent for testing for CO₂."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Натрийди сактоо",
+            "ru": "Хранение натрия",
+            "en": "Storing sodium"
+          },
+          "text": {
+            "ky": "Натрий менен калий нымдан жана абадан сакталуу үчүн керосинге салынган бекем идиштерде ташылат.",
+            "ru": "Натрий и калий перевозят в герметичной таре под керосином, защищая от влаги и воздуха.",
+            "en": "Sodium and potassium are shipped in sealed containers under paraffin oil, away from moisture and air."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Суутектин булагы",
+            "ru": "Источник водорода",
+            "en": "A source of hydrogen"
+          },
+          "text": {
+            "ky": "Кальций гидриди жана кальций суу менен суутек берет; мурда аэростаттарды талаада толтуруу үчүн колдонулган.",
+            "ru": "Кальций и гидрид кальция дают с водой водород; раньше так наполняли аэростаты в полевых условиях.",
+            "en": "Calcium and calcium hydride give hydrogen with water; this was once used to fill weather balloons in the field."
+          },
+          "field": "s"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Шыпылдаган таблетка",
+            "ru": "Шипучая таблетка",
+            "en": "A fizzy tablet"
+          },
+          "text": {
+            "ky": "Кальций сууда шыпылдак витамин таблеткасындай көбүрөйт, бирок газы башка – суутек.",
+            "ru": "Кальций в воде шипит, как витаминная таблетка, только газ другой – водород.",
+            "en": "Calcium fizzes in water like a vitamin tablet – but the gas is hydrogen."
+          }
+        },
+        {
+          "title": {
+            "ky": "Темир чака",
+            "ru": "Железное ведро",
+            "en": "A metal bucket"
+          },
+          "text": {
+            "ky": "Суу ташыган жез же темир идиш суу менен «жарылбайт» – алар активдүүлүгү төмөн металлдар.",
+            "ru": "Медный или железный бидон не «взрывается» от воды – это малоактивные металлы.",
+            "en": "A copper or iron water can does not fizz in water – those metals are not reactive enough."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "concepts": [
+    {
+      "key": "chem.calcium",
+      "kind": "element",
+      "hue": 40,
+      "isContainer": false,
+      "title": {
+        "ky": "Кальций",
+        "ru": "Кальций",
+        "en": "Calcium"
+      },
+      "subtitle": {
+        "ky": "Ca · жер-шакар металлы",
+        "ru": "Ca · щёлочноземельный металл",
+        "en": "Ca · an alkaline earth metal"
+      },
+      "description": {
+        "ky": "Активдүү металл. Муздак суу менен бир калыпта реакцияга кирип, суутек газын жана кальций гидроксидин Ca(OH)₂ пайда кылат: Ca + 2H₂O → Ca(OH)₂ + H₂. Эритме бүдөмүк ак болуп, фенолфталеинден кызгылт түскө боёлот.",
+        "ru": "Активный металл. Ровно реагирует с холодной водой, выделяя водород и образуя гидроксид кальция Ca(OH)₂: Ca + 2H₂O → Ca(OH)₂ + H₂. Раствор мутнеет и окрашивает фенолфталеин в малиновый цвет.",
+        "en": "A reactive metal. It reacts steadily with cold water, giving hydrogen gas and calcium hydroxide, Ca(OH)₂: Ca + 2H₂O → Ca(OH)₂ + H₂. The liquid turns cloudy white and turns phenolphthalein pink."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "atomicNumber",
+          "value": 20
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 40.08
+        },
+        {
+          "kind": "quantity",
+          "type": "density",
+          "value": 1.55
+        },
+        {
+          "kind": "quantity",
+          "type": "meltingPoint",
+          "value": 842
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Катуу металл",
+            "ru": "Твёрдый металл",
+            "en": "Solid metal"
+          }
+        }
+      ],
+      "related": [
+        "chem.metal-hydroxide",
+        "chem.reactivity-series"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.calcium-only-in-milk",
+          "text": {
+            "ky": "Кальций – сүттөгү ак күкүм, ал металл эмес.",
+            "ru": "Кальций – это белый порошок из молока, а не металл.",
+            "en": "Calcium is the white powder in milk, not a metal."
+          },
+          "correction": {
+            "ky": "Сүттө жана сөөктө кальцийдин бирикмелери бар. Таза кальций – суу менен реакцияга кирүүчү күмүш түстүү металл.",
+            "ru": "В молоке и костях – соединения кальция. Чистый кальций – серебристый металл, который реагирует с водой.",
+            "en": "Milk and bones contain calcium compounds. Pure calcium is a silvery metal that reacts with water."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Адамдын денесиндеги кальцийдин 99 % сөөктө жана тиштерде.",
+        "ru": "99 % кальция в теле человека находится в костях и зубах.",
+        "en": "99 % of the calcium in your body is in your bones and teeth."
+      },
+      "analogy": {
+        "ky": "Суу менен «шашпай» сүйлөшкөн металл",
+        "ru": "Металл, который «спокойно беседует» с водой",
+        "en": "The metal that chats calmly with water"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Сөөктөр жана тиштер",
+              "ru": "Кости и зубы",
+              "en": "Bones and teeth"
+            },
+            "text": {
+              "ky": "Сөөктүн бекемдиги кальций фосфатына байланыштуу; дарыгерлер кальцийди анализ менен текшеришет.",
+              "ru": "Прочность костей обеспечивает фосфат кальция; врачи проверяют уровень кальция анализом.",
+              "en": "Bones are strong because of calcium phosphate; doctors measure calcium with a blood test."
+            },
+            "field": "s"
+          },
+          {
+            "title": {
+              "ky": "Курулуш",
+              "ru": "Строительство",
+              "en": "Building"
+            },
+            "text": {
+              "ky": "Акиташ Ca(OH)₂ шыбакта колдонулат: абадагы CO₂ менен бекип, кайра акиташ ташына айланат.",
+              "ru": "Гашёная известь Ca(OH)₂ идёт в штукатурку: она твердеет, поглощая CO₂ из воздуха.",
+              "en": "Slaked lime, Ca(OH)₂, is used in plaster: it hardens by taking up CO₂ from the air."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Металлургия",
+              "ru": "Металлургия",
+              "en": "Metallurgy"
+            },
+            "text": {
+              "ky": "Кальций металлы башка металлдарды (мисалы, уранды) алардын бирикмелеринен бөлүп алуу үчүн колдонулат.",
+              "ru": "Металлический кальций используют, чтобы выделять другие металлы (например, уран) из их соединений.",
+              "en": "Calcium metal is used to extract other metals, such as uranium, from their compounds."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Шыпылдаган таблетка",
+              "ru": "Шипучая таблетка",
+              "en": "A fizzy tablet"
+            },
+            "text": {
+              "ky": "Суудагы кальций ызы-чуусуз көбүкчө чыгарат – эрип жаткан шыпылдак таблеткадай.",
+              "ru": "Кальций в воде спокойно пускает пузырьки, как шипучая таблетка.",
+              "en": "Calcium in water bubbles steadily, like a fizzy tablet."
+            }
+          },
+          {
+            "title": {
+              "ky": "Ак сүт",
+              "ru": "Как молоко",
+              "en": "Milky water"
+            },
+            "text": {
+              "ky": "Реакциядан кийин суу сүттөй бүдөмүк болуп калат – бул аз эрүүчү Ca(OH)₂.",
+              "ru": "После реакции вода мутнеет, как молоко – это малорастворимый Ca(OH)₂.",
+              "en": "After the reaction the water looks milky – that is barely soluble Ca(OH)₂."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.hydrogen",
+      "kind": "element",
+      "hue": 210,
+      "isContainer": false,
+      "title": {
+        "ky": "Суутек",
+        "ru": "Водород",
+        "en": "Hydrogen"
+      },
+      "subtitle": {
+        "ky": "Эң жеңил элемент",
+        "ru": "Самый лёгкий элемент",
+        "en": "The lightest element"
+      },
+      "description": {
+        "ky": "Мезгилдик таблицанын биринчи элементи: 1 протон, 1 электрон. Ааламдагы эң кеңири тараган элемент; суунун жана метандын курамына кирет.",
+        "ru": "Первый элемент периодической таблицы: 1 протон и 1 электрон. Самый распространённый элемент во Вселенной; входит в состав воды и метана.",
+        "en": "The first element of the periodic table: 1 proton and 1 electron. The most common element in the universe; part of water and methane."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "atomicNumber",
+          "value": 1
+        },
+        {
+          "kind": "quantity",
+          "type": "electronegativity",
+          "value": 2.2
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 1.008
+        },
+        {
+          "kind": "quantity",
+          "type": "boilingPoint",
+          "value": -252.9
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Газ (H₂)",
+            "ru": "Газ (H₂)",
+            "en": "Gas (H₂)"
+          }
+        }
+      ],
+      "related": [
+        "chem.oxygen",
+        "chem.covalent-bond"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.hydrogen-in-water-gas",
+          "text": {
+            "ky": "Суунун ичинде суутек газы көбүкчө болуп жүрөт.",
+            "ru": "В воде водород плавает в виде пузырьков газа.",
+            "en": "Water contains bubbles of hydrogen gas."
+          },
+          "correction": {
+            "ky": "Суудагы суутек кычкылтек менен химиялык байланышта; газ болуп бөлүнүп чыгышы үчүн реакция (мисалы, электролиз) керек.",
+            "ru": "Водород в воде химически связан с кислородом; чтобы он выделился газом, нужна реакция, например электролиз.",
+            "en": "Hydrogen in water is chemically bonded to oxygen; a reaction such as electrolysis is needed to release it as gas."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Күн негизинен суутектен турат жана анын энергиясы суутек ядролорунун биригүүсүнөн пайда болот.",
+        "ru": "Солнце в основном состоит из водорода, а его энергия рождается при слиянии ядер водорода.",
+        "en": "The Sun is mostly hydrogen, and its energy comes from hydrogen nuclei fusing together."
+      },
+      "analogy": {
+        "ky": "Мезгилдик таблицанын «биринчи окуучусу»",
+        "ru": "«Первый ученик» периодической таблицы",
+        "en": "The first pupil in the periodic table"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Суутек автобустары",
+              "ru": "Водородные автобусы",
+              "en": "Hydrogen buses"
+            },
+            "text": {
+              "ky": "Суутек менен иштеген автобустар түтүндүн ордуна суу гана чыгарат.",
+              "ru": "Автобусы на водороде выбрасывают вместо выхлопа только воду.",
+              "en": "Hydrogen-powered buses give off only water instead of exhaust fumes."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Ракета отуну",
+              "ru": "Ракетное топливо",
+              "en": "Rocket fuel"
+            },
+            "text": {
+              "ky": "Суюк суутек менен суюк кычкылтек – эң күчтүү ракета отундарынын бири.",
+              "ru": "Жидкий водород с жидким кислородом – одно из самых мощных ракетных топлив.",
+              "en": "Liquid hydrogen with liquid oxygen is one of the most powerful rocket fuels."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Эң кичүү бир тууган",
+              "ru": "Самый младший брат",
+              "en": "The youngest sibling"
+            },
+            "text": {
+              "ky": "Суутек үй-бүлөнүн эң кичүүсү сыяктуу: эң жеңил жана эң кичинекей, бирок бардык жерде жүрөт.",
+              "ru": "Водород как самый младший в семье: самый лёгкий и маленький, но бывает везде.",
+              "en": "Hydrogen is like the youngest in the family: the smallest and lightest, but it turns up everywhere."
+            }
+          },
+          {
+            "title": {
+              "ky": "Аба шары",
+              "ru": "Воздушный шарик",
+              "en": "A floating balloon"
+            },
+            "text": {
+              "ky": "Абадан жеңил газ толтурулган шар асманга учат – суутек абадан 14 эсе жеңил.",
+              "ru": "Шарик с газом легче воздуха улетает вверх – водород в 14 раз легче воздуха.",
+              "en": "A balloon filled with a gas lighter than air floats up – hydrogen is 14 times lighter than air."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.metal-hydroxide",
+      "kind": "compound",
+      "hue": 300,
+      "isContainer": false,
+      "title": {
+        "ky": "Металл гидроксиди (щелочь)",
+        "ru": "Гидроксид металла (щёлочь)",
+        "en": "Metal hydroxide (alkali)"
+      },
+      "subtitle": {
+        "ky": "Ca(OH)₂, NaOH · металл + суу",
+        "ru": "Ca(OH)₂, NaOH · металл + вода",
+        "en": "Ca(OH)₂, NaOH · metal + water"
+      },
+      "description": {
+        "ky": "Активдүү металл суу менен реакцияга киргенде суутек менен бирге гидроксид пайда болот: Ca + 2H₂O → Ca(OH)₂ + H₂, 2Na + 2H₂O → 2NaOH + H₂. Сууда эрүүчү гидроксиддер щелочтор деп аталат; алар фенолфталеинди кызгылт түскө боёйт.",
+        "ru": "Когда активный металл реагирует с водой, вместе с водородом образуется гидроксид: Ca + 2H₂O → Ca(OH)₂ + H₂, 2Na + 2H₂O → 2NaOH + H₂. Растворимые гидроксиды называют щелочами; они окрашивают фенолфталеин в малиновый цвет.",
+        "en": "When a reactive metal reacts with water, a hydroxide forms along with hydrogen: Ca + 2H₂O → Ca(OH)₂ + H₂, 2Na + 2H₂O → 2NaOH + H₂. Soluble hydroxides are called alkalis; they turn phenolphthalein pink."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "Ca(OH)_2"
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 74.09
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Ак катуу зат, сууда аз эрийт",
+            "ru": "Белое твёрдое вещество, мало растворимо",
+            "en": "White solid, slightly soluble"
+          }
+        }
+      ],
+      "related": [
+        "chem.calcium",
+        "chem.indicator"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.alkali-is-harmless-water",
+          "text": {
+            "ky": "Реакциядан кийинки суу кадимки суу, аны ичсе болот.",
+            "ru": "После реакции остаётся обычная вода, её можно пить.",
+            "en": "After the reaction it is still just water and safe to drink."
+          },
+          "correction": {
+            "ky": "Сууда щелочь эриген: эритме теринин жана көздүн ткандарын жеп кетет. Индикатордун кызгылт түсү муну көрсөтөт.",
+            "ru": "В воде растворена щёлочь: раствор разъедает кожу и глаза. Малиновая окраска индикатора это показывает.",
+            "en": "An alkali is dissolved in it, which can burn skin and eyes. The pink indicator colour shows this."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Акиташ суусу (Ca(OH)₂ эритмеси) CO₂ өткөндө бүдөмүктөнөт – дем алган абадагы көмүр кычкыл газын ушинтип табышат.",
+        "ru": "Известковая вода (раствор Ca(OH)₂) мутнеет от CO₂ – так обнаруживают углекислый газ в выдыхаемом воздухе.",
+        "en": "Limewater (a Ca(OH)₂ solution) turns cloudy with CO₂ – that is how we detect carbon dioxide in breath."
+      },
+      "analogy": {
+        "ky": "Сабындай «тайгак» эритме",
+        "ru": "«Мыльный» раствор",
+        "en": "A soapy, slippery solution"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Самын жасоо",
+              "ru": "Мыловарение",
+              "en": "Soap making"
+            },
+            "text": {
+              "ky": "Натрий гидроксиди NaOH майлар менен реакцияга кирип, самын пайда кылат.",
+              "ru": "Гидроксид натрия NaOH реагирует с жирами, и получается мыло.",
+              "en": "Sodium hydroxide, NaOH, reacts with fats to make soap."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Топуракты жакшыртуу",
+              "ru": "Известкование почв",
+              "en": "Liming soil"
+            },
+            "text": {
+              "ky": "Дыйкандар кычкыл топуракка акиташ чачышат: Ca(OH)₂ кислотаны нейтралдайт.",
+              "ru": "Фермеры вносят известь в кислые почвы: Ca(OH)₂ нейтрализует кислоту.",
+              "en": "Farmers spread lime on acidic soil: Ca(OH)₂ neutralises the acid."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "CO₂ сыноосу",
+              "ru": "Проба на CO₂",
+              "en": "Testing for CO₂"
+            },
+            "text": {
+              "ky": "Акиташ суусунан газды өткөрүп, анын көмүр кычкыл газы экенин аныкташат.",
+              "ru": "Пропуская газ через известковую воду, определяют, что это углекислый газ.",
+              "en": "Bubbling a gas through limewater shows whether it is carbon dioxide."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Самындуу суу",
+              "ru": "Мыльная вода",
+              "en": "Soapy water"
+            },
+            "text": {
+              "ky": "Щелочтун эритмеси манжаларга самындуу суудай тайгак сезилет – ошондуктан колго тийгизүүгө болбойт.",
+              "ru": "Раствор щёлочи на ощупь скользкий, как мыльная вода, – поэтому его нельзя трогать.",
+              "en": "An alkali solution feels slippery like soapy water – which is why you must not touch it."
+            }
+          },
+          {
+            "title": {
+              "ky": "Акиташ менен агартуу",
+              "ru": "Побелка",
+              "en": "Whitewash"
+            },
+            "text": {
+              "ky": "Дарактын түбүн агартуучу ак акиташ – ошол эле кальций гидроксиди.",
+              "ru": "Белая побелка на стволах деревьев – это тот же гидроксид кальция.",
+              "en": "The whitewash painted on tree trunks is the same calcium hydroxide."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.indicator",
+      "kind": "substance",
+      "hue": 320,
+      "isContainer": false,
+      "title": {
+        "ky": "Индикатор (фенолфталеин)",
+        "ru": "Индикатор (фенолфталеин)",
+        "en": "Indicator (phenolphthalein)"
+      },
+      "subtitle": {
+        "ky": "Түсү менен чөйрөнү көрсөтөт",
+        "ru": "Показывает среду цветом",
+        "en": "Shows the medium by its colour"
+      },
+      "description": {
+        "ky": "Индикатор – эритмеде щелочь же кислота бар экенин түсү менен көрсөткөн зат. Фенолфталеин нейтралдуу жана кычкыл чөйрөдө түссүз, щелочтуу чөйрөдө кызгылт-малина түскө боёлот.",
+        "ru": "Индикатор – вещество, которое цветом показывает, есть ли в растворе щёлочь или кислота. Фенолфталеин бесцветен в нейтральной и кислой среде и малиновый – в щелочной.",
+        "en": "An indicator is a substance whose colour shows whether a solution is alkaline or acidic. Phenolphthalein is colourless in neutral and acidic solutions and pink in alkaline ones."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Щелочту табуу",
+            "ru": "Обнаружение щёлочи",
+            "en": "Detecting an alkali"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Түссүз эритме",
+            "ru": "Бесцветный раствор",
+            "en": "Colourless solution"
+          }
+        }
+      ],
+      "related": [
+        "chem.metal-hydroxide"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.indicator-makes-alkali",
+          "text": {
+            "ky": "Фенолфталеин тамчысы сууну щелочко айландырат.",
+            "ru": "Капля фенолфталеина превращает воду в щёлочь.",
+            "en": "A drop of phenolphthalein turns water into an alkali."
+          },
+          "correction": {
+            "ky": "Индикатор эч нерсени өзгөртпөйт, ал бар болгон чөйрөнү гана «көрсөтөт». Таза сууда ал түссүз бойдон калат.",
+            "ru": "Индикатор ничего не превращает, он только «показывает» среду. В чистой воде он остаётся бесцветным.",
+            "en": "An indicator changes nothing; it only shows what is already there. In pure water it stays colourless."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Кызыл капустанын ширеси да индикатор: кислотада кызыл, щелочто жашыл-сары болуп калат.",
+        "ru": "Сок красной капусты – тоже индикатор: в кислоте краснеет, в щёлочи становится зелёно-жёлтым.",
+        "en": "Red cabbage juice is an indicator too: red in acid, green-yellow in alkali."
+      },
+      "analogy": {
+        "ky": "Химиктин «светофору»",
+        "ru": "«Светофор» химика",
+        "en": "A chemist's traffic light"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Лакмус кагазы",
+              "ru": "Лакмусовая бумажка",
+              "en": "Litmus paper"
+            },
+            "text": {
+              "ky": "Лакмус кагазы кислотада кызарат, щелочто көгөрөт – чөйрөнү бир секундада аныктаса болот.",
+              "ru": "Лакмусовая бумажка краснеет в кислоте и синеет в щёлочи – среду можно узнать за секунду.",
+              "en": "Litmus paper goes red in acid and blue in alkali – you can tell the medium in a second."
+            },
+            "field": "s"
+          },
+          {
+            "title": {
+              "ky": "Бассейн",
+              "ru": "Бассейн",
+              "en": "Swimming pools"
+            },
+            "text": {
+              "ky": "Бассейндин суусун индикатор тамчылары менен текшерип, химиялык заттардын санын жөнгө салышат.",
+              "ru": "Воду в бассейне проверяют каплями индикатора и регулируют количество реагентов.",
+              "en": "Pool water is checked with indicator drops so the chemicals can be adjusted."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Топурак анализи",
+              "ru": "Анализ почвы",
+              "en": "Soil testing"
+            },
+            "text": {
+              "ky": "Агрономдор топуракты индикатор менен текшерип, кайсы өсүмдүк жакшы өсөрүн аныкташат.",
+              "ru": "Агрономы проверяют почву индикатором и решают, что на ней лучше сажать.",
+              "en": "Agronomists test soil with an indicator to decide which crops will grow best."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Чай жана лимон",
+              "ru": "Чай с лимоном",
+              "en": "Tea and lemon"
+            },
+            "text": {
+              "ky": "Кара чайга лимон салсаң, түсү ачып калат – чай да кичинекей индикатор.",
+              "ru": "Если положить лимон в чёрный чай, он светлеет – чай тоже маленький индикатор.",
+              "en": "Add lemon to black tea and it gets lighter – tea is a small indicator too."
+            }
+          },
+          {
+            "title": {
+              "ky": "Светофор",
+              "ru": "Светофор",
+              "en": "A traffic light"
+            },
+            "text": {
+              "ky": "Светофор түсү менен «өт» же «токто» дейт; индикатор түсү менен «щелочь бар» дейт.",
+              "ru": "Светофор цветом говорит «иди» или «стой»; индикатор цветом говорит «тут щёлочь».",
+              "en": "A traffic light says go or stop by colour; an indicator says there is an alkali here."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.sodium",
+      "kind": "element",
+      "hue": 275,
+      "isContainer": false,
+      "title": {
+        "ky": "Натрий",
+        "ru": "Натрий",
+        "en": "Sodium"
+      },
+      "subtitle": {
+        "ky": "Жумшак, активдүү металл",
+        "ru": "Мягкий активный металл",
+        "en": "A soft, reactive metal"
+      },
+      "description": {
+        "ky": "11-элемент: электрондору 2 + 8 + 1. Жалгыз сырткы электронун оңой берип, Na⁺ ионуна айланат. Бычак менен кесилгендей жумшак металл, суу менен катуу реакцияга кирет.",
+        "ru": "Элемент № 11: электроны 2 + 8 + 1. Легко отдаёт единственный внешний электрон и становится ионом Na⁺. Мягкий металл, режется ножом, бурно реагирует с водой.",
+        "en": "Element 11 with electrons 2 + 8 + 1. It easily gives away its single outer electron to become Na⁺. A soft metal you can cut with a knife; it reacts violently with water."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "atomicNumber",
+          "value": 11
+        },
+        {
+          "kind": "quantity",
+          "type": "electronegativity",
+          "value": 0.93
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 22.99
+        },
+        {
+          "kind": "quantity",
+          "type": "meltingPoint",
+          "value": 97.8
+        },
+        {
+          "kind": "quantity",
+          "type": "density",
+          "value": 0.97
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Катуу металл",
+            "ru": "Твёрдый металл",
+            "en": "Solid metal"
+          }
+        }
+      ],
+      "related": [
+        "chem.chlorine",
+        "chem.valence-electron"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.sodium-in-salt-metal",
+          "text": {
+            "ky": "Туздун ичинде металл натрий бар.",
+            "ru": "В соли содержится металлический натрий.",
+            "en": "Salt contains metallic sodium."
+          },
+          "correction": {
+            "ky": "Туздагы натрий – бул Na⁺ иону: анын касиеттери металлдыкынан таптакыр башка, ал коопсуз.",
+            "ru": "Натрий в соли – это ион Na⁺; его свойства совсем другие, чем у металла, и он безопасен.",
+            "en": "The sodium in salt is the Na⁺ ion, which behaves nothing like the metal and is safe."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Натрий ушунчалык жеңил, суудан да жеңил: ал суунун бетинде калкып, реакция менен ызылдап чуркайт.",
+        "ru": "Натрий легче воды: он плавает на поверхности и с шипением носится по ней, реагируя.",
+        "en": "Sodium is lighter than water: it floats and fizzes around on the surface as it reacts."
+      },
+      "analogy": {
+        "ky": "Электронун оңой берген март адам",
+        "ru": "Щедрый, легко отдающий электрон",
+        "en": "A generous giver of electrons"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Көчө чырактары",
+              "ru": "Натриевые лампы",
+              "en": "Sodium lamps"
+            },
+            "text": {
+              "ky": "Натрий буусу толтурулган лампалар көчөлөрдү сары жарык менен жарыктандырат.",
+              "ru": "Лампы с парами натрия освещают улицы жёлтым светом.",
+              "en": "Lamps filled with sodium vapour light streets with a yellow glow."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Нерв сигналдары",
+              "ru": "Нервные сигналы",
+              "en": "Nerve signals"
+            },
+            "text": {
+              "ky": "Нерв клеткалары Na⁺ иондорунун кирип-чыгышы аркылуу сигнал жөнөтөт.",
+              "ru": "Нервные клетки передают сигналы за счёт входа и выхода ионов Na⁺.",
+              "en": "Nerve cells send signals by letting Na⁺ ions move in and out."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Ашыкча бир момпосуй",
+              "ru": "Лишняя конфета",
+              "en": "One extra sweet"
+            },
+            "text": {
+              "ky": "Колунда бир гана артык момпосуй бар бала аны досуна оңой берет – натрий да сырткы электронун ушинтип берет.",
+              "ru": "У мальчика одна лишняя конфета – он легко отдаёт её другу. Так натрий отдаёт свой внешний электрон.",
+              "en": "A child with one spare sweet happily gives it away – sodium gives away its outer electron like that."
+            }
+          },
+          {
+            "title": {
+              "ky": "Май сыяктуу металл",
+              "ru": "Металл как сливочное масло",
+              "en": "A metal like butter"
+            },
+            "text": {
+              "ky": "Натрийди бычак менен майдай кесүүгө болот.",
+              "ru": "Натрий можно резать ножом, как сливочное масло.",
+              "en": "You can cut sodium with a knife like butter."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.magnesium",
+      "kind": "element",
+      "hue": 200,
+      "isContainer": false,
+      "title": {
+        "ky": "Магний",
+        "ru": "Магний",
+        "en": "Magnesium"
+      },
+      "subtitle": {
+        "ky": "Mg · жеңил, активдүү металл",
+        "ru": "Mg · лёгкий активный металл",
+        "en": "Mg · a light, reactive metal"
+      },
+      "description": {
+        "ky": "Күмүш түстүү жеңил металл. Кычкылтекте жаркыраган ак жалын менен күйүп, ак түстөгү магний оксидин (MgO) пайда кылат. Туз кислотасы менен тез реакцияга кирип, суутек бөлүп чыгарат; муздак суу менен өтө жай, буу менен тезирээк реакцияга кирет.",
+        "ru": "Лёгкий серебристый металл. В кислороде сгорает ослепительно белым пламенем, образуя белый оксид магния (MgO). С соляной кислотой бурно выделяет водород; с холодной водой реагирует очень медленно, с паром – быстрее.",
+        "en": "A light, silvery metal. It burns in oxygen with a dazzling white flame to give white magnesium oxide (MgO). It fizzes quickly in hydrochloric acid, giving hydrogen; with cold water it reacts very slowly, with steam faster."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "atomicNumber",
+          "value": 12
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 24.31
+        },
+        {
+          "kind": "quantity",
+          "type": "density",
+          "value": 1.74
+        },
+        {
+          "kind": "quantity",
+          "type": "meltingPoint",
+          "value": 650
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Катуу металл",
+            "ru": "Твёрдый металл",
+            "en": "Solid metal"
+          }
+        }
+      ],
+      "related": [
+        "chem.metal-oxide",
+        "chem.reactivity-series"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.metal-burns-lighter",
+          "text": {
+            "ky": "Магний күйгөндө күлгө айланып, массасы азаят.",
+            "ru": "Магний сгорает в пепел, поэтому масса уменьшается.",
+            "en": "Magnesium burns away to ash, so the mass goes down."
+          },
+          "correction": {
+            "ky": "Магний абадагы кычкылтек менен бириккендиктен, MgO магнийдин өзүнөн оор болот: 0,48 г Mg → 0,80 г MgO.",
+            "ru": "Магний присоединяет кислород из воздуха, поэтому MgO тяжелее исходного магния: 0,48 г Mg → 0,80 г MgO.",
+            "en": "Magnesium takes oxygen from the air, so the MgO is heavier than the magnesium: 0.48 g Mg → 0.80 g MgO."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Мурунку фотографтар сүрөт тартканда «жарк» эткен жарык үчүн магний күкүмүн күйгүзүшкөн.",
+        "ru": "Старые фотографы поджигали порошок магния, чтобы получить яркую вспышку для съёмки.",
+        "en": "Early photographers burned magnesium powder to make a bright flash for their pictures."
+      },
+      "analogy": {
+        "ky": "Металлдардын «фейерверкчиси»",
+        "ru": "«Пиротехник» среди металлов",
+        "en": "The fireworks expert among metals"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Жеңил эритмелер",
+              "ru": "Лёгкие сплавы",
+              "en": "Light alloys"
+            },
+            "text": {
+              "ky": "Магний менен алюминийдин эритмелеринен ноутбуктардын корпустары жана велосипед тетиктери жасалат – алар жеңил жана бекем.",
+              "ru": "Из сплавов магния и алюминия делают корпуса ноутбуков и детали велосипедов – они лёгкие и прочные.",
+              "en": "Magnesium–aluminium alloys are used for laptop cases and bicycle parts because they are light and strong."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Сигнал ракеталары",
+              "ru": "Сигнальные ракеты",
+              "en": "Signal flares"
+            },
+            "text": {
+              "ky": "Куткаруучулардын жана деңизчилердин сигнал ракеталарында магний күйүп, алыстан көрүнгөн ак жарык берет.",
+              "ru": "В сигнальных ракетах спасателей и моряков горит магний, давая белый свет, видный издалека.",
+              "en": "Rescue and sea flares burn magnesium to give a white light that can be seen from far away."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Хлорофилл",
+              "ru": "Хлорофилл",
+              "en": "Chlorophyll"
+            },
+            "text": {
+              "ky": "Өсүмдүктөрдүн жашыл пигменти – хлорофиллдин ортосунда магний атому турат.",
+              "ru": "В центре молекулы хлорофилла – зелёного пигмента растений – находится атом магния.",
+              "en": "A magnesium atom sits at the centre of chlorophyll, the green pigment of plants."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Фото жаркылдагы",
+              "ru": "Фотовспышка",
+              "en": "A camera flash"
+            },
+            "text": {
+              "ky": "Магний күйгөндө фотоаппараттын жаркылдагысындай көздү уялткан жарык чыгат.",
+              "ru": "Горящий магний вспыхивает так же ярко, как фотовспышка.",
+              "en": "Burning magnesium is as bright as a camera flash."
+            }
+          },
+          {
+            "title": {
+              "ky": "Бенгал оту",
+              "ru": "Бенгальский огонь",
+              "en": "A sparkler"
+            },
+            "text": {
+              "ky": "Майрамдагы бенгал отунун ак учкундары – күйүп жаткан металл күкүмү.",
+              "ru": "Белые искры бенгальского огня – это горящий металлический порошок.",
+              "en": "The white sparks of a sparkler are burning metal powder."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.copper",
+      "kind": "element",
+      "hue": 22,
+      "isContainer": false,
+      "title": {
+        "ky": "Жез",
+        "ru": "Медь",
+        "en": "Copper"
+      },
+      "subtitle": {
+        "ky": "Cu · аз активдүү металл",
+        "ru": "Cu · малоактивный металл",
+        "en": "Cu · a low-reactivity metal"
+      },
+      "description": {
+        "ky": "Кызгылт-күрөң металл, электр тогун жакшы өткөрөт. Ысытканда күйбөйт, бирок бети кара жез (II) оксиди CuO менен капталат. Активдүүлүк катарында суутектен кийин турат, ошондуктан суюлтулган туз кислотасы менен реакцияга кирбейт.",
+        "ru": "Розово-рыжий металл, отлично проводит ток. При нагревании не горит, а покрывается чёрным оксидом меди(II) CuO. В ряду активности стоит после водорода, поэтому с разбавленной соляной кислотой не реагирует.",
+        "en": "A pinkish-brown metal that conducts electricity very well. When heated it does not burn but gets a black coat of copper(II) oxide, CuO. It is below hydrogen in the reactivity series, so it does not react with dilute hydrochloric acid."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "atomicNumber",
+          "value": 29
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 63.55
+        },
+        {
+          "kind": "quantity",
+          "type": "density",
+          "value": 8.96
+        },
+        {
+          "kind": "quantity",
+          "type": "meltingPoint",
+          "value": 1085
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Катуу металл",
+            "ru": "Твёрдый металл",
+            "en": "Solid metal"
+          }
+        }
+      ],
+      "related": [
+        "chem.metal-oxide",
+        "chem.reactivity-series"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.all-metals-react-acid",
+          "text": {
+            "ky": "Бардык металлдар кислотада эрип, суутек чыгарат.",
+            "ru": "Все металлы растворяются в кислоте с выделением водорода.",
+            "en": "Every metal dissolves in acid and gives off hydrogen."
+          },
+          "correction": {
+            "ky": "Суутектен кийин турган металлдар (Cu, Ag, Au) суюлтулган туз кислотасы менен реакцияга кирбейт – көбүкчө чыкпайт.",
+            "ru": "Металлы, стоящие после водорода (Cu, Ag, Au), с разбавленной соляной кислотой не реагируют – пузырьков нет.",
+            "en": "Metals below hydrogen (Cu, Ag, Au) do not react with dilute hydrochloric acid – there are no bubbles."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Нью-Йорктогу Эркиндик айкели жез менен капталган; анын жашыл түсү – абада көп жылдар бою пайда болгон жез бирикмелери.",
+        "ru": "Статуя Свободы покрыта медью; её зелёный цвет – это соединения меди, образовавшиеся на воздухе за многие годы.",
+        "en": "The Statue of Liberty is covered in copper; its green colour comes from copper compounds that formed in the air over many years."
+      },
+      "analogy": {
+        "ky": "Металлдардын «тынч» мүнөздүүсү",
+        "ru": "«Спокойный» металл",
+        "en": "The calm one among metals"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Электр зымдары",
+              "ru": "Электропровода",
+              "en": "Electric wires"
+            },
+            "text": {
+              "ky": "Үйдөгү зымдардын көбү жезден жасалат: ал токту жакшы өткөрөт жана нымдан тез бузулбайт.",
+              "ru": "Большинство проводов в доме медные: медь хорошо проводит ток и почти не портится от влаги.",
+              "en": "Most household wires are copper: it conducts well and hardly corrodes in damp air."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Суу түтүктөрү",
+              "ru": "Водопроводные трубы",
+              "en": "Water pipes"
+            },
+            "text": {
+              "ky": "Жез суу менен реакцияга кирбегендиктен, андан суу түтүктөрү жана жылуулук алмаштыргычтар жасалат.",
+              "ru": "Медь не реагирует с водой, поэтому из неё делают водопроводные трубы и теплообменники.",
+              "en": "Copper does not react with water, so it is used for water pipes and heat exchangers."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Жездин тазалыгын текшерүү",
+              "ru": "Проверка чистоты меди",
+              "en": "Testing copper"
+            },
+            "text": {
+              "ky": "Химиктер жез пластинканы жалындын үстүнө кармап, бетинде кара CuO пайда болушунан металлдын кычкылданышын көрсөтүшөт.",
+              "ru": "Химики держат медную пластинку над пламенем: появление чёрного CuO показывает окисление металла.",
+              "en": "Chemists hold a copper plate over a flame: the black CuO layer shows the metal being oxidised."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Эски тыйын",
+              "ru": "Старая монета",
+              "en": "An old coin"
+            },
+            "text": {
+              "ky": "Эски жез тыйындар убакыт өткөн сайын күңүрт тартып, карарып калат.",
+              "ru": "Старые медные монеты со временем темнеют и теряют блеск.",
+              "en": "Old copper coins slowly darken and lose their shine."
+            }
+          },
+          {
+            "title": {
+              "ky": "Чайнектин түбү",
+              "ru": "Дно чайника",
+              "en": "A kettle's bottom"
+            },
+            "text": {
+              "ky": "Жез идиштин отко тийген түбү карайып калат – бул жез оксидинин жука катмары.",
+              "ru": "Дно медной посуды над огнём чернеет – это тонкий слой оксида меди.",
+              "en": "The bottom of a copper pan over a flame turns black – a thin layer of copper oxide."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.water",
+      "kind": "molecule",
+      "hue": 205,
+      "isContainer": true,
+      "title": {
+        "ky": "Суу",
+        "ru": "Вода",
+        "en": "Water"
+      },
+      "subtitle": {
+        "ky": "H₂O молекуласы",
+        "ru": "Молекула H₂O",
+        "en": "The H₂O molecule"
+      },
+      "description": {
+        "ky": "Бир кычкылтек жана эки суутек атомунан турган молекула. Ал бүгүлгөн формада, бурчу 104,5°. Суу – Жердеги жашоонун негизи жана эң жакшы эриткич.",
+        "ru": "Молекула из одного атома кислорода и двух атомов водорода. Она изогнута под углом 104,5°. Вода – основа жизни на Земле и прекрасный растворитель.",
+        "en": "A molecule of one oxygen and two hydrogen atoms, bent at 104.5°. Water is the basis of life on Earth and an excellent solvent."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "H_2O"
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 18.02
+        },
+        {
+          "kind": "quantity",
+          "type": "bondAngle",
+          "value": 104.5
+        },
+        {
+          "kind": "quantity",
+          "type": "meltingPoint",
+          "value": 0
+        },
+        {
+          "kind": "quantity",
+          "type": "boilingPoint",
+          "value": 100
+        },
+        {
+          "kind": "quantity",
+          "type": "density",
+          "value": 1
+        },
+        {
+          "kind": "text",
+          "type": "geometry",
+          "value": {
+            "ky": "Бүгүлгөн",
+            "ru": "Угловая (изогнутая)",
+            "en": "Bent"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Суюк (бөлмө температурасында)",
+            "ru": "Жидкость (при комнатной температуре)",
+            "en": "Liquid (at room temperature)"
+          }
+        }
+      ],
+      "related": [
+        "chem.hydrogen",
+        "chem.oxygen",
+        "chem.covalent-bond"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.water-element",
+          "text": {
+            "ky": "Суу – бул элемент.",
+            "ru": "Вода – химический элемент.",
+            "en": "Water is an element."
+          },
+          "correction": {
+            "ky": "Суу – кошулма: ал суутек жана кычкылтек деген эки элементтен турат.",
+            "ru": "Вода – сложное вещество из двух элементов: водорода и кислорода.",
+            "en": "Water is a compound made of two elements, hydrogen and oxygen."
+          }
+        },
+        {
+          "key": "chem.m.boil-always-100",
+          "text": {
+            "ky": "Суу ар дайым 100 °C да кайнайт.",
+            "ru": "Вода всегда кипит при 100 °C.",
+            "en": "Water always boils at 100 °C."
+          },
+          "correction": {
+            "ky": "100 °C – деңиз деңгээлинде. Ысык-Көлдүн жээгинде (≈1600 м) суу ≈95 °C да кайнайт.",
+            "ru": "100 °C – на уровне моря. На берегу Иссык-Куля (≈1600 м) вода кипит примерно при 95 °C.",
+            "en": "100 °C is at sea level. On the shore of Issyk-Kul (≈1,600 m) water boils at about 95 °C."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Муз суудан жеңил, ошондуктан көлдөр үстүнөн тоңот, ал эми балыктар түбүндө кышташат.",
+        "ru": "Лёд легче воды, поэтому водоёмы замерзают сверху, а рыбы зимуют подо льдом.",
+        "en": "Ice is lighter than water, so lakes freeze from the top and fish survive the winter below."
+      },
+      "analogy": {
+        "ky": "Бумеранг формасындагы молекула",
+        "ru": "Молекула-бумеранг",
+        "en": "A boomerang-shaped molecule"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Токтогул ГЭСи",
+              "ru": "Токтогульская ГЭС",
+              "en": "Toktogul hydropower plant"
+            },
+            "text": {
+              "ky": "Нарын дарыясындагы Токтогул суу сактагычынын суусу турбиналарды айлантып, Кыргызстандын электр энергиясынын көбүн берет.",
+              "ru": "Вода Токтогульского водохранилища на реке Нарын вращает турбины и даёт большую часть электроэнергии Кыргызстана.",
+              "en": "Water from the Toktogul reservoir on the Naryn River spins turbines and supplies much of Kyrgyzstan's electricity."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Ысык-Көл тоңбойт",
+              "ru": "Иссык-Куль не замерзает",
+              "en": "Issyk-Kul does not freeze"
+            },
+            "text": {
+              "ky": "Ысык-Көл терең жана бир аз туздуу, ошондуктан катуу кышта да тоңбойт – анын аты да «ысык көл» дегенди билдирет.",
+              "ru": "Иссык-Куль глубокий и немного солёный, поэтому не замерзает даже в суровую зиму – его название и значит «тёплое озеро».",
+              "en": "Issyk-Kul is deep and slightly salty, so it does not freeze even in harsh winters – its name means “warm lake”."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Эритүүчү чай",
+              "ru": "Сахар в чае",
+              "en": "Sugar in tea"
+            },
+            "text": {
+              "ky": "Чайга кант салсаң, ал жоголуп кеткендей болот – суу кантты эритет.",
+              "ru": "Положишь сахар в чай – он будто исчезает: вода растворяет сахар.",
+              "en": "Put sugar in your tea and it seems to vanish – water dissolves it."
+            }
+          },
+          {
+            "title": {
+              "ky": "Микки Маустун башы",
+              "ru": "Голова Микки-Мауса",
+              "en": "Mickey Mouse's head"
+            },
+            "text": {
+              "ky": "Суу молекуласынын модели Микки Маустун башына окшош: чоң кычкылтек – баш, эки суутек – кулактар.",
+              "ru": "Модель молекулы воды похожа на голову Микки-Мауса: большой кислород – голова, два водорода – уши.",
+              "en": "A model of a water molecule looks like Mickey Mouse: the big oxygen is the head, the two hydrogens are the ears."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.reactivity-series",
+      "kind": "series",
+      "hue": 270,
+      "isContainer": false,
+      "title": {
+        "ky": "Металлдардын активдүүлүк катары",
+        "ru": "Ряд активности металлов",
+        "en": "Reactivity series of metals"
+      },
+      "subtitle": {
+        "ky": "K Na Ca Mg Al Zn Fe (H) Cu Ag Au",
+        "ru": "K Na Ca Mg Al Zn Fe (H) Cu Ag Au",
+        "en": "K Na Ca Mg Al Zn Fe (H) Cu Ag Au"
+      },
+      "description": {
+        "ky": "Металлдар реакцияга кирүү жөндөмү боюнча тизилген катар: K > Na > Ca > Mg > Al > Zn > Fe > (H) > Cu > Ag > Au. Катардын башындагылар суу менен реакцияга кирет, суутектен мурункулар кислотадан суутекти сүрүп чыгарат, активдүүрөк металл активдүүлүгү азыраак металлды анын тузунан сүрүп чыгарат.",
+        "ru": "Металлы, выстроенные по способности вступать в реакции: K > Na > Ca > Mg > Al > Zn > Fe > (H) > Cu > Ag > Au. Металлы из начала ряда реагируют с водой, стоящие до водорода вытесняют водород из кислот, более активный металл вытесняет менее активный из его соли.",
+        "en": "Metals listed by how readily they react: K > Na > Ca > Mg > Al > Zn > Fe > (H) > Cu > Ag > Au. Those at the top react with water, those above hydrogen push hydrogen out of acids, and a more reactive metal pushes a less reactive one out of its salt."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "K, Na, Ca, Mg, Al, Zn, Fe, (H), Cu, Ag, Au",
+            "ru": "K, Na, Ca, Mg, Al, Zn, Fe, (H), Cu, Ag, Au",
+            "en": "K, Na, Ca, Mg, Al, Zn, Fe, (H), Cu, Ag, Au"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Реакциянын жүрөрүн алдын ала айтуу",
+            "ru": "Предсказание реакций",
+            "en": "Predicting reactions"
+          }
+        }
+      ],
+      "related": [
+        "chem.hydrogen"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.aluminium-unreactive",
+          "text": {
+            "ky": "Алюминий идиштер сууда жана абада өзгөрбөйт, демек алюминий – аз активдүү металл.",
+            "ru": "Алюминиевая посуда не меняется в воде и на воздухе, значит, алюминий малоактивен.",
+            "en": "Aluminium pans do not change in air or water, so aluminium must be unreactive."
+          },
+          "correction": {
+            "ky": "Алюминий активдүү, бирок бети бекем жука оксид пленкасы менен капталган; ал металлды реакциядан коргойт.",
+            "ru": "Алюминий активен, но покрыт прочной тонкой оксидной плёнкой, которая защищает его от реакций.",
+            "en": "Aluminium is reactive, but a thin, tough oxide layer covers it and protects it from reacting."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Калий ушунчалык активдүү болгондуктан, аны абадан жана суудан сактап, керосиндин астында кармашат.",
+        "ru": "Калий настолько активен, что его хранят под керосином, подальше от воздуха и воды.",
+        "en": "Potassium is so reactive that it is stored under paraffin oil, away from air and water."
+      },
+      "analogy": {
+        "ky": "Металлдардын «рейтинг таблицасы»",
+        "ru": "«Турнирная таблица» металлов",
+        "en": "A league table of metals"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Тоттон коргоо",
+              "ru": "Защита от коррозии",
+              "en": "Rust protection"
+            },
+            "text": {
+              "ky": "Кеменин корпусуна цинк же магний бөлүктөрүн бекитишет: алар темирден активдүү болгондуктан, темирдин ордуна өздөрү бузулат.",
+              "ru": "К корпусу судна крепят блоки цинка или магния: они активнее железа и разрушаются вместо него.",
+              "en": "Ships carry blocks of zinc or magnesium: being more reactive than iron, they corrode instead of the hull."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Металл алуу",
+              "ru": "Получение металлов",
+              "en": "Extracting metals"
+            },
+            "text": {
+              "ky": "Катардын аягындагы алтын таза түрүндө табылат, ал эми башындагы натрий менен калий электр тогу менен гана алынат.",
+              "ru": "Золото из конца ряда находят в чистом виде, а натрий и калий из начала ряда получают только электрическим током.",
+              "en": "Gold from the bottom of the series is found as the pure metal; sodium and potassium from the top can only be extracted with electricity."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Божомолдоо",
+              "ru": "Предсказание",
+              "en": "Prediction"
+            },
+            "text": {
+              "ky": "Катарды билген химик тажрыйбасыз эле Cu + HCl реакциясы жүрбөй турганын айта алат.",
+              "ru": "Зная ряд, химик без опыта скажет, что Cu + HCl не реагируют.",
+              "en": "Knowing the series, a chemist can say without any experiment that Cu + HCl will not react."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Футбол таблицасы",
+              "ru": "Футбольная таблица",
+              "en": "A football table"
+            },
+            "text": {
+              "ky": "Таблицанын башындагы команда төмөнкүлөрдү утат; катардагы жогорку металл төмөнкүнү тузунан «утуп» чыгарат.",
+              "ru": "Команда сверху таблицы обыгрывает тех, кто ниже; металл выше по ряду «обыгрывает» нижний и вытесняет его из соли.",
+              "en": "A team at the top beats those below; a metal higher in the series beats a lower one and pushes it out of its salt."
+            }
+          },
+          {
+            "title": {
+              "ky": "Кезек",
+              "ru": "Очередь",
+              "en": "A queue"
+            },
+            "text": {
+              "ky": "Кезекте ким алдыда турса, ошол биринчи кирет; катарда алдыда турган металл биринчи реакцияга кирет.",
+              "ru": "Кто стоит в очереди впереди, тот первым и заходит; металл в начале ряда первым вступает в реакцию.",
+              "en": "Whoever is at the front of the queue goes in first; a metal near the top of the series is first to react."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.oxygen",
+      "kind": "element",
+      "hue": 355,
+      "isContainer": false,
+      "title": {
+        "ky": "Кычкылтек",
+        "ru": "Кислород",
+        "en": "Oxygen"
+      },
+      "subtitle": {
+        "ky": "Дем алуу жана күйүү үчүн",
+        "ru": "Для дыхания и горения",
+        "en": "For breathing and burning"
+      },
+      "description": {
+        "ky": "8-элемент: 8 протон, 8 электрон (2 + 6). Абанын 21 %ы кычкылтек (O₂). Суунун курамына кирет жана күйүүгө зарыл.",
+        "ru": "Элемент № 8: 8 протонов, 8 электронов (2 + 6). Кислород (O₂) составляет 21 % воздуха, входит в состав воды и необходим для горения.",
+        "en": "Element 8: 8 protons, 8 electrons (2 + 6). Oxygen (O₂) makes up 21 % of the air, is part of water and is needed for burning."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "atomicNumber",
+          "value": 8
+        },
+        {
+          "kind": "quantity",
+          "type": "electronegativity",
+          "value": 3.44
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 15.999
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Газ (O₂)",
+            "ru": "Газ (O₂)",
+            "en": "Gas (O₂)"
+          }
+        }
+      ],
+      "related": [
+        "chem.hydrogen",
+        "chem.covalent-bond"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.oxygen-burns",
+          "text": {
+            "ky": "Кычкылтектин өзү күйөт.",
+            "ru": "Сам кислород горит.",
+            "en": "Oxygen itself burns."
+          },
+          "correction": {
+            "ky": "Кычкылтек күйбөйт – ал башка заттардын күйүүсүнө жардам берет.",
+            "ru": "Кислород не горит – он поддерживает горение других веществ.",
+            "en": "Oxygen does not burn – it helps other substances burn."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Жер кыртышынын массасынын дээрлик жарымы кычкылтек – ал таштардын жана кумдун курамында.",
+        "ru": "Почти половина массы земной коры – кислород: он входит в состав горных пород и песка.",
+        "en": "Almost half of the mass of the Earth's crust is oxygen locked in rocks and sand."
+      },
+      "analogy": {
+        "ky": "Оттун досу",
+        "ru": "Друг огня",
+        "en": "Fire's best friend"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Бийик тоодо дем алуу",
+              "ru": "Дыхание в горах",
+              "en": "Breathing in the mountains"
+            },
+            "text": {
+              "ky": "Тянь-Шандын 4000 метрлик бийиктигинде аба суюк, ар бир дем алууда кычкылтек дээрлик 40 % аз.",
+              "ru": "На высоте 4000 м в Тянь-Шане воздух разрежен, и в каждом вдохе почти на 40 % меньше кислорода.",
+              "en": "At 4,000 m in the Tien Shan the air is thin, so each breath carries almost 40 % less oxygen."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Медициналык кычкылтек",
+              "ru": "Медицинский кислород",
+              "en": "Medical oxygen"
+            },
+            "text": {
+              "ky": "Ооруканаларда оор абалдагы бейтаптарга баллондогу таза кычкылтек берилет.",
+              "ru": "В больницах тяжёлым пациентам дают чистый кислород из баллонов.",
+              "en": "Hospitals give seriously ill patients pure oxygen from cylinders."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Шам жана стакан",
+              "ru": "Свеча под стаканом",
+              "en": "A candle under a glass"
+            },
+            "text": {
+              "ky": "Күйүп турган шамды стакан менен жапсаң, кычкылтек түгөнүп, шам өчөт.",
+              "ru": "Накрой горящую свечу стаканом – кислород закончится, и свеча погаснет.",
+              "en": "Cover a burning candle with a glass: the oxygen runs out and the flame dies."
+            }
+          },
+          {
+            "title": {
+              "ky": "Мештин мору",
+              "ru": "Поддув в печке",
+              "en": "The draught in a stove"
+            },
+            "text": {
+              "ky": "Мештин эшигин ачсаң, аба (кычкылтек) кирип, от катуу күйөт.",
+              "ru": "Откроешь поддувало печки – войдёт воздух с кислородом, и огонь разгорится сильнее.",
+              "en": "Open the stove's air vent and oxygen rushes in, making the fire roar."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.covalent-bond",
+      "kind": "bond",
+      "hue": 240,
+      "isContainer": false,
+      "title": {
+        "ky": "Коваленттик байланыш",
+        "ru": "Ковалентная связь",
+        "en": "Covalent bond"
+      },
+      "subtitle": {
+        "ky": "Жалпы электрон жубу",
+        "ru": "Общая электронная пара",
+        "en": "A shared electron pair"
+      },
+      "description": {
+        "ky": "Эки атом бир же бир нече электрон жубун жалпы колдонгондо пайда болгон байланыш. Суунун, метандын жана көмүр кычкыл газынын молекулалары ушундай байланышат.",
+        "ru": "Связь, при которой два атома делят одну или несколько общих электронных пар. Так связаны атомы в молекулах воды, метана и углекислого газа.",
+        "en": "A bond in which two atoms share one or more pairs of electrons. The atoms in water, methane and carbon dioxide are held this way."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "bondType",
+          "value": {
+            "ky": "Электрондор жалпы колдонулат",
+            "ru": "Электроны обобществлены",
+            "en": "Electrons are shared"
+          }
+        },
+        {
+          "kind": "quantity",
+          "type": "length",
+          "value": 95.7,
+          "max": 116,
+          "unit": "pm"
+        },
+        {
+          "kind": "quantity",
+          "type": "energy",
+          "value": 413,
+          "max": 799,
+          "unit": "kJ/mol"
+        },
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "H₂O, CH₄, CO₂, O₂",
+            "ru": "H₂O, CH₄, CO₂, O₂",
+            "en": "H₂O, CH₄, CO₂, O₂"
+          }
+        }
+      ],
+      "related": [
+        "chem.valence-electron"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.bond-stick",
+          "text": {
+            "ky": "Байланыш – атомдорду бириктирген кичинекей таякча.",
+            "ru": "Связь – это маленькая палочка между атомами.",
+            "en": "A bond is a tiny stick joining atoms."
+          },
+          "correction": {
+            "ky": "Моделдеги таякча – шарттуу белги; чыныгы байланыш – бул эки ядро тең тарткан электрондор.",
+            "ru": "Палочка в модели – условность; настоящая связь – это электроны, которые притягивают оба ядра.",
+            "en": "The stick in a model is just a symbol; the real bond is electrons attracted by both nuclei."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Алмаздын катуулугу анын ар бир көмүртек атому төрт коваленттик байланыш менен бекем бириккенинен.",
+        "ru": "Алмаз так твёрд, потому что каждый атом углерода прочно связан с соседями четырьмя ковалентными связями.",
+        "en": "Diamond is so hard because each carbon atom is locked to its neighbours by four covalent bonds."
+      },
+      "analogy": {
+        "ky": "Эки баланын бир топту бирге кармашы",
+        "ru": "Двое держат один мяч",
+        "en": "Two children holding one ball"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Курулуш материалдары",
+              "ru": "Строительные материалы",
+              "en": "Building materials"
+            },
+            "text": {
+              "ky": "Пластмассалардын бекемдиги узун молекулалардагы коваленттик байланыштарга байланыштуу.",
+              "ru": "Прочность пластмасс зависит от ковалентных связей в их длинных молекулах.",
+              "en": "Plastics are strong because of the covalent bonds along their long molecules."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Дары жасоо",
+              "ru": "Создание лекарств",
+              "en": "Designing medicines"
+            },
+            "text": {
+              "ky": "Химиктер дары молекулаларын коваленттик байланыштарды курап, атом-атомдон «чогултушат».",
+              "ru": "Химики «собирают» молекулы лекарств атом за атомом, создавая ковалентные связи.",
+              "en": "Chemists build medicine molecules atom by atom by making covalent bonds."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кол кармашуу",
+              "ru": "Держаться за руки",
+              "en": "Holding hands"
+            },
+            "text": {
+              "ky": "Эки дос кол кармашып басканда экөө тең «бирге» – коваленттик байланыш да ушундай: электрондор экөөнө тең таандык.",
+              "ru": "Двое друзей идут, держась за руки, – руки у них общие. Так и в ковалентной связи электроны принадлежат обоим.",
+              "en": "Two friends walking hand in hand share the grip – in a covalent bond the electrons belong to both atoms."
+            }
+          },
+          {
+            "title": {
+              "ky": "Жалпы чатыр",
+              "ru": "Общий зонтик",
+              "en": "A shared umbrella"
+            },
+            "text": {
+              "ky": "Жамгырда эки адам бир кол чатыр астында турат – экөө тең коргонот.",
+              "ru": "Под дождём двое стоят под одним зонтом – он защищает обоих.",
+              "en": "Two people share one umbrella in the rain – it covers both of them."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.chlorine",
+      "kind": "element",
+      "hue": 95,
+      "isContainer": false,
+      "title": {
+        "ky": "Хлор",
+        "ru": "Хлор",
+        "en": "Chlorine"
+      },
+      "subtitle": {
+        "ky": "Сары-жашыл уулуу газ",
+        "ru": "Жёлто-зелёный ядовитый газ",
+        "en": "A yellow-green toxic gas"
+      },
+      "description": {
+        "ky": "17-элемент: электрондору 2 + 8 + 7. Толук катмарга бир электрон жетпейт, ошондуктан аны оңой кабыл алып, Cl⁻ ионуна айланат.",
+        "ru": "Элемент № 17: электроны 2 + 8 + 7. До полного слоя не хватает одного электрона, поэтому он легко принимает его и становится ионом Cl⁻.",
+        "en": "Element 17 with electrons 2 + 8 + 7. It is one electron short of a full shell, so it readily takes one and becomes Cl⁻."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "atomicNumber",
+          "value": 17
+        },
+        {
+          "kind": "quantity",
+          "type": "electronegativity",
+          "value": 3.16
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 35.45
+        },
+        {
+          "kind": "quantity",
+          "type": "meltingPoint",
+          "value": -101.5
+        },
+        {
+          "kind": "quantity",
+          "type": "density",
+          "value": 0.0032
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Газ (Cl₂)",
+            "ru": "Газ (Cl₂)",
+            "en": "Gas (Cl₂)"
+          }
+        }
+      ],
+      "related": [
+        "chem.sodium",
+        "chem.valence-electron"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.chlorine-safe",
+          "text": {
+            "ky": "Хлор туздун курамында болгондуктан, газ түрүндө да зыянсыз.",
+            "ru": "Раз хлор есть в соли, то и газ хлор безвреден.",
+            "en": "Since chlorine is in salt, chlorine gas must be harmless."
+          },
+          "correction": {
+            "ky": "Cl₂ газы уулуу; туздагы Cl⁻ иону болсо таптакыр башка зат жана коопсуз.",
+            "ru": "Газ Cl₂ ядовит; ион Cl⁻ в соли – совсем другое вещество, и он безопасен.",
+            "en": "Cl₂ gas is toxic; the Cl⁻ ion in salt is a completely different thing and is safe."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Хлордун аты грекче «сары-жашыл» дегенди билдирет.",
+        "ru": "Название хлора происходит от греческого слова «жёлто-зелёный».",
+        "en": "Chlorine's name comes from the Greek word for “yellow-green”."
+      },
+      "analogy": {
+        "ky": "Электрондун аңчысы",
+        "ru": "Охотник за электроном",
+        "en": "An electron grabber"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Сууну зыянсыздандыруу",
+              "ru": "Обеззараживание воды",
+              "en": "Disinfecting water"
+            },
+            "text": {
+              "ky": "Суу түтүктөрүнө жана бассейндерге микробдорду жок кылуу үчүн аз өлчөмдө хлор кошулат.",
+              "ru": "В водопровод и бассейны добавляют немного хлора, чтобы уничтожить микробы.",
+              "en": "A little chlorine is added to tap water and swimming pools to kill germs."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "ПВХ түтүктөр",
+              "ru": "Трубы из ПВХ",
+              "en": "PVC pipes"
+            },
+            "text": {
+              "ky": "Пластик терезелер менен түтүктөр жасалган ПВХнын курамында хлор бар.",
+              "ru": "В составе ПВХ, из которого делают пластиковые окна и трубы, есть хлор.",
+              "en": "PVC, used for plastic windows and pipes, contains chlorine."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Жетпеген бир пазл",
+              "ru": "Последний кусочек пазла",
+              "en": "The missing jigsaw piece"
+            },
+            "text": {
+              "ky": "Хлорго пазлды бүтүрүү үчүн бир гана бөлүк – бир электрон жетпейт.",
+              "ru": "Хлору не хватает одного кусочка пазла – одного электрона.",
+              "en": "Chlorine is missing just one jigsaw piece – one electron."
+            }
+          },
+          {
+            "title": {
+              "ky": "Бассейндин жыты",
+              "ru": "Запах бассейна",
+              "en": "The swimming-pool smell"
+            },
+            "text": {
+              "ky": "Бассейндеги өзгөчө жыт – суудагы хлордун кошулмаларынын жыты.",
+              "ru": "Особый запах бассейна – это запах соединений хлора в воде.",
+              "en": "That swimming-pool smell comes from chlorine compounds in the water."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.valence-electron",
+      "kind": "particle",
+      "hue": 50,
+      "isContainer": false,
+      "title": {
+        "ky": "Валенттик электрон",
+        "ru": "Валентный электрон",
+        "en": "Valence electron"
+      },
+      "subtitle": {
+        "ky": "Сырткы катмардын электрону",
+        "ru": "Электрон внешнего слоя",
+        "en": "An outer-shell electron"
+      },
+      "description": {
+        "ky": "Эң сырткы катмардагы электрондор. Химиялык байланыштарга ушулар катышат: натрийде – 1, хлордо – 7, кычкылтекте – 6, көмүртекте – 4.",
+        "ru": "Электроны самого внешнего слоя. Именно они участвуют в химических связях: у натрия – 1, у хлора – 7, у кислорода – 6, у углерода – 4.",
+        "en": "Electrons in the outermost shell. They take part in chemical bonds: sodium has 1, chlorine 7, oxygen 6, carbon 4."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "count",
+          "value": 1,
+          "max": 8
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Сырткы электрон катмарында",
+            "ru": "На внешнем электронном слое",
+            "en": "In the outer electron shell"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Химиялык байланыш түзөт",
+            "ru": "Образует химические связи",
+            "en": "Forms chemical bonds"
+          }
+        }
+      ],
+      "related": [],
+      "misconceptions": [
+        {
+          "key": "chem.m.all-electrons-bond",
+          "text": {
+            "ky": "Атомдун бардык электрондору байланышка катышат.",
+            "ru": "В связи участвуют все электроны атома.",
+            "en": "All of an atom's electrons take part in bonding."
+          },
+          "correction": {
+            "ky": "Байланышка негизинен сырткы катмардын электрондору гана катышат.",
+            "ru": "В связях участвуют в основном только электроны внешнего слоя.",
+            "en": "Mainly the outer-shell electrons take part in bonding."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Асыл газдардын (неон, аргон) сырткы катмары толук, ошондуктан алар дээрлик реакцияга кирбейт.",
+        "ru": "У благородных газов (неон, аргон) внешний слой заполнен, поэтому они почти не вступают в реакции.",
+        "en": "Noble gases such as neon and argon have a full outer shell, so they hardly react at all."
+      },
+      "analogy": {
+        "ky": "Кол кармашуу үчүн бош колдор",
+        "ru": "Свободные руки для рукопожатия",
+        "en": "Free hands for a handshake"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Мезгилдик таблицанын топтору",
+              "ru": "Группы периодической таблицы",
+              "en": "Groups of the periodic table"
+            },
+            "text": {
+              "ky": "Бир топтогу элементтердин валенттик электрондорунун саны бирдей, ошондуктан касиеттери окшош.",
+              "ru": "У элементов одной группы одинаковое число валентных электронов, поэтому их свойства похожи.",
+              "en": "Elements in the same group have the same number of valence electrons, so they behave alike."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Жарым өткөргүчтөр",
+              "ru": "Полупроводники",
+              "en": "Semiconductors"
+            },
+            "text": {
+              "ky": "Телефондун чиптери кремнийден жасалат: анын 4 валенттик электрону бар, инженерлер ага башка атомдорду кошуп токту башкарышат.",
+              "ru": "Чипы телефонов делают из кремния: у него 4 валентных электрона, и инженеры добавляют другие атомы, чтобы управлять током.",
+              "en": "Phone chips are made of silicon, which has 4 valence electrons; engineers add other atoms to control the current."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Конструктордун илмектери",
+              "ru": "Шипы конструктора",
+              "en": "The studs on a building brick"
+            },
+            "text": {
+              "ky": "Конструктордун деталдары сырткы илмектери менен бириккендей, атомдор сырткы электрондору аркылуу биригет.",
+              "ru": "Детали конструктора соединяются внешними шипами – так и атомы соединяются внешними электронами.",
+              "en": "Building bricks join by the studs on the outside – atoms join by their outer electrons."
+            }
+          },
+          {
+            "title": {
+              "ky": "Кол алышуу",
+              "ru": "Рукопожатие",
+              "en": "Shaking hands"
+            },
+            "text": {
+              "ky": "Сен досуң менен бош колуң аркылуу кол алышасың. Атомдор да «бош» сырткы электрондору менен байланышат.",
+              "ru": "Ты здороваешься с другом свободной рукой. Атомы тоже связываются «свободными» внешними электронами.",
+              "en": "You shake hands with a free hand. Atoms connect using their free outer electrons."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "chem.metal-oxide",
+      "kind": "compound",
+      "hue": 30,
+      "isContainer": false,
+      "title": {
+        "ky": "Металл оксиди",
+        "ru": "Оксид металла",
+        "en": "Metal oxide"
+      },
+      "subtitle": {
+        "ky": "MgO, CuO · металл + кычкылтек",
+        "ru": "MgO, CuO · металл + кислород",
+        "en": "MgO, CuO · metal + oxygen"
+      },
+      "description": {
+        "ky": "Металл кычкылтек менен бириккенде пайда болгон зат: 2Mg + O₂ → 2MgO (ак күкүм), 2Cu + O₂ → 2CuO (кара катмар). Оксиддин массасы баштапкы металлдыкынан көп, анткени ага кычкылтек кошулат.",
+        "ru": "Вещество, которое получается при соединении металла с кислородом: 2Mg + O₂ → 2MgO (белый порошок), 2Cu + O₂ → 2CuO (чёрный налёт). Масса оксида больше массы металла, потому что к нему присоединяется кислород.",
+        "en": "The substance formed when a metal joins with oxygen: 2Mg + O₂ → 2MgO (a white powder), 2Cu + O₂ → 2CuO (a black coating). The oxide is heavier than the metal because oxygen has been added."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "MgO"
+        },
+        {
+          "kind": "quantity",
+          "type": "molarMass",
+          "value": 40.3
+        },
+        {
+          "kind": "quantity",
+          "type": "meltingPoint",
+          "value": 2852
+        },
+        {
+          "kind": "text",
+          "type": "state",
+          "value": {
+            "ky": "Ак катуу күкүм (MgO)",
+            "ru": "Белый твёрдый порошок (MgO)",
+            "en": "White solid powder (MgO)"
+          }
+        }
+      ],
+      "related": [
+        "chem.magnesium",
+        "chem.oxygen"
+      ],
+      "misconceptions": [
+        {
+          "key": "chem.m.oxide-is-soot",
+          "text": {
+            "ky": "Металлдын бетиндеги кара катмар – жөн гана күйө (көө).",
+            "ru": "Чёрный налёт на металле – это просто сажа.",
+            "en": "The black layer on heated metal is just soot."
+          },
+          "correction": {
+            "ky": "Жезди таза жалында ысытканда да кара катмар пайда болот: бул жаңы зат – жез (II) оксиди CuO.",
+            "ru": "Чёрный слой появляется на меди даже в чистом пламени: это новое вещество – оксид меди(II) CuO.",
+            "en": "The black layer appears on copper even in a clean flame: it is a new substance, copper(II) oxide, CuO."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Магний оксиди 2800 °C дан жогору эрийт, ошондуктан андан мештердин ичин каптоочу кирпич жасалат.",
+        "ru": "Оксид магния плавится выше 2800 °C, поэтому из него делают огнеупорный кирпич для печей.",
+        "en": "Magnesium oxide melts above 2800 °C, so it is used to make firebricks for furnaces."
+      },
+      "analogy": {
+        "ky": "Металл + кычкылтек = «жаңы кийим»",
+        "ru": "Металл + кислород = «новая одежда»",
+        "en": "Metal plus oxygen: a new coat"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Отко чыдамдуу кирпич",
+              "ru": "Огнеупоры",
+              "en": "Firebricks"
+            },
+            "text": {
+              "ky": "MgO кирпичтери болот эритүүчү мештерде миңдеген градуска чыдайт.",
+              "ru": "Кирпичи из MgO выдерживают тысячи градусов в сталеплавильных печах.",
+              "en": "MgO bricks survive thousands of degrees inside steel furnaces."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Масса өлчөө",
+              "ru": "Взвешивание",
+              "en": "Weighing"
+            },
+            "text": {
+              "ky": "Тигелдеги магнийди күйгүзүп, тараза менен масса өскөнүн көрсөтүүгө болот – бул кычкылтектин кошулганын далилдейт.",
+              "ru": "Если сжечь магний в тигле и взвесить, масса растёт – это доказывает присоединение кислорода.",
+              "en": "Burning magnesium in a crucible and weighing it shows the mass goes up, proving oxygen was added."
+            },
+            "field": "s"
+          },
+          {
+            "title": {
+              "ky": "Боёктор",
+              "ru": "Краски",
+              "en": "Pigments"
+            },
+            "text": {
+              "ky": "Темир оксиддери кызыл, сары, күрөң боёктордун негизи, титан оксиди – ак боёктун.",
+              "ru": "Оксиды железа – основа красных, жёлтых и коричневых красок, оксид титана – белой краски.",
+              "en": "Iron oxides make red, yellow and brown paints; titanium oxide makes white paint."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Тот",
+              "ru": "Ржавчина",
+              "en": "Rust"
+            },
+            "text": {
+              "ky": "Тот – темирдин суу катышкан оксиди; ал да металл кычкылтек менен бириккенде пайда болот.",
+              "ru": "Ржавчина – это оксид железа с водой; она тоже появляется, когда металл соединяется с кислородом.",
+              "en": "Rust is a hydrated iron oxide – it also forms when a metal joins with oxygen."
+            }
+          },
+          {
+            "title": {
+              "ky": "Карарган кашык",
+              "ru": "Потемневшая ложка",
+              "en": "A darkened spoon"
+            },
+            "text": {
+              "ky": "Отко тийген жез кашыктын карарышы – анын бетинде оксид пайда болгону.",
+              "ru": "Медная ложка, побывавшая в огне, чернеет – на ней образовался оксид.",
+              "en": "A copper spoon held in a flame turns black – an oxide has formed on it."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "chem.calcium-water",
+      "engine": "stoich",
+      "icon": "droplet",
+      "title": {
+        "ky": "Кальций жана суу",
+        "ru": "Кальций и вода",
+        "en": "Calcium and water"
+      },
+      "description": {
+        "ky": "Кальций муздак суу менен бир калыпта реакцияга кирет: суутек газы көбүкчө болуп чыгат, эритмеде кальций гидроксиди пайда болот, фенолфталеин кызгылт түскө боёлот.",
+        "ru": "Кальций ровно реагирует с холодной водой: пузырьками выделяется водород, в растворе образуется гидроксид кальция, фенолфталеин становится малиновым.",
+        "en": "Calcium reacts steadily with cold water: hydrogen gas bubbles off, calcium hydroxide forms in the solution, and phenolphthalein turns pink."
+      },
+      "equation": "Ca + 2H_2O \\to Ca(OH)_2 + H_2",
+      "inputs": {
+        "ky": "1 моль Ca (40 г) + 2 моль H₂O (36 г)",
+        "ru": "1 моль Ca (40 г) + 2 моль H₂O (36 г)",
+        "en": "1 mol Ca (40 g) + 2 mol H₂O (36 g)"
+      },
+      "outputs": {
+        "ky": "1 моль Ca(OH)₂ (74 г) + 1 моль H₂ (2 г)",
+        "ru": "1 моль Ca(OH)₂ (74 г) + 1 моль H₂ (2 г)",
+        "en": "1 mol Ca(OH)₂ (74 g) + 1 mol H₂ (2 g)"
+      },
+      "energy": {
+        "ky": "≈ 410 кДж бөлүнөт (1 моль кальцийге, болжолдуу)",
+        "ru": "≈ 410 кДж выделяется (на 1 моль кальция, примерно)",
+        "en": "≈ 410 kJ released (per mole of calcium, approximate)"
+      },
+      "steps": [
+        {
+          "key": "drop",
+          "title": {
+            "ky": "Кальций сууда",
+            "ru": "Кальций в воде",
+            "en": "Calcium in water"
+          },
+          "result": {
+            "ky": "Ca + 2H₂O",
+            "ru": "Ca + 2H₂O",
+            "en": "Ca + 2H₂O"
+          },
+          "description": {
+            "ky": "Кальций түйүрүн суу куюлган идишке салабыз. Ал чөгөт жана дароо көбүкчө чыгара баштайт.",
+            "ru": "Опускаем кусочек кальция в сосуд с водой. Он тонет и сразу начинает выделять пузырьки.",
+            "en": "Drop a piece of calcium into a beaker of water. It sinks and starts giving off bubbles at once."
+          },
+          "conceptKey": "chem.calcium",
+          "altText": {
+            "ky": "Суунун түбүндөгү боз түйүр.",
+            "ru": "Серый кусочек на дне воды.",
+            "en": "A grey lump at the bottom of the water."
+          },
+          "duration": 1
+        },
+        {
+          "key": "bubbles",
+          "title": {
+            "ky": "Суутек чыгат",
+            "ru": "Выделяется водород",
+            "en": "Hydrogen bubbles"
+          },
+          "result": {
+            "ky": "+H₂",
+            "ru": "+H₂",
+            "en": "+H₂"
+          },
+          "description": {
+            "ky": "Металлдын бетинен суутек көбүкчөлөрү көтөрүлөт. Пробиркага чогултуп, күйүп турган чыпты жакындатса, «тырс» деген үн чыгат.",
+            "ru": "С поверхности металла поднимаются пузырьки водорода. Если собрать их в пробирку и поднести горящую лучинку, раздастся хлопок.",
+            "en": "Hydrogen bubbles rise from the metal. Collected in a test tube and tested with a lit splint, it goes off with a squeaky pop."
+          },
+          "conceptKey": "chem.hydrogen",
+          "altText": {
+            "ky": "Түйүрдөн көп көбүкчөлөр көтөрүлүүдө.",
+            "ru": "Много пузырьков поднимается от кусочка.",
+            "en": "Many bubbles rise from the lump."
+          },
+          "duration": 2
+        },
+        {
+          "key": "hydroxide",
+          "title": {
+            "ky": "Бүдөмүк эритме",
+            "ru": "Мутный раствор",
+            "en": "Cloudy solution"
+          },
+          "result": {
+            "ky": "+Ca(OH)₂",
+            "ru": "+Ca(OH)₂",
+            "en": "+Ca(OH)₂"
+          },
+          "description": {
+            "ky": "Суу ак бүдөмүк болуп калат: аз эрүүчү кальций гидроксиди Ca(OH)₂ пайда болду.",
+            "ru": "Вода мутнеет: образовался малорастворимый гидроксид кальция Ca(OH)₂.",
+            "en": "The water turns cloudy white: barely soluble calcium hydroxide, Ca(OH)₂, has formed."
+          },
+          "conceptKey": "chem.metal-hydroxide",
+          "altText": {
+            "ky": "Суюктук сүттөй ак түскө өттү.",
+            "ru": "Жидкость стала молочно-белой.",
+            "en": "The liquid has turned milky white."
+          },
+          "duration": 2
+        },
+        {
+          "key": "indicator",
+          "title": {
+            "ky": "Индикатор",
+            "ru": "Индикатор",
+            "en": "Indicator"
+          },
+          "description": {
+            "ky": "Фенолфталеин тамчысы эритмени кызгылт-малина түскө боёйт: щелочь пайда болду.",
+            "ru": "Капля фенолфталеина окрашивает раствор в малиновый цвет: образовалась щёлочь.",
+            "en": "A drop of phenolphthalein turns the solution pink: an alkali has formed."
+          },
+          "conceptKey": "chem.indicator",
+          "altText": {
+            "ky": "Эритме кызгылт түскө боёлду.",
+            "ru": "Раствор окрасился в малиновый цвет.",
+            "en": "The solution has turned pink."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "ca",
+          "label": {
+            "ky": "Кальций",
+            "ru": "Кальций",
+            "en": "Calcium"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 40.08,
+          "precision": 1
+        },
+        {
+          "key": "caoh2",
+          "label": {
+            "ky": "Кальций гидроксиди",
+            "ru": "Гидроксид кальция",
+            "en": "Calcium hydroxide"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 74.09,
+          "precision": 1
+        },
+        {
+          "key": "h2",
+          "label": {
+            "ky": "Суутек",
+            "ru": "Водород",
+            "en": "Hydrogen"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 2.016,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "Ca": 1,
+        "H2O": 2,
+        "CaOH2": 1,
+        "H2": 1,
+        "M_Ca": 40.08,
+        "M_H2O": 18.02,
+        "M_CaOH2": 74.09,
+        "M_H2": 2.016,
+        "dH_kJ": -414
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "chem.q.metals-water-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Кальций суу менен реакцияга киргенде кайсы газ бөлүнүп чыгат?",
+        "ru": "Какой газ выделяется при реакции кальция с водой?",
+        "en": "Which gas is given off when calcium reacts with water?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кычкылтек",
+            "ru": "Кислород",
+            "en": "Oxygen"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Суутек",
+            "ru": "Водород",
+            "en": "Hydrogen"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Көмүр кычкыл газы",
+            "ru": "Углекислый газ",
+            "en": "Carbon dioxide"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Буу",
+            "ru": "Водяной пар",
+            "en": "Steam"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Ca + 2H₂O → Ca(OH)₂ + H₂: суутек.",
+        "ru": "Ca + 2H₂O → Ca(OH)₂ + H₂: водород.",
+        "en": "Ca + 2H₂O → Ca(OH)₂ + H₂: hydrogen."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.hydrogen-in-water-gas",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.metals-water-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Ca + 2H₂O → ? теңдемесин бүтүр.",
+        "ru": "Допиши уравнение Ca + 2H₂O → ?",
+        "en": "Complete the equation Ca + 2H₂O → ?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "CaO + H₂O",
+            "ru": "CaO + H₂O",
+            "en": "CaO + H₂O"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ca(OH)₂ + H₂",
+            "ru": "Ca(OH)₂ + H₂",
+            "en": "Ca(OH)₂ + H₂"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "CaH₂ + O₂",
+            "ru": "CaH₂ + O₂",
+            "en": "CaH₂ + O₂"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Ca(OH)₂ + O₂",
+            "ru": "Ca(OH)₂ + O₂",
+            "en": "Ca(OH)₂ + O₂"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Активдүү металл суу менен гидроксид жана суутек берет: Ca(OH)₂ + H₂.",
+        "ru": "Активный металл с водой даёт гидроксид и водород: Ca(OH)₂ + H₂.",
+        "en": "A reactive metal and water give a hydroxide and hydrogen: Ca(OH)₂ + H₂."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-water-3",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы металлдар муздак суу менен даана байкала турган реакцияга кирет?",
+        "ru": "Какие металлы заметно реагируют с холодной водой?",
+        "en": "Which metals react visibly with cold water?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Калий",
+            "ru": "Калий",
+            "en": "Potassium"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Натрий",
+            "ru": "Натрий",
+            "en": "Sodium"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Кальций",
+            "ru": "Кальций",
+            "en": "Calcium"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Жез",
+            "ru": "Медь",
+            "en": "Copper"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Алтын",
+            "ru": "Золото",
+            "en": "Gold"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Активдүүлүк катарынын башындагы K, Na, Ca муздак суу менен реакцияга кирет. Магний – өтө жай, жез менен алтын – такыр кирбейт.",
+        "ru": "K, Na, Ca из начала ряда активности реагируют с холодной водой. Магний – очень медленно, медь и золото – вовсе нет.",
+        "en": "K, Na and Ca, at the top of the series, react with cold water. Magnesium reacts very slowly; copper and gold not at all."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-water-4",
+      "type": "match",
+      "prompt": {
+        "ky": "Байкоону анын түшүндүрмөсү менен дал келтир.",
+        "ru": "Сопоставь наблюдение и его объяснение.",
+        "en": "Match each observation to what it means."
+      },
+      "pairs": [
+        {
+          "key": "pop",
+          "left": {
+            "ky": "Күйүп турган чып «тырс» этет",
+            "ru": "Горящая лучинка даёт хлопок",
+            "en": "A lit splint gives a squeaky pop"
+          },
+          "right": {
+            "ky": "Суутек бар",
+            "ru": "Есть водород",
+            "en": "Hydrogen is present"
+          }
+        },
+        {
+          "key": "pink",
+          "left": {
+            "ky": "Фенолфталеин кызгылт түскө боёлду",
+            "ru": "Фенолфталеин стал малиновым",
+            "en": "Phenolphthalein turned pink"
+          },
+          "right": {
+            "ky": "Щелочь пайда болду",
+            "ru": "Образовалась щёлочь",
+            "en": "An alkali has formed"
+          }
+        },
+        {
+          "key": "cloudy",
+          "left": {
+            "ky": "Суу сүттөй бүдөмүк болду",
+            "ru": "Вода помутнела, как молоко",
+            "en": "The water turned milky"
+          },
+          "right": {
+            "ky": "Ca(OH)₂ аз эрийт",
+            "ru": "Ca(OH)₂ мало растворим",
+            "en": "Ca(OH)₂ is barely soluble"
+          }
+        },
+        {
+          "key": "steam",
+          "left": {
+            "ky": "Магний ысык бууда",
+            "ru": "Магний в горячем паре",
+            "en": "Magnesium in hot steam"
+          },
+          "right": {
+            "ky": "MgO + H₂ пайда болот",
+            "ru": "Образуются MgO + H₂",
+            "en": "MgO + H₂ form"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Тырс деген үн – суутек; кызгылт фенолфталеин – щелочь; бүдөмүк эритме – аз эрүүчү Ca(OH)₂; буудагы магний – MgO жана H₂.",
+        "ru": "Хлопок – водород; малиновый фенолфталеин – щёлочь; мутный раствор – малорастворимый Ca(OH)₂; магний в паре – MgO и H₂.",
+        "en": "Squeaky pop – hydrogen; pink phenolphthalein – alkali; cloudy liquid – barely soluble Ca(OH)₂; magnesium in steam – MgO and H₂."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.metals-water-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Эритмеде щелочь пайда болгонун көрсөткөн затты тап.",
+        "ru": "Найди вещество, которое показывает, что в растворе образовалась щёлочь.",
+        "en": "Find the substance that shows an alkali has formed in the solution."
+      },
+      "targetConceptKey": "chem.indicator",
+      "explanation": {
+        "ky": "Фенолфталеин щелочто кызгылт-малина түскө боёлот.",
+        "ru": "Фенолфталеин в щёлочи становится малиновым.",
+        "en": "Phenolphthalein turns pink in an alkali."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.indicator-makes-alkali",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.metals-water-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Реакцияда бөлүнүп чыккан газды тап.",
+        "ru": "Найди газ, который выделяется в реакции.",
+        "en": "Find the gas given off in the reaction."
+      },
+      "targetConceptKey": "chem.hydrogen",
+      "explanation": {
+        "ky": "Металлдан көтөрүлгөн көбүкчөлөр – суутек H₂.",
+        "ru": "Пузырьки, поднимающиеся от металла, – водород H₂.",
+        "en": "The bubbles rising from the metal are hydrogen, H₂."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.metals-water-7",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Класста эмес, симуляцияда гана көрсөтүлө турган металлды тап.",
+        "ru": "Найди металл, опыт с которым показывают только в симуляции, а не в классе.",
+        "en": "Find the metal whose reaction with water is shown only as a simulation, not in class."
+      },
+      "targetConceptKey": "chem.sodium",
+      "explanation": {
+        "ky": "Натрий суу менен катуу реакцияга кирет: суутек тутанып, ысык щелочь чачырашы мүмкүн.",
+        "ru": "Натрий бурно реагирует с водой: водород может вспыхнуть, разбрызгивая горячую щёлочь.",
+        "en": "Sodium reacts violently with water: the hydrogen can ignite and spray hot alkali."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-water-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "4 г кальций суу менен толук реакцияга кирди. Канча грамм суутек бөлүндү? (M(Ca) = 40 г/моль, M(H₂) = 2 г/моль)",
+        "ru": "4 г кальция полностью прореагировали с водой. Сколько граммов водорода выделилось? (M(Ca) = 40 г/моль, M(H₂) = 2 г/моль)",
+        "en": "4 g of calcium reacts completely with water. How many grams of hydrogen are given off? (M(Ca) = 40 g/mol, M(H₂) = 2 g/mol)"
+      },
+      "answer": 0.2,
+      "tolerance": 0.01,
+      "unit": "g",
+      "explanation": {
+        "ky": "4 г : 40 г/моль = 0,1 моль Ca → 0,1 моль H₂ × 2 г/моль = 0,2 г.",
+        "ru": "4 г : 40 г/моль = 0,1 моль Ca → 0,1 моль H₂ × 2 г/моль = 0,2 г.",
+        "en": "4 g ÷ 40 g/mol = 0.1 mol Ca → 0.1 mol H₂ × 2 g/mol = 0.2 g."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.metals-water-9",
+      "type": "numeric",
+      "prompt": {
+        "ky": "2Na + __H₂O → 2NaOH + H₂. Суунун алдына кандай коэффициент жазылат?",
+        "ru": "2Na + __H₂O → 2NaOH + H₂. Какой коэффициент нужно поставить перед водой?",
+        "en": "2Na + __H₂O → 2NaOH + H₂. What coefficient goes in front of water?"
+      },
+      "answer": 2,
+      "tolerance": 0,
+      "explanation": {
+        "ky": "Оң жакта H: 2 + 2 = 4, O: 2 – демек 2H₂O.",
+        "ru": "Справа H: 2 + 2 = 4, O: 2 – значит, 2H₂O.",
+        "en": "On the right H: 2 + 2 = 4 and O: 2, so 2H₂O."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-water-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн натрий жана калий менен суудагы тажрыйбалар класста эмес, симуляцияда көрсөтүлөт?",
+        "ru": "Почему опыты натрия и калия с водой показывают в симуляции, а не в классе?",
+        "en": "Why are sodium and potassium with water shown as a simulation rather than in class?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Алар суу менен реакцияга кирбейт",
+            "ru": "Они не реагируют с водой",
+            "en": "They do not react with water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Реакция өтө катуу, суутек тутанат",
+            "ru": "Реакция очень бурная, водород вспыхивает",
+            "en": "The reaction is violent and hydrogen ignites"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Бул металлдар өтө кымбат",
+            "ru": "Эти металлы слишком дорогие",
+            "en": "These metals are too expensive"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Реакция бир нече күнгө созулат",
+            "ru": "Реакция длится несколько дней",
+            "en": "The reaction takes several days"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Реакция өтө катуу: суутек тутанып, ысык щелочь чачырайт.",
+        "ru": "Реакция очень бурная: водород вспыхивает, разбрызгивается горячая щёлочь.",
+        "en": "The reaction is very violent: hydrogen catches fire and hot alkali sprays out."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.alkali-is-harmless-water",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-water-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Таза сууга фенолфталеин тамчылатса, эритме кандай түскө боёлот?",
+        "ru": "Какого цвета станет чистая вода, если капнуть в неё фенолфталеин?",
+        "en": "What colour does pure water turn with a drop of phenolphthalein?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кызгылт-малина",
+            "ru": "Малиновый",
+            "en": "Pink"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Түссүз калат",
+            "ru": "Остаётся бесцветной",
+            "en": "Stays colourless"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Көк",
+            "ru": "Синий",
+            "en": "Blue"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Сары",
+            "ru": "Жёлтый",
+            "en": "Yellow"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Таза суу нейтралдуу – фенолфталеин түссүз калат. Кызгылт түс щелочь болгондо гана пайда болот.",
+        "ru": "Чистая вода нейтральна – фенолфталеин остаётся бесцветным. Малиновый цвет появляется только в щёлочи.",
+        "en": "Pure water is neutral, so phenolphthalein stays colourless. Pink appears only in an alkali."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.indicator-makes-alkali",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-water-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Магний ысык буу менен реакцияга киргенде эмне пайда болот?",
+        "ru": "Что образуется при реакции магния с горячим паром?",
+        "en": "What forms when magnesium reacts with hot steam?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "MgO + H₂",
+            "ru": "MgO + H₂",
+            "en": "MgO + H₂"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Mg(OH)₂ + O₂",
+            "ru": "Mg(OH)₂ + O₂",
+            "en": "Mg(OH)₂ + O₂"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "MgH₂ + O₂",
+            "ru": "MgH₂ + O₂",
+            "en": "MgH₂ + O₂"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Реакция жүрбөйт",
+            "ru": "Реакция не идёт",
+            "en": "No reaction"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Mg + H₂O → MgO + H₂: жогорку температурада оксид пайда болот.",
+        "ru": "Mg + H₂O → MgO + H₂: при высокой температуре образуется оксид.",
+        "en": "Mg + H₂O → MgO + H₂: at high temperature an oxide forms."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 3
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-chem-atom",
+      "ky": "атом",
+      "ru": "атом",
+      "en": "atom",
+      "forbidden": [
+        "atome"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-molecule",
+      "ky": "молекула",
+      "ru": "молекула",
+      "en": "molecule",
+      "forbidden": [
+        "molecula",
+        "molecul"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-element",
+      "ky": "химиялык элемент",
+      "ru": "химический элемент",
+      "en": "chemical element",
+      "forbidden": [
+        "химикалык элемент"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-atomic-nucleus",
+      "ky": "атомдун ядросу",
+      "ru": "атомное ядро",
+      "en": "atomic nucleus",
+      "forbidden": [
+        "ядерное ядро"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-proton",
+      "ky": "протон",
+      "ru": "протон",
+      "en": "proton",
+      "forbidden": [
+        "protone"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-neutron",
+      "ky": "нейтрон",
+      "ru": "нейтрон",
+      "en": "neutron",
+      "forbidden": [
+        "нейтрино",
+        "neutrino"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-electron",
+      "ky": "электрон",
+      "ru": "электрон",
+      "en": "electron",
+      "forbidden": [
+        "электорон",
+        "electrone"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-electron-shell",
+      "ky": "электрон катмары",
+      "ru": "электронный слой",
+      "en": "electron shell",
+      "forbidden": [
+        "электрон орбитасы",
+        "electron orbit"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-valence-electron",
+      "ky": "валенттик электрон",
+      "ru": "валентный электрон",
+      "en": "valence electron",
+      "forbidden": [
+        "валентностный электрон",
+        "valency electron"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-covalent-bond",
+      "ky": "коваленттик байланыш",
+      "ru": "ковалентная связь",
+      "en": "covalent bond",
+      "forbidden": [
+        "ковалентная связка",
+        "covalant bond"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-ionic-bond",
+      "ky": "иондук байланыш",
+      "ru": "ионная связь",
+      "en": "ionic bond",
+      "forbidden": [
+        "ионовая связь",
+        "ionic bound"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-ion",
+      "ky": "ион",
+      "ru": "ион",
+      "en": "ion",
+      "forbidden": [
+        "iona"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-lone-pair",
+      "ky": "бөлүнбөгөн электрон жубу",
+      "ru": "неподелённая электронная пара",
+      "en": "lone pair",
+      "forbidden": [
+        "свободная пара электронов",
+        "lonely pair"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-crystal-lattice",
+      "ky": "кристалл торчосу",
+      "ru": "кристаллическая решётка",
+      "en": "crystal lattice",
+      "forbidden": [
+        "кристальная решётка",
+        "crystal grid"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-unit-cell",
+      "ky": "элементардык уяча",
+      "ru": "элементарная ячейка",
+      "en": "unit cell",
+      "forbidden": [
+        "элементарная клетка",
+        "elementary cell"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-molar-mass",
+      "ky": "молярдык масса",
+      "ru": "молярная масса",
+      "en": "molar mass",
+      "forbidden": [
+        "молярный вес",
+        "molar weight"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-hydrogen",
+      "ky": "суутек",
+      "ru": "водород",
+      "en": "hydrogen",
+      "forbidden": [
+        "сутек",
+        "hydrogene"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-oxygen",
+      "ky": "кычкылтек",
+      "ru": "кислород",
+      "en": "oxygen",
+      "forbidden": [
+        "оттек",
+        "oxigen"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-carbon",
+      "ky": "көмүртек",
+      "ru": "углерод",
+      "en": "carbon",
+      "forbidden": [
+        "көміртек",
+        "көмүр кычкылы"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-carbon-dioxide",
+      "ky": "көмүр кычкыл газы",
+      "ru": "углекислый газ",
+      "en": "carbon dioxide",
+      "forbidden": [
+        "углекислота",
+        "carbon oxide"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-sodium-chloride",
+      "ky": "натрий хлориди (аш тузу)",
+      "ru": "хлорид натрия (поваренная соль)",
+      "en": "sodium chloride (table salt)",
+      "forbidden": [
+        "хлористый натр",
+        "sodium chlorine"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-combustion",
+      "ky": "күйүү",
+      "ru": "горение",
+      "en": "combustion",
+      "forbidden": [
+        "combustation"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-electrolysis",
+      "ky": "электролиз",
+      "ru": "электролиз",
+      "en": "electrolysis",
+      "forbidden": [
+        "электролизис",
+        "electrolisys"
+      ],
+      "approvedBy": "editor-chem"
+    },
+    {
+      "id": "g-chem-atomic-model",
+      "ky": "атомдун модели",
+      "ru": "модель атома",
+      "en": "atomic model",
+      "forbidden": [
+        "атомная модель"
+      ]
+    },
+    {
+      "id": "g-chem-alpha-particle",
+      "ky": "альфа-бөлүкчө",
+      "ru": "альфа-частица",
+      "en": "alpha particle",
+      "forbidden": [
+        "альфа-частичка",
+        "alfa particle"
+      ]
+    },
+    {
+      "id": "g-chem-pure-substance",
+      "ky": "таза зат",
+      "ru": "чистое вещество",
+      "en": "pure substance",
+      "forbidden": [
+        "чистая субстанция"
+      ]
+    },
+    {
+      "id": "g-chem-simple-substance",
+      "ky": "жөнөкөй зат",
+      "ru": "простое вещество",
+      "en": "element (substance)",
+      "forbidden": [
+        "элементарное вещество"
+      ]
+    },
+    {
+      "id": "g-chem-compound",
+      "ky": "татаал зат (химиялык бирикме)",
+      "ru": "сложное вещество (химическое соединение)",
+      "en": "compound",
+      "forbidden": [
+        "составное вещество",
+        "compaund"
+      ]
+    },
+    {
+      "id": "g-chem-mixture",
+      "ky": "аралашма",
+      "ru": "смесь",
+      "en": "mixture",
+      "forbidden": [
+        "mixure"
+      ]
+    },
+    {
+      "id": "g-chem-homogeneous-mixture",
+      "ky": "бир тектүү аралашма",
+      "ru": "однородная смесь",
+      "en": "homogeneous mixture",
+      "forbidden": [
+        "homogenous mixture"
+      ]
+    },
+    {
+      "id": "g-chem-heterogeneous-mixture",
+      "ky": "бир тектүү эмес аралашма",
+      "ru": "неоднородная смесь",
+      "en": "heterogeneous mixture",
+      "forbidden": [
+        "heterogenous mixture"
+      ]
+    },
+    {
+      "id": "g-chem-filtration",
+      "ky": "чыпкалоо",
+      "ru": "фильтрование",
+      "en": "filtration",
+      "forbidden": [
+        "filtering out"
+      ]
+    },
+    {
+      "id": "g-chem-filtrate",
+      "ky": "фильтрат",
+      "ru": "фильтрат",
+      "en": "filtrate",
+      "forbidden": [
+        "filtrat"
+      ]
+    },
+    {
+      "id": "g-chem-residue",
+      "ky": "калдык (чыпкадагы)",
+      "ru": "осадок на фильтре",
+      "en": "residue",
+      "forbidden": [
+        "residual"
+      ]
+    },
+    {
+      "id": "g-chem-evaporation-method",
+      "ky": "буулантуу",
+      "ru": "выпаривание",
+      "en": "evaporation",
+      "forbidden": [
+        "испарение досуха"
+      ]
+    },
+    {
+      "id": "g-chem-distillation",
+      "ky": "айдоо (дистилляция)",
+      "ru": "перегонка (дистилляция)",
+      "en": "distillation",
+      "forbidden": [
+        "дистиляция",
+        "distilation"
+      ]
+    },
+    {
+      "id": "g-chem-distillate",
+      "ky": "дистиллят",
+      "ru": "дистиллят",
+      "en": "distillate",
+      "forbidden": [
+        "дистилят",
+        "distilate"
+      ]
+    },
+    {
+      "id": "g-chem-condenser",
+      "ky": "муздаткыч",
+      "ru": "холодильник (конденсатор)",
+      "en": "condenser",
+      "forbidden": [
+        "condensor"
+      ]
+    },
+    {
+      "id": "g-chem-chromatography",
+      "ky": "хроматография",
+      "ru": "хроматография",
+      "en": "chromatography",
+      "forbidden": [
+        "хромотография",
+        "cromatography"
+      ]
+    },
+    {
+      "id": "g-chem-decanting",
+      "ky": "тундуруу жана куюп алуу (декантация)",
+      "ru": "отстаивание и декантация",
+      "en": "settling and decanting",
+      "forbidden": [
+        "decantating"
+      ]
+    },
+    {
+      "id": "g-chem-spirit-burner",
+      "ky": "спирт чырагы",
+      "ru": "спиртовка",
+      "en": "spirit burner",
+      "forbidden": [
+        "спиртовая горелка-лампа"
+      ]
+    },
+    {
+      "id": "g-chem-safety-goggles",
+      "ky": "коргоочу көз айнек",
+      "ru": "защитные очки",
+      "en": "safety goggles",
+      "forbidden": [
+        "safety glasses goggles"
+      ]
+    },
+    {
+      "id": "g-chem-solution",
+      "ky": "эритме",
+      "ru": "раствор",
+      "en": "solution",
+      "forbidden": [
+        "разтвор"
+      ]
+    },
+    {
+      "id": "g-chem-solvent",
+      "ky": "эриткич",
+      "ru": "растворитель",
+      "en": "solvent",
+      "forbidden": [
+        "растворяющее вещество",
+        "dissolver"
+      ]
+    },
+    {
+      "id": "g-chem-solute",
+      "ky": "эриген зат",
+      "ru": "растворённое вещество",
+      "en": "solute",
+      "forbidden": [
+        "solvend"
+      ]
+    },
+    {
+      "id": "g-chem-solubility",
+      "ky": "эригичтик",
+      "ru": "растворимость",
+      "en": "solubility",
+      "forbidden": [
+        "solvability"
+      ]
+    },
+    {
+      "id": "g-chem-saturated-solution",
+      "ky": "каныккан эритме",
+      "ru": "насыщенный раствор",
+      "en": "saturated solution",
+      "forbidden": [
+        "насыщеный раствор",
+        "satured solution"
+      ]
+    },
+    {
+      "id": "g-chem-unsaturated-solution",
+      "ky": "каныкпаган эритме",
+      "ru": "ненасыщенный раствор",
+      "en": "unsaturated solution",
+      "forbidden": [
+        "ненасыщеный раствор"
+      ]
+    },
+    {
+      "id": "g-chem-solubility-curve",
+      "ky": "эригичтиктин ийри сызыгы",
+      "ru": "кривая растворимости",
+      "en": "solubility curve",
+      "forbidden": [
+        "график растворения"
+      ]
+    },
+    {
+      "id": "g-chem-metal",
+      "ky": "металл",
+      "ru": "металл",
+      "en": "metal",
+      "forbidden": [
+        "метал"
+      ]
+    },
+    {
+      "id": "g-chem-reactivity-series",
+      "ky": "металлдардын активдүүлүк катары",
+      "ru": "ряд активности металлов",
+      "en": "reactivity series",
+      "forbidden": [
+        "reactivity row"
+      ]
+    },
+    {
+      "id": "g-chem-oxide",
+      "ky": "оксид",
+      "ru": "оксид",
+      "en": "oxide",
+      "forbidden": [
+        "окись металла",
+        "oxid"
+      ]
+    },
+    {
+      "id": "g-chem-hydroxide",
+      "ky": "гидроксид",
+      "ru": "гидроксид",
+      "en": "hydroxide",
+      "forbidden": [
+        "hydrooxide"
+      ]
+    },
+    {
+      "id": "g-chem-alkali",
+      "ky": "щелочь",
+      "ru": "щёлочь",
+      "en": "alkali",
+      "forbidden": [
+        "alkaline substance"
+      ]
+    },
+    {
+      "id": "g-chem-acid",
+      "ky": "кислота",
+      "ru": "кислота",
+      "en": "acid",
+      "forbidden": [
+        "кычкыл зат"
+      ]
+    },
+    {
+      "id": "g-chem-hydrochloric-acid",
+      "ky": "туз кислотасы",
+      "ru": "соляная кислота",
+      "en": "hydrochloric acid",
+      "forbidden": [
+        "хлордуу кислота",
+        "chloric acid"
+      ]
+    },
+    {
+      "id": "g-chem-salt",
+      "ky": "туз",
+      "ru": "соль",
+      "en": "salt",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-indicator",
+      "ky": "индикатор",
+      "ru": "индикатор",
+      "en": "indicator",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-phenolphthalein",
+      "ky": "фенолфталеин",
+      "ru": "фенолфталеин",
+      "en": "phenolphthalein",
+      "forbidden": [
+        "фенолфталин",
+        "phenolphtalein"
+      ]
+    },
+    {
+      "id": "g-chem-displacement-reaction",
+      "ky": "орун басуу реакциясы",
+      "ru": "реакция замещения",
+      "en": "displacement reaction",
+      "forbidden": [
+        "алмашуу реакциясы",
+        "replacement reaction"
+      ]
+    },
+    {
+      "id": "g-chem-magnesium",
+      "ky": "магний",
+      "ru": "магний",
+      "en": "magnesium",
+      "forbidden": [
+        "magnesia"
+      ]
+    },
+    {
+      "id": "g-chem-calcium",
+      "ky": "кальций",
+      "ru": "кальций",
+      "en": "calcium",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-zinc",
+      "ky": "цинк",
+      "ru": "цинк",
+      "en": "zinc",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-iron",
+      "ky": "темир",
+      "ru": "железо",
+      "en": "iron",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-copper",
+      "ky": "жез",
+      "ru": "медь",
+      "en": "copper",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-gold",
+      "ky": "алтын",
+      "ru": "золото",
+      "en": "gold",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-silver",
+      "ky": "күмүш",
+      "ru": "серебро",
+      "en": "silver",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-exothermic",
+      "ky": "экзотермикалык",
+      "ru": "экзотермический",
+      "en": "exothermic",
+      "forbidden": [
+        "exothermal"
+      ]
+    },
+    {
+      "id": "g-chem-endothermic",
+      "ky": "эндотермикалык",
+      "ru": "эндотермический",
+      "en": "endothermic",
+      "forbidden": [
+        "endothermal"
+      ]
+    },
+    {
+      "id": "g-chem-activation-energy",
+      "ky": "активдешүү энергиясы",
+      "ru": "энергия активации",
+      "en": "activation energy",
+      "forbidden": [
+        "активация энергиясы"
+      ]
+    },
+    {
+      "id": "g-chem-energy-diagram",
+      "ky": "энергетикалык диаграмма",
+      "ru": "энергетическая диаграмма",
+      "en": "energy level diagram",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-enthalpy-change",
+      "ky": "реакциянын жылуулук эффекти (ΔH)",
+      "ru": "тепловой эффект реакции (ΔH)",
+      "en": "energy change of a reaction (ΔH)",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-thermal-decomposition",
+      "ky": "термикалык ажыроо",
+      "ru": "термическое разложение",
+      "en": "thermal decomposition",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-ammonium-nitrate",
+      "ky": "аммоний нитраты",
+      "ru": "нитрат аммония",
+      "en": "ammonium nitrate",
+      "forbidden": [
+        "аммоний нитрат"
+      ]
+    },
+    {
+      "id": "g-chem-plaster-of-paris",
+      "ky": "гипс (CaSO₄·½H₂O)",
+      "ru": "гипс (CaSO₄·½H₂O)",
+      "en": "plaster of Paris",
+      "forbidden": []
+    },
+    {
+      "id": "g-chem-crystallisation",
+      "ky": "кристаллдашуу",
+      "ru": "кристаллизация",
+      "en": "crystallisation",
+      "forbidden": []
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "bondType",
+      "icon": "link",
+      "valueKind": "text",
+      "label": {
+        "ky": "Байланыштын түрү",
+        "ru": "Тип связи",
+        "en": "Bond type"
+      }
+    },
+    {
+      "key": "composition",
+      "icon": "flask-conical",
+      "valueKind": "text",
+      "label": {
+        "ky": "Курамы",
+        "ru": "Состав",
+        "en": "Composition"
+      }
+    },
+    {
+      "key": "energy",
+      "icon": "battery",
+      "valueKind": "quantity",
+      "unit": "J",
+      "label": {
+        "ky": "Энергия",
+        "ru": "Энергия",
+        "en": "Energy"
+      }
+    },
+    {
+      "key": "geometry",
+      "icon": "pyramid",
+      "valueKind": "text",
+      "label": {
+        "ky": "Молекуланын формасы",
+        "ru": "Геометрия молекулы",
+        "en": "Molecular geometry"
+      }
+    },
+    {
+      "key": "length",
+      "icon": "ruler",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Узундугу",
+        "ru": "Длина",
+        "en": "Length"
+      }
+    },
+    {
+      "key": "state",
+      "icon": "droplet",
+      "valueKind": "text",
+      "label": {
+        "ky": "Агрегаттык абалы",
+        "ru": "Агрегатное состояние",
+        "en": "State of matter"
+      }
+    }
+  ]
+}

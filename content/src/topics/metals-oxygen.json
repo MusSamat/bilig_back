@@ -1,0 +1,1032 @@
+{
+  "topic": {
+    "key": "metals-oxygen",
+    "unitKey": "chem.g8.metals",
+    "status": "published",
+    "title": {
+      "ky": "Металлдардын кычкылтек менен реакциясы",
+      "ru": "Реакции металлов с кислородом",
+      "en": "Metals and oxygen"
+    },
+    "formula": "2Mg + O_2 \\to 2MgO",
+    "classification": {
+      "ky": "Металл + кычкылтек → металл оксиди",
+      "ru": "Металл + кислород → оксид металла",
+      "en": "Metal + oxygen → metal oxide"
+    },
+    "description": {
+      "ky": "Ысытканда көп металлдар кычкылтек менен бириккенде оксид пайда болот. Магний жаркыраган ак жалын менен күйүп, ак MgO күкүмүнө айланат; жез күйбөйт, бирок бети кара CuO менен капталат; алтын жана күмүш такыр өзгөрбөйт. Реакциянын ылдамдыгы металлдын активдүүлүгүнө жараша.",
+      "ru": "При нагревании многие металлы соединяются с кислородом и образуют оксиды. Магний сгорает ослепительно белым пламенем и превращается в белый порошок MgO; медь не горит, но чернеет от CuO; золото и серебро не меняются вовсе. Скорость реакции зависит от активности металла.",
+      "en": "When heated, many metals join with oxygen to form oxides. Magnesium burns with a dazzling white flame and turns into white MgO powder; copper does not burn but turns black with CuO; gold and silver do not change at all. How fast this happens depends on how reactive the metal is."
+    },
+    "goal": {
+      "ky": "Металлдардын кычкылтек менен реакцияларын сүрөттөп, алардын теңдемелерин теңдештирип жазуу (CHEM-8.4.1).",
+      "ru": "Описать реакции металлов с кислородом и записать их уравнения с коэффициентами (CHEM-8.4.1).",
+      "en": "Describe how metals react with oxygen and write balanced equations for them (CHEM-8.4.1)."
+    },
+    "objectiveKeys": [
+      "chem.g8.metals.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "reaction-vessel",
+        "metal": "Mg",
+        "reagent": "oxygen",
+        "compare": [
+          "Cu",
+          "Ag",
+          "Au"
+        ]
+      },
+      "camera": {
+        "position": [
+          0,
+          1.8,
+          7.5
+        ],
+        "target": [
+          0,
+          0.6,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "run",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "chem.magnesium",
+      "chem.combustion",
+      "chem.metal-oxide",
+      "chem.copper",
+      "chem.gold"
+    ],
+    "overrides": {
+      "chem.magnesium": {
+        "nodes": [
+          "Metal_Mg"
+        ]
+      },
+      "chem.combustion": {
+        "nodes": [
+          "Flame"
+        ]
+      },
+      "chem.metal-oxide": {
+        "nodes": [
+          "Product"
+        ]
+      },
+      "chem.copper": {
+        "nodes": [
+          "Metal_Cu"
+        ]
+      },
+      "chem.gold": {
+        "nodes": [
+          "Metal_Au"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "mg-burning",
+        "title": {
+          "ky": "Магний кычкылтекте",
+          "ru": "Магний в кислороде",
+          "en": "Magnesium in oxygen"
+        },
+        "classification": {
+          "ky": "Ак жалын · MgO",
+          "ru": "Белое пламя · MgO",
+          "en": "White flame · MgO"
+        },
+        "thumb": "thumbs/mg-burning.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "2Mg + O_2 \\to 2MgO"
+          },
+          {
+            "kind": "text",
+            "type": "state",
+            "value": {
+              "ky": "Ак күкүм пайда болот",
+              "ru": "Образуется белый порошок",
+              "en": "A white powder forms"
+            }
+          }
+        ]
+      },
+      {
+        "key": "cu-heated",
+        "title": {
+          "ky": "Ысытылган жез",
+          "ru": "Нагретая медь",
+          "en": "Heated copper"
+        },
+        "classification": {
+          "ky": "Кара катмар · CuO",
+          "ru": "Чёрный налёт · CuO",
+          "en": "Black coating · CuO"
+        },
+        "thumb": "thumbs/cu-heated.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "2Cu + O_2 \\to 2CuO"
+          },
+          {
+            "kind": "text",
+            "type": "state",
+            "value": {
+              "ky": "Бети карарат, күйбөйт",
+              "ru": "Чернеет, не горит",
+              "en": "Turns black, does not burn"
+            }
+          }
+        ]
+      },
+      {
+        "key": "au-unchanged",
+        "title": {
+          "ky": "Алтын жана күмүш",
+          "ru": "Золото и серебро",
+          "en": "Gold and silver"
+        },
+        "classification": {
+          "ky": "Реакция жок",
+          "ru": "Реакции нет",
+          "en": "No reaction"
+        },
+        "thumb": "thumbs/au-unchanged.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "state",
+            "value": {
+              "ky": "Жылтырагын сактайт",
+              "ru": "Сохраняют блеск",
+              "en": "Stay shiny"
+            }
+          }
+        ]
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                1.8,
+                7.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ]
+            },
+            "modes": {
+              "run": false,
+              "labels": true
+            },
+            "text": {
+              "ky": "Идиштерде кычкылтек жана ысытылып жаткан төрт металл: магний, жез, күмүш, алтын. Алардын баары бирдей реакцияга киреби?",
+              "ru": "В сосудах с кислородом нагреваются четыре металла: магний, медь, серебро и золото. Одинаково ли они реагируют?",
+              "en": "Four metals are heated in oxygen: magnesium, copper, silver and gold. Will they all react the same way?"
+            },
+            "teacherNote": {
+              "ky": "Окуучулардан алдын ала божомол сураңыз: кайсы металл күйөт, кайсынысы өзгөрбөйт? Жоопторун тактага жазып коюңуз.",
+              "ru": "Попросите учеников сделать прогноз: какой металл загорится, какой не изменится? Запишите ответы на доске.",
+              "en": "Ask pupils to predict which metal will burn and which will not change. Write their guesses on the board."
+            },
+            "altText": {
+              "ky": "Кычкылтек толтурулган идиштерде катар турган төрт металл.",
+              "ru": "Четыре металла в ряд в сосудах с кислородом.",
+              "en": "Four metals in a row in jars of oxygen."
+            }
+          },
+          {
+            "key": "magnesium",
+            "sample": "mg-burning",
+            "camera": {
+              "position": [
+                0,
+                1.3,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": false
+            },
+            "focus": "chem.magnesium",
+            "text": {
+              "ky": "Магний тасмасын жалынга кармайбыз. Аны тутандыруу үчүн алгач ысытуу керек – өзүнөн-өзү күйбөйт.",
+              "ru": "Держим ленту магния в пламени. Сначала её нужно нагреть – сама она не загорится.",
+              "en": "We hold magnesium ribbon in a flame. It must be heated first – it does not catch fire by itself."
+            },
+            "teacherNote": {
+              "ky": "Коопсуздук: бул тажрыйбаны мугалим гана, коргоочу көз айнек менен жүргүзөт; окуучулар симуляцияны карашат. Күйгөн магнийге түз карабагыла.",
+              "ru": "Безопасность: этот опыт проводит только учитель в защитных очках; ученики смотрят симуляцию. Не смотрите прямо на горящий магний.",
+              "en": "Safety: only the teacher runs this demo, wearing goggles; pupils watch the simulation. Never look straight at burning magnesium."
+            },
+            "altText": {
+              "ky": "Кычкачтагы күмүш түстүү магний тасмасы.",
+              "ru": "Серебристая лента магния в щипцах.",
+              "en": "A silvery magnesium ribbon in tongs."
+            }
+          },
+          {
+            "key": "flame",
+            "sample": "mg-burning",
+            "camera": {
+              "position": [
+                0,
+                1.3,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.combustion",
+            "text": {
+              "ky": "Магний көздү уялткан ак жалын менен күйөт: көп жылуулук жана жарык бөлүнөт. Бул – күйүү.",
+              "ru": "Магний горит ослепительным белым пламенем: выделяется много тепла и света. Это горение.",
+              "en": "Magnesium burns with a dazzling white flame, giving out lots of heat and light. This is combustion."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: кычкылтек күйөбү? Окуучулар көп учурда «ооба» дешет – кычкылтек күйүүнү колдой турганын, бирок өзү отун эмес экенин түшүндүрүңүз.",
+              "ru": "Спросите: горит ли кислород? Часто отвечают «да» – объясните, что кислород поддерживает горение, но сам не топливо.",
+              "en": "Ask: does oxygen burn? Many say yes – explain that oxygen supports burning but is not itself the fuel."
+            },
+            "altText": {
+              "ky": "Тасманын учунда ачык ак жалын.",
+              "ru": "Яркое белое пламя на конце ленты.",
+              "en": "A bright white flame at the end of the ribbon."
+            }
+          },
+          {
+            "key": "oxide",
+            "sample": "mg-burning",
+            "camera": {
+              "position": [
+                0,
+                1.3,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true,
+              "labels": true
+            },
+            "focus": "chem.metal-oxide",
+            "text": {
+              "ky": "Ак күкүм калды – магний оксиди: 2Mg + O₂ → 2MgO. Ар бир тарапта 2 магний жана 2 кычкылтек атому бар.",
+              "ru": "Остался белый порошок – оксид магния: 2Mg + O₂ → 2MgO. С каждой стороны 2 атома магния и 2 атома кислорода.",
+              "en": "A white powder is left – magnesium oxide: 2Mg + O₂ → 2MgO. Each side has 2 magnesium and 2 oxygen atoms."
+            },
+            "teacherNote": {
+              "ky": "«Магнийдин күйүшү» процессин ишке киргизиңиз: масса 48,6 г тан 80,6 г ка өсөт. Сураңыз: күл эмне үчүн металлдан оор?",
+              "ru": "Запустите процесс «Горение магния»: масса растёт с 48,6 г до 80,6 г. Спросите: почему «пепел» тяжелее металла?",
+              "en": "Run the «Burning magnesium» process: the mass grows from 48.6 g to 80.6 g. Ask why the ash is heavier than the metal."
+            },
+            "altText": {
+              "ky": "Жалындын ордунда ак күкүм.",
+              "ru": "Белый порошок на месте пламени.",
+              "en": "White powder where the flame was."
+            }
+          },
+          {
+            "key": "copper",
+            "sample": "cu-heated",
+            "camera": {
+              "position": [
+                0,
+                1.3,
+                3.5
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "modes": {
+              "run": true
+            },
+            "focus": "chem.copper",
+            "text": {
+              "ky": "Жез күйбөйт, бирок ысытканда бети карарат: 2Cu + O₂ → 2CuO. Реакция жүрөт, бирок магнийге караганда алда канча жай.",
+              "ru": "Медь не горит, но при нагревании чернеет: 2Cu + O₂ → 2CuO. Реакция идёт, но гораздо медленнее, чем у магния.",
+              "en": "Copper does not burn, but it turns black when heated: 2Cu + O₂ → 2CuO. It does react, just much more slowly than magnesium."
+            },
+            "teacherNote": {
+              "ky": "Кара катмарды кагаз менен сүртүп көрсөтүңүз: астында жылтыр жез. Бул күйө эмес, жаңы зат экенин белгилеңиз.",
+              "ru": "Покажите, что если соскоблить чёрный слой, под ним блестящая медь. Подчеркните: это не сажа, а новое вещество.",
+              "en": "Scrape off the black layer to show shiny copper underneath. Stress that it is a new substance, not soot."
+            },
+            "altText": {
+              "ky": "Бети кара болуп калган жез пластинка.",
+              "ru": "Медная пластинка с чёрной поверхностью.",
+              "en": "A copper plate with a black surface."
+            }
+          },
+          {
+            "key": "gold",
+            "sample": "au-unchanged",
+            "camera": {
+              "position": [
+                0,
+                1.3,
+                4.0
+              ],
+              "target": [
+                0,
+                0.8,
+                0
+              ]
+            },
+            "focus": "chem.gold",
+            "text": {
+              "ky": "Күмүш менен алтын ысытылса да өзгөрбөйт: алар кычкылтек менен реакцияга кирбейт. Ошондуктан зер буюмдар миң жылдар бою жылтырайт.",
+              "ru": "Серебро и золото при нагревании не меняются: они не реагируют с кислородом. Поэтому украшения блестят тысячи лет.",
+              "en": "Silver and gold do not change when heated: they do not react with oxygen. That is why jewellery stays shiny for thousands of years."
+            },
+            "teacherNote": {
+              "ky": "Күмүштүн карарышы кычкылтектен эмес, абадагы күкүрт бирикмелеринен экенин айтыңыз – бул көп таралган жаңылыштык.",
+              "ru": "Скажите, что серебро темнеет не от кислорода, а от соединений серы в воздухе, – частая ошибка.",
+              "en": "Point out that silver tarnishes because of sulfur compounds, not oxygen – a common mistake."
+            },
+            "altText": {
+              "ky": "Жылтыр бойдон калган алтын жана күмүш.",
+              "ru": "Золото и серебро остаются блестящими.",
+              "en": "Gold and silver stay shiny."
+            }
+          },
+          {
+            "key": "summary",
+            "camera": {
+              "position": [
+                0,
+                1.8,
+                7.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ]
+            },
+            "modes": {
+              "labels": true
+            },
+            "text": {
+              "ky": "Жыйынтык: металл + кычкылтек → металл оксиди. Реакцияга кирүү жөндөмү: Mg > Cu > Ag, Au. Бул ырааттуулук активдүүлүк катарына туура келет.",
+              "ru": "Итог: металл + кислород → оксид металла. Способность реагировать: Mg > Cu > Ag, Au. Этот порядок совпадает с рядом активности.",
+              "en": "Summary: metal + oxygen → metal oxide. How readily they react: Mg > Cu > Ag, Au. This order matches the reactivity series."
+            },
+            "teacherNote": {
+              "ky": "Сабактын башындагы божомолдорго кайтып, кимдики туура чыкканын талкуулаңыз. Үй тапшырмасы: 2Zn + O₂ → ? теңдемесин бүтүрүү.",
+              "ru": "Вернитесь к прогнозам начала урока и обсудите, чьи сбылись. Домашнее задание: дописать 2Zn + O₂ → ?",
+              "en": "Go back to the predictions from the start and see whose were right. Homework: complete 2Zn + O₂ → ?"
+            },
+            "altText": {
+              "ky": "Төрт металл жана алардын натыйжалары жазылган белгилер.",
+              "ru": "Четыре металла с подписями результатов.",
+              "en": "Four metals labelled with their results."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.magnesium-combustion"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.magnesium"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.copper"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.gold"
+          }
+        ],
+        "rows": [
+          "density",
+          "meltingPoint",
+          "molarMass"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.metals-oxygen-1",
+          "chem.q.metals-oxygen-2",
+          "chem.q.metals-oxygen-3",
+          "chem.q.metals-oxygen-4",
+          "chem.q.metals-oxygen-5",
+          "chem.q.metals-oxygen-6",
+          "chem.q.metals-oxygen-7",
+          "chem.q.metals-oxygen-8",
+          "chem.q.metals-oxygen-9",
+          "chem.q.metals-oxygen-10",
+          "chem.q.metals-oxygen-11"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Сигнал ракеталары",
+            "ru": "Сигнальные огни",
+            "en": "Flares"
+          },
+          "text": {
+            "ky": "Магний күйгөндөгү ак жарык деңиздеги жана тоодогу куткаруучулардын сигнал ракеталарында колдонулат.",
+            "ru": "Белый свет горящего магния используют в сигнальных огнях спасателей на море и в горах.",
+            "en": "The white light of burning magnesium is used in rescue flares at sea and in the mountains."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Тоттон коргоо",
+            "ru": "Защита от ржавчины",
+            "en": "Rust protection"
+          },
+          "text": {
+            "ky": "Инженерлер темирди сыр, май же цинк менен каптап, кычкылтек менен суудан бөлүшөт.",
+            "ru": "Инженеры покрывают железо краской, смазкой или цинком, отделяя его от кислорода и воды.",
+            "en": "Engineers cover iron with paint, grease or zinc to keep oxygen and water away."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Масса эсеби",
+            "ru": "Расчёт массы",
+            "en": "Mass calculation"
+          },
+          "text": {
+            "ky": "2,4 г магний (0,1 моль) күйгөндө 4,0 г MgO пайда болот – 1,6 г кычкылтек кошулат.",
+            "ru": "При сгорании 2,4 г магния (0,1 моль) образуется 4,0 г MgO – присоединяется 1,6 г кислорода.",
+            "en": "Burning 2.4 g of magnesium (0.1 mol) gives 4.0 g of MgO – 1.6 g of oxygen is added."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Бенгал оту",
+            "ru": "Бенгальский огонь",
+            "en": "A sparkler"
+          },
+          "text": {
+            "ky": "Жаңы жылдагы бенгал отунун ак учкундары – күйүп жаткан металл күкүмү.",
+            "ru": "Белые искры новогоднего бенгальского огня – это горящий металлический порошок.",
+            "en": "The white sparks of a New Year sparkler are burning metal powder."
+          }
+        },
+        {
+          "title": {
+            "ky": "Чоң апанын шакеги",
+            "ru": "Бабушкино кольцо",
+            "en": "Grandma's ring"
+          },
+          "text": {
+            "ky": "Алтын шакек 50 жылдан кийин да жылтырайт, ал эми темир мык бир нече айда тот басат.",
+            "ru": "Золотое кольцо блестит и через 50 лет, а железный гвоздь ржавеет за несколько месяцев.",
+            "en": "A gold ring still shines after 50 years, while an iron nail rusts in a few months."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "chem.q.metals-oxygen-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Магний кычкылтекте күйгөндө кайсы зат пайда болот?",
+        "ru": "Какое вещество образуется при сгорании магния в кислороде?",
+        "en": "What substance forms when magnesium burns in oxygen?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "MgO",
+            "ru": "MgO",
+            "en": "MgO"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Mg(OH)₂",
+            "ru": "Mg(OH)₂",
+            "en": "Mg(OH)₂"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "MgCl₂",
+            "ru": "MgCl₂",
+            "en": "MgCl₂"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "MgO₂",
+            "ru": "MgO₂",
+            "en": "MgO₂"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "2Mg + O₂ → 2MgO: магний оксиди – ак күкүм.",
+        "ru": "2Mg + O₂ → 2MgO: оксид магния – белый порошок.",
+        "en": "2Mg + O₂ → 2MgO: magnesium oxide, a white powder."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.metals-oxygen-2",
+      "type": "single",
+      "prompt": {
+        "ky": "__Mg + O₂ → __MgO теңдемесинде бош орундарга кайсы коэффициенттер жазылат?",
+        "ru": "Какие коэффициенты нужно поставить в уравнении __Mg + O₂ → __MgO?",
+        "en": "Which coefficients complete __Mg + O₂ → __MgO?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "1 жана 1",
+            "ru": "1 и 1",
+            "en": "1 and 1"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "2 жана 2",
+            "ru": "2 и 2",
+            "en": "2 and 2"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "1 жана 2",
+            "ru": "1 и 2",
+            "en": "1 and 2"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "2 жана 1",
+            "ru": "2 и 1",
+            "en": "2 and 1"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Сол жакта O₂ де 2 кычкылтек атому, демек оң жакта 2MgO керек, анда магний да 2: 2Mg + O₂ → 2MgO.",
+        "ru": "В O₂ два атома кислорода, значит, справа нужно 2MgO, тогда и магния 2: 2Mg + O₂ → 2MgO.",
+        "en": "O₂ has two oxygen atoms, so we need 2MgO on the right, and then 2Mg on the left: 2Mg + O₂ → 2MgO."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-oxygen-3",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы металлдар кычкылтекте ысытылганда өзгөрбөйт?",
+        "ru": "Какие металлы не изменяются при нагревании в кислороде?",
+        "en": "Which metals do not change when heated in oxygen?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Алтын",
+            "ru": "Золото",
+            "en": "Gold"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Күмүш",
+            "ru": "Серебро",
+            "en": "Silver"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жез",
+            "ru": "Медь",
+            "en": "Copper"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Магний",
+            "ru": "Магний",
+            "en": "Magnesium"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "explanation": {
+        "ky": "Алтын жана күмүш активдүүлүк катарынын аягында турат жана кычкылтек менен реакцияга кирбейт. Жез карарат, магний күйөт.",
+        "ru": "Золото и серебро стоят в конце ряда активности и не реагируют с кислородом. Медь чернеет, магний горит.",
+        "en": "Gold and silver are at the bottom of the reactivity series and do not react with oxygen. Copper turns black and magnesium burns."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.silver-tarnish-oxygen",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-oxygen-4",
+      "type": "match",
+      "prompt": {
+        "ky": "Металлды ал кычкылтекте ысытылганда байкалган белги менен дал келтир.",
+        "ru": "Сопоставь металл и то, что наблюдается при его нагревании в кислороде.",
+        "en": "Match each metal to what you see when it is heated in oxygen."
+      },
+      "pairs": [
+        {
+          "key": "mg",
+          "left": {
+            "ky": "Mg",
+            "ru": "Mg",
+            "en": "Mg"
+          },
+          "right": {
+            "ky": "Ак жалын, ак күкүм",
+            "ru": "Белое пламя, белый порошок",
+            "en": "White flame, white powder"
+          }
+        },
+        {
+          "key": "fe",
+          "left": {
+            "ky": "Fe (темир жүнү)",
+            "ru": "Fe (железная вата)",
+            "en": "Fe (iron wool)"
+          },
+          "right": {
+            "ky": "Учкун чачып күйөт",
+            "ru": "Горит, разбрасывая искры",
+            "en": "Burns with sparks"
+          }
+        },
+        {
+          "key": "cu",
+          "left": {
+            "ky": "Cu",
+            "ru": "Cu",
+            "en": "Cu"
+          },
+          "right": {
+            "ky": "Бети карарат",
+            "ru": "Чернеет",
+            "en": "Turns black"
+          }
+        },
+        {
+          "key": "au",
+          "left": {
+            "ky": "Au",
+            "ru": "Au",
+            "en": "Au"
+          },
+          "right": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не меняется",
+            "en": "No change"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Mg – ак жалын жана ак күкүм; Fe (темир жүнү) – учкундар; Cu – кара катмар; Au – өзгөрүү жок.",
+        "ru": "Mg – белое пламя и белый порошок; Fe (железная вата) – искры; Cu – чёрный налёт; Au – без изменений.",
+        "en": "Mg – white flame and white powder; Fe (iron wool) – sparks; Cu – black coating; Au – no change."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.metals-oxygen-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Магний күйгөндө пайда болгон затты (магний оксидин) тап.",
+        "ru": "Найди вещество, которое образовалось при горении магния (оксид магния).",
+        "en": "Find the substance formed when magnesium burned (magnesium oxide)."
+      },
+      "targetConceptKey": "chem.metal-oxide",
+      "explanation": {
+        "ky": "Магний оксиди – реакциядан кийин калган ак күкүм.",
+        "ru": "Оксид магния – белый порошок, оставшийся после реакции.",
+        "en": "Magnesium oxide is the white powder left after the reaction."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.metal-burns-lighter",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.metals-oxygen-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Ысытканда күйбөй, бети гана караган металлды тап.",
+        "ru": "Найди металл, который при нагревании не горит, а только чернеет.",
+        "en": "Find the metal that does not burn when heated but only turns black."
+      },
+      "targetConceptKey": "chem.copper",
+      "explanation": {
+        "ky": "Жез: 2Cu + O₂ → 2CuO – кара жез (II) оксиди.",
+        "ru": "Медь: 2Cu + O₂ → 2CuO – чёрный оксид меди(II).",
+        "en": "Copper: 2Cu + O₂ → 2CuO, black copper(II) oxide."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.oxide-is-soot",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-oxygen-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "2,4 г магний толук күйгөндө канча грамм магний оксиди пайда болот? (M(Mg) = 24 г/моль, M(MgO) = 40 г/моль)",
+        "ru": "Сколько граммов оксида магния образуется при полном сгорании 2,4 г магния? (M(Mg) = 24 г/моль, M(MgO) = 40 г/моль)",
+        "en": "How many grams of magnesium oxide form when 2.4 g of magnesium burns completely? (M(Mg) = 24 g/mol, M(MgO) = 40 g/mol)"
+      },
+      "answer": 4.0,
+      "tolerance": 0.1,
+      "unit": "g",
+      "explanation": {
+        "ky": "2,4 г : 24 г/моль = 0,1 моль Mg → 0,1 моль MgO × 40 г/моль = 4,0 г.",
+        "ru": "2,4 г : 24 г/моль = 0,1 моль Mg → 0,1 моль MgO × 40 г/моль = 4,0 г.",
+        "en": "2.4 g ÷ 24 g/mol = 0.1 mol Mg → 0.1 mol MgO × 40 g/mol = 4.0 g."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.metals-oxygen-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "0,48 г магний тасмасы күйүп, 0,80 г ак күкүм калды. Канча грамм кычкылтек кошулду?",
+        "ru": "Лента магния массой 0,48 г сгорела, осталось 0,80 г белого порошка. Сколько граммов кислорода присоединилось?",
+        "en": "A 0.48 g magnesium ribbon burned and left 0.80 g of white powder. How many grams of oxygen were added?"
+      },
+      "answer": 0.32,
+      "tolerance": 0.01,
+      "unit": "g",
+      "explanation": {
+        "ky": "Масса сакталат: 0,80 − 0,48 = 0,32 г кычкылтек.",
+        "ru": "Масса сохраняется: 0,80 − 0,48 = 0,32 г кислорода.",
+        "en": "Mass is conserved: 0.80 − 0.48 = 0.32 g of oxygen."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.metal-burns-lighter",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.metals-oxygen-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн магний күйгөндөн кийин калган күкүм магнийдин өзүнөн оор?",
+        "ru": "Почему порошок после сгорания магния тяжелее самого магния?",
+        "en": "Why is the powder left after magnesium burns heavier than the magnesium?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ага кычкылтек кошулду",
+            "ru": "К нему присоединился кислород",
+            "en": "Oxygen joined it"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ага күйө жабышты",
+            "ru": "На него осела сажа",
+            "en": "Soot stuck to it"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ысыганда металл кеңейди",
+            "ru": "Металл расширился при нагреве",
+            "en": "The metal expanded when hot"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Тараза ката кетирди",
+            "ru": "Весы ошиблись",
+            "en": "The scales were wrong"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Магнийге абадагы кычкылтек кошулду; жалпы масса сакталат.",
+        "ru": "К магнию присоединился кислород воздуха; общая масса сохраняется.",
+        "en": "Oxygen from the air joined the magnesium; total mass is conserved."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.metal-burns-lighter",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-oxygen-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Күйүп жаткан магнийди кантип өчүрүү керек?",
+        "ru": "Как нужно тушить горящий магний?",
+        "en": "How should burning magnesium be put out?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Суу куюп",
+            "ru": "Залить водой",
+            "en": "Pour water on it"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Кургак кум менен басып",
+            "ru": "Засыпать сухим песком",
+            "en": "Cover it with dry sand"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Үйлөп",
+            "ru": "Задуть",
+            "en": "Blow it out"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Кычкылтек берип",
+            "ru": "Добавить кислорода",
+            "en": "Add more oxygen"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Магний суу менен да реакцияга кирет, ошондуктан аны кургак кум менен басышат. Мындай тажрыйбаны мугалим гана жүргүзөт.",
+        "ru": "Магний реагирует и с водой, поэтому его засыпают сухим песком. Такой опыт проводит только учитель.",
+        "en": "Magnesium reacts with water too, so it is smothered with dry sand. Only the teacher runs this demo."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.oxygen-is-fuel",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.metals-oxygen-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Жезди ысытканда бетинде пайда болгон кара катмар – бул эмне?",
+        "ru": "Чёрный слой на нагретой меди – это что?",
+        "en": "What is the black layer that forms on heated copper?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Күйө (көө)",
+            "ru": "Сажа",
+            "en": "Soot"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жез (II) оксиди CuO",
+            "ru": "Оксид меди(II) CuO",
+            "en": "Copper(II) oxide, CuO"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эриген жез",
+            "ru": "Расплавленная медь",
+            "en": "Melted copper"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Тот",
+            "ru": "Ржавчина",
+            "en": "Rust"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Бул жаңы зат – жез (II) оксиди: 2Cu + O₂ → 2CuO.",
+        "ru": "Это новое вещество – оксид меди(II): 2Cu + O₂ → 2CuO.",
+        "en": "It is a new substance, copper(II) oxide: 2Cu + O₂ → 2CuO."
+      },
+      "objectiveKeys": [
+        "chem.g8.metals.o1"
+      ],
+      "misconceptionKey": "chem.m.oxide-is-soot",
+      "difficulty": 2
+    }
+  ]
+}

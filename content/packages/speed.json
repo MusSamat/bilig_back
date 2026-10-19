@@ -1,0 +1,2462 @@
+{
+  "manifest": {
+    "topicKey": "speed",
+    "version": "1.0.0",
+    "hash": "bc904a719bdfa1a0bcdb6704f8a7ab08a98637174ff90f7d2e90c57b1468ee45",
+    "files": [
+      {
+        "path": "thumbs/speed-city-car.webp",
+        "hash": "eb0c4dd858ab2cd23ca63511b2107b669ea8e3b3bf43ccc91bca6ca7ed5fef86",
+        "size": 0
+      },
+      {
+        "path": "thumbs/speed-cyclist.webp",
+        "hash": "7a4e9861174c64aac95bbf6df368b9daadea655b1e4ff5b95ee063c3ff67cbbd",
+        "size": 0
+      },
+      {
+        "path": "thumbs/speed-pedestrian.webp",
+        "hash": "d47e879b98cfc55087621db24bd2727126ab042ff61ac106f9834282b47d6675",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "phys",
+    "icon": "orbit",
+    "hue": 28,
+    "group": "natural",
+    "order": 2,
+    "status": "live",
+    "title": {
+      "ky": "Физика",
+      "ru": "Физика",
+      "en": "Physics"
+    }
+  },
+  "course": {
+    "key": "phys.g8",
+    "subjectKey": "phys",
+    "grade": 8,
+    "curriculum": "kg-2024",
+    "title": {
+      "ky": "Физика, 8-класс",
+      "ru": "Физика, 8 класс",
+      "en": "Physics, grade 8"
+    }
+  },
+  "unit": {
+    "key": "phys.g8.motion",
+    "courseKey": "phys.g8",
+    "order": 2,
+    "title": {
+      "ky": "Күчтөр жана кыймыл",
+      "ru": "Силы и движение",
+      "en": "Forces and motion"
+    }
+  },
+  "objectives": [
+    {
+      "key": "phys.g8.motion.o1",
+      "code": "PHYS-8.4.1",
+      "unitKey": "phys.g8.motion",
+      "text": {
+        "ky": "Ылдамдыкты эсептөө жана аралыктын убакыттан көз карандылык графигин окуу.",
+        "ru": "Вычислять скорость и читать график зависимости пути от времени.",
+        "en": "Calculate speed and read a distance–time graph."
+      }
+    },
+    {
+      "key": "phys.g8.motion.o2",
+      "code": "PHYS-8.4.2",
+      "unitKey": "phys.g8.motion",
+      "text": {
+        "ky": "Күчтөрдү векторлор менен сүрөттөө, тең аракеттүү күчтү жана күчтүн моментин табуу.",
+        "ru": "Изображать силы векторами, находить равнодействующую и момент силы.",
+        "en": "Draw forces as vectors, find the resultant force and the moment of a force."
+      }
+    }
+  ],
+  "topic": {
+    "key": "speed",
+    "unitKey": "phys.g8.motion",
+    "status": "published",
+    "title": {
+      "ky": "Ылдамдык",
+      "ru": "Скорость",
+      "en": "Speed"
+    },
+    "formula": "v = s/t",
+    "classification": {
+      "ky": "Кинематика",
+      "ru": "Кинематика",
+      "en": "Kinematics"
+    },
+    "description": {
+      "ky": "Түз жол менен бараткан машина: жолдогу белгилер, секундомер жана радар. Ылдамдык – убакыт бирдигинде басып өткөн жол; аны v = s/t формуласы менен эсептеп, м/с жана км/саат менен туюндурабыз.",
+      "ru": "Машина на прямой дороге: отметки вдоль дороги, секундомер и радар. Скорость – путь за единицу времени; её вычисляют по формуле v = s/t и выражают в м/с и км/ч.",
+      "en": "A car on a straight road with distance markers, a stopwatch and a speed radar. Speed is the distance covered per unit of time; we calculate it with v = s/t and express it in m/s and km/h."
+    },
+    "goal": {
+      "ky": "Ылдамдыкты v = s/t формуласы боюнча эсептөө, м/с менен км/сааттын ортосунда которуу жана ылдамдыкты ченөөнүн жолдорун түшүндүрүү (PHYS-8.4.1).",
+      "ru": "Вычислять скорость по формуле v = s/t, переводить м/с в км/ч и обратно и объяснять, как измеряют скорость (PHYS-8.4.1).",
+      "en": "Calculate speed with v = s/t, convert between m/s and km/h, and explain how speed is measured (PHYS-8.4.1)."
+    },
+    "objectiveKeys": [
+      "phys.g8.motion.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "kinematics",
+        "segments": [
+          {
+            "v": 15,
+            "t": 10
+          }
+        ],
+        "radar": true,
+        "showGraph": true,
+        "markEvery": 10
+      },
+      "camera": {
+        "position": [
+          0,
+          5,
+          14
+        ],
+        "target": [
+          0,
+          0.5,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "trace",
+        "graph"
+      ]
+    },
+    "conceptKeys": [
+      "phys.car",
+      "phys.distance",
+      "phys.travel-time",
+      "phys.speed",
+      "phys.speed-radar",
+      "phys.uniform-motion"
+    ],
+    "overrides": {
+      "phys.car": {
+        "nodes": [
+          "Car"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 15
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 54,
+            "unit": "km/h"
+          }
+        ]
+      },
+      "phys.distance": {
+        "nodes": [
+          "Road",
+          "Marker_*"
+        ],
+        "description": {
+          "ky": "Машина басып өткөн жол. Жолдун жээгиндеги белгилер ар бир 10 м сайын коюлган: 10 с ичинде машина 15 белгиден өтүп, 150 м жол басат.",
+          "ru": "Путь, пройденный машиной. Отметки вдоль дороги стоят через каждые 10 м: за 10 с машина минует 15 отметок и проходит 150 м.",
+          "en": "The distance the car covers. The roadside markers are 10 m apart: in 10 s the car passes 15 of them and travels 150 m."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "distance",
+            "value": 150,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 10
+          }
+        ]
+      },
+      "phys.travel-time": {
+        "nodes": [
+          "Stopwatch"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "eventDuration",
+            "value": 10,
+            "unit": "s"
+          }
+        ]
+      },
+      "phys.speed": {
+        "nodes": [
+          "Arrow_Velocity"
+        ],
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "v = \\frac{s}{t}"
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 15
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 54,
+            "unit": "km/h"
+          }
+        ]
+      },
+      "phys.speed-radar": {
+        "nodes": [
+          "Radar"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 54,
+            "unit": "km/h"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "speed-city-car",
+        "title": {
+          "ky": "Шаардагы машина, 15 м/с",
+          "ru": "Машина в городе, 15 м/с",
+          "en": "City car, 15 m/s"
+        },
+        "classification": {
+          "ky": "54 км/саат",
+          "ru": "54 км/ч",
+          "en": "54 km/h"
+        },
+        "thumb": "thumbs/speed-city-car.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 15
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 1300,
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "kinematics",
+            "segments": [
+              {
+                "v": 15,
+                "t": 10
+              }
+            ],
+            "radar": true,
+            "showGraph": true,
+            "markEvery": 10
+          }
+        }
+      },
+      {
+        "key": "speed-cyclist",
+        "title": {
+          "ky": "Велосипедчи, 5 м/с",
+          "ru": "Велосипедист, 5 м/с",
+          "en": "Cyclist, 5 m/s"
+        },
+        "classification": {
+          "ky": "18 км/саат",
+          "ru": "18 км/ч",
+          "en": "18 km/h"
+        },
+        "thumb": "thumbs/speed-cyclist.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 5
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 80,
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "kinematics",
+            "segments": [
+              {
+                "v": 5,
+                "t": 10
+              }
+            ],
+            "radar": true,
+            "showGraph": true,
+            "markEvery": 10
+          }
+        }
+      },
+      {
+        "key": "speed-pedestrian",
+        "title": {
+          "ky": "Жөө адам, 1,5 м/с",
+          "ru": "Пешеход, 1,5 м/с",
+          "en": "Pedestrian, 1.5 m/s"
+        },
+        "classification": {
+          "ky": "5,4 км/саат",
+          "ru": "5,4 км/ч",
+          "en": "5.4 km/h"
+        },
+        "thumb": "thumbs/speed-pedestrian.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 1.5
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 60,
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "kinematics",
+            "segments": [
+              {
+                "v": 1.5,
+                "t": 10
+              }
+            ],
+            "radar": false,
+            "showGraph": true,
+            "markEvery": 2
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "speed",
+        "value": 15
+      },
+      {
+        "kind": "quantity",
+        "type": "distance",
+        "value": 150,
+        "unit": "m"
+      },
+      {
+        "kind": "quantity",
+        "type": "eventDuration",
+        "value": 10,
+        "unit": "s"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "v = \\frac{s}{t}"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "road",
+            "camera": {
+              "position": [
+                0,
+                5,
+                14
+              ],
+              "target": [
+                0,
+                0.5,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "graph": false,
+              "trace": false,
+              "vectors": false
+            },
+            "focus": "phys.car",
+            "text": {
+              "ky": "Машина түз жол менен бара жатат. Жолдун жээгинде ар бир 10 м сайын белги турат. Машинанын канчалык тез бара жатканын кантип билебиз?",
+              "ru": "Машина едет по прямой дороге. Вдоль дороги через каждые 10 м стоят отметки. Как узнать, насколько быстро едет машина?",
+              "en": "A car drives along a straight road with a marker every 10 m. How can we find out how fast it is going?"
+            },
+            "teacherNote": {
+              "ky": "Адегенде окуучулардын пикирин угуңуз: «тез» деген эмнени билдирет? Эки ыкманы бөлүп алыңыз: бирдей убакытта ким көбүрөөк жол өтөт же бирдей жолду ким азыраак убакытта өтөт.",
+              "ru": "Сначала выслушайте учеников: что значит «быстро»? Выделите два способа сравнения: кто за одинаковое время проедет больше или кто одинаковый путь пройдёт за меньшее время.",
+              "en": "Start by hearing the class: what does 'fast' mean? Draw out the two ways to compare: who covers more distance in the same time, or who covers the same distance in less time."
+            },
+            "altText": {
+              "ky": "Түз жол, жээгинде белгилер, жолдо машина.",
+              "ru": "Прямая дорога с отметками по краю, на ней машина.",
+              "en": "A straight road with markers along its edge and a car on it."
+            }
+          },
+          {
+            "key": "distance",
+            "camera": {
+              "position": [
+                0,
+                2.5,
+                8
+              ],
+              "target": [
+                0,
+                0.3,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "trace": true
+            },
+            "focus": "phys.distance",
+            "text": {
+              "ky": "Издер машинанын ар бир секунддагы абалын көрсөтөт. Издердин ортосу бирдей – 15 м: машина ар бир секундда 15 м жол өтөт.",
+              "ru": "Следы показывают положение машины каждую секунду. Промежутки между ними одинаковы – 15 м: машина каждую секунду проезжает 15 м.",
+              "en": "The trace marks the car's position every second. The gaps are all the same – 15 m: the car covers 15 m each second."
+            },
+            "teacherNote": {
+              "ky": "Белгилерди класс менен бирге үн чыгарып санаңыз. Сураңыз: издердин аралыгы бирдей болсо, бул эмнени билдирет? (Ылдамдык өзгөрбөйт.)",
+              "ru": "Посчитайте отметки вслух вместе с классом. Спросите: если промежутки одинаковы, что это значит? (Скорость не меняется.)",
+              "en": "Count the markers aloud with the class. Ask: if the gaps are equal, what does that tell us? (The speed is not changing.)"
+            },
+            "altText": {
+              "ky": "Жол боюнча бирдей аралыктагы машинанын издери.",
+              "ru": "Равноотстоящие следы машины вдоль дороги.",
+              "en": "Evenly spaced ghost images of the car along the road."
+            }
+          },
+          {
+            "key": "time",
+            "camera": {
+              "position": [
+                -2,
+                1.6,
+                4.5
+              ],
+              "target": [
+                0,
+                0.4,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.travel-time",
+            "text": {
+              "ky": "Секундомерди карайбыз: 10 с ичинде машина 150 м жол өттү. Жол – s, убакыт – t.",
+              "ru": "Смотрим на секундомер: за 10 с машина проехала 150 м. Путь – s, время – t.",
+              "en": "Look at the stopwatch: in 10 s the car has travelled 150 m. Distance is s, time is t."
+            },
+            "teacherNote": {
+              "ky": "Телефондордун секундомери менен кичинекей тажрыйба жасаңыз: бир окуучу коридордо 20 м басат, үч окуучу убакытты ченейт. Жыйынтыктар эмне үчүн ар башка болорун талкуулаңыз (реакция убактысы ≈ 0,2 с).",
+              "ru": "Проведите мини-опыт с секундомерами телефонов: один ученик проходит 20 м по коридору, трое засекают время. Обсудите, почему результаты отличаются (время реакции ≈ 0,2 с).",
+              "en": "Run a quick experiment with phone stopwatches: one pupil walks 20 m down the corridor while three others time it. Discuss why their results differ (reaction time ≈ 0.2 s)."
+            },
+            "altText": {
+              "ky": "Секундомер 10,0 с көрсөтөт, машина 150 м белгисинде.",
+              "ru": "Секундомер показывает 10,0 с, машина у отметки 150 м.",
+              "en": "The stopwatch shows 10.0 s; the car is at the 150 m marker."
+            }
+          },
+          {
+            "key": "speed",
+            "camera": {
+              "position": [
+                -2,
+                1.6,
+                4.5
+              ],
+              "target": [
+                0,
+                0.4,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "trace": false
+            },
+            "focus": "phys.speed",
+            "text": {
+              "ky": "Ылдамдык – убакыт бирдигиндеги жол: v = s/t = 150 м : 10 с = 15 м/с. Жебе кыймылдын багытын көрсөтөт, анын узундугу – ылдамдыктын чоңдугун.",
+              "ru": "Скорость – путь за единицу времени: v = s/t = 150 м : 10 с = 15 м/с. Стрелка показывает направление движения, её длина – величину скорости.",
+              "en": "Speed is the distance per unit of time: v = s/t = 150 m ÷ 10 s = 15 m/s. The arrow shows the direction of motion; its length shows how fast."
+            },
+            "teacherNote": {
+              "ky": "Тактага «үч бурчтукту» чийиңиз: үстүндө s, астында v жана t. Бир чоңдукту жапса, калган экөөнүн ортосундагы байланыш көрүнөт: v = s/t, s = v·t, t = s/v.",
+              "ru": "Нарисуйте на доске «треугольник»: сверху s, снизу v и t. Закрываем одну величину – видим связь двух других: v = s/t, s = v·t, t = s/v.",
+              "en": "Draw the 'formula triangle' on the board: s on top, v and t below. Cover one quantity to see how the other two give it: v = s/t, s = v·t, t = s/v."
+            },
+            "altText": {
+              "ky": "Машинанын алдында кыймыл багытындагы ылдамдыктын жебеси.",
+              "ru": "Перед машиной стрелка скорости по направлению движения.",
+              "en": "A velocity arrow in front of the car pointing the way it moves."
+            }
+          },
+          {
+            "key": "units",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.speed",
+            "text": {
+              "ky": "Км/саатка которобуз: 1 м/с = 3600 м/саат = 3,6 км/саат. Демек 15 м/с = 15 · 3,6 = 54 км/саат. Тескерисинче, км/саатты 3,6га бөлөбүз: 72 км/саат = 20 м/с.",
+              "ru": "Переводим в км/ч: 1 м/с = 3600 м/ч = 3,6 км/ч. Значит, 15 м/с = 15 · 3,6 = 54 км/ч. Обратно делим на 3,6: 72 км/ч = 20 м/с.",
+              "en": "Convert to km/h: 1 m/s = 3600 m/h = 3.6 km/h, so 15 m/s = 15 × 3.6 = 54 km/h. To go back, divide by 3.6: 72 km/h = 20 m/s."
+            },
+            "teacherNote": {
+              "ky": "Көп кездешкен ката: окуучулар 18 км/саат 5 м/с тан тез деп ойлошот. Тактага «18 км/саат же 5 м/с – кайсынысы тез?» деп жазып, добуш бергизиңиз, анан бирге которуңуз.",
+              "ru": "Частая ошибка: ученики считают, что 18 км/ч быстрее 5 м/с. Напишите на доске «18 км/ч или 5 м/с – что быстрее?», проведите голосование, затем переведите вместе.",
+              "en": "A common slip: pupils think 18 km/h is faster than 5 m/s. Write '18 km/h or 5 m/s – which is faster?' on the board, take a vote, then convert together."
+            },
+            "altText": {
+              "ky": "Ылдамдыктын жебесинин жанында «15 м/с = 54 км/саат» деген жазуу.",
+              "ru": "Возле стрелки скорости надпись «15 м/с = 54 км/ч».",
+              "en": "The label '15 m/s = 54 km/h' next to the velocity arrow."
+            }
+          },
+          {
+            "key": "radar",
+            "camera": {
+              "position": [
+                0,
+                2.5,
+                8
+              ],
+              "target": [
+                0,
+                0.3,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.speed-radar",
+            "text": {
+              "ky": "Жол кызматынын радары ылдамдыкты заматта ченейт: 54 км/саат. Шаарда чек 60 км/саат – айдоочу эрежени бузган жок. Үлгүлөрдөн велосипедчинин (5 м/с) жана жөө адамдын (1,5 м/с) ылдамдыгын салыштырыңыз.",
+              "ru": "Радар дорожной службы мгновенно измеряет скорость: 54 км/ч. В городе ограничение 60 км/ч – водитель ничего не нарушил. Сравните в образцах скорость велосипедиста (5 м/с) и пешехода (1,5 м/с).",
+              "en": "The road radar measures the speed instantly: 54 km/h. The city limit is 60 km/h, so the driver is within the law. Compare the cyclist (5 m/s) and pedestrian (1.5 m/s) in the samples."
+            },
+            "teacherNote": {
+              "ky": "«Салыштыруу» панелин ачып, үч үлгүнү катар коюңуз. Сураңыз: велосипедчи 150 м ди канча убакытта өтөт? (30 с.)",
+              "ru": "Откройте панель «Сравнение» и поставьте три образца рядом. Спросите: за сколько времени велосипедист проедет 150 м? (30 с.)",
+              "en": "Open the Compare panel with the three samples side by side. Ask: how long does the cyclist take to cover 150 m? (30 s.)"
+            },
+            "altText": {
+              "ky": "Жолдун четиндеги радар, экранында 54 км/саат.",
+              "ru": "Радар у обочины, на экране 54 км/ч.",
+              "en": "A roadside radar showing 54 km/h on its display."
+            }
+          },
+          {
+            "key": "uniform",
+            "camera": {
+              "position": [
+                0,
+                5,
+                14
+              ],
+              "target": [
+                0,
+                0.5,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "graph": true,
+              "vectors": false
+            },
+            "focus": "phys.uniform-motion",
+            "text": {
+              "ky": "Машина ар бир секундда бирдей 15 м жол өттү – бул бир калыптагы кыймыл. Анын жол–убакыт графиги түз сызык. Кийинки сабакта ушундай графиктерди окуганды үйрөнөбүз.",
+              "ru": "Каждую секунду машина проезжала одинаковые 15 м – это равномерное движение. Его график путь–время – прямая линия. На следующем уроке научимся читать такие графики.",
+              "en": "Every second the car covered the same 15 m – this is uniform motion. Its distance–time graph is a straight line. Next lesson we will learn to read graphs like this."
+            },
+            "teacherNote": {
+              "ky": "Үйгө тапшырма: үйдөн мектепке чейинки жолду (карта же кадам менен) жана убакытты ченеп, өзүңдүн орточо ылдамдыгыңды м/с жана км/саат менен тап.",
+              "ru": "Домашнее задание: измерь путь от дома до школы (по карте или шагами) и время, найди свою среднюю скорость в м/с и км/ч.",
+              "en": "Homework: measure the distance from home to school (with a map or by steps) and the time it takes, then find your average speed in m/s and km/h."
+            },
+            "altText": {
+              "ky": "Экранда s(t) графиги: координаталар башталышынан чыккан түз сызык.",
+              "ru": "На экране график s(t): прямая из начала координат.",
+              "en": "An s(t) graph on screen: a straight line from the origin."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.speed-measurement"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "speed-city-car"
+          },
+          {
+            "kind": "sample",
+            "key": "speed-cyclist"
+          },
+          {
+            "kind": "sample",
+            "key": "speed-pedestrian"
+          }
+        ],
+        "rows": [
+          "speed",
+          "mass"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.speed-1",
+          "phys.q.speed-2",
+          "phys.q.speed-3",
+          "phys.q.speed-4",
+          "phys.q.speed-5",
+          "phys.q.speed-6",
+          "phys.q.speed-7",
+          "phys.q.speed-8",
+          "phys.q.speed-9",
+          "phys.q.speed-10",
+          "phys.q.speed-11",
+          "phys.q.speed-12"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Ылдамдык чектери",
+            "ru": "Ограничения скорости",
+            "en": "Speed limits"
+          },
+          "text": {
+            "ky": "Шаарда ылдамдык 60 км/саат (≈ 16,7 м/с) менен чектелет, мектептердин жанында андан да аз. Инженерлер чекти тормоздук жолду жана жөө адамдардын коопсуздугун эсептеп коюшат.",
+            "ru": "В городе скорость ограничена 60 км/ч (≈ 16,7 м/с), у школ – ещё меньше. Инженеры задают лимит, рассчитывая тормозной путь и безопасность пешеходов.",
+            "en": "In town the limit is 60 km/h (≈ 16.7 m/s), and lower near schools. Engineers set it from braking distances and pedestrian safety."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Жарыктын жана үндүн ылдамдыгы",
+            "ru": "Скорость света и звука",
+            "en": "Speed of light and sound"
+          },
+          "text": {
+            "ky": "Жарык 300 000 км/с ылдамдык менен тарайт, үн абада ≈ 340 м/с. Ошондуктан чагылганды адегенде көрөбүз, күркүрөөнү кийин угабыз.",
+            "ru": "Свет распространяется со скоростью 300 000 км/с, звук в воздухе – ≈ 340 м/с. Поэтому молнию мы сначала видим, а гром слышим позже.",
+            "en": "Light travels at 300 000 km/s and sound at about 340 m/s in air, so we see the lightning first and hear the thunder later."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Бирдиктерди которуу",
+            "ru": "Перевод единиц",
+            "en": "Converting units"
+          },
+          "text": {
+            "ky": "1 км/саат = 1000 м : 3600 с ≈ 0,28 м/с. Которуу коэффициенти 3,6 = 3600 : 1000 – пропорциянын жөнөкөй мисалы.",
+            "ru": "1 км/ч = 1000 м : 3600 с ≈ 0,28 м/с. Коэффициент 3,6 = 3600 : 1000 – простой пример пропорции.",
+            "en": "1 km/h = 1000 m ÷ 3600 s ≈ 0.28 m/s. The factor 3.6 = 3600 ÷ 1000 is a simple example of proportion."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Жарыш",
+            "ru": "Забег",
+            "en": "A race"
+          },
+          "text": {
+            "ky": "Дене тарбия сабагында 60 м ди 10 с ичинде чуркаган окуучунун ылдамдыгы 6 м/с, 12 с ичинде чуркаганыныкы – 5 м/с.",
+            "ru": "На физкультуре ученик, пробежавший 60 м за 10 с, бежал со скоростью 6 м/с, а за 12 с – 5 м/с.",
+            "en": "In PE, a pupil who runs 60 m in 10 s goes at 6 m/s; one who takes 12 s goes at 5 m/s."
+          }
+        },
+        {
+          "title": {
+            "ky": "Ысык-Көлгө сапар",
+            "ru": "Поездка на Иссык-Куль",
+            "en": "A trip to Issyk-Kul"
+          },
+          "text": {
+            "ky": "Бишкектен Чолпон-Атага чейин ≈ 250 км. Машина 4 саатта жетсе, орточо ылдамдыгы ≈ 62 км/саат.",
+            "ru": "От Бишкека до Чолпон-Аты ≈ 250 км. Если машина доезжает за 4 часа, её средняя скорость ≈ 62 км/ч.",
+            "en": "From Bishkek to Cholpon-Ata is about 250 km. A car that takes 4 hours averages about 62 km/h."
+          }
+        }
+      ]
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "phys.car",
+      "kind": "body",
+      "hue": 0,
+      "isContainer": false,
+      "title": {
+        "ky": "Автомобиль",
+        "ru": "Автомобиль",
+        "en": "Car"
+      },
+      "description": {
+        "ky": "Сахнадагы кыймылдаган дене. Аны бир чекит катары карайбыз, анткени машинанын өлчөмү ал өткөн жолго салыштырмалуу кичине. Кыймыл дайыма кандайдыр бир денеге карата каралат – биз үчүн жолго карата.",
+        "ru": "Движущееся тело на сцене. Его можно считать точкой, потому что размер машины мал по сравнению с пройденным путём. Движение всегда рассматривают относительно какого-то тела – у нас относительно дороги.",
+        "en": "The moving body in the scene. We can treat it as a point because the car is small compared with the distance it covers. Motion is always described relative to some body – here, relative to the road."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Кыймылдаган дене",
+            "ru": "Движущееся тело",
+            "en": "The moving body"
+          }
+        }
+      ],
+      "related": [
+        "phys.speed",
+        "phys.distance"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.motion-absolute",
+          "text": {
+            "ky": "Дене же кыймылдайт, же тынч турат – ким кайдан караганына көз каранды эмес.",
+            "ru": "Тело либо движется, либо покоится – независимо от того, кто и откуда смотрит.",
+            "en": "A body is either moving or at rest – no matter who is watching or from where."
+          },
+          "correction": {
+            "ky": "Кыймыл салыштырмалуу: жүргүнчү машинага карата тынч отурат, ал эми жолго карата 15 м/с ылдамдык менен кыймылдайт.",
+            "ru": "Движение относительно: пассажир покоится относительно машины, а относительно дороги движется со скоростью 15 м/с.",
+            "en": "Motion is relative: a passenger is at rest relative to the car but moves at 15 m/s relative to the road."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Тормоздук жол",
+              "ru": "Тормозной путь",
+              "en": "Braking distance"
+            },
+            "text": {
+              "ky": "Ылдамдык эки эсе чоңойсо, тормоздук жол болжол менен төрт эсе узарат – ошон үчүн мектептин жанында ылдамдык 20–40 км/саат менен чектелет.",
+              "ru": "Если скорость вырастает вдвое, тормозной путь растёт примерно вчетверо – поэтому возле школ скорость ограничивают до 20–40 км/ч.",
+              "en": "When speed doubles, the braking distance grows about four times – that is why speed near schools is limited to 20–40 km/h."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Круиз-контроль",
+              "ru": "Круиз-контроль",
+              "en": "Cruise control"
+            },
+            "text": {
+              "ky": "Круиз-контроль кыймылдаткычты өзү башкарып, машинанын ылдамдыгын туруктуу кармап турат.",
+              "ru": "Круиз-контроль сам управляет двигателем и держит скорость машины постоянной.",
+              "en": "Cruise control adjusts the engine by itself to keep the car's speed constant."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Поезддин терезеси",
+              "ru": "Окно поезда",
+              "en": "A train window"
+            },
+            "text": {
+              "ky": "Поездден караганда дарактар артка «чуркап» жаткандай көрүнөт: биз поездге карата тынч, дарактар бизге карата кыймылдайт.",
+              "ru": "Из окна поезда кажется, что деревья «бегут» назад: мы покоимся относительно поезда, а деревья движутся относительно нас.",
+              "en": "From a train window the trees seem to 'run' backwards: we are at rest relative to the train, the trees move relative to us."
+            }
+          },
+          {
+            "title": {
+              "ky": "Автобустагы китеп",
+              "ru": "Книга в автобусе",
+              "en": "A book on the bus"
+            },
+            "text": {
+              "ky": "Автобуста тизеңдеги китеп сага карата тынч жатат, бирок аялдамага карата автобус менен кошо кыймылдайт.",
+              "ru": "Книга на коленях в автобусе покоится относительно тебя, но движется вместе с автобусом относительно остановки.",
+              "en": "A book on your lap on the bus is at rest relative to you but moves with the bus relative to the bus stop."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.distance",
+      "kind": "quantity",
+      "hue": 30,
+      "isContainer": false,
+      "title": {
+        "ky": "Басып өткөн жол",
+        "ru": "Пройденный путь",
+        "en": "Distance travelled"
+      },
+      "subtitle": {
+        "ky": "s, метр (м)",
+        "ru": "s, метр (м)",
+        "en": "s, metre (m)"
+      },
+      "description": {
+        "ky": "Дене кыймылдын сызыгы (траекториясы) боюнча басып өткөн узундук. s тамгасы менен белгиленет, бирдиги – метр (м); чоң аралыктар километр менен ченелет: 1 км = 1000 м. Жолдун жээгиндеги белгилер жолду көзгө көрүнөрлүк кылат.",
+        "ru": "Длина линии, по которой двигалось тело (траектории). Обозначается буквой s, единица – метр (м); большие расстояния измеряют в километрах: 1 км = 1000 м. Отметки вдоль дороги делают путь наглядным.",
+        "en": "The length of the line along which a body has moved (its path). It is written s and measured in metres (m); long distances are measured in kilometres: 1 km = 1000 m. Markers along the road make the distance easy to see."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "s = v \\cdot t"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Канча жол басылганын көрсөтөт",
+            "ru": "Показывает, сколько пройдено",
+            "en": "Shows how far the body has gone"
+          }
+        }
+      ],
+      "related": [
+        "phys.speed",
+        "phys.travel-time"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.path-is-straight-distance",
+          "text": {
+            "ky": "Басып өткөн жол – баштапкы жана акыркы чекиттин ортосундагы аралык.",
+            "ru": "Пройденный путь – это расстояние между начальной и конечной точками.",
+            "en": "The distance travelled is the gap between the start and end points."
+          },
+          "correction": {
+            "ky": "Жол – бүт кыймылдын узундугу. Үйдөн 1 км алыстагы дүкөнгө барып кайтсаң, жолуң 2 км, ал эми үйдөн аралык 0.",
+            "ru": "Путь – длина всего движения. Если сходить в магазин за 1 км от дома и вернуться, путь 2 км, а расстояние от дома – 0.",
+            "en": "Distance travelled is the length of the whole trip. Walk to a shop 1 km away and back: you have travelled 2 km, yet you end up 0 km from home."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Километр мамылары",
+              "ru": "Километровые столбы",
+              "en": "Kilometre posts"
+            },
+            "text": {
+              "ky": "Бишкек – Ош жолунун боюна ар бир километр сайын белги коюлган: айдоочу жана жол кызматы жолдун канча бөлүгү өтүлгөнүн так билишет.",
+              "ru": "Вдоль трассы Бишкек – Ош через каждый километр стоят отметки: водитель и дорожная служба точно знают, какая часть пути пройдена.",
+              "en": "Along the Bishkek–Osh highway there is a marker every kilometre, so drivers and road crews know exactly how far along the road they are."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Фитнес-билерик",
+              "ru": "Фитнес-браслет",
+              "en": "Fitness tracker"
+            },
+            "text": {
+              "ky": "Билерик кадамдарды санап, кадамдын узундугуна көбөйтүп, күнүнө канча километр басканыңды эсептейт.",
+              "ru": "Браслет считает шаги, умножает их на длину шага и вычисляет, сколько километров ты прошёл за день.",
+              "en": "A tracker counts your steps, multiplies them by your step length and works out how many kilometres you walked today."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кадамдар",
+              "ru": "Шаги",
+              "en": "Steps"
+            },
+            "text": {
+              "ky": "Кадамыңдын узундугу 0,6 м болсо, 1000 кадам – 600 м жол.",
+              "ru": "Если длина шага 0,6 м, то 1000 шагов – это 600 м пути.",
+              "en": "If your step is 0.6 m long, 1000 steps make 600 m."
+            }
+          },
+          {
+            "title": {
+              "ky": "Такси",
+              "ru": "Такси",
+              "en": "Taxi"
+            },
+            "text": {
+              "ky": "Такси акыны басып өткөн километрге жараша алат: жол канча узун болсо, акы ошончо көп.",
+              "ru": "Такси берёт плату за пройденные километры: чем длиннее путь, тем больше плата.",
+              "en": "A taxi charges by the kilometres travelled: the longer the trip, the bigger the fare."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.travel-time",
+      "kind": "quantity",
+      "hue": 50,
+      "isContainer": false,
+      "title": {
+        "ky": "Кыймылдын убактысы",
+        "ru": "Время движения",
+        "en": "Travel time"
+      },
+      "subtitle": {
+        "ky": "t, секунд (с)",
+        "ru": "t, секунда (с)",
+        "en": "t, second (s)"
+      },
+      "description": {
+        "ky": "Кыймыл канча созулганын көрсөтөт. t тамгасы менен белгиленет, бирдиги – секунд (с); 1 мүн = 60 с, 1 саат = 3600 с. Секундомер менен ченелет.",
+        "ru": "Показывает, сколько длилось движение. Обозначается буквой t, единица – секунда (с); 1 мин = 60 с, 1 ч = 3600 с. Измеряют секундомером.",
+        "en": "How long the motion lasted. It is written t and measured in seconds (s); 1 min = 60 s, 1 h = 3600 s. It is measured with a stopwatch."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "t = \\frac{s}{v}"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Секундомер менен ченелет",
+            "ru": "Измеряется секундомером",
+            "en": "Measured with a stopwatch"
+          }
+        }
+      ],
+      "related": [
+        "phys.speed",
+        "phys.distance"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.stopwatch-exact",
+          "text": {
+            "ky": "Секундомерди колу менен басса, убакыт дайыма так ченелет.",
+            "ru": "Если нажимать секундомер рукой, время всегда измеряется точно.",
+            "en": "A hand-operated stopwatch always measures time exactly."
+          },
+          "correction": {
+            "ky": "Адамдын реакция убактысы ≈ 0,2 с. Кыска убакытты ченөөдө ката чоң болот, ошондуктан бир нече жолу ченеп, орточосун алабыз.",
+            "ru": "Время реакции человека ≈ 0,2 с. При измерении коротких промежутков ошибка велика, поэтому измеряют несколько раз и берут среднее.",
+            "en": "Human reaction time is about 0.2 s. For short intervals the error is large, so we measure several times and take the average."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Спорттогу фотофиниш",
+              "ru": "Фотофиниш в спорте",
+              "en": "Photo finish"
+            },
+            "text": {
+              "ky": "Жеңил атлетикада убакытты фотоэлемент жана камера 0,01 с тактык менен ченейт – колдогу секундомерден алда канча так.",
+              "ru": "В лёгкой атлетике время измеряют фотоэлемент и камера с точностью 0,01 с – намного точнее ручного секундомера.",
+              "en": "In athletics a light sensor and a camera time runners to 0.01 s – far more precisely than a hand stopwatch."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Атомдук сааттар",
+              "ru": "Атомные часы",
+              "en": "Atomic clocks"
+            },
+            "text": {
+              "ky": "GPS спутниктериндеги атомдук сааттар өтө так: сигнал канча убакытта келгенин ченеп, приемник өз ордун аныктайт.",
+              "ru": "Атомные часы на спутниках GPS очень точны: по времени прихода сигнала приёмник определяет своё положение.",
+              "en": "The atomic clocks on GPS satellites are extremely precise: from how long a signal takes to arrive, a receiver works out where it is."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Сабак",
+              "ru": "Урок",
+              "en": "A lesson"
+            },
+            "text": {
+              "ky": "45 мүнөттүк сабак – 45 · 60 = 2700 секунд.",
+              "ru": "Урок 45 минут – это 45 · 60 = 2700 секунд.",
+              "en": "A 45-minute lesson lasts 45 × 60 = 2700 seconds."
+            }
+          },
+          {
+            "title": {
+              "ky": "Жумуртка бышыруу",
+              "ru": "Варка яйца",
+              "en": "Boiling an egg"
+            },
+            "text": {
+              "ky": "Жумуртканы катуу бышыруу үчүн таймерди 8–10 мүнөткө коёбуз – бул да убакытты ченөө.",
+              "ru": "Чтобы сварить яйцо вкрутую, ставим таймер на 8–10 минут – это тоже измерение времени.",
+              "en": "To hard-boil an egg we set a timer for 8–10 minutes – that is measuring time too."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.speed",
+      "kind": "quantity",
+      "hue": 200,
+      "isContainer": false,
+      "title": {
+        "ky": "Ылдамдык",
+        "ru": "Скорость",
+        "en": "Speed"
+      },
+      "subtitle": {
+        "ky": "v = s/t, м/с жана км/саат",
+        "ru": "v = s/t, м/с и км/ч",
+        "en": "v = s/t, m/s and km/h"
+      },
+      "description": {
+        "ky": "Дене убакыт бирдигинде басып өткөн жол. Ылдамдыкты табуу үчүн жолду убакытка бөлөбүз: v = s/t. SI системасында ылдамдыктын бирдиги – метр секундуна (м/с), турмушта көбүнчө километр саатына (км/саат) колдонулат: 1 м/с = 3,6 км/саат.",
+        "ru": "Путь, который тело проходит за единицу времени. Чтобы найти скорость, путь делят на время: v = s/t. В СИ скорость измеряют в метрах в секунду (м/с), в быту чаще в километрах в час (км/ч): 1 м/с = 3,6 км/ч.",
+        "en": "The distance a body covers per unit of time. To find the speed, divide the distance by the time: v = s/t. The SI unit is the metre per second (m/s); in everyday life we often use kilometres per hour (km/h): 1 m/s = 3.6 km/h."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "v = \\frac{s}{t}"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Кыймылдын канчалык тез экенин көрсөтөт",
+            "ru": "Показывает, насколько быстро движется тело",
+            "en": "Shows how fast a body moves"
+          }
+        }
+      ],
+      "related": [
+        "phys.distance",
+        "phys.travel-time",
+        "phys.speed-radar"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.bigger-number-faster",
+          "text": {
+            "ky": "Саны чоңураак ылдамдык дайыма тезирээк: 18 км/саат 5 м/с тан тез.",
+            "ru": "Скорость с большим числом всегда больше: 18 км/ч быстрее, чем 5 м/с.",
+            "en": "The speed with the bigger number is always faster: 18 km/h is faster than 5 m/s."
+          },
+          "correction": {
+            "ky": "Ылдамдыктарды бир эле бирдикке келтирип гана салыштырабыз: 5 м/с = 5 · 3,6 = 18 км/саат, демек алар бирдей.",
+            "ru": "Скорости сравнивают только в одинаковых единицах: 5 м/с = 5 · 3,6 = 18 км/ч, значит, они равны.",
+            "en": "Compare speeds only in the same units: 5 m/s = 5 × 3.6 = 18 km/h, so they are equal."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Үлүл секундуна болжол менен 1 мм жылат – бул 0,001 м/с, башкача айтканда саатына 3,6 м гана.",
+        "ru": "Улитка проползает около 1 мм в секунду – это 0,001 м/с, то есть всего 3,6 м в час.",
+        "en": "A snail crawls about 1 mm per second – that is 0.001 m/s, or just 3.6 m per hour."
+      },
+      "analogy": {
+        "ky": "Ылдамдык – ар бир секундда канча метр «чогултканыңдын» эсеби: 15 м/с – секунд сайын 15 метр.",
+        "ru": "Скорость – это сколько метров ты «набираешь» каждую секунду: 15 м/с – по 15 метров за секунду.",
+        "en": "Speed is how many metres you 'collect' every second: 15 m/s means 15 metres each second."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Спидометр",
+              "ru": "Спидометр",
+              "en": "Speedometer"
+            },
+            "text": {
+              "ky": "Машинанын спидометри дөңгөлөктүн секундуна канча жолу айланарын эсептеп, аны км/саатка айлантып көрсөтөт.",
+              "ru": "Спидометр машины считает, сколько оборотов в секунду делает колесо, и переводит это в км/ч.",
+              "en": "A car's speedometer counts how many turns the wheel makes per second and converts that into km/h."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Чагылгандын алыстыгы",
+              "ru": "Как далеко гроза",
+              "en": "How far away is the storm"
+            },
+            "text": {
+              "ky": "Абада үн ≈ 340 м/с ылдамдык менен тарайт. Чагылган жаркылдагандан күндүн күркүрөөсүнө чейин 3 с өтсө, бороон ≈ 340 · 3 ≈ 1 км алыста.",
+              "ru": "Звук в воздухе распространяется со скоростью ≈ 340 м/с. Если от вспышки молнии до грома прошло 3 с, гроза примерно в 340 · 3 ≈ 1 км.",
+              "en": "Sound travels through air at about 340 m/s. If 3 s pass between the flash and the thunder, the storm is about 340 × 3 ≈ 1 km away."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Мектепке жөө",
+              "ru": "Пешком в школу",
+              "en": "Walking to school"
+            },
+            "text": {
+              "ky": "1,2 км жолду 15 мүнөттө (900 с) басып өтсөң, ылдамдыгың 1200 м : 900 с ≈ 1,3 м/с.",
+              "ru": "Если ты проходишь 1,2 км за 15 минут (900 с), твоя скорость 1200 м : 900 с ≈ 1,3 м/с.",
+              "en": "If you walk 1.2 km in 15 minutes (900 s), your speed is 1200 m ÷ 900 s ≈ 1.3 m/s."
+            }
+          },
+          {
+            "title": {
+              "ky": "Велосипед менен",
+              "ru": "На велосипеде",
+              "en": "By bike"
+            },
+            "text": {
+              "ky": "Ошол эле жолду велосипед менен 4 мүнөттө (240 с) өтсөң: 1200 : 240 = 5 м/с – жөө басканга караганда ≈ 4 эсе тез.",
+              "ru": "Тот же путь на велосипеде за 4 минуты (240 с): 1200 : 240 = 5 м/с – примерно в 4 раза быстрее, чем пешком.",
+              "en": "The same trip by bike in 4 minutes (240 s): 1200 ÷ 240 = 5 m/s – about 4 times faster than walking."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.speed-radar",
+      "kind": "device",
+      "hue": 280,
+      "isContainer": false,
+      "title": {
+        "ky": "Ылдамдык радары",
+        "ru": "Радар скорости",
+        "en": "Speed radar"
+      },
+      "description": {
+        "ky": "Жол кызматынын прибору. Радар машинага радиотолкун жиберип, кайтып келген толкундун жыштыгы канчалык өзгөргөнүнө (Доплер эффекти) карап, ылдамдыкты заматта аныктайт жана км/саат менен көрсөтөт.",
+        "ru": "Прибор дорожной службы. Радар посылает на машину радиоволну и по тому, насколько изменилась частота отражённой волны (эффект Доплера), сразу определяет скорость и показывает её в км/ч.",
+        "en": "A road-patrol device. The radar sends a radio wave at the car and, from how much the frequency of the reflected wave has changed (the Doppler effect), it instantly works out the speed and shows it in km/h."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Ылдамдыкты алыстан ченейт",
+            "ru": "Измеряет скорость на расстоянии",
+            "en": "Measures speed from a distance"
+          }
+        }
+      ],
+      "related": [
+        "phys.speed",
+        "phys.car"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.radar-measures-distance",
+          "text": {
+            "ky": "Радар машина канча жол өткөнүн ченейт.",
+            "ru": "Радар измеряет, сколько проехала машина.",
+            "en": "A radar measures how far the car has gone."
+          },
+          "correction": {
+            "ky": "Радар ылдамдыкты түз ченейт. Ал эми «орточо ылдамдык» камералары эки камеранын ортосундагы белгилүү аралыкты машина канча убакытта өткөнүн ченешет.",
+            "ru": "Радар измеряет скорость напрямую. А камеры «средней скорости» измеряют, за какое время машина проехала известное расстояние между двумя камерами.",
+            "en": "A radar measures speed directly. 'Average speed' cameras instead time how long a car takes to cover the known distance between two cameras."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Орточо ылдамдыкты көзөмөлдөө",
+              "ru": "Контроль средней скорости",
+              "en": "Average speed checks"
+            },
+            "text": {
+              "ky": "Эки камера 5 км аралыкта турат. Машина аны 4 мүнөттө өтсө: 5 км : (4/60) саат = 75 км/саат – чек 60 км/саат болсо, айып салынат.",
+              "ru": "Две камеры стоят в 5 км друг от друга. Если машина проехала их за 4 минуты: 5 км : (4/60) ч = 75 км/ч – при лимите 60 км/ч будет штраф.",
+              "en": "Two cameras are 5 km apart. If a car covers that in 4 minutes: 5 km ÷ (4/60) h = 75 km/h – over a 60 km/h limit, so a fine follows."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Теннистеги радар",
+              "ru": "Радар в теннисе",
+              "en": "Radar in tennis"
+            },
+            "text": {
+              "ky": "Теннис кортундагы радар топтун ылдамдыгын ченейт: мыкты оюнчулардын сокусу 200 км/сааттан ашат.",
+              "ru": "Радар на теннисном корте измеряет скорость мяча: подача лучших игроков превышает 200 км/ч.",
+              "en": "A radar at a tennis court measures the ball's speed: top players serve at over 200 km/h."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Жаңырык",
+              "ru": "Эхо",
+              "en": "Echo"
+            },
+            "text": {
+              "ky": "Тоодо кыйкырсаң, үн аскага урунуп кайтып келет. Радар да ушундай «жаңырыкты» колдонот, бирок үндүн ордуна – радиотолкун.",
+              "ru": "Крикни в горах – звук отразится от скалы и вернётся. Радар использует такое же «эхо», только вместо звука – радиоволну.",
+              "en": "Shout in the mountains and the sound bounces back off a cliff. A radar uses the same kind of 'echo', but with radio waves instead of sound."
+            }
+          },
+          {
+            "title": {
+              "ky": "Сирена",
+              "ru": "Сирена",
+              "en": "A siren"
+            },
+            "text": {
+              "ky": "Жакындап келаткан тез жардамдын сиренасы ичке, алыстаганда жоонураак угулат – бул Доплер эффекти.",
+              "ru": "Сирена приближающейся скорой звучит выше, а удаляющейся – ниже: это эффект Доплера.",
+              "en": "An ambulance siren sounds higher as it comes towards you and lower as it drives away – that is the Doppler effect."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.uniform-motion",
+      "kind": "motion",
+      "hue": 140,
+      "isContainer": false,
+      "title": {
+        "ky": "Бир калыптагы кыймыл",
+        "ru": "Равномерное движение",
+        "en": "Uniform motion"
+      },
+      "description": {
+        "ky": "Дене каалаган бирдей убакыт аралыктарында бирдей жол өтсө, анын кыймылы бир калыптагы кыймыл деп аталат. Мындай кыймылда ылдамдык өзгөрбөйт, ал эми жолдун убакыттан көз карандылык графиги – түз сызык.",
+        "ru": "Если тело за любые равные промежутки времени проходит равные пути, его движение называют равномерным. Скорость при этом не меняется, а график зависимости пути от времени – прямая линия.",
+        "en": "If a body covers equal distances in any equal intervals of time, its motion is called uniform. The speed does not change, and the distance–time graph is a straight line."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "s = v \\cdot t,\\; v = \\text{const}"
+        },
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "s(t) графиги – түз сызык",
+            "ru": "График s(t) – прямая",
+            "en": "The s(t) graph is a straight line"
+          }
+        }
+      ],
+      "related": [
+        "phys.speed",
+        "phys.average-speed"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.uniform-no-forces",
+          "text": {
+            "ky": "Бир калыптагы кыймылда денеге эч кандай күч таасир этпейт.",
+            "ru": "При равномерном движении на тело не действуют никакие силы.",
+            "en": "In uniform motion no forces act on the body."
+          },
+          "correction": {
+            "ky": "Күчтөр бар, бирок алар бири-бирин теңдейт: кыймылдаткычтын тартуу күчү сүрүлүүнү жана абанын каршылыгын компенсациялайт.",
+            "ru": "Силы есть, но они уравновешивают друг друга: сила тяги двигателя компенсирует трение и сопротивление воздуха.",
+            "en": "Forces do act, but they balance: the engine's driving force cancels out friction and air resistance."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Эскалатор",
+              "ru": "Эскалатор",
+              "en": "Escalator"
+            },
+            "text": {
+              "ky": "Эскалатор ≈ 0,5 м/с туруктуу ылдамдык менен жүрөт, ошондуктан 15 м узундуктагы тепкичти 30 с ичинде өтөт.",
+              "ru": "Эскалатор движется с постоянной скоростью ≈ 0,5 м/с, поэтому лестницу длиной 15 м проходит за 30 с.",
+              "en": "An escalator runs at a steady 0.5 m/s, so it covers a 15 m stairway in 30 s."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Конвейер",
+              "ru": "Конвейер",
+              "en": "Conveyor belt"
+            },
+            "text": {
+              "ky": "Заводдогу конвейер буюмдарды бир калыпта жылдырат: инженерлер ылдамдыкты ар бир станокко бирдей убакыт берилгидей кылып тандашат.",
+              "ru": "Конвейер на заводе движет детали равномерно: инженеры подбирают скорость так, чтобы у каждого станка было одинаковое время.",
+              "en": "A factory conveyor moves parts uniformly: engineers choose its speed so that every machine gets the same amount of time."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Сааттын жебеси",
+              "ru": "Стрелка часов",
+              "en": "A clock hand"
+            },
+            "text": {
+              "ky": "Секунд жебеси бир калыпта жүрөт: ар бир секундда бирдей кадам жасайт.",
+              "ru": "Секундная стрелка движется равномерно: за каждую секунду делает одинаковый шаг.",
+              "en": "The second hand moves uniformly: it makes the same step every second."
+            }
+          },
+          {
+            "title": {
+              "ky": "Жылмышкан жол",
+              "ru": "Движущаяся дорожка",
+              "en": "Moving walkway"
+            },
+            "text": {
+              "ky": "Аэропорттогу кыймылдуу жолдо турган адам ар бир секундда бирдей аралыкка жылат.",
+              "ru": "Человек на движущейся дорожке в аэропорту каждую секунду смещается на одно и то же расстояние.",
+              "en": "A person standing on an airport moving walkway moves the same distance every second."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.average-speed",
+      "kind": "quantity",
+      "hue": 180,
+      "isContainer": false,
+      "title": {
+        "ky": "Орточо ылдамдык",
+        "ru": "Средняя скорость",
+        "en": "Average speed"
+      },
+      "description": {
+        "ky": "Бүт жолду бүт убакытка бөлгөндө чыккан ылдамдык: v_орт = s_жалпы / t_жалпы. Токтоп турган убакыт да эсепке кирет. Ылдамдык өзгөргөн кыймылды ушул бир сан менен мүнөздөйбүз.",
+        "ru": "Скорость, которая получается, если весь путь разделить на всё время: v_ср = s_общ / t_общ. Время остановок тоже учитывается. Этим одним числом описывают движение с меняющейся скоростью.",
+        "en": "The speed you get by dividing the total distance by the total time: v_avg = s_total / t_total. Time spent standing still counts too. This single number describes motion whose speed changes."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "v = \\frac{s_1 + s_2 + \\dots}{t_1 + t_2 + \\dots}"
+        }
+      ],
+      "related": [
+        "phys.speed",
+        "phys.uniform-motion"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.average-of-speeds",
+          "text": {
+            "ky": "Орточо ылдамдык – ылдамдыктардын жөнөкөй орточосу: (10 + 20) : 2 = 15 м/с.",
+            "ru": "Средняя скорость – это среднее арифметическое скоростей: (10 + 20) : 2 = 15 м/с.",
+            "en": "Average speed is the simple mean of the speeds: (10 + 20) ÷ 2 = 15 m/s."
+          },
+          "correction": {
+            "ky": "Жалпы жолду жалпы убакытка бөлүү керек. Машина 10 с 10 м/с менен жүрүп, 10 с токтоп, 10 с 20 м/с менен жүрсө: 300 м : 30 с = 10 м/с.",
+            "ru": "Нужно делить весь путь на всё время. Машина ехала 10 с со скоростью 10 м/с, 10 с стояла и 10 с ехала 20 м/с: 300 м : 30 с = 10 м/с.",
+            "en": "Divide the total distance by the total time. A car drives 10 s at 10 m/s, stands 10 s, then drives 10 s at 20 m/s: 300 m ÷ 30 s = 10 m/s."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Бишкек – Ош",
+              "ru": "Бишкек – Ош",
+              "en": "Bishkek to Osh"
+            },
+            "text": {
+              "ky": "≈ 600 км жолду машина ≈ 10 саатта өтөт: орточо ылдамдык ≈ 60 км/саат. Ашууларда ал жайыраак, түз жолдо тезирээк жүрөт.",
+              "ru": "≈ 600 км машина проезжает за ≈ 10 часов: средняя скорость ≈ 60 км/ч. На перевалах она едет медленнее, на ровной дороге – быстрее.",
+              "en": "A car covers the ≈ 600 km road in about 10 hours: an average of ≈ 60 km/h. It is slower on the passes and faster on the flat."
+            },
+            "field": "m"
+          },
+          {
+            "title": {
+              "ky": "Марафон",
+              "ru": "Марафон",
+              "en": "Marathon"
+            },
+            "text": {
+              "ky": "Марафондун узундугу 42,195 км. Мыкты жөө күлүктөр аны ≈ 2 саатта (7200 с) чуркашат: 42 195 м : 7200 с ≈ 5,9 м/с.",
+              "ru": "Длина марафона 42,195 км. Лучшие бегуны пробегают его за ≈ 2 часа (7200 с): 42 195 м : 7200 с ≈ 5,9 м/с.",
+              "en": "A marathon is 42.195 km. Top runners finish in about 2 hours (7200 s): 42 195 m ÷ 7200 s ≈ 5.9 m/s."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Дүкөнгө баруу",
+              "ru": "Поход в магазин",
+              "en": "A trip to the shop"
+            },
+            "text": {
+              "ky": "Дүкөнгө 10 мүнөт бардың, 5 мүнөт кезекте турдуң – орточо ылдамдыкты эсептегенде ушул 5 мүнөт да кошулат.",
+              "ru": "Ты шёл в магазин 10 минут и 5 минут стоял в очереди – при подсчёте средней скорости эти 5 минут тоже учитываются.",
+              "en": "You walked to the shop for 10 minutes and queued for 5 – those 5 minutes count when you work out your average speed."
+            }
+          },
+          {
+            "title": {
+              "ky": "Маршрутка",
+              "ru": "Маршрутка",
+              "en": "A minibus"
+            },
+            "text": {
+              "ky": "Маршрутка көчөдө 40 км/саатка чейин тездейт, бирок аялдамаларда токтойт – ошондуктан анын орточо ылдамдыгы андан кыйла аз.",
+              "ru": "Маршрутка разгоняется до 40 км/ч, но останавливается на остановках – поэтому её средняя скорость заметно меньше.",
+              "en": "A minibus speeds up to 40 km/h but stops at every stop – so its average speed is much lower."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "phys.speed-measurement",
+      "engine": "timeline",
+      "icon": "gauge",
+      "title": {
+        "ky": "Машинанын ылдамдыгын ченөө",
+        "ru": "Измерение скорости машины",
+        "en": "Measuring a car's speed"
+      },
+      "description": {
+        "ky": "Жолдо эки белгинин ортосундагы аралыкты ченеп, машина аны канча убакытта өткөнүн секундомер менен ченейбиз, анан v = s/t формуласы боюнча ылдамдыкты эсептеп, км/саатка которобуз жана радардын көрсөткүчү менен салыштырабыз.",
+        "ru": "Измеряем расстояние между двумя отметками на дороге, секундомером засекаем, за какое время машина его проезжает, по формуле v = s/t находим скорость, переводим её в км/ч и сверяем с показанием радара.",
+        "en": "We measure the distance between two road markers, time the car between them with a stopwatch, work out the speed with v = s/t, convert it to km/h and check it against the radar."
+      },
+      "equation": "v = \\frac{s}{t}",
+      "inputs": {
+        "ky": "s = 60 м (эки белгинин ортосу), секундомер",
+        "ru": "s = 60 м (между отметками), секундомер",
+        "en": "s = 60 m (between the markers), a stopwatch"
+      },
+      "outputs": {
+        "ky": "t = 4,0 с, v = 15 м/с = 54 км/саат",
+        "ru": "t = 4,0 с, v = 15 м/с = 54 км/ч",
+        "en": "t = 4.0 s, v = 15 m/s = 54 km/h"
+      },
+      "steps": [
+        {
+          "key": "markers",
+          "title": {
+            "ky": "Аралыкты белгилөө",
+            "ru": "Отмечаем расстояние",
+            "en": "Mark the distance"
+          },
+          "result": {
+            "ky": "s = 60 м",
+            "ru": "s = 60 м",
+            "en": "s = 60 m"
+          },
+          "description": {
+            "ky": "Рулетка менен жолдо эки белгинин ортосун ченейбиз: 60 м. Аралык канчалык узун болсо, убакытты ченөөнүн катасы ошончолук аз таасир этет.",
+            "ru": "Рулеткой отмеряем на дороге расстояние между двумя отметками: 60 м. Чем длиннее участок, тем меньше влияет ошибка измерения времени.",
+            "en": "With a tape measure we mark 60 m between two points on the road. The longer the stretch, the less the timing error matters."
+          },
+          "conceptKey": "phys.distance",
+          "altText": {
+            "ky": "Жолдо эки белги, алардын ортосунда 60 м деген жазуу.",
+            "ru": "Две отметки на дороге и надпись 60 м между ними.",
+            "en": "Two markers on the road with '60 m' written between them."
+          },
+          "duration": 1
+        },
+        {
+          "key": "start",
+          "title": {
+            "ky": "Секундомер иштейт",
+            "ru": "Запускаем секундомер",
+            "en": "Start the stopwatch"
+          },
+          "result": {
+            "ky": "t = 0",
+            "ru": "t = 0",
+            "en": "t = 0"
+          },
+          "description": {
+            "ky": "Машинанын алдыңкы дөңгөлөгү биринчи белгиден өткөн замат секундомерди басабыз.",
+            "ru": "Как только переднее колесо машины пересекает первую отметку, нажимаем секундомер.",
+            "en": "The moment the car's front wheel crosses the first marker, we press the stopwatch."
+          },
+          "conceptKey": "phys.travel-time",
+          "altText": {
+            "ky": "Машина биринчи белгинин тушунда, секундомер 0,0 көрсөтөт.",
+            "ru": "Машина у первой отметки, секундомер показывает 0,0.",
+            "en": "The car at the first marker; the stopwatch shows 0.0."
+          },
+          "duration": 1
+        },
+        {
+          "key": "finish",
+          "title": {
+            "ky": "Секундомер токтойт",
+            "ru": "Останавливаем секундомер",
+            "en": "Stop the stopwatch"
+          },
+          "result": {
+            "ky": "t = 4,0 с",
+            "ru": "t = 4,0 с",
+            "en": "t = 4.0 s"
+          },
+          "description": {
+            "ky": "Ошол эле дөңгөлөк экинчи белгиден өткөндө секундомерди токтотобуз: 4,0 с. Ченөөнү үч жолу кайталап, орточосун алабыз.",
+            "ru": "Когда то же колесо пересекает вторую отметку, останавливаем секундомер: 4,0 с. Повторяем измерение трижды и берём среднее.",
+            "en": "When the same wheel crosses the second marker we stop the watch: 4.0 s. We repeat three times and take the average."
+          },
+          "conceptKey": "phys.travel-time",
+          "altText": {
+            "ky": "Машина экинчи белгиде, секундомер 4,0 с көрсөтөт.",
+            "ru": "Машина у второй отметки, секундомер показывает 4,0 с.",
+            "en": "The car at the second marker; the stopwatch shows 4.0 s."
+          },
+          "duration": 1
+        },
+        {
+          "key": "compute",
+          "title": {
+            "ky": "Ылдамдыкты эсептөө",
+            "ru": "Вычисляем скорость",
+            "en": "Work out the speed"
+          },
+          "result": {
+            "ky": "v = 15 м/с",
+            "ru": "v = 15 м/с",
+            "en": "v = 15 m/s"
+          },
+          "description": {
+            "ky": "v = s/t = 60 м : 4,0 с = 15 м/с. Машина ар бир секундда 15 м жол өтөт.",
+            "ru": "v = s/t = 60 м : 4,0 с = 15 м/с. Каждую секунду машина проезжает 15 м.",
+            "en": "v = s/t = 60 m ÷ 4.0 s = 15 m/s. The car covers 15 m every second."
+          },
+          "conceptKey": "phys.speed",
+          "altText": {
+            "ky": "v = s/t формуласы жана ылдамдыктын жебеси.",
+            "ru": "Формула v = s/t и стрелка скорости.",
+            "en": "The formula v = s/t and the velocity arrow."
+          },
+          "duration": 1
+        },
+        {
+          "key": "convert",
+          "title": {
+            "ky": "км/саатка которуу жана радар",
+            "ru": "Перевод в км/ч и радар",
+            "en": "Convert to km/h and check the radar"
+          },
+          "result": {
+            "ky": "15 м/с = 54 км/саат",
+            "ru": "15 м/с = 54 км/ч",
+            "en": "15 m/s = 54 km/h"
+          },
+          "description": {
+            "ky": "1 м/с = 3600 м/саат = 3,6 км/саат, ошондуктан 15 · 3,6 = 54 км/саат. Радар да 54 км/саат көрсөтөт – ченөө туура.",
+            "ru": "1 м/с = 3600 м/ч = 3,6 км/ч, поэтому 15 · 3,6 = 54 км/ч. Радар тоже показывает 54 км/ч – измерение верное.",
+            "en": "1 m/s = 3600 m/h = 3.6 km/h, so 15 × 3.6 = 54 km/h. The radar also reads 54 km/h – our measurement is right."
+          },
+          "conceptKey": "phys.speed-radar",
+          "altText": {
+            "ky": "Радардын экранында 54 км/саат.",
+            "ru": "На экране радара 54 км/ч.",
+            "en": "The radar display shows 54 km/h."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "distance",
+          "label": {
+            "ky": "Басып өткөн жол",
+            "ru": "Пройденный путь",
+            "en": "Distance travelled"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 60,
+          "precision": 0
+        },
+        {
+          "key": "time",
+          "label": {
+            "ky": "Убакыт",
+            "ru": "Время",
+            "en": "Time"
+          },
+          "unit": "s",
+          "min": 0,
+          "max": 4,
+          "precision": 1
+        },
+        {
+          "key": "speed",
+          "label": {
+            "ky": "Эсептелген ылдамдык",
+            "ru": "Вычисленная скорость",
+            "en": "Calculated speed"
+          },
+          "unit": "m/s",
+          "min": 0,
+          "max": 15,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "s": 60,
+        "v": 15,
+        "distance@markers": 0,
+        "distance@start": 0,
+        "distance@finish": 60,
+        "distance@compute": 60,
+        "distance@convert": 60,
+        "time@markers": 0,
+        "time@start": 0,
+        "time@finish": 4,
+        "time@compute": 4,
+        "time@convert": 4,
+        "speed@markers": 0,
+        "speed@start": 0,
+        "speed@finish": 0,
+        "speed@compute": 15,
+        "speed@convert": 15
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "phys.q.speed-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Ылдамдыкты кайсы формула менен эсептейбиз?",
+        "ru": "По какой формуле вычисляют скорость?",
+        "en": "Which formula gives the speed?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "v = s · t",
+            "ru": "v = s · t",
+            "en": "v = s × t"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "v = s / t",
+            "ru": "v = s / t",
+            "en": "v = s / t"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "v = t / s",
+            "ru": "v = t / s",
+            "en": "v = t / s"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "v = s + t",
+            "ru": "v = s + t",
+            "en": "v = s + t"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Ылдамдык – убакыт бирдигинде басып өткөн жол, ошондуктан жолду убакытка бөлөбүз: v = s/t.",
+        "ru": "Скорость – путь за единицу времени, поэтому путь делят на время: v = s/t.",
+        "en": "Speed is distance per unit of time, so we divide the distance by the time: v = s/t."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.speed-2",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Велосипедчи 900 м жолду 3 мүнөттө өттү. Анын ылдамдыгы канча м/с?",
+        "ru": "Велосипедист проехал 900 м за 3 минуты. Какова его скорость в м/с?",
+        "en": "A cyclist rides 900 m in 3 minutes. What is the speed in m/s?"
+      },
+      "answer": 5,
+      "tolerance": 0.05,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "3 мүн = 180 с. v = 900 м : 180 с = 5 м/с. Мүнөттү секундга которууну унутпаңыз.",
+        "ru": "3 мин = 180 с. v = 900 м : 180 с = 5 м/с. Не забудьте перевести минуты в секунды.",
+        "en": "3 min = 180 s. v = 900 m ÷ 180 s = 5 m/s. Remember to turn minutes into seconds."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.speed-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Машина 72 км/саат ылдамдык менен бара жатат. Бул канча м/с?",
+        "ru": "Машина едет со скоростью 72 км/ч. Сколько это м/с?",
+        "en": "A car is doing 72 km/h. How many m/s is that?"
+      },
+      "answer": 20,
+      "tolerance": 0.1,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "км/саатты м/с ка которуу үчүн 3,6га бөлөбүз: 72 : 3,6 = 20 м/с.",
+        "ru": "Чтобы перевести км/ч в м/с, делим на 3,6: 72 : 3,6 = 20 м/с.",
+        "en": "To turn km/h into m/s, divide by 3.6: 72 ÷ 3.6 = 20 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.speed-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Поезд 25 м/с ылдамдык менен жүрөт. Бул канча км/саат?",
+        "ru": "Поезд идёт со скоростью 25 м/с. Сколько это км/ч?",
+        "en": "A train travels at 25 m/s. How many km/h is that?"
+      },
+      "answer": 90,
+      "tolerance": 0.5,
+      "unit": "km/h",
+      "explanation": {
+        "ky": "м/с ты км/саатка которуу үчүн 3,6га көбөйтөбүз: 25 · 3,6 = 90 км/саат.",
+        "ru": "Чтобы перевести м/с в км/ч, умножаем на 3,6: 25 · 3,6 = 90 км/ч.",
+        "en": "To turn m/s into km/h, multiply by 3.6: 25 × 3.6 = 90 km/h."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.speed-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Машина 54 км/саат ылдамдык менен 20 с жүрдү. Ал канча метр жол өттү?",
+        "ru": "Машина ехала 20 с со скоростью 54 км/ч. Какой путь в метрах она проехала?",
+        "en": "A car drives at 54 km/h for 20 s. How many metres does it cover?"
+      },
+      "answer": 300,
+      "tolerance": 1,
+      "unit": "m",
+      "explanation": {
+        "ky": "54 км/саат = 15 м/с. s = v·t = 15 м/с · 20 с = 300 м.",
+        "ru": "54 км/ч = 15 м/с. s = v·t = 15 м/с · 20 с = 300 м.",
+        "en": "54 km/h = 15 m/s. s = v·t = 15 m/s × 20 s = 300 m."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.speed-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Автобус 12 м/с ылдамдык менен 1,8 км жол жүрөт. Ал канча секундда жетет?",
+        "ru": "Автобус едет со скоростью 12 м/с и должен проехать 1,8 км. За сколько секунд он доедет?",
+        "en": "A bus at 12 m/s has 1.8 km to go. How many seconds will it take?"
+      },
+      "answer": 150,
+      "tolerance": 1,
+      "unit": "s",
+      "explanation": {
+        "ky": "1,8 км = 1800 м. t = s/v = 1800 м : 12 м/с = 150 с (2,5 мүн).",
+        "ru": "1,8 км = 1800 м. t = s/v = 1800 м : 12 м/с = 150 с (2,5 мин).",
+        "en": "1.8 km = 1800 m. t = s/v = 1800 m ÷ 12 m/s = 150 s (2.5 min)."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.speed-7",
+      "type": "single",
+      "prompt": {
+        "ky": "Айбек 18 км/саат ылдамдык менен велосипед тебет, Айгерим 5 м/с ылдамдык менен чуркайт. Ким тезирээк?",
+        "ru": "Айбек едет на велосипеде со скоростью 18 км/ч, Айгерим бежит со скоростью 5 м/с. Кто быстрее?",
+        "en": "Aibek cycles at 18 km/h and Aigerim runs at 5 m/s. Who is faster?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Айбек",
+            "ru": "Айбек",
+            "en": "Aibek"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Айгерим",
+            "ru": "Айгерим",
+            "en": "Aigerim"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Экөөнүн ылдамдыгы бирдей",
+            "ru": "Скорости одинаковы",
+            "en": "They are equally fast"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "5 м/с = 5 · 3,6 = 18 км/саат. Ылдамдыктар бирдей – саны чоң болгону менен тез эмес, бирдиктерди салыштыруу керек.",
+        "ru": "5 м/с = 5 · 3,6 = 18 км/ч. Скорости равны: большее число ещё не значит большую скорость – нужно сравнивать в одних единицах.",
+        "en": "5 m/s = 5 × 3.6 = 18 km/h. They are equal: a bigger number does not mean faster – compare in the same units."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "misconceptionKey": "phys.m.bigger-number-faster",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.speed-8",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Тележканын ылдамдыгын ченөө үчүн кайсы приборлор керек? Бардык туура жоопторду тандаңыз.",
+        "ru": "Какие приборы нужны, чтобы измерить скорость тележки? Выберите все верные ответы.",
+        "en": "Which instruments do you need to measure a trolley's speed? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Рулетка",
+            "ru": "Рулетка",
+            "en": "Tape measure"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Секундомер",
+            "ru": "Секундомер",
+            "en": "Stopwatch"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Тараза",
+            "ru": "Весы",
+            "en": "Scales"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Термометр",
+            "ru": "Термометр",
+            "en": "Thermometer"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "explanation": {
+        "ky": "Ылдамдыкты табуу үчүн жолду (сызгыч же рулетка) жана убакытты (секундомер) ченейбиз. Тараза массаны, термометр температураны ченейт – ылдамдыкка алар керек эмес.",
+        "ru": "Чтобы найти скорость, измеряют путь (линейкой или рулеткой) и время (секундомером). Весы измеряют массу, термометр – температуру, для скорости они не нужны.",
+        "en": "To find speed we measure distance (ruler or tape measure) and time (stopwatch). Scales measure mass and a thermometer temperature – neither is needed for speed."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.speed-9",
+      "type": "match",
+      "prompt": {
+        "ky": "Чоңдукту анын SI бирдиги менен дал келтириңиз.",
+        "ru": "Сопоставьте величину и её единицу в СИ.",
+        "en": "Match each quantity to its SI unit."
+      },
+      "pairs": [
+        {
+          "key": "dist",
+          "left": {
+            "ky": "Жол, s",
+            "ru": "Путь, s",
+            "en": "Distance, s"
+          },
+          "right": {
+            "ky": "м",
+            "ru": "м",
+            "en": "m"
+          }
+        },
+        {
+          "key": "time",
+          "left": {
+            "ky": "Убакыт, t",
+            "ru": "Время, t",
+            "en": "Time, t"
+          },
+          "right": {
+            "ky": "с",
+            "ru": "с",
+            "en": "s"
+          }
+        },
+        {
+          "key": "speed",
+          "left": {
+            "ky": "Ылдамдык, v",
+            "ru": "Скорость, v",
+            "en": "Speed, v"
+          },
+          "right": {
+            "ky": "м/с",
+            "ru": "м/с",
+            "en": "m/s"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Жол – метр, убакыт – секунд, ылдамдык – метр секундуна. км/саат SI бирдиги эмес, бирок турмушта көп колдонулат.",
+        "ru": "Путь – метр, время – секунда, скорость – метр в секунду. км/ч не единица СИ, но часто используется в быту.",
+        "en": "Distance – metre, time – second, speed – metre per second. km/h is not an SI unit, though it is common in daily life."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.speed-10",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден машинанын ылдамдыгын алыстан ченеген приборду тап.",
+        "ru": "Найдите на модели прибор, который измеряет скорость машины на расстоянии.",
+        "en": "Find the device in the model that measures the car's speed from a distance."
+      },
+      "targetConceptKey": "phys.speed-radar",
+      "explanation": {
+        "ky": "Бул – ылдамдык радары: ал кайткан радиотолкун боюнча ылдамдыкты заматта аныктайт.",
+        "ru": "Это радар скорости: по отражённой радиоволне он сразу определяет скорость.",
+        "en": "That is the speed radar: it works out the speed at once from the reflected radio wave."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "misconceptionKey": "phys.m.radar-measures-distance",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.speed-11",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден кыймылдын убактысын ченөөчү приборду тап.",
+        "ru": "Найдите на модели прибор, которым измеряют время движения.",
+        "en": "Find the instrument in the model that measures the travel time."
+      },
+      "targetConceptKey": "phys.travel-time",
+      "explanation": {
+        "ky": "Бул – секундомер. Ал машина эки белгинин ортосун канча убакытта өткөнүн көрсөтөт.",
+        "ru": "Это секундомер. Он показывает, за какое время машина проехала между двумя отметками.",
+        "en": "That is the stopwatch. It shows how long the car takes to get from one marker to another."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.speed-12",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Бишкектен Токмокко чейин 60 км. Маршрутка бул жолду 1,5 саатта өттү. Анын орточо ылдамдыгы канча км/саат?",
+        "ru": "От Бишкека до Токмока 60 км. Маршрутка проехала этот путь за 1,5 часа. Какова её средняя скорость в км/ч?",
+        "en": "Bishkek to Tokmok is 60 km. A minibus covers it in 1.5 hours. What is its average speed in km/h?"
+      },
+      "answer": 40,
+      "tolerance": 0.5,
+      "unit": "km/h",
+      "explanation": {
+        "ky": "v = s/t = 60 км : 1,5 саат = 40 км/саат. Аялдамалардагы токтоолор да убакытка кирет, ошондуктан орточо ылдамдык спидометрдеги эң чоң сандан аз.",
+        "ru": "v = s/t = 60 км : 1,5 ч = 40 км/ч. Остановки тоже входят во время, поэтому средняя скорость меньше наибольшего показания спидометра.",
+        "en": "v = s/t = 60 km ÷ 1.5 h = 40 km/h. Stops count in the time, so the average is lower than the highest speedometer reading."
+      },
+      "objectiveKeys": [
+        "phys.g8.motion.o1"
+      ],
+      "difficulty": 2
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-phys-pendulum",
+      "ky": "маятник",
+      "ru": "маятник",
+      "en": "pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-period",
+      "ky": "термелүү мезгили",
+      "ru": "период колебаний",
+      "en": "period of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-amplitude",
+      "ky": "амплитуда",
+      "ru": "амплитуда",
+      "en": "amplitude",
+      "forbidden": [
+        "amplitud"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gravity",
+      "ky": "оордук күчү",
+      "ru": "сила тяжести",
+      "en": "force of gravity",
+      "forbidden": [
+        "attraction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction",
+      "ky": "сүрүлүү күчү",
+      "ru": "сила трения",
+      "en": "friction force",
+      "forbidden": [
+        "force of rubbing"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-force",
+      "ky": "таянычтын реакция күчү",
+      "ru": "сила реакции опоры",
+      "en": "normal force",
+      "forbidden": [
+        "support reaction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-acceleration",
+      "ky": "ылдамдануу",
+      "ru": "ускорение",
+      "en": "acceleration",
+      "forbidden": [
+        "тездетүү"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-speed",
+      "ky": "ылдамдык",
+      "ru": "скорость",
+      "en": "speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinetic-energy",
+      "ky": "кинетикалык энергия",
+      "ru": "кинетическая энергия",
+      "en": "kinetic energy",
+      "forbidden": [
+        "кинетический энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-potential-energy",
+      "ky": "потенциалдык энергия",
+      "ru": "потенциальная энергия",
+      "en": "potential energy",
+      "forbidden": [
+        "потенциальный энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-voltage",
+      "ky": "чыңалуу",
+      "ru": "напряжение",
+      "en": "voltage",
+      "forbidden": [
+        "electric tension"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-current",
+      "ky": "ток күчү",
+      "ru": "сила тока",
+      "en": "electric current",
+      "forbidden": [
+        "current force",
+        "current strength"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-resistance",
+      "ky": "каршылык",
+      "ru": "сопротивление",
+      "en": "resistance",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-circuit",
+      "ky": "электр чынжыры",
+      "ru": "электрическая цепь",
+      "en": "electric circuit",
+      "forbidden": [
+        "electric chain",
+        "электрическая цепочка"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-source",
+      "ky": "ток булагы",
+      "ru": "источник тока",
+      "en": "power source",
+      "forbidden": [
+        "source of current"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-switch",
+      "ky": "ачкыч",
+      "ru": "ключ (выключатель)",
+      "en": "switch",
+      "forbidden": [
+        "electric key"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-distance-travelled",
+      "ky": "басып өткөн жол",
+      "ru": "пройденный путь",
+      "en": "distance travelled",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-time",
+      "ky": "убакыт",
+      "ru": "время",
+      "en": "time",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-uniform-motion",
+      "ky": "бир калыптагы кыймыл",
+      "ru": "равномерное движение",
+      "en": "uniform motion",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-average-speed",
+      "ky": "орточо ылдамдык",
+      "ru": "средняя скорость",
+      "en": "average speed",
+      "forbidden": [
+        "medium speed"
+      ]
+    },
+    {
+      "id": "g-phys-speed-radar",
+      "ky": "ылдамдык радары",
+      "ru": "радар скорости",
+      "en": "speed radar",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-stopwatch",
+      "ky": "секундомер",
+      "ru": "секундомер",
+      "en": "stopwatch",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-distance-time-graph",
+      "ky": "жолдун убакыттан көз карандылык графиги",
+      "ru": "график зависимости пути от времени",
+      "en": "distance–time graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-graph-slope",
+      "ky": "графиктин тиктиги",
+      "ru": "наклон графика",
+      "en": "slope of a graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-rest",
+      "ky": "тынч абал",
+      "ru": "покой",
+      "en": "rest",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-force",
+      "ky": "күч",
+      "ru": "сила",
+      "en": "force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-vector",
+      "ky": "вектор",
+      "ru": "вектор",
+      "en": "vector",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-newton",
+      "ky": "ньютон (Н)",
+      "ru": "ньютон (Н)",
+      "en": "newton (N)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-dynamometer",
+      "ky": "динамометр",
+      "ru": "динамометр",
+      "en": "dynamometer (spring scale)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-weight",
+      "ky": "салмак",
+      "ru": "вес тела",
+      "en": "weight",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-resultant",
+      "ky": "тең аракеттүү күч",
+      "ru": "равнодействующая сила",
+      "en": "resultant force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-elastic-force",
+      "ky": "серпилгичтик күчү",
+      "ru": "сила упругости",
+      "en": "elastic force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-point-of-application",
+      "ky": "күчтүн коюлган чекити",
+      "ru": "точка приложения силы",
+      "en": "point of application",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever",
+      "ky": "рычаг",
+      "ru": "рычаг",
+      "en": "lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-pivot",
+      "ky": "таяныч чекити",
+      "ru": "точка опоры",
+      "en": "pivot (fulcrum)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever-arm",
+      "ky": "күчтүн ийини",
+      "ru": "плечо силы",
+      "en": "lever arm",
+      "forbidden": [
+        "shoulder of force"
+      ]
+    },
+    {
+      "id": "g-phys-moment",
+      "ky": "күчтүн моменти",
+      "ru": "момент силы",
+      "en": "moment of a force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-equilibrium-lever",
+      "ky": "рычагдын тең салмактуулугу",
+      "ru": "равновесие рычага",
+      "en": "equilibrium of a lever",
+      "forbidden": []
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "distance",
+      "icon": "move-horizontal",
+      "valueKind": "quantity",
+      "unit": "km",
+      "label": {
+        "ky": "Аралык",
+        "ru": "Расстояние",
+        "en": "Distance"
+      }
+    },
+    {
+      "key": "eventDuration",
+      "icon": "clock",
+      "valueKind": "quantity",
+      "unit": "min",
+      "label": {
+        "ky": "Узактыгы",
+        "ru": "Продолжительность",
+        "en": "Duration"
+      }
+    },
+    {
+      "key": "length",
+      "icon": "ruler",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Узундугу",
+        "ru": "Длина",
+        "en": "Length"
+      }
+    },
+    {
+      "key": "speed",
+      "icon": "gauge",
+      "valueKind": "quantity",
+      "unit": "m/s",
+      "label": {
+        "ky": "Ылдамдыгы",
+        "ru": "Скорость",
+        "en": "Speed"
+      }
+    }
+  ]
+}

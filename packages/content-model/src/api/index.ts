@@ -9,5 +9,6 @@ export * from './learning.js';
 export * from './classes.js';
 export * from './tutor.js';
 export * from './decks.js';
+export * from './ktp.js';
 export * from './admin.js';
 export * from './endpoints.js';

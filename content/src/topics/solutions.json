@@ -1,0 +1,1126 @@
+{
+  "topic": {
+    "key": "solutions",
+    "unitKey": "chem.g8.mixtures",
+    "status": "published",
+    "title": {
+      "ky": "Эритмелер",
+      "ru": "Растворы",
+      "en": "Solutions"
+    },
+    "formula": "NaCl + H_2O",
+    "classification": {
+      "ky": "Аш тузунун суудагы эритмеси",
+      "ru": "Раствор поваренной соли в воде",
+      "en": "Table salt dissolved in water"
+    },
+    "description": {
+      "ky": "Эритме эриткичтен жана эриген заттан турат. Бөлүкчөлөр моделинде туз сууда кантип эрий турганын, эритме качан каныга турганын жана температура эригичтикке кандай таасир этерин карайбыз.",
+      "ru": "Раствор состоит из растворителя и растворённого вещества. На модели частиц разбираем, как соль растворяется в воде, когда раствор становится насыщенным и как температура влияет на растворимость.",
+      "en": "A solution is made of a solvent and a solute. With a particle model we see how salt dissolves in water, when a solution becomes saturated and how temperature affects solubility."
+    },
+    "goal": {
+      "ky": "Эритменин курамын түшүндүрүү, каныккан жана каныкпаган эритмелерди айырмалоо, эригичтиктин ийри сызыгын окуу жана температуранын таасирин түшүндүрүү (CHEM-8.3.2).",
+      "ru": "Объяснять состав раствора, различать насыщенные и ненасыщенные растворы, читать кривую растворимости и объяснять влияние температуры (CHEM-8.3.2).",
+      "en": "Explain what a solution is made of, tell saturated from unsaturated solutions, read a solubility curve and explain the effect of temperature (CHEM-8.3.2)."
+    },
+    "objectiveKeys": [
+      "chem.g8.mixtures.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "particles",
+        "species": [
+          {
+            "id": "water",
+            "hue": 205,
+            "count": 90,
+            "radius": 0.8,
+            "place": "mixed"
+          },
+          {
+            "id": "na",
+            "element": "Na",
+            "count": 14,
+            "radius": 0.9,
+            "place": "bottom"
+          },
+          {
+            "id": "cl",
+            "element": "Cl",
+            "count": 14,
+            "radius": 1.1,
+            "place": "bottom"
+          }
+        ],
+        "temperature": 20,
+        "dissolve": 0.6
+      },
+      "camera": {
+        "position": [
+          0,
+          1.5,
+          7
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "motion",
+        "labels",
+        "zoom"
+      ]
+    },
+    "conceptKeys": [
+      "chem.solution",
+      "chem.solvent",
+      "chem.solute",
+      "chem.saturated-solution",
+      "chem.solubility",
+      "chem.solubility-curve"
+    ],
+    "overrides": {
+      "chem.solution": {
+        "nodes": [
+          "Container"
+        ]
+      },
+      "chem.solvent": {
+        "nodes": [
+          "Solvent",
+          "Species_water"
+        ],
+        "anchor": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "chem.solute": {
+        "nodes": [
+          "Species_na",
+          "Species_cl"
+        ],
+        "anchor": [
+          0.6,
+          -0.8,
+          0
+        ]
+      }
+    },
+    "props": [
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "NaCl"
+      },
+      {
+        "kind": "quantity",
+        "type": "temperature",
+        "value": 20
+      },
+      {
+        "kind": "quantity",
+        "type": "mass",
+        "value": 36,
+        "unit": "g / 100 g H₂O",
+        "approx": true
+      }
+    ],
+    "samples": [
+      {
+        "key": "nacl-unsaturated",
+        "title": {
+          "ky": "Туздуу суу",
+          "ru": "Солёная вода",
+          "en": "Salt water"
+        },
+        "classification": {
+          "ky": "Каныкпаган · 10 г / 100 г, 20 °C",
+          "ru": "Ненасыщенный · 10 г / 100 г, 20 °C",
+          "en": "Unsaturated · 10 g / 100 g, 20 °C"
+        },
+        "thumb": "thumbs/nacl-unsaturated.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 10,
+            "unit": "g / 100 g H₂O"
+          },
+          {
+            "kind": "quantity",
+            "type": "temperature",
+            "value": 20
+          }
+        ]
+      },
+      {
+        "key": "nacl-saturated",
+        "title": {
+          "ky": "Каныккан NaCl эритмеси",
+          "ru": "Насыщенный раствор NaCl",
+          "en": "Saturated NaCl solution"
+        },
+        "classification": {
+          "ky": "≈36 г / 100 г, 20 °C · түбүндө туз",
+          "ru": "≈36 г / 100 г, 20 °C · соль на дне",
+          "en": "≈36 g / 100 g, 20 °C · salt on the bottom"
+        },
+        "thumb": "thumbs/nacl-saturated.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 36,
+            "unit": "g / 100 g H₂O",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "temperature",
+            "value": 20
+          }
+        ]
+      },
+      {
+        "key": "kno3-hot",
+        "title": {
+          "ky": "Ысык KNO₃ эритмеси",
+          "ru": "Горячий раствор KNO₃",
+          "en": "Hot KNO₃ solution"
+        },
+        "classification": {
+          "ky": "≈110 г / 100 г, 60 °C",
+          "ru": "≈110 г / 100 г, 60 °C",
+          "en": "≈110 g / 100 g, 60 °C"
+        },
+        "thumb": "thumbs/kno3-hot.webp",
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "KNO_3"
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 110,
+            "unit": "g / 100 g H₂O",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "temperature",
+            "value": 60
+          }
+        ]
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                7
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "motion": true
+            },
+            "focus": "chem.solution",
+            "text": {
+              "ky": "Стаканда суу жана аш тузу. Туздун бир бөлүгү эрип, сууга таралды, калганы азырынча түбүндө жатат. Эритме деген эмне жана туз кайда «жоголот»?",
+              "ru": "В стакане вода и поваренная соль. Часть соли уже растворилась и разошлась по воде, остальная пока лежит на дне. Что такое раствор и куда «исчезает» соль?",
+              "en": "The beaker holds water and table salt. Some of the salt has dissolved and spread through the water; the rest is still on the bottom. What is a solution, and where does the salt «go»?"
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: «Эриген туз жок болуп кеттиби? Муну кантип текшеребиз?» Таразага стакан менен тузду эрийге чейин жана эригенден кийин тартып көрсөтүңүз.",
+              "ru": "Спросите: «Растворённая соль исчезла? Как это проверить?» Взвесьте стакан с солью до и после растворения.",
+              "en": "Ask: “Has the dissolved salt vanished? How could we check?” Weigh the beaker and salt before and after dissolving."
+            },
+            "altText": {
+              "ky": "Көк суу бөлүкчөлөрүнүн арасында түстүү иондор; түбүндө туз кристаллы.",
+              "ru": "Цветные ионы среди синих частиц воды; на дне кристалл соли.",
+              "en": "Coloured ions among blue water particles; a salt crystal on the bottom."
+            }
+          },
+          {
+            "key": "solvent",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                7
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "visibility": {
+              "isolate": [
+                "chem.solvent"
+              ]
+            },
+            "focus": "chem.solvent",
+            "text": {
+              "ky": "Суу – эриткич: ал эритмеде көп жана башка затты эритет. Суунун молекулалары тынымсыз кыймылдап, туздун иондорун курчап алат.",
+              "ru": "Вода – растворитель: её в растворе больше и она растворяет другое вещество. Молекулы воды непрерывно движутся и окружают ионы соли.",
+              "en": "Water is the solvent: there is more of it and it dissolves the other substance. Water molecules move all the time and surround the ions of salt."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: «Тырмак лагын эмне эритет?» – ацетон. Демек эриткич суу гана эмес.",
+              "ru": "Спросите: «Чем растворяют лак для ногтей?» – ацетоном. Значит, растворитель – не только вода.",
+              "en": "Ask: “What dissolves nail varnish?” – acetone. So water is not the only solvent."
+            },
+            "altText": {
+              "ky": "Суунун көк бөлүкчөлөрү гана көрсөтүлгөн.",
+              "ru": "Показаны только синие частицы воды.",
+              "en": "Only the blue water particles are shown."
+            }
+          },
+          {
+            "key": "solute",
+            "camera": {
+              "position": [
+                0.5,
+                -0.2,
+                4.5
+              ],
+              "target": [
+                0,
+                -1.0,
+                0
+              ]
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "chem.solute",
+            "text": {
+              "ky": "Туз – эриген зат. Сууда ал Na⁺ жана Cl⁻ иондоруна ажырайт; суу молекулалары аларды кристаллдан бирден бөлүп алып, бүт көлөмгө таратат.",
+              "ru": "Соль – растворённое вещество. В воде она распадается на ионы Na⁺ и Cl⁻; молекулы воды отрывают их от кристалла по одному и разносят по всему объёму.",
+              "en": "Salt is the solute. In water it splits into Na⁺ and Cl⁻ ions; water molecules pull them off the crystal one by one and spread them through the whole volume."
+            },
+            "teacherNote": {
+              "ky": "«Аш тузунун эриши» процессин ишке киргизиңиз. Эки стакан менен демонстрация: аралаштыруу жана жылытуу эрүүнү тездетет.",
+              "ru": "Запустите процесс «Растворение поваренной соли». Демонстрация с двумя стаканами: перемешивание и нагрев ускоряют растворение.",
+              "en": "Run the «Dissolving table salt» process. Demo with two beakers: stirring and warming make salt dissolve faster."
+            },
+            "altText": {
+              "ky": "Na⁺ жана Cl⁻ иондору бөлүнүп көрсөтүлгөн, кээ бирлери кристаллда, кээ бирлери сууда.",
+              "ru": "Выделены ионы Na⁺ и Cl⁻: часть в кристалле, часть в воде.",
+              "en": "Na⁺ and Cl⁻ ions highlighted, some in the crystal and some in the water."
+            }
+          },
+          {
+            "key": "homogeneous",
+            "sample": "nacl-unsaturated",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                7
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "zoom": true
+            },
+            "focus": "chem.solution",
+            "text": {
+              "ky": "Макро көрүнүштө эритме тунук жана бир тектүү: бөлүкчөлөр көрүнбөйт, ар бир тамчы бирдей туздуу. Эритме тундурганда чөкпөйт жана чыпкадан өтөт.",
+              "ru": "В макровиде раствор прозрачный и однородный: частиц не видно, каждая капля одинаково солёная. Раствор не расслаивается и проходит через фильтр.",
+              "en": "In the macro view the solution is clear and the same throughout: no particles are visible and every drop is equally salty. It does not settle and it passes through a filter."
+            },
+            "teacherNote": {
+              "ky": "Эритменин массасы = эриткичтин массасы + эриген заттын массасы. Мисал: 100 г суу + 10 г туз = 110 г эритме.",
+              "ru": "Масса раствора = масса растворителя + масса растворённого вещества. Пример: 100 г воды + 10 г соли = 110 г раствора.",
+              "en": "Mass of solution = mass of solvent + mass of solute. Example: 100 g water + 10 g salt = 110 g of solution."
+            },
+            "altText": {
+              "ky": "Макро көрүнүш: стакандагы тунук суюктук, түбүндө бир аз туз.",
+              "ru": "Макровид: прозрачная жидкость в стакане, немного соли на дне.",
+              "en": "Macro view: a clear liquid in the beaker with a little salt on the bottom."
+            }
+          },
+          {
+            "key": "saturated",
+            "sample": "nacl-saturated",
+            "camera": {
+              "position": [
+                0.5,
+                -0.2,
+                4.5
+              ],
+              "target": [
+                0,
+                -1.0,
+                0
+              ]
+            },
+            "modes": {
+              "zoom": false,
+              "motion": true
+            },
+            "focus": "chem.saturated-solution",
+            "text": {
+              "ky": "20 °C та 100 г сууда 36 г жакын аш тузу эрийт. Андан көп салсак, ашыкчасы түбүндө калат – бул каныккан эритме. Дагы эрий турган болсо, эритме каныкпаган.",
+              "ru": "При 20 °C в 100 г воды растворяется около 36 г поваренной соли. Если насыпать больше, лишнее останется на дне – это насыщенный раствор. Если ещё растворяется – ненасыщенный.",
+              "en": "At 20 °C about 36 g of table salt dissolves in 100 g of water. Add more and the extra stays on the bottom – a saturated solution. If more can still dissolve, it is unsaturated."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: «Каныккан эритмеге дагы туз салсак, эмне болот? Кант салсакчы?» (Кант эрийт – эритме туз үчүн гана каныккан.)",
+              "ru": "Спросите: «Что будет, если в насыщенный раствор насыпать ещё соли? А сахара?» (Сахар растворится – раствор насыщен только солью.)",
+              "en": "Ask: “What happens if we add more salt to the saturated solution? What about sugar?” (Sugar dissolves – the solution is saturated only with salt.)"
+            },
+            "altText": {
+              "ky": "Стакандын түбүндө эрибеген туз кристаллдары.",
+              "ru": "Нерастворившиеся кристаллы соли на дне стакана.",
+              "en": "Undissolved salt crystals on the bottom of the beaker."
+            }
+          },
+          {
+            "key": "temperature",
+            "sample": "kno3-hot",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                7
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "modes": {
+              "motion": true
+            },
+            "focus": "chem.solubility",
+            "text": {
+              "ky": "Эригичтик температурага көз каранды. Калий нитраты KNO₃ 20 °C та ≈32 г, ал эми 60 °C та ≈110 г эрийт. NaClдын эригичтиги дээрлик өзгөрбөйт (≈36–37 г). Газдар, тескерисинче, жылуу сууда начар эрийт.",
+              "ru": "Растворимость зависит от температуры. Нитрат калия KNO₃ растворяется ≈32 г при 20 °C и ≈110 г при 60 °C. Растворимость NaCl почти не меняется (≈36–37 г). Газы, наоборот, хуже растворяются в тёплой воде.",
+              "en": "Solubility depends on temperature. Potassium nitrate KNO₃ dissolves ≈32 g at 20 °C but ≈110 g at 60 °C. Table salt hardly changes (≈36–37 g). Gases are the other way round: they dissolve less in warm water."
+            },
+            "teacherNote": {
+              "ky": "Мисконцепция: «аралаштырсаң, көбүрөөк эрийт». Аралаштыруу эрүүнү тездетет, бирок эригичтикти өзгөртпөйт – аны температура өзгөртөт.",
+              "ru": "Ошибка учеников: «если мешать, растворится больше». Перемешивание ускоряет растворение, но растворимость меняет только температура.",
+              "en": "Common mistake: “stir it and more will dissolve”. Stirring speeds dissolving up, but only temperature changes the solubility."
+            },
+            "altText": {
+              "ky": "Бөлүкчөлөр тезирээк кыймылдайт; текст температуранын таасирин сүрөттөйт.",
+              "ru": "Частицы движутся быстрее; текст описывает влияние температуры.",
+              "en": "Particles move faster; the text describes the effect of temperature."
+            }
+          },
+          {
+            "key": "curve",
+            "sample": "kno3-hot",
+            "camera": {
+              "position": [
+                0,
+                1.5,
+                7
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ]
+            },
+            "focus": "chem.solubility-curve",
+            "text": {
+              "ky": "Эригичтиктин ийри сызыгы: X огу – температура, Y огу – 100 г сууда эриген заттын граммы. Сызыктагы чекит – каныккан эритме. 60 °C та каныккан KNO₃ эритмесин 20 °C ка чейин муздатсак, 110 − 32 = 78 г кристалл чөгөт.",
+              "ru": "Кривая растворимости: по оси X – температура, по оси Y – граммы вещества на 100 г воды. Точка на кривой – насыщенный раствор. Если насыщенный при 60 °C раствор KNO₃ охладить до 20 °C, выпадет 110 − 32 = 78 г кристаллов.",
+              "en": "A solubility curve: temperature along x, grams dissolved per 100 g of water up y. A point on the curve is a saturated solution. Cool a KNO₃ solution saturated at 60 °C to 20 °C and 110 − 32 = 78 g of crystals come out."
+            },
+            "teacherNote": {
+              "ky": "Тактага эки ийри сызыкты чийиңиз: KNO₃ (20 °C – 32 г, 60 °C – 110 г) жана NaCl (≈36 г дээрлик түз). «KNO₃ кристаллдарынын чөгүшү» процессин көрсөтүңүз. Ысык эритмелер менен иштегенде көз айнек жана кармагыч колдонулат.",
+              "ru": "Нарисуйте на доске две кривые: KNO₃ (20 °C – 32 г, 60 °C – 110 г) и NaCl (почти ровно ≈36 г). Покажите процесс «Выпадение кристаллов KNO₃». С горячими растворами работают в очках и с держателем.",
+              "en": "Sketch two curves on the board: KNO₃ (20 °C – 32 g, 60 °C – 110 g) and NaCl (almost flat at ≈36 g). Show the «Crystallising KNO₃ by cooling» process. Use goggles and a holder with hot solutions."
+            },
+            "altText": {
+              "ky": "Текст эригичтиктин ийри сызыгын жана KNO₃тун кристаллдашуусун сүрөттөйт.",
+              "ru": "Текст описывает кривую растворимости и кристаллизацию KNO₃.",
+              "en": "The text describes the solubility curve and KNO₃ crystallising."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "chem.dissolving-salt",
+        "chem.kno3-crystallisation"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "concept",
+            "key": "chem.solvent"
+          },
+          {
+            "kind": "concept",
+            "key": "chem.solute"
+          }
+        ],
+        "rows": [
+          "function",
+          "composition"
+        ],
+        "manual": [
+          {
+            "column": "chem.solvent",
+            "row": "composition",
+            "value": {
+              "ky": "Туздуу сууда – суу H₂O",
+              "ru": "В солёной воде – вода H₂O",
+              "en": "In salt water: water, H₂O"
+            }
+          },
+          {
+            "column": "chem.solute",
+            "row": "function",
+            "value": {
+              "ky": "Эриткичте таралат",
+              "ru": "Распределяется в растворителе",
+              "en": "Spreads through the solvent"
+            }
+          }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "chem.q.solutions-1",
+          "chem.q.solutions-2",
+          "chem.q.solutions-3",
+          "chem.q.solutions-4",
+          "chem.q.solutions-5",
+          "chem.q.solutions-6",
+          "chem.q.solutions-7",
+          "chem.q.solutions-8",
+          "chem.q.solutions-9",
+          "chem.q.solutions-10",
+          "chem.q.solutions-11",
+          "chem.q.solutions-12"
+        ],
+        "sampleSize": 7
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Физиологиялык эритме",
+            "ru": "Физиологический раствор",
+            "en": "Medical saline"
+          },
+          "text": {
+            "ky": "Ооруканаларда 0,9 % аш тузунун эритмеси колдонулат – анын туздуулугу кандыкына жакын.",
+            "ru": "В больницах используют 0,9 % раствор поваренной соли – его солёность близка к солёности крови.",
+            "en": "Hospitals use a 0.9 % solution of table salt, about as salty as blood."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Көлмөдөгү кычкылтек",
+            "ru": "Кислород в пруду",
+            "en": "Oxygen in a pond"
+          },
+          "text": {
+            "ky": "Жайында суу жылыганда андагы эриген кычкылтек азаят, ошондуктан балыктар суунун бетине чыгып дем алат.",
+            "ru": "Летом, когда вода нагревается, растворённого кислорода становится меньше, и рыбы поднимаются дышать к поверхности.",
+            "en": "In summer warm water holds less dissolved oxygen, so fish come up to the surface to breathe."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Жер семирткичтер",
+            "ru": "Удобрения",
+            "en": "Fertilisers"
+          },
+          "text": {
+            "ky": "Агрономдор калий нитраты сыяктуу жер семирткичтерди сууда эритип, тамчылатып сугаруу аркылуу өсүмдүктөргө беришет.",
+            "ru": "Агрономы растворяют удобрения, например нитрат калия, в воде и подают растениям через капельный полив.",
+            "en": "Farmers dissolve fertilisers such as potassium nitrate in water and feed plants through drip irrigation."
+          },
+          "field": "e"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Чай жана кант",
+            "ru": "Чай и сахар",
+            "en": "Tea and sugar"
+          },
+          "text": {
+            "ky": "Ысык чайда кант тез жана көп эрийт, муздак чайда – жай жана аз.",
+            "ru": "В горячем чае сахар растворяется быстро и много, в холодном – медленно и мало.",
+            "en": "Sugar dissolves quickly and plentifully in hot tea, slowly and less in cold tea."
+          }
+        },
+        {
+          "title": {
+            "ky": "Газдалган суу",
+            "ru": "Газировка",
+            "en": "Fizzy drink"
+          },
+          "text": {
+            "ky": "Бөтөлкөнү ачканда газ көбүкчө болуп чыгат; жылуу суусундук газын тезирээк жоготот.",
+            "ru": "Когда открываешь бутылку, газ выходит пузырьками; тёплая газировка выдыхается быстрее.",
+            "en": "Open a bottle and the gas escapes as bubbles; a warm drink goes flat faster."
+          }
+        }
+      ]
+    },
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    },
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "chem.q.solutions-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Туздуу сууда эриткич кайсы?",
+        "ru": "Что является растворителем в солёной воде?",
+        "en": "In salt water, which substance is the solvent?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Суу",
+            "ru": "Вода",
+            "en": "Water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Туз",
+            "ru": "Соль",
+            "en": "Salt"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Экөө тең",
+            "ru": "Оба",
+            "en": "Both"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Аба",
+            "ru": "Воздух",
+            "en": "Air"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Суу көп жана ал тузду эритет – суу эриткич, туз – эриген зат.",
+        "ru": "Воды больше и она растворяет соль – вода растворитель, соль – растворённое вещество.",
+        "en": "There is more water and it dissolves the salt, so water is the solvent and salt the solute."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.solutions-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсылары эритмелер? Бардыгын танда.",
+        "ru": "Что из этого – растворы? Выбери все.",
+        "en": "Which of these are solutions? Choose all that apply."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Туздуу суу",
+            "ru": "Солёная вода",
+            "en": "Salt water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Таттуу чай",
+            "ru": "Сладкий чай",
+            "en": "Sweet tea"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Газдалган суу",
+            "ru": "Газированная вода",
+            "en": "Sparkling water"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Ылай суу",
+            "ru": "Мутная вода",
+            "en": "Muddy water"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Суудагы өсүмдүк майы",
+            "ru": "Растительное масло в воде",
+            "en": "Cooking oil in water"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Туздуу суу, таттуу чай жана газдалган суу – бир тектүү, тунук эритмелер. Ылай суу жана суудагы май – бир тектүү эмес аралашмалар.",
+        "ru": "Солёная вода, сладкий чай и газированная вода – однородные прозрачные растворы. Мутная вода и масло в воде – неоднородные смеси.",
+        "en": "Salt water, sweet tea and sparkling water are clear, homogeneous solutions. Muddy water and oil in water are heterogeneous mixtures."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o2"
+      ],
+      "misconceptionKey": "chem.m.solute-solid-only",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.solutions-3",
+      "type": "match",
+      "prompt": {
+        "ky": "Терминди мисалга дал келтир.",
+        "ru": "Сопоставь термин и пример.",
+        "en": "Match each term to an example."
+      },
+      "pairs": [
+        {
+          "key": "solvent",
+          "left": {
+            "ky": "Эриткич",
+            "ru": "Растворитель",
+            "en": "Solvent"
+          },
+          "right": {
+            "ky": "Чайдагы суу",
+            "ru": "Вода в чае",
+            "en": "The water in tea"
+          }
+        },
+        {
+          "key": "solute",
+          "left": {
+            "ky": "Эриген зат",
+            "ru": "Растворённое вещество",
+            "en": "Solute"
+          },
+          "right": {
+            "ky": "Чайдагы кант",
+            "ru": "Сахар в чае",
+            "en": "The sugar in tea"
+          }
+        },
+        {
+          "key": "sat",
+          "left": {
+            "ky": "Каныккан эритме",
+            "ru": "Насыщенный раствор",
+            "en": "Saturated solution"
+          },
+          "right": {
+            "ky": "Түбүндө эрибеген туз калды",
+            "ru": "На дне осталась нерастворённая соль",
+            "en": "Undissolved salt stays on the bottom"
+          }
+        },
+        {
+          "key": "unsat",
+          "left": {
+            "ky": "Каныкпаган эритме",
+            "ru": "Ненасыщенный раствор",
+            "en": "Unsaturated solution"
+          },
+          "right": {
+            "ky": "Кошулган туз дагы эле эрийт",
+            "ru": "Добавленная соль ещё растворяется",
+            "en": "Added salt still dissolves"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Чайда суу – эриткич, кант – эриген зат. Түбүндө эрибеген туз калса – эритме каныккан; дагы эрисе – каныкпаган.",
+        "ru": "В чае вода – растворитель, сахар – растворённое вещество. Соль на дне не растворяется – раствор насыщен; ещё растворяется – ненасыщен.",
+        "en": "In tea, water is the solvent and sugar the solute. Salt left undissolved on the bottom means saturated; if more still dissolves, it is unsaturated."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.solutions-4",
+      "type": "single",
+      "prompt": {
+        "ky": "KNO₃тун эригичтигин кантип көбөйтсө болот?",
+        "ru": "Как увеличить растворимость KNO₃?",
+        "en": "How can you increase the solubility of KNO₃?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Сууну ысытуу",
+            "ru": "Нагреть воду",
+            "en": "Heat the water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Тезирээк аралаштыруу",
+            "ru": "Мешать быстрее",
+            "en": "Stir faster"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Кристаллдарды майдалоо",
+            "ru": "Измельчить кристаллы",
+            "en": "Crush the crystals"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Сууну муздатуу",
+            "ru": "Охладить воду",
+            "en": "Cool the water"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Эригичтикти температура өзгөртөт: KNO₃ 20 °C та ≈32 г, 60 °C та ≈110 г эрийт. Аралаштыруу жана майдалоо эрүүнү гана тездетет.",
+        "ru": "Растворимость меняет температура: KNO₃ ≈32 г при 20 °C и ≈110 г при 60 °C. Перемешивание и измельчение лишь ускоряют растворение.",
+        "en": "Temperature changes solubility: ≈32 g of KNO₃ dissolves at 20 °C and ≈110 g at 60 °C. Stirring and crushing only make it dissolve faster."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o2"
+      ],
+      "misconceptionKey": "chem.m.stir-solubility",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.solutions-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден эриген заттын бөлүкчөлөрүн тап.",
+        "ru": "Найди на модели частицы растворённого вещества.",
+        "en": "Find the particles of the solute on the model."
+      },
+      "targetConceptKey": "chem.solute",
+      "explanation": {
+        "ky": "Эриген зат – аш тузу: Na⁺ жана Cl⁻ иондору.",
+        "ru": "Растворённое вещество – поваренная соль: ионы Na⁺ и Cl⁻.",
+        "en": "The solute is table salt: the Na⁺ and Cl⁻ ions."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.solutions-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден эриткичтин бөлүкчөлөрүн тап.",
+        "ru": "Найди на модели частицы растворителя.",
+        "en": "Find the particles of the solvent on the model."
+      },
+      "targetConceptKey": "chem.solvent",
+      "explanation": {
+        "ky": "Эриткич – суу: эң көп болгон көк бөлүкчөлөр.",
+        "ru": "Растворитель – вода: самые многочисленные синие частицы.",
+        "en": "The solvent is water – the most numerous blue particles."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o2"
+      ],
+      "misconceptionKey": "chem.m.water-dissolves-all",
+      "difficulty": 1
+    },
+    {
+      "key": "chem.q.solutions-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "20 °C та 100 г сууда 36 г аш тузу эрийт. Ушул температурада 250 г сууда эң көп канча грамм туз эрийт?",
+        "ru": "При 20 °C в 100 г воды растворяется 36 г поваренной соли. Сколько граммов соли максимум растворится в 250 г воды при этой температуре?",
+        "en": "At 20 °C, 36 g of table salt dissolves in 100 g of water. What is the most salt that will dissolve in 250 g of water at this temperature?"
+      },
+      "answer": 90,
+      "tolerance": 1,
+      "unit": "g",
+      "explanation": {
+        "ky": "36 г × 250 / 100 = 90 г.",
+        "ru": "36 г × 250 / 100 = 90 г.",
+        "en": "36 g × 250 / 100 = 90 g."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.solutions-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "100 г сууда 60 °C та каныккан KNO₃ эритмеси (110 г KNO₃) 20 °C ка чейин муздатылды. 20 °C та эригичтик 32 г. Канча грамм кристалл чөгөт?",
+        "ru": "Насыщенный при 60 °C раствор KNO₃ в 100 г воды (110 г KNO₃) охладили до 20 °C. Растворимость при 20 °C – 32 г. Сколько граммов кристаллов выпадет?",
+        "en": "A KNO₃ solution saturated at 60 °C in 100 g of water (110 g KNO₃) is cooled to 20 °C, where the solubility is 32 g. How many grams of crystals come out?"
+      },
+      "answer": 78,
+      "tolerance": 1,
+      "unit": "g",
+      "explanation": {
+        "ky": "110 г − 32 г = 78 г.",
+        "ru": "110 г − 32 г = 78 г.",
+        "en": "110 g − 32 g = 78 g."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o2"
+      ],
+      "misconceptionKey": "chem.m.curve-same",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.solutions-9",
+      "type": "numeric",
+      "prompt": {
+        "ky": "20 °C та 100 г сууда 36 г туз эритип, каныккан эритме даярдалды. Эритменин массасы канча?",
+        "ru": "При 20 °C в 100 г воды растворили 36 г соли и получили насыщенный раствор. Какова масса раствора?",
+        "en": "36 g of salt is dissolved in 100 g of water at 20 °C to make a saturated solution. What is the mass of the solution?"
+      },
+      "answer": 136,
+      "tolerance": 0,
+      "unit": "g",
+      "explanation": {
+        "ky": "Эритменин массасы = 100 г + 36 г = 136 г. Эриген туз жоголбойт.",
+        "ru": "Масса раствора = 100 г + 36 г = 136 г. Растворённая соль не исчезает.",
+        "en": "Mass of solution = 100 g + 36 g = 136 g. Dissolved salt does not disappear."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o2"
+      ],
+      "misconceptionKey": "chem.m.dissolved-disappears",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.solutions-10",
+      "type": "single",
+      "prompt": {
+        "ky": "20 °C та 100 г сууга 40 г KNO₃ салынды (эригичтик ≈32 г). Эмне болот?",
+        "ru": "При 20 °C в 100 г воды насыпали 40 г KNO₃ (растворимость ≈32 г). Что произойдёт?",
+        "en": "40 g of KNO₃ is added to 100 g of water at 20 °C (solubility ≈32 g). What happens?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Баары эрийт, эритме каныкпаган",
+            "ru": "Всё растворится, раствор ненасыщенный",
+            "en": "It all dissolves; the solution is unsaturated"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "≈32 г эрийт, ≈8 г түбүндө калат – эритме каныккан",
+            "ru": "≈32 г растворится, ≈8 г останется на дне – раствор насыщен",
+            "en": "≈32 g dissolves, ≈8 g stays on the bottom – saturated"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эч нерсе эрибейт",
+            "ru": "Ничего не растворится",
+            "en": "Nothing dissolves"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Аралаштырсаң, баары эрийт",
+            "ru": "Если перемешать, растворится всё",
+            "en": "Stirring will make it all dissolve"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "≈32 г эрийт, ≈8 г түбүндө калат – эритме каныккан.",
+        "ru": "Растворится ≈32 г, ≈8 г останется на дне – раствор насыщен.",
+        "en": "About 32 g dissolves and about 8 g stays on the bottom – the solution is saturated."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o2"
+      ],
+      "misconceptionKey": "chem.m.saturated-concentrated",
+      "difficulty": 2
+    },
+    {
+      "key": "chem.q.solutions-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн жылуу газдалган суусундук газын муздагына караганда тез жоготот?",
+        "ru": "Почему тёплая газировка выдыхается быстрее холодной?",
+        "en": "Why does a warm fizzy drink go flat faster than a cold one?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жылуу сууда газдын эригичтиги аз",
+            "ru": "В тёплой воде растворимость газа меньше",
+            "en": "Gas is less soluble in warm water"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жылуу сууда газдын эригичтиги көп",
+            "ru": "В тёплой воде растворимость газа больше",
+            "en": "Gas is more soluble in warm water"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жылуу бөтөлкө газды өткөрөт",
+            "ru": "Тёплая бутылка пропускает газ",
+            "en": "A warm bottle lets gas through its walls"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Газ жылуулуктан сууга айланат",
+            "ru": "Газ от тепла превращается в воду",
+            "en": "Heat turns the gas into water"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Газдардын эригичтиги температура жогорулаганда азаят, ошондуктан жылуу суюктуктан CO₂ тезирээк чыгат.",
+        "ru": "Растворимость газов с ростом температуры уменьшается, поэтому из тёплой жидкости CO₂ выходит быстрее.",
+        "en": "Gases become less soluble as temperature rises, so CO₂ escapes faster from a warm drink."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o2"
+      ],
+      "misconceptionKey": "chem.m.curve-same",
+      "difficulty": 3
+    },
+    {
+      "key": "chem.q.solutions-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Таразадагы стакандагы 200 г сууга 20 г кант салып эриттик. Тараза эмнени көрсөтөт (стакандын массасын эсептебе)?",
+        "ru": "На весах в стакане 200 г воды; добавили и растворили 20 г сахара. Что покажут весы (без массы стакана)?",
+        "en": "A beaker on a balance holds 200 g of water; 20 g of sugar is added and dissolved. What does the balance read (ignoring the beaker)?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "200 г",
+            "ru": "200 г",
+            "en": "200 g"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "220 г",
+            "ru": "220 г",
+            "en": "220 g"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "180 г",
+            "ru": "180 г",
+            "en": "180 g"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "210 г",
+            "ru": "210 г",
+            "en": "210 g"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Кант жоголбойт, бөлүкчөлөргө бөлүнүп таралат: 200 г + 20 г = 220 г.",
+        "ru": "Сахар не исчезает, а распределяется частицами: 200 г + 20 г = 220 г.",
+        "en": "The sugar does not vanish; it spreads out as particles: 200 g + 20 g = 220 g."
+      },
+      "objectiveKeys": [
+        "chem.g8.mixtures.o2"
+      ],
+      "misconceptionKey": "chem.m.dissolved-disappears",
+      "difficulty": 1
+    }
+  ]
+}

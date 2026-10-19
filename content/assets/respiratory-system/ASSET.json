@@ -1,0 +1,55 @@
+{
+  "topicKey": "respiratory-system",
+  "files": [
+    {
+      "path": "respiratory.glb",
+      "license": "CC0-1.0",
+      "author": "Bilig",
+      "source": "procedural, scripts/assets/respiratory.mjs",
+      "attribution": "Bilig, CC0 1.0 (no attribution required).",
+      "created": "2026-10-19",
+      "modifications": [
+        "authored by the pipeline script, no third-party geometry or textures: built in metres around the carina, scaled x7 (about 3.8 scene units tall); the body faces +z, so _L (subject's left) is +x",
+        "node names are the content contract: Nose (external nose, nasal cavity with conchae), Larynx (thyroid and cricoid cartilages, arytenoids, epiglottis), Trachea (18 C-shaped cartilage rings open at the back), Bronchi_L/R (main and lobar bronchi, ringed), Bronchioles_L/R, Lung_L (upper and lower lobe, cardiac notch) and Lung_R (upper, middle, lower lobe) semi-translucent, Alveoli_1…Alveoli_9 (magnified cluster beside the right lung, each with its capillary net; one cut open), Diaphragm (two cupolae, trefoil central tendon, crura), Ribs (ribs 1–10 back and sides only, thoracic spine; translucent)",
+        "decorative nodes bound to no concept: Pharynx, Alveolar_Duct (terminal bronchiole, alveolar ducts, pulmonary arteriole and venule), Zoom_Callout (translucent cone and rings from the right lung to the cluster)",
+        "lobes: one lung field (apex, diaphragm-shaped base, mediastinal surface, heart impression) cut by oblique / horizontal fissure planes with a thin gap, meshed by surface nets and simplified with meshoptimizer; the bronchiole tree grows by recursive splitting of each lobe volume (branch to the centroid of its share, split along the principal axis), so it fills every lobe",
+        "look: pink wet pleura with a faint lobule pattern and clearcoat, cream cartilaginous airways grading to coral small bronchioles, blue-white hyaline cartilage, capillaries graded blue (arteriole side) to red (venule side), red-brown diaphragm muscle with a white tendon",
+        "deterministic (mulberry32 / seeded gradient noise): a rebuild gives the same bytes",
+        "gltf-transform: dedup, prune, weld, EXT_meshopt_compression + quantisation; KHR_materials_clearcoat, KHR_materials_sheen, KHR_texture_transform"
+      ],
+      "pipeline": "bilig_back/scripts/assets/respiratory.mjs (shared kit anatomy.mjs, three-gltf.mjs, lib.mjs)",
+      "report": {
+        "sizeBefore": 3431828,
+        "sizeAfter": 959796,
+        "trianglesAfter": 112280,
+        "textures": 1,
+        "nodes": [
+          "RespiratorySystem",
+          "  Pharynx [1008]",
+          "  Nose [7940]",
+          "  Larynx [2592]",
+          "  Trachea [5952]",
+          "  Bronchi_R [1984]",
+          "  Bronchi_L [2400]",
+          "  Lung_R [15500]",
+          "  Bronchioles_R [7568]",
+          "  Lung_L [12000]",
+          "  Bronchioles_L [5728]",
+          "  Alveolar_Duct [1176]",
+          "  Alveoli_1 [3256]",
+          "  Alveoli_2 [3256]",
+          "  Alveoli_3 [3256]",
+          "  Alveoli_4 [3256]",
+          "  Alveoli_5 [3256]",
+          "  Alveoli_6 [3256]",
+          "  Alveoli_7 [3256]",
+          "  Alveoli_8 [3344]",
+          "  Alveoli_9 [3256]",
+          "  Zoom_Callout [1600]",
+          "  Diaphragm [4096]",
+          "  Ribs [13344]"
+        ]
+      }
+    }
+  ]
+}
