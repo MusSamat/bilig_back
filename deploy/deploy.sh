@@ -32,7 +32,7 @@ export GIT_COMMIT="$(cat "$back/.deploy-commit" 2>/dev/null || git -C "$back" re
 "${compose[@]}" build --pull
 "${compose[@]}" up -d --remove-orphans
 echo "Waiting for the API to become healthy…"
-for _ in $(seq 1 60); do
+for _ in $(seq 1 320); do  # up to ~16 min: an import after a content change runs before the API listens
   state="$("${compose[@]}" ps --format '{{.Service}} {{.Health}}' | awk '$1=="api"{print $2}')"
   [ "$state" = "healthy" ] && break
   sleep 3

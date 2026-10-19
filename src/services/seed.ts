@@ -4,6 +4,7 @@
  * load; an invalid package aborts the import with its first errors.
  * Idempotent: re-running updates dictionary rows and skips existing versions.
  */
+import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -180,4 +181,43 @@ export async function importContent(repo: Repository, clock: Clock, content: Loa
   }
   await repo.upsertStrings(rows);
   return { subjects: content.base.subjects.length, topics: content.packages.length, versionsCreated, versionsRefreshed, strings: seen.size };
+}
+
+/** Settings key holding the fingerprint of the last completed import. */
+export const CONTENT_IMPORT_SETTING = 'content.import';
+/** Bump when importContent writes differently, so the next start imports again. */
+const IMPORT_FORMAT = 1;
+
+/**
+ * Fingerprint of everything importContent writes: the catalog base, every
+ * package hash (covers its whole content) and the URLs baked into builds.
+ */
+export function contentFingerprint(content: LoadedContent, opts: { publicUrl: string; cdnBaseUrl?: string }): string {
+  const h = createHash('sha256');
+  h.update(JSON.stringify({ format: IMPORT_FORMAT, publicUrl: opts.publicUrl, cdnBaseUrl: opts.cdnBaseUrl ?? null, base: content.base }));
+  for (const p of [...content.packages].sort((a, b) => a.topic.key.localeCompare(b.topic.key))) h.update(`\0${p.topic.key}:${p.manifest.hash}`);
+  return h.digest('hex');
+}
+
+export type ImportOutcome = { skipped: true; fingerprint: string } | { skipped: false; fingerprint: string; report: SeedReport };
+
+/**
+ * Container start-up import: skips when the content is exactly what the last
+ * completed import wrote. A full import takes minutes and rewrites every
+ * dictionary row (undoing admin edits), so it runs only when content changed
+ * or when `force` is set. The fingerprint is stored after a successful import
+ * only, so an interrupted import runs again on the next start.
+ */
+export async function importContentIfChanged(
+  repo: Repository,
+  clock: Clock,
+  content: LoadedContent,
+  opts: { publicUrl: string; cdnBaseUrl?: string; authorId?: string; force?: boolean },
+): Promise<ImportOutcome> {
+  const fingerprint = contentFingerprint(content, opts);
+  const last = await repo.getSetting(CONTENT_IMPORT_SETTING);
+  if (!opts.force && (last?.value as { fingerprint?: string } | undefined)?.fingerprint === fingerprint) return { skipped: true, fingerprint };
+  const report = await importContent(repo, clock, content, opts);
+  await repo.putSetting(CONTENT_IMPORT_SETTING, { fingerprint, importedAt: clock.now().toISOString(), report }, null);
+  return { skipped: false, fingerprint, report };
 }

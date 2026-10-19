@@ -33,6 +33,8 @@ RUN useradd --system --uid 10001 --home /app bilig && mkdir -p /data/storage && 
 USER bilig
 
 EXPOSE 3000
-HEALTHCHECK --interval=15s --timeout=5s --start-period=60s --retries=5 \
+# start-period: a content import after a content change runs before the API listens and takes
+# minutes on a small server (an unchanged start skips it). Healthy as soon as a check passes.
+HEALTHCHECK --interval=15s --timeout=5s --start-period=900s --retries=5 \
   CMD curl -fsS http://127.0.0.1:3000/api/v1/health || exit 1
 ENTRYPOINT ["/usr/local/bin/api-entrypoint.sh"]

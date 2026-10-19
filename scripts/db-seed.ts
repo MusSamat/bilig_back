@@ -1,6 +1,8 @@
 /**
  * `npm run db:seed`: import content/** into the database as published
  * TopicVersions + Builds (validated with validatePackage at load).
+ * Skipped when the content is unchanged since the last completed import;
+ * `--force` (or CONTENT_IMPORT=force) imports anyway.
  * Optional dev superadmin: DEV_ADMIN_EMAIL + DEV_ADMIN_PASSWORD.
  */
 import { loadConfig } from '../src/config.js';
@@ -8,13 +10,17 @@ import { newId } from '../src/ids.js';
 import { createRepository } from '../src/bootstrap.js';
 import { hashSecret } from '../src/domain/passwords.js';
 import { systemClock } from '../src/services/clock.js';
-import { importContent, loadContentDir } from '../src/services/seed.js';
+import { importContentIfChanged, loadContentDir } from '../src/services/seed.js';
 
 const config = loadConfig();
 const repo = await createRepository(config);
 try {
-  const report = await importContent(repo, systemClock, loadContentDir(config.contentDir), config);
-  console.log(`seeded (${repo.kind}):`, JSON.stringify(report));
+  const force = process.argv.includes('--force') || process.env.CONTENT_IMPORT === 'force';
+  const started = Date.now();
+  const res = await importContentIfChanged(repo, systemClock, loadContentDir(config.contentDir), { ...config, force });
+  const took = `${((Date.now() - started) / 1000).toFixed(1)} s`;
+  if (res.skipped) console.log(`content unchanged (${res.fingerprint.slice(0, 12)}), import skipped in ${took}; --force to import anyway`);
+  else console.log(`seeded (${repo.kind}) in ${took}:`, JSON.stringify(res.report));
 
   const email = process.env.DEV_ADMIN_EMAIL?.toLowerCase();
   const password = process.env.DEV_ADMIN_PASSWORD;
