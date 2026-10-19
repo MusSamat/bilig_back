@@ -72,6 +72,9 @@ export const ENDPOINTS = {
   logoutAll: e({ method: 'POST', path: '/auth/logout-all', auth: 'session', body: EmptySchema, response: OkSchema }),
   passwordForgot: e({ method: 'POST', path: '/auth/password/forgot', auth: null, body: auth.PasswordForgotRequestSchema, response: OkSchema }),
   passwordReset: e({ method: 'POST', path: '/auth/password/reset', auth: null, body: auth.PasswordResetRequestSchema, response: OkSchema }),
+  /** v0.6.0: confirm self-registration with the e-mail code (signs in); resend the code. */
+  registerVerify: e({ method: 'POST', path: '/auth/register/verify', auth: null, body: auth.RegisterVerifyRequestSchema, response: auth.TokenResponseSchema }),
+  registerResend: e({ method: 'POST', path: '/auth/register/resend', auth: null, body: auth.RegisterResendRequestSchema, response: auth.RegisterResponseSchema }),
   inviteAccept: e({ method: 'POST', path: '/auth/invites/:token/accept', auth: null, body: auth.InviteAcceptRequestSchema, response: auth.TokenResponseSchema }),
 
   // Me
@@ -86,6 +89,8 @@ export const ENDPOINTS = {
   subjectCourses: e({ method: 'GET', path: '/subjects/:key/courses', auth: 'demo.view', response: catalog.SubjectCoursesResponseSchema }),
   course: e({ method: 'GET', path: '/courses/:key', auth: 'demo.view', response: catalog.CourseDetailResponseSchema }),
   topicManifest: e({ method: 'GET', path: '/topics/:key/manifest', auth: 'demo.view', response: catalog.TopicManifestResponseSchema }),
+  /** v0.6.0: ready-made presentation of the topic (.pptx / .pdf). */
+  topicDeck: e({ method: 'GET', path: '/topics/:key/deck', auth: 'demo.view', query: decks.TopicDeckQuerySchema, response: BinaryResponseSchema, produces: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' }),
   /** Dev/offline-server stand-in for the CDN package URL. */
   topicPackage: e({ method: 'GET', path: '/packages/:key', auth: 'demo.view', response: ContentPackageSchema }),
   /** v0.5.0: textbook menu. */
@@ -167,7 +172,8 @@ export const ENDPOINTS = {
   ready: e({ method: 'GET', path: '/ready', auth: null, response: ReadyResponseSchema }),
   version: e({ method: 'GET', path: '/version', auth: null, response: VersionResponseSchema }),
 
-  register: e({ method: 'POST', path: '/auth/register', auth: null, body: auth.RegisterRequestSchema, response: OkSchema }),
+  /** v0.6.0: response also says how long the code lives (RegisterResponse ⊇ Ok). */
+  register: e({ method: 'POST', path: '/auth/register', auth: null, body: auth.RegisterRequestSchema, response: auth.RegisterResponseSchema }),
   emailVerify: e({ method: 'POST', path: '/auth/email/verify', auth: null, body: auth.EmailVerifyRequestSchema, response: OkSchema }),
   meSessionRevoke: e({ method: 'DELETE', path: '/me/sessions/:id', auth: 'session', response: OkSchema }),
   meAssignments: e({ method: 'GET', path: '/me/assignments', auth: 'session', response: classes.MyAssignmentsResponseSchema }),

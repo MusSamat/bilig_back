@@ -27,6 +27,8 @@ model User {
   createdAt       DateTime  @db.Timestamptz(3)
   updatedAt       DateTime  @db.Timestamptz(3)
   deletedAt       DateTime? @db.Timestamptz(3)
+  /// v0.6.0: pending self-registration details { teaching?, schoolName?, region? } until the e-mail is confirmed.
+  signup          Json?
 
   credentials Credential[]
   sessions    Session[]
@@ -84,11 +86,15 @@ model RoleAssignment {
 model AuthToken {
   id        String    @id @db.Uuid
   userId    String    @db.Uuid
-  purpose   String // email_verify | password_reset
+  purpose   String // email_verify | password_reset | totp_enroll | email_code
   tokenHash String    @unique
   expiresAt DateTime  @db.Timestamptz(3)
   usedAt    DateTime? @db.Timestamptz(3)
+  /// v0.6.0: wrong tries against an e-mail code (burned at 5).
+  attempts  Int       @default(0)
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, purpose])
 }
 
 model Invite {
@@ -115,6 +121,8 @@ model School {
   type      String // state | private
   language  String
   status    String // active | suspended
+  /// v0.6.0: admin (created by staff) | self (a self-registered teacher's personal school)
+  origin    String   @default("admin")
   createdAt DateTime @db.Timestamptz(3)
   version   Int      @default(1)
 
@@ -143,6 +151,8 @@ model Class {
   grade           Int
   joinCode        String       @unique
   joinCodeEnabled Boolean
+  /// v0.6.0: subject the teacher teaches in this class (one of the school's licensed subjects).
+  subjectKey      String?
   createdBy       String       @db.Uuid
   createdAt       DateTime     @db.Timestamptz(3)
   deletedAt       DateTime?    @db.Timestamptz(3)

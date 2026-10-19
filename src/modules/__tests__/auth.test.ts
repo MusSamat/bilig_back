@@ -171,15 +171,17 @@ describe('registration, verification, password reset', () => {
     const reg = await t.inject({ method: 'POST', url: `${API}/auth/register`, payload: { email: 'teacher@example.kg', password: PASSWORD, displayName: 'Мугалим' } });
     expect(reg.statusCode, reg.body).toBe(200);
     expect((await login('teacher@example.kg', PASSWORD)).statusCode).toBe(403);
-    const mail = t.mailer.last('email_verify')!;
+    const mail = t.mailer.last('email_code')!; // v0.6.0: the code mail also carries the v0.2.1 link
     const token = new URL(mail.link).searchParams.get('token')!;
     expect((await t.inject({ method: 'POST', url: `${API}/auth/email/verify`, payload: { token } })).statusCode).toBe(200);
     expect((await t.inject({ method: 'POST', url: `${API}/auth/email/verify`, payload: { token } })).statusCode).toBe(404);
     expect((await login('teacher@example.kg', PASSWORD)).statusCode).toBe(200);
-    // re-registering an existing address looks the same (no enumeration) and sends nothing
+    // re-registering an existing address looks the same (no enumeration) and sends no code (v0.6.0: an «account exists» mail)
     const again = await t.inject({ method: 'POST', url: `${API}/auth/register`, payload: { email: 'teacher@example.kg', password: PASSWORD, displayName: 'X' } });
     expect(again.statusCode).toBe(200);
-    expect(t.mailer.outbox.filter((m) => m.kind === 'email_verify')).toHaveLength(1);
+    expect(json(again)).toEqual(json(reg));
+    expect(t.mailer.outbox.filter((m) => m.kind === 'email_code')).toHaveLength(1);
+    expect(t.mailer.last()!.kind).toBe('account_exists');
   });
 
   it('reset link works once, within 30 minutes, and logs out other sessions', async () => {

@@ -92,6 +92,49 @@ export const InviteAcceptRequestSchema = z.object({
   password: PasswordSchema,
 });
 
+// v0.6.0 — teacher self-registration: POST /auth/register (below, v0.2.1 + teaching) sends a
+// 6-digit code by e-mail → POST /auth/register/verify activates the account and signs in.
+export const OtpCodeSchema = z.string().regex(/^\d{6}$/, 'Expected a 6-digit code');
+const SubjectKeysSchema = z.array(z.string().regex(/^[a-z0-9]+(?:[._-][a-z0-9]+)*$/)).min(1).max(20);
+const GradesSchema = z.array(z.number().int().min(1).max(11)).min(1).max(11);
+
+/** What a teacher teaches: sets the subjects and grades of their trial licence. */
+export const TeachingSchema = z.object({
+  subjects: SubjectKeysSchema,
+  grades: GradesSchema,
+});
+export type Teaching = z.infer<typeof TeachingSchema>;
+
+
+/** Same answer whether or not the e-mail already has an account (no account enumeration). */
+export const RegisterResponseSchema = z.object({
+  ok: z.literal(true),
+  /** Seconds the code stays valid. */
+  expiresIn: z.number().int().positive(),
+  /** Seconds before another code may be requested. */
+  resendAfter: z.number().int().min(0),
+});
+export type RegisterResponse = z.infer<typeof RegisterResponseSchema>;
+
+export const RegisterVerifyRequestSchema = z.object({ email: EmailSchema, code: OtpCodeSchema });
+export type RegisterVerifyRequest = z.infer<typeof RegisterVerifyRequestSchema>;
+
+export const RegisterResendRequestSchema = z.object({ email: EmailSchema });
+export type RegisterResendRequest = z.infer<typeof RegisterResendRequestSchema>;
+
+/** A teacher's licence as they see it (trial or school). */
+export const MyLicenseSchema = z.object({
+  schoolId: IdSchema,
+  schoolName: z.string(),
+  subjects: z.array(z.string()),
+  grades: z.array(z.number().int()),
+  startsAt: DateTimeSchema,
+  endsAt: DateTimeSchema,
+  /** A self-registered teacher's trial (editable through PATCH /me teaching). */
+  trial: z.boolean(),
+});
+export type MyLicense = z.infer<typeof MyLicenseSchema>;
+
 // GET /me
 export const MeResponseSchema = z.object({
   id: IdSchema,
@@ -103,12 +146,21 @@ export const MeResponseSchema = z.object({
   /** `grantedPermissions(principal)` — the FE hides buttons from this list. */
   permissions: z.array(PermissionSchema),
   totpEnabled: z.boolean().optional(),
+  /** v0.6.0: subjects and grades the teacher teaches (self-registered teachers). */
+  teaching: TeachingSchema.optional(),
+  /** v0.6.0: active licences of the user's schools (teachers, school admins). */
+  licenses: z.array(MyLicenseSchema).optional(),
 });
 export type MeResponse = z.infer<typeof MeResponseSchema>;
 
 // PATCH /me
 export const MePatchRequestSchema = z
-  .object({ displayName: z.string().min(1).max(100), locale: LangSchema })
+  .object({
+    displayName: z.string().min(1).max(100),
+    locale: LangSchema,
+    /** v0.6.0: a self-registered teacher changes what they teach; the trial licence follows. */
+    teaching: TeachingSchema,
+  })
   .partial();
 export type MePatchRequest = z.infer<typeof MePatchRequestSchema>;
 
@@ -145,6 +197,11 @@ export const RegisterRequestSchema = z.object({
   password: PasswordSchema,
   displayName: z.string().trim().min(1).max(100),
   locale: LangSchema.optional(),
+  /** v0.6.0: what the teacher teaches — the subjects and grades of the trial licence. */
+  teaching: TeachingSchema.optional(),
+  /** v0.6.0: school as the teacher writes it; the personal workspace is named after the teacher when absent. */
+  schoolName: z.string().trim().min(2).max(200).optional(),
+  region: z.string().trim().max(100).optional(),
 });
 export type RegisterRequest = z.infer<typeof RegisterRequestSchema>;
 

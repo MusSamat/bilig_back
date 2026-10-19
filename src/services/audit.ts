@@ -60,7 +60,9 @@ export type AuditAction =
   | 'generated.promoted'
   // v0.5.0: КТП → lesson plans
   | 'ktp.created'
-  | 'ktp.deleted';
+  | 'ktp.deleted'
+  // v0.6.0: teachers register themselves
+  | 'auth.self_registered';
 
 export class AuditService {
   constructor(private repo: Repository, private clock: Clock) {}

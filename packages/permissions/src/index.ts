@@ -27,7 +27,7 @@
  */
 
 /** Contract version shared by @bilig/permissions and @bilig/content-model. */
-export const CONTRACT_VERSION = '0.5.0';
+export const CONTRACT_VERSION = '0.6.0';
 
 /** A role is granted with a scope: the whole platform, a school, a subject, or a class. */
 export type Scope = 'platform' | 'school' | 'subject' | 'class';

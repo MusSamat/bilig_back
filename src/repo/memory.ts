@@ -162,7 +162,7 @@ export class MemoryRepository implements Repository {
   async createUser(u: Omit<UserRec, 'createdAt' | 'updatedAt' | 'deletedAt'>) {
     if (u.email && [...this.users.values()].some((x) => x.email === u.email)) return 'conflict' as const;
     const now = new Date();
-    const rec: UserRec = { ...u, createdAt: now, updatedAt: now, deletedAt: null };
+    const rec: UserRec = { signup: null, ...u, createdAt: now, updatedAt: now, deletedAt: null };
     this.users.set(u.id, clone(rec));
     return clone(rec);
   }
@@ -278,7 +278,29 @@ export class MemoryRepository implements Repository {
   }
 
   async createAuthToken(t: AuthTokenRec) {
-    this.authTokens.set(t.tokenHash, clone(t));
+    this.authTokens.set(t.tokenHash, clone({ ...t, attempts: t.attempts ?? 0 }));
+  }
+  async latestAuthToken(userId: Id, purpose: AuthTokenRec['purpose']) {
+    const rows = [...this.authTokens.values()].filter((t) => t.userId === userId && t.purpose === purpose);
+    rows.sort((a, b) => b.expiresAt.getTime() - a.expiresAt.getTime() || (a.id < b.id ? 1 : -1));
+    return rows[0] ? clone(rows[0]) : null;
+  }
+  async revokeAuthTokens(userId: Id, purpose: AuthTokenRec['purpose'], now: Date) {
+    let n = 0;
+    for (const t of this.authTokens.values()) {
+      if (t.userId === userId && t.purpose === purpose && !t.usedAt) {
+        t.usedAt = now;
+        n++;
+      }
+    }
+    return n;
+  }
+  async failAuthTokenAttempt(id: Id, max: number, now: Date) {
+    const t = [...this.authTokens.values()].find((x) => x.id === id);
+    if (!t || t.usedAt) return 0;
+    t.attempts = (t.attempts ?? 0) + 1;
+    if (t.attempts >= max) t.usedAt = now;
+    return t.attempts;
   }
   async consumeAuthToken(tokenHash: string, purpose: AuthTokenRec['purpose'], now: Date) {
     const t = this.authTokens.get(tokenHash);
@@ -326,7 +348,7 @@ export class MemoryRepository implements Repository {
   }
 
   async createSchool(s: Omit<SchoolRec, 'version'> & { version?: number }) {
-    this.schools.set(s.id, clone({ ...s, version: s.version ?? 1 }));
+    this.schools.set(s.id, clone({ ...s, origin: s.origin ?? 'admin', version: s.version ?? 1 }));
   }
   async getSchool(id: Id) {
     const s = this.schools.get(id);
@@ -378,8 +400,9 @@ export class MemoryRepository implements Repository {
 
   async createClass(c: ClassRec) {
     if ([...this.classes.values()].some((x) => x.joinCode === c.joinCode)) return 'conflict' as const;
-    this.classes.set(c.id, clone(c));
-    return clone(c);
+    const rec = { ...c, subjectKey: c.subjectKey ?? null };
+    this.classes.set(c.id, clone(rec));
+    return clone(rec);
   }
   async getClass(id: Id) {
     const c = this.classes.get(id);

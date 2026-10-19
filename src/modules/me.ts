@@ -2,7 +2,7 @@
 import type { FastifyInstance } from 'fastify';
 import { grantedPermissions } from '@bilig/permissions';
 import { t } from '@bilig/content-model';
-import type { MeResponse } from '@bilig/content-model/api';
+import type { MeResponse, MyLicense } from '@bilig/content-model/api';
 import type { Deps } from '../deps.js';
 import { route } from '../http/route.js';
 import { fail } from '../http/errors.js';
@@ -10,6 +10,7 @@ import { toRoleGrant } from '../http/auth-context.js';
 import { newTotpSecret, otpauthUrl, verifyTotp } from '../domain/totp.js';
 import type { UserRec } from '../repo/types.js';
 import { assignmentStatus } from './classes.js';
+import { cleanTeaching, selfTrial, userSchoolIds } from '../services/teacher-signup.js';
 
 export function registerMe(app: FastifyInstance, deps: Deps) {
   const { repo, clock, audit } = deps;
@@ -26,13 +27,52 @@ export function registerMe(app: FastifyInstance, deps: Deps) {
       grants,
       permissions: grantedPermissions({ userId: user.id, grants }),
       totpEnabled: !!totp && !totp.secretHash.startsWith('pending:'),
+      ...(await teachingOf(user)),
+    };
+  }
+
+  /** v0.6.0: `teaching` (self-registered teachers) and `licenses` (active licences of the user's schools). */
+  async function teachingOf(user: UserRec): Promise<Pick<MeResponse, 'teaching' | 'licenses'>> {
+    if (user.kind !== 'adult') return {};
+    const schoolIds = await userSchoolIds(repo, user.id);
+    if (!schoolIds.length) return {};
+    const now = clock.now();
+    const schools = new Map((await repo.listSchools({ ids: schoolIds }, { limit: 100 })).items.map((s) => [s.id, s]));
+    const licenses: MyLicense[] = (await repo.listLicenses({ schoolIds }, { limit: 1000 })).items
+      .filter((l) => l.startsAt <= now && now < l.endsAt && schools.has(l.schoolId))
+      .sort((a, b) => a.startsAt.getTime() - b.startsAt.getTime() || (a.id < b.id ? -1 : 1))
+      .map((l) => ({
+        schoolId: l.schoolId,
+        schoolName: schools.get(l.schoolId)!.name,
+        subjects: l.subjects,
+        grades: l.grades,
+        startsAt: l.startsAt.toISOString(),
+        endsAt: l.endsAt.toISOString(),
+        trial: schools.get(l.schoolId)!.origin === 'self',
+      }));
+    const self = await selfTrial(repo, user.id);
+    const lic = self?.license;
+    return {
+      ...(lic && lic.subjects.length && lic.grades.length ? { teaching: { subjects: lic.subjects, grades: lic.grades } } : {}),
+      licenses,
     };
   }
 
   route(app, deps, 'me', ({ auth }) => me(auth.user!));
 
-  route(app, deps, 'mePatch', async ({ auth, body }) => {
-    const u = await repo.updateUser(auth.user!.id, body);
+  route(app, deps, 'mePatch', async ({ auth, body, ip }) => {
+    const { teaching, ...profile } = body;
+    if (teaching) {
+      // v0.6.0: only a self-registered teacher edits the trial licence of their personal school.
+      const self = await selfTrial(repo, auth.user!.id);
+      if (!self?.license) fail('forbidden', { detail: 'teaching_not_editable' });
+      const clean = await cleanTeaching(repo, teaching);
+      if (!clean.subjects.length) fail('validation_failed', { issues: [{ path: ['teaching', 'subjects'], message: 'None of the subjects exists (or is live)' }] });
+      const lic = self!.license!;
+      await repo.updateLicense(lic.id, { subjects: clean.subjects, grades: clean.grades });
+      await audit.log(auth.user!.id, 'license.updated', { type: 'license', id: lic.id }, { ip, diff: { via: 'me.teaching', before: { subjects: lic.subjects, grades: lic.grades }, after: clean } });
+    }
+    const u = Object.keys(profile).length ? await repo.updateUser(auth.user!.id, profile) : await repo.getUser(auth.user!.id);
     return me(u!);
   });
 

@@ -51,6 +51,17 @@ const EnvSchema = z.object({
   DEMO_SEED: bool,
   /** DEV ONLY: `1` skips the admin-audience TOTP check (TZ §6 requires it); refused in production. */
   ADMIN_TOTP_DISABLED: bool,
+  /**
+   * v0.6.0 TEMPORARY (no mail server yet): every registration code is this fixed
+   * 6-digit value instead of a random one. Insecure — logged as a warning at start.
+   */
+  AUTH_FIXED_OTP: z
+    .string()
+    .optional()
+    .transform((v) => (v === '' ? undefined : v))
+    .pipe(z.string().regex(/^\d{6}$/, 'AUTH_FIXED_OTP must be exactly 6 digits').optional()),
+  /** v0.6.0: length of a self-registered teacher's trial licence, in days. */
+  TRIAL_DAYS: z.coerce.number().int().min(1).max(365).default(30),
 });
 
 export type Env = z.infer<typeof EnvSchema>;
@@ -82,6 +93,9 @@ export interface Config {
   commit?: string;
   demoSeed: boolean;
   adminTotpDisabled: boolean;
+  /** v0.6.0: fixed registration code (temporary insecure mode), or undefined for random codes. */
+  authFixedOtp?: string;
+  trialDays: number;
 }
 
 /** Fill unset variables from `./.env` (the same file the Prisma CLI reads); the real environment wins. */
@@ -136,6 +150,8 @@ export function loadConfig(env?: NodeJS.ProcessEnv): Config {
     commit: e.GIT_COMMIT,
     demoSeed: e.DEMO_SEED,
     adminTotpDisabled: e.ADMIN_TOTP_DISABLED,
+    authFixedOtp: e.AUTH_FIXED_OTP,
+    trialDays: e.TRIAL_DAYS,
   };
 }
 

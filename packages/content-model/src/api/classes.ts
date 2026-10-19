@@ -12,6 +12,8 @@ export const ClassSchema = z.object({
   joinCode: z.string().regex(/^[A-Z0-9]{6}$/),
   joinCodeEnabled: z.boolean(),
   studentCount: z.number().int().min(0),
+  /** v0.6.0: subject the teacher teaches in this class. */
+  subjectKey: z.string().min(1).max(60).nullable().optional(),
 });
 export type SchoolClass = z.infer<typeof ClassSchema>;
 
@@ -21,6 +23,8 @@ export const ClassCreateRequestSchema = z.object({
   grade: z.number().int().min(1).max(11),
   /** Required for school admins with several schools; defaults to the teacher's school. */
   schoolId: IdSchema.optional(),
+  /** v0.6.0 */
+  subjectKey: z.string().min(1).max(60).nullable().optional(),
 });
 export type ClassCreateRequest = z.infer<typeof ClassCreateRequestSchema>;
 
@@ -30,6 +34,8 @@ export const ClassPatchRequestSchema = z
     name: z.string().min(1).max(40),
     grade: z.number().int().min(1).max(11),
     joinCodeEnabled: z.boolean(),
+    /** v0.6.0 */
+    subjectKey: z.string().min(1).max(60).nullable(),
   })
   .partial();
 export type ClassPatchRequest = z.infer<typeof ClassPatchRequestSchema>;

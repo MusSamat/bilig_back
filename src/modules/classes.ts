@@ -84,7 +84,7 @@ export function aggregateResults(
 
 export async function toClassDto(repo: Repository, c: ClassRec): Promise<SchoolClass> {
   const n = (await repo.listEnrollments({ classId: c.id, role: 'student' })).length;
-  return { id: c.id, schoolId: c.schoolId, name: c.name, grade: c.grade, joinCode: c.joinCode, joinCodeEnabled: c.joinCodeEnabled, studentCount: n };
+  return { id: c.id, schoolId: c.schoolId, name: c.name, grade: c.grade, joinCode: c.joinCode, joinCodeEnabled: c.joinCodeEnabled, studentCount: n, subjectKey: c.subjectKey ?? null };
 }
 
 export const toAssignmentDto = (a: AssignmentRec): Assignment => ({
@@ -133,6 +133,22 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
     throw last;
   }
 
+  /** v0.6.0: a class subject must be one of the school's actively licensed subjects. */
+  async function checkSubject(schoolId: string, subjectKey: string | null | undefined) {
+    if (!subjectKey) return;
+    const now = clock.now();
+    const licensed = new Set(
+      (await repo.listLicenses({ schoolIds: [schoolId] }, { limit: 1000 })).items.filter((l) => l.startsAt <= now && now < l.endsAt).flatMap((l) => l.subjects),
+    );
+    if (!licensed.has(subjectKey)) {
+      const allowed = [...licensed].sort();
+      fail('validation_failed', {
+        detail: 'subject_not_licensed',
+        issues: [{ path: ['subjectKey'], message: `Subject "${subjectKey}" is not licensed for this school${allowed.length ? ` (licensed: ${allowed.join(', ')})` : ' (no active licence)'}` }],
+      });
+    }
+  }
+
   async function uniqueJoinCode(): Promise<string> {
     for (let i = 0; i < 20; i++) {
       const c = joinCode();
@@ -173,9 +189,10 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
     }
     authorize('class.manage', { schoolId });
     if (!(await repo.getSchool(schoolId))) fail('not_found', { detail: 'school' });
+    await checkSubject(schoolId, body.subjectKey);
     let created: ClassRec | 'conflict' = 'conflict';
     for (let i = 0; i < 5 && created === 'conflict'; i++) {
-      created = await repo.createClass({ id: newId(), schoolId, name: body.name, grade: body.grade, joinCode: await uniqueJoinCode(), joinCodeEnabled: true, createdBy: uid, createdAt: clock.now(), deletedAt: null });
+      created = await repo.createClass({ id: newId(), schoolId, name: body.name, grade: body.grade, joinCode: await uniqueJoinCode(), joinCodeEnabled: true, subjectKey: body.subjectKey ?? null, createdBy: uid, createdAt: clock.now(), deletedAt: null });
     }
     if (created === 'conflict') fail('conflict');
     if (auth.grants.some((g) => g.role === 'teacher' && g.scopeId === schoolId)) await repo.addEnrollment({ classId: created.id, userId: uid, role: 'teacher' });
@@ -187,6 +204,7 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
   // PATCH /classes/:id (rename, grade, disable/enable the join code)
   route(app, deps, 'classPatch', async (ctx) => {
     const cls = await loadClass(ctx, ctx.params.id);
+    if (ctx.body.subjectKey !== undefined) await checkSubject(cls.schoolId, ctx.body.subjectKey);
     const next = await repo.updateClass(cls.id, ctx.body);
     if (!next || next === 'conflict') fail('conflict');
     return toClassDto(repo, next);

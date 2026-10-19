@@ -17,6 +17,9 @@ if (deps.repo.kind === 'memory') {
 if (config.demoSeed) await seedDemo(deps.repo, deps);
 const app = await buildApp(deps);
 if (deps.limiter.kind === 'memory' && config.redisUrl) app.log.warn('REDIS_URL set but unreachable — using in-memory rate limits');
+if (config.authFixedOtp) {
+  app.log.warn('AUTH_FIXED_OTP is set: every registration code is the same fixed value. TEMPORARY and INSECURE — remove it once a mail server is configured.');
+}
 if (!deps.tutor) app.log.warn('ANTHROPIC_API_KEY not set — tutor answers 503 (clients use the offline index)');
 
 const timers = [

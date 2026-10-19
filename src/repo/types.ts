@@ -64,6 +64,15 @@ export interface UserRec {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date | null;
+  /** v0.6.0: pending self-registration details (null once provisioned / when absent). */
+  signup?: SignupRec | null;
+}
+
+/** v0.6.0: what a teacher entered at sign-up, kept until the e-mail is confirmed. */
+export interface SignupRec {
+  teaching?: { subjects: string[]; grades: number[] };
+  schoolName?: string;
+  region?: string;
 }
 
 export type CredentialType = 'password' | 'pin' | 'google' | 'totp';
@@ -103,7 +112,7 @@ export interface GrantRec {
   subrole: AuthorSubrole | null;
 }
 
-export type AuthTokenPurpose = 'email_verify' | 'password_reset' | 'totp_enroll';
+export type AuthTokenPurpose = 'email_verify' | 'password_reset' | 'totp_enroll' | 'email_code';
 export interface AuthTokenRec {
   id: Id;
   userId: Id;
@@ -111,6 +120,8 @@ export interface AuthTokenRec {
   tokenHash: string;
   expiresAt: Date;
   usedAt: Date | null;
+  /** v0.6.0: wrong tries (e-mail codes); 0 when absent. */
+  attempts?: number;
 }
 
 export interface InviteRec {
@@ -135,10 +146,13 @@ export interface SchoolRec {
   type: 'state' | 'private';
   language: Lang;
   status: 'active' | 'suspended';
+  /** v0.6.0: `self` = a self-registered teacher's personal school; repos return 'admin' by default. */
+  origin?: SchoolOrigin;
   createdAt: Date;
   /** Optimistic version (starts at 1). */
   version: number;
 }
+export type SchoolOrigin = 'admin' | 'self';
 
 export interface LicenseRec {
   id: Id;
@@ -159,6 +173,8 @@ export interface ClassRec {
   grade: number;
   joinCode: string;
   joinCodeEnabled: boolean;
+  /** v0.6.0: subject taught in the class; repos return null when unset. */
+  subjectKey?: string | null;
   createdBy: Id;
   createdAt: Date;
   deletedAt: Date | null;
@@ -611,7 +627,7 @@ export interface Repository {
   createUser(u: Omit<UserRec, 'createdAt' | 'updatedAt' | 'deletedAt'>): Promise<UserRec | 'conflict'>;
   getUser(id: Id): Promise<UserRec | null>;
   getUserByEmail(email: string): Promise<UserRec | null>;
-  updateUser(id: Id, patch: Partial<Pick<UserRec, 'displayName' | 'locale' | 'status' | 'emailVerifiedAt' | 'deletedAt'>>): Promise<UserRec | null>;
+  updateUser(id: Id, patch: Partial<Pick<UserRec, 'displayName' | 'locale' | 'status' | 'emailVerifiedAt' | 'deletedAt' | 'signup'>>): Promise<UserRec | null>;
   listUsers(filter: UserFilter, page: PageReq): Promise<PageRes<UserRec>>;
   getUsers(ids: readonly Id[]): Promise<UserRec[]>;
 
@@ -644,6 +660,15 @@ export interface Repository {
   consumeAuthToken(tokenHash: string, purpose: AuthTokenPurpose, now: Date): Promise<AuthTokenRec | null>;
   /** The token when it exists, is unexpired and unused — without consuming it. */
   findAuthToken(tokenHash: string, purpose: AuthTokenPurpose, now: Date): Promise<AuthTokenRec | null>;
+  /** v0.6.0: the user's most recently issued token of this purpose (any state; latest `expiresAt`). */
+  latestAuthToken(userId: Id, purpose: AuthTokenPurpose): Promise<AuthTokenRec | null>;
+  /** v0.6.0: marks every unused token of this purpose used (a new code invalidates the old). Returns the count. */
+  revokeAuthTokens(userId: Id, purpose: AuthTokenPurpose, now: Date): Promise<number>;
+  /**
+   * v0.6.0: atomically counts one wrong try against an unused token; at `max`
+   * the token is burned (marked used). Returns the new attempt count (0 when unknown/used).
+   */
+  failAuthTokenAttempt(id: Id, max: number, now: Date): Promise<number>;
 
   createInvite(i: Omit<InviteRec, 'revokedAt'> & { revokedAt?: Date | null }): Promise<void>;
   getInvite(id: Id): Promise<InviteRec | null>;
@@ -668,7 +693,7 @@ export interface Repository {
   createClass(c: ClassRec): Promise<ClassRec | 'conflict'>;
   getClass(id: Id): Promise<ClassRec | null>;
   getClassByJoinCode(code: string): Promise<ClassRec | null>;
-  updateClass(id: Id, patch: Partial<Pick<ClassRec, 'name' | 'grade' | 'joinCode' | 'joinCodeEnabled' | 'deletedAt'>>): Promise<ClassRec | null | 'conflict'>;
+  updateClass(id: Id, patch: Partial<Pick<ClassRec, 'name' | 'grade' | 'joinCode' | 'joinCodeEnabled' | 'deletedAt' | 'subjectKey'>>): Promise<ClassRec | null | 'conflict'>;
   listClasses(filter: { ids?: Id[]; schoolIds?: Id[] }, page: PageReq): Promise<PageRes<ClassRec>>;
 
   addEnrollment(e: Omit<EnrollmentRec, 'createdAt'>): Promise<void>;

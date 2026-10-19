@@ -70,6 +70,19 @@ export const PresentationListSchema = z.object({
 
 // POST /presentations/:id/export?format=pptx|pdf
 export const ExportQuerySchema = z.object({ format: z.enum(['pptx', 'pdf']) });
+
+/**
+ * v0.6.0 GET /topics/:key/deck — the topic's ready-made presentation, built on
+ * the server from the published package (title and goals, 3D images of the
+ * samples, the lesson steps with teacher notes, key concepts, processes,
+ * examples, questions with answers in the notes, textbook § and sources).
+ * Same access as the topic itself; cached per package version, language, format.
+ */
+export const TopicDeckQuerySchema = z.object({
+  lang: LangSchema.optional(),
+  format: z.enum(['pptx', 'pdf']).default('pptx'),
+});
+export type TopicDeckQuery = z.infer<typeof TopicDeckQuerySchema>;
 export const ExportResponseSchema = z.object({
   jobId: IdSchema,
   status: z.enum(['queued', 'running', 'done', 'failed']),

@@ -179,10 +179,63 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
       });
     });
 
+    describe('v0.6.0 self-registration', () => {
+      it('user signup details: stored, cleared; null by default', async () => {
+        const plain = await user();
+        expect((await repo.getUser(plain.id))?.signup ?? null).toBeNull();
+        const signup = { teaching: { subjects: ['bio'], grades: [7, 8] }, schoolName: 'Мектеп', region: 'Ош' };
+        const u = await user({ status: 'pending', signup });
+        expect((await repo.getUser(u.id))?.signup).toEqual(signup);
+        expect((await repo.updateUser(u.id, { signup: { region: 'Нарын' } }))?.signup).toEqual({ region: 'Нарын' });
+        expect((await repo.updateUser(u.id, { displayName: 'Z' }))?.signup).toEqual({ region: 'Нарын' });
+        expect((await repo.updateUser(u.id, { status: 'active', signup: null }))?.signup ?? null).toBeNull();
+      });
+
+      it('e-mail codes: latest, revoke, attempts burn at max', async () => {
+        const u = await user();
+        expect(await repo.latestAuthToken(u.id, 'email_code')).toBeNull();
+        const a = newId();
+        await repo.createAuthToken({ id: a, userId: u.id, purpose: 'email_code', tokenHash: 'c1', expiresAt: at(15), usedAt: null });
+        const b = newId();
+        await repo.createAuthToken({ id: b, userId: u.id, purpose: 'email_code', tokenHash: 'c2', expiresAt: at(16), usedAt: null });
+        await repo.createAuthToken({ id: newId(), userId: u.id, purpose: 'email_verify', tokenHash: 'v1', expiresAt: at(60), usedAt: null });
+        expect(await repo.latestAuthToken(u.id, 'email_code')).toMatchObject({ id: b, attempts: 0, usedAt: null });
+        expect(await repo.revokeAuthTokens(u.id, 'email_code', at(1))).toBe(2);
+        expect(await repo.revokeAuthTokens(u.id, 'email_code', at(1))).toBe(0);
+        expect(await repo.findAuthToken('v1', 'email_verify', T0)).not.toBeNull(); // other purposes untouched
+        expect(await repo.latestAuthToken(u.id, 'email_code')).toMatchObject({ id: b, usedAt: at(1) });
+        expect(await repo.failAuthTokenAttempt(b, 3, at(2))).toBe(0); // used → not counted
+
+        const c = newId();
+        await repo.createAuthToken({ id: c, userId: u.id, purpose: 'email_code', tokenHash: 'c3', expiresAt: at(30), usedAt: null, attempts: 0 });
+        expect(await repo.failAuthTokenAttempt(c, 3, at(2))).toBe(1);
+        expect(await repo.failAuthTokenAttempt(c, 3, at(3))).toBe(2);
+        expect(await repo.findAuthToken('c3', 'email_code', at(3))).toMatchObject({ attempts: 2 });
+        expect(await repo.failAuthTokenAttempt(c, 3, at(4))).toBe(3);
+        expect(await repo.latestAuthToken(u.id, 'email_code')).toMatchObject({ id: c, attempts: 3, usedAt: at(4) });
+        expect(await repo.consumeAuthToken('c3', 'email_code', at(4))).toBeNull();
+        expect(await repo.failAuthTokenAttempt(newId(), 3, at(5))).toBe(0);
+      });
+
+      it('school origin and class subjectKey', async () => {
+        const id = newId();
+        await repo.createSchool({ id, name: 'Айгүл — жеке мектеп', region: '', type: 'private', language: 'ky', status: 'active', origin: 'self', createdAt: T0 });
+        expect(await repo.getSchool(id)).toMatchObject({ origin: 'self', version: 1 });
+        expect((await repo.updateSchool(id, { name: 'Х' }))).toMatchObject({ origin: 'self' });
+        const c = await klass(id);
+        expect(c.subjectKey).toBeNull();
+        expect(await repo.updateClass(c.id, { subjectKey: 'bio' })).toMatchObject({ subjectKey: 'bio' });
+        expect(await repo.getClass(c.id)).toMatchObject({ subjectKey: 'bio' });
+        const c2 = await repo.createClass({ id: newId(), schoolId: id, name: '8Б', grade: 8, joinCode: 'QWE234', joinCodeEnabled: true, subjectKey: 'chem', createdBy: newId(), createdAt: T0, deletedAt: null });
+        expect(c2).toMatchObject({ subjectKey: 'chem' });
+        expect(await repo.updateClass(c.id, { subjectKey: null })).toMatchObject({ subjectKey: null });
+      });
+    });
+
     describe('schools & classes', () => {
       it('schools and licenses', async () => {
         const s = await school();
-        expect(await repo.getSchool(s.id)).toEqual({ ...s, version: 1 });
+        expect(await repo.getSchool(s.id)).toEqual({ ...s, origin: 'admin', version: 1 });
         expect(await repo.updateSchool(s.id, { name: 'Лицей' })).toMatchObject({ name: 'Лицей', id: s.id, version: 2 });
         expect(await repo.updateSchool(s.id, { name: 'x' }, 1)).toBe('version_mismatch');
         expect(await repo.updateSchool(s.id, { region: 'Бишкек' }, 2)).toMatchObject({ region: 'Бишкек', name: 'Лицей', version: 3 });

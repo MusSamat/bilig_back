@@ -47,6 +47,7 @@ import type {
   ReviewCommentRec,
   ReviewCommentWrite,
   SchoolRec,
+  SignupRec,
   SessionRec,
   SettingRec,
   SnapshotRec,
@@ -201,6 +202,7 @@ const mapUser = (r: Row): UserRec => ({
   createdAt: r.createdAt,
   updatedAt: r.updatedAt,
   deletedAt: r.deletedAt,
+  signup: (r.signup as SignupRec | null) ?? null,
 });
 const mapCred = (r: Row): CredentialRec => ({ userId: r.userId, type: r.type, secretHash: r.secretHash, failedCount: r.failedCount, lockedUntil: r.lockedUntil, updatedAt: r.updatedAt });
 const mapSession = (r: Row): SessionRec => ({
@@ -217,7 +219,7 @@ const mapSession = (r: Row): SessionRec => ({
   replacedById: r.replacedById,
 });
 const mapGrant = (r: Row): GrantRec => ({ userId: r.userId, role: r.role, scope: r.scopeType, scopeId: r.scopeId === '' ? null : r.scopeId, subrole: r.subrole });
-const mapAuthToken = (r: Row): AuthTokenRec => ({ id: r.id, userId: r.userId, purpose: r.purpose, tokenHash: r.tokenHash, expiresAt: r.expiresAt, usedAt: r.usedAt });
+const mapAuthToken = (r: Row): AuthTokenRec => ({ id: r.id, userId: r.userId, purpose: r.purpose, tokenHash: r.tokenHash, expiresAt: r.expiresAt, usedAt: r.usedAt, attempts: r.attempts });
 const mapInvite = (r: Row): InviteRec => ({
   id: r.id,
   email: r.email,
@@ -232,7 +234,7 @@ const mapInvite = (r: Row): InviteRec => ({
   acceptedAt: r.acceptedAt,
   revokedAt: r.revokedAt,
 });
-const mapSchool = (r: Row): SchoolRec => ({ id: r.id, name: r.name, region: r.region, type: r.type, language: r.language, status: r.status, createdAt: r.createdAt, version: r.version });
+const mapSchool = (r: Row): SchoolRec => ({ id: r.id, name: r.name, region: r.region, type: r.type, language: r.language, status: r.status, origin: r.origin, createdAt: r.createdAt, version: r.version });
 const mapLicense = (r: Row): LicenseRec => ({ id: r.id, schoolId: r.schoolId, subjects: r.subjects, grades: r.grades, seats: r.seats, startsAt: r.startsAt, endsAt: r.endsAt, version: r.version });
 const mapClass = (r: Row): ClassRec => ({
   id: r.id,
@@ -241,6 +243,7 @@ const mapClass = (r: Row): ClassRec => ({
   grade: r.grade,
   joinCode: r.joinCode,
   joinCodeEnabled: r.joinCodeEnabled,
+  subjectKey: r.subjectKey ?? null,
   createdBy: r.createdBy,
   createdAt: r.createdAt,
   deletedAt: r.deletedAt,
@@ -482,7 +485,8 @@ export class PrismaRepository implements Repository {
   async createUser(u: Omit<UserRec, 'createdAt' | 'updatedAt' | 'deletedAt'>) {
     const now = new Date();
     try {
-      return mapUser(await this.db.user.create({ data: { ...u, createdAt: now, updatedAt: now, deletedAt: null } }));
+      const { signup, ...rest } = u;
+      return mapUser(await this.db.user.create({ data: { ...rest, signup: jsonOrNull(signup), createdAt: now, updatedAt: now, deletedAt: null } }));
     } catch (e) {
       if (isUnique(e)) return 'conflict' as const;
       throw e;
@@ -497,9 +501,9 @@ export class PrismaRepository implements Repository {
     return r ? mapUser(r) : null;
   }
   async updateUser(id: Id, patch: Partial<UserRec>) {
-    const { id: _i, createdAt: _c, ...data } = patch;
+    const { id: _i, createdAt: _c, signup, ...data } = patch;
     try {
-      return mapUser(await this.db.user.update({ where: { id }, data: { ...data, updatedAt: new Date() } }));
+      return mapUser(await this.db.user.update({ where: { id }, data: { ...data, ...(signup !== undefined ? { signup: jsonOrNull(signup) } : {}), updatedAt: new Date() } }));
     } catch (e) {
       if (isNotFound(e)) return null;
       throw e;
@@ -601,7 +605,24 @@ export class PrismaRepository implements Repository {
   }
 
   async createAuthToken(t: AuthTokenRec) {
-    await this.db.authToken.create({ data: t });
+    await this.db.authToken.create({ data: { ...t, attempts: t.attempts ?? 0 } });
+  }
+  async latestAuthToken(userId: Id, purpose: AuthTokenRec['purpose']) {
+    const r = await this.db.authToken.findFirst({ where: { userId, purpose }, orderBy: [{ expiresAt: 'desc' }, { id: 'desc' }] });
+    return r ? mapAuthToken(r) : null;
+  }
+  async revokeAuthTokens(userId: Id, purpose: AuthTokenRec['purpose'], now: Date) {
+    return (await this.db.authToken.updateMany({ where: { userId, purpose, usedAt: null }, data: { usedAt: now } })).count;
+  }
+  async failAuthTokenAttempt(id: Id, max: number, now: Date) {
+    // One statement: increment and burn at `max` (no lost updates under concurrent wrong tries).
+    const rows = await this.db.$queryRaw<{ attempts: number }[]>`
+      UPDATE "AuthToken"
+         SET "attempts" = "attempts" + 1,
+             "usedAt" = CASE WHEN "attempts" + 1 >= ${max}::int THEN ${now}::timestamptz ELSE NULL END
+       WHERE "id" = ${id}::uuid AND "usedAt" IS NULL
+   RETURNING "attempts"`;
+    return rows[0]?.attempts ?? 0;
   }
   async consumeAuthToken(tokenHash: string, purpose: AuthTokenRec['purpose'], now: Date) {
     const res = await this.db.authToken.updateMany({ where: { tokenHash, purpose, usedAt: null, expiresAt: { gt: now } }, data: { usedAt: now } });
@@ -648,7 +669,7 @@ export class PrismaRepository implements Repository {
   }
 
   async createSchool(s: Omit<SchoolRec, 'version'> & { version?: number }) {
-    await this.db.school.create({ data: { ...s, version: s.version ?? 1 } });
+    await this.db.school.create({ data: { ...s, origin: s.origin ?? 'admin', version: s.version ?? 1 } });
   }
   async getSchool(id: Id) {
     const r = await this.db.school.findUnique({ where: { id } });
