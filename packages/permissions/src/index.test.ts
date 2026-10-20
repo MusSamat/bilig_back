@@ -13,6 +13,7 @@ import {
   GUEST,
   MATRIX,
   PERMISSIONS,
+  MANAGER_ASSIGNABLE,
   ROLES,
   ROLE_SCOPE,
   type Grant,
@@ -34,23 +35,31 @@ const superadmin = p({ role: 'superadmin', scope: 'platform' });
 
 /**
  * TZ §2 matrix, row by row, in TZ column order:
- * guest, student, teacher, school_admin, author, editor, superadmin.
+ * guest, student, teacher, school_admin, author, editor, manager (v0.8.0), superadmin.
  */
 const TZ: Record<Permission, Grant[]> = {
-  'demo.view': ['all', 'all', 'all', 'all', 'all', 'all', 'all'],
-  'topic.view': [false, 'all', 'all', 'all', 'all', 'all', 'all'],
-  'assistant.ask.online': ['limit', 'all', 'all', 'all', 'all', 'all', 'all'],
-  'quiz.attempt.save': [false, 'all', 'all', false, false, false, false],
-  'class.manage': [false, false, 'own', 'own', false, false, 'all'],
-  'assignment.manage': [false, false, 'own', 'own', false, false, 'all'],
-  'school.teachers.manage': [false, false, false, 'own', false, false, 'all'],
-  'content.draft.edit': [false, false, false, false, 'own', 'own', 'all'],
-  'model.upload': [false, false, false, false, 'own', 'own', 'all'],
-  'content.publish': [false, false, false, false, false, 'own', 'all'],
-  'platform.manage': [false, false, false, false, false, false, 'all'],
-  'audit.view': [false, false, false, 'own', false, false, 'all'],
+  'demo.view': ['all', 'all', 'all', 'all', 'all', 'all', 'all', 'all'],
+  'topic.view': [false, 'all', 'all', 'all', 'all', 'all', 'all', 'all'],
+  'assistant.ask.online': ['limit', 'all', 'all', 'all', 'all', 'all', 'all', 'all'],
+  'quiz.attempt.save': [false, 'all', 'all', false, false, false, false, false],
+  'class.manage': [false, false, 'own', 'own', false, false, false, 'all'],
+  'assignment.manage': [false, false, 'own', 'own', false, false, false, 'all'],
+  'school.teachers.manage': [false, false, false, 'own', false, false, false, 'all'],
+  'content.draft.edit': [false, false, false, false, 'own', 'own', 'all', 'all'],
+  'model.upload': [false, false, false, false, 'own', 'own', 'all', 'all'],
+  'content.publish': [false, false, false, false, false, 'own', 'all', 'all'],
+  'platform.manage': [false, false, false, false, false, false, 'all', 'all'],
+  'audit.view': [false, false, false, 'own', false, false, 'own', 'all'],
   // v0.5.0, beyond TZ §2: КТП and lesson plans (records are owner-only)
-  'lesson.plan': [false, false, 'all', 'all', false, false, 'all'],
+  'lesson.plan': [false, false, 'all', 'all', false, false, false, 'all'],
+  // v0.8.0 — staff
+  'teacher.view': [false, false, false, false, false, false, 'all', 'all'],
+  'teacher.edit': [false, false, false, false, false, false, 'all', 'all'],
+  'content.review': [false, false, false, false, false, 'own', 'all', 'all'],
+  'staff.manage': [false, false, false, false, false, false, false, 'all'],
+  'audit.read': [false, false, false, false, false, false, 'own', 'all'],
+  'deletion.request': [false, false, false, false, false, false, 'all', 'all'],
+  'deletion.approve': [false, false, false, false, false, false, false, 'all'],
 };
 
 describe('contract version', () => {
@@ -256,5 +265,31 @@ describe('grantedPermissions (FE button hiding)', () => {
 
   it('a translator does not get model.upload', () => {
     expect(grantedPermissions(author('bio', 'translator'))).not.toContain('model.upload');
+  });
+});
+
+describe('v0.8.0 manager: holds only the ticked permissions', () => {
+  const mgr = (permissions: Permission[]) => p({ role: 'manager', scope: 'platform', permissions });
+
+  it('without ticks a manager only reads the platform', () => {
+    const m = mgr([]);
+    expect(grantFor(m, 'topic.view')).toBe('all');
+    expect(grantFor(m, 'demo.view')).toBe('all');
+    expect(grantFor(m, 'teacher.view')).toBe(false);
+    expect(grantFor(m, 'content.publish')).toBe(false);
+  });
+
+  it('a ticked permission works up to the matrix ceiling; staff.manage and deletion.approve can never be ticked', () => {
+    const m = mgr(['teacher.view', 'audit.read', 'staff.manage', 'deletion.approve']);
+    expect(grantFor(m, 'teacher.view')).toBe('all');
+    expect(grantFor(m, 'audit.read')).toBe('own');
+    expect(grantFor(m, 'staff.manage')).toBe(false);
+    expect(grantFor(m, 'deletion.approve')).toBe(false);
+  });
+
+  it('MANAGER_ASSIGNABLE lists exactly the tickable permissions', () => {
+    expect([...MANAGER_ASSIGNABLE].sort()).toEqual(
+      ['audit.read', 'audit.view', 'content.draft.edit', 'content.publish', 'content.review', 'deletion.request', 'model.upload', 'platform.manage', 'teacher.edit', 'teacher.view'].sort(),
+    );
   });
 });

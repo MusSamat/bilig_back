@@ -7,6 +7,8 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { decodeCursor, encodeCursor } from './paging.js';
 import { newId } from '../ids.js';
+import { eventToLegacy, legacyToEvent } from '../domain/journal.js';
+import { classSubjects } from './class-subjects.js';
 import type {
   AnswerRec,
   AssetRec,
@@ -14,6 +16,13 @@ import type {
   AssignmentRec,
   AttemptRec,
   AuditRec,
+  AuditAlertRec,
+  AuditEventInput,
+  AuditEventRec,
+  DeletionRequestRec,
+  JournalFilter,
+  StaffProfileRec,
+  SupportSessionRec,
   AuthTokenRec,
   PhoneOtpRec,
   PhoneOtpPurpose,
@@ -207,6 +216,8 @@ const mapUser = (r: Row): UserRec => ({
   signup: (r.signup as SignupRec | null) ?? null,
   phone: r.phone ?? null,
   phoneVerifiedAt: r.phoneVerifiedAt ?? null,
+  teachingLang: r.teachingLang ?? null,
+  lastLoginAt: r.lastLoginAt ?? null,
 });
 const mapPhoneOtp = (r: Row): PhoneOtpRec => ({
   id: r.id,
@@ -243,6 +254,7 @@ const mapInvite = (r: Row): InviteRec => ({
   scope: r.scopeType,
   scopeId: r.scopeId,
   subrole: r.subrole,
+  permissions: r.permissions ?? [],
   tokenHash: r.tokenHash,
   invitedBy: r.invitedBy,
   createdAt: r.createdAt,
@@ -260,6 +272,7 @@ const mapClass = (r: Row): ClassRec => ({
   joinCode: r.joinCode,
   joinCodeEnabled: r.joinCodeEnabled,
   subjectKey: r.subjectKey ?? null,
+  subjectKeys: r.subjectKeys ?? [],
   createdBy: r.createdBy,
   createdAt: r.createdAt,
   deletedAt: r.deletedAt,
@@ -472,7 +485,78 @@ const mapMessage = (r: Row): TutorMessageRec => ({
   schoolId: r.schoolId,
   createdAt: r.createdAt,
 });
-const mapAudit = (r: Row): AuditRec => ({ id: r.id, actorId: r.actorId, action: r.action, targetType: r.targetType, targetId: r.targetId, diff: r.diff ?? null, ip: r.ip, ts: r.ts });
+const mapJournalEvent = (r: Row): AuditEventRec => ({
+  seq: Number(r.seq),
+  id: r.id,
+  at: r.at,
+  actorId: r.actorId ?? null,
+  actorRole: r.actorRole ?? null,
+  onBehalfOfId: r.onBehalfOfId ?? null,
+  group: r.group,
+  action: r.action,
+  targetType: r.targetType,
+  targetId: r.targetId,
+  targetLabel: r.targetLabel ?? null,
+  before: r.before ?? null,
+  after: r.after ?? null,
+  details: r.details ?? null,
+  reason: r.reason ?? null,
+  result: r.result,
+  ip: r.ip ?? null,
+  userAgent: r.userAgent ?? null,
+  requestId: r.requestId ?? null,
+  supportSessionId: r.supportSessionId ?? null,
+  prevHash: r.prevHash,
+  hash: r.hash,
+});
+const mapStaff = (r: Row): StaffProfileRec => ({
+  userId: r.userId,
+  permissions: r.permissions ?? [],
+  scope: r.scope ?? null,
+  createdBy: r.createdBy ?? null,
+  createdAt: r.createdAt,
+  blockedAt: r.blockedAt ?? null,
+  deletedAt: r.deletedAt ?? null,
+});
+const mapSupport = (r: Row): SupportSessionRec => ({
+  id: r.id,
+  actorId: r.actorId,
+  teacherId: r.teacherId,
+  mode: r.mode,
+  reason: r.reason ?? null,
+  ip: r.ip ?? null,
+  startedAt: r.startedAt,
+  expiresAt: r.expiresAt,
+  endedAt: r.endedAt ?? null,
+  endedBy: r.endedBy ?? null,
+  endReason: r.endReason ?? null,
+});
+const mapAlert = (r: Row): AuditAlertRec => ({ id: r.id, key: r.key, at: r.at, kind: r.kind, actorId: r.actorId ?? null, summary: r.summary, seenAt: r.seenAt ?? null });
+const mapDeletion = (r: Row): DeletionRequestRec => ({
+  id: r.id,
+  kind: r.kind,
+  targetId: r.targetId,
+  targetLabel: r.targetLabel,
+  reason: r.reason,
+  status: r.status,
+  requestedBy: r.requestedBy,
+  requestedAt: r.requestedAt,
+  decidedBy: r.decidedBy ?? null,
+  decidedAt: r.decidedAt ?? null,
+  decisionNote: r.decisionNote ?? null,
+});
+function journalWhere(f: JournalFilter): Record<string, unknown> {
+  return {
+    ...(f.actorId ? { actorId: f.actorId } : {}),
+    ...(f.onBehalfOfId ? { onBehalfOfId: f.onBehalfOfId } : {}),
+    ...(f.group ? { group: f.group } : {}),
+    ...(f.action || f.actionSuffix ? { action: { ...(f.action ? { equals: f.action } : {}), ...(f.actionSuffix ? { endsWith: f.actionSuffix } : {}) } } : {}),
+    ...(f.targetType ? { targetType: f.targetType } : {}),
+    ...(f.targetId ? { targetId: f.targetId } : {}),
+    ...(f.from || f.to ? { at: range(f.from, f.to) } : {}),
+    ...(f.result ? { result: f.result } : {}),
+  };
+}
 const mapSetting = (r: Row): SettingRec => ({ key: r.key, value: r.value, version: r.version, updatedAt: r.updatedAt });
 
 // ---------------------------------------------------------------------------
@@ -687,7 +771,7 @@ export class PrismaRepository implements Repository {
 
   async createInvite(i: Omit<InviteRec, 'revokedAt'> & { revokedAt?: Date | null }) {
     const { scope, ...rest } = i;
-    await this.db.invite.create({ data: { ...rest, revokedAt: i.revokedAt ?? null, scopeType: scope } });
+    await this.db.invite.create({ data: { ...rest, permissions: i.permissions ?? [], revokedAt: i.revokedAt ?? null, scopeType: scope } });
   }
   async getInvite(id: Id) {
     const r = await this.db.invite.findUnique({ where: { id } });
@@ -772,7 +856,7 @@ export class PrismaRepository implements Repository {
 
   async createClass(c: ClassRec) {
     try {
-      return mapClass(await this.db.class.create({ data: c }));
+      return mapClass(await this.db.class.create({ data: { ...c, ...classSubjects({ subjectKey: c.subjectKey ?? null, subjectKeys: c.subjectKeys }) } }));
     } catch (e) {
       if (isUnique(e)) return 'conflict' as const;
       throw e;
@@ -787,8 +871,14 @@ export class PrismaRepository implements Repository {
     return r ? mapClass(r) : null;
   }
   async updateClass(id: Id, patch: Partial<ClassRec>) {
-    const { id: _i, ...data } = patch;
+    const { id: _i, ...rest } = patch;
     try {
+      let data: Record<string, unknown> = rest;
+      if (patch.subjectKeys !== undefined || patch.subjectKey !== undefined) {
+        const prev = await this.db.class.findUnique({ where: { id } });
+        if (!prev) return null;
+        data = { ...rest, ...classSubjects(patch, mapClass(prev)) };
+      }
       return mapClass(await this.db.class.update({ where: { id }, data }));
     } catch (e) {
       if (isNotFound(e)) return null;
@@ -1342,10 +1432,10 @@ export class PrismaRepository implements Repository {
 
   // --- audit & settings -----------------------------------------------------------
   async appendAudit(a: AuditRec) {
-    await this.db.auditLog.create({ data: { ...a, diff: jsonOrNull(a.diff) } });
+    await this.appendJournal(legacyToEvent(a));
   }
   async listAudit(filter: { actorId?: Id; action?: string; targetType?: string }, p: PageReq) {
-    const rows = await this.db.auditLog.findMany({
+    const rows = await this.db.auditEvent.findMany({
       where: {
         ...idWhere(p),
         ...(filter.actorId ? { actorId: filter.actorId } : {}),
@@ -1356,7 +1446,104 @@ export class PrismaRepository implements Repository {
       take: p.limit + 1,
     });
     const res = page(rows, p.limit, (r) => r.id);
-    return { items: res.items.map(mapAudit), nextCursor: res.nextCursor };
+    return { items: res.items.map((r) => eventToLegacy(mapJournalEvent(r))), nextCursor: res.nextCursor };
+  }
+
+  // --- v0.8.0: the action journal ------------------------------------------------------
+  async appendJournal(e: AuditEventInput) {
+    const payload = JSON.stringify({ ...e, at: e.at.toISOString(), before: e.before ?? null, after: e.after ?? null, details: e.details ?? null });
+    const rows = await this.db.$queryRaw<Row[]>`SELECT * FROM audit_event_append(${payload}::jsonb)`;
+    return mapJournalEvent(rows[0]);
+  }
+  async listJournal(f: JournalFilter, p: PageReq, order: 'asc' | 'desc' = 'desc') {
+    const after = decodeCursor(p.cursor);
+    const cur = after !== undefined && /^\d+$/.test(after) ? BigInt(after) : null;
+    const rows = await this.db.auditEvent.findMany({
+      where: { ...journalWhere(f), ...(cur !== null ? { seq: order === 'desc' ? { lt: cur } : { gt: cur } } : {}) },
+      orderBy: { seq: order },
+      take: p.limit + 1,
+    });
+    const res = page(rows, p.limit, (r) => String(r.seq));
+    return { items: res.items.map(mapJournalEvent), nextCursor: res.nextCursor };
+  }
+  async verifyJournal() {
+    const [r] = await this.db.$queryRaw<{ ok: boolean; checked: bigint; broken_at: bigint | null }[]>`SELECT * FROM audit_event_verify()`;
+    return { ok: r.ok, checked: Number(r.checked), brokenAt: r.broken_at === null ? null : Number(r.broken_at) };
+  }
+  async maintainJournal(now: Date, aheadMonths: number, retainMonths: number) {
+    const [r] = await this.db.$queryRaw<{ created: number; dropped: number }[]>`SELECT * FROM audit_event_maintain(${now}::timestamptz, ${aheadMonths}::int, ${retainMonths}::int)`;
+    return { created: Number(r.created), dropped: Number(r.dropped) };
+  }
+  async createAlert(a: AuditAlertRec) {
+    try {
+      return mapAlert(await this.db.auditAlert.create({ data: a }));
+    } catch (e) {
+      if (isUnique(e)) return 'conflict' as const;
+      throw e;
+    }
+  }
+  async listAlerts(limit: number) {
+    return (await this.db.auditAlert.findMany({ orderBy: [{ at: 'desc' }, { id: 'desc' }], take: limit })).map(mapAlert);
+  }
+  async markAlertSeen(id: Id, at: Date) {
+    const r = await this.db.auditAlert.findUnique({ where: { id } });
+    if (!r) return false;
+    if (!r.seenAt) await this.db.auditAlert.updateMany({ where: { id, seenAt: null }, data: { seenAt: at } });
+    return true;
+  }
+
+  // --- v0.8.0: staff, support sessions, deletion requests ---------------------------------
+  async getStaffProfile(userId: Id) {
+    const r = await this.db.staffProfile.findUnique({ where: { userId } });
+    return r ? mapStaff(r) : null;
+  }
+  async putStaffProfile(p: StaffProfileRec) {
+    const data = { permissions: p.permissions, scope: jsonOrNull(p.scope), createdBy: p.createdBy, createdAt: p.createdAt, blockedAt: p.blockedAt, deletedAt: p.deletedAt };
+    await this.db.staffProfile.upsert({ where: { userId: p.userId }, create: { userId: p.userId, ...data }, update: data });
+  }
+  async listStaffProfiles() {
+    return (await this.db.staffProfile.findMany({ orderBy: { userId: 'asc' } })).map(mapStaff);
+  }
+  async listUserIdsByRole(role: GrantRec['role']) {
+    const rows = await this.db.roleAssignment.findMany({ where: { role }, select: { userId: true }, distinct: ['userId'], orderBy: { userId: 'asc' } });
+    return rows.map((r) => r.userId);
+  }
+  async createSupportSession(s: SupportSessionRec) {
+    await this.db.impersonationSession.create({ data: s });
+  }
+  async getSupportSession(id: Id) {
+    const r = await this.db.impersonationSession.findUnique({ where: { id } });
+    return r ? mapSupport(r) : null;
+  }
+  async endSupportSession(id: Id, at: Date, by: Id | null, reason: 'ended' | 'expired') {
+    const res = await this.db.impersonationSession.updateMany({ where: { id, endedAt: null }, data: { endedAt: at, endedBy: by, endReason: reason } });
+    if (!res.count) return null;
+    return mapSupport(await this.db.impersonationSession.findUniqueOrThrow({ where: { id } }));
+  }
+  async listExpiredSupportSessions(now: Date) {
+    return (await this.db.impersonationSession.findMany({ where: { endedAt: null, expiresAt: { lte: now } }, orderBy: { id: 'asc' } })).map(mapSupport);
+  }
+  async createDeletionRequest(r: DeletionRequestRec) {
+    await this.db.deletionRequest.create({ data: r });
+  }
+  async getDeletionRequest(id: Id) {
+    const r = await this.db.deletionRequest.findUnique({ where: { id } });
+    return r ? mapDeletion(r) : null;
+  }
+  async listDeletionRequests(f: { status?: DeletionRequestRec['status']; requestedBy?: Id }, p: PageReq) {
+    const after = decodeCursor(p.cursor);
+    const rows = await this.db.deletionRequest.findMany({
+      where: { ...(f.status ? { status: f.status } : {}), ...(f.requestedBy ? { requestedBy: f.requestedBy } : {}), ...(after !== undefined ? { id: { lt: after } } : {}) },
+      orderBy: { id: 'desc' },
+      take: p.limit + 1,
+    });
+    const res = page(rows, p.limit, (r) => r.id);
+    return { items: res.items.map(mapDeletion), nextCursor: res.nextCursor };
+  }
+  async decideDeletionRequest(id: Id, d: Pick<DeletionRequestRec, 'status' | 'decidedBy' | 'decidedAt' | 'decisionNote'>) {
+    const res = await this.db.deletionRequest.updateMany({ where: { id, status: 'pending' }, data: d });
+    if (!res.count) return null;
+    return mapDeletion(await this.db.deletionRequest.findUniqueOrThrow({ where: { id } }));
   }
   async getSetting(key: string) {
     const r = await this.db.setting.findUnique({ where: { key } });

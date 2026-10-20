@@ -12,6 +12,13 @@ import type {
   AssignmentRec,
   AttemptRec,
   AuditRec,
+  AuditAlertRec,
+  AuditEventInput,
+  AuditEventRec,
+  DeletionRequestRec,
+  JournalFilter,
+  StaffProfileRec,
+  SupportSessionRec,
   AuthTokenRec,
   PhoneOtpRec,
   PhoneOtpPurpose,
@@ -60,6 +67,8 @@ import type {
   WriteResult,
 } from './types.js';
 import { newId } from '../ids.js';
+import { eventToLegacy, legacyToEvent, memoryEventHash } from '../domain/journal.js';
+import { classSubjects } from './class-subjects.js';
 
 const clone = <T>(v: T): T => structuredClone(v);
 const byId = <T extends { id: string }>(a: T, b: T) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
@@ -153,7 +162,11 @@ export class MemoryRepository implements Repository {
   private threads = new Map<Id, TutorThreadRec>();
   private messages: TutorMessageRec[] = [];
   private generated = new Map<Id, GeneratedRec>();
-  private audit: AuditRec[] = [];
+  private journal: AuditEventRec[] = [];
+  private alerts = new Map<Id, AuditAlertRec>();
+  private staff = new Map<Id, StaffProfileRec>();
+  private support = new Map<Id, SupportSessionRec>();
+  private deletions = new Map<Id, DeletionRequestRec>();
   private settings = new Map<string, SettingRec>();
 
   async ping() {
@@ -166,7 +179,7 @@ export class MemoryRepository implements Repository {
     if (u.email && [...this.users.values()].some((x) => x.email === u.email)) return 'conflict' as const;
     if (u.phone && [...this.users.values()].some((x) => x.phone === u.phone)) return 'conflict' as const;
     const now = new Date();
-    const rec: UserRec = { signup: null, phone: null, phoneVerifiedAt: null, ...u, createdAt: now, updatedAt: now, deletedAt: null };
+    const rec: UserRec = { signup: null, phone: null, phoneVerifiedAt: null, teachingLang: null, lastLoginAt: null, ...u, createdAt: now, updatedAt: now, deletedAt: null };
     this.users.set(u.id, clone(rec));
     return clone(rec);
   }
@@ -361,7 +374,7 @@ export class MemoryRepository implements Repository {
   }
 
   async createInvite(i: Omit<InviteRec, 'revokedAt'> & { revokedAt?: Date | null }) {
-    this.invites.set(i.id, clone({ ...i, revokedAt: i.revokedAt ?? null }));
+    this.invites.set(i.id, clone({ ...i, permissions: i.permissions ?? [], revokedAt: i.revokedAt ?? null }));
   }
   async getInvite(id: Id) {
     const i = this.invites.get(id);
@@ -446,7 +459,7 @@ export class MemoryRepository implements Repository {
 
   async createClass(c: ClassRec) {
     if ([...this.classes.values()].some((x) => x.joinCode === c.joinCode)) return 'conflict' as const;
-    const rec = { ...c, subjectKey: c.subjectKey ?? null };
+    const rec = { ...c, ...classSubjects({ subjectKey: c.subjectKey ?? null, subjectKeys: c.subjectKeys }) };
     this.classes.set(c.id, clone(rec));
     return clone(rec);
   }
@@ -462,7 +475,7 @@ export class MemoryRepository implements Repository {
     const c = this.classes.get(id);
     if (!c) return null;
     if (patch.joinCode && [...this.classes.values()].some((x) => x.id !== id && x.joinCode === patch.joinCode)) return 'conflict' as const;
-    const next = { ...c, ...patch, id };
+    const next = { ...c, ...patch, id, ...classSubjects(patch, c) };
     this.classes.set(id, next);
     return clone(next);
   }
@@ -928,10 +941,11 @@ export class MemoryRepository implements Repository {
 
   // --- audit & settings -----------------------------------------------------------
   async appendAudit(a: AuditRec) {
-    this.audit.push(clone(a));
+    await this.appendJournal(legacyToEvent(a));
   }
   async listAudit(filter: { actorId?: Id; action?: string; targetType?: string }, page: PageReq) {
-    const rows = this.audit
+    const rows = this.journal
+      .map(eventToLegacy)
       .filter((a) => (filter.actorId ? a.actorId === filter.actorId : true))
       .filter((a) => (filter.action ? a.action === filter.action : true))
       .filter((a) => (filter.targetType ? a.targetType === filter.targetType : true))
@@ -949,6 +963,125 @@ export class MemoryRepository implements Repository {
     const next: SettingRec = { key, value: clone(value), version: (s?.version ?? 0) + 1, updatedAt: new Date() };
     this.settings.set(key, next);
     return clone(next);
+  }
+
+  // --- v0.8.0: the action journal ------------------------------------------------------
+  async appendJournal(e: AuditEventInput) {
+    const last = this.journal[this.journal.length - 1];
+    const body = { ...clone(e), before: e.before ?? null, after: e.after ?? null, details: e.details ?? null, seq: (last?.seq ?? 0) + 1, prevHash: last?.hash ?? '' };
+    const rec: AuditEventRec = { ...body, hash: memoryEventHash(body) };
+    this.journal.push(rec);
+    return clone(rec);
+  }
+  async listJournal(f: JournalFilter, page: PageReq, order: 'asc' | 'desc' = 'desc') {
+    const after = decodeCursor(page.cursor);
+    const cur = after !== undefined && /^\d+$/.test(after) ? Number(after) : null;
+    let rows = this.journal.filter(
+      (e) =>
+        (!f.actorId || e.actorId === f.actorId) &&
+        (!f.onBehalfOfId || e.onBehalfOfId === f.onBehalfOfId) &&
+        (!f.group || e.group === f.group) &&
+        (!f.action || e.action === f.action) &&
+        (!f.actionSuffix || e.action.endsWith(f.actionSuffix)) &&
+        (!f.targetType || e.targetType === f.targetType) &&
+        (!f.targetId || e.targetId === f.targetId) &&
+        (!f.from || e.at >= f.from) &&
+        (!f.to || e.at < f.to) &&
+        (!f.result || e.result === f.result) &&
+        (cur === null || (order === 'desc' ? e.seq < cur : e.seq > cur)),
+    );
+    if (order === 'desc') rows = [...rows].reverse();
+    const items = rows.slice(0, page.limit);
+    return { items: items.map(clone), nextCursor: rows.length > page.limit && items.length ? encodeCursor(String(items[items.length - 1].seq)) : null };
+  }
+  async verifyJournal() {
+    let prev: AuditEventRec | null = null;
+    let n = 0;
+    for (const e of this.journal) {
+      n++;
+      const broken =
+        (prev && (e.seq !== prev.seq + 1 || e.prevHash !== prev.hash)) || (!prev && e.seq === 1 && e.prevHash !== '') || e.hash !== memoryEventHash(e);
+      if (broken) return { ok: false, checked: n, brokenAt: e.seq };
+      prev = e;
+    }
+    return { ok: true, checked: n, brokenAt: null };
+  }
+  async maintainJournal(now: Date, _ahead: number, retainMonths: number) {
+    const cutoff = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - retainMonths, 1));
+    const before = this.journal.length;
+    this.journal = this.journal.filter((e) => e.at >= cutoff);
+    return { created: 0, dropped: before - this.journal.length };
+  }
+  /** Test hook: rewrite a stored event in place (the PostgreSQL table refuses this). */
+  tamperJournal(seq: number, patch: Partial<AuditEventRec>) {
+    const i = this.journal.findIndex((e) => e.seq === seq);
+    if (i >= 0) this.journal[i] = { ...this.journal[i], ...patch };
+  }
+  async createAlert(a: AuditAlertRec) {
+    if ([...this.alerts.values()].some((x) => x.key === a.key)) return 'conflict' as const;
+    this.alerts.set(a.id, clone(a));
+    return clone(a);
+  }
+  async listAlerts(limit: number) {
+    return [...this.alerts.values()].sort((a, b) => b.at.getTime() - a.at.getTime() || (a.id < b.id ? 1 : -1)).slice(0, limit).map(clone);
+  }
+  async markAlertSeen(id: Id, at: Date) {
+    const a = this.alerts.get(id);
+    if (!a) return false;
+    if (!a.seenAt) a.seenAt = at;
+    return true;
+  }
+
+  // --- v0.8.0: staff, support sessions, deletion requests ---------------------------------
+  async getStaffProfile(userId: Id) {
+    const p = this.staff.get(userId);
+    return p ? clone(p) : null;
+  }
+  async putStaffProfile(p: StaffProfileRec) {
+    this.staff.set(p.userId, clone(p));
+  }
+  async listStaffProfiles() {
+    return [...this.staff.values()].sort((a, b) => (a.userId < b.userId ? -1 : 1)).map(clone);
+  }
+  async listUserIdsByRole(role: GrantRec['role']) {
+    return [...new Set(this.grants.filter((g) => g.role === role).map((g) => g.userId))].sort();
+  }
+  async createSupportSession(s: SupportSessionRec) {
+    this.support.set(s.id, clone(s));
+  }
+  async getSupportSession(id: Id) {
+    const s = this.support.get(id);
+    return s ? clone(s) : null;
+  }
+  async endSupportSession(id: Id, at: Date, by: Id | null, reason: 'ended' | 'expired') {
+    const s = this.support.get(id);
+    if (!s || s.endedAt) return null;
+    Object.assign(s, { endedAt: at, endedBy: by, endReason: reason });
+    return clone(s);
+  }
+  async listExpiredSupportSessions(now: Date) {
+    return [...this.support.values()].filter((s) => !s.endedAt && s.expiresAt <= now).sort(byId).map(clone);
+  }
+  async createDeletionRequest(r: DeletionRequestRec) {
+    this.deletions.set(r.id, clone(r));
+  }
+  async getDeletionRequest(id: Id) {
+    const r = this.deletions.get(id);
+    return r ? clone(r) : null;
+  }
+  async listDeletionRequests(f: { status?: DeletionRequestRec['status']; requestedBy?: Id }, page: PageReq) {
+    const after = decodeCursor(page.cursor);
+    const rows = [...this.deletions.values()]
+      .filter((r) => (!f.status || r.status === f.status) && (!f.requestedBy || r.requestedBy === f.requestedBy) && (after === undefined || r.id < after))
+      .sort((a, b) => (a.id < b.id ? 1 : -1));
+    const items = rows.slice(0, page.limit);
+    return { items: items.map(clone), nextCursor: rows.length > page.limit && items.length ? encodeCursor(items[items.length - 1].id) : null };
+  }
+  async decideDeletionRequest(id: Id, d: Pick<DeletionRequestRec, 'status' | 'decidedBy' | 'decidedAt' | 'decisionNote'>) {
+    const r = this.deletions.get(id);
+    if (!r || r.status !== 'pending') return null;
+    Object.assign(r, clone(d));
+    return clone(r);
   }
 
   async purgeDeleted(before: Date) {

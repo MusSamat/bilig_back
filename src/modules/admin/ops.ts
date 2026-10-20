@@ -116,6 +116,8 @@ export function registerOpsAdmin(app: FastifyInstance, deps: Deps) {
     if (isSuperadmin(ctx)) return null;
     const schools = adminSchools(ctx);
     const ids = new Set<string>(schools);
+    // v0.8.0: a manager with audit.view sees their own records.
+    if (ctx.auth.grants.some((g) => g.role === 'manager')) ids.add(ctx.auth.user!.id);
     for (const s of schools) {
       (await repo.listGrantsByScope('school', s)).forEach((g) => ids.add(g.userId));
       const cls = (await repo.listClasses({ schoolIds: [s] }, { limit: 100_000 })).items.map((c) => c.id);

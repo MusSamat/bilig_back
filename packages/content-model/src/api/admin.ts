@@ -353,7 +353,7 @@ export const LicenseSchema = z
     id: IdSchema,
     schoolId: IdSchema,
     subjects: z.array(KeySchema).min(1),
-    grades: z.array(z.number().int().min(1).max(11)).min(1),
+    grades: z.array(z.number().int().min(1).max(12)).min(1),
     seats: z.number().int().positive(),
     startsAt: DateTimeSchema,
     endsAt: DateTimeSchema,
@@ -572,7 +572,7 @@ export const LicenseListQuerySchema = PageQuerySchema.extend({
 /** PATCH /admin/licenses/:id. v0.3.0: optional `version` (or If-Match) precondition, as for schools. */
 export const LicensePatchSchema = z.object({
   subjects: z.array(KeySchema).min(1),
-  grades: z.array(z.number().int().min(1).max(11)).min(1),
+  grades: z.array(z.number().int().min(1).max(12)).min(1),
   seats: z.number().int().positive(),
   startsAt: DateTimeSchema,
   endsAt: DateTimeSchema,

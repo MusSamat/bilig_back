@@ -27,7 +27,7 @@
  */
 
 /** Contract version shared by @bilig/permissions and @bilig/content-model. */
-export const CONTRACT_VERSION = '0.7.0';
+export const CONTRACT_VERSION = '0.8.0';
 
 /** A role is granted with a scope: the whole platform, a school, a subject, or a class. */
 export type Scope = 'platform' | 'school' | 'subject' | 'class';
@@ -40,6 +40,7 @@ export type Role =
   | 'school_admin'
   | 'author'
   | 'editor'
+  | 'manager' // v0.8.0: platform staff — content and teacher support; rights = the permissions SuperAdmin ticks
   | 'superadmin';
 
 export const ROLES: readonly Role[] = [
@@ -49,6 +50,7 @@ export const ROLES: readonly Role[] = [
   'school_admin',
   'author',
   'editor',
+  'manager',
   'superadmin',
 ];
 
@@ -63,6 +65,7 @@ export const ROLE_SCOPE: Record<Role, Scope | null> = {
   school_admin: 'school',
   author: 'subject',
   editor: 'subject',
+  manager: 'platform',
   superadmin: 'platform',
 };
 
@@ -84,7 +87,15 @@ export type Permission =
   | 'content.publish' // Публиковать и снимать с публикации
   | 'platform.manage' // Управлять предметами, школами, лицензиями
   | 'audit.view' // Смотреть журнал аудита
-  | 'lesson.plan'; // v0.5.0: КТП и планы уроков (своё)
+  | 'lesson.plan' // v0.5.0: КТП и планы уроков (своё)
+  // v0.8.0 — staff (manager / SuperAdmin)
+  | 'teacher.view' // Список учителей, поиск, открыть кабинет учителя (просмотр)
+  | 'teacher.edit' // Режим правки в кабинете учителя (с причиной и 2FA)
+  | 'content.review' // Принять и подтвердить контент
+  | 'staff.manage' // Создавать, блокировать менеджеров, менять их права
+  | 'audit.read' // Журнал действий (менеджер — свои записи)
+  | 'deletion.request' // Запросить удаление учителя или контента
+  | 'deletion.approve'; // Подтвердить запрос и удалить
 
 export const PERMISSIONS: readonly Permission[] = [
   'demo.view',
@@ -100,6 +111,13 @@ export const PERMISSIONS: readonly Permission[] = [
   'platform.manage',
   'audit.view',
   'lesson.plan',
+  'teacher.view',
+  'teacher.edit',
+  'content.review',
+  'staff.manage',
+  'audit.read',
+  'deletion.request',
+  'deletion.approve',
 ];
 
 /**
@@ -120,56 +138,86 @@ export type Grant = 'all' | 'own' | 'limit' | false;
 export const MATRIX: Record<Permission, Record<Role, Grant>> = {
   'demo.view': {
     guest: 'all', student: 'all', teacher: 'all', school_admin: 'all',
-    author: 'all', editor: 'all', superadmin: 'all',
+    author: 'all', editor: 'all', manager: 'all', superadmin: 'all',
   },
   'topic.view': {
     guest: false, student: 'all', teacher: 'all', school_admin: 'all',
-    author: 'all', editor: 'all', superadmin: 'all',
+    author: 'all', editor: 'all', manager: 'all', superadmin: 'all',
   },
   'assistant.ask.online': {
     guest: 'limit', student: 'all', teacher: 'all', school_admin: 'all',
-    author: 'all', editor: 'all', superadmin: 'all',
+    author: 'all', editor: 'all', manager: 'all', superadmin: 'all',
   },
   'quiz.attempt.save': {
     guest: false, student: 'all', teacher: 'all', school_admin: false,
-    author: false, editor: false, superadmin: false,
+    author: false, editor: false, manager: false, superadmin: false,
   },
   'class.manage': {
     guest: false, student: false, teacher: 'own', school_admin: 'own',
-    author: false, editor: false, superadmin: 'all',
+    author: false, editor: false, manager: false, superadmin: 'all',
   },
   'assignment.manage': {
     guest: false, student: false, teacher: 'own', school_admin: 'own',
-    author: false, editor: false, superadmin: 'all',
+    author: false, editor: false, manager: false, superadmin: 'all',
   },
   'school.teachers.manage': {
     guest: false, student: false, teacher: false, school_admin: 'own',
-    author: false, editor: false, superadmin: 'all',
+    author: false, editor: false, manager: false, superadmin: 'all',
   },
   'content.draft.edit': {
     guest: false, student: false, teacher: false, school_admin: false,
-    author: 'own', editor: 'own', superadmin: 'all',
+    author: 'own', editor: 'own', manager: 'all', superadmin: 'all',
   },
   'model.upload': {
     guest: false, student: false, teacher: false, school_admin: false,
-    author: 'own', editor: 'own', superadmin: 'all',
+    author: 'own', editor: 'own', manager: 'all', superadmin: 'all',
   },
   'content.publish': {
     guest: false, student: false, teacher: false, school_admin: false,
-    author: false, editor: 'own', superadmin: 'all',
+    author: false, editor: 'own', manager: 'all', superadmin: 'all',
   },
   'platform.manage': {
     guest: false, student: false, teacher: false, school_admin: false,
-    author: false, editor: false, superadmin: 'all',
+    author: false, editor: false, manager: 'all', superadmin: 'all',
   },
   'audit.view': {
     guest: false, student: false, teacher: false, school_admin: 'own',
-    author: false, editor: false, superadmin: 'all',
+    author: false, editor: false, manager: 'own', superadmin: 'all',
   },
   // v0.5.0 (beyond the TZ §2 table): a teacher's own КТП and lesson plans; records are owner-only.
   'lesson.plan': {
     guest: false, student: false, teacher: 'all', school_admin: 'all',
-    author: false, editor: false, superadmin: 'all',
+    author: false, editor: false, manager: false, superadmin: 'all',
+  },  // v0.8.0 — staff. A manager holds only the permissions SuperAdmin ticked (RoleGrant.permissions);
+  // the matrix is the ceiling. Teachers' own classes / КТП: staff act through the teacher's
+  // cabinet (a support session), never directly.
+  'teacher.view': {
+    guest: false, student: false, teacher: false, school_admin: false,
+    author: false, editor: false, manager: 'all', superadmin: 'all',
+  },
+  'teacher.edit': {
+    guest: false, student: false, teacher: false, school_admin: false,
+    author: false, editor: false, manager: 'all', superadmin: 'all',
+  },
+  'content.review': {
+    guest: false, student: false, teacher: false, school_admin: false,
+    author: false, editor: 'own', manager: 'all', superadmin: 'all',
+  },
+  'staff.manage': {
+    guest: false, student: false, teacher: false, school_admin: false,
+    author: false, editor: false, manager: false, superadmin: 'all',
+  },
+  'audit.read': {
+    guest: false, student: false, teacher: false, school_admin: false,
+    author: false, editor: false, manager: 'own', superadmin: 'all',
+  },
+  'deletion.request': {
+    guest: false, student: false, teacher: false, school_admin: false,
+    author: false, editor: false, manager: 'all', superadmin: 'all',
+  },
+  'deletion.approve': {
+    guest: false, student: false, teacher: false, school_admin: false,
+    author: false, editor: false, manager: false, superadmin: 'all',
   },
 };
 
@@ -212,6 +260,12 @@ export interface RoleGrant {
   scopeId?: string;
   /** Author sub-role; only meaningful when `role === 'author'` (ignored otherwise). */
   subrole?: AuthorSubrole;
+  /**
+   * v0.8.0: the permissions SuperAdmin ticked for a manager (StaffProfile).
+   * Only meaningful when `role === 'manager'`; a manager holds a permission
+   * only if it is listed here AND the matrix allows it (MANAGER_ALWAYS aside).
+   */
+  permissions?: Permission[];
 }
 
 /** The resolved principal the backend builds from the auth token. */
@@ -246,6 +300,9 @@ export function isValidGrant(g: RoleGrant): boolean {
 export function grantLevel(g: RoleGrant, permission: Permission): Grant {
   if (!isValidGrant(g)) return false;
   const base = MATRIX[permission]?.[g.role] ?? false;
+  if (g.role === 'manager' && base !== false && !MANAGER_ALWAYS.includes(permission) && !(g.permissions ?? []).includes(permission)) {
+    return false;
+  }
   if (
     base !== false &&
     g.role === 'author' &&
@@ -257,6 +314,13 @@ export function grantLevel(g: RoleGrant, permission: Permission): Grant {
   }
   return base;
 }
+
+/** v0.8.0: what every manager has without a tick (reading the platform as a teacher would). */
+export const MANAGER_ALWAYS: readonly Permission[] = ['demo.view', 'topic.view', 'assistant.ask.online'];
+/** v0.8.0: the checkboxes SuperAdmin sees when creating a manager. */
+export const MANAGER_ASSIGNABLE: readonly Permission[] = (Object.keys(MATRIX) as Permission[]).filter(
+  (p) => MATRIX[p].manager !== false && !MANAGER_ALWAYS.includes(p),
+);
 
 const ORDER: Grant[] = [false, 'limit', 'own', 'all'];
 function strongest(a: Grant, b: Grant): Grant {

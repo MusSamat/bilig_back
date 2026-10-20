@@ -7,6 +7,7 @@
  *     server can never drift from the contract (a mismatch is a 500 + log).
  * Scope checks ("своё") happen inside handlers via `ctx.authorize`.
  */
+import type { Readable } from 'node:stream';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 import {
@@ -29,7 +30,8 @@ export type QueryOf<N extends EndpointName> = Def<N> extends { query: infer Q ex
 export type ResultOf<N extends EndpointName> = Def<N> extends { produces: string } ? BinaryResult : z.input<Def<N>['response']>;
 
 export interface BinaryResult {
-  body: Buffer | string;
+  /** v0.8.0: a Readable is streamed (e.g. the journal CSV export). */
+  body: Buffer | string | Readable;
   contentType: string;
   filename?: string;
 }

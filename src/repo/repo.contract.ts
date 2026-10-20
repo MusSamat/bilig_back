@@ -8,7 +8,7 @@ import { afterAll, beforeEach, describe, expect, it } from 'vitest';
 import { animalCellPackage } from '@bilig/content-model/fixtures/animal-cell';
 import { newId } from '../ids.js';
 import type { ContentPackage } from '@bilig/content-model';
-import type { BuildRec, ClassRec, GeneratedRec, PhoneOtpRec, Repository, SessionRec, TopicVersionRec, UserRec } from './types.js';
+import type { AuditEventInput, BuildRec, ClassRec, GeneratedRec, PhoneOtpRec, Repository, SessionRec, TopicVersionRec, UserRec } from './types.js';
 
 const T0 = new Date('2026-10-15T08:00:00Z');
 const at = (min: number) => new Date(T0.getTime() + min * 60_000);
@@ -145,8 +145,8 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         const i = { id: newId(), email: 'x@example.kg', role: 'teacher' as const, scope: 'school' as const, scopeId: 's1', subrole: null, tokenHash: 'ih', invitedBy: newId(), createdAt: T0, expiresAt: at(100), acceptedAt: null };
         await repo.createInvite(i);
         await repo.createInvite({ ...i, id: newId(), tokenHash: 'ih2', scopeId: 's2' });
-        expect(await repo.getInviteByHash('ih')).toEqual({ ...i, revokedAt: null });
-        expect(await repo.getInvite(i.id)).toEqual({ ...i, revokedAt: null });
+        expect(await repo.getInviteByHash('ih')).toEqual({ ...i, permissions: [], revokedAt: null });
+        expect(await repo.getInvite(i.id)).toEqual({ ...i, permissions: [], revokedAt: null });
         expect(await repo.getInvite(newId())).toBeNull();
         expect(await repo.markInviteAccepted(i.id, at(1))).toBe(true);
         expect(await repo.markInviteAccepted(i.id, at(2))).toBe(false);
@@ -783,6 +783,147 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         expect(await repo.putSetting('k', { a: 3 }, null)).toMatchObject({ value: { a: 3 }, version: 3 });
         expect(await repo.putSetting('k2', [1, 2], null)).toMatchObject({ value: [1, 2], version: 1 });
         expect(await repo.getSetting('k')).toMatchObject({ value: { a: 3 }, version: 3 });
+      });
+    });
+
+    describe('v0.8.0: journal, staff, support sessions, deletion requests', () => {
+      const ev = (patch: Partial<AuditEventInput> = {}): AuditEventInput => ({
+        id: newId(),
+        at: T0,
+        actorId: null,
+        actorRole: null,
+        onBehalfOfId: null,
+        group: 'auth',
+        action: 'auth.login',
+        targetType: 'user',
+        targetId: 'u1',
+        targetLabel: null,
+        before: null,
+        after: null,
+        details: null,
+        reason: null,
+        result: 'ok',
+        ip: null,
+        userAgent: null,
+        requestId: null,
+        supportSessionId: null,
+        ...patch,
+      });
+
+      it('journal: a linear hash chain, filters, newest-first cursor, verify', async () => {
+        const a = newId();
+        const b = newId();
+        const e1 = await repo.appendJournal(ev({ actorId: a, actorRole: 'manager', after: { x: 1, nested: { 'ключ': 'ü' } }, details: { list: [1, 'два', null] } }));
+        const e2 = await repo.appendJournal(ev({ actorId: b, group: 'content', action: 'content.deleted', targetType: 'concept', targetId: 'bio.x', at: at(5), onBehalfOfId: a, supportSessionId: newId(), result: 'denied', reason: 'причина', ip: '1.2.3.4', userAgent: 'UA', requestId: 'req-1', before: [1, 2] }));
+        const e3 = await repo.appendJournal(ev({ actorId: a, action: 'asset.deleted', group: 'content', at: at(10) }));
+        expect([e1.seq, e2.seq, e3.seq]).toEqual([1, 2, 3]);
+        expect(e1.prevHash).toBe('');
+        expect(e2.prevHash).toBe(e1.hash);
+        expect(e3.prevHash).toBe(e2.hash);
+        expect(e1.hash).toMatch(/^[0-9a-f]{64}$/);
+        expect(e2).toMatchObject({ onBehalfOfId: a, result: 'denied', reason: 'причина', ip: '1.2.3.4', userAgent: 'UA', requestId: 'req-1', before: [1, 2], after: null });
+        const all = await repo.listJournal({}, { limit: 10 });
+        expect(all.items.map((e) => e.seq)).toEqual([3, 2, 1]);
+        expect(all.items[2]).toMatchObject({ after: { x: 1, nested: { 'ключ': 'ü' } }, details: { list: [1, 'два', null] } });
+        expect((await repo.listJournal({}, { limit: 10 }, 'asc')).items.map((e) => e.seq)).toEqual([1, 2, 3]);
+        const p1 = await repo.listJournal({}, { limit: 2 });
+        expect(p1.items.map((e) => e.seq)).toEqual([3, 2]);
+        const p2 = await repo.listJournal({}, { limit: 2, cursor: p1.nextCursor! });
+        expect(p2.items.map((e) => e.seq)).toEqual([1]);
+        expect(p2.nextCursor).toBeNull();
+        expect((await repo.listJournal({ actorId: a }, { limit: 10 })).items.map((e) => e.seq)).toEqual([3, 1]);
+        expect((await repo.listJournal({ onBehalfOfId: a }, { limit: 10 })).items.map((e) => e.seq)).toEqual([2]);
+        expect((await repo.listJournal({ group: 'content', actionSuffix: '.deleted' }, { limit: 10 })).items.map((e) => e.seq)).toEqual([3, 2]);
+        expect((await repo.listJournal({ action: 'content.deleted', targetType: 'concept', targetId: 'bio.x', result: 'denied' }, { limit: 10 })).items.map((e) => e.seq)).toEqual([2]);
+        expect((await repo.listJournal({ from: at(5), to: at(10) }, { limit: 10 })).items.map((e) => e.seq)).toEqual([2]);
+        expect(await repo.verifyJournal()).toEqual({ ok: true, checked: 3, brokenAt: null });
+        // the legacy projection (GET /admin/audit) and appendAudit go through the same chain
+        await repo.appendAudit({ id: newId(), actorId: a, action: 'auth.login_failed', targetType: 'user', targetId: 'u2', diff: { before: 1, after: 2, why: 'x' }, ip: null, ts: at(11) });
+        const legacy = (await repo.listAudit({ action: 'auth.login_failed' }, { limit: 5 })).items[0];
+        expect(legacy).toMatchObject({ actorId: a, targetId: 'u2', diff: { before: 1, after: 2, why: 'x' }, ts: at(11) });
+        expect((await repo.listJournal({ action: 'auth.login_failed' }, { limit: 5 })).items[0]).toMatchObject({ seq: 4, group: 'auth', result: 'failed', before: 1, after: 2 });
+        expect(await repo.verifyJournal()).toEqual({ ok: true, checked: 4, brokenAt: null });
+      });
+
+      it('journal: concurrent appends stay linear', async () => {
+        await Promise.all(Array.from({ length: 20 }, (_, i) => repo.appendJournal(ev({ targetId: `t${i}` }))));
+        const rows = (await repo.listJournal({}, { limit: 50 }, 'asc')).items;
+        expect(rows.map((e) => e.seq)).toEqual(Array.from({ length: 20 }, (_, i) => i + 1));
+        expect(await repo.verifyJournal()).toEqual({ ok: true, checked: 20, brokenAt: null });
+      });
+
+      it('alerts: one per key, newest first, seen once', async () => {
+        const a1 = { id: newId(), key: 'k1', at: T0, kind: 'mass_deletion' as const, actorId: newId(), summary: 's1', seenAt: null };
+        expect(await repo.createAlert(a1)).toMatchObject({ key: 'k1' });
+        expect(await repo.createAlert({ ...a1, id: newId() })).toBe('conflict');
+        await repo.createAlert({ ...a1, id: newId(), key: 'k2', at: at(1), kind: 'chain_broken', actorId: null });
+        expect((await repo.listAlerts(10)).map((x) => x.key)).toEqual(['k2', 'k1']);
+        expect(await repo.markAlertSeen(a1.id, at(2))).toBe(true);
+        expect(await repo.markAlertSeen(a1.id, at(3))).toBe(true);
+        expect((await repo.listAlerts(10)).find((x) => x.id === a1.id)!.seenAt).toEqual(at(2));
+        expect(await repo.markAlertSeen(newId(), at(3))).toBe(false);
+      });
+
+      it('staff profiles, users by role, teachingLang / lastLoginAt, class subjects, invite permissions', async () => {
+        const u = await user();
+        expect(await repo.getStaffProfile(u.id)).toBeNull();
+        const p = { userId: u.id, permissions: ['teacher.view' as const], scope: null, createdBy: null, createdAt: T0, blockedAt: null, deletedAt: null };
+        await repo.putStaffProfile(p);
+        await repo.putStaffProfile({ ...p, permissions: ['teacher.view', 'audit.read'], blockedAt: at(1) });
+        expect(await repo.getStaffProfile(u.id)).toEqual({ ...p, permissions: ['teacher.view', 'audit.read'], blockedAt: at(1) });
+        expect((await repo.listStaffProfiles()).map((x) => x.userId)).toEqual([u.id]);
+        const v = await user();
+        await repo.addGrant({ userId: u.id, role: 'manager', scope: 'platform', scopeId: null, subrole: null });
+        await repo.addGrant({ userId: v.id, role: 'manager', scope: 'platform', scopeId: null, subrole: null });
+        await repo.addGrant({ userId: v.id, role: 'teacher', scope: 'school', scopeId: 's1', subrole: null });
+        expect(await repo.listUserIdsByRole('manager')).toEqual([u.id, v.id].sort());
+        expect(await repo.listUserIdsByRole('teacher')).toEqual([v.id]);
+        expect(await repo.updateUser(u.id, { teachingLang: 'uz', lastLoginAt: at(3) })).toMatchObject({ teachingLang: 'uz', lastLoginAt: at(3) });
+        expect(await repo.getUser(v.id)).toMatchObject({ teachingLang: null, lastLoginAt: null });
+
+        const s = await school();
+        const c = await klass(s.id);
+        expect(c).toMatchObject({ subjectKey: null, subjectKeys: [] });
+        expect(await repo.updateClass(c.id, { subjectKeys: ['math', 'bio', 'math'] })).toMatchObject({ subjectKey: 'math', subjectKeys: ['math', 'bio'] });
+        expect(await repo.updateClass(c.id, { subjectKey: 'bio' })).toMatchObject({ subjectKey: 'bio', subjectKeys: ['bio', 'math'] });
+        expect(await repo.updateClass(c.id, { name: '7Б' })).toMatchObject({ subjectKey: 'bio', subjectKeys: ['bio', 'math'] });
+        expect(await repo.updateClass(c.id, { subjectKey: null })).toMatchObject({ subjectKey: null, subjectKeys: [] });
+        const c2 = await repo.createClass({ id: newId(), schoolId: s.id, name: '8А', grade: 12, joinCode: 'XYZ234', joinCodeEnabled: true, subjectKey: 'chem', createdBy: newId(), createdAt: T0, deletedAt: null });
+        expect(c2).toMatchObject({ grade: 12, subjectKey: 'chem', subjectKeys: ['chem'] });
+
+        const i = { id: newId(), email: 'm@example.kg', role: 'manager' as const, scope: 'platform' as const, scopeId: null, subrole: null, permissions: ['teacher.view' as const], tokenHash: 'mh', invitedBy: newId(), createdAt: T0, expiresAt: at(100), acceptedAt: null };
+        await repo.createInvite(i);
+        expect(await repo.getInvite(i.id)).toEqual({ ...i, revokedAt: null });
+      });
+
+      it('support sessions: end once; expired open sessions', async () => {
+        const s = { id: newId(), actorId: newId(), teacherId: newId(), mode: 'view' as const, reason: null, ip: '1.1.1.1', startedAt: T0, expiresAt: at(15), endedAt: null, endedBy: null, endReason: null };
+        await repo.createSupportSession(s);
+        await repo.createSupportSession({ ...s, id: newId(), mode: 'edit', reason: 'долгая причина', expiresAt: at(30) });
+        expect(await repo.getSupportSession(s.id)).toEqual(s);
+        expect((await repo.listExpiredSupportSessions(at(14))).length).toBe(0);
+        expect((await repo.listExpiredSupportSessions(at(15))).map((x) => x.id)).toEqual([s.id]);
+        expect(await repo.endSupportSession(s.id, at(16), null, 'expired')).toMatchObject({ endedAt: at(16), endReason: 'expired', endedBy: null });
+        expect(await repo.endSupportSession(s.id, at(17), s.actorId, 'ended')).toBeNull();
+        expect(await repo.listExpiredSupportSessions(at(20))).toEqual([]);
+        expect(await repo.endSupportSession(newId(), at(17), null, 'ended')).toBeNull();
+      });
+
+      it('deletion requests: list newest first, decide once', async () => {
+        const by = newId();
+        const r = { id: newId(), kind: 'teacher' as const, targetId: newId(), targetLabel: 'Учитель', reason: 'уволился из школы', status: 'pending' as const, requestedBy: by, requestedAt: T0, decidedBy: null, decidedAt: null, decisionNote: null };
+        await repo.createDeletionRequest(r);
+        const r2 = { ...r, id: newId(), kind: 'concept' as const, targetId: 'bio.x', requestedBy: newId() };
+        await repo.createDeletionRequest(r2);
+        expect(await repo.getDeletionRequest(r.id)).toEqual(r);
+        expect((await repo.listDeletionRequests({}, { limit: 10 })).items.map((x) => x.id)).toEqual([r2.id, r.id]);
+        expect((await repo.listDeletionRequests({ requestedBy: by }, { limit: 10 })).items.map((x) => x.id)).toEqual([r.id]);
+        const p1 = await repo.listDeletionRequests({}, { limit: 1 });
+        expect((await repo.listDeletionRequests({}, { limit: 1, cursor: p1.nextCursor! })).items.map((x) => x.id)).toEqual([r.id]);
+        const d = await repo.decideDeletionRequest(r.id, { status: 'approved', decidedBy: by, decidedAt: at(1), decisionNote: 'ok' });
+        expect(d).toMatchObject({ status: 'approved', decidedBy: by, decidedAt: at(1), decisionNote: 'ok' });
+        expect(await repo.decideDeletionRequest(r.id, { status: 'rejected', decidedBy: by, decidedAt: at(2), decisionNote: null })).toBeNull();
+        expect((await repo.listDeletionRequests({ status: 'pending' }, { limit: 10 })).items.map((x) => x.id)).toEqual([r2.id]);
       });
     });
   });

@@ -15,6 +15,10 @@ import { registerOrgAdmin } from './org.js';
 import { registerReviewAdmin } from './review.js';
 import { registerStringsAdmin } from './strings.js';
 import { registerTopicAdmin } from './topics.js';
+import { registerStaffAdmin } from './staff.js';
+import { registerJournalAdmin } from './journal.js';
+import { registerSupportAdmin } from './support.js';
+import { registerDeletionAdmin } from './deletion.js';
 
 export function registerAdmin(app: FastifyInstance, deps: Deps) {
   registerContentAdmin(app, deps);
@@ -26,4 +30,9 @@ export function registerAdmin(app: FastifyInstance, deps: Deps) {
   registerOpsAdmin(app, deps);
   registerGeneratedAdmin(app, deps);
   registerReviewAdmin(app, deps);
+  // v0.8.0
+  registerStaffAdmin(app, deps);
+  registerJournalAdmin(app, deps);
+  registerSupportAdmin(app, deps);
+  registerDeletionAdmin(app, deps);
 }

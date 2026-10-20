@@ -53,8 +53,8 @@ export const TextbookObjectSchema = z.object({
   title: LocalizedSchema,
   /** Short name for badges and links («Табигый илимдер 8»); clients fall back to `title`. */
   shortTitle: LocalizedSchema.optional(),
-  /** School grade 1–11. */
-  grade: z.number().int().min(1).max(11),
+  /** School grade 1–12. */
+  grade: z.number().int().min(1).max(12),
   /** Language the book is printed in. */
   lang: LangSchema,
   /** Volume of a multi-part book (`1` = часть 1). */

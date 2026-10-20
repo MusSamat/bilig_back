@@ -111,7 +111,7 @@ export async function makeUser(
   if (u === 'conflict') throw new Error('user conflict');
   if (opts.password) await deps.repo.setCredential(u.id, 'password', await hashSecret(opts.password));
   if (grant) {
-    const scope = grant.scope ?? ({ student: 'class', teacher: 'school', school_admin: 'school', author: 'subject', editor: 'subject', superadmin: 'platform', guest: 'platform' } as const)[grant.role];
+    const scope: Scope = grant.scope ?? ({ student: 'class', teacher: 'school', school_admin: 'school', author: 'subject', editor: 'subject', manager: 'platform', superadmin: 'platform', guest: 'platform' } as const)[grant.role];
     await deps.repo.addGrant({ userId: u.id, role: grant.role, scope, scopeId: grant.scopeId ?? null, subrole: grant.subrole ?? null });
   }
   return { user: u, token: await tokenFor(deps, u, 'client'), adminToken: await tokenFor(deps, u, 'admin') };

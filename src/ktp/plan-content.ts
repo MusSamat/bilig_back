@@ -105,7 +105,7 @@ const NATURAL = new Set(['phys', 'chem', 'bio', 'geo', 'astro']);
 export function gradeOf(cls: string, fallback: number | null): number | null {
   const m = /^(\d{1,2})/.exec(cls);
   const g = m ? Number(m[1]) : fallback;
-  return g !== null && g >= 1 && g <= 11 ? g : null;
+  return g !== null && g >= 1 && g <= 12 ? g : null;
 }
 
 // ---------------------------------------------------------------------------

@@ -427,7 +427,7 @@ export function parseKtp(doc: DocxDocument, opts: { now?: Date } = {}): ParsedKt
   const year = findYear(headingText) ?? findYear(allParaText);
   const titleGrade = /(?<!\d)(\d{1,2})\s*[-–]?\s*(?:«?[\p{L}]»?\s*)?(?:класс|кл\.|grade)/iu.exec(headingText);
   let grade: number | null = titleGrade ? Number(titleGrade[1]) : null;
-  if (grade !== null && (grade < 1 || grade > 11)) grade = null;
+  if (grade !== null && (grade < 1 || grade > 12)) grade = null;
   const fallbackLabel = grade !== null ? String(grade) : 'class';
   const schoolYear = year ?? inferSchoolYear(allTableText, now);
 
@@ -526,7 +526,7 @@ export function parseKtp(doc: DocxDocument, opts: { now?: Date } = {}): ParsedKt
   }
 
   // classes named in the header → grade, when the title did not say it
-  const gradesFromClasses = [...new Set(classes.map((c) => Number(/^\d+/.exec(c)?.[0])).filter((g) => g >= 1 && g <= 11))];
+  const gradesFromClasses = [...new Set(classes.map((c) => Number(/^\d+/.exec(c)?.[0])).filter((g) => g >= 1 && g <= 12))];
   if (gradesFromClasses.length === 1) grade = gradesFromClasses[0];
 
   const subjectName = findSubjectName(headingText, lang) || findSubjectName(allParaText, lang);

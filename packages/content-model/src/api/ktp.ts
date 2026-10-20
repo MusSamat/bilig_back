@@ -81,7 +81,7 @@ export const TeachingPlanSchema = z.object({
   subjectName: z.string().max(200),
   /** Matched Bilig subject, when there is one. */
   subjectKey: KeySchema.nullable(),
-  grade: z.number().int().min(1).max(11).nullable(),
+  grade: z.number().int().min(1).max(12).nullable(),
   /** Language of the КТП and of the generated plans. */
   lang: LangSchema,
   teacherName: z.string().max(200),
@@ -89,6 +89,8 @@ export const TeachingPlanSchema = z.object({
   /** School year start (`2026` = 2026–2027), when found. */
   year: z.number().int().min(2000).max(2100).nullable(),
   classes: z.array(KtpClassSchema),
+  /** v0.8.0: which of the teacher's classes each КТП class column is (matched by name, editable). */
+  classLinks: z.record(KtpClassSchema, z.string().uuid().nullable()).optional(),
   declaredHours: z.number().int().min(0).nullable(),
   totalHours: z.number().int().min(0),
   rows: z.array(KtpRowSchema),
@@ -158,6 +160,8 @@ export const KtpPatchRequestSchema = z.object({
   schoolName: z.string().max(300).optional(),
   lang: LangSchema.optional(),
   rows: z.array(KtpRowPatchSchema).max(400).optional(),
+  /** v0.8.0 */
+  classLinks: z.record(KtpClassSchema, z.string().uuid().nullable()).optional(),
 });
 export type KtpPatchRequest = z.infer<typeof KtpPatchRequestSchema>;
 

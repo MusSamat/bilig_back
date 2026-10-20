@@ -5,6 +5,13 @@ import { loadConfig } from './config.js';
 import { seedDemo } from './services/demo-seed.js';
 import { importContent, loadContentDir } from './services/seed.js';
 import { runScheduledPublishes } from './services/workflow.js';
+import { expireSupportSessions } from './services/support.js';
+
+/** v0.8.0 journal: monthly partitions this many months ahead; partitions older than the retention are dropped. */
+const JOURNAL_AHEAD_MONTHS = 3;
+const JOURNAL_RETAIN_MONTHS = 36;
+const maintainJournal = () =>
+  deps.repo.maintainJournal(deps.clock.now(), JOURNAL_AHEAD_MONTHS, JOURNAL_RETAIN_MONTHS).catch((err) => app.log.error({ err: String(err) }, 'journal maintenance failed'));
 
 const config = loadConfig();
 const deps = await createDeps(config);
@@ -31,7 +38,10 @@ if (config.authFixedTotp) {
 }
 if (!deps.tutor) app.log.warn('ANTHROPIC_API_KEY not set — tutor answers 503 (clients use the offline index)');
 
+await maintainJournal();
 const timers = [
+  setInterval(() => void maintainJournal(), 24 * 3600_000),
+  setInterval(() => void expireSupportSessions(deps).catch((err) => app.log.error({ err: String(err) }, 'support expiry failed')), 60_000),
   setInterval(() => void runScheduledPublishes(deps).catch((err) => app.log.error({ err: String(err) }, 'scheduled publish failed')), 60_000),
   setInterval(() => void deps.repo.purgeDeleted(new Date(deps.clock.now().getTime() - 30 * 24 * 3600_000)).catch(() => {}), 6 * 3600_000),
 ];

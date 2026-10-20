@@ -8,23 +8,27 @@ export const ClassSchema = z.object({
   id: IdSchema,
   schoolId: IdSchema,
   name: z.string().min(1).max(40),
-  grade: z.number().int().min(1).max(11),
+  grade: z.number().int().min(1).max(12),
   joinCode: z.string().regex(/^[A-Z0-9]{6}$/),
   joinCodeEnabled: z.boolean(),
   studentCount: z.number().int().min(0),
-  /** v0.6.0: subject the teacher teaches in this class. */
+  /** v0.6.0: subject the teacher teaches in this class (= subjectKeys[0]). */
   subjectKey: z.string().min(1).max(60).nullable().optional(),
+  /** v0.8.0: every subject the teacher teaches in this class. */
+  subjectKeys: z.array(z.string().min(1).max(60)).max(12).optional(),
 });
 export type SchoolClass = z.infer<typeof ClassSchema>;
 
 // POST /classes
 export const ClassCreateRequestSchema = z.object({
   name: z.string().min(1).max(40),
-  grade: z.number().int().min(1).max(11),
+  grade: z.number().int().min(1).max(12),
   /** Required for school admins with several schools; defaults to the teacher's school. */
   schoolId: IdSchema.optional(),
   /** v0.6.0 */
   subjectKey: z.string().min(1).max(60).nullable().optional(),
+  /** v0.8.0: wins over subjectKey when both are sent. */
+  subjectKeys: z.array(z.string().min(1).max(60)).max(12).optional(),
 });
 export type ClassCreateRequest = z.infer<typeof ClassCreateRequestSchema>;
 
@@ -32,10 +36,12 @@ export type ClassCreateRequest = z.infer<typeof ClassCreateRequestSchema>;
 export const ClassPatchRequestSchema = z
   .object({
     name: z.string().min(1).max(40),
-    grade: z.number().int().min(1).max(11),
+    grade: z.number().int().min(1).max(12),
     joinCodeEnabled: z.boolean(),
     /** v0.6.0 */
     subjectKey: z.string().min(1).max(60).nullable(),
+    /** v0.8.0 */
+    subjectKeys: z.array(z.string().min(1).max(60)).max(12),
   })
   .partial();
 export type ClassPatchRequest = z.infer<typeof ClassPatchRequestSchema>;
@@ -149,7 +155,7 @@ export const MyAssignmentSchema = AssignmentSchema.extend({
   /** Topic title in the request language (Accept-Language, ky → ru → en). */
   topicTitle: z.string().optional(),
   subjectKey: KeySchema.optional(),
-  grade: z.number().int().min(1).max(11).optional(),
+  grade: z.number().int().min(1).max(12).optional(),
   unitKey: KeySchema.optional(),
 });
 export type MyAssignment = z.infer<typeof MyAssignmentSchema>;

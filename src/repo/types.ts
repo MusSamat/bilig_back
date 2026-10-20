@@ -29,7 +29,7 @@ import type {
   Topic,
   Unit,
 } from '@bilig/content-model';
-import type { AuthorSubrole, Role, Scope } from '@bilig/permissions';
+import type { AuthorSubrole, Permission, Role, Scope } from '@bilig/permissions';
 
 export type Id = string;
 
@@ -70,7 +70,13 @@ export interface UserRec {
   phone?: string | null;
   /** v0.7.0: when a one-time code proved the number; repos return null when unset. */
   phoneVerifiedAt?: Date | null;
+  /** v0.8.0: the language the teacher teaches in; repos return null when unset. */
+  teachingLang?: TeachingLang | null;
+  /** v0.8.0: the last successful sign-in; repos return null when unset. */
+  lastLoginAt?: Date | null;
 }
+
+export type TeachingLang = 'ky' | 'ru' | 'uz' | 'en';
 
 /** v0.6.0: what a teacher entered at sign-up, kept until the e-mail is confirmed. */
 export interface SignupRec {
@@ -157,6 +163,8 @@ export interface InviteRec {
   scope: Scope;
   scopeId: string | null;
   subrole: AuthorSubrole | null;
+  /** v0.8.0: the permissions ticked for a manager invite (empty otherwise; repos return [] when unset). */
+  permissions?: Permission[];
   tokenHash: string;
   invitedBy: Id;
   createdAt: Date;
@@ -199,8 +207,10 @@ export interface ClassRec {
   grade: number;
   joinCode: string;
   joinCodeEnabled: boolean;
-  /** v0.6.0: subject taught in the class; repos return null when unset. */
+  /** v0.6.0: subject taught in the class (= subjectKeys[0]); repos return null when unset. */
   subjectKey?: string | null;
+  /** v0.8.0: every subject taught in the class; repos return [] when unset. */
+  subjectKeys?: string[];
   createdBy: Id;
   createdAt: Date;
   deletedAt: Date | null;
@@ -619,6 +629,118 @@ export interface AuditFilter {
   targetType?: string;
 }
 
+// ---------------------------------------------------------------------------
+// v0.8.0: staff, support sessions, the action journal, deletion requests
+// ---------------------------------------------------------------------------
+
+/** A staff member's profile: the ticked permissions (managers) and the lifecycle. */
+export interface StaffProfileRec {
+  userId: Id;
+  permissions: Permission[];
+  /** Reserved (null = the whole platform). */
+  scope: unknown | null;
+  createdBy: Id | null;
+  createdAt: Date;
+  blockedAt: Date | null;
+  deletedAt: Date | null;
+}
+
+export type SupportMode = 'view' | 'edit';
+export interface SupportSessionRec {
+  id: Id;
+  /** The staff member. */
+  actorId: Id;
+  teacherId: Id;
+  mode: SupportMode;
+  reason: string | null;
+  ip: string | null;
+  startedAt: Date;
+  expiresAt: Date;
+  endedAt: Date | null;
+  endedBy: Id | null;
+  endReason: 'ended' | 'expired' | null;
+}
+
+export type AuditGroup = 'auth' | 'staff' | 'support' | 'content' | 'teacher_data' | 'export' | 'deletion';
+export type AuditResult = 'ok' | 'denied' | 'failed';
+/** What the app writes; the repository assigns `seq`, `prevHash` and `hash`. */
+export interface AuditEventInput {
+  id: Id;
+  at: Date;
+  actorId: Id | null;
+  actorRole: string | null;
+  onBehalfOfId: Id | null;
+  group: AuditGroup;
+  action: string;
+  targetType: string;
+  targetId: string;
+  targetLabel: string | null;
+  before: unknown;
+  after: unknown;
+  /** The legacy free-form diff. */
+  details: unknown;
+  reason: string | null;
+  result: AuditResult;
+  ip: string | null;
+  userAgent: string | null;
+  requestId: string | null;
+  supportSessionId: Id | null;
+}
+export interface AuditEventRec extends AuditEventInput {
+  /** Position in the chain (1, 2, …). */
+  seq: number;
+  prevHash: string;
+  hash: string;
+}
+export interface JournalFilter {
+  actorId?: Id;
+  onBehalfOfId?: Id;
+  group?: AuditGroup;
+  action?: string;
+  /** e.g. `.deleted` (mass-deletion alerts). */
+  actionSuffix?: string;
+  targetType?: string;
+  targetId?: string;
+  /** Inclusive. */
+  from?: Date;
+  /** Exclusive. */
+  to?: Date;
+  result?: AuditResult;
+}
+export interface JournalVerifyResult {
+  ok: boolean;
+  checked: number;
+  brokenAt: number | null;
+}
+
+export type AuditAlertKind = 'mass_deletion' | 'chain_broken' | 'support_edit';
+export interface AuditAlertRec {
+  id: Id;
+  /** De-duplication key: one alert per incident. */
+  key: string;
+  at: Date;
+  kind: AuditAlertKind;
+  actorId: Id | null;
+  summary: string;
+  seenAt: Date | null;
+}
+
+export type DeletionKind = 'teacher' | 'topic' | 'concept' | 'item' | 'asset';
+export type DeletionStatus = 'pending' | 'approved' | 'rejected';
+export interface DeletionRequestRec {
+  id: Id;
+  kind: DeletionKind;
+  targetId: string;
+  targetLabel: string;
+  reason: string;
+  status: DeletionStatus;
+  requestedBy: Id;
+  requestedAt: Date;
+  decidedBy: Id | null;
+  decidedAt: Date | null;
+  decisionNote: string | null;
+}
+
 export interface IdempotencyRec {
   userId: Id;
   key: string;
@@ -657,7 +779,7 @@ export interface Repository {
   getUserByPhone(phone: string): Promise<UserRec | null>;
   updateUser(
     id: Id,
-    patch: Partial<Pick<UserRec, 'displayName' | 'locale' | 'status' | 'emailVerifiedAt' | 'deletedAt' | 'signup' | 'phone' | 'phoneVerifiedAt'>>,
+    patch: Partial<Pick<UserRec, 'displayName' | 'locale' | 'status' | 'emailVerifiedAt' | 'deletedAt' | 'signup' | 'phone' | 'phoneVerifiedAt' | 'teachingLang' | 'lastLoginAt'>>,
   ): Promise<UserRec | null>;
   listUsers(filter: UserFilter, page: PageReq): Promise<PageRes<UserRec>>;
   getUsers(ids: readonly Id[]): Promise<UserRec[]>;
@@ -737,7 +859,8 @@ export interface Repository {
   createClass(c: ClassRec): Promise<ClassRec | 'conflict'>;
   getClass(id: Id): Promise<ClassRec | null>;
   getClassByJoinCode(code: string): Promise<ClassRec | null>;
-  updateClass(id: Id, patch: Partial<Pick<ClassRec, 'name' | 'grade' | 'joinCode' | 'joinCodeEnabled' | 'deletedAt' | 'subjectKey'>>): Promise<ClassRec | null | 'conflict'>;
+  /** v0.8.0: `subjectKeys` wins over `subjectKey`; the repos keep subjectKey = subjectKeys[0]. */
+  updateClass(id: Id, patch: Partial<Pick<ClassRec, 'name' | 'grade' | 'joinCode' | 'joinCodeEnabled' | 'deletedAt' | 'subjectKey' | 'subjectKeys'>>): Promise<ClassRec | null | 'conflict'>;
   listClasses(filter: { ids?: Id[]; schoolIds?: Id[] }, page: PageReq): Promise<PageRes<ClassRec>>;
 
   addEnrollment(e: Omit<EnrollmentRec, 'createdAt'>): Promise<void>;
@@ -857,8 +980,49 @@ export interface Repository {
   countGenerated(ids: Id[], delta: { served?: number; good?: number; bad?: number; reason?: string }): Promise<void>;
 
   // audit & settings
+  /** Legacy shape: written to the journal (AuditEvent) since v0.8.0. */
   appendAudit(a: AuditRec): Promise<void>;
+  /** Legacy shape: the journal projected to AuditRec, ascending by id. */
   listAudit(filter: AuditFilter, page: PageReq): Promise<PageRes<AuditRec>>;
+
+  // v0.8.0: the action journal (append-only, hash-chained)
+  /** Appends one event at the end of the chain (writers are serialised). */
+  appendJournal(e: AuditEventInput): Promise<AuditEventRec>;
+  /** Newest first (`desc`, the default) or oldest first; the cursor is the last `seq`. */
+  listJournal(filter: JournalFilter, page: PageReq, order?: 'asc' | 'desc'): Promise<PageRes<AuditEventRec>>;
+  /** Walks the chain: seq without gaps, prevHash links, every hash recomputed. */
+  verifyJournal(): Promise<JournalVerifyResult>;
+  /** Monthly partitions ahead; drops partitions older than the retention (memory: drops the rows). */
+  maintainJournal(now: Date, aheadMonths: number, retainMonths: number): Promise<{ created: number; dropped: number }>;
+  /** 'conflict' when an alert with the same key exists. */
+  createAlert(a: AuditAlertRec): Promise<AuditAlertRec | 'conflict'>;
+  /** Newest first. */
+  listAlerts(limit: number): Promise<AuditAlertRec[]>;
+  markAlertSeen(id: Id, at: Date): Promise<boolean>;
+
+  // v0.8.0: staff
+  getStaffProfile(userId: Id): Promise<StaffProfileRec | null>;
+  /** Insert or replace. */
+  putStaffProfile(p: StaffProfileRec): Promise<void>;
+  listStaffProfiles(): Promise<StaffProfileRec[]>;
+  /** Ids of users holding a grant with this role (any scope), ascending. */
+  listUserIdsByRole(role: Role): Promise<Id[]>;
+
+  // v0.8.0: support sessions
+  createSupportSession(s: SupportSessionRec): Promise<void>;
+  getSupportSession(id: Id): Promise<SupportSessionRec | null>;
+  /** Ends an open session; null when unknown or already ended. */
+  endSupportSession(id: Id, at: Date, by: Id | null, reason: 'ended' | 'expired'): Promise<SupportSessionRec | null>;
+  /** Open sessions whose expiry is at or before `now`. */
+  listExpiredSupportSessions(now: Date): Promise<SupportSessionRec[]>;
+
+  // v0.8.0: deletion requests
+  createDeletionRequest(r: DeletionRequestRec): Promise<void>;
+  getDeletionRequest(id: Id): Promise<DeletionRequestRec | null>;
+  /** Newest first; the cursor is the last id. */
+  listDeletionRequests(filter: { status?: DeletionStatus; requestedBy?: Id }, page: PageReq): Promise<PageRes<DeletionRequestRec>>;
+  /** Decides a pending request; null when unknown or no longer pending. */
+  decideDeletionRequest(id: Id, d: Pick<DeletionRequestRec, 'status' | 'decidedBy' | 'decidedAt' | 'decisionNote'>): Promise<DeletionRequestRec | null>;
   getSetting(key: string): Promise<SettingRec | null>;
   /** expectedVersion null = upsert without check (defaults/seed). */
   putSetting(key: string, value: unknown, expectedVersion: number | null): Promise<WriteResult<SettingRec>>;

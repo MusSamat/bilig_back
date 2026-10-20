@@ -272,8 +272,10 @@ describe('2FA for the admin audience', () => {
     const ok = await login('ed@example.kg', PASSWORD, { totp: totpAt(secret, t.clock.now()) }, admin);
     expect(ok.statusCode, ok.body).toBe(200);
     expect(String(ok.headers['set-cookie'])).toMatch(/bilig_admin_rt=/);
-    // the client audience does not need TOTP
-    expect((await login('ed@example.kg', PASSWORD)).statusCode).toBe(200);
+    // v0.8.0: staff never use the client (teacher) sign-in
+    const client = await login('ed@example.kg', PASSWORD);
+    expect(client.statusCode).toBe(403);
+    expect(json(client).detail).toBe('use_admin_login');
 
     // disable needs a valid code
     expect((await t.inject({ method: 'POST', url: `${API}/me/2fa`, token: ed.token, payload: { action: 'disable', code: '000000' } })).statusCode).toBe(401);
@@ -281,9 +283,15 @@ describe('2FA for the admin audience', () => {
     expect(json(dis)).toEqual({ enabled: false });
   });
 
-  it('teachers can use the admin audience without TOTP', async () => {
+  it('v0.8.0: a teacher at /admin is sent to the teacher sign-in (403 use_teacher_login, no session)', async () => {
     await makeUser(t.deps, { role: 'teacher', scopeId: '0192f000-0000-7000-8000-000000000001' }, { email: 'tt@example.kg', password: PASSWORD });
-    expect((await login('tt@example.kg', PASSWORD, {}, { 'x-bilig-audience': 'admin' })).statusCode).toBe(200);
+    const r = await login('tt@example.kg', PASSWORD, {}, { 'x-bilig-audience': 'admin' });
+    expect(r.statusCode).toBe(403);
+    expect(json(r)).toMatchObject({ detail: 'use_teacher_login', i18nKey: 'errors.use_teacher_login' });
+    expect(r.headers['set-cookie']).toBeUndefined();
+    // a wrong password still answers 401 (the routing reveals nothing without the password)
+    expect((await login('tt@example.kg', 'wrong-password-77', {}, { 'x-bilig-audience': 'admin' })).statusCode).toBe(401);
+    expect((await login('tt@example.kg', PASSWORD)).statusCode).toBe(200);
   });
 });
 
@@ -305,16 +313,30 @@ describe('invites', () => {
   it('accepts an invite: creates the user with the granted role and signs in', async () => {
     const { hashToken } = await import('../../domain/crypto.js');
     const { newId } = await import('../../ids.js');
+    const sa = await makeSchoolWorld(t.deps);
     const inviter = await makeUser(t.deps, { role: 'superadmin' });
-    await t.repo.createInvite({ id: newId(), email: 'new@example.kg', role: 'author', scope: 'subject', scopeId: 'bio', subrole: 'artist', tokenHash: hashToken('invite-token-1'), invitedBy: inviter.user.id, createdAt: t.clock.now(), expiresAt: new Date(t.clock.now().getTime() + 86400_000), acceptedAt: null });
-    const weak = await t.inject({ method: 'POST', url: `${API}/auth/invites/invite-token-1/accept`, payload: { displayName: 'Artist', password: '1234567890' } });
+    await t.repo.createInvite({ id: newId(), email: 'new@example.kg', role: 'teacher', scope: 'school', scopeId: sa.school.id, subrole: null, tokenHash: hashToken('invite-token-1'), invitedBy: inviter.user.id, createdAt: t.clock.now(), expiresAt: new Date(t.clock.now().getTime() + 86400_000), acceptedAt: null });
+    const weak = await t.inject({ method: 'POST', url: `${API}/auth/invites/invite-token-1/accept`, payload: { displayName: 'Teacher', password: '1234567890' } });
     expect(weak.statusCode).toBe(400);
-    const res = await t.inject({ method: 'POST', url: `${API}/auth/invites/invite-token-1/accept`, payload: { displayName: 'Artist', password: PASSWORD } });
+    const res = await t.inject({ method: 'POST', url: `${API}/auth/invites/invite-token-1/accept`, payload: { displayName: 'Teacher', password: PASSWORD } });
     expect(res.statusCode, res.body).toBe(200);
     const me = json(await t.inject({ method: 'GET', url: `${API}/me`, token: json(res).accessToken }));
-    expect(me.grants).toEqual([{ role: 'author', scope: 'subject', scopeId: 'bio', subrole: 'artist' }]);
+    expect(me.grants).toEqual([{ role: 'teacher', scope: 'school', scopeId: sa.school.id }]);
     expect((await t.inject({ method: 'POST', url: `${API}/auth/invites/invite-token-1/accept`, payload: { displayName: 'A', password: PASSWORD } })).statusCode).toBe(404);
     expect((await t.repo.listAudit({ action: 'user.grants_changed' }, { limit: 5 })).items).toHaveLength(1);
+  });
+
+  it('v0.8.0: a staff invite never opens a client session; it continues with the TOTP enrolment', async () => {
+    const { hashToken } = await import('../../domain/crypto.js');
+    const { newId } = await import('../../ids.js');
+    const inviter = await makeUser(t.deps, { role: 'superadmin' });
+    await t.repo.createInvite({ id: newId(), email: 'art@example.kg', role: 'author', scope: 'subject', scopeId: 'bio', subrole: 'artist', tokenHash: hashToken('invite-token-2'), invitedBy: inviter.user.id, createdAt: t.clock.now(), expiresAt: new Date(t.clock.now().getTime() + 86400_000), acceptedAt: null });
+    const res = await t.inject({ method: 'POST', url: `${API}/auth/invites/invite-token-2/accept`, payload: { displayName: 'Artist', password: PASSWORD } });
+    expect(res.statusCode, res.body).toBe(403);
+    expect(json(res)).toMatchObject({ detail: 'totp_enrollment_required', enrollmentToken: expect.any(String) });
+    expect(res.headers['set-cookie']).toBeUndefined();
+    const u = (await t.repo.getUserByEmail('art@example.kg'))!;
+    expect(await t.repo.listGrants(u.id)).toEqual([expect.objectContaining({ role: 'author', scopeId: 'bio', subrole: 'artist' })]);
   });
 });
 

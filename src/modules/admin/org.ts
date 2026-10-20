@@ -19,6 +19,7 @@ import { INVITE_TTL_MS } from '../auth.js';
 import { pageArray, pageOf, sortedPage, type SortValue } from '../../repo/paging.js';
 import type { GrantRec, InviteRec, LicenseRec, SchoolRec, UserRec } from '../../repo/types.js';
 import { adminSchools, iso, isSuperadmin, optionalVersion, reg, type AnyCtx } from './util.js';
+import { STAFF_ROLES, assertNotSelf, assertSuperadminFloor } from '../../services/staff.js';
 
 type Order = 'asc' | 'desc';
 interface SortQ {
@@ -231,7 +232,7 @@ export function registerOrgAdmin(app: FastifyInstance, deps: Deps) {
     if (u.id === ctx.auth.user!.id) fail('forbidden', { detail: 'self' });
     const schools = adminSchools(ctx);
     const grants = await repo.listGrants(u.id);
-    if (grants.some((g) => g.role === 'superadmin' || ((g.role === 'author' || g.role === 'editor') && !grants.some((x) => controls(schools, x)))))
+    if (grants.some((g) => g.role === 'superadmin' || g.role === 'manager' || ((g.role === 'author' || g.role === 'editor') && !grants.some((x) => controls(schools, x)))))
       fail('forbidden', { detail: 'outside_scope' });
   }
 
@@ -239,6 +240,11 @@ export function registerOrgAdmin(app: FastifyInstance, deps: Deps) {
     const u = await loadUser(ctx, ctx.params.id);
     await assertManageable(ctx, u);
     const b = ctx.body as { status?: 'active' | 'blocked'; displayName?: string };
+    // v0.8.0: nobody changes their own status; never below two active SuperAdmins.
+    if (b.status && b.status !== u.status) {
+      assertNotSelf(ctx.auth.user!.id, u.id);
+      if (b.status === 'blocked') await assertSuperadminFloor(repo, u.id);
+    }
     const next = await repo.updateUser(u.id, b);
     if (b.status && b.status !== u.status) {
       if (b.status === 'blocked') await repo.revokeUserSessions(u.id, clock.now());
@@ -264,6 +270,14 @@ export function registerOrgAdmin(app: FastifyInstance, deps: Deps) {
       if (![...added, ...removed].every((g) => controls(schools, g))) fail('forbidden', { detail: 'outside_scope' });
     }
     if (u.kind === 'student' && next.some((g) => g.role !== 'student')) fail('validation_failed', { detail: 'students only hold class grants' });
+    // v0.8.0: no one changes their own role; never below two active SuperAdmins; no shared staff/teacher accounts.
+    if (added.length || removed.length) assertNotSelf(ctx.auth.user!.id, u.id);
+    if (removed.some((g) => g.role === 'superadmin') && !next.some((g) => g.role === 'superadmin')) await assertSuperadminFloor(repo, u.id);
+    if (next.some((g) => STAFF_ROLES.has(g.role)) && next.some((g) => g.role === 'teacher' || g.role === 'school_admin' || g.role === 'student'))
+      fail('validation_failed', { detail: 'staff_and_teacher', issues: [{ path: ['grants'], message: 'A staff account cannot also be a teacher or school admin' }] });
+    if (added.some((g) => g.role === 'manager') && !(await repo.getStaffProfile(u.id))) {
+      await repo.putStaffProfile({ userId: u.id, permissions: [], scope: null, createdBy: ctx.auth.user!.id, createdAt: clock.now(), blockedAt: null, deletedAt: null });
+    }
     for (const g of added) {
       if (g.scope === 'school' && !(await repo.getSchool(g.scopeId!))) fail('not_found', { detail: 'school' });
       if (g.scope === 'subject' && !(await repo.content('subject').get(g.scopeId!))) fail('not_found', { detail: 'subject' });

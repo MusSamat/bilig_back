@@ -32,13 +32,13 @@ export async function liveSubjectKeys(repo: Repository): Promise<Set<string>> {
   return keys;
 }
 
-/** Subjects filtered to existing live ones, grades to 1..11; deduplicated and sorted. */
+/** Subjects filtered to existing live ones, grades to 1..12; deduplicated and sorted. */
 export async function cleanTeaching(repo: Repository, t: Teaching | undefined): Promise<Teaching> {
   if (!t) return { subjects: [], grades: [] };
   const live = await liveSubjectKeys(repo);
   return {
     subjects: [...new Set(t.subjects)].filter((k) => live.has(k)).sort(),
-    grades: [...new Set(t.grades)].filter((g) => Number.isInteger(g) && g >= 1 && g <= 11).sort((a, b) => a - b),
+    grades: [...new Set(t.grades)].filter((g) => Number.isInteger(g) && g >= 1 && g <= 12).sort((a, b) => a - b),
   };
 }
 
@@ -152,3 +152,22 @@ const EXISTS_MAIL: Record<Lang, (link: string) => { subject: string; text: strin
 
 export const codeMail = (lang: Lang, code: string, minutes: number, link: string) => (CODE_MAIL[lang] ?? CODE_MAIL.ky)(code, minutes, link);
 export const accountExistsMail = (lang: Lang, link: string) => (EXISTS_MAIL[lang] ?? EXISTS_MAIL.ky)(link);
+
+/**
+ * v0.8.0: a self-registered teacher's trial follows their classes — creating or
+ * changing a class in the personal (self) school adds its grade and subjects to
+ * the trial licence (never removes). Returns true when the licence changed.
+ */
+export async function extendTrialForClass(deps: Deps, schoolId: string, grade: number, subjects: readonly string[], actorId: string, ip: string | null): Promise<boolean> {
+  const { repo, audit } = deps;
+  const school = await repo.getSchool(schoolId);
+  if (school?.origin !== 'self') return false;
+  const lic = (await repo.listLicenses({ schoolIds: [schoolId] }, { limit: 100 })).items.sort((a, b) => b.endsAt.getTime() - a.endsAt.getTime())[0];
+  if (!lic) return false;
+  const nextSubjects = [...new Set([...lic.subjects, ...subjects])].sort();
+  const nextGrades = [...new Set([...lic.grades, grade])].filter((g) => g >= 1 && g <= 12).sort((a, b) => a - b);
+  if (nextSubjects.length === lic.subjects.length && nextGrades.length === lic.grades.length) return false;
+  await repo.updateLicense(lic.id, { subjects: nextSubjects, grades: nextGrades });
+  await audit.log(actorId, 'license.trial_extended', { type: 'license', id: lic.id }, { ip, before: { subjects: lic.subjects, grades: lic.grades }, after: { subjects: nextSubjects, grades: nextGrades } });
+  return true;
+}

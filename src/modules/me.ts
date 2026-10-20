@@ -2,7 +2,7 @@
 import type { FastifyInstance } from 'fastify';
 import { grantedPermissions } from '@bilig/permissions';
 import { t } from '@bilig/content-model';
-import { formatKgPhone, type MeResponse, type MyLicense } from '@bilig/content-model/api';
+import { type MeResponse, type MyLicense } from '@bilig/content-model/api';
 import type { Deps } from '../deps.js';
 import { route } from '../http/route.js';
 import { fail } from '../http/errors.js';
@@ -10,30 +10,42 @@ import { toRoleGrant } from '../http/auth-context.js';
 import { newTotpSecret, otpauthUrl, verifyTotp } from '../domain/totp.js';
 import type { UserRec } from '../repo/types.js';
 import { assignmentStatus } from './classes.js';
-import { cleanTeaching, isPlaceholderSchoolName, selfTrial, userSchoolIds } from '../services/teacher-signup.js';
+import { cleanTeaching, selfTrial, userSchoolIds } from '../services/teacher-signup.js';
+import { principalGrants } from '../services/staff.js';
+import { teacherProfile } from '../services/profile.js';
+import type { AuthCtx } from '../http/auth-context.js';
 
 export function registerMe(app: FastifyInstance, deps: Deps) {
   const { repo, clock, audit } = deps;
 
-  async function me(user: UserRec): Promise<MeResponse> {
-    const grants = (await repo.listGrants(user.id)).map(toRoleGrant);
+  async function me(user: UserRec, auth?: AuthCtx): Promise<MeResponse> {
+    const { grants: rows, roleGrants } = await principalGrants(repo, user.id);
     const totp = await repo.getCredential(user.id, 'totp');
+    const profile = await teacherProfile(repo, user, rows);
+    const sp = auth?.support;
     return {
       id: user.id,
       kind: user.kind,
       displayName: user.displayName,
       ...(user.email ? { email: user.email } : {}),
       locale: user.locale,
-      grants,
-      permissions: grantedPermissions({ userId: user.id, grants }),
+      grants: rows.map(toRoleGrant),
+      permissions: grantedPermissions({ userId: user.id, grants: roleGrants }),
       totpEnabled: !!totp && !totp.secretHash.startsWith('pending:'),
       ...(user.phone ? { phone: user.phone } : {}),
+      ...(user.teachingLang ? { teachingLang: user.teachingLang } : {}),
       ...(await teachingOf(user)),
+      // v0.8.0: the setup checklist and status of every teacher (self-registered and school teachers).
+      ...(profile ? { setup: profile.setup, profileStatus: profile.profileStatus } : {}),
+      // v0.8.0: the banner while a staff member works in this cabinet.
+      ...(sp
+        ? { support: { sessionId: sp.session.id, mode: sp.session.mode, actor: { id: sp.actor.id, displayName: sp.actor.displayName }, expiresAt: sp.session.expiresAt.toISOString() } }
+        : {}),
     };
   }
 
   /** v0.6.0: `teaching` (self-registered teachers) and `licenses` (active licences of the user's schools). */
-  async function teachingOf(user: UserRec): Promise<Pick<MeResponse, 'teaching' | 'licenses' | 'setup'>> {
+  async function teachingOf(user: UserRec): Promise<Pick<MeResponse, 'teaching' | 'licenses'>> {
     if (user.kind !== 'adult') return {};
     const schoolIds = await userSchoolIds(repo, user.id);
     if (!schoolIds.length) return {};
@@ -56,20 +68,10 @@ export function registerMe(app: FastifyInstance, deps: Deps) {
     return {
       ...(lic && lic.subjects.length && lic.grades.length ? { teaching: { subjects: lic.subjects, grades: lic.grades } } : {}),
       licenses,
-      // v0.7.0: what a self-registered teacher has filled in (name ≠ the number, a named school, ≥1 subject).
-      ...(self
-        ? {
-            setup: {
-              name: !!user.displayName.trim() && (!user.phone || user.displayName !== formatKgPhone(user.phone)),
-              school: !isPlaceholderSchoolName(self.school.name),
-              teaching: !!lic?.subjects.length,
-            },
-          }
-        : {}),
     };
   }
 
-  route(app, deps, 'me', ({ auth }) => me(auth.user!));
+  route(app, deps, 'me', ({ auth }) => me(auth.user!, auth));
 
   route(app, deps, 'mePatch', async ({ auth, body, ip }) => {
     const { teaching, schoolName, region, ...profile } = body;
@@ -95,8 +97,17 @@ export function registerMe(app: FastifyInstance, deps: Deps) {
       await repo.updateLicense(lic.id, { subjects: clean.subjects, grades: clean.grades });
       await audit.log(uid, 'license.updated', { type: 'license', id: lic.id }, { ip, diff: { via: 'me.teaching', before: { subjects: lic.subjects, grades: lic.grades }, after: clean } });
     }
+    const before = auth.user!;
     const u = Object.keys(profile).length ? await repo.updateUser(uid, profile) : await repo.getUser(uid);
-    return me(u!);
+    if (Object.keys(profile).length) {
+      const keys = Object.keys(profile) as (keyof typeof profile)[];
+      await audit.log(uid, 'profile.updated', { type: 'user', id: uid }, {
+        ip,
+        before: Object.fromEntries(keys.map((k) => [k, (before as unknown as Record<string, unknown>)[k] ?? null])),
+        after: profile,
+      });
+    }
+    return me(u!, auth);
   });
 
   route(app, deps, 'meSessions', async ({ auth }) => {

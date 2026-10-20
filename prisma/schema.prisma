@@ -32,6 +32,10 @@ model User {
   /// v0.7.0: the teacher's WhatsApp number (E.164 `+996XXXXXXXXX`), verified with a one-time code.
   phone           String?   @unique
   phoneVerifiedAt DateTime? @db.Timestamptz(3)
+  /// v0.8.0: the language the teacher teaches in (ky | ru | uz | en).
+  teachingLang    String?
+  /// v0.8.0: the last successful sign-in (any audience).
+  lastLoginAt     DateTime? @db.Timestamptz(3)
 
   credentials Credential[]
   sessions    Session[]
@@ -119,18 +123,20 @@ model PhoneOtp {
 }
 
 model Invite {
-  id         String    @id @db.Uuid
-  email      String
-  role       String
-  scopeType  String
-  scopeId    String?
-  subrole    String?
-  tokenHash  String    @unique
-  invitedBy  String    @db.Uuid
-  createdAt  DateTime  @db.Timestamptz(3)
-  expiresAt  DateTime  @db.Timestamptz(3)
-  acceptedAt DateTime? @db.Timestamptz(3)
-  revokedAt  DateTime? @db.Timestamptz(3)
+  id          String    @id @db.Uuid
+  email       String
+  role        String
+  scopeType   String
+  scopeId     String?
+  subrole     String?
+  /// v0.8.0: the permissions ticked for a manager invite.
+  permissions String[]  @default([])
+  tokenHash   String    @unique
+  invitedBy   String    @db.Uuid
+  createdAt   DateTime  @db.Timestamptz(3)
+  expiresAt   DateTime  @db.Timestamptz(3)
+  acceptedAt  DateTime? @db.Timestamptz(3)
+  revokedAt   DateTime? @db.Timestamptz(3)
 
   @@index([scopeType, scopeId])
 }
@@ -174,6 +180,8 @@ model Class {
   joinCodeEnabled Boolean
   /// v0.6.0: subject the teacher teaches in this class (one of the school's licensed subjects).
   subjectKey      String?
+  /// v0.8.0: every subject taught in the class (subjectKey = subjectKeys[0]).
+  subjectKeys     String[]     @default([])
   createdBy       String       @db.Uuid
   createdAt       DateTime     @db.Timestamptz(3)
   deletedAt       DateTime?    @db.Timestamptz(3)
@@ -697,7 +705,7 @@ model GeneratedContent {
 // Audit & settings
 // ---------------------------------------------------------------------------
 
-/// Append-only (the repository exposes no update/delete).
+/// Legacy audit log: read only since v0.8.0 (rows copied into AuditEvent; a trigger rejects writes).
 model AuditLog {
   id         String   @id @db.Uuid
   actorId    String?  @db.Uuid
@@ -718,4 +726,107 @@ model Setting {
   value     Json
   version   Int
   updatedAt DateTime @db.Timestamptz(3)
+}
+
+// ---------------------------------------------------------------------------
+// v0.8.0: staff, support sessions, the action journal, deletion requests
+// ---------------------------------------------------------------------------
+
+/// A staff member (manager or SuperAdmin): the permissions SuperAdmin ticked
+/// for a manager (the matrix stays the ceiling) and the lifecycle.
+model StaffProfile {
+  userId      String    @id @db.Uuid
+  permissions String[]  @default([])
+  /// Reserved for a future narrower scope (null = the whole platform).
+  scope       Json?
+  createdBy   String?   @db.Uuid
+  createdAt   DateTime  @db.Timestamptz(3)
+  blockedAt   DateTime? @db.Timestamptz(3)
+  deletedAt   DateTime? @db.Timestamptz(3)
+}
+
+/// A staff member working in a teacher's cabinet (support): 15 min view / 30 min edit, no refresh.
+model ImpersonationSession {
+  id        String    @id @db.Uuid
+  actorId   String    @db.Uuid
+  teacherId String    @db.Uuid
+  mode      String // view | edit
+  reason    String?
+  ip        String?
+  startedAt DateTime  @db.Timestamptz(3)
+  expiresAt DateTime  @db.Timestamptz(3)
+  endedAt   DateTime? @db.Timestamptz(3)
+  endedBy   String?   @db.Uuid
+  endReason String? // ended | expired
+
+  @@index([actorId])
+  @@index([teacherId])
+  @@index([endedAt, expiresAt])
+}
+
+/// The append-only, hash-chained action journal. Partitioned by month on `at`
+/// (raw SQL in the 0.8.0 migration): inserts go through audit_event_append(),
+/// a trigger rejects UPDATE and DELETE, old partitions are dropped (retention).
+model AuditEvent {
+  seq              BigInt
+  id               String   @db.Uuid
+  at               DateTime @db.Timestamptz(3)
+  actorId          String?  @db.Uuid
+  actorRole        String?
+  onBehalfOfId     String?  @db.Uuid
+  group            String
+  action           String
+  targetType       String
+  targetId         String
+  targetLabel      String?
+  before           Json?
+  after            Json?
+  /// The legacy free-form `diff` (also everything copied from AuditLog).
+  details          Json?
+  reason           String?
+  result           String // ok | denied | failed
+  ip               String?
+  userAgent        String?
+  requestId        String?
+  supportSessionId String?  @db.Uuid
+  prevHash         String
+  hash             String
+
+  @@id([seq, at])
+  @@index([id])
+  @@index([actorId, seq])
+  @@index([onBehalfOfId])
+  @@index([action])
+  @@index([targetType, targetId])
+}
+
+/// Journal alerts for SuperAdmin; `key` de-duplicates (one alert per incident).
+model AuditAlert {
+  id      String    @id @db.Uuid
+  key     String    @unique
+  at      DateTime  @db.Timestamptz(3)
+  kind    String // mass_deletion | chain_broken | support_edit
+  actorId String?   @db.Uuid
+  summary String
+  seenAt  DateTime? @db.Timestamptz(3)
+
+  @@index([at])
+}
+
+/// A manager asks to delete a teacher or content; SuperAdmin approves (TOTP) or rejects.
+model DeletionRequest {
+  id           String    @id @db.Uuid
+  kind         String // teacher | topic | concept | item | asset
+  targetId     String
+  targetLabel  String
+  reason       String
+  status       String // pending | approved | rejected
+  requestedBy  String    @db.Uuid
+  requestedAt  DateTime  @db.Timestamptz(3)
+  decidedBy    String?   @db.Uuid
+  decidedAt    DateTime? @db.Timestamptz(3)
+  decisionNote String?
+
+  @@index([status])
+  @@index([requestedBy])
 }

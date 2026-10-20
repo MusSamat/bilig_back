@@ -19,6 +19,7 @@ import { parseKtp } from '../ktp/parse.js';
 import { buildPlanContent, type PlanContent } from '../ktp/plan-content.js';
 import { renderPlansDocx } from '../ktp/plan-docx.js';
 import { createPlanDoc, patchPlanDoc, toSummary, toTeachingPlan, type MatchSources, type PlanDoc } from '../ktp/teaching-plan.js';
+import { taughtClasses } from '../services/profile.js';
 
 export const KTP_UPLOADS_PER_HOUR = 20;
 export const KTP_PLAN_DOWNLOADS_PER_HOUR = 300;
@@ -35,6 +36,19 @@ export function decodeKtpUpload(data: string): Buffer {
   if (buf.length > KTP_MAX_BYTES) fail('payload_too_large', { detail: `file > ${KTP_MAX_BYTES} bytes` });
   if (!buf.length) fail('validation_failed', { detail: 'empty file' });
   return buf;
+}
+
+/** v0.8.0: a class label for matching («8 Б», «8-б», «8б» are the same class). */
+export const normClassName = (s: string) => s.toLocaleLowerCase('ru').replace(/[\s\-–—«»"'.]/g, '');
+
+/** v0.8.0: link each КТП class column to the teacher's class of the same name (or null). */
+export function matchClassLinks(columns: readonly string[], classes: readonly { id: string; name: string }[]): Record<string, string | null> {
+  const out: Record<string, string | null> = {};
+  for (const col of columns) {
+    const hits = classes.filter((c) => normClassName(c.name) === normClassName(col));
+    out[col] = hits.length === 1 ? hits[0].id : null;
+  }
+  return out;
 }
 
 const safeName = (s: string) => s.replace(/[\\/:*?"<>|\u0000-\u001f]+/g, '_').slice(0, 60) || 'class';
@@ -105,10 +119,11 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
       }
       const src = await sources();
       const doc = createPlanDoc(parsed, { sourceName: body.fileName, lang: body.lang, index: src.index, subjectKeys: src.subjectKeys });
+      doc.classLinks = matchClassLinks(doc.classes, await taughtClasses(repo, uid));
       const now = clock.now();
       const rec: TeachingPlanRec = { id: newId(), ownerId: uid, title: doc.title, doc, version: 1, createdAt: now, updatedAt: now };
       await repo.createTeachingPlan(rec);
-      await audit.log(uid, 'ktp.created', { type: 'teaching_plan', id: rec.id }, { ip, diff: { lessons: doc.rows.length, classes: doc.classes.length } });
+      await audit.log(uid, 'ktp.created', { type: 'teaching_plan', id: rec.id, label: rec.title }, { ip, diff: { lessons: doc.rows.length, classes: doc.classes.length, linked: Object.values(doc.classLinks).filter(Boolean).length } });
       return toTeachingPlan(rec);
     },
     { bodyLimit: KTP_BODY_LIMIT },
@@ -116,14 +131,28 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
 
   route(app, deps, 'ktpGet', async ({ userId, params }) => toTeachingPlan(await own(userId(), params.id)));
 
-  route(app, deps, 'ktpPatch', async ({ userId, params, body, ifMatch }) => {
-    const cur = await own(userId(), params.id);
+  route(app, deps, 'ktpPatch', async ({ userId, params, body, ifMatch, ip }) => {
+    const uid = userId();
+    const cur = await own(uid, params.id);
     if (ifMatch !== body.version || cur.version !== ifMatch) fail('version_mismatch', { detail: `current version is ${cur.version}` });
     const next = patchPlanDoc(cur.doc as PlanDoc, body, await sources());
     if ('error' in next) fail('validation_failed', { detail: next.error });
+    // v0.8.0: class links — a КТП class column → one of the teacher's classes (or null).
+    if (body.classLinks) {
+      const mine = new Set((await taughtClasses(repo, uid)).map((c) => c.id));
+      const links = { ...(next.classLinks ?? matchClassLinks(next.classes, [])) };
+      for (const [col, classId] of Object.entries(body.classLinks)) {
+        if (!next.classes.includes(col)) fail('validation_failed', { detail: `classLinks.${col}`, issues: [{ path: ['classLinks', col], message: `Not a class of this КТП (${next.classes.join(', ')})` }] });
+        if (classId !== null && !mine.has(classId)) fail('validation_failed', { detail: `classLinks.${col}`, issues: [{ path: ['classLinks', col], message: 'Not one of your classes' }] });
+        links[col] = classId;
+      }
+      next.classLinks = links;
+    }
     const res = await repo.updateTeachingPlan(cur.id, { doc: next, title: next.title }, ifMatch);
     if (res === 'not_found') fail('not_found', { detail: 'teaching_plan' });
     if (res === 'version_mismatch') fail('version_mismatch');
+    const { version: _v, rows, ...fields } = body;
+    await audit.log(uid, 'ktp.updated', { type: 'teaching_plan', id: cur.id, label: res.title }, { ip, after: { ...fields, ...(rows ? { rows: rows.length } : {}), version: res.version } });
     return toTeachingPlan(res);
   });
 

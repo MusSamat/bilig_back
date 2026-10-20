@@ -36,8 +36,8 @@ export type Subject = z.infer<typeof SubjectSchema>;
 export const CourseSchema = z.object({
   key: KeySchema,
   subjectKey: KeySchema,
-  /** School grade 1–11. URL segment is `g${grade}`. */
-  grade: z.number().int().min(1).max(11),
+  /** School grade 1–12 (v0.8.0: Kyrgyzstan moves to 12-year schooling). URL segment is `g${grade}`. */
+  grade: z.number().int().min(1).max(12),
   /** Curriculum id, e.g. `kg-2024`. */
   curriculum: z.string().min(1),
   title: LocalizedSchema,
@@ -68,5 +68,5 @@ export function parseGradeSegment(seg: string): number | null {
   const m = /^g(\d{1,2})$/.exec(seg);
   if (!m) return null;
   const n = Number(m[1]);
-  return n >= 1 && n <= 11 ? n : null;
+  return n >= 1 && n <= 12 ? n : null;
 }

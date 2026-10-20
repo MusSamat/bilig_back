@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * `npm run test:db`: apply migrations to TEST_DATABASE_URL (default: the
- * docker-compose `bilig_test` database) and run the Prisma repository contract.
+ * docker-compose `bilig_test` database) and run the Prisma repository contract and
+ * the journal / 0.8.0 migration tests (files in sequence: they share the database).
  */
 import { spawnSync } from 'node:child_process';
 
@@ -12,4 +13,4 @@ const run = (cmd, args) => {
   if (r.status !== 0) process.exit(r.status ?? 1);
 };
 run('npx', ['prisma', 'migrate', 'deploy']);
-run('npx', ['vitest', 'run', 'src/repo/prisma.test.ts', ...process.argv.slice(2)]);
+run('npx', ['vitest', 'run', '--no-file-parallelism', 'src/repo/prisma.test.ts', 'src/repo/prisma-journal.test.ts', ...process.argv.slice(2)]);

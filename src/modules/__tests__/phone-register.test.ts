@@ -68,7 +68,7 @@ describe('register by phone with the fixed code', () => {
     expect(audit[0]!.diff).toMatchObject({ method: 'phone', subjects: [], grades: [] });
 
     let m = json(await me(access));
-    expect(m).toMatchObject({ phone: PHONE, displayName: '+996 555 12 34 56', setup: { name: false, school: false, teaching: false } });
+    expect(m).toMatchObject({ phone: PHONE, displayName: '+996 555 12 34 56', setup: { name: false, school: false, teaching: false, teachingLang: false, classWithSubject: false }, profileStatus: 'incomplete' });
     expect(m).not.toHaveProperty('email');
     expect(m.teaching).toBeUndefined();
     expect(m.licenses).toEqual([expect.objectContaining({ schoolName: 'Моя школа', subjects: [], grades: [], trial: true })]);
@@ -77,11 +77,12 @@ describe('register by phone with the fixed code', () => {
     expect(await t.repo.getSchool(schoolId)).toMatchObject({ origin: 'self', name: 'Моя школа', language: 'ru' });
 
     const p1 = await patchMe(access, { displayName: 'Айгүл Асанова' });
-    expect(json(p1).setup).toEqual({ name: true, school: false, teaching: false });
+    expect(json(p1).setup).toEqual({ name: true, school: false, teaching: false, teachingLang: false, classWithSubject: false });
     const p2 = await patchMe(access, { schoolName: 'Ош, №5 мектеп', region: 'Ош', teaching: { subjects: ['bio'], grades: [7] } });
     expect(p2.statusCode, p2.body).toBe(200);
     m = json(p2);
-    expect(m.setup).toEqual({ name: true, school: true, teaching: true });
+    expect(m.setup).toEqual({ name: true, school: true, teaching: true, teachingLang: false, classWithSubject: false });
+    expect(m.profileStatus).toBe('incomplete');
     expect(m.teaching).toEqual({ subjects: ['bio'], grades: [7] });
     expect(m.licenses[0].schoolName).toBe('Ош, №5 мектеп');
     expect(await t.repo.getSchool(schoolId)).toMatchObject({ name: 'Ош, №5 мектеп', region: 'Ош' });
@@ -324,7 +325,8 @@ describe('PATCH /me school', () => {
     expect(res.statusCode).toBe(403);
     expect(json(res).detail).toBe('school_not_editable');
     expect((await t.repo.getSchool(w.school.id))!.name).toBe(w.school.name);
-    expect(json(await me(w.teacher.token))).not.toHaveProperty('setup');
+    // v0.8.0: school teachers get the checklist too; their school is set by the admins.
+    expect(json(await me(w.teacher.token)).setup).toMatchObject({ school: true, teaching: true });
     const loner = await makeUser(t.deps);
     expect(json(await patchMe(loner.token, { region: 'Ош' })).detail).toBe('school_not_editable');
     // validation before writes: a forbidden teaching leaves the profile untouched
@@ -336,7 +338,7 @@ describe('PATCH /me school', () => {
     await fixed();
     await post('/auth/register', { email: 'e@example.kg', password: PASSWORD, displayName: 'Айгүл', teaching: { subjects: ['bio'], grades: [7] } });
     const token = json(await post('/auth/register/verify', { email: 'e@example.kg', code: OTP })).accessToken;
-    expect(json(await me(token)).setup).toEqual({ name: true, school: true, teaching: true });
+    expect(json(await me(token)).setup).toEqual({ name: true, school: true, teaching: true, teachingLang: false, classWithSubject: false });
   });
 });
 

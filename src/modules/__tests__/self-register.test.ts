@@ -60,10 +60,10 @@ describe('register → verify with the fixed code', () => {
     expect((await t.repo.getUserByEmail(email))?.signup ?? null).toBeNull();
     expect((await t.repo.listAudit({ action: 'auth.self_registered' }, { limit: 5 })).items).toHaveLength(1);
 
-    // classes with a licensed subject; an unlicensed one is a clear 400
+    // v0.8.0: in the own school any live subject is accepted (the trial follows the classes); an unknown one is a clear 400
     const bad = await t.inject({ method: 'POST', url: `${API}/classes`, token, payload: { name: '7А', grade: 7, subjectKey: 'chem' } });
     expect(bad.statusCode).toBe(400);
-    expect(json(bad)).toMatchObject({ code: 'validation_failed', detail: 'subject_not_licensed', issues: [{ path: ['subjectKey'] }] });
+    expect(json(bad)).toMatchObject({ code: 'validation_failed', detail: 'subject_unknown', issues: [{ path: ['subjectKeys'] }] });
     const created = await t.inject({ method: 'POST', url: `${API}/classes`, token, payload: { name: '7А', grade: 7, subjectKey: 'bio' } });
     expect(created.statusCode, created.body).toBe(200);
     const cls = json(created);

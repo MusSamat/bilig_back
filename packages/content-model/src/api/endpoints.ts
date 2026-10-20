@@ -29,6 +29,7 @@ import { ItemSchema } from '../item.js';
 import { TextbookSchema } from '../textbook.js';
 import * as decks from './decks.js';
 import * as ktp from './ktp.js';
+import * as staff from './staff.js';
 import * as learning from './learning.js';
 import * as tutor from './tutor.js';
 
@@ -140,6 +141,31 @@ export const ENDPOINTS = {
   ktpDelete: e({ method: 'DELETE', path: '/ktp/:id', auth: 'lesson.plan', response: OkSchema, ifMatch: true }),
   ktpLessonPlan: e({ method: 'GET', path: '/ktp/:id/lessons/:index/plan', auth: 'lesson.plan', query: ktp.KtpLessonPlanQuerySchema, response: BinaryResponseSchema, produces: ktp.DOCX_MEDIA_TYPE }),
   ktpLessonPlans: e({ method: 'GET', path: '/ktp/:id/plans', auth: 'lesson.plan', query: ktp.KtpLessonPlansQuerySchema, response: BinaryResponseSchema, produces: ktp.DOCX_MEDIA_TYPE }),
+  // v0.8.0 — staff (SuperAdmin: staff.manage)
+  staffList: e({ method: 'GET', path: '/admin/staff', auth: 'staff.manage', response: staff.StaffListSchema }),
+  staffInvite: e({ method: 'POST', path: '/admin/staff/invites', auth: 'staff.manage', body: staff.StaffInviteRequestSchema, response: OkSchema }),
+  staffPatch: e({ method: 'PATCH', path: '/admin/staff/:userId', auth: 'staff.manage', body: staff.StaffPatchRequestSchema, response: staff.StaffMemberSchema }),
+  staffBlock: e({ method: 'POST', path: '/admin/staff/:userId/block', auth: 'staff.manage', body: staff.StaffActionRequestSchema, response: staff.StaffMemberSchema }),
+  staffRestore: e({ method: 'POST', path: '/admin/staff/:userId/restore', auth: 'staff.manage', body: staff.StaffActionRequestSchema, response: staff.StaffMemberSchema }),
+  staffDelete: e({ method: 'POST', path: '/admin/staff/:userId/delete', auth: 'staff.manage', body: staff.StaffActionRequestSchema, response: staff.StaffMemberSchema }),
+  // v0.8.0 — teachers and support sessions
+  teacherList: e({ method: 'GET', path: '/admin/teachers', auth: 'teacher.view', query: staff.TeacherListQuerySchema, response: staff.TeacherListSchema }),
+  teacherGet: e({ method: 'GET', path: '/admin/teachers/:id', auth: 'teacher.view', response: staff.TeacherSummarySchema }),
+  supportStart: e({ method: 'POST', path: '/admin/teachers/:id/support', auth: 'teacher.view', body: staff.SupportStartRequestSchema, response: staff.SupportStartResponseSchema }),
+  supportEnd: e({ method: 'POST', path: '/admin/support/:sessionId/end', auth: 'session', body: EmptySchema, response: OkSchema }),
+  // v0.8.0 — the action journal (manager: own records; SuperAdmin: all)
+  journal: e({ method: 'GET', path: '/admin/journal', auth: 'audit.read', query: staff.AuditEventQuerySchema, response: staff.AuditEventPageSchema }),
+  journalExport: e({ method: 'GET', path: '/admin/journal/export', auth: 'audit.read', query: staff.AuditEventQuerySchema, response: BinaryResponseSchema, produces: 'text/csv' }),
+  journalVerify: e({ method: 'GET', path: '/admin/journal/verify', auth: 'staff.manage', response: staff.AuditVerifySchema }),
+  journalAlerts: e({ method: 'GET', path: '/admin/journal/alerts', auth: 'staff.manage', response: staff.AuditAlertListSchema }),
+  journalAlertSeen: e({ method: 'POST', path: '/admin/journal/alerts/:id/seen', auth: 'staff.manage', body: EmptySchema, response: OkSchema }),
+  // v0.8.0 — deletion requests (a manager asks, SuperAdmin deletes)
+  deletionList: e({ method: 'GET', path: '/admin/deletion-requests', auth: 'deletion.request', query: staff.DeletionListQuerySchema, response: staff.DeletionPageSchema }),
+  deletionCreate: e({ method: 'POST', path: '/admin/deletion-requests', auth: 'deletion.request', body: staff.DeletionRequestCreateSchema, response: staff.DeletionRequestSchema }),
+  deletionApprove: e({ method: 'POST', path: '/admin/deletion-requests/:id/approve', auth: 'deletion.approve', body: staff.DeletionDecisionSchema, response: staff.DeletionRequestSchema }),
+  deletionReject: e({ method: 'POST', path: '/admin/deletion-requests/:id/reject', auth: 'deletion.approve', body: staff.DeletionDecisionSchema, response: staff.DeletionRequestSchema }),
+  // v0.8.0 — teacher home: a class's subjects with the КТП status
+  classSubjects: e({ method: 'GET', path: '/classes/:id/subjects', auth: 'class.manage', response: staff.ClassSubjectsResponseSchema }),
   snapshotCreate: e({ method: 'POST', path: '/snapshots', auth: 'session', body: decks.SnapshotCreateRequestSchema, response: decks.SnapshotResponseSchema }),
 
   // Admin: content

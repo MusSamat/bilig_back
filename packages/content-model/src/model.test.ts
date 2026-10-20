@@ -82,7 +82,8 @@ describe('curriculum', () => {
   it('grade segments round-trip', () => {
     expect(gradeSegment(7)).toBe('g7');
     expect(parseGradeSegment('g7')).toBe(7);
-    expect(parseGradeSegment('g12')).toBeNull();
+    expect(parseGradeSegment('g12')).toBe(12); // v0.8.0: 12-year schooling
+    expect(parseGradeSegment('g13')).toBeNull();
     expect(parseGradeSegment('7')).toBeNull();
   });
 

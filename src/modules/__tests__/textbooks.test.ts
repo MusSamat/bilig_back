@@ -70,7 +70,7 @@ describe('textbooks (v0.5.0)', () => {
     expect(await q('grade=7')).toEqual(['bio-7']);
     expect(await q('subjectKey=chem')).toEqual(['chem-8']);
     expect(await q('grade=7&subjectKey=chem')).toEqual([]);
-    expect((await t.inject({ method: 'GET', url: `${API}/textbooks?grade=12` })).statusCode).toBe(400);
+    expect((await t.inject({ method: 'GET', url: `${API}/textbooks?grade=13` })).statusCode).toBe(400);
   });
 
   it('GET /textbooks/:key: textbook + cards of published topics in reading order; 404', async () => {

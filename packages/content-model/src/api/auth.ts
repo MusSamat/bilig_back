@@ -122,7 +122,7 @@ export const InviteAcceptRequestSchema = z.object({
 // 6-digit code by e-mail → POST /auth/register/verify activates the account and signs in.
 export const OtpCodeSchema = z.string().regex(/^\d{6}$/, 'Expected a 6-digit code');
 const SubjectKeysSchema = z.array(z.string().regex(/^[a-z0-9]+(?:[._-][a-z0-9]+)*$/)).min(1).max(20);
-const GradesSchema = z.array(z.number().int().min(1).max(11)).min(1).max(11);
+const GradesSchema = z.array(z.number().int().min(1).max(12)).min(1).max(12);
 
 /** What a teacher teaches: sets the subjects and grades of their trial licence. */
 export const TeachingSchema = z.object({
@@ -175,7 +175,29 @@ export const MeResponseSchema = z.object({
   /** v0.7.0: the verified WhatsApp number (E.164). */
   phone: z.string().optional(),
   /** v0.7.0: what a self-registered teacher still has to fill in the cabinet (all true = done). */
-  setup: z.object({ name: z.boolean(), school: z.boolean(), teaching: z.boolean() }).optional(),
+  setup: z
+    .object({
+      name: z.boolean(),
+      school: z.boolean(),
+      teaching: z.boolean(),
+      /** v0.8.0: the minimum profile is name, school, teaching language and a class with a subject. */
+      teachingLang: z.boolean().optional(),
+      classWithSubject: z.boolean().optional(),
+    })
+    .optional(),
+  /** v0.8.0: computed by the server from `setup` (teachers). */
+  profileStatus: z.enum(['incomplete', 'complete']).optional(),
+  /** v0.8.0: the language the teacher teaches in. */
+  teachingLang: z.enum(['ky', 'ru', 'uz', 'en']).optional(),
+  /** v0.8.0: set while a staff member works in this cabinet (support session): drives the banner. */
+  support: z
+    .object({
+      sessionId: IdSchema,
+      mode: z.enum(['view', 'edit']),
+      actor: z.object({ id: IdSchema, displayName: z.string() }),
+      expiresAt: DateTimeSchema,
+    })
+    .optional(),
   /** v0.6.0: subjects and grades the teacher teaches (self-registered teachers). */
   teaching: TeachingSchema.optional(),
   /** v0.6.0: active licences of the user's schools (teachers, school admins). */
@@ -193,6 +215,8 @@ export const MePatchRequestSchema = z
     /** v0.7.0: a self-registered teacher names their school (own school only). */
     schoolName: z.string().trim().min(2).max(200),
     region: z.string().trim().max(100),
+    /** v0.8.0 */
+    teachingLang: z.enum(['ky', 'ru', 'uz', 'en']),
   })
   .partial();
 export type MePatchRequest = z.infer<typeof MePatchRequestSchema>;

@@ -66,7 +66,7 @@ describe('contract 0.5.0: textbooks', () => {
     const badPages = book();
     badPages.chapters[0].pages = { from: 30, to: 8 };
     expect(TextbookSchema.safeParse(badPages).success).toBe(false);
-    expect(TextbookSchema.safeParse({ ...book(), grade: 12 }).success).toBe(false);
+    expect(TextbookSchema.safeParse({ ...book(), grade: 13 }).success).toBe(false);
     expect(TextbookSchema.safeParse({ ...book(), chapters: [] }).success).toBe(false);
   });
 

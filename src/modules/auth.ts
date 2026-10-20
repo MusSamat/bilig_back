@@ -16,6 +16,7 @@ import { SessionService, audienceOf } from '../services/sessions.js';
 import type { SignupRec, UserRec } from '../repo/types.js';
 import { formatKgPhone } from '@bilig/content-model/api';
 import { accountExistsMail, codeMail, placeholderSchoolName, provisionSelfTeacher } from '../services/teacher-signup.js';
+import { ADMIN_ROLES, STAFF_ROLES, isStaff } from '../services/staff.js';
 
 export const RESET_TTL_MS = 30 * 60 * 1000;
 export const VERIFY_TTL_MS = 24 * 3600 * 1000;
@@ -43,8 +44,8 @@ export const OTP_TOKEN_TTL_MS = 15 * 60 * 1000;
 /** Bound to the row id like the e-mail codes. */
 export const phoneCodeHash = (id: string, code: string) => sha256Hex(`bilig:phone_code:${id}:${code}`);
 
-/** Roles that must use TOTP for the admin audience (TZ §6). */
-export const TOTP_ROLES = new Set(['author', 'editor', 'superadmin']);
+/** Roles that must use TOTP for the admin audience (TZ §6; v0.8.0: managers too). */
+export const TOTP_ROLES = new Set(['author', 'editor', 'manager', 'superadmin']);
 
 const emailKey = (email: string) => sha256Hex(`email:${email.toLowerCase()}`).slice(0, 24);
 /** v0.7.0: rate-limit / audit key of a number (no raw numbers in keys or logs). */
@@ -88,8 +89,20 @@ export function registerAuth(app: FastifyInstance, deps: Deps) {
     if (u.status === 'pending') fail('email_not_verified');
     if (u.status !== 'active') fail('forbidden', { detail: 'account_blocked' });
 
+    // v0.8.0: the role decides the door. Staff sign in only at /admin; a teacher at /admin is sent
+    // to the teacher sign-in (the client redirects to their cabinet). Checked after the password,
+    // so the answer reveals nothing to someone without it.
+    const grants = await repo.listGrants(u.id);
+    if (aud === 'admin' && !grants.some((g) => ADMIN_ROLES.has(g.role))) {
+      await audit.log(u.id, 'auth.login_denied', { type: 'user', id: u.id }, { ip, diff: { aud, reason: 'use_teacher_login' } });
+      fail('forbidden', { detail: 'use_teacher_login', i18nKey: 'errors.use_teacher_login' });
+    }
+    if (aud === 'client' && isStaff(grants)) {
+      await audit.log(u.id, 'auth.login_denied', { type: 'user', id: u.id }, { ip, diff: { aud, reason: 'use_admin_login', ...(email ? {} : { via: 'phone' }) } });
+      fail('forbidden', { detail: 'use_admin_login', i18nKey: 'errors.use_admin_login' });
+    }
+
     if (aud === 'admin' && !config.adminTotpDisabled) {
-      const grants = await repo.listGrants(u.id);
       if (grants.some((g) => TOTP_ROLES.has(g.role))) {
         const totp = await repo.getCredential(u.id, 'totp');
         const enrolled = !!totp && !totp.secretHash.startsWith('pending:');
@@ -506,6 +519,8 @@ export function registerAuth(app: FastifyInstance, deps: Deps) {
     if (!user || user.deletedAt) fail('not_found', { detail: 'token_invalid' });
     const u = user!;
     if (u.status === 'blocked') fail('forbidden', { detail: 'account_blocked' });
+    // v0.8.0: staff never get a client session (their password is reset by SuperAdmin / the e-mail link).
+    if (isStaff(await repo.listGrants(u.id))) fail('forbidden', { detail: 'use_admin_login', i18nKey: 'errors.use_admin_login' });
     passwordOk(body.password, [...phoneContext(tok.phone), u.email ?? '', u.displayName]);
     const pwHash = await hashSecret(body.password);
     await consumePhoneToken(body.token);
@@ -520,13 +535,17 @@ export function registerAuth(app: FastifyInstance, deps: Deps) {
   });
 
   // POST /auth/invites/:token/accept
+  // v0.8.0: a staff invite (manager) creates the StaffProfile with the ticked permissions; staff never get a
+  // client session here — they continue with the mandatory TOTP enrolment (403 + enrolment token) at /admin.
   route(app, deps, 'inviteAccept', async ({ req, reply, body, params, ip }) => {
     await limit(`invite:ip:${ip}`, 20, 3600);
     const now = clock.now();
     const inv = await repo.getInviteByHash(hashToken(params.token ?? ''));
-    if (!inv || inv.acceptedAt || inv.expiresAt <= now) fail('not_found', { detail: 'invite_invalid' });
+    if (!inv || inv.acceptedAt || inv.revokedAt || inv.expiresAt <= now) fail('not_found', { detail: 'invite_invalid' });
+    const staffInvite = STAFF_ROLES.has(inv!.role);
     let user = await repo.getUserByEmail(inv!.email);
     if (user && (user.deletedAt || user.status === 'blocked')) fail('forbidden');
+    if (staffInvite && user && user.status !== 'invited' && !isStaff(await repo.listGrants(user.id))) fail('conflict', { detail: 'email_in_use' });
     if (!user) {
       passwordOk(body.password, [inv!.email, body.displayName]);
       const created = await repo.createUser({ id: newId(), kind: 'adult', email: inv!.email, emailVerifiedAt: now, displayName: body.displayName, locale: 'ky', status: 'active' });
@@ -534,14 +553,37 @@ export function registerAuth(app: FastifyInstance, deps: Deps) {
       user = created as UserRec;
       await repo.setCredential(user.id, 'password', await hashSecret(body.password));
     } else if (user.status === 'pending' || user.status === 'invited') {
+      // v0.8.0: a staff member invited by SuperAdmin sets the name and password here.
+      if (!(await repo.getCredential(user.id, 'password'))) {
+        passwordOk(body.password, [inv!.email, body.displayName]);
+        await repo.setCredential(user.id, 'password', await hashSecret(body.password));
+        user = (await repo.updateUser(user.id, { displayName: body.displayName }))!;
+      }
       user = (await repo.updateUser(user.id, { status: 'active', emailVerifiedAt: now }))!;
     }
     if (!(await repo.markInviteAccepted(inv!.id, now))) fail('not_found', { detail: 'invite_invalid' });
     const grant = { userId: user.id, role: inv!.role, scope: inv!.scope, scopeId: inv!.scopeId, subrole: inv!.subrole };
     await repo.addGrant(grant);
-    await audit.log(user.id, 'auth.invite_accepted', { type: 'invite', id: inv!.id }, { ip });
+    if (staffInvite) {
+      const prof = await repo.getStaffProfile(user.id);
+      await repo.putStaffProfile({
+        userId: user.id,
+        permissions: inv!.role === 'manager' ? (prof?.permissions.length ? prof.permissions : (inv!.permissions ?? [])) : [],
+        scope: prof?.scope ?? null,
+        createdBy: prof?.createdBy ?? inv!.invitedBy,
+        createdAt: prof?.createdAt ?? now,
+        blockedAt: null,
+        deletedAt: null,
+      });
+    }
+    await audit.log(user.id, staffInvite ? 'staff.invite_accepted' : 'auth.invite_accepted', { type: 'invite', id: inv!.id, label: inv!.email }, { ip, diff: { role: inv!.role } });
     await audit.log(inv!.invitedBy, 'user.grants_changed', { type: 'user', id: user.id }, { ip, diff: { added: [grant] } });
-    return sessions.start(req, reply, user, 'client');
+    if (!staffInvite) return sessions.start(req, reply, user, 'client');
+    if (config.adminTotpDisabled) return sessions.start(req, reply, user, 'admin');
+    const token = randomToken();
+    await repo.createAuthToken({ id: newId(), userId: user.id, purpose: 'totp_enroll', tokenHash: hashToken(token), expiresAt: new Date(now.getTime() + ENROLL_TTL_MS), usedAt: null });
+    await audit.log(user.id, 'auth.2fa_enrollment_started', { type: 'user', id: user.id }, { ip });
+    fail('forbidden', { detail: 'totp_enrollment_required', enrollmentToken: token });
   });
 }
 

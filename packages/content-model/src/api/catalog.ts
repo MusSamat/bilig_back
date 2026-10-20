@@ -69,7 +69,7 @@ export type SearchResponse = z.infer<typeof SearchResponseSchema>;
 
 // v0.5.0 GET /textbooks?grade=&subjectKey= — the textbook menu (lessons list published topics only)
 export const TextbooksQuerySchema = z.object({
-  grade: z.coerce.number().int().min(1).max(11).optional(),
+  grade: z.coerce.number().int().min(1).max(12).optional(),
   subjectKey: KeySchema.optional(),
 });
 export type TextbooksQuery = z.infer<typeof TextbooksQuerySchema>;

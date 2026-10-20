@@ -12,6 +12,7 @@ import { hashToken, randomToken } from '../domain/crypto.js';
 import { ACCESS_TTL_SEC } from '../domain/jwt.js';
 import type { Deps } from '../deps.js';
 import type { Audience, SessionRec, UserRec } from '../repo/types.js';
+import { isStaff } from './staff.js';
 
 export const ADULT_REFRESH_TTL_SEC = 30 * 24 * 3600;
 export const STUDENT_REFRESH_TTL_SEC = 8 * 3600;
@@ -83,6 +84,8 @@ export class SessionService {
       replacedById: null,
     };
     await this.deps.repo.createSession(session);
+    // v0.8.0: the last sign-in (staff list, teachers list «last active»).
+    await this.deps.repo.updateUser(user.id, { lastLoginAt: now });
     this.setCookie(reply, aud, token, session.expiresAt);
     return this.access(user, session);
   }
@@ -105,6 +108,8 @@ export class SessionService {
     if (old.revokedAt || old.expiresAt <= now) return null;
     const user = await this.deps.repo.getUser(old.userId);
     if (!user || user.status !== 'active' || user.deletedAt) return null;
+    // v0.8.0: a client session of a staff account (from before 0.8.0) is not extended.
+    if (aud === 'client' && isStaff(await this.deps.repo.listGrants(user.id))) return null;
     const next: SessionRec = {
       ...old,
       id: newId(),

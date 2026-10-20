@@ -21,6 +21,13 @@ import { t } from '@bilig/content-model';
 import type { AssignmentRec, AttemptRec, ClassRec, Repository, UserRec } from '../repo/types.js';
 import type { AuthCtx } from '../http/auth-context.js';
 import { renderLoginCards } from '../export/login-cards.js';
+import type { TeachingPlanRec } from '../repo/types.js';
+import type { PlanDoc } from '../ktp/teaching-plan.js';
+import { extendTrialForClass, liveSubjectKeys } from '../services/teacher-signup.js';
+import { classSubjects } from '../repo/class-subjects.js';
+
+/** The calendar date (YYYY-MM-DD) in Kyrgyzstan (UTC+6, no DST). */
+export const localDate = (d: Date) => new Date(d.getTime() + 6 * 3600_000).toISOString().slice(0, 10);
 
 const iso = (d: Date) => d.toISOString();
 
@@ -84,7 +91,8 @@ export function aggregateResults(
 
 export async function toClassDto(repo: Repository, c: ClassRec): Promise<SchoolClass> {
   const n = (await repo.listEnrollments({ classId: c.id, role: 'student' })).length;
-  return { id: c.id, schoolId: c.schoolId, name: c.name, grade: c.grade, joinCode: c.joinCode, joinCodeEnabled: c.joinCodeEnabled, studentCount: n, subjectKey: c.subjectKey ?? null };
+  const subjectKeys = c.subjectKeys ?? (c.subjectKey ? [c.subjectKey] : []);
+  return { id: c.id, schoolId: c.schoolId, name: c.name, grade: c.grade, joinCode: c.joinCode, joinCodeEnabled: c.joinCodeEnabled, studentCount: n, subjectKey: subjectKeys[0] ?? null, subjectKeys };
 }
 
 export const toAssignmentDto = (a: AssignmentRec): Assignment => ({
@@ -133,21 +141,38 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
     throw last;
   }
 
-  /** v0.6.0: a class subject must be one of the school's actively licensed subjects. */
-  async function checkSubject(schoolId: string, subjectKey: string | null | undefined) {
-    if (!subjectKey) return;
+  /**
+   * v0.6.0: a class subject must be one of the school's actively licensed subjects.
+   * v0.8.0: in a self-registered teacher's own school any live subject is accepted
+   * (the trial then follows the class: see extendTrialForClass).
+   */
+  async function checkSubjects(schoolId: string, subjectKeys: readonly string[]) {
+    if (!subjectKeys.length) return;
+    const school = await repo.getSchool(schoolId);
+    if (school?.origin === 'self') {
+      const live = await liveSubjectKeys(repo);
+      const bad = subjectKeys.filter((k) => !live.has(k));
+      if (bad.length) fail('validation_failed', { detail: 'subject_unknown', issues: [{ path: ['subjectKeys'], message: `Unknown or not live subject(s): ${bad.join(', ')}` }] });
+      return;
+    }
     const now = clock.now();
     const licensed = new Set(
       (await repo.listLicenses({ schoolIds: [schoolId] }, { limit: 1000 })).items.filter((l) => l.startsAt <= now && now < l.endsAt).flatMap((l) => l.subjects),
     );
-    if (!licensed.has(subjectKey)) {
-      const allowed = [...licensed].sort();
-      fail('validation_failed', {
-        detail: 'subject_not_licensed',
-        issues: [{ path: ['subjectKey'], message: `Subject "${subjectKey}" is not licensed for this school${allowed.length ? ` (licensed: ${allowed.join(', ')})` : ' (no active licence)'}` }],
-      });
+    for (const subjectKey of subjectKeys) {
+      if (!licensed.has(subjectKey)) {
+        const allowed = [...licensed].sort();
+        fail('validation_failed', {
+          detail: 'subject_not_licensed',
+          issues: [{ path: ['subjectKey'], message: `Subject "${subjectKey}" is not licensed for this school${allowed.length ? ` (licensed: ${allowed.join(', ')})` : ' (no active licence)'}` }],
+        });
+      }
     }
   }
+
+  /** v0.8.0: the subjects a create / patch body asks for (`subjectKeys` wins); undefined = unchanged. */
+  const bodySubjects = (b: { subjectKey?: string | null; subjectKeys?: string[] }): string[] | undefined =>
+    b.subjectKeys !== undefined ? [...new Set(b.subjectKeys)] : b.subjectKey !== undefined ? (b.subjectKey ? [b.subjectKey] : []) : undefined;
 
   async function uniqueJoinCode(): Promise<string> {
     for (let i = 0; i < 20; i++) {
@@ -179,7 +204,7 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
   });
 
   // POST /classes
-  route(app, deps, 'classCreate', async ({ auth, body, authorize }) => {
+  route(app, deps, 'classCreate', async ({ auth, body, authorize, ip }) => {
     const uid = auth.user!.id;
     let schoolId = body.schoolId;
     if (!schoolId) {
@@ -189,13 +214,16 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
     }
     authorize('class.manage', { schoolId });
     if (!(await repo.getSchool(schoolId))) fail('not_found', { detail: 'school' });
-    await checkSubject(schoolId, body.subjectKey);
+    const subjects = bodySubjects(body) ?? [];
+    await checkSubjects(schoolId, subjects);
     let created: ClassRec | 'conflict' = 'conflict';
     for (let i = 0; i < 5 && created === 'conflict'; i++) {
-      created = await repo.createClass({ id: newId(), schoolId, name: body.name, grade: body.grade, joinCode: await uniqueJoinCode(), joinCodeEnabled: true, subjectKey: body.subjectKey ?? null, createdBy: uid, createdAt: clock.now(), deletedAt: null });
+      created = await repo.createClass({ id: newId(), schoolId, name: body.name, grade: body.grade, joinCode: await uniqueJoinCode(), joinCodeEnabled: true, subjectKey: subjects[0] ?? null, subjectKeys: subjects, createdBy: uid, createdAt: clock.now(), deletedAt: null });
     }
     if (created === 'conflict') fail('conflict');
     if (auth.grants.some((g) => g.role === 'teacher' && g.scopeId === schoolId)) await repo.addEnrollment({ classId: created.id, userId: uid, role: 'teacher' });
+    await audit.log(uid, 'class.created', { type: 'class', id: created.id, label: created.name }, { ip, after: { name: created.name, grade: created.grade, subjectKeys: subjects } });
+    await extendTrialForClass(deps, schoolId, created.grade, subjects, uid, ip);
     return toClassDto(repo, created);
   });
 
@@ -204,10 +232,50 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
   // PATCH /classes/:id (rename, grade, disable/enable the join code)
   route(app, deps, 'classPatch', async (ctx) => {
     const cls = await loadClass(ctx, ctx.params.id);
-    if (ctx.body.subjectKey !== undefined) await checkSubject(cls.schoolId, ctx.body.subjectKey);
-    const next = await repo.updateClass(cls.id, ctx.body);
+    // `subjectKeys` replaces the list; a lone `subjectKey` (≤ 0.7 clients) becomes the first one, the rest stay.
+    const subjects = ctx.body.subjectKeys !== undefined || ctx.body.subjectKey !== undefined ? classSubjects(ctx.body, cls).subjectKeys : undefined;
+    if (subjects) await checkSubjects(cls.schoolId, subjects.filter((k) => !(cls.subjectKeys ?? []).includes(k)));
+    const { subjectKey: _k, subjectKeys: _ks, ...rest } = ctx.body;
+    const next = await repo.updateClass(cls.id, { ...rest, ...(subjects ? { subjectKeys: subjects } : {}) });
     if (!next || next === 'conflict') fail('conflict');
+    const uid = ctx.auth.user!.id;
+    await audit.log(uid, 'class.updated', { type: 'class', id: cls.id, label: next.name }, {
+      ip: ctx.ip,
+      before: { name: cls.name, grade: cls.grade, joinCodeEnabled: cls.joinCodeEnabled, subjectKeys: cls.subjectKeys ?? [] },
+      after: { name: next.name, grade: next.grade, joinCodeEnabled: next.joinCodeEnabled, subjectKeys: next.subjectKeys ?? [] },
+    });
+    if (subjects || ctx.body.grade !== undefined) await extendTrialForClass(deps, cls.schoolId, next.grade, next.subjectKeys ?? [], uid, ctx.ip);
     return toClassDto(repo, next);
+  });
+
+  // v0.8.0 GET /classes/:id/subjects — the class's subjects with the КТП status, the next lesson and progress.
+  route(app, deps, 'classSubjects', async (ctx) => {
+    const cls = await loadClass(ctx, ctx.params.id);
+    const keys = cls.subjectKeys ?? (cls.subjectKey ? [cls.subjectKey] : []);
+    const owners = new Set([ctx.auth.user!.id, ...(await repo.listEnrollments({ classId: cls.id, role: 'teacher' })).map((e) => e.userId)]);
+    const plans: TeachingPlanRec[] = [];
+    for (const owner of owners) plans.push(...(await repo.listTeachingPlans(owner, { limit: 1000 })).items);
+    plans.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
+    const today = localDate(clock.now());
+    return {
+      items: keys.map((subjectKey) => {
+        const plan = plans.find((p) => {
+          const d = p.doc as PlanDoc;
+          return d.subjectKey === subjectKey && Object.values(d.classLinks ?? {}).includes(cls.id);
+        });
+        if (!plan) return { subjectKey, ktp: { status: 'none' as const, planId: null, errors: 0, warnings: 0 }, nextLesson: null, progress: { done: 0, total: 0 } };
+        const d = plan.doc as PlanDoc;
+        const col = Object.entries(d.classLinks ?? {}).find(([, v]) => v === cls.id)![0];
+        const dated = d.rows.map((r) => ({ r, date: r.dates[col] ?? null }));
+        const upcoming = dated.filter((x) => x.date && x.date >= today).sort((a, b) => (a.date! < b.date! ? -1 : a.date! > b.date! ? 1 : a.r.index - b.r.index))[0];
+        return {
+          subjectKey,
+          ktp: { status: 'parsed' as const, planId: plan.id, errors: d.issues.filter((i) => i.severity === 'error').length, warnings: d.issues.filter((i) => i.severity === 'warning').length },
+          nextLesson: upcoming ? { index: upcoming.r.index, title: upcoming.r.title, date: upcoming.date!, topicKey: upcoming.r.topicKey ?? null } : null,
+          progress: { done: dated.filter((x) => x.date && x.date < today).length, total: d.rows.length },
+        };
+      }),
+    };
   });
 
   // POST /classes/:id/join-code → re-issue (the old code stops working immediately)

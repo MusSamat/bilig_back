@@ -15,6 +15,8 @@ import { newId } from './ids.js';
 import { GUEST_CTX, resolveAuth, type AuthCtx } from './http/auth-context.js';
 import { HttpError, sendProblem } from './http/errors.js';
 import { route } from './http/route.js';
+import { requestContext } from './http/request-context.js';
+import { isReadOnlyMethod, isSupportEndPath, isSupportForbidden } from './services/support.js';
 import { registerAuth } from './modules/auth.js';
 import { registerMe } from './modules/me.js';
 import { registerCatalog } from './modules/catalog.js';
@@ -97,6 +99,11 @@ export async function buildApp(deps: Deps): Promise<FastifyInstance> {
 
   app.decorateRequest('auth', null as unknown as AuthCtx);
 
+  // v0.8.0: per-request context for the journal (request id, IP, user agent, caller).
+  app.addHook('onRequest', (req, _reply, done) => {
+    const ua = req.headers['user-agent'];
+    requestContext.run({ requestId: req.id, ip: req.ip ?? null, userAgent: typeof ua === 'string' ? ua.slice(0, 300) : null }, done);
+  });
   app.addHook('onRequest', async (req, reply) => {
     reply.header(HEADERS.requestId, req.id);
     const r = await deps.limiter.hit(`ip:${req.ip}`, GLOBAL_IP_LIMIT_PER_MIN, 60);
@@ -105,6 +112,30 @@ export async function buildApp(deps: Deps): Promise<FastifyInstance> {
   });
   app.addHook('preHandler', async (req) => {
     req.auth = await resolveAuth(req, deps);
+    const store = requestContext.getStore();
+    if (store) store.auth = req.auth;
+    // v0.8.0 support sessions: closed areas in every mode, read-only view mode.
+    const sp = req.auth.support;
+    if (sp) {
+      if (isSupportForbidden(req.method, req.url)) throw new HttpError('forbidden', { detail: 'support_forbidden', i18nKey: 'errors.support_forbidden' });
+      if (sp.session.mode === 'view' && !isReadOnlyMethod(req.method) && !isSupportEndPath(req.url))
+        throw new HttpError('forbidden', { detail: 'support_read_only', i18nKey: 'errors.support_read_only' });
+    }
+  });
+  // v0.8.0: every request in a support session that changes data (or is refused) is journaled with both ids.
+  app.addHook('onResponse', async (req, reply) => {
+    const sp = req.auth?.support;
+    if (!sp || (isReadOnlyMethod(req.method) && reply.statusCode !== 403)) return;
+    const route = req.routeOptions?.url ?? req.url.split('?')[0];
+    const status = reply.statusCode;
+    await deps.audit
+      .log(sp.session.actorId, status === 403 ? 'support.denied' : 'support.request', { type: 'route', id: `${req.method} ${route}`.slice(0, 200) }, {
+        onBehalfOf: sp.session.teacherId,
+        supportSessionId: sp.session.id,
+        result: status < 400 ? 'ok' : status === 401 || status === 403 ? 'denied' : 'failed',
+        diff: { mode: sp.session.mode, status, path: req.url.split('?')[0].slice(0, 300) },
+      })
+      .catch((err) => req.log.error({ err: String(err) }, 'support journal write failed'));
   });
 
   app.setNotFoundHandler((_req, reply) => sendProblem(reply, 'not_found'));

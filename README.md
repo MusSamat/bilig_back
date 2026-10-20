@@ -143,11 +143,23 @@ All variables are documented in [`.env.example`](.env.example). The important on
   refresh tokens in `HttpOnly; Secure; SameSite=Lax` cookies scoped to
   `/api/v1/auth` (30 days sliding, students 8 hours fixed), rotated on every
   refresh, with the whole family revoked on reuse; TOTP required for
-  author/editor/superadmin on the admin audience (enrol via `POST /me/2fa`);
+  manager/superadmin (and legacy author/editor) on the admin audience (enrol via `POST /me/2fa`);
   PIN lockout of 15 min after 5 bad tries; identical answers for an unknown
   e-mail and a wrong password; rate limits on login, reset, class codes and the
   tutor. Logins, role changes, publishes and student-data access go to the
   append-only audit log.
+- **Roles, support, journal (0.8.0).** A `manager` holds the permissions SuperAdmin
+  ticked (`StaffProfile.permissions`; the matrix is the ceiling), built into the
+  principal on every request. Staff sign in only at /admin (a teacher there gets
+  403 `use_teacher_login`). Support sessions (`ImpersonationSession`) give a
+  15/30-min client token with `act` = the staff member; view mode is read-only
+  (403 `support_read_only`), credentials/2FA/sessions are closed in every mode
+  (403 `support_forbidden`). Everything goes to `AuditEvent`: monthly-partitioned,
+  a trigger rejects UPDATE/DELETE, rows are hash-chained by `audit_event_append()`
+  under an advisory lock, `GET /admin/journal/verify` walks the chain. `main.ts`
+  runs `audit_event_maintain()` daily (partitions 3 months ahead, 36-month
+  retention by dropping partitions) and closes expired support sessions.
+  The legacy `AuditLog` is read only; `GET /admin/audit` projects the journal.
 - **Phone-first teachers (0.7.0).** A teacher account is a Kyrgyz mobile number
   (`User.phone`, E.164, unique) + password. `POST /auth/otp/start` sends a
   6-digit code to WhatsApp through the `OtpSender` port
