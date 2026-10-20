@@ -123,6 +123,7 @@ All variables are documented in [`.env.example`](.env.example). The important on
 | `MAIL_TRANSPORT` | `console` prints verification / reset / invite links |
 | `DEMO_SEED` | `1` loads the demo dataset at startup (dev only; refused in production) |
 | `AUTH_FIXED_OTP` | TEMPORARY: every one-time code (e-mail registration, WhatsApp phone codes) is this 6-digit value; phone codes are not sent (startup warning) |
+| `AUTH_FIXED_TOTP` | TEMPORARY (test period): the admin panel accepts this 6-digit value as the 2FA code for every admin, enrolled or not; real authenticator codes still work; each such sign-in is marked `totp: fixed` in the audit log (startup warning). Delete before real use |
 | `OTP_SENDER` | phone codes (0.7.0): `fixed` (needs `AUTH_FIXED_OTP`), `console` (prints «WhatsApp → +996…»; refused in production) or `whatsapp` (stub, refused at start). Unset: `fixed` with `AUTH_FIXED_OTP`, else `console` outside production; production without a working sender refuses to start |
 | `ADMIN_TOTP_DISABLED` | `1` skips the TOTP code on admin sign-in (dev only; refused in production — TZ §6 requires 2FA) |
 

@@ -92,7 +92,22 @@ export function registerAuth(app: FastifyInstance, deps: Deps) {
       const grants = await repo.listGrants(u.id);
       if (grants.some((g) => TOTP_ROLES.has(g.role))) {
         const totp = await repo.getCredential(u.id, 'totp');
-        if (!totp || totp.secretHash.startsWith('pending:')) {
+        const enrolled = !!totp && !totp.secretHash.startsWith('pending:');
+        // TEMPORARY fixed 2FA code (AUTH_FIXED_TOTP, test period): accepted for every admin, enrolled or
+        // not; without an authenticator the admin is asked for the code instead of being sent to enrolment.
+        const fixed = config.authFixedTotp;
+        if (fixed && (!enrolled || (body.totp && safeEqual(body.totp, fixed)))) {
+          if (!body.totp) fail('totp_required');
+          await limit(`totp:${u.id}`, 10, 15 * 60);
+          if (!safeEqual(body.totp!, fixed)) {
+            await audit.log(u.id, 'auth.login_failed', { type: 'user', id: u.id }, { ip, diff: { reason: 'totp' } });
+            fail('invalid_credentials');
+          }
+          const issued = await sessions.start(req, reply, u, aud);
+          await audit.log(u.id, 'auth.login', { type: 'user', id: u.id }, { ip, diff: { aud, totp: 'fixed' } });
+          return issued;
+        }
+        if (!enrolled) {
           // v0.3.0: a short-lived, single-user enrolment token (POST /auth/2fa/setup → /auth/2fa/verify).
           const token = randomToken();
           await repo.createAuthToken({ id: newId(), userId: u.id, purpose: 'totp_enroll', tokenHash: hashToken(token), expiresAt: new Date(clock.now().getTime() + ENROLL_TTL_MS), usedAt: null });

@@ -24,6 +24,11 @@ if (config.authFixedOtp) {
 } else if (config.otpSender === 'console') {
   app.log.warn('OTP_SENDER=console: phone one-time codes are printed to stdout, not sent (development only)');
 }
+if (config.authFixedTotp) {
+  app.log.warn(
+    'AUTH_FIXED_TOTP is set: the admin panel accepts a fixed 2FA code for every admin (each such sign-in is marked totp=fixed in the audit log). TEMPORARY (test period) and INSECURE — remove it once admins have set up an authenticator app.',
+  );
+}
 if (!deps.tutor) app.log.warn('ANTHROPIC_API_KEY not set — tutor answers 503 (clients use the offline index)');
 
 const timers = [

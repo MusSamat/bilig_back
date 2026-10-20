@@ -335,3 +335,55 @@ describe('ADMIN_TOTP_DISABLED (dev only)', () => {
     expect(() => loadConfig({ NODE_ENV: 'production', JWT_SECRET: 'x'.repeat(32), PSEUDONYM_SECRET: 'y'.repeat(16), ADMIN_TOTP_DISABLED: '1' })).toThrow(/dev-only/);
   });
 });
+
+describe('AUTH_FIXED_TOTP (temporary, test period)', () => {
+  const admin = { 'x-bilig-audience': 'admin' };
+  const loginTo = (app: TestCtx, email: string, extra: Record<string, unknown> = {}) =>
+    app.inject({ method: 'POST', url: `${API}/auth/login`, payload: { email, password: PASSWORD, ...extra }, headers: admin });
+
+  it('an admin without an authenticator is asked for the code (not sent to enrolment) and the fixed code signs in, marked in the audit', async () => {
+    const fx = await makeTestApp({ config: { authFixedTotp: '012345' } });
+    try {
+      const ed = await makeUser(fx.deps, { role: 'editor', scopeId: 'bio' }, { email: 'fx@example.kg', password: PASSWORD });
+      const missing = await loginTo(fx, 'fx@example.kg');
+      expect(missing.statusCode).toBe(401);
+      expect(json(missing).code).toBe('totp_required');
+      expect((await loginTo(fx, 'fx@example.kg', { totp: '111111' })).statusCode).toBe(401);
+      const ok = await loginTo(fx, 'fx@example.kg', { totp: '012345' });
+      expect(ok.statusCode, ok.body).toBe(200);
+      const entry = (await fx.repo.listAudit({ action: 'auth.login' }, { limit: 5 })).items.find((a) => a.actorId === ed.user.id);
+      expect(entry?.diff).toMatchObject({ aud: 'admin', totp: 'fixed' });
+      // a wrong password is still a wrong password
+      expect((await fx.inject({ method: 'POST', url: `${API}/auth/login`, payload: { email: 'fx@example.kg', password: 'wrong-password-1', totp: '012345' }, headers: admin })).statusCode).toBe(401);
+    } finally {
+      await fx.close();
+    }
+  });
+
+  it('an enrolled admin can use either the authenticator code or the fixed code', async () => {
+    const fx = await makeTestApp({ config: { authFixedTotp: '012345' } });
+    try {
+      const ed = await makeUser(fx.deps, { role: 'superadmin' }, { email: 'sa@example.kg', password: PASSWORD });
+      const setup = await fx.inject({ method: 'POST', url: `${API}/me/2fa`, token: ed.token, payload: { action: 'setup' } });
+      const secret = new URL(json(setup).otpauthUrl).searchParams.get('secret')!;
+      await fx.inject({ method: 'POST', url: `${API}/me/2fa`, token: ed.token, payload: { action: 'verify', code: totpAt(secret, fx.clock.now()) } });
+      expect((await loginTo(fx, 'sa@example.kg', { totp: totpAt(secret, fx.clock.now()) })).statusCode).toBe(200);
+      expect((await loginTo(fx, 'sa@example.kg', { totp: '012345' })).statusCode).toBe(200);
+      expect((await loginTo(fx, 'sa@example.kg', { totp: '999999' })).statusCode).toBe(401);
+    } finally {
+      await fx.close();
+    }
+  });
+
+  it('without the variable nothing changes: enrolment is required and the code is not accepted', async () => {
+    await makeUser(t.deps, { role: 'editor', scopeId: 'bio' }, { email: 'nf@example.kg', password: PASSWORD });
+    const r = await loginTo(t, 'nf@example.kg', { totp: '012345' });
+    expect(r.statusCode).toBe(403);
+    expect(json(r).detail).toBe('totp_enrollment_required');
+  });
+
+  it('must be exactly 6 digits', async () => {
+    const { loadConfig } = await import('../../config.js');
+    expect(() => loadConfig({ NODE_ENV: 'development', AUTH_FIXED_TOTP: '12345' })).toThrow(/6 digits/);
+  });
+});

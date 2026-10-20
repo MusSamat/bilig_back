@@ -61,6 +61,20 @@ const EnvSchema = z.object({
     .transform((v) => (v === '' ? undefined : v))
     .pipe(z.string().regex(/^\d{6}$/, 'AUTH_FIXED_OTP must be exactly 6 digits').optional()),
   /**
+   * TEMPORARY, for the test period (until admins set up an authenticator
+   * app): the admin audience accepts this fixed 6-digit value as the 2FA
+   * code, also for admins without an enrolled authenticator (they are asked
+   * for the code instead of being sent to enrolment). Real authenticator
+   * codes keep working. Insecure — a warning at every start and `totp:
+   * 'fixed'` in the audit entry of every sign-in that used it. Remove the
+   * variable to restore normal 2FA.
+   */
+  AUTH_FIXED_TOTP: z
+    .string()
+    .optional()
+    .transform((v) => (v === '' ? undefined : v))
+    .pipe(z.string().regex(/^\d{6}$/, 'AUTH_FIXED_TOTP must be exactly 6 digits').optional()),
+  /**
    * v0.7.0: how phone one-time codes reach the teacher's WhatsApp
    * (src/services/otp-sender.ts): `fixed` (needs AUTH_FIXED_OTP; nothing is
    * sent), `console` (prints the message; refused in production) or `whatsapp`
@@ -104,6 +118,8 @@ export interface Config {
   adminTotpDisabled: boolean;
   /** v0.6.0: fixed registration code (temporary insecure mode), or undefined for random codes. */
   authFixedOtp?: string;
+  /** TEMPORARY fixed admin 2FA code (AUTH_FIXED_TOTP), test period only. */
+  authFixedTotp?: string;
   /** v0.7.0: phone one-time code delivery (see OTP_SENDER). */
   otpSender: OtpSenderKind;
   trialDays: number;
@@ -180,6 +196,7 @@ export function loadConfig(env?: NodeJS.ProcessEnv): Config {
     demoSeed: e.DEMO_SEED,
     adminTotpDisabled: e.ADMIN_TOTP_DISABLED,
     authFixedOtp: e.AUTH_FIXED_OTP,
+    authFixedTotp: e.AUTH_FIXED_TOTP,
     otpSender: resolveOtpSender(e),
     trialDays: e.TRIAL_DAYS,
   };
