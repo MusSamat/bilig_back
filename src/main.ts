@@ -31,6 +31,7 @@ if (config.authFixedOtp) {
 } else if (config.otpSender === 'console') {
   app.log.warn('OTP_SENDER=console: phone one-time codes are printed to stdout, not sent (development only)');
 }
+for (const w of config.warnings) app.log.warn(w);
 if (config.authFixedTotp) {
   app.log.warn(
     'AUTH_FIXED_TOTP is set: the admin panel accepts a fixed 2FA code for every admin (each such sign-in is marked totp=fixed in the audit log). TEMPORARY (test period) and INSECURE — remove it once admins have set up an authenticator app.',

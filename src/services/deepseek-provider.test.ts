@@ -174,10 +174,31 @@ describe('config: DeepSeek is the provider in use', () => {
     expect(a.tutorModel).toBe('claude-opus-5-5');
   });
 
-  it('failover is opt-in; missing keys fail at start', () => {
+  it('failover is opt-in; a missing key turns it off with a warning', () => {
     const c = loadConfig({ ...base, DEEPSEEK_API_KEY: 'sk-x', ANTHROPIC_API_KEY: 'sk-ant', TUTOR_FALLBACK: 'anthropic' });
     expect(createTutorProvider(c)?.name).toBe('deepseek+anthropic');
-    expect(() => loadConfig({ ...base, TUTOR_PROVIDER: 'deepseek' })).toThrow(/DEEPSEEK_API_KEY/);
-    expect(() => loadConfig({ ...base, DEEPSEEK_API_KEY: 'sk-x', TUTOR_FALLBACK: 'anthropic' })).toThrow(/ANTHROPIC_API_KEY/);
+    // a missing key turns the assistant (or the failover) off with a warning — the platform still starts
+    const noKey = loadConfig({ ...base, TUTOR_PROVIDER: 'deepseek' });
+    expect(noKey.tutorProvider).toBe('none');
+    expect(noKey.warnings.join(' ')).toMatch(/DEEPSEEK_API_KEY is empty/);
+    const noFallbackKey = loadConfig({ ...base, DEEPSEEK_API_KEY: 'sk-x', TUTOR_FALLBACK: 'anthropic' });
+    expect(noFallbackKey.tutorFallback).toBeUndefined();
+    expect(noFallbackKey.warnings.join(' ')).toMatch(/ANTHROPIC_API_KEY is empty/);
+  });
+});
+
+describe('config: hand-edited env files on a server', () => {
+  const prod = { NODE_ENV: 'production' as const, JWT_SECRET: 'x'.repeat(32), PSEUDONYM_SECRET: 'y'.repeat(32), AUTH_FIXED_OTP: '012345' };
+  it('an empty line means «not set», quotes are unwrapped (both used to stop the API at start)', () => {
+    const c = loadConfig({ ...prod, DEEPSEEK_BASE_URL: '', DEEPSEEK_GENERATE_EFFORT: '', TUTOR_PROVIDER: '', TUTOR_FALLBACK: '', AUTH_FIXED_TOTP: '"012345"', DEEPSEEK_API_KEY: " 'sk-q' " });
+    expect(c.deepseek.baseURL).toBe('https://api.deepseek.com');
+    expect(c.deepseek.generateEffort).toBe('low');
+    expect(c.authFixedTotp).toBe('012345');
+    expect(c.deepseek.apiKey).toBe('sk-q');
+    expect(c.tutorProvider).toBe('deepseek');
+  });
+
+  it('a really wrong value names the setting in one readable line', () => {
+    expect(() => loadConfig({ ...prod, DEEPSEEK_GENERATE_EFFORT: 'turbo' })).toThrow(/^Invalid setting DEEPSEEK_GENERATE_EFFORT: /);
   });
 });

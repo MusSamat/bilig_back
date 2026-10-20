@@ -128,6 +128,8 @@ export interface Config {
   tutorProvider: 'anthropic' | 'deepseek' | 'dev' | 'none';
   tutorModel: string;
   tutorFallback?: 'anthropic' | 'deepseek';
+  /** Configuration problems that do not stop the server (logged at start). */
+  warnings: string[];
   deepseek: {
     apiKey?: string;
     baseURL: string;
@@ -174,31 +176,60 @@ export function loadDotEnv(file = '.env', env: NodeJS.ProcessEnv = process.env):
   for (const [k, v] of Object.entries(parseEnv(readFileSync(file, 'utf8')))) if (env[k] === undefined) env[k] = v;
 }
 
+/**
+ * Env files are edited by hand on servers: `KEY=` (empty) means «not set», and
+ * values wrapped in matching quotes (`KEY="012345"`, which docker's env_file
+ * keeps literally) are unwrapped. Without this, an empty or quoted line made
+ * the API exit at start.
+ */
+export function normalizeEnv(env: NodeJS.ProcessEnv): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const [k, raw] of Object.entries(env)) {
+    if (raw === undefined) continue;
+    let v = raw.trim();
+    if (v.length >= 2 && ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'")))) v = v.slice(1, -1).trim();
+    if (v !== '') out[k] = v;
+  }
+  return out;
+}
+
 export function loadConfig(env?: NodeJS.ProcessEnv): Config {
   if (!env) {
     loadDotEnv();
     env = process.env;
   }
-  const e = EnvSchema.parse(env);
+  const parsed = EnvSchema.safeParse(normalizeEnv(env));
+  if (!parsed.success) {
+    // One readable line per bad setting instead of a Zod dump: «Invalid setting DEEPSEEK_BASE_URL: Invalid url».
+    const lines = parsed.error.issues.map((i) => `Invalid setting ${i.path.join('.') || '(env)'}: ${i.message}`);
+    throw new Error(lines.join('\n'));
+  }
+  const e = parsed.data;
   if (e.NODE_ENV === 'production' && (!e.JWT_SECRET || !e.PSEUDONYM_SECRET)) {
     throw new Error('JWT_SECRET and PSEUDONYM_SECRET are required in production');
   }
   if (e.NODE_ENV === 'production' && e.TUTOR_PROVIDER === 'dev') {
     throw new Error('TUTOR_PROVIDER=dev is a dev-only switch and is refused in production');
   }
-  if (e.TUTOR_PROVIDER === 'anthropic' && !e.ANTHROPIC_API_KEY) {
-    throw new Error('TUTOR_PROVIDER=anthropic requires ANTHROPIC_API_KEY');
+  // The assistant is optional: a provider without its key turns the assistant off (with a warning at start)
+  // instead of taking the whole platform down.
+  const warnings: string[] = [];
+  const keyOf = { anthropic: e.ANTHROPIC_API_KEY, deepseek: e.DEEPSEEK_API_KEY } as const;
+  let chosen = e.TUTOR_PROVIDER;
+  if ((chosen === 'anthropic' || chosen === 'deepseek') && !keyOf[chosen]) {
+    warnings.push(`TUTOR_PROVIDER=${chosen} but ${chosen === 'deepseek' ? 'DEEPSEEK_API_KEY' : 'ANTHROPIC_API_KEY'} is empty — the assistant is off (answers 503) until the key is set`);
+    chosen = 'none';
   }
-  if (e.TUTOR_PROVIDER === 'deepseek' && !e.DEEPSEEK_API_KEY) {
-    throw new Error('TUTOR_PROVIDER=deepseek requires DEEPSEEK_API_KEY');
+  let fallback = e.TUTOR_FALLBACK;
+  if (fallback && !keyOf[fallback]) {
+    warnings.push(`TUTOR_FALLBACK=${fallback} but ${fallback === 'deepseek' ? 'DEEPSEEK_API_KEY' : 'ANTHROPIC_API_KEY'} is empty — no failover`);
+    fallback = undefined;
   }
-  if (e.TUTOR_FALLBACK === 'anthropic' && !e.ANTHROPIC_API_KEY) throw new Error('TUTOR_FALLBACK=anthropic requires ANTHROPIC_API_KEY');
-  if (e.TUTOR_FALLBACK === 'deepseek' && !e.DEEPSEEK_API_KEY) throw new Error('TUTOR_FALLBACK=deepseek requires DEEPSEEK_API_KEY');
   if (e.NODE_ENV === 'production' && e.ADMIN_TOTP_DISABLED) {
     throw new Error('ADMIN_TOTP_DISABLED is a dev-only switch and is refused in production');
   }
   const tutorProvider: Config['tutorProvider'] =
-    e.TUTOR_PROVIDER ?? (e.DEEPSEEK_API_KEY ? 'deepseek' : e.NODE_ENV === 'development' ? 'dev' : 'none');
+    chosen ?? (e.DEEPSEEK_API_KEY ? 'deepseek' : e.NODE_ENV === 'development' ? 'dev' : 'none');
   return {
     env: e.NODE_ENV,
     port: e.PORT,
@@ -221,7 +252,8 @@ export function loadConfig(env?: NodeJS.ProcessEnv): Config {
     anthropicApiKey: e.ANTHROPIC_API_KEY || undefined,
     tutorProvider,
     tutorModel: e.TUTOR_MODEL ?? (tutorProvider === 'anthropic' ? 'claude-opus-5-5' : e.DEEPSEEK_MODEL),
-    ...(e.TUTOR_FALLBACK && e.TUTOR_FALLBACK !== tutorProvider ? { tutorFallback: e.TUTOR_FALLBACK } : {}),
+    ...(fallback && fallback !== tutorProvider ? { tutorFallback: fallback } : {}),
+    warnings,
     deepseek: {
       apiKey: e.DEEPSEEK_API_KEY || undefined,
       baseURL: e.DEEPSEEK_BASE_URL,

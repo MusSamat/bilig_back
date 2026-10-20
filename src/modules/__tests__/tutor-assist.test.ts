@@ -84,7 +84,7 @@ describe('dev provider (TUTOR_PROVIDER=dev): the whole pipeline without an LLM',
     expect(loadConfig({ NODE_ENV: 'development', DEEPSEEK_API_KEY: 'k' }).tutorProvider).toBe('deepseek');
     expect(loadConfig({ NODE_ENV: 'development', ANTHROPIC_API_KEY: 'k' }).tutorProvider).toBe('dev');
     expect(() => loadConfig({ NODE_ENV: 'production', JWT_SECRET: 'x'.repeat(32), PSEUDONYM_SECRET: 'y'.repeat(16), TUTOR_PROVIDER: 'dev' })).toThrow(/dev-only/);
-    expect(() => loadConfig({ NODE_ENV: 'development', TUTOR_PROVIDER: 'anthropic' })).toThrow(/ANTHROPIC_API_KEY/);
+    expect(loadConfig({ NODE_ENV: 'development', TUTOR_PROVIDER: 'anthropic' }).tutorProvider).toBe('none');
     expect(createTutorProvider({ tutorProvider: 'dev' })?.name).toBe('dev');
     expect(createTutorProvider({ tutorProvider: 'none' })).toBeNull();
   });
