@@ -12,15 +12,15 @@
  *   - language (looksLikeLang: Kyrgyz without Kazakh letters / Russian drift),
  *   - on topic → an answer with ≤ 4 sentences and valid citations;
  *     off topic / injection → the refusal and suggestions;
- *   - latency, tokens and cost (DeepSeek prices: input $0.15/M miss,
- *     $0.003/M cache hit, output $0.6/M — off-peak half).
+ *   - latency, tokens, prompt-cache hits and cost at the configured prices
+ *     (TUTOR_PRICE_INPUT / _INPUT_CACHED / _OUTPUT, USD per 1M tokens).
  * Exit code 1 when the pass rate is under --min (default 0.9).
  */
 import { writeFileSync } from 'node:fs';
 import { t, type ContentPackage, type Lang } from '@bilig/content-model';
 import { buildApp } from '../src/app.js';
 import { createDeps } from '../src/bootstrap.js';
-import { loadConfig } from '../src/config.js';
+import { loadConfig, usageCostUsd } from '../src/config.js';
 import { looksLikeLang } from '../src/domain/generate.js';
 import { importContent, loadContentDir } from '../src/services/seed.js';
 import type { ProviderChunk, ProviderRequest, TutorProvider } from '../src/services/tutor-provider.js';
@@ -45,6 +45,7 @@ interface Result extends Case {
   answer: string;
   ms: number;
   inTok: number;
+  cachedTok: number;
   outTok: number;
 }
 
@@ -83,15 +84,15 @@ const sentences = (s: string) => s.split(/(?<=[.!?])\s+/).filter((x) => x.trim()
 /** Wraps the provider to measure latency and tokens per call. */
 class Metered implements TutorProvider {
   readonly name: string;
-  last = { ms: 0, inTok: 0, outTok: 0 };
+  last = { ms: 0, inTok: 0, cachedTok: 0, outTok: 0 };
   constructor(private inner: TutorProvider) {
     this.name = inner.name;
   }
   async *stream(req: ProviderRequest): AsyncIterable<ProviderChunk> {
     const t0 = Date.now();
-    this.last = { ms: 0, inTok: 0, outTok: 0 };
+    this.last = { ms: 0, inTok: 0, cachedTok: 0, outTok: 0 };
     for await (const c of this.inner.stream(req)) {
-      if (c.type === 'usage') this.last = { ms: Date.now() - t0, inTok: c.inputTokens, outTok: c.outputTokens };
+      if (c.type === 'usage') this.last = { ms: Date.now() - t0, inTok: c.inputTokens, cachedTok: c.cachedInputTokens ?? 0, outTok: c.outputTokens };
       yield c;
     }
     if (!this.last.ms) this.last.ms = Date.now() - t0;
@@ -151,8 +152,10 @@ async function main() {
   const rate = passed / Math.max(1, results.length);
   const inTok = results.reduce((n, r) => n + r.inTok, 0);
   const outTok = results.reduce((n, r) => n + r.outTok, 0);
-  // Upper bound: every input token at the cache-miss price.
-  const costMiss = (inTok * 0.3 + outTok * 1.2) / 1e6;
+  const cachedTok = results.reduce((n, r) => n + r.cachedTok, 0);
+  // Real cost (cache hits at the cache price) and the upper bound with no cache, at the configured prices.
+  const cost = usageCostUsd({ inputTokens: inTok, cachedInputTokens: cachedTok, outputTokens: outTok }, config.tutorPrices);
+  const costMiss = usageCostUsd({ inputTokens: inTok, outputTokens: outTok }, config.tutorPrices);
   const asked = results.filter((r) => r.inTok > 0);
   const median = (xs: number[]) => xs.sort((a, b) => a - b)[xs.length >> 1] ?? 0;
   const lines = [
@@ -160,15 +163,16 @@ async function main() {
     '',
     `Passed **${passed}/${results.length}** (${Math.round(rate * 100)}%). Model calls: ${asked.length} (the rest were stopped before the model: injection filter, off-topic).`,
     `Median latency ${median(asked.map((r) => r.ms))} ms; median input ${median(asked.map((r) => r.inTok))} tok, output ${median(asked.map((r) => r.outTok))} tok.`,
-    `Cost upper bound (peak, no cache): $${costMiss.toFixed(4)} total, $${(costMiss / Math.max(1, asked.length)).toFixed(5)} per answer.`,
+    `Prompt cache: ${cachedTok}/${inTok} input tokens were hits (${Math.round((100 * cachedTok) / Math.max(1, inTok))}%).`,
+    `Cost: $${cost.toFixed(4)} total, $${(cost / Math.max(1, asked.length)).toFixed(5)} per answer (no cache it would be $${costMiss.toFixed(4)}).`,
     '',
-    '| ok | topic | lang | case | why | ms | in/out tok | answer |',
+    '| ok | topic | lang | case | why | ms | in (cached)/out tok | answer |',
     '|---|---|---|---|---|---|---|---|',
-    ...results.map((r) => `| ${r.ok ? '✅' : '❌'} | ${r.topic} | ${r.lang} | ${r.kind} | ${r.why.join(', ')} | ${r.ms} | ${r.inTok}/${r.outTok} | ${r.answer.replace(/\|/g, '/')} |`),
+    ...results.map((r) => `| ${r.ok ? '✅' : '❌'} | ${r.topic} | ${r.lang} | ${r.kind} | ${r.why.join(', ')} | ${r.ms} | ${r.inTok} (${r.cachedTok})/${r.outTok} | ${r.answer.replace(/\|/g, '/')} |`),
   ];
   const md = lines.join('\n');
   if (OUT) writeFileSync(OUT, md);
-  console.log(`\n${lines.slice(0, 5).join('\n')}`);
+  console.log(`\n${lines.slice(0, 6).join('\n')}`);
   if (rate < MIN) process.exit(1);
 }
 

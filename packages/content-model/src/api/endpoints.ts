@@ -359,6 +359,7 @@ export const ENDPOINTS = {
 
   // Tutor: generated examples and practice questions; teacher feedback on them
   tutorGenerate: e({ method: 'POST', path: '/tutor/generate', auth: 'assistant.ask.online', body: tutor.TutorGenerateRequestSchema, response: tutor.TutorGenerateResponseSchema }),
+  tutorGeneratedSeen: e({ method: 'GET', path: '/tutor/generated', auth: 'assistant.ask.online', query: tutor.TutorGeneratedSeenQuerySchema, response: tutor.TutorGeneratedSeenResponseSchema }),
   tutorGeneratedFeedback: e({ method: 'POST', path: '/tutor/generated/:id/feedback', auth: 'assistant.ask.online', body: tutor.GeneratedFeedbackRequestSchema, response: OkSchema }),
 
   // Admin: review queue for generated content

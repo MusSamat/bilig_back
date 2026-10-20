@@ -212,6 +212,13 @@ export interface DraftExample {
   text: string;
   field?: StemField;
   conceptKey?: string;
+  /** v0.9.1: school grades the item suits (shared by topics of these grades that teach the concept). */
+  grades?: GradeRange;
+}
+/** v0.9.1: an inclusive range of school grades, 1–12. */
+export interface GradeRange {
+  from: number;
+  to: number;
 }
 export interface DraftQuizItem {
   prompt: string;
@@ -219,6 +226,7 @@ export interface DraftQuizItem {
   answer: string;
   explanation: string;
   conceptKey?: string;
+  grades?: GradeRange;
 }
 
 const G: Record<'analogy' | 'fact' | 'mistake' | 'which' | 'trueFalse' | 'true' | 'false' | 'related', Tpl> = {

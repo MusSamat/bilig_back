@@ -583,6 +583,18 @@ export interface GeneratedFilter {
   status?: GeneratedStatusRec;
 }
 
+/** v0.9.1: a shared answer to a self-contained question (same topic version, language, question, screen). */
+export interface TutorAnswerRec {
+  /** sha256 of the topic version, language, normalised question and the screen context. */
+  key: string;
+  topicKey: string;
+  lang: 'ky' | 'ru' | 'en';
+  /** The model's text with its [[markers]] (replayed through the citation parser). */
+  raw: string;
+  hits: number;
+  createdAt: Date;
+}
+
 export interface TutorMessageRec {
   id: Id;
   threadId: Id;
@@ -591,6 +603,8 @@ export interface TutorMessageRec {
   text: string;
   citations: string[];
   inputTokens: number;
+  /** v0.9.1: the part of `inputTokens` served from the provider's prompt cache (0 when unknown). */
+  cachedTokens?: number;
   outputTokens: number;
   /** Refused / off-topic / suspected injection / provider failure. */
   flagged: boolean;
@@ -970,6 +984,10 @@ export interface Repository {
   getThread(id: Id): Promise<TutorThreadRec | null>;
   addTutorMessage(m: TutorMessageRec): Promise<void>;
   listTutorMessages(filter: { threadId?: Id; from?: Date; to?: Date; limit?: number }): Promise<TutorMessageRec[]>;
+  // v0.9.1: shared answers (first write wins; hits counted atomically)
+  getTutorAnswer(key: string): Promise<TutorAnswerRec | null>;
+  putTutorAnswer(a: TutorAnswerRec): Promise<void>;
+  hitTutorAnswer(key: string): Promise<void>;
   // generated content (v0.4.0)
   addGenerated(rows: GeneratedRec[]): Promise<void>;
   getGenerated(id: Id): Promise<GeneratedRec | null>;
@@ -978,6 +996,10 @@ export interface Repository {
   updateGenerated(id: Id, patch: Partial<Pick<GeneratedRec, 'status' | 'reviewedAt' | 'reviewedBy' | 'promotedTo'>>): Promise<GeneratedRec | null>;
   /** Atomic counters: times served, «хороший пример», reports (per reason). */
   countGenerated(ids: Id[], delta: { served?: number; good?: number; bad?: number; reason?: string }): Promise<void>;
+  /** v0.9.1: remember that a user got these items (first time kept; repeats ignored). */
+  markGeneratedSeen(userId: Id, ids: Id[], at: Date): Promise<void>;
+  /** v0.9.1: the items a user got for this filter, in the order first seen. */
+  listSeenGenerated(userId: Id, filter: GeneratedFilter, limit: number): Promise<GeneratedRec[]>;
 
   // audit & settings
   /** Legacy shape: written to the journal (AuditEvent) since v0.8.0. */

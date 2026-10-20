@@ -14,6 +14,7 @@
  * POST /tutor/generate (examples / practice questions from a reviewed pool,
  * topped up by the model) and teacher feedback on generated items.
  */
+import { createHash } from 'node:crypto';
 import type { FastifyInstance, FastifyReply } from 'fastify';
 import { suggestQuestions, t, topicConcepts, type ContentPackage, type DraftExample, type DraftQuizItem, type Lang } from '@bilig/content-model';
 import {
@@ -35,9 +36,10 @@ import type { AuthCtx } from '../http/auth-context.js';
 import { detectLang } from '../domain/lang.js';
 import { maskPii } from '../domain/masking.js';
 import { CitationParser, buildSystemPrompt, looksLikeInjection, refusalText, stopTopicHit, wrapQuestion, type QuestionContext } from '../domain/tutor.js';
-import { buildGeneratePrompt, generateSchema, payloadLine, payloadSignature, validateGenerated, type GenKind } from '../domain/generate.js';
+import { buildGeneratePrompt, generateSchema, payloadLine, payloadSignature, suitsGrade, validateGenerated, type GenKind } from '../domain/generate.js';
 import type { GeneratedRec } from '../repo/types.js';
-import type { ProviderChunk, ProviderMessage } from '../services/tutor-provider.js';
+import type { ProviderChunk, ProviderMessage, ProviderUsage } from '../services/tutor-provider.js';
+import { usageCostUsd } from '../config.js';
 import { getTutorSettings } from '../services/tutor-settings.js';
 
 /** Answers are 2–4 sentences (≈ 80–200 tokens in ky/ru): the cap stops a runaway answer, output costs 4× input. */
@@ -48,10 +50,10 @@ const GENERATE_MAX_TOKENS = 1200;
 const POOL_SCAN = 500;
 /** Votes are counted once per teacher (or IP for guests) per item, for this long. */
 const VOTE_TTL_SEC = 90 * 86400;
-const HISTORY_MESSAGES = 6;
+const HISTORY_MESSAGES = 2;
 /** History sent to the model: the latest turns, each trimmed, within a total budget (the question itself is not trimmed). */
-const HISTORY_CHARS_PER_MESSAGE = 600;
-const HISTORY_CHARS_TOTAL = 2400;
+const HISTORY_CHARS_PER_MESSAGE = 400;
+const HISTORY_CHARS_TOTAL = 1600;
 
 /** The latest turns that fit the budget, oldest first; long ones keep their beginning. */
 export function trimHistory(history: ProviderMessage[]): ProviderMessage[] {
@@ -134,15 +136,47 @@ const poolOrder = (a: GeneratedRec, b: GeneratedRec) =>
 
 function toExample(g: GeneratedRec): GeneratedExample {
   const p = g.payload as DraftExample;
-  return { id: g.id, title: p.title, text: p.text, ...(p.field ? { field: p.field } : {}), ...(p.conceptKey ? { conceptKey: p.conceptKey } : {}), ...(g.status === 'approved' ? { reviewed: true } : {}) };
+  return { id: g.id, title: p.title, text: p.text, ...(p.field ? { field: p.field } : {}), ...(p.conceptKey ? { conceptKey: p.conceptKey } : {}), ...(g.status === 'approved' ? { reviewed: true } : {}), ...(p.grades ? { grades: p.grades } : {}) };
 }
 function toQuiz(g: GeneratedRec): GeneratedQuizItem {
   const p = g.payload as DraftQuizItem;
-  return { id: g.id, prompt: p.prompt, options: p.options, answer: p.answer, explanation: p.explanation, ...(p.conceptKey ? { conceptKey: p.conceptKey } : {}), ...(g.status === 'approved' ? { reviewed: true } : {}) };
+  return { id: g.id, prompt: p.prompt, options: p.options, answer: p.answer, explanation: p.explanation, ...(p.conceptKey ? { conceptKey: p.conceptKey } : {}), ...(g.status === 'approved' ? { reviewed: true } : {}), ...(p.grades ? { grades: p.grades } : {}) };
+}
+
+/**
+ * v0.9.1: the pool a card draws from. A concept is often taught in several grades (speed in the 7th
+ * and the 8th): its items are shared by every topic on that concept whose grade is in the item's range;
+ * a topic-level item stays with its topic. Items without a range stay with the topic they were made for.
+ */
+function poolFilter(pkg: ContentPackage, conceptKey: string | null, kind: GenKind, lang: Lang) {
+  const filter = conceptKey ? { conceptKey, kind, lang } : { topicKey: pkg.topic.key, conceptKey: null, kind, lang };
+  const grade = pkg.course?.grade;
+  const fits = (g: GeneratedRec) => g.topicKey === pkg.topic.key || suitsGrade((g.payload as DraftExample).grades, grade);
+  return { filter, fits };
+}
+
+/** A question as the answer cache compares it: case, spacing and the closing punctuation don't matter. */
+export const normQuestion = (q: string): string =>
+  q
+    .toLocaleLowerCase()
+    .replace(/\s+/g, ' ')
+    .replace(/[\s?!.…,;:]+$/u, '')
+    .trim();
+
+/** Shared-answer key: the topic version (package hash), language, question, quick action and what is on screen. */
+function answerKey(pkg: ContentPackage, lang: Lang, question: string, intent: string, screen: Omit<QuestionContext, 'quote' | 'intent'>): string {
+  const ctx = [screen.focus?.key ?? '', screen.sample ?? '', screen.process?.title ?? '', screen.process?.step ?? '', screen.mode ?? ''];
+  return createHash('sha256').update(JSON.stringify([pkg.topic.key, pkg.manifest.hash, lang, question, intent, ...ctx])).digest('hex');
 }
 
 export function registerTutor(app: FastifyInstance, deps: Deps) {
   const { repo, limiter, clock, content, config } = deps;
+  /** One line per model call: tokens, how much hit the provider's prompt cache, and the cost. */
+  const logUsage = (req: FastifyRequest, purpose: string, topicKey: string, u: ProviderUsage) =>
+    req.log.info(
+      { purpose, topicKey, inputTokens: u.inputTokens, cachedInputTokens: u.cachedInputTokens ?? 0, outputTokens: u.outputTokens, costUsd: Number(usageCostUsd(u, config.tutorPrices).toFixed(6)) },
+      'tutor.usage',
+    );
 
   route(app, deps, 'tutorAsk', async ({ req, reply, auth, body, ip }) => {
     const settings = await getTutorSettings(repo, config);
@@ -179,10 +213,10 @@ export function registerTutor(app: FastifyInstance, deps: Deps) {
     const wantsJson = String(req.headers.accept ?? '').includes('application/json');
     const suggestions = () => suggestQuestions(pkg, lang, { conceptKey: screen.focus?.key, processKey: body.context?.processKey });
 
-    const record = async (answer: string, citations: string[], tokens: { inputTokens: number; outputTokens: number }, flagged: boolean) => {
+    const record = async (answer: string, citations: string[], tokens: ProviderUsage, flagged: boolean) => {
       const base = { threadId, topicKey: body.topicKey, schoolId, createdAt: clock.now() };
       const userText = quote ? `«${quote}» ${masked}` : masked;
-      await repo.addTutorMessage({ ...base, id: newId(), role: 'user', text: userText, citations: [], inputTokens: tokens.inputTokens, outputTokens: 0, flagged });
+      await repo.addTutorMessage({ ...base, id: newId(), role: 'user', text: userText, citations: [], inputTokens: tokens.inputTokens, cachedTokens: tokens.cachedInputTokens ?? 0, outputTokens: 0, flagged });
       await repo.addTutorMessage({ ...base, id: newId(), role: 'assistant', text: answer, citations, inputTokens: 0, outputTokens: tokens.outputTokens, flagged });
     };
 
@@ -199,7 +233,32 @@ export function registerTutor(app: FastifyInstance, deps: Deps) {
 
     // History comes from the server-side thread (already masked), never from client text.
     const history = (await repo.listTutorMessages({ threadId, limit: HISTORY_MESSAGES })).map<ProviderMessage>((m) => ({ role: m.role, text: m.text }));
-    const messages: ProviderMessage[] = [...trimHistory(history), { role: 'user', text: wrapQuestion(masked, { ...screen, quote, intent }) }];
+
+    // v0.9.1 shared answers: a self-contained question — the first of a thread, or a starter / suggested
+    // question (they never depend on history) — with no selection, on the same topic version, language and
+    // screen, is answered once for everyone; repeats cost no tokens.
+    const asked = normQuestion(masked);
+    const isStarter = [...(pkg.topic.starters ?? []).map((s) => t(s, lang)), ...suggestQuestions(pkg, lang, { count: 6 })].some((s) => normQuestion(s) === asked);
+    const selfContained = !quote && (history.length === 0 || isStarter);
+    const cacheKey = config.tutorAnswerCache && selfContained ? answerKey(pkg, lang, asked, intent, screen) : null;
+    const cached = cacheKey ? await repo.getTutorAnswer(cacheKey) : null;
+    if (cached && cacheKey) {
+      const replay = new CitationParser(validKeys);
+      const pieces = [...replay.push(cached.raw), ...replay.end()];
+      const answer = replay.answer.trim();
+      await repo.hitTutorAnswer(cacheKey);
+      await record(answer, replay.citations, { inputTokens: 0, outputTokens: 0 }, false);
+      logUsage(req, 'ask.cached', pkg.topic.key, { inputTokens: 0, outputTokens: 0 });
+      if (wantsJson) return { answer, citations: replay.citations, threadId };
+      const events: TutorStreamEvent[] = pieces.flatMap((p): TutorStreamEvent[] => {
+        if (p.type === 'text') return [{ type: 'token', text: p.text }];
+        if (p.type !== 'citation') return [];
+        const c = pkg.concepts.find((x) => x.key === p.key);
+        return [{ type: 'citation', conceptKey: p.key, ...(c ? { label: t(c.title, lang) } : {}) }];
+      });
+      return sendSse(reply, [...events, { type: 'done', threadId, usage: { inputTokens: 0, outputTokens: 0 } }]) as never;
+    }
+    const messages: ProviderMessage[] = [...(selfContained ? [] : trimHistory(history)), { role: 'user', text: wrapQuestion(masked, { ...screen, quote, intent }) }];
     const system = buildSystemPrompt(pkg, lang, settings.systemPrompts[lang]);
     const grounding = { pkg, lang, question: masked, intent, ...(screen.focus ? { conceptKey: screen.focus.key } : {}), ...(quote ? { quote } : {}) };
 
@@ -218,22 +277,31 @@ export function registerTutor(app: FastifyInstance, deps: Deps) {
     }
 
     const parser = new CitationParser(validKeys);
-    const usage = { inputTokens: 0, outputTokens: 0 };
+    const usage = { inputTokens: 0, outputTokens: 0, cachedInputTokens: 0 };
     let refused = false;
     let failed = false;
+    let modelText = '';
     const consume = (c: ProviderChunk) => {
-      if (c.type === 'text') return parser.push(c.text);
+      if (c.type === 'text') {
+        modelText += c.text;
+        return parser.push(c.text);
+      }
       if (c.type === 'usage') {
         usage.inputTokens += c.inputTokens;
         usage.outputTokens += c.outputTokens;
+        usage.cachedInputTokens += c.cachedInputTokens ?? 0;
       } else if (c.type === 'refusal') refused = true;
       return [];
     };
     const finish = async (tail: ReturnType<CitationParser['end']>) => {
       void tail;
       await limiter.add(budgetKey(clock.now()), usage.inputTokens + usage.outputTokens, 2 * 86400);
+      logUsage(req, 'ask', pkg.topic.key, usage);
       const answer = refused && !parser.answer.trim() ? refusalText(lang, 'refused') : parser.answer.trim();
-      await record(answer, parser.citations, usage, refused || failed || parser.noAnswer);
+      const flagged = refused || failed || parser.noAnswer;
+      await record(answer, parser.citations, usage, flagged);
+      // Only a complete, grounded answer is shared (never a refusal, an off-topic reply or a cut-off stream).
+      if (cacheKey && !flagged && answer) await repo.putTutorAnswer({ key: cacheKey, topicKey: pkg.topic.key, lang, raw: modelText, hits: 0, createdAt: clock.now() });
       return answer;
     };
 
@@ -306,9 +374,14 @@ export function registerTutor(app: FastifyInstance, deps: Deps) {
     const want = body.count;
     const exclude = new Set(body.exclude);
 
-    // 1. The pool: reviewed and well-rated items first; nothing already on screen.
-    const all = (await repo.listGenerated({ topicKey: pkg.topic.key, conceptKey, kind, lang }, { limit: POOL_SCAN })).items;
-    const picked = all.filter((g) => servable(g) && !exclude.has(g.id)).sort(poolOrder).slice(0, want);
+    // 1. The pool: reviewed and well-rated items first; nothing already on screen, and (v0.9.1)
+    //    nothing this user already got — the model is asked only when every pooled item was seen.
+    const { filter, fits } = poolFilter(pkg, conceptKey, kind, lang);
+    // Every grade's items count as «do not repeat»; only the ones that suit this grade are served.
+    const all = (await repo.listGenerated(filter, { limit: POOL_SCAN })).items;
+    const uid = auth.user?.id ?? null;
+    const seen = new Set(uid ? (await repo.listSeenGenerated(uid, filter, POOL_SCAN)).map((g) => g.id) : []);
+    const picked = all.filter((g) => fits(g) && servable(g) && !exclude.has(g.id) && !seen.has(g.id)).sort(poolOrder).slice(0, want);
 
     // 2. Top up from the model. Everything in the pool (dismissed included) and on the card is «avoid».
     let fresh: GeneratedRec[] = [];
@@ -322,14 +395,15 @@ export function registerTutor(app: FastifyInstance, deps: Deps) {
       try {
         const res = await provider.generate({
           model: settings.model,
-          system: buildSystemPrompt(pkg, lang, settings.systemPrompts[lang]),
+          system: buildSystemPrompt(pkg, lang, settings.systemPrompts[lang], 'full'),
           prompt: buildGeneratePrompt(kind, lang, need, focus, pkg, avoidLines),
           schema: generateSchema(kind),
           maxTokens: GENERATE_MAX_TOKENS,
           grounding: { pkg, lang, kind, count: need, avoid: [...avoidSigs], ...(conceptKey ? { conceptKey } : {}) },
         });
         await limiter.add(budgetKey(clock.now()), res.usage.inputTokens + res.usage.outputTokens, 2 * 86400);
-        const v = validateGenerated(kind, res.data, new Set(pkg.concepts.map((c) => c.key)), avoidSigs, need, lang);
+        logUsage(req, `generate.${kind}`, pkg.topic.key, res.usage);
+        const v = validateGenerated(kind, res.data, new Set(pkg.concepts.map((c) => c.key)), avoidSigs, need, lang, pkg.course?.grade);
         if (v.rejected) req.log.warn({ kind, topicKey: pkg.topic.key, rejected: v.rejected }, 'tutor.generate: items rejected by validation');
         const now = clock.now();
         fresh = [...v.examples, ...v.quiz].map((payload) => ({
@@ -360,12 +434,35 @@ export function registerTutor(app: FastifyInstance, deps: Deps) {
 
     const out = [...picked, ...fresh];
     await repo.countGenerated(out.map((g) => g.id), { served: 1 });
+    if (uid) await repo.markGeneratedSeen(uid, out.map((g) => g.id), clock.now());
     return {
       kind,
       lang,
       examples: kind === 'quiz' ? [] : out.map(toExample),
       quiz: kind === 'quiz' ? out.map(toQuiz) : [],
       exhausted: out.length < want,
+    };
+  });
+
+  // v0.9.1: what this user already got for a card — shown again after a reload. Read only and
+  // free (no model call), so it works while the assistant is switched off.
+  route(app, deps, 'tutorGeneratedSeen', async ({ auth, query }) => {
+    const pub = await content.getPublished(query.topicKey);
+    if (!pub) fail('not_found', { detail: 'topic' });
+    const verdict = await content.canOpen(auth, pub);
+    if (verdict !== 'ok') fail(verdict, { detail: 'license_required' });
+    const kind = query.kind as GenKind;
+    const { filter, fits } = poolFilter(pub.build.pkg, query.conceptKey ?? null, kind, query.lang);
+    const uid = auth.user?.id ?? null;
+    const mine = uid ? (await repo.listSeenGenerated(uid, filter, POOL_SCAN)).filter((g) => fits(g) && servable(g)) : [];
+    const ids = new Set(mine.map((g) => g.id));
+    const unseen = uid ? (await repo.listGenerated(filter, { limit: POOL_SCAN })).items.filter((g) => fits(g) && servable(g) && !ids.has(g.id)).length : 0;
+    return {
+      kind,
+      lang: query.lang,
+      examples: kind === 'quiz' ? [] : mine.map(toExample),
+      quiz: kind === 'quiz' ? mine.map(toQuiz) : [],
+      unseen,
     };
   });
 

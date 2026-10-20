@@ -11,7 +11,10 @@ import { DevProvider } from '../../services/tutor-dev-provider.js';
 import { createTutorProvider } from '../../bootstrap.js';
 import { loadConfig } from '../../config.js';
 import { budgetKey } from '../tutor.js';
-import { API, json, makeSchoolWorld, makeTestApp, type TestCtx } from '../../test/helpers.js';
+import { gradeRange, suitsGrade } from '../../domain/generate.js';
+import { newId } from '../../ids.js';
+import type { GeneratedRec } from '../../repo/types.js';
+import { API, json, makeSchoolWorld, makeTestApp, makeUser, type TestCtx } from '../../test/helpers.js';
 import { makeAdminWorld } from '../../test/admin-world.js';
 
 let t: TestCtx;
@@ -177,6 +180,133 @@ describe('POST /tutor/generate', () => {
     expect(b.statusCode).toBe(200);
     expect(json(b)).toMatchObject({ exhausted: true, quiz: [{ id: a.quiz[0].id }] });
     expect((await gen({ count: 1, exclude: [a.quiz[0].id] })).statusCode).toBe(503);
+  });
+});
+
+describe('generated items remembered per teacher (v0.9.1)', () => {
+  const seen = (query: string, token?: string) => t.inject({ method: 'GET', url: `${API}/tutor/generated?topicKey=demo-cell&lang=ru&${query}`, token });
+
+  it('one item per click: unseen pool items first, the model only when the teacher has seen them all; a reload shows them again', async () => {
+    let round = 0;
+    const p = new MockProvider(undefined, () => QUIZ(1, `Раунд ${++round}`));
+    t = await makeTestApp({ tutor: p });
+    const w = await makeSchoolWorld(t.deps);
+    const other = await makeUser(t.deps, { role: 'teacher', scopeId: w.school.id });
+    // Teacher A: two clicks → two model calls (the pool was empty).
+    const a1 = json(await gen({ count: 1 }, w.teacher.token)).quiz[0];
+    const a2 = json(await gen({ count: 1 }, w.teacher.token)).quiz[0];
+    expect(a1.id).not.toBe(a2.id);
+    expect(p.generateCalls).toHaveLength(2);
+    // Teacher B gets both from the pool, one per click, without a model call; the third click asks the model.
+    const b1 = json(await gen({ count: 1 }, other.token)).quiz[0];
+    const b2 = json(await gen({ count: 1 }, other.token)).quiz[0];
+    expect(new Set([b1.id, b2.id])).toEqual(new Set([a1.id, a2.id]));
+    expect(p.generateCalls).toHaveLength(2);
+    const b3 = json(await gen({ count: 1 }, other.token)).quiz[0];
+    expect(b3.prompt).toMatch(/^Раунд 3/);
+    expect(p.generateCalls).toHaveLength(3);
+    // After a reload A sees what A got, in order, and that one more is waiting in the pool (free).
+    const mineA = json(await seen('kind=quiz', w.teacher.token));
+    expect(mineA.quiz.map((q: { id: string }) => q.id)).toEqual([a1.id, a2.id]);
+    expect(mineA.unseen).toBe(1);
+    expect(json(await gen({ count: 1 }, w.teacher.token)).quiz[0].id).toBe(b3.id);
+    expect(p.generateCalls).toHaveLength(3);
+    // Other kinds / languages are separate; a guest has no history.
+    expect(json(await seen('kind=simple', w.teacher.token))).toMatchObject({ examples: [], unseen: 0 });
+    expect(json(await seen('kind=quiz'))).toMatchObject({ quiz: [], unseen: 0 });
+  });
+
+  it('a reported item leaves the teacher\'s history', async () => {
+    t = await makeTestApp({ tutor: new MockProvider(undefined, () => QUIZ(1)) });
+    const w = await makeSchoolWorld(t.deps);
+    const q = json(await gen({ count: 1 }, w.teacher.token)).quiz[0];
+    expect(json(await seen('kind=quiz', w.teacher.token)).quiz).toHaveLength(1);
+    await vote(q.id, { vote: 'bad', reason: 'wrong' }, w.teacher.token);
+    expect(json(await seen('kind=quiz', w.teacher.token)).quiz).toHaveLength(0);
+  });
+});
+
+describe('grade ranges: one concept, several grades (v0.9.1)', () => {
+  it('the range always holds the topic grade, at most 2 grades either way, within 1–12', () => {
+    expect(gradeRange(6, 8, 7)).toEqual({ from: 6, to: 8 });
+    expect(gradeRange(9, 11, 7)).toEqual({ from: 7, to: 9 }); // must include 7, at most +2
+    expect(gradeRange(1, 12, 7)).toEqual({ from: 5, to: 9 });
+    expect(gradeRange('8', '6', 7)).toEqual({ from: 6, to: 8 }); // strings, swapped
+    expect(gradeRange(undefined, null, 12)).toEqual({ from: 11, to: 12 });
+    expect(gradeRange('x', 0, 1)).toEqual({ from: 1, to: 2 });
+    expect(suitsGrade({ from: 6, to: 8 }, 8)).toBe(true);
+    expect(suitsGrade({ from: 6, to: 8 }, 9)).toBe(false);
+    expect(suitsGrade(undefined, 8)).toBe(false);
+  });
+
+  it('a concept item made in another grade is served when this grade is in its range; the model writes for the grade and the range is saved', async () => {
+    const p = new MockProvider(undefined, () => ({ items: [{ ...QUIZ(1).items[0], prompt: 'Новый вопрос про ядро?', gradeFrom: 7, gradeTo: 12 }] }));
+    t = await makeTestApp({ tutor: p });
+    const w = await makeSchoolWorld(t.deps);
+    const item = (grades: { from: number; to: number } | undefined, prompt: string): GeneratedRec => ({
+      id: newId(), kind: 'quiz', topicKey: 'other-topic', conceptKey: 'bio.nucleus', lang: 'ru',
+      payload: { ...QUIZ(1).items[0], prompt, ...(grades ? { grades } : {}) }, signature: prompt, status: 'new', good: 0, bad: 0, reasons: {}, served: 0,
+      createdAt: new Date(), reviewedAt: null, reviewedBy: null, promotedTo: null,
+    });
+    const fits = item({ from: 6, to: 8 }, 'Для 6–8 классов?');
+    await t.repo.addGenerated([fits, item({ from: 9, to: 11 }, 'Для 9–11 классов?'), item(undefined, 'Без классов?')]);
+    // demo-cell is grade 7: only the 6–8 item from the other topic suits it.
+    const first = json(await gen({ conceptKey: 'bio.nucleus', count: 1 }, w.teacher.token));
+    expect(first.quiz[0]).toMatchObject({ id: fits.id, grades: { from: 6, to: 8 } });
+    expect(p.generateCalls).toHaveLength(0);
+    // Seen it → the next click asks the model, for grade 7, and the 9–11 / no-range items are only «do not repeat».
+    const next = json(await gen({ conceptKey: 'bio.nucleus', count: 1 }, w.teacher.token));
+    expect(next.quiz[0]).toMatchObject({ prompt: 'Новый вопрос про ядро?', grades: { from: 7, to: 9 } });
+    expect(p.generateCalls[0].prompt).toContain('grade 7');
+    expect(p.generateCalls[0].prompt).toContain('Для 9–11 классов?');
+  });
+});
+
+describe('shared answers to self-contained questions (v0.9.1)', () => {
+  const ANSWER = 'Ядро [[bio.nucleus]] хранит ДНК клетки.';
+  it('the first question is answered once for everyone: a repeat (any case / punctuation) costs no model call, citations replay', async () => {
+    const p = new MockProvider(() => text(ANSWER));
+    t = await makeTestApp({ tutor: p });
+    const a = json(await ask({ question: 'Что хранит ядро?' }));
+    expect(a.citations).toEqual(['bio.nucleus']);
+    expect(p.calls).toHaveLength(1);
+    const b = json(await ask({ question: '  что хранит ЯДРО  ' }));
+    expect(b).toMatchObject({ answer: a.answer, citations: ['bio.nucleus'] });
+    expect(p.calls).toHaveLength(1);
+    // SSE replay: tokens and the citation event, then done with zero usage.
+    const sse = await t.inject({ method: 'POST', url: `${API}/tutor/ask`, payload: { topicKey: 'demo-cell', lang: 'ru', question: 'Что хранит ядро?' } });
+    const { events } = parseSseEvents(sse.body);
+    expect(events.some((e) => e.type === 'citation' && (e as { conceptKey: string }).conceptKey === 'bio.nucleus')).toBe(true);
+    expect(events.at(-1)).toMatchObject({ type: 'done', usage: { inputTokens: 0, outputTokens: 0 } });
+    expect(p.calls).toHaveLength(1);
+  });
+
+  it('not shared: a follow-up in a thread, a question with a selection, another screen focus, an off-topic reply', async () => {
+    const p = new MockProvider(() => text(ANSWER));
+    t = await makeTestApp({ tutor: p });
+    const first = json(await ask({ question: 'Что хранит ядро?' }));
+    await ask({ question: 'А зачем?', threadId: first.threadId });
+    await ask({ question: 'А зачем?', threadId: first.threadId });
+    expect(p.calls).toHaveLength(3);
+    await ask({ question: 'Что хранит ядро?', context: { quote: { text: 'Ядро хранит ДНК' } } });
+    await ask({ question: 'Что хранит ядро?', conceptKey: 'bio.nucleus' });
+    expect(p.calls).toHaveLength(5);
+    // The follow-up in the thread got one Q/A of history (2 messages), not more.
+    expect(p.calls[2].messages).toHaveLength(3);
+  });
+
+  it('a refusal / no-answer is never shared; the cache can be switched off', async () => {
+    const p = new MockProvider(() => text('Это вне темы. [[no-answer]]'));
+    t = await makeTestApp({ tutor: p });
+    await ask({ question: 'Кто выиграл матч?' });
+    await ask({ question: 'Кто выиграл матч?' });
+    expect(p.calls).toHaveLength(2);
+    const off = new MockProvider(() => text(ANSWER));
+    await t.close();
+    t = await makeTestApp({ tutor: off, config: { tutorAnswerCache: false } });
+    await ask({ question: 'Что хранит ядро?' });
+    await ask({ question: 'Что хранит ядро?' });
+    expect(off.calls).toHaveLength(2);
   });
 });
 

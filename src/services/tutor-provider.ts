@@ -49,12 +49,19 @@ export interface GenerateRequest {
 export interface GenerateResult {
   /** Parsed JSON (validated again by the caller), or null when the model declined. */
   data: unknown;
-  usage: { inputTokens: number; outputTokens: number };
+  usage: ProviderUsage;
+}
+
+/** Tokens of one model call. `cachedInputTokens` (part of `inputTokens`) were a provider prompt-cache hit — billed far lower. */
+export interface ProviderUsage {
+  inputTokens: number;
+  outputTokens: number;
+  cachedInputTokens?: number;
 }
 
 export type ProviderChunk =
   | { type: 'text'; text: string }
-  | { type: 'usage'; inputTokens: number; outputTokens: number }
+  | ({ type: 'usage' } & ProviderUsage)
   /** The model (or its safety layer) declined; the route answers with a polite refusal. */
   | { type: 'refusal' };
 
@@ -124,6 +131,7 @@ export class AnthropicProvider implements TutorProvider {
         inputTokens:
           (final.usage.input_tokens ?? 0) + (final.usage.cache_read_input_tokens ?? 0) + (final.usage.cache_creation_input_tokens ?? 0),
         outputTokens: final.usage.output_tokens ?? 0,
+        cachedInputTokens: final.usage.cache_read_input_tokens ?? 0,
       };
     } catch (err) {
       throw providerError(err);

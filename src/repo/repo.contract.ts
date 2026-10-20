@@ -760,6 +760,36 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         expect(await repo.getGenerated(b.id)).toMatchObject({ served: 1, bad: 0, reasons: {} });
       });
 
+      it('generated content seen by a user: first time kept, filters, order (v0.9.1)', async () => {
+        const g = (patch: Partial<GeneratedRec> = {}): GeneratedRec => ({
+          id: newId(), kind: 'simple', topicKey: 'speed', conceptKey: null, lang: 'ky', payload: { title: 't', text: 'x' },
+          signature: newId(), status: 'new', good: 0, bad: 0, reasons: {}, served: 0, createdAt: T0, reviewedAt: null, reviewedBy: null, promotedTo: null, ...patch,
+        });
+        const [a, b, c] = [g(), g(), g({ lang: 'ru' })];
+        await repo.addGenerated([a, b, c]);
+        const me = newId();
+        const other = newId();
+        await repo.markGeneratedSeen(me, [b.id], at(1));
+        await repo.markGeneratedSeen(me, [a.id, b.id, c.id], at(2));
+        await repo.markGeneratedSeen(me, [], at(3));
+        await repo.markGeneratedSeen(other, [a.id], at(1));
+        expect((await repo.listSeenGenerated(me, { topicKey: 'speed', conceptKey: null, kind: 'simple', lang: 'ky' }, 10)).map((x) => x.id)).toEqual([b.id, a.id]);
+        expect((await repo.listSeenGenerated(me, { lang: 'ru' }, 10)).map((x) => x.id)).toEqual([c.id]);
+        expect(await repo.listSeenGenerated(me, {}, 1)).toHaveLength(1);
+        expect((await repo.listSeenGenerated(other, {}, 10)).map((x) => x.id)).toEqual([a.id]);
+        expect(await repo.listSeenGenerated(newId(), {}, 10)).toEqual([]);
+      });
+
+      it('shared tutor answers: first write wins, hits are counted (v0.9.1)', async () => {
+        const a = { key: 'k1', topicKey: 'speed', lang: 'ky' as const, raw: 'Ылдамдык [[phys.speed]]', hits: 0, createdAt: T0 };
+        expect(await repo.getTutorAnswer('k1')).toBeNull();
+        await repo.putTutorAnswer(a);
+        await repo.putTutorAnswer({ ...a, raw: 'other' });
+        await Promise.all([repo.hitTutorAnswer('k1'), repo.hitTutorAnswer('k1')]);
+        await repo.hitTutorAnswer('missing');
+        expect(await repo.getTutorAnswer('k1')).toEqual({ ...a, hits: 2 });
+      });
+
       it('audit append + filters + pagination', async () => {
         const actor = newId();
         for (const action of ['auth.login', 'content.publish', 'auth.login']) {

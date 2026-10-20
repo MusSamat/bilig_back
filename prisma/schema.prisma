@@ -667,6 +667,8 @@ model TutorMessage {
   text         String
   citations    String[]
   inputTokens  Int
+  /// v0.9.1: part of inputTokens served from the provider's prompt cache.
+  cachedTokens Int         @default(0)
   outputTokens Int
   flagged      Boolean
   topicKey     String
@@ -676,6 +678,19 @@ model TutorMessage {
 
   @@index([threadId])
   @@index([createdAt])
+}
+
+/// v0.9.1: shared answers to self-contained questions (a starter, or the first question of a thread):
+/// the next teacher who asks the same thing on the same topic version gets it without a model call.
+model TutorAnswer {
+  key       String   @id
+  topicKey  String
+  lang      String
+  raw       String
+  hits      Int      @default(0)
+  createdAt DateTime @db.Timestamptz(3)
+
+  @@index([topicKey])
 }
 
 /// v0.4.0: pool of AI-generated examples / practice questions (POST /tutor/generate) and their review state.
@@ -696,9 +711,21 @@ model GeneratedContent {
   reviewedAt DateTime? @db.Timestamptz(3)
   reviewedBy String?   @db.Uuid
   promotedTo String?
+  seenBy     GeneratedSeen[]
 
   @@index([topicKey, kind, lang])
   @@index([status])
+}
+
+/// v0.9.1: which generated items a user already got (a card shows them again; «Ещё» brings an unseen one).
+model GeneratedSeen {
+  userId      String           @db.Uuid
+  generatedId String           @db.Uuid
+  seenAt      DateTime         @db.Timestamptz(3)
+  generated   GeneratedContent @relation(fields: [generatedId], references: [id], onDelete: Cascade)
+
+  @@id([userId, generatedId])
+  @@index([userId, seenAt])
 }
 
 // ---------------------------------------------------------------------------
