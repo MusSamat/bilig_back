@@ -7,7 +7,7 @@ import PizZip from 'pizzip';
 import { loadContentDir } from '../../services/seed.js';
 import { DocxError, readDocx, unzipEntry, DEFAULT_DOCX_LIMITS, type DocxTable } from '../docx-read.js';
 import { lessonType } from '../lesson-type.js';
-import { buildTopicIndex, matchTitle, applyMatches, similarity, tokens, wordMatch, MATCH_THRESHOLD } from '../match.js';
+import { buildTopicIndex, matchTitle, applyMatches, similarity, tokens, wordMatch, wordWeight, MATCH_THRESHOLD } from '../match.js';
 import { classLabel, dateTokens, detectLang, findDeclaredHours, findTeacher, findYear, lessonNumbers, parseKtp, splitHours, splitSection, subjectKeyOf } from '../parse.js';
 import { buildPlanContent, STAGE_TIMES, PLAN_TEXTS, type PlanInput } from '../plan-content.js';
 import { PLAN_LABELS, renderPlansDocx } from '../plan-docx.js';
@@ -502,10 +502,22 @@ describe('topic matching', () => {
     expect(m('Контрольная работа по теме «Скорость»', 'phys')?.topicKey).toBe('speed');
   });
 
+  it('the plan grade decides between grades; a word on the same root is not the same word (Physics 7)', () => {
+    expect(m('Ылдамдык', 'phys', 7)?.topicKey).toBe('phys7-uniform-speed'); // not «Ылдамдануу» (acceleration)
+    expect(m('Ылдамдык', 'phys', 8)?.topicKey).toBe('speed');
+    expect(m('Ылдамдануу', 'phys', 7)?.topicKey).toBe('phys7-acceleration');
+    expect(m('Сила тяжести', 'phys', 7)?.topicKey).toBe('phys7-gravity-weight');
+    expect(m('Архимед күчү', 'phys', 7)?.topicKey).toBe('phys7-archimedes');
+    expect(m('Рычаг', 'phys', 7)?.topicKey).toBe('phys7-lever');
+    expect(wordWeight('ылдамдык', 'ылдамдыгы')).toBeCloseTo(7 / 8);
+    expect(wordWeight('ылдамдык', 'ылдамдануу')).toBe(0);
+    expect(wordWeight('атом', 'атомдун')).toBe(1);
+  });
+
   it('other subjects need a stronger match; a teacher link is never overridden', () => {
     expect(m('Строение атома', 'math')).toEqual({ topicKey: 'atom-structure', score: 1 });
-    expect(m('Сила тяжести', 'math')).toBeNull(); // concept-only hit, other subject
-    expect(m('Сила тяжести', 'phys')?.topicKey).toBe('forces');
+    expect(m('Сила реакции опоры', 'math')).toBeNull(); // concept-only hit, other subject
+    expect(m('Сила реакции опоры', 'phys')?.topicKey).toBe('forces');
     const rows = [
       { index: 1, title: 'Ылдамдык', type: 'new' as const, topicKey: 'water', match: { auto: false, score: 1 } },
       { index: 2, title: 'Ылдамдык', type: 'new' as const, topicKey: null },
