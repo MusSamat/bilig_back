@@ -15,6 +15,8 @@ import type {
   AttemptRec,
   AuditRec,
   AuthTokenRec,
+  PhoneOtpRec,
+  PhoneOtpPurpose,
   BuildRec,
   ClassRec,
   ConsentRec,
@@ -203,6 +205,20 @@ const mapUser = (r: Row): UserRec => ({
   updatedAt: r.updatedAt,
   deletedAt: r.deletedAt,
   signup: (r.signup as SignupRec | null) ?? null,
+  phone: r.phone ?? null,
+  phoneVerifiedAt: r.phoneVerifiedAt ?? null,
+});
+const mapPhoneOtp = (r: Row): PhoneOtpRec => ({
+  id: r.id,
+  phone: r.phone,
+  purpose: r.purpose,
+  kind: r.kind,
+  hash: r.hash,
+  locale: r.locale,
+  attempts: r.attempts,
+  createdAt: r.createdAt,
+  expiresAt: r.expiresAt,
+  usedAt: r.usedAt,
 });
 const mapCred = (r: Row): CredentialRec => ({ userId: r.userId, type: r.type, secretHash: r.secretHash, failedCount: r.failedCount, lockedUntil: r.lockedUntil, updatedAt: r.updatedAt });
 const mapSession = (r: Row): SessionRec => ({
@@ -500,6 +516,10 @@ export class PrismaRepository implements Repository {
     const r = await this.db.user.findUnique({ where: { email: email.toLowerCase() } });
     return r ? mapUser(r) : null;
   }
+  async getUserByPhone(phone: string) {
+    const r = await this.db.user.findUnique({ where: { phone } });
+    return r ? mapUser(r) : null;
+  }
   async updateUser(id: Id, patch: Partial<UserRec>) {
     const { id: _i, createdAt: _c, signup, ...data } = patch;
     try {
@@ -633,6 +653,36 @@ export class PrismaRepository implements Repository {
   async findAuthToken(tokenHash: string, purpose: AuthTokenRec['purpose'], now: Date) {
     const r = await this.db.authToken.findFirst({ where: { tokenHash, purpose, usedAt: null, expiresAt: { gt: now } } });
     return r ? mapAuthToken(r) : null;
+  }
+
+  async createPhoneOtp(o: PhoneOtpRec) {
+    await this.db.phoneOtp.create({ data: o });
+  }
+  async latestPhoneOtp(phone: string, purpose: PhoneOtpPurpose, kind: PhoneOtpRec['kind']) {
+    const r = await this.db.phoneOtp.findFirst({ where: { phone, purpose, kind }, orderBy: [{ createdAt: 'desc' }, { id: 'desc' }] });
+    return r ? mapPhoneOtp(r) : null;
+  }
+  async revokePhoneOtps(phone: string, purpose: PhoneOtpPurpose, kind: PhoneOtpRec['kind'], now: Date) {
+    return (await this.db.phoneOtp.updateMany({ where: { phone, purpose, kind, usedAt: null }, data: { usedAt: now } })).count;
+  }
+  async failPhoneOtpAttempt(id: Id, max: number, now: Date) {
+    const rows = await this.db.$queryRaw<{ attempts: number }[]>`
+      UPDATE "PhoneOtp"
+         SET "attempts" = "attempts" + 1,
+             "usedAt" = CASE WHEN "attempts" + 1 >= ${max}::int THEN ${now}::timestamptz ELSE NULL END
+       WHERE "id" = ${id}::uuid AND "usedAt" IS NULL
+   RETURNING "attempts"`;
+    return rows[0]?.attempts ?? 0;
+  }
+  async findPhoneOtp(hash: string, kind: PhoneOtpRec['kind'], now: Date) {
+    const r = await this.db.phoneOtp.findFirst({ where: { hash, kind, usedAt: null, expiresAt: { gt: now } } });
+    return r ? mapPhoneOtp(r) : null;
+  }
+  async consumePhoneOtp(hash: string, kind: PhoneOtpRec['kind'], now: Date) {
+    const res = await this.db.phoneOtp.updateMany({ where: { hash, kind, usedAt: null, expiresAt: { gt: now } }, data: { usedAt: now } });
+    if (res.count !== 1) return null;
+    const r = await this.db.phoneOtp.findUnique({ where: { hash } });
+    return r ? mapPhoneOtp(r) : null;
   }
 
   async createInvite(i: Omit<InviteRec, 'revokedAt'> & { revokedAt?: Date | null }) {

@@ -66,6 +66,10 @@ export interface UserRec {
   deletedAt: Date | null;
   /** v0.6.0: pending self-registration details (null once provisioned / when absent). */
   signup?: SignupRec | null;
+  /** v0.7.0: WhatsApp number in E.164 (`+996XXXXXXXXX`), unique; repos return null when unset. */
+  phone?: string | null;
+  /** v0.7.0: when a one-time code proved the number; repos return null when unset. */
+  phoneVerifiedAt?: Date | null;
 }
 
 /** v0.6.0: what a teacher entered at sign-up, kept until the e-mail is confirmed. */
@@ -122,6 +126,28 @@ export interface AuthTokenRec {
   usedAt: Date | null;
   /** v0.6.0: wrong tries (e-mail codes); 0 when absent. */
   attempts?: number;
+}
+
+/** v0.7.0: what a phone one-time code / token is for. */
+export type PhoneOtpPurpose = 'register' | 'reset';
+/**
+ * v0.7.0: a phone-keyed one-time secret. `code` rows hold the 6-digit code sent
+ * to WhatsApp (hash bound to the row id); `token` rows the opaque token a
+ * verified code is exchanged for (sha256). No user: a registration has none yet.
+ */
+export interface PhoneOtpRec {
+  id: Id;
+  /** E.164. */
+  phone: string;
+  purpose: PhoneOtpPurpose;
+  kind: 'code' | 'token';
+  hash: string;
+  /** The language the start request asked for (messages, the new account). */
+  locale: Lang;
+  attempts: number;
+  createdAt: Date;
+  expiresAt: Date;
+  usedAt: Date | null;
 }
 
 export interface InviteRec {
@@ -627,7 +653,12 @@ export interface Repository {
   createUser(u: Omit<UserRec, 'createdAt' | 'updatedAt' | 'deletedAt'>): Promise<UserRec | 'conflict'>;
   getUser(id: Id): Promise<UserRec | null>;
   getUserByEmail(email: string): Promise<UserRec | null>;
-  updateUser(id: Id, patch: Partial<Pick<UserRec, 'displayName' | 'locale' | 'status' | 'emailVerifiedAt' | 'deletedAt' | 'signup'>>): Promise<UserRec | null>;
+  /** v0.7.0: by the E.164 number (exact match). */
+  getUserByPhone(phone: string): Promise<UserRec | null>;
+  updateUser(
+    id: Id,
+    patch: Partial<Pick<UserRec, 'displayName' | 'locale' | 'status' | 'emailVerifiedAt' | 'deletedAt' | 'signup' | 'phone' | 'phoneVerifiedAt'>>,
+  ): Promise<UserRec | null>;
   listUsers(filter: UserFilter, page: PageReq): Promise<PageRes<UserRec>>;
   getUsers(ids: readonly Id[]): Promise<UserRec[]>;
 
@@ -669,6 +700,19 @@ export interface Repository {
    * the token is burned (marked used). Returns the new attempt count (0 when unknown/used).
    */
   failAuthTokenAttempt(id: Id, max: number, now: Date): Promise<number>;
+
+  // v0.7.0: phone one-time codes and tokens
+  createPhoneOtp(o: PhoneOtpRec): Promise<void>;
+  /** The most recently issued row for the number, purpose and kind (any state; latest `createdAt`, then id). */
+  latestPhoneOtp(phone: string, purpose: PhoneOtpPurpose, kind: PhoneOtpRec['kind']): Promise<PhoneOtpRec | null>;
+  /** Marks every unused row of the number, purpose and kind used. Returns the count. */
+  revokePhoneOtps(phone: string, purpose: PhoneOtpPurpose, kind: PhoneOtpRec['kind'], now: Date): Promise<number>;
+  /** Atomically counts a wrong try against an unused row; burns it (marks used) at `max`. Returns the new count (0 when unknown/used). */
+  failPhoneOtpAttempt(id: Id, max: number, now: Date): Promise<number>;
+  /** The row with this hash and kind when it is unexpired and unused — without consuming it. */
+  findPhoneOtp(hash: string, kind: PhoneOtpRec['kind'], now: Date): Promise<PhoneOtpRec | null>;
+  /** Marks the row with this hash and kind used and returns it, or null if unknown/expired/used. */
+  consumePhoneOtp(hash: string, kind: PhoneOtpRec['kind'], now: Date): Promise<PhoneOtpRec | null>;
 
   createInvite(i: Omit<InviteRec, 'revokedAt'> & { revokedAt?: Date | null }): Promise<void>;
   getInvite(id: Id): Promise<InviteRec | null>;

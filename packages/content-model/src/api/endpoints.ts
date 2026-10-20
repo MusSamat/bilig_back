@@ -70,6 +70,11 @@ export const ENDPOINTS = {
   refresh: e({ method: 'POST', path: '/auth/refresh', auth: null, body: EmptySchema, response: auth.TokenResponseSchema }),
   logout: e({ method: 'POST', path: '/auth/logout', auth: 'session', body: EmptySchema, response: OkSchema }),
   logoutAll: e({ method: 'POST', path: '/auth/logout-all', auth: 'session', body: EmptySchema, response: OkSchema }),
+  /** v0.7.0: phone-first accounts (WhatsApp code). */
+  otpStart: e({ method: 'POST', path: '/auth/otp/start', auth: null, body: auth.OtpStartRequestSchema, response: auth.OtpStartResponseSchema }),
+  otpVerify: e({ method: 'POST', path: '/auth/otp/verify', auth: null, body: auth.OtpVerifyRequestSchema, response: auth.OtpVerifyResponseSchema }),
+  registerComplete: e({ method: 'POST', path: '/auth/register/complete', auth: null, body: auth.RegisterCompleteRequestSchema, response: auth.TokenResponseSchema }),
+  passwordSet: e({ method: 'POST', path: '/auth/password/set', auth: null, body: auth.PasswordSetRequestSchema, response: auth.TokenResponseSchema }),
   passwordForgot: e({ method: 'POST', path: '/auth/password/forgot', auth: null, body: auth.PasswordForgotRequestSchema, response: OkSchema }),
   passwordReset: e({ method: 'POST', path: '/auth/password/reset', auth: null, body: auth.PasswordResetRequestSchema, response: OkSchema }),
   /** v0.6.0: confirm self-registration with the e-mail code (signs in); resend the code. */

@@ -43,11 +43,37 @@ export const PinSchema = z.string().regex(/^\d{4,6}$/);
 export const TotpSchema = z.string().regex(/^\d{6}$/);
 
 // POST /auth/login
-export const LoginRequestSchema = z.object({
-  email: EmailSchema,
-  password: z.string().min(1).max(256),
-  totp: TotpSchema.optional(),
-});
+/**
+ * v0.7.0: a Kyrgyz mobile number in E.164 (`+996XXXXXXXXX`), the teacher's
+ * WhatsApp. Input is normalized: spaces, dashes and brackets are dropped;
+ * `0555123456` and `996555123456` become `+996555123456`.
+ */
+export function normalizeKgPhone(input: string): string {
+  const digits = input.replace(/[\s\-().]/g, '');
+  if (/^0\d{9}$/.test(digits)) return `+996${digits.slice(1)}`;
+  if (/^996\d{9}$/.test(digits)) return `+${digits}`;
+  if (/^\d{9}$/.test(digits)) return `+996${digits}`;
+  return digits;
+}
+export const PhoneSchema = z
+  .string()
+  .max(32)
+  .transform(normalizeKgPhone)
+  .pipe(z.string().regex(/^\+996\d{9}$/, 'Expected a Kyrgyz mobile number: +996 and 9 digits'));
+
+/** «+996 555 12 34 56» for display. */
+export const formatKgPhone = (e164: string): string =>
+  /^\+996\d{9}$/.test(e164) ? `+996 ${e164.slice(4, 7)} ${e164.slice(7, 9)} ${e164.slice(9, 11)} ${e164.slice(11)}` : e164;
+
+/** v0.7.0: sign in with the WhatsApp number (teachers) or the e-mail (staff, admin); exactly one. */
+export const LoginRequestSchema = z
+  .object({
+    email: EmailSchema.optional(),
+    phone: PhoneSchema.optional(),
+    password: z.string().min(1).max(256),
+    totp: TotpSchema.optional(),
+  })
+  .refine((b) => !!b.email !== !!b.phone, { message: 'Give either email or phone', path: ['phone'] });
 export type LoginRequest = z.infer<typeof LoginRequestSchema>;
 
 export const UserKindSchema = z.enum(['adult', 'student']);
@@ -146,6 +172,10 @@ export const MeResponseSchema = z.object({
   /** `grantedPermissions(principal)` — the FE hides buttons from this list. */
   permissions: z.array(PermissionSchema),
   totpEnabled: z.boolean().optional(),
+  /** v0.7.0: the verified WhatsApp number (E.164). */
+  phone: z.string().optional(),
+  /** v0.7.0: what a self-registered teacher still has to fill in the cabinet (all true = done). */
+  setup: z.object({ name: z.boolean(), school: z.boolean(), teaching: z.boolean() }).optional(),
   /** v0.6.0: subjects and grades the teacher teaches (self-registered teachers). */
   teaching: TeachingSchema.optional(),
   /** v0.6.0: active licences of the user's schools (teachers, school admins). */
@@ -160,6 +190,9 @@ export const MePatchRequestSchema = z
     locale: LangSchema,
     /** v0.6.0: a self-registered teacher changes what they teach; the trial licence follows. */
     teaching: TeachingSchema,
+    /** v0.7.0: a self-registered teacher names their school (own school only). */
+    schoolName: z.string().trim().min(2).max(200),
+    region: z.string().trim().max(100),
   })
   .partial();
 export type MePatchRequest = z.infer<typeof MePatchRequestSchema>;
@@ -219,3 +252,45 @@ export const EmailVerifyRequestSchema = z.object({ token: z.string().min(1).max(
 export const EnrollmentTokenSchema = z.string().min(20).max(200);
 export const TotpEnrollSetupRequestSchema = z.object({ enrollmentToken: EnrollmentTokenSchema });
 export const TotpEnrollVerifyRequestSchema = z.object({ enrollmentToken: EnrollmentTokenSchema, code: TotpSchema });
+
+// ---------------------------------------------------------------------------
+// v0.7.0 (additive): phone-first accounts. A one-time code goes to the
+// number's WhatsApp; verifying it gives a short-lived token that completes
+// the registration or sets a new password (both sign in).
+//   register: POST /auth/otp/start {phone, purpose:'register'} → POST /auth/otp/verify
+//             → POST /auth/register/complete {token, password}
+//   reset:    POST /auth/otp/start {phone, purpose:'reset'} → POST /auth/otp/verify
+//             → POST /auth/password/set {token, password}
+// ---------------------------------------------------------------------------
+export const OTP_PURPOSES = ['register', 'reset'] as const;
+export const OtpPurposeSchema = z.enum(OTP_PURPOSES);
+export type OtpPurpose = z.infer<typeof OtpPurposeSchema>;
+
+export const OtpStartRequestSchema = z.object({ phone: PhoneSchema, purpose: OtpPurposeSchema, locale: LangSchema.optional() });
+export type OtpStartRequest = z.infer<typeof OtpStartRequestSchema>;
+
+/** Same answer whether or not the number has an account (no enumeration). */
+export const OtpStartResponseSchema = z.object({
+  ok: z.literal(true),
+  channel: z.enum(['whatsapp']),
+  /** Seconds the code stays valid. */
+  expiresIn: z.number().int().positive(),
+  /** Seconds before another code may be requested. */
+  resendAfter: z.number().int().min(0),
+});
+export type OtpStartResponse = z.infer<typeof OtpStartResponseSchema>;
+
+export const OtpVerifyRequestSchema = z.object({ phone: PhoneSchema, purpose: OtpPurposeSchema, code: OtpCodeSchema });
+export type OtpVerifyRequest = z.infer<typeof OtpVerifyRequestSchema>;
+export const OtpVerifyResponseSchema = z.object({
+  /** Opaque, single use, valid `expiresIn` seconds. */
+  token: z.string().min(20).max(200),
+  expiresIn: z.number().int().positive(),
+});
+export type OtpVerifyResponse = z.infer<typeof OtpVerifyResponseSchema>;
+
+/** The client checks that the two password fields match; the server gets one. */
+export const RegisterCompleteRequestSchema = z.object({ token: z.string().min(20).max(200), password: PasswordSchema });
+export type RegisterCompleteRequest = z.infer<typeof RegisterCompleteRequestSchema>;
+export const PasswordSetRequestSchema = RegisterCompleteRequestSchema;
+export type PasswordSetRequest = z.infer<typeof PasswordSetRequestSchema>;

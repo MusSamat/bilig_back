@@ -14,7 +14,8 @@ import { checkPassword, hashSecret, verifyDummy, verifySecret } from '../domain/
 import { newTotpSecret, otpauthUrl, verifyTotp } from '../domain/totp.js';
 import { SessionService, audienceOf } from '../services/sessions.js';
 import type { SignupRec, UserRec } from '../repo/types.js';
-import { accountExistsMail, codeMail, provisionSelfTeacher } from '../services/teacher-signup.js';
+import { formatKgPhone } from '@bilig/content-model/api';
+import { accountExistsMail, codeMail, placeholderSchoolName, provisionSelfTeacher } from '../services/teacher-signup.js';
 
 export const RESET_TTL_MS = 30 * 60 * 1000;
 export const VERIFY_TTL_MS = 24 * 3600 * 1000;
@@ -31,10 +32,25 @@ export const CODE_RESEND_AFTER_S = 60;
 /** Codes are short, so the stored hash is bound to the token id (equal codes never collide on the unique index). */
 export const codeHash = (tokenId: string, code: string) => sha256Hex(`bilig:email_code:${tokenId}:${code}`);
 
+/**
+ * v0.7.0: phone (WhatsApp) codes — 6 digits, 10 minutes, 5 wrong tries, resend
+ * after 60 s; a verified code becomes a single-use token for 15 minutes.
+ */
+export const OTP_TTL_MS = 10 * 60 * 1000;
+export const OTP_MAX_ATTEMPTS = 5;
+export const OTP_RESEND_AFTER_S = 60;
+export const OTP_TOKEN_TTL_MS = 15 * 60 * 1000;
+/** Bound to the row id like the e-mail codes. */
+export const phoneCodeHash = (id: string, code: string) => sha256Hex(`bilig:phone_code:${id}:${code}`);
+
 /** Roles that must use TOTP for the admin audience (TZ §6). */
 export const TOTP_ROLES = new Set(['author', 'editor', 'superadmin']);
 
 const emailKey = (email: string) => sha256Hex(`email:${email.toLowerCase()}`).slice(0, 24);
+/** v0.7.0: rate-limit / audit key of a number (no raw numbers in keys or logs). */
+const phoneKey = (phone: string) => sha256Hex(`phone:${phone}`).slice(0, 24);
+/** Password context of a number: `996555123456` and `555123456`. */
+const phoneContext = (phone: string) => [phone.slice(1), phone.slice(4)];
 
 export function registerAuth(app: FastifyInstance, deps: Deps) {
   const sessions = new SessionService(deps);
@@ -50,17 +66,22 @@ export function registerAuth(app: FastifyInstance, deps: Deps) {
     if (problem) fail('password_weak', { detail: problem, i18nKey: `errors.password_weak.${problem}` });
   };
 
-  // POST /auth/login
+  // POST /auth/login — v0.7.0: e-mail (staff, admin) or phone (teachers), exactly one.
   route(app, deps, 'login', async ({ req, reply, body, ip }) => {
-    const email = body.email.toLowerCase();
-    await limit(`login:ip:${ip}`, 30, 15 * 60);
-    await limit(`login:email:${emailKey(email)}`, 10, 15 * 60);
     const aud = audienceOf(req);
-    const user = await repo.getUserByEmail(email);
+    await limit(`login:ip:${ip}`, 30, 15 * 60);
+    // The admin audience stays e-mail + TOTP: a phone there is a 400 before any lookup (reveals nothing).
+    if (body.phone && aud === 'admin') {
+      fail('validation_failed', { detail: 'email_required', issues: [{ path: ['email'], message: 'The admin app signs in with e-mail' }] });
+    }
+    const email = body.email?.toLowerCase();
+    const idKey = email ? emailKey(email) : phoneKey(body.phone!);
+    await limit(email ? `login:email:${idKey}` : `login:phone:${idKey}`, 10, 15 * 60);
+    const user = email ? await repo.getUserByEmail(email) : await repo.getUserByPhone(body.phone!);
     const cred = user && user.kind === 'adult' && !user.deletedAt ? await repo.getCredential(user.id, 'password') : null;
     const ok = cred ? await verifySecret(cred.secretHash, body.password) : await verifyDummy(body.password);
     if (!ok || !user) {
-      await audit.log(user?.id ?? null, 'auth.login_failed', { type: 'user', id: user?.id ?? emailKey(email) }, { ip });
+      await audit.log(user?.id ?? null, 'auth.login_failed', { type: 'user', id: user?.id ?? idKey }, { ip, ...(email ? {} : { diff: { via: 'phone' } }) });
       fail('invalid_credentials');
     }
     const u = user!;
@@ -87,7 +108,7 @@ export function registerAuth(app: FastifyInstance, deps: Deps) {
       }
     }
     const issued = await sessions.start(req, reply, u, aud);
-    await audit.log(u.id, 'auth.login', { type: 'user', id: u.id }, { ip, diff: { aud } });
+    await audit.log(u.id, 'auth.login', { type: 'user', id: u.id }, { ip, diff: { aud, ...(email ? {} : { via: 'phone' }) } });
     return issued;
   });
 
@@ -348,6 +369,139 @@ export function registerAuth(app: FastifyInstance, deps: Deps) {
     }
     await repo.updateUser(user!.id, { emailVerifiedAt: clock.now(), ...(user!.status === 'pending' ? { status: 'active' as const } : {}) });
     return { ok: true as const };
+  });
+
+  // --- v0.7.0: phone-first accounts (WhatsApp one-time codes) -----------------------
+  const { otp } = deps;
+  const otpResponse = () => ({ ok: true as const, channel: 'whatsapp' as const, expiresIn: OTP_TTL_MS / 1000, resendAfter: OTP_RESEND_AFTER_S });
+  /** An adult account that holds the number (blocked included; deleted ones still own it until purged). */
+  const phoneOwner = (u: UserRec | null) => (u && u.kind === 'adult' ? u : null);
+
+  /** A new code for the number (the previous one is invalidated), sent through the OtpSender. */
+  async function issuePhoneCode(phone: string, purpose: 'register' | 'reset', locale: UserRec['locale']) {
+    const now = clock.now();
+    await repo.revokePhoneOtps(phone, purpose, 'code', now);
+    const code = config.authFixedOtp ?? randomPin(6);
+    const id = newId();
+    await repo.createPhoneOtp({ id, phone, purpose, kind: 'code', hash: phoneCodeHash(id, code), locale, attempts: 0, createdAt: now, expiresAt: new Date(now.getTime() + OTP_TTL_MS), usedAt: null });
+    await otp.send(phone, code, locale, purpose);
+  }
+
+  // POST /auth/otp/start — the same answer whether or not the number has an account.
+  route(app, deps, 'otpStart', async ({ body, ip }) => {
+    const { phone, purpose } = body;
+    const pk = phoneKey(phone);
+    await limit(`otp:ip:${ip}`, 20, 3600);
+    // The resend window counts for every number, known or not (no enumeration).
+    const w = await limiter.hit(`otp:resend:${purpose}:${pk}`, 1, OTP_RESEND_AFTER_S);
+    if (!w.allowed) fail('rate_limited', { detail: 'resend_too_soon', retryAfter: w.retryAfter });
+    await limit(`otp:phone:${pk}`, 5, 3600);
+    const owner = phoneOwner(await repo.getUserByPhone(phone));
+    if (purpose === 'register') {
+      if (owner) {
+        // Taken: tell the owner instead of sending a code (fixed mode sends nothing at all).
+        if (owner.status === 'active' && !owner.deletedAt) await otp.send(phone, null, body.locale ?? owner.locale, 'account_exists');
+        return otpResponse();
+      }
+      await issuePhoneCode(phone, 'register', body.locale ?? 'ky');
+      return otpResponse();
+    }
+    if (owner && !owner.deletedAt && owner.status !== 'blocked') await issuePhoneCode(phone, 'reset', body.locale ?? owner.locale);
+    return otpResponse();
+  });
+
+  // POST /auth/otp/verify — the code becomes a single-use token bound to the number and the purpose.
+  route(app, deps, 'otpVerify', async ({ body, ip }) => {
+    const { phone, purpose } = body;
+    const pk = phoneKey(phone);
+    await limit(`otpverify:ip:${ip}`, 30, 3600);
+    await limit(`otpverify:phone:${pk}`, 20, 3600);
+    const now = clock.now();
+    const row = await repo.latestPhoneOtp(phone, purpose, 'code');
+    // Never sent, consumed, burned or expired: one answer — request a new code.
+    if (!row || row.usedAt || row.expiresAt <= now) fail('invalid_credentials', { detail: 'code_expired' });
+    if (!safeEqual(phoneCodeHash(row!.id, body.code), row!.hash)) {
+      const n = await repo.failPhoneOtpAttempt(row!.id, OTP_MAX_ATTEMPTS, now);
+      await audit.log(null, 'auth.login_failed', { type: 'phone', id: pk }, { ip, diff: { reason: 'phone_code', purpose, attempts: n } });
+      fail('invalid_credentials', { detail: n === 0 || n >= OTP_MAX_ATTEMPTS ? 'code_expired' : 'code_invalid' });
+    }
+    if (!(await repo.consumePhoneOtp(row!.hash, 'code', now))) fail('invalid_credentials', { detail: 'code_expired' });
+    await repo.revokePhoneOtps(phone, purpose, 'token', now);
+    const token = randomToken();
+    await repo.createPhoneOtp({
+      id: newId(),
+      phone,
+      purpose,
+      kind: 'token',
+      hash: hashToken(token),
+      locale: row!.locale,
+      attempts: 0,
+      createdAt: now,
+      expiresAt: new Date(now.getTime() + OTP_TOKEN_TTL_MS),
+      usedAt: null,
+    });
+    return { token, expiresIn: OTP_TOKEN_TTL_MS / 1000 };
+  });
+
+  /** An unexpired, unused token of this purpose (not consumed, so a weak password keeps it usable). */
+  async function phoneToken(token: string, purpose: 'register' | 'reset') {
+    const t = await repo.findPhoneOtp(hashToken(token), 'token', clock.now());
+    if (!t || t.purpose !== purpose) fail('not_found', { detail: 'token_invalid' });
+    return t!;
+  }
+  async function consumePhoneToken(token: string) {
+    if (!(await repo.consumePhoneOtp(hashToken(token), 'token', clock.now()))) fail('not_found', { detail: 'token_invalid' });
+  }
+
+  // POST /auth/register/complete — the account, a personal school with an empty trial, signed in.
+  route(app, deps, 'registerComplete', async ({ req, reply, body, ip }) => {
+    await limit(`otptoken:ip:${ip}`, 20, 3600);
+    const tok = await phoneToken(body.token, 'register');
+    passwordOk(body.password, phoneContext(tok.phone));
+    const pwHash = await hashSecret(body.password);
+    await consumePhoneToken(body.token);
+    const now = clock.now();
+    // Registered meanwhile (another tab, a race): the number is taken.
+    if (await repo.getUserByPhone(tok.phone)) fail('conflict', { detail: 'phone_taken' });
+    const created = await repo.createUser({
+      id: newId(),
+      kind: 'adult',
+      email: null,
+      emailVerifiedAt: null,
+      phone: tok.phone,
+      phoneVerifiedAt: now,
+      displayName: formatKgPhone(tok.phone),
+      locale: tok.locale,
+      status: 'active',
+    });
+    if (created === 'conflict') fail('conflict', { detail: 'phone_taken' });
+    const user = created as UserRec;
+    await repo.setCredential(user.id, 'password', pwHash);
+    const active = await provisionSelfTeacher(deps, user, ip, { method: 'phone', schoolName: placeholderSchoolName(user.locale) });
+    const issued = await sessions.start(req, reply, active, 'client');
+    await audit.log(active.id, 'auth.login', { type: 'user', id: active.id }, { ip, diff: { aud: 'client', via: 'phone_code' } });
+    return issued;
+  });
+
+  // POST /auth/password/set — a new password with a reset token; every other session ends; signed in.
+  route(app, deps, 'passwordSet', async ({ req, reply, body, ip }) => {
+    await limit(`otptoken:ip:${ip}`, 20, 3600);
+    const tok = await phoneToken(body.token, 'reset');
+    const user = phoneOwner(await repo.getUserByPhone(tok.phone));
+    if (!user || user.deletedAt) fail('not_found', { detail: 'token_invalid' });
+    const u = user!;
+    if (u.status === 'blocked') fail('forbidden', { detail: 'account_blocked' });
+    passwordOk(body.password, [...phoneContext(tok.phone), u.email ?? '', u.displayName]);
+    const pwHash = await hashSecret(body.password);
+    await consumePhoneToken(body.token);
+    const now = clock.now();
+    await repo.setCredential(u.id, 'password', pwHash);
+    const next = (await repo.updateUser(u.id, { phoneVerifiedAt: u.phoneVerifiedAt ?? now, ...(u.status !== 'active' ? { status: 'active' as const } : {}) })) ?? u;
+    const revoked = await repo.revokeUserSessions(u.id, now);
+    await audit.log(u.id, 'auth.password_reset', { type: 'user', id: u.id }, { ip, diff: { via: 'phone_code', revoked } });
+    const issued = await sessions.start(req, reply, next, 'client');
+    await audit.log(u.id, 'auth.login', { type: 'user', id: u.id }, { ip, diff: { aud: 'client', via: 'phone_code' } });
+    return issued;
   });
 
   // POST /auth/invites/:token/accept

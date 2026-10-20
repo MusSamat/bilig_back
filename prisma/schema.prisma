@@ -29,6 +29,9 @@ model User {
   deletedAt       DateTime? @db.Timestamptz(3)
   /// v0.6.0: pending self-registration details { teaching?, schoolName?, region? } until the e-mail is confirmed.
   signup          Json?
+  /// v0.7.0: the teacher's WhatsApp number (E.164 `+996XXXXXXXXX`), verified with a one-time code.
+  phone           String?   @unique
+  phoneVerifiedAt DateTime? @db.Timestamptz(3)
 
   credentials Credential[]
   sessions    Session[]
@@ -95,6 +98,24 @@ model AuthToken {
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, purpose])
+}
+
+/// v0.7.0: phone-keyed one-time codes (sent to WhatsApp) and the short-lived
+/// tokens they are exchanged for. Not tied to a user: a registration has none yet.
+model PhoneOtp {
+  id        String    @id @db.Uuid
+  phone     String
+  purpose   String // register | reset
+  kind      String // code | token
+  /// code: sha256 bound to the row id; token: sha256 of the opaque token.
+  hash      String    @unique
+  locale    String
+  attempts  Int       @default(0)
+  createdAt DateTime  @db.Timestamptz(3)
+  expiresAt DateTime  @db.Timestamptz(3)
+  usedAt    DateTime? @db.Timestamptz(3)
+
+  @@index([phone, purpose, kind])
 }
 
 model Invite {

@@ -8,6 +8,7 @@ import { AuditService } from './services/audit.js';
 import { systemClock, type Clock } from './services/clock.js';
 import { ContentService } from './services/content.js';
 import { ConsoleMailer, MemoryMailer, type Mailer } from './services/mailer.js';
+import { createOtpSender, MemoryOtpSender, type OtpSender } from './services/otp-sender.js';
 import { createLimiter, MemoryLimiter, type Limiter } from './services/rate-limit.js';
 import { LocalDiskStorage, MemoryStorage, type ObjectStorage } from './services/storage.js';
 import { DevProvider } from './services/tutor-dev-provider.js';
@@ -17,6 +18,7 @@ export interface DepsOverrides {
   repo?: Repository;
   limiter?: Limiter;
   mailer?: Mailer;
+  otp?: OtpSender;
   storage?: ObjectStorage;
   clock?: Clock;
   /** `null` forces "no provider" (offline 503). */
@@ -35,6 +37,7 @@ export async function createDeps(config: Config, o: DepsOverrides = {}): Promise
   const repo = o.repo ?? (await createRepository(config));
   const limiter = o.limiter ?? (config.env === 'test' ? new MemoryLimiter(clock) : await createLimiter(config.redisUrl, clock));
   const mailer = o.mailer ?? (config.mailTransport === 'memory' ? new MemoryMailer() : new ConsoleMailer());
+  const otp = o.otp ?? (config.env === 'test' ? new MemoryOtpSender() : createOtpSender(config.otpSender));
   const storage =
     o.storage ?? (config.env === 'test' ? new MemoryStorage(config.publicUrl) : new LocalDiskStorage(config.storageDir, config.publicUrl));
   const tutor = o.tutor !== undefined ? o.tutor : createTutorProvider(config);
@@ -43,6 +46,7 @@ export async function createDeps(config: Config, o: DepsOverrides = {}): Promise
     repo,
     limiter,
     mailer,
+    otp,
     storage,
     clock,
     jwt: new JwtService(config.jwtSecret),

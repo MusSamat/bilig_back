@@ -3,7 +3,7 @@ import { CONTRACT_VERSION } from './i18n.js';
 import { ClassCreateRequestSchema, ENDPOINTS, MePatchRequestSchema, RegisterRequestSchema, RegisterVerifyRequestSchema } from './api/index.js';
 
 describe('contract 0.6.0: teacher self-registration', () => {
-  it('version', () => expect(CONTRACT_VERSION).toBe('0.6.0'));
+  it('version is 0.6.0 or later', () => expect(CONTRACT_VERSION >= '0.6.0').toBe(true));
 
   it('register needs subjects and grades; the code is 6 digits', () => {
     const ok = { email: 'a@b.kg', displayName: 'Айгүл', password: 'long-enough-1', locale: 'ky', teaching: { subjects: ['phys'], grades: [8] } };

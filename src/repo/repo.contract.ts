@@ -8,7 +8,7 @@ import { afterAll, beforeEach, describe, expect, it } from 'vitest';
 import { animalCellPackage } from '@bilig/content-model/fixtures/animal-cell';
 import { newId } from '../ids.js';
 import type { ContentPackage } from '@bilig/content-model';
-import type { BuildRec, ClassRec, GeneratedRec, Repository, SessionRec, TopicVersionRec, UserRec } from './types.js';
+import type { BuildRec, ClassRec, GeneratedRec, PhoneOtpRec, Repository, SessionRec, TopicVersionRec, UserRec } from './types.js';
 
 const T0 = new Date('2026-10-15T08:00:00Z');
 const at = (min: number) => new Date(T0.getTime() + min * 60_000);
@@ -215,6 +215,66 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         expect(await repo.latestAuthToken(u.id, 'email_code')).toMatchObject({ id: c, attempts: 3, usedAt: at(4) });
         expect(await repo.consumeAuthToken('c3', 'email_code', at(4))).toBeNull();
         expect(await repo.failAuthTokenAttempt(newId(), 3, at(5))).toBe(0);
+      });
+
+      it('v0.7.0 phone: unique, lookup, update, null by default', async () => {
+        const plain = await user();
+        expect(plain).toMatchObject({ phone: null, phoneVerifiedAt: null });
+        expect(await repo.getUserByPhone('+996555123456')).toBeNull();
+        const p = await user({ email: null, phone: '+996555123456', phoneVerifiedAt: T0 });
+        expect(p).toMatchObject({ phone: '+996555123456', phoneVerifiedAt: T0, email: null });
+        expect((await repo.getUserByPhone('+996555123456'))?.id).toBe(p.id);
+        expect(await repo.createUser({ id: newId(), kind: 'adult', email: null, phone: '+996555123456', emailVerifiedAt: null, displayName: 'x', locale: 'ky', status: 'active' })).toBe('conflict');
+        // several users without a number (NULLs do not collide)
+        await user({ email: null });
+        await user({ email: null });
+        expect((await repo.updateUser(plain.id, { phone: '+996700000001', phoneVerifiedAt: at(1) }))).toMatchObject({ phone: '+996700000001', phoneVerifiedAt: at(1) });
+        expect((await repo.getUserByPhone('+996700000001'))?.id).toBe(plain.id);
+        await expect(repo.updateUser(plain.id, { phone: '+996555123456' })).rejects.toThrow();
+        expect((await repo.updateUser(plain.id, { displayName: 'Y' }))?.phone).toBe('+996700000001');
+      });
+
+      it('v0.7.0 phone codes: latest, revoke, attempts burn at max, consume by hash and kind', async () => {
+        const phone = '+996555123456';
+        const row = (patch: Partial<PhoneOtpRec>): PhoneOtpRec => ({
+          id: newId(), phone, purpose: 'register', kind: 'code', hash: `h-${newId()}`, locale: 'ru', attempts: 0, createdAt: T0, expiresAt: at(10), usedAt: null, ...patch,
+        });
+        expect(await repo.latestPhoneOtp(phone, 'register', 'code')).toBeNull();
+        const a = row({ hash: 'pa' });
+        const b = row({ hash: 'pb', createdAt: at(1), expiresAt: at(11) });
+        await repo.createPhoneOtp(a);
+        await repo.createPhoneOtp(b);
+        await repo.createPhoneOtp(row({ hash: 'reset1', purpose: 'reset' }));
+        await repo.createPhoneOtp(row({ hash: 'tok1', kind: 'token', expiresAt: at(15) }));
+        await repo.createPhoneOtp(row({ hash: 'other', phone: '+996700000000' }));
+        expect(await repo.latestPhoneOtp(phone, 'register', 'code')).toMatchObject({ id: b.id, attempts: 0, usedAt: null, locale: 'ru' });
+        expect(await repo.revokePhoneOtps(phone, 'register', 'code', at(2))).toBe(2);
+        expect(await repo.revokePhoneOtps(phone, 'register', 'code', at(2))).toBe(0);
+        expect(await repo.latestPhoneOtp(phone, 'register', 'code')).toMatchObject({ id: b.id, usedAt: at(2) });
+        expect(await repo.latestPhoneOtp(phone, 'reset', 'code')).toMatchObject({ usedAt: null }); // other purpose untouched
+        expect(await repo.latestPhoneOtp('+996700000000', 'register', 'code')).toMatchObject({ usedAt: null }); // other number untouched
+        expect(await repo.failPhoneOtpAttempt(b.id, 3, at(3))).toBe(0); // used → not counted
+
+        const c = row({ hash: 'pc', createdAt: at(3), expiresAt: at(13) });
+        await repo.createPhoneOtp(c);
+        expect(await repo.failPhoneOtpAttempt(c.id, 3, at(4))).toBe(1);
+        expect(await repo.failPhoneOtpAttempt(c.id, 3, at(4))).toBe(2);
+        expect(await repo.failPhoneOtpAttempt(c.id, 3, at(5))).toBe(3);
+        expect(await repo.latestPhoneOtp(phone, 'register', 'code')).toMatchObject({ id: c.id, attempts: 3, usedAt: at(5) });
+        expect(await repo.consumePhoneOtp('pc', 'code', at(5))).toBeNull();
+        expect(await repo.failPhoneOtpAttempt(newId(), 3, at(5))).toBe(0);
+
+        // tokens: single use, by kind, not after expiry
+        expect(await repo.findPhoneOtp('tok1', 'code', T0)).toBeNull();
+        expect(await repo.findPhoneOtp('tok1', 'token', at(15))).toBeNull();
+        expect(await repo.findPhoneOtp('tok1', 'token', at(14))).toMatchObject({ phone, kind: 'token', usedAt: null });
+        expect(await repo.consumePhoneOtp('tok1', 'code', T0)).toBeNull();
+        expect(await repo.consumePhoneOtp('tok1', 'token', at(15))).toBeNull();
+        expect(await repo.consumePhoneOtp('tok1', 'token', at(14))).toMatchObject({ phone, purpose: 'register', kind: 'token', usedAt: at(14) });
+        expect(await repo.consumePhoneOtp('tok1', 'token', at(14))).toBeNull();
+        expect(await repo.findPhoneOtp('tok1', 'token', at(14))).toBeNull();
+        expect(await repo.consumePhoneOtp('nosuch', 'token', T0)).toBeNull();
+        await expect(repo.createPhoneOtp(row({ hash: 'pa' }))).rejects.toThrow(); // hashes are unique
       });
 
       it('school origin and class subjectKey', async () => {

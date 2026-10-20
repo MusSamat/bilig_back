@@ -122,6 +122,8 @@ All variables are documented in [`.env.example`](.env.example). The important on
 | `TUTOR_DAILY_TOKEN_BUDGET` | daily token budget; once spent the tutor answers 503 |
 | `MAIL_TRANSPORT` | `console` prints verification / reset / invite links |
 | `DEMO_SEED` | `1` loads the demo dataset at startup (dev only; refused in production) |
+| `AUTH_FIXED_OTP` | TEMPORARY: every one-time code (e-mail registration, WhatsApp phone codes) is this 6-digit value; phone codes are not sent (startup warning) |
+| `OTP_SENDER` | phone codes (0.7.0): `fixed` (needs `AUTH_FIXED_OTP`), `console` (prints «WhatsApp → +996…»; refused in production) or `whatsapp` (stub, refused at start). Unset: `fixed` with `AUTH_FIXED_OTP`, else `console` outside production; production without a working sender refuses to start |
 | `ADMIN_TOTP_DISABLED` | `1` skips the TOTP code on admin sign-in (dev only; refused in production — TZ §6 requires 2FA) |
 
 ## Architecture notes
@@ -145,6 +147,17 @@ All variables are documented in [`.env.example`](.env.example). The important on
   e-mail and a wrong password; rate limits on login, reset, class codes and the
   tutor. Logins, role changes, publishes and student-data access go to the
   append-only audit log.
+- **Phone-first teachers (0.7.0).** A teacher account is a Kyrgyz mobile number
+  (`User.phone`, E.164, unique) + password. `POST /auth/otp/start` sends a
+  6-digit code to WhatsApp through the `OtpSender` port
+  (`src/services/otp-sender.ts`); codes live in `PhoneOtp` (10 min, 5 wrong
+  tries burn, resend after 60 s, limits per IP and per number) and the same
+  answer is given for taken / unknown numbers. `POST /auth/otp/verify` trades
+  the code for a single-use 15-minute token bound to number + purpose;
+  `register/complete` creates the account, a personal school («Моя школа»
+  until named) and an empty trial licence; `password/set` resets and revokes
+  other sessions. `POST /auth/login` takes `phone` or `email`; the admin
+  audience stays e-mail + TOTP (a phone there is 400 `email_required`).
 - **Content.** Relational tables plus JSONB documents (TopicVersion.doc). The
   client reads only built packages (Build). Publishing assembles the package
   from the tables, runs the automatic checklist (schema, translations, budgets,

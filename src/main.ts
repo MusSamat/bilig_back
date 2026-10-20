@@ -18,7 +18,11 @@ if (config.demoSeed) await seedDemo(deps.repo, deps);
 const app = await buildApp(deps);
 if (deps.limiter.kind === 'memory' && config.redisUrl) app.log.warn('REDIS_URL set but unreachable — using in-memory rate limits');
 if (config.authFixedOtp) {
-  app.log.warn('AUTH_FIXED_OTP is set: every registration code is the same fixed value. TEMPORARY and INSECURE — remove it once a mail server is configured.');
+  app.log.warn(
+    `AUTH_FIXED_OTP is set: every one-time code (e-mail registration and WhatsApp phone codes) is the same fixed value and phone codes are not sent (OTP_SENDER=${config.otpSender}). TEMPORARY and INSECURE — remove it once a WhatsApp provider and a mail server are configured.`,
+  );
+} else if (config.otpSender === 'console') {
+  app.log.warn('OTP_SENDER=console: phone one-time codes are printed to stdout, not sent (development only)');
 }
 if (!deps.tutor) app.log.warn('ANTHROPIC_API_KEY not set — tutor answers 503 (clients use the offline index)');
 

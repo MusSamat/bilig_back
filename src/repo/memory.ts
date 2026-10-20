@@ -13,6 +13,8 @@ import type {
   AttemptRec,
   AuditRec,
   AuthTokenRec,
+  PhoneOtpRec,
+  PhoneOtpPurpose,
   BuildRec,
   ClassRec,
   ConsentRec,
@@ -124,6 +126,7 @@ export class MemoryRepository implements Repository {
   private grants: GrantRec[] = [];
   private sessions = new Map<Id, SessionRec>();
   private authTokens = new Map<string, AuthTokenRec>();
+  private phoneOtps = new Map<Id, PhoneOtpRec>();
   private invites = new Map<Id, InviteRec>();
   private schools = new Map<Id, SchoolRec>();
   private licenses = new Map<Id, LicenseRec>();
@@ -161,8 +164,9 @@ export class MemoryRepository implements Repository {
   // --- identity -------------------------------------------------------------
   async createUser(u: Omit<UserRec, 'createdAt' | 'updatedAt' | 'deletedAt'>) {
     if (u.email && [...this.users.values()].some((x) => x.email === u.email)) return 'conflict' as const;
+    if (u.phone && [...this.users.values()].some((x) => x.phone === u.phone)) return 'conflict' as const;
     const now = new Date();
-    const rec: UserRec = { signup: null, ...u, createdAt: now, updatedAt: now, deletedAt: null };
+    const rec: UserRec = { signup: null, phone: null, phoneVerifiedAt: null, ...u, createdAt: now, updatedAt: now, deletedAt: null };
     this.users.set(u.id, clone(rec));
     return clone(rec);
   }
@@ -174,9 +178,14 @@ export class MemoryRepository implements Repository {
     const u = [...this.users.values()].find((x) => x.email === email.toLowerCase());
     return u ? clone(u) : null;
   }
+  async getUserByPhone(phone: string) {
+    const u = [...this.users.values()].find((x) => !!x.phone && x.phone === phone);
+    return u ? clone(u) : null;
+  }
   async updateUser(id: Id, patch: Partial<UserRec>) {
     const u = this.users.get(id);
     if (!u) return null;
+    if (patch.phone && [...this.users.values()].some((x) => x.id !== id && x.phone === patch.phone)) throw new Error('Unique constraint failed: User.phone');
     const next = { ...u, ...patch, updatedAt: new Date() };
     this.users.set(id, next);
     return clone(next);
@@ -312,6 +321,43 @@ export class MemoryRepository implements Repository {
     const t = this.authTokens.get(tokenHash);
     if (!t || t.purpose !== purpose || t.usedAt || t.expiresAt <= now) return null;
     return clone(t);
+  }
+
+  async createPhoneOtp(o: PhoneOtpRec) {
+    if ([...this.phoneOtps.values()].some((x) => x.hash === o.hash)) throw new Error('Unique constraint failed: PhoneOtp.hash');
+    this.phoneOtps.set(o.id, clone(o));
+  }
+  async latestPhoneOtp(phone: string, purpose: PhoneOtpPurpose, kind: PhoneOtpRec['kind']) {
+    const rows = [...this.phoneOtps.values()].filter((o) => o.phone === phone && o.purpose === purpose && o.kind === kind);
+    rows.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime() || (a.id < b.id ? 1 : -1));
+    return rows[0] ? clone(rows[0]) : null;
+  }
+  async revokePhoneOtps(phone: string, purpose: PhoneOtpPurpose, kind: PhoneOtpRec['kind'], now: Date) {
+    let n = 0;
+    for (const o of this.phoneOtps.values()) {
+      if (o.phone === phone && o.purpose === purpose && o.kind === kind && !o.usedAt) {
+        o.usedAt = now;
+        n++;
+      }
+    }
+    return n;
+  }
+  async failPhoneOtpAttempt(id: Id, max: number, now: Date) {
+    const o = this.phoneOtps.get(id);
+    if (!o || o.usedAt) return 0;
+    o.attempts += 1;
+    if (o.attempts >= max) o.usedAt = now;
+    return o.attempts;
+  }
+  async findPhoneOtp(hash: string, kind: PhoneOtpRec['kind'], now: Date) {
+    const o = [...this.phoneOtps.values()].find((x) => x.hash === hash);
+    return o && o.kind === kind && !o.usedAt && o.expiresAt > now ? clone(o) : null;
+  }
+  async consumePhoneOtp(hash: string, kind: PhoneOtpRec['kind'], now: Date) {
+    const o = [...this.phoneOtps.values()].find((x) => x.hash === hash);
+    if (!o || o.kind !== kind || o.usedAt || o.expiresAt <= now) return null;
+    o.usedAt = now;
+    return clone(o);
   }
 
   async createInvite(i: Omit<InviteRec, 'revokedAt'> & { revokedAt?: Date | null }) {

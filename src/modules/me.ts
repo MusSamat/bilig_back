@@ -2,7 +2,7 @@
 import type { FastifyInstance } from 'fastify';
 import { grantedPermissions } from '@bilig/permissions';
 import { t } from '@bilig/content-model';
-import type { MeResponse, MyLicense } from '@bilig/content-model/api';
+import { formatKgPhone, type MeResponse, type MyLicense } from '@bilig/content-model/api';
 import type { Deps } from '../deps.js';
 import { route } from '../http/route.js';
 import { fail } from '../http/errors.js';
@@ -10,7 +10,7 @@ import { toRoleGrant } from '../http/auth-context.js';
 import { newTotpSecret, otpauthUrl, verifyTotp } from '../domain/totp.js';
 import type { UserRec } from '../repo/types.js';
 import { assignmentStatus } from './classes.js';
-import { cleanTeaching, selfTrial, userSchoolIds } from '../services/teacher-signup.js';
+import { cleanTeaching, isPlaceholderSchoolName, selfTrial, userSchoolIds } from '../services/teacher-signup.js';
 
 export function registerMe(app: FastifyInstance, deps: Deps) {
   const { repo, clock, audit } = deps;
@@ -27,12 +27,13 @@ export function registerMe(app: FastifyInstance, deps: Deps) {
       grants,
       permissions: grantedPermissions({ userId: user.id, grants }),
       totpEnabled: !!totp && !totp.secretHash.startsWith('pending:'),
+      ...(user.phone ? { phone: user.phone } : {}),
       ...(await teachingOf(user)),
     };
   }
 
   /** v0.6.0: `teaching` (self-registered teachers) and `licenses` (active licences of the user's schools). */
-  async function teachingOf(user: UserRec): Promise<Pick<MeResponse, 'teaching' | 'licenses'>> {
+  async function teachingOf(user: UserRec): Promise<Pick<MeResponse, 'teaching' | 'licenses' | 'setup'>> {
     if (user.kind !== 'adult') return {};
     const schoolIds = await userSchoolIds(repo, user.id);
     if (!schoolIds.length) return {};
@@ -55,24 +56,46 @@ export function registerMe(app: FastifyInstance, deps: Deps) {
     return {
       ...(lic && lic.subjects.length && lic.grades.length ? { teaching: { subjects: lic.subjects, grades: lic.grades } } : {}),
       licenses,
+      // v0.7.0: what a self-registered teacher has filled in (name ≠ the number, a named school, ≥1 subject).
+      ...(self
+        ? {
+            setup: {
+              name: !!user.displayName.trim() && (!user.phone || user.displayName !== formatKgPhone(user.phone)),
+              school: !isPlaceholderSchoolName(self.school.name),
+              teaching: !!lic?.subjects.length,
+            },
+          }
+        : {}),
     };
   }
 
   route(app, deps, 'me', ({ auth }) => me(auth.user!));
 
   route(app, deps, 'mePatch', async ({ auth, body, ip }) => {
-    const { teaching, ...profile } = body;
-    if (teaching) {
-      // v0.6.0: only a self-registered teacher edits the trial licence of their personal school.
-      const self = await selfTrial(repo, auth.user!.id);
-      if (!self?.license) fail('forbidden', { detail: 'teaching_not_editable' });
-      const clean = await cleanTeaching(repo, teaching);
-      if (!clean.subjects.length) fail('validation_failed', { issues: [{ path: ['teaching', 'subjects'], message: 'None of the subjects exists (or is live)' }] });
+    const { teaching, schoolName, region, ...profile } = body;
+    const uid = auth.user!.id;
+    const editsSchool = schoolName !== undefined || region !== undefined;
+    // Validate everything first, then write (no half-applied PATCH).
+    const self = editsSchool || teaching ? await selfTrial(repo, uid) : null;
+    // v0.7.0: a self-registered teacher names their own (self) school; any other school is the admins'.
+    if (editsSchool && !self) fail('forbidden', { detail: 'school_not_editable' });
+    // v0.6.0: only a self-registered teacher edits the trial licence of their personal school.
+    if (teaching && !self?.license) fail('forbidden', { detail: 'teaching_not_editable' });
+    const clean = teaching ? await cleanTeaching(repo, teaching) : null;
+    if (clean && !clean.subjects.length) fail('validation_failed', { issues: [{ path: ['teaching', 'subjects'], message: 'None of the subjects exists (or is live)' }] });
+
+    if (editsSchool) {
+      const school = self!.school;
+      const patch = { ...(schoolName !== undefined ? { name: schoolName } : {}), ...(region !== undefined ? { region } : {}) };
+      await repo.updateSchool(school.id, patch);
+      await audit.log(uid, 'school.updated', { type: 'school', id: school.id }, { ip, diff: { via: 'me', before: { name: school.name, region: school.region }, after: patch } });
+    }
+    if (clean) {
       const lic = self!.license!;
       await repo.updateLicense(lic.id, { subjects: clean.subjects, grades: clean.grades });
-      await audit.log(auth.user!.id, 'license.updated', { type: 'license', id: lic.id }, { ip, diff: { via: 'me.teaching', before: { subjects: lic.subjects, grades: lic.grades }, after: clean } });
+      await audit.log(uid, 'license.updated', { type: 'license', id: lic.id }, { ip, diff: { via: 'me.teaching', before: { subjects: lic.subjects, grades: lic.grades }, after: clean } });
     }
-    const u = Object.keys(profile).length ? await repo.updateUser(auth.user!.id, profile) : await repo.getUser(auth.user!.id);
+    const u = Object.keys(profile).length ? await repo.updateUser(uid, profile) : await repo.getUser(uid);
     return me(u!);
   });
 

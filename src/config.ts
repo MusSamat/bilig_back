@@ -60,6 +60,15 @@ const EnvSchema = z.object({
     .optional()
     .transform((v) => (v === '' ? undefined : v))
     .pipe(z.string().regex(/^\d{6}$/, 'AUTH_FIXED_OTP must be exactly 6 digits').optional()),
+  /**
+   * v0.7.0: how phone one-time codes reach the teacher's WhatsApp
+   * (src/services/otp-sender.ts): `fixed` (needs AUTH_FIXED_OTP; nothing is
+   * sent), `console` (prints the message; refused in production) or `whatsapp`
+   * (WhatsApp Business provider — not implemented yet, refused at start).
+   * Unset: `fixed` with AUTH_FIXED_OTP, else `console` outside production, else
+   * `whatsapp` (so production without a working sender does not start).
+   */
+  OTP_SENDER: z.enum(['fixed', 'console', 'whatsapp']).optional(),
   /** v0.6.0: length of a self-registered teacher's trial licence, in days. */
   TRIAL_DAYS: z.coerce.number().int().min(1).max(365).default(30),
 });
@@ -95,7 +104,27 @@ export interface Config {
   adminTotpDisabled: boolean;
   /** v0.6.0: fixed registration code (temporary insecure mode), or undefined for random codes. */
   authFixedOtp?: string;
+  /** v0.7.0: phone one-time code delivery (see OTP_SENDER). */
+  otpSender: OtpSenderKind;
   trialDays: number;
+}
+
+export type OtpSenderKind = 'fixed' | 'console' | 'whatsapp';
+
+/** v0.7.0: the effective phone-code sender, or a start-up error explaining what to set. */
+export function resolveOtpSender(e: Pick<Env, 'NODE_ENV' | 'OTP_SENDER' | 'AUTH_FIXED_OTP'>): OtpSenderKind {
+  const prod = e.NODE_ENV === 'production';
+  const kind: OtpSenderKind = e.OTP_SENDER ?? (e.AUTH_FIXED_OTP ? 'fixed' : prod ? 'whatsapp' : 'console');
+  if (kind === 'fixed' && !e.AUTH_FIXED_OTP) throw new Error('OTP_SENDER=fixed requires AUTH_FIXED_OTP (6 digits)');
+  if (kind === 'console' && prod) throw new Error('OTP_SENDER=console prints one-time codes to the log and is refused in production');
+  if (kind === 'whatsapp') {
+    throw new Error(
+      'No working sender for phone one-time codes: the WhatsApp provider (OTP_SENDER=whatsapp) is not configured yet. ' +
+        'Set AUTH_FIXED_OTP=<6 digits> (TEMPORARY, insecure: every code is that value and nothing is sent)' +
+        (prod ? '.' : ', or OTP_SENDER=console in development.'),
+    );
+  }
+  return kind;
 }
 
 /** Fill unset variables from `./.env` (the same file the Prisma CLI reads); the real environment wins. */
@@ -151,6 +180,7 @@ export function loadConfig(env?: NodeJS.ProcessEnv): Config {
     demoSeed: e.DEMO_SEED,
     adminTotpDisabled: e.ADMIN_TOTP_DISABLED,
     authFixedOtp: e.AUTH_FIXED_OTP,
+    otpSender: resolveOtpSender(e),
     trialDays: e.TRIAL_DAYS,
   };
 }

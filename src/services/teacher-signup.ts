@@ -45,6 +45,14 @@ export async function cleanTeaching(repo: Repository, t: Teaching | undefined): 
 const PERSONAL: Record<Lang, string> = { ky: 'жеке мектеп', ru: 'личная школа', en: 'personal school' };
 export const personalSchoolName = (displayName: string, lang: Lang) => `${displayName} — ${PERSONAL[lang] ?? PERSONAL.ky}`.slice(0, 200);
 
+/**
+ * v0.7.0: the placeholder name of a phone-registered teacher's school until
+ * they name it in the cabinet (GET /me `setup.school` is false while it is one of these).
+ */
+const PLACEHOLDER_SCHOOL: Record<Lang, string> = { ky: 'Менин мектебим', ru: 'Моя школа', en: 'My school' };
+export const placeholderSchoolName = (lang: Lang) => PLACEHOLDER_SCHOOL[lang] ?? PLACEHOLDER_SCHOOL.ky;
+export const isPlaceholderSchoolName = (name: string) => Object.values(PLACEHOLDER_SCHOOL).includes(name.trim());
+
 /** School ids the adult is tied to through a teacher / school admin grant. */
 export async function userSchoolIds(repo: Repository, userId: string): Promise<string[]> {
   const grants = await repo.listGrants(userId);
@@ -68,7 +76,12 @@ export async function selfTrial(repo: Repository, userId: string): Promise<{ sch
  * Skips the workspace when the user already belongs to a school (e.g. an
  * invited teacher confirming the e-mail), so repeating it is harmless.
  */
-export async function provisionSelfTeacher(deps: Deps, user: UserRec, ip: string | null): Promise<UserRec> {
+export async function provisionSelfTeacher(
+  deps: Deps,
+  user: UserRec,
+  ip: string | null,
+  opts: { method?: 'email' | 'phone'; schoolName?: string } = {},
+): Promise<UserRec> {
   const { repo, clock, audit, config } = deps;
   const now = clock.now();
   const signup: SignupRec = user.signup ?? {};
@@ -76,7 +89,7 @@ export async function provisionSelfTeacher(deps: Deps, user: UserRec, ip: string
     const teaching = await cleanTeaching(repo, signup.teaching);
     const school: SchoolRec = {
       id: newId(),
-      name: signup.schoolName?.trim() || personalSchoolName(user.displayName, user.locale),
+      name: signup.schoolName?.trim() || opts.schoolName || personalSchoolName(user.displayName, user.locale),
       region: signup.region?.trim() ?? '',
       type: 'private',
       language: user.locale,
@@ -98,10 +111,10 @@ export async function provisionSelfTeacher(deps: Deps, user: UserRec, ip: string
     await repo.addGrant({ userId: user.id, role: 'teacher', scope: 'school', scopeId: school.id, subrole: null });
     await audit.log(user.id, 'auth.self_registered', { type: 'user', id: user.id }, {
       ip,
-      diff: { schoolId: school.id, licenseId: license === 'conflict' ? null : license.id, subjects: teaching.subjects, grades: teaching.grades, trialDays: config.trialDays },
+      diff: { method: opts.method ?? 'email', schoolId: school.id, licenseId: license === 'conflict' ? null : license.id, subjects: teaching.subjects, grades: teaching.grades, trialDays: config.trialDays },
     });
   }
-  const next = await repo.updateUser(user.id, { status: 'active', emailVerifiedAt: user.emailVerifiedAt ?? now, signup: null });
+  const next = await repo.updateUser(user.id, { status: 'active', ...(user.email ? { emailVerifiedAt: user.emailVerifiedAt ?? now } : {}), signup: null });
   return next ?? user;
 }
 
