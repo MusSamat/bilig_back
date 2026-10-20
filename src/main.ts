@@ -37,7 +37,8 @@ if (config.authFixedTotp) {
     'AUTH_FIXED_TOTP is set: the admin panel accepts a fixed 2FA code for every admin (each such sign-in is marked totp=fixed in the audit log). TEMPORARY (test period) and INSECURE — remove it once admins have set up an authenticator app.',
   );
 }
-if (!deps.tutor) app.log.warn('ANTHROPIC_API_KEY not set — tutor answers 503 (clients use the offline index)');
+if (!deps.tutor) app.log.warn(`AI assistant is off: TUTOR_PROVIDER=${config.tutorProvider} (set TUTOR_PROVIDER=deepseek and DEEPSEEK_API_KEY) — tutor answers 503 «offline»`);
+else app.log.info(`AI assistant: ${deps.tutor.name}, model ${config.tutorModel}`);
 
 await maintainJournal();
 const timers = [
