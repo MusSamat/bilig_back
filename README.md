@@ -97,6 +97,7 @@ without TOTP.
 | `npm run typecheck` | `tsc --noEmit` for the app and the contract packages |
 | `npm run db:up` / `db:migrate` / `db:migrate:dev` / `db:seed` | database lifecycle |
 | `npm run db:seed:demo` | DEV ONLY: demo school, accounts, class and assignment (see [Try it locally](#try-it-locally)) |
+| `npm run tutor:eval` | golden-set evaluation of the assistant through the real request path (language, on/off topic, length, citations, latency, cost); uses `DEEPSEEK_API_KEY` when set, else the offline `dev` provider. `-- --topics=speed --langs=ky --out=report.md` |
 | `npm run contract:hash` | sha256 of `packages/permissions` + `packages/content-model`; must equal bilig_ft's |
 
 ### Testing strategy
@@ -117,8 +118,11 @@ All variables are documented in [`.env.example`](.env.example). The important on
 | `REDIS_URL` | rate limits and the tutor budget; unreachable → in-memory fallback (single instance only) |
 | `JWT_SECRET`, `PSEUDONYM_SECRET` | required in production |
 | `CORS_ORIGIN` | comma-separated client/admin origins (credentials allowed) |
-| `ANTHROPIC_API_KEY`, `TUTOR_MODEL` | tutor provider (`claude-opus-5-5`) |
-| `TUTOR_PROVIDER` | `anthropic`, `dev` or `none`. Unset: `anthropic` with a key, else `dev` in development, else `none` (tutor answers 503). `dev` answers and generates from the package itself, without an LLM, and is refused in production |
+| `TUTOR_PROVIDER` | `deepseek` (in use), `anthropic` (kept), `dev` or `none`. Unset: `deepseek` with `DEEPSEEK_API_KEY`, else `dev` in development, else `none` (tutor answers 503). `dev` answers and generates from the package itself, without an LLM, and is refused in production |
+| `DEEPSEEK_API_KEY`, `DEEPSEEK_BASE_URL`, `DEEPSEEK_MODEL` | DeepSeek (OpenAI-format API, `https://api.deepseek.com`, model `deepseek-flash`) |
+| `DEEPSEEK_CHAT_THINKING`, `DEEPSEEK_GENERATE_EFFORT` | thinking for chat answers (default off: fast first token) and the reasoning effort for generation (`none`/`low`/`high`/`max`, default `low`) |
+| `TUTOR_MODEL`, `TUTOR_FALLBACK` | the primary model (default per provider); an optional failover provider (`anthropic` / `deepseek`) |
+| `ANTHROPIC_API_KEY` | Claude, only when chosen with `TUTOR_PROVIDER=anthropic` or `TUTOR_FALLBACK=anthropic` |
 | `TUTOR_DAILY_TOKEN_BUDGET` | daily token budget; once spent the tutor answers 503 |
 | `MAIL_TRANSPORT` | `console` prints verification / reset / invite links |
 | `DEMO_SEED` | `1` loads the demo dataset at startup (dev only; refused in production) |

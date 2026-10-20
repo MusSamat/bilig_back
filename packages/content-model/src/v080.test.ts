@@ -5,7 +5,7 @@ import { parseGradeSegment } from './curriculum.js';
 import { ClassCreateRequestSchema, ENDPOINTS, StaffInviteRequestSchema, SupportStartRequestSchema } from './api/index.js';
 
 describe('contract 0.8.0: roles, support, journal', () => {
-  it('version', () => expect(CONTRACT_VERSION).toBe('0.8.0'));
+  it('version is 0.8.0 or later', () => expect(CONTRACT_VERSION >= '0.8.0').toBe(true));
 
   it('grades 1–12 (g12 is a valid URL segment)', () => {
     expect(parseGradeSegment('g12')).toBe(12);

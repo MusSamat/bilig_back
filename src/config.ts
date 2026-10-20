@@ -37,12 +37,29 @@ const EnvSchema = z.object({
   CONTENT_DIR: z.string().optional(),
   ANTHROPIC_API_KEY: z.string().optional(),
   /**
-   * `anthropic` (needs ANTHROPIC_API_KEY), `dev` (answers and generates from the
-   * package itself, no LLM; refused in production) or `none` (offline 503).
-   * Unset: `anthropic` with a key, else `dev` in development, else `none`.
+   * `deepseek` (needs DEEPSEEK_API_KEY; the provider in use), `anthropic`
+   * (needs ANTHROPIC_API_KEY; kept, not used for now), `dev` (answers and
+   * generates from the package itself, no LLM; refused in production) or
+   * `none` (offline 503). Unset: `deepseek` with its key, else `dev` in
+   * development, else `none` — Anthropic only when chosen explicitly.
    */
-  TUTOR_PROVIDER: z.enum(['anthropic', 'dev', 'none']).optional(),
-  TUTOR_MODEL: z.string().default('claude-opus-5-5'),
+  TUTOR_PROVIDER: z.enum(['anthropic', 'deepseek', 'dev', 'none']).optional(),
+  /** Model of the primary provider; unset: deepseek-flash (deepseek) / claude-opus-5-5 (anthropic). */
+  TUTOR_MODEL: z.string().optional(),
+  /** Failover provider when the primary is unavailable (outage, rate limit, balance); needs its key. */
+  TUTOR_FALLBACK: z.enum(['anthropic', 'deepseek']).optional(),
+  DEEPSEEK_API_KEY: z.string().optional(),
+  DEEPSEEK_BASE_URL: z.string().url().default('https://api.deepseek.com'),
+  /** Model when DeepSeek is the fallback (as primary, TUTOR_MODEL wins). */
+  DEEPSEEK_MODEL: z.string().default('deepseek-flash'),
+  /** Thinking mode for chat answers (off by default: fast first token in class). */
+  DEEPSEEK_CHAT_THINKING: bool,
+  /**
+   * Reasoning effort for «more examples / questions» generation; `none` turns thinking off.
+   * Default `low`: reasoning tokens are billed as output; short school items need little of it,
+   * and every item is validated server-side anyway (language, length, options, duplicates).
+   */
+  DEEPSEEK_GENERATE_EFFORT: z.enum(['none', 'low', 'high', 'max']).default('low'),
   TUTOR_DAILY_TOKEN_BUDGET: z.coerce.number().int().min(0).default(2_000_000),
   MAIL_TRANSPORT: z.enum(['console', 'memory']).default('console'),
   TRUST_PROXY: bool,
@@ -108,8 +125,16 @@ export interface Config {
   storageDir: string;
   contentDir?: string;
   anthropicApiKey?: string;
-  tutorProvider: 'anthropic' | 'dev' | 'none';
+  tutorProvider: 'anthropic' | 'deepseek' | 'dev' | 'none';
   tutorModel: string;
+  tutorFallback?: 'anthropic' | 'deepseek';
+  deepseek: {
+    apiKey?: string;
+    baseURL: string;
+    model: string;
+    chatThinking: boolean;
+    generateEffort: 'none' | 'low' | 'high' | 'max';
+  };
   tutorDailyTokenBudget: number;
   mailTransport: Env['MAIL_TRANSPORT'];
   trustProxy: boolean;
@@ -164,9 +189,16 @@ export function loadConfig(env?: NodeJS.ProcessEnv): Config {
   if (e.TUTOR_PROVIDER === 'anthropic' && !e.ANTHROPIC_API_KEY) {
     throw new Error('TUTOR_PROVIDER=anthropic requires ANTHROPIC_API_KEY');
   }
+  if (e.TUTOR_PROVIDER === 'deepseek' && !e.DEEPSEEK_API_KEY) {
+    throw new Error('TUTOR_PROVIDER=deepseek requires DEEPSEEK_API_KEY');
+  }
+  if (e.TUTOR_FALLBACK === 'anthropic' && !e.ANTHROPIC_API_KEY) throw new Error('TUTOR_FALLBACK=anthropic requires ANTHROPIC_API_KEY');
+  if (e.TUTOR_FALLBACK === 'deepseek' && !e.DEEPSEEK_API_KEY) throw new Error('TUTOR_FALLBACK=deepseek requires DEEPSEEK_API_KEY');
   if (e.NODE_ENV === 'production' && e.ADMIN_TOTP_DISABLED) {
     throw new Error('ADMIN_TOTP_DISABLED is a dev-only switch and is refused in production');
   }
+  const tutorProvider: Config['tutorProvider'] =
+    e.TUTOR_PROVIDER ?? (e.DEEPSEEK_API_KEY ? 'deepseek' : e.NODE_ENV === 'development' ? 'dev' : 'none');
   return {
     env: e.NODE_ENV,
     port: e.PORT,
@@ -187,8 +219,16 @@ export function loadConfig(env?: NodeJS.ProcessEnv): Config {
     storageDir: e.STORAGE_DIR,
     contentDir: e.CONTENT_DIR,
     anthropicApiKey: e.ANTHROPIC_API_KEY || undefined,
-    tutorProvider: e.TUTOR_PROVIDER ?? (e.ANTHROPIC_API_KEY ? 'anthropic' : e.NODE_ENV === 'development' ? 'dev' : 'none'),
-    tutorModel: e.TUTOR_MODEL,
+    tutorProvider,
+    tutorModel: e.TUTOR_MODEL ?? (tutorProvider === 'anthropic' ? 'claude-opus-5-5' : e.DEEPSEEK_MODEL),
+    ...(e.TUTOR_FALLBACK && e.TUTOR_FALLBACK !== tutorProvider ? { tutorFallback: e.TUTOR_FALLBACK } : {}),
+    deepseek: {
+      apiKey: e.DEEPSEEK_API_KEY || undefined,
+      baseURL: e.DEEPSEEK_BASE_URL,
+      model: e.DEEPSEEK_MODEL,
+      chatThinking: e.DEEPSEEK_CHAT_THINKING,
+      generateEffort: e.DEEPSEEK_GENERATE_EFFORT,
+    },
     tutorDailyTokenBudget: e.TUTOR_DAILY_TOKEN_BUDGET,
     mailTransport: e.MAIL_TRANSPORT,
     trustProxy: e.TRUST_PROXY,

@@ -13,6 +13,7 @@ import { createLimiter, MemoryLimiter, type Limiter } from './services/rate-limi
 import { LocalDiskStorage, MemoryStorage, type ObjectStorage } from './services/storage.js';
 import { DevProvider } from './services/tutor-dev-provider.js';
 import { AnthropicProvider, type TutorProvider } from './services/tutor-provider.js';
+import { DeepSeekProvider, FallbackProvider } from './services/deepseek-provider.js';
 
 export interface DepsOverrides {
   repo?: Repository;
@@ -56,8 +57,24 @@ export async function createDeps(config: Config, o: DepsOverrides = {}): Promise
   };
 }
 
-export function createTutorProvider(config: Pick<Config, 'tutorProvider' | 'anthropicApiKey'>): TutorProvider | null {
-  if (config.tutorProvider === 'anthropic' && config.anthropicApiKey) return new AnthropicProvider(config.anthropicApiKey);
+type TutorConfig = Pick<Config, 'tutorProvider'> & Partial<Pick<Config, 'tutorModel' | 'tutorFallback' | 'anthropicApiKey' | 'deepseek'>>;
+
+function llmProvider(kind: 'anthropic' | 'deepseek', config: TutorConfig, primary: boolean): TutorProvider | null {
+  if (kind === 'anthropic')
+    return config.anthropicApiKey ? new AnthropicProvider(config.anthropicApiKey, (primary && config.tutorModel) || 'claude-opus-5-5') : null;
+  const d = config.deepseek;
+  return d?.apiKey
+    ? new DeepSeekProvider({ apiKey: d.apiKey, baseURL: d.baseURL, model: (primary && config.tutorModel) || d.model, chatThinking: d.chatThinking, generateEffort: d.generateEffort })
+    : null;
+}
+
+/** The configured LLM (DeepSeek today), optionally with a failover provider; `dev` / none otherwise. */
+export function createTutorProvider(config: TutorConfig, log: (msg: string) => void = () => {}): TutorProvider | null {
   if (config.tutorProvider === 'dev') return new DevProvider();
-  return null;
+  if (config.tutorProvider === 'none') return null;
+  const primary = llmProvider(config.tutorProvider, config, true);
+  const fallback = config.tutorFallback ? llmProvider(config.tutorFallback, config, false) : null;
+  if (!primary) return null;
+  if (!fallback) return primary;
+  return new FallbackProvider(primary, fallback, (from, to, reason) => log(`tutor: ${from} unavailable (${reason}) → ${to}`));
 }

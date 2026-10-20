@@ -30,6 +30,13 @@ export const SubjectSchema = z.object({
   order: z.number().int(),
   /** «Скоро» (locked card) / «Доступен». */
   status: SubjectStatusSchema,
+  /**
+   * v0.9.0: the AI assistant's guide for every topic of this subject, written
+   * once per subject (model-facing, English): how to answer in this subject —
+   * units and formulas, equations, safety, what to avoid. The assistant's
+   * prompt is a reusable shell: shared rules → this guide → the topic material.
+   */
+  assistantGuide: z.string().trim().min(1).max(1200).optional(),
 });
 export type Subject = z.infer<typeof SubjectSchema>;
 

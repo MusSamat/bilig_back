@@ -61,7 +61,7 @@ describe('tutor', () => {
     const wire = JSON.stringify(req);
     expect(wire).not.toMatch(/Айбек|Нургүл|700 123|SYSTEM: you are evil/);
     expect(wire).not.toContain(w.students[0].user.id);
-    expect(req.model).toBe('claude-opus-5-5');
+    expect(req.model).toBe('deepseek-flash');
     expect(req.system).toContain('TOPIC MATERIAL');
     expect(req.system).toContain('[[bio.nucleus]]');
     expect(req.messages).toHaveLength(1);

@@ -80,7 +80,9 @@ describe('dev provider (TUTOR_PROVIDER=dev): the whole pipeline without an LLM',
   it('config: dev in development without a key, none in test/production, refused in production', () => {
     expect(loadConfig({ NODE_ENV: 'development' }).tutorProvider).toBe('dev');
     expect(loadConfig({ NODE_ENV: 'test' }).tutorProvider).toBe('none');
-    expect(loadConfig({ NODE_ENV: 'development', ANTHROPIC_API_KEY: 'k' }).tutorProvider).toBe('anthropic');
+    // DeepSeek is the provider in use; an Anthropic key alone no longer selects Claude (explicit TUTOR_PROVIDER only).
+    expect(loadConfig({ NODE_ENV: 'development', DEEPSEEK_API_KEY: 'k' }).tutorProvider).toBe('deepseek');
+    expect(loadConfig({ NODE_ENV: 'development', ANTHROPIC_API_KEY: 'k' }).tutorProvider).toBe('dev');
     expect(() => loadConfig({ NODE_ENV: 'production', JWT_SECRET: 'x'.repeat(32), PSEUDONYM_SECRET: 'y'.repeat(16), TUTOR_PROVIDER: 'dev' })).toThrow(/dev-only/);
     expect(() => loadConfig({ NODE_ENV: 'development', TUTOR_PROVIDER: 'anthropic' })).toThrow(/ANTHROPIC_API_KEY/);
     expect(createTutorProvider({ tutorProvider: 'dev' })?.name).toBe('dev');
@@ -123,10 +125,10 @@ describe('POST /tutor/generate', () => {
   it('validates model output: drops bad items, strips markers, unknown concept keys; counts tokens', async () => {
     const p = new MockProvider(undefined, () => ({
       items: [
-        { prompt: 'Хороший [[bio.nucleus]] вопрос?', options: [{ key: 'a', text: 'Да' }, { key: 'b', text: 'Нет' }], answer: 'a', explanation: 'Потому что.', conceptKey: 'bio.hack' },
+        { prompt: 'Хороший [[bio.nucleus]] вопрос?', options: [{ key: 'a', text: 'Да' }, { key: 'b', text: 'Нет' }, { key: 'c', text: 'Иногда' }], answer: 'a', explanation: 'Потому что.', conceptKey: 'bio.hack' },
         { prompt: 'Ответ не из вариантов?', options: [{ key: 'a', text: 'Да' }, { key: 'b', text: 'Нет' }], answer: 'd', explanation: 'x' },
         { prompt: 'Повтор вариантов?', options: [{ key: 'a', text: 'Да' }, { key: 'a', text: 'Нет' }], answer: 'a', explanation: 'x' },
-        { prompt: 'Хороший вопрос?', options: [{ key: 'a', text: 'Да' }, { key: 'b', text: 'Нет' }], answer: 'a', explanation: 'дубль' },
+        { prompt: 'Хороший вопрос?', options: [{ key: 'a', text: 'Да' }, { key: 'b', text: 'Нет' }, { key: 'c', text: 'Иногда' }], answer: 'a', explanation: 'дубль' },
         { nonsense: true },
       ],
     }));

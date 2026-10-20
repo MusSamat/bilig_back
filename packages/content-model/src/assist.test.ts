@@ -75,3 +75,27 @@ describe('glossaryMatches', () => {
     expect(glossaryMatches(pkg, '   ')).toEqual([]);
   });
 });
+
+describe('suggestQuestions v0.9.0: per-topic starters, sensible questions', () => {
+  it('the topic starters come first, in the UI language', () => {
+    const withStarters = { ...pkg, topic: { ...pkg.topic, starters: [{ ky: 'Клетка кантип бөлүнөт?', ru: 'Как делится клетка?', en: 'How does a cell divide?' }] } };
+    expect(suggestQuestions(withStarters, 'ky')[0]).toBe('Клетка кантип бөлүнөт?');
+    expect(suggestQuestions(withStarters, 'en', { count: 5 })).toContain('How does a cell divide?');
+  });
+
+  it('never asks «where is it» about a non-physical concept (a speed, a force)', () => {
+    const speed = { ...nucleus, key: 'phys.speed', kind: 'quantity', misconceptions: [] };
+    const abstract = { ...pkg, topic: { ...pkg.topic, conceptKeys: ['phys.speed'], overrides: {} }, concepts: [speed] };
+    for (const lang of ['ky', 'ru', 'en'] as const) {
+      const qs = suggestQuestions(abstract, lang, { conceptKey: 'phys.speed', count: 6 }).join(' | ');
+      expect(qs).not.toMatch(/кайда жайгашкан|Где находится|Where is/);
+      const topic = suggestQuestions(abstract, lang, { count: 6 }).join(' | ');
+      expect(topic).not.toMatch(/эмнелерден турат|Из чего состоит|made of/);
+    }
+  });
+
+  it('turns a common mistake of the topic into a «is it true…?» question', () => {
+    const qs = suggestQuestions(pkg, 'ru', { count: 6 });
+    expect(qs.some((q) => q.startsWith('Правда ли, что'))).toBe(true);
+  });
+});

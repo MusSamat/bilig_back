@@ -192,5 +192,11 @@ export const TopicSchema = z.object({
   props: z.array(ConceptPropSchema).optional(),
   /** v0.3.0: «Права и источники» (A-06). The checklist warns when a 3D asset has no entry. */
   rights: z.array(RightsEntrySchema).optional(),
+  /**
+   * v0.9.0: the assistant's starter questions for this topic, written by the
+   * authors (3–5; about THIS topic only). Shown as chips before the first
+   * question and after an off-topic one; generated suggestions follow.
+   */
+  starters: z.array(LocalizedSchema).max(6).optional(),
 });
 export type Topic = z.infer<typeof TopicSchema>;

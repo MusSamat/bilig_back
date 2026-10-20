@@ -86,9 +86,14 @@ export class AnthropicProvider implements TutorProvider {
   readonly name = 'anthropic';
   private client: Anthropic;
 
-  constructor(apiKey: string) {
+  /** `model`: used when the request names a non-Claude model (a setting meant for another provider, or failover). */
+  constructor(apiKey: string, private readonly model = 'claude-opus-5-5') {
     // maxRetries 1: a failed call falls back to the client's offline index quickly.
     this.client = new Anthropic({ apiKey, maxRetries: 1, timeout: TIMEOUT_MS });
+  }
+
+  private modelFor(requested: string): string {
+    return requested.startsWith('claude') ? requested : this.model;
   }
 
   async *stream(req: ProviderRequest): AsyncIterable<ProviderChunk> {
@@ -96,7 +101,7 @@ export class AnthropicProvider implements TutorProvider {
     try {
       stream = this.client.beta.messages.stream(
         {
-          model: req.model,
+          model: this.modelFor(req.model),
           max_tokens: req.maxTokens,
           // Short, grounded school answers: low effort keeps first-token latency ≤ 2 s (TZ §10).
           output_config: { effort: 'low' },
@@ -129,7 +134,7 @@ export class AnthropicProvider implements TutorProvider {
     try {
       const msg = await this.client.messages.create(
         {
-          model: req.model,
+          model: this.modelFor(req.model),
           max_tokens: req.maxTokens,
           // Structured outputs: the reply is JSON matching the schema (validated again server-side).
           output_config: { effort: 'low', format: { type: 'json_schema', schema: req.schema } },

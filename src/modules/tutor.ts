@@ -40,13 +40,33 @@ import type { GeneratedRec } from '../repo/types.js';
 import type { ProviderChunk, ProviderMessage } from '../services/tutor-provider.js';
 import { getTutorSettings } from '../services/tutor-settings.js';
 
-const MAX_TOKENS = 700;
-const GENERATE_MAX_TOKENS = 2000;
+/** Answers are 2–4 sentences (≈ 80–200 tokens in ky/ru): the cap stops a runaway answer, output costs 4× input. */
+const MAX_TOKENS = 450;
+/** Up to 5 short items as JSON (≈ 120–200 tokens each). */
+const GENERATE_MAX_TOKENS = 1200;
 /** Pool rows considered per (topic, concept, kind, language). */
 const POOL_SCAN = 500;
 /** Votes are counted once per teacher (or IP for guests) per item, for this long. */
 const VOTE_TTL_SEC = 90 * 86400;
-const HISTORY_MESSAGES = 8;
+const HISTORY_MESSAGES = 6;
+/** History sent to the model: the latest turns, each trimmed, within a total budget (the question itself is not trimmed). */
+const HISTORY_CHARS_PER_MESSAGE = 600;
+const HISTORY_CHARS_TOTAL = 2400;
+
+/** The latest turns that fit the budget, oldest first; long ones keep their beginning. */
+export function trimHistory(history: ProviderMessage[]): ProviderMessage[] {
+  const out: ProviderMessage[] = [];
+  let total = 0;
+  for (const m of [...history].reverse()) {
+    const text = m.text.length > HISTORY_CHARS_PER_MESSAGE ? `${m.text.slice(0, HISTORY_CHARS_PER_MESSAGE)}…` : m.text;
+    if (total + text.length > HISTORY_CHARS_TOTAL) break;
+    total += text.length;
+    out.unshift({ role: m.role, text });
+  }
+  // The model expects the conversation to start with the user.
+  while (out[0]?.role === 'assistant') out.shift();
+  return out;
+}
 export const dayKey = (d: Date) => d.toISOString().slice(0, 10);
 export const budgetKey = (d: Date) => `tutor:tokens:${dayKey(d)}`;
 
@@ -179,7 +199,7 @@ export function registerTutor(app: FastifyInstance, deps: Deps) {
 
     // History comes from the server-side thread (already masked), never from client text.
     const history = (await repo.listTutorMessages({ threadId, limit: HISTORY_MESSAGES })).map<ProviderMessage>((m) => ({ role: m.role, text: m.text }));
-    const messages: ProviderMessage[] = [...history, { role: 'user', text: wrapQuestion(masked, { ...screen, quote, intent }) }];
+    const messages: ProviderMessage[] = [...trimHistory(history), { role: 'user', text: wrapQuestion(masked, { ...screen, quote, intent }) }];
     const system = buildSystemPrompt(pkg, lang, settings.systemPrompts[lang]);
     const grounding = { pkg, lang, question: masked, intent, ...(screen.focus ? { conceptKey: screen.focus.key } : {}), ...(quote ? { quote } : {}) };
 
@@ -309,7 +329,7 @@ export function registerTutor(app: FastifyInstance, deps: Deps) {
           grounding: { pkg, lang, kind, count: need, avoid: [...avoidSigs], ...(conceptKey ? { conceptKey } : {}) },
         });
         await limiter.add(budgetKey(clock.now()), res.usage.inputTokens + res.usage.outputTokens, 2 * 86400);
-        const v = validateGenerated(kind, res.data, new Set(pkg.concepts.map((c) => c.key)), avoidSigs, need);
+        const v = validateGenerated(kind, res.data, new Set(pkg.concepts.map((c) => c.key)), avoidSigs, need, lang);
         if (v.rejected) req.log.warn({ kind, topicKey: pkg.topic.key, rejected: v.rejected }, 'tutor.generate: items rejected by validation');
         const now = clock.now();
         fresh = [...v.examples, ...v.quiz].map((payload) => ({

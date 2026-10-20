@@ -19,14 +19,15 @@ type Tpl = Record<Lang, string>;
 const fill = (tpl: Tpl, lang: Lang, vars: Record<string, string>): string =>
   tpl[lang].replace(/\{(\w+)\}/g, (_, k: string) => vars[k] ?? '');
 
-const Q: Record<'what' | 'job' | 'where' | 'diff' | 'topicWhat' | 'topicParts' | 'topicLife' | 'process', Tpl> = {
+const Q: Record<'what' | 'job' | 'where' | 'diff' | 'topicWhat' | 'topicParts' | 'myth' | 'life' | 'process', Tpl> = {
   what: { ky: '{name} деген эмне?', ru: 'Что такое {name}?', en: 'What is {name}?' },
   job: { ky: '{name} эмне үчүн керек?', ru: 'Зачем нужен элемент «{name}»?', en: 'Why is {name} important?' },
   where: { ky: '{name} кайда жайгашкан?', ru: 'Где находится {name}?', en: 'Where is {name} found?' },
   diff: { ky: '{a} менен {b} эмнеси менен айырмаланат?', ru: 'Чем {a} отличается от {b}?', en: 'How is {a} different from {b}?' },
   topicWhat: { ky: '{name} деген эмне?', ru: 'Что такое {name}?', en: 'What is {name}?' },
   topicParts: { ky: '{name} эмнелерден турат?', ru: 'Из чего состоит {name}?', en: 'What is {name} made of?' },
-  topicLife: { ky: '{name} турмушта кайда кездешет?', ru: 'Где {name} встречается в жизни?', en: 'Where do we meet {name} in everyday life?' },
+  myth: { ky: 'Чын эле «{text}»?', ru: 'Правда ли, что «{text}»?', en: 'Is it true that “{text}”?' },
+  life: { ky: '«{name}» мисалын түшүндүрүп берчи', ru: 'Объясни пример «{name}»', en: 'Explain the example “{name}”' },
   process: { ky: '«{name}» кантип жүрөт?', ru: 'Как проходит процесс «{name}»?', en: 'How does “{name}” work?' },
 };
 
@@ -37,30 +38,66 @@ const firstSentence = (s: string): string => {
 };
 const norm = (s: string): string => s.toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 
-/** Follow-up questions about the focus concept (or the topic), in `lang`. Never empty for a non-empty package. */
+/**
+ * v0.9.0: concept kinds that are physical things with a place in the model
+ * (an organ, a bone, a layer, a device…). «Where is it?» and «what is it made
+ * of?» only make sense for these — never for a speed, a force, a process or a
+ * substance class.
+ */
+export const PHYSICAL_KINDS: ReadonlySet<string> = new Set([
+  'structure', 'organelle', 'organ', 'tissue', 'bone', 'joint', 'muscle', 'chamber', 'vessel', 'airway', 'part', 'body',
+  'layer', 'shell', 'sphere', 'boundary', 'zone', 'segment', 'planet', 'satellite', 'star', 'water-body', 'landform',
+  'device', 'instrument', 'tool', 'solid', 'figure',
+]);
+const isPhysical = (c: Pick<ResolvedConcept, 'kind'>): boolean => PHYSICAL_KINDS.has(c.kind);
+/** A misconception short enough to quote in a chip. */
+const quotable = (s: string): string | null => {
+  const one = firstSentence(s).replace(/[.!?]$/, '');
+  return one.length >= 8 && one.length <= 90 ? one : null;
+};
+
+/**
+ * Follow-up questions about the focus concept (or the topic), in `lang`. Never empty for a non-empty package.
+ * Without a focus, the topic's own `starters` (written per topic by the authors) come first; the rest is
+ * built from the topic's content — a common mistake to check, a real-life example, a process, a key concept —
+ * and «where / what is it made of» is asked only about physical things (PHYSICAL_KINDS).
+ */
 export function suggestQuestions(
   pkg: ContentPackage,
   lang: Lang,
   opts: { conceptKey?: string | null; processKey?: string | null; count?: number } = {},
 ): string[] {
   const count = opts.count ?? 3;
-  const concepts = topicConcepts(pkg).filter((c) => !c.isContainer);
-  const focus = opts.conceptKey ? topicConcepts(pkg).find((c) => c.key === opts.conceptKey) : undefined;
+  const all = topicConcepts(pkg);
+  const concepts = all.filter((c) => !c.isContainer);
+  const focus = opts.conceptKey ? all.find((c) => c.key === opts.conceptKey) : undefined;
   const out: string[] = [];
   const process = opts.processKey ? pkg.processes.find((p) => p.key === opts.processKey) : undefined;
   if (process) out.push(fill(Q.process, lang, { name: t(process.title, lang) }));
   if (focus) {
     const name = lower(t(focus.title, lang), lang);
-    out.push(fill(Q.what, lang, { name }), fill(Q.job, lang, { name: t(focus.title, lang) }));
+    out.push(fill(Q.what, lang, { name }));
+    if (isPhysical(focus)) out.push(fill(Q.job, lang, { name: t(focus.title, lang) }));
+    const myth = focus.misconceptions.map((m) => quotable(t(m.text, lang))).find(Boolean);
+    if (myth) out.push(fill(Q.myth, lang, { text: myth }));
     const other = focus.related.map((k) => pkg.concepts.find((c) => c.key === k)).find((c) => !!c) ?? concepts.find((c) => c.key !== focus.key);
     if (other) out.push(fill(Q.diff, lang, { a: t(focus.title, lang), b: lower(t(other.title, lang), lang) }));
-    out.push(fill(Q.where, lang, { name }));
+    if (isPhysical(focus)) out.push(fill(Q.where, lang, { name }));
   } else {
+    for (const s of pkg.topic.starters ?? []) out.push(t(s, lang));
     const name = lower(t(pkg.topic.title, lang), lang);
-    out.push(fill(Q.topicWhat, lang, { name }), fill(Q.topicParts, lang, { name }), fill(Q.topicLife, lang, { name }));
+    out.push(fill(Q.topicWhat, lang, { name }));
+    const myth = concepts.flatMap((c) => c.misconceptions).map((m) => quotable(t(m.text, lang))).find(Boolean);
+    if (myth) out.push(fill(Q.myth, lang, { text: myth }));
+    const life = pkg.topic.examples.simple[0] ?? pkg.topic.examples.stem[0];
+    if (life) out.push(fill(Q.life, lang, { name: t(life.title, lang) }));
+    const firstProcess = pkg.topic.activities.processKeys.map((k) => pkg.processes.find((p) => p.key === k)).find(Boolean);
+    if (firstProcess) out.push(fill(Q.process, lang, { name: t(firstProcess.title, lang) }));
+    const physicalShare = concepts.length ? concepts.filter(isPhysical).length / concepts.length : 0;
+    if (physicalShare >= 0.5) out.push(fill(Q.topicParts, lang, { name }));
     for (const c of concepts.slice(0, 2)) out.push(fill(Q.what, lang, { name: lower(t(c.title, lang), lang) }));
   }
-  return [...new Set(out)].slice(0, count);
+  return [...new Set(out.map((q) => q.trim()).filter(Boolean))].slice(0, count);
 }
 
 export interface GlossaryMatch {
