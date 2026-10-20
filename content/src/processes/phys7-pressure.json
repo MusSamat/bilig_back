@@ -1,0 +1,1070 @@
+{
+  "processes": [
+    {
+      "key": "phys.brick-faces",
+      "engine": "timeline",
+      "icon": "layers",
+      "title": {
+        "ky": "Брусокту ар бир капталына коюу",
+        "ru": "Брусок на разных гранях",
+        "en": "A block on each of its faces"
+      },
+      "description": {
+        "ky": "Массасы 2,5 кг брусокту кумга адегенде кең капталы менен, анан кууш капталы менен, акырында учу менен коёбуз. Күч өзгөрбөйт (24,5 Н), аянт кичирейген сайын басым чоңоюп, кум тереңирээк майышат.",
+        "ru": "Ставим брусок массой 2,5 кг на песок сначала широкой гранью, потом узкой боковой и наконец торцом. Сила не меняется (24,5 Н), а с уменьшением площади давление растёт и вмятина в песке становится глубже.",
+        "en": "We stand a 2.5 kg block on sand on its wide face, then its narrow side and finally its end. The force stays 24.5 N, but as the area shrinks the pressure grows and the dent in the sand gets deeper."
+      },
+      "equation": "P = \\frac{F}{S} = \\frac{24{,}5\\,Н}{0{,}03\\,м^2} \\approx 817\\,Па",
+      "inputs": {
+        "ky": "m = 2,5 кг, 25 × 12 × 6,5 см, g = 9,8 Н/кг",
+        "ru": "m = 2,5 кг, 25 × 12 × 6,5 см, g = 9,8 Н/кг",
+        "en": "m = 2.5 kg, 25 × 12 × 6.5 cm, g = 9.8 N/kg"
+      },
+      "outputs": {
+        "ky": "P = 817 Па; 1508 Па; 3141 Па",
+        "ru": "p = 817 Па; 1508 Па; 3141 Па",
+        "en": "p = 817 Pa; 1508 Pa; 3141 Pa"
+      },
+      "steps": [
+        {
+          "key": "weigh",
+          "title": {
+            "ky": "Брусоктун салмагы",
+            "ru": "Вес бруска",
+            "en": "The block's weight"
+          },
+          "result": {
+            "ky": "F = 24,5 Н",
+            "ru": "F = 24,5 Н",
+            "en": "F = 24.5 N"
+          },
+          "description": {
+            "ky": "Брусок кумду өз салмагы менен басат: F = m·g = 2,5 · 9,8 = 24,5 Н. Бул күч бардык үч абалда бирдей.",
+            "ru": "Брусок давит на песок своим весом: F = m·g = 2,5 · 9,8 = 24,5 Н. Эта сила одинакова во всех трёх положениях.",
+            "en": "The block presses on the sand with its weight: F = mg = 2.5 × 9.8 = 24.5 N. The force is the same in all three positions."
+          },
+          "conceptKey": "phys.pressure-force",
+          "altText": {
+            "ky": "Брусоктон кумга ылдый караган 24,5 Н жебе.",
+            "ru": "Стрелка 24,5 Н от бруска вниз, на песок.",
+            "en": "A 24.5 N arrow from the block down onto the sand."
+          },
+          "duration": 1
+        },
+        {
+          "key": "large",
+          "title": {
+            "ky": "Кең капталы менен",
+            "ru": "Широкой гранью",
+            "en": "Wide face down"
+          },
+          "result": {
+            "ky": "S = 0,03 м², P ≈ 817 Па",
+            "ru": "S = 0,03 м², p ≈ 817 Па",
+            "en": "A = 0.03 m², p ≈ 817 Pa"
+          },
+          "description": {
+            "ky": "S = 0,25 · 0,12 = 0,03 м²; P = 24,5 / 0,03 ≈ 817 Па. Кумдагы из тайыз.",
+            "ru": "S = 0,25 · 0,12 = 0,03 м²; p = 24,5 / 0,03 ≈ 817 Па. Вмятина в песке мелкая.",
+            "en": "A = 0.25 × 0.12 = 0.03 m²; p = 24.5 / 0.03 ≈ 817 Pa. The dent is shallow."
+          },
+          "conceptKey": "phys.contact-area",
+          "altText": {
+            "ky": "Кең капталы менен жаткан брусок, кумда тайыз из.",
+            "ru": "Брусок лежит широкой гранью, вмятина мелкая.",
+            "en": "The block lying on its wide face with a shallow dent."
+          },
+          "duration": 2
+        },
+        {
+          "key": "side",
+          "title": {
+            "ky": "Кууш капталы менен",
+            "ru": "Узкой боковой гранью",
+            "en": "Narrow side down"
+          },
+          "result": {
+            "ky": "S = 0,01625 м², P ≈ 1508 Па",
+            "ru": "S = 0,01625 м², p ≈ 1508 Па",
+            "en": "A = 0.01625 m², p ≈ 1508 Pa"
+          },
+          "description": {
+            "ky": "S = 0,25 · 0,065 = 0,01625 м²; P ≈ 1508 Па – аянт ≈ 1,8 эсе кичирейди, басым ошончо эсе чоңойду.",
+            "ru": "S = 0,25 · 0,065 = 0,01625 м²; p ≈ 1508 Па – площадь меньше в ≈ 1,8 раза, давление во столько же раз больше.",
+            "en": "A = 0.25 × 0.065 = 0.01625 m²; p ≈ 1508 Pa – the area is about 1.8 times smaller and the pressure that much bigger."
+          },
+          "conceptKey": "phys.pressure",
+          "altText": {
+            "ky": "Капталына тургузулган брусок, из тереңирээк.",
+            "ru": "Брусок на боковой грани, вмятина глубже.",
+            "en": "The block on its side with a deeper dent."
+          },
+          "duration": 2
+        },
+        {
+          "key": "end",
+          "title": {
+            "ky": "Учу менен",
+            "ru": "Торцом",
+            "en": "On its end"
+          },
+          "result": {
+            "ky": "S = 0,0078 м², P ≈ 3141 Па",
+            "ru": "S = 0,0078 м², p ≈ 3141 Па",
+            "en": "A = 0.0078 m², p ≈ 3141 Pa"
+          },
+          "description": {
+            "ky": "S = 0,12 · 0,065 = 0,0078 м²; P ≈ 3141 Па – кең капталындагыдан ≈ 3,8 эсе чоң. Брусок кумга эң терең батат.",
+            "ru": "S = 0,12 · 0,065 = 0,0078 м²; p ≈ 3141 Па – в ≈ 3,8 раза больше, чем на широкой грани. Брусок погружается глубже всего.",
+            "en": "A = 0.12 × 0.065 = 0.0078 m²; p ≈ 3141 Pa – about 3.8 times more than on the wide face. The block sinks deepest."
+          },
+          "conceptKey": "phys.pressure",
+          "altText": {
+            "ky": "Учу менен тик турган брусок, кумда терең из.",
+            "ru": "Брусок стоит на торце, глубокая вмятина.",
+            "en": "The block standing on its end with a deep dent."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "pressure",
+          "label": {
+            "ky": "Басым",
+            "ru": "Давление",
+            "en": "Pressure"
+          },
+          "unit": "Pa",
+          "min": 0,
+          "max": 3200,
+          "precision": 0
+        },
+        {
+          "key": "area",
+          "label": {
+            "ky": "Таяныч аянты",
+            "ru": "Площадь опоры",
+            "en": "Contact area"
+          },
+          "unit": "m²",
+          "min": 0,
+          "max": 0.03,
+          "precision": 4
+        }
+      ],
+      "params": {
+        "pressure@weigh": 0,
+        "area@weigh": 0,
+        "pressure@large": 817,
+        "area@large": 0.03,
+        "pressure@side": 1508,
+        "area@side": 0.01625,
+        "pressure@end": 3141,
+        "area@end": 0.0078,
+        "mass": 2.5
+      }
+    },
+    {
+      "key": "phys.probe-dive",
+      "engine": "timeline",
+      "icon": "droplet",
+      "title": {
+        "ky": "Басым ченегичти сууга түшүрүү",
+        "ru": "Погружаем датчик давления",
+        "en": "Lowering a pressure probe"
+      },
+      "description": {
+        "ky": "Манометрге туташкан зондду суунун бетинен түбүнө чейин түшүрөбүз. Тереңдик өскөн сайын басым P = ρ·g·h боюнча бир калыпта өсөт. Зонддун бетин ар кайсы тарапка бурсак, бир тереңдикте басым өзгөрбөйт – суюктук бардык тарапка бирдей басат.",
+        "ru": "Опускаем датчик, соединённый с манометром, от поверхности воды до дна. С глубиной давление равномерно растёт по p = ρgh. Если поворачивать датчик в разные стороны на одной глубине, давление не меняется – жидкость давит во все стороны одинаково.",
+        "en": "We lower a probe joined to a manometer from the surface of the water to the bottom. The pressure rises steadily with depth, p = ρgh. Turning the probe every way at one depth does not change the reading – a liquid presses equally in all directions."
+      },
+      "equation": "P = \\rho g h = 1000 \\cdot 9{,}8 \\cdot 0{,}3 = 2940\\,Па",
+      "inputs": {
+        "ky": "Суу ρ = 1000 кг/м³, идиштин бийиктиги 0,5 м",
+        "ru": "Вода ρ = 1000 кг/м³, высота сосуда 0,5 м",
+        "en": "Water ρ = 1000 kg/m³, vessel 0.5 m tall"
+      },
+      "outputs": {
+        "ky": "0,3 м де P = 2940 Па; түбүндө 4900 Па",
+        "ru": "на 0,3 м p = 2940 Па; у дна 4900 Па",
+        "en": "p = 2940 Pa at 0.3 m; 4900 Pa at the bottom"
+      },
+      "steps": [
+        {
+          "key": "surface",
+          "title": {
+            "ky": "Суунун бетинде",
+            "ru": "На поверхности",
+            "en": "At the surface"
+          },
+          "result": {
+            "ky": "h = 0, P = 0",
+            "ru": "h = 0, p = 0",
+            "en": "h = 0, p = 0"
+          },
+          "description": {
+            "ky": "Зонд суунун бетинде: үстүндө суу мамычасы жок, манометрдин суюктугу эки тизесинде тең бирдей деңгээлде.",
+            "ru": "Датчик у поверхности: столба воды над ним нет, жидкость в коленах манометра на одном уровне.",
+            "en": "The probe is at the surface: no water above it and the manometer liquid is level in both arms."
+          },
+          "conceptKey": "phys.depth",
+          "altText": {
+            "ky": "Зонд суунун бетинде, манометрдин деңгээлдери бирдей.",
+            "ru": "Датчик у поверхности, уровни манометра равны.",
+            "en": "The probe at the surface; the manometer levels are equal."
+          },
+          "duration": 1
+        },
+        {
+          "key": "h10",
+          "title": {
+            "ky": "10 см тереңдикте",
+            "ru": "На глубине 10 см",
+            "en": "At 10 cm"
+          },
+          "result": {
+            "ky": "P = 980 Па",
+            "ru": "p = 980 Па",
+            "en": "p = 980 Pa"
+          },
+          "description": {
+            "ky": "P = 1000 · 9,8 · 0,1 = 980 Па. Манометрдеги деңгээлдердин айырмасы пайда болду.",
+            "ru": "p = 1000 · 9,8 · 0,1 = 980 Па. В манометре появилась разность уровней.",
+            "en": "p = 1000 × 9.8 × 0.1 = 980 Pa. A difference in levels appears in the manometer."
+          },
+          "conceptKey": "phys.liquid-pressure",
+          "altText": {
+            "ky": "Зонд 10 см тереңдикте, манометрде кичине айырма.",
+            "ru": "Датчик на 10 см, в манометре небольшая разность.",
+            "en": "The probe at 10 cm with a small manometer difference."
+          },
+          "duration": 1
+        },
+        {
+          "key": "h30",
+          "title": {
+            "ky": "30 см тереңдикте",
+            "ru": "На глубине 30 см",
+            "en": "At 30 cm"
+          },
+          "result": {
+            "ky": "P = 2940 Па",
+            "ru": "p = 2940 Па",
+            "en": "p = 2940 Pa"
+          },
+          "description": {
+            "ky": "Тереңдик 3 эсе чоңойду – басым да 3 эсе чоңойду: 2940 Па.",
+            "ru": "Глубина выросла втрое – давление тоже втрое: 2940 Па.",
+            "en": "Three times the depth – three times the pressure: 2940 Pa."
+          },
+          "conceptKey": "phys.liquid-pressure",
+          "altText": {
+            "ky": "Зонд 30 см тереңдикте, манометрдеги айырма чоңойгон.",
+            "ru": "Датчик на 30 см, разность в манометре больше.",
+            "en": "The probe at 30 cm with a bigger manometer difference."
+          },
+          "duration": 2
+        },
+        {
+          "key": "turn",
+          "title": {
+            "ky": "Зондду буруу",
+            "ru": "Поворот датчика",
+            "en": "Turning the probe"
+          },
+          "result": {
+            "ky": "P = 2940 Па (өзгөрбөйт)",
+            "ru": "p = 2940 Па (не меняется)",
+            "en": "p = 2940 Pa (unchanged)"
+          },
+          "description": {
+            "ky": "Ошол эле тереңдикте зонддун бетин өйдө, ылдый, капталга бурабыз – манометр ошол эле 2940 Па көрсөтөт. Бул – Паскаль закону.",
+            "ru": "На той же глубине поворачиваем мембрану вверх, вниз, вбок – манометр показывает те же 2940 Па. Это закон Паскаля.",
+            "en": "At the same depth we turn the membrane up, down and sideways – the manometer still reads 2940 Pa. That is Pascal's law."
+          },
+          "conceptKey": "phys.pascal-law",
+          "altText": {
+            "ky": "Зонд ар тарапка бурулат, манометрдин көрсөткүчү өзгөрбөйт.",
+            "ru": "Датчик поворачивается, показание манометра не меняется.",
+            "en": "The probe turns every way; the manometer reading stays the same."
+          },
+          "duration": 1
+        },
+        {
+          "key": "bottom",
+          "title": {
+            "ky": "Идиштин түбүндө",
+            "ru": "У дна",
+            "en": "At the bottom"
+          },
+          "result": {
+            "ky": "P = 4900 Па",
+            "ru": "p = 4900 Па",
+            "en": "p = 4900 Pa"
+          },
+          "description": {
+            "ky": "h = 0,5 м: P = 1000 · 9,8 · 0,5 = 4900 Па. Ылдыйкы тешиктен суу эң алыска атылат.",
+            "ru": "h = 0,5 м: p = 1000 · 9,8 · 0,5 = 4900 Па. Из нижнего отверстия вода бьёт дальше всего.",
+            "en": "h = 0.5 m: p = 1000 × 9.8 × 0.5 = 4900 Pa. The jet from the lowest hole goes furthest."
+          },
+          "conceptKey": "phys.liquid-pressure",
+          "altText": {
+            "ky": "Зонд идиштин түбүндө; ылдыйкы агым эң узун.",
+            "ru": "Датчик у дна; нижняя струя самая длинная.",
+            "en": "The probe at the bottom; the lowest jet is the longest."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "depth",
+          "label": {
+            "ky": "Тереңдик",
+            "ru": "Глубина",
+            "en": "Depth"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 0.5,
+          "precision": 2
+        },
+        {
+          "key": "pressure",
+          "label": {
+            "ky": "Суунун басымы",
+            "ru": "Давление воды",
+            "en": "Water pressure"
+          },
+          "unit": "Pa",
+          "min": 0,
+          "max": 4900,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "depth@surface": 0,
+        "pressure@surface": 0,
+        "depth@h10": 0.1,
+        "pressure@h10": 980,
+        "depth@h30": 0.3,
+        "pressure@h30": 2940,
+        "depth@turn": 0.3,
+        "pressure@turn": 2940,
+        "depth@bottom": 0.5,
+        "pressure@bottom": 4900,
+        "density": 1000
+      }
+    },
+    {
+      "key": "phys.hydraulic-lift",
+      "engine": "timeline",
+      "icon": "trending-up",
+      "title": {
+        "ky": "Гидравликалык пресстин иштеши",
+        "ru": "Работа гидравлического пресса",
+        "en": "How a hydraulic press works"
+      },
+      "description": {
+        "ky": "Кичине поршенге (S₁ = 10 см²) 100 Н күч менен басабыз. Майда P = F₁/S₁ = 100 000 Па басым пайда болуп, Паскаль закону боюнча чоң поршенге (S₂ = 500 см²) берилет. Чоң поршенге F₂ = P·S₂ = 5000 Н күч аракет этет – 50 эсе чоң. Бирок кичине поршень 50 см жылганда чоңу 1 см гана көтөрүлөт.",
+        "ru": "Давим на малый поршень (S₁ = 10 см²) с силой 100 Н. В масле возникает давление p = F₁/S₁ = 100 000 Па, которое по закону Паскаля передаётся большому поршню (S₂ = 500 см²). На него действует сила F₂ = p·S₂ = 5000 Н – в 50 раз больше. Но когда малый поршень проходит 50 см, большой поднимается всего на 1 см.",
+        "en": "We push the small piston (A₁ = 10 cm²) with 100 N. The oil gets a pressure p = F₁/A₁ = 100 000 Pa, which Pascal's law passes to the big piston (A₂ = 500 cm²). The force on it is F₂ = p·A₂ = 5000 N – 50 times more. But when the small piston moves 50 cm, the big one rises only 1 cm."
+      },
+      "equation": "\\frac{F_2}{F_1} = \\frac{S_2}{S_1} = 50",
+      "inputs": {
+        "ky": "F₁ = 100 Н, S₁ = 0,001 м², S₂ = 0,05 м²",
+        "ru": "F₁ = 100 Н, S₁ = 0,001 м², S₂ = 0,05 м²",
+        "en": "F₁ = 100 N, A₁ = 0.001 m², A₂ = 0.05 m²"
+      },
+      "outputs": {
+        "ky": "P = 100 000 Па, F₂ = 5000 Н",
+        "ru": "p = 100 000 Па, F₂ = 5000 Н",
+        "en": "p = 100 000 Pa, F₂ = 5000 N"
+      },
+      "steps": [
+        {
+          "key": "push",
+          "title": {
+            "ky": "Кичине поршенди басуу",
+            "ru": "Давим на малый поршень",
+            "en": "Pushing the small piston"
+          },
+          "result": {
+            "ky": "F₁ = 100 Н",
+            "ru": "F₁ = 100 Н",
+            "en": "F₁ = 100 N"
+          },
+          "description": {
+            "ky": "Кол кичине поршенди 100 Н күч менен ылдый басат.",
+            "ru": "Рука давит на малый поршень вниз с силой 100 Н.",
+            "en": "A hand pushes the small piston down with 100 N."
+          },
+          "conceptKey": "phys.piston",
+          "altText": {
+            "ky": "Кичине поршендин үстүндө ылдый караган F₁ жебеси.",
+            "ru": "Стрелка F₁ вниз над малым поршнем.",
+            "en": "An F₁ arrow pointing down on the small piston."
+          },
+          "duration": 1
+        },
+        {
+          "key": "pressure",
+          "title": {
+            "ky": "Майдагы басым",
+            "ru": "Давление в масле",
+            "en": "Pressure in the oil"
+          },
+          "result": {
+            "ky": "P = 100 000 Па",
+            "ru": "p = 100 000 Па",
+            "en": "p = 100 000 Pa"
+          },
+          "description": {
+            "ky": "P = F₁/S₁ = 100 / 0,001 = 100 000 Па. Бул басым майдын ар бир чекитине бардык тарапка бирдей берилет.",
+            "ru": "p = F₁/S₁ = 100 / 0,001 = 100 000 Па. Это давление передаётся в каждую точку масла одинаково во все стороны.",
+            "en": "p = F₁/A₁ = 100 / 0.001 = 100 000 Pa. This pressure reaches every point of the oil equally in every direction."
+          },
+          "conceptKey": "phys.pascal-law",
+          "altText": {
+            "ky": "Эки цилиндрди туташтырган түтүктөгү май.",
+            "ru": "Масло в трубке, соединяющей два цилиндра.",
+            "en": "Oil in the pipe joining the two cylinders."
+          },
+          "duration": 2
+        },
+        {
+          "key": "lift",
+          "title": {
+            "ky": "Чоң поршень көтөрүлөт",
+            "ru": "Большой поршень поднимается",
+            "en": "The big piston rises"
+          },
+          "result": {
+            "ky": "F₂ = 5000 Н",
+            "ru": "F₂ = 5000 Н",
+            "en": "F₂ = 5000 N"
+          },
+          "description": {
+            "ky": "F₂ = P·S₂ = 100 000 · 0,05 = 5000 Н: чоң поршень жүктү көтөрөт. Аянт 50 эсе чоң – күч да 50 эсе чоң.",
+            "ru": "F₂ = p·S₂ = 100 000 · 0,05 = 5000 Н: большой поршень поднимает груз. Площадь в 50 раз больше – и сила в 50 раз больше.",
+            "en": "F₂ = p·A₂ = 100 000 × 0.05 = 5000 N: the big piston lifts the load. Fifty times the area – fifty times the force."
+          },
+          "conceptKey": "phys.hydraulic-press",
+          "altText": {
+            "ky": "Чоң поршень жана жүк өйдө жылат, F₂ жебеси өйдө.",
+            "ru": "Большой поршень с грузом идёт вверх, стрелка F₂ вверх.",
+            "en": "The big piston and its load move up; the F₂ arrow points up."
+          },
+          "duration": 2
+        },
+        {
+          "key": "travel",
+          "title": {
+            "ky": "Жолдон утулуу",
+            "ru": "Проигрыш в пути",
+            "en": "Losing distance"
+          },
+          "result": {
+            "ky": "h₁ = 50 см, h₂ = 1 см",
+            "ru": "h₁ = 50 см, h₂ = 1 см",
+            "en": "h₁ = 50 cm, h₂ = 1 cm"
+          },
+          "description": {
+            "ky": "Кичине поршенден сүрүлгөн май чоң цилиндрге өтөт: S₁·h₁ = S₂·h₂. Кичине поршень 50 см жылса, чоңу 1 см гана көтөрүлөт – күчтөн 50 эсе утсак, жолдон 50 эсе утулабыз.",
+            "ru": "Масло из малого цилиндра переходит в большой: S₁·h₁ = S₂·h₂. Малый поршень проходит 50 см, а большой поднимается лишь на 1 см – выигрываем в силе в 50 раз, проигрываем в пути в 50 раз.",
+            "en": "Oil pushed from the small cylinder flows into the big one: A₁h₁ = A₂h₂. The small piston moves 50 cm and the big one rises only 1 cm – 50 times the force, but 50 times less distance."
+          },
+          "conceptKey": "phys.piston",
+          "altText": {
+            "ky": "Кичине поршень көп жылган, чоңу аз көтөрүлгөн.",
+            "ru": "Малый поршень сдвинулся сильно, большой – чуть-чуть.",
+            "en": "The small piston has moved a long way, the big one only a little."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "f1",
+          "label": {
+            "ky": "Кичине поршендеги күч",
+            "ru": "Сила на малом поршне",
+            "en": "Force on the small piston"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 100,
+          "precision": 0
+        },
+        {
+          "key": "pressure",
+          "label": {
+            "ky": "Майдагы басым",
+            "ru": "Давление в масле",
+            "en": "Oil pressure"
+          },
+          "unit": "Pa",
+          "min": 0,
+          "max": 100000,
+          "precision": 0
+        },
+        {
+          "key": "f2",
+          "label": {
+            "ky": "Чоң поршендеги күч",
+            "ru": "Сила на большом поршне",
+            "en": "Force on the big piston"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 5000,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "f1@push": 100,
+        "pressure@push": 0,
+        "f2@push": 0,
+        "f1@pressure": 100,
+        "pressure@pressure": 100000,
+        "f2@pressure": 0,
+        "f1@lift": 100,
+        "pressure@lift": 100000,
+        "f2@lift": 5000,
+        "f1@travel": 100,
+        "pressure@travel": 100000,
+        "f2@travel": 5000,
+        "smallArea": 0.001,
+        "largeArea": 0.05
+      }
+    },
+    {
+      "key": "phys.torricelli-experiment",
+      "engine": "timeline",
+      "icon": "gauge",
+      "title": {
+        "ky": "Торричеллинин тажрыйбасы",
+        "ru": "Опыт Торричелли",
+        "en": "Torricelli's experiment"
+      },
+      "description": {
+        "ky": "Узундугу 1 м, бир учу туюк түтүктү сымап менен толтуруп, ачык учун сымап куюлган идишке салып көмкөрөбүз. Сымаптын бир бөлүгү куюлуп, түтүктө 760 мм мамыча калат. Анын басымын атмосфера басымы теңдейт. Тоого көтөрүлсөк, ар бир 12 м де мамыча 1 мм ге төмөндөйт.",
+        "ru": "Заполняем ртутью трубку длиной 1 м, запаянную с одного конца, и опрокидываем открытым концом в чашку с ртутью. Часть ртути выливается, в трубке остаётся столб 760 мм. Его давление уравновешивает атмосферное давление. При подъёме в гору столб опускается на 1 мм на каждые 12 м.",
+        "en": "We fill a 1 m tube, sealed at one end, with mercury and turn it over into a dish of mercury. Some mercury runs out and a 760 mm column stays. Air pressure balances its pressure. Climbing a mountain, the column drops 1 mm for every 12 m."
+      },
+      "equation": "P = \\rho g h = 13\\,600 \\cdot 9{,}8 \\cdot 0{,}76 \\approx 101\\,300\\,Па",
+      "inputs": {
+        "ky": "Сымап ρ = 13 600 кг/м³, түтүк 1 м",
+        "ru": "Ртуть ρ = 13 600 кг/м³, трубка 1 м",
+        "en": "Mercury ρ = 13 600 kg/m³, a 1 m tube"
+      },
+      "outputs": {
+        "ky": "h = 760 мм ⇒ P ≈ 101 300 Па",
+        "ru": "h = 760 мм ⇒ p ≈ 101 300 Па",
+        "en": "h = 760 mm ⇒ p ≈ 101 300 Pa"
+      },
+      "steps": [
+        {
+          "key": "fill",
+          "title": {
+            "ky": "Түтүктү толтуруу",
+            "ru": "Заполняем трубку",
+            "en": "Filling the tube"
+          },
+          "result": {
+            "ky": "h = 1000 мм",
+            "ru": "h = 1000 мм",
+            "en": "h = 1000 mm"
+          },
+          "description": {
+            "ky": "Бир учу туюк 1 м түтүк бүт бойдон сымап менен толтурулат.",
+            "ru": "Трубку длиной 1 м, запаянную с одного конца, полностью заполняют ртутью.",
+            "en": "The 1 m tube, sealed at one end, is filled right up with mercury."
+          },
+          "conceptKey": "phys.barometer",
+          "altText": {
+            "ky": "Сымап толтурулган айнек түтүк.",
+            "ru": "Стеклянная трубка, полная ртути.",
+            "en": "A glass tube full of mercury."
+          },
+          "duration": 1
+        },
+        {
+          "key": "invert",
+          "title": {
+            "ky": "Көмкөрүү",
+            "ru": "Опрокидываем",
+            "en": "Turning it over"
+          },
+          "result": {
+            "ky": "h = 760 мм",
+            "ru": "h = 760 мм",
+            "en": "h = 760 mm"
+          },
+          "description": {
+            "ky": "Түтүктү ачык учу менен идиштеги сымапка көмкөрөбүз. Сымап 760 мм ге чейин түшүп, токтоп калат; үстүндө боштук пайда болот.",
+            "ru": "Опрокидываем трубку открытым концом в чашку с ртутью. Ртуть опускается до 760 мм и останавливается; над ней образуется пустота.",
+            "en": "We turn the tube over with its open end in the dish. The mercury falls to 760 mm and stops; an empty space forms above it."
+          },
+          "conceptKey": "phys.mercury-column",
+          "altText": {
+            "ky": "Түтүктө 760 мм сымап, үстүндө бош жер.",
+            "ru": "В трубке 760 мм ртути, сверху пустота.",
+            "en": "760 mm of mercury in the tube with empty space above."
+          },
+          "duration": 2
+        },
+        {
+          "key": "balance",
+          "title": {
+            "ky": "Тең салмактуулук",
+            "ru": "Равновесие",
+            "en": "Balance"
+          },
+          "result": {
+            "ky": "P_атм = P_сым ≈ 101 300 Па",
+            "ru": "p_атм = p_рт ≈ 101 300 Па",
+            "en": "p_air = p_Hg ≈ 101 300 Pa"
+          },
+          "description": {
+            "ky": "Аба идиштеги сымаптын бетин басат жана түтүктөгү мамычанын басымын теңдейт: P = 13 600 · 9,8 · 0,76 ≈ 101 300 Па.",
+            "ru": "Воздух давит на ртуть в чашке и уравновешивает давление столба: p = 13 600 · 9,8 · 0,76 ≈ 101 300 Па.",
+            "en": "The air presses on the mercury in the dish and balances the column: p = 13 600 × 9.8 × 0.76 ≈ 101 300 Pa."
+          },
+          "conceptKey": "phys.atmospheric-pressure",
+          "altText": {
+            "ky": "Идиштеги сымапты ылдый баскан аба жебелери.",
+            "ru": "Стрелки воздуха, давящего на ртуть в чашке.",
+            "en": "Arrows of air pressing down on the mercury in the dish."
+          },
+          "duration": 2
+        },
+        {
+          "key": "climb",
+          "title": {
+            "ky": "Тоого көтөрүлүү",
+            "ru": "Подъём в гору",
+            "en": "Climbing"
+          },
+          "result": {
+            "ky": "120 м де h = 750 мм",
+            "ru": "на 120 м h = 750 мм",
+            "en": "h = 750 mm at 120 m"
+          },
+          "description": {
+            "ky": "Бийиктеген сайын абанын басымы азаят: ар бир 12 м де 1 мм. 120 м бийиктикте мамыча 750 мм.",
+            "ru": "С высотой давление уменьшается: на 1 мм на каждые 12 м. На высоте 120 м столб 750 мм.",
+            "en": "Pressure falls with height: 1 mm for every 12 m. At 120 m the column is 750 mm."
+          },
+          "conceptKey": "phys.mercury-column",
+          "altText": {
+            "ky": "Сымап мамычасы бир аз төмөндөгөн.",
+            "ru": "Столб ртути немного опустился.",
+            "en": "The mercury column has dropped slightly."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "height",
+          "label": {
+            "ky": "Сымап мамычасы",
+            "ru": "Столб ртути",
+            "en": "Mercury column"
+          },
+          "unit": "mm",
+          "min": 0,
+          "max": 1000,
+          "precision": 0
+        },
+        {
+          "key": "pressure",
+          "label": {
+            "ky": "Атмосфера басымы",
+            "ru": "Атмосферное давление",
+            "en": "Air pressure"
+          },
+          "unit": "Pa",
+          "min": 0,
+          "max": 101300,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "height@fill": 1000,
+        "pressure@fill": 0,
+        "height@invert": 760,
+        "pressure@invert": 101293,
+        "height@balance": 760,
+        "pressure@balance": 101293,
+        "height@climb": 750,
+        "pressure@climb": 99960,
+        "density": 13600
+      }
+    },
+    {
+      "key": "phys.archimedes-bucket",
+      "engine": "timeline",
+      "icon": "flask-conical",
+      "title": {
+        "ky": "Архимед күчүн динамометр менен ченөө",
+        "ru": "Измеряем архимедову силу динамометром",
+        "en": "Measuring the buoyant force with a dynamometer"
+      },
+      "description": {
+        "ky": "Көлөмү 100 см³ алюминий цилиндрди динамометрге илип, адегенде абада, анан чоргосу бар идиштеги сууга жарымына чейин жана толук матырабыз. Динамометрдин көрсөткүчү азаят, ал эми чоргодон стаканга 100 см³ суу агып түшөт. Стакандагы сууну кайра куйсак, жебе баштапкы абалына келет: Архимед күчү сүрүп чыгарылган суунун салмагына барабар.",
+        "ru": "Подвешиваем алюминиевый цилиндр объёмом 100 см³ на динамометр, взвешиваем в воздухе, затем погружаем в отливной сосуд наполовину и полностью. Показание динамометра уменьшается, а из носика в стакан стекает 100 см³ воды. Если вылить эту воду обратно, стрелка вернётся на место: архимедова сила равна весу вытесненной воды.",
+        "en": "We hang a 100 cm³ aluminium cylinder on a dynamometer, weigh it in air, then lower it halfway and fully into a spout jug of water. The reading drops and 100 cm³ of water runs from the spout into a cup. Pour that water back and the pointer returns: the buoyant force equals the weight of the water pushed aside."
+      },
+      "equation": "F_A = \\rho_с g V_н = 1000 \\cdot 9{,}8 \\cdot 0{,}0001 = 0{,}98\\,Н",
+      "inputs": {
+        "ky": "Алюминий, V = 100 см³, суу",
+        "ru": "Алюминий, V = 100 см³, вода",
+        "en": "Aluminium, V = 100 cm³, water"
+      },
+      "outputs": {
+        "ky": "P = 2,65 Н, P₁ = 1,67 Н, F_A = 0,98 Н",
+        "ru": "P = 2,65 Н, P₁ = 1,67 Н, F_A = 0,98 Н",
+        "en": "P = 2.65 N, P₁ = 1.67 N, F_A = 0.98 N"
+      },
+      "steps": [
+        {
+          "key": "air",
+          "title": {
+            "ky": "Абада",
+            "ru": "В воздухе",
+            "en": "In air"
+          },
+          "result": {
+            "ky": "P = 2,65 Н",
+            "ru": "P = 2,65 Н",
+            "en": "P = 2.65 N"
+          },
+          "description": {
+            "ky": "Цилиндрдин массасы 2700 · 0,0001 = 0,27 кг, салмагы P = 0,27 · 9,8 ≈ 2,65 Н.",
+            "ru": "Масса цилиндра 2700 · 0,0001 = 0,27 кг, вес P = 0,27 · 9,8 ≈ 2,65 Н.",
+            "en": "The cylinder's mass is 2700 × 0.0001 = 0.27 kg; its weight P = 0.27 × 9.8 ≈ 2.65 N."
+          },
+          "conceptKey": "phys.dynamometer",
+          "altText": {
+            "ky": "Динамометрде абада илинген цилиндр.",
+            "ru": "Цилиндр на динамометре в воздухе.",
+            "en": "The cylinder hanging from the dynamometer in air."
+          },
+          "duration": 1
+        },
+        {
+          "key": "half",
+          "title": {
+            "ky": "Жарымы сууда",
+            "ru": "Наполовину в воде",
+            "en": "Half under water"
+          },
+          "result": {
+            "ky": "F_A = 0,49 Н",
+            "ru": "F_A = 0,49 Н",
+            "en": "F_A = 0.49 N"
+          },
+          "description": {
+            "ky": "Цилиндрдин жарымы сууда: 50 см³ суу сүрүлүп чыгат, F_A = 0,49 Н, динамометр ≈ 2,16 Н көрсөтөт.",
+            "ru": "Половина цилиндра в воде: вытеснено 50 см³, F_A = 0,49 Н, динамометр показывает ≈ 2,16 Н.",
+            "en": "Half the cylinder is under water: 50 cm³ pushed aside, F_A = 0.49 N, the dynamometer reads about 2.16 N."
+          },
+          "conceptKey": "phys.buoyant-force",
+          "altText": {
+            "ky": "Жарымы сууга баткан цилиндр, чоргодон суу агат.",
+            "ru": "Цилиндр погружён наполовину, из носика течёт вода.",
+            "en": "The cylinder half in the water, water running from the spout."
+          },
+          "duration": 2
+        },
+        {
+          "key": "full",
+          "title": {
+            "ky": "Толук сууда",
+            "ru": "Полностью в воде",
+            "en": "Fully under water"
+          },
+          "result": {
+            "ky": "P₁ = 1,67 Н",
+            "ru": "P₁ = 1,67 Н",
+            "en": "P₁ = 1.67 N"
+          },
+          "description": {
+            "ky": "Толук матырылды: F_A = 1000 · 9,8 · 0,0001 = 0,98 Н, P₁ = 2,65 − 0,98 ≈ 1,67 Н. Стаканда 100 см³ суу.",
+            "ru": "Полностью погружён: F_A = 1000 · 9,8 · 0,0001 = 0,98 Н, P₁ = 2,65 − 0,98 ≈ 1,67 Н. В стакане 100 см³ воды.",
+            "en": "Fully under: F_A = 1000 × 9.8 × 0.0001 = 0.98 N, P₁ = 2.65 − 0.98 ≈ 1.67 N. The cup holds 100 cm³ of water."
+          },
+          "conceptKey": "phys.displaced-liquid",
+          "altText": {
+            "ky": "Толук баткан цилиндр жана суу толгон стакан.",
+            "ru": "Полностью погружённый цилиндр и стакан с водой.",
+            "en": "The fully submerged cylinder and the cup of water."
+          },
+          "duration": 2
+        },
+        {
+          "key": "return",
+          "title": {
+            "ky": "Сууну кайра куюу",
+            "ru": "Возвращаем воду",
+            "en": "Pouring the water back"
+          },
+          "result": {
+            "ky": "P = 2,65 Н кайра",
+            "ru": "снова P = 2,65 Н",
+            "en": "P = 2.65 N again"
+          },
+          "description": {
+            "ky": "Стакандагы сууну цилиндрдин үстүндөгү чакага куйсак, динамометр кайра 2,65 Н көрсөтөт: сүрүлүп чыккан суунун салмагы Архимед күчүнө так барабар.",
+            "ru": "Если вылить воду из стакана в ведёрко над цилиндром, динамометр снова покажет 2,65 Н: вес вытесненной воды в точности равен архимедовой силе.",
+            "en": "Pour the cup of water into the little bucket above the cylinder and the dynamometer reads 2.65 N again: the weight of the water pushed aside exactly equals the buoyant force."
+          },
+          "conceptKey": "phys.archimedes-law",
+          "altText": {
+            "ky": "Стакандагы суу чакага куюлуп, жебе баштапкы ордуна келген.",
+            "ru": "Вода вылита в ведёрко, стрелка вернулась.",
+            "en": "The water poured into the bucket and the pointer back where it began."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "reading",
+          "label": {
+            "ky": "Динамометрдин көрсөткүчү",
+            "ru": "Показание динамометра",
+            "en": "Dynamometer reading"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 2.7,
+          "precision": 2
+        },
+        {
+          "key": "buoyancy",
+          "label": {
+            "ky": "Архимед күчү",
+            "ru": "Архимедова сила",
+            "en": "Buoyant force"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 1,
+          "precision": 2
+        },
+        {
+          "key": "displaced",
+          "label": {
+            "ky": "Сүрүлгөн суу",
+            "ru": "Вытесненная вода",
+            "en": "Water pushed aside"
+          },
+          "unit": "cm³",
+          "min": 0,
+          "max": 100,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "reading@air": 2.65,
+        "buoyancy@air": 0,
+        "displaced@air": 0,
+        "reading@half": 2.16,
+        "buoyancy@half": 0.49,
+        "displaced@half": 50,
+        "reading@full": 1.67,
+        "buoyancy@full": 0.98,
+        "displaced@full": 100,
+        "reading@return": 2.65,
+        "buoyancy@return": 0.98,
+        "displaced@return": 100,
+        "volume": 0.0001
+      }
+    },
+    {
+      "key": "phys.bodies-in-water",
+      "engine": "timeline",
+      "icon": "waves",
+      "title": {
+        "ky": "Нерселерди сууга салуу",
+        "ru": "Тела в воде",
+        "en": "Bodies dropped into water"
+      },
+      "description": {
+        "ky": "Көлөмү бирдей (1 дм³) темир, жыгач, муз жана тыгын кубиктерди сууга салабыз. Темир чөгөт (F > F_A), калгандары калкып, тыгыздыгына жараша ар кандай бөлүгү менен батат: жыгач – 0,6, муз – 0,9, тыгын – 0,24.",
+        "ru": "Опускаем в воду кубики одинакового объёма (1 дм³) из железа, дерева, льда и пробки. Железо тонет (F > F_A), остальные плавают, погружаясь в зависимости от плотности: дерево – на 0,6, лёд – на 0,9, пробка – на 0,24.",
+        "en": "We drop equal 1 dm³ cubes of iron, wood, ice and cork into water. The iron sinks (F > F_A); the others float, sinking in by a share set by their density: wood 0.6, ice 0.9, cork 0.24."
+      },
+      "equation": "\\frac{V_{бат}}{V} = \\frac{\\rho_н}{\\rho_с}",
+      "inputs": {
+        "ky": "V = 0,001 м³; ρ: темир 7800, жыгач 600, муз 900, тыгын 240 кг/м³",
+        "ru": "V = 0,001 м³; ρ: железо 7800, дерево 600, лёд 900, пробка 240 кг/м³",
+        "en": "V = 0.001 m³; ρ: iron 7800, wood 600, ice 900, cork 240 kg/m³"
+      },
+      "outputs": {
+        "ky": "Темир чөгөт; жыгач 60 %, муз 90 %, тыгын 24 % батат",
+        "ru": "Железо тонет; дерево на 60 %, лёд на 90 %, пробка на 24 %",
+        "en": "Iron sinks; wood 60 %, ice 90 %, cork 24 % under"
+      },
+      "steps": [
+        {
+          "key": "iron",
+          "title": {
+            "ky": "Темир кубик",
+            "ru": "Железный кубик",
+            "en": "Iron cube"
+          },
+          "result": {
+            "ky": "Чөгөт: 76,4 Н > 9,8 Н",
+            "ru": "Тонет: 76,4 Н > 9,8 Н",
+            "en": "Sinks: 76.4 N > 9.8 N"
+          },
+          "description": {
+            "ky": "F = 7,8 кг · 9,8 = 76,4 Н, F_A = 1000 · 9,8 · 0,001 = 9,8 Н. F > F_A – кубик түбүнө чөгөт.",
+            "ru": "F = 7,8 кг · 9,8 = 76,4 Н, F_A = 1000 · 9,8 · 0,001 = 9,8 Н. F > F_A – кубик идёт на дно.",
+            "en": "F = 7.8 kg × 9.8 = 76.4 N, F_A = 1000 × 9.8 × 0.001 = 9.8 N. F > F_A – the cube goes to the bottom."
+          },
+          "conceptKey": "phys.sinking",
+          "altText": {
+            "ky": "Темир кубик бактын түбүндө жатат.",
+            "ru": "Железный кубик лежит на дне.",
+            "en": "The iron cube lying on the bottom of the tank."
+          },
+          "duration": 2
+        },
+        {
+          "key": "wood",
+          "title": {
+            "ky": "Жыгач кубик",
+            "ru": "Деревянный кубик",
+            "en": "Wooden cube"
+          },
+          "result": {
+            "ky": "60 % батат",
+            "ru": "Погружён на 60 %",
+            "en": "60 % under"
+          },
+          "description": {
+            "ky": "F = 0,6 · 9,8 = 5,88 Н. Кубик калкып чыгып, F_A = F болгуча батат: V_бат = 0,6 дм³ – 60 %.",
+            "ru": "F = 0,6 · 9,8 = 5,88 Н. Кубик всплывает и погружается, пока F_A не станет равна F: V_погр = 0,6 дм³ – 60 %.",
+            "en": "F = 0.6 × 9.8 = 5.88 N. The cube floats up and settles where F_A = F: 0.6 dm³ under – 60 %."
+          },
+          "conceptKey": "phys.floating",
+          "altText": {
+            "ky": "Жыгач кубик суунун бетинде, бир аз көбүрөөк жарымы сууда.",
+            "ru": "Деревянный кубик на поверхности, чуть больше половины в воде.",
+            "en": "The wooden cube at the surface, a bit over half under water."
+          },
+          "duration": 2
+        },
+        {
+          "key": "ice",
+          "title": {
+            "ky": "Муз кубик",
+            "ru": "Ледяной кубик",
+            "en": "Ice cube"
+          },
+          "result": {
+            "ky": "90 % батат",
+            "ru": "Погружён на 90 %",
+            "en": "90 % under"
+          },
+          "description": {
+            "ky": "Муздун тыгыздыгы 900 кг/м³ – суунукуна жакын, ошондуктан 90 % сууда, 10 % гана бетинде.",
+            "ru": "Плотность льда 900 кг/м³ – близка к воде, поэтому 90 % в воде и только 10 % над ней.",
+            "en": "Ice is 900 kg/m³ – close to water – so 90 % is under and only 10 % above."
+          },
+          "conceptKey": "phys.floating",
+          "altText": {
+            "ky": "Муз кубиктин кичине бөлүгү гана суудан чыгып турат.",
+            "ru": "Над водой видна лишь малая часть ледяного кубика.",
+            "en": "Only a small part of the ice cube shows above the water."
+          },
+          "duration": 2
+        },
+        {
+          "key": "cork",
+          "title": {
+            "ky": "Тыгын кубик",
+            "ru": "Пробковый кубик",
+            "en": "Cork cube"
+          },
+          "result": {
+            "ky": "24 % батат",
+            "ru": "Погружён на 24 %",
+            "en": "24 % under"
+          },
+          "description": {
+            "ky": "Тыгындын тыгыздыгы 240 кг/м³ – суунукунан 4 эседен ашык аз, ошондуктан анын чейреги гана сууга батат.",
+            "ru": "Плотность пробки 240 кг/м³ – в 4 с лишним раза меньше, чем у воды, поэтому погружена лишь четверть кубика.",
+            "en": "Cork is 240 kg/m³ – over four times less dense than water – so only a quarter of the cube is under."
+          },
+          "conceptKey": "phys.floating",
+          "altText": {
+            "ky": "Тыгын кубик суунун бетинде бийик калкып турат.",
+            "ru": "Пробковый кубик высоко сидит на поверхности.",
+            "en": "The cork cube riding high at the surface."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "gravity",
+          "label": {
+            "ky": "Оордук күчү",
+            "ru": "Сила тяжести",
+            "en": "Gravity"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 80,
+          "precision": 1
+        },
+        {
+          "key": "buoyancy",
+          "label": {
+            "ky": "Архимед күчү",
+            "ru": "Архимедова сила",
+            "en": "Buoyant force"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 10,
+          "precision": 2
+        },
+        {
+          "key": "share",
+          "label": {
+            "ky": "Баткан бөлүгү",
+            "ru": "Погружённая часть",
+            "en": "Share under water"
+          },
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "gravity@iron": 76.44,
+        "buoyancy@iron": 9.8,
+        "share@iron": 100,
+        "gravity@wood": 5.88,
+        "buoyancy@wood": 5.88,
+        "share@wood": 60,
+        "gravity@ice": 8.82,
+        "buoyancy@ice": 8.82,
+        "share@ice": 90,
+        "gravity@cork": 2.35,
+        "buoyancy@cork": 2.35,
+        "share@cork": 24,
+        "volume": 0.001
+      }
+    }
+  ]
+}

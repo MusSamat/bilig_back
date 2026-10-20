@@ -1,0 +1,4499 @@
+{
+  "manifest": {
+    "topicKey": "phys7-mechanical-motion",
+    "version": "1.0.0",
+    "hash": "2dff3d631e15284a3ad49d709cc564638f259cd48e05d1811c7a33014ae7ae01",
+    "files": [
+      {
+        "path": "thumbs/mm-car.webp",
+        "hash": "b7a6c2b92944042ff019dd39fdfc890fa30e502d223c0858f62fe5f868431a4d",
+        "size": 0
+      },
+      {
+        "path": "thumbs/mm-walker.webp",
+        "hash": "224480599c5e6f364c68550a8415e8275f633bb7be94bd0c02e89bc4b9f54847",
+        "size": 0
+      },
+      {
+        "path": "thumbs/mm-stop.webp",
+        "hash": "37fc6ee7af2f817766a429e0a3f22541ddbeadd75bf959040765c5c89cdf03e1",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "phys",
+    "icon": "orbit",
+    "hue": 28,
+    "group": "natural",
+    "order": 2,
+    "status": "live",
+    "title": {
+      "ky": "Физика",
+      "ru": "Физика",
+      "en": "Physics"
+    },
+    "assistantGuide": "Physics. Give the quantity, its symbol and unit (SI; km/h only as in the material) and the formula, then a short worked calculation with numbers and units when asked. Keep numbers from the material; round sensibly. Distinguish similar quantities (speed vs distance, mass vs weight, force vs moment)."
+  },
+  "course": {
+    "key": "phys.g7",
+    "subjectKey": "phys",
+    "grade": 7,
+    "curriculum": "kg-2018",
+    "title": {
+      "ky": "Физика, 7-класс",
+      "ru": "Физика, 7 класс",
+      "en": "Physics, grade 7"
+    }
+  },
+  "unit": {
+    "key": "phys.g7.kinematics",
+    "courseKey": "phys.g7",
+    "order": 1,
+    "title": {
+      "ky": "Механика. Кинематиканын негиздери",
+      "ru": "Механика. Основы кинематики",
+      "en": "Mechanics. Kinematics"
+    }
+  },
+  "objectives": [
+    {
+      "key": "phys.g7.kinematics.o1",
+      "code": "PHYS-7.1.1",
+      "unitKey": "phys.g7.kinematics",
+      "text": {
+        "ky": "Механикалык кыймылды, траекторияны, жолду жана которулушту айырмалоо.",
+        "ru": "Различать механическое движение, траекторию, путь и перемещение.",
+        "en": "Tell apart mechanical motion, trajectory, distance and displacement."
+      }
+    },
+    {
+      "key": "phys.g7.kinematics.o2",
+      "code": "PHYS-7.1.2",
+      "unitKey": "phys.g7.kinematics",
+      "text": {
+        "ky": "Ылдамдыкты, ылдамданууну эсептөө жана кыймылдын графиктерин окуу.",
+        "ru": "Вычислять скорость и ускорение, читать графики движения.",
+        "en": "Calculate speed and acceleration and read motion graphs."
+      }
+    }
+  ],
+  "topic": {
+    "key": "phys7-mechanical-motion",
+    "unitKey": "phys.g7.kinematics",
+    "status": "published",
+    "title": {
+      "ky": "Механикалык кыймыл. Жол жана которулуш",
+      "ru": "Механическое движение. Путь и перемещение",
+      "en": "Mechanical motion. Path and displacement"
+    },
+    "formula": "s,\\; \\vec{s}",
+    "classification": {
+      "ky": "Кинематика",
+      "ru": "Кинематика",
+      "en": "Kinematics"
+    },
+    "description": {
+      "ky": "Физика – табият жөнүндөгү илим; ал механикалык, жылуулук, электрдик, магниттик жана жарык кубулуштарын окуйт. Кубулуштарды физикалык чоңдуктар (узундук l, масса m, убакыт t) менен сандык мүнөздөйбүз жана аларды шкаласы бар приборлор менен өлчөйбүз. Түз жол менен бараткан машинанын мисалында механикалык кыймылды, салыштыруу нерсесин, траекторияны, өтүлгөн жолду жана которулушту карайбыз.",
+      "ru": "Физика – наука о природе; она изучает механические, тепловые, электрические, магнитные и световые явления. Явления описывают числами – физическими величинами (длина l, масса m, время t) – и измеряют приборами со шкалой. На примере машины на прямой дороге разбираем механическое движение, тело отсчёта, траекторию, пройденный путь и перемещение.",
+      "en": "Physics is the science of nature: it studies mechanical, thermal, electrical, magnetic and light phenomena. We describe phenomena with physical quantities (length l, mass m, time t) and measure them with instruments that have scales. Using a car on a straight road, we look at mechanical motion, the reference body, the trajectory, path length and displacement."
+    },
+    "goal": {
+      "ky": "Механикалык кыймылды, салыштыруу нерсесин, траекторияны, өтүлгөн жолду жана которулушту айырмалоо; прибордун шкаласынын баасын аныктоо (PHYS-7.1.1).",
+      "ru": "Различать механическое движение, тело отсчёта, траекторию, пройденный путь и перемещение; определять цену деления шкалы прибора (PHYS-7.1.1).",
+      "en": "Tell apart mechanical motion, the reference body, trajectory, path length and displacement; find the value of a scale division (PHYS-7.1.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.kinematics.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "kinematics",
+        "segments": [
+          {
+            "v": 5,
+            "t": 12
+          }
+        ],
+        "radar": false,
+        "showGraph": false,
+        "markEvery": 10
+      },
+      "camera": {
+        "position": [
+          -3.5,
+          5,
+          13
+        ],
+        "target": [
+          0,
+          0.5,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "trace",
+        "vectors",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.mechanical-motion",
+      "phys.reference-body",
+      "phys.trajectory",
+      "phys.path-length",
+      "phys.displacement",
+      "phys.state-of-rest",
+      "phys.travel-time",
+      "phys.measurement-scale",
+      "phys.physical-quantity"
+    ],
+    "overrides": {
+      "phys.mechanical-motion": {
+        "nodes": [
+          "Car"
+        ],
+        "description": {
+          "ky": "Машина жолдун жээгиндеги белгилерден улам алыстап жатат – анын абалы белгилерге салыштырмалуу өзгөрөт, демек ал механикалык кыймылда. Машинанын өлчөмү (≈ 4 м) анын жолуна (60 м) салыштырмалуу кичине, ошондуктан аны материялык чекит деп кароого болот.",
+          "ru": "Машина всё дальше от отметок у дороги – её положение относительно них меняется, значит, она совершает механическое движение. Размер машины (≈ 4 м) мал по сравнению с её путём (60 м), поэтому её можно считать материальной точкой.",
+          "en": "The car keeps moving away from the roadside markers – its position relative to them changes, so it is in mechanical motion. Its size (about 4 m) is small compared with its path (60 m), so we can treat it as a material point."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 5
+          }
+        ]
+      },
+      "phys.reference-body": {
+        "nodes": [
+          "Marker_*"
+        ],
+        "description": {
+          "ky": "Жолдун жээгиндеги белгилер ар бир 10 м сайын коюлган. Аларды кыймылсыз деп эсептеп, машинанын абалын ушуларга салыштырабыз – алар биздин салыштыруу нерселерибиз.",
+          "ru": "Отметки у дороги стоят через каждые 10 м. Мы считаем их неподвижными и сравниваем с ними положение машины – это наши тела отсчёта.",
+          "en": "The roadside markers stand every 10 m. We take them as fixed and compare the car's position with them – they are our reference bodies."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 10
+          }
+        ]
+      },
+      "phys.trajectory": {
+        "nodes": [
+          "Trace_*"
+        ],
+        "description": {
+          "ky": "Машинанын ар бир секунддагы абалы сары из болуп калат. Издер бир түз сызыкка тизилет: траектория – түз сызык, кыймыл – түз сызыктуу.",
+          "ru": "Положение машины каждую секунду отмечается жёлтым следом. Следы ложатся на одну прямую: траектория – прямая, движение прямолинейное.",
+          "en": "The car's position every second is left as a yellow mark. The marks line up along one straight line: the trajectory is straight and the motion is rectilinear."
+        }
+      },
+      "phys.path-length": {
+        "nodes": [
+          "Road"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "distance",
+            "value": 60,
+            "unit": "m"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "s = v \\cdot t = 5 \\cdot 12 = 60\\,м"
+          }
+        ]
+      },
+      "phys.displacement": {
+        "nodes": [
+          "Road_Start",
+          "Road_Finish"
+        ],
+        "description": {
+          "ky": "Которулуш – машинанын баштапкы абалын (старт сызыгы) акыркы абалы (марра сызыгы) менен туташтырган кесинди. Машина түз сызык боюнча бир багытта жүргөндүктөн, которулуштун узундугу өтүлгөн жолго барабар: 60 м.",
+          "ru": "Перемещение – отрезок от начального положения машины (линия старта) до конечного (линия финиша). Машина ехала по прямой в одну сторону, поэтому длина перемещения равна пройденному пути: 60 м.",
+          "en": "The displacement is the segment from the car's starting position (start line) to its final position (finish line). The car went straight in one direction, so the displacement equals the path length: 60 m."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "distance",
+            "value": 60,
+            "unit": "m"
+          }
+        ]
+      },
+      "phys.state-of-rest": {
+        "description": {
+          "ky": "Дене тандалган салыштыруу нерсесине карата ордун өзгөртпөсө, ал тынч абалда. Машинадагы айдоочу машинага салыштырмалуу тынч абалда, ал эми жолдогу белгилерге салыштырмалуу кыймылда – кыймыл жана тынч туруу салыштырмалуу.",
+          "ru": "Если тело не меняет положения относительно выбранного тела отсчёта, оно покоится. Водитель покоится относительно машины, но движется относительно отметок на дороге – движение и покой относительны.",
+          "en": "A body that keeps its position relative to the chosen reference body is at rest. The driver is at rest relative to the car but moves relative to the road markers – motion and rest are relative."
+        }
+      },
+      "phys.travel-time": {
+        "nodes": [
+          "Stopwatch"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "eventDuration",
+            "value": 12,
+            "unit": "s"
+          }
+        ]
+      },
+      "phys.measurement-scale": {
+        "nodes": [
+          "Stopwatch_Face",
+          "Stopwatch_Tick_*"
+        ],
+        "description": {
+          "ky": "Секундомердин бетиндеги сызыкчалар – анын шкаласы. Жебе бир толук айланууда 60 с көрсөтөт; шкаланын баасын табуу үчүн эки жазуулуу чоң сызыктын айырмасын алардын ортосундагы бөлүктөрдүн санына бөлөбүз.",
+          "ru": "Штрихи на циферблате секундомера – его шкала. Полный оборот стрелки – 60 с; чтобы найти цену деления, разность двух подписанных штрихов делим на число делений между ними.",
+          "en": "The marks on the stopwatch dial are its scale. One full turn of the hand is 60 s; to find the division value, divide the difference of two labelled marks by the number of divisions between them."
+        }
+      }
+    },
+    "samples": [
+      {
+        "key": "mm-car",
+        "title": {
+          "ky": "Машина, 5 м/с",
+          "ru": "Машина, 5 м/с",
+          "en": "Car, 5 m/s"
+        },
+        "classification": {
+          "ky": "Түз сызыктуу кыймыл",
+          "ru": "Прямолинейное движение",
+          "en": "Straight-line motion"
+        },
+        "thumb": "thumbs/mm-car.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 5
+          },
+          {
+            "kind": "quantity",
+            "type": "distance",
+            "value": 60,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "eventDuration",
+            "value": 12,
+            "unit": "s"
+          }
+        ]
+      },
+      {
+        "key": "mm-walker",
+        "title": {
+          "ky": "Жөө адам, 1,3 м/с",
+          "ru": "Пешеход, 1,3 м/с",
+          "en": "Pedestrian, 1.3 m/s"
+        },
+        "classification": {
+          "ky": "30 с ичинде 39 м",
+          "ru": "39 м за 30 с",
+          "en": "39 m in 30 s"
+        },
+        "thumb": "thumbs/mm-walker.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 1.3
+          },
+          {
+            "kind": "quantity",
+            "type": "distance",
+            "value": 39,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "eventDuration",
+            "value": 30,
+            "unit": "s"
+          }
+        ],
+        "scene": {
+          "params": {
+            "segments": [
+              {
+                "v": 1.3,
+                "t": 30
+              }
+            ],
+            "markEvery": 5
+          }
+        }
+      },
+      {
+        "key": "mm-stop",
+        "title": {
+          "ky": "Аялдамада токтоо",
+          "ru": "Остановка в пути",
+          "en": "A stop on the way"
+        },
+        "classification": {
+          "ky": "Жүрөт – турат – жүрөт",
+          "ru": "Едет – стоит – едет",
+          "en": "Drive – stop – drive"
+        },
+        "thumb": "thumbs/mm-stop.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 6
+          },
+          {
+            "kind": "quantity",
+            "type": "distance",
+            "value": 60,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "eventDuration",
+            "value": 14,
+            "unit": "s"
+          }
+        ],
+        "scene": {
+          "params": {
+            "segments": [
+              {
+                "v": 6,
+                "t": 5
+              },
+              {
+                "v": 0,
+                "t": 4
+              },
+              {
+                "v": 6,
+                "t": 5
+              }
+            ],
+            "markEvery": 10
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "speed",
+        "value": 5
+      },
+      {
+        "kind": "quantity",
+        "type": "distance",
+        "value": 60,
+        "unit": "m"
+      },
+      {
+        "kind": "quantity",
+        "type": "eventDuration",
+        "value": 12,
+        "unit": "s"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "s = v \\cdot t"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "phenomena",
+            "camera": {
+              "position": [
+                0,
+                5,
+                14
+              ],
+              "target": [
+                0,
+                0.5,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "trace": false,
+              "vectors": false
+            },
+            "focus": "phys.mechanical-motion",
+            "text": {
+              "ky": "Физика – грекче «фюзис», табият дегенди билдирет. Жаратылышта болгон бардык өзгөрүүлөр кубулуштар деп аталат: механикалык, жылуулук, электрдик, магниттик, жарык. Жолдо бараткан машина – механикалык кубулуштун мисалы.",
+              "ru": "Физика – от греческого «фюзис», природа. Все изменения в природе называют явлениями: механическими, тепловыми, электрическими, магнитными, световыми. Машина на дороге – пример механического явления.",
+              "en": "'Physics' comes from the Greek 'physis', nature. All changes in nature are called phenomena: mechanical, thermal, electrical, magnetic and light. A car on the road is an example of a mechanical phenomenon."
+            },
+            "teacherNote": {
+              "ky": "Окуучулардан ар бир кубулуш түрүнө бирден мисал сураңыз (муз эрийт – жылуулук, чагылган – электрдик, компас – магниттик, көлөкө – жарык). Аристотель, аль-Фараби, Ибн-Сина, Улугбектин салымын эскертиңиз.",
+              "ru": "Попросите учеников привести по примеру каждого вида явлений (лёд тает – тепловое, молния – электрическое, компас – магнитное, тень – световое). Упомяните вклад Аристотеля, аль-Фараби, Ибн Сины, Улугбека.",
+              "en": "Ask pupils for one example of each kind of phenomenon (ice melting – thermal, lightning – electrical, a compass – magnetic, a shadow – light). Mention Aristotle, al-Farabi, Ibn Sina and Ulugbek."
+            },
+            "altText": {
+              "ky": "Түз жол, жээгинде белгилер, старт сызыгында кызыл машина.",
+              "ru": "Прямая дорога с отметками, красная машина на линии старта.",
+              "en": "A straight road with markers and a red car on the start line."
+            }
+          },
+          {
+            "key": "measure",
+            "camera": {
+              "position": [
+                2.18,
+                3.35,
+                8.67
+              ],
+              "target": [
+                4.3,
+                0.62,
+                0.79
+              ],
+              "fov": 45
+            },
+            "focus": "phys.measurement-scale",
+            "text": {
+              "ky": "Кубулушту сан менен мүнөздөө үчүн физикалык чоңдуктарды өлчөйбүз. Негизги чоңдуктар – узундук l (м), масса m (кг), убакыт t (с). Убакытты секундомер менен өлчөйбүз; анын шкаласынын баасын билүү керек.",
+              "ru": "Чтобы описать явление числом, измеряют физические величины. Основные – длина l (м), масса m (кг), время t (с). Время измеряют секундомером; нужно знать цену деления его шкалы.",
+              "en": "To describe a phenomenon with numbers we measure physical quantities. The base ones are length l (m), mass m (kg) and time t (s). We measure time with a stopwatch and need to know the value of one division of its scale."
+            },
+            "teacherNote": {
+              "ky": "Тактага шкаланын баасын табуу эрежесин жазыңыз: (чоң сан − кичине сан) : бөлүктөрдүн саны. Сызгыч, мензурка жана термометр менен машыгыңыз (китептеги 3–7-сүрөттөр).",
+              "ru": "Запишите на доске правило цены деления: (большее число − меньшее) : число делений. Потренируйтесь на линейке, мензурке и термометре (рисунки 3–7 учебника).",
+              "en": "Write the rule on the board: (larger number − smaller) ÷ number of divisions. Practise with a ruler, measuring cylinder and thermometer (figures 3–7 in the book)."
+            },
+            "altText": {
+              "ky": "Секундомердин жакын көрүнүшү: шкаланын сызыкчалары жана кызыл жебе.",
+              "ru": "Крупный план секундомера: штрихи шкалы и красная стрелка.",
+              "en": "A close-up of the stopwatch: the scale marks and the red hand."
+            }
+          },
+          {
+            "key": "reference",
+            "camera": {
+              "position": [
+                -2.68,
+                3.62,
+                9.25
+              ],
+              "target": [
+                0,
+                0.18,
+                -0.7
+              ],
+              "fov": 45
+            },
+            "focus": "phys.reference-body",
+            "text": {
+              "ky": "Машина кыймылда экенин кантип билебиз? Анын абалын кыймылсыз деп эсептелген нерселерге – жолдун жээгиндеги белгилерге салыштырабыз. Машина алардан алыстап жатат – демек, кыймылда.",
+              "ru": "Как узнать, что машина движется? Сравним её положение с телами, которые считаем неподвижными, – с отметками у дороги. Машина удаляется от них – значит, движется.",
+              "en": "How do we know the car is moving? Compare its position with bodies we take as fixed – the roadside markers. The car is moving away from them, so it is moving."
+            },
+            "teacherNote": {
+              "ky": "Китептеги суроо: машинанын артындагы чаң же мотордун үнү кыймылдын маңыздуу белгиси боло албайт. Эмне үчүн? Маңыздуу белги – абалдын башка нерселерге салыштырмалуу өзгөрүшү.",
+              "ru": "Вопрос из учебника: пыль за машиной или шум мотора – не существенный признак движения. Почему? Существенный признак – изменение положения относительно других тел.",
+              "en": "A question from the book: the dust behind a car or the sound of its engine are not the defining sign of motion. Why? The defining sign is a change of position relative to other bodies."
+            },
+            "altText": {
+              "ky": "Машина жолдо, жээгинде ак-кызыл белгилер.",
+              "ru": "Машина на дороге, вдоль края бело-красные отметки.",
+              "en": "The car on the road with red-and-white markers along the edge."
+            }
+          },
+          {
+            "key": "relative",
+            "camera": {
+              "position": [
+                -3.61,
+                5.21,
+                13.71
+              ],
+              "target": [
+                0.08,
+                0.47,
+                0.03
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.state-of-rest",
+            "text": {
+              "ky": "Автобуста Капар отурат. Аялдамадагы Элдияр: «Капар кыймылда», – дейт, автобустагы Улан: «Капар тынч отурат», – дейт. Экөө тең туура: кыймыл жана тынч туруу кайсы нерсеге салыштырганыбыздан көз каранды.",
+              "ru": "В автобусе сидит Капар. Эльдияр на остановке говорит: «Капар движется», Улан в автобусе: «Капар сидит неподвижно». Правы оба: движение и покой зависят от того, относительно чего мы смотрим.",
+              "en": "Kapar sits on a bus. Eldiyar at the stop says, 'Kapar is moving'; Ulan on the bus says, 'Kapar is sitting still'. Both are right: motion and rest depend on what we compare with."
+            },
+            "teacherNote": {
+              "ky": "Үлгүлөрдөн «Аялдамада токтоо» дегенди ачыңыз: 5–9 с аралыгында машина жолго салыштырмалуу тынч абалда. Сураңыз: ушул учурда машина Күнгө салыштырмалуу тынчпы?",
+              "ru": "Откройте образец «Остановка в пути»: с 5 по 9 с машина покоится относительно дороги. Спросите: а относительно Солнца она в это время покоится?",
+              "en": "Open the 'A stop on the way' sample: from 5 to 9 s the car is at rest relative to the road. Ask: is it at rest relative to the Sun at that moment?"
+            },
+            "altText": {
+              "ky": "Машинанын алдында кыймыл багытындагы ылдамдыктын жебеси.",
+              "ru": "Перед машиной стрелка скорости по направлению движения.",
+              "en": "A velocity arrow in front of the car pointing the way it moves."
+            }
+          },
+          {
+            "key": "trajectory",
+            "camera": {
+              "position": [
+                0,
+                6,
+                7
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "trace": true,
+              "vectors": false
+            },
+            "focus": "phys.trajectory",
+            "text": {
+              "ky": "Издер машинанын ар бир секунддагы абалын көрсөтөт. Нерсе кыймылга келген сызык – траектория. Бул жерде ал түз сызык: кыймыл түз сызыктуу. Траектория ийри болсо, кыймыл ийри сызыктуу болот.",
+              "ru": "Следы показывают положение машины каждую секунду. Линия, по которой движется тело, – траектория. Здесь это прямая: движение прямолинейное. Если траектория кривая, движение криволинейное.",
+              "en": "The marks show the car's position every second. The line along which a body moves is its trajectory. Here it is straight, so the motion is rectilinear; a curved trajectory means curvilinear motion."
+            },
+            "teacherNote": {
+              "ky": "Тактага бор менен түз жана ийри сызыктарды чийдириңиз (китептеги 8-сүрөт). Сураңыз: саат жебесинин учунун, тик ыргытылган таштын траекториясы кандай?",
+              "ru": "Пусть ученики проведут мелом прямые и кривые линии на доске (рис. 8 учебника). Спросите: какая траектория у кончика стрелки часов, у камня, брошенного вертикально?",
+              "en": "Have pupils draw straight and curved lines with chalk (fig. 8 in the book). Ask: what trajectory does the tip of a clock hand have? A stone thrown straight up?"
+            },
+            "altText": {
+              "ky": "Жол боюнча түз сызыкка тизилген сары издер.",
+              "ru": "Жёлтые следы, выстроенные в прямую вдоль дороги.",
+              "en": "Yellow marks lined up in a straight row along the road."
+            }
+          },
+          {
+            "key": "path",
+            "camera": {
+              "position": [
+                0,
+                5,
+                14
+              ],
+              "target": [
+                0,
+                0.5,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "trace": true
+            },
+            "focus": "phys.path-length",
+            "text": {
+              "ky": "Траекториянын узундугу – өтүлгөн жол s. 12 с ичинде машина 6 белгиден өттү: s = 60 м. Жол – скалярдык чоңдук, ал сан мааниси менен гана туюнтулат. Бирдиги – метр; 1 км = 1000 м, 1 см = 0,01 м.",
+              "ru": "Длина траектории – пройденный путь s. За 12 с машина миновала 6 отметок: s = 60 м. Путь – скалярная величина, он выражается только числом. Единица – метр; 1 км = 1000 м, 1 см = 0,01 м.",
+              "en": "The length of the trajectory is the path length s. In 12 s the car passed 6 markers: s = 60 m. Path length is a scalar – just a number. Its unit is the metre; 1 km = 1000 m, 1 cm = 0.01 m."
+            },
+            "teacherNote": {
+              "ky": "Бирдиктерди которууну оозеки машыктырыңыз: 2,5 км = ? м; 35 см = ? м; 1200 мм = ? м.",
+              "ru": "Устно потренируйте перевод единиц: 2,5 км = ? м; 35 см = ? м; 1200 мм = ? м.",
+              "en": "Drill unit conversions aloud: 2.5 km = ? m; 35 cm = ? m; 1200 mm = ? m."
+            },
+            "altText": {
+              "ky": "Машина марра сызыгында, жол боюнча 6 белги жана издер.",
+              "ru": "Машина на финише, вдоль дороги 6 отметок и следы.",
+              "en": "The car at the finish with 6 markers and the marks along the road."
+            }
+          },
+          {
+            "key": "displacement",
+            "camera": {
+              "position": [
+                0,
+                7,
+                9
+              ],
+              "target": [
+                0,
+                0,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.displacement",
+            "text": {
+              "ky": "Которулуш – баштапкы жана акыркы абалды туташтырган кесинди; ал вектордук чоңдук: сан мааниси менен катар багыты да бар. Бул жерде машина түз жүргөндүктөн жол менен которулуш бирдей. Ал эми Бишкектен Кантка A, B, C айылдарын кыдырып барган автобустун жолу которулуштан узун.",
+              "ru": "Перемещение – отрезок от начального положения до конечного; это векторная величина: у неё есть и числовое значение, и направление. Здесь машина ехала прямо, поэтому путь и перемещение равны. А у автобуса, заехавшего по пути из Бишкека в Кант в сёла A, B, C, путь длиннее перемещения.",
+              "en": "Displacement is the segment from the starting to the final position; it is a vector, with a direction as well as a size. Here the car went straight, so path and displacement are equal. A bus that calls at villages A, B and C between Bishkek and Kant has a path longer than its displacement."
+            },
+            "teacherNote": {
+              "ky": "Тактага китептеги 10-сүрөттү чийиңиз: OABCD сынык сызыгы – жол, OD кесиндиси – которулуш. Кошумча: «Материялык чекит» – өлчөмү эсепке алынбаган нерсе; бул машина 60 м жолго салыштырмалуу чекит катары каралат.",
+              "ru": "Нарисуйте на доске рис. 10 учебника: ломаная OABCD – путь, отрезок OD – перемещение. Дополнительно: «материальная точка» – тело, размеры которого не учитывают; машину на 60 м пути можно считать точкой.",
+              "en": "Draw fig. 10 from the book: the broken line OABCD is the path, the segment OD the displacement. Also introduce the 'material point' – a body whose size we ignore; on a 60 m trip the car counts as a point."
+            },
+            "altText": {
+              "ky": "Үстүнөн көрүнүш: старт жана марра сызыктары, алардын ортосундагы түз жол.",
+              "ru": "Вид сверху: линии старта и финиша и прямая дорога между ними.",
+              "en": "Top view: the start and finish lines with the straight road between them."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.motion-observation"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "mm-car"
+          },
+          {
+            "kind": "sample",
+            "key": "mm-walker"
+          },
+          {
+            "kind": "sample",
+            "key": "mm-stop"
+          }
+        ],
+        "rows": [
+          "speed",
+          "distance",
+          "eventDuration"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-motion-1",
+          "phys.q.p7-motion-2",
+          "phys.q.p7-motion-3",
+          "phys.q.p7-motion-4",
+          "phys.q.p7-motion-5",
+          "phys.q.p7-motion-6",
+          "phys.q.p7-motion-7",
+          "phys.q.p7-motion-8",
+          "phys.q.p7-motion-9",
+          "phys.q.p7-motion-10",
+          "phys.q.p7-motion-11",
+          "phys.q.p7-motion-12",
+          "phys.q.p7-motion-13"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "GPS трекер",
+            "ru": "GPS-трекер",
+            "en": "GPS tracker"
+          },
+          "text": {
+            "ky": "Спорттук саат чуркоонун траекториясын картага чийип, өтүлгөн жолду эсептейт. Айланма трассада жол 5 км болсо да, марра стартка жакын – которулуш аз.",
+            "ru": "Спортивные часы рисуют на карте траекторию пробежки и считают пройденный путь. На кольцевой трассе путь может быть 5 км, а финиш рядом со стартом – перемещение мало.",
+            "en": "A sports watch draws the trajectory of a run on a map and adds up the path. On a loop the path may be 5 km while the finish is next to the start – a small displacement."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Ченөөнүн тактыгы",
+            "ru": "Точность измерений",
+            "en": "Measurement accuracy"
+          },
+          "text": {
+            "ky": "Шкаланын баасы канчалык кичине болсо, ченөө ошончолук так: сызгыч 1 мм, штангенциркуль 0,1 мм, микрометр 0,01 мм тактык менен ченейт.",
+            "ru": "Чем меньше цена деления, тем точнее измерение: линейка – 1 мм, штангенциркуль – 0,1 мм, микрометр – 0,01 мм.",
+            "en": "The smaller the scale division, the more precise the measurement: a ruler gives 1 mm, a caliper 0.1 mm, a micrometer 0.01 mm."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Жер Күндү айланат",
+            "ru": "Земля вокруг Солнца",
+            "en": "The Earth around the Sun"
+          },
+          "text": {
+            "ky": "Там Жерге салыштырмалуу тынч, бирок Күнгө салыштырмалуу Жер менен бирге ≈ 30 км/с ылдамдык менен кыймылдайт – салыштырмалуулуктун мисалы.",
+            "ru": "Дом покоится относительно Земли, но относительно Солнца движется вместе с ней со скоростью ≈ 30 км/с – пример относительности движения.",
+            "en": "A house is at rest on the Earth but moves with it around the Sun at about 30 km/s – an example of the relativity of motion."
+          },
+          "field": "s"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Поезддин терезесинен",
+            "ru": "Из окна поезда",
+            "en": "From a train window"
+          },
+          "text": {
+            "ky": "Поездде отурсаң, жээктеги бактар артка «качып» бараткандай көрүнөт: сен бактарга салыштырмалуу кыймылдасың, бактар сага салыштырмалуу.",
+            "ru": "Из окна поезда кажется, что деревья «бегут» назад: ты движешься относительно деревьев, а они – относительно тебя.",
+            "en": "From a train window the trees seem to 'run' backwards: you move relative to the trees, and they move relative to you."
+          }
+        },
+        {
+          "title": {
+            "ky": "Футбол талаасы",
+            "ru": "Футбольное поле",
+            "en": "A football pitch"
+          },
+          "text": {
+            "ky": "Оюнчу бир таймда 5 км чуркайт (жол), бирок тайм бүткөндө өз дарбазасынын жанында турушу мүмкүн (которулуш аз).",
+            "ru": "Футболист за тайм пробегает 5 км (путь), но к концу тайма может стоять у своих ворот (перемещение мало).",
+            "en": "A player runs 5 km in a half (path) but may finish near his own goal (small displacement)."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Автобуста отурган адам кыймылдабы же тынч турабы?",
+        "ru": "Пассажир в автобусе движется или покоится?",
+        "en": "Is a passenger on a bus moving or at rest?"
+      },
+      {
+        "ky": "Жол менен которулуштун айырмасы эмнеде?",
+        "ru": "Чем путь отличается от перемещения?",
+        "en": "How is path length different from displacement?"
+      },
+      {
+        "ky": "Шкаланын баасын кантип табабыз?",
+        "ru": "Как найти цену деления шкалы?",
+        "en": "How do we find the value of a scale division?"
+      },
+      {
+        "ky": "Качан нерсени материялык чекит деп кароого болот?",
+        "ru": "Когда тело можно считать материальной точкой?",
+        "en": "When can a body be treated as a material point?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; Мамбетакунов Э., Физика 7-класс, §1–5"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "phys.mechanical-motion",
+      "kind": "phenomenon",
+      "hue": 210,
+      "isContainer": false,
+      "title": {
+        "ky": "Механикалык кыймыл",
+        "ru": "Механическое движение",
+        "en": "Mechanical motion"
+      },
+      "subtitle": {
+        "ky": "Абалдын башка нерселерге салыштырмалуу өзгөрүшү",
+        "ru": "Изменение положения относительно других тел",
+        "en": "Change of position relative to other bodies"
+      },
+      "description": {
+        "ky": "Берилген убакыт ичинде нерселердин абалынын башка нерселерге салыштырмалуу өзгөрүшү механикалык кыймыл деп аталат. Кыймыл жана тынч туруу салыштырмалуу: автобустагы жүргүнчү аялдамага салыштырмалуу кыймылда, ал эми отургучка салыштырмалуу тынч абалда. Кыймылды жөнөкөйлөтүү үчүн нерсени материялык чекит катары карайбыз – анын өлчөмү эсепке алынбайт.",
+        "ru": "Изменение положения тела относительно других тел с течением времени называют механическим движением. Движение и покой относительны: пассажир автобуса движется относительно остановки, но покоится относительно сиденья. Чтобы упростить описание, тело считают материальной точкой – его размеры не учитывают.",
+        "en": "Mechanical motion is the change of a body's position relative to other bodies over time. Motion and rest are relative: a bus passenger moves relative to the bus stop but is at rest relative to the seat. To keep things simple we treat the body as a material point and ignore its size."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Механиканын кинематика бөлүмүндө окулат",
+            "ru": "Изучается в разделе механики – кинематике",
+            "en": "Studied in kinematics, a branch of mechanics"
+          }
+        }
+      ],
+      "related": [
+        "phys.reference-body",
+        "phys.trajectory",
+        "phys.state-of-rest"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.motion-depends-on-body-only",
+          "text": {
+            "ky": "Нерсе же кыймылда, же тынч турат – бул нерсеге эмес, нерсенин өзүнө гана байланыштуу.",
+            "ru": "Тело либо движется, либо покоится – это зависит только от самого тела.",
+            "en": "A body either moves or is at rest – it depends on the body alone."
+          },
+          "correction": {
+            "ky": "Кыймыл дайыма кандайдыр бир нерсеге салыштырмалуу каралат: Капар отургучка салыштырмалуу тынч, аялдамага салыштырмалуу кыймылда. Там Жерге салыштырмалуу тынч, Күнгө салыштырмалуу Жер менен кошо кыймылда.",
+            "ru": "Движение всегда рассматривают относительно какого-то тела: Капар покоится относительно сиденья и движется относительно остановки. Дом покоится относительно Земли, но относительно Солнца движется вместе с ней.",
+            "en": "Motion is always relative to some body: Kapar is at rest relative to his seat but moves relative to the bus stop. A house is at rest on the Earth but moves with it around the Sun."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Класста тынч отурсаң да, Жер менен бирге Күндү айланып секундуна ≈ 30 км жол өтөсүң.",
+        "ru": "Даже сидя неподвижно в классе, ты вместе с Землёй летишь вокруг Солнца со скоростью ≈ 30 км в секунду.",
+        "en": "Even sitting still in class you travel with the Earth around the Sun at about 30 km every second."
+      },
+      "analogy": {
+        "ky": "Поездде отуруп терезеден караганда кошуна поезд жылганда «биз жылдык» деп ойлоп калабыз – кыймылды кайсы нерсеге салыштырганыбыз маанилүү.",
+        "ru": "Сидя в поезде, когда трогается соседний состав, кажется, что поехали мы, – важно, относительно чего мы смотрим на движение.",
+        "en": "Sitting in a train, when the next train pulls out it feels as if we are moving – what matters is what we compare the motion with."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Жасалма жандоочтор",
+              "ru": "Искусственные спутники",
+              "en": "Satellites"
+            },
+            "text": {
+              "ky": "Байланыш жандоочу Жерге салыштырмалуу бир жерде «илинип» турат, бирок Жердин борборуна салыштырмалуу секундуна ≈ 3 км ылдамдык менен айланат.",
+              "ru": "Спутник связи «висит» над одной точкой относительно Земли, но относительно её центра летит со скоростью ≈ 3 км/с.",
+              "en": "A communications satellite 'hangs' above one spot relative to the ground but moves at about 3 km/s relative to the Earth's centre."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Материялык чекит",
+              "ru": "Материальная точка",
+              "en": "Material point"
+            },
+            "text": {
+              "ky": "Жер менен Айдын ортосундагы космостук станцияны материялык чекит деп кароого болот, ал эми бөлмөдө баскан баланы бөлмөгө салыштырмалуу – болбойт.",
+              "ru": "Космическую станцию между Землёй и Луной можно считать материальной точкой, а ребёнка, идущего по комнате, относительно комнаты – нельзя.",
+              "en": "A space station between the Earth and the Moon can be treated as a material point, but a child walking across a room cannot, relative to that room."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Автобуста",
+              "ru": "В автобусе",
+              "en": "On a bus"
+            },
+            "text": {
+              "ky": "Автобуста отурган Капар Уланга (автобуста) тынч, ал эми аялдамадагы Элдиярга кыймылда көрүнөт – экөө тең туура.",
+              "ru": "Капар в автобусе для Улана (в автобусе) покоится, а для Эльдияра на остановке – движется. Правы оба.",
+              "en": "To Ulan on the bus, Kapar is sitting still; to Eldiyar at the stop, Kapar is moving. Both are right."
+            }
+          },
+          {
+            "title": {
+              "ky": "Булуттуу түн",
+              "ru": "Облачная ночь",
+              "en": "A cloudy night"
+            },
+            "text": {
+              "ky": "Булуттуу түндө Ай булуттарга салыштырмалуу «чуркап» бара жаткандай сезилет, бирок Ай кыймылын жердеги тамдарга салыштырганда билебиз.",
+              "ru": "В облачную ночь кажется, что Луна «бежит» сквозь облака, но о её движении судят, сравнивая с домами на земле.",
+              "en": "On a cloudy night the Moon seems to 'run' through the clouds, but we judge its motion against the houses on the ground."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.reference-body",
+      "kind": "object",
+      "hue": 40,
+      "isContainer": false,
+      "title": {
+        "ky": "Салыштыруу нерсеси",
+        "ru": "Тело отсчёта",
+        "en": "Reference body"
+      },
+      "subtitle": {
+        "ky": "Кыймылсыз деп эсептелген нерсе",
+        "ru": "Тело, которое считают неподвижным",
+        "en": "A body taken as not moving"
+      },
+      "description": {
+        "ky": "Кыймылды аныктоо үчүн нерсенин абалын кыймылсыз деп эсептелген башка нерселерге салыштырабыз: жолдун жээгиндеги бактарга, тамдарга, зым карагайларга. Машина алардан алыстаса же жакындаса, ал кыймылда; абалы өзгөрбөсө – тынч абалда. Салыштыруу нерсесин алмаштырсак, жыйынтык да өзгөрүшү мүмкүн.",
+        "ru": "Чтобы узнать, движется ли тело, сравнивают его положение с другими телами, которые считают неподвижными: деревьями у дороги, домами, столбами. Если машина удаляется от них или приближается – она движется; если положение не меняется – покоится. Если сменить тело отсчёта, вывод может измениться.",
+        "en": "To tell whether a body moves we compare its position with other bodies we take as fixed: roadside trees, houses, poles. If the car moves away from them or closer, it is moving; if its position does not change, it is at rest. Choose a different reference body and the answer may change."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Кыймыл кайсы нерсеге салыштырмалуу экенин көрсөтөт",
+            "ru": "Показывает, относительно чего рассматривают движение",
+            "en": "Shows what the motion is measured against"
+          }
+        }
+      ],
+      "related": [
+        "phys.mechanical-motion",
+        "phys.state-of-rest"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.no-reference-needed",
+          "text": {
+            "ky": "«Машина кыймылда» деп айтуу үчүн эч нерсеге салыштыруунун кереги жок.",
+            "ru": "Чтобы сказать «машина движется», ни с чем сравнивать не нужно.",
+            "en": "You can say 'the car is moving' without comparing it to anything."
+          },
+          "correction": {
+            "ky": "Салыштыруу нерсесиз кыймыл жөнүндө айтууга болбойт: машинадагы айдоочу машинага салыштырмалуу тынч, жолго салыштырмалуу кыймылда.",
+            "ru": "Без тела отсчёта о движении говорить нельзя: водитель покоится относительно машины и движется относительно дороги.",
+            "en": "Without a reference body motion has no meaning: the driver is at rest relative to the car and moving relative to the road."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Байыркы илимпоздор Жерди Ааламдын кыймылсыз борбору деп эсептешкен. Коперник салыштыруу нерсеси катары Күндү алганда, планеталардын кыймылы алда канча жөнөкөй болуп чыккан.",
+        "ru": "Древние учёные считали Землю неподвижным центром мира. Когда Коперник взял телом отсчёта Солнце, движение планет стало гораздо проще.",
+        "en": "Ancient scholars took the Earth as the fixed centre of the world. When Copernicus took the Sun as the reference body, the planets' motion became much simpler."
+      },
+      "analogy": {
+        "ky": "Салыштыруу нерсеси – «башталыш чекити» сыяктуу: «мектептен 200 м» деп айтсак, мектеп биздин салыштыруу нерсебиз.",
+        "ru": "Тело отсчёта – как «точка отсчёта» в адресе: «в 200 м от школы» – здесь школа и есть тело отсчёта.",
+        "en": "A reference body is like the landmark in directions: in '200 m from the school', the school is the reference body."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "GPS навигатор",
+              "ru": "GPS-навигатор",
+              "en": "GPS navigation"
+            },
+            "text": {
+              "ky": "Навигатор машинанын ордун Жерди айланган жандоочторго салыштырып аныктайт; жандоочтордун ордун Жерге салыштырмалуу так билет.",
+              "ru": "Навигатор определяет положение машины по спутникам, а положение спутников известно относительно Земли.",
+              "en": "A navigator finds the car's position from satellites whose positions relative to the Earth are known precisely."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Учакта",
+              "ru": "В самолёте",
+              "en": "In a plane"
+            },
+            "text": {
+              "ky": "Учактагы жүргүнчүнүн ылдамдыгы учакка салыштырмалуу ≈ 1 м/с, ал эми жерге салыштырмалуу ≈ 250 м/с – сан салыштыруу нерсесинен көз каранды.",
+              "ru": "Скорость пассажира в самолёте относительно салона ≈ 1 м/с, а относительно земли ≈ 250 м/с – число зависит от тела отсчёта.",
+              "en": "A passenger walks at about 1 m/s relative to the plane but moves at about 250 m/s relative to the ground – the number depends on the reference body."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Эскалатор",
+              "ru": "Эскалатор",
+              "en": "Escalator"
+            },
+            "text": {
+              "ky": "Эскалатордо турган адам тепкичке салыштырмалуу тынч, бирок дубалдагы сүрөттөргө салыштырмалуу жылып бара жатат.",
+              "ru": "Человек на эскалаторе покоится относительно ступеньки, но движется относительно картинок на стене.",
+              "en": "A person standing on an escalator is still relative to the step but moves past the posters on the wall."
+            }
+          },
+          {
+            "title": {
+              "ky": "Сууда сал",
+              "ru": "Плот на реке",
+              "en": "A raft on a river"
+            },
+            "text": {
+              "ky": "Агым менен бараткан сал сууга салыштырмалуу тынч, ал эми жээктеги талга салыштырмалуу кыймылда.",
+              "ru": "Плот, плывущий по течению, покоится относительно воды, но движется относительно дерева на берегу.",
+              "en": "A raft drifting downstream is at rest relative to the water but moves relative to a tree on the bank."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.trajectory",
+      "kind": "line",
+      "hue": 50,
+      "isContainer": false,
+      "title": {
+        "ky": "Кыймылдын траекториясы",
+        "ru": "Траектория движения",
+        "en": "Trajectory"
+      },
+      "subtitle": {
+        "ky": "Түз сызыктуу жана ийри сызыктуу кыймыл",
+        "ru": "Прямолинейное и криволинейное движение",
+        "en": "Straight-line and curved motion"
+      },
+      "description": {
+        "ky": "Нерсе кыймылга келген сызык кыймылдын траекториясы деп аталат. Эгер траектория түз сызык болсо – кыймыл түз сызыктуу, ийри сызык болсо – ийри сызыктуу кыймыл. Тактадагы бордун изи, асмандагы учактын ак изи траекторияны көрсөтөт.",
+        "ru": "Линию, вдоль которой движется тело, называют траекторией движения. Если траектория – прямая, движение прямолинейное; если кривая – криволинейное. След мела на доске или белый след самолёта в небе показывают траекторию.",
+        "en": "The line along which a body moves is its trajectory. If the trajectory is straight, the motion is straight-line (rectilinear); if it is curved, the motion is curvilinear. A chalk mark on the board or a plane's vapour trail shows a trajectory."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Түз же ийри сызык",
+            "ru": "Прямая или кривая линия",
+            "en": "A straight or curved line"
+          }
+        }
+      ],
+      "related": [
+        "phys.mechanical-motion",
+        "phys.path-length"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.trajectory-absolute",
+          "text": {
+            "ky": "Траекториянын формасы бирөө гана, ал ким карап турганынан көз каранды эмес.",
+            "ru": "У траектории одна форма, и она не зависит от того, кто смотрит.",
+            "en": "A trajectory has only one shape, whoever is watching."
+          },
+          "correction": {
+            "ky": "Траектория да салыштырмалуу: велосипед дөңгөлөгүнүн чекити велосипедчиге салыштырмалуу айлана сызат, ал эми жолго салыштырмалуу толкун сымал ийри сызык сызат.",
+            "ru": "Траектория тоже относительна: точка колеса велосипеда относительно велосипедиста описывает окружность, а относительно дороги – волнистую кривую.",
+            "en": "A trajectory is relative too: a point on a bicycle wheel moves in a circle relative to the rider but traces a wavy curve relative to the road."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Тик жогору ыргытылган таш түз сызык боюнча кыймылдайт, ал эми бурч менен ыргытылган таш ийри сызык – парабола сызат.",
+        "ru": "Камень, брошенный вертикально вверх, движется по прямой, а брошенный под углом – по кривой, параболе.",
+        "en": "A stone thrown straight up moves along a straight line; one thrown at an angle follows a curve called a parabola."
+      },
+      "analogy": {
+        "ky": "Траектория – карда калган из: кайда баскандыгыңдын баары бир сызык болуп калат.",
+        "ru": "Траектория – как следы на снегу: всё, где ты прошёл, остаётся одной линией.",
+        "en": "A trajectory is like footprints in snow: everywhere you walked is left as one line."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Ракетанын учуусу",
+              "ru": "Полёт ракеты",
+              "en": "A rocket's flight"
+            },
+            "text": {
+              "ky": "Инженерлер ракета ажырагандан мурун анын траекториясын компьютерде эсептеп, отундун кереги канча экенин аныкташат.",
+              "ru": "Инженеры заранее рассчитывают траекторию ракеты на компьютере и по ней определяют нужный запас топлива.",
+              "en": "Engineers compute a rocket's trajectory on a computer before launch and use it to work out how much fuel is needed."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Траекториянын түрлөрү",
+              "ru": "Виды траекторий",
+              "en": "Kinds of trajectory"
+            },
+            "text": {
+              "ky": "Тик түшкөн таштын, түз жолдогу машинанын траекториясы – түз сызык; саат жебесинин учунун, карусельдин траекториясы – айлана.",
+              "ru": "У падающего вертикально камня и машины на прямой дороге траектория – прямая; у конца часовой стрелки и карусели – окружность.",
+              "en": "A stone falling straight down and a car on a straight road move along straight lines; the tip of a clock hand and a carousel move in circles."
+            },
+            "field": "m"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Бордун изи",
+              "ru": "След мела",
+              "en": "A chalk line"
+            },
+            "text": {
+              "ky": "Бор тактанын бетинде түз же ийри сызык калтырат – бул бордун траекториясы.",
+              "ru": "Мел оставляет на доске прямую или кривую линию – это траектория мела.",
+              "en": "Chalk leaves a straight or curved line on the board – that is the chalk's trajectory."
+            }
+          },
+          {
+            "title": {
+              "ky": "Учактын ак изи",
+              "ru": "Белый след самолёта",
+              "en": "A vapour trail"
+            },
+            "text": {
+              "ky": "Асманда учактан калган ак из анын траекториясын көрсөтөт.",
+              "ru": "Белая полоса в небе за самолётом показывает его траекторию.",
+              "en": "The white line a plane leaves in the sky shows its trajectory."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.path-length",
+      "kind": "quantity",
+      "hue": 160,
+      "isContainer": false,
+      "title": {
+        "ky": "Өтүлгөн жол",
+        "ru": "Пройденный путь",
+        "en": "Path length"
+      },
+      "subtitle": {
+        "ky": "s, скалярдык чоңдук, бирдиги 1 м",
+        "ru": "s, скалярная величина, единица 1 м",
+        "en": "s, a scalar, unit 1 m"
+      },
+      "description": {
+        "ky": "Кыймылдын траекториясынын узундугу өтүлгөн жол деп аталат. Ал s тамгасы менен белгиленет, бирдиги – метр (м); ошондой эле мм, см, дм, км колдонулат: 1 км = 1000 м. Жол – скалярдык чоңдук: ал сан мааниси менен гана туюнтулат, багыты жок.",
+        "ru": "Длину траектории называют пройденным путём. Его обозначают буквой s, единица – метр (м); используют также мм, см, дм, км: 1 км = 1000 м. Путь – скалярная величина: он выражается только числом и не имеет направления.",
+        "en": "The length of the trajectory is the path length (distance travelled). It is written s and measured in metres (m); mm, cm, dm and km are used too: 1 km = 1000 m. Path length is a scalar – just a number, with no direction."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "s = v \\cdot t"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Траектория боюнча канча аралык басылганын көрсөтөт",
+            "ru": "Показывает, сколько пройдено вдоль траектории",
+            "en": "Shows how far the body went along its trajectory"
+          }
+        }
+      ],
+      "related": [
+        "phys.trajectory",
+        "phys.displacement"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.path-equals-displacement",
+          "text": {
+            "ky": "Өтүлгөн жол менен которулуш дайыма бирдей.",
+            "ru": "Пройденный путь и перемещение всегда равны.",
+            "en": "Path length and displacement are always equal."
+          },
+          "correction": {
+            "ky": "Алар нерсе түз сызык боюнча бир багытта кыймылдаганда гана барабар. Бишкектен Кантка айылдарды кыдырып барган автобустун жолу 50–60 км, ал эми которулушу шаарлардын ортосундагы түз аралыкка барабар.",
+            "ru": "Они равны, только когда тело движется по прямой в одну сторону. Автобус, заехавший по пути из Бишкека в Кант в сёла, прошёл 50–60 км, а его перемещение равно прямому расстоянию между городами.",
+            "en": "They are equal only for motion along a straight line in one direction. A bus that calls at villages between Bishkek and Kant covers 50–60 km, but its displacement is the straight-line distance between the towns."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Адам бир күндө орто эсеп менен 6–8 миң кадам басат – бул ≈ 5 км жол.",
+        "ru": "За день человек в среднем делает 6–8 тысяч шагов – это ≈ 5 км пути.",
+        "en": "An average person takes 6–8 thousand steps a day – about 5 km of path."
+      },
+      "analogy": {
+        "ky": "Өтүлгөн жол – педометр: кайда барсаң да, канча бассаң ошончо кошулат, артка кайтсаң да азайбайт.",
+        "ru": "Пройденный путь – как шагомер: куда бы ты ни шёл, всё прибавляется, даже если возвращаешься назад.",
+        "en": "Path length is like a step counter: wherever you go it adds up, and it does not drop when you turn back."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Одометр",
+              "ru": "Одометр",
+              "en": "Odometer"
+            },
+            "text": {
+              "ky": "Машинанын одометри дөңгөлөктүн айлануулары боюнча өтүлгөн жолду эсептейт; ал машина артка айдаганда да жолду кошо берет.",
+              "ru": "Одометр машины считает пройденный путь по оборотам колеса и добавляет его, даже когда машина едет назад.",
+              "en": "A car's odometer counts the path from wheel turns, adding to it even when the car reverses."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Стадиондун айлампасы",
+              "ru": "Круг стадиона",
+              "en": "A stadium lap"
+            },
+            "text": {
+              "ky": "Стадиондун бир айлампасы 400 м. 2 айлампа чуркаган спортчунун жолу 800 м, бирок ал баштапкы ордуна кайтып келди.",
+              "ru": "Круг стадиона – 400 м. Бегун, пробежавший 2 круга, прошёл путь 800 м, но вернулся туда, откуда начал.",
+              "en": "One stadium lap is 400 m. A runner who does 2 laps covers 800 m of path but ends up where she started."
+            },
+            "field": "m"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Мектепке жол",
+              "ru": "Путь в школу",
+              "en": "The way to school"
+            },
+            "text": {
+              "ky": "Үйдөн мектепке көчөлөр аркылуу 900 м басасың – бул сенин өтүлгөн жолуң.",
+              "ru": "От дома до школы ты идёшь по улицам 900 м – это твой пройденный путь.",
+              "en": "You walk 900 m along the streets from home to school – that is your path length."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тоого чыгуу",
+              "ru": "Подъём в гору",
+              "en": "A mountain hike"
+            },
+            "text": {
+              "ky": "Ала-Арчада бурулуштуу чыйыр менен 5 км бастың, бирок чокуга чейинки түз аралык андан кыска.",
+              "ru": "В Ала-Арче ты прошёл по извилистой тропе 5 км, но прямое расстояние до вершины меньше.",
+              "en": "In Ala-Archa you walked 5 km along a winding trail, yet the straight-line distance to the top is shorter."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.displacement",
+      "kind": "quantity",
+      "hue": 330,
+      "isContainer": false,
+      "title": {
+        "ky": "Которулуш",
+        "ru": "Перемещение",
+        "en": "Displacement"
+      },
+      "subtitle": {
+        "ky": "s⃗, вектордук чоңдук, бирдиги 1 м",
+        "ru": "s⃗, векторная величина, единица 1 м",
+        "en": "s⃗, a vector, unit 1 m"
+      },
+      "description": {
+        "ky": "Кыймылдагы нерсенин баштапкы абалы менен акыркы абалын туташтыруучу түз сызыктын узундугуна барабар кесинди которулуш деп аталат. Ал s⃗ менен белгиленет – үстүндөгү жебе анын вектордук чоңдук экенин билдирет: сан мааниси менен катар багыты да көрсөтүлөт. Нерсе түз сызык боюнча бир багытта кыймылдаса, жол которулушка барабар: s = s⃗.",
+        "ru": "Перемещение – отрезок, соединяющий начальное и конечное положения движущегося тела. Его обозначают s⃗: стрелка сверху означает, что это векторная величина – у неё есть не только числовое значение, но и направление. Если тело движется по прямой в одну сторону, путь равен модулю перемещения: s = |s⃗|.",
+        "en": "Displacement is the straight segment joining a moving body's starting and final positions. It is written s⃗: the arrow on top means it is a vector – it has a direction as well as a size. For motion along a straight line in one direction, the path length equals the size of the displacement."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Нерсе кайда жана канча аралыкка жылганын көрсөтөт",
+            "ru": "Показывает, куда и на сколько сместилось тело",
+            "en": "Shows where and how far the body ended up"
+          }
+        }
+      ],
+      "related": [
+        "phys.path-length",
+        "phys.trajectory"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.displacement-no-direction",
+          "text": {
+            "ky": "Которулуш – бул жөн гана аралык, анын багыты маанилүү эмес.",
+            "ru": "Перемещение – это просто расстояние, направление неважно.",
+            "en": "Displacement is just a distance; direction does not matter."
+          },
+          "correction": {
+            "ky": "Которулуш – вектордук чоңдук. «Бишкектен 60 км» деп айтсак, автобус кайда экени белгисиз; «Бишкектен чыгышты карай 60 км» десек гана ордун табабыз.",
+            "ru": "Перемещение – векторная величина. «60 км от Бишкека» не говорит, где автобус; только «60 км к востоку от Бишкека» указывает место.",
+            "en": "Displacement is a vector. '60 km from Bishkek' does not say where the bus is; '60 km east of Bishkek' does."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Марафончу 42 км чуркаса да, айланма трассада анын которулушу нөлгө жакын болушу мүмкүн.",
+        "ru": "Марафонец пробегает 42 км, но на кольцевой трассе его перемещение может быть почти нулевым.",
+        "en": "A marathon runner covers 42 km, yet on a loop course the displacement can be almost zero."
+      },
+      "analogy": {
+        "ky": "Которулуш – «куш учкандай» аралык: жолдун бурулуштарына карабай, башталыштан бүтүшкө чейинки түз жебе.",
+        "ru": "Перемещение – расстояние «по прямой, как летит птица»: прямая стрелка от начала к концу, без поворотов дороги.",
+        "en": "Displacement is the distance 'as the crow flies': a straight arrow from start to finish, ignoring the bends of the road."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Навигация",
+              "ru": "Навигация",
+              "en": "Navigation"
+            },
+            "text": {
+              "ky": "Учкучтар жана капитандар которулушту – багытын жана аралыгын – картада жебе менен чийишет, анткени жол менен гана кайда барарын айтууга болбойт.",
+              "ru": "Лётчики и капитаны рисуют на карте перемещение стрелкой – направление и расстояние, потому что один путь не говорит, куда прибудешь.",
+              "en": "Pilots and captains draw displacement on a map as an arrow – direction and distance – because the path length alone does not say where you will arrive."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Үч бурчтук эрежеси",
+              "ru": "Правило треугольника",
+              "en": "The triangle rule"
+            },
+            "text": {
+              "ky": "Үч бурчтуктун бир жагы калган эки жагынын суммасынан дайыма кыска – ошондуктан которулуш ийри жолдон эч качан узун болбойт.",
+              "ru": "Сторона треугольника всегда короче суммы двух других – поэтому перемещение никогда не длиннее пути.",
+              "en": "One side of a triangle is always shorter than the other two together – so the displacement is never longer than the path."
+            },
+            "field": "m"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Дүкөнгө барып келүү",
+              "ru": "Сходить в магазин",
+              "en": "A trip to the shop"
+            },
+            "text": {
+              "ky": "Дүкөнгө 300 м барып, кайра үйгө келсең, жолуң 600 м, бирок которулушуң нөл.",
+              "ru": "Сходив в магазин за 300 м и вернувшись домой, ты прошёл 600 м, а перемещение равно нулю.",
+              "en": "Walk 300 m to the shop and back home: the path is 600 m, but the displacement is zero."
+            }
+          },
+          {
+            "title": {
+              "ky": "Лифт",
+              "ru": "Лифт",
+              "en": "A lift"
+            },
+            "text": {
+              "ky": "Лифт 1-кабаттан 9-кабатка чыгып, кайра 5-кабатка түштү: которулушу – 4 кабат жогору.",
+              "ru": "Лифт поднялся с 1-го на 9-й этаж и опустился на 5-й: перемещение – на 4 этажа вверх.",
+              "en": "A lift goes from floor 1 up to 9 and back down to 5: its displacement is 4 floors up."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.state-of-rest",
+      "kind": "motion",
+      "hue": 100,
+      "isContainer": false,
+      "title": {
+        "ky": "Тынч абал",
+        "ru": "Покой",
+        "en": "At rest"
+      },
+      "description": {
+        "ky": "Дене тандалган денеге (мисалы, жолго) карата ордун өзгөртпөсө, ал тынч абалда турат. s(t) графигинде бул – горизонталдык кесинди: убакыт өтөт, жол көбөйбөйт, ылдамдык v = 0.",
+        "ru": "Если тело не меняет положение относительно выбранного тела (например, дороги), оно покоится. На графике s(t) это горизонтальный отрезок: время идёт, путь не растёт, скорость v = 0.",
+        "en": "A body is at rest when it does not change its position relative to a chosen body (such as the road). On an s(t) graph this is a horizontal segment: time passes, the distance does not grow, and v = 0."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "speed",
+          "value": 0
+        },
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Горизонталдык кесинди",
+            "ru": "Горизонтальный отрезок",
+            "en": "A horizontal segment"
+          }
+        }
+      ],
+      "related": [
+        "phys.graph-slope",
+        "phys.distance-time-graph"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.rest-line-zero",
+          "text": {
+            "ky": "Тынч абал графикте дайыма s = 0 сызыгында болот.",
+            "ru": "Покой на графике всегда лежит на линии s = 0.",
+            "en": "Rest always lies on the s = 0 line of the graph."
+          },
+          "correction": {
+            "ky": "Машина 100 м өтүп, светофордо токтосо, график s = 100 м деңгээлинде горизонталдык болот – нөлдө эмес.",
+            "ru": "Если машина проехала 100 м и остановилась у светофора, график горизонтален на уровне s = 100 м, а не на нуле.",
+            "en": "If the car has gone 100 m and stops at a traffic light, the graph is flat at s = 100 m, not at zero."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Геостационардык спутник",
+              "ru": "Геостационарный спутник",
+              "en": "Geostationary satellite"
+            },
+            "text": {
+              "ky": "≈ 36 000 км бийиктиктеги спутник Жер менен кошо айланат, ошондуктан Жердин бетине карата тынч «илинип» турат – спутник антенналарын ага бир жолу багыттап коюшат.",
+              "ru": "Спутник на высоте ≈ 36 000 км вращается вместе с Землёй и поэтому «висит» неподвижно относительно её поверхности – антенны наводят на него один раз.",
+              "en": "A satellite about 36 000 km up turns with the Earth, so it 'hangs' still relative to the ground – dishes are pointed at it just once."
+            },
+            "field": "s"
+          },
+          {
+            "title": {
+              "ky": "Светофордун циклы",
+              "ru": "Цикл светофора",
+              "en": "Traffic-light cycle"
+            },
+            "text": {
+              "ky": "Жол инженерлери кызыл түстүн узактыгын эсептешет: s(t) графигиндеги ар бир горизонталдык бөлүк – машинанын светофордо күткөн убактысы.",
+              "ru": "Дорожные инженеры рассчитывают длительность красного сигнала: каждая горизонтальная часть графика s(t) – время ожидания машины у светофора.",
+              "en": "Traffic engineers plan how long the red light lasts: every flat part of a car's s(t) graph is time spent waiting at a light."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Столдогу китеп",
+              "ru": "Книга на столе",
+              "en": "A book on the desk"
+            },
+            "text": {
+              "ky": "Столдогу китеп партага карата тынч жатат: анын «графиги» бүт сабак бою горизонталдык.",
+              "ru": "Книга на столе покоится относительно парты: её «график» весь урок горизонтален.",
+              "en": "A book on your desk stays at rest relative to the desk: its 'graph' is flat for the whole lesson."
+            }
+          },
+          {
+            "title": {
+              "ky": "Аялдамадагы автобус",
+              "ru": "Автобус на остановке",
+              "en": "A bus at a stop"
+            },
+            "text": {
+              "ky": "Автобус аялдамада турганда спидометр 0 көрсөтөт, ал эми басып өткөн жолдун эсеби өзгөрбөйт.",
+              "ru": "Пока автобус стоит на остановке, спидометр показывает 0, а счётчик пройденного пути не меняется.",
+              "en": "While the bus waits at a stop the speedometer shows 0 and the trip counter does not change."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.travel-time",
+      "kind": "quantity",
+      "hue": 50,
+      "isContainer": false,
+      "title": {
+        "ky": "Кыймылдын убактысы",
+        "ru": "Время движения",
+        "en": "Travel time"
+      },
+      "subtitle": {
+        "ky": "t, секунд (с)",
+        "ru": "t, секунда (с)",
+        "en": "t, second (s)"
+      },
+      "description": {
+        "ky": "Кыймыл канча созулганын көрсөтөт. t тамгасы менен белгиленет, бирдиги – секунд (с); 1 мүн = 60 с, 1 саат = 3600 с. Секундомер менен ченелет.",
+        "ru": "Показывает, сколько длилось движение. Обозначается буквой t, единица – секунда (с); 1 мин = 60 с, 1 ч = 3600 с. Измеряют секундомером.",
+        "en": "How long the motion lasted. It is written t and measured in seconds (s); 1 min = 60 s, 1 h = 3600 s. It is measured with a stopwatch."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "t = \\frac{s}{v}"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Секундомер менен ченелет",
+            "ru": "Измеряется секундомером",
+            "en": "Measured with a stopwatch"
+          }
+        }
+      ],
+      "related": [
+        "phys.speed",
+        "phys.distance"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.stopwatch-exact",
+          "text": {
+            "ky": "Секундомерди колу менен басса, убакыт дайыма так ченелет.",
+            "ru": "Если нажимать секундомер рукой, время всегда измеряется точно.",
+            "en": "A hand-operated stopwatch always measures time exactly."
+          },
+          "correction": {
+            "ky": "Адамдын реакция убактысы ≈ 0,2 с. Кыска убакытты ченөөдө ката чоң болот, ошондуктан бир нече жолу ченеп, орточосун алабыз.",
+            "ru": "Время реакции человека ≈ 0,2 с. При измерении коротких промежутков ошибка велика, поэтому измеряют несколько раз и берут среднее.",
+            "en": "Human reaction time is about 0.2 s. For short intervals the error is large, so we measure several times and take the average."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Спорттогу фотофиниш",
+              "ru": "Фотофиниш в спорте",
+              "en": "Photo finish"
+            },
+            "text": {
+              "ky": "Жеңил атлетикада убакытты фотоэлемент жана камера 0,01 с тактык менен ченейт – колдогу секундомерден алда канча так.",
+              "ru": "В лёгкой атлетике время измеряют фотоэлемент и камера с точностью 0,01 с – намного точнее ручного секундомера.",
+              "en": "In athletics a light sensor and a camera time runners to 0.01 s – far more precisely than a hand stopwatch."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Атомдук сааттар",
+              "ru": "Атомные часы",
+              "en": "Atomic clocks"
+            },
+            "text": {
+              "ky": "GPS спутниктериндеги атомдук сааттар өтө так: сигнал канча убакытта келгенин ченеп, приемник өз ордун аныктайт.",
+              "ru": "Атомные часы на спутниках GPS очень точны: по времени прихода сигнала приёмник определяет своё положение.",
+              "en": "The atomic clocks on GPS satellites are extremely precise: from how long a signal takes to arrive, a receiver works out where it is."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Сабак",
+              "ru": "Урок",
+              "en": "A lesson"
+            },
+            "text": {
+              "ky": "45 мүнөттүк сабак – 45 · 60 = 2700 секунд.",
+              "ru": "Урок 45 минут – это 45 · 60 = 2700 секунд.",
+              "en": "A 45-minute lesson lasts 45 × 60 = 2700 seconds."
+            }
+          },
+          {
+            "title": {
+              "ky": "Жумуртка бышыруу",
+              "ru": "Варка яйца",
+              "en": "Boiling an egg"
+            },
+            "text": {
+              "ky": "Жумуртканы катуу бышыруу үчүн таймерди 8–10 мүнөткө коёбуз – бул да убакытты ченөө.",
+              "ru": "Чтобы сварить яйцо вкрутую, ставим таймер на 8–10 минут – это тоже измерение времени.",
+              "en": "To hard-boil an egg we set a timer for 8–10 minutes – that is measuring time too."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.measurement-scale",
+      "kind": "instrument",
+      "hue": 30,
+      "isContainer": false,
+      "title": {
+        "ky": "Шкала жана шкаланын баасы",
+        "ru": "Шкала и цена деления",
+        "en": "Scale and scale division"
+      },
+      "subtitle": {
+        "ky": "Эки чоң сызыктын айырмасы : майда бөлүктөрдүн саны",
+        "ru": "Разность двух штрихов : число делений",
+        "en": "Difference of two marks ÷ number of divisions"
+      },
+      "description": {
+        "ky": "Ченөөчү приборлордун бетиндеги бирдей бөлүктөргө бөлүнгөн сызыкчалар жана аларга туура келүүчү цифралар шкала деп аталат. Шкаланын баасын табуу үчүн: маанилери жазылган катар эки узун сызыкчаны табабыз, чоң сандан кичинесин кемитебиз жана аны алардын ортосундагы майда бөлүктөрдүн санына бөлөбүз. Мисалы, 30 °С – 20 °С = 10 °С, 10 °С : 10 = 1 °С.",
+        "ru": "Штрихи, делящие поверхность измерительного прибора на равные части, вместе с соответствующими им цифрами называют шкалой. Чтобы найти цену деления: берём два соседних длинных штриха с подписанными значениями, из большего числа вычитаем меньшее и делим на число мелких делений между ними. Например, 30 °С – 20 °С = 10 °С, 10 °С : 10 = 1 °С.",
+        "en": "The evenly spaced marks on an instrument, together with their numbers, are its scale. To find the value of one division: take two neighbouring labelled long marks, subtract the smaller number from the larger and divide by the number of small divisions between them. For example, 30 °C − 20 °C = 10 °C, 10 °C ÷ 10 = 1 °C."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "\\text{шкаланын баасы} = \\frac{30 - 20}{10} = 1"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Прибордун көрсөткүчүн так окууга жардам берет",
+            "ru": "Помогает точно снять показание прибора",
+            "en": "Lets you read an instrument accurately"
+          }
+        }
+      ],
+      "related": [
+        "phys.physical-quantity",
+        "phys.travel-time"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.division-is-one-unit",
+          "text": {
+            "ky": "Шкаланын бир бөлүгү дайыма бир бирдикке барабар (1 мм, 1 с, 1 °С).",
+            "ru": "Одно деление шкалы всегда равно одной единице (1 мм, 1 с, 1 °С).",
+            "en": "One division of a scale is always one unit (1 mm, 1 s, 1 °C)."
+          },
+          "correction": {
+            "ky": "Шкаланын баасын ар бир прибор үчүн эсептөө керек: мензуркада бир бөлүк 2 мл, 5 мл же 10 мл болушу мүмкүн.",
+            "ru": "Цену деления нужно вычислять для каждого прибора: у мензурки одно деление может быть 2 мл, 5 мл или 10 мл.",
+            "en": "Work out the division value for each instrument: on a measuring cylinder one division may be 2 ml, 5 ml or 10 ml."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Мектеп сызгычынын шкаласынын баасы 1 мм, ал эми штангенциркуль 0,1 мм ге чейин ченейт.",
+        "ru": "Цена деления школьной линейки 1 мм, а штангенциркуль измеряет с точностью до 0,1 мм.",
+        "en": "A school ruler has a division of 1 mm, while a vernier caliper measures to 0.1 mm."
+      },
+      "analogy": {
+        "ky": "Шкала – тепкичтүү шаты: шаты канча тепкичке бөлүнгөнүн жана бир тепкичтин бийиктигин билсең, кайсы бийиктикте турганыңды айта аласың.",
+        "ru": "Шкала – это лестница: зная, на сколько ступенек она поделена и высоту одной ступеньки, скажешь, на какой высоте стоишь.",
+        "en": "A scale is like a staircase: know how many steps there are and how tall one step is, and you can tell how high you stand."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Термометр",
+              "ru": "Термометр",
+              "en": "Thermometer"
+            },
+            "text": {
+              "ky": "20 °С жана 30 °С сызыктарынын ортосу 10 бөлүккө бөлүнсө, шкаланын баасы 1 °С. Ушундай эле эрежени ар кандай приборго колдонобуз.",
+              "ru": "Если между штрихами 20 °С и 30 °С 10 делений, цена деления 1 °С. То же правило применяют к любому прибору.",
+              "en": "If there are 10 divisions between the 20 °C and 30 °C marks, the division is 1 °C. The same rule works for any instrument."
+            },
+            "field": "s"
+          },
+          {
+            "title": {
+              "ky": "Спидометрдин шкаласы",
+              "ru": "Шкала спидометра",
+              "en": "A speedometer dial"
+            },
+            "text": {
+              "ky": "Машинанын спидометринде 20 жана 40 км/саат сандарынын ортосу 4 бөлүккө бөлүнгөн: шкаланын баасы 5 км/саат.",
+              "ru": "На спидометре машины между числами 20 и 40 км/ч 4 деления: цена деления 5 км/ч.",
+              "en": "On a car's speedometer there are 4 divisions between 20 and 40 km/h: each division is 5 km/h."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Сызгыч",
+              "ru": "Линейка",
+              "en": "A ruler"
+            },
+            "text": {
+              "ky": "Сызгычта 1 менен 2 см дин ортосу 10 бөлүккө бөлүнгөн, демек бир бөлүк 1 мм.",
+              "ru": "На линейке между 1 и 2 см 10 делений, значит одно деление – 1 мм.",
+              "en": "On a ruler there are 10 divisions between 1 and 2 cm, so one division is 1 mm."
+            }
+          },
+          {
+            "title": {
+              "ky": "Ашкана стаканы",
+              "ru": "Мерный стакан",
+              "en": "A measuring jug"
+            },
+            "text": {
+              "ky": "Ченөөчү стаканда 100 жана 200 мл сызыгынын ортосу 4 бөлүк болсо, бир бөлүк 25 мл.",
+              "ru": "Если на мерном стакане между 100 и 200 мл 4 деления, одно деление – 25 мл.",
+              "en": "If a measuring jug has 4 divisions between 100 and 200 ml, one division is 25 ml."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.physical-quantity",
+      "kind": "idea",
+      "hue": 260,
+      "isContainer": false,
+      "title": {
+        "ky": "Физикалык чоңдук",
+        "ru": "Физическая величина",
+        "en": "Physical quantity"
+      },
+      "subtitle": {
+        "ky": "l, m, t; СИ: м, кг, с",
+        "ru": "l, m, t; СИ: м, кг, с",
+        "en": "l, m, t; SI: m, kg, s"
+      },
+      "description": {
+        "ky": "Физикалык чоңдуктар нерселердин касиеттерин же кубулуштарды сандык жактан мүнөздөйт. Физикада узундук l, масса m жана убакыт t негизги чоңдуктар катары кабыл алынган. Алардын СИ системасындагы бирдиктери: метр (м), килограмм (кг), секунда (с). Чоң жана кичине бирдиктер кошумча сөздөр менен түзүлөт: кило… – 1000, санти… – 0,01, милли… – 0,001.",
+        "ru": "Физические величины количественно характеризуют свойства тел и явления. Основными величинами в физике приняты длина l, масса m и время t. Их единицы в СИ: метр (м), килограмм (кг), секунда (с). Кратные и дольные единицы образуют приставками: кило… – 1000, санти… – 0,01, милли… – 0,001.",
+        "en": "Physical quantities describe the properties of bodies and phenomena with numbers. Length l, mass m and time t are the base quantities. Their SI units are the metre (m), the kilogram (kg) and the second (s). Larger and smaller units use prefixes: kilo- = 1000, centi- = 0.01, milli- = 0.001."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Кубулушту же касиетти сан менен туюндурат",
+            "ru": "Выражает явление или свойство числом",
+            "en": "Expresses a phenomenon or property as a number"
+          }
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "1\\,км = 1000\\,м,\\; 1\\,см = 0{,}01\\,м,\\; 1\\,мм = 0{,}001\\,м"
+        }
+      ],
+      "related": [
+        "phys.measurement-scale",
+        "phys.travel-time"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.number-without-unit",
+          "text": {
+            "ky": "Чоңдукту жазганда сан эле жетиштүү: «узундугу 5».",
+            "ru": "Чтобы записать величину, достаточно числа: «длина 5».",
+            "en": "A number alone is enough to state a quantity: 'the length is 5'."
+          },
+          "correction": {
+            "ky": "Санга бирдик сөзсүз кошулат: 5 м менен 5 см – 100 эсе айырмаланган узундуктар.",
+            "ru": "К числу обязательно добавляют единицу: 5 м и 5 см – длины, различающиеся в 100 раз.",
+            "en": "A unit must go with the number: 5 m and 5 cm are lengths that differ 100 times."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Бирдиктердин эл аралык системасы (СИ) 1963-жылы бүткүл дүйнөлүк келишим менен бекитилген, ошондуктан Бишкекте да, Токиодо да метр бирдей.",
+        "ru": "Международная система единиц (СИ) закреплена всемирным соглашением в 1963 году, поэтому метр одинаков и в Бишкеке, и в Токио.",
+        "en": "The International System of Units (SI) was fixed by a worldwide agreement in 1963, so a metre is the same in Bishkek and in Tokyo."
+      },
+      "analogy": {
+        "ky": "Физикалык чоңдук – нерсенин «паспортундагы» сан: бою 1,5 м, массасы 40 кг. Санды бирдиксиз жазуу – паспортко «бою 1,5» деп жазгандай.",
+        "ru": "Физическая величина – число в «паспорте» тела: рост 1,5 м, масса 40 кг. Записать число без единицы – всё равно что написать в паспорте «рост 1,5».",
+        "en": "A physical quantity is a number in a body's 'passport': height 1.5 m, mass 40 kg. Writing a number without its unit is like writing 'height 1.5' in a passport."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Ченөөчү приборлор",
+              "ru": "Измерительные приборы",
+              "en": "Measuring instruments"
+            },
+            "text": {
+              "ky": "Узундукту сызгыч жана рулетка, көлөмдү мензурка, убакытты секундомер, температураны термометр менен өлчөйбүз.",
+              "ru": "Длину измеряют линейкой и рулеткой, объём – мензуркой, время – секундомером, температуру – термометром.",
+              "en": "We measure length with a ruler or tape measure, volume with a measuring cylinder, time with a stopwatch and temperature with a thermometer."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Бирдиктерди которуу",
+              "ru": "Перевод единиц",
+              "en": "Converting units"
+            },
+            "text": {
+              "ky": "1 км = 1000 м, 1 саат = 3600 с. 72 км/саат = 72 · 1000 м : 3600 с = 20 м/с – бул бөлчөктөр менен иштөөнүн жөнөкөй мисалы.",
+              "ru": "1 км = 1000 м, 1 ч = 3600 с. 72 км/ч = 72 · 1000 м : 3600 с = 20 м/с – простой пример действий с дробями.",
+              "en": "1 km = 1000 m and 1 h = 3600 s, so 72 km/h = 72 × 1000 m ÷ 3600 s = 20 m/s – a simple exercise with fractions."
+            },
+            "field": "m"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Бой ченөө",
+              "ru": "Измерение роста",
+              "en": "Measuring height"
+            },
+            "text": {
+              "ky": "Эшиктин жакшысына сызгыч менен боюңду белгилесең, узундук деген чоңдукту ченеген болосуң: мисалы, 152 см.",
+              "ru": "Когда отмечаешь свой рост на дверном косяке по линейке, ты измеряешь величину «длина»: например, 152 см.",
+              "en": "When you mark your height on the door frame with a ruler, you measure the quantity 'length': for example 152 cm."
+            }
+          },
+          {
+            "title": {
+              "ky": "Базардагы тараза",
+              "ru": "Весы на базаре",
+              "en": "Scales at the bazaar"
+            },
+            "text": {
+              "ky": "Сатуучу алманы таразага коюп «2 кг» дейт – бул масса деген физикалык чоңдуктун мааниси.",
+              "ru": "Продавец кладёт яблоки на весы и говорит «2 кг» – это значение физической величины «масса».",
+              "en": "The seller puts apples on the scales and says '2 kg' – that is the value of the physical quantity 'mass'."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.graph-slope",
+      "kind": "graph",
+      "hue": 190,
+      "isContainer": false,
+      "title": {
+        "ky": "Графиктин тиктиги",
+        "ru": "Наклон графика",
+        "en": "Slope of the graph"
+      },
+      "description": {
+        "ky": "s(t) графигинин тиктиги ылдамдыкты көрсөтөт: v = Δs/Δt (жолдун өзгөрүшү убакыттын өзгөрүшүнө бөлүнөт). Сызык канчалык тик болсо, ылдамдык ошончолук чоң. Горизонталдык сызыкта ылдамдык нөлгө барабар.",
+        "ru": "Наклон графика s(t) показывает скорость: v = Δs/Δt (изменение пути делят на изменение времени). Чем круче линия, тем больше скорость. На горизонтальной линии скорость равна нулю.",
+        "en": "The slope of an s(t) graph shows the speed: v = Δs/Δt (change in distance divided by change in time). The steeper the line, the greater the speed. On a horizontal line the speed is zero."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "v = \\frac{\\Delta s}{\\Delta t}"
+        }
+      ],
+      "related": [
+        "phys.distance-time-graph",
+        "phys.speed",
+        "phys.state-of-rest"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.higher-is-faster",
+          "text": {
+            "ky": "Графиктин бийигирээк жериндеги дене тезирээк кыймылдайт.",
+            "ru": "Где график выше, там тело движется быстрее.",
+            "en": "Where the graph is higher, the body is moving faster."
+          },
+          "correction": {
+            "ky": "Бийиктик басып өткөн жолду, ал эми тиктик ылдамдыкты көрсөтөт. Бийик, бирок горизонталдык сызык – дене алыста токтоп турат.",
+            "ru": "Высота показывает пройденный путь, а наклон – скорость. Высокая, но горизонтальная линия – тело стоит далеко от старта.",
+            "en": "Height shows the distance travelled; slope shows the speed. A high but flat line means the body is standing still far from the start."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Сызыктуу функция",
+              "ru": "Линейная функция",
+              "en": "Linear function"
+            },
+            "text": {
+              "ky": "Алгебрадагы y = kx функциясында k – түз сызыктын тиктиги. s = v·t ушундай эле: k ордуна ылдамдык v турат.",
+              "ru": "В функции y = kx из алгебры k – наклон прямой. s = v·t устроена так же: на месте k стоит скорость v.",
+              "en": "In the algebra function y = kx, k is the slope of the line. s = v·t works the same way, with the speed v in place of k."
+            },
+            "field": "m"
+          },
+          {
+            "title": {
+              "ky": "Жолдун жантаюусу",
+              "ru": "Уклон дороги",
+              "en": "Road gradient"
+            },
+            "text": {
+              "ky": "«10 %» белгиси жол ар бир 100 м горизонталдык аралыкта 10 м көтөрүлөрүн билдирет – бул да тиктиктин сан мааниси.",
+              "ru": "Знак «10 %» означает, что дорога поднимается на 10 м на каждые 100 м по горизонтали – это тоже числовое значение наклона.",
+              "en": "A '10 %' sign means the road climbs 10 m for every 100 m across – another number for a slope."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Тепкич менен пандус",
+              "ru": "Лестница и пандус",
+              "en": "Stairs and a ramp"
+            },
+            "text": {
+              "ky": "Тик тепкич менен бийиктикке тез чыгасың, жантык пандус менен – жай. Графикте да тик сызык «тез», жантык сызык «жай» дегенди билдирет.",
+              "ru": "По крутой лестнице поднимаешься на высоту быстро, по пологому пандусу – медленно. На графике тоже: круто – «быстро», полого – «медленно».",
+              "en": "Steep stairs get you up quickly, a gentle ramp slowly. On a graph too: steep means 'fast', gentle means 'slow'."
+            }
+          },
+          {
+            "title": {
+              "ky": "Чөнтөк акча",
+              "ru": "Карманные деньги",
+              "en": "Pocket money"
+            },
+            "text": {
+              "ky": "Күнүнө 50 сом чогултсаң, сенин «акча–убакыт» сызыгың күнүнө 20 сом чогулткан досуңдукунан тигирээк.",
+              "ru": "Если откладывать по 50 сомов в день, твоя линия «деньги–время» круче, чем у друга, который откладывает по 20.",
+              "en": "Saving 50 som a day gives a steeper 'money–time' line than a friend who saves 20 som a day."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.distance-time-graph",
+      "kind": "graph",
+      "hue": 220,
+      "isContainer": false,
+      "title": {
+        "ky": "Жолдун убакыттан көз карандылык графиги",
+        "ru": "График зависимости пути от времени",
+        "en": "Distance–time graph"
+      },
+      "description": {
+        "ky": "Горизонталдык огунда – убакыт t (с), тик огунда – басып өткөн жол s (м). Графиктин ар бир чекити «качан – канча жол өтүлдү?» деген суроого жооп берет. Сахнадагы жылып бараткан чекит машинанын азыркы абалын көрсөтөт.",
+        "ru": "По горизонтальной оси – время t (с), по вертикальной – пройденный путь s (м). Каждая точка графика отвечает на вопрос «когда – сколько пройдено?». Движущаяся точка на сцене показывает текущее состояние машины.",
+        "en": "Time t (s) runs along the horizontal axis and distance travelled s (m) up the vertical one. Every point answers 'when – how far?'. The moving dot in the scene shows where the car is now."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "t – горизонталдык огу, s – тик огу",
+            "ru": "t – горизонтальная ось, s – вертикальная",
+            "en": "t on the horizontal axis, s on the vertical"
+          }
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "s(t)"
+        }
+      ],
+      "related": [
+        "phys.graph-slope",
+        "phys.state-of-rest"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.graph-is-picture",
+          "text": {
+            "ky": "s(t) графиги – жолдун сүрөтү: сызык өйдө көтөрүлсө, машина тоого чыгып жатат.",
+            "ru": "График s(t) – это рисунок дороги: если линия идёт вверх, машина едет в гору.",
+            "en": "An s(t) graph is a picture of the road: if the line goes up, the car is driving uphill."
+          },
+          "correction": {
+            "ky": "График жолдун формасын эмес, жол убакыт менен кантип өскөнүн көрсөтөт. Сызык өйдө көтөрүлсө – басып өткөн жол көбөйүп жатат, жол түз болсо да.",
+            "ru": "График показывает не форму дороги, а то, как путь растёт со временем. Линия идёт вверх – значит, пройденный путь увеличивается, даже на ровной дороге.",
+            "en": "The graph shows how the distance grows with time, not the shape of the road. A rising line means the distance is increasing, even on a flat road."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Поезддердин графиги",
+              "ru": "График движения поездов",
+              "en": "Train timetable graphs"
+            },
+            "text": {
+              "ky": "Темир жол кызматкерлери ар бир поезддин s(t) сызыгын бир баракка чийишет: эки сызык кесилишкен жерде поезддер жолугат, ошондуктан аларды ар башка жолдорго бөлүшөт.",
+              "ru": "Железнодорожники чертят линии s(t) всех поездов на одном листе: где линии пересекаются, поезда встречаются, и их разводят по разным путям.",
+              "en": "Railway planners draw the s(t) line of every train on one sheet: where two lines cross the trains meet, so they are sent to different tracks."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "GPS-трекер",
+              "ru": "GPS-трекер",
+              "en": "GPS tracker"
+            },
+            "text": {
+              "ky": "Спорттук тиркеме машыгуудан кийин жол–убакыт графигин көрсөтөт: тик бөлүктөр – тез чуркаган, жантык бөлүктөр – жай баскан убакыт.",
+              "ru": "Спортивное приложение после тренировки показывает график путь–время: крутые участки – быстрый бег, пологие – медленный шаг.",
+              "en": "A sports app shows a distance–time graph after a workout: steep parts are fast running, gentle parts are slow walking."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кадамдардын күндөлүгү",
+              "ru": "Дневник шагов",
+              "en": "A step diary"
+            },
+            "text": {
+              "ky": "Ар бир 5 мүнөттө канча метр басканыңды жазып, чекиттерди туташтырсаң – өзүңдүн s(t) графигиң чыгат.",
+              "ru": "Записывай каждые 5 минут, сколько метров ты прошёл, соедини точки – получится твой собственный график s(t).",
+              "en": "Write down how many metres you have walked every 5 minutes and join the dots – you get your own s(t) graph."
+            }
+          },
+          {
+            "title": {
+              "ky": "Банкадагы суу",
+              "ru": "Вода в банке",
+              "en": "Water in a jar"
+            },
+            "text": {
+              "ky": "Кранды бир калыпта ачып, банкадагы суунун деңгээлин ар бир секундда белгилесең, деңгээл–убакыт графиги да түз сызык болот.",
+              "ru": "Если открыть кран ровно и отмечать уровень воды в банке каждую секунду, график уровень–время тоже будет прямой линией.",
+              "en": "Fill a jar from a steadily running tap and mark the level every second: the level–time graph is a straight line too."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.speed",
+      "kind": "quantity",
+      "hue": 200,
+      "isContainer": false,
+      "title": {
+        "ky": "Ылдамдык",
+        "ru": "Скорость",
+        "en": "Speed"
+      },
+      "subtitle": {
+        "ky": "v = s/t, м/с жана км/саат",
+        "ru": "v = s/t, м/с и км/ч",
+        "en": "v = s/t, m/s and km/h"
+      },
+      "description": {
+        "ky": "Дене убакыт бирдигинде басып өткөн жол. Ылдамдыкты табуу үчүн жолду убакытка бөлөбүз: v = s/t. SI системасында ылдамдыктын бирдиги – метр секундуна (м/с), турмушта көбүнчө километр саатына (км/саат) колдонулат: 1 м/с = 3,6 км/саат.",
+        "ru": "Путь, который тело проходит за единицу времени. Чтобы найти скорость, путь делят на время: v = s/t. В СИ скорость измеряют в метрах в секунду (м/с), в быту чаще в километрах в час (км/ч): 1 м/с = 3,6 км/ч.",
+        "en": "The distance a body covers per unit of time. To find the speed, divide the distance by the time: v = s/t. The SI unit is the metre per second (m/s); in everyday life we often use kilometres per hour (km/h): 1 m/s = 3.6 km/h."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "v = \\frac{s}{t}"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Кыймылдын канчалык тез экенин көрсөтөт",
+            "ru": "Показывает, насколько быстро движется тело",
+            "en": "Shows how fast a body moves"
+          }
+        }
+      ],
+      "related": [
+        "phys.distance",
+        "phys.travel-time"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.bigger-number-faster",
+          "text": {
+            "ky": "Саны чоңураак ылдамдык дайыма тезирээк: 18 км/саат 5 м/с тан тез.",
+            "ru": "Скорость с большим числом всегда больше: 18 км/ч быстрее, чем 5 м/с.",
+            "en": "The speed with the bigger number is always faster: 18 km/h is faster than 5 m/s."
+          },
+          "correction": {
+            "ky": "Ылдамдыктарды бир эле бирдикке келтирип гана салыштырабыз: 5 м/с = 5 · 3,6 = 18 км/саат, демек алар бирдей.",
+            "ru": "Скорости сравнивают только в одинаковых единицах: 5 м/с = 5 · 3,6 = 18 км/ч, значит, они равны.",
+            "en": "Compare speeds only in the same units: 5 m/s = 5 × 3.6 = 18 km/h, so they are equal."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Үлүл секундуна болжол менен 1 мм жылат – бул 0,001 м/с, башкача айтканда саатына 3,6 м гана.",
+        "ru": "Улитка проползает около 1 мм в секунду – это 0,001 м/с, то есть всего 3,6 м в час.",
+        "en": "A snail crawls about 1 mm per second – that is 0.001 m/s, or just 3.6 m per hour."
+      },
+      "analogy": {
+        "ky": "Ылдамдык – ар бир секундда канча метр «чогултканыңдын» эсеби: 15 м/с – секунд сайын 15 метр.",
+        "ru": "Скорость – это сколько метров ты «набираешь» каждую секунду: 15 м/с – по 15 метров за секунду.",
+        "en": "Speed is how many metres you 'collect' every second: 15 m/s means 15 metres each second."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Спидометр",
+              "ru": "Спидометр",
+              "en": "Speedometer"
+            },
+            "text": {
+              "ky": "Машинанын спидометри дөңгөлөктүн секундуна канча жолу айланарын эсептеп, аны км/саатка айлантып көрсөтөт.",
+              "ru": "Спидометр машины считает, сколько оборотов в секунду делает колесо, и переводит это в км/ч.",
+              "en": "A car's speedometer counts how many turns the wheel makes per second and converts that into km/h."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Чагылгандын алыстыгы",
+              "ru": "Как далеко гроза",
+              "en": "How far away is the storm"
+            },
+            "text": {
+              "ky": "Абада үн ≈ 340 м/с ылдамдык менен тарайт. Чагылган жаркылдагандан күндүн күркүрөөсүнө чейин 3 с өтсө, бороон ≈ 340 · 3 ≈ 1 км алыста.",
+              "ru": "Звук в воздухе распространяется со скоростью ≈ 340 м/с. Если от вспышки молнии до грома прошло 3 с, гроза примерно в 340 · 3 ≈ 1 км.",
+              "en": "Sound travels through air at about 340 m/s. If 3 s pass between the flash and the thunder, the storm is about 340 × 3 ≈ 1 km away."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Мектепке жөө",
+              "ru": "Пешком в школу",
+              "en": "Walking to school"
+            },
+            "text": {
+              "ky": "1,2 км жолду 15 мүнөттө (900 с) басып өтсөң, ылдамдыгың 1200 м : 900 с ≈ 1,3 м/с.",
+              "ru": "Если ты проходишь 1,2 км за 15 минут (900 с), твоя скорость 1200 м : 900 с ≈ 1,3 м/с.",
+              "en": "If you walk 1.2 km in 15 minutes (900 s), your speed is 1200 m ÷ 900 s ≈ 1.3 m/s."
+            }
+          },
+          {
+            "title": {
+              "ky": "Велосипед менен",
+              "ru": "На велосипеде",
+              "en": "By bike"
+            },
+            "text": {
+              "ky": "Ошол эле жолду велосипед менен 4 мүнөттө (240 с) өтсөң: 1200 : 240 = 5 м/с – жөө басканга караганда ≈ 4 эсе тез.",
+              "ru": "Тот же путь на велосипеде за 4 минуты (240 с): 1200 : 240 = 5 м/с – примерно в 4 раза быстрее, чем пешком.",
+              "en": "The same trip by bike in 4 minutes (240 s): 1200 ÷ 240 = 5 m/s – about 4 times faster than walking."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.distance",
+      "kind": "quantity",
+      "hue": 30,
+      "isContainer": false,
+      "title": {
+        "ky": "Басып өткөн жол",
+        "ru": "Пройденный путь",
+        "en": "Distance travelled"
+      },
+      "subtitle": {
+        "ky": "s, метр (м)",
+        "ru": "s, метр (м)",
+        "en": "s, metre (m)"
+      },
+      "description": {
+        "ky": "Дене кыймылдын сызыгы (траекториясы) боюнча басып өткөн узундук. s тамгасы менен белгиленет, бирдиги – метр (м); чоң аралыктар километр менен ченелет: 1 км = 1000 м. Жолдун жээгиндеги белгилер жолду көзгө көрүнөрлүк кылат.",
+        "ru": "Длина линии, по которой двигалось тело (траектории). Обозначается буквой s, единица – метр (м); большие расстояния измеряют в километрах: 1 км = 1000 м. Отметки вдоль дороги делают путь наглядным.",
+        "en": "The length of the line along which a body has moved (its path). It is written s and measured in metres (m); long distances are measured in kilometres: 1 km = 1000 m. Markers along the road make the distance easy to see."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "s = v \\cdot t"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Канча жол басылганын көрсөтөт",
+            "ru": "Показывает, сколько пройдено",
+            "en": "Shows how far the body has gone"
+          }
+        }
+      ],
+      "related": [
+        "phys.speed",
+        "phys.travel-time"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.path-is-straight-distance",
+          "text": {
+            "ky": "Басып өткөн жол – баштапкы жана акыркы чекиттин ортосундагы аралык.",
+            "ru": "Пройденный путь – это расстояние между начальной и конечной точками.",
+            "en": "The distance travelled is the gap between the start and end points."
+          },
+          "correction": {
+            "ky": "Жол – бүт кыймылдын узундугу. Үйдөн 1 км алыстагы дүкөнгө барып кайтсаң, жолуң 2 км, ал эми үйдөн аралык 0.",
+            "ru": "Путь – длина всего движения. Если сходить в магазин за 1 км от дома и вернуться, путь 2 км, а расстояние от дома – 0.",
+            "en": "Distance travelled is the length of the whole trip. Walk to a shop 1 km away and back: you have travelled 2 km, yet you end up 0 km from home."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Километр мамылары",
+              "ru": "Километровые столбы",
+              "en": "Kilometre posts"
+            },
+            "text": {
+              "ky": "Бишкек – Ош жолунун боюна ар бир километр сайын белги коюлган: айдоочу жана жол кызматы жолдун канча бөлүгү өтүлгөнүн так билишет.",
+              "ru": "Вдоль трассы Бишкек – Ош через каждый километр стоят отметки: водитель и дорожная служба точно знают, какая часть пути пройдена.",
+              "en": "Along the Bishkek–Osh highway there is a marker every kilometre, so drivers and road crews know exactly how far along the road they are."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Фитнес-билерик",
+              "ru": "Фитнес-браслет",
+              "en": "Fitness tracker"
+            },
+            "text": {
+              "ky": "Билерик кадамдарды санап, кадамдын узундугуна көбөйтүп, күнүнө канча километр басканыңды эсептейт.",
+              "ru": "Браслет считает шаги, умножает их на длину шага и вычисляет, сколько километров ты прошёл за день.",
+              "en": "A tracker counts your steps, multiplies them by your step length and works out how many kilometres you walked today."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кадамдар",
+              "ru": "Шаги",
+              "en": "Steps"
+            },
+            "text": {
+              "ky": "Кадамыңдын узундугу 0,6 м болсо, 1000 кадам – 600 м жол.",
+              "ru": "Если длина шага 0,6 м, то 1000 шагов – это 600 м пути.",
+              "en": "If your step is 0.6 m long, 1000 steps make 600 m."
+            }
+          },
+          {
+            "title": {
+              "ky": "Такси",
+              "ru": "Такси",
+              "en": "Taxi"
+            },
+            "text": {
+              "ky": "Такси акыны басып өткөн километрге жараша алат: жол канча узун болсо, акы ошончо көп.",
+              "ru": "Такси берёт плату за пройденные километры: чем длиннее путь, тем больше плата.",
+              "en": "A taxi charges by the kilometres travelled: the longer the trip, the bigger the fare."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "phys.motion-observation",
+      "engine": "timeline",
+      "icon": "eye",
+      "title": {
+        "ky": "Кыймылга байкоо жүргүзүү",
+        "ru": "Наблюдение за движением",
+        "en": "Observing a motion"
+      },
+      "description": {
+        "ky": "Салыштыруу нерсесин тандап, машинанын абалы ага карата өзгөрүп жатканын байкайбыз, изи боюнча траекторияны көрөбүз, өтүлгөн жолду белгилер боюнча санайбыз жана аны которулуш менен салыштырабыз.",
+        "ru": "Выбираем тело отсчёта, следим, как меняется положение машины относительно него, по следу видим траекторию, считаем пройденный путь по отметкам и сравниваем его с перемещением.",
+        "en": "We choose a reference body, watch the car's position change relative to it, see the trajectory in its trace, count the path length by the markers and compare it with the displacement."
+      },
+      "equation": "s = v \\cdot t",
+      "inputs": {
+        "ky": "Белгилер ар бир 10 м сайын, машина 5 м/с менен 12 с жүрөт",
+        "ru": "Отметки через каждые 10 м, машина едет 12 с со скоростью 5 м/с",
+        "en": "Markers every 10 m; the car drives at 5 m/s for 12 s"
+      },
+      "outputs": {
+        "ky": "Траектория – түз сызык, s = 60 м, которулуш 60 м",
+        "ru": "Траектория – прямая, s = 60 м, перемещение 60 м",
+        "en": "Trajectory – a straight line, s = 60 m, displacement 60 m"
+      },
+      "metrics": [
+        {
+          "key": "distance",
+          "label": {
+            "ky": "Өтүлгөн жол",
+            "ru": "Пройденный путь",
+            "en": "Path length"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 60,
+          "precision": 0
+        },
+        {
+          "key": "time",
+          "label": {
+            "ky": "Убакыт",
+            "ru": "Время",
+            "en": "Time"
+          },
+          "unit": "s",
+          "min": 0,
+          "max": 12,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "distance@reference": 0,
+        "distance@moving": 30,
+        "distance@trace": 60,
+        "distance@compare": 60,
+        "time@reference": 0,
+        "time@moving": 6,
+        "time@trace": 12,
+        "time@compare": 12
+      },
+      "steps": [
+        {
+          "key": "reference",
+          "title": {
+            "ky": "Салыштыруу нерсеси",
+            "ru": "Тело отсчёта",
+            "en": "Reference body"
+          },
+          "result": {
+            "ky": "Белгилер – кыймылсыз",
+            "ru": "Отметки неподвижны",
+            "en": "Markers are fixed"
+          },
+          "description": {
+            "ky": "Жолдун жээгиндеги белгилерди кыймылсыз деп эсептейбиз. Машинанын абалын ушул белгилерге салыштырабыз.",
+            "ru": "Отметки у дороги считаем неподвижными и сравниваем с ними положение машины.",
+            "en": "We take the roadside markers as fixed and compare the car's position with them."
+          },
+          "conceptKey": "phys.reference-body",
+          "altText": {
+            "ky": "Жолдун жээгинде белгилер, машина старт сызыгында.",
+            "ru": "Отметки вдоль дороги, машина на линии старта.",
+            "en": "Markers along the road; the car on the start line."
+          },
+          "duration": 1
+        },
+        {
+          "key": "moving",
+          "title": {
+            "ky": "Абал өзгөрөт",
+            "ru": "Положение меняется",
+            "en": "The position changes"
+          },
+          "result": {
+            "ky": "t = 6 с, машина 30 м белгисинде",
+            "ru": "t = 6 с, машина у отметки 30 м",
+            "en": "t = 6 s, the car at the 30 m marker"
+          },
+          "description": {
+            "ky": "Машина белгилерден улам алыстап жатат – демек ал жолго салыштырмалуу механикалык кыймылда.",
+            "ru": "Машина всё дальше от первых отметок – значит, она совершает механическое движение относительно дороги.",
+            "en": "The car keeps getting further from the first markers – so it is in mechanical motion relative to the road."
+          },
+          "conceptKey": "phys.mechanical-motion",
+          "altText": {
+            "ky": "Машина жолдун ортосунда, белгилер артта калды.",
+            "ru": "Машина на середине дороги, отметки остались позади.",
+            "en": "The car halfway along the road with markers behind it."
+          },
+          "duration": 1.5
+        },
+        {
+          "key": "trace",
+          "title": {
+            "ky": "Траекторияны көрөбүз",
+            "ru": "Видим траекторию",
+            "en": "See the trajectory"
+          },
+          "result": {
+            "ky": "Издер түз сызыкка тизилди",
+            "ru": "Следы выстроились в прямую",
+            "en": "The marks line up straight"
+          },
+          "description": {
+            "ky": "Ар бир секунддагы издер бир түз сызыкка тизилет: траектория түз сызык, кыймыл – түз сызыктуу.",
+            "ru": "Следы через каждую секунду лежат на одной прямой: траектория прямая, движение прямолинейное.",
+            "en": "The marks left every second lie on one straight line: the trajectory is straight, the motion is rectilinear."
+          },
+          "conceptKey": "phys.trajectory",
+          "altText": {
+            "ky": "Жол боюнча бир катар сары издер.",
+            "ru": "Ряд жёлтых меток вдоль дороги.",
+            "en": "A row of yellow marks along the road."
+          },
+          "duration": 1.5
+        },
+        {
+          "key": "compare",
+          "title": {
+            "ky": "Жол жана которулуш",
+            "ru": "Путь и перемещение",
+            "en": "Path and displacement"
+          },
+          "result": {
+            "ky": "s = 60 м, которулуш = 60 м",
+            "ru": "s = 60 м, перемещение = 60 м",
+            "en": "s = 60 m, displacement = 60 m"
+          },
+          "description": {
+            "ky": "Машина 6 белгиден өтүп 60 м жол басты. Ал түз сызык боюнча бир багытта жүргөндүктөн, которулушу да 60 м: s = s⃗.",
+            "ru": "Машина миновала 6 отметок и прошла 60 м. Она ехала по прямой в одну сторону, поэтому перемещение тоже 60 м.",
+            "en": "The car passed 6 markers and covered 60 m. It went straight in one direction, so its displacement is also 60 m."
+          },
+          "conceptKey": "phys.path-length",
+          "altText": {
+            "ky": "Машина марра сызыгында, старт менен марранын ортосу 60 м.",
+            "ru": "Машина на финише, между стартом и финишем 60 м.",
+            "en": "The car at the finish line, 60 m from the start."
+          },
+          "duration": 1
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "key": "phys.q.p7-motion-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Механикалык кыймыл деген эмне?",
+        "ru": "Что называют механическим движением?",
+        "en": "What is mechanical motion?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Нерсенин үн чыгарышы",
+            "ru": "Звучание тела",
+            "en": "A body making a sound"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Убакыттын өтүшү менен нерсенин абалынын башка нерселерге салыштырмалуу өзгөрүшү",
+            "ru": "Изменение положения тела относительно других тел с течением времени",
+            "en": "The change of a body's position relative to other bodies over time"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Нерсенин ысышы же муздашы",
+            "ru": "Нагревание или охлаждение тела",
+            "en": "A body heating up or cooling down"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Нерсенин формасынын өзгөрүшү",
+            "ru": "Изменение формы тела",
+            "en": "A change in the body's shape"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Берилген убакыт ичинде нерселердин абалынын башка нерселерге салыштырмалуу өзгөрүшү механикалык кыймыл деп аталат.",
+        "ru": "Механическим движением называют изменение положения тела относительно других тел с течением времени.",
+        "en": "Mechanical motion is the change of a body's position relative to other bodies over time."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-motion-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Автобуста олтуруп бара жаткан адам төмөнкүлөрдүн кайсынысына салыштырмалуу кыймылда болот?",
+        "ru": "Относительно чего движется человек, сидящий в едущем автобусе?",
+        "en": "Relative to what is a person sitting on a moving bus in motion?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Автобустун отургучуна",
+            "ru": "Сиденья автобуса",
+            "en": "The bus seat"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жол жээгиндеги үйлөргө",
+            "ru": "Домов у дороги",
+            "en": "The houses along the road"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жанында олтурган адамга",
+            "ru": "Соседа по сиденью",
+            "en": "The person sitting next to them"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Автобустун айдоочусуна",
+            "ru": "Водителя автобуса",
+            "en": "The bus driver"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Отургучка, кошунасына жана айдоочуга салыштырмалуу адамдын абалы өзгөрбөйт – ал тынч. Үйлөргө салыштырмалуу анын абалы өзгөрөт – кыймылда.",
+        "ru": "Относительно сиденья, соседа и водителя положение человека не меняется – он покоится. Относительно домов оно меняется – он движется.",
+        "en": "Relative to the seat, the neighbour and the driver the person's position does not change – they are at rest. Relative to the houses it changes – they are moving."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "misconceptionKey": "phys.m.motion-depends-on-body-only",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-motion-3",
+      "type": "single",
+      "prompt": {
+        "ky": "Кайсы учурда нерсенин кыймылынын траекториясы түз сызык болот?",
+        "ru": "В каком случае траектория движения тела – прямая линия?",
+        "en": "In which case is the trajectory a straight line?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кайык көлдө кыймылдаганда",
+            "ru": "Лодка плывёт по озеру",
+            "en": "A boat sailing round a lake"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Нерсе тик өйдө кыймылдаганда",
+            "ru": "Тело движется вертикально вверх",
+            "en": "A body moving straight upwards"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Доскага бор менен сүрөт тартканда",
+            "ru": "Рисуют мелом картинку на доске",
+            "en": "Drawing a picture on the board with chalk"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Сааттын жебеси кыймылдаганда",
+            "ru": "Движется стрелка часов",
+            "en": "A clock hand moving"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Тик өйдө ыргытылган нерсе түз сызык боюнча кыймылдайт. Саат жебесинин учу айлана, кайык жана бор көбүнчө ийри сызык сызат.",
+        "ru": "Тело, брошенное вертикально вверх, движется по прямой. Конец стрелки часов описывает окружность, лодка и мел – обычно кривые.",
+        "en": "A body thrown straight up moves along a straight line. A clock hand's tip moves in a circle; the boat and the chalk usually trace curves."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-motion-4",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсылары механикалык кубулуштар? Бардык туура жоопторду тандаңыз.",
+        "ru": "Какие из явлений механические? Выберите все верные ответы.",
+        "en": "Which of these are mechanical phenomena? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жипке илинген шар термелет",
+            "ru": "Шарик на нити качается",
+            "en": "A ball on a string swings"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Чайнектеги суу кайнайт",
+            "ru": "Вода в чайнике кипит",
+            "en": "Water boils in a kettle"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Колдон түшкөн нерсе жерге түшөт",
+            "ru": "Выпавший из рук предмет падает на землю",
+            "en": "A dropped object falls to the ground"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Электр лампасы жанат",
+            "ru": "Горит электрическая лампа",
+            "en": "An electric lamp glows"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Поезд станциядан чыгат",
+            "ru": "Поезд отходит от станции",
+            "en": "A train leaves the station"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "c",
+        "e"
+      ],
+      "explanation": {
+        "ky": "Нерсенин кыймылы менен байланышта болгон өзгөрүүлөр – механикалык кубулуштар: термелүү, түшүү, поезддин кыймылы. Суунун кайнашы – жылуулук, лампанын жанышы – электрдик жана жарык кубулушу.",
+        "ru": "Механические явления связаны с движением тел: колебания, падение, движение поезда. Кипение воды – тепловое явление, свечение лампы – электрическое и световое.",
+        "en": "Mechanical phenomena involve the motion of bodies: swinging, falling, a train moving. Boiling is a thermal phenomenon; a glowing lamp is electrical and light."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-motion-5",
+      "type": "match",
+      "prompt": {
+        "ky": "Негизги физикалык чоңдукту анын СИ бирдиги менен дал келтириңиз.",
+        "ru": "Сопоставьте основную физическую величину с её единицей в СИ.",
+        "en": "Match each base quantity with its SI unit."
+      },
+      "pairs": [
+        {
+          "key": "len",
+          "left": {
+            "ky": "Узундук, l",
+            "ru": "Длина, l",
+            "en": "Length, l"
+          },
+          "right": {
+            "ky": "метр (м)",
+            "ru": "метр (м)",
+            "en": "metre (m)"
+          }
+        },
+        {
+          "key": "mass",
+          "left": {
+            "ky": "Масса, m",
+            "ru": "Масса, m",
+            "en": "Mass, m"
+          },
+          "right": {
+            "ky": "килограмм (кг)",
+            "ru": "килограмм (кг)",
+            "en": "kilogram (kg)"
+          }
+        },
+        {
+          "key": "time",
+          "left": {
+            "ky": "Убакыт, t",
+            "ru": "Время, t",
+            "en": "Time, t"
+          },
+          "right": {
+            "ky": "секунда (с)",
+            "ru": "секунда (с)",
+            "en": "second (s)"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Физикада узундук, масса жана убакыт негизги чоңдуктар; алардын СИ бирдиктери – метр, килограмм, секунда.",
+        "ru": "Длина, масса и время – основные величины; их единицы в СИ – метр, килограмм, секунда.",
+        "en": "Length, mass and time are the base quantities; their SI units are the metre, kilogram and second."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-motion-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Термометрдин 20 °С жана 30 °С деп жазылган сызыктарынын ортосунда 5 майда бөлүк бар. Шкаланын баасы канча °С?",
+        "ru": "Между штрихами 20 °С и 30 °С на термометре 5 мелких делений. Какова цена деления в °С?",
+        "en": "On a thermometer there are 5 small divisions between the 20 °C and 30 °C marks. What is the value of one division in °C?"
+      },
+      "answer": 2,
+      "tolerance": 0,
+      "unit": "°C",
+      "explanation": {
+        "ky": "(30 °С − 20 °С) : 5 = 10 °С : 5 = 2 °С.",
+        "ru": "(30 °С − 20 °С) : 5 = 10 °С : 5 = 2 °С.",
+        "en": "(30 °C − 20 °C) ÷ 5 = 10 °C ÷ 5 = 2 °C."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "misconceptionKey": "phys.m.division-is-one-unit",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-motion-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Айгерим үйүнөн дүкөнгө чейин түз көчө менен 300 м басып, кайра үйүнө келди. Анын өтүлгөн жолу канча метр?",
+        "ru": "Айгерим прошла по прямой улице 300 м от дома до магазина и вернулась домой. Какой путь она прошла, в метрах?",
+        "en": "Aigerim walks 300 m along a straight street to the shop and back home. What path length did she cover, in metres?"
+      },
+      "answer": 600,
+      "tolerance": 0,
+      "unit": "m",
+      "explanation": {
+        "ky": "Жол – траекториянын узундугу: барганы 300 м + келгени 300 м = 600 м. Жол артка кайтканда азайбайт.",
+        "ru": "Путь – длина траектории: туда 300 м + обратно 300 м = 600 м. При возвращении путь не уменьшается.",
+        "en": "Path length is the length of the trajectory: 300 m there + 300 m back = 600 m. It does not shrink when you turn back."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-motion-8",
+      "type": "single",
+      "prompt": {
+        "ky": "Ошол эле Айгеримдин (300 м дүкөнгө барып, үйгө кайтты) которулушу канчага барабар?",
+        "ru": "Чему равно перемещение той же Айгерим (300 м до магазина и обратно домой)?",
+        "en": "What is the displacement of the same Aigerim (300 m to the shop and back home)?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "600 м",
+            "ru": "600 м",
+            "en": "600 m"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "300 м",
+            "ru": "300 м",
+            "en": "300 m"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "0",
+            "ru": "0",
+            "en": "0"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "150 м",
+            "ru": "150 м",
+            "en": "150 m"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Которулуш баштапкы жана акыркы абалды туташтырат. Айгерим үйүнөн чыгып, үйүнө кайтты – баштапкы жана акыркы абал бир чекит, которулуш нөл.",
+        "ru": "Перемещение соединяет начальное и конечное положения. Айгерим вышла из дома и вернулась домой – это одна точка, перемещение равно нулю.",
+        "en": "Displacement joins the start and end positions. Aigerim left home and came back home – the same point, so the displacement is zero."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "misconceptionKey": "phys.m.path-equals-displacement",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-motion-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Өтүлгөн жол менен которулуштун айырмасы эмнеде?",
+        "ru": "В чём разница между пройденным путём и перемещением?",
+        "en": "What is the difference between path length and displacement?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Нерсе тез кыймылдаганында",
+            "ru": "В том, что тело движется быстро",
+            "en": "In how fast the body moves"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Нерсе тынч турган ордунан козголгондугунда",
+            "ru": "В том, что тело сдвинулось с места",
+            "en": "In whether the body started from rest"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Көп аралыкты өткөндө",
+            "ru": "В том, что пройдено большое расстояние",
+            "en": "In whether a long distance was covered"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Жол – траекториянын узундугу, которулуш – баштапкы жана акыркы абалдарды туташтырган кесинди",
+            "ru": "Путь – длина траектории, перемещение – отрезок, соединяющий начальное и конечное положения",
+            "en": "Path length is the length of the trajectory; displacement is the segment joining the start and end positions"
+          }
+        }
+      ],
+      "answer": "d",
+      "explanation": {
+        "ky": "Жол – скалярдык чоңдук, траекториянын узундугу. Которулуш – вектордук чоңдук, баштапкы жана акыркы абалдардын ортосундагы түз кесинди.",
+        "ru": "Путь – скалярная величина, длина траектории. Перемещение – векторная величина, прямой отрезок между начальным и конечным положениями.",
+        "en": "Path length is a scalar – the length of the trajectory. Displacement is a vector – the straight segment between the start and end positions."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-motion-10",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден машинанын кыймылын салыштырып жаткан кыймылсыз нерселерди тап.",
+        "ru": "Найдите на модели неподвижные тела, с которыми сравнивают движение машины.",
+        "en": "Find the fixed bodies in the model that we compare the car's motion with."
+      },
+      "targetConceptKey": "phys.reference-body",
+      "explanation": {
+        "ky": "Бул – жолдун жээгиндеги белгилер. Машинанын абалы аларга салыштырмалуу өзгөрөт – ошондуктан ал кыймылда.",
+        "ru": "Это отметки у дороги. Положение машины относительно них меняется – поэтому она движется.",
+        "en": "These are the roadside markers. The car's position relative to them changes – that is why we say it moves."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "misconceptionKey": "phys.m.no-reference-needed",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-motion-11",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден машинанын баштапкы жана акыркы абалын көрсөткөн сызыктарды тап – алардын ортосундагы кесинди которулуш болот.",
+        "ru": "Найдите на модели линии начального и конечного положений машины – отрезок между ними и есть перемещение.",
+        "en": "Find the lines marking the car's start and end positions – the segment between them is the displacement."
+      },
+      "targetConceptKey": "phys.displacement",
+      "explanation": {
+        "ky": "Старт жана марра сызыктары. Аларды туташтырган кесинди – которулуш; түз жолдо ал өтүлгөн жолго барабар (60 м).",
+        "ru": "Линии старта и финиша. Соединяющий их отрезок – перемещение; на прямой дороге оно равно пути (60 м).",
+        "en": "The start and finish lines. The segment joining them is the displacement; on a straight road it equals the path (60 m)."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-motion-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Материялык чекиттин маңыздуу белгиси кайсы?",
+        "ru": "Каков главный признак материальной точки?",
+        "en": "What is the key feature of a material point?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Нерсенин түсү эске алынбайт",
+            "ru": "Не учитывается цвет тела",
+            "en": "The body's colour is ignored"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Нерсенин аты айтылбайт",
+            "ru": "Не называется имя тела",
+            "en": "The body is not named"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Нерсенин өлчөмү эске алынбайт",
+            "ru": "Не учитываются размеры тела",
+            "en": "The body's size is ignored"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Нерсенин заты эске алынбайт",
+            "ru": "Не учитывается вещество тела",
+            "en": "The body's material is ignored"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Материялык чекит – өлчөмү эсепке алынбаган нерсенин модели. Аны каралып жаткан аралык нерсенин өлчөмүнөн алда канча чоң болгондо колдонобуз.",
+        "ru": "Материальная точка – модель тела, размеры которого не учитывают. Её используют, когда рассматриваемые расстояния намного больше размеров тела.",
+        "en": "A material point is a model of a body whose size is ignored. We use it when the distances involved are much larger than the body."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-motion-13",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Бишкектен Кантка чейинки аралык 25 км. Аны метр менен туюнткула.",
+        "ru": "Расстояние от Бишкека до Канта – 25 км. Выразите его в метрах.",
+        "en": "The distance from Bishkek to Kant is 25 km. Express it in metres."
+      },
+      "answer": 25000,
+      "tolerance": 0,
+      "unit": "m",
+      "explanation": {
+        "ky": "1 км = 1000 м, ошондуктан 25 км = 25 · 1000 = 25 000 м.",
+        "ru": "1 км = 1000 м, поэтому 25 км = 25 · 1000 = 25 000 м.",
+        "en": "1 km = 1000 m, so 25 km = 25 × 1000 = 25 000 m."
+      },
+      "objectiveKeys": [
+        "phys.g7.kinematics.o1"
+      ],
+      "difficulty": 1
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-phys-pendulum",
+      "ky": "маятник",
+      "ru": "маятник",
+      "en": "pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-period",
+      "ky": "термелүү мезгили",
+      "ru": "период колебаний",
+      "en": "period of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-amplitude",
+      "ky": "амплитуда",
+      "ru": "амплитуда",
+      "en": "amplitude",
+      "forbidden": [
+        "amplitud"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gravity",
+      "ky": "оордук күчү",
+      "ru": "сила тяжести",
+      "en": "force of gravity",
+      "forbidden": [
+        "attraction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction",
+      "ky": "сүрүлүү күчү",
+      "ru": "сила трения",
+      "en": "friction force",
+      "forbidden": [
+        "force of rubbing"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-force",
+      "ky": "таянычтын реакция күчү",
+      "ru": "сила реакции опоры",
+      "en": "normal force",
+      "forbidden": [
+        "support reaction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-acceleration",
+      "ky": "ылдамдануу",
+      "ru": "ускорение",
+      "en": "acceleration",
+      "forbidden": [
+        "тездетүү"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-speed",
+      "ky": "ылдамдык",
+      "ru": "скорость",
+      "en": "speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinetic-energy",
+      "ky": "кинетикалык энергия",
+      "ru": "кинетическая энергия",
+      "en": "kinetic energy",
+      "forbidden": [
+        "кинетический энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-potential-energy",
+      "ky": "потенциалдык энергия",
+      "ru": "потенциальная энергия",
+      "en": "potential energy",
+      "forbidden": [
+        "потенциальный энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-voltage",
+      "ky": "чыңалуу",
+      "ru": "напряжение",
+      "en": "voltage",
+      "forbidden": [
+        "electric tension"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-current",
+      "ky": "ток күчү",
+      "ru": "сила тока",
+      "en": "electric current",
+      "forbidden": [
+        "current force",
+        "current strength"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-resistance",
+      "ky": "каршылык",
+      "ru": "сопротивление",
+      "en": "resistance",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-circuit",
+      "ky": "электр чынжыры",
+      "ru": "электрическая цепь",
+      "en": "electric circuit",
+      "forbidden": [
+        "electric chain",
+        "электрическая цепочка"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-source",
+      "ky": "ток булагы",
+      "ru": "источник тока",
+      "en": "power source",
+      "forbidden": [
+        "source of current"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-switch",
+      "ky": "ачкыч",
+      "ru": "ключ (выключатель)",
+      "en": "switch",
+      "forbidden": [
+        "electric key"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-distance-travelled",
+      "ky": "басып өткөн жол",
+      "ru": "пройденный путь",
+      "en": "distance travelled",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-time",
+      "ky": "убакыт",
+      "ru": "время",
+      "en": "time",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-uniform-motion",
+      "ky": "бир калыптагы кыймыл",
+      "ru": "равномерное движение",
+      "en": "uniform motion",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-average-speed",
+      "ky": "орточо ылдамдык",
+      "ru": "средняя скорость",
+      "en": "average speed",
+      "forbidden": [
+        "medium speed"
+      ]
+    },
+    {
+      "id": "g-phys-speed-radar",
+      "ky": "ылдамдык радары",
+      "ru": "радар скорости",
+      "en": "speed radar",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-stopwatch",
+      "ky": "секундомер",
+      "ru": "секундомер",
+      "en": "stopwatch",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-distance-time-graph",
+      "ky": "жолдун убакыттан көз карандылык графиги",
+      "ru": "график зависимости пути от времени",
+      "en": "distance–time graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-graph-slope",
+      "ky": "графиктин тиктиги",
+      "ru": "наклон графика",
+      "en": "slope of a graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-rest",
+      "ky": "тынч абал",
+      "ru": "покой",
+      "en": "rest",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-force",
+      "ky": "күч",
+      "ru": "сила",
+      "en": "force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-vector",
+      "ky": "вектор",
+      "ru": "вектор",
+      "en": "vector",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-newton",
+      "ky": "ньютон (Н)",
+      "ru": "ньютон (Н)",
+      "en": "newton (N)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-dynamometer",
+      "ky": "динамометр",
+      "ru": "динамометр",
+      "en": "dynamometer (spring scale)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-weight",
+      "ky": "салмак",
+      "ru": "вес тела",
+      "en": "weight",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-resultant",
+      "ky": "тең аракеттүү күч",
+      "ru": "равнодействующая сила",
+      "en": "resultant force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-elastic-force",
+      "ky": "серпилгичтик күчү",
+      "ru": "сила упругости",
+      "en": "elastic force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-point-of-application",
+      "ky": "күчтүн коюлган чекити",
+      "ru": "точка приложения силы",
+      "en": "point of application",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever",
+      "ky": "рычаг",
+      "ru": "рычаг",
+      "en": "lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-pivot",
+      "ky": "таяныч чекити",
+      "ru": "точка опоры",
+      "en": "pivot (fulcrum)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever-arm",
+      "ky": "күчтүн ийини",
+      "ru": "плечо силы",
+      "en": "lever arm",
+      "forbidden": [
+        "shoulder of force"
+      ]
+    },
+    {
+      "id": "g-phys-moment",
+      "ky": "күчтүн моменти",
+      "ru": "момент силы",
+      "en": "moment of a force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-equilibrium-lever",
+      "ky": "рычагдын тең салмактуулугу",
+      "ru": "равновесие рычага",
+      "en": "equilibrium of a lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-interaction",
+      "ky": "өз ара аракеттенишүү",
+      "ru": "взаимодействие",
+      "en": "interaction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-deformation",
+      "ky": "деформация",
+      "ru": "деформация",
+      "en": "deformation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inertia",
+      "ky": "инерция",
+      "ru": "инерция",
+      "en": "inertia",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inertness",
+      "ky": "инерттүүлүк",
+      "ru": "инертность",
+      "en": "inertness",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-first-law",
+      "ky": "Ньютондун биринчи закону",
+      "ru": "первый закон Ньютона",
+      "en": "Newton's first law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mass",
+      "ky": "масса",
+      "ru": "масса",
+      "en": "mass",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kilogram",
+      "ky": "килограмм (кг)",
+      "ru": "килограмм (кг)",
+      "en": "kilogram (kg)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-balance-scale",
+      "ky": "тараза",
+      "ru": "весы",
+      "en": "balance (scales)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-beam",
+      "ky": "коромысло (тараза ийини)",
+      "ru": "коромысло",
+      "en": "beam (of a balance)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-weights-set",
+      "ky": "тараза таштары (гирялар)",
+      "ru": "гири",
+      "en": "weights (set of masses)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-density",
+      "ky": "заттын тыгыздыгы",
+      "ru": "плотность вещества",
+      "en": "density",
+      "forbidden": [
+        "тыгыздуулук"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-second-law",
+      "ky": "Ньютондун экинчи закону",
+      "ru": "второй закон Ньютона",
+      "en": "Newton's second law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-universal-gravitation",
+      "ky": "бүткүл дүйнөлүк тартылуу",
+      "ru": "всемирное тяготение",
+      "en": "universal gravitation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-fall",
+      "ky": "эркин түшүү",
+      "ru": "свободное падение",
+      "en": "free fall",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-fall-acceleration",
+      "ky": "эркин түшүүнүн ылдамдануусу",
+      "ru": "ускорение свободного падения",
+      "en": "free-fall acceleration",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-support",
+      "ky": "таяныч",
+      "ru": "опора",
+      "en": "support",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-suspension",
+      "ky": "асма",
+      "ru": "подвес",
+      "en": "suspension",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hooke-law",
+      "ky": "Гуктун закону",
+      "ru": "закон Гука",
+      "en": "Hooke's law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-stiffness",
+      "ky": "пружинанын катуулугу",
+      "ru": "жёсткость пружины",
+      "en": "spring stiffness",
+      "forbidden": [
+        "spring hardness"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-extension",
+      "ky": "пружинанын узарышы",
+      "ru": "удлинение пружины",
+      "en": "spring extension",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-graduation",
+      "ky": "динамометрди градуирлөө",
+      "ru": "градуировка динамометра",
+      "en": "calibration of a dynamometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-measurement-limit",
+      "ky": "өлчөө чеги",
+      "ru": "предел измерения",
+      "en": "measuring range",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sliding-friction",
+      "ky": "тайгаланып сүрүлүү",
+      "ru": "трение скольжения",
+      "en": "sliding friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rolling-friction",
+      "ky": "тоголонуп сүрүлүү",
+      "ru": "трение качения",
+      "en": "rolling friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-static-friction",
+      "ky": "тынч туруудагы сүрүлүү",
+      "ru": "трение покоя",
+      "en": "static friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction-coefficient",
+      "ky": "сүрүлүү коэффициенти",
+      "ru": "коэффициент трения",
+      "en": "coefficient of friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-third-law",
+      "ky": "Ньютондун үчүнчү закону",
+      "ru": "третий закон Ньютона",
+      "en": "Newton's third law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-action-reaction",
+      "ky": "аракет жана каршы аракет",
+      "ru": "действие и противодействие",
+      "en": "action and reaction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-phenomenon",
+      "ky": "кубулуш",
+      "ru": "явление",
+      "en": "phenomenon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-physical-quantity",
+      "ky": "физикалык чоңдук",
+      "ru": "физическая величина",
+      "en": "physical quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-si",
+      "ky": "СИ (бирдиктердин эл аралык системасы)",
+      "ru": "СИ (Международная система единиц)",
+      "en": "SI (International System of Units)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scale",
+      "ky": "шкала",
+      "ru": "шкала",
+      "en": "scale",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scale-division",
+      "ky": "шкаланын баасы",
+      "ru": "цена деления шкалы",
+      "en": "scale division value",
+      "forbidden": [
+        "scale price"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-motion",
+      "ky": "механикалык кыймыл",
+      "ru": "механическое движение",
+      "en": "mechanical motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinematics",
+      "ky": "кинематика",
+      "ru": "кинематика",
+      "en": "kinematics",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-relativity-of-motion",
+      "ky": "кыймылдын салыштырмалуулугу",
+      "ru": "относительность движения",
+      "en": "relativity of motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-reference-body",
+      "ky": "салыштыруу нерсеси",
+      "ru": "тело отсчёта",
+      "en": "reference body",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-material-point",
+      "ky": "материялык чекит",
+      "ru": "материальная точка",
+      "en": "material point",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-trajectory",
+      "ky": "кыймылдын траекториясы",
+      "ru": "траектория движения",
+      "en": "trajectory",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rectilinear-motion",
+      "ky": "түз сызыктуу кыймыл",
+      "ru": "прямолинейное движение",
+      "en": "straight-line motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-curvilinear-motion",
+      "ky": "ийри сызыктуу кыймыл",
+      "ru": "криволинейное движение",
+      "en": "curvilinear motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-path-length",
+      "ky": "өтүлгөн жол",
+      "ru": "пройденный путь",
+      "en": "path length",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-displacement",
+      "ky": "которулуш",
+      "ru": "перемещение",
+      "en": "displacement",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scalar",
+      "ky": "скалярдык чоңдук",
+      "ru": "скалярная величина",
+      "en": "scalar quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-vector-quantity",
+      "ky": "вектордук чоңдук",
+      "ru": "векторная величина",
+      "en": "vector quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-non-uniform-motion",
+      "ky": "бир калыптагы эмес кыймыл",
+      "ru": "неравномерное движение",
+      "en": "non-uniform motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-initial-speed",
+      "ky": "баштапкы ылдамдык",
+      "ru": "начальная скорость",
+      "en": "initial speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-final-speed",
+      "ky": "акыркы ылдамдык",
+      "ru": "конечная скорость",
+      "en": "final speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-accelerated-motion",
+      "ky": "ылдамдатылган кыймыл",
+      "ru": "ускоренное движение",
+      "en": "accelerated motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-decelerated-motion",
+      "ky": "акырындатылган кыймыл",
+      "ru": "замедленное движение",
+      "en": "decelerated motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-uniform-circular-motion",
+      "ky": "айлана боюнча бир калыптагы кыймыл",
+      "ru": "равномерное движение по окружности",
+      "en": "uniform circular motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-linear-speed",
+      "ky": "сызыктуу ылдамдык",
+      "ru": "линейная скорость",
+      "en": "linear speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rotation-period",
+      "ky": "айлануу мезгили",
+      "ru": "период обращения",
+      "en": "period of rotation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rotation-frequency",
+      "ky": "айлануунун жыштыгы",
+      "ru": "частота обращения",
+      "en": "rotation frequency",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-tangent",
+      "ky": "жаныма",
+      "ru": "касательная",
+      "en": "tangent",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-momentum",
+      "ky": "нерсенин импульсу",
+      "ru": "импульс тела",
+      "en": "momentum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-momentum-conservation",
+      "ky": "импульстун сакталуу закону",
+      "ru": "закон сохранения импульса",
+      "en": "conservation of momentum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-closed-system",
+      "ky": "туюк система",
+      "ru": "замкнутая система",
+      "en": "closed system",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-jet-propulsion",
+      "ky": "реактивдүү кыймыл",
+      "ru": "реактивное движение",
+      "en": "jet propulsion",
+      "forbidden": [
+        "реактивный кыймыл"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rocket",
+      "ky": "ракета",
+      "ru": "ракета",
+      "en": "rocket",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-work",
+      "ky": "механикалык жумуш",
+      "ru": "механическая работа",
+      "en": "mechanical work",
+      "forbidden": [
+        "механикалык иш"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-joule",
+      "ky": "джоуль (Дж)",
+      "ru": "джоуль (Дж)",
+      "en": "joule (J)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-power",
+      "ky": "кубаттуулук",
+      "ru": "мощность",
+      "en": "power",
+      "forbidden": [
+        "кубаттулук"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-watt",
+      "ky": "ватт (Вт)",
+      "ru": "ватт (Вт)",
+      "en": "watt (W)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-energy",
+      "ky": "энергия",
+      "ru": "энергия",
+      "en": "energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-energy",
+      "ky": "механикалык энергия",
+      "ru": "механическая энергия",
+      "en": "mechanical energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-total-mechanical-energy",
+      "ky": "толук механикалык энергия",
+      "ru": "полная механическая энергия",
+      "en": "total mechanical energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-energy-conservation",
+      "ky": "энергиянын сакталуу закону",
+      "ru": "закон сохранения энергии",
+      "en": "conservation of energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-maxwell-pendulum",
+      "ky": "Максвелл маятниги",
+      "ru": "маятник Максвелла",
+      "en": "Maxwell's pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pressure",
+      "ky": "басым",
+      "ru": "давление",
+      "en": "pressure",
+      "forbidden": [
+        "кысым"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal",
+      "ky": "паскаль (Па)",
+      "ru": "паскаль (Па)",
+      "en": "pascal (Pa)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-area",
+      "ky": "аянт",
+      "ru": "площадь",
+      "en": "area",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pressure-force",
+      "ky": "басым күчү",
+      "ru": "сила давления",
+      "en": "force of pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gas-pressure",
+      "ky": "газдын басымы",
+      "ru": "давление газа",
+      "en": "gas pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-liquid-pressure",
+      "ky": "суюктуктун басымы",
+      "ru": "давление жидкости",
+      "en": "liquid pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-liquid-column",
+      "ky": "суюктук мамычасы",
+      "ru": "столб жидкости",
+      "en": "column of liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-depth",
+      "ky": "тереңдик",
+      "ru": "глубина",
+      "en": "depth",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-manometer",
+      "ky": "манометр",
+      "ru": "манометр",
+      "en": "manometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal-law",
+      "ky": "Паскаль закону",
+      "ru": "закон Паскаля",
+      "en": "Pascal's law",
+      "forbidden": [
+        "Паскалдын закону"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal-ball",
+      "ky": "Паскаль шары",
+      "ru": "шар Паскаля",
+      "en": "Pascal's ball",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-communicating-vessels",
+      "ky": "катыш идиштер",
+      "ru": "сообщающиеся сосуды",
+      "en": "communicating vessels",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-press",
+      "ky": "гидравликалык пресс",
+      "ru": "гидравлический пресс",
+      "en": "hydraulic press",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-lift",
+      "ky": "гидравликалык көтөргүч",
+      "ru": "гидравлический подъёмник",
+      "en": "hydraulic lift",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-brake",
+      "ky": "гидравликалык токтоткуч",
+      "ru": "гидравлический тормоз",
+      "en": "hydraulic brake",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-piston",
+      "ky": "поршень",
+      "ru": "поршень",
+      "en": "piston",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-atmosphere",
+      "ky": "атмосфера",
+      "ru": "атмосфера",
+      "en": "atmosphere",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-atmospheric-pressure",
+      "ky": "атмосфера басымы",
+      "ru": "атмосферное давление",
+      "en": "atmospheric pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-atmospheric-pressure",
+      "ky": "нормалдуу атмосфера басымы",
+      "ru": "нормальное атмосферное давление",
+      "en": "normal atmospheric pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-torricelli-experiment",
+      "ky": "Торричеллинин тажрыйбасы",
+      "ru": "опыт Торричелли",
+      "en": "Torricelli's experiment",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mercury-column",
+      "ky": "сымап мамычасы",
+      "ru": "столб ртути",
+      "en": "mercury column",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mmhg",
+      "ky": "сымап мамычасынын миллиметри (сым. мам. мм)",
+      "ru": "миллиметр ртутного столба (мм рт. ст.)",
+      "en": "millimetre of mercury (mmHg)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-vacuum",
+      "ky": "боштук (вакуум)",
+      "ru": "пустота (вакуум)",
+      "en": "vacuum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-barometer",
+      "ky": "барометр",
+      "ru": "барометр",
+      "en": "barometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-aneroid",
+      "ky": "барометр-анероид",
+      "ru": "барометр-анероид",
+      "en": "aneroid barometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-altimeter",
+      "ky": "бийиктик ченегич",
+      "ru": "высотомер",
+      "en": "altimeter",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-buoyant-force",
+      "ky": "Архимед күчү",
+      "ru": "архимедова сила",
+      "en": "buoyant force",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-archimedes-law",
+      "ky": "Архимед закону",
+      "ru": "закон Архимеда",
+      "en": "Archimedes' principle",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-displaced-liquid",
+      "ky": "сүрүп чыгарылган суюктук",
+      "ru": "вытесненная жидкость",
+      "en": "displaced liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-weight-in-liquid",
+      "ky": "нерсенин суюктуктагы салмагы",
+      "ru": "вес тела в жидкости",
+      "en": "weight in a liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-floating-conditions",
+      "ky": "нерселердин сүзүү шарттары",
+      "ru": "условия плавания тел",
+      "en": "conditions for floating",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-floating",
+      "ky": "калкуу",
+      "ru": "плавание на поверхности",
+      "en": "floating",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sinking",
+      "ky": "чөгүү",
+      "ru": "погружение (тонет)",
+      "en": "sinking",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-waterline",
+      "ky": "ватер сызыгы",
+      "ru": "ватерлиния",
+      "en": "waterline",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-balloon",
+      "ky": "аба шары",
+      "ru": "воздушный шар",
+      "en": "balloon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sonde",
+      "ky": "зонд-шар",
+      "ru": "шар-зонд",
+      "en": "sounding balloon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-simple-machine",
+      "ky": "жөнөкөй механизм",
+      "ru": "простой механизм",
+      "en": "simple machine",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pulley",
+      "ky": "блок",
+      "ru": "блок",
+      "en": "pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-fixed-pulley",
+      "ky": "кыймылсыз блок",
+      "ru": "неподвижный блок",
+      "en": "fixed pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-movable-pulley",
+      "ky": "кыймылдуу блок",
+      "ru": "подвижный блок",
+      "en": "movable pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-golden-rule",
+      "ky": "механиканын «алтын эрежеси»",
+      "ru": "«золотое правило» механики",
+      "en": "golden rule of mechanics",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-useful-work",
+      "ky": "пайдалуу жумуш",
+      "ru": "полезная работа",
+      "en": "useful work",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-total-work",
+      "ky": "толук жумуш",
+      "ru": "полная (затраченная) работа",
+      "en": "total work",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-efficiency",
+      "ky": "пайдалуу аракет коэффициенти (ПАК)",
+      "ru": "коэффициент полезного действия (КПД)",
+      "en": "efficiency",
+      "forbidden": [
+        "пайдалуу иш коэффициенти"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inclined-plane",
+      "ky": "жантык тегиздик",
+      "ru": "наклонная плоскость",
+      "en": "inclined plane",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gain-in-force",
+      "ky": "күчтөн утуш",
+      "ru": "выигрыш в силе",
+      "en": "gain in force",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-oscillation",
+      "ky": "термелүү",
+      "ru": "колебание",
+      "en": "oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-oscillation",
+      "ky": "эркин термелүү",
+      "ru": "свободные колебания",
+      "en": "free oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-equilibrium-position",
+      "ky": "тең салмактуулук абалы",
+      "ru": "положение равновесия",
+      "en": "equilibrium position",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-oscillation-frequency",
+      "ky": "термелүү жыштыгы",
+      "ru": "частота колебаний",
+      "en": "frequency of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hertz",
+      "ky": "герц (Гц)",
+      "ru": "герц (Гц)",
+      "en": "hertz (Hz)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-math-pendulum",
+      "ky": "математикалык маятник",
+      "ru": "математический маятник",
+      "en": "simple pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-isochronism",
+      "ky": "изохронизм",
+      "ru": "изохронизм",
+      "en": "isochronism",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-elastic-medium",
+      "ky": "серпилгичтүү чөйрө",
+      "ru": "упругая среда",
+      "en": "elastic medium",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-wave",
+      "ky": "механикалык толкун",
+      "ru": "механическая волна",
+      "en": "mechanical wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-wavelength",
+      "ky": "толкун узундугу",
+      "ru": "длина волны",
+      "en": "wavelength",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-wave-speed",
+      "ky": "толкундун таралуу ылдамдыгы",
+      "ru": "скорость распространения волны",
+      "en": "wave speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-transverse-wave",
+      "ky": "туурасынан толкун",
+      "ru": "поперечная волна",
+      "en": "transverse wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-longitudinal-wave",
+      "ky": "узатасынан толкун",
+      "ru": "продольная волна",
+      "en": "longitudinal wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sound-wave",
+      "ky": "үн толкуну",
+      "ru": "звуковая волна",
+      "en": "sound wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pitch",
+      "ky": "үндүн тону (бийиктиги)",
+      "ru": "высота (тон) звука",
+      "en": "pitch",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-loudness",
+      "ky": "үндүн катуулугу",
+      "ru": "громкость звука",
+      "en": "loudness",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-timbre",
+      "ky": "үндүн тембри",
+      "ru": "тембр звука",
+      "en": "timbre",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-decibel",
+      "ky": "децибелл (дБ)",
+      "ru": "децибел (дБ)",
+      "en": "decibel (dB)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-tuning-fork",
+      "ky": "камертон",
+      "ru": "камертон",
+      "en": "tuning fork",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-echo",
+      "ky": "жаңырык",
+      "ru": "эхо",
+      "en": "echo",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-ultrasound",
+      "ky": "ультраүн",
+      "ru": "ультразвук",
+      "en": "ultrasound",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-echo-sounder",
+      "ky": "эхолот",
+      "ru": "эхолот",
+      "en": "echo sounder",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "distance",
+      "icon": "move-horizontal",
+      "valueKind": "quantity",
+      "unit": "km",
+      "label": {
+        "ky": "Аралык",
+        "ru": "Расстояние",
+        "en": "Distance"
+      }
+    },
+    {
+      "key": "eventDuration",
+      "icon": "clock",
+      "valueKind": "quantity",
+      "unit": "min",
+      "label": {
+        "ky": "Узактыгы",
+        "ru": "Продолжительность",
+        "en": "Duration"
+      }
+    },
+    {
+      "key": "length",
+      "icon": "ruler",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Узундугу",
+        "ru": "Длина",
+        "en": "Length"
+      }
+    },
+    {
+      "key": "speed",
+      "icon": "gauge",
+      "valueKind": "quantity",
+      "unit": "m/s",
+      "label": {
+        "ky": "Ылдамдыгы",
+        "ru": "Скорость",
+        "en": "Speed"
+      }
+    }
+  ]
+}

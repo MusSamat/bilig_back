@@ -1,0 +1,1265 @@
+{
+  "processes": [
+    {
+      "key": "phys.inertia-cart",
+      "engine": "timeline",
+      "icon": "move-right",
+      "title": {
+        "ky": "Арабачадагы жыгач брусок",
+        "ru": "Брусок на тележке",
+        "en": "A block on a cart"
+      },
+      "description": {
+        "ky": "Арабачанын үстүнө жыгач брусокту тикесинен коюп, арабачаны кескин түртөбүз, анан аны тосмого урунтуп токтотобуз. Брусок эки учурда тең мурдагы абалын (тынч абалын же кыймылын) сактоого умтулат.",
+        "ru": "Ставим деревянный брусок стоймя на тележку, резко толкаем тележку, потом останавливаем её у препятствия. В обоих случаях брусок стремится сохранить прежнее состояние – покой или движение.",
+        "en": "We stand a wooden block upright on a cart, jerk the cart forward and later stop it against a barrier. Each time the block tends to keep its previous state – rest or motion."
+      },
+      "inputs": {
+        "ky": "Арабача, тикесинен коюлган жыгач брусок, тосмо",
+        "ru": "Тележка, брусок стоймя, препятствие",
+        "en": "A cart, an upright block, a barrier"
+      },
+      "outputs": {
+        "ky": "Кескин козголгондо брусок артка, кескин токтогондо алдыга жыгылат",
+        "ru": "При рывке брусок падает назад, при резкой остановке – вперёд",
+        "en": "A sudden start tips the block backwards; a sudden stop tips it forwards"
+      },
+      "steps": [
+        {
+          "key": "rest",
+          "title": {
+            "ky": "Тынч абал",
+            "ru": "Покой",
+            "en": "At rest"
+          },
+          "result": {
+            "ky": "v = 0",
+            "ru": "v = 0",
+            "en": "v = 0"
+          },
+          "description": {
+            "ky": "Брусок арабачада тикесинен турат. Ага таасир эткен оордук күчү менен таянычтын реакция күчү теңделген – экөө тең тынч турат.",
+            "ru": "Брусок стоит на тележке. Сила тяжести и сила реакции опоры уравновешены – оба покоятся.",
+            "en": "The block stands on the cart. Gravity and the normal force balance – both are at rest."
+          },
+          "conceptKey": "phys.newton-first-law",
+          "altText": {
+            "ky": "Арабачанын үстүндө тикесинен турган брусок.",
+            "ru": "Брусок стоймя на тележке.",
+            "en": "A block standing upright on a cart."
+          },
+          "duration": 1
+        },
+        {
+          "key": "jerk",
+          "title": {
+            "ky": "Кескин козголуу",
+            "ru": "Резкий рывок",
+            "en": "A sudden start"
+          },
+          "result": {
+            "ky": "Брусок артка жыгылат",
+            "ru": "Брусок падает назад",
+            "en": "The block tips backwards"
+          },
+          "description": {
+            "ky": "Арабачаны тез түртөбүз. Брусоктун арабачага тийген асты арабача менен кошо жылат, ал эми үстүңкү бөлүгү мурдагы тынч абалында калууга умтулат – брусок артка жыгылат.",
+            "ru": "Резко толкаем тележку. Низ бруска, касающийся тележки, движется вместе с ней, а верх стремится остаться в покое – брусок падает назад.",
+            "en": "We give the cart a sharp push. The bottom of the block moves with the cart, while the top tends to stay at rest – the block tips backwards."
+          },
+          "conceptKey": "phys.inertia",
+          "altText": {
+            "ky": "Арабача алдыга жылды, брусок артка кыйшайды.",
+            "ru": "Тележка поехала вперёд, брусок наклонился назад.",
+            "en": "The cart moves forward; the block tips backwards."
+          },
+          "duration": 1
+        },
+        {
+          "key": "ride",
+          "title": {
+            "ky": "Бир калыптагы кыймыл",
+            "ru": "Равномерное движение",
+            "en": "Steady motion"
+          },
+          "result": {
+            "ky": "v = const",
+            "ru": "v = const",
+            "en": "v = const"
+          },
+          "description": {
+            "ky": "Брусокту кайра тургузуп, арабачаны акырын жылдырабыз. Экөө бирдей ылдамдык менен бир калыпта кыймылдайт.",
+            "ru": "Ставим брусок снова и плавно разгоняем тележку. Оба движутся равномерно с одинаковой скоростью.",
+            "en": "We stand the block up again and set the cart moving gently. Both move steadily at the same speed."
+          },
+          "conceptKey": "phys.inertia",
+          "altText": {
+            "ky": "Брусок тик турган бойдон арабача менен жылат.",
+            "ru": "Брусок стоит прямо и едет вместе с тележкой.",
+            "en": "The block stays upright and rides along with the cart."
+          },
+          "duration": 1
+        },
+        {
+          "key": "stop",
+          "title": {
+            "ky": "Кескин токтоо",
+            "ru": "Резкая остановка",
+            "en": "A sudden stop"
+          },
+          "result": {
+            "ky": "Брусок алдыга жыгылат",
+            "ru": "Брусок падает вперёд",
+            "en": "The block tips forwards"
+          },
+          "description": {
+            "ky": "Арабача тосмого урунуп тык токтойт. Брусоктун асты да токтойт, ал эми үстүңкү бөлүгү мурдагы кыймылын инерция боюнча улантып, алдыга жыгылат.",
+            "ru": "Тележка ударяется о препятствие и резко останавливается. Низ бруска тоже останавливается, а верх по инерции продолжает движение – брусок падает вперёд.",
+            "en": "The cart hits the barrier and stops dead. The bottom of the block stops too, but the top carries on by inertia – the block tips forwards."
+          },
+          "conceptKey": "phys.inertia",
+          "altText": {
+            "ky": "Арабача тосмого урунду, брусок алдыга кулады.",
+            "ru": "Тележка упёрлась в препятствие, брусок упал вперёд.",
+            "en": "The cart has hit the barrier; the block falls forwards."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "cart",
+          "label": {
+            "ky": "Арабачанын ылдамдыгы",
+            "ru": "Скорость тележки",
+            "en": "Cart speed"
+          },
+          "unit": "m/s",
+          "min": 0,
+          "max": 1,
+          "precision": 1
+        },
+        {
+          "key": "top",
+          "label": {
+            "ky": "Брусоктун үстүнүн ылдамдыгы",
+            "ru": "Скорость верха бруска",
+            "en": "Speed of the block's top"
+          },
+          "unit": "m/s",
+          "min": 0,
+          "max": 1,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "cart@rest": 0,
+        "cart@jerk": 1,
+        "cart@ride": 1,
+        "cart@stop": 0,
+        "top@rest": 0,
+        "top@jerk": 0,
+        "top@ride": 1,
+        "top@stop": 1
+      }
+    },
+    {
+      "key": "phys.balance-weighing",
+      "engine": "timeline",
+      "icon": "scale",
+      "title": {
+        "ky": "Тараза менен массаны өлчөө",
+        "ru": "Взвешивание на весах",
+        "en": "Weighing on a balance"
+      },
+      "description": {
+        "ky": "Окуу таразасында брусоктун массасын тартуу эрежеси боюнча өлчөйбүз: коромыслону текшерип, нерсени сол табакка, тараза таштарын оң табакка чоңунан баштап коёбуз.",
+        "ru": "Измеряем массу бруска на учебных весах по правилам взвешивания: проверяем коромысло, тело кладём на левую чашку, гири – на правую, начиная с крупных.",
+        "en": "We find a block's mass on a school balance following the weighing rules: check the beam, body on the left pan, weights on the right starting with the large ones."
+      },
+      "equation": "m = \\sum m_{таш}",
+      "inputs": {
+        "ky": "Брусок, тараза, таштар 200, 50, 20, 20, 10, 5, 2, 2, 1 г",
+        "ru": "Брусок, весы, гири 200, 50, 20, 20, 10, 5, 2, 2, 1 г",
+        "en": "A block, a balance, weights of 200, 50, 20, 20, 10, 5, 2, 2, 1 g"
+      },
+      "outputs": {
+        "ky": "m = 50 + 20 + 10 + 5 = 85 г",
+        "ru": "m = 50 + 20 + 10 + 5 = 85 г",
+        "en": "m = 50 + 20 + 10 + 5 = 85 g"
+      },
+      "steps": [
+        {
+          "key": "check",
+          "title": {
+            "ky": "Коромыслону текшерүү",
+            "ru": "Проверка коромысла",
+            "en": "Check the beam"
+          },
+          "result": {
+            "ky": "Жебе нөлдө",
+            "ru": "Стрелка на нуле",
+            "en": "Pointer at zero"
+          },
+          "description": {
+            "ky": "Алгач коромысло тең салмактуу абалда экенин – көрсөткүч жебе ортодо турганын текшеребиз.",
+            "ru": "Сначала проверяем, что коромысло в равновесии – стрелка стоит посередине.",
+            "en": "First we check that the empty beam balances – the pointer is in the middle."
+          },
+          "conceptKey": "phys.balance-scale",
+          "altText": {
+            "ky": "Бош табактуу тараза, жебе ортодо.",
+            "ru": "Весы с пустыми чашками, стрелка посередине.",
+            "en": "A balance with empty pans; the pointer is central."
+          },
+          "duration": 1
+        },
+        {
+          "key": "body",
+          "title": {
+            "ky": "Нерсени коюу",
+            "ru": "Кладём тело",
+            "en": "Load the body"
+          },
+          "result": {
+            "ky": "Сол табак ылдый",
+            "ru": "Левая чашка вниз",
+            "en": "Left pan goes down"
+          },
+          "description": {
+            "ky": "Брусокту сол табакка коёбуз – коромыслонун тең салмактуулугу бузулат.",
+            "ru": "Кладём брусок на левую чашку – равновесие коромысла нарушается.",
+            "en": "We put the block on the left pan – the beam tips."
+          },
+          "conceptKey": "phys.mass",
+          "altText": {
+            "ky": "Сол табакта брусок, табак ылдый түштү.",
+            "ru": "На левой чашке брусок, чашка опустилась.",
+            "en": "The block on the left pan, which has dropped."
+          },
+          "duration": 1
+        },
+        {
+          "key": "big",
+          "title": {
+            "ky": "Чоң таш",
+            "ru": "Крупная гиря",
+            "en": "A big weight"
+          },
+          "result": {
+            "ky": "200 г – көп",
+            "ru": "200 г – много",
+            "en": "200 g – too much"
+          },
+          "description": {
+            "ky": "Брусоктун массасын көз менен болжолдоп, оң табакка 200 г ташты коёбуз. Оң табак ылдый түштү – таш оор, аны алып, кичинесин коёбуз.",
+            "ru": "Оценив массу бруска на глаз, ставим на правую чашку гирю 200 г. Правая чашка перевесила – гиря тяжела, снимаем её и берём меньшую.",
+            "en": "Judging the block's mass by eye, we put the 200 g weight on the right pan. The right pan drops – too heavy, so we swap it for a smaller one."
+          },
+          "conceptKey": "phys.balance-scale",
+          "altText": {
+            "ky": "Оң табакта 200 г таш, ал ылдый түштү.",
+            "ru": "На правой чашке гиря 200 г, чашка перевесила.",
+            "en": "The 200 g weight on the right pan, which has dropped."
+          },
+          "duration": 1
+        },
+        {
+          "key": "fine",
+          "title": {
+            "ky": "Толуктоо",
+            "ru": "Подбор гирь",
+            "en": "Fine adjustment"
+          },
+          "result": {
+            "ky": "50 + 20 + 10 + 5 г",
+            "ru": "50 + 20 + 10 + 5 г",
+            "en": "50 + 20 + 10 + 5 g"
+          },
+          "description": {
+            "ky": "50 г, 20 г, 10 г жана 5 г таштарды кыпчуур менен кезек-кезеги менен коюп, коромыслону тең салмактуу абалга келтиребиз.",
+            "ru": "Пинцетом по очереди ставим гири 50 г, 20 г, 10 г и 5 г и приводим коромысло в равновесие.",
+            "en": "With tweezers we add 50 g, 20 g, 10 g and 5 g in turn until the beam balances."
+          },
+          "conceptKey": "phys.balance-scale",
+          "altText": {
+            "ky": "Оң табакта төрт таш, жебе ортодо.",
+            "ru": "На правой чашке четыре гири, стрелка посередине.",
+            "en": "Four weights on the right pan; the pointer is central."
+          },
+          "duration": 1
+        },
+        {
+          "key": "sum",
+          "title": {
+            "ky": "Массаны эсептөө",
+            "ru": "Считаем массу",
+            "en": "Add up the mass"
+          },
+          "result": {
+            "ky": "m = 85 г",
+            "ru": "m = 85 г",
+            "en": "m = 85 g"
+          },
+          "description": {
+            "ky": "Оң табактагы таштардын массаларынын суммасы брусоктун массасына барабар: 50 + 20 + 10 + 5 = 85 г = 0,085 кг.",
+            "ru": "Сумма масс гирь на правой чашке равна массе бруска: 50 + 20 + 10 + 5 = 85 г = 0,085 кг.",
+            "en": "The total of the weights on the right pan equals the block's mass: 50 + 20 + 10 + 5 = 85 g = 0.085 kg."
+          },
+          "conceptKey": "phys.mass",
+          "altText": {
+            "ky": "m = 85 г деген жазуу.",
+            "ru": "Надпись m = 85 г.",
+            "en": "The label m = 85 g."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "weights",
+          "label": {
+            "ky": "Оң табактагы таштар",
+            "ru": "Гири на правой чашке",
+            "en": "Weights on the right pan"
+          },
+          "unit": "g",
+          "min": 0,
+          "max": 200,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "weights@check": 0,
+        "weights@body": 0,
+        "weights@big": 200,
+        "weights@fine": 85,
+        "weights@sum": 85
+      }
+    },
+    {
+      "key": "phys.cart-acceleration",
+      "engine": "timeline",
+      "icon": "trending-up",
+      "title": {
+        "ky": "Арабачанын ылдамдануусу",
+        "ru": "Ускорение тележки",
+        "en": "Accelerating a cart"
+      },
+      "description": {
+        "ky": "Тамчылаткычы бар арабачаны блок аркылуу жипке илинген жүк тартат. Кагаздагы тамчылардын аралыгы боюнча кыймылдын түрүн аныктайбыз: адегенде күчтү, анан арабачанын массасын өзгөртөбүз.",
+        "ru": "Тележку с капельницей тянет груз на нити, перекинутой через блок. По расстояниям между каплями на бумаге судим о движении: сначала меняем силу, потом массу тележки.",
+        "en": "A cart carrying a dropper is pulled by a weight on a string over a pulley. The spacing of drops on paper shows the motion: first we change the force, then the cart's mass."
+      },
+      "equation": "a = \\frac{F}{m}",
+      "inputs": {
+        "ky": "Арабача + тамчылаткыч m = 0,5 кг, 100 г жүктөр, трибометр, ак кагаз",
+        "ru": "Тележка с капельницей m = 0,5 кг, грузы по 100 г, трибометр, бумага",
+        "en": "Cart with dropper m = 0.5 kg, 100 g weights, a track, white paper"
+      },
+      "outputs": {
+        "ky": "F = 0,2 Н → a = 0,4 м/с²; F = 0,4 Н → a = 0,8 м/с²; m = 1 кг, F = 0,4 Н → a = 0,4 м/с²",
+        "ru": "F = 0,2 Н → a = 0,4 м/с²; F = 0,4 Н → a = 0,8 м/с²; m = 1 кг, F = 0,4 Н → a = 0,4 м/с²",
+        "en": "F = 0.2 N → a = 0.4 m/s²; F = 0.4 N → a = 0.8 m/s²; m = 1 kg, F = 0.4 N → a = 0.4 m/s²"
+      },
+      "steps": [
+        {
+          "key": "uniform",
+          "title": {
+            "ky": "Бир калыптагы кыймыл",
+            "ru": "Равномерное движение",
+            "en": "Steady motion"
+          },
+          "result": {
+            "ky": "Тамчылар бирдей аралыкта, a = 0",
+            "ru": "Капли на равных расстояниях, a = 0",
+            "en": "Drops evenly spaced, a = 0"
+          },
+          "description": {
+            "ky": "Жүк сүрүлүүнү гана теңдейт – тең аракеттүү күч нөл. Тамчылардын аралыгы бирдей: арабача бир калыпта кыймылдайт, ылдамданууга ээ болбойт.",
+            "ru": "Груз лишь уравновешивает трение – равнодействующая равна нулю. Капли ложатся на равных расстояниях: тележка движется равномерно, ускорения нет.",
+            "en": "The weight only balances friction – the resultant is zero. The drops are evenly spaced: the cart moves steadily with no acceleration."
+          },
+          "conceptKey": "phys.newton-first-law",
+          "altText": {
+            "ky": "Кагазда бирдей аралыктагы тамчылар.",
+            "ru": "Капли на бумаге на равных расстояниях.",
+            "en": "Evenly spaced drops on the paper."
+          },
+          "duration": 1
+        },
+        {
+          "key": "force1",
+          "title": {
+            "ky": "Кошумча жүк",
+            "ru": "Дополнительный груз",
+            "en": "An extra weight"
+          },
+          "result": {
+            "ky": "F = 0,2 Н, a = 0,4 м/с²",
+            "ru": "F = 0,2 Н, a = 0,4 м/с²",
+            "en": "F = 0.2 N, a = 0.4 m/s²"
+          },
+          "description": {
+            "ky": "Жипке кошумча жүк илебиз: арабачага 0,2 Н тең аракеттүү күч аракет этет. Тамчылардын аралыгы улам чоңоёт – арабача ылдамданат: a = 0,2 : 0,5 = 0,4 м/с².",
+            "ru": "Подвешиваем дополнительный груз: на тележку действует равнодействующая 0,2 Н. Расстояния между каплями растут – тележка ускоряется: a = 0,2 : 0,5 = 0,4 м/с².",
+            "en": "We hang an extra weight: a resultant of 0.2 N now acts on the cart. The drop spacing keeps growing – the cart accelerates: a = 0.2 ÷ 0.5 = 0.4 m/s²."
+          },
+          "conceptKey": "phys.net-force",
+          "altText": {
+            "ky": "Тамчылардын аралыгы улам чоңоюп барат.",
+            "ru": "Расстояния между каплями увеличиваются.",
+            "en": "The gaps between drops keep growing."
+          },
+          "duration": 1
+        },
+        {
+          "key": "force2",
+          "title": {
+            "ky": "Күч эки эсе",
+            "ru": "Сила вдвое",
+            "en": "Double the force"
+          },
+          "result": {
+            "ky": "F = 0,4 Н, a = 0,8 м/с²",
+            "ru": "F = 0,4 Н, a = 0,8 м/с²",
+            "en": "F = 0.4 N, a = 0.8 m/s²"
+          },
+          "description": {
+            "ky": "Күчтү эки эсе чоңойтобуз – ылдамдануу да эки эсе чоңоёт. Массасы туруктуу болгондо a ~ F.",
+            "ru": "Увеличиваем силу вдвое – ускорение тоже растёт вдвое. При постоянной массе a ~ F.",
+            "en": "We double the force – the acceleration doubles too. With constant mass, a ~ F."
+          },
+          "conceptKey": "phys.newton-second-law",
+          "altText": {
+            "ky": "Тамчылардын аралыгы мурдагыдан тез чоңоёт.",
+            "ru": "Расстояния между каплями растут ещё быстрее.",
+            "en": "The drop gaps grow even faster."
+          },
+          "duration": 1
+        },
+        {
+          "key": "mass2",
+          "title": {
+            "ky": "Масса эки эсе",
+            "ru": "Масса вдвое",
+            "en": "Double the mass"
+          },
+          "result": {
+            "ky": "m = 1 кг, a = 0,4 м/с²",
+            "ru": "m = 1 кг, a = 0,4 м/с²",
+            "en": "m = 1 kg, a = 0.4 m/s²"
+          },
+          "description": {
+            "ky": "Күчтү 0,4 Н бойдон калтырып, арабачанын үстүнө жүк коюп, массасын 1 кг ге жеткиребиз. Ылдамдануу эки эсе азаят: a ~ 1/m.",
+            "ru": "Оставляем силу 0,4 Н и ставим на тележку груз, доводя её массу до 1 кг. Ускорение уменьшается вдвое: a ~ 1/m.",
+            "en": "Keeping the force at 0.4 N, we load the cart up to 1 kg. The acceleration halves: a ~ 1/m."
+          },
+          "conceptKey": "phys.mass",
+          "altText": {
+            "ky": "Жүктөлгөн арабача, тамчылардын аралыгы жайыраак өсөт.",
+            "ru": "Гружёная тележка, расстояния между каплями растут медленнее.",
+            "en": "A loaded cart; the drop gaps grow more slowly."
+          },
+          "duration": 1
+        },
+        {
+          "key": "law",
+          "title": {
+            "ky": "Жыйынтык",
+            "ru": "Вывод",
+            "en": "Conclusion"
+          },
+          "result": {
+            "ky": "a = F/m",
+            "ru": "a = F/m",
+            "en": "a = F/m"
+          },
+          "description": {
+            "ky": "Нерсенин ылдамдануусу аракет жасаган күчкө түз, массасына тескери пропорциялаш – Ньютондун экинчи закону: a = F/m.",
+            "ru": "Ускорение тела прямо пропорционально действующей силе и обратно пропорционально массе – второй закон Ньютона: a = F/m.",
+            "en": "A body's acceleration is proportional to the force and inversely proportional to its mass – Newton's second law: a = F/m."
+          },
+          "conceptKey": "phys.newton-second-law",
+          "altText": {
+            "ky": "a = F/m формуласы.",
+            "ru": "Формула a = F/m.",
+            "en": "The formula a = F/m."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "force",
+          "label": {
+            "ky": "Тең аракеттүү күч",
+            "ru": "Равнодействующая",
+            "en": "Resultant force"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 0.4,
+          "precision": 1
+        },
+        {
+          "key": "mass",
+          "label": {
+            "ky": "Арабачанын массасы",
+            "ru": "Масса тележки",
+            "en": "Cart mass"
+          },
+          "unit": "kg",
+          "min": 0,
+          "max": 1,
+          "precision": 1
+        },
+        {
+          "key": "acc",
+          "label": {
+            "ky": "Ылдамдануу",
+            "ru": "Ускорение",
+            "en": "Acceleration"
+          },
+          "unit": "m/s²",
+          "min": 0,
+          "max": 0.8,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "force@uniform": 0,
+        "force@force1": 0.2,
+        "force@force2": 0.4,
+        "force@mass2": 0.4,
+        "force@law": 0.4,
+        "mass@uniform": 0.5,
+        "mass@force1": 0.5,
+        "mass@force2": 0.5,
+        "mass@mass2": 1,
+        "mass@law": 1,
+        "acc@uniform": 0,
+        "acc@force1": 0.4,
+        "acc@force2": 0.8,
+        "acc@mass2": 0.4,
+        "acc@law": 0.4
+      }
+    },
+    {
+      "key": "phys.free-fall-speed",
+      "engine": "timeline",
+      "icon": "arrow-down",
+      "title": {
+        "ky": "Эркин түшкөн шардын ылдамдыгы",
+        "ru": "Скорость свободно падающего шара",
+        "en": "The speed of a falling ball"
+      },
+      "description": {
+        "ky": "Шарды бийиктиктен баштапкы ылдамдыксыз коё беребиз жана анын ылдамдыгын ар бир секунддун аягында v = gt боюнча эсептейбиз (абанын каршылыгын эсепке албайбыз).",
+        "ru": "Отпускаем шар с высоты без начальной скорости и находим его скорость в конце каждой секунды по формуле v = gt (сопротивление воздуха не учитываем).",
+        "en": "We release a ball from a height with no starting speed and find its speed at the end of each second from v = gt (ignoring air resistance)."
+      },
+      "equation": "v = v_0 + g t",
+      "inputs": {
+        "ky": "v₀ = 0, g ≈ 9,8 м/с²",
+        "ru": "v₀ = 0, g ≈ 9,8 м/с²",
+        "en": "v₀ = 0, g ≈ 9.8 m/s²"
+      },
+      "outputs": {
+        "ky": "1 с – 9,8 м/с, 2 с – 19,6 м/с, 3 с – 29,4 м/с",
+        "ru": "1 с – 9,8 м/с, 2 с – 19,6 м/с, 3 с – 29,4 м/с",
+        "en": "1 s – 9.8 m/s, 2 s – 19.6 m/s, 3 s – 29.4 m/s"
+      },
+      "steps": [
+        {
+          "key": "drop",
+          "title": {
+            "ky": "Коё беребиз",
+            "ru": "Отпускаем",
+            "en": "Release"
+          },
+          "result": {
+            "ky": "t = 0, v₀ = 0",
+            "ru": "t = 0, v₀ = 0",
+            "en": "t = 0, v₀ = 0"
+          },
+          "description": {
+            "ky": "Шарды тынч абалдан коё беребиз. Ага оордук күчү гана таасир этет – ал тик ылдый ылдамдай баштайт.",
+            "ru": "Отпускаем шар из состояния покоя. На него действует только сила тяжести – он начинает разгоняться вертикально вниз.",
+            "en": "We let go of the ball from rest. Only gravity acts on it – it starts speeding up straight down."
+          },
+          "conceptKey": "phys.gravity",
+          "altText": {
+            "ky": "Колдон чыккан шар.",
+            "ru": "Шар, только что отпущенный из руки.",
+            "en": "A ball just leaving the hand."
+          },
+          "duration": 1
+        },
+        {
+          "key": "s1",
+          "title": {
+            "ky": "1-секунд",
+            "ru": "1-я секунда",
+            "en": "After 1 s"
+          },
+          "result": {
+            "ky": "v = 9,8 м/с",
+            "ru": "v = 9,8 м/с",
+            "en": "v = 9.8 m/s"
+          },
+          "description": {
+            "ky": "v₁ = g·t = 9,8 м/с² · 1 с = 9,8 м/с.",
+            "ru": "v₁ = g·t = 9,8 м/с² · 1 с = 9,8 м/с.",
+            "en": "v₁ = gt = 9.8 m/s² × 1 s = 9.8 m/s."
+          },
+          "conceptKey": "phys.free-fall",
+          "altText": {
+            "ky": "Шардын ылдамдык жебеси.",
+            "ru": "Стрелка скорости шара.",
+            "en": "The ball's velocity arrow."
+          },
+          "duration": 1
+        },
+        {
+          "key": "s2",
+          "title": {
+            "ky": "2-секунд",
+            "ru": "2-я секунда",
+            "en": "After 2 s"
+          },
+          "result": {
+            "ky": "v = 19,6 м/с",
+            "ru": "v = 19,6 м/с",
+            "en": "v = 19.6 m/s"
+          },
+          "description": {
+            "ky": "v₂ = 9,8 · 2 = 19,6 м/с. Ар бир секундда ылдамдык 9,8 м/с ге чоңоёт.",
+            "ru": "v₂ = 9,8 · 2 = 19,6 м/с. Каждую секунду скорость растёт на 9,8 м/с.",
+            "en": "v₂ = 9.8 × 2 = 19.6 m/s. Every second the speed grows by 9.8 m/s."
+          },
+          "conceptKey": "phys.free-fall",
+          "altText": {
+            "ky": "Ылдамдык жебеси эки эсе узарды.",
+            "ru": "Стрелка скорости стала вдвое длиннее.",
+            "en": "The velocity arrow is twice as long."
+          },
+          "duration": 1
+        },
+        {
+          "key": "s3",
+          "title": {
+            "ky": "3-секунд",
+            "ru": "3-я секунда",
+            "en": "After 3 s"
+          },
+          "result": {
+            "ky": "v = 29,4 м/с",
+            "ru": "v = 29,4 м/с",
+            "en": "v = 29.4 m/s"
+          },
+          "description": {
+            "ky": "v₃ = 9,8 · 3 = 29,4 м/с – бул болжол менен 106 км/саат.",
+            "ru": "v₃ = 9,8 · 3 = 29,4 м/с – это около 106 км/ч.",
+            "en": "v₃ = 9.8 × 3 = 29.4 m/s – about 106 km/h."
+          },
+          "conceptKey": "phys.free-fall",
+          "altText": {
+            "ky": "Ылдамдык жебеси үч эсе узун.",
+            "ru": "Стрелка скорости втрое длиннее.",
+            "en": "The velocity arrow is three times as long."
+          },
+          "duration": 1
+        },
+        {
+          "key": "tube",
+          "title": {
+            "ky": "Ньютондун трубкасы",
+            "ru": "Трубка Ньютона",
+            "en": "Newton's tube"
+          },
+          "result": {
+            "ky": "Шар, пробка, тыбыт бирдей",
+            "ru": "Шарик, пробка, перо – одинаково",
+            "en": "Ball, cork, feather – together"
+          },
+          "description": {
+            "ky": "Абасы сордурулган түтүктө болот шар, пробка жана куштун тыбыты бирдей түшөт: эркин түшүүнүн ылдамдануусу нерсенин массасына көз каранды эмес.",
+            "ru": "В трубке без воздуха стальной шарик, пробка и птичье перо падают одинаково: ускорение свободного падения не зависит от массы тела.",
+            "en": "In a tube with the air pumped out a steel ball, a cork and a feather fall together: free-fall acceleration does not depend on mass."
+          },
+          "conceptKey": "phys.free-fall",
+          "altText": {
+            "ky": "Түтүктө бир деңгээлде түшкөн шар, пробка жана тыбыт.",
+            "ru": "В трубке шарик, пробка и перо падают на одном уровне.",
+            "en": "In the tube the ball, cork and feather fall side by side."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "t",
+          "label": {
+            "ky": "Убакыт",
+            "ru": "Время",
+            "en": "Time"
+          },
+          "unit": "s",
+          "min": 0,
+          "max": 3,
+          "precision": 0
+        },
+        {
+          "key": "v",
+          "label": {
+            "ky": "Ылдамдык",
+            "ru": "Скорость",
+            "en": "Speed"
+          },
+          "unit": "m/s",
+          "min": 0,
+          "max": 29.4,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "g": 9.8,
+        "t@drop": 0,
+        "t@s1": 1,
+        "t@s2": 2,
+        "t@s3": 3,
+        "t@tube": 3,
+        "v@drop": 0,
+        "v@s1": 9.8,
+        "v@s2": 19.6,
+        "v@s3": 29.4,
+        "v@tube": 29.4
+      }
+    },
+    {
+      "key": "phys.dynamometer-graduation",
+      "engine": "timeline",
+      "icon": "ruler",
+      "title": {
+        "ky": "Динамометрди градуирлөө",
+        "ru": "Градуировка динамометра",
+        "en": "Calibrating a dynamometer"
+      },
+      "description": {
+        "ky": "Пружинага 100 г жүктөрдү кезек менен илип, жебе токтогон чекиттерге 1, 2, 3 Н деп белги коёбуз (китептегидей g ≈ 10 Н/кг). Ушундай жол менен шкала түзүлөт.",
+        "ru": "Подвешиваем на пружину грузы по 100 г и у точек, где останавливается указатель, ставим отметки 1, 2, 3 Н (как в учебнике, g ≈ 10 Н/кг). Так получается шкала.",
+        "en": "We hang 100 g weights on the spring one by one and mark 1, 2, 3 N where the pointer stops (with g ≈ 10 N/kg, as the textbook does). That is how the scale is made."
+      },
+      "equation": "F = m g = k x",
+      "inputs": {
+        "ky": "Пружина k = 50 Н/м, 100 г жүктөр, g ≈ 10 Н/кг",
+        "ru": "Пружина k = 50 Н/м, грузы по 100 г, g ≈ 10 Н/кг",
+        "en": "Spring k = 50 N/m, 100 g weights, g ≈ 10 N/kg"
+      },
+      "outputs": {
+        "ky": "1 Н → 2 см, 2 Н → 4 см, 3 Н → 6 см; шкаланын баасы 0,25 Н",
+        "ru": "1 Н → 2 см, 2 Н → 4 см, 3 Н → 6 см; цена деления 0,25 Н",
+        "en": "1 N → 2 cm, 2 N → 4 cm, 3 N → 6 cm; scale division 0.25 N"
+      },
+      "steps": [
+        {
+          "key": "zero",
+          "title": {
+            "ky": "Нөлдүк чекит",
+            "ru": "Нулевая отметка",
+            "en": "The zero mark"
+          },
+          "result": {
+            "ky": "F = 0, x = 0",
+            "ru": "F = 0, x = 0",
+            "en": "F = 0, x = 0"
+          },
+          "description": {
+            "ky": "Пружина чоюлбай турганда жебе көрсөткөн чекит – динамометрдин нөлү.",
+            "ru": "Точка, которую показывает указатель при нерастянутой пружине, – ноль динамометра.",
+            "en": "Where the pointer sits with the spring unstretched is the dynamometer's zero."
+          },
+          "conceptKey": "phys.dynamometer",
+          "altText": {
+            "ky": "Жүксүз пружина, жебе нөлдө.",
+            "ru": "Пружина без груза, указатель на нуле.",
+            "en": "The spring with no load; the pointer at zero."
+          },
+          "duration": 1
+        },
+        {
+          "key": "one",
+          "title": {
+            "ky": "100 г жүк",
+            "ru": "Груз 100 г",
+            "en": "A 100 g weight"
+          },
+          "result": {
+            "ky": "F = 1 Н, x = 2 см",
+            "ru": "F = 1 Н, x = 2 см",
+            "en": "F = 1 N, x = 2 cm"
+          },
+          "description": {
+            "ky": "100 г жүккө F = mg = 0,1 · 10 = 1 Н оордук күчү таасир этет. Пружина 2 см чоюлду – ал жерге «1» деп жазабыз.",
+            "ru": "На груз 100 г действует сила тяжести F = mg = 0,1 · 10 = 1 Н. Пружина растянулась на 2 см – пишем там «1».",
+            "en": "Gravity on 100 g is F = mg = 0.1 × 10 = 1 N. The spring stretches 2 cm – we write '1' there."
+          },
+          "conceptKey": "phys.elastic-force",
+          "altText": {
+            "ky": "Бир жүк, жебе «1» белгисинде.",
+            "ru": "Один груз, указатель у отметки «1».",
+            "en": "One weight; the pointer at the '1' mark."
+          },
+          "duration": 1
+        },
+        {
+          "key": "two",
+          "title": {
+            "ky": "200 г жүк",
+            "ru": "Груз 200 г",
+            "en": "200 g"
+          },
+          "result": {
+            "ky": "F = 2 Н, x = 4 см",
+            "ru": "F = 2 Н, x = 4 см",
+            "en": "F = 2 N, x = 4 cm"
+          },
+          "description": {
+            "ky": "Экинчи жүктү илебиз: 2 Н, узарыш 4 см – эки эсе көп. F = kx: күч менен узарыш түз пропорциялаш.",
+            "ru": "Подвешиваем второй груз: 2 Н, удлинение 4 см – вдвое больше. F = kx: сила и удлинение прямо пропорциональны.",
+            "en": "We add a second weight: 2 N, extension 4 cm – twice as much. F = kx: force and extension are proportional."
+          },
+          "conceptKey": "phys.spring-stretch",
+          "altText": {
+            "ky": "Эки жүк, жебе «2» белгисинде.",
+            "ru": "Два груза, указатель у отметки «2».",
+            "en": "Two weights; the pointer at the '2' mark."
+          },
+          "duration": 1
+        },
+        {
+          "key": "three",
+          "title": {
+            "ky": "300 г жүк",
+            "ru": "Груз 300 г",
+            "en": "300 g"
+          },
+          "result": {
+            "ky": "F = 3 Н, x = 6 см",
+            "ru": "F = 3 Н, x = 6 см",
+            "en": "F = 3 N, x = 6 cm"
+          },
+          "description": {
+            "ky": "Үчүнчү жүк: 3 Н, 6 см. Белгилердин аралыгы бирдей – шкала бирдей бөлүктөргө бөлүнөт.",
+            "ru": "Третий груз: 3 Н, 6 см. Расстояния между отметками одинаковы – шкала равномерная.",
+            "en": "A third weight: 3 N, 6 cm. The marks are equally spaced – the scale is even."
+          },
+          "conceptKey": "phys.stiffness",
+          "altText": {
+            "ky": "Үч жүк, жебе «3» белгисинде.",
+            "ru": "Три груза, указатель у отметки «3».",
+            "en": "Three weights; the pointer at the '3' mark."
+          },
+          "duration": 1
+        },
+        {
+          "key": "divide",
+          "title": {
+            "ky": "Шкаланын баасы",
+            "ru": "Цена деления",
+            "en": "Scale division"
+          },
+          "result": {
+            "ky": "0,25 Н",
+            "ru": "0,25 Н",
+            "en": "0.25 N"
+          },
+          "description": {
+            "ky": "Ар бир сандын аралыгын 4 бирдей майда бөлүккө бөлөбүз: шкаланын баасы 1 Н : 4 = 0,25 Н, өлчөө чеги 3 Н. Динамометрдин бетине «Н» деп жазабыз.",
+            "ru": "Каждый промежуток делим на 4 равные части: цена деления 1 Н : 4 = 0,25 Н, предел измерения 3 Н. На динамометре пишем «Н».",
+            "en": "We split each gap into 4 equal parts: one division is 1 N ÷ 4 = 0.25 N and the range is 3 N. We write 'N' on the dynamometer."
+          },
+          "conceptKey": "phys.dynamometer",
+          "altText": {
+            "ky": "Майда бөлүктөрү бар даяр шкала.",
+            "ru": "Готовая шкала с мелкими делениями.",
+            "en": "The finished scale with small divisions."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "force",
+          "label": {
+            "ky": "Күч",
+            "ru": "Сила",
+            "en": "Force"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 3,
+          "precision": 2
+        },
+        {
+          "key": "x",
+          "label": {
+            "ky": "Узарыш",
+            "ru": "Удлинение",
+            "en": "Extension"
+          },
+          "unit": "cm",
+          "min": 0,
+          "max": 6,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "k": 50,
+        "g": 10,
+        "force@zero": 0,
+        "force@one": 1,
+        "force@two": 2,
+        "force@three": 3,
+        "force@divide": 3,
+        "x@zero": 0,
+        "x@one": 2,
+        "x@two": 4,
+        "x@three": 6,
+        "x@divide": 6
+      }
+    },
+    {
+      "key": "phys.friction-measurement",
+      "engine": "timeline",
+      "icon": "grip",
+      "title": {
+        "ky": "Сүрүлүү коэффициентин аныктоо",
+        "ru": "Определение коэффициента трения",
+        "en": "Measuring the coefficient of friction"
+      },
+      "description": {
+        "ky": "Трибометрдин бетинде жыгач брусокту пружиналуу динамометр менен бир калыпта тартабыз. Бир калыпта кыймылда динамометрдин көрсөтүүсү сүрүлүү күчүнө барабар; μ = F_сүр/P.",
+        "ru": "Равномерно тянем деревянный брусок пружинным динамометром по трибометру. При равномерном движении показание динамометра равно силе трения; μ = F_тр/P.",
+        "en": "We pull a wooden block steadily along a friction track with a spring dynamometer. At steady speed the dynamometer reading equals the friction force; μ = F_fr/P."
+      },
+      "equation": "\\mu = \\frac{F_{сүр}}{P}",
+      "inputs": {
+        "ky": "Жыгач брусок m = 2 кг, трибометр, динамометр, g ≈ 9,8 Н/кг",
+        "ru": "Деревянный брусок m = 2 кг, трибометр, динамометр, g ≈ 9,8 Н/кг",
+        "en": "A 2 kg wooden block, a friction track, a dynamometer, g ≈ 9.8 N/kg"
+      },
+      "outputs": {
+        "ky": "P = 19,6 Н, F_сүр = 5,88 Н, μ = 0,3",
+        "ru": "P = 19,6 Н, F_тр = 5,88 Н, μ = 0,3",
+        "en": "W = 19.6 N, F_fr = 5.88 N, μ = 0.3"
+      },
+      "steps": [
+        {
+          "key": "weigh",
+          "title": {
+            "ky": "Салмакты ченөө",
+            "ru": "Измеряем вес",
+            "en": "Measure the weight"
+          },
+          "result": {
+            "ky": "P = 19,6 Н",
+            "ru": "P = 19,6 Н",
+            "en": "W = 19.6 N"
+          },
+          "description": {
+            "ky": "Брусокту динамометрге илип, салмагын ченейбиз: P = mg = 2 · 9,8 = 19,6 Н.",
+            "ru": "Подвешиваем брусок на динамометр и измеряем вес: P = mg = 2 · 9,8 = 19,6 Н.",
+            "en": "We hang the block on the dynamometer and read its weight: W = mg = 2 × 9.8 = 19.6 N."
+          },
+          "conceptKey": "phys.weight",
+          "altText": {
+            "ky": "Динамометрге илинген брусок.",
+            "ru": "Брусок, подвешенный на динамометре.",
+            "en": "The block hanging from the dynamometer."
+          },
+          "duration": 1
+        },
+        {
+          "key": "gentle",
+          "title": {
+            "ky": "Акырын тартуу",
+            "ru": "Тянем слабо",
+            "en": "A gentle pull"
+          },
+          "result": {
+            "ky": "F = 3 Н, брусок турат",
+            "ru": "F = 3 Н, брусок стоит",
+            "en": "F = 3 N, the block stays put"
+          },
+          "description": {
+            "ky": "Брусокту трибометрге коюп, 3 Н менен тартабыз – ал жылбайт. Тынч туруудагы сүрүлүү да 3 Н, тартууга каршы.",
+            "ru": "Кладём брусок на трибометр и тянем с силой 3 Н – он не сдвигается. Трение покоя тоже 3 Н и направлено против тяги.",
+            "en": "On the track we pull with 3 N – the block does not move. Static friction is also 3 N, opposing the pull."
+          },
+          "conceptKey": "phys.static-friction",
+          "altText": {
+            "ky": "Пружина бир аз чоюлган, брусок ордунда.",
+            "ru": "Пружина немного растянута, брусок на месте.",
+            "en": "The spring is slightly stretched; the block stays put."
+          },
+          "duration": 1
+        },
+        {
+          "key": "steady",
+          "title": {
+            "ky": "Бир калыпта тартуу",
+            "ru": "Тянем равномерно",
+            "en": "A steady pull"
+          },
+          "result": {
+            "ky": "F = 5,88 Н",
+            "ru": "F = 5,88 Н",
+            "en": "F = 5.88 N"
+          },
+          "description": {
+            "ky": "Тартууну көбөйтүп, брусокту бир калыпта жылдырабыз. Пружинанын чоюлушу өзгөрбөйт: динамометр 5,88 Н көрсөтөт – бул тайгаланып сүрүлүү күчү.",
+            "ru": "Увеличиваем тягу и ведём брусок равномерно. Растяжение пружины не меняется: динамометр показывает 5,88 Н – это сила трения скольжения.",
+            "en": "We pull harder and keep the block moving steadily. The spring's stretch stays the same: the dynamometer reads 5.88 N – the sliding friction force."
+          },
+          "conceptKey": "phys.friction-force",
+          "altText": {
+            "ky": "Брусок бир калыпта жылат, динамометр 5,88 Н.",
+            "ru": "Брусок движется равномерно, динамометр 5,88 Н.",
+            "en": "The block slides steadily; the dynamometer reads 5.88 N."
+          },
+          "duration": 1
+        },
+        {
+          "key": "mu",
+          "title": {
+            "ky": "μ ну эсептөө",
+            "ru": "Вычисляем μ",
+            "en": "Work out μ"
+          },
+          "result": {
+            "ky": "μ = 0,3",
+            "ru": "μ = 0,3",
+            "en": "μ = 0.3"
+          },
+          "description": {
+            "ky": "μ = F_сүр/P = 5,88 : 19,6 = 0,3. Бул жыгач менен жыгачтын сүрүлүү коэффициенти (таблицада 0,20–0,50).",
+            "ru": "μ = F_тр/P = 5,88 : 19,6 = 0,3. Это коэффициент трения дерева по дереву (в таблице 0,20–0,50).",
+            "en": "μ = F_fr/W = 5.88 ÷ 19.6 = 0.3 – the coefficient for wood on wood (0.20–0.50 in the table)."
+          },
+          "conceptKey": "phys.friction-coefficient",
+          "altText": {
+            "ky": "μ = 0,3 деген жазуу.",
+            "ru": "Надпись μ = 0,3.",
+            "en": "The label μ = 0.3."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "pull",
+          "label": {
+            "ky": "Тартуу күчү",
+            "ru": "Сила тяги",
+            "en": "Pull"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 19.6,
+          "precision": 2
+        },
+        {
+          "key": "friction",
+          "label": {
+            "ky": "Сүрүлүү күчү",
+            "ru": "Сила трения",
+            "en": "Friction"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 6,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "mass": 2,
+        "mu": 0.3,
+        "g": 9.8,
+        "pull@weigh": 19.6,
+        "pull@gentle": 3,
+        "pull@steady": 5.88,
+        "pull@mu": 5.88,
+        "friction@weigh": 0,
+        "friction@gentle": 3,
+        "friction@steady": 5.88,
+        "friction@mu": 5.88
+      }
+    },
+    {
+      "key": "phys.dynamometers-pull",
+      "engine": "timeline",
+      "icon": "move-horizontal",
+      "title": {
+        "ky": "Бири-бирине илинген эки динамометр",
+        "ru": "Два сцепленных динамометра",
+        "en": "Two hooked dynamometers"
+      },
+      "description": {
+        "ky": "Эки демонстрациялык динамометрдин илмектерин бири-бирине илип, эки жакка тартабыз. Канча катуу тартсак да экөө бирдей күчтү көрсөтөт, бирок жебелери карама-каршы багытта.",
+        "ru": "Сцепляем крючки двух демонстрационных динамометров и растягиваем их в разные стороны. Как ни тяни, оба показывают одинаковую силу, но стрелки направлены противоположно.",
+        "en": "We hook two demonstration dynamometers together and pull them apart. However hard we pull, they read the same force but point in opposite directions."
+      },
+      "equation": "F_1 = -F_2",
+      "inputs": {
+        "ky": "Эки динамометр, штатив, электромагнит",
+        "ru": "Два динамометра, штатив, электромагнит",
+        "en": "Two dynamometers, a stand, an electromagnet"
+      },
+      "outputs": {
+        "ky": "F₁ = +2 Н, F₂ = −2 Н; электромагнит: экөө тең 3 Н",
+        "ru": "F₁ = +2 Н, F₂ = −2 Н; электромагнит: оба по 3 Н",
+        "en": "F₁ = +2 N, F₂ = −2 N; electromagnet: both 3 N"
+      },
+      "steps": [
+        {
+          "key": "hook",
+          "title": {
+            "ky": "Илүү",
+            "ru": "Сцепляем",
+            "en": "Hook together"
+          },
+          "result": {
+            "ky": "F₁ = F₂ = 0",
+            "ru": "F₁ = F₂ = 0",
+            "en": "F₁ = F₂ = 0"
+          },
+          "description": {
+            "ky": "Динамометрлердин илмектерин бири-бирине илебиз. Тартпаганда экөөнүн тең жебеси 0 дө.",
+            "ru": "Сцепляем крючки динамометров. Пока не тянем, обе стрелки на нуле.",
+            "en": "We hook the dynamometers together. Until we pull, both pointers are at zero."
+          },
+          "conceptKey": "phys.interaction",
+          "altText": {
+            "ky": "Бири-бирине илинген эки динамометр.",
+            "ru": "Два сцепленных динамометра.",
+            "en": "Two dynamometers hooked together."
+          },
+          "duration": 1
+        },
+        {
+          "key": "pull1",
+          "title": {
+            "ky": "Акырын тартуу",
+            "ru": "Тянем слабо",
+            "en": "A light pull"
+          },
+          "result": {
+            "ky": "F₁ = +1 Н, F₂ = −1 Н",
+            "ru": "F₁ = +1 Н, F₂ = −1 Н",
+            "en": "F₁ = +1 N, F₂ = −1 N"
+          },
+          "description": {
+            "ky": "Эки жакка акырын тартабыз – экөө тең 1 Н көрсөтөт, бирок багыттары карама-каршы.",
+            "ru": "Слегка тянем в разные стороны – оба показывают 1 Н, но в противоположные стороны.",
+            "en": "We pull gently apart – both read 1 N, in opposite directions."
+          },
+          "conceptKey": "phys.action-reaction",
+          "altText": {
+            "ky": "Эки жебе тең 1 Н, карама-каршы.",
+            "ru": "Обе стрелки на 1 Н, противоположно.",
+            "en": "Both pointers at 1 N, opposite ways."
+          },
+          "duration": 1
+        },
+        {
+          "key": "pull2",
+          "title": {
+            "ky": "Катуураак тартуу",
+            "ru": "Тянем сильнее",
+            "en": "A harder pull"
+          },
+          "result": {
+            "ky": "F₁ = +2 Н, F₂ = −2 Н",
+            "ru": "F₁ = +2 Н, F₂ = −2 Н",
+            "en": "F₁ = +2 N, F₂ = −2 N"
+          },
+          "description": {
+            "ky": "Катуураак тартсак да көрсөтүүлөр бирдей: F₁ = +2 Н, F₂ = −2 Н. Биринчи динамометрдин экинчисине аракети экинчисинин биринчисине аракетине барабар.",
+            "ru": "Тянем сильнее – показания всё равно равны: F₁ = +2 Н, F₂ = −2 Н. Действие первого динамометра на второй равно действию второго на первый.",
+            "en": "Pull harder and the readings still match: F₁ = +2 N, F₂ = −2 N. The first dynamometer's action on the second equals the second's on the first."
+          },
+          "conceptKey": "phys.newton-third-law",
+          "altText": {
+            "ky": "Эки жебе тең 2 Н, карама-каршы.",
+            "ru": "Обе стрелки на 2 Н, противоположно.",
+            "en": "Both pointers at 2 N, opposite ways."
+          },
+          "duration": 1
+        },
+        {
+          "key": "magnet",
+          "title": {
+            "ky": "Электромагнит",
+            "ru": "Электромагнит",
+            "en": "Electromagnet"
+          },
+          "result": {
+            "ky": "Экөө тең 3 Н",
+            "ru": "Оба по 3 Н",
+            "en": "Both 3 N"
+          },
+          "description": {
+            "ky": "Тик штативдеги динамометрге илинген электромагнитке ток беребиз; ал экинчи динамометрдеги темир дискти тартат. Экөө тең 3 Н көрсөтөт – аралыктан аракеттенишкенде да күчтөр барабар.",
+            "ru": "Включаем ток в электромагните на верхнем динамометре; он притягивает железный диск на нижнем. Оба показывают 3 Н – и при взаимодействии на расстоянии силы равны.",
+            "en": "We switch on the electromagnet hanging from the upper dynamometer; it pulls the iron disc on the lower one. Both read 3 N – the forces are equal even at a distance."
+          },
+          "conceptKey": "phys.newton-third-law",
+          "altText": {
+            "ky": "Тик штативдеги эки динамометр, экөө 3 Н.",
+            "ru": "Два динамометра на штативе, оба 3 Н.",
+            "en": "Two dynamometers on a stand, both at 3 N."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "f1",
+          "label": {
+            "ky": "F₁ (биринчиси экинчисине)",
+            "ru": "F₁ (первый на второй)",
+            "en": "F₁ (first on second)"
+          },
+          "unit": "N",
+          "min": 0,
+          "max": 3,
+          "precision": 1
+        },
+        {
+          "key": "f2",
+          "label": {
+            "ky": "F₂ (экинчиси биринчисине)",
+            "ru": "F₂ (второй на первый)",
+            "en": "F₂ (second on first)"
+          },
+          "unit": "N",
+          "min": -3,
+          "max": 0,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "f1@hook": 0,
+        "f1@pull1": 1,
+        "f1@pull2": 2,
+        "f1@magnet": 3,
+        "f2@hook": 0,
+        "f2@pull1": -1,
+        "f2@pull2": -2,
+        "f2@magnet": -3
+      }
+    }
+  ]
+}

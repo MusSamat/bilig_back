@@ -1,0 +1,4168 @@
+{
+  "manifest": {
+    "topicKey": "phys7-pulley",
+    "version": "1.0.0",
+    "hash": "9d1a3a0d9e5f84d8480001b6c620bbafa449509dfc8ef90fa8500713b92d33d0",
+    "files": [
+      {
+        "path": "thumbs/pulley-fixed.webp",
+        "hash": "97af9bf4fcd3f12df932b7fa169f602d0b7343b88fc9fb6f8d08a37ccfef4541",
+        "size": 0
+      },
+      {
+        "path": "thumbs/pulley-movable.webp",
+        "hash": "d04173779f2f4e8ffe221bbbc48318f55bce397cd1d2a0c572ff2813f350fbc4",
+        "size": 0
+      },
+      {
+        "path": "thumbs/pulley-tackle.webp",
+        "hash": "67b97c6973a42d1f0e68ce887e92639b164b922612eb3911ef1640f7dc7f7939",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "phys",
+    "icon": "orbit",
+    "hue": 28,
+    "group": "natural",
+    "order": 2,
+    "status": "live",
+    "title": {
+      "ky": "Физика",
+      "ru": "Физика",
+      "en": "Physics"
+    },
+    "assistantGuide": "Physics. Give the quantity, its symbol and unit (SI; km/h only as in the material) and the formula, then a short worked calculation with numbers and units when asked. Keep numbers from the material; round sensibly. Distinguish similar quantities (speed vs distance, mass vs weight, force vs moment)."
+  },
+  "course": {
+    "key": "phys.g7",
+    "subjectKey": "phys",
+    "grade": 7,
+    "curriculum": "kg-2018",
+    "title": {
+      "ky": "Физика, 7-класс",
+      "ru": "Физика, 7 класс",
+      "en": "Physics, grade 7"
+    }
+  },
+  "unit": {
+    "key": "phys.g7.statics",
+    "courseKey": "phys.g7",
+    "order": 5,
+    "title": {
+      "ky": "Статиканын негиздери",
+      "ru": "Основы статики",
+      "en": "Statics"
+    }
+  },
+  "objectives": [
+    {
+      "key": "phys.g7.statics.o1",
+      "code": "PHYS-7.5.1",
+      "unitKey": "phys.g7.statics",
+      "text": {
+        "ky": "Жөнөкөй механизмдердин тең салмактуулук шартын жана пайдалуу аракет коэффициентин табуу.",
+        "ru": "Находить условие равновесия простых механизмов и их КПД.",
+        "en": "Find the balance condition and efficiency of simple machines."
+      }
+    }
+  ],
+  "topic": {
+    "key": "phys7-pulley",
+    "unitKey": "phys.g7.statics",
+    "status": "published",
+    "title": {
+      "ky": "Блок. Механиканын «алтын эрежеси»",
+      "ru": "Блок. «Золотое правило» механики",
+      "en": "Pulleys and the golden rule of mechanics"
+    },
+    "formula": "F = P/2,\\ s = 2h",
+    "classification": {
+      "ky": "Статика – жөнөкөй механизмдер",
+      "ru": "Статика – простые механизмы",
+      "en": "Statics – simple machines"
+    },
+    "description": {
+      "ky": "Блок – огунун айланасында айлануучу жана алкагында жип салуучу жолчосу бар дөңгөлөк. Кыймылсыз блок күчтүн багытын гана өзгөртөт (F = P), кыймылдуу блок күчтөн 2 эсе утуш берет (F = P/2). Бирок жүктү 1 м көтөрүү үчүн жиптин учун 2 м тартабыз: эки учурда тең жумуш 98 Дж. Жөнөкөй механизмдер жумуштан утуш бербейт – бул механиканын «алтын эрежеси».",
+      "ru": "Блок – колесо с жёлобом для верёвки, вращающееся вокруг оси. Неподвижный блок меняет только направление силы (F = P), подвижный даёт выигрыш в силе вдвое (F = P/2). Но чтобы поднять груз на 1 м, верёвку тянем на 2 м: в обоих случаях работа 98 Дж. Простые механизмы не дают выигрыша в работе – это «золотое правило» механики.",
+      "en": "A pulley is a grooved wheel that turns on an axle. A fixed pulley only changes the direction of the force (F = W); a movable pulley halves it (F = W/2). But to lift a load 1 m you pull 2 m of rope: the work is 98 J either way. Simple machines save no work – the golden rule of mechanics."
+    },
+    "goal": {
+      "ky": "Кыймылсыз жана кыймылдуу блоктогу күчтөрдү жана жолдорду табуу, механиканын «алтын эрежесин» F·s = P·h колдонуу (PHYS-7.5.1).",
+      "ru": "Находить силы и пути для неподвижного и подвижного блоков, применять «золотое правило» механики F·s = P·h (PHYS-7.5.1).",
+      "en": "Find the forces and distances for fixed and movable pulleys and apply the golden rule of mechanics F·s = W·h (PHYS-7.5.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.statics.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "pulley",
+        "variant": "movable",
+        "loadMass": 10,
+        "pulleyMass": 0,
+        "height": 1,
+        "speed": 0.2,
+        "friction": 0,
+        "g": 9.8
+      },
+      "camera": {
+        "position": [
+          1.4,
+          2,
+          4.2
+        ],
+        "target": [
+          0,
+          1.2,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "energy",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.simple-machine",
+      "phys.pulley-fixed",
+      "phys.pulley-movable",
+      "phys.golden-rule",
+      "phys.weight",
+      "phys.force"
+    ],
+    "overrides": {
+      "phys.pulley-fixed": {
+        "nodes": [
+          "Pulley_Fixed",
+          "Pulley_Fixed_*"
+        ]
+      },
+      "phys.pulley-movable": {
+        "nodes": [
+          "Pulley_Movable",
+          "Pulley_Movable_*"
+        ],
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F = \\frac{P}{2} = 49"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "s = 2h = 2"
+          }
+        ]
+      },
+      "phys.golden-rule": {
+        "nodes": [
+          "Ruler",
+          "Ruler_Mark",
+          "Dim_H",
+          "Dim_S"
+        ],
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F s = 49 \\cdot 2 = 98"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P h = 98 \\cdot 1 = 98"
+          }
+        ]
+      },
+      "phys.weight": {
+        "nodes": [
+          "Load",
+          "Load_*",
+          "Arrow_Weight"
+        ],
+        "description": {
+          "ky": "10 кг жүктүн салмагы P = m·g = 10 кг · 9,8 Н/кг = 98 Н. Ал блоктун огуна тик ылдый аракет этет.",
+          "ru": "Вес груза 10 кг P = m·g = 10 кг · 9,8 Н/кг = 98 Н. Он действует на ось блока вертикально вниз.",
+          "en": "The 10 kg load weighs W = mg = 10 kg × 9.8 N/kg = 98 N, acting straight down on the pulley’s axle."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 98
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 10
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P = m \\cdot g"
+          }
+        ]
+      },
+      "phys.force": {
+        "nodes": [
+          "Arrow_Effort",
+          "Hand"
+        ],
+        "title": {
+          "ky": "Колдун күчү F",
+          "ru": "Сила руки F",
+          "en": "Effort F"
+        },
+        "description": {
+          "ky": "Адамдын жиптин учуна жумшаган күчү. Кыймылсыз блокто F = 98 Н, кыймылдуу блокто жана блоктордун биригишинде F = 49 Н.",
+          "ru": "Сила, с которой человек тянет конец верёвки. С неподвижным блоком F = 98 Н, с подвижным и с системой блоков F = 49 Н.",
+          "en": "The force the person applies to the rope end: 98 N with a fixed pulley, 49 N with a movable pulley or the combined system."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 49
+          }
+        ]
+      },
+      "phys.simple-machine": {
+        "nodes": [
+          "Beam"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "pulley-fixed",
+        "title": {
+          "ky": "Кыймылсыз блок",
+          "ru": "Неподвижный блок",
+          "en": "Fixed pulley"
+        },
+        "classification": {
+          "ky": "F = P = 98 Н, s = h = 1 м",
+          "ru": "F = P = 98 Н, s = h = 1 м",
+          "en": "F = W = 98 N, s = h = 1 m"
+        },
+        "thumb": "thumbs/pulley-fixed.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 98
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 1
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "fixed"
+          }
+        }
+      },
+      {
+        "key": "pulley-movable",
+        "title": {
+          "ky": "Кыймылдуу блок",
+          "ru": "Подвижный блок",
+          "en": "Movable pulley"
+        },
+        "classification": {
+          "ky": "F = P/2 = 49 Н, s = 2h = 2 м",
+          "ru": "F = P/2 = 49 Н, s = 2h = 2 м",
+          "en": "F = W/2 = 49 N, s = 2h = 2 m"
+        },
+        "thumb": "thumbs/pulley-movable.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 49
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 2
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "movable"
+          }
+        }
+      },
+      {
+        "key": "pulley-tackle",
+        "title": {
+          "ky": "Кыймылсыз + кыймылдуу блок",
+          "ru": "Неподвижный + подвижный блок",
+          "en": "Fixed + movable pulley"
+        },
+        "classification": {
+          "ky": "F = 49 Н, жип ылдый тартылат",
+          "ru": "F = 49 Н, верёвку тянут вниз",
+          "en": "F = 49 N, rope pulled down"
+        },
+        "thumb": "thumbs/pulley-tackle.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 49
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 2
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "tackle"
+          }
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                1.4,
+                2,
+                4.2
+              ],
+              "target": [
+                0,
+                1.2,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.simple-machine",
+            "text": {
+              "ky": "Бул – кыймылдуу блок: жүк (10 кг) блоктун огундагы илмекке илинген, жиптин бир учу шыпка бекитилген. Колубуз жиптин экинчи учун өйдө тартат.",
+              "ru": "Это подвижный блок: груз (10 кг) висит на крюке его оси, один конец верёвки закреплён у потолка. Рука тянет другой конец вверх.",
+              "en": "This is a movable pulley: a 10 kg load hangs from its axle and one end of the rope is tied to the ceiling. The hand pulls the other end up."
+            },
+            "teacherNote": {
+              "ky": "Кудуктан чака тартуу, курулуш крандары жөнүндө сураңыз: блокту кайда көргөнсүңөр?",
+              "ru": "Спросите про колодец и строительные краны: где вы видели блок?",
+              "en": "Ask where pupils have seen pulleys – wells, building cranes."
+            },
+            "altText": {
+              "ky": "Шыптагы тирек, жип, жүк илинген кыймылдуу блок.",
+              "ru": "Опора на потолке, верёвка и подвижный блок с грузом.",
+              "en": "A ceiling beam, a rope and a movable pulley holding a load."
+            }
+          },
+          {
+            "key": "fixed",
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.pulley-fixed",
+            "sample": "pulley-fixed",
+            "text": {
+              "ky": "Адегенде кыймылсыз блок: огу бекитилген, жүк менен кошо жылбайт. Ийиндери OA = OB – дөңгөлөктүн радиусу, ошондуктан F = P = 98 Н. Утуш жок, бирок жипти ылдый тартып, жүктү өйдө көтөрөбүз.",
+              "ru": "Сначала неподвижный блок: ось закреплена и вместе с грузом не движется. Плечи OA = OB – радиусы колеса, поэтому F = P = 98 Н. Выигрыша нет, но тянем вниз, а груз идёт вверх.",
+              "en": "First a fixed pulley: its axle is fixed and does not move with the load. The arms OA = OB are radii, so F = W = 98 N. No gain, but you pull down and the load goes up."
+            },
+            "teacherNote": {
+              "ky": "125-сүрөттү тактага тартып, OA жана OB ийиндерин көрсөтүңүз.",
+              "ru": "Нарисуйте на доске рис. 125 и покажите плечи OA и OB.",
+              "en": "Sketch fig. 125 and mark the arms OA and OB."
+            },
+            "altText": {
+              "ky": "Шыпка бекитилген блок, жиптин бир учунда жүк, экинчисинде кол.",
+              "ru": "Блок закреплён у потолка, на одном конце верёвки груз, на другом – рука.",
+              "en": "A pulley fixed to the ceiling with the load on one end of the rope and the hand on the other."
+            }
+          },
+          {
+            "key": "movable",
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.pulley-movable",
+            "sample": "pulley-movable",
+            "text": {
+              "ky": "Кыймылдуу блоктун таяныч чекити O – жип бекитилген жагында. P нын ийини OA – радиус, F тин ийини OB – диаметр, OB = 2·OA. Ошондуктан F = P/2 = 49 Н: күчтөн 2 эсе утуш!",
+              "ru": "У подвижного блока точка опоры O – со стороны закреплённой верёвки. Плечо P – радиус OA, плечо F – диаметр OB, OB = 2·OA. Поэтому F = P/2 = 49 Н: выигрыш в силе вдвое!",
+              "en": "The movable pulley’s pivot O is on the side where the rope is tied. W’s arm OA is the radius, F’s arm OB the diameter, OB = 2·OA. So F = W/2 = 49 N – half the force!"
+            },
+            "teacherNote": {
+              "ky": "127-сүрөт: кыймылдуу блокту рычаг катары талдаңыз.",
+              "ru": "Рис. 127: разберите подвижный блок как рычаг.",
+              "en": "Use fig. 127 to treat the movable pulley as a lever."
+            },
+            "altText": {
+              "ky": "Жебелер: ылдый P = 98 Н, өйдө F = 49 Н.",
+              "ru": "Стрелки: вниз P = 98 Н, вверх F = 49 Н.",
+              "en": "Arrows: down W = 98 N, up F = 49 N."
+            }
+          },
+          {
+            "key": "rope",
+            "modes": {
+              "labels": true
+            },
+            "focus": "phys.golden-rule",
+            "text": {
+              "ky": "Жүк h = 1 м көтөрүлгөндө, аны кармаган жиптин эки бөлүгү тең 1 м ге кыскарат – колубуз жипти s = 2h = 2 м тартат. Күчтөн 2 эсе утсак, жолдон 2 эсе уттурабыз.",
+              "ru": "Пока груз поднимается на h = 1 м, обе ветви верёвки, на которых он висит, укорачиваются на 1 м – рука вытягивает s = 2h = 2 м. Выиграли в силе вдвое – проиграли в пути вдвое.",
+              "en": "As the load rises h = 1 m both strands holding it shorten by 1 m, so the hand pulls s = 2h = 2 m of rope. Half the force, twice the distance."
+            },
+            "teacherNote": {
+              "ky": "131-сүрөттөгү тажрыйба: динамометр бекитилген жиптин учу 2h ге жылат.",
+              "ru": "Опыт рис. 131: конец верёвки с динамометром проходит 2h.",
+              "en": "Fig. 131: the rope end with the dynamometer travels 2h."
+            },
+            "altText": {
+              "ky": "Сызгычта жүктүн 1 м, жиптин учунун 2 м жылышы.",
+              "ru": "Линейка: груз сдвинулся на 1 м, конец верёвки – на 2 м.",
+              "en": "The ruler shows the load moving 1 m and the rope end 2 m."
+            }
+          },
+          {
+            "key": "work",
+            "modes": {
+              "energy": true
+            },
+            "focus": "phys.golden-rule",
+            "text": {
+              "ky": "Жумуштарды салыштыралы: колдун жумушу A = F·s = 49 Н · 2 м = 98 Дж, жүктү көтөрүү жумушу A = P·h = 98 Н · 1 м = 98 Дж. Барабар! Кыймылдуу блок да жумуштан утуш бербейт – бул механиканын «алтын эрежеси».",
+              "ru": "Сравним работы: рука совершает A = F·s = 49 Н · 2 м = 98 Дж, подъём груза – A = P·h = 98 Н · 1 м = 98 Дж. Равны! Подвижный блок тоже не даёт выигрыша в работе – это «золотое правило» механики.",
+              "en": "Compare the work: the hand does A = F·s = 49 N × 2 m = 98 J, lifting the load takes A = W·h = 98 N × 1 m = 98 J. Equal! A movable pulley saves no work either – the golden rule of mechanics."
+            },
+            "teacherNote": {
+              "ky": "«Энергия» режиминдеги тилкелерди көрсөтүңүз. Сураңыз: эмне үчүн адамдар байыркы замандан бери жумуштан утуш ала алышкан жок?",
+              "ru": "Покажите столбики в режиме «Энергия». Спросите: почему люди с древности так и не смогли выиграть в работе?",
+              "en": "Show the bars in energy mode and ask why nobody since ancient times has managed to save work."
+            },
+            "altText": {
+              "ky": "Эки бирдей тилке: колдун жумушу жана пайдалуу жумуш.",
+              "ru": "Два одинаковых столбика: работа руки и полезная работа.",
+              "en": "Two equal bars: the hand’s work and the useful work."
+            }
+          },
+          {
+            "key": "tackle",
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.force",
+            "sample": "pulley-tackle",
+            "text": {
+              "ky": "Кыймылдуу жана кыймылсыз блокторду бириктирсек (128-сүрөт), күчтөн 2 эсе утуп, жипти ыңгайлуу – ылдый тартабыз: F = 49 Н.",
+              "ru": "Если соединить подвижный и неподвижный блоки (рис. 128), выигрываем в силе вдвое и тянем верёвку удобно – вниз: F = 49 Н.",
+              "en": "Combine a movable and a fixed pulley (fig. 128) and you get half the force while pulling conveniently downwards: F = 49 N."
+            },
+            "teacherNote": {
+              "ky": "15-көнүгүүнүн 7-маселеси: 1 Н күч менен 8 Н жүктү көтөргөн рычаг жана кыймылдуу блок моделин түзгүлө.",
+              "ru": "Задача 7 упражнения 15: придумайте модель из рычага и подвижного блока, где сила 1 Н поднимает груз 8 Н.",
+              "en": "Exercise 15, problem 7: design a lever-plus-movable-pulley model where 1 N lifts 8 N."
+            },
+            "altText": {
+              "ky": "Жогорку кыймылсыз блок жана төмөнкү кыймылдуу блок, жип ылдый тартылат.",
+              "ru": "Верхний неподвижный и нижний подвижный блоки, верёвку тянут вниз.",
+              "en": "A fixed pulley above and a movable one below; the rope is pulled down."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.pulley-movable-lift"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "pulley-fixed"
+          },
+          {
+            "kind": "sample",
+            "key": "pulley-movable"
+          },
+          {
+            "kind": "sample",
+            "key": "pulley-tackle"
+          }
+        ],
+        "rows": [
+          "force",
+          "length",
+          "energy"
+        ],
+        "manual": [
+          {
+            "column": "pulley-fixed",
+            "row": "force",
+            "value": {
+              "ky": "98 Н",
+              "ru": "98 Н",
+              "en": "98 N"
+            }
+          },
+          {
+            "column": "pulley-fixed",
+            "row": "length",
+            "value": {
+              "ky": "s = 1 м",
+              "ru": "s = 1 м",
+              "en": "s = 1 m"
+            }
+          },
+          {
+            "column": "pulley-fixed",
+            "row": "energy",
+            "value": {
+              "ky": "A = 98 Дж",
+              "ru": "A = 98 Дж",
+              "en": "A = 98 J"
+            }
+          },
+          {
+            "column": "pulley-movable",
+            "row": "force",
+            "value": {
+              "ky": "49 Н",
+              "ru": "49 Н",
+              "en": "49 N"
+            }
+          },
+          {
+            "column": "pulley-movable",
+            "row": "length",
+            "value": {
+              "ky": "s = 2 м",
+              "ru": "s = 2 м",
+              "en": "s = 2 m"
+            }
+          },
+          {
+            "column": "pulley-movable",
+            "row": "energy",
+            "value": {
+              "ky": "A = 98 Дж",
+              "ru": "A = 98 Дж",
+              "en": "A = 98 J"
+            }
+          },
+          {
+            "column": "pulley-tackle",
+            "row": "force",
+            "value": {
+              "ky": "49 Н",
+              "ru": "49 Н",
+              "en": "49 N"
+            }
+          },
+          {
+            "column": "pulley-tackle",
+            "row": "length",
+            "value": {
+              "ky": "s = 2 м",
+              "ru": "s = 2 м",
+              "en": "s = 2 m"
+            }
+          },
+          {
+            "column": "pulley-tackle",
+            "row": "energy",
+            "value": {
+              "ky": "A = 98 Дж",
+              "ru": "A = 98 Дж",
+              "en": "A = 98 J"
+            }
+          }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-pulley-1",
+          "phys.q.phys7-pulley-2",
+          "phys.q.phys7-pulley-3",
+          "phys.q.phys7-pulley-4",
+          "phys.q.phys7-pulley-5",
+          "phys.q.phys7-pulley-6",
+          "phys.q.phys7-pulley-7",
+          "phys.q.phys7-pulley-8",
+          "phys.q.phys7-pulley-9"
+        ],
+        "sampleSize": 6
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Курулуш крандары",
+            "ru": "Строительные краны",
+            "en": "Building cranes"
+          },
+          "text": {
+            "ky": "Курулушта оор жүктөрдү тик көтөрүү үчүн блоктор колдонулат (117-сүрөт): крандын илмеги бир нече кыймылдуу блокко илинет.",
+            "ru": "На стройке тяжёлые грузы поднимают вертикально с помощью блоков (рис. 117): крюк крана висит на нескольких подвижных блоках.",
+            "en": "Building sites lift heavy loads with pulleys (fig. 117): a crane’s hook hangs from several movable pulleys."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Парус кемелери",
+            "ru": "Парусные суда",
+            "en": "Sailing boats"
+          },
+          "text": {
+            "ky": "Желкендин жиптери блоктор аркылуу өтөт: матрос шамалдагы чоң желкенди аз күч менен башкарат.",
+            "ru": "Снасти парусов пропущены через блоки: матрос управляет большим парусом на ветру малым усилием.",
+            "en": "Sail ropes run through pulleys so a sailor can handle a big sail in the wind with little effort."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Күчтөрдүн катышы",
+            "ru": "Отношение сил",
+            "en": "Ratio of forces"
+          },
+          "text": {
+            "ky": "n кыймылдуу блок биригип иштесе, жүк 2n жиптин бөлүгүндө илинет: F = P/(2n), s = 2n·h.",
+            "ru": "Если работают n подвижных блоков, груз висит на 2n ветвях: F = P/(2n), s = 2n·h.",
+            "en": "With n movable pulleys the load hangs on 2n strands: F = W/(2n), s = 2n·h."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Кудук",
+            "ru": "Колодец",
+            "en": "A well"
+          },
+          "text": {
+            "ky": "Кудуктун үстүндөгү дөңгөлөк аркылуу чаканы ылдыйга тартып, сууну өйдө чыгарабыз – кыймылсыз блок.",
+            "ru": "Через колесо над колодцем тянем верёвку вниз – ведро поднимается: неподвижный блок.",
+            "en": "Pulling down on the rope over the wheel above a well brings the bucket up – a fixed pulley."
+          }
+        },
+        {
+          "title": {
+            "ky": "Желек көтөрүү",
+            "ru": "Подъём флага",
+            "en": "Raising a flag"
+          },
+          "text": {
+            "ky": "Мектептин желеги мачтанын башындагы кичинекей блок аркылуу көтөрүлөт.",
+            "ru": "Школьный флаг поднимают через маленький блок на верхушке флагштока.",
+            "en": "The school flag goes up via a little pulley at the top of the pole."
+          }
+        }
+      ]
+    },
+    "props": [
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "F = \\frac{P}{2}"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "s = 2h"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "F s = P h"
+      }
+    ],
+    "starters": [
+      {
+        "ky": "Кыймылсыз блок эмне үчүн керек, эгер ал күчтөн утуш бербесе?",
+        "ru": "Зачем неподвижный блок, если он не даёт выигрыша в силе?",
+        "en": "Why use a fixed pulley if it gives no gain in force?"
+      },
+      {
+        "ky": "Эмне үчүн кыймылдуу блокто жипти эки эсе узун тартабыз?",
+        "ru": "Почему с подвижным блоком верёвку тянут вдвое дальше?",
+        "en": "Why must the rope be pulled twice as far with a movable pulley?"
+      },
+      {
+        "ky": "Механиканын «алтын эрежеси» эмне дейт?",
+        "ru": "Что говорит «золотое правило» механики?",
+        "en": "What does the golden rule of mechanics say?"
+      },
+      {
+        "ky": "Жөнөкөй механизм менен жумуштан утууга болобу?",
+        "ru": "Можно ли с простым механизмом выиграть в работе?",
+        "en": "Can a simple machine save work?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Мамбетакунов, «Физика», 7-класс (kg-2018), V–VI главалар"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "phys.simple-machine",
+      "kind": "machine",
+      "hue": 35,
+      "isContainer": false,
+      "title": {
+        "ky": "Жөнөкөй механизм",
+        "ru": "Простой механизм",
+        "en": "Simple machine"
+      },
+      "subtitle": {
+        "ky": "Рычаг, блок, жантык тегиздик",
+        "ru": "Рычаг, блок, наклонная плоскость",
+        "en": "Lever, pulley, inclined plane"
+      },
+      "description": {
+        "ky": "Күчтөн утуш алууга арналган куралдар жөнөкөй механизмдер деп аталат. Аларга рычаг, блок жана жантык тегиздик кирет. Жөнөкөй механизм күчтүн багытын өзгөртөт же күчтөн утуш берет: адамдын куралга аракет эткен күчү нерсеге түздөн-түз аракет эткен күчтөн кичине болот. Бирок жумуштан утуш бербейт.",
+        "ru": "Приспособления, которые дают выигрыш в силе, называют простыми механизмами. Это рычаг, блок и наклонная плоскость. Простой механизм меняет направление силы или даёт выигрыш в силе: сила, с которой человек действует на механизм, меньше силы, которую пришлось бы приложить к телу напрямую. Но выигрыша в работе он не даёт.",
+        "en": "Devices that give a gain in force are called simple machines: the lever, the pulley and the inclined plane. A simple machine changes the direction of a force or lets a smaller force do the job – the force a person applies to it is smaller than the force needed directly on the load. But it never saves work."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Рычаг, блок, жантык тегиздик",
+            "ru": "Рычаг, блок, наклонная плоскость",
+            "en": "Lever, pulley, inclined plane"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Күчтөн утуш берет же күчтүн багытын өзгөртөт",
+            "ru": "Даёт выигрыш в силе или меняет её направление",
+            "en": "Gives a gain in force or changes its direction"
+          }
+        }
+      ],
+      "related": [
+        "phys.lever",
+        "phys.golden-rule",
+        "phys.efficiency"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.machine-saves-work",
+          "text": {
+            "ky": "Жөнөкөй механизм жумушту азайтат: аз күч – аз жумуш.",
+            "ru": "Простой механизм уменьшает работу: меньше сила – меньше работа.",
+            "en": "A simple machine reduces the work: less force means less work."
+          },
+          "correction": {
+            "ky": "Күчтөн канча эсе утсак, аралыктан ошончо эсе уттурабыз. Жумуш A = F·s өзгөрбөйт, ал эми сүрүлүүнүн айынан чындыгында бир аз көбөйөт.",
+            "ru": "Во сколько раз выигрываем в силе, во столько же раз проигрываем в расстоянии. Работа A = F·s не меняется, а из-за трения на деле даже немного растёт.",
+            "en": "Whatever you gain in force you lose in distance. The work A = F·s stays the same – and with friction it even grows a little."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Архимед: «Эгер таяныч чекит табылган болсо, мен Жерди өз ордунан жылдыра алам!»",
+        "ru": "Архимед: «Дайте мне точку опоры, и я сдвину Землю!»",
+        "en": "Archimedes: \"Give me a place to stand and I will move the Earth!\""
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Египет пирамидалары",
+              "ru": "Египетские пирамиды",
+              "en": "The Egyptian pyramids"
+            },
+            "text": {
+              "ky": "Мындан үч миң жыл мурда Египетте оор таш плиталарды рычагдар менен жылдырып, жантык тегиздик боюнча чоң бийиктикке көтөрүшкөн.",
+              "ru": "Три тысячи лет назад в Египте тяжёлые каменные плиты сдвигали рычагами и поднимали на большую высоту по наклонным плоскостям.",
+              "en": "Three thousand years ago Egyptian builders shifted heavy stone blocks with levers and raised them high up ramps."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Станоктор жана машиналар",
+              "ru": "Станки и машины",
+              "en": "Machine tools"
+            },
+            "text": {
+              "ky": "Металл кесүүчү, штамптоочу жана тигүүчү станоктордо, кир жуугуч машинада бир нече жөнөкөй механизм бирге иштейт.",
+              "ru": "В станках для резки и штамповки металла, в швейных и стиральных машинах вместе работают несколько простых механизмов.",
+              "en": "Metal-cutting and stamping machines, sewing machines and washing machines all combine several simple machines."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кайчы",
+              "ru": "Ножницы",
+              "en": "Scissors"
+            },
+            "text": {
+              "ky": "Кайчы – эки рычаг: аны менен колубуз жыртпаган кагазды оңой кесебиз.",
+              "ru": "Ножницы – это два рычага: ими легко режем бумагу, которую руками не разорвать ровно.",
+              "en": "Scissors are two levers that let your hand cut easily."
+            }
+          },
+          {
+            "title": {
+              "ky": "Пандус",
+              "ru": "Пандус",
+              "en": "A ramp"
+            },
+            "text": {
+              "ky": "Арабаны тепкичтен көтөргөнчө пандус менен түртүп чыгуу жеңил – бул жантык тегиздик.",
+              "ru": "Коляску легче вкатить по пандусу, чем поднять по ступенькам, – это наклонная плоскость.",
+              "en": "Pushing a pram up a ramp is easier than lifting it up the steps – the ramp is an inclined plane."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.pulley-fixed",
+      "kind": "machine",
+      "hue": 200,
+      "isContainer": false,
+      "title": {
+        "ky": "Кыймылсыз блок",
+        "ru": "Неподвижный блок",
+        "en": "Fixed pulley"
+      },
+      "subtitle": {
+        "ky": "F = P – күчтүн багытын гана өзгөртөт",
+        "ru": "F = P – меняет только направление силы",
+        "en": "F = W – changes only the direction"
+      },
+      "description": {
+        "ky": "Огу бекитилген жана жүктү көтөргөндө өйдө-төмөн жылбаган блок кыймылсыз блок деп аталат. Аны ийиндери дөңгөлөктүн радиусуна барабар бирдей ийиндүү рычаг катары кароого болот: OA = OB, ошондуктан F = P. Кыймылсыз блок күчтөн утуш бербейт, бирок күчтүн аракет этүү багытын ыңгайлуу жакка өзгөртөт: жипти ылдый тартып, жүктү өйдө көтөрөбүз.",
+        "ru": "Блок, ось которого закреплена и который не поднимается и не опускается вместе с грузом, называют неподвижным. Это равноплечий рычаг с плечами, равными радиусу колеса: OA = OB, поэтому F = P. Неподвижный блок не даёт выигрыша в силе, но меняет её направление на удобное: тянем верёвку вниз – груз идёт вверх.",
+        "en": "A pulley whose axle is fixed and does not move up or down with the load is a fixed pulley. It is a lever with equal arms, each equal to the wheel radius: OA = OB, so F = W. A fixed pulley gives no gain in force, but it turns the force round to a handier direction: you pull down and the load goes up."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "F = P"
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "s = h"
+        }
+      ],
+      "related": [
+        "phys.pulley-movable",
+        "phys.simple-machine"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.fixed-pulley-gain",
+          "text": {
+            "ky": "Кыймылсыз блок жүктү жеңилдетет.",
+            "ru": "Неподвижный блок облегчает груз.",
+            "en": "A fixed pulley makes the load lighter."
+          },
+          "correction": {
+            "ky": "Кыймылсыз блоктун ийиндери бирдей, ошондуктан F = P: күч жүктүн салмагына барабар. Ал күчтүн багытын гана өзгөртөт.",
+            "ru": "Плечи неподвижного блока равны, поэтому F = P: сила равна весу груза. Блок меняет только направление силы.",
+            "en": "The arms of a fixed pulley are equal, so F = W: the pull equals the load’s weight. It only changes the direction of the force."
+          }
+        }
+      ],
+      "analogy": {
+        "ky": "Кыймылсыз блок – ийиндери бирдей тараза: эки жагы тең салмакта болушу үчүн эки күч бирдей болушу керек.",
+        "ru": "Неподвижный блок – как равноплечие весы: для равновесия силы с двух сторон должны быть одинаковы.",
+        "en": "A fixed pulley is like an equal-arm balance: to balance, the forces on both sides must be equal."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Желек мачтасы",
+              "ru": "Флагшток",
+              "en": "Flagpole"
+            },
+            "text": {
+              "ky": "Мачтанын башындагы кыймылсыз блок аркылуу жипти ылдый тартып, желекти өйдө көтөрөбүз – мачтага чыгуунун кереги жок.",
+              "ru": "Через неподвижный блок наверху флагштока тянем верёвку вниз и поднимаем флаг вверх – лезть на мачту не нужно.",
+              "en": "A fixed pulley at the top of a flagpole lets you raise the flag by pulling the rope down – no need to climb."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Лифт жана каршы жүк",
+              "ru": "Лифт и противовес",
+              "en": "Lift and counterweight"
+            },
+            "text": {
+              "ky": "Лифттин кабинасы жана каршы жүк кыймылсыз блок аркылуу өткөн тросто илинет: кабина өйдө чыкканда каршы жүк ылдый түшөт.",
+              "ru": "Кабина лифта и противовес висят на тросе, переброшенном через неподвижный блок: кабина вверх – противовес вниз.",
+              "en": "A lift car and its counterweight hang on a cable over a fixed pulley: as the car goes up the counterweight comes down."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кир илүүчү жип",
+              "ru": "Бельевая верёвка на роликах",
+              "en": "Pulley clothesline"
+            },
+            "text": {
+              "ky": "Балкондогу роликтүү жипти өзүңө тартсаң, кийим ары кетет – ролик кыймылсыз блок.",
+              "ru": "Тянешь бельевую верёвку на роликах к себе – бельё уезжает вдаль; ролик – неподвижный блок.",
+              "en": "Pull a pulley clothesline towards you and the washing moves away – each wheel is a fixed pulley."
+            }
+          },
+          {
+            "title": {
+              "ky": "Пардаларды жабуу",
+              "ru": "Шторы на шнуре",
+              "en": "Curtain cord"
+            },
+            "text": {
+              "ky": "Шнурду ылдый тартканда парда жанга жылат: блок күчтүн багытын бурат.",
+              "ru": "Тянешь шнур вниз – штора едет вбок: блок поворачивает направление силы.",
+              "en": "Pull the cord down and the curtain slides sideways: the pulley turns the force."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.pulley-movable",
+      "kind": "machine",
+      "hue": 170,
+      "isContainer": false,
+      "title": {
+        "ky": "Кыймылдуу блок",
+        "ru": "Подвижный блок",
+        "en": "Movable pulley"
+      },
+      "subtitle": {
+        "ky": "Күчтөн 2 эсе утуш, жолдон 2 эсе уттуруу",
+        "ru": "Выигрыш в силе в 2 раза, проигрыш в пути в 2 раза",
+        "en": "Half the force, twice the distance"
+      },
+      "description": {
+        "ky": "Огу жүк менен кошо өйдө-төмөн жылуучу блок кыймылдуу блок деп аталат; жүк блоктун огуна бекитилген илмекке илинет. Анын таяныч чекити O – жиптин бир учу бекитилген жерде: P күчүнүн ийини OA – радиус, F күчүнүн ийини OB – диаметр. OB = 2·OA болгондуктан P = 2F, б. а. кыймылдуу блок күчтөн 2 эсе утуш берет. Бирок жүктү h бийиктикке көтөрүү үчүн жиптин учун 2h аралыкка тартуу керек.",
+        "ru": "Блок, ось которого поднимается и опускается вместе с грузом, называют подвижным; груз висит на крюке, закреплённом на оси блока. Его точка опоры O – там, где закреплён один конец верёвки: плечо силы P – радиус OA, плечо силы F – диаметр OB. Так как OB = 2·OA, P = 2F, то есть подвижный блок даёт выигрыш в силе в 2 раза. Но чтобы поднять груз на высоту h, конец верёвки нужно протянуть на 2h.",
+        "en": "A pulley whose axle moves up and down together with the load is a movable pulley; the load hangs from a hook on its axle. Its pivot O is where one end of the rope is tied: the load’s arm OA is the radius and the pull’s arm OB is the diameter. Since OB = 2·OA, W = 2F – a movable pulley halves the force. But to lift the load by h you must pull the rope end through 2h."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "F = \\frac{P}{2}"
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "s = 2h"
+        }
+      ],
+      "related": [
+        "phys.pulley-fixed",
+        "phys.golden-rule"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.movable-pulley-path",
+          "text": {
+            "ky": "Кыймылдуу блокто жипти жүк көтөрүлгөн бийиктикке гана тартабыз.",
+            "ru": "В подвижном блоке верёвку тянут ровно на ту высоту, на которую поднимается груз.",
+            "en": "With a movable pulley you pull the rope only as far as the load rises."
+          },
+          "correction": {
+            "ky": "Жүк эки жиптин бөлүгүндө илинип турат, жүк h ге көтөрүлсө ар бир бөлүк h ге кыскарат – жиптин учу 2h жол басат. Китептеги маселе: жүк 2 м көтөрүлсө, жиптин учу 4 м тартылат.",
+            "ru": "Груз висит на двух ветвях верёвки: поднимаясь на h, каждая ветвь укорачивается на h – конец верёвки проходит 2h. Задача из учебника: груз поднят на 2 м – верёвку вытянули на 4 м.",
+            "en": "The load hangs on two strands of rope; when it rises by h each strand shortens by h, so the free end travels 2h. The book’s problem: lift a load 2 m and you pull 4 m of rope."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Курулуш краны",
+              "ru": "Строительный кран",
+              "en": "Construction crane"
+            },
+            "text": {
+              "ky": "Крандын илмеги кыймылдуу блоктордун тобуна (полиспастка) илинет: трос бир нече эсе узун тартылат, бирок лебедка бир нече эсе кичине күч жумшайт.",
+              "ru": "Крюк крана висит на группе подвижных блоков (полиспасте): трос вытягивается в несколько раз длиннее, зато лебёдка тянет с силой во столько же раз меньше.",
+              "en": "A crane’s hook hangs from a block of movable pulleys: the winch reels in several times more cable but pulls with several times less force."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Куткаруучулардын блок системасы",
+              "ru": "Спасательные полиспасты",
+              "en": "Rescue pulley systems"
+            },
+            "text": {
+              "ky": "Тоо куткаруучулары жаракат алган адамды жардан кыймылдуу блоктор аркылуу чыгарышат: эки-үч киши жетиштүү болот.",
+              "ru": "Горные спасатели поднимают пострадавшего со склона через подвижные блоки – хватает двух-трёх человек.",
+              "en": "Mountain rescuers haul an injured climber up a cliff with movable pulleys – two or three people are enough."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Сумканы эки бооштон көтөрүү",
+              "ru": "Сумка на двух ручках",
+              "en": "A bag on two straps"
+            },
+            "text": {
+              "ky": "Оор сумканы эки колуң менен эки бооштон көтөрсөң, ар бир колго салмактын жарымы түшөт – кыймылдуу блоктогу эки жип сыяктуу.",
+              "ru": "Несёшь тяжёлую сумку за две ручки – на каждую руку приходится половина веса, как на две ветви верёвки подвижного блока.",
+              "en": "Carry a heavy bag by two straps and each hand takes half the weight – like the two strands of a movable pulley."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тренажёр",
+              "ru": "Тренажёр",
+              "en": "Gym machine"
+            },
+            "text": {
+              "ky": "Спорт залындагы тренажёрлордо кыймылдуу блок жүктү «жеңилдетет», бирок тросту эки эсе узун тартасың.",
+              "ru": "В тренажёрах подвижный блок «облегчает» груз, но трос тянешь вдвое дальше.",
+              "en": "In gym machines a movable pulley makes the stack feel lighter, but you pull the cable twice as far."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.golden-rule",
+      "kind": "law",
+      "hue": 45,
+      "isContainer": false,
+      "title": {
+        "ky": "Механиканын «алтын эрежеси»",
+        "ru": "«Золотое правило» механики",
+        "en": "The golden rule of mechanics"
+      },
+      "subtitle": {
+        "ky": "Күчтөн канча эсе утсак, аралыктан ошончо эсе уттурабыз",
+        "ru": "Во сколько раз выигрываем в силе, во столько раз проигрываем в расстоянии",
+        "en": "Gain in force = loss in distance"
+      },
+      "description": {
+        "ky": "Жөнөкөй механизмдердин бири да жумуштан утуш бербейт: күчтөн канча эсе утсак, аралыктан ошончо эсе уттурабыз. Рычагда кичине F күчү узун s жолду, чоң P салмагы кыска h жолду басат, бирок F·s ≈ P·h. Кыймылдуу блок күчтөн 2 эсе утат, бирок жиптин учу 2h жол басат. Бул эреже илгертен механиканын «алтын эрежеси» деп аталат.",
+        "ru": "Ни один простой механизм не даёт выигрыша в работе: во сколько раз выигрываем в силе, во столько же раз проигрываем в расстоянии. У рычага малая сила F проходит длинный путь s, большой вес P – короткий путь h, но F·s ≈ P·h. Подвижный блок выигрывает в силе вдвое, но конец верёвки проходит 2h. Это правило издавна называют «золотым правилом» механики.",
+        "en": "No simple machine saves work: whatever you gain in force you lose in distance. On a lever the small force F moves a long way s and the big weight W a short way h, but F·s ≈ W·h. A movable pulley halves the force, but the rope end travels 2h. This has long been called the golden rule of mechanics."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "A_1 = A_2"
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "F \\cdot s = P \\cdot h"
+        }
+      ],
+      "related": [
+        "phys.simple-machine",
+        "phys.pulley-movable"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.gain-force-and-path",
+          "text": {
+            "ky": "Жакшы механизм күчтөн да, аралыктан да утуш берет.",
+            "ru": "Хороший механизм даёт выигрыш и в силе, и в пути.",
+            "en": "A good machine gains in both force and distance."
+          },
+          "correction": {
+            "ky": "Мындай механизм жок: F·s = P·h. Күч кичирейсе, жол ошончо эсе узарат.",
+            "ru": "Такого механизма нет: F·s = P·h. Если сила меньше, путь во столько же раз длиннее.",
+            "en": "No such machine exists: F·s = W·h. If the force is smaller, the distance is longer in the same ratio."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Домкрат",
+              "ru": "Домкрат",
+              "en": "Car jack"
+            },
+            "text": {
+              "ky": "Домкраттын туткасын көп жолу айлантып, оор машинаны бир нече сантиметрге гана көтөрөбүз: кичине күч – узун жол.",
+              "ru": "Много раз качаем ручку домкрата и поднимаем тяжёлую машину всего на несколько сантиметров: малая сила – длинный путь.",
+              "en": "You pump a jack handle many times to raise a heavy car by only a few centimetres: small force, long distance."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Тескери пропорция",
+              "ru": "Обратная пропорция",
+              "en": "Inverse proportion"
+            },
+            "text": {
+              "ky": "F·s = P·h болгондуктан F/P = h/s: күчтөрдүн катышы жолдордун тескери катышына барабар. Мисалы, 1 Н күч рычаг жана кыймылдуу блок менен 8 Н жүктү көтөрсө, кол жүктөн 8 эсе узун жол басат.",
+              "ru": "Из F·s = P·h следует F/P = h/s: отношение сил обратно отношению путей. Например, если сила 1 Н с рычагом и подвижным блоком поднимает груз 8 Н, рука проходит путь в 8 раз длиннее.",
+              "en": "From F·s = W·h, F/W = h/s: the forces are in the inverse ratio of the distances. If 1 N lifts an 8 N load with a lever and a movable pulley, the hand moves 8 times further than the load."
+            },
+            "field": "m"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Тоо жолу",
+              "ru": "Горная дорога",
+              "en": "A mountain road"
+            },
+            "text": {
+              "ky": "Ашууга түз чыгуу оор, ошондуктан жол серпантин болуп ийрейилет: жол узарат, бирок жантайыш жеңилдейт.",
+              "ru": "Прямо на перевал не подняться, поэтому дорога вьётся серпантином: путь длиннее, зато подъём легче.",
+              "en": "Roads up a pass zigzag: the way is longer but the climb is gentler."
+            }
+          },
+          {
+            "title": {
+              "ky": "Велосипеддин жеңил берүүсү",
+              "ru": "Лёгкая передача велосипеда",
+              "en": "A low bicycle gear"
+            },
+            "text": {
+              "ky": "Өйдө карай жеңил берүүдө педалды оңой айлантасың, бирок көп айлантасың.",
+              "ru": "На лёгкой передаче в гору крутить педали легко, но крутишь их дольше.",
+              "en": "In a low gear uphill the pedals turn easily, but you turn them many more times."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.weight",
+      "kind": "force",
+      "hue": 270,
+      "isContainer": false,
+      "title": {
+        "ky": "Салмак",
+        "ru": "Вес тела",
+        "en": "Weight"
+      },
+      "subtitle": {
+        "ky": "P = m·g, ньютон (Н)",
+        "ru": "P = m·g, ньютон (Н)",
+        "en": "W = mg, newton (N)"
+      },
+      "description": {
+        "ky": "Дене Жерге тартылгандыктан таянычка басым кылган же илгичти тарткан күч. Дене тынч турса, анын салмагы оордук күчүнө барабар: P = m·g, мында g ≈ 9,8 Н/кг. Айырмасы: оордук күчү денеге коюлат, ал эми салмак – таянычка же илгичке.",
+        "ru": "Сила, с которой тело из-за притяжения к Земле давит на опору или растягивает подвес. Если тело покоится, его вес равен силе тяжести: P = m·g, где g ≈ 9,8 Н/кг. Разница: сила тяжести приложена к телу, а вес – к опоре или подвесу.",
+        "en": "The force with which a body, pulled by the Earth, presses on its support or pulls on its hanger. When the body is at rest its weight equals the force of gravity: W = mg, where g ≈ 9.8 N/kg. The difference: gravity acts on the body, weight acts on the support or hanger."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "P = m \\cdot g"
+        },
+        {
+          "kind": "quantity",
+          "type": "gravity",
+          "value": 9.8,
+          "unit": "N/kg",
+          "approx": true
+        }
+      ],
+      "related": [
+        "phys.gravity",
+        "phys.normal-force",
+        "phys.dynamometer"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.weight-is-mass",
+          "text": {
+            "ky": "Салмак менен масса – бир эле нерсе, экөө тең килограмм менен ченелет.",
+            "ru": "Вес и масса – одно и то же, обе измеряются в килограммах.",
+            "en": "Weight and mass are the same thing, both measured in kilograms."
+          },
+          "correction": {
+            "ky": "Масса (кг) – дененин өзүнүн касиети, Айда да өзгөрбөйт. Салмак – күч, ал ньютон менен ченелет: 60 кг адамдын салмагы Жерде ≈ 588 Н, Айда ≈ 97 Н.",
+            "ru": "Масса (кг) – свойство самого тела, на Луне она та же. Вес – сила, его измеряют в ньютонах: вес человека массой 60 кг на Земле ≈ 588 Н, на Луне ≈ 97 Н.",
+            "en": "Mass (kg) belongs to the body itself and is the same on the Moon. Weight is a force measured in newtons: a 60 kg person weighs about 588 N on Earth and about 97 N on the Moon."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Эл аралык космос станциясындагы космонавттар салмаксыз абалда: оордук күчү аларга таасир этет, бирок алар станция менен кошо «кулап» бараткандыктан, эч нерсеге баспайт.",
+        "ru": "Космонавты на МКС находятся в невесомости: сила тяжести на них действует, но они вместе со станцией непрерывно «падают» и ни на что не давят.",
+        "en": "Astronauts on the ISS are weightless: gravity still acts on them, but they and the station are falling together, so they press on nothing."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Лифттеги тараза",
+              "ru": "Весы в лифте",
+              "en": "Scales in a lift"
+            },
+            "text": {
+              "ky": "Лифт өйдө тездеп жөнөгөндө таразанын көрсөткүчү чоңоёт, ылдый жөнөгөндө азаят: масса өзгөрбөйт, ал эми салмак өзгөрөт.",
+              "ru": "Когда лифт разгоняется вверх, весы показывают больше, когда вниз – меньше: масса не меняется, а вес меняется.",
+              "en": "When a lift speeds up going up the scales read more, going down they read less: the mass stays the same but the weight changes."
+            },
+            "field": "s"
+          },
+          {
+            "title": {
+              "ky": "Текчелердин жүгү",
+              "ru": "Нагрузка на полки",
+              "en": "Shelf loads"
+            },
+            "text": {
+              "ky": "Инженерлер текче же көпүрө канча салмакка чыдай турганын ньютон (же килоньютон) менен эсептешет.",
+              "ru": "Инженеры рассчитывают, какой вес выдержит полка или мост, в ньютонах (или килоньютонах).",
+              "en": "Engineers work out what weight a shelf or a bridge can bear in newtons (or kilonewtons)."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Мектеп рюкзагы",
+              "ru": "Школьный рюкзак",
+              "en": "A school backpack"
+            },
+            "text": {
+              "ky": "5 кг рюкзак ийиниңди ≈ 49 Н күч менен басат – бул анын салмагы.",
+              "ru": "Рюкзак массой 5 кг давит на плечи с силой ≈ 49 Н – это его вес.",
+              "en": "A 5 kg backpack presses on your shoulders with about 49 N – that is its weight."
+            }
+          },
+          {
+            "title": {
+              "ky": "Батуттагы секирүү",
+              "ru": "Прыжок на батуте",
+              "en": "Jumping on a trampoline"
+            },
+            "text": {
+              "ky": "Батуттан секирип абада учуп баратканда сен эч нерсеге баспайсың – бул көз ирмемде салмагың нөл, бирок массаң ошол эле.",
+              "ru": "В полёте после прыжка с батута ты ни на что не давишь – в этот миг твой вес равен нулю, а масса прежняя.",
+              "en": "While flying through the air off a trampoline you press on nothing – your weight is zero for that moment, but your mass is unchanged."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.force",
+      "kind": "force",
+      "hue": 15,
+      "isContainer": false,
+      "title": {
+        "ky": "Күч",
+        "ru": "Сила",
+        "en": "Force"
+      },
+      "subtitle": {
+        "ky": "F, ньютон (Н)",
+        "ru": "F, ньютон (Н)",
+        "en": "F, newton (N)"
+      },
+      "description": {
+        "ky": "Бир дененин экинчи денеге таасиринин чени. Күч – вектор: анын чоңдугу (ньютон менен), багыты жана коюлган чекити бар. Сүрөттө аны жебе менен көрсөтөбүз: жебенин узундугу – чоңдугу, учу – багыты, башталышы – коюлган чекити. Күч дененин ылдамдыгын же формасын өзгөртөт.",
+        "ru": "Мера действия одного тела на другое. Сила – вектор: у неё есть модуль (в ньютонах), направление и точка приложения. На рисунке её изображают стрелкой: длина – модуль, остриё – направление, начало – точка приложения. Сила меняет скорость тела или его форму.",
+        "en": "A measure of how one body acts on another. Force is a vector: it has a magnitude (in newtons), a direction and a point of application. We draw it as an arrow: its length is the magnitude, its tip the direction and its tail the point of application. A force changes a body's speed or its shape."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "\\vec{F}"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Ылдамдыкты же форманы өзгөртөт",
+            "ru": "Меняет скорость или форму тела",
+            "en": "Changes speed or shape"
+          }
+        }
+      ],
+      "related": [
+        "phys.dynamometer",
+        "phys.net-force",
+        "phys.gravity"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.force-inside-body",
+          "text": {
+            "ky": "Күч дененин ичинде сакталат: ыргытылган топ колдун «күчүн» өзү менен ала кетет.",
+            "ru": "Сила хранится внутри тела: брошенный мяч уносит с собой «силу» руки.",
+            "en": "Force is stored inside a body: a thrown ball carries the 'force' of the hand with it."
+          },
+          "correction": {
+            "ky": "Күч – эки дененин өз ара аракети. Топ колдон чыккандан кийин ага кол таасир этпейт; анын кыймылын оордук күчү жана абанын каршылыгы өзгөртөт.",
+            "ru": "Сила – это взаимодействие двух тел. Когда мяч покинул руку, рука на него больше не действует; его движение меняют сила тяжести и сопротивление воздуха.",
+            "en": "A force is an interaction between two bodies. Once the ball leaves the hand, the hand no longer acts on it; gravity and air resistance change its motion."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Көпүрөнүн тростору",
+              "ru": "Тросы моста",
+              "en": "Bridge cables"
+            },
+            "text": {
+              "ky": "Аспалуу көпүрөнү долбоорлоодо инженерлер ар бир тростогу күчтү вектор катары эсептеп, аларды кошуп, тиреклер көтөрө турган жүктү табышат.",
+              "ru": "Проектируя подвесной мост, инженеры считают силу в каждом тросе как вектор и складывают их, чтобы найти нагрузку на опоры.",
+              "en": "When designing a suspension bridge, engineers treat the force in every cable as a vector and add them up to find the load on the towers."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Күч датчиги",
+              "ru": "Датчик силы",
+              "en": "Force sensor"
+            },
+            "text": {
+              "ky": "Электрондук таразанын ичинде күч датчиги бар: ал басымдан бир аз ийилип, күчтү электр сигналына айлантат.",
+              "ru": "Внутри электронных весов стоит датчик силы: он чуть прогибается под нагрузкой и превращает силу в электрический сигнал.",
+              "en": "Inside electronic scales is a force sensor: it bends slightly under the load and turns the force into an electrical signal."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Алма жана 1 ньютон",
+              "ru": "Яблоко и 1 ньютон",
+              "en": "An apple and 1 newton"
+            },
+            "text": {
+              "ky": "100 г алманы алаканыңда кармап турганда, ага болжол менен 1 Н күч менен таасир этесиң.",
+              "ru": "Держа на ладони яблоко массой 100 г, ты действуешь на него с силой примерно 1 Н.",
+              "en": "Holding a 100 g apple on your palm, you push up on it with about 1 N."
+            }
+          },
+          {
+            "title": {
+              "ky": "Супермаркеттин арабасы",
+              "ru": "Тележка в супермаркете",
+              "en": "A shopping trolley"
+            },
+            "text": {
+              "ky": "Арабаны алдыга түртсөң – алдыга жүрөт, капталдан түртсөң – бурулат: күчтүн багыты маанилүү.",
+              "ru": "Толкнёшь тележку вперёд – поедет вперёд, толкнёшь сбоку – повернёт: направление силы важно.",
+              "en": "Push a trolley forwards and it goes forwards; push it from the side and it turns: the direction of a force matters."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.lever",
+      "kind": "body",
+      "hue": 25,
+      "isContainer": false,
+      "title": {
+        "ky": "Рычаг",
+        "ru": "Рычаг",
+        "en": "Lever"
+      },
+      "description": {
+        "ky": "Таяныч чекитинин айланасында айлана алган катуу тактай же таяк. Рычаг аз күч менен оор жүктү көтөрүүгө же күчтүн багытын өзгөртүүгө жардам берет. Ал тең салмакта турат, эгер F₁·d₁ = F₂·d₂ болсо.",
+        "ru": "Твёрдая доска или стержень, который может поворачиваться вокруг точки опоры. Рычаг помогает поднять тяжёлый груз малой силой или изменить направление силы. Он в равновесии, если F₁·d₁ = F₂·d₂.",
+        "en": "A rigid board or bar that can turn about a pivot. A lever lets a small force lift a heavy load or changes the direction of a force. It balances when F₁·d₁ = F₂·d₂."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Тактай (таяк), таяныч чекити, ийиндер",
+            "ru": "Доска (стержень), точка опоры, плечи",
+            "en": "Beam (bar), pivot, arms"
+          }
+        }
+      ],
+      "related": [],
+      "misconceptions": [
+        {
+          "key": "phys.m.lever-free-work",
+          "text": {
+            "ky": "Рычаг ишти «бекер» азайтат: аз күч – аз иш.",
+            "ru": "Рычаг «бесплатно» уменьшает работу: меньше сила – меньше работа.",
+            "en": "A lever saves work 'for free': less force means less work."
+          },
+          "correction": {
+            "ky": "Рычаг күчтөн утат, бирок жолдон ошончо эсе утулат: узун ийиндин учу ошончо көп жол басат. Иш өзгөрбөйт – бул механиканын «алтын эрежеси».",
+            "ru": "Рычаг даёт выигрыш в силе, но во столько же раз проигрыш в пути: конец длинного плеча проходит больший путь. Работа не меняется – это «золотое правило» механики.",
+            "en": "A lever gains in force but loses just as much in distance: the end of the long arm travels further. The work stays the same – the 'golden rule' of mechanics."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Архимедге таандык деп айтылган сөз: «Мага таяныч чекитин бергиле, мен Жерди ордунан козгойм».",
+        "ru": "Архимеду приписывают слова: «Дайте мне точку опоры, и я сдвину Землю».",
+        "en": "Archimedes is said to have claimed: 'Give me a place to stand and I will move the Earth.'"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Мунаралуу кран",
+              "ru": "Башенный кран",
+              "en": "Tower crane"
+            },
+            "text": {
+              "ky": "Крандын кыска ийининде оор бетон каршы жүк турат: ал узун ийиндеги жүктүн моментин теңдеп, кранды кулатпайт.",
+              "ru": "На коротком плече крана стоит тяжёлый бетонный противовес: он уравновешивает момент груза на длинном плече и не даёт крану опрокинуться.",
+              "en": "A heavy concrete counterweight sits on a crane's short arm: it balances the moment of the load on the long arm and stops the crane toppling."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Дене – рычагдар системасы",
+              "ru": "Тело – система рычагов",
+              "en": "The body as levers"
+            },
+            "text": {
+              "ky": "Сөөктөр – рычагдар, муундар – таяныч чекиттери, булчуңдар – күч. Билек чыканак мууну айланасында бурулат.",
+              "ru": "Кости – рычаги, суставы – точки опоры, мышцы – силы. Предплечье поворачивается вокруг локтевого сустава.",
+              "en": "Bones are levers, joints are pivots and muscles supply the forces. The forearm turns about the elbow joint."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Тактай селкинчек",
+              "ru": "Качели-доска",
+              "en": "A seesaw"
+            },
+            "text": {
+              "ky": "Ата менен кичинекей бала тактай селкинчекте тең салмакта болушу үчүн ата таяныч чекитине жакыныраак отурат.",
+              "ru": "Чтобы папа и малыш уравновесились на качелях-доске, папа садится ближе к опоре.",
+              "en": "For a dad and a small child to balance on a seesaw, the dad sits closer to the middle."
+            }
+          },
+          {
+            "title": {
+              "ky": "Бөтөлкө ачкыч",
+              "ru": "Открывашка",
+              "en": "Bottle opener"
+            },
+            "text": {
+              "ky": "Ачкычтын узун сабы капкакты аз күч менен ачууга мүмкүндүк берет.",
+              "ru": "Длинная ручка открывашки позволяет снять крышку малой силой.",
+              "en": "The long handle of a bottle opener lets you lift the cap with a small force."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.efficiency",
+      "kind": "quantity",
+      "hue": 300,
+      "isContainer": false,
+      "title": {
+        "ky": "Пайдалуу аракет коэффициенти (ПАК)",
+        "ru": "Коэффициент полезного действия (КПД)",
+        "en": "Efficiency"
+      },
+      "subtitle": {
+        "ky": "η = A_п/A_т · 100 %",
+        "ru": "η = A_п/A_з · 100 %",
+        "en": "η = W_useful/W_total × 100 %"
+      },
+      "description": {
+        "ky": "Пайдалуу жумуштун толук жумушка болгон катышын мүнөздөөчү физикалык чоңдук механизмдин пайдалуу аракет коэффициенти (ПАК) деп аталат: η = A_п/A_т · 100 %. Пайдалуу жумуш A_п – жүктү керектүү бийиктикке көтөрүү (A_п = P·h). Толук жумуш A_т = F·s – чындыгында аткарылган бардык жумуш: ага механизмдин өзүн (блокту, жипти, рычагды) көтөрүү жана сүрүлүүнү жеңүү да кирет. Ошондуктан A_п < A_т жана η ар дайым 100 %дан кичине.",
+        "ru": "Физическую величину, равную отношению полезной работы к полной, называют коэффициентом полезного действия (КПД) механизма: η = A_п/A_з · 100 %. Полезная работа A_п – подъём груза на нужную высоту (A_п = P·h). Полная (затраченная) работа A_з = F·s – вся совершённая работа: в неё входят и подъём самого механизма (блока, верёвки, рычага), и преодоление трения. Поэтому A_п < A_з и η всегда меньше 100 %.",
+        "en": "The ratio of useful work to total work is the efficiency of a machine: η = W_useful/W_total × 100 %. Useful work is lifting the load to the height needed (W_u = W·h). Total work W_t = F·s is all the work actually done, including lifting the machine itself (pulley, rope, lever) and overcoming friction. So W_u < W_t and η is always below 100 %."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "\\eta = \\frac{A_\\text{п}}{A_\\text{т}} \\cdot 100\\%"
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "A_\\text{п} = P h"
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "A_\\text{т} = F s"
+        }
+      ],
+      "related": [
+        "phys.golden-rule",
+        "phys.simple-machine"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.efficiency-over-100",
+          "text": {
+            "ky": "Жакшы механизмдин ПАКы 100 %га жетиши, атүгүл андан ашышы мүмкүн.",
+            "ru": "КПД хорошего механизма может достичь 100 % и даже превысить их.",
+            "en": "A really good machine can reach or even exceed 100 % efficiency."
+          },
+          "correction": {
+            "ky": "Механизмдин өзүн жылдырууга жана сүрүлүүгө дайыма жумуш кетет, ошондуктан A_п < A_т жана η < 100 %. ПАК 100 %дан ашса, механизм жумушту «жоктон» жасамак – бул алтын эрежеге каршы.",
+            "ru": "Часть работы всегда уходит на сам механизм и трение, поэтому A_п < A_з и η < 100 %. КПД больше 100 % означал бы работу «из ничего» – это противоречит золотому правилу.",
+            "en": "Some work always goes into moving the machine and beating friction, so W_u < W_t and η < 100 %. Over 100 % would mean work from nothing – against the golden rule."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "η – грек алфавитинин «эта» тамгасы.",
+        "ru": "η – греческая буква «эта».",
+        "en": "η is the Greek letter eta."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Мотордун ПАКы",
+              "ru": "КПД двигателей",
+              "en": "Engine efficiency"
+            },
+            "text": {
+              "ky": "Электр кыймылдаткычтын ПАКы 90 %га жакын, ал эми автомобилдин бензин кыймылдаткычыныкы болжол менен 25–30 % гана: калганы жылуулукка кетет.",
+              "ru": "КПД электродвигателя близок к 90 %, а у бензинового двигателя автомобиля – всего около 25–30 %: остальное уходит в тепло.",
+              "en": "An electric motor is about 90 % efficient, a car’s petrol engine only about 25–30 %: the rest becomes heat."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Майлоо жана подшипниктер",
+              "ru": "Смазка и подшипники",
+              "en": "Lubrication and bearings"
+            },
+            "text": {
+              "ky": "Инженерлер ПАКты көбөйтүү үчүн механизмдердин окторун майлашат, подшипник коюшат жана бөлүктөрүн жеңилдетишет – китепте айтылгандай эң жөнөкөй жол сүрүлүүнү жана салмакты азайтуу.",
+              "ru": "Чтобы повысить КПД, инженеры смазывают оси, ставят подшипники и облегчают детали – как сказано в учебнике, проще всего уменьшить трение и вес механизма.",
+              "en": "To raise efficiency engineers oil the axles, fit bearings and make parts lighter – the simplest way, as the book says, is to reduce friction and the machine’s own weight."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Китептеги мисал",
+              "ru": "Пример из учебника",
+              "en": "The textbook example"
+            },
+            "text": {
+              "ky": "100 кг жүк рычагдын кыска ийининде 0,08 м көтөрүлдү, узун ийинге 250 Н күч жумшалып, анын учу 0,4 м түштү. A_п ≈ 1000 Н · 0,08 м = 80 Дж, A_т = 250 Н · 0,4 м = 100 Дж, η = 80 %.",
+              "ru": "Груз 100 кг на коротком плече рычага подняли на 0,08 м, к длинному плечу приложили 250 Н, и его конец опустился на 0,4 м. A_п ≈ 1000 Н · 0,08 м = 80 Дж, A_з = 250 Н · 0,4 м = 100 Дж, η = 80 %.",
+              "en": "A 100 kg load on a lever’s short arm rose 0.08 m while 250 N pushed the long arm down 0.4 m. W_u ≈ 1000 N × 0.08 m = 80 J, W_t = 250 N × 0.4 m = 100 J, η = 80 %."
+            },
+            "field": "m"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Тешик чака",
+              "ru": "Дырявое ведро",
+              "en": "A leaky bucket"
+            },
+            "text": {
+              "ky": "Кудуктан тешик чака менен суу ташысаң, бир бөлүгү жолдо агып кетет: көтөргөнүң – толук жумуш, үйгө жеткени – пайдалуу.",
+              "ru": "Несёшь воду дырявым ведром – часть выливается по дороге: всё поднятое – полная работа, донесённое – полезная.",
+              "en": "Carry water in a leaky bucket and some spills on the way: all you lifted is total work, what reaches home is useful."
+            }
+          },
+          {
+            "title": {
+              "ky": "Майланган чынжыр",
+              "ru": "Смазанная цепь",
+              "en": "An oiled chain"
+            },
+            "text": {
+              "ky": "Велосипеддин чынжырын майласаң, педалды айлантуу жеңилдейт – сүрүлүү азайып, ПАК көбөйөт.",
+              "ru": "Смажешь цепь велосипеда – крутить педали легче: трение меньше, КПД больше.",
+              "en": "Oil your bike chain and pedalling gets easier – less friction, higher efficiency."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.gravity",
+      "kind": "force",
+      "hue": 260,
+      "isContainer": false,
+      "title": {
+        "ky": "Оордук күчү",
+        "ru": "Сила тяжести",
+        "en": "Force of gravity"
+      },
+      "subtitle": {
+        "ky": "Жер тартат",
+        "ru": "Притяжение Земли",
+        "en": "Earth's pull"
+      },
+      "description": {
+        "ky": "Жер бардык денелерди өзүнө тарткан күч: F = mg, мында g ≈ 9,81 м/с². Ал дайыма тик ылдый багытталат.",
+        "ru": "Сила, с которой Земля притягивает все тела: F = mg, где g ≈ 9,81 м/с². Она всегда направлена вертикально вниз.",
+        "en": "The force with which the Earth pulls every body: F = mg, where g ≈ 9.81 m/s². It always points straight down."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "acceleration",
+          "value": 9.81
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "F = mg"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Денелерди Жерге тартат",
+            "ru": "Притягивает тела к Земле",
+            "en": "Pulls bodies towards the Earth"
+          }
+        }
+      ],
+      "related": [],
+      "misconceptions": [
+        {
+          "key": "phys.m.gravity-only-falling",
+          "text": {
+            "ky": "Оордук күчү кулап жаткан денелерге гана таасир этет.",
+            "ru": "Сила тяжести действует только на падающие тела.",
+            "en": "Gravity only acts on falling objects."
+          },
+          "correction": {
+            "ky": "Оордук күчү бардык денелерге – столдогу китепке да, учуп бараткан учакка да дайыма таасир этет.",
+            "ru": "Сила тяжести всегда действует на все тела – и на книгу на столе, и на летящий самолёт.",
+            "en": "Gravity always acts on every body – a book on a table and a plane in flight alike."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Айда g Жердегиден болжол менен 6 эсе аз – 1,62 м/с².",
+        "ru": "На Луне g примерно в 6 раз меньше, чем на Земле, – 1,62 м/с².",
+        "en": "On the Moon g is about 6 times smaller than on Earth – 1.62 m/s²."
+      },
+      "analogy": {
+        "ky": "Көрүнбөгөн магнит",
+        "ru": "Невидимый магнит",
+        "en": "An invisible magnet"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Токтогул ГЭСи",
+              "ru": "Токтогульская ГЭС",
+              "en": "Toktogul hydropower plant"
+            },
+            "text": {
+              "ky": "Нарын дарыясынын суусу оордук күчүнүн таасиринен бийиктен түшүп, турбиналарды айлантат – Кыргызстандын электринин чоң бөлүгү ушинтип алынат.",
+              "ru": "Вода Нарына под действием силы тяжести падает с высоты и вращает турбины – так получают большую часть электричества Кыргызстана.",
+              "en": "Naryn river water falls from a height under gravity and spins the turbines – that is how much of Kyrgyzstan's electricity is made."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Салмакты эсептөө",
+              "ru": "Расчёт силы тяжести",
+              "en": "Calculating weight"
+            },
+            "text": {
+              "ky": "2 кг брусокко таасир эткен оордук күчү: F = 2 · 9,81 ≈ 19,6 Н.",
+              "ru": "Сила тяжести, действующая на брусок 2 кг: F = 2 · 9,81 ≈ 19,6 Н.",
+              "en": "The force of gravity on a 2 kg block: F = 2 × 9.81 ≈ 19.6 N."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Алманын түшүшү",
+              "ru": "Падающее яблоко",
+              "en": "A falling apple"
+            },
+            "text": {
+              "ky": "Бактагы алма ылдый түшөт, жогору учпайт – аны Жер тартат.",
+              "ru": "Яблоко в саду падает вниз, а не улетает вверх – его притягивает Земля.",
+              "en": "An apple in the orchard falls down, not up – the Earth pulls it."
+            }
+          },
+          {
+            "title": {
+              "ky": "Топ ыргытуу",
+              "ru": "Бросок мяча",
+              "en": "Throwing a ball"
+            },
+            "text": {
+              "ky": "Топту канчалык бийик ыргытсаң да, ал кайра колуңа кайтып келет.",
+              "ru": "Как высоко ни подбрось мяч, он вернётся обратно.",
+              "en": "However high you throw a ball, it always comes back down."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.normal-force",
+      "kind": "force",
+      "hue": 170,
+      "isContainer": false,
+      "title": {
+        "ky": "Таянычтын реакция күчү",
+        "ru": "Сила реакции опоры",
+        "en": "Normal force"
+      },
+      "subtitle": {
+        "ky": "Тегиздик түртөт",
+        "ru": "Опора давит в ответ",
+        "en": "The surface pushes back"
+      },
+      "description": {
+        "ky": "Тегиздик брусокту ага перпендикуляр түрткөн күч: N = mg·cos α. Ньютондун үчүнчү мыйзамы боюнча брусок да тегиздикке ошондой күч менен басат.",
+        "ru": "Сила, с которой плоскость давит на брусок перпендикулярно своей поверхности: N = mg·cos α. По третьему закону Ньютона брусок давит на плоскость с такой же силой.",
+        "en": "The force with which the surface pushes on the block at right angles to itself: N = mg·cos α. By Newton's third law the block pushes back on the surface just as hard."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "force",
+          "value": 16.99,
+          "approx": true
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "N = mg\\cos\\alpha"
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Тегиздикке перпендикуляр",
+            "ru": "Перпендикулярно плоскости",
+            "en": "Perpendicular to the surface"
+          }
+        }
+      ],
+      "related": [],
+      "misconceptions": [
+        {
+          "key": "phys.m.normal-equals-weight",
+          "text": {
+            "ky": "Таянычтын реакция күчү дайыма mg ге барабар.",
+            "ru": "Сила реакции опоры всегда равна mg.",
+            "en": "The normal force always equals mg."
+          },
+          "correction": {
+            "ky": "Жантайма тегиздикте N = mg·cos α, башкача айтканда mg ден аз; 30° үчүн ≈ 0,87 mg.",
+            "ru": "На наклонной плоскости N = mg·cos α, то есть меньше mg; при 30° – около 0,87 mg.",
+            "en": "On an incline N = mg·cos α, which is less than mg; at 30° it is about 0.87 mg."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Лифт ылдамдап жогору көтөрүлгөндө таянычтын реакция күчү чоңоет – ошондуктан өзүбүздү оор сезебиз.",
+        "ru": "Когда лифт разгоняется вверх, сила реакции опоры растёт – поэтому мы чувствуем себя тяжелее.",
+        "en": "When a lift accelerates upwards, the normal force grows – that is why we feel heavier."
+      },
+      "analogy": {
+        "ky": "Батуттун түртүшү",
+        "ru": "Упругий батут",
+        "en": "A bouncy trampoline"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Көпүрөлөрдүн таянычтары",
+              "ru": "Опоры мостов",
+              "en": "Bridge supports"
+            },
+            "text": {
+              "ky": "Инженерлер көпүрөнүн таянычтары машиналардын салмагына жооп кайтара турган реакция күчүн көтөрө алышын эсептешет.",
+              "ru": "Инженеры рассчитывают, чтобы опоры моста выдерживали силу реакции, отвечающую на вес машин.",
+              "en": "Engineers check that bridge supports can provide the reaction force that balances the weight of the traffic."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Таразалар",
+              "ru": "Весы",
+              "en": "Scales"
+            },
+            "text": {
+              "ky": "Үйдөгү электрондук тараза чындыгында таянычтын реакция күчүн өлчөйт, анан аны килограммга айлантат.",
+              "ru": "Напольные электронные весы на самом деле измеряют силу реакции опоры и пересчитывают её в килограммы.",
+              "en": "Bathroom scales actually measure the normal force and convert it into kilograms."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Колду дубалга таяп",
+              "ru": "Ладонь на стене",
+              "en": "Pushing a wall"
+            },
+            "text": {
+              "ky": "Дубалды түртсөң, дубал да сени түртөт – ошондуктан колуң ичине кирбейт.",
+              "ru": "Ты давишь на стену – стена давит на тебя, поэтому рука не проваливается.",
+              "en": "Push a wall and the wall pushes you back – that is why your hand does not go through."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тоңгон көлдүн музу",
+              "ru": "Лёд на озере",
+              "en": "Ice on a lake"
+            },
+            "text": {
+              "ky": "Калың муз сени көтөрүп турат – ал астыңдан жогору карай түртөт.",
+              "ru": "Толстый лёд держит тебя – он толкает тебя снизу вверх.",
+              "en": "Thick ice holds you up – it pushes up on you from below."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.dynamometer",
+      "kind": "instrument",
+      "hue": 45,
+      "isContainer": false,
+      "title": {
+        "ky": "Динамометр",
+        "ru": "Динамометр",
+        "en": "Dynamometer (spring scale)"
+      },
+      "description": {
+        "ky": "Күчтү ченөөчү прибор. Ичинде пружина бар: ага канча чоң күч таасир этсе, ал ошончо көп чоюлат, ал эми шкала чоюлууну ньютонго айлантып көрсөтөт. Ченөөдөн мурун жебени нөлгө коюп, динамометрди ченелүүчү күчтүн багыты боюнча кармайбыз.",
+        "ru": "Прибор для измерения силы. Внутри – пружина: чем больше сила, тем сильнее она растягивается, а шкала переводит растяжение в ньютоны. Перед измерением ставят указатель на ноль и держат динамометр вдоль измеряемой силы.",
+        "en": "An instrument that measures force. Inside is a spring: the bigger the force, the more it stretches, and the scale turns the stretch into newtons. Before measuring, set the pointer to zero and hold the dynamometer along the force you are measuring."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Күчтү ньютон менен ченейт",
+            "ru": "Измеряет силу в ньютонах",
+            "en": "Measures force in newtons"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Пружина, шкала, жебе, илгич",
+            "ru": "Пружина, шкала, указатель, крючок",
+            "en": "Spring, scale, pointer, hook"
+          }
+        }
+      ],
+      "related": [
+        "phys.force",
+        "phys.weight"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.dynamometer-measures-mass",
+          "text": {
+            "ky": "Динамометр массаны ченейт.",
+            "ru": "Динамометр измеряет массу.",
+            "en": "A dynamometer measures mass."
+          },
+          "correction": {
+            "ky": "Динамометр күчтү ньютон менен ченейт. 1 кг жүк илинсе, Жерде ≈ 9,8 Н көрсөтөт, ал эми Айда ошол эле жүк ≈ 1,6 Н көрсөтөт.",
+            "ru": "Динамометр измеряет силу в ньютонах. Груз 1 кг на Земле растягивает его на ≈ 9,8 Н, а на Луне тот же груз покажет ≈ 1,6 Н.",
+            "en": "A dynamometer measures force in newtons. A 1 kg load reads about 9.8 N on Earth, but the same load would read about 1.6 N on the Moon."
+          }
+        }
+      ],
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Жүк таразасы",
+              "ru": "Багажный безмен",
+              "en": "Luggage scale"
+            },
+            "text": {
+              "ky": "Аэропортко барардан мурун чемоданды пружиналуу кол таразага илип, анын 23 кгдан ашпаганын текшеришет.",
+              "ru": "Перед поездкой в аэропорт чемодан подвешивают на пружинный безмен и проверяют, что он не тяжелее 23 кг.",
+              "en": "Before a flight people hang a suitcase on a spring luggage scale to check it is under 23 kg."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Крандын датчиги",
+              "ru": "Датчик крана",
+              "en": "Crane load cell"
+            },
+            "text": {
+              "ky": "Көтөргүч крандын илгичинде күч датчиги турат: жүк чектен ашса, кран көтөрүүнү токтотот.",
+              "ru": "На крюке подъёмного крана стоит датчик силы: если груз превышает предел, кран останавливает подъём.",
+              "en": "A crane hook has a load cell: if the load is over the limit, the crane stops lifting."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Резина",
+              "ru": "Резинка",
+              "en": "A rubber band"
+            },
+            "text": {
+              "ky": "Резинага оор баштыкты илсең, ал жеңил баштыкка караганда көбүрөөк чоюлат – динамометр ушул эле принцип менен иштейт.",
+              "ru": "Повесь на резинку тяжёлый пакет – она растянется сильнее, чем с лёгким. Динамометр работает так же.",
+              "en": "Hang a heavy bag on a rubber band and it stretches more than with a light one – a dynamometer works the same way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Базардагы илме тараза",
+              "ru": "Безмен на базаре",
+              "en": "A market spring balance"
+            },
+            "text": {
+              "ky": "Базарда кээде эт же картөшкөнү пружиналуу илме тараза менен тартышат: жүк канча оор болсо, пружина ошончо узарат.",
+              "ru": "На базаре иногда взвешивают мясо или картошку пружинным безменом: чем тяжелее груз, тем сильнее растянута пружина.",
+              "en": "At the bazaar meat or potatoes are sometimes weighed with a spring balance: the heavier the load, the longer the spring."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.net-force",
+      "kind": "force",
+      "hue": 300,
+      "isContainer": false,
+      "title": {
+        "ky": "Тең аракеттүү күч",
+        "ru": "Равнодействующая сила",
+        "en": "Net force"
+      },
+      "subtitle": {
+        "ky": "Бардык күчтөрдүн суммасы",
+        "ru": "Сумма всех сил",
+        "en": "The sum of all forces"
+      },
+      "description": {
+        "ky": "Денеге таасир эткен бардык күчтөрдүн вектордук суммасы. Ньютондун экинчи мыйзамы: F = ma. Брусок үчүн тегиздик боюнча F = mg·sin α − μmg·cos α ≈ 6,4 Н.",
+        "ru": "Векторная сумма всех сил, действующих на тело. Второй закон Ньютона: F = ma. Для бруска вдоль плоскости F = mg·sin α − μmg·cos α ≈ 6,4 Н.",
+        "en": "The vector sum of all the forces on a body. Newton's second law: F = ma. For the block along the slope F = mg·sin α − μmg·cos α ≈ 6.4 N."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "force",
+          "value": 6.41,
+          "approx": true
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "F = ma"
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Тегиздик боюнча ылдый",
+            "ru": "Вдоль плоскости вниз",
+            "en": "Down along the slope"
+          }
+        }
+      ],
+      "related": [
+        "phys.gravity"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.net-force-velocity",
+          "text": {
+            "ky": "Тең аракеттүү күч дайыма кыймылдын багыты менен дал келет.",
+            "ru": "Равнодействующая всегда направлена туда, куда движется тело.",
+            "en": "The net force always points the way the body is moving."
+          },
+          "correction": {
+            "ky": "Күч ылдамдануунун багытын аныктайт, ылдамдыктын эмес: жогору ыргытылган топтун кыймылы жогору, ал эми күч ылдый.",
+            "ru": "Сила задаёт направление ускорения, а не скорости: подброшенный мяч летит вверх, а сила направлена вниз.",
+            "en": "Force sets the direction of acceleration, not velocity: a ball thrown up moves upwards while the force points down."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Ньютон өзүнүн үч мыйзамын 1687-жылы «Натурфилософиянын математикалык негиздери» китебинде жарыялаган.",
+        "ru": "Ньютон опубликовал три закона в 1687 году в книге «Математические начала натуральной философии».",
+        "en": "Newton published his three laws in 1687 in the 'Mathematical Principles of Natural Philosophy'."
+      },
+      "analogy": {
+        "ky": "Аркан тартуу",
+        "ru": "Перетягивание каната",
+        "en": "A tug of war"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Ракеталар",
+              "ru": "Ракеты",
+              "en": "Rockets"
+            },
+            "text": {
+              "ky": "Ракета учушу үчүн кыймылдаткычтын тартуу күчү оордук күчүнөн чоң болушу керек: тең аракеттүү күч жогору карай.",
+              "ru": "Чтобы ракета взлетела, тяга двигателя должна превышать силу тяжести: равнодействующая направлена вверх.",
+              "en": "For a rocket to lift off, engine thrust must beat gravity, so the net force points up."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Векторлорду кошуу",
+              "ru": "Сложение векторов",
+              "en": "Adding vectors"
+            },
+            "text": {
+              "ky": "Күчтөр жебе-векторлор менен кошулат: 9,8 Н ылдый тартылуу жана 3,4 Н сүрүлүү тегиздик боюнча 6,4 Н тең аракеттүү күч берет.",
+              "ru": "Силы складывают как векторы-стрелки: 9,8 Н скатывающей силы и 3,4 Н трения дают вдоль плоскости 6,4 Н.",
+              "en": "Forces add as vector arrows: a 9.8 N downhill pull and 3.4 N of friction leave a 6.4 N net force along the slope."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Аркан тартуу",
+              "ru": "Перетягивание каната",
+              "en": "Tug of war"
+            },
+            "text": {
+              "ky": "Эки команда тең күч менен тартса, аркан ордунан жылбайт. Бир команда күчтүү болсо – ошол тарапка жылат.",
+              "ru": "Если команды тянут одинаково, канат стоит на месте. Сильнее одна – канат поедет к ней.",
+              "en": "If both teams pull equally, the rope stays put. If one is stronger, the rope moves its way."
+            }
+          },
+          {
+            "title": {
+              "ky": "Арабаны түртүү",
+              "ru": "Толкать тележку",
+              "en": "Pushing a cart"
+            },
+            "text": {
+              "ky": "Дүкөндөгү арабаны эки адам бир жакка түртсө, ал тезирээк ылдамдайт.",
+              "ru": "Если тележку в магазине толкают двое в одну сторону, она разгоняется быстрее.",
+              "en": "If two people push a shopping trolley the same way, it speeds up faster."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "phys.pulley-movable-lift",
+      "engine": "timeline",
+      "icon": "trending-up",
+      "title": {
+        "ky": "Кыймылдуу блок менен жүк көтөрүү",
+        "ru": "Подъём груза подвижным блоком",
+        "en": "Lifting with a movable pulley"
+      },
+      "description": {
+        "ky": "10 кг жүктү кыймылдуу блок менен 1 м ге көтөрөбүз: жүктүн бийиктиги жана жиптин тартылган узундугу кантип өзгөрөрүн байкайбыз.",
+        "ru": "Поднимаем груз 10 кг подвижным блоком на 1 м и следим, как меняются высота груза и длина вытянутой верёвки.",
+        "en": "We lift a 10 kg load 1 m with a movable pulley and watch the load’s height and the length of rope pulled."
+      },
+      "equation": "F = \\frac{P}{2},\\quad s = 2h,\\quad F s = P h",
+      "inputs": {
+        "ky": "m = 10 кг, P = 98 Н, h = 1 м, сүрүлүү жок",
+        "ru": "m = 10 кг, P = 98 Н, h = 1 м, без трения",
+        "en": "m = 10 kg, W = 98 N, h = 1 m, no friction"
+      },
+      "outputs": {
+        "ky": "F = 49 Н, s = 2 м, A = 98 Дж",
+        "ru": "F = 49 Н, s = 2 м, A = 98 Дж",
+        "en": "F = 49 N, s = 2 m, A = 98 J"
+      },
+      "energy": {
+        "ky": "Колдун жумушу F·s = 98 Дж = жүктү көтөрүү жумушу P·h",
+        "ru": "Работа руки F·s = 98 Дж = работа подъёма груза P·h",
+        "en": "The hand’s work F·s = 98 J = the lifting work W·h"
+      },
+      "steps": [
+        {
+          "key": "hook",
+          "title": {
+            "ky": "Жүктү илүү",
+            "ru": "Подвешиваем груз",
+            "en": "Hang the load"
+          },
+          "result": {
+            "ky": "h = 0, s = 0",
+            "ru": "h = 0, s = 0",
+            "en": "h = 0, s = 0"
+          },
+          "description": {
+            "ky": "Жүк кыймылдуу блоктун огундагы илмекке илинет, жиптин бир учу шыпка бекитилет.",
+            "ru": "Груз висит на крюке оси подвижного блока, один конец верёвки закреплён у потолка.",
+            "en": "The load hangs from the movable pulley’s axle; one rope end is tied to the ceiling."
+          },
+          "conceptKey": "phys.pulley-movable",
+          "altText": {
+            "ky": "Жүк полдо, жип бош эмес.",
+            "ru": "Груз у пола, верёвка натянута.",
+            "en": "The load on the floor, the rope taut."
+          },
+          "duration": 1
+        },
+        {
+          "key": "half",
+          "title": {
+            "ky": "Жарымы",
+            "ru": "Половина пути",
+            "en": "Halfway"
+          },
+          "result": {
+            "ky": "h = 0,5 м, s = 1 м",
+            "ru": "h = 0,5 м, s = 1 м",
+            "en": "h = 0.5 m, s = 1 m"
+          },
+          "description": {
+            "ky": "Жипти 1 м тарттык – жүк 0,5 м гана көтөрүлдү.",
+            "ru": "Вытянули 1 м верёвки – груз поднялся только на 0,5 м.",
+            "en": "One metre of rope pulled – the load has risen only 0.5 m."
+          },
+          "conceptKey": "phys.golden-rule",
+          "altText": {
+            "ky": "Жүк ортодо.",
+            "ru": "Груз на середине.",
+            "en": "The load halfway up."
+          },
+          "duration": 1
+        },
+        {
+          "key": "top",
+          "title": {
+            "ky": "Жүк 1 м бийиктикте",
+            "ru": "Груз на высоте 1 м",
+            "en": "Load at 1 m"
+          },
+          "result": {
+            "ky": "h = 1 м, s = 2 м",
+            "ru": "h = 1 м, s = 2 м",
+            "en": "h = 1 m, s = 2 m"
+          },
+          "description": {
+            "ky": "Жиптин учу 2 м жылды, жүк 1 м ге көтөрүлдү: s = 2h.",
+            "ru": "Конец верёвки прошёл 2 м, груз поднялся на 1 м: s = 2h.",
+            "en": "The rope end has moved 2 m and the load 1 m: s = 2h."
+          },
+          "conceptKey": "phys.weight",
+          "altText": {
+            "ky": "Жүк өйдөдө, сызгычта 1 м жана 2 м.",
+            "ru": "Груз вверху, на линейке 1 м и 2 м.",
+            "en": "The load at the top; the ruler shows 1 m and 2 m."
+          },
+          "duration": 1
+        },
+        {
+          "key": "work",
+          "title": {
+            "ky": "Жумуштарды салыштыруу",
+            "ru": "Сравниваем работы",
+            "en": "Compare the work"
+          },
+          "result": {
+            "ky": "A = 98 Дж",
+            "ru": "A = 98 Дж",
+            "en": "A = 98 J"
+          },
+          "description": {
+            "ky": "F·s = 49 Н · 2 м = 98 Дж, P·h = 98 Н · 1 м = 98 Дж. Жумуштан утуш жок – механиканын «алтын эрежеси».",
+            "ru": "F·s = 49 Н · 2 м = 98 Дж, P·h = 98 Н · 1 м = 98 Дж. Выигрыша в работе нет – «золотое правило» механики.",
+            "en": "F·s = 49 N × 2 m = 98 J, W·h = 98 N × 1 m = 98 J. No work is saved – the golden rule of mechanics."
+          },
+          "conceptKey": "phys.golden-rule",
+          "altText": {
+            "ky": "Эки бирдей энергия тилкеси.",
+            "ru": "Два одинаковых столбика энергии.",
+            "en": "Two equal energy bars."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "h",
+          "label": {
+            "ky": "Жүктүн бийиктиги h",
+            "ru": "Высота груза h",
+            "en": "Load height h"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 1,
+          "precision": 2
+        },
+        {
+          "key": "s",
+          "label": {
+            "ky": "Тартылган жип s",
+            "ru": "Вытянутая верёвка s",
+            "en": "Rope pulled s"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 2,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "h@hook": 0,
+        "h@half": 0.5,
+        "h@top": 1,
+        "h@work": 1,
+        "s@hook": 0,
+        "s@half": 1,
+        "s@top": 2,
+        "s@work": 2
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "phys.q.phys7-pulley-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Кандайдыр октун айланасында айлануучу жана алкагынын кырында жип салуучу оюгу бар дөңгөлөк ... деп аталат.",
+        "ru": "Колесо, вращающееся вокруг оси, с жёлобом по ободу для верёвки, называют …",
+        "en": "A wheel that turns on an axle and has a groove round its rim for a rope is called a …"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "динамометр",
+            "ru": "динамометр",
+            "en": "dynamometer"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "блок",
+            "ru": "блок",
+            "en": "pulley"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "рычаг",
+            "ru": "рычаг",
+            "en": "lever"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "компас",
+            "ru": "компас",
+            "en": "compass"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Бул – блок (§48). Анын жолчосу аркылуу жип, аркан же чынжыр өткөрүлөт.",
+        "ru": "Это блок (§48). Через его жёлоб пропускают верёвку, трос или цепь.",
+        "en": "That is a pulley (§48); a rope, cable or chain runs in its groove."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-pulley-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Кыймылсыз блок аркылуу 10 кг жүктү бир калыпта көтөрүү үчүн канча күч керек? (g = 9,8 Н/кг, сүрүлүү жок)",
+        "ru": "Какая сила нужна, чтобы равномерно поднять груз 10 кг через неподвижный блок? (g = 9,8 Н/кг, трения нет)",
+        "en": "What force lifts a 10 kg load steadily over a fixed pulley? (g = 9.8 N/kg, no friction)"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "49 Н",
+            "ru": "49 Н",
+            "en": "49 N"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "98 Н",
+            "ru": "98 Н",
+            "en": "98 N"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "196 Н",
+            "ru": "196 Н",
+            "en": "196 N"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "10 Н",
+            "ru": "10 Н",
+            "en": "10 N"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Кыймылсыз блоктун ийиндери бирдей (OA = OB), ошондуктан F = P = 10 · 9,8 = 98 Н. Ал күчтөн утуш бербейт.",
+        "ru": "Плечи неподвижного блока равны (OA = OB), поэтому F = P = 10 · 9,8 = 98 Н. Выигрыша в силе нет.",
+        "en": "The fixed pulley’s arms are equal (OA = OB), so F = W = 10 × 9.8 = 98 N – no gain in force."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.fixed-pulley-gain",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-pulley-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кыймылдуу блок менен 10 кг жүк бир калыпта көтөрүлүп жатат. Блоктун массасы жана сүрүлүү эсепке алынбайт. Жипке канча Н күч жумшалат? (g = 9,8 Н/кг)",
+        "ru": "Подвижным блоком равномерно поднимают груз 10 кг. Массу блока и трение не учитываем. С какой силой (в Н) тянут верёвку? (g = 9,8 Н/кг)",
+        "en": "A 10 kg load is lifted steadily with a movable pulley; ignore the pulley’s mass and friction. What force in N pulls the rope? (g = 9.8 N/kg)"
+      },
+      "answer": 49,
+      "tolerance": 0.5,
+      "unit": "N",
+      "explanation": {
+        "ky": "P = 98 Н. Кыймылдуу блок күчтөн 2 эсе утат: F = P/2 = 49 Н.",
+        "ru": "P = 98 Н. Подвижный блок даёт выигрыш в силе вдвое: F = P/2 = 49 Н.",
+        "en": "W = 98 N. A movable pulley halves the force: F = W/2 = 49 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-pulley-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Жүктү кыймылдуу блоктун жардамы менен 2 м бийиктикке көтөрүштү. Аркандын бош учу канча метрге жылды?",
+        "ru": "Груз подняли подвижным блоком на высоту 2 м. На сколько метров сдвинулся свободный конец верёвки?",
+        "en": "A load is raised 2 m with a movable pulley. How many metres does the free end of the rope move?"
+      },
+      "answer": 4,
+      "tolerance": 0.05,
+      "unit": "m",
+      "explanation": {
+        "ky": "Кыймылдуу блокто s = 2h = 2 · 2 м = 4 м: күчтөн 2 эсе утуп, жолдон 2 эсе уттурабыз.",
+        "ru": "У подвижного блока s = 2h = 2 · 2 м = 4 м: выигрыш в силе вдвое – проигрыш в пути вдвое.",
+        "en": "With a movable pulley s = 2h = 2 × 2 m = 4 m: half the force, twice the distance."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.movable-pulley-path",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-pulley-5",
+      "type": "match",
+      "prompt": {
+        "ky": "Механизмди жүктү көтөргөндөгү күч менен дал келтир (жүктүн салмагы P, сүрүлүү жок).",
+        "ru": "Сопоставь механизм и силу при подъёме груза (вес груза P, трения нет).",
+        "en": "Match each machine to the force needed (load weight W, no friction)."
+      },
+      "pairs": [
+        {
+          "key": "fixed",
+          "left": {
+            "ky": "Кыймылсыз блок",
+            "ru": "Неподвижный блок",
+            "en": "Fixed pulley"
+          },
+          "right": {
+            "ky": "F = P, багыты өзгөрөт",
+            "ru": "F = P, меняется направление",
+            "en": "F = W, direction changed"
+          }
+        },
+        {
+          "key": "movable",
+          "left": {
+            "ky": "Кыймылдуу блок",
+            "ru": "Подвижный блок",
+            "en": "Movable pulley"
+          },
+          "right": {
+            "ky": "F = P/2, жип өйдө тартылат",
+            "ru": "F = P/2, верёвку тянут вверх",
+            "en": "F = W/2, rope pulled up"
+          }
+        },
+        {
+          "key": "tackle",
+          "left": {
+            "ky": "Кыймылсыз + кыймылдуу блок",
+            "ru": "Неподвижный + подвижный блок",
+            "en": "Fixed + movable pulley"
+          },
+          "right": {
+            "ky": "F = P/2, жип ылдый тартылат",
+            "ru": "F = P/2, верёвку тянут вниз",
+            "en": "F = W/2, rope pulled down"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Кыймылсыз блок багытты гана өзгөртөт, кыймылдуусу күчтөн 2 эсе утат; экөө бирге 2 эсе утуп, ыңгайлуу багыт берет (128-сүрөт).",
+        "ru": "Неподвижный блок меняет только направление, подвижный даёт выигрыш вдвое; вместе – выигрыш вдвое и удобное направление (рис. 128).",
+        "en": "A fixed pulley only turns the force; a movable one halves it; together they halve it and let you pull down (fig. 128)."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-pulley-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден кыймылдуу блокту тап.",
+        "ru": "Найди на модели подвижный блок.",
+        "en": "Find the movable pulley on the model."
+      },
+      "targetConceptKey": "phys.pulley-movable",
+      "explanation": {
+        "ky": "Кыймылдуу блок – жүк менен кошо өйдө чыккан дөңгөлөк; жүк анын огундагы илмекте.",
+        "ru": "Подвижный блок – колесо, которое поднимается вместе с грузом; груз висит на крюке его оси.",
+        "en": "The movable pulley is the wheel that rises with the load, which hangs from its axle."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-pulley-7",
+      "type": "single",
+      "prompt": {
+        "ky": "Механиканын «алтын эрежесинин» мааниси эмнеде?",
+        "ru": "В чём суть «золотого правила» механики?",
+        "en": "What does the golden rule of mechanics say?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Күчтөн канча эсе утсак, аралыктан ошончо эсе утуш алабыз",
+            "ru": "Во сколько раз выигрываем в силе, во столько же выигрываем в расстоянии",
+            "en": "Gain in force and the same gain in distance"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Күчтөн канча эсе утсак, аралыктан ошончо эсе уттурабыз",
+            "ru": "Во сколько раз выигрываем в силе, во столько же проигрываем в расстоянии",
+            "en": "Whatever is gained in force is lost in distance"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Күчтөн утуш алуунун аралыкка байланышы жок",
+            "ru": "Выигрыш в силе не связан с расстоянием",
+            "en": "Gain in force has nothing to do with distance"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Нерсе кыймылга келсе эле жумуш аткарылат",
+            "ru": "Работа совершается, если тело просто движется",
+            "en": "Work is done whenever a body moves"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Жөнөкөй механизмдер жумуштан утуш бербейт: F·s = P·h (§49).",
+        "ru": "Простые механизмы не дают выигрыша в работе: F·s = P·h (§49).",
+        "en": "Simple machines save no work: F·s = W·h (§49)."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.gain-force-and-path",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-pulley-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кыймылдуу блок менен 10 кг жүк 1 м ге көтөрүлдү. Колдун аткарган жумушу канча Дж? (g = 9,8 Н/кг, сүрүлүү жок)",
+        "ru": "Подвижным блоком груз 10 кг подняли на 1 м. Какую работу (в Дж) совершила рука? (g = 9,8 Н/кг, трения нет)",
+        "en": "A 10 kg load is raised 1 m with a movable pulley. How much work in J does the hand do? (g = 9.8 N/kg, no friction)"
+      },
+      "answer": 98,
+      "tolerance": 1,
+      "unit": "J",
+      "explanation": {
+        "ky": "F = 49 Н, s = 2 м: A = F·s = 98 Дж – жүктү түз көтөргөндөгүдөй эле (P·h = 98 Н · 1 м). Жумуштан утуш жок.",
+        "ru": "F = 49 Н, s = 2 м: A = F·s = 98 Дж – столько же, сколько при подъёме напрямую (P·h = 98 Н · 1 м). Выигрыша в работе нет.",
+        "en": "F = 49 N, s = 2 m: A = F·s = 98 J – the same as lifting directly (W·h = 98 N × 1 m). No work is saved."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.machine-saves-work",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-pulley-9",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кыймылсыз блок жөнүндө туура пикирлерди танда.",
+        "ru": "Выбери верные утверждения о неподвижном блоке.",
+        "en": "Choose the true statements about a fixed pulley."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Күчтүн багытын өзгөртөт",
+            "ru": "Меняет направление силы",
+            "en": "It changes the direction of the force"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Бирдей ийиндүү рычаг сыяктуу",
+            "ru": "Подобен равноплечему рычагу",
+            "en": "It acts like an equal-arm lever"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Күчтөн 2 эсе утуш берет",
+            "ru": "Даёт выигрыш в силе вдвое",
+            "en": "It halves the force"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Жумуштан утуш бербейт",
+            "ru": "Не даёт выигрыша в работе",
+            "en": "It saves no work"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": {
+        "ky": "Кыймылсыз блокто OA = OB, F = P: утуш жок, багыт гана өзгөрөт; жумуштан да утуш жок.",
+        "ru": "У неподвижного блока OA = OB, F = P: выигрыша нет, меняется только направление; в работе тоже нет выигрыша.",
+        "en": "For a fixed pulley OA = OB and F = W: no gain, only a change of direction – and no work saved."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.fixed-pulley-gain",
+      "difficulty": 2
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-phys-pendulum",
+      "ky": "маятник",
+      "ru": "маятник",
+      "en": "pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-period",
+      "ky": "термелүү мезгили",
+      "ru": "период колебаний",
+      "en": "period of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-amplitude",
+      "ky": "амплитуда",
+      "ru": "амплитуда",
+      "en": "amplitude",
+      "forbidden": [
+        "amplitud"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gravity",
+      "ky": "оордук күчү",
+      "ru": "сила тяжести",
+      "en": "force of gravity",
+      "forbidden": [
+        "attraction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction",
+      "ky": "сүрүлүү күчү",
+      "ru": "сила трения",
+      "en": "friction force",
+      "forbidden": [
+        "force of rubbing"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-force",
+      "ky": "таянычтын реакция күчү",
+      "ru": "сила реакции опоры",
+      "en": "normal force",
+      "forbidden": [
+        "support reaction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-acceleration",
+      "ky": "ылдамдануу",
+      "ru": "ускорение",
+      "en": "acceleration",
+      "forbidden": [
+        "тездетүү"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-speed",
+      "ky": "ылдамдык",
+      "ru": "скорость",
+      "en": "speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinetic-energy",
+      "ky": "кинетикалык энергия",
+      "ru": "кинетическая энергия",
+      "en": "kinetic energy",
+      "forbidden": [
+        "кинетический энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-potential-energy",
+      "ky": "потенциалдык энергия",
+      "ru": "потенциальная энергия",
+      "en": "potential energy",
+      "forbidden": [
+        "потенциальный энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-voltage",
+      "ky": "чыңалуу",
+      "ru": "напряжение",
+      "en": "voltage",
+      "forbidden": [
+        "electric tension"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-current",
+      "ky": "ток күчү",
+      "ru": "сила тока",
+      "en": "electric current",
+      "forbidden": [
+        "current force",
+        "current strength"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-resistance",
+      "ky": "каршылык",
+      "ru": "сопротивление",
+      "en": "resistance",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-circuit",
+      "ky": "электр чынжыры",
+      "ru": "электрическая цепь",
+      "en": "electric circuit",
+      "forbidden": [
+        "electric chain",
+        "электрическая цепочка"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-source",
+      "ky": "ток булагы",
+      "ru": "источник тока",
+      "en": "power source",
+      "forbidden": [
+        "source of current"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-switch",
+      "ky": "ачкыч",
+      "ru": "ключ (выключатель)",
+      "en": "switch",
+      "forbidden": [
+        "electric key"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-distance-travelled",
+      "ky": "басып өткөн жол",
+      "ru": "пройденный путь",
+      "en": "distance travelled",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-time",
+      "ky": "убакыт",
+      "ru": "время",
+      "en": "time",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-uniform-motion",
+      "ky": "бир калыптагы кыймыл",
+      "ru": "равномерное движение",
+      "en": "uniform motion",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-average-speed",
+      "ky": "орточо ылдамдык",
+      "ru": "средняя скорость",
+      "en": "average speed",
+      "forbidden": [
+        "medium speed"
+      ]
+    },
+    {
+      "id": "g-phys-speed-radar",
+      "ky": "ылдамдык радары",
+      "ru": "радар скорости",
+      "en": "speed radar",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-stopwatch",
+      "ky": "секундомер",
+      "ru": "секундомер",
+      "en": "stopwatch",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-distance-time-graph",
+      "ky": "жолдун убакыттан көз карандылык графиги",
+      "ru": "график зависимости пути от времени",
+      "en": "distance–time graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-graph-slope",
+      "ky": "графиктин тиктиги",
+      "ru": "наклон графика",
+      "en": "slope of a graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-rest",
+      "ky": "тынч абал",
+      "ru": "покой",
+      "en": "rest",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-force",
+      "ky": "күч",
+      "ru": "сила",
+      "en": "force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-vector",
+      "ky": "вектор",
+      "ru": "вектор",
+      "en": "vector",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-newton",
+      "ky": "ньютон (Н)",
+      "ru": "ньютон (Н)",
+      "en": "newton (N)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-dynamometer",
+      "ky": "динамометр",
+      "ru": "динамометр",
+      "en": "dynamometer (spring scale)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-weight",
+      "ky": "салмак",
+      "ru": "вес тела",
+      "en": "weight",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-resultant",
+      "ky": "тең аракеттүү күч",
+      "ru": "равнодействующая сила",
+      "en": "resultant force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-elastic-force",
+      "ky": "серпилгичтик күчү",
+      "ru": "сила упругости",
+      "en": "elastic force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-point-of-application",
+      "ky": "күчтүн коюлган чекити",
+      "ru": "точка приложения силы",
+      "en": "point of application",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever",
+      "ky": "рычаг",
+      "ru": "рычаг",
+      "en": "lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-pivot",
+      "ky": "таяныч чекити",
+      "ru": "точка опоры",
+      "en": "pivot (fulcrum)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever-arm",
+      "ky": "күчтүн ийини",
+      "ru": "плечо силы",
+      "en": "lever arm",
+      "forbidden": [
+        "shoulder of force"
+      ]
+    },
+    {
+      "id": "g-phys-moment",
+      "ky": "күчтүн моменти",
+      "ru": "момент силы",
+      "en": "moment of a force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-equilibrium-lever",
+      "ky": "рычагдын тең салмактуулугу",
+      "ru": "равновесие рычага",
+      "en": "equilibrium of a lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-interaction",
+      "ky": "өз ара аракеттенишүү",
+      "ru": "взаимодействие",
+      "en": "interaction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-deformation",
+      "ky": "деформация",
+      "ru": "деформация",
+      "en": "deformation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inertia",
+      "ky": "инерция",
+      "ru": "инерция",
+      "en": "inertia",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inertness",
+      "ky": "инерттүүлүк",
+      "ru": "инертность",
+      "en": "inertness",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-first-law",
+      "ky": "Ньютондун биринчи закону",
+      "ru": "первый закон Ньютона",
+      "en": "Newton's first law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mass",
+      "ky": "масса",
+      "ru": "масса",
+      "en": "mass",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kilogram",
+      "ky": "килограмм (кг)",
+      "ru": "килограмм (кг)",
+      "en": "kilogram (kg)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-balance-scale",
+      "ky": "тараза",
+      "ru": "весы",
+      "en": "balance (scales)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-beam",
+      "ky": "коромысло (тараза ийини)",
+      "ru": "коромысло",
+      "en": "beam (of a balance)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-weights-set",
+      "ky": "тараза таштары (гирялар)",
+      "ru": "гири",
+      "en": "weights (set of masses)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-density",
+      "ky": "заттын тыгыздыгы",
+      "ru": "плотность вещества",
+      "en": "density",
+      "forbidden": [
+        "тыгыздуулук"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-second-law",
+      "ky": "Ньютондун экинчи закону",
+      "ru": "второй закон Ньютона",
+      "en": "Newton's second law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-universal-gravitation",
+      "ky": "бүткүл дүйнөлүк тартылуу",
+      "ru": "всемирное тяготение",
+      "en": "universal gravitation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-fall",
+      "ky": "эркин түшүү",
+      "ru": "свободное падение",
+      "en": "free fall",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-fall-acceleration",
+      "ky": "эркин түшүүнүн ылдамдануусу",
+      "ru": "ускорение свободного падения",
+      "en": "free-fall acceleration",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-support",
+      "ky": "таяныч",
+      "ru": "опора",
+      "en": "support",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-suspension",
+      "ky": "асма",
+      "ru": "подвес",
+      "en": "suspension",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hooke-law",
+      "ky": "Гуктун закону",
+      "ru": "закон Гука",
+      "en": "Hooke's law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-stiffness",
+      "ky": "пружинанын катуулугу",
+      "ru": "жёсткость пружины",
+      "en": "spring stiffness",
+      "forbidden": [
+        "spring hardness"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-extension",
+      "ky": "пружинанын узарышы",
+      "ru": "удлинение пружины",
+      "en": "spring extension",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-graduation",
+      "ky": "динамометрди градуирлөө",
+      "ru": "градуировка динамометра",
+      "en": "calibration of a dynamometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-measurement-limit",
+      "ky": "өлчөө чеги",
+      "ru": "предел измерения",
+      "en": "measuring range",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sliding-friction",
+      "ky": "тайгаланып сүрүлүү",
+      "ru": "трение скольжения",
+      "en": "sliding friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rolling-friction",
+      "ky": "тоголонуп сүрүлүү",
+      "ru": "трение качения",
+      "en": "rolling friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-static-friction",
+      "ky": "тынч туруудагы сүрүлүү",
+      "ru": "трение покоя",
+      "en": "static friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction-coefficient",
+      "ky": "сүрүлүү коэффициенти",
+      "ru": "коэффициент трения",
+      "en": "coefficient of friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-third-law",
+      "ky": "Ньютондун үчүнчү закону",
+      "ru": "третий закон Ньютона",
+      "en": "Newton's third law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-action-reaction",
+      "ky": "аракет жана каршы аракет",
+      "ru": "действие и противодействие",
+      "en": "action and reaction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-phenomenon",
+      "ky": "кубулуш",
+      "ru": "явление",
+      "en": "phenomenon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-physical-quantity",
+      "ky": "физикалык чоңдук",
+      "ru": "физическая величина",
+      "en": "physical quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-si",
+      "ky": "СИ (бирдиктердин эл аралык системасы)",
+      "ru": "СИ (Международная система единиц)",
+      "en": "SI (International System of Units)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scale",
+      "ky": "шкала",
+      "ru": "шкала",
+      "en": "scale",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scale-division",
+      "ky": "шкаланын баасы",
+      "ru": "цена деления шкалы",
+      "en": "scale division value",
+      "forbidden": [
+        "scale price"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-motion",
+      "ky": "механикалык кыймыл",
+      "ru": "механическое движение",
+      "en": "mechanical motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinematics",
+      "ky": "кинематика",
+      "ru": "кинематика",
+      "en": "kinematics",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-relativity-of-motion",
+      "ky": "кыймылдын салыштырмалуулугу",
+      "ru": "относительность движения",
+      "en": "relativity of motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-reference-body",
+      "ky": "салыштыруу нерсеси",
+      "ru": "тело отсчёта",
+      "en": "reference body",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-material-point",
+      "ky": "материялык чекит",
+      "ru": "материальная точка",
+      "en": "material point",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-trajectory",
+      "ky": "кыймылдын траекториясы",
+      "ru": "траектория движения",
+      "en": "trajectory",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rectilinear-motion",
+      "ky": "түз сызыктуу кыймыл",
+      "ru": "прямолинейное движение",
+      "en": "straight-line motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-curvilinear-motion",
+      "ky": "ийри сызыктуу кыймыл",
+      "ru": "криволинейное движение",
+      "en": "curvilinear motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-path-length",
+      "ky": "өтүлгөн жол",
+      "ru": "пройденный путь",
+      "en": "path length",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-displacement",
+      "ky": "которулуш",
+      "ru": "перемещение",
+      "en": "displacement",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scalar",
+      "ky": "скалярдык чоңдук",
+      "ru": "скалярная величина",
+      "en": "scalar quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-vector-quantity",
+      "ky": "вектордук чоңдук",
+      "ru": "векторная величина",
+      "en": "vector quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-non-uniform-motion",
+      "ky": "бир калыптагы эмес кыймыл",
+      "ru": "неравномерное движение",
+      "en": "non-uniform motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-initial-speed",
+      "ky": "баштапкы ылдамдык",
+      "ru": "начальная скорость",
+      "en": "initial speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-final-speed",
+      "ky": "акыркы ылдамдык",
+      "ru": "конечная скорость",
+      "en": "final speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-accelerated-motion",
+      "ky": "ылдамдатылган кыймыл",
+      "ru": "ускоренное движение",
+      "en": "accelerated motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-decelerated-motion",
+      "ky": "акырындатылган кыймыл",
+      "ru": "замедленное движение",
+      "en": "decelerated motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-uniform-circular-motion",
+      "ky": "айлана боюнча бир калыптагы кыймыл",
+      "ru": "равномерное движение по окружности",
+      "en": "uniform circular motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-linear-speed",
+      "ky": "сызыктуу ылдамдык",
+      "ru": "линейная скорость",
+      "en": "linear speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rotation-period",
+      "ky": "айлануу мезгили",
+      "ru": "период обращения",
+      "en": "period of rotation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rotation-frequency",
+      "ky": "айлануунун жыштыгы",
+      "ru": "частота обращения",
+      "en": "rotation frequency",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-tangent",
+      "ky": "жаныма",
+      "ru": "касательная",
+      "en": "tangent",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-momentum",
+      "ky": "нерсенин импульсу",
+      "ru": "импульс тела",
+      "en": "momentum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-momentum-conservation",
+      "ky": "импульстун сакталуу закону",
+      "ru": "закон сохранения импульса",
+      "en": "conservation of momentum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-closed-system",
+      "ky": "туюк система",
+      "ru": "замкнутая система",
+      "en": "closed system",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-jet-propulsion",
+      "ky": "реактивдүү кыймыл",
+      "ru": "реактивное движение",
+      "en": "jet propulsion",
+      "forbidden": [
+        "реактивный кыймыл"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rocket",
+      "ky": "ракета",
+      "ru": "ракета",
+      "en": "rocket",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-work",
+      "ky": "механикалык жумуш",
+      "ru": "механическая работа",
+      "en": "mechanical work",
+      "forbidden": [
+        "механикалык иш"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-joule",
+      "ky": "джоуль (Дж)",
+      "ru": "джоуль (Дж)",
+      "en": "joule (J)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-power",
+      "ky": "кубаттуулук",
+      "ru": "мощность",
+      "en": "power",
+      "forbidden": [
+        "кубаттулук"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-watt",
+      "ky": "ватт (Вт)",
+      "ru": "ватт (Вт)",
+      "en": "watt (W)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-energy",
+      "ky": "энергия",
+      "ru": "энергия",
+      "en": "energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-energy",
+      "ky": "механикалык энергия",
+      "ru": "механическая энергия",
+      "en": "mechanical energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-total-mechanical-energy",
+      "ky": "толук механикалык энергия",
+      "ru": "полная механическая энергия",
+      "en": "total mechanical energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-energy-conservation",
+      "ky": "энергиянын сакталуу закону",
+      "ru": "закон сохранения энергии",
+      "en": "conservation of energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-maxwell-pendulum",
+      "ky": "Максвелл маятниги",
+      "ru": "маятник Максвелла",
+      "en": "Maxwell's pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pressure",
+      "ky": "басым",
+      "ru": "давление",
+      "en": "pressure",
+      "forbidden": [
+        "кысым"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal",
+      "ky": "паскаль (Па)",
+      "ru": "паскаль (Па)",
+      "en": "pascal (Pa)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-area",
+      "ky": "аянт",
+      "ru": "площадь",
+      "en": "area",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pressure-force",
+      "ky": "басым күчү",
+      "ru": "сила давления",
+      "en": "force of pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gas-pressure",
+      "ky": "газдын басымы",
+      "ru": "давление газа",
+      "en": "gas pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-liquid-pressure",
+      "ky": "суюктуктун басымы",
+      "ru": "давление жидкости",
+      "en": "liquid pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-liquid-column",
+      "ky": "суюктук мамычасы",
+      "ru": "столб жидкости",
+      "en": "column of liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-depth",
+      "ky": "тереңдик",
+      "ru": "глубина",
+      "en": "depth",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-manometer",
+      "ky": "манометр",
+      "ru": "манометр",
+      "en": "manometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal-law",
+      "ky": "Паскаль закону",
+      "ru": "закон Паскаля",
+      "en": "Pascal's law",
+      "forbidden": [
+        "Паскалдын закону"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal-ball",
+      "ky": "Паскаль шары",
+      "ru": "шар Паскаля",
+      "en": "Pascal's ball",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-communicating-vessels",
+      "ky": "катыш идиштер",
+      "ru": "сообщающиеся сосуды",
+      "en": "communicating vessels",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-press",
+      "ky": "гидравликалык пресс",
+      "ru": "гидравлический пресс",
+      "en": "hydraulic press",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-lift",
+      "ky": "гидравликалык көтөргүч",
+      "ru": "гидравлический подъёмник",
+      "en": "hydraulic lift",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-brake",
+      "ky": "гидравликалык токтоткуч",
+      "ru": "гидравлический тормоз",
+      "en": "hydraulic brake",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-piston",
+      "ky": "поршень",
+      "ru": "поршень",
+      "en": "piston",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-atmosphere",
+      "ky": "атмосфера",
+      "ru": "атмосфера",
+      "en": "atmosphere",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-atmospheric-pressure",
+      "ky": "атмосфера басымы",
+      "ru": "атмосферное давление",
+      "en": "atmospheric pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-atmospheric-pressure",
+      "ky": "нормалдуу атмосфера басымы",
+      "ru": "нормальное атмосферное давление",
+      "en": "normal atmospheric pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-torricelli-experiment",
+      "ky": "Торричеллинин тажрыйбасы",
+      "ru": "опыт Торричелли",
+      "en": "Torricelli's experiment",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mercury-column",
+      "ky": "сымап мамычасы",
+      "ru": "столб ртути",
+      "en": "mercury column",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mmhg",
+      "ky": "сымап мамычасынын миллиметри (сым. мам. мм)",
+      "ru": "миллиметр ртутного столба (мм рт. ст.)",
+      "en": "millimetre of mercury (mmHg)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-vacuum",
+      "ky": "боштук (вакуум)",
+      "ru": "пустота (вакуум)",
+      "en": "vacuum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-barometer",
+      "ky": "барометр",
+      "ru": "барометр",
+      "en": "barometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-aneroid",
+      "ky": "барометр-анероид",
+      "ru": "барометр-анероид",
+      "en": "aneroid barometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-altimeter",
+      "ky": "бийиктик ченегич",
+      "ru": "высотомер",
+      "en": "altimeter",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-buoyant-force",
+      "ky": "Архимед күчү",
+      "ru": "архимедова сила",
+      "en": "buoyant force",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-archimedes-law",
+      "ky": "Архимед закону",
+      "ru": "закон Архимеда",
+      "en": "Archimedes' principle",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-displaced-liquid",
+      "ky": "сүрүп чыгарылган суюктук",
+      "ru": "вытесненная жидкость",
+      "en": "displaced liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-weight-in-liquid",
+      "ky": "нерсенин суюктуктагы салмагы",
+      "ru": "вес тела в жидкости",
+      "en": "weight in a liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-floating-conditions",
+      "ky": "нерселердин сүзүү шарттары",
+      "ru": "условия плавания тел",
+      "en": "conditions for floating",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-floating",
+      "ky": "калкуу",
+      "ru": "плавание на поверхности",
+      "en": "floating",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sinking",
+      "ky": "чөгүү",
+      "ru": "погружение (тонет)",
+      "en": "sinking",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-waterline",
+      "ky": "ватер сызыгы",
+      "ru": "ватерлиния",
+      "en": "waterline",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-balloon",
+      "ky": "аба шары",
+      "ru": "воздушный шар",
+      "en": "balloon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sonde",
+      "ky": "зонд-шар",
+      "ru": "шар-зонд",
+      "en": "sounding balloon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-simple-machine",
+      "ky": "жөнөкөй механизм",
+      "ru": "простой механизм",
+      "en": "simple machine",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pulley",
+      "ky": "блок",
+      "ru": "блок",
+      "en": "pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-fixed-pulley",
+      "ky": "кыймылсыз блок",
+      "ru": "неподвижный блок",
+      "en": "fixed pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-movable-pulley",
+      "ky": "кыймылдуу блок",
+      "ru": "подвижный блок",
+      "en": "movable pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-golden-rule",
+      "ky": "механиканын «алтын эрежеси»",
+      "ru": "«золотое правило» механики",
+      "en": "golden rule of mechanics",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-useful-work",
+      "ky": "пайдалуу жумуш",
+      "ru": "полезная работа",
+      "en": "useful work",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-total-work",
+      "ky": "толук жумуш",
+      "ru": "полная (затраченная) работа",
+      "en": "total work",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-efficiency",
+      "ky": "пайдалуу аракет коэффициенти (ПАК)",
+      "ru": "коэффициент полезного действия (КПД)",
+      "en": "efficiency",
+      "forbidden": [
+        "пайдалуу иш коэффициенти"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inclined-plane",
+      "ky": "жантык тегиздик",
+      "ru": "наклонная плоскость",
+      "en": "inclined plane",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gain-in-force",
+      "ky": "күчтөн утуш",
+      "ru": "выигрыш в силе",
+      "en": "gain in force",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-oscillation",
+      "ky": "термелүү",
+      "ru": "колебание",
+      "en": "oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-oscillation",
+      "ky": "эркин термелүү",
+      "ru": "свободные колебания",
+      "en": "free oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-equilibrium-position",
+      "ky": "тең салмактуулук абалы",
+      "ru": "положение равновесия",
+      "en": "equilibrium position",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-oscillation-frequency",
+      "ky": "термелүү жыштыгы",
+      "ru": "частота колебаний",
+      "en": "frequency of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hertz",
+      "ky": "герц (Гц)",
+      "ru": "герц (Гц)",
+      "en": "hertz (Hz)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-math-pendulum",
+      "ky": "математикалык маятник",
+      "ru": "математический маятник",
+      "en": "simple pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-isochronism",
+      "ky": "изохронизм",
+      "ru": "изохронизм",
+      "en": "isochronism",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-elastic-medium",
+      "ky": "серпилгичтүү чөйрө",
+      "ru": "упругая среда",
+      "en": "elastic medium",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-wave",
+      "ky": "механикалык толкун",
+      "ru": "механическая волна",
+      "en": "mechanical wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-wavelength",
+      "ky": "толкун узундугу",
+      "ru": "длина волны",
+      "en": "wavelength",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-wave-speed",
+      "ky": "толкундун таралуу ылдамдыгы",
+      "ru": "скорость распространения волны",
+      "en": "wave speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-transverse-wave",
+      "ky": "туурасынан толкун",
+      "ru": "поперечная волна",
+      "en": "transverse wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-longitudinal-wave",
+      "ky": "узатасынан толкун",
+      "ru": "продольная волна",
+      "en": "longitudinal wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sound-wave",
+      "ky": "үн толкуну",
+      "ru": "звуковая волна",
+      "en": "sound wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pitch",
+      "ky": "үндүн тону (бийиктиги)",
+      "ru": "высота (тон) звука",
+      "en": "pitch",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-loudness",
+      "ky": "үндүн катуулугу",
+      "ru": "громкость звука",
+      "en": "loudness",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-timbre",
+      "ky": "үндүн тембри",
+      "ru": "тембр звука",
+      "en": "timbre",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-decibel",
+      "ky": "децибелл (дБ)",
+      "ru": "децибел (дБ)",
+      "en": "decibel (dB)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-tuning-fork",
+      "ky": "камертон",
+      "ru": "камертон",
+      "en": "tuning fork",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-echo",
+      "ky": "жаңырык",
+      "ru": "эхо",
+      "en": "echo",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-ultrasound",
+      "ky": "ультраүн",
+      "ru": "ультразвук",
+      "en": "ultrasound",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-echo-sounder",
+      "ky": "эхолот",
+      "ru": "эхолот",
+      "en": "echo sounder",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "acceleration",
+      "icon": "trending-up",
+      "valueKind": "quantity",
+      "unit": "m/s²",
+      "label": {
+        "ky": "Ылдамдануу",
+        "ru": "Ускорение",
+        "en": "Acceleration"
+      }
+    },
+    {
+      "key": "composition",
+      "icon": "flask-conical",
+      "valueKind": "text",
+      "label": {
+        "ky": "Курамы",
+        "ru": "Состав",
+        "en": "Composition"
+      }
+    },
+    {
+      "key": "energy",
+      "icon": "battery",
+      "valueKind": "quantity",
+      "unit": "J",
+      "label": {
+        "ky": "Энергия",
+        "ru": "Энергия",
+        "en": "Energy"
+      }
+    },
+    {
+      "key": "force",
+      "icon": "arrow-big-right",
+      "valueKind": "quantity",
+      "unit": "N",
+      "label": {
+        "ky": "Күч",
+        "ru": "Сила",
+        "en": "Force"
+      }
+    },
+    {
+      "key": "gravity",
+      "icon": "arrow-down",
+      "valueKind": "quantity",
+      "unit": "m/s²",
+      "label": {
+        "ky": "Эркин түшүү ылдамдануусу",
+        "ru": "Ускорение свободного падения",
+        "en": "Surface gravity"
+      }
+    },
+    {
+      "key": "length",
+      "icon": "ruler",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Узундугу",
+        "ru": "Длина",
+        "en": "Length"
+      }
+    }
+  ]
+}

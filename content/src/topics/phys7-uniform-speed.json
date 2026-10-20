@@ -1,0 +1,578 @@
+{
+  "topic": {
+    "key": "phys7-uniform-speed",
+    "unitKey": "phys.g7.kinematics",
+    "status": "published",
+    "title": { "ky": "Ылдамдык. Бир калыптагы жана бир калыптагы эмес кыймыл", "ru": "Скорость. Равномерное и неравномерное движение", "en": "Speed. Uniform and non-uniform motion" },
+    "formula": "v = s/t,\\; v_{орт} = s/t",
+    "classification": { "ky": "Кинематика", "ru": "Кинематика", "en": "Kinematics" },
+    "description": {
+      "ky": "Машина адегенде 20 м/с, анан 10 м/с ылдамдык менен жүрөт; радар ылдамдыкты, секундомер убакытты, график жолдун убакыттан көз карандылыгын көрсөтөт. Ылдамдык – убакыт бирдиги ичинде өтүлгөн жол: v = s/t. Ылдамдык туруктуу болсо кыймыл бир калыптагы, өзгөрмөлүү болсо – бир калыптагы эмес; анда орточо ылдамдыкты v_орт = s/t менен табабыз. Жолду s = v·t, убакытты t = s/v менен эсептейбиз.",
+      "ru": "Машина едет сначала со скоростью 20 м/с, затем 10 м/с; радар показывает скорость, секундомер – время, график – зависимость пути от времени. Скорость – путь за единицу времени: v = s/t. При постоянной скорости движение равномерное, при переменной – неравномерное; тогда находят среднюю скорость v_ср = s/t. Путь считают по s = v·t, время – по t = s/v.",
+      "en": "A car drives first at 20 m/s, then at 10 m/s; a radar shows the speed, a stopwatch the time and a graph the distance against time. Speed is the distance covered per unit of time: v = s/t. Constant speed means uniform motion, changing speed non-uniform motion, described by the average speed v_av = s/t. We find distance with s = v·t and time with t = s/v."
+    },
+    "goal": {
+      "ky": "Ылдамдыкты, жолду жана убакытты эсептөө, км/саат менен м/с ты которуу, бир калыптагы жана бир калыптагы эмес кыймылды айырмалоо, орточо ылдамдыкты табуу жана s(t) графигин окуу (PHYS-7.1.2).",
+      "ru": "Вычислять скорость, путь и время, переводить км/ч и м/с, различать равномерное и неравномерное движение, находить среднюю скорость и читать график s(t) (PHYS-7.1.2).",
+      "en": "Calculate speed, distance and time, convert between km/h and m/s, tell uniform from non-uniform motion, find the average speed and read an s(t) graph (PHYS-7.1.2)."
+    },
+    "objectiveKeys": ["phys.g7.kinematics.o2"],
+    "durationMin": 90,
+    "scene": {
+      "plugin": "sim",
+      "params": { "model": "kinematics", "segments": [{ "v": 20, "t": 6 }, { "v": 10, "t": 6 }], "radar": true, "showGraph": true, "markEvery": 20 },
+      "camera": { "position": [-3.5, 5, 13], "target": [0, 0.5, 0], "fov": 45 },
+      "modes": ["vectors", "trace", "graph", "labels"]
+    },
+    "conceptKeys": [
+      "phys.car",
+      "phys.speed",
+      "phys.speed-radar",
+      "phys.uniform-motion",
+      "phys.non-uniform-motion",
+      "phys.average-speed",
+      "phys.path-length",
+      "phys.travel-time",
+      "phys.distance-time-graph",
+      "phys.graph-slope"
+    ],
+    "overrides": {
+      "phys.car": {
+        "nodes": ["Car"],
+        "props": [
+          { "kind": "quantity", "type": "speed", "value": 10, "max": 20 }
+        ]
+      },
+      "phys.speed": {
+        "nodes": ["Arrow_Velocity"],
+        "description": {
+          "ky": "Убакыт бирдиги ичинде өтүлгөн жолду мүнөздөөчү физикалык чоңдук ылдамдык деп аталат: v = s/t. Ылдамдык – вектордук чоңдук; жебе кыймылдын багытын, анын узундугу ылдамдыктын чоңдугун көрсөтөт. СИде бирдиги 1 м/с; 1 м/с = 3,6 км/саат, 72 км/саат = 20 м/с.",
+          "ru": "Физическую величину, характеризующую путь за единицу времени, называют скоростью: v = s/t. Скорость – векторная величина; стрелка показывает направление движения, её длина – величину скорости. Единица в СИ – 1 м/с; 1 м/с = 3,6 км/ч, 72 км/ч = 20 м/с.",
+          "en": "Speed is the physical quantity that describes the distance covered per unit of time: v = s/t. Velocity is a vector: the arrow shows the direction and its length the size. The SI unit is 1 m/s; 1 m/s = 3.6 km/h and 72 km/h = 20 m/s."
+        },
+        "props": [
+          { "kind": "formula", "type": "formula", "value": "v = \\frac{s}{t}" },
+          { "kind": "quantity", "type": "speed", "value": 20 },
+          { "kind": "quantity", "type": "speed", "value": 72, "unit": "km/h" }
+        ]
+      },
+      "phys.speed-radar": {
+        "nodes": ["Radar"],
+        "props": [
+          { "kind": "quantity", "type": "speed", "value": 72, "unit": "km/h" },
+          { "kind": "quantity", "type": "speed", "value": 36, "unit": "km/h" }
+        ]
+      },
+      "phys.uniform-motion": {
+        "nodes": ["Trace_*"],
+        "description": {
+          "ky": "Алгачкы 6 с ичинде машина ар бир секундда бирдей 20 м жол өтөт: издердин аралыгы бирдей. Эгер кыймылдын ылдамдыгы туруктуу болсо, кыймыл бир калыптагы кыймыл деп аталат; анын жолу убакытка түз пропорциялаш: s = v·t.",
+          "ru": "Первые 6 с машина каждую секунду проходит одинаковые 20 м: промежутки между следами равны. Если скорость постоянна, движение называют равномерным; путь пропорционален времени: s = v·t.",
+          "en": "For the first 6 s the car covers the same 20 m every second: the marks are evenly spaced. When the speed is constant the motion is uniform, and the distance is proportional to the time: s = v·t."
+        },
+        "props": [
+          { "kind": "formula", "type": "formula", "value": "s = v \\cdot t" },
+          { "kind": "quantity", "type": "speed", "value": 20 }
+        ]
+      },
+      "phys.non-uniform-motion": {
+        "props": [
+          { "kind": "quantity", "type": "speed", "value": 10, "max": 20 },
+          { "kind": "formula", "type": "formula", "value": "v_{орт} = \\frac{s}{t}" }
+        ]
+      },
+      "phys.average-speed": {
+        "description": {
+          "ky": "Орточо ылдамдыкты табуу үчүн жалпы өтүлгөн жолду жалпы сарпталган убакытка бөлөбүз: v_орт = (120 м + 60 м) : (6 с + 6 с) = 15 м/с = 54 км/саат. Бишкек – Нарын (320 км) каттамын 6 саатта өткөн автобустун v_орт = 320 км : 6 саат ≈ 53,3 км/саат.",
+          "ru": "Чтобы найти среднюю скорость, весь пройденный путь делят на всё затраченное время: v_ср = (120 м + 60 м) : (6 с + 6 с) = 15 м/с = 54 км/ч. У автобуса Бишкек – Нарын (320 км), идущего 6 часов, v_ср = 320 км : 6 ч ≈ 53,3 км/ч.",
+          "en": "To find the average speed, divide the whole distance by the whole time: v_av = (120 m + 60 m) ÷ (6 s + 6 s) = 15 m/s = 54 km/h. A Bishkek–Naryn bus (320 km) that takes 6 hours averages 320 km ÷ 6 h ≈ 53.3 km/h."
+        },
+        "props": [
+          { "kind": "quantity", "type": "speed", "value": 15 },
+          { "kind": "formula", "type": "formula", "value": "v_{орт} = \\frac{s_1 + s_2}{t_1 + t_2} = \\frac{180}{12} = 15" }
+        ]
+      },
+      "phys.path-length": {
+        "nodes": ["Road", "Marker_*"],
+        "description": {
+          "ky": "Жолдун жээгиндеги белгилер ар бир 20 м сайын коюлган. 12 с ичинде машина 180 м жол өттү: алгачкы 6 с та 120 м, кийинки 6 с та 60 м.",
+          "ru": "Отметки у дороги стоят через каждые 20 м. За 12 с машина прошла 180 м: за первые 6 с – 120 м, за следующие 6 с – 60 м.",
+          "en": "The roadside markers are 20 m apart. In 12 s the car covers 180 m: 120 m in the first 6 s and 60 m in the next 6 s."
+        },
+        "props": [
+          { "kind": "quantity", "type": "distance", "value": 180, "unit": "m" },
+          { "kind": "quantity", "type": "length", "value": 20 }
+        ]
+      },
+      "phys.travel-time": {
+        "nodes": ["Stopwatch"],
+        "props": [
+          { "kind": "quantity", "type": "eventDuration", "value": 12, "unit": "s" }
+        ]
+      },
+      "phys.distance-time-graph": {
+        "nodes": ["Graph_Axes", "Graph_Point"],
+        "description": {
+          "ky": "Абсцисса огуна убакыт t, ордината огуна өтүлгөн жол s коюлат. Бир калыптагы кыймылда жол убакытка түз пропорциялаш, график – түз сызык (y = ax функциясынын графиги сыяктуу). Кыймылдын координатасы x = x₀ + vt.",
+          "ru": "По оси абсцисс откладывают время t, по оси ординат – путь s. При равномерном движении путь пропорционален времени, график – прямая (как график функции y = ax). Координата тела x = x₀ + vt.",
+          "en": "Time t goes on the horizontal axis and distance s on the vertical one. In uniform motion distance is proportional to time and the graph is a straight line (like the graph of y = ax). The body's coordinate is x = x₀ + vt."
+        },
+        "props": [
+          { "kind": "formula", "type": "formula", "value": "x = x_0 + v t" }
+        ]
+      },
+      "phys.graph-slope": {
+        "nodes": ["Graph_Line"],
+        "description": {
+          "ky": "Графиктин эки кесиндиси эки башка тиктикте: 0–6 с – 20 м/с (тигирээк), 6–12 с – 10 м/с (жантайыңкы). Ылдамдык канча чоң болсо, s(t) графиги ошончо тик.",
+          "ru": "Два отрезка графика имеют разный наклон: 0–6 с – 20 м/с (круче), 6–12 с – 10 м/с (положе). Чем больше скорость, тем круче график s(t).",
+          "en": "The graph's two segments have different slopes: 0–6 s – 20 m/s (steeper), 6–12 s – 10 m/s (shallower). The greater the speed, the steeper the s(t) graph."
+        },
+        "props": [
+          { "kind": "formula", "type": "formula", "value": "v = \\frac{\\Delta s}{\\Delta t}" },
+          { "kind": "quantity", "type": "speed", "value": 10, "max": 20 }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "us-two-speeds",
+        "title": { "ky": "Эки ылдамдык: 20 жана 10 м/с", "ru": "Две скорости: 20 и 10 м/с", "en": "Two speeds: 20 and 10 m/s" },
+        "classification": { "ky": "Бир калыптагы эмес, v_орт = 15 м/с", "ru": "Неравномерное, v_ср = 15 м/с", "en": "Non-uniform, v_av = 15 m/s" },
+        "thumb": "thumbs/us-two-speeds.webp",
+        "props": [
+          { "kind": "quantity", "type": "speed", "value": 15 },
+          { "kind": "quantity", "type": "distance", "value": 180, "unit": "m" },
+          { "kind": "quantity", "type": "eventDuration", "value": 12, "unit": "s" }
+        ]
+      },
+      {
+        "key": "us-uniform",
+        "title": { "ky": "Бир калыптагы кыймыл, 15 м/с", "ru": "Равномерное движение, 15 м/с", "en": "Uniform motion, 15 m/s" },
+        "classification": { "ky": "15 м/с = 54 км/саат", "ru": "15 м/с = 54 км/ч", "en": "15 m/s = 54 km/h" },
+        "thumb": "thumbs/us-uniform.webp",
+        "props": [
+          { "kind": "quantity", "type": "speed", "value": 15 },
+          { "kind": "quantity", "type": "distance", "value": 150, "unit": "m" },
+          { "kind": "quantity", "type": "eventDuration", "value": 10, "unit": "s" }
+        ],
+        "scene": { "params": { "segments": [{ "v": 15, "t": 10 }], "markEvery": 10 } }
+      },
+      {
+        "key": "us-bus-stop",
+        "title": { "ky": "Аялдамалуу автобус", "ru": "Автобус с остановкой", "en": "Bus with a stop" },
+        "classification": { "ky": "10 м/с, 5 с токтоо, 10 м/с; v_орт = 7,5 м/с", "ru": "10 м/с, остановка 5 с, 10 м/с; v_ср = 7,5 м/с", "en": "10 m/s, a 5 s stop, 10 m/s; v_av = 7.5 m/s" },
+        "thumb": "thumbs/us-bus-stop.webp",
+        "props": [
+          { "kind": "quantity", "type": "speed", "value": 7.5 },
+          { "kind": "quantity", "type": "distance", "value": 150, "unit": "m" },
+          { "kind": "quantity", "type": "eventDuration", "value": 20, "unit": "s" }
+        ],
+        "scene": { "params": { "segments": [{ "v": 10, "t": 10 }, { "v": 0, "t": 5 }, { "v": 10, "t": 5 }], "markEvery": 10 } }
+      }
+    ],
+    "props": [
+      { "kind": "quantity", "type": "speed", "value": 15 },
+      { "kind": "quantity", "type": "distance", "value": 180, "unit": "m" },
+      { "kind": "quantity", "type": "eventDuration", "value": 12, "unit": "s" },
+      { "kind": "formula", "type": "formula", "value": "v = \\frac{s}{t}" }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "compare",
+            "camera": { "position": [0, 5, 14], "target": [0, 0.5, 0], "fov": 45 },
+            "modes": { "graph": false, "trace": false, "vectors": false },
+            "focus": "phys.car",
+            "text": {
+              "ky": "1 саатта Ил-18 учагы 650 км, «Жигули» машинасы 90 км, жөө киши 5 км, таш бака 0,36 км жол басат. Ким тезирээк? Бирдей убакытта көбүрөөк жол өткөнү. Кыймылдын тездигин мүнөздөө үчүн ылдамдык деген чоңдук колдонулат.",
+              "ru": "За 1 час самолёт Ил-18 пролетает 650 км, «Жигули» – 90 км, пешеход – 5 км, черепаха – 0,36 км. Кто быстрее? Тот, кто за одинаковое время проходит больше. Быстроту движения описывает величина – скорость.",
+              "en": "In 1 hour an Il-18 plane flies 650 km, a Zhiguli car drives 90 km, a walker covers 5 km and a tortoise 0.36 km. Who is fastest? Whoever covers more in the same time. Speed is the quantity that describes how fast a body moves."
+            },
+            "teacherNote": {
+              "ky": "Китептеги 1-таблицаны көрсөтүңүз: үлүл 0,0014 м/с, жөө адам 1,3 м/с, үн 332 м/с, жарык 300 000 000 м/с. Окуучулар өздөрүнүн ылдамдыгын божомолдошсун.",
+              "ru": "Покажите таблицу 1 учебника: улитка 0,0014 м/с, пешеход 1,3 м/с, звук 332 м/с, свет 300 000 000 м/с. Пусть ученики оценят свою скорость.",
+              "en": "Show table 1 of the book: snail 0.0014 m/s, walker 1.3 m/s, sound 332 m/s, light 300 000 000 m/s. Let pupils estimate their own speed."
+            },
+            "altText": {
+              "ky": "Жол, белгилер, радар жана машина старт сызыгында.",
+              "ru": "Дорога с отметками, радар и машина на старте.",
+              "en": "The road with markers, a radar and the car at the start."
+            }
+          },
+          {
+            "key": "formula",
+            "camera": { "position": [-5.07, 3.78, 8.02], "target": [-2.95, 1.05, 0.15], "fov": 45 },
+            "modes": { "vectors": true },
+            "focus": "phys.speed",
+            "text": {
+              "ky": "Ылдамдык = жол : убакыт, v = s/t. СИде бирдиги 1 м/с – 1 секундда 1 метр. км/саатты м/с ка которобуз: 72 км/саат = 72 · 1000 м : 3600 с = 20 м/с. Тескерисинче: 15 м/с = 15 · 3,6 = 54 км/саат.",
+              "ru": "Скорость = путь : время, v = s/t. Единица в СИ – 1 м/с, 1 метр за 1 секунду. Переводим км/ч в м/с: 72 км/ч = 72 · 1000 м : 3600 с = 20 м/с. Обратно: 15 м/с = 15 · 3,6 = 54 км/ч.",
+              "en": "Speed = distance ÷ time, v = s/t. The SI unit is 1 m/s – 1 metre in 1 second. Convert km/h to m/s: 72 km/h = 72 × 1000 m ÷ 3600 s = 20 m/s. The other way: 15 m/s = 15 × 3.6 = 54 km/h."
+            },
+            "teacherNote": {
+              "ky": "Маселени китептеги үлгүдөй жаздырыңыз: «Берилди – Формула – Чыгаруу – Жообу». Мисалы: поезд 2 саатта 108 км өттү, v = 54 км/саат = 15 м/с.",
+              "ru": "Пусть задачу оформят как в учебнике: «Дано – Формула – Решение – Ответ». Например: поезд прошёл 108 км за 2 ч, v = 54 км/ч = 15 м/с.",
+              "en": "Have pupils lay problems out as in the book: 'Given – Formula – Solution – Answer'. Example: a train covers 108 km in 2 h, v = 54 km/h = 15 m/s."
+            },
+            "altText": {
+              "ky": "Машинанын алдында ылдамдыктын жебеси, радардын экранында 72 км/саат.",
+              "ru": "Перед машиной стрелка скорости, на экране радара 72 км/ч.",
+              "en": "A velocity arrow in front of the car and 72 km/h on the radar screen."
+            }
+          },
+          {
+            "key": "uniform",
+            "camera": { "position": [-3.61, 6.43, 13.39], "target": [0.08, 1.7, -0.29], "fov": 45 },
+            "modes": { "trace": true, "vectors": false },
+            "focus": "phys.uniform-motion",
+            "text": {
+              "ky": "Алгачкы 6 с та издердин аралыгы бирдей – 20 м: машина бирдей убакытта бирдей жол өтөт. Ылдамдыгы туруктуу кыймыл – бир калыптагы кыймыл.",
+              "ru": "Первые 6 с промежутки между следами одинаковы – 20 м: за равное время машина проходит равные пути. Движение с постоянной скоростью – равномерное.",
+              "en": "For the first 6 s the gaps between the marks are equal – 20 m: the car covers equal distances in equal times. Motion at constant speed is uniform motion."
+            },
+            "teacherNote": {
+              "ky": "Китептеги 12-сүрөттөгү тамчылар тажрыйбасын көрсөтүңүз же арабачага тамчылаткыч орнотуп жасап көрүңүз.",
+              "ru": "Покажите опыт с каплями (рис. 12 учебника) или проведите его, поставив капельницу на тележку.",
+              "en": "Show the drip experiment from fig. 12 of the book, or do it with a dropper on a trolley."
+            },
+            "altText": {
+              "ky": "Бирдей аралыктагы сары издер, ар бири 20 м.",
+              "ru": "Равноотстоящие жёлтые следы через 20 м.",
+              "en": "Evenly spaced yellow marks, 20 m apart."
+            }
+          },
+          {
+            "key": "non-uniform",
+            "camera": { "position": [-3.61, 6.43, 13.39], "target": [0.08, 1.7, -0.29], "fov": 45 },
+            "modes": { "trace": true },
+            "focus": "phys.non-uniform-motion",
+            "text": {
+              "ky": "6 с тан кийин машина жайлады: издер жыйылды, ар бир секундда 10 м гана. Бүт сапарда нерсе бирдей убакытта ар түрдүү жол өттү – бул бир калыптагы эмес кыймыл.",
+              "ru": "После 6 с машина замедлилась: следы стали гуще, всего 10 м за секунду. За всю поездку тело проходило за равное время разные пути – это неравномерное движение.",
+              "en": "After 6 s the car slows: the marks bunch up, only 10 m per second. Over the whole trip the car covered different distances in equal times – non-uniform motion."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: турмушта кайсы кыймылдар чындап бир калыпта? (Эскалатор, саат жебеси, автоматтык эшик.) Калгандарынын көбү бир калыптагы эмес.",
+              "ru": "Спросите: какие движения в жизни действительно равномерны? (Эскалатор, стрелка часов, автоматическая дверь.) Почти все остальные неравномерны.",
+              "en": "Ask: which everyday motions are truly uniform? (An escalator, a clock hand, an automatic door.) Nearly everything else is non-uniform."
+            },
+            "altText": {
+              "ky": "Экинчи бөлүктө издер бири-бирине жакын.",
+              "ru": "На втором участке следы ближе друг к другу.",
+              "en": "On the second part the marks are closer together."
+            }
+          },
+          {
+            "key": "average",
+            "camera": { "position": [-3.61, 6.43, 13.39], "target": [0.08, 1.7, -0.29], "fov": 45 },
+            "modes": { "graph": true, "trace": false },
+            "focus": "phys.average-speed",
+            "text": {
+              "ky": "Бир калыптагы эмес кыймылды орточо ылдамдык менен мүнөздөйбүз: жалпы жолду жалпы убакытка бөлөбүз. v_орт = 180 м : 12 с = 15 м/с. Аялдамада турган убакыт да эсепке кирет.",
+              "ru": "Неравномерное движение описывают средней скоростью: весь путь делят на всё время. v_ср = 180 м : 12 с = 15 м/с. Время стоянок тоже учитывается.",
+              "en": "Non-uniform motion is described by the average speed: total distance ÷ total time. v_av = 180 m ÷ 12 s = 15 m/s. Time spent standing still counts too."
+            },
+            "teacherNote": {
+              "ky": "Бул жерде эки бөлүк бирдей убакыт созулгандыктан, 15 = (20 + 10) : 2. Бирок 2-көнүгүүнүн 1-маселесин чыгартыңыз: 9 км 36 км/саат менен, 24 км 54 км/саат менен – v_орт ≈ 47 км/саат, 45 эмес!",
+              "ru": "Здесь оба участка длились одинаково, поэтому 15 = (20 + 10) : 2. Но решите задачу 1 из упражнения 2: 9 км со скоростью 36 км/ч и 24 км со скоростью 54 км/ч – v_ср ≈ 47 км/ч, а не 45!",
+              "en": "Here both parts last the same time, so 15 = (20 + 10) ÷ 2. But do problem 1 of exercise 2: 9 km at 36 km/h and 24 km at 54 km/h – v_av ≈ 47 km/h, not 45!"
+            },
+            "altText": {
+              "ky": "s(t) графиги: эки кесинди, акыркы чекит t = 12 с, s = 180 м.",
+              "ru": "График s(t): два отрезка, конечная точка t = 12 с, s = 180 м.",
+              "en": "The s(t) graph: two segments ending at t = 12 s, s = 180 m."
+            }
+          },
+          {
+            "key": "graph",
+            "camera": { "position": [-3.61, 6.43, 13.39], "target": [0.08, 1.7, -0.29], "fov": 45 },
+            "modes": { "graph": true },
+            "focus": "phys.graph-slope",
+            "text": {
+              "ky": "Ылдамдык белгилүү болсо, жолду s = v·t, убакытты t = s/v менен табабыз. Бир калыптагы кыймылда жол убакытка түз пропорциялаш – s(t) графиги түз сызык. Ылдамдык чоң болсо, график тигирээк.",
+              "ru": "Зная скорость, путь находят по s = v·t, время – по t = s/v. При равномерном движении путь пропорционален времени – график s(t) прямая. Чем больше скорость, тем круче график.",
+              "en": "Knowing the speed, find distance with s = v·t and time with t = s/v. In uniform motion distance is proportional to time – the s(t) graph is a straight line. The greater the speed, the steeper the graph."
+            },
+            "teacherNote": {
+              "ky": "Китептеги 2-көнүгүүнүн 2-маселесиндей графиктерди дептерге тургуздуруңуз: v = 5 м/с, x₀ = 2 м үчүн x = 2 + 5t таблицасын толтуруп, чекиттерди туташтырышсын.",
+              "ru": "Пусть ученики построят в тетради графики, как в задаче 2 упражнения 2: для v = 5 м/с, x₀ = 2 м заполнят таблицу x = 2 + 5t и соединят точки.",
+              "en": "Have pupils plot graphs as in problem 2 of exercise 2: for v = 5 m/s, x₀ = 2 m fill in a table for x = 2 + 5t and join the points."
+            },
+            "altText": {
+              "ky": "Графиктин эки кесиндиси: биринчиси тик, экинчиси жантайыңкы.",
+              "ru": "Два отрезка графика: первый крутой, второй пологий.",
+              "en": "The graph's two segments: the first steep, the second shallow."
+            }
+          },
+          {
+            "key": "bus",
+            "camera": { "position": [0, 5, 14], "target": [0, 1, 0], "fov": 45 },
+            "modes": { "graph": true, "trace": true },
+            "sample": "us-bus-stop",
+            "focus": "phys.non-uniform-motion",
+            "text": {
+              "ky": "Аялдамалуу автобус: 10 с жүрөт, 5 с турат, дагы 5 с жүрөт. Графикте токтоо – горизонталдык кесинди. v_орт = 150 м : 20 с = 7,5 м/с – спидометрдеги 10 м/с тан аз.",
+              "ru": "Автобус с остановкой: 10 с едет, 5 с стоит, ещё 5 с едет. Остановка на графике – горизонтальный отрезок. v_ср = 150 м : 20 с = 7,5 м/с – меньше, чем 10 м/с на спидометре.",
+              "en": "A bus with a stop: drives 10 s, waits 5 s, drives 5 s more. The stop is a flat segment on the graph. v_av = 150 m ÷ 20 s = 7.5 m/s – less than the 10 m/s on the speedometer."
+            },
+            "teacherNote": {
+              "ky": "«Салыштыруу» панелинде үч үлгүнү катар коюп, орточо ылдамдыктарды салыштырыңыз. Үйгө: 1-көнүгүүнүн 2-маселеси (лыжачы, 40 м/с эмес – китептеги жоопту текшериңиз: (50 + 39) : 20 ≈ 4,5 м/с).",
+              "ru": "На панели «Сравнение» поставьте три образца рядом и сравните средние скорости. Домой: задача 2 упражнения 1 (лыжник; проверьте ответ учебника: (50 + 39) : 20 ≈ 4,5 м/с, а не 40 м/с).",
+              "en": "Put the three samples side by side in the Compare panel and compare their average speeds. Homework: problem 2 of exercise 1 (the skier; check the book's answer: (50 + 39) ÷ 20 ≈ 4.5 m/s, not 40 m/s)."
+            },
+            "altText": {
+              "ky": "s(t) графигинде ортодо горизонталдык кесинди.",
+              "ru": "На графике s(t) горизонтальный отрезок посередине.",
+              "en": "The s(t) graph with a flat segment in the middle."
+            }
+          }
+        ]
+      },
+      "processKeys": ["phys.average-speed-trip"],
+      "comparison": {
+        "columns": [
+          { "kind": "sample", "key": "us-two-speeds" },
+          { "kind": "sample", "key": "us-uniform" },
+          { "kind": "sample", "key": "us-bus-stop" }
+        ],
+        "rows": ["speed", "distance", "eventDuration"]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-speed-1",
+          "phys.q.p7-speed-2",
+          "phys.q.p7-speed-3",
+          "phys.q.p7-speed-4",
+          "phys.q.p7-speed-5",
+          "phys.q.p7-speed-6",
+          "phys.q.p7-speed-7",
+          "phys.q.p7-speed-8",
+          "phys.q.p7-speed-9",
+          "phys.q.p7-speed-10",
+          "phys.q.p7-speed-11",
+          "phys.q.p7-speed-12",
+          "phys.q.p7-speed-13",
+          "phys.q.p7-speed-14"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": { "ky": "Каттамдын убактысы", "ru": "Время рейса", "en": "Journey time" },
+          "text": { "ky": "Бишкек – Нарын каттамы 320 км. Автобустун орточо ылдамдыгы ≈ 53 км/саат болсо, диспетчер жолго t = s/v_орт ≈ 6 саат пландайт.", "ru": "Рейс Бишкек – Нарын – 320 км. При средней скорости автобуса ≈ 53 км/ч диспетчер планирует на дорогу t = s/v_ср ≈ 6 часов.", "en": "The Bishkek–Naryn route is 320 km. With an average bus speed of about 53 km/h, the dispatcher plans t = s/v_av ≈ 6 hours." },
+          "field": "e"
+        },
+        {
+          "title": { "ky": "Жердин орбитадагы жолу", "ru": "Путь Земли по орбите", "en": "The Earth's orbit" },
+          "text": { "ky": "Жер Күндү 30 км/с ылдамдык менен айланат: бир 45 мүнөттүк сабакта s = v·t = 30 000 м/с · 2700 с = 81 000 км жол өтөт.", "ru": "Земля движется вокруг Солнца со скоростью 30 км/с: за 45-минутный урок она проходит s = v·t = 30 000 м/с · 2700 с = 81 000 км.", "en": "The Earth moves round the Sun at 30 km/s: during a 45-minute lesson it covers s = v·t = 30 000 m/s × 2700 s = 81 000 km." },
+          "field": "s"
+        },
+        {
+          "title": { "ky": "Түз пропорция", "ru": "Прямая пропорциональность", "en": "Direct proportion" },
+          "text": { "ky": "s = v·t – математикадагы y = ax функциясы: ылдамдык – графиктин бурчтук коэффициенти. Убакыт эки эсе өссө, жол да эки эсе өсөт.", "ru": "s = v·t – это функция y = ax из математики: скорость – угловой коэффициент графика. Время выросло вдвое – путь тоже вдвое.", "en": "s = v·t is the function y = ax from maths: the speed is the slope of the graph. Double the time and the distance doubles too." },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Конькичи", "ru": "Конькобежец", "en": "A speed skater" },
+          "text": { "ky": "Конькичи 1500 м ди 1 мүн 52,5 с та (112,5 с) чуркайт: v_орт = 1500 : 112,5 ≈ 13 м/с – машинадай тез!", "ru": "Конькобежец пробегает 1500 м за 1 мин 52,5 с (112,5 с): v_ср = 1500 : 112,5 ≈ 13 м/с – быстро, как машина!", "en": "A skater covers 1500 m in 1 min 52.5 s (112.5 s): v_av = 1500 ÷ 112.5 ≈ 13 m/s – as fast as a car!" }
+        },
+        {
+          "title": { "ky": "Мектепке жол", "ru": "Дорога в школу", "en": "The way to school" },
+          "text": { "ky": "Мектепке 1,3 м/с менен 10 мүнөт (600 с) бассаң, жол s = 1,3 · 600 = 780 м.", "ru": "Если идти в школу 10 минут (600 с) со скоростью 1,3 м/с, путь s = 1,3 · 600 = 780 м.", "en": "Walk to school at 1.3 m/s for 10 minutes (600 s) and the distance is s = 1.3 × 600 = 780 m." }
+        }
+      ]
+    },
+    "starters": [
+      { "ky": "Орточо ылдамдык кантип табылат?", "ru": "Как находят среднюю скорость?", "en": "How do we find the average speed?" },
+      { "ky": "72 км/саатты м/с ка кантип которобуз?", "ru": "Как перевести 72 км/ч в м/с?", "en": "How do we convert 72 km/h into m/s?" },
+      { "ky": "Бир калыптагы жана бир калыптагы эмес кыймылдын айырмасы эмнеде?", "ru": "Чем равномерное движение отличается от неравномерного?", "en": "What is the difference between uniform and non-uniform motion?" },
+      { "ky": "s(t) графигинен ылдамдыкты кантип табабыз?", "ru": "Как найти скорость по графику s(t)?", "en": "How can we read the speed off an s(t) graph?" }
+    ],
+    "rights": [
+      { "license": "own", "author": "Bilig", "source": "Bilig content team; Мамбетакунов Э., Физика 7-класс, §6–8" }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-speed-1",
+      "type": "single",
+      "prompt": { "ky": "Ылдамдыктын формуласы кайсы?", "ru": "Какова формула скорости?", "en": "Which is the formula for speed?" },
+      "options": [
+        { "key": "a", "text": { "ky": "v = s · t", "ru": "v = s · t", "en": "v = s × t" } },
+        { "key": "b", "text": { "ky": "v = s / t", "ru": "v = s / t", "en": "v = s / t" } },
+        { "key": "c", "text": { "ky": "v = t / s", "ru": "v = t / s", "en": "v = t / s" } },
+        { "key": "d", "text": { "ky": "v = s − t", "ru": "v = s − t", "en": "v = s − t" } }
+      ],
+      "answer": "b",
+      "explanation": { "ky": "Ылдамдык – убакыт бирдиги ичинде өтүлгөн жол: Ылдамдык = Жол : Убакыт, v = s/t.", "ru": "Скорость – путь за единицу времени: скорость = путь : время, v = s/t.", "en": "Speed is the distance per unit of time: speed = distance ÷ time, v = s/t." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-speed-2",
+      "type": "numeric",
+      "prompt": { "ky": "Бир калыпта кыймылдаган поезд 2 саатта 108 км жолду өттү. Поезддин ылдамдыгы канча м/с?", "ru": "Поезд, двигаясь равномерно, прошёл 108 км за 2 часа. Какова его скорость в м/с?", "en": "A train moving uniformly covers 108 km in 2 hours. What is its speed in m/s?" },
+      "answer": 15,
+      "tolerance": 0.1,
+      "unit": "m/s",
+      "explanation": { "ky": "s = 108 км = 108 000 м, t = 2 саат = 7200 с. v = 108 000 м : 7200 с = 15 м/с (же 54 км/саат).", "ru": "s = 108 км = 108 000 м, t = 2 ч = 7200 с. v = 108 000 м : 7200 с = 15 м/с (или 54 км/ч).", "en": "s = 108 km = 108 000 m, t = 2 h = 7200 s. v = 108 000 m ÷ 7200 s = 15 m/s (or 54 km/h)." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-speed-3",
+      "type": "numeric",
+      "prompt": { "ky": "v = 72 км/саат. Ылдамдыктын маанисин м/с менен туюнткула.", "ru": "v = 72 км/ч. Выразите скорость в м/с.", "en": "v = 72 km/h. Express the speed in m/s." },
+      "answer": 20,
+      "tolerance": 0.1,
+      "unit": "m/s",
+      "explanation": { "ky": "1 км = 1000 м, 1 саат = 3600 с: 72 км/саат = 72 · 1000 м : 3600 с = 20 м/с.", "ru": "1 км = 1000 м, 1 ч = 3600 с: 72 км/ч = 72 · 1000 м : 3600 с = 20 м/с.", "en": "1 km = 1000 m and 1 h = 3600 s: 72 km/h = 72 × 1000 m ÷ 3600 s = 20 m/s." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-speed-4",
+      "type": "single",
+      "prompt": { "ky": "18 км/саатта канча м/с бар?", "ru": "Сколько м/с в 18 км/ч?", "en": "How many m/s is 18 km/h?" },
+      "options": [
+        { "key": "a", "text": { "ky": "6 м/с", "ru": "6 м/с", "en": "6 m/s" } },
+        { "key": "b", "text": { "ky": "5 м/с", "ru": "5 м/с", "en": "5 m/s" } },
+        { "key": "c", "text": { "ky": "4,5 м/с", "ru": "4,5 м/с", "en": "4.5 m/s" } },
+        { "key": "d", "text": { "ky": "3 м/с", "ru": "3 м/с", "en": "3 m/s" } }
+      ],
+      "answer": "b",
+      "explanation": { "ky": "км/саатты 3,6га бөлөбүз: 18 : 3,6 = 5 м/с. Саны чоң болсо да, 18 км/саат 5 м/с тан тез эмес – экөө бирдей.", "ru": "Делим км/ч на 3,6: 18 : 3,6 = 5 м/с. Число больше, но 18 км/ч не быстрее 5 м/с – это одно и то же.", "en": "Divide km/h by 3.6: 18 ÷ 3.6 = 5 m/s. The number is bigger, but 18 km/h is no faster than 5 m/s – they are equal." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "misconceptionKey": "phys.m.bigger-number-faster",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-speed-5",
+      "type": "single",
+      "prompt": { "ky": "Бир калыптагы эмес кыймылдын маңыздуу белгиси кайсы?", "ru": "Каков главный признак неравномерного движения?", "en": "What is the key sign of non-uniform motion?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Кыймылдын үн чыгарышы", "ru": "Движение сопровождается звуком", "en": "The motion makes a sound" } },
+        { "key": "b", "text": { "ky": "Бирдей убакытта бирдей жол өтүү", "ru": "За равное время – равные пути", "en": "Equal distances in equal times" } },
+        { "key": "c", "text": { "ky": "Бирдей убакытта ар кандай жол өтүү", "ru": "За равное время – разные пути", "en": "Different distances in equal times" } },
+        { "key": "d", "text": { "ky": "Бирдей убакытта бирдей которулуу", "ru": "За равное время – равные перемещения", "en": "Equal displacements in equal times" } }
+      ],
+      "answer": "c",
+      "explanation": { "ky": "Нерсе бирдей убакыт ичинде ар түрдүү жолду басып өтсө, кыймыл бир калыптагы эмес кыймыл деп аталат.", "ru": "Если тело за равные промежутки времени проходит разные пути, движение называют неравномерным.", "en": "If a body covers different distances in equal times, its motion is non-uniform." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-speed-6",
+      "type": "numeric",
+      "prompt": { "ky": "Автомобиль алгачкы 40 мүнөттө 60 км/саат, андан кийинки 20 мүнөттө 30 км/саат ылдамдык менен жүрдү. Анын орточо ылдамдыгы канча км/саат?", "ru": "Автомобиль первые 40 минут ехал со скоростью 60 км/ч, следующие 20 минут – 30 км/ч. Какова его средняя скорость в км/ч?", "en": "A car drives at 60 km/h for the first 40 minutes and at 30 km/h for the next 20 minutes. What is its average speed in km/h?" },
+      "answer": 50,
+      "tolerance": 0.5,
+      "unit": "km/h",
+      "explanation": { "ky": "s₁ = 60 · 40/60 = 40 км, s₂ = 30 · 20/60 = 10 км. s = 50 км, t = 60 мүн = 1 саат. v_орт = 50 км : 1 саат = 50 км/саат.", "ru": "s₁ = 60 · 40/60 = 40 км, s₂ = 30 · 20/60 = 10 км. s = 50 км, t = 60 мин = 1 ч. v_ср = 50 км : 1 ч = 50 км/ч.", "en": "s₁ = 60 × 40/60 = 40 km, s₂ = 30 × 20/60 = 10 km. s = 50 km, t = 60 min = 1 h. v_av = 50 km ÷ 1 h = 50 km/h." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-speed-7",
+      "type": "numeric",
+      "prompt": { "ky": "Автобус алгачкы 9 км жолду 36 км/саат, кийинки 24 км жолду 54 км/саат ылдамдык менен жүрдү. Анын орточо ылдамдыгы канча км/саат?", "ru": "Автобус первые 9 км проехал со скоростью 36 км/ч, следующие 24 км – со скоростью 54 км/ч. Какова его средняя скорость в км/ч?", "en": "A bus drives the first 9 km at 36 km/h and the next 24 km at 54 km/h. What is its average speed in km/h?" },
+      "answer": 47.5,
+      "tolerance": 1,
+      "unit": "km/h",
+      "explanation": { "ky": "t₁ = 9 : 36 = 0,25 саат, t₂ = 24 : 54 ≈ 0,44 саат. v_орт = (9 + 24) км : 0,69 саат ≈ 47 км/саат. Ылдамдыктардын жөнөкөй орточосу (45) туура эмес!", "ru": "t₁ = 9 : 36 = 0,25 ч, t₂ = 24 : 54 ≈ 0,44 ч. v_ср = (9 + 24) км : 0,69 ч ≈ 47 км/ч. Простое среднее скоростей (45) – неверно!", "en": "t₁ = 9 ÷ 36 = 0.25 h, t₂ = 24 ÷ 54 ≈ 0.44 h. v_av = (9 + 24) km ÷ 0.69 h ≈ 47 km/h. The plain mean of the speeds (45) is wrong!" },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "misconceptionKey": "phys.m.average-is-mean-of-speeds",
+      "difficulty": 4
+    },
+    {
+      "key": "phys.q.p7-speed-8",
+      "type": "numeric",
+      "prompt": { "ky": "Автомашина 1500 м жолду 36 км/саат ылдамдык менен жүрүп өттү. Ал канча секунд жүрдү?", "ru": "Автомашина проехала 1500 м со скоростью 36 км/ч. Сколько секунд она ехала?", "en": "A car covers 1500 m at 36 km/h. How many seconds does it take?" },
+      "answer": 150,
+      "tolerance": 1,
+      "unit": "s",
+      "explanation": { "ky": "36 км/саат = 36 · 1000 м : 3600 с = 10 м/с. t = s/v = 1500 м : 10 м/с = 150 с = 2 мүн 30 с.", "ru": "36 км/ч = 36 · 1000 м : 3600 с = 10 м/с. t = s/v = 1500 м : 10 м/с = 150 с = 2 мин 30 с.", "en": "36 km/h = 36 × 1000 m ÷ 3600 s = 10 m/s. t = s/v = 1500 m ÷ 10 m/s = 150 s = 2 min 30 s." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-speed-9",
+      "type": "numeric",
+      "prompt": { "ky": "Адам бир калыпта кыймылдап, 6 с ичинде 12 м аралыкты басып өттү. Ушул ылдамдык менен ал 3 с ичинде канча метр басат?", "ru": "Человек, двигаясь равномерно, прошёл 12 м за 6 с. Сколько метров он пройдёт с той же скоростью за 3 с?", "en": "A person moving uniformly walks 12 m in 6 s. How many metres will they walk in 3 s at the same speed?" },
+      "answer": 6,
+      "tolerance": 0,
+      "unit": "m",
+      "explanation": { "ky": "v = 12 м : 6 с = 2 м/с. s = v·t = 2 м/с · 3 с = 6 м.", "ru": "v = 12 м : 6 с = 2 м/с. s = v·t = 2 м/с · 3 с = 6 м.", "en": "v = 12 m ÷ 6 s = 2 m/s. s = v·t = 2 m/s × 3 s = 6 m." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-speed-10",
+      "type": "match",
+      "prompt": { "ky": "Эмнени табуу керек экенин анын формуласы менен дал келтириңиз.", "ru": "Сопоставьте искомую величину и формулу для неё.", "en": "Match what we want to find with its formula." },
+      "pairs": [
+        { "key": "v", "left": { "ky": "Ылдамдык", "ru": "Скорость", "en": "Speed" }, "right": { "ky": "v = s/t", "ru": "v = s/t", "en": "v = s/t" } },
+        { "key": "s", "left": { "ky": "Өтүлгөн жол", "ru": "Пройденный путь", "en": "Distance" }, "right": { "ky": "s = v·t", "ru": "s = v·t", "en": "s = v·t" } },
+        { "key": "t", "left": { "ky": "Кыймылдын убактысы", "ru": "Время движения", "en": "Time" }, "right": { "ky": "t = s/v", "ru": "t = s/v", "en": "t = s/v" } },
+        { "key": "x", "left": { "ky": "t убакыттан кийинки координата", "ru": "Координата через время t", "en": "Coordinate after time t" }, "right": { "ky": "x = x₀ + vt", "ru": "x = x₀ + vt", "en": "x = x₀ + vt" } }
+      ],
+      "explanation": { "ky": "Үч формула v = s/t бир байланыштан чыгат; координата x = x₀ + s = x₀ + vt.", "ru": "Все три формулы – из одной связи v = s/t; координата x = x₀ + s = x₀ + vt.", "en": "All three come from one relation, v = s/t; the coordinate is x = x₀ + s = x₀ + vt." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-speed-11",
+      "type": "single",
+      "prompt": { "ky": "Бир калыптагы түз сызыктуу кыймылдын s(t) графиги 1 с та 2 м, 4 с та 8 м чекиттеринен өтөт. Нерсенин ылдамдыгы канча?", "ru": "График s(t) равномерного прямолинейного движения проходит через точки 2 м при 1 с и 8 м при 4 с. Какова скорость тела?", "en": "The s(t) graph of uniform straight-line motion passes through 2 m at 1 s and 8 m at 4 s. What is the speed?" },
+      "options": [
+        { "key": "a", "text": { "ky": "4 м/с", "ru": "4 м/с", "en": "4 m/s" } },
+        { "key": "b", "text": { "ky": "8 м/с", "ru": "8 м/с", "en": "8 m/s" } },
+        { "key": "c", "text": { "ky": "2 м/с", "ru": "2 м/с", "en": "2 m/s" } },
+        { "key": "d", "text": { "ky": "3 м/с", "ru": "3 м/с", "en": "3 m/s" } }
+      ],
+      "answer": "c",
+      "explanation": { "ky": "v = Δs/Δt = (8 − 2) м : (4 − 1) с = 2 м/с. Же жөн эле: 1 с та 2 м.", "ru": "v = Δs/Δt = (8 − 2) м : (4 − 1) с = 2 м/с. Или проще: 2 м за 1 с.", "en": "v = Δs/Δt = (8 − 2) m ÷ (4 − 1) s = 2 m/s. Or simply: 2 m in 1 s." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-speed-12",
+      "type": "multiple",
+      "prompt": { "ky": "Кайсы кыймылдарды бир калыптагы кыймыл деп эсептөөгө болот? Бардык туура жоопторду тандаңыз.", "ru": "Какие движения можно считать равномерными? Выберите все верные ответы.", "en": "Which motions can be treated as uniform? Choose all correct answers." },
+      "options": [
+        { "key": "a", "text": { "ky": "Эскалатордун кыймылы", "ru": "Движение эскалатора", "en": "An escalator" } },
+        { "key": "b", "text": { "ky": "Сааттын жебесинин учунун кыймылы", "ru": "Движение конца стрелки часов", "en": "The tip of a clock hand" } },
+        { "key": "c", "text": { "ky": "Шаардагы аялдамалуу автобус", "ru": "Городской автобус с остановками", "en": "A city bus with stops" } },
+        { "key": "d", "text": { "ky": "Тоодон түшкөн чана", "ru": "Санки, съезжающие с горки", "en": "A sledge going downhill" } }
+      ],
+      "answer": ["a", "b"],
+      "explanation": { "ky": "Эскалатор жана саат жебеси ылдамдыгын өзгөртпөйт – атайын ушундай жасалган. Автобус токтоп-жүрөт, чана улам тездейт – бул бир калыптагы эмес кыймылдар.", "ru": "Эскалатор и стрелка часов не меняют скорость – их так специально устроили. Автобус то едет, то стоит, санки разгоняются – это неравномерные движения.", "en": "An escalator and a clock hand keep the same speed – they are built to. The bus stops and starts and the sledge speeds up – both are non-uniform." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-speed-13",
+      "type": "find-on-model",
+      "prompt": { "ky": "Моделден машинанын ылдамдыгын км/саат менен көрсөткөн приборду тап.", "ru": "Найдите на модели прибор, который показывает скорость машины в км/ч.", "en": "Find the device in the model that shows the car's speed in km/h." },
+      "targetConceptKey": "phys.speed-radar",
+      "explanation": { "ky": "Бул – ылдамдык радары: 1-бөлүктө 72 км/саат (20 м/с), 2-бөлүктө 36 км/саат (10 м/с) көрсөтөт.", "ru": "Это радар скорости: на первом участке он показывает 72 км/ч (20 м/с), на втором – 36 км/ч (10 м/с).", "en": "That is the speed radar: 72 km/h (20 m/s) on the first part and 36 km/h (10 m/s) on the second." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-speed-14",
+      "type": "find-on-model",
+      "prompt": { "ky": "Моделден ылдамдыктын багытын жана чоңдугун көрсөткөн жебени тап («Векторлор» режими).", "ru": "Найдите на модели стрелку, показывающую направление и величину скорости (режим «Векторы»).", "en": "Find the arrow in the model that shows the direction and size of the velocity (Vectors mode)." },
+      "targetConceptKey": "phys.speed",
+      "explanation": { "ky": "Ылдамдык – вектордук чоңдук. Машинанын алдындагы жебе кыймылдын багытын көрсөтөт; 2-бөлүктө анын узундугу эки эсе кыскарат.", "ru": "Скорость – векторная величина. Стрелка перед машиной показывает направление движения; на втором участке она вдвое короче.", "en": "Velocity is a vector. The arrow in front of the car shows the direction of motion; on the second part it is half as long." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    }
+  ]
+}

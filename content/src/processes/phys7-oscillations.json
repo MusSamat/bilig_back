@@ -1,0 +1,505 @@
+{
+  "processes": [
+    {
+      "key": "phys.pendulum-period-lab",
+      "engine": "ode",
+      "icon": "activity",
+      "title": {
+        "ky": "Маятниктин бир толук термелүүсү",
+        "ru": "Одно полное колебание маятника",
+        "en": "One full swing of a pendulum"
+      },
+      "description": {
+        "ky": "1 м жипке илинген шарча 8° четтетилип коё берилет. Ал тең салмактуулук абалынан өтүп, карама-каршы четке жетет да, кайра кайтат – бир толук термелүү T = 2π√(l/g) ≈ 2,01 с.",
+        "ru": "Шарик на нити 1 м отклоняют на 8° и отпускают. Он проходит положение равновесия, доходит до противоположного края и возвращается – одно полное колебание T = 2π√(l/g) ≈ 2,01 с.",
+        "en": "A ball on a 1 m string is pulled 8° aside and released. It passes equilibrium, reaches the far end and comes back – one full oscillation, T = 2π√(l/g) ≈ 2.01 s."
+      },
+      "equation": "T = 2\\pi\\sqrt{l/g},\\quad \\nu = 1/T",
+      "inputs": {
+        "ky": "l = 1 м, m = 0,1 кг, A = 8° (≈ 0,14 м), g = 9,8 м/с²",
+        "ru": "l = 1 м, m = 0,1 кг, A = 8° (≈ 0,14 м), g = 9,8 м/с²",
+        "en": "l = 1 m, m = 0.1 kg, A = 8° (≈ 0.14 m), g = 9.8 m/s²"
+      },
+      "outputs": {
+        "ky": "T ≈ 2,01 с, ν ≈ 0,5 Гц, v_max ≈ 0,44 м/с",
+        "ru": "T ≈ 2,01 с, ν ≈ 0,5 Гц, v_max ≈ 0,44 м/с",
+        "en": "T ≈ 2.01 s, ν ≈ 0.5 Hz, v_max ≈ 0.44 m/s"
+      },
+      "steps": [
+        {
+          "key": "release",
+          "title": {
+            "ky": "Коё берүү",
+            "ru": "Отпускаем",
+            "en": "Release"
+          },
+          "result": {
+            "ky": "x = A, v = 0",
+            "ru": "x = A, v = 0",
+            "en": "x = A, v = 0"
+          },
+          "description": {
+            "ky": "Шарча 8° четтетилген: бул четки абал x = A, ылдамдык нөл.",
+            "ru": "Шарик отклонён на 8°: это крайнее положение x = A, скорость равна нулю.",
+            "en": "The ball is pulled 8° out: the end position x = A, speed zero."
+          },
+          "conceptKey": "phys.amplitude",
+          "altText": {
+            "ky": "Шарча оң жактагы четки абалда.",
+            "ru": "Шарик в правом крайнем положении.",
+            "en": "The ball at the right-hand end."
+          },
+          "duration": 0.502
+        },
+        {
+          "key": "middle",
+          "title": {
+            "ky": "Тең салмактуулук абалы",
+            "ru": "Положение равновесия",
+            "en": "Equilibrium"
+          },
+          "result": {
+            "ky": "x = 0, v ≈ 0,44 м/с",
+            "ru": "x = 0, v ≈ 0,44 м/с",
+            "en": "x = 0, v ≈ 0.44 m/s"
+          },
+          "description": {
+            "ky": "T/4 ≈ 0,5 с өткөндө шарча тең салмактуулук абалынан эң чоң ылдамдык менен өтөт (≈ 0,44 м/с).",
+            "ru": "Через T/4 ≈ 0,5 с шарик проходит положение равновесия с наибольшей скоростью (≈ 0,44 м/с).",
+            "en": "After T/4 ≈ 0.5 s the ball passes equilibrium at its top speed (≈ 0.44 m/s)."
+          },
+          "conceptKey": "phys.equilibrium",
+          "altText": {
+            "ky": "Шарча илинүү чекитинин так астында.",
+            "ru": "Шарик точно под точкой подвеса.",
+            "en": "The ball right below the pivot."
+          },
+          "duration": 0.502
+        },
+        {
+          "key": "far",
+          "title": {
+            "ky": "Карама-каршы чет",
+            "ru": "Противоположный край",
+            "en": "Far end"
+          },
+          "result": {
+            "ky": "x = −A, v = 0",
+            "ru": "x = −A, v = 0",
+            "en": "x = −A, v = 0"
+          },
+          "description": {
+            "ky": "T/2 ≈ 1 с өткөндө шарча x = −A абалында бир заматка токтойт.",
+            "ru": "Через T/2 ≈ 1 с шарик на миг останавливается в положении x = −A.",
+            "en": "After T/2 ≈ 1 s the ball stops for an instant at x = −A."
+          },
+          "conceptKey": "phys.bob",
+          "altText": {
+            "ky": "Шарча сол жактагы четки абалда.",
+            "ru": "Шарик в левом крайнем положении.",
+            "en": "The ball at the left-hand end."
+          },
+          "duration": 0.502
+        },
+        {
+          "key": "back",
+          "title": {
+            "ky": "Толук термелүү",
+            "ru": "Полное колебание",
+            "en": "Full oscillation"
+          },
+          "result": {
+            "ky": "T ≈ 2,01 с",
+            "ru": "T ≈ 2,01 с",
+            "en": "T ≈ 2.01 s"
+          },
+          "description": {
+            "ky": "Шарча кайра тең салмактуулук абалынан өтүп, баштапкы абалына кайтты. Бир толук термелүүгө T ≈ 2,01 с кетти, жыштык ν = 1/T ≈ 0,5 Гц.",
+            "ru": "Шарик снова прошёл равновесие и вернулся в начальное положение. Полное колебание заняло T ≈ 2,01 с, частота ν = 1/T ≈ 0,5 Гц.",
+            "en": "The ball passes equilibrium again and returns to its start. One full oscillation took T ≈ 2.01 s; ν = 1/T ≈ 0.5 Hz."
+          },
+          "conceptKey": "phys.oscillation-period",
+          "altText": {
+            "ky": "Шарча кайра оң жактагы четки абалда.",
+            "ru": "Шарик снова в правом крайнем положении.",
+            "en": "The ball back at the right-hand end."
+          },
+          "duration": 1.004
+        }
+      ],
+      "metrics": [
+        {
+          "key": "angle",
+          "label": {
+            "ky": "Четтөө бурчу",
+            "ru": "Угол отклонения",
+            "en": "Angle"
+          },
+          "unit": "°",
+          "min": -8,
+          "max": 8,
+          "precision": 1
+        },
+        {
+          "key": "speed",
+          "label": {
+            "ky": "Ылдамдык",
+            "ru": "Скорость",
+            "en": "Speed"
+          },
+          "unit": "m/s",
+          "min": 0,
+          "max": 0.45,
+          "precision": 2
+        },
+        {
+          "key": "period",
+          "label": {
+            "ky": "Мезгил T",
+            "ru": "Период T",
+            "en": "Period T"
+          },
+          "unit": "s",
+          "min": 0,
+          "max": 3,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "length": 1,
+        "g": 9.8,
+        "mass": 0.1,
+        "amplitudeDeg": 8,
+        "damping": 0
+      }
+    },
+    {
+      "key": "phys.wave-propagation",
+      "engine": "timeline",
+      "icon": "waves",
+      "title": {
+        "ky": "Жиптеги толкундун таралышы",
+        "ru": "Распространение волны по верёвке",
+        "en": "A wave running along a rope"
+      },
+      "description": {
+        "ky": "Кол жиптин учун секундасына бир жолу өйдө-төмөн термелтет. Толкундун башы ар бир мезгилде (1 с) бир толкун узундугуна (2 м) жылат.",
+        "ru": "Рука раскачивает конец верёвки вверх-вниз раз в секунду. Фронт волны за каждый период (1 с) сдвигается на одну длину волны (2 м).",
+        "en": "A hand shakes the rope end once a second. The wave front moves one wavelength (2 m) every period (1 s)."
+      },
+      "equation": "v = \\lambda\\nu = \\frac{\\lambda}{T}",
+      "inputs": {
+        "ky": "ν = 1 Гц, λ = 2 м, A = 0,3 м",
+        "ru": "ν = 1 Гц, λ = 2 м, A = 0,3 м",
+        "en": "ν = 1 Hz, λ = 2 m, A = 0.3 m"
+      },
+      "outputs": {
+        "ky": "v = 2 м/с",
+        "ru": "v = 2 м/с",
+        "en": "v = 2 m/s"
+      },
+      "steps": [
+        {
+          "key": "start",
+          "title": {
+            "ky": "Термелүү башталат",
+            "ru": "Колебания начинаются",
+            "en": "The source starts"
+          },
+          "result": {
+            "ky": "x = 0",
+            "ru": "x = 0",
+            "en": "x = 0"
+          },
+          "description": {
+            "ky": "Кол жиптин учун өйдө көтөрө баштады; калган жип азырынча кыймылсыз.",
+            "ru": "Рука начала поднимать конец верёвки; остальная верёвка пока неподвижна.",
+            "en": "The hand starts lifting the rope end; the rest of the rope is still at rest."
+          },
+          "conceptKey": "phys.oscillation",
+          "altText": {
+            "ky": "Жиптин учу гана кыймылдайт.",
+            "ru": "Движется только конец верёвки.",
+            "en": "Only the end of the rope moves."
+          },
+          "duration": 1
+        },
+        {
+          "key": "one",
+          "title": {
+            "ky": "Бир мезгил",
+            "ru": "Один период",
+            "en": "One period"
+          },
+          "result": {
+            "ky": "x = λ = 2 м",
+            "ru": "x = λ = 2 м",
+            "en": "x = λ = 2 m"
+          },
+          "description": {
+            "ky": "1 с өттү: кол бир толук термелүү жасады, толкундун башы 2 м ге жетти – бул толкун узундугу λ.",
+            "ru": "Прошла 1 с: рука сделала одно полное колебание, фронт волны дошёл до 2 м – это длина волны λ.",
+            "en": "After 1 s the hand has made one full oscillation and the front has reached 2 m – one wavelength λ."
+          },
+          "conceptKey": "phys.wavelength",
+          "altText": {
+            "ky": "Жипте бир толук толкун.",
+            "ru": "На верёвке одна полная волна.",
+            "en": "One full wave on the rope."
+          },
+          "duration": 1
+        },
+        {
+          "key": "two",
+          "title": {
+            "ky": "Эки мезгил",
+            "ru": "Два периода",
+            "en": "Two periods"
+          },
+          "result": {
+            "ky": "x = 4 м, v = 2 м/с",
+            "ru": "x = 4 м, v = 2 м/с",
+            "en": "x = 4 m, v = 2 m/s"
+          },
+          "description": {
+            "ky": "2 с өттү: толкундун башы 4 м де. Ылдамдык v = 4 м / 2 с = 2 м/с.",
+            "ru": "Прошло 2 с: фронт на 4 м. Скорость v = 4 м / 2 с = 2 м/с.",
+            "en": "After 2 s the front is at 4 m: v = 4 m / 2 s = 2 m/s."
+          },
+          "conceptKey": "phys.wave-speed",
+          "altText": {
+            "ky": "Жипте эки толкун.",
+            "ru": "На верёвке две волны.",
+            "en": "Two waves on the rope."
+          },
+          "duration": 1
+        },
+        {
+          "key": "bead",
+          "title": {
+            "ky": "Мончок ордунда",
+            "ru": "Бусина на месте",
+            "en": "The bead stays"
+          },
+          "result": {
+            "ky": "Затты эмес, энергияны ташыйт",
+            "ru": "Переносит энергию, а не вещество",
+            "en": "Energy, not matter"
+          },
+          "description": {
+            "ky": "Кызыл мончок бул убакыт ичинде ордунан жылган жок – ал өйдө-төмөн гана термелди. Толкун энергияны ташыйт.",
+            "ru": "Красная бусина за это время не сдвинулась с места – она лишь колебалась вверх-вниз. Волна переносит энергию.",
+            "en": "The red bead has not moved along at all – it only went up and down. The wave carries energy."
+          },
+          "conceptKey": "phys.transverse-wave",
+          "altText": {
+            "ky": "Кызыл мончок өз ордунда термелет.",
+            "ru": "Красная бусина колеблется на своём месте.",
+            "en": "The red bead oscillating in its place."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "front",
+          "label": {
+            "ky": "Толкундун башы",
+            "ru": "Фронт волны",
+            "en": "Wave front"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 4,
+          "precision": 1
+        },
+        {
+          "key": "time",
+          "label": {
+            "ky": "Убакыт",
+            "ru": "Время",
+            "en": "Time"
+          },
+          "unit": "s",
+          "min": 0,
+          "max": 2,
+          "precision": 1
+        }
+      ],
+      "params": {
+        "front@start": 0,
+        "front@one": 2,
+        "front@two": 4,
+        "front@bead": 4,
+        "time@start": 0,
+        "time@one": 1,
+        "time@two": 2,
+        "time@bead": 2
+      }
+    },
+    {
+      "key": "phys.echo-sounding",
+      "engine": "timeline",
+      "icon": "timer",
+      "title": {
+        "ky": "Жаңырык менен аралыкты өлчөө",
+        "ru": "Измеряем расстояние по эху",
+        "en": "Measuring distance by echo"
+      },
+      "description": {
+        "ky": "Адам аскадан 170 м алыста кыйкырып, жаңырыкты секундомер менен убакытты өлчөйт да, аралыкты s = vt/2 боюнча эсептейт.",
+        "ru": "Человек кричит в 170 м от скалы, засекает секундомером время до эха и вычисляет расстояние по s = vt/2.",
+        "en": "A person 170 m from a cliff shouts, times the echo with a stopwatch and works out the distance from s = vt/2."
+      },
+      "equation": "s = \\frac{vt}{2}",
+      "inputs": {
+        "ky": "s = 170 м, v = 330 м/с",
+        "ru": "s = 170 м, v = 330 м/с",
+        "en": "s = 170 m, v = 330 m/s"
+      },
+      "outputs": {
+        "ky": "t = 2s/v ≈ 1,03 с",
+        "ru": "t = 2s/v ≈ 1,03 с",
+        "en": "t = 2s/v ≈ 1.03 s"
+      },
+      "steps": [
+        {
+          "key": "shout",
+          "title": {
+            "ky": "Кыйкыруу",
+            "ru": "Крик",
+            "en": "Shout"
+          },
+          "result": {
+            "ky": "t = 0",
+            "ru": "t = 0",
+            "en": "t = 0"
+          },
+          "description": {
+            "ky": "Адам кыйкырып, секундомерди күйгүзөт.",
+            "ru": "Человек кричит и запускает секундомер.",
+            "en": "The person shouts and starts the stopwatch."
+          },
+          "conceptKey": "phys.oscillation",
+          "altText": {
+            "ky": "Адам рупор менен, секундомер нөлдө.",
+            "ru": "Человек с рупором, секундомер на нуле.",
+            "en": "A person with a horn; the stopwatch at zero."
+          },
+          "duration": 1
+        },
+        {
+          "key": "wall",
+          "title": {
+            "ky": "Үн аскага жетти",
+            "ru": "Звук дошёл до скалы",
+            "en": "Sound reaches the cliff"
+          },
+          "result": {
+            "ky": "t ≈ 0,52 с",
+            "ru": "t ≈ 0,52 с",
+            "en": "t ≈ 0.52 s"
+          },
+          "description": {
+            "ky": "170 м жолду үн 170/330 ≈ 0,52 с та басат да, аскадан чагылат.",
+            "ru": "Путь 170 м звук проходит за 170/330 ≈ 0,52 с и отражается от скалы.",
+            "en": "The sound covers 170 m in 170/330 ≈ 0.52 s and reflects off the cliff."
+          },
+          "conceptKey": "phys.echo",
+          "altText": {
+            "ky": "Үн импульсу аскага тийди.",
+            "ru": "Звуковой импульс достиг скалы.",
+            "en": "The pulse hits the cliff."
+          },
+          "duration": 1
+        },
+        {
+          "key": "back",
+          "title": {
+            "ky": "Жаңырык угулду",
+            "ru": "Эхо услышано",
+            "en": "Echo heard"
+          },
+          "result": {
+            "ky": "t ≈ 1,03 с, жол 340 м",
+            "ru": "t ≈ 1,03 с, путь 340 м",
+            "en": "t ≈ 1.03 s, path 340 m"
+          },
+          "description": {
+            "ky": "Чагылган үн кайра 170 м басып, t ≈ 1,03 с та кулакка жетти. Секундомер токтотулат.",
+            "ru": "Отражённый звук снова проходит 170 м и через t ≈ 1,03 с доходит до уха. Секундомер останавливают.",
+            "en": "The reflected sound travels 170 m back and reaches the ear after t ≈ 1.03 s. The stopwatch is stopped."
+          },
+          "conceptKey": "phys.sound",
+          "altText": {
+            "ky": "Кайткан импульс кулакка жетти.",
+            "ru": "Вернувшийся импульс дошёл до уха.",
+            "en": "The returning pulse reaches the ear."
+          },
+          "duration": 1
+        },
+        {
+          "key": "calc",
+          "title": {
+            "ky": "Аралыкты эсептөө",
+            "ru": "Вычисляем расстояние",
+            "en": "Work out the distance"
+          },
+          "result": {
+            "ky": "s ≈ 170 м",
+            "ru": "s ≈ 170 м",
+            "en": "s ≈ 170 m"
+          },
+          "description": {
+            "ky": "Үн аскага чейин барып, кайтып келди: s = vt/2 = 330 · 1,03 / 2 ≈ 170 м. Эхолот ушундай эле ультраүн менен тереңдикти өлчөйт.",
+            "ru": "Звук дошёл до скалы и вернулся: s = vt/2 = 330 · 1,03 / 2 ≈ 170 м. Так же эхолот измеряет глубину ультразвуком.",
+            "en": "The sound went there and back: s = vt/2 = 330 × 1.03 / 2 ≈ 170 m. An echo sounder measures depth the same way with ultrasound."
+          },
+          "conceptKey": "phys.ultrasound",
+          "altText": {
+            "ky": "Формула s = vt/2 жана жыйынтык.",
+            "ru": "Формула s = vt/2 и результат.",
+            "en": "The formula s = vt/2 and the result."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "time",
+          "label": {
+            "ky": "Убакыт",
+            "ru": "Время",
+            "en": "Time"
+          },
+          "unit": "s",
+          "min": 0,
+          "max": 1.1,
+          "precision": 2
+        },
+        {
+          "key": "path",
+          "label": {
+            "ky": "Үндүн жолу",
+            "ru": "Путь звука",
+            "en": "Sound path"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 340,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "time@shout": 0,
+        "time@wall": 0.52,
+        "time@back": 1.03,
+        "time@calc": 1.03,
+        "path@shout": 0,
+        "path@wall": 170,
+        "path@back": 340,
+        "path@calc": 340
+      }
+    }
+  ]
+}

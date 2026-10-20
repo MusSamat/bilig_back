@@ -1,0 +1,250 @@
+{
+  "processes": [
+    {
+      "key": "phys.motion-observation",
+      "engine": "timeline",
+      "icon": "eye",
+      "title": { "ky": "Кыймылга байкоо жүргүзүү", "ru": "Наблюдение за движением", "en": "Observing a motion" },
+      "description": {
+        "ky": "Салыштыруу нерсесин тандап, машинанын абалы ага карата өзгөрүп жатканын байкайбыз, изи боюнча траекторияны көрөбүз, өтүлгөн жолду белгилер боюнча санайбыз жана аны которулуш менен салыштырабыз.",
+        "ru": "Выбираем тело отсчёта, следим, как меняется положение машины относительно него, по следу видим траекторию, считаем пройденный путь по отметкам и сравниваем его с перемещением.",
+        "en": "We choose a reference body, watch the car's position change relative to it, see the trajectory in its trace, count the path length by the markers and compare it with the displacement."
+      },
+      "equation": "s = v \\cdot t",
+      "inputs": { "ky": "Белгилер ар бир 10 м сайын, машина 5 м/с менен 12 с жүрөт", "ru": "Отметки через каждые 10 м, машина едет 12 с со скоростью 5 м/с", "en": "Markers every 10 m; the car drives at 5 m/s for 12 s" },
+      "outputs": { "ky": "Траектория – түз сызык, s = 60 м, которулуш 60 м", "ru": "Траектория – прямая, s = 60 м, перемещение 60 м", "en": "Trajectory – a straight line, s = 60 m, displacement 60 m" },
+      "metrics": [
+        { "key": "distance", "label": { "ky": "Өтүлгөн жол", "ru": "Пройденный путь", "en": "Path length" }, "unit": "m", "min": 0, "max": 60, "precision": 0 },
+        { "key": "time", "label": { "ky": "Убакыт", "ru": "Время", "en": "Time" }, "unit": "s", "min": 0, "max": 12, "precision": 0 }
+      ],
+      "params": {
+        "distance@reference": 0, "distance@moving": 30, "distance@trace": 60, "distance@compare": 60,
+        "time@reference": 0, "time@moving": 6, "time@trace": 12, "time@compare": 12
+      },
+      "steps": [
+        {
+          "key": "reference",
+          "title": { "ky": "Салыштыруу нерсеси", "ru": "Тело отсчёта", "en": "Reference body" },
+          "result": { "ky": "Белгилер – кыймылсыз", "ru": "Отметки неподвижны", "en": "Markers are fixed" },
+          "description": { "ky": "Жолдун жээгиндеги белгилерди кыймылсыз деп эсептейбиз. Машинанын абалын ушул белгилерге салыштырабыз.", "ru": "Отметки у дороги считаем неподвижными и сравниваем с ними положение машины.", "en": "We take the roadside markers as fixed and compare the car's position with them." },
+          "conceptKey": "phys.reference-body",
+          "altText": { "ky": "Жолдун жээгинде белгилер, машина старт сызыгында.", "ru": "Отметки вдоль дороги, машина на линии старта.", "en": "Markers along the road; the car on the start line." },
+          "duration": 1
+        },
+        {
+          "key": "moving",
+          "title": { "ky": "Абал өзгөрөт", "ru": "Положение меняется", "en": "The position changes" },
+          "result": { "ky": "t = 6 с, машина 30 м белгисинде", "ru": "t = 6 с, машина у отметки 30 м", "en": "t = 6 s, the car at the 30 m marker" },
+          "description": { "ky": "Машина белгилерден улам алыстап жатат – демек ал жолго салыштырмалуу механикалык кыймылда.", "ru": "Машина всё дальше от первых отметок – значит, она совершает механическое движение относительно дороги.", "en": "The car keeps getting further from the first markers – so it is in mechanical motion relative to the road." },
+          "conceptKey": "phys.mechanical-motion",
+          "altText": { "ky": "Машина жолдун ортосунда, белгилер артта калды.", "ru": "Машина на середине дороги, отметки остались позади.", "en": "The car halfway along the road with markers behind it." },
+          "duration": 1.5
+        },
+        {
+          "key": "trace",
+          "title": { "ky": "Траекторияны көрөбүз", "ru": "Видим траекторию", "en": "See the trajectory" },
+          "result": { "ky": "Издер түз сызыкка тизилди", "ru": "Следы выстроились в прямую", "en": "The marks line up straight" },
+          "description": { "ky": "Ар бир секунддагы издер бир түз сызыкка тизилет: траектория түз сызык, кыймыл – түз сызыктуу.", "ru": "Следы через каждую секунду лежат на одной прямой: траектория прямая, движение прямолинейное.", "en": "The marks left every second lie on one straight line: the trajectory is straight, the motion is rectilinear." },
+          "conceptKey": "phys.trajectory",
+          "altText": { "ky": "Жол боюнча бир катар сары издер.", "ru": "Ряд жёлтых меток вдоль дороги.", "en": "A row of yellow marks along the road." },
+          "duration": 1.5
+        },
+        {
+          "key": "compare",
+          "title": { "ky": "Жол жана которулуш", "ru": "Путь и перемещение", "en": "Path and displacement" },
+          "result": { "ky": "s = 60 м, которулуш = 60 м", "ru": "s = 60 м, перемещение = 60 м", "en": "s = 60 m, displacement = 60 m" },
+          "description": { "ky": "Машина 6 белгиден өтүп 60 м жол басты. Ал түз сызык боюнча бир багытта жүргөндүктөн, которулушу да 60 м: s = s⃗.", "ru": "Машина миновала 6 отметок и прошла 60 м. Она ехала по прямой в одну сторону, поэтому перемещение тоже 60 м.", "en": "The car passed 6 markers and covered 60 m. It went straight in one direction, so its displacement is also 60 m." },
+          "conceptKey": "phys.path-length",
+          "altText": { "ky": "Машина марра сызыгында, старт менен марранын ортосу 60 м.", "ru": "Машина на финише, между стартом и финишем 60 м.", "en": "The car at the finish line, 60 m from the start." },
+          "duration": 1
+        }
+      ]
+    },
+    {
+      "key": "phys.average-speed-trip",
+      "engine": "timeline",
+      "icon": "gauge",
+      "title": { "ky": "Эки ылдамдык менен сапар: орточо ылдамдык", "ru": "Поездка с двумя скоростями: средняя скорость", "en": "A trip at two speeds: average speed" },
+      "description": {
+        "ky": "Машина 6 с ичинде 20 м/с менен, андан кийин 6 с ичинде 10 м/с менен жүрөт. Ар бир бөлүктүн жолун s = v·t менен эсептеп, жалпы жолду жалпы убакытка бөлүп, орточо ылдамдыкты табабыз.",
+        "ru": "Машина 6 с едет со скоростью 20 м/с, затем 6 с – со скоростью 10 м/с. Находим путь каждого участка по s = v·t и делим весь путь на всё время – получаем среднюю скорость.",
+        "en": "The car drives at 20 m/s for 6 s, then at 10 m/s for 6 s. We find each part's distance with s = v·t and divide the whole distance by the whole time to get the average speed."
+      },
+      "equation": "v_{орт} = \\frac{s_1 + s_2}{t_1 + t_2}",
+      "inputs": { "ky": "v₁ = 20 м/с, t₁ = 6 с; v₂ = 10 м/с, t₂ = 6 с", "ru": "v₁ = 20 м/с, t₁ = 6 с; v₂ = 10 м/с, t₂ = 6 с", "en": "v₁ = 20 m/s, t₁ = 6 s; v₂ = 10 m/s, t₂ = 6 s" },
+      "outputs": { "ky": "s = 180 м, t = 12 с, v_орт = 15 м/с = 54 км/саат", "ru": "s = 180 м, t = 12 с, v_ср = 15 м/с = 54 км/ч", "en": "s = 180 m, t = 12 s, v_av = 15 m/s = 54 km/h" },
+      "metrics": [
+        { "key": "distance", "label": { "ky": "Өтүлгөн жол", "ru": "Пройденный путь", "en": "Distance" }, "unit": "m", "min": 0, "max": 180, "precision": 0 },
+        { "key": "time", "label": { "ky": "Убакыт", "ru": "Время", "en": "Time" }, "unit": "s", "min": 0, "max": 12, "precision": 0 },
+        { "key": "speed", "label": { "ky": "Ылдамдык", "ru": "Скорость", "en": "Speed" }, "unit": "m/s", "min": 0, "max": 20, "precision": 0 }
+      ],
+      "params": {
+        "distance@start": 0, "distance@fast": 120, "distance@slow": 180, "distance@average": 180,
+        "time@start": 0, "time@fast": 6, "time@slow": 12, "time@average": 12,
+        "speed@start": 20, "speed@fast": 20, "speed@slow": 10, "speed@average": 15
+      },
+      "steps": [
+        {
+          "key": "start",
+          "title": { "ky": "Старт", "ru": "Старт", "en": "Start" },
+          "result": { "ky": "t = 0, s = 0", "ru": "t = 0, s = 0", "en": "t = 0, s = 0" },
+          "description": { "ky": "Машина старт сызыгынан 20 м/с ылдамдык менен өтөт. Радар 72 км/саат көрсөтөт.", "ru": "Машина проходит линию старта со скоростью 20 м/с. Радар показывает 72 км/ч.", "en": "The car crosses the start line at 20 m/s. The radar shows 72 km/h." },
+          "conceptKey": "phys.speed",
+          "altText": { "ky": "Машина старт сызыгында, радар 72 км/саат көрсөтөт.", "ru": "Машина на старте, радар показывает 72 км/ч.", "en": "The car at the start; the radar reads 72 km/h." },
+          "duration": 0.5
+        },
+        {
+          "key": "fast",
+          "title": { "ky": "1-бөлүк: 20 м/с", "ru": "Участок 1: 20 м/с", "en": "Part 1: 20 m/s" },
+          "result": { "ky": "s₁ = 20 · 6 = 120 м", "ru": "s₁ = 20 · 6 = 120 м", "en": "s₁ = 20 × 6 = 120 m" },
+          "description": { "ky": "6 с ичинде машина ар бир секундда 20 м өтөт: бул бөлүктө кыймыл бир калыпта, s₁ = v₁·t₁ = 120 м.", "ru": "6 с машина каждую секунду проходит 20 м: на этом участке движение равномерное, s₁ = v₁·t₁ = 120 м.", "en": "For 6 s the car covers 20 m every second: uniform motion on this part, s₁ = v₁·t₁ = 120 m." },
+          "conceptKey": "phys.uniform-motion",
+          "altText": { "ky": "Издердин аралыгы 20 м, графикте тик түз кесинди.", "ru": "Следы через 20 м, на графике крутой прямой отрезок.", "en": "Marks 20 m apart; a steep straight segment on the graph." },
+          "duration": 1.5
+        },
+        {
+          "key": "slow",
+          "title": { "ky": "2-бөлүк: 10 м/с", "ru": "Участок 2: 10 м/с", "en": "Part 2: 10 m/s" },
+          "result": { "ky": "s₂ = 10 · 6 = 60 м", "ru": "s₂ = 10 · 6 = 60 м", "en": "s₂ = 10 × 6 = 60 m" },
+          "description": { "ky": "Машина жайлап, дагы 6 с 10 м/с менен жүрөт: s₂ = 60 м. Бүт сапарда бирдей убакытта ар түрдүү жол өтүлдү – кыймыл бир калыптагы эмес.", "ru": "Машина замедляется и ещё 6 с едет со скоростью 10 м/с: s₂ = 60 м. За равные промежутки времени пройдены разные пути – движение неравномерное.", "en": "The car slows and drives at 10 m/s for another 6 s: s₂ = 60 m. Different distances in equal times – the trip is non-uniform." },
+          "conceptKey": "phys.non-uniform-motion",
+          "altText": { "ky": "Издер жыйылды, графиктин экинчи кесиндиси жантайыңкы.", "ru": "Следы стали гуще, второй отрезок графика положе.", "en": "The marks closer together; the second graph segment is shallower." },
+          "duration": 1.5
+        },
+        {
+          "key": "average",
+          "title": { "ky": "Орточо ылдамдык", "ru": "Средняя скорость", "en": "Average speed" },
+          "result": { "ky": "v_орт = 180 : 12 = 15 м/с", "ru": "v_ср = 180 : 12 = 15 м/с", "en": "v_av = 180 ÷ 12 = 15 m/s" },
+          "description": { "ky": "Жалпы жолду жалпы убакытка бөлөбүз: v_орт = (120 + 60) м : (6 + 6) с = 15 м/с = 54 км/саат.", "ru": "Весь путь делим на всё время: v_ср = (120 + 60) м : (6 + 6) с = 15 м/с = 54 км/ч.", "en": "Divide the whole distance by the whole time: v_av = (120 + 60) m ÷ (6 + 6) s = 15 m/s = 54 km/h." },
+          "conceptKey": "phys.average-speed",
+          "altText": { "ky": "Графиктин башталышы менен акыркы чекитин туташтырган пунктир.", "ru": "Пунктир от начала графика до его конечной точки.", "en": "A dashed line from the graph's start to its end point." },
+          "duration": 1
+        }
+      ]
+    },
+    {
+      "key": "phys.speed-up-and-brake",
+      "engine": "timeline",
+      "icon": "trending-up",
+      "title": { "ky": "Тездөө жана тормоздоо", "ru": "Разгон и торможение", "en": "Speeding up and braking" },
+      "description": {
+        "ky": "Машина тынч абалдан 2 м/с² ылдамдануу менен 5 с тездейт, 4 с бир калыпта жүрөт, анан −2,5 м/с² ылдамдануу менен 4 с ичинде токтойт. Ар бир бөлүктө a = (v − v₀)/t эсептейбиз.",
+        "ru": "Машина из покоя 5 с разгоняется с ускорением 2 м/с², 4 с едет равномерно, затем за 4 с останавливается с ускорением −2,5 м/с². На каждом участке считаем a = (v − v₀)/t.",
+        "en": "The car speeds up from rest at 2 m/s² for 5 s, cruises for 4 s, then stops in 4 s at −2.5 m/s². On each part we work out a = (v − v₀)/t."
+      },
+      "equation": "a = \\frac{v - v_0}{t}",
+      "inputs": { "ky": "v₀ = 0; a₁ = 2 м/с², 5 с; a₂ = 0, 4 с; a₃ = −2,5 м/с², 4 с", "ru": "v₀ = 0; a₁ = 2 м/с², 5 с; a₂ = 0, 4 с; a₃ = −2,5 м/с², 4 с", "en": "v₀ = 0; a₁ = 2 m/s² for 5 s; a₂ = 0 for 4 s; a₃ = −2.5 m/s² for 4 s" },
+      "outputs": { "ky": "v_max = 10 м/с, s = 85 м, t = 13 с", "ru": "v_max = 10 м/с, s = 85 м, t = 13 с", "en": "v_max = 10 m/s, s = 85 m, t = 13 s" },
+      "metrics": [
+        { "key": "speed", "label": { "ky": "Ылдамдык", "ru": "Скорость", "en": "Speed" }, "unit": "m/s", "min": 0, "max": 10, "precision": 0 },
+        { "key": "acceleration", "label": { "ky": "Ылдамдануу", "ru": "Ускорение", "en": "Acceleration" }, "unit": "m/s²", "min": -2.5, "max": 2, "precision": 1 },
+        { "key": "time", "label": { "ky": "Убакыт", "ru": "Время", "en": "Time" }, "unit": "s", "min": 0, "max": 13, "precision": 0 },
+        { "key": "distance", "label": { "ky": "Өтүлгөн жол", "ru": "Пройденный путь", "en": "Distance" }, "unit": "m", "min": 0, "max": 85, "precision": 0 }
+      ],
+      "params": {
+        "speed@rest": 0, "speed@speed-up": 10, "speed@cruise": 10, "speed@brake": 0,
+        "acceleration@rest": 0, "acceleration@speed-up": 2, "acceleration@cruise": 0, "acceleration@brake": -2.5,
+        "time@rest": 0, "time@speed-up": 5, "time@cruise": 9, "time@brake": 13,
+        "distance@rest": 0, "distance@speed-up": 25, "distance@cruise": 65, "distance@brake": 85
+      },
+      "steps": [
+        {
+          "key": "rest",
+          "title": { "ky": "Тынч абал", "ru": "Покой", "en": "At rest" },
+          "result": { "ky": "v₀ = 0", "ru": "v₀ = 0", "en": "v₀ = 0" },
+          "description": { "ky": "Машина светофордо турат: баштапкы ылдамдык v₀ = 0.", "ru": "Машина стоит у светофора: начальная скорость v₀ = 0.", "en": "The car waits at the lights: the initial speed v₀ = 0." },
+          "conceptKey": "phys.initial-speed",
+          "altText": { "ky": "Машина старт сызыгында турат.", "ru": "Машина стоит на линии старта.", "en": "The car standing on the start line." },
+          "duration": 0.5
+        },
+        {
+          "key": "speed-up",
+          "title": { "ky": "Ылдамдатылган кыймыл", "ru": "Ускоренное движение", "en": "Speeding up" },
+          "result": { "ky": "a = (10 − 0) : 5 = 2 м/с²", "ru": "a = (10 − 0) : 5 = 2 м/с²", "en": "a = (10 − 0) ÷ 5 = 2 m/s²" },
+          "description": { "ky": "5 с ичинде ылдамдык 0дон 10 м/с ка өстү: ар бир секундда 2 м/с га. Ылдамдануунун жебеси ылдамдык менен бир багытта.", "ru": "За 5 с скорость выросла от 0 до 10 м/с – на 2 м/с каждую секунду. Стрелка ускорения направлена так же, как скорость.", "en": "In 5 s the speed grew from 0 to 10 m/s – by 2 m/s each second. The acceleration arrow points the same way as the velocity." },
+          "conceptKey": "phys.acceleration",
+          "altText": { "ky": "Машинанын үстүндө бир багыттагы эки жебе: ылдамдык жана ылдамдануу.", "ru": "Над машиной две стрелки в одну сторону: скорость и ускорение.", "en": "Two arrows over the car pointing the same way: velocity and acceleration." },
+          "duration": 1.5
+        },
+        {
+          "key": "cruise",
+          "title": { "ky": "Бир калыптагы кыймыл", "ru": "Равномерное движение", "en": "Steady speed" },
+          "result": { "ky": "v = 10 м/с, a = 0", "ru": "v = 10 м/с, a = 0", "en": "v = 10 m/s, a = 0" },
+          "description": { "ky": "4 с бою ылдамдык өзгөрбөйт – ылдамдануу нөл, ылдамдануунун жебеси жок.", "ru": "4 с скорость не меняется – ускорение равно нулю, стрелки ускорения нет.", "en": "For 4 s the speed stays the same – zero acceleration, no acceleration arrow." },
+          "conceptKey": "phys.uniform-motion",
+          "altText": { "ky": "Машинанын үстүндө ылдамдыктын жебеси гана.", "ru": "Над машиной только стрелка скорости.", "en": "Only the velocity arrow above the car." },
+          "duration": 1.5
+        },
+        {
+          "key": "brake",
+          "title": { "ky": "Акырындатылган кыймыл", "ru": "Замедленное движение", "en": "Braking" },
+          "result": { "ky": "a = (0 − 10) : 4 = −2,5 м/с²", "ru": "a = (0 − 10) : 4 = −2,5 м/с²", "en": "a = (0 − 10) ÷ 4 = −2.5 m/s²" },
+          "description": { "ky": "Айдоочу тормоз берди: 4 с ичинде ылдамдык 10 м/с тан 0гө түштү. Ылдамдануу терс, анын жебеси ылдамдыкка карама-каршы.", "ru": "Водитель тормозит: за 4 с скорость упала с 10 м/с до 0. Ускорение отрицательное, его стрелка направлена против скорости.", "en": "The driver brakes: in 4 s the speed falls from 10 m/s to 0. The acceleration is negative; its arrow points against the velocity." },
+          "conceptKey": "phys.uniformly-accelerated",
+          "altText": { "ky": "Ылдамдануунун жебеси артты карайт, машина токтоп жатат.", "ru": "Стрелка ускорения смотрит назад, машина останавливается.", "en": "The acceleration arrow points backwards as the car stops." },
+          "duration": 1.5
+        }
+      ]
+    },
+    {
+      "key": "phys.rotation-period-measurement",
+      "engine": "timeline",
+      "icon": "timer",
+      "title": { "ky": "Айлануу мезгилин ченөө", "ru": "Измерение периода обращения", "en": "Measuring the period of rotation" },
+      "description": {
+        "ky": "Айлана боюнча кыймылдаган топтун 10 айлануусуна кеткен убакытты секундомер менен ченеп, мезгилди T = t/N, жыштыкты n = 1/T, сызыктуу ылдамдыкты v = 2πr/T боюнча табабыз.",
+        "ru": "Секундомером засекаем время 10 оборотов шара по окружности и находим период T = t/N, частоту n = 1/T и линейную скорость v = 2πr/T.",
+        "en": "We time 10 turns of the ball round the circle with a stopwatch and find the period T = t/N, the frequency n = 1/T and the linear speed v = 2πr/T."
+      },
+      "equation": "v = \\frac{2\\pi r}{T}",
+      "inputs": { "ky": "r = 2 м, N = 10 айлануу", "ru": "r = 2 м, N = 10 оборотов", "en": "r = 2 m, N = 10 turns" },
+      "outputs": { "ky": "t = 40 с, T = 4 с, n = 0,25 с⁻¹, v ≈ 3,14 м/с", "ru": "t = 40 с, T = 4 с, n = 0,25 с⁻¹, v ≈ 3,14 м/с", "en": "t = 40 s, T = 4 s, n = 0.25 s⁻¹, v ≈ 3.14 m/s" },
+      "metrics": [
+        { "key": "turns", "label": { "ky": "Айлануулар", "ru": "Обороты", "en": "Turns" }, "min": 0, "max": 10, "precision": 0 },
+        { "key": "time", "label": { "ky": "Убакыт", "ru": "Время", "en": "Time" }, "unit": "s", "min": 0, "max": 40, "precision": 0 }
+      ],
+      "params": {
+        "turns@start": 0, "turns@count": 10, "turns@period": 10, "turns@speed": 10,
+        "time@start": 0, "time@count": 40, "time@period": 40, "time@speed": 40
+      },
+      "steps": [
+        {
+          "key": "start",
+          "title": { "ky": "Секундомерди басабыз", "ru": "Запускаем секундомер", "en": "Start the stopwatch" },
+          "result": { "ky": "N = 0, t = 0", "ru": "N = 0, t = 0", "en": "N = 0, t = 0" },
+          "description": { "ky": "Топ белгиленген чекиттен өткөн замат секундомерди басабыз.", "ru": "Как только шар проходит отмеченную точку, запускаем секундомер.", "en": "The moment the ball passes the marked point, we start the stopwatch." },
+          "conceptKey": "phys.circular-motion",
+          "altText": { "ky": "Топ айлананын белгиленген чекитинде.", "ru": "Шар в отмеченной точке окружности.", "en": "The ball at the marked point of the circle." },
+          "duration": 0.5
+        },
+        {
+          "key": "count",
+          "title": { "ky": "10 айланууну санайбыз", "ru": "Считаем 10 оборотов", "en": "Count 10 turns" },
+          "result": { "ky": "N = 10, t = 40 с", "ru": "N = 10, t = 40 с", "en": "N = 10, t = 40 s" },
+          "description": { "ky": "Топ 10 жолу айланып, ошол эле чекитке келгенде секундомерди токтотобуз: 40 с. Көп айлануу ченөөнүн катасын азайтат.", "ru": "Когда шар в десятый раз вернётся в ту же точку, останавливаем секундомер: 40 с. Много оборотов уменьшают ошибку измерения.", "en": "When the ball returns to the same point for the tenth time we stop the watch: 40 s. Timing many turns cuts the error." },
+          "conceptKey": "phys.angular-path",
+          "altText": { "ky": "Айлананын бою боюнча топтун изи.", "ru": "След шара по всей окружности.", "en": "The ball's trace all round the circle." },
+          "duration": 2
+        },
+        {
+          "key": "period",
+          "title": { "ky": "Мезгил жана жыштык", "ru": "Период и частота", "en": "Period and frequency" },
+          "result": { "ky": "T = 4 с, n = 0,25 с⁻¹", "ru": "T = 4 с, n = 0,25 с⁻¹", "en": "T = 4 s, n = 0.25 s⁻¹" },
+          "description": { "ky": "T = t/N = 40 с : 10 = 4 с. Жыштык n = 1/T = 1 : 4 с = 0,25 с⁻¹ – секундада чейрек айлануу.", "ru": "T = t/N = 40 с : 10 = 4 с. Частота n = 1/T = 1 : 4 с = 0,25 с⁻¹ – четверть оборота в секунду.", "en": "T = t/N = 40 s ÷ 10 = 4 s. Frequency n = 1/T = 1 ÷ 4 s = 0.25 s⁻¹ – a quarter turn per second." },
+          "conceptKey": "phys.period",
+          "altText": { "ky": "T = 4 с жана n = 0,25 с⁻¹ көрсөткүчтөрү.", "ru": "Показания T = 4 с и n = 0,25 с⁻¹.", "en": "Readouts T = 4 s and n = 0.25 s⁻¹." },
+          "duration": 1
+        },
+        {
+          "key": "speed",
+          "title": { "ky": "Сызыктуу ылдамдык", "ru": "Линейная скорость", "en": "Linear speed" },
+          "result": { "ky": "v = 2 · 3,14 · 2 : 4 ≈ 3,14 м/с", "ru": "v = 2 · 3,14 · 2 : 4 ≈ 3,14 м/с", "en": "v = 2 × 3.14 × 2 ÷ 4 ≈ 3.14 m/s" },
+          "description": { "ky": "Бир айланууда топ 2πr = 12,56 м жол өтөт, ага 4 с кетет: v = 2πr/T ≈ 3,14 м/с. Ылдамдыктын жебеси дайыма айланага жаныма боюнча.", "ru": "За оборот шар проходит 2πr = 12,56 м за 4 с: v = 2πr/T ≈ 3,14 м/с. Стрелка скорости всегда направлена по касательной.", "en": "In one turn the ball covers 2πr = 12.56 m in 4 s: v = 2πr/T ≈ 3.14 m/s. The velocity arrow always points along the tangent." },
+          "conceptKey": "phys.speed",
+          "altText": { "ky": "Топтун жанында айланага жаныма жебе.", "ru": "У шара стрелка по касательной к окружности.", "en": "A tangent arrow next to the ball." },
+          "duration": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,580 @@
+{
+  "topic": {
+    "key": "phys7-mechanical-energy",
+    "unitKey": "phys.g7.energy",
+    "status": "published",
+    "title": { "ky": "Механикалык энергия жана анын сакталуу закону", "ru": "Механическая энергия и закон её сохранения", "en": "Mechanical energy and its conservation" },
+    "formula": "E = E_п + E_к = mgh + \\frac{mv^2}{2}",
+    "classification": { "ky": "Импульс, жумуш, кубаттуулук жана энергия", "ru": "Импульс, работа, мощность и энергия", "en": "Momentum, work, power and energy" },
+    "description": {
+      "ky": "Энергия – нерсенин жумуш аткара алуу жөндөмдүүлүгү. Механикалык энергия потенциалдык (Eп = mgh) жана кинетикалык (Eк = mv²/2) болуп бөлүнөт. 0,5 кг жүк 1 м жипте 60° ка четтетилип коё берилет: жогору 0,5 м бийиктикте анын бүт энергиясы потенциалдык – 2,45 Дж, ылдыйда бүт энергиясы кинетикалык, ылдамдыгы ≈ 3,13 м/с. Энергия бир түрдөн экинчи түргө өтөт, бирок толук механикалык энергия E = Eп + Eк өзгөрбөйт.",
+      "ru": "Энергия – способность тела совершать работу. Механическая энергия бывает потенциальной (Eп = mgh) и кинетической (Eк = mv²/2). Груз 0,5 кг на нити 1 м отклоняют на 60° и отпускают: вверху, на высоте 0,5 м, вся его энергия потенциальная – 2,45 Дж, внизу вся энергия кинетическая, скорость ≈ 3,13 м/с. Энергия переходит из одного вида в другой, а полная механическая энергия E = Eп + Eк не меняется.",
+      "en": "Energy is a body's ability to do work. Mechanical energy is either potential (PE = mgh) or kinetic (KE = mv²/2). A 0.5 kg bob on a 1 m string is pulled out to 60° and released: at the top, 0.5 m up, all its energy is potential – 2.45 J; at the bottom it is all kinetic and the bob moves at about 3.13 m/s. Energy changes from one kind to the other, but the total mechanical energy E = PE + KE stays the same."
+    },
+    "goal": {
+      "ky": "Потенциалдык энергияны Eп = mgh, кинетикалык энергияны Eк = mv²/2 формулалары менен эсептөө, механикалык энергиянын бир түрдөн экинчи түргө айланышын түшүндүрүү жана энергиянын сакталуу законун маселелерде колдонуу (PHYS-7.4.2).",
+      "ru": "Вычислять потенциальную энергию по формуле Eп = mgh и кинетическую по Eк = mv²/2, объяснять превращения механической энергии и применять закон сохранения энергии в задачах (PHYS-7.4.2).",
+      "en": "Calculate potential energy with PE = mgh and kinetic energy with KE = mv²/2, explain how mechanical energy changes form, and use energy conservation to solve problems (PHYS-7.4.2)."
+    },
+    "objectiveKeys": ["phys.g7.energy.o2"],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "pendulum",
+        "length": 1,
+        "mass": 0.5,
+        "amplitudeDeg": 60,
+        "g": 9.8,
+        "damping": 0
+      },
+      "camera": { "position": [0.5, 0.3, 3.6], "target": [0.15, -0.2, 0], "fov": 45 },
+      "modes": ["energy", "vectors", "trace"]
+    },
+    "conceptKeys": [
+      "phys.energy",
+      "phys.potential-energy",
+      "phys.kinetic-energy",
+      "phys.energy-conservation",
+      "phys.bob",
+      "phys.equilibrium",
+      "phys.amplitude"
+    ],
+    "overrides": {
+      "phys.energy": {
+        "anchor": [0.2, 0.6, 0],
+        "description": {
+          "ky": "Четке тартылган жүк энергияга ээ: аны коё берсек, ал ылдый түшүп, жолундагы нерсени түртүп жумуш аткара алат. Биздин жүктүн толук механикалык энергиясы E = mgh = 0,5 · 9,8 · 0,5 = 2,45 Дж.",
+          "ru": "Отведённый груз обладает энергией: если его отпустить, он опустится и может совершить работу, толкнув что-нибудь на пути. Полная механическая энергия нашего груза E = mgh = 0,5 · 9,8 · 0,5 = 2,45 Дж.",
+          "en": "The pulled-back bob has energy: let it go and it swings down and can do work by knocking something along. Our bob's total mechanical energy is E = mgh = 0.5 × 9.8 × 0.5 = 2.45 J."
+        },
+        "props": [{ "kind": "quantity", "type": "energy", "value": 2.45 }]
+      },
+      "phys.potential-energy": {
+        "nodes": ["Bar_PE"],
+        "anchor": [0.75, -0.3, 0],
+        "description": {
+          "ky": "Көк тилке – жүктүн потенциалдык энергиясы Eп = mgh, мында h – жүктүн эң төмөнкү чекиттен бийиктиги. 60° та h = l(1 − cos 60°) = 0,5 м, Eп = 2,45 Дж; ылдыйда h = 0, Eп = 0.",
+          "ru": "Синий столбик – потенциальная энергия груза Eп = mgh, где h – высота над нижней точкой. При 60° h = l(1 − cos 60°) = 0,5 м, Eп = 2,45 Дж; внизу h = 0, Eп = 0.",
+          "en": "The blue bar is the bob's potential energy PE = mgh, with h its height above the lowest point. At 60°, h = l(1 − cos 60°) = 0.5 m and PE = 2.45 J; at the bottom h = 0 and PE = 0."
+        },
+        "props": [
+          { "kind": "quantity", "type": "energy", "value": 2.45 },
+          { "kind": "quantity", "type": "length", "value": 0.5 },
+          { "kind": "formula", "type": "formula", "value": "E_п = mgh" }
+        ]
+      },
+      "phys.kinetic-energy": {
+        "nodes": ["Bar_KE"],
+        "anchor": [0.9, -0.3, 0],
+        "description": {
+          "ky": "Кызыл тилке – жүктүн кинетикалык энергиясы Eк = mv²/2. Четки чекитте v = 0 жана Eк = 0; тең салмак абалында v ≈ 3,13 м/с жана Eк = 0,5 · 3,13²/2 ≈ 2,45 Дж.",
+          "ru": "Красный столбик – кинетическая энергия груза Eк = mv²/2. В крайней точке v = 0 и Eк = 0; в положении равновесия v ≈ 3,13 м/с и Eк = 0,5 · 3,13²/2 ≈ 2,45 Дж.",
+          "en": "The red bar is the bob's kinetic energy KE = mv²/2. At the end point v = 0 and KE = 0; at equilibrium v ≈ 3.13 m/s and KE = 0.5 × 3.13²/2 ≈ 2.45 J."
+        },
+        "props": [
+          { "kind": "quantity", "type": "energy", "value": 2.45 },
+          { "kind": "quantity", "type": "speed", "value": 3.13, "approx": true },
+          { "kind": "formula", "type": "formula", "value": "E_к = \\frac{mv^2}{2}" }
+        ]
+      },
+      "phys.energy-conservation": {
+        "anchor": [0.83, 0.15, 0],
+        "description": {
+          "ky": "Эки тилкенин суммасы – толук механикалык энергия – ачык алкак менен көрсөтүлгөн жана дайыма 2,45 Дж. Бир тилке кичирейсе, экинчиси ошончо чоңоёт: энергия жоголбойт, бир түрдөн экинчи түргө гана өтөт.",
+          "ru": "Сумма двух столбиков – полная механическая энергия – показана прозрачной рамкой и всё время равна 2,45 Дж. Насколько уменьшается один столбик, настолько растёт другой: энергия не исчезает, а только переходит из одного вида в другой.",
+          "en": "The sum of the two bars – the total mechanical energy – is shown by the faint frame and is always 2.45 J. As one bar shrinks the other grows by the same amount: energy isn't lost, it only changes form."
+        },
+        "props": [{ "kind": "quantity", "type": "energy", "value": 2.45 }]
+      },
+      "phys.bob": {
+        "nodes": ["Bob"],
+        "anchor": [0, -0.5, 0],
+        "props": [{ "kind": "quantity", "type": "mass", "value": 0.5 }]
+      },
+      "phys.equilibrium": {
+        "nodes": ["Marker_Equilibrium"],
+        "anchor": [0, -0.55, 0],
+        "description": {
+          "ky": "Эң төмөнкү чекит: бул жерде жүктүн бийиктиги h = 0, потенциалдык энергиясы нөл, ылдамдыгы жана кинетикалык энергиясы эң чоң.",
+          "ru": "Нижняя точка: здесь высота груза h = 0, потенциальная энергия равна нулю, а скорость и кинетическая энергия наибольшие.",
+          "en": "The lowest point: here the bob's height is h = 0, its potential energy is zero, and its speed and kinetic energy are greatest."
+        }
+      },
+      "phys.amplitude": {
+        "nodes": ["Arc_Amplitude"],
+        "anchor": [0.45, -0.35, 0],
+        "description": {
+          "ky": "Жүк 60° ка четтетилди – бул анын эң бийик чекити: h = 0,5 м. Мында жүк бир заматка токтойт, бүт энергиясы потенциалдык.",
+          "ru": "Груз отклонили на 60° – это его самая высокая точка: h = 0,5 м. Здесь груз на миг останавливается, вся энергия потенциальная.",
+          "en": "The bob is pulled out to 60° – its highest point, h = 0.5 m. Here it stops for an instant and all its energy is potential."
+        },
+        "props": [{ "kind": "quantity", "type": "angle", "value": 60 }]
+      }
+    },
+    "props": [
+      { "kind": "quantity", "type": "mass", "value": 0.5 },
+      { "kind": "quantity", "type": "length", "value": 1 },
+      { "kind": "quantity", "type": "energy", "value": 2.45 },
+      { "kind": "formula", "type": "formula", "value": "E = E_п + E_к" }
+    ],
+    "samples": [
+      {
+        "key": "energy-60deg",
+        "title": { "ky": "Маятник, 60°", "ru": "Маятник, 60°", "en": "Pendulum, 60°" },
+        "classification": { "ky": "h = 0,5 м, E = 2,45 Дж, v ≈ 3,13 м/с", "ru": "h = 0,5 м, E = 2,45 Дж, v ≈ 3,13 м/с", "en": "h = 0.5 m, E = 2.45 J, v ≈ 3.13 m/s" },
+        "thumb": "thumbs/energy-60deg.webp",
+        "props": [
+          { "kind": "quantity", "type": "angle", "value": 60 },
+          { "kind": "quantity", "type": "energy", "value": 2.45 },
+          { "kind": "quantity", "type": "speed", "value": 3.13, "approx": true }
+        ],
+        "scene": { "params": { "amplitudeDeg": 60, "damping": 0 } }
+      },
+      {
+        "key": "energy-30deg",
+        "title": { "ky": "Маятник, 30°", "ru": "Маятник, 30°", "en": "Pendulum, 30°" },
+        "classification": { "ky": "h ≈ 0,13 м, E ≈ 0,66 Дж, v ≈ 1,62 м/с", "ru": "h ≈ 0,13 м, E ≈ 0,66 Дж, v ≈ 1,62 м/с", "en": "h ≈ 0.13 m, E ≈ 0.66 J, v ≈ 1.62 m/s" },
+        "thumb": "thumbs/energy-30deg.webp",
+        "props": [
+          { "kind": "quantity", "type": "angle", "value": 30 },
+          { "kind": "quantity", "type": "energy", "value": 0.66, "approx": true },
+          { "kind": "quantity", "type": "speed", "value": 1.62, "approx": true }
+        ],
+        "scene": { "params": { "amplitudeDeg": 30, "damping": 0 } }
+      },
+      {
+        "key": "energy-damped",
+        "title": { "ky": "Аба каршылыгы менен", "ru": "С сопротивлением воздуха", "en": "With air resistance" },
+        "classification": { "ky": "Механикалык энергия акырындап азаят", "ru": "Механическая энергия постепенно убывает", "en": "Mechanical energy slowly drains away" },
+        "thumb": "thumbs/energy-damped.webp",
+        "props": [
+          { "kind": "quantity", "type": "angle", "value": 60 },
+          { "kind": "quantity", "type": "energy", "value": 2.45 },
+          { "kind": "quantity", "type": "speed", "value": 3.13, "approx": true }
+        ],
+        "scene": { "params": { "amplitudeDeg": 60, "damping": 0.1 } }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "top",
+            "camera": { "position": [0, -0.1, 3.6], "target": [0.15, -0.2, 0] },
+            "modes": { "energy": true, "vectors": false, "trace": false },
+            "sample": "energy-60deg",
+            "focus": "phys.potential-energy",
+            "text": {
+              "ky": "0,5 кг жүк 1 м жипте 60° ка четтетилди: ал эң төмөнкү чекиттен h = 0,5 м бийик. Жүк кыймылсыз – анын бүт энергиясы потенциалдык: Eп = mgh = 0,5 · 9,8 · 0,5 = 2,45 Дж. Көк тилке толук.",
+              "ru": "Груз 0,5 кг на нити 1 м отклонён на 60°: он на h = 0,5 м выше нижней точки. Груз неподвижен – вся его энергия потенциальная: Eп = mgh = 0,5 · 9,8 · 0,5 = 2,45 Дж. Синий столбик полный.",
+              "en": "A 0.5 kg bob on a 1 m string is pulled out to 60°, h = 0.5 m above its lowest point. It is still, so all its energy is potential: PE = mgh = 0.5 × 9.8 × 0.5 = 2.45 J. The blue bar is full."
+            },
+            "teacherNote": {
+              "ky": "Эскертиңиз: Eп ны кайсы деңгээлден эсептөөнү өзүбүз тандайбыз; бул жерде – жүктүн эң төмөнкү чекитинен (китептегидей, «жер бетинде Eп = 0»).",
+              "ru": "Напомните: уровень отсчёта Eп выбираем сами; здесь – нижняя точка груза (как в учебнике: «на поверхности Земли Eп = 0»).",
+              "en": "Remind pupils that we choose the zero level for PE ourselves; here it is the bob's lowest point (like the textbook's 'PE = 0 on the ground')."
+            },
+            "altText": { "ky": "Жүк 60° ка четтетилген, жанында көк тилке толук, кызыл тилке бош.", "ru": "Груз отклонён на 60°, рядом синий столбик полный, красный пуст.", "en": "The bob pulled out to 60°; beside it the blue bar is full and the red bar empty." }
+          },
+          {
+            "key": "down",
+            "modes": { "energy": true, "vectors": true },
+            "focus": "phys.energy-conservation",
+            "text": {
+              "ky": "Жүк ылдый түшкөн сайын бийиктиги азайып, ылдамдыгы чоңоёт: көк тилке кичирейип, кызыл тилке өсөт. h = 0,25 м болгондо Eп = Eк ≈ 1,23 Дж – суммасы мурдагыдай 2,45 Дж.",
+              "ru": "Опускаясь, груз теряет высоту и набирает скорость: синий столбик уменьшается, красный растёт. При h = 0,25 м Eп = Eк ≈ 1,23 Дж – сумма по-прежнему 2,45 Дж.",
+              "en": "As the bob swings down it loses height and gains speed: the blue bar shrinks and the red bar grows. At h = 0.25 m, PE = KE ≈ 1.23 J – the sum is still 2.45 J."
+            },
+            "teacherNote": {
+              "ky": "Максвелл маятниги (105-сүрөт) менен салыштырыңыз: диск түшкөндө Eп → Eк, көтөрүлгөндө Eк → Eп.",
+              "ru": "Сравните с маятником Максвелла (рис. 105): при спуске диска Eп → Eк, при подъёме Eк → Eп.",
+              "en": "Compare with Maxwell's pendulum (fig. 105): going down PE → KE, going up KE → PE."
+            },
+            "altText": { "ky": "Жүк жолдун ортосунда, эки тилке бирдей.", "ru": "Груз на полпути, столбики одинаковые.", "en": "The bob halfway down; the two bars are equal." }
+          },
+          {
+            "key": "bottom",
+            "modes": { "energy": true, "vectors": true },
+            "focus": "phys.kinetic-energy",
+            "text": {
+              "ky": "Эң төмөнкү чекитте h = 0: бүт энергия кинетикалык. mgh = mv²/2 болгондуктан v² = 2gh = 2 · 9,8 · 0,5 = 9,8, v ≈ 3,13 м/с. Кызыл тилке толук.",
+              "ru": "В нижней точке h = 0: вся энергия кинетическая. Так как mgh = mv²/2, v² = 2gh = 2 · 9,8 · 0,5 = 9,8, v ≈ 3,13 м/с. Красный столбик полный.",
+              "en": "At the lowest point h = 0: all the energy is kinetic. Since mgh = mv²/2, v² = 2gh = 2 × 9.8 × 0.5 = 9.8, v ≈ 3.13 m/s. The red bar is full."
+            },
+            "teacherNote": {
+              "ky": "Массасы жоголгонун көрсөтүңүз: v = √(2gh) жүктүн массасынан көз каранды эмес.",
+              "ru": "Покажите, что масса сократилась: v = √(2gh) не зависит от массы груза.",
+              "en": "Show that the mass cancels: v = √(2gh) doesn't depend on the bob's mass."
+            },
+            "altText": { "ky": "Жүк так ылдыйда, ылдамдык жебеси эң узун, кызыл тилке толук.", "ru": "Груз в самом низу, стрелка скорости самая длинная, красный столбик полный.", "en": "The bob at the bottom with the longest speed arrow and a full red bar." }
+          },
+          {
+            "key": "other-side",
+            "modes": { "energy": true, "trace": true },
+            "focus": "phys.amplitude",
+            "text": {
+              "ky": "Жүк кайра көтөрүлүп, карама-каршы жакта да 60° ка, ошол эле 0,5 м бийиктикке жетет: кинетикалык энергия кайра потенциалдыкка айланды. Толук механикалык энергия жоголбойт жана жоктон пайда болбойт.",
+              "ru": "Груз снова поднимается и на другой стороне тоже доходит до 60°, до той же высоты 0,5 м: кинетическая энергия снова стала потенциальной. Полная механическая энергия не исчезает и не возникает из ничего.",
+              "en": "The bob rises again and reaches 60°, the same 0.5 m, on the other side: kinetic energy has turned back into potential. Total mechanical energy is never lost and never made from nothing."
+            },
+            "teacherNote": {
+              "ky": "Из (trace) режимин күйгүзүп, жүктүн эки жакта бирдей бийиктикке жеткенин көрсөтүңүз.",
+              "ru": "Включите режим следа и покажите, что груз доходит до одинаковой высоты с обеих сторон.",
+              "en": "Turn on the trace mode to show the bob reaching the same height on both sides."
+            },
+            "altText": { "ky": "Жүктүн изи эки жакта бирдей бийиктиктеги жааны сызат.", "ru": "След груза рисует дугу одинаковой высоты с обеих сторон.", "en": "The bob's trail draws an arc that rises equally high on both sides." }
+          },
+          {
+            "key": "smaller",
+            "sample": "energy-30deg",
+            "modes": { "energy": true },
+            "focus": "phys.potential-energy",
+            "text": {
+              "ky": "Жүктү 30° ка гана четтетебиз: h = 1 · (1 − cos 30°) ≈ 0,13 м, Eп ≈ 0,66 Дж. Бийиктик аз – энергия да аз, ылдыйдагы ылдамдык ≈ 1,62 м/с гана.",
+              "ru": "Отклоним груз только на 30°: h = 1 · (1 − cos 30°) ≈ 0,13 м, Eп ≈ 0,66 Дж. Высота меньше – меньше и энергия, скорость внизу всего ≈ 1,62 м/с.",
+              "en": "Pull the bob out to only 30°: h = 1 × (1 − cos 30°) ≈ 0.13 m, PE ≈ 0.66 J. Less height means less energy – the speed at the bottom is only about 1.62 m/s."
+            },
+            "teacherNote": {
+              "ky": "Салыштыруу таблицасын ачып, 60° жана 30° учурларын салыштырыңыз.",
+              "ru": "Откройте таблицу сравнения и сравните случаи 60° и 30°.",
+              "en": "Open the comparison table and compare 60° with 30°."
+            },
+            "altText": { "ky": "Жүк кичине бурчта термелет, тилкелер кыска.", "ru": "Груз качается с малым углом, столбики короткие.", "en": "The bob swings through a small angle; the bars are short." }
+          },
+          {
+            "key": "damped",
+            "sample": "energy-damped",
+            "modes": { "energy": true, "trace": true },
+            "focus": "phys.energy",
+            "text": {
+              "ky": "Чыныгы маятник акырындап токтойт: энергиянын бир бөлүгү абанын каршылыгына жана сүрүлүүгө каршы жумушка сарпталып, жылуулукка айланат. Механикалык энергия азаят, бирок энергия жок болуп кетпейт.",
+              "ru": "Настоящий маятник постепенно останавливается: часть энергии тратится на работу против сопротивления воздуха и трения и превращается в тепло. Механическая энергия уменьшается, но энергия не исчезает.",
+              "en": "A real pendulum slowly stops: some energy goes into work against air resistance and friction and becomes heat. The mechanical energy drops, but the energy doesn't vanish."
+            },
+            "teacherNote": {
+              "ky": "Китептеги Максвелл маятнигинде да диск мурдагы бийиктигине жете албайт – ушул себептен.",
+              "ru": "В учебнике диск маятника Максвелла тоже не доходит до прежней высоты – по той же причине.",
+              "en": "In the textbook Maxwell's disc also never regains its starting height – for the same reason."
+            },
+            "altText": { "ky": "Жүктүн термелүүсү кичирейип баратат, эки тилке тең кыскарууда.", "ru": "Размах груза уменьшается, оба столбика укорачиваются.", "en": "The swings get smaller and both bars shrink." }
+          }
+        ]
+      },
+      "processKeys": ["phys.pendulum-energy"],
+      "comparison": {
+        "columns": [
+          { "kind": "sample", "key": "energy-60deg" },
+          { "kind": "sample", "key": "energy-30deg" },
+          { "kind": "sample", "key": "energy-damped" }
+        ],
+        "rows": ["angle", "energy", "speed"]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-energy-1",
+          "phys.q.p7-energy-2",
+          "phys.q.p7-energy-3",
+          "phys.q.p7-energy-4",
+          "phys.q.p7-energy-5",
+          "phys.q.p7-energy-6",
+          "phys.q.p7-energy-7",
+          "phys.q.p7-energy-8",
+          "phys.q.p7-energy-9",
+          "phys.q.p7-energy-10",
+          "phys.q.p7-energy-11"
+        ],
+        "sampleSize": 6
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "e",
+          "title": { "ky": "Токтогул ГЭСи", "ru": "Токтогульская ГЭС", "en": "Toktogul hydropower station" },
+          "text": {
+            "ky": "Бийик тогондогу суунун потенциалдык энергиясы агып түшкөндө кинетикалык энергияга, андан турбинанын айлануусуна, акырында электр энергиясына айланат. Топтолгон суу Кыргызстандын жана коңшу Өзбекстандын талааларын сугарууга да колдонулат.",
+            "ru": "Потенциальная энергия воды за высокой плотиной при падении переходит в кинетическую, затем во вращение турбины и, наконец, в электрическую. Накопленная вода орошает также поля Кыргызстана и соседнего Узбекистана.",
+            "en": "The potential energy of water behind the high dam becomes kinetic as it falls, then the turbine's rotation, and finally electricity. The stored water also irrigates fields in Kyrgyzstan and neighbouring Uzbekistan."
+          }
+        },
+        {
+          "field": "t",
+          "title": { "ky": "Копёр – түркүк каккыч", "ru": "Копёр для свай", "en": "A pile driver" },
+          "text": {
+            "ky": "Массасы 500 кг копёр балкасы 4 м бийиктикте Eп = 500 · 10 · 4 = 20 кДж энергияга ээ. 10 м бийиктиктен түшкөндө 50 кДж жумуш аткарып, түркүктү жерге кагат.",
+            "ru": "Молот копра массой 500 кг на высоте 4 м имеет энергию Eп = 500 · 10 · 4 = 20 кДж. Падая с 10 м, он совершает работу 50 кДж и вбивает сваю в землю.",
+            "en": "A 500 kg pile-driver hammer 4 m up has PE = 500 × 10 × 4 = 20 kJ. Dropped from 10 m it does 50 kJ of work driving the pile into the ground."
+          }
+        },
+        {
+          "field": "m",
+          "title": { "ky": "Эркин түшүү", "ru": "Свободное падение", "en": "Free fall" },
+          "text": {
+            "ky": "Эркин түшкөн нерсе жерге 40 м/с ылдамдык менен жетти. mgh = mv²/2 боюнча h = v²/(2g) = 1600 / 20 = 80 м (g ≈ 10 Н/кг).",
+            "ru": "Свободно падающее тело достигло земли со скоростью 40 м/с. По mgh = mv²/2 высота h = v²/(2g) = 1600 / 20 = 80 м (g ≈ 10 Н/кг).",
+            "en": "A freely falling body hits the ground at 40 m/s. From mgh = mv²/2, h = v²/(2g) = 1600 / 20 = 80 m (g ≈ 10 N/kg)."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Селкинчек", "ru": "Качели", "en": "A swing" },
+          "text": {
+            "ky": "Селкинчектин эң бийик чекитинде бир заматка токтойсуң (Eп чоң), ылдыйда эң тез учасың (Eк чоң).",
+            "ru": "В самой высокой точке качелей ты на миг замираешь (Eп велика), внизу летишь быстрее всего (Eк велика).",
+            "en": "At the top of a swing you pause for a moment (big PE); at the bottom you fly fastest (big KE)."
+          }
+        },
+        {
+          "title": { "ky": "Резина топ", "ru": "Резиновый мяч", "en": "A rubber ball" },
+          "text": {
+            "ky": "Топ түшкөндө ылдамдайт, жерге урунуп деформацияланат да кайра секирет. Бирок ар бир жолу бир аз төмөн көтөрүлөт – энергиянын бир бөлүгү жылуулукка өтөт.",
+            "ru": "Мяч, падая, разгоняется, ударяется о землю, деформируется и подскакивает. Но каждый раз чуть ниже – часть энергии уходит в тепло.",
+            "en": "A ball speeds up as it falls, squashes on the ground and bounces back – but a little lower each time, as some energy turns into heat."
+          }
+        }
+      ]
+    },
+    "starters": [
+      { "ky": "Эмне үчүн маятник эң төмөнкү чекитте эң тез кыймылдайт?", "ru": "Почему маятник быстрее всего в нижней точке?", "en": "Why is the pendulum fastest at its lowest point?" },
+      { "ky": "Энергия кайда жоголот, эгер селкинчек акырындап токтосо?", "ru": "Куда девается энергия, когда качели останавливаются?", "en": "Where does the energy go when a swing slowly stops?" },
+      { "ky": "Ылдамдык эки эсе чоңойсо, кинетикалык энергия канча эсе чоңоёт?", "ru": "Во сколько раз вырастет кинетическая энергия, если скорость удвоится?", "en": "How much does kinetic energy grow if the speed doubles?" },
+      { "ky": "Токтогул ГЭСинде энергия кантип айланат?", "ru": "Как превращается энергия на Токтогульской ГЭС?", "en": "How does energy change form at the Toktogul dam?" }
+    ],
+    "rights": [{ "license": "own", "author": "Bilig", "source": "Bilig content team; problems after Мамбетакунов Э. Физика 7, §40–44" }],
+    "i18n": { "ky": "machine", "ru": "reviewed", "en": "draft" }
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-energy-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Нерсенин толук механикалык энергиясы эмнеге барабар?",
+        "ru": "Чему равна полная механическая энергия тела?",
+        "en": "What is a body's total mechanical energy?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "Потенциалдык жана кинетикалык энергияларынын суммасына", "ru": "Сумме потенциальной и кинетической энергий", "en": "The sum of its potential and kinetic energy" } },
+        { "key": "b", "text": { "ky": "Потенциалдык энергиясына гана", "ru": "Только потенциальной энергии", "en": "Only its potential energy" } },
+        { "key": "c", "text": { "ky": "Массасы менен ылдамдыгынын көбөйтүндүсүнө", "ru": "Произведению массы на скорость", "en": "Mass times velocity" } }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "E = Eп + Eк. Масса менен ылдамдыктын көбөйтүндүсү mv – бул импульс.",
+        "ru": "E = Eп + Eк. Произведение массы на скорость mv – это импульс.",
+        "en": "E = PE + KE. Mass times velocity, mv, is momentum."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-energy-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы нерселер потенциалдык энергияга ээ?",
+        "ru": "Какие тела обладают потенциальной энергией?",
+        "en": "Which of these have potential energy?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "Жерден өйдө көтөрүлгөн жүк", "ru": "Груз, поднятый над землёй", "en": "A load raised above the ground" } },
+        { "key": "b", "text": { "ky": "Кысылган пружина", "ru": "Сжатая пружина", "en": "A squeezed spring" } },
+        { "key": "c", "text": { "ky": "Чоюлган жаанын жиби", "ru": "Натянутая тетива лука", "en": "A drawn bowstring" } },
+        { "key": "d", "text": { "ky": "Полдо жылып бараткан чимирик", "ru": "Волчок, крутящийся на полу", "en": "A top spinning on the floor" } }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": {
+        "ky": "Көтөрүлгөн жүк, кысылган пружина жана чоюлган жаа абалынан улам энергияга ээ. Полдогу чимирик кыймылда – анын кинетикалык энергиясы бар, ал эми потенциалдык энергиясы нөл.",
+        "ru": "Поднятый груз, сжатая пружина и натянутая тетива обладают энергией благодаря своему положению или деформации. Волчок на полу движется – у него кинетическая энергия, а потенциальная равна нулю.",
+        "en": "The raised load, squeezed spring and drawn bowstring have energy because of their position or deformation. The spinning top on the floor has kinetic energy; its potential energy is zero."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-energy-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 2 кг шардын 5 м бийиктиктеги потенциалдык энергиясы канча джоуль? g ≈ 10 Н/кг.",
+        "ru": "Какова потенциальная энергия шара массой 2 кг на высоте 5 м, Дж? g ≈ 10 Н/кг.",
+        "en": "What is the potential energy of a 2 kg ball 5 m up, in joules? g ≈ 10 N/kg."
+      },
+      "answer": 100,
+      "tolerance": 1,
+      "unit": "J",
+      "explanation": {
+        "ky": "Eп = mgh = 2 · 10 · 5 = 100 Дж.",
+        "ru": "Eп = mgh = 2 · 10 · 5 = 100 Дж.",
+        "en": "PE = mgh = 2 × 10 × 5 = 100 J."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-energy-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 10 г ок атылганда 3200 Дж кинетикалык энергияга ээ болду. Октун ылдамдыгы канча м/с?",
+        "ru": "Пуля массой 10 г при выстреле получила кинетическую энергию 3200 Дж. Какова её скорость, м/с?",
+        "en": "A 10 g bullet leaves the gun with 3200 J of kinetic energy. What is its speed in m/s?"
+      },
+      "answer": 800,
+      "tolerance": 5,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "v² = 2Eк/m = 2 · 3200 / 0,01 = 640 000, v = 800 м/с.",
+        "ru": "v² = 2Eк/m = 2 · 3200 / 0,01 = 640 000, v = 800 м/с.",
+        "en": "v² = 2KE/m = 2 × 3200 / 0.01 = 640 000, so v = 800 m/s."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "difficulty": 4
+    },
+    {
+      "key": "phys.q.p7-energy-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Эркин түшкөн нерсенин жерге жеткендеги ылдамдыгы 40 м/с. Ал канча метр бийиктиктен түшкөн? g ≈ 10 Н/кг, абанын каршылыгы жок.",
+        "ru": "Скорость свободно падающего тела у земли 40 м/с. С какой высоты оно упало, м? g ≈ 10 Н/кг, сопротивления воздуха нет.",
+        "en": "A freely falling body hits the ground at 40 m/s. From what height in metres did it fall? g ≈ 10 N/kg, no air resistance."
+      },
+      "answer": 80,
+      "tolerance": 1,
+      "unit": "m",
+      "explanation": {
+        "ky": "Энергиянын сакталуу закону: mgh = mv²/2, h = v²/(2g) = 1600 / 20 = 80 м.",
+        "ru": "Закон сохранения энергии: mgh = mv²/2, h = v²/(2g) = 1600 / 20 = 80 м.",
+        "en": "Energy conservation: mgh = mv²/2, so h = v²/(2g) = 1600 / 20 = 80 m."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "difficulty": 4
+    },
+    {
+      "key": "phys.q.p7-energy-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Моделде 0,5 кг жүк 1 м жипте 60° ка четтетилип коё берилди (h = 0,5 м, g = 9,8 Н/кг). Эң төмөнкү чекиттеги анын ылдамдыгы канча м/с?",
+        "ru": "На модели груз 0,5 кг на нити 1 м отклонили на 60° и отпустили (h = 0,5 м, g = 9,8 Н/кг). Какова его скорость в нижней точке, м/с?",
+        "en": "In the model a 0.5 kg bob on a 1 m string is released from 60° (h = 0.5 m, g = 9.8 N/kg). What is its speed at the lowest point in m/s?"
+      },
+      "answer": 3.13,
+      "tolerance": 0.05,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "mgh = mv²/2 → v = √(2gh) = √(2 · 9,8 · 0,5) = √9,8 ≈ 3,13 м/с.",
+        "ru": "mgh = mv²/2 → v = √(2gh) = √(2 · 9,8 · 0,5) = √9,8 ≈ 3,13 м/с.",
+        "en": "mgh = mv²/2 → v = √(2gh) = √(2 × 9.8 × 0.5) = √9.8 ≈ 3.13 m/s."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "misconceptionKey": "phys.m.stops-at-bottom",
+      "difficulty": 4
+    },
+    {
+      "key": "phys.q.p7-energy-7",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден жүктүн потенциалдык энергиясын көрсөткөн тилкени тап.",
+        "ru": "Найди на модели столбик, показывающий потенциальную энергию груза.",
+        "en": "Find the bar that shows the bob's potential energy."
+      },
+      "targetConceptKey": "phys.potential-energy",
+      "explanation": {
+        "ky": "Көк тилке – Eп = mgh: ал жүк эң бийикте болгондо толук, ылдыйда бош.",
+        "ru": "Синий столбик – Eп = mgh: он полный, когда груз выше всего, и пуст внизу.",
+        "en": "The blue bar is PE = mgh: full when the bob is highest, empty at the bottom."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-energy-8",
+      "type": "match",
+      "prompt": {
+        "ky": "Жүктүн абалын анын энергиясы менен дал келтир.",
+        "ru": "Сопоставь положение груза и его энергию.",
+        "en": "Match each position of the bob to its energy."
+      },
+      "pairs": [
+        { "key": "top", "left": { "ky": "Эң бийик чекит", "ru": "Самая высокая точка", "en": "Highest point" }, "right": { "ky": "Eп = 2,45 Дж, Eк = 0", "ru": "Eп = 2,45 Дж, Eк = 0", "en": "PE = 2.45 J, KE = 0" } },
+        { "key": "half", "left": { "ky": "h = 0,25 м", "ru": "h = 0,25 м", "en": "h = 0.25 m" }, "right": { "ky": "Eп = Eк ≈ 1,23 Дж", "ru": "Eп = Eк ≈ 1,23 Дж", "en": "PE = KE ≈ 1.23 J" } },
+        { "key": "bottom", "left": { "ky": "Эң төмөнкү чекит", "ru": "Самая низкая точка", "en": "Lowest point" }, "right": { "ky": "Eп = 0, Eк = 2,45 Дж", "ru": "Eп = 0, Eк = 2,45 Дж", "en": "PE = 0, KE = 2.45 J" } }
+      ],
+      "explanation": {
+        "ky": "Ар бир чекитте Eп + Eк = 2,45 Дж – толук механикалык энергия сакталат.",
+        "ru": "В каждой точке Eп + Eк = 2,45 Дж – полная механическая энергия сохраняется.",
+        "en": "At every point PE + KE = 2.45 J – the total mechanical energy is conserved."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "misconceptionKey": "phys.m.stops-at-bottom",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-energy-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Машинанын ылдамдыгы 2 эсе чоңойду. Анын кинетикалык энергиясы канча эсе чоңоёт?",
+        "ru": "Скорость машины выросла в 2 раза. Во сколько раз выросла её кинетическая энергия?",
+        "en": "A car's speed doubles. By what factor does its kinetic energy grow?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "2 эсе", "ru": "В 2 раза", "en": "2 times" } },
+        { "key": "b", "text": { "ky": "4 эсе", "ru": "В 4 раза", "en": "4 times" } },
+        { "key": "c", "text": { "ky": "Өзгөрбөйт", "ru": "Не изменится", "en": "It doesn't change" } }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Eк = mv²/2: ылдамдык квадратта, ошондуктан (2v)² = 4v² – энергия 4 эсе чоңоёт.",
+        "ru": "Eк = mv²/2: скорость в квадрате, поэтому (2v)² = 4v² – энергия вырастет в 4 раза.",
+        "en": "KE = mv²/2: speed is squared, so (2v)² = 4v² – the energy grows 4 times."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "misconceptionKey": "phys.m.ke-linear-speed",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-energy-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Чыныгы маятник бир нече мүнөттөн кийин токтоп калат. Анын энергиясы эмне болду?",
+        "ru": "Настоящий маятник через несколько минут останавливается. Что стало с его энергией?",
+        "en": "A real pendulum stops after a few minutes. What happened to its energy?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "Абанын каршылыгына жана сүрүлүүгө каршы жумушка сарпталып, жылуулукка өттү", "ru": "Потрачена на работу против сопротивления воздуха и трения и перешла в тепло", "en": "It went into work against air resistance and friction and became heat" } },
+        { "key": "b", "text": { "ky": "Жок болуп кетти", "ru": "Просто исчезла", "en": "It simply vanished" } },
+        { "key": "c", "text": { "ky": "Жүктүн массасына айланды", "ru": "Превратилась в массу груза", "en": "It turned into the bob's mass" } }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Энергия жоголбойт жана жоктон пайда болбойт. Механикалык энергия сүрүлүүнүн айынан ички (жылуулук) энергияга өтөт.",
+        "ru": "Энергия не исчезает и не возникает из ничего. Из-за трения механическая энергия переходит во внутреннюю (тепловую).",
+        "en": "Energy is never lost or created from nothing. Friction turns the mechanical energy into internal (heat) energy."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "misconceptionKey": "phys.m.energy-used-up",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-energy-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Кайсынын потенциалдык энергиясы чоң: жерде жаткан 50 кг таштыкыбы же 5 м бийиктиктеги 2 кг шардыкыбы? (Eп = 0 – жер бетинде.)",
+        "ru": "У кого больше потенциальная энергия: у камня 50 кг, лежащего на земле, или у шара 2 кг на высоте 5 м? (Eп = 0 на поверхности Земли.)",
+        "en": "Which has more potential energy: a 50 kg rock lying on the ground, or a 2 kg ball 5 m up? (PE = 0 at ground level.)"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "5 м бийиктиктеги шардыкы", "ru": "У шара на высоте 5 м", "en": "The ball 5 m up" } },
+        { "key": "b", "text": { "ky": "Таштыкы – ал оор", "ru": "У камня – он тяжелее", "en": "The rock – it's heavier" } },
+        { "key": "c", "text": { "ky": "Бирдей", "ru": "Одинаковая", "en": "They're equal" } }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Eп = mgh: таш үчүн h = 0, демек Eп = 0; шар үчүн Eп = 2 · 10 · 5 = 100 Дж.",
+        "ru": "Eп = mgh: у камня h = 0, значит Eп = 0; у шара Eп = 2 · 10 · 5 = 100 Дж.",
+        "en": "PE = mgh: the rock has h = 0, so PE = 0; the ball has PE = 2 × 10 × 5 = 100 J."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "misconceptionKey": "phys.m.pe-mass-only",
+      "difficulty": 2
+    }
+  ]
+}

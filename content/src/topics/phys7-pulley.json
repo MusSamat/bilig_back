@@ -1,0 +1,1028 @@
+{
+  "topic": {
+    "key": "phys7-pulley",
+    "unitKey": "phys.g7.statics",
+    "status": "published",
+    "title": {
+      "ky": "Блок. Механиканын «алтын эрежеси»",
+      "ru": "Блок. «Золотое правило» механики",
+      "en": "Pulleys and the golden rule of mechanics"
+    },
+    "formula": "F = P/2,\\ s = 2h",
+    "classification": {
+      "ky": "Статика – жөнөкөй механизмдер",
+      "ru": "Статика – простые механизмы",
+      "en": "Statics – simple machines"
+    },
+    "description": {
+      "ky": "Блок – огунун айланасында айлануучу жана алкагында жип салуучу жолчосу бар дөңгөлөк. Кыймылсыз блок күчтүн багытын гана өзгөртөт (F = P), кыймылдуу блок күчтөн 2 эсе утуш берет (F = P/2). Бирок жүктү 1 м көтөрүү үчүн жиптин учун 2 м тартабыз: эки учурда тең жумуш 98 Дж. Жөнөкөй механизмдер жумуштан утуш бербейт – бул механиканын «алтын эрежеси».",
+      "ru": "Блок – колесо с жёлобом для верёвки, вращающееся вокруг оси. Неподвижный блок меняет только направление силы (F = P), подвижный даёт выигрыш в силе вдвое (F = P/2). Но чтобы поднять груз на 1 м, верёвку тянем на 2 м: в обоих случаях работа 98 Дж. Простые механизмы не дают выигрыша в работе – это «золотое правило» механики.",
+      "en": "A pulley is a grooved wheel that turns on an axle. A fixed pulley only changes the direction of the force (F = W); a movable pulley halves it (F = W/2). But to lift a load 1 m you pull 2 m of rope: the work is 98 J either way. Simple machines save no work – the golden rule of mechanics."
+    },
+    "goal": {
+      "ky": "Кыймылсыз жана кыймылдуу блоктогу күчтөрдү жана жолдорду табуу, механиканын «алтын эрежесин» F·s = P·h колдонуу (PHYS-7.5.1).",
+      "ru": "Находить силы и пути для неподвижного и подвижного блоков, применять «золотое правило» механики F·s = P·h (PHYS-7.5.1).",
+      "en": "Find the forces and distances for fixed and movable pulleys and apply the golden rule of mechanics F·s = W·h (PHYS-7.5.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.statics.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "pulley",
+        "variant": "movable",
+        "loadMass": 10,
+        "pulleyMass": 0,
+        "height": 1,
+        "speed": 0.2,
+        "friction": 0,
+        "g": 9.8
+      },
+      "camera": {
+        "position": [
+          1.4,
+          2,
+          4.2
+        ],
+        "target": [
+          0,
+          1.2,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "energy",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.simple-machine",
+      "phys.pulley-fixed",
+      "phys.pulley-movable",
+      "phys.golden-rule",
+      "phys.weight",
+      "phys.force"
+    ],
+    "overrides": {
+      "phys.pulley-fixed": {
+        "nodes": [
+          "Pulley_Fixed",
+          "Pulley_Fixed_*"
+        ]
+      },
+      "phys.pulley-movable": {
+        "nodes": [
+          "Pulley_Movable",
+          "Pulley_Movable_*"
+        ],
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F = \\frac{P}{2} = 49"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "s = 2h = 2"
+          }
+        ]
+      },
+      "phys.golden-rule": {
+        "nodes": [
+          "Ruler",
+          "Ruler_Mark",
+          "Dim_H",
+          "Dim_S"
+        ],
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F s = 49 \\cdot 2 = 98"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P h = 98 \\cdot 1 = 98"
+          }
+        ]
+      },
+      "phys.weight": {
+        "nodes": [
+          "Load",
+          "Load_*",
+          "Arrow_Weight"
+        ],
+        "description": {
+          "ky": "10 кг жүктүн салмагы P = m·g = 10 кг · 9,8 Н/кг = 98 Н. Ал блоктун огуна тик ылдый аракет этет.",
+          "ru": "Вес груза 10 кг P = m·g = 10 кг · 9,8 Н/кг = 98 Н. Он действует на ось блока вертикально вниз.",
+          "en": "The 10 kg load weighs W = mg = 10 kg × 9.8 N/kg = 98 N, acting straight down on the pulley’s axle."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 98
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 10
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P = m \\cdot g"
+          }
+        ]
+      },
+      "phys.force": {
+        "nodes": [
+          "Arrow_Effort",
+          "Hand"
+        ],
+        "title": {
+          "ky": "Колдун күчү F",
+          "ru": "Сила руки F",
+          "en": "Effort F"
+        },
+        "description": {
+          "ky": "Адамдын жиптин учуна жумшаган күчү. Кыймылсыз блокто F = 98 Н, кыймылдуу блокто жана блоктордун биригишинде F = 49 Н.",
+          "ru": "Сила, с которой человек тянет конец верёвки. С неподвижным блоком F = 98 Н, с подвижным и с системой блоков F = 49 Н.",
+          "en": "The force the person applies to the rope end: 98 N with a fixed pulley, 49 N with a movable pulley or the combined system."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 49
+          }
+        ]
+      },
+      "phys.simple-machine": {
+        "nodes": [
+          "Beam"
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "pulley-fixed",
+        "title": {
+          "ky": "Кыймылсыз блок",
+          "ru": "Неподвижный блок",
+          "en": "Fixed pulley"
+        },
+        "classification": {
+          "ky": "F = P = 98 Н, s = h = 1 м",
+          "ru": "F = P = 98 Н, s = h = 1 м",
+          "en": "F = W = 98 N, s = h = 1 m"
+        },
+        "thumb": "thumbs/pulley-fixed.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 98
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 1
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "fixed"
+          }
+        }
+      },
+      {
+        "key": "pulley-movable",
+        "title": {
+          "ky": "Кыймылдуу блок",
+          "ru": "Подвижный блок",
+          "en": "Movable pulley"
+        },
+        "classification": {
+          "ky": "F = P/2 = 49 Н, s = 2h = 2 м",
+          "ru": "F = P/2 = 49 Н, s = 2h = 2 м",
+          "en": "F = W/2 = 49 N, s = 2h = 2 m"
+        },
+        "thumb": "thumbs/pulley-movable.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 49
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 2
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "movable"
+          }
+        }
+      },
+      {
+        "key": "pulley-tackle",
+        "title": {
+          "ky": "Кыймылсыз + кыймылдуу блок",
+          "ru": "Неподвижный + подвижный блок",
+          "en": "Fixed + movable pulley"
+        },
+        "classification": {
+          "ky": "F = 49 Н, жип ылдый тартылат",
+          "ru": "F = 49 Н, верёвку тянут вниз",
+          "en": "F = 49 N, rope pulled down"
+        },
+        "thumb": "thumbs/pulley-tackle.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 49
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 2
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "tackle"
+          }
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                1.4,
+                2,
+                4.2
+              ],
+              "target": [
+                0,
+                1.2,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.simple-machine",
+            "text": {
+              "ky": "Бул – кыймылдуу блок: жүк (10 кг) блоктун огундагы илмекке илинген, жиптин бир учу шыпка бекитилген. Колубуз жиптин экинчи учун өйдө тартат.",
+              "ru": "Это подвижный блок: груз (10 кг) висит на крюке его оси, один конец верёвки закреплён у потолка. Рука тянет другой конец вверх.",
+              "en": "This is a movable pulley: a 10 kg load hangs from its axle and one end of the rope is tied to the ceiling. The hand pulls the other end up."
+            },
+            "teacherNote": {
+              "ky": "Кудуктан чака тартуу, курулуш крандары жөнүндө сураңыз: блокту кайда көргөнсүңөр?",
+              "ru": "Спросите про колодец и строительные краны: где вы видели блок?",
+              "en": "Ask where pupils have seen pulleys – wells, building cranes."
+            },
+            "altText": {
+              "ky": "Шыптагы тирек, жип, жүк илинген кыймылдуу блок.",
+              "ru": "Опора на потолке, верёвка и подвижный блок с грузом.",
+              "en": "A ceiling beam, a rope and a movable pulley holding a load."
+            }
+          },
+          {
+            "key": "fixed",
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.pulley-fixed",
+            "sample": "pulley-fixed",
+            "text": {
+              "ky": "Адегенде кыймылсыз блок: огу бекитилген, жүк менен кошо жылбайт. Ийиндери OA = OB – дөңгөлөктүн радиусу, ошондуктан F = P = 98 Н. Утуш жок, бирок жипти ылдый тартып, жүктү өйдө көтөрөбүз.",
+              "ru": "Сначала неподвижный блок: ось закреплена и вместе с грузом не движется. Плечи OA = OB – радиусы колеса, поэтому F = P = 98 Н. Выигрыша нет, но тянем вниз, а груз идёт вверх.",
+              "en": "First a fixed pulley: its axle is fixed and does not move with the load. The arms OA = OB are radii, so F = W = 98 N. No gain, but you pull down and the load goes up."
+            },
+            "teacherNote": {
+              "ky": "125-сүрөттү тактага тартып, OA жана OB ийиндерин көрсөтүңүз.",
+              "ru": "Нарисуйте на доске рис. 125 и покажите плечи OA и OB.",
+              "en": "Sketch fig. 125 and mark the arms OA and OB."
+            },
+            "altText": {
+              "ky": "Шыпка бекитилген блок, жиптин бир учунда жүк, экинчисинде кол.",
+              "ru": "Блок закреплён у потолка, на одном конце верёвки груз, на другом – рука.",
+              "en": "A pulley fixed to the ceiling with the load on one end of the rope and the hand on the other."
+            }
+          },
+          {
+            "key": "movable",
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.pulley-movable",
+            "sample": "pulley-movable",
+            "text": {
+              "ky": "Кыймылдуу блоктун таяныч чекити O – жип бекитилген жагында. P нын ийини OA – радиус, F тин ийини OB – диаметр, OB = 2·OA. Ошондуктан F = P/2 = 49 Н: күчтөн 2 эсе утуш!",
+              "ru": "У подвижного блока точка опоры O – со стороны закреплённой верёвки. Плечо P – радиус OA, плечо F – диаметр OB, OB = 2·OA. Поэтому F = P/2 = 49 Н: выигрыш в силе вдвое!",
+              "en": "The movable pulley’s pivot O is on the side where the rope is tied. W’s arm OA is the radius, F’s arm OB the diameter, OB = 2·OA. So F = W/2 = 49 N – half the force!"
+            },
+            "teacherNote": {
+              "ky": "127-сүрөт: кыймылдуу блокту рычаг катары талдаңыз.",
+              "ru": "Рис. 127: разберите подвижный блок как рычаг.",
+              "en": "Use fig. 127 to treat the movable pulley as a lever."
+            },
+            "altText": {
+              "ky": "Жебелер: ылдый P = 98 Н, өйдө F = 49 Н.",
+              "ru": "Стрелки: вниз P = 98 Н, вверх F = 49 Н.",
+              "en": "Arrows: down W = 98 N, up F = 49 N."
+            }
+          },
+          {
+            "key": "rope",
+            "modes": {
+              "labels": true
+            },
+            "focus": "phys.golden-rule",
+            "text": {
+              "ky": "Жүк h = 1 м көтөрүлгөндө, аны кармаган жиптин эки бөлүгү тең 1 м ге кыскарат – колубуз жипти s = 2h = 2 м тартат. Күчтөн 2 эсе утсак, жолдон 2 эсе уттурабыз.",
+              "ru": "Пока груз поднимается на h = 1 м, обе ветви верёвки, на которых он висит, укорачиваются на 1 м – рука вытягивает s = 2h = 2 м. Выиграли в силе вдвое – проиграли в пути вдвое.",
+              "en": "As the load rises h = 1 m both strands holding it shorten by 1 m, so the hand pulls s = 2h = 2 m of rope. Half the force, twice the distance."
+            },
+            "teacherNote": {
+              "ky": "131-сүрөттөгү тажрыйба: динамометр бекитилген жиптин учу 2h ге жылат.",
+              "ru": "Опыт рис. 131: конец верёвки с динамометром проходит 2h.",
+              "en": "Fig. 131: the rope end with the dynamometer travels 2h."
+            },
+            "altText": {
+              "ky": "Сызгычта жүктүн 1 м, жиптин учунун 2 м жылышы.",
+              "ru": "Линейка: груз сдвинулся на 1 м, конец верёвки – на 2 м.",
+              "en": "The ruler shows the load moving 1 m and the rope end 2 m."
+            }
+          },
+          {
+            "key": "work",
+            "modes": {
+              "energy": true
+            },
+            "focus": "phys.golden-rule",
+            "text": {
+              "ky": "Жумуштарды салыштыралы: колдун жумушу A = F·s = 49 Н · 2 м = 98 Дж, жүктү көтөрүү жумушу A = P·h = 98 Н · 1 м = 98 Дж. Барабар! Кыймылдуу блок да жумуштан утуш бербейт – бул механиканын «алтын эрежеси».",
+              "ru": "Сравним работы: рука совершает A = F·s = 49 Н · 2 м = 98 Дж, подъём груза – A = P·h = 98 Н · 1 м = 98 Дж. Равны! Подвижный блок тоже не даёт выигрыша в работе – это «золотое правило» механики.",
+              "en": "Compare the work: the hand does A = F·s = 49 N × 2 m = 98 J, lifting the load takes A = W·h = 98 N × 1 m = 98 J. Equal! A movable pulley saves no work either – the golden rule of mechanics."
+            },
+            "teacherNote": {
+              "ky": "«Энергия» режиминдеги тилкелерди көрсөтүңүз. Сураңыз: эмне үчүн адамдар байыркы замандан бери жумуштан утуш ала алышкан жок?",
+              "ru": "Покажите столбики в режиме «Энергия». Спросите: почему люди с древности так и не смогли выиграть в работе?",
+              "en": "Show the bars in energy mode and ask why nobody since ancient times has managed to save work."
+            },
+            "altText": {
+              "ky": "Эки бирдей тилке: колдун жумушу жана пайдалуу жумуш.",
+              "ru": "Два одинаковых столбика: работа руки и полезная работа.",
+              "en": "Two equal bars: the hand’s work and the useful work."
+            }
+          },
+          {
+            "key": "tackle",
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.force",
+            "sample": "pulley-tackle",
+            "text": {
+              "ky": "Кыймылдуу жана кыймылсыз блокторду бириктирсек (128-сүрөт), күчтөн 2 эсе утуп, жипти ыңгайлуу – ылдый тартабыз: F = 49 Н.",
+              "ru": "Если соединить подвижный и неподвижный блоки (рис. 128), выигрываем в силе вдвое и тянем верёвку удобно – вниз: F = 49 Н.",
+              "en": "Combine a movable and a fixed pulley (fig. 128) and you get half the force while pulling conveniently downwards: F = 49 N."
+            },
+            "teacherNote": {
+              "ky": "15-көнүгүүнүн 7-маселеси: 1 Н күч менен 8 Н жүктү көтөргөн рычаг жана кыймылдуу блок моделин түзгүлө.",
+              "ru": "Задача 7 упражнения 15: придумайте модель из рычага и подвижного блока, где сила 1 Н поднимает груз 8 Н.",
+              "en": "Exercise 15, problem 7: design a lever-plus-movable-pulley model where 1 N lifts 8 N."
+            },
+            "altText": {
+              "ky": "Жогорку кыймылсыз блок жана төмөнкү кыймылдуу блок, жип ылдый тартылат.",
+              "ru": "Верхний неподвижный и нижний подвижный блоки, верёвку тянут вниз.",
+              "en": "A fixed pulley above and a movable one below; the rope is pulled down."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.pulley-movable-lift"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "pulley-fixed"
+          },
+          {
+            "kind": "sample",
+            "key": "pulley-movable"
+          },
+          {
+            "kind": "sample",
+            "key": "pulley-tackle"
+          }
+        ],
+        "rows": [
+          "force",
+          "length",
+          "energy"
+        ],
+        "manual": [
+          {
+            "column": "pulley-fixed",
+            "row": "force",
+            "value": {
+              "ky": "98 Н",
+              "ru": "98 Н",
+              "en": "98 N"
+            }
+          },
+          {
+            "column": "pulley-fixed",
+            "row": "length",
+            "value": {
+              "ky": "s = 1 м",
+              "ru": "s = 1 м",
+              "en": "s = 1 m"
+            }
+          },
+          {
+            "column": "pulley-fixed",
+            "row": "energy",
+            "value": {
+              "ky": "A = 98 Дж",
+              "ru": "A = 98 Дж",
+              "en": "A = 98 J"
+            }
+          },
+          {
+            "column": "pulley-movable",
+            "row": "force",
+            "value": {
+              "ky": "49 Н",
+              "ru": "49 Н",
+              "en": "49 N"
+            }
+          },
+          {
+            "column": "pulley-movable",
+            "row": "length",
+            "value": {
+              "ky": "s = 2 м",
+              "ru": "s = 2 м",
+              "en": "s = 2 m"
+            }
+          },
+          {
+            "column": "pulley-movable",
+            "row": "energy",
+            "value": {
+              "ky": "A = 98 Дж",
+              "ru": "A = 98 Дж",
+              "en": "A = 98 J"
+            }
+          },
+          {
+            "column": "pulley-tackle",
+            "row": "force",
+            "value": {
+              "ky": "49 Н",
+              "ru": "49 Н",
+              "en": "49 N"
+            }
+          },
+          {
+            "column": "pulley-tackle",
+            "row": "length",
+            "value": {
+              "ky": "s = 2 м",
+              "ru": "s = 2 м",
+              "en": "s = 2 m"
+            }
+          },
+          {
+            "column": "pulley-tackle",
+            "row": "energy",
+            "value": {
+              "ky": "A = 98 Дж",
+              "ru": "A = 98 Дж",
+              "en": "A = 98 J"
+            }
+          }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-pulley-1",
+          "phys.q.phys7-pulley-2",
+          "phys.q.phys7-pulley-3",
+          "phys.q.phys7-pulley-4",
+          "phys.q.phys7-pulley-5",
+          "phys.q.phys7-pulley-6",
+          "phys.q.phys7-pulley-7",
+          "phys.q.phys7-pulley-8",
+          "phys.q.phys7-pulley-9"
+        ],
+        "sampleSize": 6
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Курулуш крандары",
+            "ru": "Строительные краны",
+            "en": "Building cranes"
+          },
+          "text": {
+            "ky": "Курулушта оор жүктөрдү тик көтөрүү үчүн блоктор колдонулат (117-сүрөт): крандын илмеги бир нече кыймылдуу блокко илинет.",
+            "ru": "На стройке тяжёлые грузы поднимают вертикально с помощью блоков (рис. 117): крюк крана висит на нескольких подвижных блоках.",
+            "en": "Building sites lift heavy loads with pulleys (fig. 117): a crane’s hook hangs from several movable pulleys."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Парус кемелери",
+            "ru": "Парусные суда",
+            "en": "Sailing boats"
+          },
+          "text": {
+            "ky": "Желкендин жиптери блоктор аркылуу өтөт: матрос шамалдагы чоң желкенди аз күч менен башкарат.",
+            "ru": "Снасти парусов пропущены через блоки: матрос управляет большим парусом на ветру малым усилием.",
+            "en": "Sail ropes run through pulleys so a sailor can handle a big sail in the wind with little effort."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Күчтөрдүн катышы",
+            "ru": "Отношение сил",
+            "en": "Ratio of forces"
+          },
+          "text": {
+            "ky": "n кыймылдуу блок биригип иштесе, жүк 2n жиптин бөлүгүндө илинет: F = P/(2n), s = 2n·h.",
+            "ru": "Если работают n подвижных блоков, груз висит на 2n ветвях: F = P/(2n), s = 2n·h.",
+            "en": "With n movable pulleys the load hangs on 2n strands: F = W/(2n), s = 2n·h."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Кудук",
+            "ru": "Колодец",
+            "en": "A well"
+          },
+          "text": {
+            "ky": "Кудуктун үстүндөгү дөңгөлөк аркылуу чаканы ылдыйга тартып, сууну өйдө чыгарабыз – кыймылсыз блок.",
+            "ru": "Через колесо над колодцем тянем верёвку вниз – ведро поднимается: неподвижный блок.",
+            "en": "Pulling down on the rope over the wheel above a well brings the bucket up – a fixed pulley."
+          }
+        },
+        {
+          "title": {
+            "ky": "Желек көтөрүү",
+            "ru": "Подъём флага",
+            "en": "Raising a flag"
+          },
+          "text": {
+            "ky": "Мектептин желеги мачтанын башындагы кичинекей блок аркылуу көтөрүлөт.",
+            "ru": "Школьный флаг поднимают через маленький блок на верхушке флагштока.",
+            "en": "The school flag goes up via a little pulley at the top of the pole."
+          }
+        }
+      ]
+    },
+    "props": [
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "F = \\frac{P}{2}"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "s = 2h"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "F s = P h"
+      }
+    ],
+    "starters": [
+      {
+        "ky": "Кыймылсыз блок эмне үчүн керек, эгер ал күчтөн утуш бербесе?",
+        "ru": "Зачем неподвижный блок, если он не даёт выигрыша в силе?",
+        "en": "Why use a fixed pulley if it gives no gain in force?"
+      },
+      {
+        "ky": "Эмне үчүн кыймылдуу блокто жипти эки эсе узун тартабыз?",
+        "ru": "Почему с подвижным блоком верёвку тянут вдвое дальше?",
+        "en": "Why must the rope be pulled twice as far with a movable pulley?"
+      },
+      {
+        "ky": "Механиканын «алтын эрежеси» эмне дейт?",
+        "ru": "Что говорит «золотое правило» механики?",
+        "en": "What does the golden rule of mechanics say?"
+      },
+      {
+        "ky": "Жөнөкөй механизм менен жумуштан утууга болобу?",
+        "ru": "Можно ли с простым механизмом выиграть в работе?",
+        "en": "Can a simple machine save work?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Мамбетакунов, «Физика», 7-класс (kg-2018), V–VI главалар"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-pulley-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Кандайдыр октун айланасында айлануучу жана алкагынын кырында жип салуучу оюгу бар дөңгөлөк ... деп аталат.",
+        "ru": "Колесо, вращающееся вокруг оси, с жёлобом по ободу для верёвки, называют …",
+        "en": "A wheel that turns on an axle and has a groove round its rim for a rope is called a …"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "динамометр",
+            "ru": "динамометр",
+            "en": "dynamometer"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "блок",
+            "ru": "блок",
+            "en": "pulley"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "рычаг",
+            "ru": "рычаг",
+            "en": "lever"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "компас",
+            "ru": "компас",
+            "en": "compass"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Бул – блок (§48). Анын жолчосу аркылуу жип, аркан же чынжыр өткөрүлөт.",
+        "ru": "Это блок (§48). Через его жёлоб пропускают верёвку, трос или цепь.",
+        "en": "That is a pulley (§48); a rope, cable or chain runs in its groove."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-pulley-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Кыймылсыз блок аркылуу 10 кг жүктү бир калыпта көтөрүү үчүн канча күч керек? (g = 9,8 Н/кг, сүрүлүү жок)",
+        "ru": "Какая сила нужна, чтобы равномерно поднять груз 10 кг через неподвижный блок? (g = 9,8 Н/кг, трения нет)",
+        "en": "What force lifts a 10 kg load steadily over a fixed pulley? (g = 9.8 N/kg, no friction)"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "49 Н",
+            "ru": "49 Н",
+            "en": "49 N"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "98 Н",
+            "ru": "98 Н",
+            "en": "98 N"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "196 Н",
+            "ru": "196 Н",
+            "en": "196 N"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "10 Н",
+            "ru": "10 Н",
+            "en": "10 N"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Кыймылсыз блоктун ийиндери бирдей (OA = OB), ошондуктан F = P = 10 · 9,8 = 98 Н. Ал күчтөн утуш бербейт.",
+        "ru": "Плечи неподвижного блока равны (OA = OB), поэтому F = P = 10 · 9,8 = 98 Н. Выигрыша в силе нет.",
+        "en": "The fixed pulley’s arms are equal (OA = OB), so F = W = 10 × 9.8 = 98 N – no gain in force."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.fixed-pulley-gain",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-pulley-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кыймылдуу блок менен 10 кг жүк бир калыпта көтөрүлүп жатат. Блоктун массасы жана сүрүлүү эсепке алынбайт. Жипке канча Н күч жумшалат? (g = 9,8 Н/кг)",
+        "ru": "Подвижным блоком равномерно поднимают груз 10 кг. Массу блока и трение не учитываем. С какой силой (в Н) тянут верёвку? (g = 9,8 Н/кг)",
+        "en": "A 10 kg load is lifted steadily with a movable pulley; ignore the pulley’s mass and friction. What force in N pulls the rope? (g = 9.8 N/kg)"
+      },
+      "answer": 49,
+      "tolerance": 0.5,
+      "unit": "N",
+      "explanation": {
+        "ky": "P = 98 Н. Кыймылдуу блок күчтөн 2 эсе утат: F = P/2 = 49 Н.",
+        "ru": "P = 98 Н. Подвижный блок даёт выигрыш в силе вдвое: F = P/2 = 49 Н.",
+        "en": "W = 98 N. A movable pulley halves the force: F = W/2 = 49 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-pulley-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Жүктү кыймылдуу блоктун жардамы менен 2 м бийиктикке көтөрүштү. Аркандын бош учу канча метрге жылды?",
+        "ru": "Груз подняли подвижным блоком на высоту 2 м. На сколько метров сдвинулся свободный конец верёвки?",
+        "en": "A load is raised 2 m with a movable pulley. How many metres does the free end of the rope move?"
+      },
+      "answer": 4,
+      "tolerance": 0.05,
+      "unit": "m",
+      "explanation": {
+        "ky": "Кыймылдуу блокто s = 2h = 2 · 2 м = 4 м: күчтөн 2 эсе утуп, жолдон 2 эсе уттурабыз.",
+        "ru": "У подвижного блока s = 2h = 2 · 2 м = 4 м: выигрыш в силе вдвое – проигрыш в пути вдвое.",
+        "en": "With a movable pulley s = 2h = 2 × 2 m = 4 m: half the force, twice the distance."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.movable-pulley-path",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-pulley-5",
+      "type": "match",
+      "prompt": {
+        "ky": "Механизмди жүктү көтөргөндөгү күч менен дал келтир (жүктүн салмагы P, сүрүлүү жок).",
+        "ru": "Сопоставь механизм и силу при подъёме груза (вес груза P, трения нет).",
+        "en": "Match each machine to the force needed (load weight W, no friction)."
+      },
+      "pairs": [
+        {
+          "key": "fixed",
+          "left": {
+            "ky": "Кыймылсыз блок",
+            "ru": "Неподвижный блок",
+            "en": "Fixed pulley"
+          },
+          "right": {
+            "ky": "F = P, багыты өзгөрөт",
+            "ru": "F = P, меняется направление",
+            "en": "F = W, direction changed"
+          }
+        },
+        {
+          "key": "movable",
+          "left": {
+            "ky": "Кыймылдуу блок",
+            "ru": "Подвижный блок",
+            "en": "Movable pulley"
+          },
+          "right": {
+            "ky": "F = P/2, жип өйдө тартылат",
+            "ru": "F = P/2, верёвку тянут вверх",
+            "en": "F = W/2, rope pulled up"
+          }
+        },
+        {
+          "key": "tackle",
+          "left": {
+            "ky": "Кыймылсыз + кыймылдуу блок",
+            "ru": "Неподвижный + подвижный блок",
+            "en": "Fixed + movable pulley"
+          },
+          "right": {
+            "ky": "F = P/2, жип ылдый тартылат",
+            "ru": "F = P/2, верёвку тянут вниз",
+            "en": "F = W/2, rope pulled down"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Кыймылсыз блок багытты гана өзгөртөт, кыймылдуусу күчтөн 2 эсе утат; экөө бирге 2 эсе утуп, ыңгайлуу багыт берет (128-сүрөт).",
+        "ru": "Неподвижный блок меняет только направление, подвижный даёт выигрыш вдвое; вместе – выигрыш вдвое и удобное направление (рис. 128).",
+        "en": "A fixed pulley only turns the force; a movable one halves it; together they halve it and let you pull down (fig. 128)."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-pulley-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден кыймылдуу блокту тап.",
+        "ru": "Найди на модели подвижный блок.",
+        "en": "Find the movable pulley on the model."
+      },
+      "targetConceptKey": "phys.pulley-movable",
+      "explanation": {
+        "ky": "Кыймылдуу блок – жүк менен кошо өйдө чыккан дөңгөлөк; жүк анын огундагы илмекте.",
+        "ru": "Подвижный блок – колесо, которое поднимается вместе с грузом; груз висит на крюке его оси.",
+        "en": "The movable pulley is the wheel that rises with the load, which hangs from its axle."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-pulley-7",
+      "type": "single",
+      "prompt": {
+        "ky": "Механиканын «алтын эрежесинин» мааниси эмнеде?",
+        "ru": "В чём суть «золотого правила» механики?",
+        "en": "What does the golden rule of mechanics say?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Күчтөн канча эсе утсак, аралыктан ошончо эсе утуш алабыз",
+            "ru": "Во сколько раз выигрываем в силе, во столько же выигрываем в расстоянии",
+            "en": "Gain in force and the same gain in distance"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Күчтөн канча эсе утсак, аралыктан ошончо эсе уттурабыз",
+            "ru": "Во сколько раз выигрываем в силе, во столько же проигрываем в расстоянии",
+            "en": "Whatever is gained in force is lost in distance"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Күчтөн утуш алуунун аралыкка байланышы жок",
+            "ru": "Выигрыш в силе не связан с расстоянием",
+            "en": "Gain in force has nothing to do with distance"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Нерсе кыймылга келсе эле жумуш аткарылат",
+            "ru": "Работа совершается, если тело просто движется",
+            "en": "Work is done whenever a body moves"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Жөнөкөй механизмдер жумуштан утуш бербейт: F·s = P·h (§49).",
+        "ru": "Простые механизмы не дают выигрыша в работе: F·s = P·h (§49).",
+        "en": "Simple machines save no work: F·s = W·h (§49)."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.gain-force-and-path",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-pulley-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кыймылдуу блок менен 10 кг жүк 1 м ге көтөрүлдү. Колдун аткарган жумушу канча Дж? (g = 9,8 Н/кг, сүрүлүү жок)",
+        "ru": "Подвижным блоком груз 10 кг подняли на 1 м. Какую работу (в Дж) совершила рука? (g = 9,8 Н/кг, трения нет)",
+        "en": "A 10 kg load is raised 1 m with a movable pulley. How much work in J does the hand do? (g = 9.8 N/kg, no friction)"
+      },
+      "answer": 98,
+      "tolerance": 1,
+      "unit": "J",
+      "explanation": {
+        "ky": "F = 49 Н, s = 2 м: A = F·s = 98 Дж – жүктү түз көтөргөндөгүдөй эле (P·h = 98 Н · 1 м). Жумуштан утуш жок.",
+        "ru": "F = 49 Н, s = 2 м: A = F·s = 98 Дж – столько же, сколько при подъёме напрямую (P·h = 98 Н · 1 м). Выигрыша в работе нет.",
+        "en": "F = 49 N, s = 2 m: A = F·s = 98 J – the same as lifting directly (W·h = 98 N × 1 m). No work is saved."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.machine-saves-work",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-pulley-9",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кыймылсыз блок жөнүндө туура пикирлерди танда.",
+        "ru": "Выбери верные утверждения о неподвижном блоке.",
+        "en": "Choose the true statements about a fixed pulley."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Күчтүн багытын өзгөртөт",
+            "ru": "Меняет направление силы",
+            "en": "It changes the direction of the force"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Бирдей ийиндүү рычаг сыяктуу",
+            "ru": "Подобен равноплечему рычагу",
+            "en": "It acts like an equal-arm lever"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Күчтөн 2 эсе утуш берет",
+            "ru": "Даёт выигрыш в силе вдвое",
+            "en": "It halves the force"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Жумуштан утуш бербейт",
+            "ru": "Не даёт выигрыша в работе",
+            "en": "It saves no work"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": {
+        "ky": "Кыймылсыз блокто OA = OB, F = P: утуш жок, багыт гана өзгөрөт; жумуштан да утуш жок.",
+        "ru": "У неподвижного блока OA = OB, F = P: выигрыша нет, меняется только направление; в работе тоже нет выигрыша.",
+        "en": "For a fixed pulley OA = OB and F = W: no gain, only a change of direction – and no work saved."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.fixed-pulley-gain",
+      "difficulty": 2
+    }
+  ]
+}

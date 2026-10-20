@@ -1,0 +1,1141 @@
+{
+  "topic": {
+    "key": "phys7-newton-third",
+    "unitKey": "phys.g7.dynamics",
+    "status": "published",
+    "title": {
+      "ky": "Аракет жана каршы аракет. Ньютондун үчүнчү закону",
+      "ru": "Действие и противодействие. Третий закон Ньютона",
+      "en": "Action and reaction. Newton's third law"
+    },
+    "formula": "F₁ = −F₂",
+    "classification": {
+      "ky": "Динамика",
+      "ru": "Динамика",
+      "en": "Dynamics"
+    },
+    "description": {
+      "ky": "Эки арабачанын ортосунда кысылган пружина жип менен байланган. Жипти күйгүзгөндө пружина эки арабачаны тең бир убакта түртөт: биринчиси экинчисине, экинчиси биринчисине аракет этет. Эки нерсенин өз ара аракеттенишкен күчтөрү чоңдугу боюнча барабар, багыттары боюнча карама-каршы: F₁ = −F₂ – Ньютондун үчүнчү закону. Массалары бирдей арабачалар бирдей ылдамдык менен, ар башка болсо – оору жайыраак жылат.",
+      "ru": "Между двумя тележками сжатая пружина, стянутая нитью. Когда нить пережигают, пружина одновременно толкает обе тележки: первая действует на вторую, вторая – на первую. Силы, с которыми два тела взаимодействуют, равны по модулю и противоположны по направлению: F₁ = −F₂ – третий закон Ньютона. Тележки равной массы разъезжаются с одинаковыми скоростями, а при разных массах тяжёлая едет медленнее.",
+      "en": "A compressed spring tied with a thread sits between two carts. When the thread is burnt, the spring pushes both carts at the same moment: each acts on the other. The forces two bodies exert on each other are equal in size and opposite in direction: F₁ = −F₂ – Newton's third law. Carts of equal mass roll apart at equal speeds; with unequal masses the heavier one moves more slowly."
+    },
+    "goal": {
+      "ky": "Нерселердин өз ара аракеттенишүүсүн түшүндүрүү, Ньютондун үчүнчү законун айтып, F₁ = −F₂ түрүндө жазуу, аракет жана каршы аракет күчтөрү ар башка нерселерге коюлгандыктан бири-бирин теңдебей турганын түшүндүрүү (PHYS-7.2.1).",
+      "ru": "Объяснять взаимодействие тел, формулировать третий закон Ньютона и записывать его как F₁ = −F₂, объяснять, почему силы действия и противодействия не уравновешивают друг друга – они приложены к разным телам (PHYS-7.2.1).",
+      "en": "Explain how bodies interact, state Newton's third law and write it as F₁ = −F₂, and explain why action and reaction do not cancel – they act on different bodies (PHYS-7.2.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.dynamics.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "momentum",
+        "variant": "push",
+        "carts": [
+          {
+            "id": "A",
+            "mass": 1,
+            "v": 0
+          },
+          {
+            "id": "B",
+            "mass": 1,
+            "v": 0
+          }
+        ],
+        "springEnergy": 1,
+        "elastic": true
+      },
+      "camera": {
+        "position": [
+          1.2,
+          1.6,
+          4.2
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.newton-third-law",
+      "phys.action-reaction",
+      "phys.interaction",
+      "phys.mass",
+      "phys.inertia"
+    ],
+    "overrides": {
+      "phys.action-reaction": {
+        "nodes": [
+          "Spring",
+          "Spring_*"
+        ],
+        "description": {
+          "ky": "Кысылган пружина А арабачасын солго, В арабачасын оңго бирдей күч менен түртөт. А пружинага, пружина Вга – ар бир жупта күчтөр барабар жана карама-каршы: F₁ = −F₂.",
+          "ru": "Сжатая пружина толкает тележку A влево, а B вправо с одинаковыми силами. A действует на пружину, пружина – на A; в каждой паре силы равны и противоположны: F₁ = −F₂.",
+          "en": "The compressed spring pushes cart A left and cart B right equally hard. In each pair – A on the spring, the spring on A – the forces are equal and opposite: F₁ = −F₂."
+        },
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\vec F_1 = -\\vec F_2"
+          }
+        ]
+      },
+      "phys.interaction": {
+        "nodes": [
+          "Thread",
+          "Thread_*"
+        ],
+        "description": {
+          "ky": "Жип пружинаны кысылган абалда кармап турат. Жип күйгөндө арабачалар пружина аркылуу өз ара аракеттенише баштайт – экөө тең бир убакта кыймылга келет.",
+          "ru": "Нить держит пружину сжатой. Когда нить пережигают, тележки начинают взаимодействовать через пружину – обе приходят в движение одновременно.",
+          "en": "The thread holds the spring compressed. Once it burns, the carts interact through the spring – both start moving at the same instant."
+        }
+      },
+      "phys.mass": {
+        "nodes": [
+          "Cart_*"
+        ],
+        "description": {
+          "ky": "А арабачасынын массасы 1 кг, В арабачасыныкы – үлгүгө жараша 1, 2 же 4 кг. Күчтөр барабар, бирок массасы чоң арабача азыраак ылдамдык алат: m₁/m₂ = v₂/v₁.",
+          "ru": "Масса тележки A – 1 кг, тележки B – 1, 2 или 4 кг в разных образцах. Силы равны, но массивная тележка получает меньшую скорость: m₁/m₂ = v₂/v₁.",
+          "en": "Cart A has a mass of 1 kg; cart B has 1, 2 or 4 kg depending on the sample. The forces are equal, but the heavier cart gets less speed: m₁/m₂ = v₂/v₁."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 1,
+            "max": 4
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\frac{m_1}{m_2} = \\frac{v_2}{v_1}"
+          }
+        ]
+      },
+      "phys.inertia": {
+        "description": {
+          "ky": "Пружина түртүп бүткөндөн кийин арабачаларга горизонталдык күч аракет этпейт – алар инерция боюнча бир калыпта жылып кетет.",
+          "ru": "Когда пружина распрямилась, на тележки больше не действуют горизонтальные силы – они по инерции катятся равномерно.",
+          "en": "Once the spring has finished pushing, no horizontal force acts on the carts – they roll on steadily by inertia."
+        }
+      },
+      "phys.newton-third-law": {
+        "nodes": [
+          "Track"
+        ],
+        "description": {
+          "ky": "Сахнада: А арабачасынын Вга (пружина аркылуу) аракети жана Внын Ага аракети чоңдугу боюнча барабар, багыттары карама-каршы. Ошондуктан массалары бирдей арабачалар бирдей ылдамдык менен (1 м/с) карама-каршы тарапка жылат.",
+          "ru": "В сцене: действие тележки A на B (через пружину) и действие B на A равны по модулю и противоположны по направлению. Поэтому тележки равной массы разъезжаются в разные стороны с одинаковой скоростью (1 м/с).",
+          "en": "In the scene: cart A's action on B (through the spring) and B's action on A are equal in size and opposite in direction. So carts of equal mass roll apart in opposite directions at the same speed (1 m/s)."
+        },
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\vec F_1 = -\\vec F_2"
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 1
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "third-equal",
+        "title": {
+          "ky": "Бирдей арабачалар: 1 кг жана 1 кг",
+          "ru": "Равные тележки: 1 кг и 1 кг",
+          "en": "Equal carts: 1 kg and 1 kg"
+        },
+        "classification": {
+          "ky": "1 м/с жана 1 м/с карама-каршы",
+          "ru": "1 м/с и 1 м/с в разные стороны",
+          "en": "1 m/s and 1 m/s, opposite ways"
+        },
+        "thumb": "thumbs/third-equal.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 1
+          }
+        ],
+        "scene": {
+          "params": {
+            "carts": [
+              {
+                "id": "A",
+                "mass": 1,
+                "v": 0
+              },
+              {
+                "id": "B",
+                "mass": 1,
+                "v": 0
+              }
+            ],
+            "springEnergy": 1
+          }
+        }
+      },
+      {
+        "key": "third-double",
+        "title": {
+          "ky": "1 кг жана 2 кг",
+          "ru": "1 кг и 2 кг",
+          "en": "1 kg and 2 kg"
+        },
+        "classification": {
+          "ky": "1 м/с жана 0,5 м/с",
+          "ru": "1 м/с и 0,5 м/с",
+          "en": "1 m/s and 0.5 m/s"
+        },
+        "thumb": "thumbs/third-double.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 0.5,
+            "max": 1
+          }
+        ],
+        "scene": {
+          "params": {
+            "carts": [
+              {
+                "id": "A",
+                "mass": 1,
+                "v": 0
+              },
+              {
+                "id": "B",
+                "mass": 2,
+                "v": 0
+              }
+            ],
+            "springEnergy": 0.75
+          }
+        }
+      },
+      {
+        "key": "third-four",
+        "title": {
+          "ky": "1 кг жана 4 кг",
+          "ru": "1 кг и 4 кг",
+          "en": "1 kg and 4 kg"
+        },
+        "classification": {
+          "ky": "1 м/с жана 0,25 м/с",
+          "ru": "1 м/с и 0,25 м/с",
+          "en": "1 m/s and 0.25 m/s"
+        },
+        "thumb": "thumbs/third-four.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 4
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 0.25,
+            "max": 1
+          }
+        ],
+        "scene": {
+          "params": {
+            "carts": [
+              {
+                "id": "A",
+                "mass": 1,
+                "v": 0
+              },
+              {
+                "id": "B",
+                "mass": 4,
+                "v": 0
+              }
+            ],
+            "springEnergy": 0.625
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "mass",
+        "value": 1
+      },
+      {
+        "kind": "quantity",
+        "type": "speed",
+        "value": 1
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "\\vec F_1 = -\\vec F_2"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                0,
+                1.1,
+                4.2
+              ],
+              "target": [
+                0,
+                0.2,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false,
+              "labels": false
+            },
+            "focus": "phys.interaction",
+            "text": {
+              "ky": "Рельсте эки арабача турат, алардын ортосунда кысылган пружина жип менен байланган. Жипти күйгүзсөк, кайсы арабача кыймылга келет – пружина жакын тургануубу же экөө тең?",
+              "ru": "На рельсе две тележки, между ними сжатая пружина, стянутая нитью. Если пережечь нить, какая тележка поедет – одна или обе?",
+              "en": "Two carts stand on a track with a thread-tied compressed spring between them. If we burn the thread, which cart moves – one or both?"
+            },
+            "teacherNote": {
+              "ky": "Божомолдорду жаздырыңыз. Китептеги мисалды эске салыңыз: кайыктан жээкке секирген адам кайыкты артка түртөт.",
+              "ru": "Запишите предположения. Напомните пример из учебника: человек, прыгая из лодки на берег, отталкивает лодку назад.",
+              "en": "Collect predictions. Recall the textbook example: someone jumping from a boat to the shore pushes the boat back."
+            },
+            "altText": {
+              "ky": "Рельстеги эки арабача жана алардын ортосундагы пружина.",
+              "ru": "Две тележки на рельсе и пружина между ними.",
+              "en": "Two carts on a track with a spring between them."
+            }
+          },
+          {
+            "key": "release",
+            "camera": {
+              "position": [
+                0,
+                1.1,
+                4.2
+              ],
+              "target": [
+                0,
+                0.2,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.action-reaction",
+            "text": {
+              "ky": "Жип күйдү – пружина эки арабачаны тең бир убакта түртөт. Экөө тең кыймылга келет: А солго, В оңго. Бир нерсе экинчи нерсеге аракет этсе, экинчиси да биринчисине аракет этет – нерселер өз ара аракеттенишет.",
+              "ru": "Нить перегорела – пружина одновременно толкает обе тележки. Обе приходят в движение: A влево, B вправо. Если одно тело действует на другое, то и другое действует на первое – тела взаимодействуют.",
+              "en": "The thread burns and the spring pushes both carts at once. Both start moving: A left, B right. When one body acts on another, the other acts back – bodies interact."
+            },
+            "teacherNote": {
+              "ky": "Аракеттер бир убакта пайда болуп, бир убакта жоголот: «биринчи түрттү, анан экинчиси жооп берди» деген жок.",
+              "ru": "Действия возникают и исчезают одновременно: нет такого, что «один толкнул, а другой потом ответил».",
+              "en": "Actions start and stop at the same moment – it is not 'one pushed, then the other answered'."
+            },
+            "altText": {
+              "ky": "Арабачалар карама-каршы тарапка жылып баратат.",
+              "ru": "Тележки разъезжаются в разные стороны.",
+              "en": "The carts roll apart in opposite directions."
+            }
+          },
+          {
+            "key": "equal",
+            "sample": "third-equal",
+            "camera": {
+              "position": [
+                0,
+                1.1,
+                4.2
+              ],
+              "target": [
+                0,
+                0.2,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.newton-third-law",
+            "text": {
+              "ky": "Массалары бирдей (1 кг) арабачалар бирдей ылдамдык – 1 м/с – менен жылат. Демек аларга бирдей чоңдуктагы, бирок карама-каршы багыттагы күчтөр аракет эткен: F₁ = −F₂. Бул – Ньютондун үчүнчү закону.",
+              "ru": "Тележки равной массы (1 кг) разъезжаются с одинаковой скоростью – 1 м/с. Значит, на них действовали силы, равные по модулю и противоположные по направлению: F₁ = −F₂. Это третий закон Ньютона.",
+              "en": "Carts of equal mass (1 kg) roll apart at the same speed – 1 m/s. So the forces on them were equal in size and opposite in direction: F₁ = −F₂. That is Newton's third law."
+            },
+            "teacherNote": {
+              "ky": "Законду тактага жазыңыз: «Эки нерсенин өз ара аракеттенишкен күчтөрү чоңдугу боюнча барабар, багыттары боюнча карама-каршы.» «−» белгиси багыттарды көрсөтөт.",
+              "ru": "Запишите закон: «Силы, с которыми тела взаимодействуют, равны по модулю и противоположны по направлению». Знак «−» показывает направление.",
+              "en": "Write the law: 'The forces two bodies exert on each other are equal in size and opposite in direction.' The minus sign shows direction."
+            },
+            "altText": {
+              "ky": "Эки арабачанын бирдей узундуктагы жебелери.",
+              "ru": "Стрелки обеих тележек одинаковой длины.",
+              "en": "Equal-length arrows on both carts."
+            }
+          },
+          {
+            "key": "unequal",
+            "sample": "third-double",
+            "camera": {
+              "position": [
+                0,
+                1.1,
+                4.2
+              ],
+              "target": [
+                0,
+                0.2,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.mass",
+            "text": {
+              "ky": "В арабачасынын массасы 2 кг болсо, ал 0,5 м/с, ал эми 1 кг А – 1 м/с ылдамдык алат. Күчтөр баары бир барабар, бирок массасы чоң арабачанын ылдамдыгы азыраак өзгөрөт – анын инерттүүлүгү чоң: m₁/m₂ = v₂/v₁.",
+              "ru": "Если масса тележки B 2 кг, она получает 0,5 м/с, а тележка A массой 1 кг – 1 м/с. Силы всё равно равны, но скорость массивной тележки меняется меньше – её инертность больше: m₁/m₂ = v₂/v₁.",
+              "en": "If cart B has 2 kg it gets 0.5 m/s while the 1 kg cart A gets 1 m/s. The forces are still equal, but the heavier cart's speed changes less – it has more inertness: m₁/m₂ = v₂/v₁."
+            },
+            "teacherNote": {
+              "ky": "«1 кг жана 4 кг» үлгүсүн да көрсөтүңүз: 1 м/с жана 0,25 м/с. Сураңыз: кайсы арабачага чоң күч аракет этти? (Экөөнө тең бирдей.)",
+              "ru": "Покажите и образец «1 кг и 4 кг»: 1 м/с и 0,25 м/с. Спросите: на какую тележку действовала большая сила? (На обе одинаковая.)",
+              "en": "Show the '1 kg and 4 kg' sample too: 1 m/s and 0.25 m/s. Ask: which cart felt the bigger force? (Both felt the same.)"
+            },
+            "altText": {
+              "ky": "Чоң арабача жайыраак жылат.",
+              "ru": "Большая тележка едет медленнее.",
+              "en": "The bigger cart moves more slowly."
+            }
+          },
+          {
+            "key": "dynamometers",
+            "camera": {
+              "position": [
+                0.81,
+                1.09,
+                2.82
+              ],
+              "target": [
+                0,
+                0.15,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.action-reaction",
+            "text": {
+              "ky": "Бири-бирине илинген эки динамометрди эки жакка тартсак, канча катуу тартсак да экөө бирдей көрсөтөт: F₁ = +2 Н, F₂ = −2 Н. Электромагнит темир дискти 3 Н менен тартса, диск да электромагнитти 3 Н менен тартат.",
+              "ru": "Если сцепить два динамометра и растягивать в стороны, они, как ни тяни, показывают одно и то же: F₁ = +2 Н, F₂ = −2 Н. Электромагнит притягивает железный диск с силой 3 Н – и диск притягивает электромагнит с силой 3 Н.",
+              "en": "Hook two dynamometers together and pull them apart: however hard you pull they read the same, F₁ = +2 N, F₂ = −2 N. If an electromagnet pulls an iron disc with 3 N, the disc pulls the magnet with 3 N."
+            },
+            "teacherNote": {
+              "ky": "«Бири-бирине илинген эки динамометр» процессин иштетиңиз (китептеги 60–62-сүрөттөр).",
+              "ru": "Запустите процесс «Два сцепленных динамометра» (рис. 60–62 учебника).",
+              "en": "Run the 'Two hooked dynamometers' process (figs. 60–62 in the textbook)."
+            },
+            "altText": {
+              "ky": "Пружина жакындан.",
+              "ru": "Пружина крупным планом.",
+              "en": "A close-up of the spring."
+            }
+          },
+          {
+            "key": "not-cancel",
+            "sample": "third-four",
+            "camera": {
+              "position": [
+                0,
+                1.1,
+                4.2
+              ],
+              "target": [
+                0,
+                0.2,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.newton-third-law",
+            "text": {
+              "ky": "Эгер аракет менен каршы аракет барабар болсо, эмне үчүн адам чананы сүйрөп кете алат? Бул күчтөр ар башка нерселерге коюлат, ошондуктан бири-бирин теңдебейт. Адамды Жер алдыга түртөт; ал күч чананын адамды тарткан күчүнөн чоң болсо, адам чананы сүйрөйт.",
+              "ru": "Если действие и противодействие равны, почему человек может тянуть санки? Эти силы приложены к разным телам и не уравновешивают друг друга. Человека толкает вперёд Земля; если эта сила больше, чем сила, с которой санки тянут человека назад, он тащит санки.",
+              "en": "If action and reaction are equal, how can a person pull a sledge? These forces act on different bodies, so they do not cancel. The ground pushes the person forward; if that push beats the sledge's pull back on the person, the person drags the sledge."
+            },
+            "teacherNote": {
+              "ky": "Күчтөрдүн тең салмактуулугу бир нерсеге бир нече күч аракет эткенде гана болот (китептеги 63-сүрөт).",
+              "ru": "Равновесие сил бывает, только когда несколько сил приложены к одному телу (рис. 63 учебника).",
+              "en": "Forces balance only when several act on the same body (fig. 63 in the textbook)."
+            },
+            "altText": {
+              "ky": "Эки арабача алыстап кетти.",
+              "ru": "Тележки разъехались.",
+              "en": "The carts have rolled apart."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.dynamometers-pull"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "third-equal"
+          },
+          {
+            "kind": "sample",
+            "key": "third-double"
+          },
+          {
+            "kind": "sample",
+            "key": "third-four"
+          }
+        ],
+        "rows": [
+          "mass",
+          "speed"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-third-1",
+          "phys.q.phys7-third-2",
+          "phys.q.phys7-third-3",
+          "phys.q.phys7-third-4",
+          "phys.q.phys7-third-5",
+          "phys.q.phys7-third-6",
+          "phys.q.phys7-third-7",
+          "phys.q.phys7-third-8",
+          "phys.q.phys7-third-9",
+          "phys.q.phys7-third-10",
+          "phys.q.phys7-third-11",
+          "phys.q.phys7-third-12"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Ракеталар",
+            "ru": "Ракеты",
+            "en": "Rockets"
+          },
+          "text": {
+            "ky": "Ракета газды чоң ылдамдык менен артка ыргытат; газ ракетаны ошол эле күч менен алдыга түртөт. Ошондуктан ракета абасыз космосто да учат.",
+            "ru": "Ракета выбрасывает газ назад с большой скоростью; газ с той же силой толкает ракету вперёд. Поэтому ракета летит и в безвоздушном космосе.",
+            "en": "A rocket throws gas backwards at high speed; the gas pushes the rocket forwards just as hard. That is why rockets fly even in airless space."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Мылтыктын тээп жибериши",
+            "ru": "Отдача ружья",
+            "en": "Recoil"
+          },
+          "text": {
+            "ky": "Ок алдыга учканда мылтык артка тээп жиберет. Ок жеңил – ылдамдыгы чоң, мылтык оор – ылдамдыгы аз, бирок күчтөр барабар.",
+            "ru": "Когда пуля вылетает вперёд, ружьё отдаёт назад. Пуля лёгкая – скорость большая, ружьё тяжёлое – скорость маленькая, но силы равны.",
+            "en": "When the bullet flies forwards the gun kicks back. The light bullet goes fast, the heavy gun slowly, but the forces are equal."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Кеме жана сүзүү",
+            "ru": "Вёсла и плавание",
+            "en": "Oars and swimming"
+          },
+          "text": {
+            "ky": "Калак сууну артка түртөт, суу кайыкты алдыга түртөт. Сүзүүчү да колу менен сууну артка түртүп, алдыга жылат.",
+            "ru": "Весло толкает воду назад, вода толкает лодку вперёд. Пловец тоже отталкивает воду руками назад и движется вперёд.",
+            "en": "An oar pushes the water back and the water pushes the boat forward. A swimmer likewise pushes water back to move forward."
+          },
+          "field": "e"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Кайыктан секирүү",
+            "ru": "Прыжок из лодки",
+            "en": "Jumping from a boat"
+          },
+          "text": {
+            "ky": "Кайыктан жээкке секирсең, кайык артка жылат: сен кайыкты, кайык сени түрттү.",
+            "ru": "Прыгнешь из лодки на берег – лодка отплывёт назад: ты толкнул лодку, лодка толкнула тебя.",
+            "en": "Jump from a boat to the shore and the boat drifts back: you pushed the boat, the boat pushed you."
+          }
+        },
+        {
+          "title": {
+            "ky": "Коньки тепкен эки бала",
+            "ru": "Двое на коньках",
+            "en": "Two skaters"
+          },
+          "text": {
+            "ky": "Муз үстүндө эки бала бири-бирин түртсө, экөө тең карама-каршы тарапка жылат; жеңили алысыраак кетет.",
+            "ru": "Если двое на льду оттолкнутся друг от друга, оба поедут в разные стороны; лёгкий уедет дальше.",
+            "en": "If two skaters push off each other, both glide apart; the lighter one goes further."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Эмне үчүн аракет менен каршы аракет бири-бирин жоюп салбайт?",
+        "ru": "Почему действие и противодействие не уничтожают друг друга?",
+        "en": "Why don't action and reaction cancel each other out?"
+      },
+      {
+        "ky": "Чоң жана кичине арабача түртүшсө, кимге чоң күч аракет этет?",
+        "ru": "Когда большая и маленькая тележка отталкиваются, на какую действует большая сила?",
+        "en": "When a big and a small cart push apart, which feels the bigger force?"
+      },
+      {
+        "ky": "Ракета космосто эмнеден түртүлөт?",
+        "ru": "От чего отталкивается ракета в космосе?",
+        "en": "What does a rocket push against in space?"
+      },
+      {
+        "ky": "Басканда бизди ким алдыга түртөт?",
+        "ru": "Что толкает нас вперёд, когда мы идём?",
+        "en": "What pushes us forward when we walk?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; Мамбетакунов Э. М., Физика 7 (кыргыз тилинде)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-third-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Ньютондун үчүнчү закону кандай айтылат?",
+        "ru": "Как формулируется третий закон Ньютона?",
+        "en": "How is Newton's third law stated?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Эки нерсенин өз ара аракеттенишкен күчтөрү чоңдугу боюнча барабар, багыттары боюнча карама-каршы",
+            "ru": "Силы, с которыми два тела взаимодействуют, равны по модулю и противоположны по направлению",
+            "en": "The forces two bodies exert on each other are equal and opposite"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ылдамдануу күчкө түз, массага тескери пропорциялаш",
+            "ru": "Ускорение прямо пропорционально силе и обратно пропорционально массе",
+            "en": "Acceleration is proportional to force and inversely proportional to mass"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Нерсеге аракет болбосо, ал тынч же бир калыпта кыймылда болот",
+            "ru": "Если на тело не действуют, оно покоится или движется равномерно",
+            "en": "With nothing acting on it, a body rests or moves steadily"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Үчүнчү закон: F₁ = −F₂. (b) – экинчи закон, (c) – биринчи закон.",
+        "ru": "Третий закон: F₁ = −F₂. (b) – второй закон, (c) – первый.",
+        "en": "The third law: F₁ = −F₂. (b) is the second law, (c) the first."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-third-2",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Эки нерсе бири-бирине 20 Н күч менен аракет этет. Экинчи нерсенин биринчисине аракет эткен күчүнүн чоңдугу канча (Н)?",
+        "ru": "Два тела действуют друг на друга с силой 20 Н. Чему равен модуль силы, с которой второе тело действует на первое (Н)?",
+        "en": "Two bodies act on each other with 20 N. How big is the force of the second on the first (N)?"
+      },
+      "answer": 20,
+      "tolerance": 0.1,
+      "unit": "N",
+      "explanation": {
+        "ky": "F₁ = −F₂: чоңдугу 20 Н, багыты карама-каршы (белгиси менен −20 Н).",
+        "ru": "F₁ = −F₂: модуль 20 Н, направление противоположное (со знаком −20 Н).",
+        "en": "F₁ = −F₂: the size is 20 N, the direction opposite (−20 N with sign)."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-third-3",
+      "type": "single",
+      "prompt": {
+        "ky": "Массасы 1 кг жана 2 кг арабачалар кысылган пружина менен түртүштү. Кайсынысына чоң күч аракет этти?",
+        "ru": "Тележки массой 1 кг и 2 кг оттолкнулись сжатой пружиной. На какую действовала большая сила?",
+        "en": "Carts of 1 kg and 2 kg are pushed apart by a spring. Which felt the bigger force?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Экөөнө тең бирдей",
+            "ru": "На обе одинаковая",
+            "en": "Both the same"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "1 кг арабачага",
+            "ru": "На тележку 1 кг",
+            "en": "The 1 kg cart"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "2 кг арабачага",
+            "ru": "На тележку 2 кг",
+            "en": "The 2 kg cart"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Күчтөр барабар (F₁ = −F₂). Жеңил арабача эки эсе чоң ылдамдык алат, анткени анын массасы эки эсе кичине.",
+        "ru": "Силы равны (F₁ = −F₂). Лёгкая тележка получает вдвое большую скорость, потому что её масса вдвое меньше.",
+        "en": "The forces are equal (F₁ = −F₂). The light cart gets twice the speed because it has half the mass."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.bigger-pushes-harder",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-third-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Арабачалар түртүшкөндө 1 кг арабача 1 м/с ылдамдык алды. 4 кг арабача кандай ылдамдык алат (м/с)?",
+        "ru": "При отталкивании тележка 1 кг получила скорость 1 м/с. Какую скорость получит тележка 4 кг (м/с)?",
+        "en": "Pushing apart, the 1 kg cart gets 1 m/s. What speed does the 4 kg cart get (m/s)?"
+      },
+      "answer": 0.25,
+      "tolerance": 0.01,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "m₁/m₂ = v₂/v₁ → v₂ = v₁ · m₁/m₂ = 1 · 1/4 = 0,25 м/с.",
+        "ru": "m₁/m₂ = v₂/v₁ → v₂ = v₁ · m₁/m₂ = 1 · 1/4 = 0,25 м/с.",
+        "en": "m₁/m₂ = v₂/v₁ → v₂ = v₁ × m₁/m₂ = 1 × 1/4 = 0.25 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-third-5",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн аракет жана каршы аракет күчтөрү бири-бирин теңдебейт?",
+        "ru": "Почему силы действия и противодействия не уравновешивают друг друга?",
+        "en": "Why don't action and reaction balance each other?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Алар ар башка нерселерге коюлат",
+            "ru": "Они приложены к разным телам",
+            "en": "They act on different bodies"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Алардын чоңдуктары ар башка",
+            "ru": "Они разные по модулю",
+            "en": "They differ in size"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Алар бир багытта",
+            "ru": "Они направлены в одну сторону",
+            "en": "They point the same way"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Күчтөр бир нерсеге коюлганда гана теңделе алат. Аракет – экинчи нерсеге, каршы аракет – биринчисине коюлат.",
+        "ru": "Уравновешиваться могут только силы, приложенные к одному телу. Действие приложено ко второму телу, противодействие – к первому.",
+        "en": "Only forces on the same body can balance. The action acts on the second body, the reaction on the first."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.third-law-cancel",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-third-6",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы мисалдар Ньютондун үчүнчү законун көрсөтөт?",
+        "ru": "Какие примеры иллюстрируют третий закон Ньютона?",
+        "en": "Which examples show Newton's third law?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Адам кайыктан секиргенде кайык артка жылат",
+            "ru": "Человек прыгает из лодки – лодка отплывает назад",
+            "en": "Jumping out of a boat sends the boat back"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ок учканда мылтык артка тээп жиберет",
+            "ru": "При выстреле ружьё отдаёт назад",
+            "en": "A gun kicks back when fired"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ракета газды артка ыргытып, алдыга учат",
+            "ru": "Ракета выбрасывает газ назад и летит вперёд",
+            "en": "A rocket throws gas back and flies forward"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Китеп столдо тынч жатат",
+            "ru": "Книга спокойно лежит на столе",
+            "en": "A book lies still on a table"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "(a)–(c) – өз ара аракеттенишкен эки нерсенин карама-каршы кыймылы. Китептин тынч жатышы – бир нерсеге коюлган күчтөрдүн тең салмактуулугу (биринчи закон).",
+        "ru": "(a)–(c) – противоположное движение двух взаимодействующих тел. Покой книги – равновесие сил, приложенных к одному телу (первый закон).",
+        "en": "(a)–(c) show two interacting bodies moving apart. A book at rest shows balanced forces on one body (the first law)."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-third-7",
+      "type": "single",
+      "prompt": {
+        "ky": "Бири-бирине илинген эки динамометрди эки жакка тартабыз. Биринчиси 2 Н көрсөтөт. Экинчиси эмнени көрсөтөт?",
+        "ru": "Два сцепленных динамометра растягивают в разные стороны. Первый показывает 2 Н. Что показывает второй?",
+        "en": "Two hooked dynamometers are pulled apart. The first reads 2 N. What does the second read?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "2 Н",
+            "ru": "2 Н",
+            "en": "2 N"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "4 Н",
+            "ru": "4 Н",
+            "en": "4 N"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "1 Н",
+            "ru": "1 Н",
+            "en": "1 N"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "0 Н",
+            "ru": "0 Н",
+            "en": "0 N"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Биринчи динамометрдин экинчисине аракети экинчисинин биринчисине аракетине барабар: экөө тең 2 Н, багыттары карама-каршы.",
+        "ru": "Действие первого динамометра на второй равно действию второго на первый: оба 2 Н, направления противоположны.",
+        "en": "The first dynamometer's action on the second equals the second's on the first: both 2 N, opposite directions."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-third-8",
+      "type": "match",
+      "prompt": {
+        "ky": "Аракетти анын каршы аракети менен дал келтириңиз.",
+        "ru": "Сопоставьте действие и противодействие.",
+        "en": "Match each action to its reaction."
+      },
+      "pairs": [
+        {
+          "key": "oar",
+          "left": {
+            "ky": "Калак сууну артка түртөт",
+            "ru": "Весло толкает воду назад",
+            "en": "An oar pushes water back"
+          },
+          "right": {
+            "ky": "Суу калакты алдыга түртөт",
+            "ru": "Вода толкает весло вперёд",
+            "en": "Water pushes the oar forward"
+          }
+        },
+        {
+          "key": "foot",
+          "left": {
+            "ky": "Бут жерди артка түртөт",
+            "ru": "Нога толкает землю назад",
+            "en": "A foot pushes the ground back"
+          },
+          "right": {
+            "ky": "Жер бутту алдыга түртөт",
+            "ru": "Земля толкает ногу вперёд",
+            "en": "The ground pushes the foot forward"
+          }
+        },
+        {
+          "key": "magnet",
+          "left": {
+            "ky": "Магнит темирди тартат",
+            "ru": "Магнит притягивает железо",
+            "en": "A magnet pulls iron"
+          },
+          "right": {
+            "ky": "Темир магнитти тартат",
+            "ru": "Железо притягивает магнит",
+            "en": "The iron pulls the magnet"
+          }
+        },
+        {
+          "key": "ball",
+          "left": {
+            "ky": "Бут топту тебет",
+            "ru": "Нога бьёт мяч",
+            "en": "A foot kicks a ball"
+          },
+          "right": {
+            "ky": "Топ бутту түртөт",
+            "ru": "Мяч давит на ногу",
+            "en": "The ball pushes on the foot"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Ар бир жупта күчтөр барабар, карама-каршы жана ар башка нерселерге коюлган.",
+        "ru": "В каждой паре силы равны, противоположны и приложены к разным телам.",
+        "en": "In each pair the forces are equal, opposite and act on different bodies."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-third-9",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден эки арабачаны тең бирдей күч менен түрткөн нерсени тап.",
+        "ru": "Найдите на модели то, что толкает обе тележки одинаковыми силами.",
+        "en": "Find what pushes both carts with equal forces in the model."
+      },
+      "targetConceptKey": "phys.action-reaction",
+      "explanation": {
+        "ky": "Бул – кысылган пружина: ал А ны солго, В ны оңго бирдей күч менен түртөт.",
+        "ru": "Это сжатая пружина: она толкает A влево, B вправо с равными силами.",
+        "en": "That is the compressed spring: it pushes A left and B right equally hard."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-third-10",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден массалары салыштырылып жаткан нерселерди тап.",
+        "ru": "Найдите на модели тела, массы которых сравниваются.",
+        "en": "Find the bodies in the model whose masses are compared."
+      },
+      "targetConceptKey": "phys.mass",
+      "explanation": {
+        "ky": "Бул – арабачалар: массасы чоңу азыраак ылдамдык алат.",
+        "ru": "Это тележки: более массивная получает меньшую скорость.",
+        "en": "These are the carts: the heavier one gets less speed."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-third-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Адам чананы сүйрөп баратат. Ньютондун үчүнчү закону боюнча чана адамды кандай күч менен тартат?",
+        "ru": "Человек тянет санки. С какой силой, по третьему закону Ньютона, санки тянут человека?",
+        "en": "A person pulls a sledge. By Newton's third law, how hard does the sledge pull the person?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Адам чананы тарткан күчкө барабар, карама-каршы",
+            "ru": "С такой же силой, в противоположную сторону",
+            "en": "Just as hard, in the opposite direction"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Азыраак – болбосо адам чананы жылдыра алмак эмес",
+            "ru": "Слабее – иначе человек не сдвинул бы санки",
+            "en": "Less – otherwise the person could not move it"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Чана адамды тартпайт",
+            "ru": "Санки человека не тянут",
+            "en": "The sledge does not pull the person"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Күчтөр барабар. Адам кыймылдайт, анткени Жер аны алдыга түртөт, ал эми чананын каршылыгы андан аз – бул адамга коюлган күчтөрдү салыштыруу.",
+        "ru": "Силы равны. Человек движется, потому что Земля толкает его вперёд сильнее, чем санки тянут назад, – это сравнение сил, приложенных к человеку.",
+        "en": "The forces are equal. The person moves because the ground pushes them forward harder than the sledge pulls back – that compares forces on the person."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.third-law-cancel",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-third-12",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 1 кг жана 2 кг арабачалар түртүшкөндө 2 кг арабача 0,5 м/с алды. 1 кг арабачанын ылдамдыгы канча (м/с)?",
+        "ru": "При отталкивании тележек 1 кг и 2 кг тележка 2 кг получила 0,5 м/с. Какова скорость тележки 1 кг (м/с)?",
+        "en": "Carts of 1 kg and 2 kg push apart; the 2 kg cart gets 0.5 m/s. What speed does the 1 kg cart get (m/s)?"
+      },
+      "answer": 1,
+      "tolerance": 0.01,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "v₁ = v₂ · m₂/m₁ = 0,5 · 2/1 = 1 м/с.",
+        "ru": "v₁ = v₂ · m₂/m₁ = 0,5 · 2/1 = 1 м/с.",
+        "en": "v₁ = v₂ × m₂/m₁ = 0.5 × 2/1 = 1 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

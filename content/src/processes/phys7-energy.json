@@ -1,0 +1,360 @@
+{
+  "processes": [
+    {
+      "key": "phys.cart-collision",
+      "engine": "timeline",
+      "icon": "arrow-left-right",
+      "title": { "ky": "Арабачалардын кагылышуусу", "ru": "Столкновение тележек", "en": "Cart collision" },
+      "description": {
+        "ky": "1 кг арабача 0,6 м/с ылдамдык менен тынч турган ошондой эле арабачага урунат. Кагылышууга чейин бүт импульс биринчи арабачада, кийин – экинчисинде, ал эми импульстардын суммасы дайыма 0,6 кг·м/с.",
+        "ru": "Тележка 1 кг со скоростью 0,6 м/с ударяет такую же покоящуюся тележку. До удара весь импульс у первой тележки, после – у второй, а сумма импульсов всё время 0,6 кг·м/с.",
+        "en": "A 1 kg cart at 0.6 m/s hits an identical cart at rest. Before the hit all the momentum is in the first cart, afterwards in the second, and the total stays 0.6 kg·m/s throughout."
+      },
+      "equation": "m_1v_1 + m_2v_2 = m_1u_1 + m_2u_2",
+      "inputs": {
+        "ky": "m₁ = m₂ = 1 кг, v₁ = 0,6 м/с, v₂ = 0, серпилгичтүү урунуу",
+        "ru": "m₁ = m₂ = 1 кг, v₁ = 0,6 м/с, v₂ = 0, упругий удар",
+        "en": "m₁ = m₂ = 1 kg, v₁ = 0.6 m/s, v₂ = 0, elastic collision"
+      },
+      "outputs": {
+        "ky": "u₁ = 0, u₂ = 0,6 м/с; P₁ + P₂ = 0,6 кг·м/с",
+        "ru": "u₁ = 0, u₂ = 0,6 м/с; P₁ + P₂ = 0,6 кг·м/с",
+        "en": "u₁ = 0, u₂ = 0.6 m/s; P₁ + P₂ = 0.6 kg·m/s"
+      },
+      "steps": [
+        {
+          "key": "approach",
+          "title": { "ky": "Жакындоо", "ru": "Сближение", "en": "Approach" },
+          "result": { "ky": "P_A = 0,6 кг·м/с, P_B = 0", "ru": "P_A = 0,6 кг·м/с, P_B = 0", "en": "P_A = 0.6 kg·m/s, P_B = 0" },
+          "description": {
+            "ky": "А арабачасы 0,6 м/с менен жылат, В арабачасы тынч турат. Бүт импульс А да.",
+            "ru": "Тележка A едет со скоростью 0,6 м/с, тележка B стоит. Весь импульс – у A.",
+            "en": "Cart A rolls at 0.6 m/s, cart B is at rest. All the momentum is in A."
+          },
+          "conceptKey": "phys.momentum",
+          "altText": {
+            "ky": "Сол жактагы арабача оңдогу тынч арабачаны көздөй жылат, анын үстүндө импульс жебеси.",
+            "ru": "Левая тележка едет к правой, стоящей; над ней стрелка импульса.",
+            "en": "The left cart rolls towards the right cart at rest, with a momentum arrow above it."
+          },
+          "duration": 1.5
+        },
+        {
+          "key": "impact",
+          "title": { "ky": "Урунуу", "ru": "Удар", "en": "Impact" },
+          "result": { "ky": "P_A = 0,3, P_B = 0,3 кг·м/с", "ru": "P_A = 0,3, P_B = 0,3 кг·м/с", "en": "P_A = 0.3, P_B = 0.3 kg·m/s" },
+          "description": {
+            "ky": "Урунуу учурунда арабачалар бири-бирине барабар, карама-каршы күчтөр менен аракет этет: А жайлайт, В ылдамдайт. Импульстардын суммасы мурдагыдай эле 0,6 кг·м/с.",
+            "ru": "Во время удара тележки действуют друг на друга равными и противоположными силами: A замедляется, B разгоняется. Сумма импульсов по-прежнему 0,6 кг·м/с.",
+            "en": "During the impact the carts push each other with equal and opposite forces: A slows, B speeds up. The total momentum is still 0.6 kg·m/s."
+          },
+          "conceptKey": "phys.closed-system",
+          "altText": {
+            "ky": "Эки арабача тийишип турат, импульс жебелери бирдей узундукта.",
+            "ru": "Тележки соприкасаются, стрелки импульса одинаковой длины.",
+            "en": "The carts touch; both momentum arrows are the same length."
+          },
+          "duration": 0.6
+        },
+        {
+          "key": "after",
+          "title": { "ky": "Кагылышкандан кийин", "ru": "После столкновения", "en": "After the collision" },
+          "result": { "ky": "P_A = 0, P_B = 0,6 кг·м/с", "ru": "P_A = 0, P_B = 0,6 кг·м/с", "en": "P_A = 0, P_B = 0.6 kg·m/s" },
+          "description": {
+            "ky": "А токтоду, В 0,6 м/с менен кетти: импульс толугу менен өттү. P₁ + P₂ = P₁′ + P₂′ – импульстун сакталуу закону.",
+            "ru": "A остановилась, B уехала со скоростью 0,6 м/с: импульс передан целиком. P₁ + P₂ = P₁′ + P₂′ – закон сохранения импульса.",
+            "en": "A has stopped, B rolls off at 0.6 m/s: the momentum passed on completely. P₁ + P₂ = P₁′ + P₂′ – conservation of momentum."
+          },
+          "conceptKey": "phys.momentum-conservation",
+          "altText": {
+            "ky": "Сол арабача токтоп турат, оң арабача жебеси менен оңго кетип баратат.",
+            "ru": "Левая тележка стоит, правая уезжает вправо со стрелкой импульса.",
+            "en": "The left cart stands still, the right one moves off to the right with its momentum arrow."
+          },
+          "duration": 1.5
+        }
+      ],
+      "metrics": [
+        { "key": "p-a", "label": { "ky": "А нын импульсу", "ru": "Импульс A", "en": "Momentum of A" }, "unit": "kg·m/s", "min": 0, "max": 0.6, "precision": 2 },
+        { "key": "p-b", "label": { "ky": "В нын импульсу", "ru": "Импульс B", "en": "Momentum of B" }, "unit": "kg·m/s", "min": 0, "max": 0.6, "precision": 2 },
+        { "key": "p-total", "label": { "ky": "Импульстардын суммасы", "ru": "Суммарный импульс", "en": "Total momentum" }, "unit": "kg·m/s", "min": 0, "max": 0.6, "precision": 2 }
+      ],
+      "params": {
+        "massA": 1, "massB": 1, "vA": 0.6, "vB": 0,
+        "p-a@approach": 0.6, "p-a@impact": 0.3, "p-a@after": 0,
+        "p-b@approach": 0, "p-b@impact": 0.3, "p-b@after": 0.6,
+        "p-total@approach": 0.6, "p-total@impact": 0.6, "p-total@after": 0.6
+      }
+    },
+    {
+      "key": "phys.rocket-launch",
+      "engine": "timeline",
+      "icon": "rocket",
+      "title": { "ky": "Ракетанын учушу", "ru": "Старт ракеты", "en": "Rocket launch" },
+      "description": {
+        "ky": "Ракетанын тулкусу 1 кг, отуну 0,5 кг. Күйгөн газ 200 м/с ылдамдык менен ылдый атылат. Газ канча импульс алып кетсе, ракета ошончо импульсту өйдө карай алат: m_г·v_г = m_р·v_р. Отундун баары бир заматта чыкты деп, оордук күчүн эске албай эсептейбиз.",
+        "ru": "Корпус ракеты 1 кг, топливо 0,5 кг. Газы вылетают вниз со скоростью 200 м/с. Какой импульс уносят газы, такой же импульс вверх получает ракета: m_г·v_г = m_р·v_р. Считаем упрощённо: всё топливо выброшено сразу, сила тяжести не учитывается.",
+        "en": "The rocket body is 1 kg with 0.5 kg of fuel. The exhaust shoots down at 200 m/s. Whatever momentum the gas carries away, the rocket gets the same upwards: m_g·v_g = m_r·v_r. Simplified: all the fuel leaves at once and gravity is ignored."
+      },
+      "equation": "m_г v_г = m_р v_р",
+      "inputs": {
+        "ky": "m_р = 1 кг, m_г = 0,5 кг, v_г = 200 м/с",
+        "ru": "m_р = 1 кг, m_г = 0,5 кг, v_г = 200 м/с",
+        "en": "m_r = 1 kg, m_g = 0.5 kg, v_g = 200 m/s"
+      },
+      "outputs": {
+        "ky": "m_г·v_г = 100 кг·м/с, v_р = 100 м/с",
+        "ru": "m_г·v_г = 100 кг·м/с, v_р = 100 м/с",
+        "en": "m_g·v_g = 100 kg·m/s, v_r = 100 m/s"
+      },
+      "steps": [
+        {
+          "key": "pad",
+          "title": { "ky": "Старт аянтчасында", "ru": "На стартовом столе", "en": "On the pad" },
+          "result": { "ky": "P = 0", "ru": "P = 0", "en": "P = 0" },
+          "description": {
+            "ky": "Ракета отуну менен тынч турат: системанын импульсу нөл.",
+            "ru": "Ракета с топливом стоит: импульс системы равен нулю.",
+            "en": "The fuelled rocket stands still: the system's momentum is zero."
+          },
+          "conceptKey": "phys.rocket",
+          "altText": { "ky": "Аянтчада тик турган ракета.", "ru": "Ракета стоит вертикально на площадке.", "en": "A rocket standing upright on the pad." },
+          "duration": 1
+        },
+        {
+          "key": "ignite",
+          "title": { "ky": "От алуу", "ru": "Зажигание", "en": "Ignition" },
+          "result": { "ky": "Газ ылдый, ракета өйдө", "ru": "Газ вниз, ракета вверх", "en": "Gas down, rocket up" },
+          "description": {
+            "ky": "Отун күйүп, газ ылдый атыла баштайт. Газ ылдый импульс алса, ракета өйдө ошончо импульс алат – суммасы мурдагыдай нөл.",
+            "ru": "Топливо горит, газы начинают вырываться вниз. Сколько импульса вниз получает газ, столько же вверх – ракета; сумма по-прежнему ноль.",
+            "en": "The fuel burns and gas starts to blast downwards. As much momentum as the gas gets downwards, the rocket gets upwards – the total is still zero."
+          },
+          "conceptKey": "phys.jet-propulsion",
+          "altText": { "ky": "Ракетанын түбүнөн жалын жана газ ылдый чыгып жатат.", "ru": "Из сопла ракеты вниз вырываются пламя и газ.", "en": "Flame and gas pour down from the rocket's nozzle." },
+          "duration": 1
+        },
+        {
+          "key": "thrust",
+          "title": { "ky": "Ылдамдоо", "ru": "Разгон", "en": "Speeding up" },
+          "result": { "ky": "m_г·v_г = m_р·v_р = 50 кг·м/с", "ru": "m_г·v_г = m_р·v_р = 50 кг·м/с", "en": "m_g·v_g = m_r·v_r = 50 kg·m/s" },
+          "description": {
+            "ky": "Отундун жарымы чыкты: 0,25 кг · 200 м/с = 50 кг·м/с. Ракета ушунча импульс алды: 50 кг·м/с / 1 кг = 50 м/с.",
+            "ru": "Вышла половина топлива: 0,25 кг · 200 м/с = 50 кг·м/с. Ракета получила такой же импульс: 50 кг·м/с / 1 кг = 50 м/с.",
+            "en": "Half the fuel is out: 0.25 kg × 200 m/s = 50 kg·m/s. The rocket got the same momentum: 50 kg·m/s ÷ 1 kg = 50 m/s."
+          },
+          "conceptKey": "phys.momentum-conservation",
+          "altText": { "ky": "Ракета өйдө көтөрүлүүдө, анын астында газ агымы.", "ru": "Ракета поднимается, под ней струя газа.", "en": "The rocket climbs with a jet of gas below it." },
+          "duration": 1.5
+        },
+        {
+          "key": "burnout",
+          "title": { "ky": "Отун түгөндү", "ru": "Топливо выгорело", "en": "Burnout" },
+          "result": { "ky": "v_р = 100 м/с", "ru": "v_р = 100 м/с", "en": "v_r = 100 m/s" },
+          "description": {
+            "ky": "Бүт отун чыкты: m_г·v_г = 0,5 · 200 = 100 кг·м/с, ракетанын ылдамдыгы v_р = 100 м/с. Андан ары ракета оордук күчүнүн таасиринде жайлайт.",
+            "ru": "Всё топливо вышло: m_г·v_г = 0,5 · 200 = 100 кг·м/с, скорость ракеты v_р = 100 м/с. Дальше ракета замедляется под действием силы тяжести.",
+            "en": "All the fuel is gone: m_g·v_g = 0.5 × 200 = 100 kg·m/s, so the rocket's speed is 100 m/s. From now on gravity slows it down."
+          },
+          "conceptKey": "phys.rocket",
+          "altText": { "ky": "Ракета жогоруда, газ агымы токтогон.", "ru": "Ракета высоко, струя газа прекратилась.", "en": "The rocket is high up and the exhaust has stopped." },
+          "duration": 1.5
+        }
+      ],
+      "metrics": [
+        { "key": "p-gas", "label": { "ky": "Газдын импульсу (ылдый)", "ru": "Импульс газов (вниз)", "en": "Exhaust momentum (down)" }, "unit": "kg·m/s", "min": 0, "max": 100, "precision": 0 },
+        { "key": "p-rocket", "label": { "ky": "Ракетанын импульсу (өйдө)", "ru": "Импульс ракеты (вверх)", "en": "Rocket momentum (up)" }, "unit": "kg·m/s", "min": 0, "max": 100, "precision": 0 },
+        { "key": "rocket-speed", "label": { "ky": "Ракетанын ылдамдыгы", "ru": "Скорость ракеты", "en": "Rocket speed" }, "unit": "m/s", "min": 0, "max": 100, "precision": 0 }
+      ],
+      "params": {
+        "rocketMass": 1, "fuelMass": 0.5, "gasSpeed": 200,
+        "p-gas@pad": 0, "p-gas@ignite": 10, "p-gas@thrust": 50, "p-gas@burnout": 100,
+        "p-rocket@pad": 0, "p-rocket@ignite": 10, "p-rocket@thrust": 50, "p-rocket@burnout": 100,
+        "rocket-speed@pad": 0, "rocket-speed@ignite": 10, "rocket-speed@thrust": 50, "rocket-speed@burnout": 100
+      }
+    },
+    {
+      "key": "phys.pulley-lift",
+      "engine": "timeline",
+      "icon": "trending-up",
+      "title": { "ky": "Жүктү блок менен көтөрүү", "ru": "Подъём груза блоком", "en": "Lifting a load with a pulley" },
+      "description": {
+        "ky": "10 кг жүк кыймылсыз блок аркылуу 0,2 м/с туруктуу ылдамдык менен 1 м бийиктикке көтөрүлөт. Аркан F = mg = 98 Н күч менен s = 1 м тартылат: A = F·s = 98 Дж, t = 5 с, N = A/t = 19,6 Вт.",
+        "ru": "Груз 10 кг поднимают через неподвижный блок с постоянной скоростью 0,2 м/с на высоту 1 м. Верёвку тянут с силой F = mg = 98 Н на s = 1 м: A = F·s = 98 Дж, t = 5 с, N = A/t = 19,6 Вт.",
+        "en": "A 10 kg load is raised 1 m through a fixed pulley at a steady 0.2 m/s. The rope is pulled with F = mg = 98 N over s = 1 m: A = F·s = 98 J, t = 5 s, N = A/t = 19.6 W."
+      },
+      "equation": "A = F \\cdot s,\\quad N = \\frac{A}{t} = F \\cdot v",
+      "inputs": {
+        "ky": "m = 10 кг, h = 1 м, v = 0,2 м/с, g = 9,8 Н/кг",
+        "ru": "m = 10 кг, h = 1 м, v = 0,2 м/с, g = 9,8 Н/кг",
+        "en": "m = 10 kg, h = 1 m, v = 0.2 m/s, g = 9.8 N/kg"
+      },
+      "outputs": {
+        "ky": "F = 98 Н, A = 98 Дж, t = 5 с, N = 19,6 Вт",
+        "ru": "F = 98 Н, A = 98 Дж, t = 5 с, N = 19,6 Вт",
+        "en": "F = 98 N, A = 98 J, t = 5 s, N = 19.6 W"
+      },
+      "energy": {
+        "ky": "Аткарылган жумуш жүктүн потенциалдык энергиясына айланат: Eп = mgh = 98 Дж",
+        "ru": "Совершённая работа переходит в потенциальную энергию груза: Eп = mgh = 98 Дж",
+        "en": "The work done becomes the load's potential energy: PE = mgh = 98 J"
+      },
+      "steps": [
+        {
+          "key": "hook",
+          "title": { "ky": "Жүк илинди", "ru": "Груз подвешен", "en": "Load hooked on" },
+          "result": { "ky": "A = 0", "ru": "A = 0", "en": "A = 0" },
+          "description": {
+            "ky": "Жүк арканга илинип, жерде турат. Күч бар, бирок жүк жылбаса – жумуш аткарылбайт.",
+            "ru": "Груз прицеплен к верёвке и стоит на полу. Сила есть, но пока груз не движется – работы нет.",
+            "en": "The load is on the rope, still on the floor. There is a force, but until the load moves no work is done."
+          },
+          "conceptKey": "phys.mechanical-work",
+          "altText": { "ky": "Блоктон түшкөн арканга илинген жүк полдо турат.", "ru": "Груз на верёвке, перекинутой через блок, стоит на полу.", "en": "A load on a rope over a pulley rests on the floor." },
+          "duration": 1
+        },
+        {
+          "key": "lift",
+          "title": { "ky": "Көтөрүү башталды", "ru": "Начало подъёма", "en": "Lift begins" },
+          "result": { "ky": "F = 98 Н, v = 0,2 м/с", "ru": "F = 98 Н, v = 0,2 м/с", "en": "F = 98 N, v = 0.2 m/s" },
+          "description": {
+            "ky": "Арканды 98 Н күч менен тартабыз, жүк 0,2 м/с менен бир калыпта көтөрүлөт. Кубаттуулук N = F·v = 98 · 0,2 = 19,6 Вт.",
+            "ru": "Тянем верёвку с силой 98 Н, груз равномерно поднимается со скоростью 0,2 м/с. Мощность N = F·v = 98 · 0,2 = 19,6 Вт.",
+            "en": "We pull the rope with 98 N and the load rises steadily at 0.2 m/s. Power N = F·v = 98 × 0.2 = 19.6 W."
+          },
+          "conceptKey": "phys.power",
+          "altText": { "ky": "Жүк полдон көтөрүлө баштады, колдун күч жебеси ылдый.", "ru": "Груз оторвался от пола, стрелка силы руки вниз.", "en": "The load leaves the floor; the hand's effort arrow points down." },
+          "duration": 1
+        },
+        {
+          "key": "half",
+          "title": { "ky": "Жарым жол", "ru": "Половина пути", "en": "Halfway" },
+          "result": { "ky": "s = 0,5 м, A = 49 Дж", "ru": "s = 0,5 м, A = 49 Дж", "en": "s = 0.5 m, A = 49 J" },
+          "description": {
+            "ky": "2,5 с өттү, жүк 0,5 м көтөрүлдү: A = 98 · 0,5 = 49 Дж. Жумуш жолго пропорционалдуу өсөт.",
+            "ru": "Прошло 2,5 с, груз поднялся на 0,5 м: A = 98 · 0,5 = 49 Дж. Работа растёт пропорционально пути.",
+            "en": "After 2.5 s the load is 0.5 m up: A = 98 × 0.5 = 49 J. The work grows in step with the distance."
+          },
+          "conceptKey": "phys.distance",
+          "altText": { "ky": "Жүк сызгычтын ортосунда.", "ru": "Груз на середине линейки.", "en": "The load is halfway up the ruler." },
+          "duration": 2.5
+        },
+        {
+          "key": "top",
+          "title": { "ky": "Жогорку чекит", "ru": "Наверху", "en": "At the top" },
+          "result": { "ky": "A = 98 Дж, t = 5 с, N = 19,6 Вт", "ru": "A = 98 Дж, t = 5 с, N = 19,6 Вт", "en": "A = 98 J, t = 5 s, N = 19.6 W" },
+          "description": {
+            "ky": "Жүк 1 м бийиктикке 5 с та жетти: A = 98 Дж, N = A/t = 98/5 = 19,6 Вт.",
+            "ru": "Груз поднялся на 1 м за 5 с: A = 98 Дж, N = A/t = 98/5 = 19,6 Вт.",
+            "en": "The load reached 1 m in 5 s: A = 98 J, N = A/t = 98/5 = 19.6 W."
+          },
+          "conceptKey": "phys.mechanical-work",
+          "altText": { "ky": "Жүк сызгычтын жогорку белгисинде токтоду.", "ru": "Груз остановился у верхней отметки линейки.", "en": "The load stops at the top mark of the ruler." },
+          "duration": 2.5
+        }
+      ],
+      "metrics": [
+        { "key": "height", "label": { "ky": "Бийиктик h", "ru": "Высота h", "en": "Height h" }, "unit": "m", "min": 0, "max": 1, "precision": 2 },
+        { "key": "work", "label": { "ky": "Жумуш A", "ru": "Работа A", "en": "Work A" }, "unit": "J", "min": 0, "max": 98, "precision": 1 },
+        { "key": "time", "label": { "ky": "Убакыт t", "ru": "Время t", "en": "Time t" }, "unit": "s", "min": 0, "max": 5, "precision": 1 },
+        { "key": "power", "label": { "ky": "Кубаттуулук N", "ru": "Мощность N", "en": "Power N" }, "unit": "W", "min": 0, "max": 19.6, "precision": 1 }
+      ],
+      "params": {
+        "loadMass": 10, "liftHeight": 1, "liftSpeed": 0.2, "g": 9.8,
+        "height@hook": 0, "height@lift": 0, "height@half": 0.5, "height@top": 1,
+        "work@hook": 0, "work@lift": 0, "work@half": 49, "work@top": 98,
+        "time@hook": 0, "time@lift": 0, "time@half": 2.5, "time@top": 5,
+        "power@hook": 0, "power@lift": 19.6, "power@half": 19.6, "power@top": 19.6
+      }
+    },
+    {
+      "key": "phys.pendulum-energy",
+      "engine": "ode",
+      "icon": "activity",
+      "title": { "ky": "Маятниктеги энергиянын айланышы", "ru": "Превращения энергии маятника", "en": "Energy changes in a pendulum" },
+      "description": {
+        "ky": "0,5 кг жүк 1 м жипте 60° ка четтетилип коё берилет. Жүк ылдый түшкөн сайын потенциалдык энергиясы кинетикалыкка, кайра көтөрүлгөндө кинетикалык энергиясы потенциалдыкка айланат. Энергиялар формулалар боюнча эсептелет; алардын суммасы өзгөрбөйт.",
+        "ru": "Груз 0,5 кг на нити 1 м отклоняют на 60° и отпускают. Опускаясь, он превращает потенциальную энергию в кинетическую, поднимаясь – кинетическую в потенциальную. Энергии вычисляются по формулам; их сумма не меняется.",
+        "en": "A 0.5 kg bob on a 1 m string is pulled out to 60° and released. Going down, its potential energy turns into kinetic; going up, kinetic turns back into potential. The energies are computed from formulas and their sum stays the same."
+      },
+      "equation": "E = mgh + \\frac{mv^2}{2} = mgl(1 - \\cos\\theta_0)",
+      "inputs": {
+        "ky": "l = 1 м, m = 0,5 кг, θ₀ = 60°, g = 9,8 Н/кг",
+        "ru": "l = 1 м, m = 0,5 кг, θ₀ = 60°, g = 9,8 Н/кг",
+        "en": "l = 1 m, m = 0.5 kg, θ₀ = 60°, g = 9.8 N/kg"
+      },
+      "outputs": {
+        "ky": "h = 0,5 м, E = 2,45 Дж, v_max ≈ 3,13 м/с",
+        "ru": "h = 0,5 м, E = 2,45 Дж, v_max ≈ 3,13 м/с",
+        "en": "h = 0.5 m, E = 2.45 J, v_max ≈ 3.13 m/s"
+      },
+      "energy": {
+        "ky": "Толук механикалык энергия E = Eп + Eк = 2,45 Дж туруктуу",
+        "ru": "Полная механическая энергия E = Eп + Eк = 2,45 Дж постоянна",
+        "en": "Total mechanical energy E = PE + KE = 2.45 J stays constant"
+      },
+      "steps": [
+        {
+          "key": "release",
+          "title": { "ky": "Жогорку чекит", "ru": "Верхняя точка", "en": "Top of the swing" },
+          "result": { "ky": "Eп = 2,45 Дж, Eк = 0", "ru": "Eп = 2,45 Дж, Eк = 0", "en": "PE = 2.45 J, KE = 0" },
+          "description": {
+            "ky": "Жүк h = l(1 − cos 60°) = 0,5 м бийиктикте кыймылсыз: Eп = mgh = 0,5 · 9,8 · 0,5 = 2,45 Дж, Eк = 0.",
+            "ru": "Груз неподвижен на высоте h = l(1 − cos 60°) = 0,5 м: Eп = mgh = 0,5 · 9,8 · 0,5 = 2,45 Дж, Eк = 0.",
+            "en": "The bob is still at h = l(1 − cos 60°) = 0.5 m: PE = mgh = 0.5 × 9.8 × 0.5 = 2.45 J, KE = 0."
+          },
+          "conceptKey": "phys.potential-energy",
+          "altText": { "ky": "Жүк 60° ка четтетилген, көк тилке толук, кызыл тилке бош.", "ru": "Груз отклонён на 60°, синий столбик полный, красный пуст.", "en": "The bob is pulled out to 60°; the blue bar is full and the red bar empty." },
+          "duration": 0.26
+        },
+        {
+          "key": "halfway",
+          "title": { "ky": "Ортосунда", "ru": "На полпути", "en": "Halfway down" },
+          "result": { "ky": "Eп = Eк ≈ 1,23 Дж", "ru": "Eп = Eк ≈ 1,23 Дж", "en": "PE = KE ≈ 1.23 J" },
+          "description": {
+            "ky": "h = 0,25 м болгондо энергиянын жарымы кинетикалыкка өттү: Eп = Eк ≈ 1,23 Дж, суммасы мурдагыдай 2,45 Дж.",
+            "ru": "При h = 0,25 м половина энергии перешла в кинетическую: Eп = Eк ≈ 1,23 Дж, сумма по-прежнему 2,45 Дж.",
+            "en": "At h = 0.25 m half the energy has become kinetic: PE = KE ≈ 1.23 J, and the sum is still 2.45 J."
+          },
+          "conceptKey": "phys.energy-conservation",
+          "altText": { "ky": "Жүк жолдун ортосунда, эки тилке бирдей бийиктикте.", "ru": "Груз на полпути, оба столбика одной высоты.", "en": "The bob halfway down; the two bars are the same height." },
+          "duration": 0.24
+        },
+        {
+          "key": "bottom",
+          "title": { "ky": "Эң төмөнкү чекит", "ru": "Нижняя точка", "en": "Lowest point" },
+          "result": { "ky": "Eк = 2,45 Дж, v ≈ 3,13 м/с", "ru": "Eк = 2,45 Дж, v ≈ 3,13 м/с", "en": "KE = 2.45 J, v ≈ 3.13 m/s" },
+          "description": {
+            "ky": "Тең салмак абалында h = 0, Eп = 0: бүт энергия кинетикалык. v² = 2gh = 2 · 9,8 · 0,5, v ≈ 3,13 м/с.",
+            "ru": "В положении равновесия h = 0, Eп = 0: вся энергия кинетическая. v² = 2gh = 2 · 9,8 · 0,5, v ≈ 3,13 м/с.",
+            "en": "At equilibrium h = 0 and PE = 0: all the energy is kinetic. v² = 2gh = 2 × 9.8 × 0.5, v ≈ 3.13 m/s."
+          },
+          "conceptKey": "phys.kinetic-energy",
+          "altText": { "ky": "Жүк так ылдыйда, кызыл тилке толук, көк тилке бош.", "ru": "Груз в самом низу, красный столбик полный, синий пуст.", "en": "The bob at the bottom; the red bar full, the blue bar empty." },
+          "duration": 0.5
+        },
+        {
+          "key": "opposite",
+          "title": { "ky": "Карама-каршы чет", "ru": "Противоположный край", "en": "Other side" },
+          "result": { "ky": "Eп = 2,45 Дж, Eк = 0", "ru": "Eп = 2,45 Дж, Eк = 0", "en": "PE = 2.45 J, KE = 0" },
+          "description": {
+            "ky": "Жүк кайра көтөрүлүп, сүрүлүү жок болсо, ошол эле 0,5 м бийиктикке жетет – кинетикалык энергия кайра потенциалдыкка айланды.",
+            "ru": "Груз снова поднимается и без трения доходит до той же высоты 0,5 м – кинетическая энергия снова стала потенциальной.",
+            "en": "The bob rises again and, without friction, reaches the same 0.5 m – the kinetic energy has turned back into potential."
+          },
+          "conceptKey": "phys.energy-conservation",
+          "altText": { "ky": "Жүк сол жакта 60° та, көк тилке кайра толук.", "ru": "Груз слева на 60°, синий столбик снова полный.", "en": "The bob at 60° on the left; the blue bar is full again." },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        { "key": "pe", "label": { "ky": "Потенциалдык энергия", "ru": "Потенциальная энергия", "en": "Potential energy" }, "unit": "J", "min": 0, "max": 2.5, "precision": 2 },
+        { "key": "ke", "label": { "ky": "Кинетикалык энергия", "ru": "Кинетическая энергия", "en": "Kinetic energy" }, "unit": "J", "min": 0, "max": 2.5, "precision": 2 },
+        { "key": "energy", "label": { "ky": "Толук механикалык энергия", "ru": "Полная механическая энергия", "en": "Total mechanical energy" }, "unit": "J", "min": 0, "max": 2.5, "precision": 2 },
+        { "key": "height", "label": { "ky": "Бийиктик", "ru": "Высота", "en": "Height" }, "unit": "m", "min": 0, "max": 0.5, "precision": 2 },
+        { "key": "speed", "label": { "ky": "Ылдамдык", "ru": "Скорость", "en": "Speed" }, "unit": "m/s", "min": 0, "max": 3.2, "precision": 2 }
+      ],
+      "params": { "length": 1, "g": 9.8, "mass": 0.5, "amplitudeDeg": 60, "damping": 0 }
+    }
+  ]
+}

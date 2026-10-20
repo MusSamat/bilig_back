@@ -1,0 +1,4205 @@
+{
+  "manifest": {
+    "topicKey": "phys7-liquid-pressure",
+    "version": "1.0.0",
+    "hash": "ad90165c6397a79d7d1b3f08d94e3103752756d3f884c92234b74296db3e0bc3",
+    "files": [
+      {
+        "path": "thumbs/liquid-water-30cm.webp",
+        "hash": "fd04b9ef19d8a034e9ab5891bfc01edd23260101e3eef08aa4648f7ab9b45db6",
+        "size": 0
+      },
+      {
+        "path": "thumbs/liquid-water-10cm.webp",
+        "hash": "90a5935cfbdde755a591421a16e337fa5edfb62d2722afafea2d79c23840bfeb",
+        "size": 0
+      },
+      {
+        "path": "thumbs/liquid-oil-30cm.webp",
+        "hash": "bbb8c74304724081843a39e5e924e9bd279156e96fd3f4dc41ae77dc78ec8c8f",
+        "size": 0
+      },
+      {
+        "path": "thumbs/liquid-pascal-ball.webp",
+        "hash": "7442d90bcfbe3cb55b98775ea99918b8d5e33193a1d39e2d61b5e221e08e73cd",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "phys",
+    "icon": "orbit",
+    "hue": 28,
+    "group": "natural",
+    "order": 2,
+    "status": "live",
+    "title": {
+      "ky": "Физика",
+      "ru": "Физика",
+      "en": "Physics"
+    },
+    "assistantGuide": "Physics. Give the quantity, its symbol and unit (SI; km/h only as in the material) and the formula, then a short worked calculation with numbers and units when asked. Keep numbers from the material; round sensibly. Distinguish similar quantities (speed vs distance, mass vs weight, force vs moment)."
+  },
+  "course": {
+    "key": "phys.g7",
+    "subjectKey": "phys",
+    "grade": 7,
+    "curriculum": "kg-2018",
+    "title": {
+      "ky": "Физика, 7-класс",
+      "ru": "Физика, 7 класс",
+      "en": "Physics, grade 7"
+    }
+  },
+  "unit": {
+    "key": "phys.g7.pressure",
+    "courseKey": "phys.g7",
+    "order": 3,
+    "title": {
+      "ky": "Катуу нерселердин, газдардын жана суюктуктардын басымы",
+      "ru": "Давление твёрдых тел, жидкостей и газов",
+      "en": "Pressure of solids, liquids and gases"
+    }
+  },
+  "objectives": [
+    {
+      "key": "phys.g7.pressure.o1",
+      "code": "PHYS-7.3.1",
+      "unitKey": "phys.g7.pressure",
+      "text": {
+        "ky": "Катуу нерселердин, суюктуктардын жана газдардын басымын эсептөө, Паскаль законун колдонуу.",
+        "ru": "Вычислять давление твёрдых тел, жидкостей и газов, применять закон Паскаля.",
+        "en": "Calculate the pressure of solids, liquids and gases and apply Pascal's law."
+      }
+    },
+    {
+      "key": "phys.g7.pressure.o2",
+      "code": "PHYS-7.3.2",
+      "unitKey": "phys.g7.pressure",
+      "text": {
+        "ky": "Архимед күчүн эсептөө жана нерселердин сүзүү шарттарын түшүндүрүү.",
+        "ru": "Вычислять архимедову силу и объяснять условия плавания тел.",
+        "en": "Calculate the buoyant force and explain why bodies float."
+      }
+    }
+  ],
+  "topic": {
+    "key": "phys7-liquid-pressure",
+    "unitKey": "phys.g7.pressure",
+    "status": "published",
+    "title": {
+      "ky": "Суюктуктардагы жана газдардагы басым. Паскаль закону",
+      "ru": "Давление в жидкостях и газах. Закон Паскаля",
+      "en": "Pressure in liquids and gases. Pascal's law"
+    },
+    "formula": "P = ρ·g·h",
+    "classification": {
+      "ky": "Суюктуктардын жана газдардын басымы",
+      "ru": "Давление жидкостей и газов",
+      "en": "Pressure of liquids and gases"
+    },
+    "description": {
+      "ky": "Бийик айнек идиштин капталында үч тешик бар: ылдыйкы тешиктен суу эң алыска атылат. Манометрге туташкан зонд 0,3 м тереңдикте 2940 Па көрсөтөт. Суюктуктун жана газдын молекулалары тынымсыз кыймылда болуп, идиштин бардык капталдарына урунат, ошондуктан алар бардык тарапка басым жасайт: P = ρ·g·h. Паскаль шары басым бардык багыт боюнча бирдей берилерин көрсөтөт (§26–27).",
+      "ru": "В стенке высокого стеклянного сосуда три отверстия: из нижнего вода бьёт дальше всего. Датчик с манометром на глубине 0,3 м показывает 2940 Па. Молекулы жидкости и газа непрерывно движутся и ударяются о все стенки сосуда, поэтому давят во все стороны: p = ρgh. Шар Паскаля показывает, что давление передаётся одинаково во всех направлениях (§26–27).",
+      "en": "A tall glass vessel has three holes in its side: the lowest jet travels furthest. A probe joined to a manometer reads 2940 Pa at a depth of 0.3 m. The molecules of liquids and gases are always moving and hitting every wall of the vessel, so they press in all directions: p = ρgh. Pascal's ball shows that pressure is passed on equally every way (§26–27)."
+    },
+    "goal": {
+      "ky": "Газдын жана суюктуктун басымын молекулалык түзүлүш менен түшүндүрүү, газдын басымы көлөмгө жана температурага кантип көз каранды экенин айтуу, Паскаль законун баяндоо жана колдонуу, суюктук мамычасынын басымын P = ρ·g·h менен эсептөө (PHYS-7.3.1).",
+      "ru": "Объяснять давление газа и жидкости молекулярным строением, описывать зависимость давления газа от объёма и температуры, формулировать и применять закон Паскаля, вычислять давление столба жидкости по p = ρgh (PHYS-7.3.1).",
+      "en": "Explain gas and liquid pressure through molecular structure, describe how gas pressure depends on volume and temperature, state and apply Pascal's law, and calculate the pressure of a liquid column with p = ρgh (PHYS-7.3.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.pressure.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "pressure",
+        "variant": "liquid",
+        "liquid": "water",
+        "depth": 0.3,
+        "height": 0.5
+      },
+      "camera": {
+        "position": [
+          0.5,
+          0.6,
+          1.5
+        ],
+        "target": [
+          0,
+          0.25,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.liquid-pressure",
+      "phys.depth",
+      "phys.pressure",
+      "phys.pascal-law",
+      "phys.piston"
+    ],
+    "overrides": {
+      "phys.liquid-pressure": {
+        "nodes": [
+          "Liquid",
+          "Jet_*",
+          "Arrow_Wall_*"
+        ],
+        "description": {
+          "ky": "Идиштеги суу түбүнө да, капталдарына да басат. Капталдагы үч тешиктен агым чыгат: ылдыйкысы эң алыска атылат, анткени ал жерде суу мамычасы бийигирээк жана басым чоңураак.",
+          "ru": "Вода в сосуде давит и на дно, и на стенки. Из трёх боковых отверстий бьют струи: нижняя – дальше всех, потому что над ней выше столб воды и больше давление.",
+          "en": "The water presses on the bottom and on the walls. Jets come from the three side holes: the lowest goes furthest, because the column of water above it is taller and the pressure greater."
+        },
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P = \\rho \\cdot g \\cdot h"
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 1000,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 4900,
+            "unit": "Pa"
+          }
+        ]
+      },
+      "phys.depth": {
+        "nodes": [
+          "Probe",
+          "Probe_Membrane",
+          "Depth",
+          "Arrow_Probe"
+        ],
+        "description": {
+          "ky": "Зонд (резина пленка менен капталган кутуча) 0,3 м тереңдикте турат. Аны ылдый түшүргөн сайын манометрдеги деңгээлдердин айырмасы чоңоёт.",
+          "ru": "Датчик (коробочка, затянутая резиновой плёнкой) находится на глубине 0,3 м. Чем глубже его опускают, тем больше разность уровней в манометре.",
+          "en": "The probe (a small box covered with a rubber film) sits 0.3 m down. The lower it goes, the bigger the difference in the manometer levels."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "depth",
+            "value": 0.3,
+            "unit": "m"
+          }
+        ]
+      },
+      "phys.pressure": {
+        "nodes": [
+          "Gauge"
+        ],
+        "title": {
+          "ky": "Суунун басымы (манометр)",
+          "ru": "Давление воды (манометр)",
+          "en": "Water pressure (manometer)"
+        },
+        "description": {
+          "ky": "U түрүндөгү манометр зонддогу басымды көрсөтөт: P = ρ·g·h = 1000 · 9,8 · 0,3 = 2940 Па. Зондду ошол эле тереңдикте кайсы тарапка бурсак да, көрсөткүч өзгөрбөйт.",
+          "ru": "U-образный манометр показывает давление у датчика: p = ρgh = 1000 · 9,8 · 0,3 = 2940 Па. Как ни поворачивай датчик на той же глубине, показание не меняется.",
+          "en": "The U-tube manometer shows the pressure at the probe: p = ρgh = 1000 × 9.8 × 0.3 = 2940 Pa. However the probe is turned at that depth, the reading stays the same."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 2940,
+            "unit": "Pa"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P = \\rho g h"
+          }
+        ]
+      },
+      "phys.pascal-law": {
+        "nodes": [
+          "Ball",
+          "Cylinder",
+          "Arrow_Pressure_*"
+        ],
+        "description": {
+          "ky": "Паскаль шары – ар кайсы жеринде кичине тешиктери бар көңдөй металл шар, ага поршени бар түтүк бириктирилген. Шарга суу куюп, поршенди түртсөк, суу бардык тешиктерден бирдей атылат: поршендин басымы суюктуктун ар бир чекитине бардык багыт боюнча бирдей берилет.",
+          "ru": "Шар Паскаля – полый металлический шар с маленькими отверстиями, соединённый с трубкой с поршнем. Если налить в шар воду и надавить на поршень, вода брызнет из всех отверстий одинаково: давление поршня передаётся в каждую точку жидкости одинаково во всех направлениях.",
+          "en": "Pascal's ball is a hollow metal ball with small holes all over it, joined to a tube with a piston. Fill it with water and push the piston: water squirts equally from every hole, because the piston's pressure reaches every point of the liquid equally in all directions."
+        },
+        "props": [
+          {
+            "kind": "text",
+            "type": "foundIn",
+            "value": {
+              "ky": "Суюктуктар жана газдар",
+              "ru": "Жидкости и газы",
+              "en": "Liquids and gases"
+            }
+          }
+        ]
+      },
+      "phys.piston": {
+        "nodes": [
+          "Piston",
+          "Arrow_Force"
+        ],
+        "description": {
+          "ky": "Паскаль шарынын түтүгүндөгү поршень. Аны түртсөк, ал астындагы суунун бетин кысат, суунун бөлүкчөлөрү кысылып, басымды тереңирээк катмарларга жана шардын капталдарына берет.",
+          "ru": "Поршень в трубке шара Паскаля. Когда на него давят, он сжимает поверхность воды, частицы воды уплотняются и передают давление глубже и на стенки шара.",
+          "en": "The piston in the tube of Pascal's ball. Pushing it squeezes the water surface; the water particles crowd together and pass the pressure deeper and on to the walls of the ball."
+        }
+      }
+    },
+    "samples": [
+      {
+        "key": "liquid-water-30cm",
+        "title": {
+          "ky": "Суу, 30 см тереңдик",
+          "ru": "Вода, глубина 30 см",
+          "en": "Water, 30 cm deep"
+        },
+        "classification": {
+          "ky": "P = 2940 Па",
+          "ru": "p = 2940 Па",
+          "en": "p = 2940 Pa"
+        },
+        "thumb": "thumbs/liquid-water-30cm.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 1000,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "depth",
+            "value": 0.3,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 2940,
+            "unit": "Pa"
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "liquid",
+            "liquid": "water",
+            "depth": 0.3
+          }
+        }
+      },
+      {
+        "key": "liquid-water-10cm",
+        "title": {
+          "ky": "Суу, 10 см тереңдик",
+          "ru": "Вода, глубина 10 см",
+          "en": "Water, 10 cm deep"
+        },
+        "classification": {
+          "ky": "P = 980 Па",
+          "ru": "p = 980 Па",
+          "en": "p = 980 Pa"
+        },
+        "thumb": "thumbs/liquid-water-10cm.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 1000,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "depth",
+            "value": 0.1,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 980,
+            "unit": "Pa"
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "liquid",
+            "liquid": "water",
+            "depth": 0.1
+          }
+        }
+      },
+      {
+        "key": "liquid-oil-30cm",
+        "title": {
+          "ky": "Май, 30 см тереңдик",
+          "ru": "Масло, глубина 30 см",
+          "en": "Oil, 30 cm deep"
+        },
+        "classification": {
+          "ky": "ρ = 900 кг/м³, P = 2646 Па",
+          "ru": "ρ = 900 кг/м³, p = 2646 Па",
+          "en": "ρ = 900 kg/m³, p = 2646 Pa"
+        },
+        "thumb": "thumbs/liquid-oil-30cm.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 900,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "depth",
+            "value": 0.3,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 2646,
+            "unit": "Pa"
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "liquid",
+            "liquid": "oil",
+            "depth": 0.3
+          }
+        }
+      },
+      {
+        "key": "liquid-pascal-ball",
+        "title": {
+          "ky": "Паскаль шары",
+          "ru": "Шар Паскаля",
+          "en": "Pascal's ball"
+        },
+        "classification": {
+          "ky": "Басым бардык багытта бирдей",
+          "ru": "Давление одинаково во всех направлениях",
+          "en": "Equal pressure in every direction"
+        },
+        "thumb": "thumbs/liquid-pascal-ball.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Тешиктери бар көңдөй шар, поршендүү түтүк, суу",
+              "ru": "Полый шар с отверстиями, трубка с поршнем, вода",
+              "en": "A hollow ball with holes, a tube with a piston, water"
+            }
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "pascal",
+            "liquid": "water"
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "density",
+        "value": 1000,
+        "unit": "kg/m³"
+      },
+      {
+        "kind": "quantity",
+        "type": "depth",
+        "value": 0.3,
+        "unit": "m"
+      },
+      {
+        "kind": "quantity",
+        "type": "pressure",
+        "value": 2940,
+        "unit": "Pa"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "P = \\rho \\cdot g \\cdot h"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                2.84,
+                2.43,
+                4.48
+              ],
+              "target": [
+                1.35,
+                1.38,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false
+            },
+            "focus": "phys.liquid-pressure",
+            "text": {
+              "ky": "Бийик идишке суу куюлган, капталында бири-биринин үстүндө үч тешик бар. Кайсы тешиктен суу эң алыска атылат деп ойлойсуз?",
+              "ru": "В высокий сосуд налита вода, в стенке одно над другим три отверстия. Из какого отверстия, по-вашему, вода будет бить дальше всего?",
+              "en": "A tall vessel full of water has three holes, one above the other, in its side. Which hole do you think will send the water furthest?"
+            },
+            "teacherNote": {
+              "ky": "Тажрыйбаны пластик бөтөлкө менен класста кайталаса болот. Окуучулар адегенде божомолун айтышсын.",
+              "ru": "Опыт легко повторить в классе с пластиковой бутылкой. Пусть ученики сначала выскажут догадки.",
+              "en": "You can repeat this in class with a plastic bottle. Let pupils guess first."
+            },
+            "altText": {
+              "ky": "Капталынан үч агым чыккан суу толгон бийик айнек идиш.",
+              "ru": "Высокий стеклянный сосуд с водой, из стенки бьют три струи.",
+              "en": "A tall glass vessel of water with three jets coming from its side."
+            }
+          },
+          {
+            "key": "molecules",
+            "camera": {
+              "position": [
+                2.84,
+                2.43,
+                4.48
+              ],
+              "target": [
+                1.35,
+                1.38,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.liquid-pressure",
+            "text": {
+              "ky": "Эмне үчүн суюктук жана газ басым жасайт? Алардын молекулалары тынымсыз кыймылда болуп, идиштин түбүнө, капталдарына жана капкагына урунат. Газды кысып көлөмүн кичирейтсек, тыгыздыгы чоңоюп, урунуулар көбөйөт – басым чоңоёт. Газды ысытсак, молекулалар тезирээк кыймылдап, басым дагы чоңоёт.",
+              "ru": "Почему жидкость и газ давят? Их молекулы непрерывно движутся и ударяются о дно, стенки и крышку сосуда. Если сжать газ, уменьшив объём, плотность растёт, ударов больше – давление растёт. Если газ нагреть, молекулы движутся быстрее, и давление тоже растёт.",
+              "en": "Why do liquids and gases press? Their molecules are always moving and striking the bottom, walls and lid of the vessel. Squeeze a gas into a smaller volume and it gets denser, there are more hits – the pressure rises. Heat a gas and the molecules move faster – the pressure rises too."
+            },
+            "teacherNote": {
+              "ky": "Китептеги 75-сүрөттү (аба насосунун калпакчасындагы резина шар) жана 76-сүрөттү (поршень менен пленка) талкуулаңыз. Бойль–Мариотт закону ушул жерде сапаттык деңгээлде гана.",
+              "ru": "Обсудите рисунки 75 (резиновый шарик под колоколом насоса) и 76 (поршень и плёнка) учебника. Закон Бойля–Мариотта здесь только качественно.",
+              "en": "Discuss figures 75 (a rubber balloon under the pump's bell jar) and 76 (piston and film) in the textbook. The Boyle–Mariotte law is only qualitative here."
+            },
+            "altText": {
+              "ky": "Идиштин капталдарына урунган суу бөлүкчөлөрү.",
+              "ru": "Частицы воды, ударяющиеся о стенки сосуда.",
+              "en": "Water particles striking the walls of the vessel."
+            }
+          },
+          {
+            "key": "probe",
+            "camera": {
+              "position": [
+                1.08,
+                2.96,
+                3.57
+              ],
+              "target": [
+                -0.1,
+                2.13,
+                0.02
+              ],
+              "fov": 45
+            },
+            "focus": "phys.depth",
+            "text": {
+              "ky": "Зондду 0,3 м тереңдикке түшүрдүк. Манометрдин тизелериндеги деңгээлдердин айырмасы зонддогу басымды көрсөтөт. Зондду ылдыйлаткан сайын айырма чоңоёт.",
+              "ru": "Опустили датчик на глубину 0,3 м. Разность уровней в коленах манометра показывает давление у датчика. Чем глубже датчик, тем больше разность.",
+              "en": "The probe is lowered to 0.3 m. The difference in the levels of the manometer arms shows the pressure at the probe. The lower the probe, the bigger the difference."
+            },
+            "teacherNote": {
+              "ky": "«Басым ченегичти сууга түшүрүү» процессин иштетиңиз: 0 → 980 → 2940 → 4900 Па.",
+              "ru": "Запустите процесс «Погружаем датчик давления»: 0 → 980 → 2940 → 4900 Па.",
+              "en": "Run the process \"Lowering a pressure probe\": 0 → 980 → 2940 → 4900 Pa."
+            },
+            "altText": {
+              "ky": "Суунун ичиндеги зонд жана ага туташкан U түрүндөгү манометр.",
+              "ru": "Датчик в воде и соединённый с ним U-образный манометр.",
+              "en": "The probe in the water and the U-tube manometer joined to it."
+            }
+          },
+          {
+            "key": "formula",
+            "camera": {
+              "position": [
+                0.3,
+                1.63,
+                3.52
+              ],
+              "target": [
+                -0.88,
+                0.8,
+                -0.03
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.pressure",
+            "text": {
+              "ky": "Суюктук мамычасынын басымы: P = ρ·g·h = 1000 кг/м³ · 9,8 Н/кг · 0,3 м = 2940 Па. Ал суюктуктун тыгыздыгына жана тереңдикке гана көз каранды – идиштин формасына жана түбүнүн аянтына көз каранды эмес.",
+              "ru": "Давление столба жидкости: p = ρgh = 1000 кг/м³ · 9,8 Н/кг · 0,3 м = 2940 Па. Оно зависит только от плотности жидкости и глубины – не от формы сосуда и не от площади дна.",
+              "en": "The pressure of a column of liquid: p = ρgh = 1000 kg/m³ × 9.8 N/kg × 0.3 m = 2940 Pa. It depends only on the density and the depth – not on the vessel's shape or the area of its bottom."
+            },
+            "teacherNote": {
+              "ky": "Формуланы китептеги §32ден көрсөтүңүз: P = F/S, F = m·g = ρ·V·g, V = S·h ⇒ P = ρ·g·h. Тактада кадам-кадамы менен чыгарыңыз.",
+              "ru": "Покажите вывод из §32 учебника: p = F/S, F = m·g = ρ·V·g, V = S·h ⇒ p = ρgh. Проведите его на доске по шагам.",
+              "en": "Show the derivation from §32 of the textbook: p = F/A, F = mg = ρVg, V = A·h ⇒ p = ρgh. Work it step by step on the board."
+            },
+            "altText": {
+              "ky": "Манометрдин көрсөткүчү 2940 Па.",
+              "ru": "Показание манометра 2940 Па.",
+              "en": "The manometer reading of 2940 Pa."
+            }
+          },
+          {
+            "key": "shallow",
+            "sample": "liquid-water-10cm",
+            "camera": {
+              "position": [
+                1.08,
+                3.28,
+                3.57
+              ],
+              "target": [
+                -0.1,
+                2.45,
+                0.02
+              ],
+              "fov": 45
+            },
+            "focus": "phys.depth",
+            "text": {
+              "ky": "Зонд 0,1 м тереңдикте: P = 1000 · 9,8 · 0,1 = 980 Па – 3 эсе аз. Тереңдик канча эсе кичирейсе, басым ошончо эсе кичирейет.",
+              "ru": "Датчик на глубине 0,1 м: p = 1000 · 9,8 · 0,1 = 980 Па – втрое меньше. Во сколько раз меньше глубина, во столько раз меньше давление.",
+              "en": "The probe at 0.1 m: p = 1000 × 9.8 × 0.1 = 980 Pa – three times less. However many times smaller the depth, that many times smaller the pressure."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: Ысык-Көлдө 10 м тереңдикте басым канча? (98 000 Па ≈ 98 кПа.)",
+              "ru": "Спросите: какое давление воды в Иссык-Куле на глубине 10 м? (98 000 Па ≈ 98 кПа.)",
+              "en": "Ask: what is the water pressure 10 m down in Lake Issyk-Kul? (98 000 Pa ≈ 98 kPa.)"
+            },
+            "altText": {
+              "ky": "Зонд суунун бетине жакын, манометрдеги айырма кичине.",
+              "ru": "Датчик у поверхности, разность в манометре мала.",
+              "en": "The probe near the surface; the manometer difference is small."
+            }
+          },
+          {
+            "key": "oil",
+            "sample": "liquid-oil-30cm",
+            "camera": {
+              "position": [
+                2.84,
+                2.43,
+                4.48
+              ],
+              "target": [
+                1.35,
+                1.38,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.liquid-pressure",
+            "text": {
+              "ky": "Суунун ордуна май (ρ = 900 кг/м³): ошол эле 0,3 м тереңдикте P = 900 · 9,8 · 0,3 = 2646 Па. Суюктуктун тыгыздыгы кичине болсо, басым да кичине.",
+              "ru": "Вместо воды масло (ρ = 900 кг/м³): на той же глубине 0,3 м p = 900 · 9,8 · 0,3 = 2646 Па. Меньше плотность жидкости – меньше давление.",
+              "en": "Oil instead of water (ρ = 900 kg/m³): at the same 0.3 m, p = 900 × 9.8 × 0.3 = 2646 Pa. A less dense liquid gives a smaller pressure."
+            },
+            "teacherNote": {
+              "ky": "Салыштыруу таблицасын ачыңыз: суу 30 см, суу 10 см, май 30 см.",
+              "ru": "Откройте таблицу сравнения: вода 30 см, вода 10 см, масло 30 см.",
+              "en": "Open the comparison table: water 30 cm, water 10 cm, oil 30 cm."
+            },
+            "altText": {
+              "ky": "Сары май толтурулган идиш, агымдар кыскараак.",
+              "ru": "Сосуд с жёлтым маслом, струи короче.",
+              "en": "A vessel of yellow oil with shorter jets."
+            }
+          },
+          {
+            "key": "pascal",
+            "sample": "liquid-pascal-ball",
+            "camera": {
+              "position": [
+                1.27,
+                2.94,
+                4.05
+              ],
+              "target": [
+                -0.08,
+                2,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.pascal-law",
+            "text": {
+              "ky": "Паскаль шары: поршенди түртсөк, суу бардык тешиктерден бирдей атылат. Паскаль закону: суюктуктарга же газдарга жасалган басым алардын ар бир чекитине бардык багыт боюнча бирдей берилет. Шарды түтүнгө толтурсак, түтүн да бардык тешиктен бирдей чыгат.",
+              "ru": "Шар Паскаля: при нажатии на поршень вода брызжет из всех отверстий одинаково. Закон Паскаля: давление, производимое на жидкость или газ, передаётся в каждую их точку одинаково во всех направлениях. Если заполнить шар дымом, дым тоже выходит из всех отверстий одинаково.",
+              "en": "Pascal's ball: push the piston and water squirts equally from every hole. Pascal's law: pressure applied to a liquid or gas is passed on to every point equally in all directions. Fill the ball with smoke and the smoke comes out of every hole equally too."
+            },
+            "teacherNote": {
+              "ky": "Катуу нерселер басымды күчтүн багыты боюнча гана берет (катуу брусок), ал эми суюктуктар жана газдар – бардык тарапка. Бул айырманы китептеги 79-сүрөт менен түшүндүрүңүз.",
+              "ru": "Твёрдые тела передают давление только по направлению силы (брусок), а жидкости и газы – во все стороны. Объясните разницу по рисунку 79 учебника.",
+              "en": "Solids pass pressure on only along the force (the block); liquids and gases pass it every way. Explain the difference with figure 79 in the textbook."
+            },
+            "altText": {
+              "ky": "Поршени түртүлгөн шардын бардык тешиктеринен бирдей агымдар чыгат.",
+              "ru": "Из всех отверстий шара с нажатым поршнем бьют одинаковые струи.",
+              "en": "Equal jets coming from every hole of the ball as the piston is pushed."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.probe-dive"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "liquid-water-30cm"
+          },
+          {
+            "kind": "sample",
+            "key": "liquid-water-10cm"
+          },
+          {
+            "kind": "sample",
+            "key": "liquid-oil-30cm"
+          }
+        ],
+        "rows": [
+          "density",
+          "depth",
+          "pressure"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-liquid-1",
+          "phys.q.p7-liquid-2",
+          "phys.q.p7-liquid-3",
+          "phys.q.p7-liquid-4",
+          "phys.q.p7-liquid-5",
+          "phys.q.p7-liquid-6",
+          "phys.q.p7-liquid-7",
+          "phys.q.p7-liquid-8",
+          "phys.q.p7-liquid-9",
+          "phys.q.p7-liquid-10",
+          "phys.q.p7-liquid-11",
+          "phys.q.p7-liquid-12",
+          "phys.q.p7-liquid-13",
+          "phys.q.p7-liquid-14"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Плотина",
+            "ru": "Плотина",
+            "en": "Dams"
+          },
+          "text": {
+            "ky": "Токтогул ГЭСинин плотинасы ылдый жагында калыңыраак: суунун басымы тереңдик менен өсөт, 100 м де ≈ 980 кПа.",
+            "ru": "Плотина Токтогульской ГЭС внизу толще: давление воды растёт с глубиной и на 100 м составляет ≈ 980 кПа.",
+            "en": "The Toktogul dam is thicker at the base: water pressure grows with depth, reaching about 980 kPa at 100 m."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Суу астындагы аппараттар",
+            "ru": "Глубоководные аппараты",
+            "en": "Deep-sea craft"
+          },
+          "text": {
+            "ky": "Батискафтын дубалы өтө бекем болот: 11 км тереңдикте P = 1030 · 9,8 · 11 000 ≈ 111 млн Па.",
+            "ru": "Стенки батискафа очень прочные: на глубине 11 км p = 1030 · 9,8 · 11 000 ≈ 111 млн Па.",
+            "en": "A bathyscaphe needs immensely strong walls: at 11 km, p = 1030 × 9.8 × 11 000 ≈ 111 million Pa."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Газдын басымы жана температура",
+            "ru": "Давление газа и температура",
+            "en": "Gas pressure and temperature"
+          },
+          "text": {
+            "ky": "Жайкы ысыкта дөңгөлөктөгү абанын басымы чоңоёт – молекулалар тезирээк кыймылдайт. Ошондуктан айдоочулар дөңгөлөктү муздак кезде текшеришет.",
+            "ru": "В летнюю жару давление воздуха в шинах растёт – молекулы движутся быстрее. Поэтому водители проверяют шины холодными.",
+            "en": "In summer heat the air pressure in tyres rises – the molecules move faster. That is why drivers check tyres when they are cold."
+          },
+          "field": "s"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Тешик бөтөлкө",
+            "ru": "Бутылка с дырками",
+            "en": "A bottle with holes"
+          },
+          "text": {
+            "ky": "Бөтөлкөнүн капталына тешик тешип суу куйсаң, ылдыйкы тешиктен суу эң алыска агат.",
+            "ru": "Проткни сбоку бутылку в нескольких местах и налей воды – из нижней дырки струя бьёт дальше всех.",
+            "en": "Prick holes in the side of a bottle and fill it – the lowest hole squirts furthest."
+          }
+        },
+        {
+          "title": {
+            "ky": "Футбол топу",
+            "ru": "Футбольный мяч",
+            "en": "A football"
+          },
+          "text": {
+            "ky": "Топту насос менен үйлөгөндө ал бардык тарапка бирдей томпоёт – абанын басымы бардык тарапка бирдей.",
+            "ru": "Когда мяч накачивают, он раздувается во все стороны одинаково – давление воздуха везде одинаково.",
+            "en": "Pump up a ball and it swells evenly all round – the air pressure is the same in every direction."
+          }
+        },
+        {
+          "title": {
+            "ky": "Чөмүлүү",
+            "ru": "Ныряние",
+            "en": "Diving"
+          },
+          "text": {
+            "ky": "Бассейндин тереңине чөмүлсөң, кулагың көбүрөөк кысылат – тереңдик чоң, басым чоң.",
+            "ru": "Нырнёшь глубже в бассейне – уши сдавит сильнее: больше глубина, больше давление.",
+            "en": "Dive deeper in a pool and your ears hurt more – more depth, more pressure."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Эмне үчүн ылдыйкы тешиктен суу эң алыска атылат?",
+        "ru": "Почему из нижнего отверстия вода бьёт дальше всего?",
+        "en": "Why does water squirt furthest from the lowest hole?"
+      },
+      {
+        "ky": "Газ эмне үчүн идиштин капталдарына басым жасайт?",
+        "ru": "Почему газ давит на стенки сосуда?",
+        "en": "Why does a gas press on the walls of its container?"
+      },
+      {
+        "ky": "Паскаль закону кандай айтылат?",
+        "ru": "Как формулируется закон Паскаля?",
+        "en": "How is Pascal's law stated?"
+      },
+      {
+        "ky": "Суюктуктун басымы идиштин формасына көз карандыбы?",
+        "ru": "Зависит ли давление жидкости от формы сосуда?",
+        "en": "Does liquid pressure depend on the shape of the vessel?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Э. М. Мамбетакунов, «Физика, 7-класс», III глава (§24–34)"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "phys.liquid-pressure",
+      "kind": "quantity",
+      "hue": 195,
+      "isContainer": false,
+      "title": {
+        "ky": "Суюктуктун басымы",
+        "ru": "Давление жидкости",
+        "en": "Liquid pressure"
+      },
+      "subtitle": {
+        "ky": "Суюктук мамычасынын басымы: P = ρ·g·h",
+        "ru": "Давление столба жидкости: p = ρgh",
+        "en": "Pressure of a column of liquid: p = ρgh"
+      },
+      "description": {
+        "ky": "Суюктуктун молекулалары эркин кыймылда болгондуктан, суюктук идиштин түбүнө да, капталдарына да, ичиндеги нерселерге да бардык тарапка басым жасайт. h тереңдиктеги суюктук мамычасынын басымы P = ρ·g·h – ал суюктуктун тыгыздыгына жана тереңдикке гана көз каранды, идиштин формасына көз каранды эмес.",
+        "ru": "Молекулы жидкости свободно движутся, поэтому жидкость давит во все стороны: на дно, на стенки сосуда и на тела внутри неё. Давление столба жидкости на глубине h равно p = ρgh – оно зависит только от плотности жидкости и глубины и не зависит от формы сосуда.",
+        "en": "Because its molecules move freely, a liquid pushes in every direction: on the bottom, on the walls and on anything inside it. The pressure of a column of liquid at depth h is p = ρgh – it depends only on the liquid's density and the depth, not on the shape of the vessel."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "P = \\rho \\cdot g \\cdot h"
+        },
+        {
+          "kind": "quantity",
+          "type": "density",
+          "value": 1000,
+          "unit": "kg/m³"
+        },
+        {
+          "kind": "quantity",
+          "type": "pressure",
+          "value": 2940,
+          "unit": "Pa"
+        }
+      ],
+      "related": [
+        "phys.depth",
+        "phys.pascal-law",
+        "phys.pressure"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.liquid-pressure-down",
+          "text": {
+            "ky": "Суюктук идиштин түбүнө гана басат.",
+            "ru": "Жидкость давит только на дно сосуда.",
+            "en": "A liquid only presses on the bottom of its vessel."
+          },
+          "correction": {
+            "ky": "Суюктук бардык тарапка басым жасайт: капталдагы тешиктерден суу атылып чыгат, ал эми ылдыйкы тешиктен эң алыска атылат.",
+            "ru": "Жидкость давит во все стороны: вода бьёт струёй из боковых отверстий, и сильнее всего – из нижнего.",
+            "en": "A liquid presses in every direction: water spurts out of holes in the side, furthest from the lowest hole."
+          }
+        },
+        {
+          "key": "phys.m.liquid-pressure-shape",
+          "text": {
+            "ky": "Кең идиштеги суу ичке идиштеги сууга караганда түбүнө көбүрөөк басат.",
+            "ru": "Вода в широком сосуде давит на дно сильнее, чем в узком.",
+            "en": "Water in a wide vessel presses harder on the bottom than in a narrow one."
+          },
+          "correction": {
+            "ky": "Суюктуктун басымы тереңдикке жана тыгыздыкка гана көз каранды: P = ρ·g·h. Бийиктиги бирдей суу кең идиште да, ичке идиште да түбүнө бирдей басым жасайт.",
+            "ru": "Давление жидкости зависит только от глубины и плотности: p = ρgh. При одинаковой высоте воды давление на дно в широком и узком сосуде одинаково.",
+            "en": "Liquid pressure depends only on depth and density: p = ρgh. Water of the same height presses equally on the bottom of a wide and a narrow vessel."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Океандын эң терең жеринде (≈ 11 км) басым 100 млн Па дан ашат – ар бир квадрат сантиметрге бир тонна жүк түшкөндөй.",
+        "ru": "В самой глубокой точке океана (≈ 11 км) давление больше 100 млн Па – как будто на каждый квадратный сантиметр давит тонна.",
+        "en": "At the deepest point of the ocean (about 11 km) the pressure tops 100 million Pa – like a tonne resting on every square centimetre."
+      },
+      "analogy": {
+        "ky": "Бассейндин түбүнө чөмүлгөндө кулагың кысылат",
+        "ru": "При нырянии на дно бассейна закладывает уши",
+        "en": "Your ears hurt when you dive to the bottom of a pool"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Плотиналар",
+              "ru": "Плотины",
+              "en": "Dams"
+            },
+            "text": {
+              "ky": "Токтогул ГЭСинин плотинасы ылдый жагында калың курулат, анткени суунун басымы тереңдеген сайын өсөт.",
+              "ru": "Плотину Токтогульской ГЭС делают толще внизу, потому что давление воды растёт с глубиной.",
+              "en": "The Toktogul hydro dam is built thicker at the bottom, because water pressure grows with depth."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Суу астындагы кайык",
+              "ru": "Подводная лодка",
+              "en": "Submarines"
+            },
+            "text": {
+              "ky": "Суу астында сүзүүчү кайыктын корпусу калың болот: 300 м тереңдикте деңиз суусунун басымы ≈ 3 млн Па.",
+              "ru": "Корпус подводной лодки делают прочным: на глубине 300 м давление морской воды ≈ 3 млн Па.",
+              "en": "A submarine needs a strong hull: at 300 m the pressure of sea water is about 3 million Pa."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Тешик бөтөлкө",
+              "ru": "Бутылка с дырками",
+              "en": "A bottle with holes"
+            },
+            "text": {
+              "ky": "Пластик бөтөлкөнүн капталына үч тешик тешип, суу куй: ылдыйкы тешиктен суу эң алыска атылат.",
+              "ru": "Проколи в пластиковой бутылке три дырки одну над другой и налей воды: из нижней струя бьёт дальше всех.",
+              "en": "Poke three holes one above the other in a plastic bottle and fill it: the jet from the lowest hole goes furthest."
+            }
+          },
+          {
+            "title": {
+              "ky": "Бассейн",
+              "ru": "Бассейн",
+              "en": "A pool"
+            },
+            "text": {
+              "ky": "Бассейндин тереңине чөмүлгөн сайын кулагыңа суу көбүрөөк басат.",
+              "ru": "Чем глубже ныряешь в бассейне, тем сильнее вода давит на уши.",
+              "en": "The deeper you dive in a pool, the harder the water presses on your ears."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.depth",
+      "kind": "quantity",
+      "hue": 220,
+      "isContainer": false,
+      "title": {
+        "ky": "Тереңдик",
+        "ru": "Глубина",
+        "en": "Depth"
+      },
+      "subtitle": {
+        "ky": "Суюктук мамычасынын бийиктиги – h",
+        "ru": "Высота столба жидкости – h",
+        "en": "Height of the liquid column – h"
+      },
+      "description": {
+        "ky": "Суюктуктун бетинен каралып жаткан чекитке чейинки тик аралык. Ошол чекиттеги басым үстүндөгү суюктук мамычасынын салмагынан пайда болот, ошондуктан тереңдик эки эсе чоңойсо, басым да эки эсе чоңоёт.",
+        "ru": "Вертикальное расстояние от поверхности жидкости до рассматриваемой точки. Давление в этой точке создаётся весом столба жидкости над ней, поэтому при увеличении глубины вдвое давление тоже растёт вдвое.",
+        "en": "The vertical distance from the surface of the liquid down to the point in question. The pressure there comes from the weight of the column of liquid above it, so doubling the depth doubles the pressure."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "depth",
+          "value": 0.3,
+          "unit": "m"
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "P \\sim h"
+        }
+      ],
+      "related": [
+        "phys.liquid-pressure"
+      ],
+      "misconceptions": [],
+      "funFact": {
+        "ky": "Ар бир 10 м суу тереңдиги болжол менен бир атмосфера басымын (≈ 100 кПа) кошот.",
+        "ru": "Каждые 10 м водной глубины добавляют примерно одну атмосферу давления (≈ 100 кПа).",
+        "en": "Every 10 m of water adds roughly one atmosphere of pressure (about 100 kPa)."
+      },
+      "analogy": {
+        "ky": "Китептердин тизмеги: ылдыйкы китепке анын үстүндөгүлөрдүн баары басат",
+        "ru": "Стопка книг: на нижнюю давят все верхние",
+        "en": "A stack of books: the bottom one carries all the ones above"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Сууда сүзүүчүлөр",
+              "ru": "Дайверы",
+              "en": "Divers"
+            },
+            "text": {
+              "ky": "Дайверлер тереңдик ченегич менен сүзүшөт: тереңдик белгилүү болсо, P = ρ·g·h менен суунун басымын эсептешет.",
+              "ru": "Дайверы ныряют с глубиномером: зная глубину, давление воды рассчитывают по p = ρgh.",
+              "en": "Divers carry a depth gauge: from the depth they work out the water pressure with p = ρgh."
+            },
+            "field": "s"
+          },
+          {
+            "title": {
+              "ky": "Суу мунарасы",
+              "ru": "Водонапорная башня",
+              "en": "Water towers"
+            },
+            "text": {
+              "ky": "Суу мунарасынын бийиктиги үйлөрдүн кранындагы суунун басымын аныктайт.",
+              "ru": "Высота водонапорной башни определяет напор воды в кранах домов.",
+              "en": "The height of a water tower sets the water pressure at the taps in the houses."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Көлдүн түбү",
+              "ru": "Дно озера",
+              "en": "A lake bed"
+            },
+            "text": {
+              "ky": "Ысык-Көлдүн тереңине түшкөн сайын суу салкын жана басымы чоң болот.",
+              "ru": "Чем глубже в Иссык-Куле, тем холоднее вода и больше давление.",
+              "en": "The deeper you go in Lake Issyk-Kul, the colder the water and the bigger the pressure."
+            }
+          },
+          {
+            "title": {
+              "ky": "Чака",
+              "ru": "Ведро",
+              "en": "A bucket"
+            },
+            "text": {
+              "ky": "Толгон чаканын түбүндөгү тешиктен суу жарымына чейин толгонго караганда күчтүү агат.",
+              "ru": "Из дырки на дне полного ведра вода течёт сильнее, чем из наполовину пустого.",
+              "en": "Water pours harder from a hole in the bottom of a full bucket than a half-empty one."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.pressure",
+      "kind": "quantity",
+      "hue": 205,
+      "isContainer": false,
+      "title": {
+        "ky": "Басым",
+        "ru": "Давление",
+        "en": "Pressure"
+      },
+      "subtitle": {
+        "ky": "P = F/S, паскаль менен ченелет",
+        "ru": "p = F/S, измеряется в паскалях",
+        "en": "p = F/A, measured in pascals"
+      },
+      "description": {
+        "ky": "Нерсенин бетинин бирдик аянтына перпендикуляр аракет эткен күчтү мүнөздөөчү физикалык чоңдук. Басым бетке перпендикуляр аракет эткен күчтүн ошол беттин аянтына болгон катышы менен аныкталат: P = F/S. Басым күчкө түз, ал эми күч аракет эткен беттин аянтына тескери пропорциялаш.",
+        "ru": "Физическая величина, равная силе, действующей перпендикулярно на единицу площади поверхности. Давление – отношение силы, действующей перпендикулярно поверхности, к площади этой поверхности: p = F/S. Давление прямо пропорционально силе и обратно пропорционально площади, на которую она действует.",
+        "en": "The physical quantity equal to the force acting at right angles on each unit of surface area. Pressure is the force perpendicular to a surface divided by the area of that surface: p = F/A. It is directly proportional to the force and inversely proportional to the area the force acts on."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "P = \\frac{F}{S}"
+        },
+        {
+          "kind": "quantity",
+          "type": "pressure",
+          "value": 1,
+          "unit": "Pa"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Күчтүн таасирин аянтка жараша мүнөздөйт",
+            "ru": "Показывает, как действие силы зависит от площади",
+            "en": "Shows how the effect of a force depends on the area"
+          }
+        }
+      ],
+      "related": [
+        "phys.pressure-force",
+        "phys.contact-area",
+        "phys.pascal"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.pressure-is-force",
+          "text": {
+            "ky": "Басым менен күч – бир эле нерсе: күч чоң болсо, басым дайыма чоң.",
+            "ru": "Давление и сила – одно и то же: чем больше сила, тем всегда больше давление.",
+            "en": "Pressure and force are the same thing: a bigger force always means a bigger pressure."
+          },
+          "correction": {
+            "ky": "Басым күчкө гана эмес, аянтка да көз каранды. Бир эле күч чоң аянтка аз басым, кичине аянтка чоң басым жасайт: лыжачан бала карга батпайт, лыжасыз бала батып кетет.",
+            "ru": "Давление зависит не только от силы, но и от площади. Одна и та же сила на большой площади даёт малое давление, на маленькой – большое: мальчик на лыжах не проваливается в снег, а без лыж проваливается.",
+            "en": "Pressure depends on the area as well as the force. The same force spread over a big area gives a small pressure and over a small area a large one: a boy on skis stays on top of the snow, without skis he sinks."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Кнопканын учу доскага 50 000 000 Па басым жасайт – бул каз тамандуу трактордун топуракка жасаган басымынан 1000 эсе чоң.",
+        "ru": "Остриё кнопки давит на доску с давлением 50 000 000 Па – в 1000 раз больше, чем гусеничный трактор давит на грунт.",
+        "en": "The tip of a drawing pin presses on a board with 50 000 000 Pa – a thousand times more than a crawler tractor presses on the soil."
+      },
+      "analogy": {
+        "ky": "Бир эле салмак – жумшак жаздыкка тизе менен же алакан менен таянуу",
+        "ru": "Один и тот же вес – опереться на подушку коленом или ладонью",
+        "en": "The same weight – leaning on a cushion with a knee or with a whole palm"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Каз тамандуу машиналар",
+              "ru": "Гусеничные машины",
+              "en": "Crawler vehicles"
+            },
+            "text": {
+              "ky": "Трактор менен танктын таманы кең (15–20 м²), ошондуктан оор машина саздуу, борпоң жерде батпай жүрөт.",
+              "ru": "У трактора и танка гусеницы широкие (15–20 м²), поэтому тяжёлая машина проходит по болоту и рыхлой земле, не проваливаясь.",
+              "en": "Tractors and tanks run on wide tracks (15–20 m²), so a heavy machine crosses marsh and loose soil without sinking."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Кесүүчү аспаптар",
+              "ru": "Режущие инструменты",
+              "en": "Cutting tools"
+            },
+            "text": {
+              "ky": "Бычак, кайчы, ийненин мизи курч: аянты аз болгондуктан, кичине күч менен эле чоң басым пайда болот.",
+              "ru": "Нож, ножницы и иглу делают острыми: площадь кромки мала, поэтому даже небольшая сила создаёт большое давление.",
+              "en": "Knives, scissors and needles are kept sharp: the edge has a tiny area, so even a small force makes a large pressure."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кардагы лыжа",
+              "ru": "Лыжи на снегу",
+              "en": "Skis on snow"
+            },
+            "text": {
+              "ky": "Лыжачан бала карда батпайт, лыжасыз бала тизесине чейин батат – экөөнүн салмагы бирдей, аянттары ар башка.",
+              "ru": "Мальчик на лыжах не проваливается, без лыж – проваливается по колено: вес одинаковый, площади разные.",
+              "en": "A boy on skis stays on top of the snow, without skis he sinks to his knees – same weight, different areas."
+            }
+          },
+          {
+            "title": {
+              "ky": "Сумканын тасмасы",
+              "ru": "Ремень сумки",
+              "en": "A bag strap"
+            },
+            "text": {
+              "ky": "Ичке тасмалуу оор сумка ийинди кесет, кең тасмалуусу – андай эмес.",
+              "ru": "Тяжёлая сумка на тонком ремне режет плечо, на широком – нет.",
+              "en": "A heavy bag on a thin strap digs into your shoulder; on a wide strap it does not."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.pascal-law",
+      "kind": "law",
+      "hue": 280,
+      "isContainer": false,
+      "title": {
+        "ky": "Паскаль закону",
+        "ru": "Закон Паскаля",
+        "en": "Pascal's law"
+      },
+      "subtitle": {
+        "ky": "Басым бардык багыт боюнча бирдей берилет",
+        "ru": "Давление передаётся одинаково во всех направлениях",
+        "en": "Pressure is passed on equally in every direction"
+      },
+      "description": {
+        "ky": "Суюктукка же газга жасалган басым алардын ар бир чекитине бардык багыт боюнча бирдей берилет. Мунун себеби – суюктуктун жана газдын бөлүкчөлөрү бардык багыт боюнча эркин кыймылдай алат. Закон 1653-жылы ачылган.",
+        "ru": "Давление, производимое на жидкость или газ, передаётся в каждую их точку одинаково во всех направлениях. Причина – частицы жидкости и газа свободно движутся во все стороны. Закон открыт в 1653 году.",
+        "en": "Pressure applied to a liquid or a gas is passed on to every point in it equally in all directions. The reason is that the particles of liquids and gases are free to move every way. The law was discovered in 1653."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Суюктуктар жана газдар",
+            "ru": "Жидкости и газы",
+            "en": "Liquids and gases"
+          }
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Гидравликалык машиналардын, тормоздун, катыш идиштердин негизи",
+            "ru": "Основа гидравлических машин, тормозов, сообщающихся сосудов",
+            "en": "The basis of hydraulic machines, brakes and communicating vessels"
+          }
+        }
+      ],
+      "related": [
+        "phys.liquid-pressure",
+        "phys.piston",
+        "phys.hydraulic-press"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.pascal-solids",
+          "text": {
+            "ky": "Катуу нерселер да басымды бардык тарапка бирдей берет.",
+            "ru": "Твёрдые тела тоже передают давление во все стороны одинаково.",
+            "en": "Solids also pass pressure on equally in every direction."
+          },
+          "correction": {
+            "ky": "Катуу нерсе басымды күчтүн багыты боюнча гана берет. Бардык тарапка бирдей берүү – суюктуктардын жана газдардын гана касиети.",
+            "ru": "Твёрдое тело передаёт давление только по направлению силы. Передача во все стороны одинаково – свойство только жидкостей и газов.",
+            "en": "A solid passes pressure on only along the force. Passing it on equally every way is a property of liquids and gases only."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Паскаль бочкага ичке узун түтүк орнотуп, ага бир нече кружка гана суу куюп, бочканы жарып жиберген деп айтылат.",
+        "ru": "Говорят, Паскаль разорвал бочку, вставив в неё длинную тонкую трубку и налив туда лишь несколько кружек воды.",
+        "en": "Pascal is said to have burst a barrel by fitting a long thin tube into it and pouring in just a few mugs of water."
+      },
+      "analogy": {
+        "ky": "Тиш пастанын тубасын кайсы жеринен кыссаң да, паста оозунан чыгат",
+        "ru": "Тюбик с пастой можно сжать в любом месте – паста всё равно выходит из горлышка",
+        "en": "Squeeze a toothpaste tube anywhere and the paste still comes out of the nozzle"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Гидравликалык токтоткуч",
+              "ru": "Гидравлический тормоз",
+              "en": "Hydraulic brakes"
+            },
+            "text": {
+              "ky": "Тормоз педалын басканда цилиндрдеги суюктуктун басымы бардык дөңгөлөктөрдүн колодкаларына бирдей берилет.",
+              "ru": "При нажатии педали тормоза давление жидкости в цилиндре одинаково передаётся колодкам всех колёс.",
+              "en": "Pressing the brake pedal passes the fluid pressure equally to the brake pads of every wheel."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Футбол топу",
+              "ru": "Футбольный мяч",
+              "en": "A football"
+            },
+            "text": {
+              "ky": "Топко аба үйлөгөндө ал бардык тарапка бирдей томпоюп, шар формасына келет – газдын басымы бардык тарапка бирдей.",
+              "ru": "Когда мяч накачивают, он раздувается во все стороны одинаково и становится шаром – давление газа одинаково во все стороны.",
+              "en": "When a ball is pumped up it swells evenly every way into a sphere – gas pressure is the same in every direction."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Тиш пастасы",
+              "ru": "Зубная паста",
+              "en": "Toothpaste"
+            },
+            "text": {
+              "ky": "Тубаны ортосунан кыссаң да, түбүнөн кыссаң да, паста оозунан чыгат.",
+              "ru": "Сожмёшь тюбик посередине или снизу – паста выйдет из горлышка.",
+              "en": "Squeeze the tube in the middle or at the end – the paste comes out of the nozzle."
+            }
+          },
+          {
+            "title": {
+              "ky": "Суу толгон шар",
+              "ru": "Шарик с водой",
+              "en": "A water balloon"
+            },
+            "text": {
+              "ky": "Ийне менен бир нече тешик тешилген суу толгон шарды кыссаң, суу бардык тешиктен бирдей атылат.",
+              "ru": "Если сжать шарик с водой, проколотый в нескольких местах, вода брызнет из всех дырочек одинаково.",
+              "en": "Squeeze a water balloon pricked in several places and water squirts equally from every hole."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.piston",
+      "kind": "part",
+      "hue": 45,
+      "isContainer": false,
+      "title": {
+        "ky": "Поршень",
+        "ru": "Поршень",
+        "en": "Piston"
+      },
+      "subtitle": {
+        "ky": "Цилиндрдин ичинде тыгыз жылуучу тыгын",
+        "ru": "Плотно скользящая пробка в цилиндре",
+        "en": "A tight sliding plug inside a cylinder"
+      },
+      "description": {
+        "ky": "Цилиндрдин ичинде суюктукту же газды өткөрбөй жылып жүрүүчү бөлүк. Поршенге F күч менен аракет этсек, ал суюктукка P = F/S басым жасайт, ал эми суюктук ошол басымды экинчи поршенге берет.",
+        "ru": "Деталь, скользящая внутри цилиндра и не пропускающая жидкость или газ. Сила F, приложенная к поршню, создаёт в жидкости давление p = F/S, и жидкость передаёт его другому поршню.",
+        "en": "A part that slides inside a cylinder without letting liquid or gas past. A force F on the piston makes a pressure p = F/A in the liquid, which passes it on to another piston."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "P = \\frac{F_1}{S_1}"
+        },
+        {
+          "kind": "quantity",
+          "type": "area",
+          "value": 0.001,
+          "unit": "m²"
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Цилиндрдин ичинде",
+            "ru": "Внутри цилиндра",
+            "en": "Inside the cylinder"
+          }
+        }
+      ],
+      "related": [
+        "phys.hydraulic-press",
+        "phys.pascal-law"
+      ],
+      "misconceptions": [],
+      "funFact": {
+        "ky": "Велосипед насосунда да, шприцте да, автомашинанын кыймылдаткычында да поршень бар.",
+        "ru": "Поршень есть и в велосипедном насосе, и в шприце, и в двигателе автомобиля.",
+        "en": "There is a piston in a bicycle pump, a syringe and a car engine."
+      },
+      "analogy": {
+        "ky": "Шприцтин ичинде жылган резина тыгын",
+        "ru": "Резиновый наконечник, скользящий в шприце",
+        "en": "The rubber plunger tip sliding in a syringe"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Кыймылдаткыч",
+              "ru": "Двигатель",
+              "en": "Engines"
+            },
+            "text": {
+              "ky": "Ички күйүүчү кыймылдаткычта газдын басымы поршенди түртүп, дөңгөлөктөрдү айлантат.",
+              "ru": "В двигателе внутреннего сгорания давление газов толкает поршень, и он вращает колёса.",
+              "en": "In a combustion engine gas pressure pushes the piston, which turns the wheels."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Насос",
+              "ru": "Насос",
+              "en": "Pumps"
+            },
+            "text": {
+              "ky": "Велосипед насосунун поршени абаны кысып, дөңгөлөккө айдайт.",
+              "ru": "Поршень велосипедного насоса сжимает воздух и нагнетает его в шину.",
+              "en": "A bicycle pump's piston squeezes air and forces it into the tyre."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Шприц",
+              "ru": "Шприц",
+              "en": "A syringe"
+            },
+            "text": {
+              "ky": "Шприцтин поршенин тартсаң, ага суюктук кирет; түртсөң, чыгат.",
+              "ru": "Потянешь поршень шприца – жидкость втягивается, толкнёшь – выходит.",
+              "en": "Pull a syringe plunger and liquid comes in; push it and the liquid goes out."
+            }
+          },
+          {
+            "title": {
+              "ky": "Суу тапанча",
+              "ru": "Водяной пистолет",
+              "en": "A water pistol"
+            },
+            "text": {
+              "ky": "Оюнчук суу тапанчасынын ичиндеги поршень сууну кысып, ичке тешиктен атып чыгарат.",
+              "ru": "Поршень внутри водяного пистолета сжимает воду и выбрасывает её через узкое отверстие.",
+              "en": "The piston inside a water pistol squeezes the water out through a narrow hole."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.pressure-force",
+      "kind": "force",
+      "hue": 0,
+      "isContainer": false,
+      "title": {
+        "ky": "Басым күчү",
+        "ru": "Сила давления",
+        "en": "Force of pressure"
+      },
+      "subtitle": {
+        "ky": "Бетке перпендикуляр аракет эткен күч",
+        "ru": "Сила, действующая перпендикулярно поверхности",
+        "en": "The force acting at right angles to a surface"
+      },
+      "description": {
+        "ky": "Катуу нерселер бири-биринин бетине перпендикуляр багытталган күч менен аракет этет. Горизонталдык таянычта жаткан нерсенин басым күчү анын салмагына барабар: F = m·g. Басым белгилүү болсо, күчтү F = P·S формуласы менен табабыз.",
+        "ru": "Твёрдые тела действуют друг на друга с силой, направленной перпендикулярно поверхности. Для тела на горизонтальной опоре сила давления равна его весу: F = m·g. Зная давление, силу находят по формуле F = p·S.",
+        "en": "Solid bodies act on each other with a force at right angles to their surfaces. For a body resting on a level support the force of pressure equals its weight: F = mg. If the pressure is known, the force is F = p·A."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "F = P \\cdot S"
+        },
+        {
+          "kind": "quantity",
+          "type": "force",
+          "value": 24.5
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Беттин бардык аянтына бөлүштүрүлөт",
+            "ru": "Распределяется по всей площади опоры",
+            "en": "Is spread over the whole contact area"
+          }
+        }
+      ],
+      "related": [
+        "phys.pressure",
+        "phys.contact-area"
+      ],
+      "misconceptions": [],
+      "funFact": {
+        "ky": "Адам күрөккө 600 Н күч менен гана басат, бирок мизи ичке болгондуктан топуракка 6 млн Па басым жасалат.",
+        "ru": "Человек давит на лопату всего с силой 600 Н, но из-за тонкого края на почву приходится давление 6 млн Па.",
+        "en": "A person pushes a spade with only 600 N, but its thin edge presses on the soil with 6 million Pa."
+      },
+      "analogy": {
+        "ky": "Китепти колуң менен столго басуу",
+        "ru": "Прижать книгу к столу ладонью",
+        "en": "Pressing a book down on the table with your hand"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Тараза",
+              "ru": "Весы",
+              "en": "Scales"
+            },
+            "text": {
+              "ky": "Электрондук тараза өзүнө перпендикуляр түшкөн басым күчүн ченеп, аны массага которуп көрсөтөт.",
+              "ru": "Электронные весы измеряют силу давления на платформу и переводят её в массу.",
+              "en": "Electronic scales measure the force of pressure on their platform and convert it to mass."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Фундамент",
+              "ru": "Фундамент",
+              "en": "Foundations"
+            },
+            "text": {
+              "ky": "Имараттын бүт салмагы – фундаментке басым күчү. Инженерлер фундаментти кең кылып, ар бир квадрат метрге түшкөн басымды азайтышат.",
+              "ru": "Весь вес здания – это сила давления на фундамент. Инженеры делают фундамент широким, чтобы уменьшить давление на каждый квадратный метр грунта.",
+              "en": "The whole weight of a building is the force of pressure on its foundation. Engineers make foundations wide to cut the pressure on each square metre of ground."
+            },
+            "field": "e"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Отургуч",
+              "ru": "Стул",
+              "en": "A chair"
+            },
+            "text": {
+              "ky": "Отургучта отурсаң, сенин салмагың отургучтун төрт бутуна басым күчү болуп түшөт.",
+              "ru": "Когда сидишь на стуле, твой вес давит на четыре ножки – это сила давления.",
+              "en": "When you sit on a chair, your weight presses down through its four legs – that is the force of pressure."
+            }
+          },
+          {
+            "title": {
+              "ky": "Жумшак топ",
+              "ru": "Мягкий мяч",
+              "en": "A soft ball"
+            },
+            "text": {
+              "ky": "Топту колуң менен баскан сайын, ал күчкө жараша көбүрөөк майышат.",
+              "ru": "Чем сильнее давишь рукой на мяч, тем сильнее он сминается.",
+              "en": "The harder you press a ball with your hand, the more it squashes."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.contact-area",
+      "kind": "quantity",
+      "hue": 140,
+      "isContainer": false,
+      "title": {
+        "ky": "Таяныч беттин аянты",
+        "ru": "Площадь опоры",
+        "en": "Contact area"
+      },
+      "subtitle": {
+        "ky": "Күч аракет эткен беттин аянты – S",
+        "ru": "Площадь поверхности, на которую действует сила, – S",
+        "en": "The area the force acts on – A"
+      },
+      "description": {
+        "ky": "Эки нерсенин тийишкен беттеринин аянты. Брусоктун узундугу a, туурасы b болсо, S = a·b. Аянт канчалык чоң болсо, басым ошончо кичине; аянт канчалык кичине болсо, басым ошончо чоң. Аянтты S = F/P формуласы менен да табууга болот.",
+        "ru": "Площадь соприкосновения двух тел. Если у бруска длина a и ширина b, то S = a·b. Чем больше площадь, тем меньше давление; чем меньше площадь, тем больше давление. Площадь можно найти и по формуле S = F/p.",
+        "en": "The area over which two bodies touch. For a block of length a and width b, A = a·b. The bigger the area, the smaller the pressure; the smaller the area, the larger the pressure. The area can also be found as A = F/p."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "S = a \\cdot b"
+        },
+        {
+          "kind": "quantity",
+          "type": "area",
+          "value": 0.03,
+          "unit": "m²"
+        },
+        {
+          "kind": "text",
+          "type": "analogy",
+          "value": {
+            "ky": "Жүк «бөлүштүрүлгөн» аянт",
+            "ru": "Площадь, по которой «распределён» груз",
+            "en": "The area a load is spread over"
+          }
+        }
+      ],
+      "related": [
+        "phys.pressure",
+        "phys.pressure-force"
+      ],
+      "misconceptions": [],
+      "funFact": {
+        "ky": "Ийненин учунун аянты болжол менен 0,0003 см² гана.",
+        "ru": "Площадь острия иглы – всего около 0,0003 см².",
+        "en": "The tip of a needle has an area of only about 0.0003 cm²."
+      },
+      "analogy": {
+        "ky": "Бир эле нан кесимине майды жука же калың сүйкөө",
+        "ru": "Намазать масло тонким слоем на весь ломоть или комком в одно место",
+        "en": "Spreading butter thinly over a whole slice or in one lump"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Жүк ташуучу машиналар",
+              "ru": "Грузовики",
+              "en": "Lorries"
+            },
+            "text": {
+              "ky": "Оор жүк ташуучу машиналарга эки кабат дөңгөлөк коюлат: таяныч аянты чоңоюп, жолго басым азаят.",
+              "ru": "На грузовики ставят сдвоенные колёса: площадь опоры растёт, давление на дорогу падает.",
+              "en": "Heavy lorries run on twin wheels: the contact area grows and the pressure on the road drops."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Аянтты эсептөө",
+              "ru": "Расчёт площади",
+              "en": "Working out the area"
+            },
+            "text": {
+              "ky": "Китептин өлчөмү 22 см × 16,5 см: S = 0,22 м · 0,165 м = 0,0363 м². Ал 3 Н күч менен басса, P = 3/0,0363 ≈ 82,65 Па.",
+              "ru": "Книга 22 см × 16,5 см: S = 0,22 м · 0,165 м = 0,0363 м². При силе 3 Н давление p = 3/0,0363 ≈ 82,65 Па.",
+              "en": "A book 22 cm × 16.5 cm: A = 0.22 m × 0.165 m = 0.0363 m². With a force of 3 N, p = 3/0.0363 ≈ 82.65 Pa."
+            },
+            "field": "m"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Жапкак",
+              "ru": "Снегоступы",
+              "en": "Snowshoes"
+            },
+            "text": {
+              "ky": "Ата-бабаларыбыз калың карда жапкак кийип басышкан – таманы кең болгондуктан карга батышкан эмес.",
+              "ru": "Наши предки ходили по глубокому снегу в снегоступах – из-за широкой подошвы они не проваливались.",
+              "en": "People long ago walked on deep snow in snowshoes – the wide soles kept them from sinking."
+            }
+          },
+          {
+            "title": {
+              "ky": "Төөнүн таманы",
+              "ru": "Ступни верблюда",
+              "en": "A camel's feet"
+            },
+            "text": {
+              "ky": "Чөлдө жашаган төөнүн таманы жазы, ошондуктан ал кумга батпай эркин басат.",
+              "ru": "У верблюда широкие ступни, поэтому он свободно ходит по песку пустыни, не увязая.",
+              "en": "A camel has wide feet, so it walks easily over desert sand without sinking."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.pascal",
+      "kind": "unit",
+      "hue": 260,
+      "isContainer": false,
+      "title": {
+        "ky": "Паскаль (Па)",
+        "ru": "Паскаль (Па)",
+        "en": "Pascal (Pa)"
+      },
+      "subtitle": {
+        "ky": "СИдеги басымдын бирдиги: 1 Па = 1 Н/м²",
+        "ru": "Единица давления в СИ: 1 Па = 1 Н/м²",
+        "en": "The SI unit of pressure: 1 Pa = 1 N/m²"
+      },
+      "description": {
+        "ky": "Басымдын бирдиги француз окумуштуусу Блез Паскалдын урматына коюлган. 1 Па – 1 м² аянтка перпендикуляр аракет эткен 1 Н күчтүн басымы. Практикада гектопаскаль жана килопаскаль колдонулат: 1 кПа = 1000 Па, 1 гПа = 100 Па.",
+        "ru": "Единица давления названа в честь французского учёного Блеза Паскаля. 1 Па – давление силы 1 Н, действующей перпендикулярно на площадь 1 м². На практике применяют гектопаскаль и килопаскаль: 1 кПа = 1000 Па, 1 гПа = 100 Па.",
+        "en": "The unit of pressure is named after the French scientist Blaise Pascal. 1 Pa is the pressure of a 1 N force acting at right angles on 1 m². In practice hectopascals and kilopascals are used: 1 kPa = 1000 Pa, 1 hPa = 100 Pa."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "1\\,Па = \\frac{1\\,Н}{1\\,м^2}"
+        },
+        {
+          "kind": "quantity",
+          "type": "pressure",
+          "value": 1000,
+          "unit": "Pa"
+        },
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "1 кПа = 1000 Па; 1 гПа = 100 Па",
+            "ru": "1 кПа = 1000 Па; 1 гПа = 100 Па",
+            "en": "1 kPa = 1000 Pa; 1 hPa = 100 Pa"
+          }
+        }
+      ],
+      "related": [
+        "phys.pressure"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.pascal-big",
+          "text": {
+            "ky": "1 Па – чоң басым.",
+            "ru": "1 Па – большое давление.",
+            "en": "1 Pa is a large pressure."
+          },
+          "correction": {
+            "ky": "1 Па өтө кичине: столдо жаткан бир барак кагаз эле болжол менен 1 Па басым жасайт. Ошондуктан көп учурда кПа колдонулат.",
+            "ru": "1 Па – очень маленькое давление: примерно столько создаёт лист бумаги на столе. Поэтому чаще используют кПа.",
+            "en": "1 Pa is tiny: a single sheet of paper lying on a table presses with about 1 Pa. That is why kPa is used so often."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Блез Паскаль (1623–1662) 19 жашында эсептөөчү машина ойлоп тапкан.",
+        "ru": "Блез Паскаль (1623–1662) в 19 лет изобрёл вычислительную машину.",
+        "en": "Blaise Pascal (1623–1662) built a calculating machine at the age of 19."
+      },
+      "analogy": {
+        "ky": "Метр – узундук үчүн, паскаль – басым үчүн",
+        "ru": "Метр – для длины, паскаль – для давления",
+        "en": "The metre is for length, the pascal is for pressure"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Аба ырайы",
+              "ru": "Прогноз погоды",
+              "en": "Weather forecasts"
+            },
+            "text": {
+              "ky": "Синоптиктер атмосфера басымын гектопаскаль менен беришет: нормалдуу басым ≈ 1013 гПа.",
+              "ru": "Синоптики сообщают атмосферное давление в гектопаскалях: нормальное ≈ 1013 гПа.",
+              "en": "Forecasters give air pressure in hectopascals: normal pressure is about 1013 hPa."
+            },
+            "field": "s"
+          },
+          {
+            "title": {
+              "ky": "Бирдиктерди которуу",
+              "ru": "Перевод единиц",
+              "en": "Converting units"
+            },
+            "text": {
+              "ky": "5 гПа = 500 Па; 0,002 кПа = 2 Па; 0,04 Н/см² = 400 Па, анткени 1 м² = 10 000 см².",
+              "ru": "5 гПа = 500 Па; 0,002 кПа = 2 Па; 0,04 Н/см² = 400 Па, ведь 1 м² = 10 000 см².",
+              "en": "5 hPa = 500 Pa; 0.002 kPa = 2 Pa; 0.04 N/cm² = 400 Pa, because 1 m² = 10 000 cm²."
+            },
+            "field": "m"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кагаз барак",
+              "ru": "Лист бумаги",
+              "en": "A sheet of paper"
+            },
+            "text": {
+              "ky": "Столдогу бир барак кагаз болжол менен 1 Па басым жасайт – паскаль ушунчалык кичине.",
+              "ru": "Лист бумаги на столе давит примерно с 1 Па – вот какой маленький паскаль.",
+              "en": "A sheet of paper on a desk presses with roughly 1 Pa – that is how small a pascal is."
+            }
+          },
+          {
+            "title": {
+              "ky": "Дөңгөлөктүн басымы",
+              "ru": "Давление в шине",
+              "en": "Tyre pressure"
+            },
+            "text": {
+              "ky": "Велосипед дөңгөлөгүндөгү абанын басымы бир нече жүз килопаскаль болот.",
+              "ru": "Давление воздуха в велосипедной шине – несколько сотен килопаскалей.",
+              "en": "The air in a bicycle tyre is at a few hundred kilopascals."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.hydraulic-press",
+      "kind": "device",
+      "hue": 30,
+      "isContainer": false,
+      "title": {
+        "ky": "Гидравликалык пресс",
+        "ru": "Гидравлический пресс",
+        "en": "Hydraulic press"
+      },
+      "subtitle": {
+        "ky": "Гидравликалык көтөргүч: F₂/F₁ = S₂/S₁",
+        "ru": "Гидравлический подъёмник: F₂/F₁ = S₂/S₁",
+        "en": "Hydraulic lift: F₂/F₁ = A₂/A₁"
+      },
+      "description": {
+        "ky": "Негизи туташ болгон эки идиштен турат: бири ичке, экинчиси жазы цилиндр, экөөнө тең поршень коюлган, ичинде суюктук (май) бар. Кичине поршенге F₁ күч менен аракет этсек, ал басым суюктук аркылуу экинчи поршенге берилет. Кичине поршендин аянты чоң поршендикинен канча эсе кичине болсо, чоң поршенге аракет эткен күч ошончо эсе чоң болот: F₂/F₁ = S₂/S₁.",
+        "ru": "Состоит из двух сообщающихся сосудов – узкого и широкого цилиндров с поршнями, заполненных жидкостью (маслом). Если на малый поршень подействовать силой F₁, давление через жидкость передастся второму поршню. Во сколько раз площадь малого поршня меньше площади большого, во столько раз сила на большом поршне больше: F₂/F₁ = S₂/S₁.",
+        "en": "Two connected vessels – a narrow and a wide cylinder, each with a piston, filled with liquid (oil). A force F₁ on the small piston creates a pressure that the liquid passes to the second piston. However many times smaller the small piston's area is, that many times larger is the force on the big piston: F₂/F₁ = A₂/A₁."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "\\frac{F_2}{F_1} = \\frac{S_2}{S_1}"
+        },
+        {
+          "kind": "text",
+          "type": "composition",
+          "value": {
+            "ky": "Эки цилиндр, эки поршень, май",
+            "ru": "Два цилиндра, два поршня, масло",
+            "en": "Two cylinders, two pistons, oil"
+          }
+        }
+      ],
+      "related": [
+        "phys.piston",
+        "phys.pascal-law",
+        "phys.pressure-force"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.press-free-work",
+          "text": {
+            "ky": "Гидравликалык пресс күчтү да, ишти да көбөйтөт.",
+            "ru": "Гидравлический пресс увеличивает и силу, и работу.",
+            "en": "A hydraulic press multiplies both the force and the work."
+          },
+          "correction": {
+            "ky": "Пресс күчтөн утат, бирок жолдон ошончо эсе утулат: чоң поршень кичине поршенге караганда ошончо эсе аз жылат. Иштен утуш жок.",
+            "ru": "Пресс даёт выигрыш в силе, но во столько же раз проигрыш в пути: большой поршень сдвигается во столько же раз меньше малого. Выигрыша в работе нет.",
+            "en": "A press gains force but loses the same factor in distance: the big piston moves that many times less than the small one. There is no gain in work."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Чоң гидравликалык пресстер темирди сыгып, кеменин бөлүктөрүн жасоо үчүн миңдеген тонна күч бере алат.",
+        "ru": "Большие гидравлические прессы развивают усилие в тысячи тонн и штампуют детали кораблей.",
+        "en": "Big hydraulic presses deliver thousands of tonnes of force to stamp ship parts."
+      },
+      "analogy": {
+        "ky": "Ичке жана жоон шприцтерди түтүк менен туташтыруу",
+        "ru": "Два шприца – тонкий и толстый, соединённые трубкой",
+        "en": "A thin and a thick syringe joined by a tube"
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Автосервистеги көтөргүч",
+              "ru": "Подъёмник в автосервисе",
+              "en": "A garage car lift"
+            },
+            "text": {
+              "ky": "Аянттарынын катышы 20 болсо, кичине поршенге 100 кг жүк коюп, чоң поршень менен салмагы 2 т автомашинаны көтөрүүгө болот.",
+              "ru": "Если площади отличаются в 20 раз, груз 100 кг на малом поршне поднимет на большом автомобиль массой 2 т.",
+              "en": "If the areas differ 20 times, a 100 kg load on the small piston lifts a 2 t car on the big one."
+            },
+            "field": "e"
+          },
+          {
+            "title": {
+              "ky": "Экскаватор",
+              "ru": "Экскаватор",
+              "en": "Excavators"
+            },
+            "text": {
+              "ky": "Экскаватордун чөмүчүн гидравликалык цилиндрлер кыймылдатат: насос майды кысып, поршендер чоң күч менен түртөт.",
+              "ru": "Ковш экскаватора двигают гидроцилиндры: насос нагнетает масло, и поршни толкают с огромной силой.",
+              "en": "An excavator bucket is driven by hydraulic cylinders: a pump forces oil in and the pistons push with huge force."
+            },
+            "field": "t"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Эки шприц",
+              "ru": "Два шприца",
+              "en": "Two syringes"
+            },
+            "text": {
+              "ky": "Ичке шприцтин поршенин бир манжа менен басып, жоон шприцтин поршенин колуң менен кармап туруу кыйын болот.",
+              "ru": "Нажимаешь одним пальцем на поршень тонкого шприца – и поршень толстого трудно удержать рукой.",
+              "en": "Push the thin syringe with one finger and you can hardly hold the thick one's plunger back."
+            }
+          },
+          {
+            "title": {
+              "ky": "Домкрат",
+              "ru": "Домкрат",
+              "en": "A car jack"
+            },
+            "text": {
+              "ky": "Айдоочу гидравликалык домкраттын туткасын жеңил басып, оор машинаны көтөрөт.",
+              "ru": "Водитель легко качает ручку гидравлического домкрата и поднимает тяжёлую машину.",
+              "en": "A driver pumps the handle of a hydraulic jack gently and lifts a heavy car."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "phys.probe-dive",
+      "engine": "timeline",
+      "icon": "droplet",
+      "title": {
+        "ky": "Басым ченегичти сууга түшүрүү",
+        "ru": "Погружаем датчик давления",
+        "en": "Lowering a pressure probe"
+      },
+      "description": {
+        "ky": "Манометрге туташкан зондду суунун бетинен түбүнө чейин түшүрөбүз. Тереңдик өскөн сайын басым P = ρ·g·h боюнча бир калыпта өсөт. Зонддун бетин ар кайсы тарапка бурсак, бир тереңдикте басым өзгөрбөйт – суюктук бардык тарапка бирдей басат.",
+        "ru": "Опускаем датчик, соединённый с манометром, от поверхности воды до дна. С глубиной давление равномерно растёт по p = ρgh. Если поворачивать датчик в разные стороны на одной глубине, давление не меняется – жидкость давит во все стороны одинаково.",
+        "en": "We lower a probe joined to a manometer from the surface of the water to the bottom. The pressure rises steadily with depth, p = ρgh. Turning the probe every way at one depth does not change the reading – a liquid presses equally in all directions."
+      },
+      "equation": "P = \\rho g h = 1000 \\cdot 9{,}8 \\cdot 0{,}3 = 2940\\,Па",
+      "inputs": {
+        "ky": "Суу ρ = 1000 кг/м³, идиштин бийиктиги 0,5 м",
+        "ru": "Вода ρ = 1000 кг/м³, высота сосуда 0,5 м",
+        "en": "Water ρ = 1000 kg/m³, vessel 0.5 m tall"
+      },
+      "outputs": {
+        "ky": "0,3 м де P = 2940 Па; түбүндө 4900 Па",
+        "ru": "на 0,3 м p = 2940 Па; у дна 4900 Па",
+        "en": "p = 2940 Pa at 0.3 m; 4900 Pa at the bottom"
+      },
+      "steps": [
+        {
+          "key": "surface",
+          "title": {
+            "ky": "Суунун бетинде",
+            "ru": "На поверхности",
+            "en": "At the surface"
+          },
+          "result": {
+            "ky": "h = 0, P = 0",
+            "ru": "h = 0, p = 0",
+            "en": "h = 0, p = 0"
+          },
+          "description": {
+            "ky": "Зонд суунун бетинде: үстүндө суу мамычасы жок, манометрдин суюктугу эки тизесинде тең бирдей деңгээлде.",
+            "ru": "Датчик у поверхности: столба воды над ним нет, жидкость в коленах манометра на одном уровне.",
+            "en": "The probe is at the surface: no water above it and the manometer liquid is level in both arms."
+          },
+          "conceptKey": "phys.depth",
+          "altText": {
+            "ky": "Зонд суунун бетинде, манометрдин деңгээлдери бирдей.",
+            "ru": "Датчик у поверхности, уровни манометра равны.",
+            "en": "The probe at the surface; the manometer levels are equal."
+          },
+          "duration": 1
+        },
+        {
+          "key": "h10",
+          "title": {
+            "ky": "10 см тереңдикте",
+            "ru": "На глубине 10 см",
+            "en": "At 10 cm"
+          },
+          "result": {
+            "ky": "P = 980 Па",
+            "ru": "p = 980 Па",
+            "en": "p = 980 Pa"
+          },
+          "description": {
+            "ky": "P = 1000 · 9,8 · 0,1 = 980 Па. Манометрдеги деңгээлдердин айырмасы пайда болду.",
+            "ru": "p = 1000 · 9,8 · 0,1 = 980 Па. В манометре появилась разность уровней.",
+            "en": "p = 1000 × 9.8 × 0.1 = 980 Pa. A difference in levels appears in the manometer."
+          },
+          "conceptKey": "phys.liquid-pressure",
+          "altText": {
+            "ky": "Зонд 10 см тереңдикте, манометрде кичине айырма.",
+            "ru": "Датчик на 10 см, в манометре небольшая разность.",
+            "en": "The probe at 10 cm with a small manometer difference."
+          },
+          "duration": 1
+        },
+        {
+          "key": "h30",
+          "title": {
+            "ky": "30 см тереңдикте",
+            "ru": "На глубине 30 см",
+            "en": "At 30 cm"
+          },
+          "result": {
+            "ky": "P = 2940 Па",
+            "ru": "p = 2940 Па",
+            "en": "p = 2940 Pa"
+          },
+          "description": {
+            "ky": "Тереңдик 3 эсе чоңойду – басым да 3 эсе чоңойду: 2940 Па.",
+            "ru": "Глубина выросла втрое – давление тоже втрое: 2940 Па.",
+            "en": "Three times the depth – three times the pressure: 2940 Pa."
+          },
+          "conceptKey": "phys.liquid-pressure",
+          "altText": {
+            "ky": "Зонд 30 см тереңдикте, манометрдеги айырма чоңойгон.",
+            "ru": "Датчик на 30 см, разность в манометре больше.",
+            "en": "The probe at 30 cm with a bigger manometer difference."
+          },
+          "duration": 2
+        },
+        {
+          "key": "turn",
+          "title": {
+            "ky": "Зондду буруу",
+            "ru": "Поворот датчика",
+            "en": "Turning the probe"
+          },
+          "result": {
+            "ky": "P = 2940 Па (өзгөрбөйт)",
+            "ru": "p = 2940 Па (не меняется)",
+            "en": "p = 2940 Pa (unchanged)"
+          },
+          "description": {
+            "ky": "Ошол эле тереңдикте зонддун бетин өйдө, ылдый, капталга бурабыз – манометр ошол эле 2940 Па көрсөтөт. Бул – Паскаль закону.",
+            "ru": "На той же глубине поворачиваем мембрану вверх, вниз, вбок – манометр показывает те же 2940 Па. Это закон Паскаля.",
+            "en": "At the same depth we turn the membrane up, down and sideways – the manometer still reads 2940 Pa. That is Pascal's law."
+          },
+          "conceptKey": "phys.pascal-law",
+          "altText": {
+            "ky": "Зонд ар тарапка бурулат, манометрдин көрсөткүчү өзгөрбөйт.",
+            "ru": "Датчик поворачивается, показание манометра не меняется.",
+            "en": "The probe turns every way; the manometer reading stays the same."
+          },
+          "duration": 1
+        },
+        {
+          "key": "bottom",
+          "title": {
+            "ky": "Идиштин түбүндө",
+            "ru": "У дна",
+            "en": "At the bottom"
+          },
+          "result": {
+            "ky": "P = 4900 Па",
+            "ru": "p = 4900 Па",
+            "en": "p = 4900 Pa"
+          },
+          "description": {
+            "ky": "h = 0,5 м: P = 1000 · 9,8 · 0,5 = 4900 Па. Ылдыйкы тешиктен суу эң алыска атылат.",
+            "ru": "h = 0,5 м: p = 1000 · 9,8 · 0,5 = 4900 Па. Из нижнего отверстия вода бьёт дальше всего.",
+            "en": "h = 0.5 m: p = 1000 × 9.8 × 0.5 = 4900 Pa. The jet from the lowest hole goes furthest."
+          },
+          "conceptKey": "phys.liquid-pressure",
+          "altText": {
+            "ky": "Зонд идиштин түбүндө; ылдыйкы агым эң узун.",
+            "ru": "Датчик у дна; нижняя струя самая длинная.",
+            "en": "The probe at the bottom; the lowest jet is the longest."
+          },
+          "duration": 2
+        }
+      ],
+      "metrics": [
+        {
+          "key": "depth",
+          "label": {
+            "ky": "Тереңдик",
+            "ru": "Глубина",
+            "en": "Depth"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 0.5,
+          "precision": 2
+        },
+        {
+          "key": "pressure",
+          "label": {
+            "ky": "Суунун басымы",
+            "ru": "Давление воды",
+            "en": "Water pressure"
+          },
+          "unit": "Pa",
+          "min": 0,
+          "max": 4900,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "depth@surface": 0,
+        "pressure@surface": 0,
+        "depth@h10": 0.1,
+        "pressure@h10": 980,
+        "depth@h30": 0.3,
+        "pressure@h30": 2940,
+        "depth@turn": 0.3,
+        "pressure@turn": 2940,
+        "depth@bottom": 0.5,
+        "pressure@bottom": 4900,
+        "density": 1000
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "phys.q.p7-liquid-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Газдын басымынын себеби эмнеде?",
+        "ru": "В чём причина давления газа?",
+        "en": "What causes gas pressure?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Көлөмүнүн аз болушу",
+            "ru": "В малом объёме газа",
+            "en": "Its small volume"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Идиштин формасы",
+            "ru": "В форме сосуда",
+            "en": "The shape of the container"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Молекулалардын кыймылы жана идиштин капталдарына урунушу",
+            "ru": "В движении молекул и их ударах о стенки сосуда",
+            "en": "Its molecules moving and hitting the walls"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Газдын түсү",
+            "ru": "В цвете газа",
+            "en": "The colour of the gas"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Газдын молекулалары тынымсыз кыймылда болуп, идиштин капталдарына урунат. Ошол урунуулардын натыйжасы – газдын басымы.",
+        "ru": "Молекулы газа непрерывно движутся и ударяются о стенки сосуда. Результат этих ударов и есть давление газа.",
+        "en": "Gas molecules keep moving and striking the walls of the container. The result of those hits is the gas pressure."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Ичинде газы бар баллонго дагы газ үйлөп киргизсек, басым кандай өзгөрөт?",
+        "ru": "Если в баллон с газом накачать ещё газа, как изменится давление?",
+        "en": "If more gas is pumped into a cylinder of gas, how does the pressure change?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не изменится",
+            "en": "It does not change"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Азаят",
+            "ru": "Уменьшится",
+            "en": "It falls"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Чоңоёт",
+            "ru": "Увеличится",
+            "en": "It rises"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Көлөм ошол эле, ал эми молекулалар көбөйдү: тыгыздык чоңоюп, капталдарга урунуулар көбөйөт – басым чоңоёт.",
+        "ru": "Объём тот же, а молекул больше: плотность растёт, ударов о стенки больше – давление растёт.",
+        "en": "Same volume, more molecules: the density rises and there are more hits on the walls – the pressure rises."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-3",
+      "type": "single",
+      "prompt": {
+        "ky": "Паскаль закону кандай айтылат?",
+        "ru": "Как формулируется закон Паскаля?",
+        "en": "Which statement is Pascal's law?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Суюктукка же газга жасалган басым алардын ар бир чекитине бардык багыт боюнча бирдей берилет",
+            "ru": "Давление, производимое на жидкость или газ, передаётся в каждую точку одинаково во всех направлениях",
+            "en": "Pressure applied to a liquid or gas is passed on to every point equally in all directions"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Суюктук басымды ылдый карай гана берет",
+            "ru": "Жидкость передаёт давление только вниз",
+            "en": "A liquid passes pressure on only downwards"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Басым күч аракет эткен аянтка түз пропорциялаш",
+            "ru": "Давление прямо пропорционально площади",
+            "en": "Pressure is directly proportional to the area"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Газдын басымы температурага көз каранды эмес",
+            "ru": "Давление газа не зависит от температуры",
+            "en": "Gas pressure does not depend on temperature"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Паскаль закону (1653): суюктуктарга же газдарга жасалган басым алардын ар бир чекитине бардык багыт боюнча бирдей берилет.",
+        "ru": "Закон Паскаля (1653): давление, производимое на жидкость или газ, передаётся в каждую их точку одинаково во всех направлениях.",
+        "en": "Pascal's law (1653): pressure applied to a liquid or gas is passed on to every point equally in all directions."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-4",
+      "type": "single",
+      "prompt": {
+        "ky": "Оозу тыгын менен бекитилген колбага тыгын аркылуу газ үйлөп киргизилди. Колбанын кайсы жеринде газдын басымы чоң?",
+        "ru": "В закрытую пробкой колбу через пробку накачали газ. Где давление газа в колбе больше?",
+        "en": "Gas is pumped through the stopper into a closed flask. Where in the flask is the gas pressure greatest?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Тыгынга",
+            "ru": "На пробку",
+            "en": "On the stopper"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Колбанын түбүнө",
+            "ru": "На дно колбы",
+            "en": "On the bottom"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Колбанын каптал бетине",
+            "ru": "На боковые стенки",
+            "en": "On the side walls"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Колбанын бардык жеринде басым бирдей",
+            "ru": "Во всех местах колбы давление одинаково",
+            "en": "It is the same everywhere in the flask"
+          }
+        }
+      ],
+      "answer": "d",
+      "explanation": {
+        "ky": "Паскаль закону боюнча газ басымды бардык тарапка бирдей берет, ошондуктан колбанын бардык жеринде басым бирдей.",
+        "ru": "По закону Паскаля газ передаёт давление одинаково во все стороны, поэтому во всех местах колбы оно одинаково.",
+        "en": "By Pascal's law a gas passes pressure on equally every way, so it is the same everywhere in the flask."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-liquid-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "0,3 м тереңдиктеги суунун басымы канча паскаль? ρ = 1000 кг/м³, g = 9,8 Н/кг.",
+        "ru": "Каково давление воды на глубине 0,3 м, Па? ρ = 1000 кг/м³, g = 9,8 Н/кг.",
+        "en": "What is the water pressure at a depth of 0.3 m, in Pa? ρ = 1000 kg/m³, g = 9.8 N/kg."
+      },
+      "answer": 2940,
+      "tolerance": 10,
+      "unit": "Pa",
+      "explanation": {
+        "ky": "P = ρ·g·h = 1000 · 9,8 · 0,3 = 2940 Па.",
+        "ru": "p = ρgh = 1000 · 9,8 · 0,3 = 2940 Па.",
+        "en": "p = ρgh = 1000 × 9.8 × 0.3 = 2940 Pa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кандай тереңдикте суунун басымы 4900 Па болот? Жоопту метр менен бериңиз. g = 9,8 Н/кг.",
+        "ru": "На какой глубине давление воды равно 4900 Па? Ответ в метрах. g = 9,8 Н/кг.",
+        "en": "At what depth is the water pressure 4900 Pa? Answer in metres. g = 9.8 N/kg."
+      },
+      "answer": 0.5,
+      "tolerance": 0.01,
+      "unit": "m",
+      "explanation": {
+        "ky": "h = P / (ρ·g) = 4900 / (1000 · 9,8) = 0,5 м.",
+        "ru": "h = p / (ρg) = 4900 / (1000 · 9,8) = 0,5 м.",
+        "en": "h = p / (ρg) = 4900 / (1000 × 9.8) = 0.5 m."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-liquid-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Көлдө 10 м тереңдиктеги суунун басымы канча килопаскаль? ρ = 1000 кг/м³, g = 9,8 Н/кг (аба басымын эсепке албаңыз).",
+        "ru": "Каково давление воды в озере на глубине 10 м, кПа? ρ = 1000 кг/м³, g = 9,8 Н/кг (без учёта давления воздуха).",
+        "en": "What is the water pressure 10 m down in a lake, in kPa? ρ = 1000 kg/m³, g = 9.8 N/kg (ignore air pressure)."
+      },
+      "answer": 98,
+      "tolerance": 1,
+      "unit": "kPa",
+      "explanation": {
+        "ky": "P = 1000 · 9,8 · 10 = 98 000 Па = 98 кПа.",
+        "ru": "p = 1000 · 9,8 · 10 = 98 000 Па = 98 кПа.",
+        "en": "p = 1000 × 9.8 × 10 = 98 000 Pa = 98 kPa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-liquid-8",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Суюктук мамычасынын басымы эмнеге көз каранды? Бардык туура жоопторду тандаңыз.",
+        "ru": "От чего зависит давление столба жидкости? Выберите все верные ответы.",
+        "en": "What does the pressure of a liquid column depend on? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Суюктуктун тыгыздыгына",
+            "ru": "От плотности жидкости",
+            "en": "The liquid's density"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Тереңдикке",
+            "ru": "От глубины",
+            "en": "The depth"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Идиштин формасына",
+            "ru": "От формы сосуда",
+            "en": "The shape of the vessel"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Идиштин түбүнүн аянтына",
+            "ru": "От площади дна сосуда",
+            "en": "The area of the vessel's bottom"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "g чоңдугуна",
+            "ru": "От величины g",
+            "en": "The value of g"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "e"
+      ],
+      "explanation": {
+        "ky": "P = ρ·g·h: басым тыгыздыкка, тереңдикке жана g ге көз каранды. Идиштин формасы жана түбүнүн аянты формулага кирбейт.",
+        "ru": "p = ρgh: давление зависит от плотности, глубины и g. Форма сосуда и площадь дна в формулу не входят.",
+        "en": "p = ρgh: pressure depends on density, depth and g. The vessel's shape and bottom area are not in the formula."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "misconceptionKey": "phys.m.liquid-pressure-shape",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-liquid-9",
+      "type": "match",
+      "prompt": {
+        "ky": "Көрүнүштү анын түшүндүрмөсү менен дал келтириңиз.",
+        "ru": "Сопоставьте явление и его объяснение.",
+        "en": "Match each observation to its explanation."
+      },
+      "pairs": [
+        {
+          "key": "ball",
+          "left": {
+            "ky": "Паскаль шарынын бардык тешиктеринен суу бирдей атылат",
+            "ru": "Из всех отверстий шара Паскаля вода бьёт одинаково",
+            "en": "Water squirts equally from all holes of Pascal's ball"
+          },
+          "right": {
+            "ky": "Басым бардык багыт боюнча бирдей берилет",
+            "ru": "Давление передаётся одинаково во всех направлениях",
+            "en": "Pressure is passed on equally in all directions"
+          }
+        },
+        {
+          "key": "jet",
+          "left": {
+            "ky": "Ылдыйкы тешиктен суу эң алыска атылат",
+            "ru": "Из нижнего отверстия вода бьёт дальше всех",
+            "en": "The lowest hole squirts furthest"
+          },
+          "right": {
+            "ky": "Басым тереңдик менен өсөт",
+            "ru": "Давление растёт с глубиной",
+            "en": "Pressure grows with depth"
+          }
+        },
+        {
+          "key": "bell",
+          "left": {
+            "ky": "Калпакчадан аба сордурулганда резина шар чоңоёт",
+            "ru": "Шарик под колоколом раздувается, когда откачивают воздух",
+            "en": "A balloon swells as air is pumped out of the bell jar"
+          },
+          "right": {
+            "ky": "Ичиндеги газ сырттагыдан көбүрөөк урунат",
+            "ru": "Газ внутри ударяет сильнее, чем снаружи",
+            "en": "The gas inside hits harder than the gas outside"
+          }
+        },
+        {
+          "key": "hot",
+          "left": {
+            "ky": "Ысытылган жабык идиштеги газдын басымы чоңоёт",
+            "ru": "Давление газа в нагретом закрытом сосуде растёт",
+            "en": "The pressure of gas in a heated closed vessel rises"
+          },
+          "right": {
+            "ky": "Молекулалар тезирээк кыймылдайт",
+            "ru": "Молекулы движутся быстрее",
+            "en": "The molecules move faster"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Паскаль шары – Паскаль закону; агымдардын узундугу – тереңдик менен басымдын өсүшү; калпакчадагы шар – ичиндеги молекулалардын урунуусу көбүрөөк; ысытуу – молекулалардын ылдамдыгы өсөт.",
+        "ru": "Шар Паскаля – закон Паскаля; длина струй – рост давления с глубиной; шарик под колоколом – ударов изнутри больше; нагрев – молекулы движутся быстрее.",
+        "en": "Pascal's ball – Pascal's law; jet length – pressure growing with depth; the balloon in the bell jar – more hits from inside; heating – faster molecules."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-liquid-10",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден тереңдиктеги басымды ченөөчү зондду тап.",
+        "ru": "Найдите на модели датчик, измеряющий давление на глубине.",
+        "en": "Find the probe that measures pressure under the water."
+      },
+      "targetConceptKey": "phys.depth",
+      "explanation": {
+        "ky": "Бул – зонд: ал h тереңдикте турат, басым P = ρ·g·h ушул тереңдикке көз каранды.",
+        "ru": "Это датчик: он находится на глубине h, и давление p = ρgh зависит от этой глубины.",
+        "en": "That is the probe: it sits at depth h, and the pressure p = ρgh depends on that depth."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-11",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден басымды көрсөткөн приборду (манометрди) тап.",
+        "ru": "Найдите на модели прибор, показывающий давление (манометр).",
+        "en": "Find the instrument that shows the pressure (the manometer)."
+      },
+      "targetConceptKey": "phys.pressure",
+      "explanation": {
+        "ky": "Бул – U түрүндөгү манометр: анын тизелериндеги деңгээлдердин айырмасы басымды көрсөтөт.",
+        "ru": "Это U-образный манометр: разность уровней в его коленах показывает давление.",
+        "en": "That is the U-tube manometer: the difference between its levels shows the pressure."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Кең жана ичке эки идишке бирдей бийиктикте суу куюлган. Идиштердин түбүнө суунун басымы кандай?",
+        "ru": "В широкий и узкий сосуды налита вода до одинаковой высоты. Как соотносятся давления воды на дно?",
+        "en": "A wide and a narrow vessel are filled with water to the same height. How do the pressures on their bottoms compare?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кең идиште чоң",
+            "ru": "В широком больше",
+            "en": "Greater in the wide one"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ичке идиште чоң",
+            "ru": "В узком больше",
+            "en": "Greater in the narrow one"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Бирдей",
+            "ru": "Одинаковы",
+            "en": "They are equal"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "P = ρ·g·h: суюктук да, бийиктик да бирдей, демек басым бирдей. Кең идиштеги суу оор, бирок ал чоң аянтка бөлүштүрүлөт.",
+        "ru": "p = ρgh: жидкость и высота одинаковы, значит, давление одинаково. Вода в широком сосуде тяжелее, но распределена по большей площади.",
+        "en": "p = ρgh: same liquid, same height, so the same pressure. The water in the wide vessel is heavier but spread over a larger area."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "misconceptionKey": "phys.m.liquid-pressure-shape",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-liquid-13",
+      "type": "single",
+      "prompt": {
+        "ky": "Суу толгон идиштин капталына тешик тешилди. Эмне болот?",
+        "ru": "В боковой стенке сосуда с водой проделали отверстие. Что произойдёт?",
+        "en": "A hole is made in the side wall of a vessel full of water. What happens?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Эч нерсе: суу түбүнө гана басат",
+            "ru": "Ничего: вода давит только на дно",
+            "en": "Nothing: water only presses on the bottom"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Тешиктен суу атылып чыгат",
+            "ru": "Из отверстия бьёт струя",
+            "en": "A jet of water comes out"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Аба тешиктен сууга кирет",
+            "ru": "Через отверстие в воду входит воздух",
+            "en": "Air comes in through the hole"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Суюктук идиштин капталдарына да басым жасайт, ошондуктан каптал тешиктен суу атылып чыгат.",
+        "ru": "Жидкость давит и на стенки сосуда, поэтому из бокового отверстия бьёт струя.",
+        "en": "A liquid presses on the walls too, so water spurts out of a side hole."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "misconceptionKey": "phys.m.liquid-pressure-down",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-14",
+      "type": "single",
+      "prompt": {
+        "ky": "Бирдей 0,3 м тереңдикте кайсы суюктуктун басымы эң чоң?",
+        "ru": "Давление какой жидкости на одной и той же глубине 0,3 м наибольшее?",
+        "en": "At the same depth of 0.3 m, which liquid has the greatest pressure?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Май (900 кг/м³)",
+            "ru": "Масло (900 кг/м³)",
+            "en": "Oil (900 kg/m³)"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Суу (1000 кг/м³)",
+            "ru": "Вода (1000 кг/м³)",
+            "en": "Water (1000 kg/m³)"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Сымап (13 600 кг/м³)",
+            "ru": "Ртуть (13 600 кг/м³)",
+            "en": "Mercury (13 600 kg/m³)"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Баарында бирдей",
+            "ru": "Везде одинаково",
+            "en": "They are all equal"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Тереңдик бирдей болсо, басым тыгыздыкка пропорционалдуу: сымаптыкы эң чоң, P = 13 600 · 9,8 · 0,3 ≈ 40 000 Па.",
+        "ru": "При одинаковой глубине давление пропорционально плотности: у ртути больше всего, p = 13 600 · 9,8 · 0,3 ≈ 40 000 Па.",
+        "en": "At equal depth the pressure is proportional to density: mercury's is greatest, p = 13 600 × 9.8 × 0.3 ≈ 40 000 Pa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-phys-pendulum",
+      "ky": "маятник",
+      "ru": "маятник",
+      "en": "pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-period",
+      "ky": "термелүү мезгили",
+      "ru": "период колебаний",
+      "en": "period of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-amplitude",
+      "ky": "амплитуда",
+      "ru": "амплитуда",
+      "en": "amplitude",
+      "forbidden": [
+        "amplitud"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gravity",
+      "ky": "оордук күчү",
+      "ru": "сила тяжести",
+      "en": "force of gravity",
+      "forbidden": [
+        "attraction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction",
+      "ky": "сүрүлүү күчү",
+      "ru": "сила трения",
+      "en": "friction force",
+      "forbidden": [
+        "force of rubbing"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-force",
+      "ky": "таянычтын реакция күчү",
+      "ru": "сила реакции опоры",
+      "en": "normal force",
+      "forbidden": [
+        "support reaction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-acceleration",
+      "ky": "ылдамдануу",
+      "ru": "ускорение",
+      "en": "acceleration",
+      "forbidden": [
+        "тездетүү"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-speed",
+      "ky": "ылдамдык",
+      "ru": "скорость",
+      "en": "speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinetic-energy",
+      "ky": "кинетикалык энергия",
+      "ru": "кинетическая энергия",
+      "en": "kinetic energy",
+      "forbidden": [
+        "кинетический энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-potential-energy",
+      "ky": "потенциалдык энергия",
+      "ru": "потенциальная энергия",
+      "en": "potential energy",
+      "forbidden": [
+        "потенциальный энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-voltage",
+      "ky": "чыңалуу",
+      "ru": "напряжение",
+      "en": "voltage",
+      "forbidden": [
+        "electric tension"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-current",
+      "ky": "ток күчү",
+      "ru": "сила тока",
+      "en": "electric current",
+      "forbidden": [
+        "current force",
+        "current strength"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-resistance",
+      "ky": "каршылык",
+      "ru": "сопротивление",
+      "en": "resistance",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-circuit",
+      "ky": "электр чынжыры",
+      "ru": "электрическая цепь",
+      "en": "electric circuit",
+      "forbidden": [
+        "electric chain",
+        "электрическая цепочка"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-source",
+      "ky": "ток булагы",
+      "ru": "источник тока",
+      "en": "power source",
+      "forbidden": [
+        "source of current"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-switch",
+      "ky": "ачкыч",
+      "ru": "ключ (выключатель)",
+      "en": "switch",
+      "forbidden": [
+        "electric key"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-distance-travelled",
+      "ky": "басып өткөн жол",
+      "ru": "пройденный путь",
+      "en": "distance travelled",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-time",
+      "ky": "убакыт",
+      "ru": "время",
+      "en": "time",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-uniform-motion",
+      "ky": "бир калыптагы кыймыл",
+      "ru": "равномерное движение",
+      "en": "uniform motion",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-average-speed",
+      "ky": "орточо ылдамдык",
+      "ru": "средняя скорость",
+      "en": "average speed",
+      "forbidden": [
+        "medium speed"
+      ]
+    },
+    {
+      "id": "g-phys-speed-radar",
+      "ky": "ылдамдык радары",
+      "ru": "радар скорости",
+      "en": "speed radar",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-stopwatch",
+      "ky": "секундомер",
+      "ru": "секундомер",
+      "en": "stopwatch",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-distance-time-graph",
+      "ky": "жолдун убакыттан көз карандылык графиги",
+      "ru": "график зависимости пути от времени",
+      "en": "distance–time graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-graph-slope",
+      "ky": "графиктин тиктиги",
+      "ru": "наклон графика",
+      "en": "slope of a graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-rest",
+      "ky": "тынч абал",
+      "ru": "покой",
+      "en": "rest",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-force",
+      "ky": "күч",
+      "ru": "сила",
+      "en": "force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-vector",
+      "ky": "вектор",
+      "ru": "вектор",
+      "en": "vector",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-newton",
+      "ky": "ньютон (Н)",
+      "ru": "ньютон (Н)",
+      "en": "newton (N)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-dynamometer",
+      "ky": "динамометр",
+      "ru": "динамометр",
+      "en": "dynamometer (spring scale)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-weight",
+      "ky": "салмак",
+      "ru": "вес тела",
+      "en": "weight",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-resultant",
+      "ky": "тең аракеттүү күч",
+      "ru": "равнодействующая сила",
+      "en": "resultant force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-elastic-force",
+      "ky": "серпилгичтик күчү",
+      "ru": "сила упругости",
+      "en": "elastic force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-point-of-application",
+      "ky": "күчтүн коюлган чекити",
+      "ru": "точка приложения силы",
+      "en": "point of application",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever",
+      "ky": "рычаг",
+      "ru": "рычаг",
+      "en": "lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-pivot",
+      "ky": "таяныч чекити",
+      "ru": "точка опоры",
+      "en": "pivot (fulcrum)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever-arm",
+      "ky": "күчтүн ийини",
+      "ru": "плечо силы",
+      "en": "lever arm",
+      "forbidden": [
+        "shoulder of force"
+      ]
+    },
+    {
+      "id": "g-phys-moment",
+      "ky": "күчтүн моменти",
+      "ru": "момент силы",
+      "en": "moment of a force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-equilibrium-lever",
+      "ky": "рычагдын тең салмактуулугу",
+      "ru": "равновесие рычага",
+      "en": "equilibrium of a lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-interaction",
+      "ky": "өз ара аракеттенишүү",
+      "ru": "взаимодействие",
+      "en": "interaction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-deformation",
+      "ky": "деформация",
+      "ru": "деформация",
+      "en": "deformation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inertia",
+      "ky": "инерция",
+      "ru": "инерция",
+      "en": "inertia",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inertness",
+      "ky": "инерттүүлүк",
+      "ru": "инертность",
+      "en": "inertness",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-first-law",
+      "ky": "Ньютондун биринчи закону",
+      "ru": "первый закон Ньютона",
+      "en": "Newton's first law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mass",
+      "ky": "масса",
+      "ru": "масса",
+      "en": "mass",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kilogram",
+      "ky": "килограмм (кг)",
+      "ru": "килограмм (кг)",
+      "en": "kilogram (kg)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-balance-scale",
+      "ky": "тараза",
+      "ru": "весы",
+      "en": "balance (scales)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-beam",
+      "ky": "коромысло (тараза ийини)",
+      "ru": "коромысло",
+      "en": "beam (of a balance)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-weights-set",
+      "ky": "тараза таштары (гирялар)",
+      "ru": "гири",
+      "en": "weights (set of masses)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-density",
+      "ky": "заттын тыгыздыгы",
+      "ru": "плотность вещества",
+      "en": "density",
+      "forbidden": [
+        "тыгыздуулук"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-second-law",
+      "ky": "Ньютондун экинчи закону",
+      "ru": "второй закон Ньютона",
+      "en": "Newton's second law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-universal-gravitation",
+      "ky": "бүткүл дүйнөлүк тартылуу",
+      "ru": "всемирное тяготение",
+      "en": "universal gravitation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-fall",
+      "ky": "эркин түшүү",
+      "ru": "свободное падение",
+      "en": "free fall",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-fall-acceleration",
+      "ky": "эркин түшүүнүн ылдамдануусу",
+      "ru": "ускорение свободного падения",
+      "en": "free-fall acceleration",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-support",
+      "ky": "таяныч",
+      "ru": "опора",
+      "en": "support",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-suspension",
+      "ky": "асма",
+      "ru": "подвес",
+      "en": "suspension",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hooke-law",
+      "ky": "Гуктун закону",
+      "ru": "закон Гука",
+      "en": "Hooke's law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-stiffness",
+      "ky": "пружинанын катуулугу",
+      "ru": "жёсткость пружины",
+      "en": "spring stiffness",
+      "forbidden": [
+        "spring hardness"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-extension",
+      "ky": "пружинанын узарышы",
+      "ru": "удлинение пружины",
+      "en": "spring extension",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-graduation",
+      "ky": "динамометрди градуирлөө",
+      "ru": "градуировка динамометра",
+      "en": "calibration of a dynamometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-measurement-limit",
+      "ky": "өлчөө чеги",
+      "ru": "предел измерения",
+      "en": "measuring range",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sliding-friction",
+      "ky": "тайгаланып сүрүлүү",
+      "ru": "трение скольжения",
+      "en": "sliding friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rolling-friction",
+      "ky": "тоголонуп сүрүлүү",
+      "ru": "трение качения",
+      "en": "rolling friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-static-friction",
+      "ky": "тынч туруудагы сүрүлүү",
+      "ru": "трение покоя",
+      "en": "static friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction-coefficient",
+      "ky": "сүрүлүү коэффициенти",
+      "ru": "коэффициент трения",
+      "en": "coefficient of friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-third-law",
+      "ky": "Ньютондун үчүнчү закону",
+      "ru": "третий закон Ньютона",
+      "en": "Newton's third law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-action-reaction",
+      "ky": "аракет жана каршы аракет",
+      "ru": "действие и противодействие",
+      "en": "action and reaction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-phenomenon",
+      "ky": "кубулуш",
+      "ru": "явление",
+      "en": "phenomenon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-physical-quantity",
+      "ky": "физикалык чоңдук",
+      "ru": "физическая величина",
+      "en": "physical quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-si",
+      "ky": "СИ (бирдиктердин эл аралык системасы)",
+      "ru": "СИ (Международная система единиц)",
+      "en": "SI (International System of Units)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scale",
+      "ky": "шкала",
+      "ru": "шкала",
+      "en": "scale",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scale-division",
+      "ky": "шкаланын баасы",
+      "ru": "цена деления шкалы",
+      "en": "scale division value",
+      "forbidden": [
+        "scale price"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-motion",
+      "ky": "механикалык кыймыл",
+      "ru": "механическое движение",
+      "en": "mechanical motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinematics",
+      "ky": "кинематика",
+      "ru": "кинематика",
+      "en": "kinematics",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-relativity-of-motion",
+      "ky": "кыймылдын салыштырмалуулугу",
+      "ru": "относительность движения",
+      "en": "relativity of motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-reference-body",
+      "ky": "салыштыруу нерсеси",
+      "ru": "тело отсчёта",
+      "en": "reference body",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-material-point",
+      "ky": "материялык чекит",
+      "ru": "материальная точка",
+      "en": "material point",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-trajectory",
+      "ky": "кыймылдын траекториясы",
+      "ru": "траектория движения",
+      "en": "trajectory",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rectilinear-motion",
+      "ky": "түз сызыктуу кыймыл",
+      "ru": "прямолинейное движение",
+      "en": "straight-line motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-curvilinear-motion",
+      "ky": "ийри сызыктуу кыймыл",
+      "ru": "криволинейное движение",
+      "en": "curvilinear motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-path-length",
+      "ky": "өтүлгөн жол",
+      "ru": "пройденный путь",
+      "en": "path length",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-displacement",
+      "ky": "которулуш",
+      "ru": "перемещение",
+      "en": "displacement",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scalar",
+      "ky": "скалярдык чоңдук",
+      "ru": "скалярная величина",
+      "en": "scalar quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-vector-quantity",
+      "ky": "вектордук чоңдук",
+      "ru": "векторная величина",
+      "en": "vector quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-non-uniform-motion",
+      "ky": "бир калыптагы эмес кыймыл",
+      "ru": "неравномерное движение",
+      "en": "non-uniform motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-initial-speed",
+      "ky": "баштапкы ылдамдык",
+      "ru": "начальная скорость",
+      "en": "initial speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-final-speed",
+      "ky": "акыркы ылдамдык",
+      "ru": "конечная скорость",
+      "en": "final speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-accelerated-motion",
+      "ky": "ылдамдатылган кыймыл",
+      "ru": "ускоренное движение",
+      "en": "accelerated motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-decelerated-motion",
+      "ky": "акырындатылган кыймыл",
+      "ru": "замедленное движение",
+      "en": "decelerated motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-uniform-circular-motion",
+      "ky": "айлана боюнча бир калыптагы кыймыл",
+      "ru": "равномерное движение по окружности",
+      "en": "uniform circular motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-linear-speed",
+      "ky": "сызыктуу ылдамдык",
+      "ru": "линейная скорость",
+      "en": "linear speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rotation-period",
+      "ky": "айлануу мезгили",
+      "ru": "период обращения",
+      "en": "period of rotation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rotation-frequency",
+      "ky": "айлануунун жыштыгы",
+      "ru": "частота обращения",
+      "en": "rotation frequency",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-tangent",
+      "ky": "жаныма",
+      "ru": "касательная",
+      "en": "tangent",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-momentum",
+      "ky": "нерсенин импульсу",
+      "ru": "импульс тела",
+      "en": "momentum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-momentum-conservation",
+      "ky": "импульстун сакталуу закону",
+      "ru": "закон сохранения импульса",
+      "en": "conservation of momentum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-closed-system",
+      "ky": "туюк система",
+      "ru": "замкнутая система",
+      "en": "closed system",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-jet-propulsion",
+      "ky": "реактивдүү кыймыл",
+      "ru": "реактивное движение",
+      "en": "jet propulsion",
+      "forbidden": [
+        "реактивный кыймыл"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rocket",
+      "ky": "ракета",
+      "ru": "ракета",
+      "en": "rocket",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-work",
+      "ky": "механикалык жумуш",
+      "ru": "механическая работа",
+      "en": "mechanical work",
+      "forbidden": [
+        "механикалык иш"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-joule",
+      "ky": "джоуль (Дж)",
+      "ru": "джоуль (Дж)",
+      "en": "joule (J)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-power",
+      "ky": "кубаттуулук",
+      "ru": "мощность",
+      "en": "power",
+      "forbidden": [
+        "кубаттулук"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-watt",
+      "ky": "ватт (Вт)",
+      "ru": "ватт (Вт)",
+      "en": "watt (W)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-energy",
+      "ky": "энергия",
+      "ru": "энергия",
+      "en": "energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-energy",
+      "ky": "механикалык энергия",
+      "ru": "механическая энергия",
+      "en": "mechanical energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-total-mechanical-energy",
+      "ky": "толук механикалык энергия",
+      "ru": "полная механическая энергия",
+      "en": "total mechanical energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-energy-conservation",
+      "ky": "энергиянын сакталуу закону",
+      "ru": "закон сохранения энергии",
+      "en": "conservation of energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-maxwell-pendulum",
+      "ky": "Максвелл маятниги",
+      "ru": "маятник Максвелла",
+      "en": "Maxwell's pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pressure",
+      "ky": "басым",
+      "ru": "давление",
+      "en": "pressure",
+      "forbidden": [
+        "кысым"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal",
+      "ky": "паскаль (Па)",
+      "ru": "паскаль (Па)",
+      "en": "pascal (Pa)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-area",
+      "ky": "аянт",
+      "ru": "площадь",
+      "en": "area",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pressure-force",
+      "ky": "басым күчү",
+      "ru": "сила давления",
+      "en": "force of pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gas-pressure",
+      "ky": "газдын басымы",
+      "ru": "давление газа",
+      "en": "gas pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-liquid-pressure",
+      "ky": "суюктуктун басымы",
+      "ru": "давление жидкости",
+      "en": "liquid pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-liquid-column",
+      "ky": "суюктук мамычасы",
+      "ru": "столб жидкости",
+      "en": "column of liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-depth",
+      "ky": "тереңдик",
+      "ru": "глубина",
+      "en": "depth",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-manometer",
+      "ky": "манометр",
+      "ru": "манометр",
+      "en": "manometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal-law",
+      "ky": "Паскаль закону",
+      "ru": "закон Паскаля",
+      "en": "Pascal's law",
+      "forbidden": [
+        "Паскалдын закону"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal-ball",
+      "ky": "Паскаль шары",
+      "ru": "шар Паскаля",
+      "en": "Pascal's ball",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-communicating-vessels",
+      "ky": "катыш идиштер",
+      "ru": "сообщающиеся сосуды",
+      "en": "communicating vessels",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-press",
+      "ky": "гидравликалык пресс",
+      "ru": "гидравлический пресс",
+      "en": "hydraulic press",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-lift",
+      "ky": "гидравликалык көтөргүч",
+      "ru": "гидравлический подъёмник",
+      "en": "hydraulic lift",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-brake",
+      "ky": "гидравликалык токтоткуч",
+      "ru": "гидравлический тормоз",
+      "en": "hydraulic brake",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-piston",
+      "ky": "поршень",
+      "ru": "поршень",
+      "en": "piston",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-atmosphere",
+      "ky": "атмосфера",
+      "ru": "атмосфера",
+      "en": "atmosphere",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-atmospheric-pressure",
+      "ky": "атмосфера басымы",
+      "ru": "атмосферное давление",
+      "en": "atmospheric pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-atmospheric-pressure",
+      "ky": "нормалдуу атмосфера басымы",
+      "ru": "нормальное атмосферное давление",
+      "en": "normal atmospheric pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-torricelli-experiment",
+      "ky": "Торричеллинин тажрыйбасы",
+      "ru": "опыт Торричелли",
+      "en": "Torricelli's experiment",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mercury-column",
+      "ky": "сымап мамычасы",
+      "ru": "столб ртути",
+      "en": "mercury column",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mmhg",
+      "ky": "сымап мамычасынын миллиметри (сым. мам. мм)",
+      "ru": "миллиметр ртутного столба (мм рт. ст.)",
+      "en": "millimetre of mercury (mmHg)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-vacuum",
+      "ky": "боштук (вакуум)",
+      "ru": "пустота (вакуум)",
+      "en": "vacuum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-barometer",
+      "ky": "барометр",
+      "ru": "барометр",
+      "en": "barometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-aneroid",
+      "ky": "барометр-анероид",
+      "ru": "барометр-анероид",
+      "en": "aneroid barometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-altimeter",
+      "ky": "бийиктик ченегич",
+      "ru": "высотомер",
+      "en": "altimeter",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-buoyant-force",
+      "ky": "Архимед күчү",
+      "ru": "архимедова сила",
+      "en": "buoyant force",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-archimedes-law",
+      "ky": "Архимед закону",
+      "ru": "закон Архимеда",
+      "en": "Archimedes' principle",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-displaced-liquid",
+      "ky": "сүрүп чыгарылган суюктук",
+      "ru": "вытесненная жидкость",
+      "en": "displaced liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-weight-in-liquid",
+      "ky": "нерсенин суюктуктагы салмагы",
+      "ru": "вес тела в жидкости",
+      "en": "weight in a liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-floating-conditions",
+      "ky": "нерселердин сүзүү шарттары",
+      "ru": "условия плавания тел",
+      "en": "conditions for floating",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-floating",
+      "ky": "калкуу",
+      "ru": "плавание на поверхности",
+      "en": "floating",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sinking",
+      "ky": "чөгүү",
+      "ru": "погружение (тонет)",
+      "en": "sinking",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-waterline",
+      "ky": "ватер сызыгы",
+      "ru": "ватерлиния",
+      "en": "waterline",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-balloon",
+      "ky": "аба шары",
+      "ru": "воздушный шар",
+      "en": "balloon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sonde",
+      "ky": "зонд-шар",
+      "ru": "шар-зонд",
+      "en": "sounding balloon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-simple-machine",
+      "ky": "жөнөкөй механизм",
+      "ru": "простой механизм",
+      "en": "simple machine",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pulley",
+      "ky": "блок",
+      "ru": "блок",
+      "en": "pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-fixed-pulley",
+      "ky": "кыймылсыз блок",
+      "ru": "неподвижный блок",
+      "en": "fixed pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-movable-pulley",
+      "ky": "кыймылдуу блок",
+      "ru": "подвижный блок",
+      "en": "movable pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-golden-rule",
+      "ky": "механиканын «алтын эрежеси»",
+      "ru": "«золотое правило» механики",
+      "en": "golden rule of mechanics",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-useful-work",
+      "ky": "пайдалуу жумуш",
+      "ru": "полезная работа",
+      "en": "useful work",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-total-work",
+      "ky": "толук жумуш",
+      "ru": "полная (затраченная) работа",
+      "en": "total work",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-efficiency",
+      "ky": "пайдалуу аракет коэффициенти (ПАК)",
+      "ru": "коэффициент полезного действия (КПД)",
+      "en": "efficiency",
+      "forbidden": [
+        "пайдалуу иш коэффициенти"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inclined-plane",
+      "ky": "жантык тегиздик",
+      "ru": "наклонная плоскость",
+      "en": "inclined plane",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gain-in-force",
+      "ky": "күчтөн утуш",
+      "ru": "выигрыш в силе",
+      "en": "gain in force",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-oscillation",
+      "ky": "термелүү",
+      "ru": "колебание",
+      "en": "oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-oscillation",
+      "ky": "эркин термелүү",
+      "ru": "свободные колебания",
+      "en": "free oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-equilibrium-position",
+      "ky": "тең салмактуулук абалы",
+      "ru": "положение равновесия",
+      "en": "equilibrium position",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-oscillation-frequency",
+      "ky": "термелүү жыштыгы",
+      "ru": "частота колебаний",
+      "en": "frequency of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hertz",
+      "ky": "герц (Гц)",
+      "ru": "герц (Гц)",
+      "en": "hertz (Hz)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-math-pendulum",
+      "ky": "математикалык маятник",
+      "ru": "математический маятник",
+      "en": "simple pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-isochronism",
+      "ky": "изохронизм",
+      "ru": "изохронизм",
+      "en": "isochronism",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-elastic-medium",
+      "ky": "серпилгичтүү чөйрө",
+      "ru": "упругая среда",
+      "en": "elastic medium",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-wave",
+      "ky": "механикалык толкун",
+      "ru": "механическая волна",
+      "en": "mechanical wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-wavelength",
+      "ky": "толкун узундугу",
+      "ru": "длина волны",
+      "en": "wavelength",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-wave-speed",
+      "ky": "толкундун таралуу ылдамдыгы",
+      "ru": "скорость распространения волны",
+      "en": "wave speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-transverse-wave",
+      "ky": "туурасынан толкун",
+      "ru": "поперечная волна",
+      "en": "transverse wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-longitudinal-wave",
+      "ky": "узатасынан толкун",
+      "ru": "продольная волна",
+      "en": "longitudinal wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sound-wave",
+      "ky": "үн толкуну",
+      "ru": "звуковая волна",
+      "en": "sound wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pitch",
+      "ky": "үндүн тону (бийиктиги)",
+      "ru": "высота (тон) звука",
+      "en": "pitch",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-loudness",
+      "ky": "үндүн катуулугу",
+      "ru": "громкость звука",
+      "en": "loudness",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-timbre",
+      "ky": "үндүн тембри",
+      "ru": "тембр звука",
+      "en": "timbre",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-decibel",
+      "ky": "децибелл (дБ)",
+      "ru": "децибел (дБ)",
+      "en": "decibel (dB)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-tuning-fork",
+      "ky": "камертон",
+      "ru": "камертон",
+      "en": "tuning fork",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-echo",
+      "ky": "жаңырык",
+      "ru": "эхо",
+      "en": "echo",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-ultrasound",
+      "ky": "ультраүн",
+      "ru": "ультразвук",
+      "en": "ultrasound",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-echo-sounder",
+      "ky": "эхолот",
+      "ru": "эхолот",
+      "en": "echo sounder",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "area",
+      "icon": "square",
+      "valueKind": "quantity",
+      "unit": "cm²",
+      "label": {
+        "ky": "Аянты",
+        "ru": "Площадь",
+        "en": "Area"
+      }
+    },
+    {
+      "key": "composition",
+      "icon": "flask-conical",
+      "valueKind": "text",
+      "label": {
+        "ky": "Курамы",
+        "ru": "Состав",
+        "en": "Composition"
+      }
+    },
+    {
+      "key": "depth",
+      "icon": "arrow-down-to-line",
+      "valueKind": "quantity",
+      "unit": "km",
+      "label": {
+        "ky": "Тереңдиги",
+        "ru": "Глубина",
+        "en": "Depth"
+      }
+    },
+    {
+      "key": "force",
+      "icon": "arrow-big-right",
+      "valueKind": "quantity",
+      "unit": "N",
+      "label": {
+        "ky": "Күч",
+        "ru": "Сила",
+        "en": "Force"
+      }
+    },
+    {
+      "key": "pressure",
+      "icon": "gauge-circle",
+      "valueKind": "quantity",
+      "unit": "Pa",
+      "label": {
+        "ky": "Басым",
+        "ru": "Давление",
+        "en": "Pressure"
+      }
+    }
+  ]
+}

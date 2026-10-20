@@ -1,0 +1,1353 @@
+{
+  "topic": {
+    "key": "phys7-atmospheric-pressure",
+    "unitKey": "phys.g7.pressure",
+    "status": "published",
+    "title": {
+      "ky": "Атмосфера басымы. Торричеллинин тажрыйбасы. Барометр",
+      "ru": "Атмосферное давление. Опыт Торричелли. Барометр",
+      "en": "Atmospheric pressure. Torricelli's experiment. The barometer"
+    },
+    "formula": "P₀ = 760 сым. мам. мм",
+    "classification": {
+      "ky": "Газдардын басымы",
+      "ru": "Давление газов",
+      "en": "Pressure of gases"
+    },
+    "description": {
+      "ky": "Жерди курчап турган аба катмары – атмосфера – өз салмагы менен Жердин бетин жана андагы бардык нерселерди басат. Торричеллинин тажрыйбасында узундугу 1 м, сымап толтурулган түтүктү идишке көмкөрсөк, түтүктө 760 мм сымап мамычасы калат: атмосфера басымы ушул мамычанын басымына барабар, P ≈ 101 300 Па. Тоого көтөрүлгөн сайын басым азаят – ар бир 12 м де 1 мм ге. Атмосфера басымын сымап барометри жана анероид менен ченейбиз (§29–30).",
+      "ru": "Воздушная оболочка Земли – атмосфера – своим весом давит на поверхность Земли и на все тела на ней. В опыте Торричелли трубку длиной 1 м, полную ртути, опрокидывают в чашку – в трубке остаётся столб ртути 760 мм: атмосферное давление равно давлению этого столба, p ≈ 101 300 Па. С подъёмом в гору давление падает – на 1 мм на каждые 12 м. Атмосферное давление измеряют ртутным барометром и анероидом (§29–30).",
+      "en": "The layer of air around the Earth – the atmosphere – presses with its weight on the ground and on everything there. In Torricelli's experiment a 1 m tube full of mercury is turned over into a dish and a 760 mm column of mercury stays in it: air pressure equals the pressure of this column, p ≈ 101 300 Pa. Climbing a mountain the pressure falls – by 1 mm for every 12 m. We measure it with a mercury barometer and an aneroid (§29–30)."
+    },
+    "goal": {
+      "ky": "Атмосфера басымынын бар экенин тажрыйбалар менен далилдөө, анын пайда болушун абанын салмагы жана Паскаль закону менен түшүндүрүү, Торричеллинин тажрыйбасын баяндоо, сым. мам. мм ди паскалга которуу, басымдын бийиктикке көз карандылыгын жана анероиддин түзүлүшүн түшүндүрүү (PHYS-7.3.1).",
+      "ru": "Доказывать опытами существование атмосферного давления, объяснять его весом воздуха и законом Паскаля, описывать опыт Торричелли, переводить мм рт. ст. в паскали, объяснять зависимость давления от высоты и устройство анероида (PHYS-7.3.1).",
+      "en": "Show by experiment that air pressure exists, explain it by the weight of air and Pascal's law, describe Torricelli's experiment, convert mmHg to pascals, and explain how pressure changes with height and how an aneroid is built (PHYS-7.3.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.pressure.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "pressure",
+        "variant": "barometer",
+        "altitude": 0
+      },
+      "camera": {
+        "position": [
+          0.6,
+          1,
+          2.2
+        ],
+        "target": [
+          0,
+          0.5,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.atmospheric-pressure",
+      "phys.mercury-column",
+      "phys.barometer",
+      "phys.pascal"
+    ],
+    "overrides": {
+      "phys.atmospheric-pressure": {
+        "nodes": [
+          "Arrow_Air",
+          "Arrow_Air_*"
+        ],
+        "description": {
+          "ky": "Аба идиштеги сымаптын бетин бардык калыңдыгы менен басат. Деңиз деңгээлинде бул басым 760 мм сымап мамычасынын басымына барабар: P = 13 600 · 9,8 · 0,76 ≈ 101 300 Па.",
+          "ru": "Воздух всей своей толщей давит на ртуть в чашке. На уровне моря это давление равно давлению столба ртути 760 мм: p = 13 600 · 9,8 · 0,76 ≈ 101 300 Па.",
+          "en": "The whole depth of air presses on the mercury in the dish. At sea level this equals the pressure of a 760 mm column of mercury: p = 13 600 × 9.8 × 0.76 ≈ 101 300 Pa."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 101300,
+            "unit": "Pa",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 760,
+            "unit": "mm"
+          }
+        ]
+      },
+      "phys.mercury-column": {
+        "nodes": [
+          "Mercury",
+          "Vacuum"
+        ],
+        "description": {
+          "ky": "Түтүктөгү сымап мамычасы 760 мм бийиктикте токтоду, анын үстүндө аба жок – боштук (вакуум). Атмосфера басымы азайса мамыча төмөндөйт, чоңойсо – көтөрүлөт.",
+          "ru": "Столб ртути в трубке остановился на высоте 760 мм, над ним воздуха нет – пустота (вакуум). Если атмосферное давление падает, столб опускается, если растёт – поднимается.",
+          "en": "The mercury in the tube has stopped at 760 mm, with no air above it – a vacuum. If air pressure falls the column drops; if it rises the column climbs."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 760,
+            "unit": "mm"
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 13600,
+            "unit": "kg/m³"
+          }
+        ]
+      },
+      "phys.barometer": {
+        "nodes": [
+          "Tube",
+          "Scale",
+          "Level_Marker",
+          "Dish",
+          "Dish_Mercury"
+        ],
+        "title": {
+          "ky": "Сымап барометри",
+          "ru": "Ртутный барометр",
+          "en": "Mercury barometer"
+        },
+        "description": {
+          "ky": "Торричеллинин түтүгүнө миллиметрдик шкала бекитилсе – бул эң жөнөкөй сымап барометри. Бирок сымап зыяндуу жана түтүктү алып жүрүү ыңгайсыз, ошондуктан практикада анероид колдонулат.",
+          "ru": "Если к трубке Торричелли прикрепить шкалу в миллиметрах, получится простейший ртутный барометр. Но ртуть вредна, а трубку неудобно носить, поэтому на практике пользуются анероидом.",
+          "en": "Fix a millimetre scale to Torricelli's tube and you have the simplest mercury barometer. But mercury is harmful and the tube awkward to carry, so in practice an aneroid is used."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 1,
+            "unit": "m"
+          },
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Айнек түтүк, сымап, идиш, мм шкала",
+              "ru": "Стеклянная трубка, ртуть, чашка, шкала в мм",
+              "en": "Glass tube, mercury, dish, mm scale"
+            }
+          }
+        ]
+      },
+      "phys.pascal": {
+        "description": {
+          "ky": "Атмосфера басымы паскаль, гектопаскаль же сымап мамычасынын миллиметри менен берилет: 1 сым. мам. мм ≈ 133,3 Па, 760 сым. мам. мм ≈ 101 300 Па ≈ 1013 гПа.",
+          "ru": "Атмосферное давление выражают в паскалях, гектопаскалях или миллиметрах ртутного столба: 1 мм рт. ст. ≈ 133,3 Па, 760 мм рт. ст. ≈ 101 300 Па ≈ 1013 гПа.",
+          "en": "Air pressure is given in pascals, hectopascals or millimetres of mercury: 1 mmHg ≈ 133.3 Pa, 760 mmHg ≈ 101 300 Pa ≈ 1013 hPa."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 133.3,
+            "unit": "Pa",
+            "approx": true
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "1\\,сым.\\,мам.\\,мм \\approx 133{,}3\\,Па"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "baro-sea-level",
+        "title": {
+          "ky": "Деңиз деңгээли",
+          "ru": "Уровень моря",
+          "en": "Sea level"
+        },
+        "classification": {
+          "ky": "h = 760 мм, P ≈ 101 300 Па",
+          "ru": "h = 760 мм, p ≈ 101 300 Па",
+          "en": "h = 760 mm, p ≈ 101 300 Pa"
+        },
+        "thumb": "thumbs/baro-sea-level.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "elevation",
+            "value": 0
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 760,
+            "unit": "mm"
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 101300,
+            "unit": "Pa",
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "altitude": 0
+          }
+        }
+      },
+      {
+        "key": "baro-bishkek",
+        "title": {
+          "ky": "Бишкек, ≈ 800 м",
+          "ru": "Бишкек, ≈ 800 м",
+          "en": "Bishkek, about 800 m"
+        },
+        "classification": {
+          "ky": "h ≈ 696 мм, P ≈ 92 800 Па",
+          "ru": "h ≈ 696 мм, p ≈ 92 800 Па",
+          "en": "h ≈ 696 mm, p ≈ 92 800 Pa"
+        },
+        "thumb": "thumbs/baro-bishkek.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "elevation",
+            "value": 800,
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 696,
+            "unit": "mm",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 92800,
+            "unit": "Pa",
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "altitude": 800
+          }
+        }
+      },
+      {
+        "key": "baro-naryn",
+        "title": {
+          "ky": "Нарын, ≈ 2000 м",
+          "ru": "Нарын, ≈ 2000 м",
+          "en": "Naryn, about 2000 m"
+        },
+        "classification": {
+          "ky": "h ≈ 610 мм, P ≈ 81 300 Па",
+          "ru": "h ≈ 610 мм, p ≈ 81 300 Па",
+          "en": "h ≈ 610 mm, p ≈ 81 300 Pa"
+        },
+        "thumb": "thumbs/baro-naryn.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "elevation",
+            "value": 2000,
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 610,
+            "unit": "mm",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 81300,
+            "unit": "Pa",
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "altitude": 2000
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "length",
+        "value": 760,
+        "unit": "mm"
+      },
+      {
+        "kind": "quantity",
+        "type": "pressure",
+        "value": 101300,
+        "unit": "Pa",
+        "approx": true
+      },
+      {
+        "kind": "quantity",
+        "type": "density",
+        "value": 13600,
+        "unit": "kg/m³"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "P = \\rho g h"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                1.03,
+                2.08,
+                3.79
+              ],
+              "target": [
+                0,
+                1.22,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false
+            },
+            "focus": "phys.atmospheric-pressure",
+            "text": {
+              "ky": "Биз аба «океанынын» түбүндө жашайбыз. Абанын салмагы барбы? Тажрыйба: абасы сордурулган колбаны таразада тең салмакташтырып, анан ага аба киргизсек, тараза бузулат. 1 м³ абанын массасы 1,3 кг, салмагы P = 1,3 · 9,8 ≈ 13 Н.",
+              "ru": "Мы живём на дне воздушного «океана». Есть ли у воздуха вес? Опыт: уравновесим на весах колбу без воздуха, потом впустим в неё воздух – равновесие нарушится. Масса 1 м³ воздуха 1,3 кг, вес P = 1,3 · 9,8 ≈ 13 Н.",
+              "en": "We live at the bottom of an \"ocean\" of air. Does air have weight? Experiment: balance an emptied flask on scales, then let air in – the balance tips. 1 m³ of air has a mass of 1.3 kg and weighs P = 1.3 × 9.8 ≈ 13 N."
+            },
+            "teacherNote": {
+              "ky": "«Атмосфера» – грек сөздөрүнөн: атмос – буу, аба жана сфера – шар. Сураңыз: класстагы абанын массасы канча? (8 × 6 × 3 м ≈ 144 м³ → ≈ 187 кг.)",
+              "ru": "«Атмосфера» – от греческих атмос (пар, воздух) и сфера (шар). Спросите: какова масса воздуха в классе? (8 × 6 × 3 м ≈ 144 м³ → ≈ 187 кг.)",
+              "en": "\"Atmosphere\" comes from the Greek atmos (vapour, air) and sphaira (ball). Ask: what is the mass of the air in the classroom? (8 × 6 × 3 m ≈ 144 m³ → about 187 kg.)"
+            },
+            "altText": {
+              "ky": "Торричелли түтүгү жана сымап куюлган идиш.",
+              "ru": "Трубка Торричелли и чашка с ртутью.",
+              "en": "Torricelli's tube and a dish of mercury."
+            }
+          },
+          {
+            "key": "pressure",
+            "camera": {
+              "position": [
+                0.6,
+                0.78,
+                2.19
+              ],
+              "target": [
+                0,
+                0.28,
+                0.01
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.atmospheric-pressure",
+            "text": {
+              "ky": "Абанын жогорку катмарлары төмөнкүлөрүн басат, ал басым Паскаль закону боюнча бардык тарапка бирдей берилет. Ошондуктан Жердин бети жана андагы нерселер абанын бардык калыңдыгынын басымына дуушар болот – бул атмосфера басымы.",
+              "ru": "Верхние слои воздуха давят на нижние, и по закону Паскаля это давление передаётся во все стороны одинаково. Поэтому поверхность Земли и все тела на ней испытывают давление всей толщи воздуха – это атмосферное давление.",
+              "en": "The upper layers of air press on the lower ones, and by Pascal's law that pressure acts equally every way. So the ground and everything on it bear the pressure of the whole depth of air – atmospheric pressure."
+            },
+            "teacherNote": {
+              "ky": "Тажрыйбаны көрсөтүңүз: суу толгон стаканды кагаз менен жаап көмкөрүңүз (89-сүрөт). Тамчылаткыч, шприц жана калем сапты толтуруу да атмосфера басымы менен иштейт.",
+              "ru": "Покажите опыт: накройте полный стакан листом бумаги и переверните (рисунок 89). Пипетка, шприц и заправка ручки тоже работают благодаря атмосферному давлению.",
+              "en": "Show the trick: cover a full glass with a card and turn it over (figure 89). A dropper, a syringe and filling a pen all work thanks to air pressure."
+            },
+            "altText": {
+              "ky": "Идиштеги сымаптын бетин ылдый баскан аба жебелери.",
+              "ru": "Стрелки воздуха, давящего на ртуть в чашке.",
+              "en": "Arrows of air pressing down on the mercury in the dish."
+            }
+          },
+          {
+            "key": "tube",
+            "camera": {
+              "position": [
+                0.75,
+                1.85,
+                2.76
+              ],
+              "target": [
+                0,
+                1.22,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.barometer",
+            "text": {
+              "ky": "Торричеллинин тажрыйбасы: узундугу 1 м, бир учу туюк айнек түтүк сымап менен толтурулат. Анын ачык учун кармап, түтүктү сымап куюлган идишке көмкөрөбүз.",
+              "ru": "Опыт Торричелли: стеклянную трубку длиной 1 м, запаянную с одного конца, заполняют ртутью. Закрыв открытый конец, трубку опрокидывают в чашку с ртутью.",
+              "en": "Torricelli's experiment: a 1 m glass tube sealed at one end is filled with mercury. Holding the open end shut, we turn it over into a dish of mercury."
+            },
+            "teacherNote": {
+              "ky": "Эванджелисте Торричелли (1608–1647) – Галилейдин окуучусу. «Торричеллинин тажрыйбасы» процессин иштетиңиз. Коопсуздук: сымаптын буусу уулуу, класста сымап колдонулбайт!",
+              "ru": "Эванджелиста Торричелли (1608–1647) – ученик Галилея. Запустите процесс «Опыт Торричелли». Безопасность: пары ртути ядовиты, в классе ртуть не используют!",
+              "en": "Evangelista Torricelli (1608–1647) was Galileo's pupil. Run the process \"Torricelli's experiment\". Safety: mercury vapour is poisonous – never use mercury in class!"
+            },
+            "altText": {
+              "ky": "Сымап куюлган идишке көмкөрүлгөн тик айнек түтүк.",
+              "ru": "Вертикальная стеклянная трубка, опрокинутая в чашку с ртутью.",
+              "en": "An upright glass tube turned over into a dish of mercury."
+            }
+          },
+          {
+            "key": "column",
+            "camera": {
+              "position": [
+                0.75,
+                1.86,
+                2.76
+              ],
+              "target": [
+                0,
+                1.23,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.mercury-column",
+            "text": {
+              "ky": "Сымаптын бир бөлүгү идишке куюлуп, түтүктө 760 мм мамыча калды; үстүндө аба жок – боштук. Эмне үчүн сымап толук куюлбайт? Аба идиштеги сымапты басып, түтүктөгү мамычанын басымын теңдейт.",
+              "ru": "Часть ртути вылилась в чашку, в трубке остался столб 760 мм; над ним воздуха нет – пустота. Почему ртуть не вылилась вся? Воздух давит на ртуть в чашке и уравновешивает давление столба в трубке.",
+              "en": "Some mercury ran out into the dish, leaving a 760 mm column; above it there is no air – a vacuum. Why did not all of it run out? The air presses on the mercury in the dish and balances the column's pressure."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: түтүк жоонураак болсо, мамыча бийигирээк болобу? (Жок – басым ρ·g·h түтүктүн жоондугуна көз каранды эмес.)",
+              "ru": "Спросите: если трубка толще, столб будет выше? (Нет – давление ρgh не зависит от толщины трубки.)",
+              "en": "Ask: would the column be taller in a wider tube? (No – the pressure ρgh does not depend on how wide the tube is.)"
+            },
+            "altText": {
+              "ky": "Түтүктүн үстүндөгү бош бөлүк жана 760 мм белгисиндеги сымап.",
+              "ru": "Пустота в верху трубки и ртуть на отметке 760 мм.",
+              "en": "The empty top of the tube and the mercury at the 760 mm mark."
+            }
+          },
+          {
+            "key": "value",
+            "camera": {
+              "position": [
+                1.03,
+                2.08,
+                3.79
+              ],
+              "target": [
+                0,
+                1.22,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.pascal",
+            "text": {
+              "ky": "Атмосфера басымы 760 мм сымап мамычасынын басымына барабар: P = ρ·g·h = 13 600 · 9,8 · 0,76 ≈ 101 300 Па. 0 °С та 760 сым. мам. мм ге барабар басым нормалдуу атмосфера басымы деп аталат.",
+              "ru": "Атмосферное давление равно давлению столба ртути 760 мм: p = ρgh = 13 600 · 9,8 · 0,76 ≈ 101 300 Па. Давление, равное 760 мм рт. ст. при 0 °С, называют нормальным атмосферным давлением.",
+              "en": "Air pressure equals that of a 760 mm column of mercury: p = ρgh = 13 600 × 9.8 × 0.76 ≈ 101 300 Pa. A pressure of 760 mmHg at 0 °C is called normal atmospheric pressure."
+            },
+            "teacherNote": {
+              "ky": "Тактага: 1 сым. мам. мм ≈ 133,3 Па. Суу менен ушундай тажрыйба жасасак, мамыча ≈ 10,3 м болмок (13,6 эсе бийик).",
+              "ru": "На доске: 1 мм рт. ст. ≈ 133,3 Па. С водой такой столб был бы ≈ 10,3 м (в 13,6 раза выше).",
+              "en": "On the board: 1 mmHg ≈ 133.3 Pa. With water the column would be about 10.3 m (13.6 times taller)."
+            },
+            "altText": {
+              "ky": "Шкаласы бар түтүк, сымап 760 мм де.",
+              "ru": "Трубка со шкалой, ртуть на 760 мм.",
+              "en": "The tube with its scale, mercury at 760 mm."
+            }
+          },
+          {
+            "key": "altitude",
+            "sample": "baro-bishkek",
+            "camera": {
+              "position": [
+                0.75,
+                1.86,
+                2.76
+              ],
+              "target": [
+                0,
+                1.23,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.mercury-column",
+            "text": {
+              "ky": "Бийиктеген сайын аба сейрек болуп, басым азаят: ар бир 12 м де болжол менен 1 сым. мам. мм ге. Бишкекте (≈ 800 м) барометр ≈ 696 мм көрсөтөт.",
+              "ru": "С высотой воздух разрежается, и давление падает: примерно на 1 мм рт. ст. на каждые 12 м. В Бишкеке (≈ 800 м) барометр показывает ≈ 696 мм.",
+              "en": "Higher up the air is thinner and the pressure lower: about 1 mmHg less for every 12 m. In Bishkek (about 800 m) a barometer reads roughly 696 mm."
+            },
+            "teacherNote": {
+              "ky": "Эсептеңиз: 800 / 12 ≈ 67 мм, 760 − 67 = 693 мм – модель көрсөткөн ≈ 696 мм ге жакын. Эскертүү: бул эреже Жердин бетине жакын жерде гана туура; бийик тоолордо басым жайыраак азаят.",
+              "ru": "Посчитайте: 800 / 12 ≈ 67 мм, 760 − 67 = 693 мм – близко к ≈ 696 мм модели. Оговорка: правило годится только у поверхности Земли; высоко в горах давление падает медленнее.",
+              "en": "Work it out: 800 / 12 ≈ 67 mm, 760 − 67 = 693 mm – close to the model's 696 mm. Caveat: the rule only holds near the ground; high in the mountains the pressure falls more slowly."
+            },
+            "altText": {
+              "ky": "Сымап мамычасы 760 мм ден төмөн, ≈ 693 мм де.",
+              "ru": "Столб ртути ниже 760 мм, около 693 мм.",
+              "en": "The mercury column below 760 mm, at about 693 mm."
+            }
+          },
+          {
+            "key": "aneroid",
+            "sample": "baro-naryn",
+            "camera": {
+              "position": [
+                0.75,
+                1.85,
+                2.76
+              ],
+              "target": [
+                0,
+                1.22,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.barometer",
+            "text": {
+              "ky": "Практикада анероид (грекче «суюктуксуз») колдонулат: абасы сордурулган толкун түрүндөгү металл кутуча басым чоңойгондо ичине ийилип, пластина жана механизм аркылуу жебени оңго жылдырат. Бийиктикти түз көрсөткөн анероиддер – бийиктик ченегичтер; аларды учкучтар жана альпинисттер колдонушат.",
+              "ru": "На практике используют анероид («безжидкостный»): гофрированная металлическая коробочка без воздуха при росте давления прогибается внутрь и через пластину и механизм отклоняет стрелку вправо. Анероиды, показывающие высоту, – высотомеры; ими пользуются лётчики и альпинисты.",
+              "en": "In practice an aneroid (\"without liquid\") is used: a corrugated metal box with the air pumped out bends inwards as pressure rises and, through a spring plate and a linkage, swings the pointer right. Aneroids marked in height are altimeters, used by pilots and climbers."
+            },
+            "teacherNote": {
+              "ky": "Кабинеттеги анероидди көрсөтүңүз (87–88-сүрөттөр) жана бир жума бою көрсөткүчүн аба ырайы менен кошо жазып турууну тапшырыңыз. Нарын үлгүсүн ачыңыз: ≈ 610 мм (12 м эрежеси 593 мм берет – бийикте эреже так эмес).",
+              "ru": "Покажите анероид из кабинета (рисунки 87–88) и поручите неделю записывать его показания вместе с погодой. Откройте образец «Нарын»: ≈ 610 мм (правило 12 м дало бы 593 мм – на высоте оно неточно).",
+              "en": "Show the classroom aneroid (figures 87–88) and have pupils log its readings with the weather for a week. Open the Naryn sample: about 610 mm (the 12 m rule would give 593 mm – it is not accurate that high)."
+            },
+            "altText": {
+              "ky": "Бийик тоодо сымап мамычасы андан да төмөн.",
+              "ru": "Высоко в горах столб ртути ещё ниже.",
+              "en": "High in the mountains the mercury column is lower still."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.torricelli-experiment"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "baro-sea-level"
+          },
+          {
+            "kind": "sample",
+            "key": "baro-bishkek"
+          },
+          {
+            "kind": "sample",
+            "key": "baro-naryn"
+          }
+        ],
+        "rows": [
+          "elevation",
+          "length",
+          "pressure"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-atm-1",
+          "phys.q.p7-atm-2",
+          "phys.q.p7-atm-3",
+          "phys.q.p7-atm-4",
+          "phys.q.p7-atm-5",
+          "phys.q.p7-atm-6",
+          "phys.q.p7-atm-7",
+          "phys.q.p7-atm-8",
+          "phys.q.p7-atm-9",
+          "phys.q.p7-atm-10",
+          "phys.q.p7-atm-11",
+          "phys.q.p7-atm-12",
+          "phys.q.p7-atm-13",
+          "phys.q.p7-atm-14",
+          "phys.q.p7-atm-15"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Аба ырайын болжолдоо",
+            "ru": "Прогноз погоды",
+            "en": "Weather forecasting"
+          },
+          "text": {
+            "ky": "Басым тез төмөндөсө, циклон жакындап, жаан-чачын болушу мүмкүн; басым жогоруласа – ачык аба ырайы.",
+            "ru": "Если давление быстро падает, приближается циклон и возможны осадки; если растёт – ясная погода.",
+            "en": "A fast fall in pressure means a cyclone and likely rain; rising pressure means fair weather."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Бийиктик ченегич",
+            "ru": "Высотомер",
+            "en": "Altimeters"
+          },
+          "text": {
+            "ky": "Учактардын бийиктик ченегичи – шкаласы метр менен туюнтулган анероид: басымдын азайышы боюнча бийиктикти көрсөтөт.",
+            "ru": "Высотомер самолёта – анероид со шкалой в метрах: по уменьшению давления он показывает высоту.",
+            "en": "An aircraft altimeter is an aneroid marked in metres: it shows height from the drop in pressure."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Соргуч насос",
+            "ru": "Всасывающий насос",
+            "en": "Suction pumps"
+          },
+          "text": {
+            "ky": "Кудуктагы соргуч насос сууну ≈ 10 м ден бийик көтөрө албайт – атмосфера басымы ушунча гана суу мамычасын теңдейт.",
+            "ru": "Всасывающий насос не поднимет воду из колодца выше ≈ 10 м – атмосферное давление уравновешивает лишь такой столб воды.",
+            "en": "A suction pump cannot raise well water more than about 10 m – air pressure can only balance a water column that tall."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Басымды которуу",
+            "ru": "Перевод давления",
+            "en": "Converting pressure"
+          },
+          "text": {
+            "ky": "770 сым. мам. мм = 770 · 133,3 ≈ 102 600 Па ≈ 1026 гПа – нормалдуудан бир аз жогору.",
+            "ru": "770 мм рт. ст. = 770 · 133,3 ≈ 102 600 Па ≈ 1026 гПа – чуть выше нормального.",
+            "en": "770 mmHg = 770 × 133.3 ≈ 102 600 Pa ≈ 1026 hPa – a little above normal."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Стакан жана кагаз",
+            "ru": "Стакан и бумага",
+            "en": "A glass and a card"
+          },
+          "text": {
+            "ky": "Суу толгон стаканды кагаз менен жаап көмкөрсөң, суу төгүлбөйт – кагазды ылдыйдан аба басып турат.",
+            "ru": "Накрой полный стакан бумагой и переверни – вода не выльется: бумагу снизу держит воздух.",
+            "en": "Cover a full glass with a card and turn it over – the water stays put: the air holds the card up."
+          }
+        },
+        {
+          "title": {
+            "ky": "Чөп түтүк",
+            "ru": "Соломинка",
+            "en": "A drinking straw"
+          },
+          "text": {
+            "ky": "Чөп түтүк менен шире ичкенде, түтүктөгү абаны чыгарасың, ал эми ширени ага атмосфера басымы түртүп киргизет.",
+            "ru": "Когда пьёшь сок через соломинку, ты убираешь из неё воздух, а сок вталкивает атмосферное давление.",
+            "en": "When you drink through a straw you remove the air inside it and air pressure pushes the juice up."
+          }
+        },
+        {
+          "title": {
+            "ky": "Тоодо кулак",
+            "ru": "Уши в горах",
+            "en": "Ears in the mountains"
+          },
+          "text": {
+            "ky": "Машина менен ашууга чыкканда кулагың «тыгылып» калат – сырттагы басым азайды, кулактын ичиндеги басым азырынча мурункудай.",
+            "ru": "Когда едешь на перевал, «закладывает» уши – снаружи давление упало, а внутри уха пока прежнее.",
+            "en": "Driving up a mountain pass your ears \"pop\" – the pressure outside has fallen while inside your ear it is still the same."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Абанын салмагы барбы?",
+        "ru": "Есть ли у воздуха вес?",
+        "en": "Does air have weight?"
+      },
+      {
+        "ky": "Эмне үчүн Торричеллинин түтүгүндө сымап 760 мм де токтойт?",
+        "ru": "Почему в трубке Торричелли ртуть останавливается на 760 мм?",
+        "en": "Why does the mercury in Torricelli's tube stop at 760 mm?"
+      },
+      {
+        "ky": "Тоого чыкканда атмосфера басымы кандай өзгөрөт?",
+        "ru": "Как меняется атмосферное давление при подъёме в горы?",
+        "en": "How does air pressure change as you climb a mountain?"
+      },
+      {
+        "ky": "Анероид кантип иштейт?",
+        "ru": "Как работает анероид?",
+        "en": "How does an aneroid barometer work?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Э. М. Мамбетакунов, «Физика, 7-класс», III глава (§24–34)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-atm-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Атмосфера деген эмне?",
+        "ru": "Что называют атмосферой?",
+        "en": "What is the atmosphere?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жерди курчап турган аба катмары",
+            "ru": "Воздушная оболочка, окружающая Землю",
+            "en": "The layer of air around the Earth"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жердин ички катмары",
+            "ru": "Внутренний слой Земли",
+            "en": "An inner layer of the Earth"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Океандардын суусу",
+            "ru": "Вода океанов",
+            "en": "The water of the oceans"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Абанын басымын ченөөчү прибор",
+            "ru": "Прибор для измерения давления воздуха",
+            "en": "An instrument for measuring air pressure"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Атмосфера – Жерди курчап турган аба катмары. Сөз грекче атмос (буу, аба) жана сфера (шар) сөздөрүнөн алынган.",
+        "ru": "Атмосфера – воздушная оболочка Земли. Слово от греческих атмос (пар, воздух) и сфера (шар).",
+        "en": "The atmosphere is the layer of air around the Earth. The word comes from the Greek atmos (vapour, air) and sphaira (ball)."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-atm-2",
+      "type": "numeric",
+      "prompt": {
+        "ky": "1 м³ абанын массасы 1,3 кг. Анын салмагы канча ньютон? g = 9,8 Н/кг.",
+        "ru": "Масса 1 м³ воздуха 1,3 кг. Каков его вес, Н? g = 9,8 Н/кг.",
+        "en": "1 m³ of air has a mass of 1.3 kg. What does it weigh, in N? g = 9.8 N/kg."
+      },
+      "answer": 12.74,
+      "tolerance": 0.3,
+      "unit": "N",
+      "explanation": {
+        "ky": "P = m·g = 1,3 · 9,8 ≈ 12,7 Н ≈ 13 Н.",
+        "ru": "P = m·g = 1,3 · 9,8 ≈ 12,7 Н ≈ 13 Н.",
+        "en": "P = mg = 1.3 × 9.8 ≈ 12.7 N ≈ 13 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "misconceptionKey": "phys.m.air-weightless",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-atm-3",
+      "type": "single",
+      "prompt": {
+        "ky": "Нормалдуу атмосфера басымы деп кандай басым аталат?",
+        "ru": "Какое давление называют нормальным атмосферным?",
+        "en": "What is normal atmospheric pressure?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "0 °С та 760 мм сымап мамычасына барабар басым",
+            "ru": "Давление, равное 760 мм рт. ст. при 0 °С",
+            "en": "A pressure equal to 760 mmHg at 0 °C"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "1000 Па басым",
+            "ru": "Давление 1000 Па",
+            "en": "A pressure of 1000 Pa"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Тоонун чокусундагы басым",
+            "ru": "Давление на вершине горы",
+            "en": "The pressure on a mountain top"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "1 м суу мамычасынын басымы",
+            "ru": "Давление столба воды 1 м",
+            "en": "The pressure of a 1 m water column"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "0 °С температурада бийиктиги 760 сым. мам. мм басымга барабар болгон атмосфера басымы нормалдуу атмосфера басымы деп аталат (≈ 101 300 Па).",
+        "ru": "Нормальным называют атмосферное давление, равное 760 мм рт. ст. при 0 °С (≈ 101 300 Па).",
+        "en": "Normal atmospheric pressure is a pressure equal to 760 mmHg at 0 °C (about 101 300 Pa)."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-atm-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "760 мм сымап мамычасынын басымы канча паскаль? ρ = 13 600 кг/м³, g = 9,8 Н/кг.",
+        "ru": "Каково давление столба ртути 760 мм в паскалях? ρ = 13 600 кг/м³, g = 9,8 Н/кг.",
+        "en": "What is the pressure of a 760 mm mercury column in pascals? ρ = 13 600 kg/m³, g = 9.8 N/kg."
+      },
+      "answer": 101293,
+      "tolerance": 300,
+      "unit": "Pa",
+      "explanation": {
+        "ky": "P = ρ·g·h = 13 600 · 9,8 · 0,76 ≈ 101 300 Па.",
+        "ru": "p = ρgh = 13 600 · 9,8 · 0,76 ≈ 101 300 Па.",
+        "en": "p = ρgh = 13 600 × 9.8 × 0.76 ≈ 101 300 Pa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-atm-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Тоонун этегинде барометр 760 сым. мам. мм көрсөттү. 240 м бийиктикте ал канча көрсөтөт? (Ар бир 12 м де 1 мм ге төмөндөйт.)",
+        "ru": "У подножия горы барометр показал 760 мм рт. ст. Что он покажет на высоте 240 м? (На каждые 12 м – на 1 мм меньше.)",
+        "en": "At the foot of a hill a barometer reads 760 mmHg. What does it read 240 m up? (1 mm less for every 12 m.)"
+      },
+      "answer": 740,
+      "tolerance": 1,
+      "unit": "mm",
+      "explanation": {
+        "ky": "240 / 12 = 20 мм; 760 − 20 = 740 сым. мам. мм.",
+        "ru": "240 / 12 = 20 мм; 760 − 20 = 740 мм рт. ст.",
+        "en": "240 / 12 = 20 mm; 760 − 20 = 740 mmHg."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-atm-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Имараттын түбүндө барометр 755 мм, чатырында 749 мм көрсөттү. Имараттын бийиктиги болжол менен канча метр?",
+        "ru": "У основания здания барометр показал 755 мм, на крыше – 749 мм. Какова примерно высота здания, м?",
+        "en": "A barometer reads 755 mm at the foot of a building and 749 mm on its roof. About how tall is the building, in m?"
+      },
+      "answer": 72,
+      "tolerance": 2,
+      "unit": "m",
+      "explanation": {
+        "ky": "Айырма 755 − 749 = 6 мм; h ≈ 6 · 12 = 72 м.",
+        "ru": "Разность 755 − 749 = 6 мм; h ≈ 6 · 12 = 72 м.",
+        "en": "The difference is 755 − 749 = 6 mm; h ≈ 6 × 12 = 72 m."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-atm-7",
+      "type": "single",
+      "prompt": {
+        "ky": "Барометр-анероидди 1-кабаттан 10-кабатка алып чыгышты. Анын көрсөткүчү кандай өзгөрөт?",
+        "ru": "Барометр-анероид подняли с 1-го на 10-й этаж. Как изменится его показание?",
+        "en": "An aneroid barometer is carried from the 1st to the 10th floor. How does its reading change?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не изменится",
+            "en": "It does not change"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Төмөндөйт",
+            "ru": "Уменьшится",
+            "en": "It goes down"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жогорулайт",
+            "ru": "Увеличится",
+            "en": "It goes up"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Бийиктеген сайын үстүңкү аба катмары жукарып, басым азаят, ошондуктан анероид азыраак көрсөтөт (≈ 30 м де ≈ 2,5 мм ге).",
+        "ru": "С высотой толща воздуха над прибором меньше, давление падает, и анероид показывает меньше (на ≈ 30 м – примерно на 2,5 мм).",
+        "en": "Higher up there is less air above, the pressure falls and the aneroid reads less (about 2.5 mm lower over 30 m)."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-atm-8",
+      "type": "single",
+      "prompt": {
+        "ky": "Торричеллинин тажрыйбасындагы сымабы бар түтүктү терең чуңкурга түшүрсөк, сымап мамычасынын бийиктиги кандай өзгөрөт?",
+        "ru": "Если трубку из опыта Торричелли опустить в глубокую шахту, как изменится высота столба ртути?",
+        "en": "If Torricelli's mercury tube is taken down a deep mine, how does the column height change?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не изменится",
+            "en": "It does not change"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Азаят",
+            "ru": "Уменьшится",
+            "en": "It falls"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Көбөйөт",
+            "ru": "Увеличится",
+            "en": "It rises"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Нөлгө барабар болот",
+            "ru": "Станет равной нулю",
+            "en": "It becomes zero"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Чуңкурда үстүңкү аба катмары калыңыраак, атмосфера басымы чоң, ошондуктан сымап мамычасы бийигирээк болот.",
+        "ru": "В шахте толща воздуха над трубкой больше, атмосферное давление больше, и столб ртути выше.",
+        "en": "Down a mine there is more air above, the pressure is greater and the mercury column stands taller."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-atm-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Тоонун чокусуна көтөрүлгөндө атмосфера басымы кандай өзгөрөт?",
+        "ru": "Как меняется атмосферное давление при подъёме на вершину горы?",
+        "en": "How does air pressure change as you climb to a mountain top?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не меняется",
+            "en": "It stays the same"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Азаят",
+            "ru": "Уменьшается",
+            "en": "It falls"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Көбөйөт",
+            "ru": "Увеличивается",
+            "en": "It rises"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Нөлгө барабар болот",
+            "ru": "Становится равным нулю",
+            "en": "It becomes zero"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Бийиктеген сайын Жердин тартуу күчү жана абанын тыгыздыгы азаят, ошондуктан басым азаят.",
+        "ru": "С высотой уменьшаются притяжение Земли и плотность воздуха, поэтому давление падает.",
+        "en": "With height the Earth's pull and the air density both fall, so the pressure drops."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-atm-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн шире чөп түтүк аркылуу оозубузга көтөрүлөт?",
+        "ru": "Почему сок поднимается по соломинке в рот?",
+        "en": "Why does juice rise up a straw into your mouth?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Биз ширени түтүк аркылуу тартабыз",
+            "ru": "Мы втягиваем сок соломинкой",
+            "en": "We pull the juice up the straw"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Түтүктөгү басым азайып, ширени атмосфера басымы түртөт",
+            "ru": "Давление в соломинке уменьшается, и сок вталкивает атмосферное давление",
+            "en": "The pressure in the straw drops and air pressure pushes the juice up"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Шире өзү жогору көтөрүлөт",
+            "ru": "Сок поднимается сам",
+            "en": "Juice rises by itself"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Түтүк ширени магнит сыяктуу тартат",
+            "ru": "Соломинка притягивает сок, как магнит",
+            "en": "The straw attracts the juice like a magnet"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Биз түтүктөгү абаны чыгарып, анын ичиндеги басымды азайтабыз. Стакандагы ширенин бетине атмосфера басымы аракет этип, аны түтүккө түртүп киргизет.",
+        "ru": "Мы убираем воздух из соломинки и уменьшаем в ней давление. Атмосферное давление на поверхность сока в стакане вталкивает его в соломинку.",
+        "en": "We remove air from the straw, lowering the pressure inside. Air pressure on the juice in the glass pushes it up the straw."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "misconceptionKey": "phys.m.suction-pulls",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-atm-11",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы көрүнүштөр атмосфера басымынын бар экенин далилдейт? Бардык туура жоопторду тандаңыз.",
+        "ru": "Какие явления доказывают существование атмосферного давления? Выберите все верные ответы.",
+        "en": "Which observations prove that air pressure exists? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кагаз менен жабылган суу толгон стаканды көмкөргөндө суу төгүлбөйт",
+            "ru": "Вода не выливается из перевёрнутого стакана, накрытого бумагой",
+            "en": "Water stays in an upturned glass covered with a card"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Тамчылаткычтын резинасын коё бергенде дары түтүккө кирет",
+            "ru": "Лекарство входит в пипетку, когда отпускают резинку",
+            "en": "Medicine enters a dropper when the bulb is released"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Шприцтин поршенин тартканда дары шприцке толот",
+            "ru": "Лекарство набирается в шприц, когда тянут поршень",
+            "en": "A syringe fills when the plunger is pulled back"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Мык сууга чөгөт",
+            "ru": "Гвоздь тонет в воде",
+            "en": "A nail sinks in water"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Муз жылуу бөлмөдө эрийт",
+            "ru": "Лёд тает в тёплой комнате",
+            "en": "Ice melts in a warm room"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Стакан, тамчылаткыч жана шприц атмосфера басымы менен иштейт. Мыктын чөгүшү – тыгыздыктын, муздун эриши – жылуулуктун натыйжасы.",
+        "ru": "Стакан, пипетка и шприц работают благодаря атмосферному давлению. Гвоздь тонет из-за плотности, лёд тает от тепла.",
+        "en": "The glass, the dropper and the syringe all rely on air pressure. The nail sinks because of density; ice melts because of heat."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-atm-12",
+      "type": "match",
+      "prompt": {
+        "ky": "Терминди анын маанисине дал келтириңиз.",
+        "ru": "Сопоставьте термин и его смысл.",
+        "en": "Match each term to its meaning."
+      },
+      "pairs": [
+        {
+          "key": "aneroid",
+          "left": {
+            "ky": "Анероид",
+            "ru": "Анероид",
+            "en": "Aneroid"
+          },
+          "right": {
+            "ky": "Суюктуксуз металл барометр",
+            "ru": "Металлический барометр без жидкости",
+            "en": "A metal barometer with no liquid"
+          }
+        },
+        {
+          "key": "altimeter",
+          "left": {
+            "ky": "Бийиктик ченегич",
+            "ru": "Высотомер",
+            "en": "Altimeter"
+          },
+          "right": {
+            "ky": "Шкаласы метр менен туюнтулган анероид",
+            "ru": "Анероид со шкалой в метрах",
+            "en": "An aneroid marked in metres"
+          }
+        },
+        {
+          "key": "vacuum",
+          "left": {
+            "ky": "Түтүктөгү сымаптын үстү",
+            "ru": "Пространство над ртутью в трубке",
+            "en": "The space above the mercury in the tube"
+          },
+          "right": {
+            "ky": "Боштук – аба жок",
+            "ru": "Пустота – воздуха нет",
+            "en": "A vacuum – no air"
+          }
+        },
+        {
+          "key": "mmhg",
+          "left": {
+            "ky": "1 сым. мам. мм",
+            "ru": "1 мм рт. ст.",
+            "en": "1 mmHg"
+          },
+          "right": {
+            "ky": "≈ 133,3 Па",
+            "ru": "≈ 133,3 Па",
+            "en": "about 133.3 Pa"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Анероид – грекче «суюктуксуз»; бийиктик ченегич – бийиктикти көрсөтүүчү анероид; Торричелли түтүгүндөгү сымаптын үстүндө боштук; 1 сым. мам. мм = 13 600 · 9,8 · 0,001 ≈ 133,3 Па.",
+        "ru": "Анероид – «безжидкостный»; высотомер – анероид, показывающий высоту; над ртутью в трубке Торричелли пустота; 1 мм рт. ст. = 13 600 · 9,8 · 0,001 ≈ 133,3 Па.",
+        "en": "Aneroid means \"without liquid\"; an altimeter is an aneroid that shows height; above the mercury in Torricelli's tube is a vacuum; 1 mmHg = 13 600 × 9.8 × 0.001 ≈ 133.3 Pa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-atm-13",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден атмосфера басымын теңдеп турган сымап мамычасын тап.",
+        "ru": "Найдите на модели столб ртути, который уравновешивает атмосферное давление.",
+        "en": "Find the mercury column that balances the air pressure."
+      },
+      "targetConceptKey": "phys.mercury-column",
+      "explanation": {
+        "ky": "Бул – түтүктөгү 760 мм сымап мамычасы; анын басымы атмосфера басымына барабар.",
+        "ru": "Это столб ртути 760 мм в трубке; его давление равно атмосферному.",
+        "en": "That is the 760 mm column of mercury in the tube; its pressure equals the air pressure."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-atm-14",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден идиштеги сымапты баскан абанын басымын көрсөткөн жебелерди тап.",
+        "ru": "Найдите на модели стрелки давления воздуха на ртуть в чашке.",
+        "en": "Find the arrows showing the air pressing on the mercury in the dish."
+      },
+      "targetConceptKey": "phys.atmospheric-pressure",
+      "explanation": {
+        "ky": "Бул – атмосфера басымы: аба идиштеги сымаптын бетин бардык тарапка бирдей басат.",
+        "ru": "Это атмосферное давление: воздух давит на поверхность ртути в чашке одинаково во все стороны.",
+        "en": "That is atmospheric pressure: the air presses on the mercury surface in the dish equally in all directions."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-atm-15",
+      "type": "single",
+      "prompt": {
+        "ky": "«Атмосфера басымы 770 сым. мам. мм ге барабар» деген жазуу эмнени түшүндүрөт?",
+        "ru": "Что означает запись «атмосферное давление 770 мм рт. ст.»?",
+        "en": "What does \"the air pressure is 770 mmHg\" mean?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Атмосфера басымы 770 мм бийиктиктеги сымап мамычасынын басымына барабар",
+            "ru": "Атмосферное давление равно давлению столба ртути высотой 770 мм",
+            "en": "The air pressure equals the pressure of a 770 mm mercury column"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Атмосферанын калыңдыгы 770 мм",
+            "ru": "Толщина атмосферы 770 мм",
+            "en": "The atmosphere is 770 mm thick"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Сымаптын массасы 770 г",
+            "ru": "Масса ртути 770 г",
+            "en": "The mercury has a mass of 770 g"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Басым нормалдуудан аз",
+            "ru": "Давление ниже нормального",
+            "en": "The pressure is below normal"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Бул учурда атмосфера басымы 770 мм сымап мамычасынын басымына барабар – нормалдуудан (760 мм) бир аз жогору, ≈ 102 600 Па.",
+        "ru": "Атмосферное давление равно давлению столба ртути 770 мм – немного выше нормального (760 мм), ≈ 102 600 Па.",
+        "en": "The air pressure equals that of a 770 mm mercury column – a little above normal (760 mm), about 102 600 Pa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

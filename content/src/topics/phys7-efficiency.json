@@ -1,0 +1,958 @@
+{
+  "topic": {
+    "key": "phys7-efficiency",
+    "unitKey": "phys.g7.statics",
+    "status": "published",
+    "title": {
+      "ky": "Механизмдердин пайдалуу аракет коэффициенти",
+      "ru": "Коэффициент полезного действия механизмов",
+      "en": "Efficiency of machines"
+    },
+    "formula": "\\eta = \\frac{A_\\text{п}}{A_\\text{т}} \\cdot 100\\%",
+    "classification": {
+      "ky": "Статика – жөнөкөй механизмдер",
+      "ru": "Статика – простые механизмы",
+      "en": "Statics – simple machines"
+    },
+    "description": {
+      "ky": "Брусокту 0,5 м бийиктикке көтөрүү үчүн аны 1 м жантык тактай боюнча тартабыз. Пайдалуу жумуш A_п = P·h = 4,9 Дж, ал эми динамометр боюнча толук жумуш A_т = F·l ≈ 6,6 Дж: сүрүлүүнү жеңүүгө да жумуш кетет. Пайдалуу жумуштун толук жумушка катышы – пайдалуу аракет коэффициенти (ПАК): η = A_п/A_т · 100 % ≈ 74 %. Ал ар дайым 100 %дан кичине.",
+      "ru": "Чтобы поднять брусок на 0,5 м, тащим его по наклонной доске длиной 1 м. Полезная работа A_п = P·h = 4,9 Дж, а полная, по динамометру, A_з = F·l ≈ 6,6 Дж: работа уходит и на трение. Отношение полезной работы к полной – коэффициент полезного действия (КПД): η = A_п/A_з · 100 % ≈ 74 %. Он всегда меньше 100 %.",
+      "en": "To raise a block 0.5 m we drag it up a 1 m sloping board. The useful work is W_u = W·h = 4.9 J, but the dynamometer shows a total of W_t = F·l ≈ 6.6 J – some work goes into friction. Useful over total work is the efficiency: η = W_u/W_t × 100 % ≈ 74 %. It is always below 100 %."
+    },
+    "goal": {
+      "ky": "Пайдалуу жана толук жумушту айырмалоо, жантык тегиздиктин жана рычагдын пайдалуу аракет коэффициентин η = A_п/A_т · 100 % эсептөө (PHYS-7.5.1, № 7 лабораториялык иш).",
+      "ru": "Различать полезную и полную работу, вычислять КПД наклонной плоскости и рычага η = A_п/A_з · 100 % (PHYS-7.5.1, лабораторная работа № 7).",
+      "en": "Tell useful from total work and calculate the efficiency η = W_u/W_t × 100 % of an incline and a lever (PHYS-7.5.1, lab work no. 7)."
+    },
+    "objectiveKeys": [
+      "phys.g7.statics.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "inclined-plane",
+        "angleDeg": 30,
+        "mass": 1,
+        "mu": 0.2,
+        "g": 9.8,
+        "length": 1
+      },
+      "camera": {
+        "position": [
+          1,
+          0.9,
+          2.6
+        ],
+        "target": [
+          0,
+          0.3,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "trace"
+      ]
+    },
+    "conceptKeys": [
+      "phys.efficiency",
+      "phys.golden-rule",
+      "phys.simple-machine",
+      "phys.ramp",
+      "phys.block",
+      "phys.gravity",
+      "phys.friction-force"
+    ],
+    "overrides": {
+      "phys.ramp": {
+        "nodes": [
+          "Ramp",
+          "Ramp_*"
+        ],
+        "title": {
+          "ky": "Жантык тегиздик",
+          "ru": "Наклонная плоскость",
+          "en": "Inclined plane"
+        },
+        "description": {
+          "ky": "Жантык коюлган жылмакай тактай – жөнөкөй механизм. Анын узундугу l = 1 м, бийиктиги h = 0,5 м (бурчу 30°). Жүктү тик көтөргөнчө жантык тегиздик боюнча сүйрөп чыгуу жеңил, бирок жол узун.",
+          "ru": "Наклонно поставленная гладкая доска – простой механизм. Её длина l = 1 м, высота h = 0,5 м (угол 30°). Втащить груз по наклонной плоскости легче, чем поднять вертикально, но путь длиннее.",
+          "en": "A smooth board set at a slant is a simple machine: length l = 1 m, height h = 0.5 m (30°). Dragging a load up it is easier than lifting it straight up, but the path is longer."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.5
+          },
+          {
+            "kind": "quantity",
+            "type": "angle",
+            "value": 30
+          }
+        ]
+      },
+      "phys.block": {
+        "nodes": [
+          "Block"
+        ],
+        "title": {
+          "ky": "Брусок",
+          "ru": "Брусок",
+          "en": "Block"
+        },
+        "description": {
+          "ky": "Илмеги бар жыгач брусок, массасы 1 кг, оордук күчү P = 9,8 Н.",
+          "ru": "Деревянный брусок с крючком, масса 1 кг, сила тяжести P = 9,8 Н.",
+          "en": "A wooden block with a hook, mass 1 kg, weight 9.8 N."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 9.8
+          }
+        ]
+      },
+      "phys.gravity": {
+        "nodes": [
+          "Vector_Gravity"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 9.8
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "A_\\text{п} = P h = 9.8 \\cdot 0.5 = 4.9"
+          }
+        ]
+      },
+      "phys.friction-force": {
+        "nodes": [
+          "Vector_Friction"
+        ],
+        "description": {
+          "ky": "Брусок менен тактайдын ортосундагы сүрүлүү күчү кыймылга каршы багытталат. Аны жеңүүгө кеткен жумуш толук жумушту пайдалуудан чоң кылат: μ = 0,2 болгондо F ≈ 6,6 Н, A_т ≈ 6,6 Дж.",
+          "ru": "Сила трения между бруском и доской направлена против движения. Работа на её преодоление делает полную работу больше полезной: при μ = 0,2 F ≈ 6,6 Н, A_з ≈ 6,6 Дж.",
+          "en": "Friction between block and board opposes the motion; the work against it makes the total exceed the useful work: with μ = 0.2, F ≈ 6.6 N and W_t ≈ 6.6 J."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.2
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 1.7,
+            "approx": true
+          }
+        ]
+      },
+      "phys.efficiency": {
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\eta = \\frac{4.9}{6.6} \\cdot 100\\% \\approx 74\\%"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "incline-smooth",
+        "title": {
+          "ky": "Жылмакай тактай, μ = 0,05",
+          "ru": "Гладкая доска, μ = 0,05",
+          "en": "Smooth board, μ = 0.05"
+        },
+        "classification": {
+          "ky": "F ≈ 5,3 Н, η ≈ 92 %",
+          "ru": "F ≈ 5,3 Н, η ≈ 92 %",
+          "en": "F ≈ 5.3 N, η ≈ 92 %"
+        },
+        "thumb": "thumbs/incline-smooth.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.05
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 5.3,
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "mu": 0.05
+          }
+        }
+      },
+      {
+        "key": "incline-board",
+        "title": {
+          "ky": "Жыгач тактай, μ = 0,2",
+          "ru": "Деревянная доска, μ = 0,2",
+          "en": "Wooden board, μ = 0.2"
+        },
+        "classification": {
+          "ky": "F ≈ 6,6 Н, η ≈ 74 %",
+          "ru": "F ≈ 6,6 Н, η ≈ 74 %",
+          "en": "F ≈ 6.6 N, η ≈ 74 %"
+        },
+        "thumb": "thumbs/incline-board.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.2
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 6.6,
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "mu": 0.2
+          }
+        }
+      },
+      {
+        "key": "incline-rough",
+        "title": {
+          "ky": "Орой бет, μ = 0,4",
+          "ru": "Шероховатая поверхность, μ = 0,4",
+          "en": "Rough surface, μ = 0.4"
+        },
+        "classification": {
+          "ky": "F ≈ 8,3 Н, η ≈ 59 %",
+          "ru": "F ≈ 8,3 Н, η ≈ 59 %",
+          "en": "F ≈ 8.3 N, η ≈ 59 %"
+        },
+        "thumb": "thumbs/incline-rough.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.4
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 8.3,
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "mu": 0.4
+          }
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                0,
+                0.5,
+                2.6
+              ],
+              "target": [
+                0,
+                0.3,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.ramp",
+            "text": {
+              "ky": "№ 7 лабораториялык иш: тактайды жантык коёбуз. Узундугу l = 1 м, бийиктиги h = 0,5 м. Брусокту динамометр менен өйдө карай бир калыпта жылдырабыз.",
+              "ru": "Лабораторная работа № 7: ставим доску наклонно. Длина l = 1 м, высота h = 0,5 м. Брусок равномерно тянем динамометром вверх.",
+              "en": "Lab work no. 7: tilt a board – length l = 1 m, height h = 0.5 m – and pull a block steadily up it with a dynamometer."
+            },
+            "teacherNote": {
+              "ky": "147-сүрөттү көрсөтүп, h жана l ди сызгыч менен кантип өлчөөнү түшүндүрүңүз.",
+              "ru": "Покажите рис. 147 и объясните, как измерить h и l линейкой.",
+              "en": "Show fig. 147 and how to measure h and l with a ruler."
+            },
+            "altText": {
+              "ky": "Жантык тактай жана анын үстүндөгү брусок.",
+              "ru": "Наклонная доска с бруском.",
+              "en": "A sloping board with a block on it."
+            }
+          },
+          {
+            "key": "weight",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.gravity",
+            "text": {
+              "ky": "Брусоктун оордук күчүн динамометр менен өлчөйбүз: P = 9,8 Н (1 кг). Аны тик h = 0,5 м ге көтөрүү – пайдалуу жумуш: A_п = P·h = 4,9 Дж.",
+              "ru": "Измеряем силу тяжести бруска динамометром: P = 9,8 Н (1 кг). Поднять его вертикально на h = 0,5 м – полезная работа: A_п = P·h = 4,9 Дж.",
+              "en": "Weigh the block with the dynamometer: W = 9.8 N (1 kg). Raising it straight up h = 0.5 m is the useful work: W_u = W·h = 4.9 J."
+            },
+            "altText": {
+              "ky": "Брусоктон тик ылдый караган оордук күчүнүн жебеси.",
+              "ru": "Стрелка силы тяжести от бруска вниз.",
+              "en": "The gravity arrow pointing straight down from the block."
+            }
+          },
+          {
+            "key": "friction",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.friction-force",
+            "text": {
+              "ky": "Брусок тактай боюнча жылганда сүрүлүү күчү пайда болот – ал дайыма кыймылга каршы. Моделде брусок ылдый тайгаланат, сүрүлүү өйдө багытталган; биз аны өйдө тартканда сүрүлүү ылдый багытталат.",
+              "ru": "Когда брусок скользит по доске, возникает сила трения – она всегда против движения. В модели брусок соскальзывает вниз, и трение направлено вверх; когда тянем брусок вверх, трение направлено вниз.",
+              "en": "When the block slides on the board friction appears – always against the motion. In the model the block slides down, so friction points up the slope; when we pull it up, friction points down."
+            },
+            "teacherNote": {
+              "ky": "Окуучуларга эскертиңиз: тартуу күчү бир калыпта болушу керек, болбосо динамометр туура көрсөтпөйт.",
+              "ru": "Предупредите: тянуть нужно равномерно, иначе динамометр покажет неверно.",
+              "en": "Remind pupils to pull steadily or the dynamometer reading will be wrong."
+            },
+            "altText": {
+              "ky": "Беттин бою боюнча сүрүлүү күчүнүн жебеси.",
+              "ru": "Стрелка силы трения вдоль поверхности.",
+              "en": "The friction arrow along the surface."
+            }
+          },
+          {
+            "key": "total",
+            "modes": {
+              "trace": true
+            },
+            "focus": "phys.golden-rule",
+            "text": {
+              "ky": "Брусокту өйдө тартуу күчү F ≈ 6,6 Н (μ = 0,2). Ал l = 1 м жол басат: толук жумуш A_т = F·l ≈ 6,6 Дж. Бул пайдалуу 4,9 Джден көп: кошумча жумуш сүрүлүүнү жеңүүгө кетти.",
+              "ru": "Сила тяги вверх F ≈ 6,6 Н (μ = 0,2). Она проходит путь l = 1 м: полная работа A_з = F·l ≈ 6,6 Дж. Это больше полезных 4,9 Дж: лишняя работа ушла на преодоление трения.",
+              "en": "The pull up the slope is F ≈ 6.6 N (μ = 0.2) over l = 1 m: total work W_t = F·l ≈ 6.6 J – more than the useful 4.9 J; the extra went into friction."
+            },
+            "teacherNote": {
+              "ky": "Алтын эреже: сүрүлүү жок болсо F·l = P·h, F = 4,9 Н болмок. Сүрүлүү жумушту көбөйтөт.",
+              "ru": "Золотое правило: без трения было бы F·l = P·h, F = 4,9 Н. Трение увеличивает работу.",
+              "en": "Golden rule: with no friction F·l = W·h and F would be 4.9 N. Friction adds work."
+            },
+            "altText": {
+              "ky": "Брусок жантык тегиздик боюнча жылып баратат, анын изи көрүнөт.",
+              "ru": "Брусок движется по наклонной плоскости, виден его след.",
+              "en": "The block moves along the slope leaving a trace."
+            }
+          },
+          {
+            "key": "eta",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.efficiency",
+            "text": {
+              "ky": "Пайдалуу аракет коэффициенти: η = A_п/A_т · 100 % = 4,9/6,6 · 100 % ≈ 74 %. Тактай жылмакай болсо (μ = 0,05) η ≈ 92 %, орой болсо (μ = 0,4) η ≈ 59 %. ПАК ар дайым 100 %дан кичине.",
+              "ru": "Коэффициент полезного действия: η = A_п/A_з · 100 % = 4,9/6,6 · 100 % ≈ 74 %. На гладкой доске (μ = 0,05) η ≈ 92 %, на шероховатой (μ = 0,4) η ≈ 59 %. КПД всегда меньше 100 %.",
+              "en": "Efficiency: η = W_u/W_t × 100 % = 4.9/6.6 × 100 % ≈ 74 %. On a smooth board (μ = 0.05) η ≈ 92 %, on a rough one (μ = 0.4) η ≈ 59 %. It is always below 100 %."
+            },
+            "teacherNote": {
+              "ky": "Таблицаны толтургула: h, P, A_п, l, F, A_т, ПАК (№ 7 лабораториялык иштин таблицасы).",
+              "ru": "Заполните таблицу лабораторной работы № 7: h, P, A_п, l, F, A_з, КПД.",
+              "en": "Fill in the lab-7 table: h, W, W_u, l, F, W_t, efficiency."
+            },
+            "altText": {
+              "ky": "Брусок жантык тегиздикте, жанында η ≈ 74 % жазуусу.",
+              "ru": "Брусок на наклонной плоскости, рядом подпись η ≈ 74 %.",
+              "en": "The block on the incline with the label η ≈ 74 %."
+            }
+          },
+          {
+            "key": "lever-example",
+            "focus": "phys.simple-machine",
+            "sample": "incline-smooth",
+            "text": {
+              "ky": "Китептеги мисал: 100 кг жүк рычагдын кыска ийининде 0,08 м көтөрүлдү, узун ийинге 250 Н жумшалып, анын учу 0,4 м түштү. A_п = 80 Дж, A_т = 100 Дж, η = 80 %. Ар кандай механизмдин ПАКы 100 %дан кичине.",
+              "ru": "Пример из учебника: груз 100 кг на коротком плече рычага поднят на 0,08 м, к длинному приложили 250 Н, конец опустился на 0,4 м. A_п = 80 Дж, A_з = 100 Дж, η = 80 %. КПД любого механизма меньше 100 %.",
+              "en": "The textbook example: 100 kg on a lever’s short arm rises 0.08 m while 250 N moves the long arm down 0.4 m. W_u = 80 J, W_t = 100 J, η = 80 %. Every machine’s efficiency is below 100 %."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: ПАК бирден чоң болушу мүмкүнбү? Жообун негиздегиле (§50, 4-суроо).",
+              "ru": "Спросите: может ли КПД быть больше единицы? Обоснуйте (§50, вопрос 4).",
+              "en": "Ask: can efficiency exceed 1? Justify (§50, question 4)."
+            },
+            "altText": {
+              "ky": "Жылмакай тактайдагы брусок – сүрүлүү аз.",
+              "ru": "Брусок на гладкой доске – трение мало.",
+              "en": "The block on a smooth board – little friction."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.incline-efficiency-lab"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "incline-smooth"
+          },
+          {
+            "kind": "sample",
+            "key": "incline-board"
+          },
+          {
+            "kind": "sample",
+            "key": "incline-rough"
+          }
+        ],
+        "rows": [
+          "frictionCoefficient",
+          "force",
+          "energy"
+        ],
+        "manual": [
+          {
+            "column": "incline-smooth",
+            "row": "energy",
+            "value": {
+              "ky": "A_п = 4,9 Дж, A_т ≈ 5,3 Дж, η ≈ 92 %",
+              "ru": "A_п = 4,9 Дж, A_з ≈ 5,3 Дж, η ≈ 92 %",
+              "en": "W_u = 4.9 J, W_t ≈ 5.3 J, η ≈ 92 %"
+            }
+          },
+          {
+            "column": "incline-board",
+            "row": "energy",
+            "value": {
+              "ky": "A_п = 4,9 Дж, A_т ≈ 6,6 Дж, η ≈ 74 %",
+              "ru": "A_п = 4,9 Дж, A_з ≈ 6,6 Дж, η ≈ 74 %",
+              "en": "W_u = 4.9 J, W_t ≈ 6.6 J, η ≈ 74 %"
+            }
+          },
+          {
+            "column": "incline-rough",
+            "row": "energy",
+            "value": {
+              "ky": "A_п = 4,9 Дж, A_т ≈ 8,3 Дж, η ≈ 59 %",
+              "ru": "A_п = 4,9 Дж, A_з ≈ 8,3 Дж, η ≈ 59 %",
+              "en": "W_u = 4.9 J, W_t ≈ 8.3 J, η ≈ 59 %"
+            }
+          }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-efficiency-1",
+          "phys.q.phys7-efficiency-2",
+          "phys.q.phys7-efficiency-3",
+          "phys.q.phys7-efficiency-4",
+          "phys.q.phys7-efficiency-5",
+          "phys.q.phys7-efficiency-6",
+          "phys.q.phys7-efficiency-7",
+          "phys.q.phys7-efficiency-8",
+          "phys.q.phys7-efficiency-9"
+        ],
+        "sampleSize": 6
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Тоо жолдору",
+            "ru": "Горные дороги",
+            "en": "Mountain roads"
+          },
+          "text": {
+            "ky": "Төө-Ашуу сыяктуу ашууларга жолдор серпантин болуп салынат – бул узун жантык тегиздик: машина аз күч менен чыгат, бирок сүрүлүүгө жана абанын каршылыгына жумуш кетет.",
+            "ru": "Дороги на перевалы вроде Тоо-Ашуу прокладывают серпантином – это длинная наклонная плоскость: машина поднимается с меньшей силой, но часть работы уходит на трение и сопротивление воздуха.",
+            "en": "Roads over passes such as Too-Ashuu zigzag – a long inclined plane: the car climbs with less force, but some work is lost to friction and air drag."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Кыймылдаткычтардын ПАКы",
+            "ru": "КПД двигателей",
+            "en": "Engine efficiencies"
+          },
+          "text": {
+            "ky": "Электр кыймылдаткычтын ПАКы ≈ 90 %, бензин кыймылдаткычтыкы ≈ 25–30 %, велосипеддин чынжырлуу берүүсүнүкү ≈ 95 %.",
+            "ru": "КПД электродвигателя ≈ 90 %, бензинового двигателя ≈ 25–30 %, цепной передачи велосипеда ≈ 95 %.",
+            "en": "An electric motor is ≈ 90 % efficient, a petrol engine ≈ 25–30 %, a bicycle chain drive ≈ 95 %."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Пайыз менен эсептөө",
+            "ru": "Расчёт в процентах",
+            "en": "Working in percent"
+          },
+          "text": {
+            "ky": "η = A_п/A_т бирден кичине бөлчөк; аны 100 %га көбөйтүп, пайыз менен жазабыз: 0,74 = 74 %.",
+            "ru": "η = A_п/A_з – дробь меньше единицы; умножая на 100 %, записываем в процентах: 0,74 = 74 %.",
+            "en": "η = W_u/W_t is a fraction below 1; times 100 % it becomes a percentage: 0.74 = 74 %."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Пандус",
+            "ru": "Пандус",
+            "en": "A ramp"
+          },
+          "text": {
+            "ky": "Майыптар арабасы үчүн пандус – жантык тегиздик: арабаны түртүү жеңил, бирок жол узун.",
+            "ru": "Пандус для инвалидной коляски – наклонная плоскость: толкать легче, но путь длиннее.",
+            "en": "A wheelchair ramp is an inclined plane: pushing is easier, but the way is longer."
+          }
+        },
+        {
+          "title": {
+            "ky": "Чананы тоого сүйрөө",
+            "ru": "Тащим санки в гору",
+            "en": "Pulling a sledge uphill"
+          },
+          "text": {
+            "ky": "Чананы кар үстүндө сүйрөө жеңил, кумда кыйын: сүрүлүү көп болсо, көбүрөөк жумуш «текке» кетет.",
+            "ru": "Санки легко тащить по снегу и тяжело по песку: чем больше трение, тем больше работы уходит «впустую».",
+            "en": "A sledge pulls easily on snow and hard on sand: more friction, more work wasted."
+          }
+        }
+      ]
+    },
+    "props": [
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "A_\\text{п} = P h"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "A_\\text{т} = F l"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "\\eta \\approx 74\\%"
+      }
+    ],
+    "starters": [
+      {
+        "ky": "Эмне үчүн толук жумуш пайдалуу жумуштан чоң?",
+        "ru": "Почему полная работа больше полезной?",
+        "en": "Why is total work bigger than useful work?"
+      },
+      {
+        "ky": "ПАК 100 %дан чоң болушу мүмкүнбү?",
+        "ru": "Может ли КПД быть больше 100 %?",
+        "en": "Can efficiency be over 100 %?"
+      },
+      {
+        "ky": "Жантык тегиздиктин ПАКын кантип өлчөйбүз?",
+        "ru": "Как измерить КПД наклонной плоскости?",
+        "en": "How do we measure an incline’s efficiency?"
+      },
+      {
+        "ky": "ПАКты кантип көбөйтүүгө болот?",
+        "ru": "Как повысить КПД?",
+        "en": "How can efficiency be increased?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Мамбетакунов, «Физика», 7-класс (kg-2018), V–VI главалар"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-efficiency-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Пайдалуу аракет коэффициентинин формуласы кандай?",
+        "ru": "Какова формула КПД?",
+        "en": "What is the formula for efficiency?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "η = N/A",
+            "ru": "η = N/A",
+            "en": "η = N/A"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "η = A/t",
+            "ru": "η = A/t",
+            "en": "η = A/t"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "η = A_т/A_п",
+            "ru": "η = A_з/A_п",
+            "en": "η = W_t/W_u"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "η = A_п/A_т",
+            "ru": "η = A_п/A_з",
+            "en": "η = W_u/W_t"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "η = F·s",
+            "ru": "η = F·s",
+            "en": "η = F·s"
+          }
+        }
+      ],
+      "answer": "d",
+      "explanation": {
+        "ky": "ПАК – пайдалуу жумуштун толук жумушка катышы: η = A_п/A_т (·100 %).",
+        "ru": "КПД – отношение полезной работы к полной: η = A_п/A_з (·100 %).",
+        "en": "Efficiency is useful work over total work: η = W_u/W_t (×100 %)."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-efficiency-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Пайдалуу жумуш менен толук жумуштун катнашы кандай?",
+        "ru": "Как соотносятся полезная и полная работа?",
+        "en": "How do useful and total work compare?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "A_п > A_т",
+            "ru": "A_п > A_з",
+            "en": "W_u > W_t"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "A_п = A_т ар дайым",
+            "ru": "A_п = A_з всегда",
+            "en": "W_u = W_t always"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "A_п < A_т",
+            "ru": "A_п < A_з",
+            "en": "W_u < W_t"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Толук жумушка механизмди жылдыруу жана сүрүлүүнү жеңүү да кирет, ошондуктан A_п < A_т жана η < 100 %.",
+        "ru": "В полную работу входит перемещение механизма и преодоление трения, поэтому A_п < A_з и η < 100 %.",
+        "en": "Total work also covers moving the machine and beating friction, so W_u < W_t and η < 100 %."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.efficiency-over-100",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-efficiency-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Рычагдын кыска ийинине массасы 100 кг жүк илинген. Узун ийинге 250 Н күч жумшалып, жүк 0,08 м көтөрүлдү, ал эми күч жумшалган чекит 0,4 м төмөн түштү. Рычагдын ПАКы канча %? (P ≈ 1000 Н деп алгыла)",
+        "ru": "К короткому плечу рычага подвешен груз 100 кг. К длинному плечу приложили 250 Н; груз поднялся на 0,08 м, а точка приложения силы опустилась на 0,4 м. Чему равен КПД рычага, %? (Примите P ≈ 1000 Н)",
+        "en": "A 100 kg load hangs on a lever’s short arm. 250 N on the long arm lifts the load 0.08 m while that end moves down 0.4 m. What is the lever’s efficiency in %? (Take W ≈ 1000 N)"
+      },
+      "answer": 80,
+      "tolerance": 1,
+      "unit": "%",
+      "explanation": {
+        "ky": "A_п = P·h₁ = 1000 Н · 0,08 м = 80 Дж, A_т = F·h₂ = 250 Н · 0,4 м = 100 Дж, η = 80/100 · 100 % = 80 % (китептеги мисал).",
+        "ru": "A_п = P·h₁ = 1000 Н · 0,08 м = 80 Дж, A_з = F·h₂ = 250 Н · 0,4 м = 100 Дж, η = 80/100 · 100 % = 80 % (пример из учебника).",
+        "en": "W_u = W·h₁ = 1000 N × 0.08 m = 80 J, W_t = F·h₂ = 250 N × 0.4 m = 100 J, η = 80/100 × 100 % = 80 % (the textbook example)."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-efficiency-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "№ 7 лабораториялык иш: брусоктун оордук күчү 9,8 Н, жантык тегиздиктин бийиктиги 0,5 м, узундугу 1 м. Брусокту бир калыпта өйдө тартуу күчү 6,6 Н. Жантык тегиздиктин ПАКы канча %?",
+        "ru": "Лабораторная работа № 7: сила тяжести бруска 9,8 Н, высота наклонной плоскости 0,5 м, длина 1 м. Сила равномерной тяги вверх 6,6 Н. Чему равен КПД наклонной плоскости, %?",
+        "en": "Lab work no. 7: the block weighs 9.8 N, the incline is 0.5 m high and 1 m long, and pulling the block up steadily takes 6.6 N. What is the incline’s efficiency in %?"
+      },
+      "answer": 74,
+      "tolerance": 1.5,
+      "unit": "%",
+      "explanation": {
+        "ky": "A_п = P·h = 9,8 · 0,5 = 4,9 Дж; A_т = F·l = 6,6 · 1 = 6,6 Дж; η = 4,9/6,6 · 100 % ≈ 74 %.",
+        "ru": "A_п = P·h = 9,8 · 0,5 = 4,9 Дж; A_з = F·l = 6,6 · 1 = 6,6 Дж; η = 4,9/6,6 · 100 % ≈ 74 %.",
+        "en": "W_u = W·h = 9.8 × 0.5 = 4.9 J; W_t = F·l = 6.6 × 1 = 6.6 J; η = 4.9/6.6 × 100 % ≈ 74 %."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-efficiency-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Брусоктун оордук күчү 9,8 Н. Аны 0,5 м бийиктикке көтөрүүдөгү пайдалуу жумуш канча Дж?",
+        "ru": "Сила тяжести бруска 9,8 Н. Какова полезная работа (в Дж) при подъёме его на высоту 0,5 м?",
+        "en": "A block weighs 9.8 N. What is the useful work in J to raise it 0.5 m?"
+      },
+      "answer": 4.9,
+      "tolerance": 0.05,
+      "unit": "J",
+      "explanation": {
+        "ky": "A_п = P·h = 9,8 Н · 0,5 м = 4,9 Дж.",
+        "ru": "A_п = P·h = 9,8 Н · 0,5 м = 4,9 Дж.",
+        "en": "W_u = W·h = 9.8 N × 0.5 m = 4.9 J."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-efficiency-6",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Механизмдин ПАКын кантип көбөйтүүгө болот?",
+        "ru": "Как можно повысить КПД механизма?",
+        "en": "How can a machine’s efficiency be raised?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Окторун майлап, сүрүлүүнү азайтуу",
+            "ru": "Смазать оси, уменьшить трение",
+            "en": "Oil the axles to cut friction"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Механизмдин бөлүктөрүн жеңилдетүү",
+            "ru": "Облегчить детали механизма",
+            "en": "Make the machine’s parts lighter"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жантык тегиздиктин бетин тегиз, жылмакай кылуу",
+            "ru": "Сделать поверхность наклонной плоскости гладкой",
+            "en": "Make the incline’s surface smooth"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Бетин орой кылуу",
+            "ru": "Сделать поверхность шероховатой",
+            "en": "Make the surface rough"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Эң жөнөкөй жол – механизмдердин окторундагы сүрүлүүнү жана алардын салмагын азайтуу (§50). Орой бет сүрүлүүнү көбөйтүп, ПАКты азайтат.",
+        "ru": "Проще всего – уменьшить трение в осях и вес механизмов (§50). Шероховатая поверхность увеличивает трение и снижает КПД.",
+        "en": "The simplest way is to reduce friction at the axles and the machine’s weight (§50). A rough surface adds friction and lowers efficiency."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-efficiency-7",
+      "type": "match",
+      "prompt": {
+        "ky": "Чоңдукту анын формуласы менен дал келтир.",
+        "ru": "Сопоставь величину и формулу.",
+        "en": "Match each quantity to its formula."
+      },
+      "pairs": [
+        {
+          "key": "useful",
+          "left": {
+            "ky": "Пайдалуу жумуш",
+            "ru": "Полезная работа",
+            "en": "Useful work"
+          },
+          "right": {
+            "ky": "A_п = P·h",
+            "ru": "A_п = P·h",
+            "en": "W_u = W·h"
+          }
+        },
+        {
+          "key": "total",
+          "left": {
+            "ky": "Толук жумуш",
+            "ru": "Полная работа",
+            "en": "Total work"
+          },
+          "right": {
+            "ky": "A_т = F·l",
+            "ru": "A_з = F·l",
+            "en": "W_t = F·l"
+          }
+        },
+        {
+          "key": "eta",
+          "left": {
+            "ky": "ПАК",
+            "ru": "КПД",
+            "en": "Efficiency"
+          },
+          "right": {
+            "ky": "η = A_п/A_т · 100 %",
+            "ru": "η = A_п/A_з · 100 %",
+            "en": "η = W_u/W_t × 100 %"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Жантык тегиздикте пайдалуу жумуш – жүктү h бийиктикке көтөрүү, толук жумуш – аны l узундук боюнча тартуу.",
+        "ru": "На наклонной плоскости полезная работа – подъём на высоту h, полная – протаскивание по длине l.",
+        "en": "On an incline the useful work lifts the load through h; the total work drags it along the length l."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-efficiency-8",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден ПАКты азайтуучу күчтү – сүрүлүү күчүн тап.",
+        "ru": "Найди на модели силу, снижающую КПД, – силу трения.",
+        "en": "Find the force that lowers the efficiency – friction – on the model."
+      },
+      "targetConceptKey": "phys.friction-force",
+      "explanation": {
+        "ky": "Сүрүлүү күчү брусок менен тактайдын ортосунда, кыймылга каршы багытталган.",
+        "ru": "Сила трения действует между бруском и доской против движения.",
+        "en": "Friction acts between the block and the board, against the motion."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-efficiency-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Механизмдин ПАКы 80 % деген эмнени билдирет?",
+        "ru": "Что означает КПД механизма 80 %?",
+        "en": "What does an efficiency of 80 % mean?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Аткарылган жумуштун 80 %ы гана пайдалуу, 20 %ы механизмди жылдырууга жана сүрүлүүгө кетет",
+            "ru": "Лишь 80 % совершённой работы полезны, 20 % уходит на механизм и трение",
+            "en": "Only 80 % of the work done is useful; 20 % goes into the machine and friction"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Механизм күчтөн 80 эсе утуш берет",
+            "ru": "Механизм даёт выигрыш в силе в 80 раз",
+            "en": "The machine multiplies force 80 times"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Механизм 80 % убакыт иштейт",
+            "ru": "Механизм работает 80 % времени",
+            "en": "The machine runs 80 % of the time"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Китептеги түшүндүрмө: жумуштун 80 %ы пайдалуу, 20 %ы механизмдин өзүн жылдырууга жана сүрүлүүнү жеңүүгө кетет.",
+        "ru": "Как объясняет учебник: 80 % работы полезны, 20 % тратится на перемещение самого механизма и преодоление трения.",
+        "en": "As the book explains: 80 % of the work is useful and 20 % goes into moving the machine and overcoming friction."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

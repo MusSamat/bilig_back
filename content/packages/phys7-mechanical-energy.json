@@ -1,0 +1,4205 @@
+{
+  "manifest": {
+    "topicKey": "phys7-mechanical-energy",
+    "version": "1.0.0",
+    "hash": "c002e74b87cca53507c959d69bc7a1296bb3348d1e3d9fd2d154d447f226d260",
+    "files": [
+      {
+        "path": "thumbs/energy-60deg.webp",
+        "hash": "a971ace665abd9fac3fbad6d6964645395e6288243de53e36c36b944472416f3",
+        "size": 0
+      },
+      {
+        "path": "thumbs/energy-30deg.webp",
+        "hash": "2bae339b40f4b53f30931bc34dbd04c639cfbed21e803339bf2da6cbdfb4d6c0",
+        "size": 0
+      },
+      {
+        "path": "thumbs/energy-damped.webp",
+        "hash": "17dffe5dcab152c6db839a6e65188940c84e0eacd4f27bbf7e0d5fefa2318425",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "phys",
+    "icon": "orbit",
+    "hue": 28,
+    "group": "natural",
+    "order": 2,
+    "status": "live",
+    "title": {
+      "ky": "Физика",
+      "ru": "Физика",
+      "en": "Physics"
+    },
+    "assistantGuide": "Physics. Give the quantity, its symbol and unit (SI; km/h only as in the material) and the formula, then a short worked calculation with numbers and units when asked. Keep numbers from the material; round sensibly. Distinguish similar quantities (speed vs distance, mass vs weight, force vs moment)."
+  },
+  "course": {
+    "key": "phys.g7",
+    "subjectKey": "phys",
+    "grade": 7,
+    "curriculum": "kg-2018",
+    "title": {
+      "ky": "Физика, 7-класс",
+      "ru": "Физика, 7 класс",
+      "en": "Physics, grade 7"
+    }
+  },
+  "unit": {
+    "key": "phys.g7.energy",
+    "courseKey": "phys.g7",
+    "order": 4,
+    "title": {
+      "ky": "Импульс, жумуш, кубаттуулук жана энергия",
+      "ru": "Импульс, работа, мощность и энергия",
+      "en": "Momentum, work, power and energy"
+    }
+  },
+  "objectives": [
+    {
+      "key": "phys.g7.energy.o1",
+      "code": "PHYS-7.4.1",
+      "unitKey": "phys.g7.energy",
+      "text": {
+        "ky": "Импульсту жана анын сакталуу законун, реактивдүү кыймылды түшүндүрүү.",
+        "ru": "Объяснять импульс, закон его сохранения и реактивное движение.",
+        "en": "Explain momentum, its conservation and jet propulsion."
+      }
+    },
+    {
+      "key": "phys.g7.energy.o2",
+      "code": "PHYS-7.4.2",
+      "unitKey": "phys.g7.energy",
+      "text": {
+        "ky": "Механикалык жумушту, кубаттуулукту жана энергияны эсептөө, энергиянын сакталуу законун колдонуу.",
+        "ru": "Вычислять работу, мощность и энергию, применять закон сохранения энергии.",
+        "en": "Calculate work, power and energy and apply energy conservation."
+      }
+    }
+  ],
+  "topic": {
+    "key": "phys7-mechanical-energy",
+    "unitKey": "phys.g7.energy",
+    "status": "published",
+    "title": {
+      "ky": "Механикалык энергия жана анын сакталуу закону",
+      "ru": "Механическая энергия и закон её сохранения",
+      "en": "Mechanical energy and its conservation"
+    },
+    "formula": "E = E_п + E_к = mgh + \\frac{mv^2}{2}",
+    "classification": {
+      "ky": "Импульс, жумуш, кубаттуулук жана энергия",
+      "ru": "Импульс, работа, мощность и энергия",
+      "en": "Momentum, work, power and energy"
+    },
+    "description": {
+      "ky": "Энергия – нерсенин жумуш аткара алуу жөндөмдүүлүгү. Механикалык энергия потенциалдык (Eп = mgh) жана кинетикалык (Eк = mv²/2) болуп бөлүнөт. 0,5 кг жүк 1 м жипте 60° ка четтетилип коё берилет: жогору 0,5 м бийиктикте анын бүт энергиясы потенциалдык – 2,45 Дж, ылдыйда бүт энергиясы кинетикалык, ылдамдыгы ≈ 3,13 м/с. Энергия бир түрдөн экинчи түргө өтөт, бирок толук механикалык энергия E = Eп + Eк өзгөрбөйт.",
+      "ru": "Энергия – способность тела совершать работу. Механическая энергия бывает потенциальной (Eп = mgh) и кинетической (Eк = mv²/2). Груз 0,5 кг на нити 1 м отклоняют на 60° и отпускают: вверху, на высоте 0,5 м, вся его энергия потенциальная – 2,45 Дж, внизу вся энергия кинетическая, скорость ≈ 3,13 м/с. Энергия переходит из одного вида в другой, а полная механическая энергия E = Eп + Eк не меняется.",
+      "en": "Energy is a body's ability to do work. Mechanical energy is either potential (PE = mgh) or kinetic (KE = mv²/2). A 0.5 kg bob on a 1 m string is pulled out to 60° and released: at the top, 0.5 m up, all its energy is potential – 2.45 J; at the bottom it is all kinetic and the bob moves at about 3.13 m/s. Energy changes from one kind to the other, but the total mechanical energy E = PE + KE stays the same."
+    },
+    "goal": {
+      "ky": "Потенциалдык энергияны Eп = mgh, кинетикалык энергияны Eк = mv²/2 формулалары менен эсептөө, механикалык энергиянын бир түрдөн экинчи түргө айланышын түшүндүрүү жана энергиянын сакталуу законун маселелерде колдонуу (PHYS-7.4.2).",
+      "ru": "Вычислять потенциальную энергию по формуле Eп = mgh и кинетическую по Eк = mv²/2, объяснять превращения механической энергии и применять закон сохранения энергии в задачах (PHYS-7.4.2).",
+      "en": "Calculate potential energy with PE = mgh and kinetic energy with KE = mv²/2, explain how mechanical energy changes form, and use energy conservation to solve problems (PHYS-7.4.2)."
+    },
+    "objectiveKeys": [
+      "phys.g7.energy.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "pendulum",
+        "length": 1,
+        "mass": 0.5,
+        "amplitudeDeg": 60,
+        "g": 9.8,
+        "damping": 0
+      },
+      "camera": {
+        "position": [
+          0.5,
+          0.3,
+          3.6
+        ],
+        "target": [
+          0.15,
+          -0.2,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "energy",
+        "vectors",
+        "trace"
+      ]
+    },
+    "conceptKeys": [
+      "phys.energy",
+      "phys.potential-energy",
+      "phys.kinetic-energy",
+      "phys.energy-conservation",
+      "phys.bob",
+      "phys.equilibrium",
+      "phys.amplitude"
+    ],
+    "overrides": {
+      "phys.energy": {
+        "anchor": [
+          0.2,
+          0.6,
+          0
+        ],
+        "description": {
+          "ky": "Четке тартылган жүк энергияга ээ: аны коё берсек, ал ылдый түшүп, жолундагы нерсени түртүп жумуш аткара алат. Биздин жүктүн толук механикалык энергиясы E = mgh = 0,5 · 9,8 · 0,5 = 2,45 Дж.",
+          "ru": "Отведённый груз обладает энергией: если его отпустить, он опустится и может совершить работу, толкнув что-нибудь на пути. Полная механическая энергия нашего груза E = mgh = 0,5 · 9,8 · 0,5 = 2,45 Дж.",
+          "en": "The pulled-back bob has energy: let it go and it swings down and can do work by knocking something along. Our bob's total mechanical energy is E = mgh = 0.5 × 9.8 × 0.5 = 2.45 J."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 2.45
+          }
+        ]
+      },
+      "phys.potential-energy": {
+        "nodes": [
+          "Bar_PE"
+        ],
+        "anchor": [
+          0.75,
+          -0.3,
+          0
+        ],
+        "description": {
+          "ky": "Көк тилке – жүктүн потенциалдык энергиясы Eп = mgh, мында h – жүктүн эң төмөнкү чекиттен бийиктиги. 60° та h = l(1 − cos 60°) = 0,5 м, Eп = 2,45 Дж; ылдыйда h = 0, Eп = 0.",
+          "ru": "Синий столбик – потенциальная энергия груза Eп = mgh, где h – высота над нижней точкой. При 60° h = l(1 − cos 60°) = 0,5 м, Eп = 2,45 Дж; внизу h = 0, Eп = 0.",
+          "en": "The blue bar is the bob's potential energy PE = mgh, with h its height above the lowest point. At 60°, h = l(1 − cos 60°) = 0.5 m and PE = 2.45 J; at the bottom h = 0 and PE = 0."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 2.45
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.5
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "E_п = mgh"
+          }
+        ]
+      },
+      "phys.kinetic-energy": {
+        "nodes": [
+          "Bar_KE"
+        ],
+        "anchor": [
+          0.9,
+          -0.3,
+          0
+        ],
+        "description": {
+          "ky": "Кызыл тилке – жүктүн кинетикалык энергиясы Eк = mv²/2. Четки чекитте v = 0 жана Eк = 0; тең салмак абалында v ≈ 3,13 м/с жана Eк = 0,5 · 3,13²/2 ≈ 2,45 Дж.",
+          "ru": "Красный столбик – кинетическая энергия груза Eк = mv²/2. В крайней точке v = 0 и Eк = 0; в положении равновесия v ≈ 3,13 м/с и Eк = 0,5 · 3,13²/2 ≈ 2,45 Дж.",
+          "en": "The red bar is the bob's kinetic energy KE = mv²/2. At the end point v = 0 and KE = 0; at equilibrium v ≈ 3.13 m/s and KE = 0.5 × 3.13²/2 ≈ 2.45 J."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 2.45
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 3.13,
+            "approx": true
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "E_к = \\frac{mv^2}{2}"
+          }
+        ]
+      },
+      "phys.energy-conservation": {
+        "anchor": [
+          0.83,
+          0.15,
+          0
+        ],
+        "description": {
+          "ky": "Эки тилкенин суммасы – толук механикалык энергия – ачык алкак менен көрсөтүлгөн жана дайыма 2,45 Дж. Бир тилке кичирейсе, экинчиси ошончо чоңоёт: энергия жоголбойт, бир түрдөн экинчи түргө гана өтөт.",
+          "ru": "Сумма двух столбиков – полная механическая энергия – показана прозрачной рамкой и всё время равна 2,45 Дж. Насколько уменьшается один столбик, настолько растёт другой: энергия не исчезает, а только переходит из одного вида в другой.",
+          "en": "The sum of the two bars – the total mechanical energy – is shown by the faint frame and is always 2.45 J. As one bar shrinks the other grows by the same amount: energy isn't lost, it only changes form."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 2.45
+          }
+        ]
+      },
+      "phys.bob": {
+        "nodes": [
+          "Bob"
+        ],
+        "anchor": [
+          0,
+          -0.5,
+          0
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.5
+          }
+        ]
+      },
+      "phys.equilibrium": {
+        "nodes": [
+          "Marker_Equilibrium"
+        ],
+        "anchor": [
+          0,
+          -0.55,
+          0
+        ],
+        "description": {
+          "ky": "Эң төмөнкү чекит: бул жерде жүктүн бийиктиги h = 0, потенциалдык энергиясы нөл, ылдамдыгы жана кинетикалык энергиясы эң чоң.",
+          "ru": "Нижняя точка: здесь высота груза h = 0, потенциальная энергия равна нулю, а скорость и кинетическая энергия наибольшие.",
+          "en": "The lowest point: here the bob's height is h = 0, its potential energy is zero, and its speed and kinetic energy are greatest."
+        }
+      },
+      "phys.amplitude": {
+        "nodes": [
+          "Arc_Amplitude"
+        ],
+        "anchor": [
+          0.45,
+          -0.35,
+          0
+        ],
+        "description": {
+          "ky": "Жүк 60° ка четтетилди – бул анын эң бийик чекити: h = 0,5 м. Мында жүк бир заматка токтойт, бүт энергиясы потенциалдык.",
+          "ru": "Груз отклонили на 60° – это его самая высокая точка: h = 0,5 м. Здесь груз на миг останавливается, вся энергия потенциальная.",
+          "en": "The bob is pulled out to 60° – its highest point, h = 0.5 m. Here it stops for an instant and all its energy is potential."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "angle",
+            "value": 60
+          }
+        ]
+      }
+    },
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "mass",
+        "value": 0.5
+      },
+      {
+        "kind": "quantity",
+        "type": "length",
+        "value": 1
+      },
+      {
+        "kind": "quantity",
+        "type": "energy",
+        "value": 2.45
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "E = E_п + E_к"
+      }
+    ],
+    "samples": [
+      {
+        "key": "energy-60deg",
+        "title": {
+          "ky": "Маятник, 60°",
+          "ru": "Маятник, 60°",
+          "en": "Pendulum, 60°"
+        },
+        "classification": {
+          "ky": "h = 0,5 м, E = 2,45 Дж, v ≈ 3,13 м/с",
+          "ru": "h = 0,5 м, E = 2,45 Дж, v ≈ 3,13 м/с",
+          "en": "h = 0.5 m, E = 2.45 J, v ≈ 3.13 m/s"
+        },
+        "thumb": "thumbs/energy-60deg.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "angle",
+            "value": 60
+          },
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 2.45
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 3.13,
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "amplitudeDeg": 60,
+            "damping": 0
+          }
+        }
+      },
+      {
+        "key": "energy-30deg",
+        "title": {
+          "ky": "Маятник, 30°",
+          "ru": "Маятник, 30°",
+          "en": "Pendulum, 30°"
+        },
+        "classification": {
+          "ky": "h ≈ 0,13 м, E ≈ 0,66 Дж, v ≈ 1,62 м/с",
+          "ru": "h ≈ 0,13 м, E ≈ 0,66 Дж, v ≈ 1,62 м/с",
+          "en": "h ≈ 0.13 m, E ≈ 0.66 J, v ≈ 1.62 m/s"
+        },
+        "thumb": "thumbs/energy-30deg.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "angle",
+            "value": 30
+          },
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 0.66,
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 1.62,
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "amplitudeDeg": 30,
+            "damping": 0
+          }
+        }
+      },
+      {
+        "key": "energy-damped",
+        "title": {
+          "ky": "Аба каршылыгы менен",
+          "ru": "С сопротивлением воздуха",
+          "en": "With air resistance"
+        },
+        "classification": {
+          "ky": "Механикалык энергия акырындап азаят",
+          "ru": "Механическая энергия постепенно убывает",
+          "en": "Mechanical energy slowly drains away"
+        },
+        "thumb": "thumbs/energy-damped.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "angle",
+            "value": 60
+          },
+          {
+            "kind": "quantity",
+            "type": "energy",
+            "value": 2.45
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 3.13,
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "amplitudeDeg": 60,
+            "damping": 0.1
+          }
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "top",
+            "camera": {
+              "position": [
+                0,
+                -0.1,
+                3.6
+              ],
+              "target": [
+                0.15,
+                -0.2,
+                0
+              ]
+            },
+            "modes": {
+              "energy": true,
+              "vectors": false,
+              "trace": false
+            },
+            "sample": "energy-60deg",
+            "focus": "phys.potential-energy",
+            "text": {
+              "ky": "0,5 кг жүк 1 м жипте 60° ка четтетилди: ал эң төмөнкү чекиттен h = 0,5 м бийик. Жүк кыймылсыз – анын бүт энергиясы потенциалдык: Eп = mgh = 0,5 · 9,8 · 0,5 = 2,45 Дж. Көк тилке толук.",
+              "ru": "Груз 0,5 кг на нити 1 м отклонён на 60°: он на h = 0,5 м выше нижней точки. Груз неподвижен – вся его энергия потенциальная: Eп = mgh = 0,5 · 9,8 · 0,5 = 2,45 Дж. Синий столбик полный.",
+              "en": "A 0.5 kg bob on a 1 m string is pulled out to 60°, h = 0.5 m above its lowest point. It is still, so all its energy is potential: PE = mgh = 0.5 × 9.8 × 0.5 = 2.45 J. The blue bar is full."
+            },
+            "teacherNote": {
+              "ky": "Эскертиңиз: Eп ны кайсы деңгээлден эсептөөнү өзүбүз тандайбыз; бул жерде – жүктүн эң төмөнкү чекитинен (китептегидей, «жер бетинде Eп = 0»).",
+              "ru": "Напомните: уровень отсчёта Eп выбираем сами; здесь – нижняя точка груза (как в учебнике: «на поверхности Земли Eп = 0»).",
+              "en": "Remind pupils that we choose the zero level for PE ourselves; here it is the bob's lowest point (like the textbook's 'PE = 0 on the ground')."
+            },
+            "altText": {
+              "ky": "Жүк 60° ка четтетилген, жанында көк тилке толук, кызыл тилке бош.",
+              "ru": "Груз отклонён на 60°, рядом синий столбик полный, красный пуст.",
+              "en": "The bob pulled out to 60°; beside it the blue bar is full and the red bar empty."
+            }
+          },
+          {
+            "key": "down",
+            "modes": {
+              "energy": true,
+              "vectors": true
+            },
+            "focus": "phys.energy-conservation",
+            "text": {
+              "ky": "Жүк ылдый түшкөн сайын бийиктиги азайып, ылдамдыгы чоңоёт: көк тилке кичирейип, кызыл тилке өсөт. h = 0,25 м болгондо Eп = Eк ≈ 1,23 Дж – суммасы мурдагыдай 2,45 Дж.",
+              "ru": "Опускаясь, груз теряет высоту и набирает скорость: синий столбик уменьшается, красный растёт. При h = 0,25 м Eп = Eк ≈ 1,23 Дж – сумма по-прежнему 2,45 Дж.",
+              "en": "As the bob swings down it loses height and gains speed: the blue bar shrinks and the red bar grows. At h = 0.25 m, PE = KE ≈ 1.23 J – the sum is still 2.45 J."
+            },
+            "teacherNote": {
+              "ky": "Максвелл маятниги (105-сүрөт) менен салыштырыңыз: диск түшкөндө Eп → Eк, көтөрүлгөндө Eк → Eп.",
+              "ru": "Сравните с маятником Максвелла (рис. 105): при спуске диска Eп → Eк, при подъёме Eк → Eп.",
+              "en": "Compare with Maxwell's pendulum (fig. 105): going down PE → KE, going up KE → PE."
+            },
+            "altText": {
+              "ky": "Жүк жолдун ортосунда, эки тилке бирдей.",
+              "ru": "Груз на полпути, столбики одинаковые.",
+              "en": "The bob halfway down; the two bars are equal."
+            }
+          },
+          {
+            "key": "bottom",
+            "modes": {
+              "energy": true,
+              "vectors": true
+            },
+            "focus": "phys.kinetic-energy",
+            "text": {
+              "ky": "Эң төмөнкү чекитте h = 0: бүт энергия кинетикалык. mgh = mv²/2 болгондуктан v² = 2gh = 2 · 9,8 · 0,5 = 9,8, v ≈ 3,13 м/с. Кызыл тилке толук.",
+              "ru": "В нижней точке h = 0: вся энергия кинетическая. Так как mgh = mv²/2, v² = 2gh = 2 · 9,8 · 0,5 = 9,8, v ≈ 3,13 м/с. Красный столбик полный.",
+              "en": "At the lowest point h = 0: all the energy is kinetic. Since mgh = mv²/2, v² = 2gh = 2 × 9.8 × 0.5 = 9.8, v ≈ 3.13 m/s. The red bar is full."
+            },
+            "teacherNote": {
+              "ky": "Массасы жоголгонун көрсөтүңүз: v = √(2gh) жүктүн массасынан көз каранды эмес.",
+              "ru": "Покажите, что масса сократилась: v = √(2gh) не зависит от массы груза.",
+              "en": "Show that the mass cancels: v = √(2gh) doesn't depend on the bob's mass."
+            },
+            "altText": {
+              "ky": "Жүк так ылдыйда, ылдамдык жебеси эң узун, кызыл тилке толук.",
+              "ru": "Груз в самом низу, стрелка скорости самая длинная, красный столбик полный.",
+              "en": "The bob at the bottom with the longest speed arrow and a full red bar."
+            }
+          },
+          {
+            "key": "other-side",
+            "modes": {
+              "energy": true,
+              "trace": true
+            },
+            "focus": "phys.amplitude",
+            "text": {
+              "ky": "Жүк кайра көтөрүлүп, карама-каршы жакта да 60° ка, ошол эле 0,5 м бийиктикке жетет: кинетикалык энергия кайра потенциалдыкка айланды. Толук механикалык энергия жоголбойт жана жоктон пайда болбойт.",
+              "ru": "Груз снова поднимается и на другой стороне тоже доходит до 60°, до той же высоты 0,5 м: кинетическая энергия снова стала потенциальной. Полная механическая энергия не исчезает и не возникает из ничего.",
+              "en": "The bob rises again and reaches 60°, the same 0.5 m, on the other side: kinetic energy has turned back into potential. Total mechanical energy is never lost and never made from nothing."
+            },
+            "teacherNote": {
+              "ky": "Из (trace) режимин күйгүзүп, жүктүн эки жакта бирдей бийиктикке жеткенин көрсөтүңүз.",
+              "ru": "Включите режим следа и покажите, что груз доходит до одинаковой высоты с обеих сторон.",
+              "en": "Turn on the trace mode to show the bob reaching the same height on both sides."
+            },
+            "altText": {
+              "ky": "Жүктүн изи эки жакта бирдей бийиктиктеги жааны сызат.",
+              "ru": "След груза рисует дугу одинаковой высоты с обеих сторон.",
+              "en": "The bob's trail draws an arc that rises equally high on both sides."
+            }
+          },
+          {
+            "key": "smaller",
+            "sample": "energy-30deg",
+            "modes": {
+              "energy": true
+            },
+            "focus": "phys.potential-energy",
+            "text": {
+              "ky": "Жүктү 30° ка гана четтетебиз: h = 1 · (1 − cos 30°) ≈ 0,13 м, Eп ≈ 0,66 Дж. Бийиктик аз – энергия да аз, ылдыйдагы ылдамдык ≈ 1,62 м/с гана.",
+              "ru": "Отклоним груз только на 30°: h = 1 · (1 − cos 30°) ≈ 0,13 м, Eп ≈ 0,66 Дж. Высота меньше – меньше и энергия, скорость внизу всего ≈ 1,62 м/с.",
+              "en": "Pull the bob out to only 30°: h = 1 × (1 − cos 30°) ≈ 0.13 m, PE ≈ 0.66 J. Less height means less energy – the speed at the bottom is only about 1.62 m/s."
+            },
+            "teacherNote": {
+              "ky": "Салыштыруу таблицасын ачып, 60° жана 30° учурларын салыштырыңыз.",
+              "ru": "Откройте таблицу сравнения и сравните случаи 60° и 30°.",
+              "en": "Open the comparison table and compare 60° with 30°."
+            },
+            "altText": {
+              "ky": "Жүк кичине бурчта термелет, тилкелер кыска.",
+              "ru": "Груз качается с малым углом, столбики короткие.",
+              "en": "The bob swings through a small angle; the bars are short."
+            }
+          },
+          {
+            "key": "damped",
+            "sample": "energy-damped",
+            "modes": {
+              "energy": true,
+              "trace": true
+            },
+            "focus": "phys.energy",
+            "text": {
+              "ky": "Чыныгы маятник акырындап токтойт: энергиянын бир бөлүгү абанын каршылыгына жана сүрүлүүгө каршы жумушка сарпталып, жылуулукка айланат. Механикалык энергия азаят, бирок энергия жок болуп кетпейт.",
+              "ru": "Настоящий маятник постепенно останавливается: часть энергии тратится на работу против сопротивления воздуха и трения и превращается в тепло. Механическая энергия уменьшается, но энергия не исчезает.",
+              "en": "A real pendulum slowly stops: some energy goes into work against air resistance and friction and becomes heat. The mechanical energy drops, but the energy doesn't vanish."
+            },
+            "teacherNote": {
+              "ky": "Китептеги Максвелл маятнигинде да диск мурдагы бийиктигине жете албайт – ушул себептен.",
+              "ru": "В учебнике диск маятника Максвелла тоже не доходит до прежней высоты – по той же причине.",
+              "en": "In the textbook Maxwell's disc also never regains its starting height – for the same reason."
+            },
+            "altText": {
+              "ky": "Жүктүн термелүүсү кичирейип баратат, эки тилке тең кыскарууда.",
+              "ru": "Размах груза уменьшается, оба столбика укорачиваются.",
+              "en": "The swings get smaller and both bars shrink."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.pendulum-energy"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "energy-60deg"
+          },
+          {
+            "kind": "sample",
+            "key": "energy-30deg"
+          },
+          {
+            "kind": "sample",
+            "key": "energy-damped"
+          }
+        ],
+        "rows": [
+          "angle",
+          "energy",
+          "speed"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-energy-1",
+          "phys.q.p7-energy-2",
+          "phys.q.p7-energy-3",
+          "phys.q.p7-energy-4",
+          "phys.q.p7-energy-5",
+          "phys.q.p7-energy-6",
+          "phys.q.p7-energy-7",
+          "phys.q.p7-energy-8",
+          "phys.q.p7-energy-9",
+          "phys.q.p7-energy-10",
+          "phys.q.p7-energy-11"
+        ],
+        "sampleSize": 6
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "e",
+          "title": {
+            "ky": "Токтогул ГЭСи",
+            "ru": "Токтогульская ГЭС",
+            "en": "Toktogul hydropower station"
+          },
+          "text": {
+            "ky": "Бийик тогондогу суунун потенциалдык энергиясы агып түшкөндө кинетикалык энергияга, андан турбинанын айлануусуна, акырында электр энергиясына айланат. Топтолгон суу Кыргызстандын жана коңшу Өзбекстандын талааларын сугарууга да колдонулат.",
+            "ru": "Потенциальная энергия воды за высокой плотиной при падении переходит в кинетическую, затем во вращение турбины и, наконец, в электрическую. Накопленная вода орошает также поля Кыргызстана и соседнего Узбекистана.",
+            "en": "The potential energy of water behind the high dam becomes kinetic as it falls, then the turbine's rotation, and finally electricity. The stored water also irrigates fields in Kyrgyzstan and neighbouring Uzbekistan."
+          }
+        },
+        {
+          "field": "t",
+          "title": {
+            "ky": "Копёр – түркүк каккыч",
+            "ru": "Копёр для свай",
+            "en": "A pile driver"
+          },
+          "text": {
+            "ky": "Массасы 500 кг копёр балкасы 4 м бийиктикте Eп = 500 · 10 · 4 = 20 кДж энергияга ээ. 10 м бийиктиктен түшкөндө 50 кДж жумуш аткарып, түркүктү жерге кагат.",
+            "ru": "Молот копра массой 500 кг на высоте 4 м имеет энергию Eп = 500 · 10 · 4 = 20 кДж. Падая с 10 м, он совершает работу 50 кДж и вбивает сваю в землю.",
+            "en": "A 500 kg pile-driver hammer 4 m up has PE = 500 × 10 × 4 = 20 kJ. Dropped from 10 m it does 50 kJ of work driving the pile into the ground."
+          }
+        },
+        {
+          "field": "m",
+          "title": {
+            "ky": "Эркин түшүү",
+            "ru": "Свободное падение",
+            "en": "Free fall"
+          },
+          "text": {
+            "ky": "Эркин түшкөн нерсе жерге 40 м/с ылдамдык менен жетти. mgh = mv²/2 боюнча h = v²/(2g) = 1600 / 20 = 80 м (g ≈ 10 Н/кг).",
+            "ru": "Свободно падающее тело достигло земли со скоростью 40 м/с. По mgh = mv²/2 высота h = v²/(2g) = 1600 / 20 = 80 м (g ≈ 10 Н/кг).",
+            "en": "A freely falling body hits the ground at 40 m/s. From mgh = mv²/2, h = v²/(2g) = 1600 / 20 = 80 m (g ≈ 10 N/kg)."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Селкинчек",
+            "ru": "Качели",
+            "en": "A swing"
+          },
+          "text": {
+            "ky": "Селкинчектин эң бийик чекитинде бир заматка токтойсуң (Eп чоң), ылдыйда эң тез учасың (Eк чоң).",
+            "ru": "В самой высокой точке качелей ты на миг замираешь (Eп велика), внизу летишь быстрее всего (Eк велика).",
+            "en": "At the top of a swing you pause for a moment (big PE); at the bottom you fly fastest (big KE)."
+          }
+        },
+        {
+          "title": {
+            "ky": "Резина топ",
+            "ru": "Резиновый мяч",
+            "en": "A rubber ball"
+          },
+          "text": {
+            "ky": "Топ түшкөндө ылдамдайт, жерге урунуп деформацияланат да кайра секирет. Бирок ар бир жолу бир аз төмөн көтөрүлөт – энергиянын бир бөлүгү жылуулукка өтөт.",
+            "ru": "Мяч, падая, разгоняется, ударяется о землю, деформируется и подскакивает. Но каждый раз чуть ниже – часть энергии уходит в тепло.",
+            "en": "A ball speeds up as it falls, squashes on the ground and bounces back – but a little lower each time, as some energy turns into heat."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Эмне үчүн маятник эң төмөнкү чекитте эң тез кыймылдайт?",
+        "ru": "Почему маятник быстрее всего в нижней точке?",
+        "en": "Why is the pendulum fastest at its lowest point?"
+      },
+      {
+        "ky": "Энергия кайда жоголот, эгер селкинчек акырындап токтосо?",
+        "ru": "Куда девается энергия, когда качели останавливаются?",
+        "en": "Where does the energy go when a swing slowly stops?"
+      },
+      {
+        "ky": "Ылдамдык эки эсе чоңойсо, кинетикалык энергия канча эсе чоңоёт?",
+        "ru": "Во сколько раз вырастет кинетическая энергия, если скорость удвоится?",
+        "en": "How much does kinetic energy grow if the speed doubles?"
+      },
+      {
+        "ky": "Токтогул ГЭСинде энергия кантип айланат?",
+        "ru": "Как превращается энергия на Токтогульской ГЭС?",
+        "en": "How does energy change form at the Toktogul dam?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; problems after Мамбетакунов Э. Физика 7, §40–44"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "phys.energy",
+      "kind": "quantity",
+      "hue": 140,
+      "isContainer": false,
+      "title": {
+        "ky": "Энергия",
+        "ru": "Энергия",
+        "en": "Energy"
+      },
+      "subtitle": {
+        "ky": "Жумуш аткара алуу жөндөмдүүлүгү",
+        "ru": "Способность совершать работу",
+        "en": "The ability to do work"
+      },
+      "description": {
+        "ky": "Энергия – нерсенин кандай жумуш аткара ала тургандыгын мүнөздөөчү физикалык чоңдук. Нерсе канчалык чоң жумуш аткарса, анын энергиясы да ошончолук көп болот. Жумуш аткарылганда энергия өзгөрөт; аткарылган жумуш энергиянын өзгөрүшүнө барабар. Бирдиги – 1 джоуль (Дж). Нерсенин кыймылы же бөлүктөрүнүн өз ара жайгашуусу менен аныкталуучу энергия механикалык энергия деп аталат; ал потенциалдык жана кинетикалык болуп бөлүнөт.",
+        "ru": "Энергия – физическая величина, показывающая, какую работу может совершить тело. Чем большую работу оно может совершить, тем больше его энергия. При совершении работы энергия меняется; работа равна изменению энергии. Единица – 1 джоуль (Дж). Энергия, определяемая движением тела или взаимным расположением его частей, называется механической; она бывает потенциальной и кинетической.",
+        "en": "Energy is the physical quantity that shows how much work a body can do. The more work it can do, the more energy it has. When work is done, energy changes, and the work equals the change in energy. The unit is the joule (J). Energy due to a body's motion or the relative position of its parts is called mechanical energy; it is either potential or kinetic."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "E = E_п + E_к"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Бирдиги: 1 Дж",
+            "ru": "Единица: 1 Дж",
+            "en": "Unit: 1 J"
+          }
+        }
+      ],
+      "related": [
+        "phys.potential-energy",
+        "phys.kinetic-energy",
+        "phys.mechanical-work"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.energy-is-force",
+          "text": {
+            "ky": "Энергия менен күч – бир эле нерсе.",
+            "ru": "Энергия и сила – одно и то же.",
+            "en": "Energy and force are the same thing."
+          },
+          "correction": {
+            "ky": "Күч ньютон менен ченелет жана аракеттин чоңдугун жана багытын көрсөтөт. Энергия джоуль менен ченелет жана нерсе канча жумуш аткара аларын көрсөтөт: 1 Дж = 1 Н · 1 м.",
+            "ru": "Сила измеряется в ньютонах и показывает величину и направление действия. Энергия измеряется в джоулях и показывает, сколько работы может совершить тело: 1 Дж = 1 Н · 1 м.",
+            "en": "Force is measured in newtons and has a size and direction. Energy is measured in joules and tells how much work a body can do: 1 J = 1 N × 1 m."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "«Энергия» – грек сөзү, кыргызча «ишкердик», «иштөөчү күч» дегенди билдирет.",
+        "ru": "«Энергия» – греческое слово, означает «деятельность», «действующая сила».",
+        "en": "'Energy' comes from Greek and means 'activity' or 'working force'."
+      },
+      "analogy": {
+        "ky": "Нерсенин «жумуш аткарууга запасы» – капчыктагы акча сыяктуу: жумшаган сайын азаят",
+        "ru": "«Запас работы» у тела – как деньги в кошельке: тратишь – становится меньше",
+        "en": "A body's 'store of work' – like money in a purse: spend it and there's less"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Кысылган пружина",
+              "ru": "Сжатая пружина",
+              "en": "A compressed spring"
+            },
+            "text": {
+              "ky": "Жыйрылган пружинанын үстүндөгү жүктү кармап турган жипти күйгүзсө, пружина жазылып, жүктү өйдө көтөрөт – кысылган пружина энергияга ээ.",
+              "ru": "Если пережечь нить, удерживающую сжатую пружину с грузом, пружина распрямится и поднимет груз – у сжатой пружины есть энергия.",
+              "en": "Burn the thread holding down a compressed spring with a weight on it and the spring straightens and lifts the weight – the compressed spring had energy."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Жел тегирмен",
+              "ru": "Ветряная мельница",
+              "en": "Windmill"
+            },
+            "text": {
+              "ky": "Шамалдын кинетикалык энергиясы жел тегирмендин айлануучу барасын айлантып, пайдалуу жумуш аткарат; азыр ушундай жол менен электр энергиясы да алынат.",
+              "ru": "Кинетическая энергия ветра вращает крылья мельницы, и она совершает полезную работу; сегодня так получают и электроэнергию.",
+              "en": "The wind's kinetic energy turns a windmill's sails to do useful work; today wind turbines make electricity the same way."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Тоголонгон шар",
+              "ru": "Катящийся шар",
+              "en": "A rolling ball"
+            },
+            "text": {
+              "ky": "Жантык ноодон тоголонгон болот шар жолундагы цилиндрди түртүп жылдырат – кыймылдагы шар энергияга ээ.",
+              "ru": "Стальной шар, скатившийся по желобу, сдвигает цилиндр на пути – у движущегося шара есть энергия.",
+              "en": "A steel ball rolling down a groove shoves a cylinder along – a moving ball has energy."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тамак – дененин энергиясы",
+              "ru": "Еда – энергия тела",
+              "en": "Food is body energy"
+            },
+            "text": {
+              "ky": "Тамак жегенден кийин чуркап, ойной алабыз – тамактан алган энергия менен булчуңдар жумуш аткарат.",
+              "ru": "Поев, мы можем бегать и играть – мышцы совершают работу за счёт энергии из пищи.",
+              "en": "After a meal we can run and play – our muscles do work using energy from the food."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.potential-energy",
+      "kind": "quantity",
+      "hue": 205,
+      "isContainer": false,
+      "title": {
+        "ky": "Потенциалдык энергия",
+        "ru": "Потенциальная энергия",
+        "en": "Potential energy"
+      },
+      "subtitle": {
+        "ky": "Eп = mgh",
+        "ru": "Eп = mgh",
+        "en": "PE = mgh"
+      },
+      "description": {
+        "ky": "Нерселердин же алардын бөлүктөрүнүн өз ара абалдары менен аныкталуучу энергия потенциалдык энергия деп аталат. h бийиктикке көтөрүлгөн нерсенин потенциалдык энергиясы ал жерге түшкөндө аткарыла турган жумушка барабар: Eп = mgh. Жер бетинде турган нерсенин потенциалдык энергиясы нөлгө барабар деп эсептелинет. Деформацияланган серпилгичтүү нерселер (кысылган пружина, чоюлган жаанын жиби) жана кысылган газ да потенциалдык энергияга ээ.",
+        "ru": "Энергия, определяемая взаимным положением тел или их частей, называется потенциальной. Потенциальная энергия тела, поднятого на высоту h, равна работе, которую совершит сила тяжести при его падении: Eп = mgh. У тела на поверхности Земли потенциальную энергию считают равной нулю. Деформированные упругие тела (сжатая пружина, натянутая тетива) и сжатый газ тоже обладают потенциальной энергией.",
+        "en": "Energy due to the relative position of bodies or their parts is called potential energy. A body raised to a height h has PE equal to the work done when it falls back: PE = mgh. A body on the ground is taken to have zero PE. Deformed elastic bodies (a squeezed spring, a drawn bowstring) and compressed gas also have potential energy."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "E_п = mgh"
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Эң чоңу – эң бийик чекитте",
+            "ru": "Наибольшая – в самой высокой точке",
+            "en": "Greatest at the highest point"
+          }
+        }
+      ],
+      "related": [
+        "phys.kinetic-energy",
+        "phys.energy",
+        "phys.gravity"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.pe-mass-only",
+          "text": {
+            "ky": "Потенциалдык энергия нерсенин массасына гана көз каранды: оор нерсенин потенциалдык энергиясы дайыма чоң.",
+            "ru": "Потенциальная энергия зависит только от массы: у тяжёлого тела она всегда больше.",
+            "en": "Potential energy depends only on mass: a heavier body always has more."
+          },
+          "correction": {
+            "ky": "Eп = mgh – масса да, бийиктик да маанилүү. Жерде жаткан оор таштын Eп = 0, ал эми 5 м бийиктиктеги 2 кг шардыкы 100 Дж (g ≈ 10 Н/кг).",
+            "ru": "Eп = mgh – важны и масса, и высота. У тяжёлого камня на земле Eп = 0, а у шара 2 кг на высоте 5 м – 100 Дж (g ≈ 10 Н/кг).",
+            "en": "PE = mgh – both mass and height matter. A heavy rock on the ground has PE = 0, while a 2 kg ball 5 m up has 100 J (g ≈ 10 N/kg)."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "«Потенция» – латын сөзү, кыргызча «мүмкүнчүлүк» дегенди билдирет.",
+        "ru": "«Потенция» – латинское слово, означает «возможность».",
+        "en": "'Potentia' is Latin for 'possibility'."
+      },
+      "analogy": {
+        "ky": "Тоонун башындагы чана – азырынча жылбайт, бирок төмөн түшө ала турган «запасы» бар",
+        "ru": "Санки на вершине горки – пока стоят, но у них есть «запас» скатиться",
+        "en": "A sledge at the top of a hill – not moving yet, but it has a 'store' for the ride down"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Токтогул ГЭСи",
+              "ru": "Токтогульская ГЭС",
+              "en": "Toktogul hydropower station"
+            },
+            "text": {
+              "ky": "Тогон сууну бийик деңгээлге көтөрүп турат. Тогондун бийиктигине жараша суу чоң потенциалдык энергияга ээ; ал агып түшүп, турбинаны айлантат жана электр тогу алынат.",
+              "ru": "Плотина держит воду на большой высоте. В зависимости от высоты плотины вода обладает большой потенциальной энергией; падая, она вращает турбину и даёт электрический ток.",
+              "en": "The dam holds water high up. Depending on the dam's height the water stores a lot of potential energy; falling, it spins the turbine and makes electricity."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Курулуш блогу",
+              "ru": "Строительный блок",
+              "en": "A building block"
+            },
+            "text": {
+              "ky": "15 м бийиктиктеги блоктун потенциалдык энергиясы 1500 кДж. Анын массасы: m = Eп/(gh) = 1 500 000 / (10 · 15) = 10 000 кг = 10 т.",
+              "ru": "Блок на высоте 15 м имеет потенциальную энергию 1500 кДж. Его масса: m = Eп/(gh) = 1 500 000 / (10 · 15) = 10 000 кг = 10 т.",
+              "en": "A block 15 m up has 1500 kJ of potential energy. Its mass is m = PE/(gh) = 1 500 000 / (10 × 15) = 10 000 kg = 10 t."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Жаа",
+              "ru": "Лук",
+              "en": "A bow"
+            },
+            "text": {
+              "ky": "Жаанын жиби чоюлганда потенциалдык энергияга ээ болот; аны коё бергенде жебе учуп кетет.",
+              "ru": "Натянутая тетива лука обладает потенциальной энергией; отпусти её – и стрела полетит.",
+              "en": "A drawn bowstring stores potential energy; let go and the arrow flies."
+            }
+          },
+          {
+            "title": {
+              "ky": "Текчедеги китеп",
+              "ru": "Книга на полке",
+              "en": "A book on a shelf"
+            },
+            "text": {
+              "ky": "Бийик текчедеги китеп төмөнкүсүнө караганда көбүрөөк потенциалдык энергияга ээ – кулап түшсө, катуураак урулат.",
+              "ru": "У книги на верхней полке потенциальная энергия больше, чем на нижней, – упадёт, ударит сильнее.",
+              "en": "A book on a high shelf has more potential energy than on a low one – if it falls, it hits harder."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.kinetic-energy",
+      "kind": "quantity",
+      "hue": 345,
+      "isContainer": false,
+      "title": {
+        "ky": "Кинетикалык энергия",
+        "ru": "Кинетическая энергия",
+        "en": "Kinetic energy"
+      },
+      "subtitle": {
+        "ky": "Eк = mv²/2",
+        "ru": "Eк = mv²/2",
+        "en": "KE = mv²/2"
+      },
+      "description": {
+        "ky": "Кыймылдагы нерселердин энергиясы кинетикалык энергия деп аталат («кинема» – грекче «кыймыл»). Нерсенин кинетикалык энергиясы анын массасына жана ылдамдыгына көз каранды: Eк = mv²/2. Ылдамдык 2 эсе чоңойсо, кинетикалык энергия 4 эсе чоңоёт. Тынч турган нерсенин кинетикалык энергиясы нөлгө барабар.",
+        "ru": "Энергия движущихся тел называется кинетической («кинема» по-гречески – «движение»). Кинетическая энергия зависит от массы и скорости тела: Eк = mv²/2. Если скорость вырастет в 2 раза, кинетическая энергия вырастет в 4 раза. У покоящегося тела кинетическая энергия равна нулю.",
+        "en": "The energy of moving bodies is called kinetic energy (Greek 'kinema' – motion). It depends on the body's mass and speed: KE = mv²/2. Double the speed and the kinetic energy becomes four times larger. A body at rest has zero kinetic energy."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "E_к = \\frac{mv^2}{2}"
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Эң чоңу – ылдамдык эң чоң болгон жерде",
+            "ru": "Наибольшая – где скорость наибольшая",
+            "en": "Greatest where the speed is greatest"
+          }
+        }
+      ],
+      "related": [
+        "phys.potential-energy",
+        "phys.energy",
+        "phys.speed"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.ke-linear-speed",
+          "text": {
+            "ky": "Ылдамдык эки эсе чоңойсо, кинетикалык энергия да эки эсе гана чоңоёт.",
+            "ru": "Если скорость вырастет вдвое, кинетическая энергия тоже вырастет только вдвое.",
+            "en": "Double the speed and the kinetic energy only doubles too."
+          },
+          "correction": {
+            "ky": "Eк = mv²/2 – ылдамдык квадратта. 20 м/с тен 40 м/с ка өткөн машинанын энергиясы 4 эсе чоңоёт; ошондуктан тездеген сайын тормоздук жол кескин узарат.",
+            "ru": "Eк = mv²/2 – скорость в квадрате. Машина, разогнавшаяся с 20 до 40 м/с, получает в 4 раза больше энергии; поэтому тормозной путь с ростом скорости резко растёт.",
+            "en": "KE = mv²/2 – the speed is squared. A car going from 20 to 40 m/s has four times the energy, which is why braking distance grows so fast with speed."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Массасы 10 г ок 800 м/с ылдамдыкта 3200 Дж кинетикалык энергияга ээ – бул 320 кг жүктү 1 м бийиктикке көтөрүүгө жетет.",
+        "ru": "Пуля массой 10 г при скорости 800 м/с обладает кинетической энергией 3200 Дж – этого хватит, чтобы поднять 320 кг на 1 м.",
+        "en": "A 10 g bullet at 800 m/s carries 3200 J of kinetic energy – enough to lift 320 kg by 1 m."
+      },
+      "analogy": {
+        "ky": "Чуркап келе жаткан досуңду токтотуу кыйын – анын «кыймыл энергиясы» бар",
+        "ru": "Бегущего друга трудно остановить – у него есть «энергия движения»",
+        "en": "A running friend is hard to stop – they carry 'energy of motion'"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "m",
+            "title": {
+              "ky": "Жүк машинасы жана жеңил машина",
+              "ru": "Грузовик и легковушка",
+              "en": "Lorry versus car"
+            },
+            "text": {
+              "ky": "4500 кг жүк машинасы 20 м/с: Eк = 900 кДж; 900 кг жеңил машина 40 м/с: Eк = 720 кДж. Жеңил машина эки эсе тез болсо да, жүк машинасынын энергиясы чоң.",
+              "ru": "Грузовик 4500 кг при 20 м/с: Eк = 900 кДж; легковушка 900 кг при 40 м/с: Eк = 720 кДж. Легковушка вдвое быстрее, а энергия больше у грузовика.",
+              "en": "A 4500 kg lorry at 20 m/s has KE = 900 kJ; a 900 kg car at 40 m/s has 720 kJ. The car is twice as fast, yet the lorry has more energy."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Шамал электр станциясы",
+              "ru": "Ветряная электростанция",
+              "en": "Wind farm"
+            },
+            "text": {
+              "ky": "Кыймылдагы аба – шамал – кинетикалык энергияга ээ. Шамал турбинасынын калактары ошол энергияны электр энергиясына айлантат.",
+              "ru": "Движущийся воздух – ветер – обладает кинетической энергией. Лопасти ветровой турбины превращают её в электрическую.",
+              "en": "Moving air – wind – has kinetic energy. A wind turbine's blades turn it into electrical energy."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Ат минген бала",
+              "ru": "Мальчик на коне",
+              "en": "A boy on horseback"
+            },
+            "text": {
+              "ky": "320 кг ат жана 40 кг бала 5,5 м/с менен чаап келе жатат: Eк = 360 · 5,5²/2 ≈ 5445 Дж.",
+              "ru": "Конь 320 кг и мальчик 40 кг скачут со скоростью 5,5 м/с: Eк = 360 · 5,5²/2 ≈ 5445 Дж.",
+              "en": "A 320 kg horse and a 40 kg boy gallop at 5.5 m/s: KE = 360 × 5.5²/2 ≈ 5445 J."
+            }
+          },
+          {
+            "title": {
+              "ky": "Футбол тобу",
+              "ru": "Футбольный мяч",
+              "en": "A football"
+            },
+            "text": {
+              "ky": "Тебилген топ дарбазаны көздөй учат – анын кинетикалык энергиясы бар. Жерде жаткан топто кинетикалык энергия жок.",
+              "ru": "Отбитый мяч летит к воротам – у него есть кинетическая энергия. У мяча, лежащего на земле, её нет.",
+              "en": "A kicked ball flying at the goal has kinetic energy; a ball lying still on the grass has none."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.energy-conservation",
+      "kind": "law",
+      "hue": 160,
+      "isContainer": false,
+      "title": {
+        "ky": "Энергиянын сакталуу закону",
+        "ru": "Закон сохранения энергии",
+        "en": "Conservation of energy"
+      },
+      "subtitle": {
+        "ky": "E = Eп + Eк = const",
+        "ru": "E = Eп + Eк = const",
+        "en": "E = PE + KE = const"
+      },
+      "description": {
+        "ky": "Нерсенин потенциалдык жана кинетикалык энергияларынын суммасы анын толук механикалык энергиясы деп аталат: E = Eп + Eк. Нерсенин толук механикалык энергиясы жоголбойт жана жоктон пайда болбойт, ал бир түрдөн экинчи түргө гана өтүп турат. h бийиктиктен түшкөн нерсенин жогорудагы Eп = mgh энергиясы жерде толугу менен Eк = mv²/2 энергиясына айланат, андыктан v² = 2gh.",
+        "ru": "Сумма потенциальной и кинетической энергий тела называется его полной механической энергией: E = Eп + Eк. Полная механическая энергия тела не исчезает и не возникает из ничего, она лишь переходит из одного вида в другой. У тела, упавшего с высоты h, энергия Eп = mgh вверху целиком превращается внизу в Eк = mv²/2, поэтому v² = 2gh.",
+        "en": "The sum of a body's potential and kinetic energy is its total mechanical energy: E = PE + KE. Total mechanical energy is neither lost nor created from nothing; it only changes from one kind to the other. For a body falling from height h, PE = mgh at the top becomes KE = mv²/2 at the bottom, so v² = 2gh."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "E = E_п + E_к = mgh + \\frac{mv^2}{2}"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Сүрүлүү жок болсо аткарылат",
+            "ru": "Выполняется, когда нет трения",
+            "en": "Holds when there is no friction"
+          }
+        }
+      ],
+      "related": [
+        "phys.potential-energy",
+        "phys.kinetic-energy",
+        "phys.energy"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.energy-used-up",
+          "text": {
+            "ky": "Селкинчек акырындап токтойт – демек энергия жок болуп кетти.",
+            "ru": "Качели постепенно останавливаются – значит, энергия исчезла.",
+            "en": "A swing slowly stops, so its energy simply vanished."
+          },
+          "correction": {
+            "ky": "Энергия жоголбойт: Максвелл маятнигиндей эле, анын бир бөлүгү сүрүлүү күчүнө жана абанын каршылыгына каршы жумушка сарпталып, жылуулукка өтөт. Механикалык энергия азаят, бирок жалпы энергия сакталат.",
+            "ru": "Энергия не исчезает: как у маятника Максвелла, её часть тратится на работу против трения и сопротивления воздуха и переходит в тепло. Механическая энергия уменьшается, а энергия в целом сохраняется.",
+            "en": "Energy does not vanish: as with Maxwell's pendulum, part of it goes into work against friction and air resistance and turns into heat. Mechanical energy drops, but energy overall is conserved."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Энергиянын сакталуу жана айлануу законун ачуу М. В. Ломоносовдун ысмы менен байланышат; андан жүз жылдан кийин Р. Майер, Дж. Джоуль, Э. Х. Ленц жана Г. Гельмгольц аны жаратылыштын жалпы закону катары далилдешкен.",
+        "ru": "Открытие закона сохранения и превращения энергии связывают с именем М. В. Ломоносова; через сто лет Р. Майер, Дж. Джоуль, Э. Х. Ленц и Г. Гельмгольц доказали его как общий закон природы.",
+        "en": "The discovery of energy conservation is linked with Mikhail Lomonosov; a century later Mayer, Joule, Lenz and Helmholtz proved it as a general law of nature."
+      },
+      "analogy": {
+        "ky": "Эки чөнтөк: тыйындарды бир чөнтөктөн экинчисине которсоң, жалпы саны өзгөрбөйт",
+        "ru": "Два кармана: перекладываешь монеты из одного в другой – всего их столько же",
+        "en": "Two pockets: move coins from one to the other and the total stays the same"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "m",
+            "title": {
+              "ky": "30 м бийиктиктен ыргытуу",
+              "ru": "Бросок с высоты 30 м",
+              "en": "A throw from 30 m"
+            },
+            "text": {
+              "ky": "Нерсе 30 м бийиктиктен 10 м/с баштапкы ылдамдык менен ыргытылды. v² = v₀² + 2gh = 100 + 2 · 10 · 30 = 700, v ≈ 26,45 м/с.",
+              "ru": "Тело брошено с высоты 30 м с начальной скоростью 10 м/с. v² = v₀² + 2gh = 100 + 2 · 10 · 30 = 700, v ≈ 26,45 м/с.",
+              "en": "A body is thrown from 30 m with a starting speed of 10 m/s. v² = v₀² + 2gh = 100 + 2 × 10 × 30 = 700, v ≈ 26.45 m/s."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "ГЭСтеги энергиянын айланышы",
+              "ru": "Превращения энергии на ГЭС",
+              "en": "Energy chain at a dam"
+            },
+            "text": {
+              "ky": "Токтогул ГЭСинде суунун потенциалдык энергиясы адегенде кинетикалык энергияга, андан кийин турбинанын кинетикалык энергиясына, акырында электр энергиясына айланат.",
+              "ru": "На Токтогульской ГЭС потенциальная энергия воды сначала переходит в кинетическую, затем в кинетическую энергию турбины и, наконец, в электрическую.",
+              "en": "At the Toktogul station the water's potential energy becomes kinetic energy, then the turbine's kinetic energy, and finally electrical energy."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Резина топ",
+              "ru": "Резиновый мяч",
+              "en": "A rubber ball"
+            },
+            "text": {
+              "ky": "Бийиктен түшкөн топ ылдамдайт (Eп → Eк), жерге тийип, кайра секирет да, жогору көтөрүлгөн сайын жайлайт (Eк → Eп).",
+              "ru": "Падающий мяч разгоняется (Eп → Eк), ударяется о землю, отскакивает и, поднимаясь, замедляется (Eк → Eп).",
+              "en": "A falling ball speeds up (PE → KE), hits the ground, bounces and slows as it rises (KE → PE)."
+            }
+          },
+          {
+            "title": {
+              "ky": "Тоодон чана тебүү",
+              "ru": "Санки с горки",
+              "en": "Sledging downhill"
+            },
+            "text": {
+              "ky": "Дөбөнүн башында чана жай, төмөндө тез: бийиктик азайган сайын ылдамдык чоңоёт.",
+              "ru": "На вершине горки санки медленные, внизу быстрые: чем меньше высота, тем больше скорость.",
+              "en": "At the top of the hill the sledge is slow, at the bottom fast: less height means more speed."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.bob",
+      "kind": "body",
+      "hue": 0,
+      "isContainer": false,
+      "title": {
+        "ky": "Жүк",
+        "ru": "Груз",
+        "en": "Bob"
+      },
+      "subtitle": {
+        "ky": "Термелген дене",
+        "ru": "Колеблющееся тело",
+        "en": "The swinging body"
+      },
+      "description": {
+        "ky": "Жиптин учундагы оор кичинекей шар. Ал тең салмак абалынан эки тарапка термелет, анын энергиясы потенциалдыктан кинетикалыкка жана кайра айланат.",
+        "ru": "Тяжёлый маленький шарик на конце нити. Он качается по обе стороны от положения равновесия, его энергия переходит из потенциальной в кинетическую и обратно.",
+        "en": "A small heavy ball at the end of the string. It swings to both sides of the equilibrium position, and its energy turns from potential to kinetic and back."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "mass",
+          "value": 0.2
+        },
+        {
+          "kind": "text",
+          "type": "shape",
+          "value": {
+            "ky": "Шар",
+            "ru": "Шар",
+            "en": "Sphere"
+          }
+        },
+        {
+          "kind": "quantity",
+          "type": "speed",
+          "value": 0.546,
+          "approx": true
+        }
+      ],
+      "related": [
+        "phys.string",
+        "phys.gravity",
+        "phys.equilibrium"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.heavier-faster",
+          "text": {
+            "ky": "Оор жүк тезирээк термелет.",
+            "ru": "Тяжёлый груз качается быстрее.",
+            "en": "A heavier bob swings faster."
+          },
+          "correction": {
+            "ky": "Математикалык маятниктин мезгили жүктүн массасынан көз каранды эмес.",
+            "ru": "Период математического маятника не зависит от массы груза.",
+            "en": "The period of a simple pendulum does not depend on the mass of the bob."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Галилей чиркөөдө термелип жаткан чыракты карап, маятниктин мыйзамын байкаган деп айтылат.",
+        "ru": "Говорят, Галилей заметил закон маятника, глядя на качающуюся люстру в соборе.",
+        "en": "Galileo is said to have noticed the pendulum law by watching a lamp swing in a cathedral."
+      },
+      "analogy": {
+        "ky": "Селкинчекте отурган бала",
+        "ru": "Ребёнок на качелях",
+        "en": "A child on a swing"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Фуко маятниги",
+              "ru": "Маятник Фуко",
+              "en": "Foucault pendulum"
+            },
+            "text": {
+              "ky": "1851-жылы Фуко 28 кг жүктү 67 м жипке илип, Жердин айланышын көрсөткөн.",
+              "ru": "В 1851 году Фуко подвесил груз 28 кг на тросе 67 м и показал вращение Земли.",
+              "en": "In 1851 Foucault hung a 28 kg bob on a 67 m wire and showed that the Earth rotates."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Сейсмографтар",
+              "ru": "Сейсмографы",
+              "en": "Seismographs"
+            },
+            "text": {
+              "ky": "Эски сейсмографтарда оор жүк кыймылсыз калып, жер титирөөдө жер өзү жылат – ушул айырма жазылат. Кыргызстандын сейсмостанцияларында мындай приборлор колдонулган.",
+              "ru": "В старых сейсмографах тяжёлый груз остаётся на месте, а при землетрясении движется сама земля – эту разницу и записывают. Такие приборы работали и на сейсмостанциях Кыргызстана.",
+              "en": "In old seismographs a heavy mass stays put while the ground moves in an earthquake, and that difference is recorded. Such instruments were used at seismic stations in Kyrgyzstan."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Селкинчек",
+              "ru": "Качели",
+              "en": "A swing"
+            },
+            "text": {
+              "ky": "Селкинчекте отурсаң, сен – жүксүң: ылдыйда эң тез, четте бир азга токтойсуң.",
+              "ru": "На качелях ты сам – груз: внизу летишь быстрее всего, а на краю на миг замираешь.",
+              "en": "On a swing you are the bob: fastest at the bottom, stopping for a moment at each end."
+            }
+          },
+          {
+            "title": {
+              "ky": "Чайкалган чака",
+              "ru": "Качающееся ведро",
+              "en": "A swinging bucket"
+            },
+            "text": {
+              "ky": "Сууга толгон чака кудуктун жибинде чайкалса, ал да маятник болуп калат.",
+              "ru": "Полное ведро, качающееся на верёвке колодца, – тоже маятник.",
+              "en": "A full bucket swinging on a well rope is a pendulum too."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.equilibrium",
+      "kind": "position",
+      "hue": 120,
+      "isContainer": false,
+      "title": {
+        "ky": "Тең салмак абалы",
+        "ru": "Положение равновесия",
+        "en": "Equilibrium position"
+      },
+      "subtitle": {
+        "ky": "Эң төмөнкү чекит",
+        "ru": "Нижняя точка",
+        "en": "The lowest point"
+      },
+      "description": {
+        "ky": "Жүк илинүү чекитинин так астында турган абал. Бул жерде потенциалдык энергия эң аз, ал эми ылдамдык жана кинетикалык энергия эң чоң.",
+        "ru": "Положение, когда груз висит точно под точкой подвеса. Здесь потенциальная энергия минимальна, а скорость и кинетическая энергия максимальны.",
+        "en": "The position where the bob hangs straight below the pivot. Potential energy is lowest here, while speed and kinetic energy are highest."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Илинүү чекитинин так астында",
+            "ru": "Точно под точкой подвеса",
+            "en": "Directly below the pivot"
+          }
+        },
+        {
+          "kind": "quantity",
+          "type": "speed",
+          "value": 0.546,
+          "approx": true
+        },
+        {
+          "kind": "quantity",
+          "type": "angle",
+          "value": 0
+        }
+      ],
+      "related": [
+        "phys.bob",
+        "phys.amplitude"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.stops-at-bottom",
+          "text": {
+            "ky": "Жүк эң төмөнкү чекитте токтойт.",
+            "ru": "Груз останавливается в нижней точке.",
+            "en": "The bob stops at the lowest point."
+          },
+          "correction": {
+            "ky": "Төмөнкү чекитте жүк эң тез кыймылдайт; ал четки чекиттерде гана бир заматка токтойт.",
+            "ru": "В нижней точке груз движется быстрее всего; останавливается он лишь на миг в крайних точках.",
+            "en": "The bob is fastest at the lowest point; it only stops for an instant at the ends of the swing."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Маятник тынч турса, ал дайыма тең салмак абалына кайтып келет – ошондуктан шакулду куруучулар тик сызык үчүн колдонушат.",
+        "ru": "Маятник в покое всегда возвращается в положение равновесия – поэтому строители используют отвес для вертикали.",
+        "en": "At rest a pendulum always returns to equilibrium – that is why builders use a plumb line to find the vertical."
+      },
+      "analogy": {
+        "ky": "Чуңкурдун түбүндөгү шар",
+        "ru": "Шарик на дне ямки",
+        "en": "A marble at the bottom of a bowl"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Шакул",
+              "ru": "Отвес",
+              "en": "Plumb line"
+            },
+            "text": {
+              "ky": "Боз үйдүн керегесин же үйдүн дубалын тик коюу үчүн устачылар шакулду – жипке илинген жүктү колдонушат.",
+              "ru": "Чтобы поставить ровно кереге юрты или стену дома, мастера пользуются отвесом – грузом на нитке.",
+              "en": "To set a yurt's kerege or a house wall upright, builders use a plumb line – a weight on a string."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Туруктуу тең салмак",
+              "ru": "Устойчивое равновесие",
+              "en": "Stable equilibrium"
+            },
+            "text": {
+              "ky": "Физиктер мындай абалды туруктуу тең салмак дешет: жүктү бир аз жылдырсаң, ал кайра кайтат.",
+              "ru": "Физики называют такое положение устойчивым равновесием: если груз чуть сдвинуть, он вернётся обратно.",
+              "en": "Physicists call this stable equilibrium: nudge the bob and it comes back."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Чөйчөктөгү шарик",
+              "ru": "Шарик в пиале",
+              "en": "A marble in a bowl"
+            },
+            "text": {
+              "ky": "Чөйчөккө шарик салсаң, ал эки жакка тоголонуп, акыры ортосуна токтойт. Орто – тең салмак абалы.",
+              "ru": "Брось шарик в пиалу: он покатается туда-сюда и остановится в середине. Середина – положение равновесия.",
+              "en": "Drop a marble in a bowl: it rolls back and forth and settles in the middle. The middle is equilibrium."
+            }
+          },
+          {
+            "title": {
+              "ky": "Селкинчектин ылдыйы",
+              "ru": "Низ качелей",
+              "en": "The bottom of the swing"
+            },
+            "text": {
+              "ky": "Селкинчекте эң катуу шамал ылдыйкы чекитте сезилет – ал жерде сен эң тез учасың.",
+              "ru": "На качелях сильнее всего ветер дует в лицо внизу – там ты летишь быстрее всего.",
+              "en": "On a swing you feel the strongest wind at the bottom – that is where you fly fastest."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.amplitude",
+      "kind": "quantity",
+      "hue": 200,
+      "isContainer": false,
+      "title": {
+        "ky": "Амплитуда",
+        "ru": "Амплитуда",
+        "en": "Amplitude"
+      },
+      "subtitle": {
+        "ky": "Эң чоң четтөө",
+        "ru": "Наибольшее отклонение",
+        "en": "The largest swing-out"
+      },
+      "description": {
+        "ky": "Жүктүн тең салмак абалынан эң чоң четтөөсү. Маятник үчүн аны бурч менен өлчөйбүз; кичине амплитудада мезгил амплитудадан дээрлик көз каранды эмес.",
+        "ru": "Наибольшее отклонение груза от положения равновесия. У маятника её измеряют углом; при малых амплитудах период почти не зависит от амплитуды.",
+        "en": "The bob's largest displacement from equilibrium. For a pendulum it is measured as an angle; for small amplitudes the period hardly depends on it."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "angle",
+          "value": 10
+        },
+        {
+          "kind": "text",
+          "type": "location",
+          "value": {
+            "ky": "Жүктүн четки чекиттери",
+            "ru": "Крайние точки груза",
+            "en": "The end points of the swing"
+          }
+        }
+      ],
+      "related": [
+        "phys.equilibrium",
+        "phys.bob"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.amplitude-period",
+          "text": {
+            "ky": "Амплитуда чоң болсо, мезгил да эки эсе чоң болот.",
+            "ru": "Чем больше амплитуда, тем во столько же раз больше период.",
+            "en": "A bigger amplitude makes the period proportionally longer."
+          },
+          "correction": {
+            "ky": "Кичине бурчтарда (≈15°ка чейин) мезгил амплитудадан дээрлик көз каранды эмес – муну изохрондуулук дейбиз.",
+            "ru": "При малых углах (примерно до 15°) период почти не зависит от амплитуды – это изохронность.",
+            "en": "For small angles (up to about 15°) the period barely depends on amplitude – this is called isochronism."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Аба каршылыгынан улам маятниктин амплитудасы акырындык менен азаят, бирок мезгили дээрлик өзгөрбөйт.",
+        "ru": "Из-за сопротивления воздуха амплитуда маятника постепенно уменьшается, а период почти не меняется.",
+        "en": "Air resistance slowly shrinks the amplitude, but the period stays almost the same."
+      },
+      "analogy": {
+        "ky": "Селкинчектин канчалык бийик учканы",
+        "ru": "Насколько высоко взлетают качели",
+        "en": "How high the swing goes"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Механикалык саат",
+              "ru": "Механические часы",
+              "en": "Mechanical clocks"
+            },
+            "text": {
+              "ky": "Саат маятнигинин амплитудасы бир аз өзгөрсө да, мезгил туруктуу калат – ошондуктан саат так жүрөт.",
+              "ru": "Даже если амплитуда маятника часов немного меняется, период остаётся постоянным – поэтому часы точны.",
+              "en": "Even if a clock pendulum's amplitude changes a little, its period stays steady – so the clock keeps good time."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Көпүрөлөрдүн термелүүсү",
+              "ru": "Колебания мостов",
+              "en": "Bridge oscillations"
+            },
+            "text": {
+              "ky": "Инженерлер шамалдан көпүрөнүн термелүү амплитудасы чоңоюп кетпешин эсептешет – Нарындагыдай аспалуу көпүрөлөр үчүн бул өзгөчө маанилүү.",
+              "ru": "Инженеры рассчитывают, чтобы амплитуда колебаний моста от ветра не росла, – для подвесных мостов, как в Нарыне, это особенно важно.",
+              "en": "Engineers make sure wind does not build up a bridge's swing amplitude – especially important for suspension footbridges like those in Naryn."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Бийик учуу",
+              "ru": "Высоко взлететь",
+              "en": "Swinging high"
+            },
+            "text": {
+              "ky": "Селкинчекте бийик учсаң – амплитуда чоң, акырын термелсең – кичине.",
+              "ru": "Высоко взлетаешь на качелях – амплитуда большая, качаешься тихонько – маленькая.",
+              "en": "Swing high and the amplitude is large; swing gently and it is small."
+            }
+          },
+          {
+            "title": {
+              "ky": "Иттин куйругу",
+              "ru": "Хвост собаки",
+              "en": "A dog's tail"
+            },
+            "text": {
+              "ky": "Ит кубанганда куйругун кенен шилтейт – амплитуда чоң, тынч турганда – кичине.",
+              "ru": "Радостная собака широко машет хвостом – амплитуда большая, спокойная – маленькая.",
+              "en": "A happy dog wags its tail widely – a big amplitude; a calm dog barely wags."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.mechanical-work",
+      "kind": "quantity",
+      "hue": 35,
+      "isContainer": false,
+      "title": {
+        "ky": "Механикалык жумуш",
+        "ru": "Механическая работа",
+        "en": "Mechanical work"
+      },
+      "subtitle": {
+        "ky": "A = F·s",
+        "ru": "A = F·s",
+        "en": "A = F·s"
+      },
+      "description": {
+        "ky": "Механикалык жумуш аткарылышы үчүн нерсеге күч аракет этип, күчтүн багыты боюнча нерсе кыймылга келиши керек. Механикалык жумуштун чоңдугу нерсеге аракет эткен күчтү өтүлгөн жолдун узундугуна көбөйткөнгө барабар: A = F·s. Жумуштун бирдиги – 1 джоуль (Дж): 1 Дж = 1 Н·м, 1 кДж = 1000 Дж.",
+        "ru": "Механическая работа совершается, когда на тело действует сила и тело движется в направлении этой силы. Работа равна произведению силы на пройденный путь: A = F·s. Единица работы – 1 джоуль (Дж): 1 Дж = 1 Н·м, 1 кДж = 1000 Дж.",
+        "en": "Mechanical work is done when a force acts on a body and the body moves in the direction of the force. Work equals force times the distance moved: A = F·s. The unit is the joule (J): 1 J = 1 N·m, 1 kJ = 1000 J."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "A = F \\cdot s"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Бирдиги: 1 Дж = 1 Н·м",
+            "ru": "Единица: 1 Дж = 1 Н·м",
+            "en": "Unit: 1 J = 1 N·m"
+          }
+        }
+      ],
+      "related": [
+        "phys.energy"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.work-without-motion",
+          "text": {
+            "ky": "Оор жүктү кыймылсыз кармап турсаң да, физикалык жумуш аткарасың – анткени чарчайсың.",
+            "ru": "Если неподвижно держать тяжёлый груз, совершается механическая работа – ведь устаёшь.",
+            "en": "Holding a heavy load still is mechanical work – after all, you get tired."
+          },
+          "correction": {
+            "ky": "Жипке илинген кыймылсыз жүккө оордук күчү аракет этет, бирок жүк жылбайт: s = 0, демек A = 0. Үйдүн дубалын канча түртсөң да, дубал жылбаса, жумуш аткарылбайт. Чарчоо – булчуңдардын ичиндеги иш, механикалык жумуш эмес.",
+            "ru": "На неподвижный груз на нити действует сила тяжести, но он не перемещается: s = 0, значит A = 0. Как ни толкай стену дома, если она не сдвинулась – работы нет. Усталость – это работа мышц внутри тела, а не механическая работа над грузом.",
+            "en": "Gravity acts on a load hanging still on a string, but it does not move: s = 0, so A = 0. Push a house wall as hard as you like – if it doesn't move, no work is done. Tiredness comes from your muscles, not from mechanical work on the load."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Жумуштун бирдиги англиялык окумуштуу Джеймс Джоулдун (1818–1889) урматына «джоуль» деп аталган.",
+        "ru": "Единица работы названа «джоулем» в честь английского учёного Джеймса Джоуля (1818–1889).",
+        "en": "The unit of work, the joule, is named after the English scientist James Joule (1818–1889)."
+      },
+      "analogy": {
+        "ky": "Күч канча, жана ал нерсени канча алыска жылдырды",
+        "ru": "Сколько сил приложили и на сколько сдвинули",
+        "en": "How hard you pushed and how far it went"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "m",
+            "title": {
+              "ky": "Кудуктан суу тартуу",
+              "ru": "Вода из колодца",
+              "en": "Water from a well"
+            },
+            "text": {
+              "ky": "Тереңдиги 10 м кудуктан 15 кг сууну чака менен тартып алганда: A = mgs = 15 · 10 · 10 = 1500 Дж (китепте g ≈ 10 Н/кг).",
+              "ru": "Поднять ведром 15 кг воды из колодца глубиной 10 м: A = mgs = 15 · 10 · 10 = 1500 Дж (в учебнике g ≈ 10 Н/кг).",
+              "en": "Lifting 15 kg of water from a 10 m deep well: A = mgs = 15 × 10 × 10 = 1500 J (the textbook uses g ≈ 10 N/kg)."
+            }
+          },
+          {
+            "field": "e",
+            "title": {
+              "ky": "Курулуш краны",
+              "ru": "Строительный кран",
+              "en": "A building crane"
+            },
+            "text": {
+              "ky": "Кран көлөмү 2 м³ бышкан кыштарды (ρ = 1800 кг/м³) 0,25 м/с ылдамдык менен 40 с көтөрөт: h = 10 м, A = ρVgh = 360 кДж.",
+              "ru": "Кран поднимает контейнер кирпича объёмом 2 м³ (ρ = 1800 кг/м³) со скоростью 0,25 м/с в течение 40 с: h = 10 м, A = ρVgh = 360 кДж.",
+              "en": "A crane lifts 2 m³ of brick (ρ = 1800 kg/m³) at 0.25 m/s for 40 s: h = 10 m, A = ρVgh = 360 kJ."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Сумканы көтөрүү",
+              "ru": "Поднять портфель",
+              "en": "Lifting a school bag"
+            },
+            "text": {
+              "ky": "Сумканы полдон столго көтөрсөң – жумуш аткардың. Аны колуңда кыймылсыз кармап турсаң – механикалык жумуш жок.",
+              "ru": "Поднял портфель с пола на стол – совершил работу. Просто держишь его неподвижно – механической работы нет.",
+              "en": "Lift your bag from the floor onto the desk and you do work. Just hold it still and you do no mechanical work."
+            }
+          },
+          {
+            "title": {
+              "ky": "Чананы сүйрөө",
+              "ru": "Тянуть санки",
+              "en": "Pulling a sledge"
+            },
+            "text": {
+              "ky": "Чананы 100 Н күч менен 5 м сүйрөсөң, 500 Дж жумуш аткарасың; 10 м сүйрөсөң – эки эсе көп.",
+              "ru": "Тянешь санки с силой 100 Н на 5 м – работа 500 Дж; протащишь на 10 м – вдвое больше.",
+              "en": "Pull a sledge with 100 N for 5 m and you do 500 J; pull it 10 m and it's twice as much."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.gravity",
+      "kind": "force",
+      "hue": 260,
+      "isContainer": false,
+      "title": {
+        "ky": "Оордук күчү",
+        "ru": "Сила тяжести",
+        "en": "Force of gravity"
+      },
+      "subtitle": {
+        "ky": "Жер тартат",
+        "ru": "Притяжение Земли",
+        "en": "Earth's pull"
+      },
+      "description": {
+        "ky": "Жер бардык денелерди өзүнө тарткан күч: F = mg, мында g ≈ 9,81 м/с². Ал дайыма тик ылдый багытталат.",
+        "ru": "Сила, с которой Земля притягивает все тела: F = mg, где g ≈ 9,81 м/с². Она всегда направлена вертикально вниз.",
+        "en": "The force with which the Earth pulls every body: F = mg, where g ≈ 9.81 m/s². It always points straight down."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "acceleration",
+          "value": 9.81
+        },
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "F = mg"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Денелерди Жерге тартат",
+            "ru": "Притягивает тела к Земле",
+            "en": "Pulls bodies towards the Earth"
+          }
+        }
+      ],
+      "related": [
+        "phys.bob"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.gravity-only-falling",
+          "text": {
+            "ky": "Оордук күчү кулап жаткан денелерге гана таасир этет.",
+            "ru": "Сила тяжести действует только на падающие тела.",
+            "en": "Gravity only acts on falling objects."
+          },
+          "correction": {
+            "ky": "Оордук күчү бардык денелерге – столдогу китепке да, учуп бараткан учакка да дайыма таасир этет.",
+            "ru": "Сила тяжести всегда действует на все тела – и на книгу на столе, и на летящий самолёт.",
+            "en": "Gravity always acts on every body – a book on a table and a plane in flight alike."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Айда g Жердегиден болжол менен 6 эсе аз – 1,62 м/с².",
+        "ru": "На Луне g примерно в 6 раз меньше, чем на Земле, – 1,62 м/с².",
+        "en": "On the Moon g is about 6 times smaller than on Earth – 1.62 m/s²."
+      },
+      "analogy": {
+        "ky": "Көрүнбөгөн магнит",
+        "ru": "Невидимый магнит",
+        "en": "An invisible magnet"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Токтогул ГЭСи",
+              "ru": "Токтогульская ГЭС",
+              "en": "Toktogul hydropower plant"
+            },
+            "text": {
+              "ky": "Нарын дарыясынын суусу оордук күчүнүн таасиринен бийиктен түшүп, турбиналарды айлантат – Кыргызстандын электринин чоң бөлүгү ушинтип алынат.",
+              "ru": "Вода Нарына под действием силы тяжести падает с высоты и вращает турбины – так получают большую часть электричества Кыргызстана.",
+              "en": "Naryn river water falls from a height under gravity and spins the turbines – that is how much of Kyrgyzstan's electricity is made."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Салмакты эсептөө",
+              "ru": "Расчёт силы тяжести",
+              "en": "Calculating weight"
+            },
+            "text": {
+              "ky": "2 кг брусокко таасир эткен оордук күчү: F = 2 · 9,81 ≈ 19,6 Н.",
+              "ru": "Сила тяжести, действующая на брусок 2 кг: F = 2 · 9,81 ≈ 19,6 Н.",
+              "en": "The force of gravity on a 2 kg block: F = 2 × 9.81 ≈ 19.6 N."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Алманын түшүшү",
+              "ru": "Падающее яблоко",
+              "en": "A falling apple"
+            },
+            "text": {
+              "ky": "Бактагы алма ылдый түшөт, жогору учпайт – аны Жер тартат.",
+              "ru": "Яблоко в саду падает вниз, а не улетает вверх – его притягивает Земля.",
+              "en": "An apple in the orchard falls down, not up – the Earth pulls it."
+            }
+          },
+          {
+            "title": {
+              "ky": "Топ ыргытуу",
+              "ru": "Бросок мяча",
+              "en": "Throwing a ball"
+            },
+            "text": {
+              "ky": "Топту канчалык бийик ыргытсаң да, ал кайра колуңа кайтып келет.",
+              "ru": "Как высоко ни подбрось мяч, он вернётся обратно.",
+              "en": "However high you throw a ball, it always comes back down."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.speed",
+      "kind": "quantity",
+      "hue": 200,
+      "isContainer": false,
+      "title": {
+        "ky": "Ылдамдык",
+        "ru": "Скорость",
+        "en": "Speed"
+      },
+      "subtitle": {
+        "ky": "v = s/t, м/с жана км/саат",
+        "ru": "v = s/t, м/с и км/ч",
+        "en": "v = s/t, m/s and km/h"
+      },
+      "description": {
+        "ky": "Дене убакыт бирдигинде басып өткөн жол. Ылдамдыкты табуу үчүн жолду убакытка бөлөбүз: v = s/t. SI системасында ылдамдыктын бирдиги – метр секундуна (м/с), турмушта көбүнчө километр саатына (км/саат) колдонулат: 1 м/с = 3,6 км/саат.",
+        "ru": "Путь, который тело проходит за единицу времени. Чтобы найти скорость, путь делят на время: v = s/t. В СИ скорость измеряют в метрах в секунду (м/с), в быту чаще в километрах в час (км/ч): 1 м/с = 3,6 км/ч.",
+        "en": "The distance a body covers per unit of time. To find the speed, divide the distance by the time: v = s/t. The SI unit is the metre per second (m/s); in everyday life we often use kilometres per hour (km/h): 1 m/s = 3.6 km/h."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "v = \\frac{s}{t}"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Кыймылдын канчалык тез экенин көрсөтөт",
+            "ru": "Показывает, насколько быстро движется тело",
+            "en": "Shows how fast a body moves"
+          }
+        }
+      ],
+      "related": [],
+      "misconceptions": [
+        {
+          "key": "phys.m.bigger-number-faster",
+          "text": {
+            "ky": "Саны чоңураак ылдамдык дайыма тезирээк: 18 км/саат 5 м/с тан тез.",
+            "ru": "Скорость с большим числом всегда больше: 18 км/ч быстрее, чем 5 м/с.",
+            "en": "The speed with the bigger number is always faster: 18 km/h is faster than 5 m/s."
+          },
+          "correction": {
+            "ky": "Ылдамдыктарды бир эле бирдикке келтирип гана салыштырабыз: 5 м/с = 5 · 3,6 = 18 км/саат, демек алар бирдей.",
+            "ru": "Скорости сравнивают только в одинаковых единицах: 5 м/с = 5 · 3,6 = 18 км/ч, значит, они равны.",
+            "en": "Compare speeds only in the same units: 5 m/s = 5 × 3.6 = 18 km/h, so they are equal."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Үлүл секундуна болжол менен 1 мм жылат – бул 0,001 м/с, башкача айтканда саатына 3,6 м гана.",
+        "ru": "Улитка проползает около 1 мм в секунду – это 0,001 м/с, то есть всего 3,6 м в час.",
+        "en": "A snail crawls about 1 mm per second – that is 0.001 m/s, or just 3.6 m per hour."
+      },
+      "analogy": {
+        "ky": "Ылдамдык – ар бир секундда канча метр «чогултканыңдын» эсеби: 15 м/с – секунд сайын 15 метр.",
+        "ru": "Скорость – это сколько метров ты «набираешь» каждую секунду: 15 м/с – по 15 метров за секунду.",
+        "en": "Speed is how many metres you 'collect' every second: 15 m/s means 15 metres each second."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Спидометр",
+              "ru": "Спидометр",
+              "en": "Speedometer"
+            },
+            "text": {
+              "ky": "Машинанын спидометри дөңгөлөктүн секундуна канча жолу айланарын эсептеп, аны км/саатка айлантып көрсөтөт.",
+              "ru": "Спидометр машины считает, сколько оборотов в секунду делает колесо, и переводит это в км/ч.",
+              "en": "A car's speedometer counts how many turns the wheel makes per second and converts that into km/h."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Чагылгандын алыстыгы",
+              "ru": "Как далеко гроза",
+              "en": "How far away is the storm"
+            },
+            "text": {
+              "ky": "Абада үн ≈ 340 м/с ылдамдык менен тарайт. Чагылган жаркылдагандан күндүн күркүрөөсүнө чейин 3 с өтсө, бороон ≈ 340 · 3 ≈ 1 км алыста.",
+              "ru": "Звук в воздухе распространяется со скоростью ≈ 340 м/с. Если от вспышки молнии до грома прошло 3 с, гроза примерно в 340 · 3 ≈ 1 км.",
+              "en": "Sound travels through air at about 340 m/s. If 3 s pass between the flash and the thunder, the storm is about 340 × 3 ≈ 1 km away."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Мектепке жөө",
+              "ru": "Пешком в школу",
+              "en": "Walking to school"
+            },
+            "text": {
+              "ky": "1,2 км жолду 15 мүнөттө (900 с) басып өтсөң, ылдамдыгың 1200 м : 900 с ≈ 1,3 м/с.",
+              "ru": "Если ты проходишь 1,2 км за 15 минут (900 с), твоя скорость 1200 м : 900 с ≈ 1,3 м/с.",
+              "en": "If you walk 1.2 km in 15 minutes (900 s), your speed is 1200 m ÷ 900 s ≈ 1.3 m/s."
+            }
+          },
+          {
+            "title": {
+              "ky": "Велосипед менен",
+              "ru": "На велосипеде",
+              "en": "By bike"
+            },
+            "text": {
+              "ky": "Ошол эле жолду велосипед менен 4 мүнөттө (240 с) өтсөң: 1200 : 240 = 5 м/с – жөө басканга караганда ≈ 4 эсе тез.",
+              "ru": "Тот же путь на велосипеде за 4 минуты (240 с): 1200 : 240 = 5 м/с – примерно в 4 раза быстрее, чем пешком.",
+              "en": "The same trip by bike in 4 minutes (240 s): 1200 ÷ 240 = 5 m/s – about 4 times faster than walking."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.string",
+      "kind": "part",
+      "hue": 45,
+      "isContainer": false,
+      "title": {
+        "ky": "Жип",
+        "ru": "Нить",
+        "en": "String"
+      },
+      "subtitle": {
+        "ky": "Жүктү кармап турат",
+        "ru": "Удерживает груз",
+        "en": "Holds the bob"
+      },
+      "description": {
+        "ky": "Жеңил, созулбаган жип. Анын узундугу l маятниктин термелүү мезгилин аныктайт.",
+        "ru": "Лёгкая нерастяжимая нить. Её длина l определяет период колебаний маятника.",
+        "en": "A light, non-stretching string. Its length l sets the pendulum's period."
+      },
+      "props": [
+        {
+          "kind": "quantity",
+          "type": "length",
+          "value": 1
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Жүктү илинүү чекитине байлайт, тартылуу күчүн берет",
+            "ru": "Связывает груз с точкой подвеса, создаёт силу натяжения",
+            "en": "Connects the bob to the pivot and provides the tension force"
+          }
+        }
+      ],
+      "related": [
+        "phys.bob"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.length-no-effect",
+          "text": {
+            "ky": "Жиптин узундугу термелүүгө таасир этпейт.",
+            "ru": "Длина нити не влияет на колебания.",
+            "en": "The string length does not affect the swing."
+          },
+          "correction": {
+            "ky": "Жип узун болсо, мезгил да узун: T жиптин узундугунун квадраттык тамырына пропорциялуу.",
+            "ru": "Чем длиннее нить, тем больше период: T пропорционален корню из длины.",
+            "en": "A longer string gives a longer period: T is proportional to the square root of the length."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Жипти 4 эсе узартсаң, термелүү мезгили 2 эсе гана узарат.",
+        "ru": "Если удлинить нить в 4 раза, период вырастет только в 2 раза.",
+        "en": "Make the string 4 times longer and the period only doubles."
+      },
+      "analogy": {
+        "ky": "Селкинчектин чынжыры",
+        "ru": "Цепи качелей",
+        "en": "The chains of a swing"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "m",
+            "title": {
+              "ky": "Тамыр жана мезгил",
+              "ru": "Корень и период",
+              "en": "Square roots and the period"
+            },
+            "text": {
+              "ky": "T = 2π√(l/g) формуласы боюнча 1 м жип ≈ 2,0 с, 0,25 м жип ≈ 1,0 с мезгил берет.",
+              "ru": "По формуле T = 2π√(l/g) нить 1 м даёт период ≈ 2,0 с, а 0,25 м – ≈ 1,0 с.",
+              "en": "By T = 2π√(l/g), a 1 m string gives a period of ≈ 2.0 s and a 0.25 m string ≈ 1.0 s."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Саатты тууралоо",
+              "ru": "Настройка часов",
+              "en": "Adjusting a clock"
+            },
+            "text": {
+              "ky": "Маятниктүү саат шашып калса, уста маятникти бир аз узартат – ошондо саат жайыраак жүрөт.",
+              "ru": "Если маятниковые часы спешат, мастер немного удлиняет маятник – и часы идут медленнее.",
+              "en": "If a pendulum clock runs fast, the clockmaker lengthens the pendulum slightly and the clock slows down."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Узун жана кыска селкинчек",
+              "ru": "Длинные и короткие качели",
+              "en": "Long and short swings"
+            },
+            "text": {
+              "ky": "Узун чынжырлуу селкинчек жай, кыска чынжырлуусу тез термелет.",
+              "ru": "Качели на длинных цепях качаются медленно, на коротких – быстро.",
+              "en": "A swing on long chains moves slowly; one on short chains moves fast."
+            }
+          },
+          {
+            "title": {
+              "ky": "Ачкыч байланган жип",
+              "ru": "Ключ на верёвочке",
+              "en": "A key on a cord"
+            },
+            "text": {
+              "ky": "Мойнуңдагы ачкычтын жибин кыскартсаң, ачкыч тезирээк чайкалат.",
+              "ru": "Укороти верёвочку с ключом на шее – и ключ будет качаться быстрее.",
+              "en": "Shorten the cord of the key around your neck and the key swings faster."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "phys.pendulum-energy",
+      "engine": "ode",
+      "icon": "activity",
+      "title": {
+        "ky": "Маятниктеги энергиянын айланышы",
+        "ru": "Превращения энергии маятника",
+        "en": "Energy changes in a pendulum"
+      },
+      "description": {
+        "ky": "0,5 кг жүк 1 м жипте 60° ка четтетилип коё берилет. Жүк ылдый түшкөн сайын потенциалдык энергиясы кинетикалыкка, кайра көтөрүлгөндө кинетикалык энергиясы потенциалдыкка айланат. Энергиялар формулалар боюнча эсептелет; алардын суммасы өзгөрбөйт.",
+        "ru": "Груз 0,5 кг на нити 1 м отклоняют на 60° и отпускают. Опускаясь, он превращает потенциальную энергию в кинетическую, поднимаясь – кинетическую в потенциальную. Энергии вычисляются по формулам; их сумма не меняется.",
+        "en": "A 0.5 kg bob on a 1 m string is pulled out to 60° and released. Going down, its potential energy turns into kinetic; going up, kinetic turns back into potential. The energies are computed from formulas and their sum stays the same."
+      },
+      "equation": "E = mgh + \\frac{mv^2}{2} = mgl(1 - \\cos\\theta_0)",
+      "inputs": {
+        "ky": "l = 1 м, m = 0,5 кг, θ₀ = 60°, g = 9,8 Н/кг",
+        "ru": "l = 1 м, m = 0,5 кг, θ₀ = 60°, g = 9,8 Н/кг",
+        "en": "l = 1 m, m = 0.5 kg, θ₀ = 60°, g = 9.8 N/kg"
+      },
+      "outputs": {
+        "ky": "h = 0,5 м, E = 2,45 Дж, v_max ≈ 3,13 м/с",
+        "ru": "h = 0,5 м, E = 2,45 Дж, v_max ≈ 3,13 м/с",
+        "en": "h = 0.5 m, E = 2.45 J, v_max ≈ 3.13 m/s"
+      },
+      "energy": {
+        "ky": "Толук механикалык энергия E = Eп + Eк = 2,45 Дж туруктуу",
+        "ru": "Полная механическая энергия E = Eп + Eк = 2,45 Дж постоянна",
+        "en": "Total mechanical energy E = PE + KE = 2.45 J stays constant"
+      },
+      "steps": [
+        {
+          "key": "release",
+          "title": {
+            "ky": "Жогорку чекит",
+            "ru": "Верхняя точка",
+            "en": "Top of the swing"
+          },
+          "result": {
+            "ky": "Eп = 2,45 Дж, Eк = 0",
+            "ru": "Eп = 2,45 Дж, Eк = 0",
+            "en": "PE = 2.45 J, KE = 0"
+          },
+          "description": {
+            "ky": "Жүк h = l(1 − cos 60°) = 0,5 м бийиктикте кыймылсыз: Eп = mgh = 0,5 · 9,8 · 0,5 = 2,45 Дж, Eк = 0.",
+            "ru": "Груз неподвижен на высоте h = l(1 − cos 60°) = 0,5 м: Eп = mgh = 0,5 · 9,8 · 0,5 = 2,45 Дж, Eк = 0.",
+            "en": "The bob is still at h = l(1 − cos 60°) = 0.5 m: PE = mgh = 0.5 × 9.8 × 0.5 = 2.45 J, KE = 0."
+          },
+          "conceptKey": "phys.potential-energy",
+          "altText": {
+            "ky": "Жүк 60° ка четтетилген, көк тилке толук, кызыл тилке бош.",
+            "ru": "Груз отклонён на 60°, синий столбик полный, красный пуст.",
+            "en": "The bob is pulled out to 60°; the blue bar is full and the red bar empty."
+          },
+          "duration": 0.26
+        },
+        {
+          "key": "halfway",
+          "title": {
+            "ky": "Ортосунда",
+            "ru": "На полпути",
+            "en": "Halfway down"
+          },
+          "result": {
+            "ky": "Eп = Eк ≈ 1,23 Дж",
+            "ru": "Eп = Eк ≈ 1,23 Дж",
+            "en": "PE = KE ≈ 1.23 J"
+          },
+          "description": {
+            "ky": "h = 0,25 м болгондо энергиянын жарымы кинетикалыкка өттү: Eп = Eк ≈ 1,23 Дж, суммасы мурдагыдай 2,45 Дж.",
+            "ru": "При h = 0,25 м половина энергии перешла в кинетическую: Eп = Eк ≈ 1,23 Дж, сумма по-прежнему 2,45 Дж.",
+            "en": "At h = 0.25 m half the energy has become kinetic: PE = KE ≈ 1.23 J, and the sum is still 2.45 J."
+          },
+          "conceptKey": "phys.energy-conservation",
+          "altText": {
+            "ky": "Жүк жолдун ортосунда, эки тилке бирдей бийиктикте.",
+            "ru": "Груз на полпути, оба столбика одной высоты.",
+            "en": "The bob halfway down; the two bars are the same height."
+          },
+          "duration": 0.24
+        },
+        {
+          "key": "bottom",
+          "title": {
+            "ky": "Эң төмөнкү чекит",
+            "ru": "Нижняя точка",
+            "en": "Lowest point"
+          },
+          "result": {
+            "ky": "Eк = 2,45 Дж, v ≈ 3,13 м/с",
+            "ru": "Eк = 2,45 Дж, v ≈ 3,13 м/с",
+            "en": "KE = 2.45 J, v ≈ 3.13 m/s"
+          },
+          "description": {
+            "ky": "Тең салмак абалында h = 0, Eп = 0: бүт энергия кинетикалык. v² = 2gh = 2 · 9,8 · 0,5, v ≈ 3,13 м/с.",
+            "ru": "В положении равновесия h = 0, Eп = 0: вся энергия кинетическая. v² = 2gh = 2 · 9,8 · 0,5, v ≈ 3,13 м/с.",
+            "en": "At equilibrium h = 0 and PE = 0: all the energy is kinetic. v² = 2gh = 2 × 9.8 × 0.5, v ≈ 3.13 m/s."
+          },
+          "conceptKey": "phys.kinetic-energy",
+          "altText": {
+            "ky": "Жүк так ылдыйда, кызыл тилке толук, көк тилке бош.",
+            "ru": "Груз в самом низу, красный столбик полный, синий пуст.",
+            "en": "The bob at the bottom; the red bar full, the blue bar empty."
+          },
+          "duration": 0.5
+        },
+        {
+          "key": "opposite",
+          "title": {
+            "ky": "Карама-каршы чет",
+            "ru": "Противоположный край",
+            "en": "Other side"
+          },
+          "result": {
+            "ky": "Eп = 2,45 Дж, Eк = 0",
+            "ru": "Eп = 2,45 Дж, Eк = 0",
+            "en": "PE = 2.45 J, KE = 0"
+          },
+          "description": {
+            "ky": "Жүк кайра көтөрүлүп, сүрүлүү жок болсо, ошол эле 0,5 м бийиктикке жетет – кинетикалык энергия кайра потенциалдыкка айланды.",
+            "ru": "Груз снова поднимается и без трения доходит до той же высоты 0,5 м – кинетическая энергия снова стала потенциальной.",
+            "en": "The bob rises again and, without friction, reaches the same 0.5 m – the kinetic energy has turned back into potential."
+          },
+          "conceptKey": "phys.energy-conservation",
+          "altText": {
+            "ky": "Жүк сол жакта 60° та, көк тилке кайра толук.",
+            "ru": "Груз слева на 60°, синий столбик снова полный.",
+            "en": "The bob at 60° on the left; the blue bar is full again."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "pe",
+          "label": {
+            "ky": "Потенциалдык энергия",
+            "ru": "Потенциальная энергия",
+            "en": "Potential energy"
+          },
+          "unit": "J",
+          "min": 0,
+          "max": 2.5,
+          "precision": 2
+        },
+        {
+          "key": "ke",
+          "label": {
+            "ky": "Кинетикалык энергия",
+            "ru": "Кинетическая энергия",
+            "en": "Kinetic energy"
+          },
+          "unit": "J",
+          "min": 0,
+          "max": 2.5,
+          "precision": 2
+        },
+        {
+          "key": "energy",
+          "label": {
+            "ky": "Толук механикалык энергия",
+            "ru": "Полная механическая энергия",
+            "en": "Total mechanical energy"
+          },
+          "unit": "J",
+          "min": 0,
+          "max": 2.5,
+          "precision": 2
+        },
+        {
+          "key": "height",
+          "label": {
+            "ky": "Бийиктик",
+            "ru": "Высота",
+            "en": "Height"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 0.5,
+          "precision": 2
+        },
+        {
+          "key": "speed",
+          "label": {
+            "ky": "Ылдамдык",
+            "ru": "Скорость",
+            "en": "Speed"
+          },
+          "unit": "m/s",
+          "min": 0,
+          "max": 3.2,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "length": 1,
+        "g": 9.8,
+        "mass": 0.5,
+        "amplitudeDeg": 60,
+        "damping": 0
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "phys.q.p7-energy-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Нерсенин толук механикалык энергиясы эмнеге барабар?",
+        "ru": "Чему равна полная механическая энергия тела?",
+        "en": "What is a body's total mechanical energy?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Потенциалдык жана кинетикалык энергияларынын суммасына",
+            "ru": "Сумме потенциальной и кинетической энергий",
+            "en": "The sum of its potential and kinetic energy"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Потенциалдык энергиясына гана",
+            "ru": "Только потенциальной энергии",
+            "en": "Only its potential energy"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Массасы менен ылдамдыгынын көбөйтүндүсүнө",
+            "ru": "Произведению массы на скорость",
+            "en": "Mass times velocity"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "E = Eп + Eк. Масса менен ылдамдыктын көбөйтүндүсү mv – бул импульс.",
+        "ru": "E = Eп + Eк. Произведение массы на скорость mv – это импульс.",
+        "en": "E = PE + KE. Mass times velocity, mv, is momentum."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-energy-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы нерселер потенциалдык энергияга ээ?",
+        "ru": "Какие тела обладают потенциальной энергией?",
+        "en": "Which of these have potential energy?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жерден өйдө көтөрүлгөн жүк",
+            "ru": "Груз, поднятый над землёй",
+            "en": "A load raised above the ground"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Кысылган пружина",
+            "ru": "Сжатая пружина",
+            "en": "A squeezed spring"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Чоюлган жаанын жиби",
+            "ru": "Натянутая тетива лука",
+            "en": "A drawn bowstring"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Полдо жылып бараткан чимирик",
+            "ru": "Волчок, крутящийся на полу",
+            "en": "A top spinning on the floor"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Көтөрүлгөн жүк, кысылган пружина жана чоюлган жаа абалынан улам энергияга ээ. Полдогу чимирик кыймылда – анын кинетикалык энергиясы бар, ал эми потенциалдык энергиясы нөл.",
+        "ru": "Поднятый груз, сжатая пружина и натянутая тетива обладают энергией благодаря своему положению или деформации. Волчок на полу движется – у него кинетическая энергия, а потенциальная равна нулю.",
+        "en": "The raised load, squeezed spring and drawn bowstring have energy because of their position or deformation. The spinning top on the floor has kinetic energy; its potential energy is zero."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-energy-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 2 кг шардын 5 м бийиктиктеги потенциалдык энергиясы канча джоуль? g ≈ 10 Н/кг.",
+        "ru": "Какова потенциальная энергия шара массой 2 кг на высоте 5 м, Дж? g ≈ 10 Н/кг.",
+        "en": "What is the potential energy of a 2 kg ball 5 m up, in joules? g ≈ 10 N/kg."
+      },
+      "answer": 100,
+      "tolerance": 1,
+      "unit": "J",
+      "explanation": {
+        "ky": "Eп = mgh = 2 · 10 · 5 = 100 Дж.",
+        "ru": "Eп = mgh = 2 · 10 · 5 = 100 Дж.",
+        "en": "PE = mgh = 2 × 10 × 5 = 100 J."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-energy-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 10 г ок атылганда 3200 Дж кинетикалык энергияга ээ болду. Октун ылдамдыгы канча м/с?",
+        "ru": "Пуля массой 10 г при выстреле получила кинетическую энергию 3200 Дж. Какова её скорость, м/с?",
+        "en": "A 10 g bullet leaves the gun with 3200 J of kinetic energy. What is its speed in m/s?"
+      },
+      "answer": 800,
+      "tolerance": 5,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "v² = 2Eк/m = 2 · 3200 / 0,01 = 640 000, v = 800 м/с.",
+        "ru": "v² = 2Eк/m = 2 · 3200 / 0,01 = 640 000, v = 800 м/с.",
+        "en": "v² = 2KE/m = 2 × 3200 / 0.01 = 640 000, so v = 800 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o2"
+      ],
+      "difficulty": 4
+    },
+    {
+      "key": "phys.q.p7-energy-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Эркин түшкөн нерсенин жерге жеткендеги ылдамдыгы 40 м/с. Ал канча метр бийиктиктен түшкөн? g ≈ 10 Н/кг, абанын каршылыгы жок.",
+        "ru": "Скорость свободно падающего тела у земли 40 м/с. С какой высоты оно упало, м? g ≈ 10 Н/кг, сопротивления воздуха нет.",
+        "en": "A freely falling body hits the ground at 40 m/s. From what height in metres did it fall? g ≈ 10 N/kg, no air resistance."
+      },
+      "answer": 80,
+      "tolerance": 1,
+      "unit": "m",
+      "explanation": {
+        "ky": "Энергиянын сакталуу закону: mgh = mv²/2, h = v²/(2g) = 1600 / 20 = 80 м.",
+        "ru": "Закон сохранения энергии: mgh = mv²/2, h = v²/(2g) = 1600 / 20 = 80 м.",
+        "en": "Energy conservation: mgh = mv²/2, so h = v²/(2g) = 1600 / 20 = 80 m."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o2"
+      ],
+      "difficulty": 4
+    },
+    {
+      "key": "phys.q.p7-energy-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Моделде 0,5 кг жүк 1 м жипте 60° ка четтетилип коё берилди (h = 0,5 м, g = 9,8 Н/кг). Эң төмөнкү чекиттеги анын ылдамдыгы канча м/с?",
+        "ru": "На модели груз 0,5 кг на нити 1 м отклонили на 60° и отпустили (h = 0,5 м, g = 9,8 Н/кг). Какова его скорость в нижней точке, м/с?",
+        "en": "In the model a 0.5 kg bob on a 1 m string is released from 60° (h = 0.5 m, g = 9.8 N/kg). What is its speed at the lowest point in m/s?"
+      },
+      "answer": 3.13,
+      "tolerance": 0.05,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "mgh = mv²/2 → v = √(2gh) = √(2 · 9,8 · 0,5) = √9,8 ≈ 3,13 м/с.",
+        "ru": "mgh = mv²/2 → v = √(2gh) = √(2 · 9,8 · 0,5) = √9,8 ≈ 3,13 м/с.",
+        "en": "mgh = mv²/2 → v = √(2gh) = √(2 × 9.8 × 0.5) = √9.8 ≈ 3.13 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o2"
+      ],
+      "misconceptionKey": "phys.m.stops-at-bottom",
+      "difficulty": 4
+    },
+    {
+      "key": "phys.q.p7-energy-7",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден жүктүн потенциалдык энергиясын көрсөткөн тилкени тап.",
+        "ru": "Найди на модели столбик, показывающий потенциальную энергию груза.",
+        "en": "Find the bar that shows the bob's potential energy."
+      },
+      "targetConceptKey": "phys.potential-energy",
+      "explanation": {
+        "ky": "Көк тилке – Eп = mgh: ал жүк эң бийикте болгондо толук, ылдыйда бош.",
+        "ru": "Синий столбик – Eп = mgh: он полный, когда груз выше всего, и пуст внизу.",
+        "en": "The blue bar is PE = mgh: full when the bob is highest, empty at the bottom."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-energy-8",
+      "type": "match",
+      "prompt": {
+        "ky": "Жүктүн абалын анын энергиясы менен дал келтир.",
+        "ru": "Сопоставь положение груза и его энергию.",
+        "en": "Match each position of the bob to its energy."
+      },
+      "pairs": [
+        {
+          "key": "top",
+          "left": {
+            "ky": "Эң бийик чекит",
+            "ru": "Самая высокая точка",
+            "en": "Highest point"
+          },
+          "right": {
+            "ky": "Eп = 2,45 Дж, Eк = 0",
+            "ru": "Eп = 2,45 Дж, Eк = 0",
+            "en": "PE = 2.45 J, KE = 0"
+          }
+        },
+        {
+          "key": "half",
+          "left": {
+            "ky": "h = 0,25 м",
+            "ru": "h = 0,25 м",
+            "en": "h = 0.25 m"
+          },
+          "right": {
+            "ky": "Eп = Eк ≈ 1,23 Дж",
+            "ru": "Eп = Eк ≈ 1,23 Дж",
+            "en": "PE = KE ≈ 1.23 J"
+          }
+        },
+        {
+          "key": "bottom",
+          "left": {
+            "ky": "Эң төмөнкү чекит",
+            "ru": "Самая низкая точка",
+            "en": "Lowest point"
+          },
+          "right": {
+            "ky": "Eп = 0, Eк = 2,45 Дж",
+            "ru": "Eп = 0, Eк = 2,45 Дж",
+            "en": "PE = 0, KE = 2.45 J"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Ар бир чекитте Eп + Eк = 2,45 Дж – толук механикалык энергия сакталат.",
+        "ru": "В каждой точке Eп + Eк = 2,45 Дж – полная механическая энергия сохраняется.",
+        "en": "At every point PE + KE = 2.45 J – the total mechanical energy is conserved."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o2"
+      ],
+      "misconceptionKey": "phys.m.stops-at-bottom",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-energy-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Машинанын ылдамдыгы 2 эсе чоңойду. Анын кинетикалык энергиясы канча эсе чоңоёт?",
+        "ru": "Скорость машины выросла в 2 раза. Во сколько раз выросла её кинетическая энергия?",
+        "en": "A car's speed doubles. By what factor does its kinetic energy grow?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "2 эсе",
+            "ru": "В 2 раза",
+            "en": "2 times"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "4 эсе",
+            "ru": "В 4 раза",
+            "en": "4 times"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не изменится",
+            "en": "It doesn't change"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Eк = mv²/2: ылдамдык квадратта, ошондуктан (2v)² = 4v² – энергия 4 эсе чоңоёт.",
+        "ru": "Eк = mv²/2: скорость в квадрате, поэтому (2v)² = 4v² – энергия вырастет в 4 раза.",
+        "en": "KE = mv²/2: speed is squared, so (2v)² = 4v² – the energy grows 4 times."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o2"
+      ],
+      "misconceptionKey": "phys.m.ke-linear-speed",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-energy-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Чыныгы маятник бир нече мүнөттөн кийин токтоп калат. Анын энергиясы эмне болду?",
+        "ru": "Настоящий маятник через несколько минут останавливается. Что стало с его энергией?",
+        "en": "A real pendulum stops after a few minutes. What happened to its energy?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Абанын каршылыгына жана сүрүлүүгө каршы жумушка сарпталып, жылуулукка өттү",
+            "ru": "Потрачена на работу против сопротивления воздуха и трения и перешла в тепло",
+            "en": "It went into work against air resistance and friction and became heat"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жок болуп кетти",
+            "ru": "Просто исчезла",
+            "en": "It simply vanished"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жүктүн массасына айланды",
+            "ru": "Превратилась в массу груза",
+            "en": "It turned into the bob's mass"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Энергия жоголбойт жана жоктон пайда болбойт. Механикалык энергия сүрүлүүнүн айынан ички (жылуулук) энергияга өтөт.",
+        "ru": "Энергия не исчезает и не возникает из ничего. Из-за трения механическая энергия переходит во внутреннюю (тепловую).",
+        "en": "Energy is never lost or created from nothing. Friction turns the mechanical energy into internal (heat) energy."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o2"
+      ],
+      "misconceptionKey": "phys.m.energy-used-up",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-energy-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Кайсынын потенциалдык энергиясы чоң: жерде жаткан 50 кг таштыкыбы же 5 м бийиктиктеги 2 кг шардыкыбы? (Eп = 0 – жер бетинде.)",
+        "ru": "У кого больше потенциальная энергия: у камня 50 кг, лежащего на земле, или у шара 2 кг на высоте 5 м? (Eп = 0 на поверхности Земли.)",
+        "en": "Which has more potential energy: a 50 kg rock lying on the ground, or a 2 kg ball 5 m up? (PE = 0 at ground level.)"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "5 м бийиктиктеги шардыкы",
+            "ru": "У шара на высоте 5 м",
+            "en": "The ball 5 m up"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Таштыкы – ал оор",
+            "ru": "У камня – он тяжелее",
+            "en": "The rock – it's heavier"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Бирдей",
+            "ru": "Одинаковая",
+            "en": "They're equal"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Eп = mgh: таш үчүн h = 0, демек Eп = 0; шар үчүн Eп = 2 · 10 · 5 = 100 Дж.",
+        "ru": "Eп = mgh: у камня h = 0, значит Eп = 0; у шара Eп = 2 · 10 · 5 = 100 Дж.",
+        "en": "PE = mgh: the rock has h = 0, so PE = 0; the ball has PE = 2 × 10 × 5 = 100 J."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o2"
+      ],
+      "misconceptionKey": "phys.m.pe-mass-only",
+      "difficulty": 2
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-phys-pendulum",
+      "ky": "маятник",
+      "ru": "маятник",
+      "en": "pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-period",
+      "ky": "термелүү мезгили",
+      "ru": "период колебаний",
+      "en": "period of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-amplitude",
+      "ky": "амплитуда",
+      "ru": "амплитуда",
+      "en": "amplitude",
+      "forbidden": [
+        "amplitud"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gravity",
+      "ky": "оордук күчү",
+      "ru": "сила тяжести",
+      "en": "force of gravity",
+      "forbidden": [
+        "attraction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction",
+      "ky": "сүрүлүү күчү",
+      "ru": "сила трения",
+      "en": "friction force",
+      "forbidden": [
+        "force of rubbing"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-force",
+      "ky": "таянычтын реакция күчү",
+      "ru": "сила реакции опоры",
+      "en": "normal force",
+      "forbidden": [
+        "support reaction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-acceleration",
+      "ky": "ылдамдануу",
+      "ru": "ускорение",
+      "en": "acceleration",
+      "forbidden": [
+        "тездетүү"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-speed",
+      "ky": "ылдамдык",
+      "ru": "скорость",
+      "en": "speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinetic-energy",
+      "ky": "кинетикалык энергия",
+      "ru": "кинетическая энергия",
+      "en": "kinetic energy",
+      "forbidden": [
+        "кинетический энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-potential-energy",
+      "ky": "потенциалдык энергия",
+      "ru": "потенциальная энергия",
+      "en": "potential energy",
+      "forbidden": [
+        "потенциальный энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-voltage",
+      "ky": "чыңалуу",
+      "ru": "напряжение",
+      "en": "voltage",
+      "forbidden": [
+        "electric tension"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-current",
+      "ky": "ток күчү",
+      "ru": "сила тока",
+      "en": "electric current",
+      "forbidden": [
+        "current force",
+        "current strength"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-resistance",
+      "ky": "каршылык",
+      "ru": "сопротивление",
+      "en": "resistance",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-circuit",
+      "ky": "электр чынжыры",
+      "ru": "электрическая цепь",
+      "en": "electric circuit",
+      "forbidden": [
+        "electric chain",
+        "электрическая цепочка"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-source",
+      "ky": "ток булагы",
+      "ru": "источник тока",
+      "en": "power source",
+      "forbidden": [
+        "source of current"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-switch",
+      "ky": "ачкыч",
+      "ru": "ключ (выключатель)",
+      "en": "switch",
+      "forbidden": [
+        "electric key"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-distance-travelled",
+      "ky": "басып өткөн жол",
+      "ru": "пройденный путь",
+      "en": "distance travelled",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-time",
+      "ky": "убакыт",
+      "ru": "время",
+      "en": "time",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-uniform-motion",
+      "ky": "бир калыптагы кыймыл",
+      "ru": "равномерное движение",
+      "en": "uniform motion",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-average-speed",
+      "ky": "орточо ылдамдык",
+      "ru": "средняя скорость",
+      "en": "average speed",
+      "forbidden": [
+        "medium speed"
+      ]
+    },
+    {
+      "id": "g-phys-speed-radar",
+      "ky": "ылдамдык радары",
+      "ru": "радар скорости",
+      "en": "speed radar",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-stopwatch",
+      "ky": "секундомер",
+      "ru": "секундомер",
+      "en": "stopwatch",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-distance-time-graph",
+      "ky": "жолдун убакыттан көз карандылык графиги",
+      "ru": "график зависимости пути от времени",
+      "en": "distance–time graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-graph-slope",
+      "ky": "графиктин тиктиги",
+      "ru": "наклон графика",
+      "en": "slope of a graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-rest",
+      "ky": "тынч абал",
+      "ru": "покой",
+      "en": "rest",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-force",
+      "ky": "күч",
+      "ru": "сила",
+      "en": "force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-vector",
+      "ky": "вектор",
+      "ru": "вектор",
+      "en": "vector",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-newton",
+      "ky": "ньютон (Н)",
+      "ru": "ньютон (Н)",
+      "en": "newton (N)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-dynamometer",
+      "ky": "динамометр",
+      "ru": "динамометр",
+      "en": "dynamometer (spring scale)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-weight",
+      "ky": "салмак",
+      "ru": "вес тела",
+      "en": "weight",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-resultant",
+      "ky": "тең аракеттүү күч",
+      "ru": "равнодействующая сила",
+      "en": "resultant force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-elastic-force",
+      "ky": "серпилгичтик күчү",
+      "ru": "сила упругости",
+      "en": "elastic force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-point-of-application",
+      "ky": "күчтүн коюлган чекити",
+      "ru": "точка приложения силы",
+      "en": "point of application",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever",
+      "ky": "рычаг",
+      "ru": "рычаг",
+      "en": "lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-pivot",
+      "ky": "таяныч чекити",
+      "ru": "точка опоры",
+      "en": "pivot (fulcrum)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever-arm",
+      "ky": "күчтүн ийини",
+      "ru": "плечо силы",
+      "en": "lever arm",
+      "forbidden": [
+        "shoulder of force"
+      ]
+    },
+    {
+      "id": "g-phys-moment",
+      "ky": "күчтүн моменти",
+      "ru": "момент силы",
+      "en": "moment of a force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-equilibrium-lever",
+      "ky": "рычагдын тең салмактуулугу",
+      "ru": "равновесие рычага",
+      "en": "equilibrium of a lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-interaction",
+      "ky": "өз ара аракеттенишүү",
+      "ru": "взаимодействие",
+      "en": "interaction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-deformation",
+      "ky": "деформация",
+      "ru": "деформация",
+      "en": "deformation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inertia",
+      "ky": "инерция",
+      "ru": "инерция",
+      "en": "inertia",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inertness",
+      "ky": "инерттүүлүк",
+      "ru": "инертность",
+      "en": "inertness",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-first-law",
+      "ky": "Ньютондун биринчи закону",
+      "ru": "первый закон Ньютона",
+      "en": "Newton's first law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mass",
+      "ky": "масса",
+      "ru": "масса",
+      "en": "mass",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kilogram",
+      "ky": "килограмм (кг)",
+      "ru": "килограмм (кг)",
+      "en": "kilogram (kg)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-balance-scale",
+      "ky": "тараза",
+      "ru": "весы",
+      "en": "balance (scales)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-beam",
+      "ky": "коромысло (тараза ийини)",
+      "ru": "коромысло",
+      "en": "beam (of a balance)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-weights-set",
+      "ky": "тараза таштары (гирялар)",
+      "ru": "гири",
+      "en": "weights (set of masses)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-density",
+      "ky": "заттын тыгыздыгы",
+      "ru": "плотность вещества",
+      "en": "density",
+      "forbidden": [
+        "тыгыздуулук"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-second-law",
+      "ky": "Ньютондун экинчи закону",
+      "ru": "второй закон Ньютона",
+      "en": "Newton's second law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-universal-gravitation",
+      "ky": "бүткүл дүйнөлүк тартылуу",
+      "ru": "всемирное тяготение",
+      "en": "universal gravitation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-fall",
+      "ky": "эркин түшүү",
+      "ru": "свободное падение",
+      "en": "free fall",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-fall-acceleration",
+      "ky": "эркин түшүүнүн ылдамдануусу",
+      "ru": "ускорение свободного падения",
+      "en": "free-fall acceleration",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-support",
+      "ky": "таяныч",
+      "ru": "опора",
+      "en": "support",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-suspension",
+      "ky": "асма",
+      "ru": "подвес",
+      "en": "suspension",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hooke-law",
+      "ky": "Гуктун закону",
+      "ru": "закон Гука",
+      "en": "Hooke's law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-stiffness",
+      "ky": "пружинанын катуулугу",
+      "ru": "жёсткость пружины",
+      "en": "spring stiffness",
+      "forbidden": [
+        "spring hardness"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-extension",
+      "ky": "пружинанын узарышы",
+      "ru": "удлинение пружины",
+      "en": "spring extension",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-graduation",
+      "ky": "динамометрди градуирлөө",
+      "ru": "градуировка динамометра",
+      "en": "calibration of a dynamometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-measurement-limit",
+      "ky": "өлчөө чеги",
+      "ru": "предел измерения",
+      "en": "measuring range",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sliding-friction",
+      "ky": "тайгаланып сүрүлүү",
+      "ru": "трение скольжения",
+      "en": "sliding friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rolling-friction",
+      "ky": "тоголонуп сүрүлүү",
+      "ru": "трение качения",
+      "en": "rolling friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-static-friction",
+      "ky": "тынч туруудагы сүрүлүү",
+      "ru": "трение покоя",
+      "en": "static friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction-coefficient",
+      "ky": "сүрүлүү коэффициенти",
+      "ru": "коэффициент трения",
+      "en": "coefficient of friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-third-law",
+      "ky": "Ньютондун үчүнчү закону",
+      "ru": "третий закон Ньютона",
+      "en": "Newton's third law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-action-reaction",
+      "ky": "аракет жана каршы аракет",
+      "ru": "действие и противодействие",
+      "en": "action and reaction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-phenomenon",
+      "ky": "кубулуш",
+      "ru": "явление",
+      "en": "phenomenon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-physical-quantity",
+      "ky": "физикалык чоңдук",
+      "ru": "физическая величина",
+      "en": "physical quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-si",
+      "ky": "СИ (бирдиктердин эл аралык системасы)",
+      "ru": "СИ (Международная система единиц)",
+      "en": "SI (International System of Units)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scale",
+      "ky": "шкала",
+      "ru": "шкала",
+      "en": "scale",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scale-division",
+      "ky": "шкаланын баасы",
+      "ru": "цена деления шкалы",
+      "en": "scale division value",
+      "forbidden": [
+        "scale price"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-motion",
+      "ky": "механикалык кыймыл",
+      "ru": "механическое движение",
+      "en": "mechanical motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinematics",
+      "ky": "кинематика",
+      "ru": "кинематика",
+      "en": "kinematics",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-relativity-of-motion",
+      "ky": "кыймылдын салыштырмалуулугу",
+      "ru": "относительность движения",
+      "en": "relativity of motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-reference-body",
+      "ky": "салыштыруу нерсеси",
+      "ru": "тело отсчёта",
+      "en": "reference body",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-material-point",
+      "ky": "материялык чекит",
+      "ru": "материальная точка",
+      "en": "material point",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-trajectory",
+      "ky": "кыймылдын траекториясы",
+      "ru": "траектория движения",
+      "en": "trajectory",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rectilinear-motion",
+      "ky": "түз сызыктуу кыймыл",
+      "ru": "прямолинейное движение",
+      "en": "straight-line motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-curvilinear-motion",
+      "ky": "ийри сызыктуу кыймыл",
+      "ru": "криволинейное движение",
+      "en": "curvilinear motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-path-length",
+      "ky": "өтүлгөн жол",
+      "ru": "пройденный путь",
+      "en": "path length",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-displacement",
+      "ky": "которулуш",
+      "ru": "перемещение",
+      "en": "displacement",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scalar",
+      "ky": "скалярдык чоңдук",
+      "ru": "скалярная величина",
+      "en": "scalar quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-vector-quantity",
+      "ky": "вектордук чоңдук",
+      "ru": "векторная величина",
+      "en": "vector quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-non-uniform-motion",
+      "ky": "бир калыптагы эмес кыймыл",
+      "ru": "неравномерное движение",
+      "en": "non-uniform motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-initial-speed",
+      "ky": "баштапкы ылдамдык",
+      "ru": "начальная скорость",
+      "en": "initial speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-final-speed",
+      "ky": "акыркы ылдамдык",
+      "ru": "конечная скорость",
+      "en": "final speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-accelerated-motion",
+      "ky": "ылдамдатылган кыймыл",
+      "ru": "ускоренное движение",
+      "en": "accelerated motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-decelerated-motion",
+      "ky": "акырындатылган кыймыл",
+      "ru": "замедленное движение",
+      "en": "decelerated motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-uniform-circular-motion",
+      "ky": "айлана боюнча бир калыптагы кыймыл",
+      "ru": "равномерное движение по окружности",
+      "en": "uniform circular motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-linear-speed",
+      "ky": "сызыктуу ылдамдык",
+      "ru": "линейная скорость",
+      "en": "linear speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rotation-period",
+      "ky": "айлануу мезгили",
+      "ru": "период обращения",
+      "en": "period of rotation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rotation-frequency",
+      "ky": "айлануунун жыштыгы",
+      "ru": "частота обращения",
+      "en": "rotation frequency",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-tangent",
+      "ky": "жаныма",
+      "ru": "касательная",
+      "en": "tangent",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-momentum",
+      "ky": "нерсенин импульсу",
+      "ru": "импульс тела",
+      "en": "momentum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-momentum-conservation",
+      "ky": "импульстун сакталуу закону",
+      "ru": "закон сохранения импульса",
+      "en": "conservation of momentum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-closed-system",
+      "ky": "туюк система",
+      "ru": "замкнутая система",
+      "en": "closed system",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-jet-propulsion",
+      "ky": "реактивдүү кыймыл",
+      "ru": "реактивное движение",
+      "en": "jet propulsion",
+      "forbidden": [
+        "реактивный кыймыл"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rocket",
+      "ky": "ракета",
+      "ru": "ракета",
+      "en": "rocket",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-work",
+      "ky": "механикалык жумуш",
+      "ru": "механическая работа",
+      "en": "mechanical work",
+      "forbidden": [
+        "механикалык иш"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-joule",
+      "ky": "джоуль (Дж)",
+      "ru": "джоуль (Дж)",
+      "en": "joule (J)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-power",
+      "ky": "кубаттуулук",
+      "ru": "мощность",
+      "en": "power",
+      "forbidden": [
+        "кубаттулук"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-watt",
+      "ky": "ватт (Вт)",
+      "ru": "ватт (Вт)",
+      "en": "watt (W)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-energy",
+      "ky": "энергия",
+      "ru": "энергия",
+      "en": "energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-energy",
+      "ky": "механикалык энергия",
+      "ru": "механическая энергия",
+      "en": "mechanical energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-total-mechanical-energy",
+      "ky": "толук механикалык энергия",
+      "ru": "полная механическая энергия",
+      "en": "total mechanical energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-energy-conservation",
+      "ky": "энергиянын сакталуу закону",
+      "ru": "закон сохранения энергии",
+      "en": "conservation of energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-maxwell-pendulum",
+      "ky": "Максвелл маятниги",
+      "ru": "маятник Максвелла",
+      "en": "Maxwell's pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pressure",
+      "ky": "басым",
+      "ru": "давление",
+      "en": "pressure",
+      "forbidden": [
+        "кысым"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal",
+      "ky": "паскаль (Па)",
+      "ru": "паскаль (Па)",
+      "en": "pascal (Pa)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-area",
+      "ky": "аянт",
+      "ru": "площадь",
+      "en": "area",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pressure-force",
+      "ky": "басым күчү",
+      "ru": "сила давления",
+      "en": "force of pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gas-pressure",
+      "ky": "газдын басымы",
+      "ru": "давление газа",
+      "en": "gas pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-liquid-pressure",
+      "ky": "суюктуктун басымы",
+      "ru": "давление жидкости",
+      "en": "liquid pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-liquid-column",
+      "ky": "суюктук мамычасы",
+      "ru": "столб жидкости",
+      "en": "column of liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-depth",
+      "ky": "тереңдик",
+      "ru": "глубина",
+      "en": "depth",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-manometer",
+      "ky": "манометр",
+      "ru": "манометр",
+      "en": "manometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal-law",
+      "ky": "Паскаль закону",
+      "ru": "закон Паскаля",
+      "en": "Pascal's law",
+      "forbidden": [
+        "Паскалдын закону"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal-ball",
+      "ky": "Паскаль шары",
+      "ru": "шар Паскаля",
+      "en": "Pascal's ball",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-communicating-vessels",
+      "ky": "катыш идиштер",
+      "ru": "сообщающиеся сосуды",
+      "en": "communicating vessels",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-press",
+      "ky": "гидравликалык пресс",
+      "ru": "гидравлический пресс",
+      "en": "hydraulic press",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-lift",
+      "ky": "гидравликалык көтөргүч",
+      "ru": "гидравлический подъёмник",
+      "en": "hydraulic lift",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-brake",
+      "ky": "гидравликалык токтоткуч",
+      "ru": "гидравлический тормоз",
+      "en": "hydraulic brake",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-piston",
+      "ky": "поршень",
+      "ru": "поршень",
+      "en": "piston",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-atmosphere",
+      "ky": "атмосфера",
+      "ru": "атмосфера",
+      "en": "atmosphere",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-atmospheric-pressure",
+      "ky": "атмосфера басымы",
+      "ru": "атмосферное давление",
+      "en": "atmospheric pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-atmospheric-pressure",
+      "ky": "нормалдуу атмосфера басымы",
+      "ru": "нормальное атмосферное давление",
+      "en": "normal atmospheric pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-torricelli-experiment",
+      "ky": "Торричеллинин тажрыйбасы",
+      "ru": "опыт Торричелли",
+      "en": "Torricelli's experiment",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mercury-column",
+      "ky": "сымап мамычасы",
+      "ru": "столб ртути",
+      "en": "mercury column",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mmhg",
+      "ky": "сымап мамычасынын миллиметри (сым. мам. мм)",
+      "ru": "миллиметр ртутного столба (мм рт. ст.)",
+      "en": "millimetre of mercury (mmHg)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-vacuum",
+      "ky": "боштук (вакуум)",
+      "ru": "пустота (вакуум)",
+      "en": "vacuum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-barometer",
+      "ky": "барометр",
+      "ru": "барометр",
+      "en": "barometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-aneroid",
+      "ky": "барометр-анероид",
+      "ru": "барометр-анероид",
+      "en": "aneroid barometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-altimeter",
+      "ky": "бийиктик ченегич",
+      "ru": "высотомер",
+      "en": "altimeter",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-buoyant-force",
+      "ky": "Архимед күчү",
+      "ru": "архимедова сила",
+      "en": "buoyant force",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-archimedes-law",
+      "ky": "Архимед закону",
+      "ru": "закон Архимеда",
+      "en": "Archimedes' principle",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-displaced-liquid",
+      "ky": "сүрүп чыгарылган суюктук",
+      "ru": "вытесненная жидкость",
+      "en": "displaced liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-weight-in-liquid",
+      "ky": "нерсенин суюктуктагы салмагы",
+      "ru": "вес тела в жидкости",
+      "en": "weight in a liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-floating-conditions",
+      "ky": "нерселердин сүзүү шарттары",
+      "ru": "условия плавания тел",
+      "en": "conditions for floating",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-floating",
+      "ky": "калкуу",
+      "ru": "плавание на поверхности",
+      "en": "floating",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sinking",
+      "ky": "чөгүү",
+      "ru": "погружение (тонет)",
+      "en": "sinking",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-waterline",
+      "ky": "ватер сызыгы",
+      "ru": "ватерлиния",
+      "en": "waterline",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-balloon",
+      "ky": "аба шары",
+      "ru": "воздушный шар",
+      "en": "balloon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sonde",
+      "ky": "зонд-шар",
+      "ru": "шар-зонд",
+      "en": "sounding balloon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-simple-machine",
+      "ky": "жөнөкөй механизм",
+      "ru": "простой механизм",
+      "en": "simple machine",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pulley",
+      "ky": "блок",
+      "ru": "блок",
+      "en": "pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-fixed-pulley",
+      "ky": "кыймылсыз блок",
+      "ru": "неподвижный блок",
+      "en": "fixed pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-movable-pulley",
+      "ky": "кыймылдуу блок",
+      "ru": "подвижный блок",
+      "en": "movable pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-golden-rule",
+      "ky": "механиканын «алтын эрежеси»",
+      "ru": "«золотое правило» механики",
+      "en": "golden rule of mechanics",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-useful-work",
+      "ky": "пайдалуу жумуш",
+      "ru": "полезная работа",
+      "en": "useful work",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-total-work",
+      "ky": "толук жумуш",
+      "ru": "полная (затраченная) работа",
+      "en": "total work",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-efficiency",
+      "ky": "пайдалуу аракет коэффициенти (ПАК)",
+      "ru": "коэффициент полезного действия (КПД)",
+      "en": "efficiency",
+      "forbidden": [
+        "пайдалуу иш коэффициенти"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inclined-plane",
+      "ky": "жантык тегиздик",
+      "ru": "наклонная плоскость",
+      "en": "inclined plane",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gain-in-force",
+      "ky": "күчтөн утуш",
+      "ru": "выигрыш в силе",
+      "en": "gain in force",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-oscillation",
+      "ky": "термелүү",
+      "ru": "колебание",
+      "en": "oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-oscillation",
+      "ky": "эркин термелүү",
+      "ru": "свободные колебания",
+      "en": "free oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-equilibrium-position",
+      "ky": "тең салмактуулук абалы",
+      "ru": "положение равновесия",
+      "en": "equilibrium position",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-oscillation-frequency",
+      "ky": "термелүү жыштыгы",
+      "ru": "частота колебаний",
+      "en": "frequency of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hertz",
+      "ky": "герц (Гц)",
+      "ru": "герц (Гц)",
+      "en": "hertz (Hz)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-math-pendulum",
+      "ky": "математикалык маятник",
+      "ru": "математический маятник",
+      "en": "simple pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-isochronism",
+      "ky": "изохронизм",
+      "ru": "изохронизм",
+      "en": "isochronism",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-elastic-medium",
+      "ky": "серпилгичтүү чөйрө",
+      "ru": "упругая среда",
+      "en": "elastic medium",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-wave",
+      "ky": "механикалык толкун",
+      "ru": "механическая волна",
+      "en": "mechanical wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-wavelength",
+      "ky": "толкун узундугу",
+      "ru": "длина волны",
+      "en": "wavelength",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-wave-speed",
+      "ky": "толкундун таралуу ылдамдыгы",
+      "ru": "скорость распространения волны",
+      "en": "wave speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-transverse-wave",
+      "ky": "туурасынан толкун",
+      "ru": "поперечная волна",
+      "en": "transverse wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-longitudinal-wave",
+      "ky": "узатасынан толкун",
+      "ru": "продольная волна",
+      "en": "longitudinal wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sound-wave",
+      "ky": "үн толкуну",
+      "ru": "звуковая волна",
+      "en": "sound wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pitch",
+      "ky": "үндүн тону (бийиктиги)",
+      "ru": "высота (тон) звука",
+      "en": "pitch",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-loudness",
+      "ky": "үндүн катуулугу",
+      "ru": "громкость звука",
+      "en": "loudness",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-timbre",
+      "ky": "үндүн тембри",
+      "ru": "тембр звука",
+      "en": "timbre",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-decibel",
+      "ky": "децибелл (дБ)",
+      "ru": "децибел (дБ)",
+      "en": "decibel (dB)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-tuning-fork",
+      "ky": "камертон",
+      "ru": "камертон",
+      "en": "tuning fork",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-echo",
+      "ky": "жаңырык",
+      "ru": "эхо",
+      "en": "echo",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-ultrasound",
+      "ky": "ультраүн",
+      "ru": "ультразвук",
+      "en": "ultrasound",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-echo-sounder",
+      "ky": "эхолот",
+      "ru": "эхолот",
+      "en": "echo sounder",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "acceleration",
+      "icon": "trending-up",
+      "valueKind": "quantity",
+      "unit": "m/s²",
+      "label": {
+        "ky": "Ылдамдануу",
+        "ru": "Ускорение",
+        "en": "Acceleration"
+      }
+    },
+    {
+      "key": "angle",
+      "icon": "triangle-right",
+      "valueKind": "quantity",
+      "unit": "°",
+      "label": {
+        "ky": "Бурчу",
+        "ru": "Угол",
+        "en": "Angle"
+      }
+    },
+    {
+      "key": "energy",
+      "icon": "battery",
+      "valueKind": "quantity",
+      "unit": "J",
+      "label": {
+        "ky": "Энергия",
+        "ru": "Энергия",
+        "en": "Energy"
+      }
+    },
+    {
+      "key": "length",
+      "icon": "ruler",
+      "valueKind": "quantity",
+      "unit": "m",
+      "label": {
+        "ky": "Узундугу",
+        "ru": "Длина",
+        "en": "Length"
+      }
+    },
+    {
+      "key": "speed",
+      "icon": "gauge",
+      "valueKind": "quantity",
+      "unit": "m/s",
+      "label": {
+        "ky": "Ылдамдыгы",
+        "ru": "Скорость",
+        "en": "Speed"
+      }
+    }
+  ]
+}

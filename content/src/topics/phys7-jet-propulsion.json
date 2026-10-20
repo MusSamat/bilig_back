@@ -1,0 +1,481 @@
+{
+  "topic": {
+    "key": "phys7-jet-propulsion",
+    "unitKey": "phys.g7.energy",
+    "status": "published",
+    "title": { "ky": "Реактивдүү кыймыл", "ru": "Реактивное движение", "en": "Jet propulsion" },
+    "formula": "m_г v_г = m_р v_р",
+    "classification": { "ky": "Импульстун сакталуу законунун колдонулушу", "ru": "Применение закона сохранения импульса", "en": "Using conservation of momentum" },
+    "description": {
+      "ky": "Бир нерсенин курамынан экинчи нерсенин бөлүнүп чыгышы менен пайда болгон кыймыл реактивдүү кыймыл деп аталат. Ракета күйгөн газды ылдый чоң ылдамдык менен ыргытат; импульстун сакталуу закону боюнча газ ылдый канча импульс алып кетсе, ракета ошончо импульсту өйдө алат: m_г·v_г = m_р·v_р.",
+      "ru": "Движение, возникающее при отделении от тела какой-то его части, называется реактивным. Ракета с большой скоростью выбрасывает вниз газы; по закону сохранения импульса, какой импульс газы уносят вниз, такой же получает ракета вверх: m_г·v_г = m_р·v_р.",
+      "en": "Motion that arises when part of a body separates and is thrown out is called jet (reactive) motion. A rocket blasts its exhaust downwards very fast; by conservation of momentum the rocket gets as much momentum upwards as the gas carries down: m_g·v_g = m_r·v_r."
+    },
+    "goal": {
+      "ky": "Реактивдүү кыймылды импульстун сакталуу закону менен түшүндүрүү, ракетанын түзүлүшүн жана иштешин айтып берүү, m_г·v_г = m_р·v_р боюнча жөнөкөй маселе чыгаруу (PHYS-7.4.1).",
+      "ru": "Объяснять реактивное движение законом сохранения импульса, рассказывать об устройстве и работе ракеты, решать простые задачи по m_г·v_г = m_р·v_р (PHYS-7.4.1).",
+      "en": "Explain jet propulsion with conservation of momentum, describe how a rocket is built and works, and solve simple problems with m_g·v_g = m_r·v_r (PHYS-7.4.1)."
+    },
+    "objectiveKeys": ["phys.g7.energy.o1"],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "momentum",
+        "variant": "rocket",
+        "rocket": { "mass": 1, "fuelMass": 0.5, "gasSpeed": 200 }
+      },
+      "camera": { "position": [1.4, 2.2, 5], "target": [0, 1.4, 0], "fov": 45 },
+      "modes": ["vectors", "labels"]
+    },
+    "conceptKeys": ["phys.rocket", "phys.jet-propulsion", "phys.momentum", "phys.momentum-conservation"],
+    "overrides": {
+      "phys.rocket": {
+        "nodes": ["Rocket"],
+        "anchor": [0, 1.5, 0],
+        "description": {
+          "ky": "Ракетанын тулкусу 1 кг, ичинде 0,5 кг отун бар. Отун күйүп, газ ракетанын түбүндөгү тешиктен (соплодон) ылдый атылат. Отундун баары бир заматта 200 м/с менен чыкты десек, ракета v_р = 0,5 · 200 / 1 = 100 м/с ылдамдык алат.",
+          "ru": "Корпус ракеты 1 кг, внутри 0,5 кг топлива. Топливо сгорает, газы вырываются вниз через сопло. Если считать, что всё топливо вылетело сразу со скоростью 200 м/с, ракета получит скорость v_р = 0,5 · 200 / 1 = 100 м/с.",
+          "en": "The rocket body is 1 kg with 0.5 kg of fuel inside. The fuel burns and the gas blasts down through the nozzle. If all the fuel left at once at 200 m/s, the rocket would get v_r = 0.5 × 200 / 1 = 100 m/s."
+        },
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 1 },
+          { "kind": "quantity", "type": "speed", "value": 100 }
+        ]
+      },
+      "phys.jet-propulsion": {
+        "nodes": ["Exhaust"],
+        "anchor": [0, 0.3, 0],
+        "description": {
+          "ky": "Ракетадан бөлүнүп чыккан газ – ракетаны кыймылга келтирген «экинчи нерсе». Газдын импульсу 0,5 кг · 200 м/с = 100 кг·м/с ылдый багытталган, ошончо импульсту ракета өйдө алат.",
+          "ru": "Газ, отделяющийся от ракеты, – та «вторая часть», что приводит ракету в движение. Импульс газа 0,5 кг · 200 м/с = 100 кг·м/с направлен вниз, такой же импульс вверх получает ракета.",
+          "en": "The exhaust leaving the rocket is the 'separated part' that drives it. The gas's momentum, 0.5 kg × 200 m/s = 100 kg·m/s, points down; the rocket gets the same momentum upwards."
+        },
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 0.5 },
+          { "kind": "quantity", "type": "speed", "value": 200 }
+        ]
+      },
+      "phys.momentum": {
+        "nodes": ["Arrow_Momentum_Rocket", "Arrow_Momentum_Gas"],
+        "anchor": [0.5, 1.2, 0],
+        "description": {
+          "ky": "Эки жебе: газдын импульсу (ылдый) жана ракетанын импульсу (өйдө). Алардын узундугу дайыма бирдей – импульстар чоңдугу боюнча барабар, багыты боюнча карама-каршы.",
+          "ru": "Две стрелки: импульс газов (вниз) и импульс ракеты (вверх). Их длины всегда равны – импульсы равны по модулю и противоположны по направлению.",
+          "en": "Two arrows: the gas's momentum (down) and the rocket's (up). They are always the same length – equal in size, opposite in direction."
+        }
+      },
+      "phys.momentum-conservation": {
+        "anchor": [0, 2.6, 0],
+        "description": {
+          "ky": "Учурга чейин ракета отуну менен тынч турган: системанын импульсу нөл. Учкандан кийин да суммасы нөл: m_р·v_р − m_г·v_г = 0, ошондуктан m_р·v_р = m_г·v_г.",
+          "ru": "До старта ракета с топливом покоилась: импульс системы равен нулю. После старта сумма тоже ноль: m_р·v_р − m_г·v_г = 0, поэтому m_р·v_р = m_г·v_г.",
+          "en": "Before launch the fuelled rocket was at rest: the system's momentum was zero. After launch the total is still zero: m_r·v_r − m_g·v_g = 0, so m_r·v_r = m_g·v_g."
+        }
+      }
+    },
+    "props": [
+      { "kind": "quantity", "type": "mass", "value": 1 },
+      { "kind": "quantity", "type": "speed", "value": 200 },
+      { "kind": "formula", "type": "formula", "value": "v_р = \\frac{m_г v_г}{m_р}" }
+    ],
+    "samples": [
+      {
+        "key": "rocket-fuel",
+        "title": { "ky": "Отундуу ракета: 1 кг + 0,5 кг отун", "ru": "Ракета на топливе: 1 кг + 0,5 кг", "en": "Fuel rocket: 1 kg + 0.5 kg fuel" },
+        "classification": { "ky": "v_г = 200 м/с → v_р = 100 м/с", "ru": "v_г = 200 м/с → v_р = 100 м/с", "en": "v_g = 200 m/s → v_r = 100 m/s" },
+        "thumb": "thumbs/rocket-fuel.webp",
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 1 },
+          { "kind": "quantity", "type": "speed", "value": 100 }
+        ],
+        "scene": { "params": { "rocket": { "mass": 1, "fuelMass": 0.5, "gasSpeed": 200 } } }
+      },
+      {
+        "key": "rocket-water",
+        "title": { "ky": "Суу ракетасы (100-сүрөт)", "ru": "Водяная ракета (рис. 100)", "en": "Water rocket (fig. 100)" },
+        "classification": { "ky": "0,4 кг суу, 10 м/с → 20 м/с", "ru": "0,4 кг воды, 10 м/с → 20 м/с", "en": "0.4 kg water at 10 m/s → 20 m/s" },
+        "thumb": "thumbs/rocket-water.webp",
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 0.2 },
+          { "kind": "quantity", "type": "speed", "value": 20 }
+        ],
+        "scene": { "params": { "rocket": { "mass": 0.2, "fuelMass": 0.4, "gasSpeed": 10 } } }
+      },
+      {
+        "key": "rocket-air",
+        "title": { "ky": "Аба гана толтурулган модель", "ru": "Модель только с воздухом", "en": "Model with air only" },
+        "classification": { "ky": "2 г аба → 0,1 м/с: дээрлик көтөрүлбөйт", "ru": "2 г воздуха → 0,1 м/с: почти не взлетает", "en": "2 g of air → 0.1 m/s: barely lifts" },
+        "thumb": "thumbs/rocket-air.webp",
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 0.2 },
+          { "kind": "quantity", "type": "speed", "value": 0.1 }
+        ],
+        "scene": { "params": { "rocket": { "mass": 0.2, "fuelMass": 0.002, "gasSpeed": 10 } } }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "boat",
+            "camera": { "position": [0, 1.6, 5], "target": [0, 1.4, 0] },
+            "modes": { "vectors": false },
+            "focus": "phys.rocket",
+            "text": {
+              "ky": "Тынч көлдөгү кайыктан бала таштарды артка ыргытса, кайык алдыга жылат (98-сүрөт). Ракета да ушундай учат: ал «таштын» ордуна газ ыргытат. Аянтчада 1 кг ракета, ичинде 0,5 кг отун.",
+              "ru": "Если мальчик бросает камни с лодки назад, лодка плывёт вперёд (рис. 98). Ракета летит так же, только вместо камней выбрасывает газ. На площадке ракета 1 кг с 0,5 кг топлива.",
+              "en": "If a boy throws stones off the back of a boat, the boat moves forward (fig. 98). A rocket flies the same way, throwing gas instead of stones. On the pad: a 1 kg rocket with 0.5 kg of fuel."
+            },
+            "teacherNote": {
+              "ky": "Класстан сураңыз: ракета эмнени «түртөт» – абаныбы, жерди бе, же өз газын бы?",
+              "ru": "Спросите класс: от чего «отталкивается» ракета – от воздуха, от земли или от своих газов?",
+              "en": "Ask the class: what does a rocket push against – the air, the ground or its own exhaust?"
+            },
+            "altText": { "ky": "Аянтчада тик турган ракета.", "ru": "Ракета стоит вертикально на стартовой площадке.", "en": "A rocket standing upright on its launch pad." }
+          },
+          {
+            "key": "ignite",
+            "modes": { "vectors": true },
+            "focus": "phys.jet-propulsion",
+            "text": {
+              "ky": "От алды: газ соплодон ылдый атылат, ракета өйдө көтөрүлөт. Бул – реактивдүү кыймыл: нерсенин бир бөлүгү бөлүнүп чыкканда калганы карама-каршы жакка жылат.",
+              "ru": "Зажигание: газы вырываются из сопла вниз, ракета поднимается. Это реактивное движение: когда часть тела отделяется, остальное движется в обратную сторону.",
+              "en": "Ignition: gas blasts down from the nozzle and the rocket rises. This is jet propulsion: when part of a body leaves, the rest moves the opposite way."
+            },
+            "teacherNote": {
+              "ky": "Байланбаган шарды класста коё бериңиз – эң жөнөкөй «ракета».",
+              "ru": "Отпустите в классе развязанный воздушный шарик – простейшая «ракета».",
+              "en": "Let an untied balloon go in class – the simplest 'rocket'."
+            },
+            "altText": { "ky": "Ракетанын астында газ агымы, ракета көтөрүлүүдө.", "ru": "Под ракетой струя газа, ракета поднимается.", "en": "A jet of gas under the rocket as it lifts off." }
+          },
+          {
+            "key": "balance",
+            "modes": { "vectors": true },
+            "focus": "phys.momentum",
+            "text": {
+              "ky": "Эки жебени салыштырыңыз: газдын импульсу ылдый, ракетанын импульсу өйдө, узундуктары бирдей. Учурга чейин суммасы нөл болчу – азыр да нөл: m_р·v_р = m_г·v_г.",
+              "ru": "Сравните две стрелки: импульс газов вниз, импульс ракеты вверх, длины одинаковы. До старта сумма была нулём – и сейчас ноль: m_р·v_р = m_г·v_г.",
+              "en": "Compare the two arrows: the gas's momentum down, the rocket's up, the same length. Before launch the total was zero – and it still is: m_r·v_r = m_g·v_g."
+            },
+            "teacherNote": {
+              "ky": "Эсептөөнү тактага жазыңыз: 0,5 · 200 = 100 кг·м/с, v_р = 100 / 1 = 100 м/с. Бул – отундун баары бир заматта чыкты деген жөнөкөйлөтүү.",
+              "ru": "Запишите расчёт: 0,5 · 200 = 100 кг·м/с, v_р = 100 / 1 = 100 м/с. Это упрощение: всё топливо вышло сразу.",
+              "en": "Write the sum on the board: 0.5 × 200 = 100 kg·m/s, v_r = 100 / 1 = 100 m/s. It's a simplification: all the fuel leaves at once."
+            },
+            "altText": { "ky": "Ракетанын үстүндө өйдө жебе, газдын жанында ылдый жебе.", "ru": "Над ракетой стрелка вверх, у газа стрелка вниз.", "en": "An up arrow on the rocket and a down arrow on the gas." }
+          },
+          {
+            "key": "water",
+            "sample": "rocket-water",
+            "modes": { "vectors": true },
+            "focus": "phys.momentum-conservation",
+            "text": {
+              "ky": "Суу ракетасы (100-сүрөт): 0,2 кг бөтөлкөгө 0,4 кг суу куюп, аба үйлөйбүз. Суу 10 м/с менен атылат: v_р = 0,4 · 10 / 0,2 = 20 м/с. Суунун массасы чоң – импульсу да чоң.",
+              "ru": "Водяная ракета (рис. 100): в бутылку 0,2 кг наливаем 0,4 кг воды и накачиваем воздух. Вода вылетает со скоростью 10 м/с: v_р = 0,4 · 10 / 0,2 = 20 м/с. Масса воды большая – и импульс большой.",
+              "en": "A water rocket (fig. 100): pour 0.4 kg of water into a 0.2 kg bottle and pump in air. The water shoots out at 10 m/s: v_r = 0.4 × 10 / 0.2 = 20 m/s. The water is heavy, so its momentum is large."
+            },
+            "teacherNote": {
+              "ky": "Мүмкүн болсо, мектеп короосунда суу ракетасын учуруп көрсөтүңүз (коопсуздук көз айнеги менен).",
+              "ru": "Если можно, запустите водяную ракету во дворе школы (в защитных очках).",
+              "en": "If possible, launch a water rocket in the schoolyard (with safety glasses)."
+            },
+            "altText": { "ky": "Суу ылдый атылып, бөтөлкө-ракета өйдө учуп жатат.", "ru": "Вода бьёт вниз, бутылка-ракета летит вверх.", "en": "Water sprays down as the bottle rocket flies up." }
+          },
+          {
+            "key": "air",
+            "sample": "rocket-air",
+            "modes": { "vectors": true },
+            "focus": "phys.rocket",
+            "text": {
+              "ky": "Эми ошол эле моделге суу куйбай, аба гана үйлөйбүз. Абанын массасы 2 г гана, анын импульсу аз – модель бир аз көтөрүлүп, кайра кыйшайып жыгылат.",
+              "ru": "Теперь в ту же модель не наливаем воду, а только накачиваем воздух. Масса воздуха всего 2 г, его импульс мал – модель чуть приподнимается и падает набок.",
+              "en": "Now the same model with no water, only air. The air weighs just 2 g, so its momentum is tiny – the model hops a little and topples over."
+            },
+            "teacherNote": {
+              "ky": "Китептеги тажрыйба (§37): салыштыруу таблицасын ачып, үч ракетаны салыштырыңыз.",
+              "ru": "Опыт учебника (§37): откройте таблицу сравнения и сравните три ракеты.",
+              "en": "The textbook experiment (§37): open the comparison table and compare the three rockets."
+            },
+            "altText": { "ky": "Ракета-модель аянтчадан бир аз гана көтөрүлгөн.", "ru": "Модель ракеты едва оторвалась от площадки.", "en": "The model rocket barely leaves the pad." }
+          },
+          {
+            "key": "space",
+            "sample": "rocket-fuel",
+            "focus": "phys.jet-propulsion",
+            "text": {
+              "ky": "Ракетага аба керек эмес – ал өз газын түртөт, ошондуктан космосто да учат. К. Э. Циолковский көп баскычтуу ракетаны сунуштаган, С. П. Королев ракеталарды курган, 1961-жылы Ю. А. Гагарин космоско учкан.",
+              "ru": "Ракете не нужен воздух – она отталкивается от собственных газов, поэтому летит и в космосе. К. Э. Циолковский предложил многоступенчатую ракету, С. П. Королёв строил ракеты, в 1961 году Ю. А. Гагарин полетел в космос.",
+              "en": "A rocket needs no air – it pushes on its own exhaust, so it flies in space too. Tsiolkovsky proposed multistage rockets, Korolev built them, and in 1961 Gagarin flew into space."
+            },
+            "teacherNote": {
+              "ky": "Космоско учкан биринчи кыргызстандык – Салижан Шарипов. Окуучуларга космос боюнча кыска маалымат даярдатыңыз (китептеги суроо 6).",
+              "ru": "Первый человек из Кыргызстана в космосе – Салижан Шарипов. Поручите подготовить короткие сообщения о космосе (вопрос 6 учебника).",
+              "en": "The first person from Kyrgyzstan in space was Salizhan Sharipov. Have pupils prepare short reports on space flight (textbook question 6)."
+            },
+            "altText": { "ky": "Ракета бийикке учуп баратат.", "ru": "Ракета уходит высоко вверх.", "en": "The rocket climbing high." }
+          }
+        ]
+      },
+      "processKeys": ["phys.rocket-launch"],
+      "comparison": {
+        "columns": [
+          { "kind": "sample", "key": "rocket-fuel" },
+          { "kind": "sample", "key": "rocket-water" },
+          { "kind": "sample", "key": "rocket-air" }
+        ],
+        "rows": ["mass", "speed"],
+        "manual": [
+          { "column": "rocket-fuel", "row": "mass", "value": { "ky": "ракета 1 кг, газ 0,5 кг", "ru": "ракета 1 кг, газ 0,5 кг", "en": "rocket 1 kg, gas 0.5 kg" } },
+          { "column": "rocket-fuel", "row": "speed", "value": { "ky": "газ 200 → ракета 100 м/с", "ru": "газ 200 → ракета 100 м/с", "en": "gas 200 → rocket 100 m/s" } },
+          { "column": "rocket-water", "row": "mass", "value": { "ky": "ракета 0,2 кг, суу 0,4 кг", "ru": "ракета 0,2 кг, вода 0,4 кг", "en": "rocket 0.2 kg, water 0.4 kg" } },
+          { "column": "rocket-water", "row": "speed", "value": { "ky": "суу 10 → ракета 20 м/с", "ru": "вода 10 → ракета 20 м/с", "en": "water 10 → rocket 20 m/s" } },
+          { "column": "rocket-air", "row": "mass", "value": { "ky": "ракета 0,2 кг, аба 0,002 кг", "ru": "ракета 0,2 кг, воздух 0,002 кг", "en": "rocket 0.2 kg, air 0.002 kg" } },
+          { "column": "rocket-air", "row": "speed", "value": { "ky": "аба 10 → ракета 0,1 м/с", "ru": "воздух 10 → ракета 0,1 м/с", "en": "air 10 → rocket 0.1 m/s" } }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-jet-1",
+          "phys.q.p7-jet-2",
+          "phys.q.p7-jet-3",
+          "phys.q.p7-jet-4",
+          "phys.q.p7-jet-5",
+          "phys.q.p7-jet-6",
+          "phys.q.p7-jet-7",
+          "phys.q.p7-jet-8"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "t",
+          "title": { "ky": "Жасалма спутниктер", "ru": "Искусственные спутники", "en": "Artificial satellites" },
+          "text": {
+            "ky": "1957-жылдын 4-октябрында көп баскычтуу ракета Жердин биринчи жасалма спутнигин орбитага чыгарган. Азыр ушундай ракеталар байланыш жана аба ырайы спутниктерин учурат.",
+            "ru": "4 октября 1957 года многоступенчатая ракета вывела на орбиту первый искусственный спутник Земли. Сейчас такие ракеты запускают спутники связи и погоды.",
+            "en": "On 4 October 1957 a multistage rocket put the first artificial satellite into orbit. Rockets like it now launch communication and weather satellites."
+          }
+        },
+        {
+          "field": "e",
+          "title": { "ky": "Реактивдүү учак", "ru": "Реактивный самолёт", "en": "Jet aircraft" },
+          "text": {
+            "ky": "Жүргүнчү учагынын кыймылдаткычы секундасына жүздөгөн килограмм ысык газды артка ыргытып, учакты 250 м/с ка жакын ылдамдыкка чейин алып барат.",
+            "ru": "Двигатель пассажирского самолёта каждую секунду выбрасывает назад сотни килограммов горячего газа и разгоняет самолёт почти до 250 м/с.",
+            "en": "An airliner's engines throw hundreds of kilograms of hot gas backwards every second, driving the plane to nearly 250 m/s."
+          }
+        },
+        {
+          "field": "s",
+          "title": { "ky": "Кальмар", "ru": "Кальмар", "en": "Squid" },
+          "text": {
+            "ky": "Кальмар денесине сууну соруп, аны катуу чыгарып, карама-каршы жакка ыргып кетет – табияттагы реактивдүү кыймылдаткыч.",
+            "ru": "Кальмар набирает в тело воду и резко выталкивает её, рывком уходя в обратную сторону, – природный реактивный двигатель.",
+            "en": "A squid sucks water into its body and squirts it out hard, darting the opposite way – a natural jet engine."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Шар", "ru": "Шарик", "en": "A balloon" },
+          "text": {
+            "ky": "Үйлөнгөн шарды байлабай коё берсең, абасы бир жакка чыгат, шар карама-каршы жакка учат.",
+            "ru": "Отпусти надутый шарик, не завязав: воздух вылетает в одну сторону, шарик летит в другую.",
+            "en": "Let go of a blown-up balloon without tying it: air rushes out one way and the balloon flies the other."
+          }
+        },
+        {
+          "title": { "ky": "Сугаруучу түтүк", "ru": "Поливочный шланг", "en": "A garden hose" },
+          "text": {
+            "ky": "Бакчаны сугарганда суу катуу аккан түтүктүн учун коё берсең, түтүк «жыландай» кыймылдай баштайт.",
+            "ru": "Если отпустить конец шланга, из которого бьёт вода, шланг начинает «извиваться змеёй».",
+            "en": "Let go of the end of a hose with water gushing out and it starts writhing like a snake."
+          }
+        }
+      ]
+    },
+    "starters": [
+      { "ky": "Ракета космосто эмнени түртүп учат?", "ru": "От чего отталкивается ракета в космосе?", "en": "What does a rocket push against in space?" },
+      { "ky": "Эмне үчүн суу ракетасына суу куюу керек?", "ru": "Зачем в водяную ракету наливают воду?", "en": "Why do you put water in a water rocket?" },
+      { "ky": "Кайыктан таш ыргытсак, кайык эмне үчүн жылат?", "ru": "Почему лодка движется, если бросать с неё камни?", "en": "Why does a boat move when you throw stones off it?" },
+      { "ky": "Көп баскычтуу ракета эмне үчүн керек?", "ru": "Зачем нужна многоступенчатая ракета?", "en": "Why build a multistage rocket?" }
+    ],
+    "rights": [{ "license": "own", "author": "Bilig", "source": "Bilig content team; after Мамбетакунов Э. Физика 7, §37" }],
+    "i18n": { "ky": "machine", "ru": "reviewed", "en": "draft" }
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-jet-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Реактивдүү кыймыл деген эмне?",
+        "ru": "Что называют реактивным движением?",
+        "en": "What is jet propulsion?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "Нерсенин курамынан бир бөлүгүнүн бөлүнүп чыгышы менен пайда болгон кыймыл", "ru": "Движение, возникающее при отделении от тела его части", "en": "Motion that arises when part of a body separates from it" } },
+        { "key": "b", "text": { "ky": "Шамалдын түртүүсүнөн пайда болгон кыймыл", "ru": "Движение под действием ветра", "en": "Motion caused by the wind pushing" } },
+        { "key": "c", "text": { "ky": "Дөңгөлөктөрдүн жолго сүрүлүүсүнөн пайда болгон кыймыл", "ru": "Движение за счёт трения колёс о дорогу", "en": "Motion due to wheels gripping the road" } }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Бир нерсенин курамынан экинчи нерсенин бөлүнүп чыгышы менен пайда болгон кыймыл реактивдүү кыймыл деп аталат.",
+        "ru": "Реактивным называют движение, возникающее при отделении от тела какой-либо его части.",
+        "en": "Jet propulsion is the motion that arises when part of a body separates and is thrown out."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-jet-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсылары реактивдүү кыймылдын мисалы?",
+        "ru": "Что из этого – примеры реактивного движения?",
+        "en": "Which of these are examples of jet propulsion?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "Учуп бараткан ракета", "ru": "Летящая ракета", "en": "A flying rocket" } },
+        { "key": "b", "text": { "ky": "Сууну сыгып чыгарып сүзгөн кальмар", "ru": "Кальмар, выталкивающий воду", "en": "A squid squirting water" } },
+        { "key": "c", "text": { "ky": "Тепкилеп айдалган велосипед", "ru": "Велосипед, который крутят педалями", "en": "A bicycle being pedalled" } },
+        { "key": "d", "text": { "ky": "Байланбай коё берилген шар", "ru": "Отпущенный незавязанный шарик", "en": "An untied balloon let go" } }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": {
+        "ky": "Ракета, кальмар жана шар өзүнөн газ же суу ыргытып жылат. Велосипед дөңгөлөгү жолду түртүп жылат – бул реактивдүү кыймыл эмес.",
+        "ru": "Ракета, кальмар и шарик движутся, выбрасывая газ или воду. Велосипед отталкивается колесом от дороги – это не реактивное движение.",
+        "en": "The rocket, squid and balloon move by throwing out gas or water. A bicycle's wheel pushes on the road – that's not jet propulsion."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "misconceptionKey": "phys.m.rocket-pushes-air",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-jet-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 1 кг ракетадан 0,5 кг газ 200 м/с ылдамдык менен бир заматта чыкты. Ракета кандай ылдамдык алат, м/с? (Оордук күчүн эске албагыла.)",
+        "ru": "Из ракеты массой 1 кг мгновенно вылетает 0,5 кг газа со скоростью 200 м/с. Какую скорость получит ракета, м/с? (Силу тяжести не учитывать.)",
+        "en": "0.5 kg of gas leaves a 1 kg rocket all at once at 200 m/s. What speed does the rocket get, in m/s? (Ignore gravity.)"
+      },
+      "answer": 100,
+      "tolerance": 1,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "m_р·v_р = m_г·v_г: v_р = 0,5 · 200 / 1 = 100 м/с.",
+        "ru": "m_р·v_р = m_г·v_г: v_р = 0,5 · 200 / 1 = 100 м/с.",
+        "en": "m_r·v_r = m_g·v_g: v_r = 0.5 × 200 / 1 = 100 m/s."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-jet-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кайык бала менен бирге 100 кг. Бала 2 кг ташты кайыктын артынан 5 м/с ылдамдык менен ыргытты. Кайык кандай ылдамдык менен алдыга жылат, м/с?",
+        "ru": "Лодка с мальчиком весит 100 кг. Мальчик бросает с кормы камень 2 кг со скоростью 5 м/с. С какой скоростью лодка поплывёт вперёд, м/с?",
+        "en": "A boat with a boy in it has a mass of 100 kg. The boy throws a 2 kg stone off the back at 5 m/s. How fast does the boat move forward, in m/s?"
+      },
+      "answer": 0.1,
+      "tolerance": 0.005,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "Баштапкы импульс нөл: 100 · v = 2 · 5, v = 10 / 100 = 0,1 м/с.",
+        "ru": "Начальный импульс равен нулю: 100 · v = 2 · 5, v = 10 / 100 = 0,1 м/с.",
+        "en": "The starting momentum is zero: 100 × v = 2 × 5, v = 10 / 100 = 0.1 m/s."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-jet-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден ракетаны кыймылга келтирген, андан бөлүнүп чыгып жаткан бөлүктү тап.",
+        "ru": "Найди на модели ту часть, которая отделяется от ракеты и приводит её в движение.",
+        "en": "Find the part that leaves the rocket and drives it."
+      },
+      "targetConceptKey": "phys.jet-propulsion",
+      "explanation": {
+        "ky": "Бул – соплодон ылдый атылган газ агымы.",
+        "ru": "Это струя газов, вырывающаяся из сопла вниз.",
+        "en": "It's the jet of exhaust gas blasting down from the nozzle."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-jet-6",
+      "type": "match",
+      "prompt": {
+        "ky": "Окумуштууну (адамды) анын эмгеги менен дал келтир.",
+        "ru": "Сопоставь человека и его вклад.",
+        "en": "Match each person to what they did."
+      },
+      "pairs": [
+        { "key": "tsiolkovsky", "left": { "ky": "К. Э. Циолковский", "ru": "К. Э. Циолковский", "en": "K. E. Tsiolkovsky" }, "right": { "ky": "Реактивдүү кыймылдын законун изилдеп, көп баскычтуу ракетаны сунуштаган", "ru": "Исследовал реактивное движение, предложил многоступенчатую ракету", "en": "Studied jet propulsion and proposed the multistage rocket" } },
+        { "key": "korolev", "left": { "ky": "С. П. Королев", "ru": "С. П. Королёв", "en": "S. P. Korolev" }, "right": { "ky": "Космостук ракеталарды иштеп чыгууну башкарган", "ru": "Руководил созданием космических ракет", "en": "Led the building of space rockets" } },
+        { "key": "gagarin", "left": { "ky": "Ю. А. Гагарин", "ru": "Ю. А. Гагарин", "en": "Yu. A. Gagarin" }, "right": { "ky": "1961-жылы биринчи болуп космоско учкан", "ru": "Первым полетел в космос в 1961 году", "en": "First person in space, in 1961" } },
+        { "key": "sharipov", "left": { "ky": "С. Шарипов", "ru": "С. Шарипов", "en": "S. Sharipov" }, "right": { "ky": "Космоско учкан биринчи кыргызстандык", "ru": "Первый космонавт из Кыргызстана", "en": "First person from Kyrgyzstan in space" } }
+      ],
+      "explanation": {
+        "ky": "Циолковский – теория, Королев – ракеталар, Гагарин – биринчи учуу, Шарипов – Кыргызстандын биринчи космонавты.",
+        "ru": "Циолковский – теория, Королёв – ракеты, Гагарин – первый полёт, Шарипов – первый космонавт из Кыргызстана.",
+        "en": "Tsiolkovsky – the theory, Korolev – the rockets, Gagarin – the first flight, Sharipov – Kyrgyzstan's first cosmonaut."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-jet-7",
+      "type": "single",
+      "prompt": {
+        "ky": "Аба жок космосто ракета учабы?",
+        "ru": "Может ли ракета лететь в безвоздушном космосе?",
+        "en": "Can a rocket fly in airless space?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "Ооба: ал өзүнөн чыккан газды түртөт", "ru": "Да: она отталкивается от своих газов", "en": "Yes: it pushes on its own exhaust" } },
+        { "key": "b", "text": { "ky": "Жок: түртө турган аба жок", "ru": "Нет: не от чего оттолкнуться", "en": "No: there's no air to push on" } },
+        { "key": "c", "text": { "ky": "Жерге жакын жерде гана учат", "ru": "Только вблизи Земли", "en": "Only close to the Earth" } }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Ракета менен газ – бир система; газ ылдый импульс алса, ракета өйдө ошончо импульс алат. Буга аба керек эмес.",
+        "ru": "Ракета и газы – одна система; если газ получает импульс вниз, ракета получает такой же вверх. Воздух для этого не нужен.",
+        "en": "The rocket and its gas are one system; if the gas gets momentum downwards, the rocket gets the same upwards. No air is needed."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "misconceptionKey": "phys.m.rocket-pushes-air",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-jet-8",
+      "type": "single",
+      "prompt": {
+        "ky": "Ракетанын моделине аба гана үйлөсөк, ал бир аз көтөрүлүп жыгылат, ал эми бир аз суу куйсак – бийик учат. Эмне үчүн?",
+        "ru": "Модель ракеты с одним воздухом чуть поднимается и падает, а с небольшим количеством воды – взлетает высоко. Почему?",
+        "en": "A model rocket with only air hops and falls, but with a little water it flies high. Why?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "Суу аралаш абанын массасы, демек импульсу чоң", "ru": "У смеси воды и воздуха больше масса, а значит, и импульс", "en": "The water-air jet has more mass, so more momentum" } },
+        { "key": "b", "text": { "ky": "Суу ракетаны жеңилдетет", "ru": "Вода делает ракету легче", "en": "Water makes the rocket lighter" } },
+        { "key": "c", "text": { "ky": "Суу абага караганда тезирээк агат", "ru": "Вода вытекает быстрее воздуха", "en": "Water flows out faster than air" } }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Чыккан заттын импульсу m·v канчалык чоң болсо, ракетага ошончо чоң импульс берет. Абанын массасы аз – импульсу да аз.",
+        "ru": "Чем больше импульс m·v выброшенного вещества, тем больший импульс получает ракета. У воздуха мала масса – мал и импульс.",
+        "en": "The bigger the momentum m·v of what is thrown out, the more momentum the rocket gets. Air has little mass, so little momentum."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "misconceptionKey": "phys.m.rocket-light-gas",
+      "difficulty": 3
+    }
+  ]
+}

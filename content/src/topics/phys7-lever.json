@@ -1,0 +1,1235 @@
+{
+  "topic": {
+    "key": "phys7-lever",
+    "unitKey": "phys.g7.statics",
+    "status": "published",
+    "title": {
+      "ky": "Рычаг. Рычагда күчтөрдүн тең салмактуулугу",
+      "ru": "Рычаг. Равновесие сил на рычаге",
+      "en": "The lever and the balance of forces"
+    },
+    "formula": "F_1 l_1 = F_2 l_2",
+    "classification": {
+      "ky": "Статика – жөнөкөй механизмдер",
+      "ru": "Статика – простые механизмы",
+      "en": "Statics – simple machines"
+    },
+    "description": {
+      "ky": "Статика – тынч абалда турган нерселердин тең салмактуулугун үйрөтөт. Эң байыркы жөнөкөй механизм – рычаг: таяныч чекитинин айланасында айлана алган катуу нерсе. Лабораториялык рычагда 2 Н жүк 12 см ийинде 4 Н жүктү 6 см ийинде теңдейт, анткени күчтөрдүн моменттери барабар: M = F·l, F₁·l₁ = F₂·l₂. Ушул эреже кайчыдан тартып кранга чейинки куралдарда иштейт.",
+      "ru": "Статика изучает равновесие покоящихся тел. Древнейший простой механизм – рычаг: твёрдое тело, которое может вращаться вокруг точки опоры. На лабораторном рычаге груз 2 Н на плече 12 см уравновешивает груз 4 Н на плече 6 см, потому что моменты сил равны: M = F·l, F₁·l₁ = F₂·l₂. Это правило работает во всём – от ножниц до крана.",
+      "en": "Statics studies how bodies at rest stay balanced. The oldest simple machine is the lever: a rigid body that can turn about a pivot. On a lab lever 2 N on a 12 cm arm balances 4 N on a 6 cm arm because the moments are equal: M = F·l, F₁l₁ = F₂l₂. The same rule works in everything from scissors to cranes."
+    },
+    "goal": {
+      "ky": "Жөнөкөй механизмдерди атоо, күчтүн ийинин жана моментин табуу, рычагдын тең салмактуулук шартын F₁·l₁ = F₂·l₂ колдонуу жана техникадагы, турмуштагы рычагдарды түшүндүрүү (PHYS-7.5.1).",
+      "ru": "Называть простые механизмы, находить плечо и момент силы, применять условие равновесия рычага F₁·l₁ = F₂·l₂ и объяснять рычаги в технике и быту (PHYS-7.5.1).",
+      "en": "Name the simple machines, find the arm and moment of a force, apply the balance condition F₁l₁ = F₂l₂ and explain levers in technology and everyday life (PHYS-7.5.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.statics.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "lever",
+        "length": 0.6,
+        "pivot": 0.3,
+        "loads": [
+          {
+            "id": "B",
+            "position": 0.24,
+            "mass": 0.408
+          },
+          {
+            "id": "A",
+            "position": 0.42,
+            "mass": 0.204
+          }
+        ],
+        "g": 9.8
+      },
+      "camera": {
+        "position": [
+          0.9,
+          1.6,
+          3.6
+        ],
+        "target": [
+          0,
+          0.6,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "arms",
+        "balance",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.simple-machine",
+      "phys.lever",
+      "phys.pivot",
+      "phys.weight",
+      "phys.lever-arm",
+      "phys.moment-of-force",
+      "phys.lever-rule"
+    ],
+    "overrides": {
+      "phys.lever": {
+        "nodes": [
+          "Beam",
+          "Beam_*"
+        ],
+        "description": {
+          "ky": "Рычаг – кыймылсыз таяныч чекитинин айланасында айлана алган катуу нерсе. Биздин лабораториялык рычаг – 0,6 м таякча, ар 3 см сайын илмектери бар. Анын жардамы менен жөнөкөй учурда көтөрүүгө мүмкүн болбогон оор жүктөрдү көтөрөбүз.",
+          "ru": "Рычаг – твёрдое тело, которое может вращаться вокруг неподвижной опоры. Наш лабораторный рычаг – стержень 0,6 м с крючками через каждые 3 см. С его помощью поднимают грузы, которые иначе не поднять.",
+          "en": "A lever is a rigid body that can turn about a fixed pivot. Our lab lever is a 0.6 m bar with hooks every 3 cm. With it we lift loads we could not lift otherwise."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.6
+          },
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Таякча, таяныч ортодо, илмектер 3 см сайын",
+              "ru": "Стержень, опора посередине, крючки через 3 см",
+              "en": "Bar, pivot in the middle, hooks every 3 cm"
+            }
+          }
+        ]
+      },
+      "phys.pivot": {
+        "nodes": [
+          "Pivot"
+        ],
+        "anchor": [
+          0,
+          0.45,
+          0
+        ],
+        "title": {
+          "ky": "Таяныч чекити (айлануу огу) O",
+          "ru": "Точка опоры (ось вращения) O",
+          "en": "Pivot (axis) O"
+        },
+        "description": {
+          "ky": "Рычаг айланасында бурулган кыймылсыз чекит. Ийиндер ушул чекиттен ченелет. Биздин рычагда ал таякчанын ортосунда, күчтөрдүн ортосунда жайгашкан.",
+          "ru": "Неподвижная точка, вокруг которой поворачивается рычаг. Плечи отсчитывают от неё. У нашего рычага она посередине стержня, между силами.",
+          "en": "The fixed point the lever turns about; the arms are measured from it. On our lever it is in the middle of the bar, between the forces."
+        }
+      },
+      "phys.weight": {
+        "nodes": [
+          "Load_*",
+          "Arrow_*"
+        ],
+        "description": {
+          "ky": "Жүктөр рычагга салмагы менен аракет этет: A жагында F₁ = 2 Н (2 жүк × 102 г), B жагында F₂ = 4 Н (4 жүк × 102 г). Салмак рычагга тик ылдый аракет этет.",
+          "ru": "Грузы действуют на рычаг своим весом: со стороны A F₁ = 2 Н (2 грузика по 102 г), со стороны B F₂ = 4 Н (4 грузика по 102 г). Вес действует на рычаг вертикально вниз.",
+          "en": "The loads act on the lever with their weight: F₁ = 2 N at A (2 × 102 g) and F₂ = 4 N at B (4 × 102 g). Weight acts straight down on the lever."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 4
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P = m \\cdot g"
+          }
+        ]
+      },
+      "phys.lever-arm": {
+        "nodes": [
+          "Arm_*"
+        ],
+        "subtitle": {
+          "ky": "l – таяныч чекитинен күчкө чейин",
+          "ru": "l – от опоры до силы",
+          "en": "l – from the pivot to the force"
+        },
+        "description": {
+          "ky": "Рычагга аракет эткен күч тиркелген чекит менен таяныч чекитинин ортосундагы аралык күчтүн ийини деп аталат. Бул жерде l₁ = 12 см (F₁ дин ийини), l₂ = 6 см (F₂ нин ийини).",
+          "ru": "Расстояние между точкой приложения силы и точкой опоры называют плечом силы. Здесь l₁ = 12 см (плечо F₁), l₂ = 6 см (плечо F₂).",
+          "en": "The distance between where a force acts on the lever and the pivot is the arm of the force. Here l₁ = 12 cm (arm of F₁) and l₂ = 6 cm (arm of F₂)."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.12
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.06
+          }
+        ]
+      },
+      "phys.moment-of-force": {
+        "nodes": [
+          "Moments_Label"
+        ],
+        "subtitle": {
+          "ky": "M = F·l, Н·м",
+          "ru": "M = F·l, Н·м",
+          "en": "M = F·l, N·m"
+        },
+        "description": {
+          "ky": "Рычагга аракет эткен күчтүн анын ийинине болгон көбөйтүндүсүнө барабар физикалык чоңдук күчтүн моменти деп аталат: M = F·l. Бирдиги – ньютон-метр (Н·м): ийини 1 м болгон 1 Н күчтүн моменти. Бул жерде M₁ = 2 · 0,12 = 0,24 Н·м, M₂ = 4 · 0,06 = 0,24 Н·м.",
+          "ru": "Физическую величину, равную произведению силы на её плечо, называют моментом силы: M = F·l. Единица – ньютон-метр (Н·м): момент силы 1 Н с плечом 1 м. Здесь M₁ = 2 · 0,12 = 0,24 Н·м, M₂ = 4 · 0,06 = 0,24 Н·м.",
+          "en": "The product of a force and its arm is the moment of the force: M = F·l, in newton metres (N·m) – the moment of 1 N on a 1 m arm. Here M₁ = 2 × 0.12 = 0.24 N·m and M₂ = 4 × 0.06 = 0.24 N·m."
+        },
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "M = F \\cdot l"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "M_1 = 2 \\cdot 0.12 = 0.24"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "M_2 = 4 \\cdot 0.06 = 0.24"
+          }
+        ]
+      },
+      "phys.lever-rule": {
+        "subtitle": {
+          "ky": "F₁·l₁ = F₂·l₂",
+          "ru": "F₁·l₁ = F₂·l₂",
+          "en": "F₁l₁ = F₂l₂"
+        },
+        "description": {
+          "ky": "Рычагды саат жебеси боюнча айлантуучу күчтүн моменти (M₁) саат жебесине карама-каршы багытта айлантуучу күчтүн моментине (M₂) барабар болсо, рычаг тең салмакта болот: M₁ = M₂, F₁·l₁ = F₂·l₂. Бул эрежени Архимед белгилеген.",
+          "ru": "Если момент силы, вращающей рычаг по часовой стрелке (M₁), равен моменту силы, вращающей его против часовой (M₂), рычаг в равновесии: M₁ = M₂, F₁·l₁ = F₂·l₂. Это правило установил Архимед.",
+          "en": "If the moment turning the lever clockwise (M₁) equals the moment turning it anticlockwise (M₂), the lever balances: M₁ = M₂, F₁l₁ = F₂l₂. Archimedes established this rule."
+        },
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "M_1 = M_2"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F_1 l_1 = F_2 l_2"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "lever-lab-balanced",
+        "title": {
+          "ky": "Лабораториялык рычаг тең салмакта",
+          "ru": "Лабораторный рычаг в равновесии",
+          "en": "Lab lever in balance"
+        },
+        "classification": {
+          "ky": "2 Н · 12 см = 4 Н · 6 см = 0,24 Н·м",
+          "ru": "2 Н · 12 см = 4 Н · 6 см = 0,24 Н·м",
+          "en": "2 N × 12 cm = 4 N × 6 cm = 0.24 N·m"
+        },
+        "thumb": "thumbs/lever-lab-balanced.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 4
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.12
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.06
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "lever",
+            "length": 0.6,
+            "pivot": 0.3,
+            "loads": [
+              {
+                "id": "B",
+                "position": 0.24,
+                "mass": 0.408
+              },
+              {
+                "id": "A",
+                "position": 0.42,
+                "mass": 0.204
+              }
+            ],
+            "g": 9.8
+          },
+          "camera": {
+            "position": [
+              1.58,
+              2.32,
+              6.33
+            ],
+            "target": [
+              0,
+              0.56,
+              0
+            ],
+            "fov": 45
+          }
+        }
+      },
+      {
+        "key": "lever-lab-unbalanced",
+        "title": {
+          "ky": "A жүгү 9 см де – тең салмак жок",
+          "ru": "Груз A на 9 см – нет равновесия",
+          "en": "Load A at 9 cm – unbalanced"
+        },
+        "classification": {
+          "ky": "0,18 Н·м < 0,24 Н·м – B жагына кыйшаят",
+          "ru": "0,18 Н·м < 0,24 Н·м – наклон к B",
+          "en": "0.18 N·m < 0.24 N·m – tips towards B"
+        },
+        "thumb": "thumbs/lever-lab-unbalanced.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 4
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.09
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.06
+          }
+        ],
+        "scene": {
+          "params": {
+            "loads": [
+              {
+                "id": "B",
+                "position": 0.24,
+                "mass": 0.408
+              },
+              {
+                "id": "A",
+                "position": 0.39,
+                "mass": 0.204
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "lever-crowbar",
+        "title": {
+          "ky": "Лом: 260 кг ташты көтөрүү",
+          "ru": "Лом: поднимаем камень 260 кг",
+          "en": "Crowbar lifting a 260 kg stone"
+        },
+        "classification": {
+          "ky": "2548 Н · 0,5 м = 579 Н · 2,2 м",
+          "ru": "2548 Н · 0,5 м = 579 Н · 2,2 м",
+          "en": "2548 N × 0.5 m = 579 N × 2.2 m"
+        },
+        "thumb": "thumbs/lever-crowbar.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 2548
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 579,
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.5
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 2.2
+          }
+        ],
+        "scene": {
+          "params": {
+            "length": 2.7,
+            "pivot": 0.5,
+            "loads": [
+              {
+                "id": "B",
+                "position": 0,
+                "mass": 260
+              },
+              {
+                "id": "A",
+                "position": 2.7,
+                "mass": 59.09
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "lab-lever",
+            "camera": {
+              "position": [
+                1.55,
+                2.28,
+                6.18
+              ],
+              "target": [
+                0,
+                0.56,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "balance": true,
+              "arms": false,
+              "vectors": false
+            },
+            "focus": "phys.simple-machine",
+            "text": {
+              "ky": "Бул – мектептин лабораториялык рычагы: 0,6 м таякча ортосунан илинген. Сол жагына (B) 4 Н, оң жагына (A) 2 Н жүк илинген – бирок рычаг түз турат. Рычаг – жөнөкөй механизмдердин бири: ал күчтөн утуш берет.",
+              "ru": "Это школьный лабораторный рычаг: стержень 0,6 м закреплён посередине. Слева (B) висит груз 4 Н, справа (A) – 2 Н, но рычаг стоит ровно. Рычаг – один из простых механизмов: он даёт выигрыш в силе.",
+              "en": "This is a school lab lever: a 0.6 m bar held at its middle. 4 N hangs on the left (B) and 2 N on the right (A), yet the bar is level. A lever is one of the simple machines: it gives a gain in force."
+            },
+            "teacherNote": {
+              "ky": "Окуучулардан сураңыз: оор жүк эмне үчүн ылдый түшпөйт? Божомолдорун тактага жазыңыз (118-сүрөт).",
+              "ru": "Спросите: почему тяжёлый груз не опускается? Запишите версии на доске (рис. 118).",
+              "en": "Ask why the heavier load does not go down and note the guesses on the board (fig. 118)."
+            },
+            "altText": {
+              "ky": "Рычаг, таяныч чекити ортодо, эки жагында ар башка жүктөр.",
+              "ru": "Рычаг с опорой посередине, по сторонам разные грузы.",
+              "en": "A lever on a central pivot with different loads on each side."
+            }
+          },
+          {
+            "key": "pivot",
+            "focus": "phys.pivot",
+            "text": {
+              "ky": "Рычаг – кыймылсыз таяныч чекитинин (айлануу огунун) айланасында айлана алган катуу нерсе. Ийиндер дайыма ушул O чекитинен ченелет.",
+              "ru": "Рычаг – твёрдое тело, которое может вращаться вокруг неподвижной опоры (оси вращения). Плечи всегда отсчитывают от этой точки O.",
+              "en": "A lever is a rigid body that can turn about a fixed support – the axis of rotation. Arms are always measured from this point O."
+            },
+            "teacherNote": {
+              "ky": "Таяныч чекити күчтөрдүн ортосунда (118-сүрөт) же сыртында (лом, 113–114-сүрөттөр) болушу мүмкүн экенин айтыңыз.",
+              "ru": "Скажите, что опора может быть между силами (рис. 118) или снаружи (лом, рис. 113–114).",
+              "en": "Mention that the pivot can lie between the forces (fig. 118) or outside them (a crowbar, figs 113–114)."
+            },
+            "altText": {
+              "ky": "Рычагдын астындагы үч бурчтуу тирек бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделена треугольная опора под рычагом.",
+              "en": "The triangular support under the lever is highlighted."
+            }
+          },
+          {
+            "key": "forces",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.weight",
+            "text": {
+              "ky": "Жүктөр рычагга салмагы менен аракет этет: A жагында F₁ = 2 Н, B жагында F₂ = 4 Н. F₁ рычагды саат жебеси боюнча, F₂ ага каршы айлантууга аракет кылат.",
+              "ru": "Грузы действуют на рычаг своим весом: со стороны A F₁ = 2 Н, со стороны B F₂ = 4 Н. F₁ стремится повернуть рычаг по часовой стрелке, F₂ – против.",
+              "en": "The loads push on the lever with their weight: F₁ = 2 N at A and F₂ = 4 N at B. F₁ tries to turn the lever clockwise, F₂ anticlockwise."
+            },
+            "teacherNote": {
+              "ky": "Ар бир жүк 102 г – 1 Н экенин эске салыңыз (№ 3 лабораториялык иш).",
+              "ru": "Напомните: каждый грузик 102 г – это 1 Н (лабораторная работа № 3).",
+              "en": "Remind the class that each 102 g mass weighs 1 N (lab work no. 3)."
+            },
+            "altText": {
+              "ky": "Жүктөрдөн тик ылдый караган эки жебе, B жагындагысы эки эсе узун.",
+              "ru": "Две стрелки от грузов вниз, со стороны B вдвое длиннее.",
+              "en": "Two downward arrows from the loads; the one at B is twice as long."
+            }
+          },
+          {
+            "key": "arms",
+            "modes": {
+              "arms": true,
+              "vectors": true
+            },
+            "focus": "phys.lever-arm",
+            "text": {
+              "ky": "Ийиндерди өлчөйбүз: F₁ дин ийини l₁ = 4 · 3 см = 12 см, F₂ нин ийини l₂ = 2 · 3 см = 6 см. Кичине күчтүн ийини эки эсе узун.",
+              "ru": "Измеряем плечи: плечо F₁ l₁ = 4 · 3 см = 12 см, плечо F₂ l₂ = 2 · 3 см = 6 см. У меньшей силы плечо вдвое длиннее.",
+              "en": "Measure the arms: F₁’s arm l₁ = 4 × 3 cm = 12 cm, F₂’s arm l₂ = 2 × 3 cm = 6 cm. The smaller force has the arm twice as long."
+            },
+            "teacherNote": {
+              "ky": "Ката: ийинди рычагдын учунан ченөө. Ийин таяныч чекитинен ченелет.",
+              "ru": "Ошибка – мерить плечо от края рычага. Плечо отсчитывают от точки опоры.",
+              "en": "Watch for arms measured from the end of the bar: they are measured from the pivot."
+            },
+            "altText": {
+              "ky": "Таяныч чекитинен ар бир жүккө чейинки жарык кесиндилер.",
+              "ru": "Светящиеся отрезки от опоры до каждого груза.",
+              "en": "Glowing segments from the pivot to each load."
+            }
+          },
+          {
+            "key": "moments",
+            "modes": {
+              "arms": true,
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.moment-of-force",
+            "text": {
+              "ky": "Күчтү ийинине көбөйтөбүз: F₁·l₁ = 2 Н · 0,12 м = 0,24 Н·м, F₂·l₂ = 4 Н · 0,06 м = 0,24 Н·м. Бул көбөйтүндү – күчтүн моменти M = F·l. M₁ = M₂ болгондо рычаг тең салмакта: F₁·l₁ = F₂·l₂.",
+              "ru": "Умножаем силу на плечо: F₁·l₁ = 2 Н · 0,12 м = 0,24 Н·м, F₂·l₂ = 4 Н · 0,06 м = 0,24 Н·м. Это произведение – момент силы M = F·l. При M₁ = M₂ рычаг в равновесии: F₁·l₁ = F₂·l₂.",
+              "en": "Multiply each force by its arm: F₁l₁ = 2 N × 0.12 m = 0.24 N·m and F₂l₂ = 4 N × 0.06 m = 0.24 N·m. This product is the moment M = F·l. When M₁ = M₂ the lever balances: F₁l₁ = F₂l₂."
+            },
+            "teacherNote": {
+              "ky": "«Белгилер» режимин күйгүзүңүз. Тапшырма: сызгычты калемге коюп, бир жагына бир, экинчисине эки өчүргүч коюп теңдегиле (§46).",
+              "ru": "Включите режим «Подписи». Задание: положите линейку на карандаш, с одной стороны один ластик, с другой – два, уравновесьте (§46).",
+              "en": "Turn on labels. Task from §46: balance a ruler on a pencil with one eraser on one side and two on the other."
+            },
+            "altText": {
+              "ky": "Ийиндер, жебелер жана моменттердин жазуусу M = 0,24 Н·м.",
+              "ru": "Плечи, стрелки и подписи моментов M = 0,24 Н·м.",
+              "en": "Arms, arrows and moment labels M = 0.24 N·m."
+            }
+          },
+          {
+            "key": "unbalanced",
+            "modes": {
+              "balance": true,
+              "labels": true
+            },
+            "focus": "phys.lever-rule",
+            "sample": "lever-lab-unbalanced",
+            "text": {
+              "ky": "A жүгүн таяныч чекитине 9 см ге жакындаталы: M₁ = 2 Н · 0,09 м = 0,18 Н·м < M₂ = 0,24 Н·м. Моменттер барабар эмес – рычаг B жагына кыйшаят.",
+              "ru": "Придвинем груз A к опоре на 9 см: M₁ = 2 Н · 0,09 м = 0,18 Н·м < M₂ = 0,24 Н·м. Моменты не равны – рычаг наклоняется в сторону B.",
+              "en": "Move load A in to 9 cm: M₁ = 2 N × 0.09 m = 0.18 N·m < M₂ = 0.24 N·m. The moments differ, so the lever tips towards B."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: A жүгүн кайда жылдырсак, рычаг кайра теңделет? (12 см ге.)",
+              "ru": "Спросите: куда сдвинуть груз A, чтобы рычаг снова уравновесился? (На 12 см.)",
+              "en": "Ask where load A must go to balance again (back to 12 cm)."
+            },
+            "altText": {
+              "ky": "Рычаг сол жакка (B) кыйшайган.",
+              "ru": "Рычаг наклонён влево (к B).",
+              "en": "The lever tipped to the left (B)."
+            }
+          },
+          {
+            "key": "crowbar",
+            "modes": {
+              "vectors": true,
+              "arms": true,
+              "labels": true
+            },
+            "focus": "phys.lever",
+            "sample": "lever-crowbar",
+            "text": {
+              "ky": "Лом – рычаг: 260 кг ташты кыска ийин (0,5 м) менен көтөрүү үчүн узун ийинге (2,2 м) болгону ≈ 579 Н күч жетиштүү – жүктүн салмагынан 4,4 эсе аз. Күчтөн утуш алабыз!",
+              "ru": "Лом – рычаг: чтобы поднять камень 260 кг на коротком плече (0,5 м), к длинному плечу (2,2 м) хватает силы ≈ 579 Н – в 4,4 раза меньше веса груза. Выигрыш в силе!",
+              "en": "A crowbar is a lever: to lift a 260 kg stone on the short arm (0.5 m) about 579 N on the long arm (2.2 m) is enough – 4.4 times less than the weight. A gain in force!"
+            },
+            "teacherNote": {
+              "ky": "Бул 15-көнүгүүнүн 5-маселеси. Китепте g ≈ 10 Н/кг алынып, жооп 590 Н чыккан.",
+              "ru": "Это задача 5 упражнения 15. В учебнике взято g ≈ 10 Н/кг, ответ 590 Н.",
+              "en": "This is problem 5 of exercise 15; the book takes g ≈ 10 N/kg and gets 590 N."
+            },
+            "altText": {
+              "ky": "Узун таяк: бир учунда оор таш, экинчи учунда колдун күчү.",
+              "ru": "Длинный лом: на одном конце тяжёлый камень, на другом – сила руки.",
+              "en": "A long bar: a heavy stone at one end and the hand’s force at the other."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.lever-lab-balance"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "lever-lab-balanced"
+          },
+          {
+            "kind": "sample",
+            "key": "lever-lab-unbalanced"
+          },
+          {
+            "kind": "sample",
+            "key": "lever-crowbar"
+          }
+        ],
+        "rows": [
+          "force",
+          "length"
+        ],
+        "manual": [
+          {
+            "column": "lever-lab-balanced",
+            "row": "force",
+            "value": {
+              "ky": "2 Н жана 4 Н",
+              "ru": "2 Н и 4 Н",
+              "en": "2 N and 4 N"
+            }
+          },
+          {
+            "column": "lever-lab-balanced",
+            "row": "length",
+            "value": {
+              "ky": "l₁ = 12 см, l₂ = 6 см",
+              "ru": "l₁ = 12 см, l₂ = 6 см",
+              "en": "l₁ = 12 cm, l₂ = 6 cm"
+            }
+          },
+          {
+            "column": "lever-lab-unbalanced",
+            "row": "force",
+            "value": {
+              "ky": "2 Н жана 4 Н",
+              "ru": "2 Н и 4 Н",
+              "en": "2 N and 4 N"
+            }
+          },
+          {
+            "column": "lever-lab-unbalanced",
+            "row": "length",
+            "value": {
+              "ky": "l₁ = 9 см, l₂ = 6 см",
+              "ru": "l₁ = 9 см, l₂ = 6 см",
+              "en": "l₁ = 9 cm, l₂ = 6 cm"
+            }
+          },
+          {
+            "column": "lever-crowbar",
+            "row": "force",
+            "value": {
+              "ky": "≈ 579 Н жана 2548 Н",
+              "ru": "≈ 579 Н и 2548 Н",
+              "en": "≈ 579 N and 2548 N"
+            }
+          },
+          {
+            "column": "lever-crowbar",
+            "row": "length",
+            "value": {
+              "ky": "l₁ = 2,2 м, l₂ = 0,5 м",
+              "ru": "l₁ = 2,2 м, l₂ = 0,5 м",
+              "en": "l₁ = 2.2 m, l₂ = 0.5 m"
+            }
+          }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-lever-1",
+          "phys.q.phys7-lever-2",
+          "phys.q.phys7-lever-3",
+          "phys.q.phys7-lever-4",
+          "phys.q.phys7-lever-5",
+          "phys.q.phys7-lever-6",
+          "phys.q.phys7-lever-7",
+          "phys.q.phys7-lever-8",
+          "phys.q.phys7-lever-9",
+          "phys.q.phys7-lever-10"
+        ],
+        "sampleSize": 6
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Тараза",
+            "ru": "Весы",
+            "en": "Scales"
+          },
+          "text": {
+            "ky": "Рычагдуу тараза – ийиндери бирдей рычаг: товардын салмагы таштардын салмагына барабар болгондо гана ал тең салмакта турат. Медициналык жана соода таразалары да рычагдын эрежеси менен иштейт (123-сүрөт).",
+            "ru": "Рычажные весы – равноплечий рычаг: они в равновесии, когда вес товара равен весу гирь. Медицинские и торговые весы тоже работают по правилу рычага (рис. 123).",
+            "en": "A beam balance is an equal-arm lever: it balances only when the goods weigh the same as the masses. Medical and shop scales also use the law of the lever (fig. 123)."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Курулуш краны",
+            "ru": "Строительный кран",
+            "en": "Building crane"
+          },
+          "text": {
+            "ky": "Курулуш крандарында жүк көтөрүүдө рычагдын эрежеси колдонулат: стреланын кыска ийининдеги каршы жүк узун ийиндеги жүктүн моментин теңдейт.",
+            "ru": "В строительных кранах применяют правило рычага: противовес на коротком плече стрелы уравновешивает момент груза на длинном.",
+            "en": "Building cranes use the law of the lever: a counterweight on the short arm balances the moment of the load on the long arm."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Адамдын денесиндеги рычагдар",
+            "ru": "Рычаги в теле человека",
+            "en": "Levers in the body"
+          },
+          "text": {
+            "ky": "Сөөктөр – рычагдар, муундар – таяныч чекиттери: бицепс билекти чыканак муунунун айланасында көтөрөт.",
+            "ru": "Кости – рычаги, суставы – точки опоры: бицепс поднимает предплечье вокруг локтевого сустава.",
+            "en": "Bones are levers and joints are pivots: the biceps lifts the forearm about the elbow."
+          },
+          "field": "s"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Эшиктин туткасы",
+            "ru": "Дверная ручка",
+            "en": "A door handle"
+          },
+          "text": {
+            "ky": "Эшиктин туткасы айлануу огунан (топсодон) мүмкүн болушунча алыс орнотулат: ийин узун – эшикти ачуу жеңил.",
+            "ru": "Ручку двери ставят как можно дальше от оси (петель): плечо длиннее – открывать легче.",
+            "en": "A door handle is put as far from the hinges as possible: a longer arm makes the door easier to open."
+          }
+        },
+        {
+          "title": {
+            "ky": "Темир кесүүчү кайчы",
+            "ru": "Ножницы по металлу",
+            "en": "Tin snips"
+          },
+          "text": {
+            "ky": "Тунуке кескен кайчынын туткасы мизинен узун: колдун кичине күчү узун ийинде чоң күчкө айланат (121-сүрөт).",
+            "ru": "У ножниц по металлу ручки длиннее лезвий: малая сила руки на длинном плече даёт большую силу у лезвий (рис. 121).",
+            "en": "Tin snips have handles longer than the blades: a small hand force on the long arm becomes a big force at the blades (fig. 121)."
+          }
+        }
+      ]
+    },
+    "props": [
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "M = F \\cdot l"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "F_1 l_1 = F_2 l_2"
+      },
+      {
+        "kind": "quantity",
+        "type": "length",
+        "value": 0.6
+      }
+    ],
+    "starters": [
+      {
+        "ky": "Эмне үчүн 2 Н жүк 4 Н жүктү теңдей алат?",
+        "ru": "Почему груз 2 Н уравновешивает груз 4 Н?",
+        "en": "How can 2 N balance 4 N?"
+      },
+      {
+        "ky": "Күчтүн ийинин кантип табабыз?",
+        "ru": "Как найти плечо силы?",
+        "en": "How do you find the arm of a force?"
+      },
+      {
+        "ky": "Эмне үчүн темир кесүүчү кайчынын туткасы узун?",
+        "ru": "Почему у ножниц по металлу длинные ручки?",
+        "en": "Why do tin snips have long handles?"
+      },
+      {
+        "ky": "Архимед Жерди кантип жылдырмак?",
+        "ru": "Как Архимед собирался сдвинуть Землю?",
+        "en": "How did Archimedes plan to move the Earth?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Мамбетакунов, «Физика», 7-класс (kg-2018), V–VI главалар"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-lever-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Күчтүн ийини деп эмнени айтабыз?",
+        "ru": "Что называют плечом силы?",
+        "en": "What is the arm of a force?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Рычагдын бүт узундугун",
+            "ru": "Всю длину рычага",
+            "en": "The whole length of the lever"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Күч тиркелген чекит менен таяныч чекитинин ортосундагы аралыкты",
+            "ru": "Расстояние между точкой приложения силы и точкой опоры",
+            "en": "The distance between where the force acts and the pivot"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Күч менен жүктүн айырмасын",
+            "ru": "Разность силы и груза",
+            "en": "The difference between force and load"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Рычагдын учунан жүккө чейинки аралыкты",
+            "ru": "Расстояние от края рычага до груза",
+            "en": "The distance from the end of the lever to the load"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Китептеги аныктама: рычагга аракет эткен күч тиркелген чекит менен таяныч чекитинин ортосундагы аралык күчтүн ийини деп аталат.",
+        "ru": "По учебнику: плечо силы – расстояние между точкой приложения силы и точкой опоры.",
+        "en": "By the textbook: the arm is the distance between the point where the force acts and the pivot."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.arm-is-beam-length",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-lever-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Күчтүн моментинин бирдиги кайсы?",
+        "ru": "В каких единицах измеряют момент силы?",
+        "en": "What is the unit of the moment of a force?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Н/м",
+            "ru": "Н/м",
+            "en": "N/m"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Н·м (ньютон-метр)",
+            "ru": "Н·м (ньютон-метр)",
+            "en": "N·m (newton metre)"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Дж/с",
+            "ru": "Дж/с",
+            "en": "J/s"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "кг·м",
+            "ru": "кг·м",
+            "en": "kg·m"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "M = F·l, ошондуктан бирдиги 1 Н · 1 м = 1 Н·м – ньютон-метр.",
+        "ru": "M = F·l, поэтому единица 1 Н · 1 м = 1 Н·м – ньютон-метр.",
+        "en": "M = F·l, so the unit is 1 N × 1 m = 1 N·m, the newton metre."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-lever-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Рычагдын оң ийини 12 см, сол ийини 6 см. Оң ийинине 2 Н күч аракет этет. Рычаг тең салмакта болушу үчүн сол ийинине канча Н күч аракет этиши керек?",
+        "ru": "Правое плечо рычага 12 см, левое 6 см. На правое плечо действует сила 2 Н. Какая сила (в Н) должна действовать на левое плечо, чтобы рычаг был в равновесии?",
+        "en": "A lever’s right arm is 12 cm and its left arm 6 cm. A 2 N force acts on the right. What force in N must act on the left for balance?"
+      },
+      "answer": 4,
+      "tolerance": 0.05,
+      "unit": "N",
+      "explanation": {
+        "ky": "F₁·l₁ = F₂·l₂: 2 Н · 12 см = F₂ · 6 см, F₂ = 4 Н.",
+        "ru": "F₁·l₁ = F₂·l₂: 2 Н · 12 см = F₂ · 6 см, F₂ = 4 Н.",
+        "en": "F₁l₁ = F₂l₂: 2 N × 12 cm = F₂ × 6 cm, so F₂ = 4 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.equal-masses-balance",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-lever-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Жумушчу рычагдын жардамы менен массасы 260 кг жүктү көтөрө алат. Рычагдын кыска ийини 0,5 м, узун ийини 2,2 м. Жумушчу узун ийинге канча Н күч жумшайт? (g = 9,8 Н/кг)",
+        "ru": "Рабочий поднимает рычагом груз массой 260 кг. Короткое плечо 0,5 м, длинное 2,2 м. Какую силу (в Н) рабочий прикладывает к длинному плечу? (g = 9,8 Н/кг)",
+        "en": "A worker lifts a 260 kg load with a lever whose short arm is 0.5 m and long arm 2.2 m. What force in N does he apply to the long arm? (g = 9.8 N/kg)"
+      },
+      "answer": 579,
+      "tolerance": 15,
+      "unit": "N",
+      "explanation": {
+        "ky": "P = 260 · 9,8 = 2548 Н. F = P·l₁/l₂ = 2548 · 0,5 / 2,2 ≈ 579 Н. (Китептин жообу 590 Н – g ≈ 10 Н/кг алынган.)",
+        "ru": "P = 260 · 9,8 = 2548 Н. F = P·l₁/l₂ = 2548 · 0,5 / 2,2 ≈ 579 Н. (Ответ учебника 590 Н – там взято g ≈ 10 Н/кг.)",
+        "en": "W = 260 × 9.8 = 2548 N. F = W·l₁/l₂ = 2548 × 0.5 / 2.2 ≈ 579 N. (The book’s 590 N uses g ≈ 10 N/kg.)"
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-lever-5",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Булардын кайсылары рычагдын эрежесине негизделген?",
+        "ru": "Какие из этих устройств основаны на правиле рычага?",
+        "en": "Which of these work by the law of the lever?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кайчы",
+            "ru": "Ножницы",
+            "en": "Scissors"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Аттиш",
+            "ru": "Кусачки",
+            "en": "Pincers"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Рычагдуу тараза",
+            "ru": "Рычажные весы",
+            "en": "A beam balance"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Термометр",
+            "ru": "Термометр",
+            "en": "A thermometer"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Велосипеддин педалы",
+            "ru": "Педаль велосипеда",
+            "en": "A bicycle pedal"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c",
+        "e"
+      ],
+      "explanation": {
+        "ky": "Кайчы, аттиш, тараза жана педаль – рычагдар (§47). Термометр жылуулук кеңейүүсүнө негизделген.",
+        "ru": "Ножницы, кусачки, весы и педаль – рычаги (§47). Термометр основан на тепловом расширении.",
+        "en": "Scissors, pincers, a balance and a pedal are levers (§47). A thermometer relies on thermal expansion."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-lever-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден рычагдын таяныч чекитин тап.",
+        "ru": "Найди на модели точку опоры рычага.",
+        "en": "Find the lever’s pivot on the model."
+      },
+      "targetConceptKey": "phys.pivot",
+      "explanation": {
+        "ky": "Таяныч чекити – рычаг айланасында бурулган үч бурчтуу тирек.",
+        "ru": "Точка опоры – треугольная опора, вокруг которой поворачивается рычаг.",
+        "en": "The pivot is the triangular support the lever turns about."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-lever-7",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден күчтөрдүн ийиндерин тап.",
+        "ru": "Найди на модели плечи сил.",
+        "en": "Find the arms of the forces on the model."
+      },
+      "targetConceptKey": "phys.lever-arm",
+      "explanation": {
+        "ky": "Ийиндер – таяныч чекитинен ар бир жүккө чейинки белгиленген кесиндилер.",
+        "ru": "Плечи – отмеченные отрезки от точки опоры до каждого груза.",
+        "en": "The arms are the marked segments from the pivot to each load."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-lever-8",
+      "type": "match",
+      "prompt": {
+        "ky": "Чоңдукту анын бирдиги менен дал келтир.",
+        "ru": "Сопоставь величину и её единицу.",
+        "en": "Match each quantity to its unit."
+      },
+      "pairs": [
+        {
+          "key": "moment",
+          "left": {
+            "ky": "Күчтүн моменти M",
+            "ru": "Момент силы M",
+            "en": "Moment M"
+          },
+          "right": {
+            "ky": "Н·м",
+            "ru": "Н·м",
+            "en": "N·m"
+          }
+        },
+        {
+          "key": "arm",
+          "left": {
+            "ky": "Күчтүн ийини l",
+            "ru": "Плечо силы l",
+            "en": "Arm l"
+          },
+          "right": {
+            "ky": "м",
+            "ru": "м",
+            "en": "m"
+          }
+        },
+        {
+          "key": "force",
+          "left": {
+            "ky": "Күч F",
+            "ru": "Сила F",
+            "en": "Force F"
+          },
+          "right": {
+            "ky": "Н",
+            "ru": "Н",
+            "en": "N"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "M = F·l: күч – ньютон, ийин – метр, момент – ньютон-метр.",
+        "ru": "M = F·l: сила – ньютон, плечо – метр, момент – ньютон-метр.",
+        "en": "M = F·l: force in newtons, arm in metres, moment in newton metres."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-lever-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Кайсы учурда рычаг тең салмакта болот?",
+        "ru": "В каком случае рычаг находится в равновесии?",
+        "en": "When is a lever balanced?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "F₁ = F₂",
+            "ru": "F₁ = F₂",
+            "en": "F₁ = F₂"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "l₁ = l₂",
+            "ru": "l₁ = l₂",
+            "en": "l₁ = l₂"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "F₁·l₁ = F₂·l₂",
+            "ru": "F₁·l₁ = F₂·l₂",
+            "en": "F₁l₁ = F₂l₂"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "F₁·l₁ > F₂·l₂",
+            "ru": "F₁·l₁ > F₂·l₂",
+            "en": "F₁l₁ > F₂l₂"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Рычагды саат жебеси боюнча айлантуучу момент M₁ ага каршы айлантуучу M₂ге барабар болсо, рычаг тең салмакта: F₁·l₁ = F₂·l₂.",
+        "ru": "Рычаг в равновесии, если момент M₁, вращающий его по часовой стрелке, равен моменту M₂ против неё: F₁·l₁ = F₂·l₂.",
+        "en": "A lever balances when the clockwise moment M₁ equals the anticlockwise moment M₂: F₁l₁ = F₂l₂."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "misconceptionKey": "phys.m.equal-masses-balance",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-lever-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Рычагдын тең салмактуулук эрежесин ким белгилеген?",
+        "ru": "Кто установил правило равновесия рычага?",
+        "en": "Who established the law of the lever?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Архимед",
+            "ru": "Архимед",
+            "en": "Archimedes"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ньютон",
+            "ru": "Ньютон",
+            "en": "Newton"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Гюйгенс",
+            "ru": "Гюйгенс",
+            "en": "Huygens"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Курчатов",
+            "ru": "Курчатов",
+            "en": "Kurchatov"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Байыркы грек окумуштуусу Архимед (б. з. ч. 287–212) рычагды изилдеп, анын эрежесин белгилеген.",
+        "ru": "Древнегреческий учёный Архимед (287–212 до н. э.) исследовал рычаг и установил его правило.",
+        "en": "The ancient Greek scientist Archimedes (287–212 BC) studied the lever and found its law."
+      },
+      "objectiveKeys": [
+        "phys.g7.statics.o1"
+      ],
+      "difficulty": 1
+    }
+  ]
+}

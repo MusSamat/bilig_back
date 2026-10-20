@@ -1,0 +1,540 @@
+{
+  "topic": {
+    "key": "phys7-circular-motion",
+    "unitKey": "phys.g7.kinematics",
+    "status": "published",
+    "title": { "ky": "Нерсенин айлана боюнча кыймылы", "ru": "Движение тела по окружности", "en": "Motion in a circle" },
+    "formula": "v = \\frac{2\\pi r}{T}",
+    "classification": { "ky": "Кинематика", "ru": "Кинематика", "en": "Kinematics" },
+    "description": {
+      "ky": "Радиусу 2 м болгон айлана боюнча топ бир калыпта кыймылдайт жана бир айланууну 4 с та жасайт. Ийри сызыктуу кыймылдын ар бир бурулушун айлананын бөлүгү катары кароого болот. Айлана боюнча кыймылдаган нерсенин ылдамдыгы – сызыктуу ылдамдык: v = 2πr/T; анын чоңдугу туруктуу, бирок багыты ар бир чекитте айланага жаныма боюнча өзгөрөт. Айлануу мезгили T – бир айланууга кеткен убакыт, айлануунун жыштыгы n = 1/T – бир секундадагы айлануулардын саны.",
+      "ru": "Шар равномерно движется по окружности радиусом 2 м и делает один оборот за 4 с. Каждый поворот криволинейного движения можно считать частью окружности. Скорость тела, движущегося по окружности, – линейная скорость: v = 2πr/T; её величина постоянна, а направление в каждой точке меняется – по касательной к окружности. Период обращения T – время одного оборота, частота обращения n = 1/T – число оборотов за секунду.",
+      "en": "A ball moves uniformly round a circle of radius 2 m, making one turn every 4 s. Every bend of a curved path can be treated as part of a circle. The speed of a body moving in a circle is its linear speed, v = 2πr/T; its size is constant but its direction changes at every point, along the tangent. The period T is the time for one turn and the frequency n = 1/T is the number of turns per second."
+    },
+    "goal": {
+      "ky": "Айлана боюнча бир калыптагы кыймылдын сызыктуу ылдамдыгын v = 2πr/T = 2πrn, айлануу мезгилин жана жыштыгын эсептөө, ылдамдыктын багыты жаныма боюнча экенин түшүндүрүү (PHYS-7.1.2).",
+      "ru": "Вычислять линейную скорость равномерного движения по окружности v = 2πr/T = 2πrn, период и частоту обращения, объяснять, что скорость направлена по касательной (PHYS-7.1.2).",
+      "en": "Calculate the linear speed of uniform circular motion, v = 2πr/T = 2πrn, and the period and frequency, and explain why the velocity points along the tangent (PHYS-7.1.2)."
+    },
+    "objectiveKeys": ["phys.g7.kinematics.o2"],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": { "model": "circular", "radius": 2, "period": 4, "showVelocity": true, "object": "ball" },
+      "camera": { "position": [0, 5, 6], "target": [0, 0, 0], "fov": 45 },
+      "modes": ["vectors", "trace", "labels"]
+    },
+    "conceptKeys": [
+      "phys.circular-motion",
+      "phys.angular-path",
+      "phys.trajectory",
+      "phys.speed",
+      "phys.period",
+      "phys.frequency"
+    ],
+    "overrides": {
+      "phys.circular-motion": {
+        "nodes": ["Body", "Spin"],
+        "props": [
+          { "kind": "quantity", "type": "radius", "value": 2, "unit": "m" },
+          { "kind": "quantity", "type": "period", "value": 4 },
+          { "kind": "quantity", "type": "speed", "value": 3.14, "approx": true }
+        ]
+      },
+      "phys.angular-path": {
+        "nodes": ["Path", "Radius", "Center"],
+        "description": {
+          "ky": "Шакек – топтун жолу, борбордон топко чейинки сызык – радиус r = 2 м. Бир толук айланууда топ 2πr = 2 · 3,14 · 2 ≈ 12,56 м жол өтөт, бирок ордуна кайтып келгендиктен анын которулушу нөл. Чейрек айланууда жол – жаанын узундугу (≈ 3,14 м), которулуш – хорданын узундугу (≈ 2,83 м).",
+          "ru": "Кольцо – путь шара, линия от центра до шара – радиус r = 2 м. За полный оборот шар проходит 2πr = 2 · 3,14 · 2 ≈ 12,56 м, но возвращается на место, поэтому его перемещение равно нулю. За четверть оборота путь – длина дуги (≈ 3,14 м), перемещение – длина хорды (≈ 2,83 м).",
+          "en": "The ring is the ball's path and the line from the centre to the ball is the radius r = 2 m. In one full turn the ball covers 2πr = 2 × 3.14 × 2 ≈ 12.56 m but ends where it began, so its displacement is zero. In a quarter turn the path is the arc (≈ 3.14 m) and the displacement the chord (≈ 2.83 m)."
+        },
+        "props": [
+          { "kind": "formula", "type": "formula", "value": "s = 2\\pi r \\approx 12{,}56\\,м" },
+          { "kind": "quantity", "type": "radius", "value": 2, "unit": "m" }
+        ]
+      },
+      "phys.trajectory": {
+        "nodes": ["Trace", "Trace_*"],
+        "description": {
+          "ky": "Топтун изи айлана сызат: траекториясы ийри сызык болгондуктан, бул ийри сызыктуу кыймыл. Издердин аралыгы бирдей – топ бирдей убакытта бирдей жаа өтөт.",
+          "ru": "След шара описывает окружность: траектория кривая, поэтому движение криволинейное. Промежутки между следами одинаковы – за равное время шар проходит равные дуги.",
+          "en": "The ball's trace draws a circle: the trajectory is curved, so the motion is curvilinear. The marks are evenly spaced – the ball covers equal arcs in equal times."
+        }
+      },
+      "phys.speed": {
+        "nodes": ["Arrow_Velocity"],
+        "title": { "ky": "Сызыктуу ылдамдык", "ru": "Линейная скорость", "en": "Linear speed" },
+        "subtitle": { "ky": "v = s/t = 2πr/T, жаныма боюнча", "ru": "v = s/t = 2πr/T, по касательной", "en": "v = s/t = 2πr/T, along the tangent" },
+        "description": {
+          "ky": "Айлана боюнча кыймылдаган нерсенин ылдамдыгы сызыктуу ылдамдык деп аталат: v = s/t, толук айланууда v = 2πr/T. Бирдиги – 1 м/с. Бул жерде v = 2 · 3,14 · 2 м : 4 с ≈ 3,14 м/с. Жебенин узундугу өзгөрбөйт, бирок анын багыты ар дайым айланага жаныма боюнча бурулат.",
+          "ru": "Скорость тела, движущегося по окружности, называют линейной: v = s/t, за полный оборот v = 2πr/T. Единица – 1 м/с. Здесь v = 2 · 3,14 · 2 м : 4 с ≈ 3,14 м/с. Длина стрелки не меняется, но её направление всё время поворачивается – по касательной к окружности.",
+          "en": "The speed of a body moving in a circle is its linear speed: v = s/t, and for a full turn v = 2πr/T. The unit is 1 m/s. Here v = 2 × 3.14 × 2 m ÷ 4 s ≈ 3.14 m/s. The arrow's length stays the same, but it keeps turning to stay along the tangent."
+        },
+        "props": [
+          { "kind": "formula", "type": "formula", "value": "v = \\frac{2\\pi r}{T}" },
+          { "kind": "quantity", "type": "speed", "value": 3.14, "approx": true }
+        ]
+      },
+      "phys.period": {
+        "props": [
+          { "kind": "quantity", "type": "period", "value": 4 },
+          { "kind": "formula", "type": "formula", "value": "T = \\frac{1}{n} = 4\\,с" }
+        ]
+      },
+      "phys.frequency": {
+        "props": [
+          { "kind": "quantity", "type": "frequency", "value": 0.25, "unit": "s⁻¹" },
+          { "kind": "formula", "type": "formula", "value": "n = \\frac{1}{T} = 0{,}25\\,с^{-1}" }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "circ-ball",
+        "title": { "ky": "Топ, r = 2 м, T = 4 с", "ru": "Шар, r = 2 м, T = 4 с", "en": "Ball, r = 2 m, T = 4 s" },
+        "classification": { "ky": "v ≈ 3,14 м/с, n = 0,25 с⁻¹", "ru": "v ≈ 3,14 м/с, n = 0,25 с⁻¹", "en": "v ≈ 3.14 m/s, n = 0.25 s⁻¹" },
+        "thumb": "thumbs/circ-ball.webp",
+        "props": [
+          { "kind": "quantity", "type": "radius", "value": 2, "unit": "m" },
+          { "kind": "quantity", "type": "period", "value": 4 },
+          { "kind": "quantity", "type": "frequency", "value": 0.25, "unit": "s⁻¹" },
+          { "kind": "quantity", "type": "speed", "value": 3.14, "approx": true }
+        ]
+      },
+      {
+        "key": "circ-carousel",
+        "title": { "ky": "Карусель, r = 3 м, T = 10 с", "ru": "Карусель, r = 3 м, T = 10 с", "en": "Carousel, r = 3 m, T = 10 s" },
+        "classification": { "ky": "v ≈ 1,88 м/с, n = 0,1 с⁻¹", "ru": "v ≈ 1,88 м/с, n = 0,1 с⁻¹", "en": "v ≈ 1.88 m/s, n = 0.1 s⁻¹" },
+        "thumb": "thumbs/circ-carousel.webp",
+        "props": [
+          { "kind": "quantity", "type": "radius", "value": 3, "unit": "m" },
+          { "kind": "quantity", "type": "period", "value": 10 },
+          { "kind": "quantity", "type": "frequency", "value": 0.1, "unit": "s⁻¹" },
+          { "kind": "quantity", "type": "speed", "value": 1.88, "approx": true }
+        ],
+        "scene": { "params": { "object": "carousel", "radius": 3, "period": 10 } }
+      },
+      {
+        "key": "circ-car",
+        "title": { "ky": "Айлампадагы машина, r = 2,5 м, T = 4 с", "ru": "Машина на кольце, r = 2,5 м, T = 4 с", "en": "Car on a ring, r = 2.5 m, T = 4 s" },
+        "classification": { "ky": "v ≈ 3,93 м/с, n = 0,25 с⁻¹", "ru": "v ≈ 3,93 м/с, n = 0,25 с⁻¹", "en": "v ≈ 3.93 m/s, n = 0.25 s⁻¹" },
+        "thumb": "thumbs/circ-car.webp",
+        "props": [
+          { "kind": "quantity", "type": "radius", "value": 2.5, "unit": "m" },
+          { "kind": "quantity", "type": "period", "value": 4 },
+          { "kind": "quantity", "type": "frequency", "value": 0.25, "unit": "s⁻¹" },
+          { "kind": "quantity", "type": "speed", "value": 3.93, "approx": true }
+        ],
+        "scene": { "params": { "object": "car", "radius": 2.5, "period": 4 } }
+      }
+    ],
+    "props": [
+      { "kind": "quantity", "type": "radius", "value": 2, "unit": "m" },
+      { "kind": "quantity", "type": "period", "value": 4 },
+      { "kind": "quantity", "type": "frequency", "value": 0.25, "unit": "s⁻¹" },
+      { "kind": "formula", "type": "formula", "value": "v = \\frac{2\\pi r}{T}" }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "curved",
+            "camera": { "position": [0, 5, 6], "target": [0, 0, 0], "fov": 45 },
+            "modes": { "vectors": false, "trace": false, "labels": false },
+            "focus": "phys.circular-motion",
+            "text": {
+              "ky": "Буга чейин түз сызык боюнча кыймылдарды карадык. Бирок жаратылышта жана техникада нерселер көбүнчө ийри сызык боюнча кыймылдашат. Ийри сызыктын ар бир бурулушун айлананын бөлүгү катары кароого болот – ошондуктан айлана боюнча бир калыптагы кыймылды үйрөнөбүз.",
+              "ru": "До сих пор мы рассматривали движение по прямой. Но в природе и технике тела чаще движутся по кривым. Каждый поворот кривой можно считать частью окружности – поэтому изучаем равномерное движение по окружности.",
+              "en": "So far we have looked at motion along straight lines. But in nature and technology bodies more often move along curves. Every bend can be treated as part of a circle – so we study uniform motion in a circle."
+            },
+            "teacherNote": {
+              "ky": "Тактага китептеги 21-сүрөттү чийиңиз: толкундуу траекториянын ар бир бурулушуна радиусу r₁, r₂, … болгон айлана туура келет.",
+              "ru": "Нарисуйте на доске рис. 21 учебника: каждому изгибу волнистой траектории соответствует окружность радиусом r₁, r₂, …",
+              "en": "Draw fig. 21 of the book on the board: each bend of a wavy trajectory matches a circle of radius r₁, r₂, …"
+            },
+            "altText": {
+              "ky": "Үстүнөн көрүнүш: шакек, ортосунда борбор, шакекте топ.",
+              "ru": "Вид сверху: кольцо, в середине центр, на кольце шар.",
+              "en": "Top view: a ring with a centre point and a ball on the ring."
+            }
+          },
+          {
+            "key": "path",
+            "camera": { "position": [0, 6, 3], "target": [0, 0, 0], "fov": 45 },
+            "modes": { "trace": true },
+            "focus": "phys.angular-path",
+            "text": {
+              "ky": "Топ A чекитинен B чекитине которулса, анын жолу – AB жаасынын узундугу, которулушу – AB хордасынын узундугу. Толук бир айланууда жол радиусу r болгон айлананын узундугуна барабар: s = 2πr ≈ 12,56 м.",
+              "ru": "Если шар переместился из точки A в точку B, его путь – длина дуги AB, перемещение – длина хорды AB. За полный оборот путь равен длине окружности радиуса r: s = 2πr ≈ 12,56 м.",
+              "en": "When the ball moves from A to B, its path is the length of the arc AB and its displacement the chord AB. In one full turn the path equals the circumference: s = 2πr ≈ 12.56 m."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: бир толук айланууда топтун которулушу канча? (Нөл – ал ордуна кайтып келди.) Бул жол менен которулуштун айырмасын кайталоого жакшы мисал.",
+              "ru": "Спросите: чему равно перемещение шара за полный оборот? (Нулю – он вернулся на место.) Хороший повод повторить разницу пути и перемещения.",
+              "en": "Ask: what is the ball's displacement after one full turn? (Zero – it is back where it started.) A good chance to revisit path versus displacement."
+            },
+            "altText": {
+              "ky": "Шакек боюнча топтун сары издери жана борбордон топко радиус.",
+              "ru": "Жёлтые следы шара по кольцу и радиус от центра к шару.",
+              "en": "Yellow marks of the ball round the ring and the radius from the centre to the ball."
+            }
+          },
+          {
+            "key": "linear-speed",
+            "camera": { "position": [0, 5, 6], "target": [0, 0, 0], "fov": 45 },
+            "modes": { "vectors": true, "trace": false },
+            "focus": "phys.speed",
+            "text": {
+              "ky": "Айлана боюнча кыймылдаган нерсенин ылдамдыгы – сызыктуу ылдамдык: v = s/t. Бир айланууда s = 2πr, ага T убакыт кетет: v = 2πr/T = 2 · 3,14 · 2 м : 4 с ≈ 3,14 м/с.",
+              "ru": "Скорость тела, движущегося по окружности, – линейная скорость: v = s/t. За один оборот s = 2πr, на него уходит время T: v = 2πr/T = 2 · 3,14 · 2 м : 4 с ≈ 3,14 м/с.",
+              "en": "The speed of a body moving in a circle is its linear speed: v = s/t. One turn is s = 2πr and takes time T: v = 2πr/T = 2 × 3.14 × 2 m ÷ 4 s ≈ 3.14 m/s."
+            },
+            "teacherNote": {
+              "ky": "Эскертиңиз: v = 2πr/t формуласында t – бир айланууга кеткен убакыт, башкача айтканда мезгил T.",
+              "ru": "Подчеркните: в формуле v = 2πr/t время t – это время одного оборота, то есть период T.",
+              "en": "Stress that in v = 2πr/t the time t is the time for one turn – the period T."
+            },
+            "altText": {
+              "ky": "Топтун жанында айланага жаныма жебе.",
+              "ru": "У шара стрелка по касательной к окружности.",
+              "en": "An arrow at the ball pointing along the tangent."
+            }
+          },
+          {
+            "key": "tangent",
+            "camera": { "position": [0, 8, 0.1], "target": [0, 0, 0], "fov": 45 },
+            "modes": { "vectors": true },
+            "focus": "phys.speed",
+            "text": {
+              "ky": "Ылдамдыктын сан мааниси туруктуу, бирок багыты тынымсыз өзгөрөт: ал ар бир чекитте айланага жаныма боюнча багытталат. Бычакты чарыкка курчутканда учкундар да жаныма боюнча учат.",
+              "ru": "Числовое значение скорости постоянно, а направление непрерывно меняется: в каждой точке скорость направлена по касательной к окружности. Искры от точильного круга тоже летят по касательной.",
+              "en": "The size of the speed is constant, but its direction keeps changing: at every point it points along the tangent to the circle. Sparks from a grinding wheel fly off along the tangent too."
+            },
+            "teacherNote": {
+              "ky": "Китептеги 23–25-сүрөттөрдү көрсөтүңүз. Сураңыз: жипке байланган ташты айлантып жатканда жип үзүлсө, таш кайда учат? (Ошол чекитте айланага жаныма боюнча.)",
+              "ru": "Покажите рисунки 23–25 учебника. Спросите: если при вращении камня на верёвке она порвётся, куда полетит камень? (По касательной к окружности в этой точке.)",
+              "en": "Show figures 23–25 of the book. Ask: if the string breaks while a stone is being whirled, where does it go? (Along the tangent at that point.)"
+            },
+            "altText": {
+              "ky": "Үстүнөн көрүнүш: топ жана анын жаныма боюнча жебеси.",
+              "ru": "Вид сверху: шар и его стрелка по касательной.",
+              "en": "Top view: the ball and its tangent arrow."
+            }
+          },
+          {
+            "key": "period",
+            "camera": { "position": [0, 5, 6], "target": [0, 0, 0], "fov": 45 },
+            "modes": { "labels": true, "vectors": false },
+            "focus": "phys.period",
+            "text": {
+              "ky": "Нерсенин бир айлануу жасаганга кеткен убактысы – айлануу мезгили T. Бирдиги – 1 с. Бул топ үчүн T = 4 с: секундомер менен 10 айланууну ченесек 40 с чыгат, T = 40 с : 10 = 4 с.",
+              "ru": "Время, за которое тело делает один оборот, – период обращения T. Единица – 1 с. У этого шара T = 4 с: если засечь 10 оборотов, выйдет 40 с, T = 40 с : 10 = 4 с.",
+              "en": "The time a body takes for one turn is its period T, measured in seconds. For this ball T = 4 s: timing 10 turns gives 40 s, so T = 40 s ÷ 10 = 4 s."
+            },
+            "teacherNote": {
+              "ky": "Китептеги 7-суроо: «Айлануу мезгили 14 с. Бул эмнени билдирет?» (Бир айланууга 14 с кетет.)",
+              "ru": "Вопрос 7 учебника: «Период обращения 14 с. Что это значит?» (Один оборот длится 14 с.)",
+              "en": "Book question 7: 'The period is 14 s. What does that mean?' (One turn takes 14 s.)"
+            },
+            "altText": {
+              "ky": "Сахнада T, ν жана v көрсөткүчтөрү.",
+              "ru": "На сцене показания T, ν и v.",
+              "en": "Readouts of T, ν and v on the stage."
+            }
+          },
+          {
+            "key": "frequency",
+            "camera": { "position": [0, 5, 6], "target": [0, 0, 0], "fov": 45 },
+            "modes": { "labels": true },
+            "focus": "phys.frequency",
+            "text": {
+              "ky": "Бир секундада болуп өткөн айлануунун саны – айлануунун жыштыгы n. n = 1/T = 1 : 4 с = 0,25 с⁻¹ – топ секундада чейрек айланат. Жыштык аркылуу сызыктуу ылдамдык: v = 2πrn.",
+              "ru": "Число оборотов за одну секунду – частота обращения n. n = 1/T = 1 : 4 с = 0,25 с⁻¹ – шар делает четверть оборота в секунду. Через частоту линейная скорость: v = 2πrn.",
+              "en": "The number of turns per second is the frequency n. n = 1/T = 1 ÷ 4 s = 0.25 s⁻¹ – the ball makes a quarter turn each second. In terms of frequency, v = 2πrn."
+            },
+            "teacherNote": {
+              "ky": "Китептеги белгилөө – n, ал эми сахнадагы көрсөткүчтө ν (ню) тамгасы колдонулат; экөө бир эле чоңдук. Маселе: велосипед дөңгөлөгү r = 25 см, n = 1 с⁻¹ – v = 1,57 м/с.",
+              "ru": "В учебнике частота обозначена n, а на сцене – буквой ν (ню); это одна и та же величина. Задача: колесо велосипеда r = 25 см, n = 1 с⁻¹ – v = 1,57 м/с.",
+              "en": "The book writes frequency as n; the stage readout uses ν (nu) – the same quantity. Problem: a bicycle wheel with r = 25 cm and n = 1 s⁻¹ – v = 1.57 m/s."
+            },
+            "altText": {
+              "ky": "Көрсөткүчтө n = 0,25 с⁻¹.",
+              "ru": "На показании n = 0,25 с⁻¹.",
+              "en": "The readout shows 0.25 s⁻¹."
+            }
+          },
+          {
+            "key": "compare",
+            "camera": { "position": [0, 6, 7.5], "target": [0, 0, 0], "fov": 45 },
+            "modes": { "labels": true, "vectors": true },
+            "sample": "circ-carousel",
+            "focus": "phys.circular-motion",
+            "text": {
+              "ky": "Карусель: r = 3 м, T = 10 с – v = 2 · 3,14 · 3 : 10 ≈ 1,88 м/с, n = 0,1 с⁻¹. Мезгил чоң болсо, нерсе жай айланат. Жердин экваторундагы чекит суткасына бир айланат: v = 2π · 6 400 000 м : 86 400 с ≈ 465 м/с.",
+              "ru": "Карусель: r = 3 м, T = 10 с – v = 2 · 3,14 · 3 : 10 ≈ 1,88 м/с, n = 0,1 с⁻¹. Чем больше период, тем медленнее вращение. Точка на экваторе Земли делает оборот за сутки: v = 2π · 6 400 000 м : 86 400 с ≈ 465 м/с.",
+              "en": "Carousel: r = 3 m, T = 10 s – v = 2 × 3.14 × 3 ÷ 10 ≈ 1.88 m/s, n = 0.1 s⁻¹. A longer period means slower turning. A point on the Earth's equator turns once a day: v = 2π × 6 400 000 m ÷ 86 400 s ≈ 465 m/s."
+            },
+            "teacherNote": {
+              "ky": "«Салыштыруу» панелинде үч үлгүнү катар коюңуз. Үйгө: 5-көнүгүүнүн 2–3-маселелери (дөңгөлөктүн радиусу 0,39 м; сааттын секунд жебесинин ылдамдыгы жана жыштыгы).",
+              "ru": "Поставьте три образца рядом на панели «Сравнение». Домой: задачи 2–3 упражнения 5 (радиус колеса 0,39 м; скорость и частота секундной стрелки часов).",
+              "en": "Put the three samples side by side in the Compare panel. Homework: problems 2–3 of exercise 5 (wheel radius 0.39 m; the speed and frequency of a clock's second hand)."
+            },
+            "altText": {
+              "ky": "Радиусу 3 м болгон карусель жай айланат.",
+              "ru": "Карусель радиусом 3 м медленно вращается.",
+              "en": "A carousel of radius 3 m turning slowly."
+            }
+          }
+        ]
+      },
+      "processKeys": ["phys.rotation-period-measurement"],
+      "comparison": {
+        "columns": [
+          { "kind": "sample", "key": "circ-ball" },
+          { "kind": "sample", "key": "circ-carousel" },
+          { "kind": "sample", "key": "circ-car" }
+        ],
+        "rows": ["radius", "period", "frequency", "speed"]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-circ-1",
+          "phys.q.p7-circ-2",
+          "phys.q.p7-circ-3",
+          "phys.q.p7-circ-4",
+          "phys.q.p7-circ-5",
+          "phys.q.p7-circ-6",
+          "phys.q.p7-circ-7",
+          "phys.q.p7-circ-8",
+          "phys.q.p7-circ-9",
+          "phys.q.p7-circ-10",
+          "phys.q.p7-circ-11",
+          "phys.q.p7-circ-12",
+          "phys.q.p7-circ-13",
+          "phys.q.p7-circ-14"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": { "ky": "Жердин суткалык айланышы", "ru": "Суточное вращение Земли", "en": "The Earth's daily spin" },
+          "text": { "ky": "Жердин радиусу 6400 км, мезгили 24 саат. Экватордогу чекиттин сызыктуу ылдамдыгы ≈ 465 м/с – учактан да тез, бирок биз аны сезбейбиз.", "ru": "Радиус Земли 6400 км, период 24 ч. Линейная скорость точки на экваторе ≈ 465 м/с – быстрее самолёта, но мы её не чувствуем.", "en": "The Earth's radius is 6400 km and its period 24 h. A point on the equator moves at about 465 m/s – faster than a jet, yet we do not feel it." },
+          "field": "s"
+        },
+        {
+          "title": { "ky": "Велосипеддин спидометри", "ru": "Велокомпьютер", "en": "A bike computer" },
+          "text": { "ky": "Велокомпьютер дөңгөлөктүн жыштыгын магнит менен санап, ылдамдыкты v = 2πrn боюнча эсептейт; ага дөңгөлөктүн радиусун киргизүү керек.", "ru": "Велокомпьютер считает частоту вращения колеса по магниту и находит скорость по v = 2πrn; в него вводят радиус колеса.", "en": "A bike computer counts wheel turns with a magnet and works out the speed as v = 2πrn; you enter the wheel radius." },
+          "field": "t"
+        },
+        {
+          "title": { "ky": "Айлананын узундугу", "ru": "Длина окружности", "en": "Circumference" },
+          "text": { "ky": "C = 2πr: радиусу эки эсе чоң айлананын узундугу да эки эсе чоң. Ошондуктан бирдей мезгилде карусельдин четиндеги бала ортосундагыдан тез жүрөт.", "ru": "C = 2πr: у окружности вдвое большего радиуса и длина вдвое больше. Поэтому при одинаковом периоде ребёнок на краю карусели движется быстрее, чем у центра.", "en": "C = 2πr: double the radius and the circumference doubles. So with the same period a child at the edge of a carousel moves faster than one near the middle." },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Ташты жип менен айлантуу", "ru": "Камень на верёвке", "en": "A stone on a string" },
+          "text": { "ky": "Жипке байланган ташты айлантып, жипти коё берсең, таш айланага жаныма боюнча түз учуп кетет.", "ru": "Раскрути камень на верёвке и отпусти – он улетит по прямой, по касательной к окружности.", "en": "Whirl a stone on a string and let go – it flies off in a straight line along the tangent." }
+        },
+        {
+          "title": { "ky": "Чатырдан тамчылар", "ru": "Капли с зонта", "en": "Drops from an umbrella" },
+          "text": { "ky": "Нымдуу кол чатырды айлантсаң, тамчылар четинен жаныма боюнча чачырайт.", "ru": "Если покрутить мокрый зонт, капли разлетаются с края по касательной.", "en": "Spin a wet umbrella and the drops fly off its edge along the tangent." }
+        }
+      ]
+    },
+    "starters": [
+      { "ky": "Айлана боюнча кыймылда ылдамдык эмне үчүн жаныма боюнча багытталат?", "ru": "Почему при движении по окружности скорость направлена по касательной?", "en": "Why does the velocity point along the tangent in circular motion?" },
+      { "ky": "Айлануу мезгили менен жыштыгынын байланышы кандай?", "ru": "Как связаны период и частота обращения?", "en": "How are the period and frequency related?" },
+      { "ky": "Сызыктуу ылдамдыкты кантип эсептейбиз?", "ru": "Как вычислить линейную скорость?", "en": "How do we calculate the linear speed?" },
+      { "ky": "Жердин экваторундагы чекит кандай ылдамдык менен кыймылдайт?", "ru": "С какой скоростью движется точка на экваторе Земли?", "en": "How fast does a point on the Earth's equator move?" }
+    ],
+    "rights": [
+      { "license": "own", "author": "Bilig", "source": "Bilig content team; Мамбетакунов Э., Физика 7-класс, §11" }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-circ-1",
+      "type": "single",
+      "prompt": { "ky": "Айлана боюнча бир калыптагы кыймыл деген эмне?", "ru": "Что называют равномерным движением по окружности?", "en": "What is uniform circular motion?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Айлана боюнча ылдамдыгынын чоңдугу туруктуу болгон кыймыл", "ru": "Движение по окружности с постоянной по величине скоростью", "en": "Motion round a circle with a constant size of speed" } },
+        { "key": "b", "text": { "ky": "Ылдамдыгы улам өскөн кыймыл", "ru": "Движение со всё возрастающей скоростью", "en": "Motion with ever-increasing speed" } },
+        { "key": "c", "text": { "ky": "Түз сызык боюнча кыймыл", "ru": "Движение по прямой", "en": "Motion along a straight line" } },
+        { "key": "d", "text": { "ky": "Ылдамдыгынын багыты өзгөрбөгөн кыймыл", "ru": "Движение, при котором направление скорости не меняется", "en": "Motion whose velocity keeps the same direction" } }
+      ],
+      "answer": "a",
+      "explanation": { "ky": "Айлана боюнча ылдамдыгынын чоңдугу туруктуу болгон кыймыл айлана боюнча бир калыптагы кыймыл деп аталат. Ылдамдыктын багыты болсо ар бир чекитте өзгөрөт.", "ru": "Равномерным движением по окружности называют движение с постоянной по величине скоростью. Направление скорости при этом меняется в каждой точке.", "en": "Uniform circular motion is motion round a circle with a constant size of speed. The direction of the velocity changes at every point." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-circ-2",
+      "type": "single",
+      "prompt": { "ky": "Нерсе толук айлана жасаганда өтүлгөн жол эмнеге барабар?", "ru": "Чему равен путь тела за один полный оборот?", "en": "What is the path length for one full turn?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Айлананын радиусуна", "ru": "Радиусу окружности", "en": "The radius" } },
+        { "key": "b", "text": { "ky": "Айлананын диаметрине", "ru": "Диаметру окружности", "en": "The diameter" } },
+        { "key": "c", "text": { "ky": "Айлананын узундугуна 2πr", "ru": "Длине окружности 2πr", "en": "The circumference 2πr" } },
+        { "key": "d", "text": { "ky": "Нөлгө", "ru": "Нулю", "en": "Zero" } }
+      ],
+      "answer": "c",
+      "explanation": { "ky": "Толук айланууда нерсе бүт айлананы басып өтөт: s = 2πr. Нөлгө которулуш барабар, жол эмес.", "ru": "За полный оборот тело проходит всю окружность: s = 2πr. Нулю равно перемещение, а не путь.", "en": "In a full turn the body goes all the way round: s = 2πr. It is the displacement that is zero, not the path." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "misconceptionKey": "phys.m.full-turn-no-path",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-circ-3",
+      "type": "single",
+      "prompt": { "ky": "Айлануу жыштыгы 10 с⁻¹. Айлануу мезгили эмнеге барабар?", "ru": "Частота обращения 10 с⁻¹. Чему равен период?", "en": "The frequency is 10 s⁻¹. What is the period?" },
+      "options": [
+        { "key": "a", "text": { "ky": "2 с", "ru": "2 с", "en": "2 s" } },
+        { "key": "b", "text": { "ky": "4 с", "ru": "4 с", "en": "4 s" } },
+        { "key": "c", "text": { "ky": "0,1 с", "ru": "0,1 с", "en": "0.1 s" } },
+        { "key": "d", "text": { "ky": "0,01 с", "ru": "0,01 с", "en": "0.01 s" } }
+      ],
+      "answer": "c",
+      "explanation": { "ky": "T = 1/n = 1 : 10 с⁻¹ = 0,1 с: секундада 10 айлануу – ар бири 0,1 с.", "ru": "T = 1/n = 1 : 10 с⁻¹ = 0,1 с: 10 оборотов в секунду – каждый по 0,1 с.", "en": "T = 1/n = 1 ÷ 10 s⁻¹ = 0.1 s: 10 turns a second, 0.1 s each." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "misconceptionKey": "phys.m.frequency-same-as-period",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-circ-4",
+      "type": "multiple",
+      "prompt": { "ky": "Сызыктуу ылдамдыкты кайсы формулалар менен эсептөөгө болот? Бардык туура жоопторду тандаңыз.", "ru": "По каким формулам можно вычислить линейную скорость? Выберите все верные ответы.", "en": "Which formulas give the linear speed? Choose all correct answers." },
+      "options": [
+        { "key": "a", "text": { "ky": "v = 2πr/T", "ru": "v = 2πr/T", "en": "v = 2πr/T" } },
+        { "key": "b", "text": { "ky": "v = 2πrn", "ru": "v = 2πrn", "en": "v = 2πrn" } },
+        { "key": "c", "text": { "ky": "v = T/(2πr)", "ru": "v = T/(2πr)", "en": "v = T/(2πr)" } },
+        { "key": "d", "text": { "ky": "v = s/t", "ru": "v = s/t", "en": "v = s/t" } }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": { "ky": "v = s/t; толук айланууда s = 2πr, t = T – v = 2πr/T; n = 1/T болгондуктан v = 2πrn. T/(2πr) – тескери чоңдук.", "ru": "v = s/t; за оборот s = 2πr, t = T – v = 2πr/T; так как n = 1/T, v = 2πrn. T/(2πr) – обратная величина.", "en": "v = s/t; for one turn s = 2πr and t = T, so v = 2πr/T; since n = 1/T, v = 2πrn. T/(2πr) is the reciprocal." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-circ-5",
+      "type": "numeric",
+      "prompt": { "ky": "Велосипеддин дөңгөлөгүнүн радиусу 25 см. Дөңгөлөктүн айлануу жыштыгы 1 с⁻¹ болсо, велосипеддин ылдамдыгы канча м/с? (π = 3,14)", "ru": "Радиус колеса велосипеда 25 см. При частоте вращения колеса 1 с⁻¹ какова скорость велосипеда в м/с? (π = 3,14)", "en": "A bicycle wheel has a radius of 25 cm. If it turns at 1 s⁻¹, what is the bike's speed in m/s? (π = 3.14)" },
+      "answer": 1.57,
+      "tolerance": 0.01,
+      "unit": "m/s",
+      "explanation": { "ky": "r = 25 см = 0,25 м. v = 2πrn = 2 · 3,14 · 0,25 м · 1 с⁻¹ = 1,57 м/с.", "ru": "r = 25 см = 0,25 м. v = 2πrn = 2 · 3,14 · 0,25 м · 1 с⁻¹ = 1,57 м/с.", "en": "r = 25 cm = 0.25 m. v = 2πrn = 2 × 3.14 × 0.25 m × 1 s⁻¹ = 1.57 m/s." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-circ-6",
+      "type": "numeric",
+      "prompt": { "ky": "Жердин радиусу 6400 км, ал өз огунда 24 саатта бир айланат. Экватордогу чекиттин сызыктуу ылдамдыгы канча м/с?", "ru": "Радиус Земли 6400 км, она делает оборот вокруг оси за 24 ч. Какова линейная скорость точки на экваторе в м/с?", "en": "The Earth's radius is 6400 km and it turns once in 24 h. What is the linear speed of a point on the equator in m/s?" },
+      "answer": 465,
+      "tolerance": 3,
+      "unit": "m/s",
+      "explanation": { "ky": "r = 6 400 000 м, T = 24 · 3600 = 86 400 с. v = 2πr/T = 2 · 3,14 · 6 400 000 : 86 400 ≈ 465 м/с.", "ru": "r = 6 400 000 м, T = 24 · 3600 = 86 400 с. v = 2πr/T = 2 · 3,14 · 6 400 000 : 86 400 ≈ 465 м/с.", "en": "r = 6 400 000 m, T = 24 × 3600 = 86 400 s. v = 2πr/T = 2 × 3.14 × 6 400 000 ÷ 86 400 ≈ 465 m/s." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-circ-7",
+      "type": "numeric",
+      "prompt": { "ky": "Бир калыпта кыймылдаган дөңгөлөктүн ылдамдыгы 10 м/с, айлануу жыштыгы 4 с⁻¹. Дөңгөлөктүн радиусу канча метр?", "ru": "Скорость равномерно вращающегося колеса 10 м/с, частота 4 с⁻¹. Каков радиус колеса в метрах?", "en": "A wheel turning uniformly has speed 10 m/s and frequency 4 s⁻¹. What is its radius in metres?" },
+      "answer": 0.4,
+      "tolerance": 0.01,
+      "unit": "m",
+      "explanation": { "ky": "v = 2πrn ден r = v/(2πn) = 10 : (2 · 3,14 · 4) ≈ 0,4 м (китепте 0,39 м).", "ru": "Из v = 2πrn: r = v/(2πn) = 10 : (2 · 3,14 · 4) ≈ 0,4 м (в учебнике 0,39 м).", "en": "From v = 2πrn: r = v/(2πn) = 10 ÷ (2 × 3.14 × 4) ≈ 0.4 m (the book gives 0.39 m)." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 4
+    },
+    {
+      "key": "phys.q.p7-circ-8",
+      "type": "numeric",
+      "prompt": { "ky": "Топ радиусу 2 м болгон айлана боюнча бир айланууну 4 с та жасайт. Анын сызыктуу ылдамдыгы канча м/с? (π = 3,14)", "ru": "Шар делает оборот по окружности радиусом 2 м за 4 с. Какова его линейная скорость в м/с? (π = 3,14)", "en": "A ball goes once round a circle of radius 2 m in 4 s. What is its linear speed in m/s? (π = 3.14)" },
+      "answer": 3.14,
+      "tolerance": 0.02,
+      "unit": "m/s",
+      "explanation": { "ky": "v = 2πr/T = 2 · 3,14 · 2 м : 4 с = 3,14 м/с.", "ru": "v = 2πr/T = 2 · 3,14 · 2 м : 4 с = 3,14 м/с.", "en": "v = 2πr/T = 2 × 3.14 × 2 m ÷ 4 s = 3.14 m/s." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-circ-9",
+      "type": "numeric",
+      "prompt": { "ky": "Карусель 10 айланууну 80 с та жасады. Анын айлануу мезгили канча секунд?", "ru": "Карусель сделала 10 оборотов за 80 с. Каков её период в секундах?", "en": "A carousel makes 10 turns in 80 s. What is its period in seconds?" },
+      "answer": 8,
+      "tolerance": 0,
+      "unit": "s",
+      "explanation": { "ky": "T = t/N = 80 с : 10 = 8 с. Жыштыгы n = 1/T = 0,125 с⁻¹.", "ru": "T = t/N = 80 с : 10 = 8 с. Частота n = 1/T = 0,125 с⁻¹.", "en": "T = t/N = 80 s ÷ 10 = 8 s. The frequency is n = 1/T = 0.125 s⁻¹." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-circ-10",
+      "type": "single",
+      "prompt": { "ky": "Ташты жипке байлап айлантып жатканда жип үзүлүп кетти. Таштын ылдамдык вектору кайда багытталган?", "ru": "Камень вращали на верёвке, и она порвалась. Куда направлен вектор скорости камня?", "en": "A stone is whirled on a string and the string breaks. Which way does the stone's velocity point?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Айлананын борборуна", "ru": "К центру окружности", "en": "Towards the centre" } },
+        { "key": "b", "text": { "ky": "Борбордон сыртка, радиус боюнча", "ru": "От центра наружу, по радиусу", "en": "Outwards along the radius" } },
+        { "key": "c", "text": { "ky": "Ошол чекитте айланага жаныма боюнча", "ru": "По касательной к окружности в этой точке", "en": "Along the tangent at that point" } },
+        { "key": "d", "text": { "ky": "Тик ылдый", "ru": "Вертикально вниз", "en": "Straight down" } }
+      ],
+      "answer": "c",
+      "explanation": { "ky": "Айлана боюнча кыймылдаган нерсенин ылдамдыгы ар дайым айланага жаныма боюнча багытталат; жип үзүлгөндө таш ошол багытта түз учат.", "ru": "Скорость тела на окружности всегда направлена по касательной; когда верёвка рвётся, камень летит по прямой в этом направлении.", "en": "The velocity of a body moving in a circle always points along the tangent; when the string breaks, the stone flies straight on that way." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "misconceptionKey": "phys.m.circular-velocity-constant",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-circ-11",
+      "type": "match",
+      "prompt": { "ky": "Чоңдукту анын бирдиги менен дал келтириңиз.", "ru": "Сопоставьте величину и её единицу.", "en": "Match each quantity with its unit." },
+      "pairs": [
+        { "key": "period", "left": { "ky": "Айлануу мезгили, T", "ru": "Период обращения, T", "en": "Period, T" }, "right": { "ky": "с", "ru": "с", "en": "s" } },
+        { "key": "freq", "left": { "ky": "Айлануунун жыштыгы, n", "ru": "Частота обращения, n", "en": "Frequency, n" }, "right": { "ky": "с⁻¹", "ru": "с⁻¹", "en": "s⁻¹" } },
+        { "key": "lin-speed", "left": { "ky": "Сызыктуу ылдамдык, v", "ru": "Линейная скорость, v", "en": "Linear speed, v" }, "right": { "ky": "м/с", "ru": "м/с", "en": "m/s" } },
+        { "key": "radius", "left": { "ky": "Айлананын радиусу, r", "ru": "Радиус окружности, r", "en": "Radius, r" }, "right": { "ky": "м", "ru": "м", "en": "m" } }
+      ],
+      "explanation": { "ky": "Мезгил – убакыт (с), жыштык – секундадагы айлануулар (с⁻¹), сызыктуу ылдамдык – м/с, радиус – узундук (м).", "ru": "Период – время (с), частота – обороты за секунду (с⁻¹), линейная скорость – м/с, радиус – длина (м).", "en": "Period is a time (s), frequency is turns per second (s⁻¹), linear speed is in m/s and the radius is a length (m)." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-circ-12",
+      "type": "single",
+      "prompt": { "ky": "Радиустары бирдей эки карусель бар: биринчисинин мезгили 10 с, экинчисиники 20 с. Кайсынысынын четиндеги бала тезирээк кыймылдайт?", "ru": "Две карусели одинакового радиуса: период первой 10 с, второй 20 с. На краю какой карусели ребёнок движется быстрее?", "en": "Two carousels have the same radius: one has a period of 10 s, the other 20 s. On which is a child at the edge moving faster?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Биринчисинде (T = 10 с)", "ru": "На первой (T = 10 с)", "en": "The first (T = 10 s)" } },
+        { "key": "b", "text": { "ky": "Экинчисинде (T = 20 с)", "ru": "На второй (T = 20 с)", "en": "The second (T = 20 s)" } },
+        { "key": "c", "text": { "ky": "Ылдамдыктар бирдей", "ru": "Скорости одинаковы", "en": "They are equally fast" } }
+      ],
+      "answer": "a",
+      "explanation": { "ky": "v = 2πr/T: радиус бирдей болсо, мезгили кичине карусель тез айланат. Биринчиде ылдамдык эки эсе чоң.", "ru": "v = 2πr/T: при одинаковом радиусе быстрее карусель с меньшим периодом. На первой скорость вдвое больше.", "en": "v = 2πr/T: with the same radius, the smaller period is faster. On the first carousel the speed is twice as large." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "misconceptionKey": "phys.m.period-bigger-faster",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-circ-13",
+      "type": "find-on-model",
+      "prompt": { "ky": "Моделден топтун сызыктуу ылдамдыгынын жебесин тап («Векторлор» режими).", "ru": "Найдите на модели стрелку линейной скорости шара (режим «Векторы»).", "en": "Find the arrow of the ball's linear speed in the model (Vectors mode)." },
+      "targetConceptKey": "phys.speed",
+      "explanation": { "ky": "Жебе топтун жанында айланага жаныма боюнча багытталган; анын узундугу туруктуу, багыты топ менен кошо бурулат.", "ru": "Стрелка у шара направлена по касательной к окружности; её длина постоянна, а направление поворачивается вместе с шаром.", "en": "The arrow at the ball points along the tangent; its length stays the same while its direction turns with the ball." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-circ-14",
+      "type": "find-on-model",
+      "prompt": { "ky": "Моделден топтун жолун – радиусу r болгон айлананы тап.", "ru": "Найдите на модели путь шара – окружность радиусом r.", "en": "Find the ball's path in the model – the circle of radius r." },
+      "targetConceptKey": "phys.angular-path",
+      "explanation": { "ky": "Шакек – топтун жолу; анын узундугу 2πr ≈ 12,56 м. Борбордон топко чейинки сызык – радиус r = 2 м.", "ru": "Кольцо – путь шара; его длина 2πr ≈ 12,56 м. Линия от центра до шара – радиус r = 2 м.", "en": "The ring is the ball's path; its length is 2πr ≈ 12.56 m. The line from the centre to the ball is the radius r = 2 m." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    }
+  ]
+}

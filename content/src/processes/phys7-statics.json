@@ -1,0 +1,544 @@
+{
+  "processes": [
+    {
+      "key": "phys.lever-lab-balance",
+      "engine": "timeline",
+      "icon": "scale",
+      "title": {
+        "ky": "Рычагды тең салмакка келтирүү",
+        "ru": "Уравновешиваем рычаг",
+        "en": "Balancing the lab lever"
+      },
+      "description": {
+        "ky": "Лабораториялык рычагдын эки жагына жүктөрдү илип, анын тең салмакта болушун моменттер аркылуу текшеребиз (118-сүрөт).",
+        "ru": "Подвешиваем грузы по обе стороны лабораторного рычага и по моментам проверяем его равновесие (рис. 118).",
+        "en": "We hang masses on both sides of the lab lever and check its balance using moments (fig. 118)."
+      },
+      "equation": "F_1 l_1 = F_2 l_2",
+      "inputs": {
+        "ky": "Рычаг 0,6 м, таяныч ортодо; жүктөр 102 г (1 Н); илмектер 3 см сайын",
+        "ru": "Рычаг 0,6 м, опора посередине; грузики по 102 г (1 Н); крючки через 3 см",
+        "en": "Lever 0.6 m, pivot in the middle; 102 g (1 N) masses; hooks every 3 cm"
+      },
+      "outputs": {
+        "ky": "2 Н · 12 см = 4 Н · 6 см = 0,24 Н·м – тең салмак",
+        "ru": "2 Н · 12 см = 4 Н · 6 см = 0,24 Н·м – равновесие",
+        "en": "2 N × 12 cm = 4 N × 6 cm = 0.24 N·m – balanced"
+      },
+      "steps": [
+        {
+          "key": "level",
+          "title": {
+            "ky": "Бош рычаг",
+            "ru": "Пустой рычаг",
+            "en": "Empty lever"
+          },
+          "result": {
+            "ky": "M₁ = M₂ = 0",
+            "ru": "M₁ = M₂ = 0",
+            "en": "M₁ = M₂ = 0"
+          },
+          "description": {
+            "ky": "Рычаг ортосунан бекитилген жана жүксүз тең салмакта турат.",
+            "ru": "Рычаг закреплён посередине и без грузов находится в равновесии.",
+            "en": "The lever is held at its middle and balances with no loads."
+          },
+          "conceptKey": "phys.pivot",
+          "altText": {
+            "ky": "Горизонталдык рычаг, жүктөр жок.",
+            "ru": "Горизонтальный рычаг без грузов.",
+            "en": "A level lever with no loads."
+          },
+          "duration": 1
+        },
+        {
+          "key": "hang-b",
+          "title": {
+            "ky": "B жагына 4 Н",
+            "ru": "Слева (B) 4 Н",
+            "en": "4 N at B"
+          },
+          "result": {
+            "ky": "M₂ = 0,24 Н·м",
+            "ru": "M₂ = 0,24 Н·м",
+            "en": "M₂ = 0.24 N·m"
+          },
+          "description": {
+            "ky": "Таяныч чекитинен 6 см аралыкка 4 жүк (4 Н) илдик. Анын моменти 4 Н · 0,06 м = 0,24 Н·м рычагды саат жебесине каршы бурат.",
+            "ru": "Повесили 4 грузика (4 Н) в 6 см от опоры. Их момент 4 Н · 0,06 м = 0,24 Н·м поворачивает рычаг против часовой стрелки.",
+            "en": "Four masses (4 N) hang 6 cm from the pivot; their moment 4 N × 0.06 m = 0.24 N·m turns the lever anticlockwise."
+          },
+          "conceptKey": "phys.weight",
+          "altText": {
+            "ky": "B жагы ылдый түшкөн.",
+            "ru": "Сторона B опустилась.",
+            "en": "Side B has gone down."
+          },
+          "duration": 1
+        },
+        {
+          "key": "hang-a-near",
+          "title": {
+            "ky": "A жагына 2 Н, 6 см",
+            "ru": "Справа (A) 2 Н на 6 см",
+            "en": "2 N at A, 6 cm"
+          },
+          "result": {
+            "ky": "M₁ = 0,12 Н·м < M₂",
+            "ru": "M₁ = 0,12 Н·м < M₂",
+            "en": "M₁ = 0.12 N·m < M₂"
+          },
+          "description": {
+            "ky": "Оң жагына 2 жүктү ошол эле 6 см аралыкка илдик: M₁ = 2 · 0,06 = 0,12 Н·м < M₂. Рычаг дагы эле B жагына кыйшаят.",
+            "ru": "Справа повесили 2 грузика на то же расстояние 6 см: M₁ = 2 · 0,06 = 0,12 Н·м < M₂. Рычаг всё ещё наклонён к B.",
+            "en": "Two masses go on the right at the same 6 cm: M₁ = 2 × 0.06 = 0.12 N·m < M₂, so the lever still tips towards B."
+          },
+          "conceptKey": "phys.moment-of-force",
+          "altText": {
+            "ky": "Эки жагында жүк, рычаг солго кыйшайган.",
+            "ru": "Грузы с обеих сторон, рычаг наклонён влево.",
+            "en": "Loads on both sides; the lever tips left."
+          },
+          "duration": 1
+        },
+        {
+          "key": "move-a",
+          "title": {
+            "ky": "A жүгүн 12 см ге жылдыруу",
+            "ru": "Сдвигаем A на 12 см",
+            "en": "Move A to 12 cm"
+          },
+          "result": {
+            "ky": "M₁ = M₂ = 0,24 Н·м",
+            "ru": "M₁ = M₂ = 0,24 Н·м",
+            "en": "M₁ = M₂ = 0.24 N·m"
+          },
+          "description": {
+            "ky": "2 Н жүктү 12 см ге жылдырдык: M₁ = 2 · 0,12 = 0,24 Н·м = M₂. Рычаг түздөлдү.",
+            "ru": "Сдвинули груз 2 Н на 12 см: M₁ = 2 · 0,12 = 0,24 Н·м = M₂. Рычаг выровнялся.",
+            "en": "Moving the 2 N load to 12 cm gives M₁ = 2 × 0.12 = 0.24 N·m = M₂ and the lever levels."
+          },
+          "conceptKey": "phys.lever-arm",
+          "altText": {
+            "ky": "Рычаг горизонталдык, A жүгү алысыраак.",
+            "ru": "Рычаг горизонтален, груз A дальше от опоры.",
+            "en": "The lever is level; load A sits further out."
+          },
+          "duration": 1
+        },
+        {
+          "key": "rule",
+          "title": {
+            "ky": "Эреже",
+            "ru": "Правило",
+            "en": "The rule"
+          },
+          "result": {
+            "ky": "F₁·l₁ = F₂·l₂",
+            "ru": "F₁·l₁ = F₂·l₂",
+            "en": "F₁l₁ = F₂l₂"
+          },
+          "description": {
+            "ky": "Кичине күчтүн ийини канча эсе узун болсо, ал ошончо эсе чоң күчтү теңдейт: F₁·l₁ = F₂·l₂ (Архимед).",
+            "ru": "Во сколько раз плечо меньшей силы длиннее, во столько раз большую силу она уравновешивает: F₁·l₁ = F₂·l₂ (Архимед).",
+            "en": "A smaller force balances a larger one as many times over as its arm is longer: F₁l₁ = F₂l₂ (Archimedes)."
+          },
+          "conceptKey": "phys.lever-rule",
+          "altText": {
+            "ky": "Тең салмактагы рычаг жана формула.",
+            "ru": "Рычаг в равновесии и формула.",
+            "en": "The balanced lever and the formula."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "m1",
+          "label": {
+            "ky": "A жагынын моменти M₁",
+            "ru": "Момент со стороны A M₁",
+            "en": "Moment at A, M₁"
+          },
+          "unit": "N·m",
+          "min": 0,
+          "max": 0.3,
+          "precision": 2
+        },
+        {
+          "key": "m2",
+          "label": {
+            "ky": "B жагынын моменти M₂",
+            "ru": "Момент со стороны B M₂",
+            "en": "Moment at B, M₂"
+          },
+          "unit": "N·m",
+          "min": 0,
+          "max": 0.3,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "m1@level": 0,
+        "m1@hang-b": 0,
+        "m1@hang-a-near": 0.12,
+        "m1@move-a": 0.24,
+        "m1@rule": 0.24,
+        "m2@level": 0,
+        "m2@hang-b": 0.24,
+        "m2@hang-a-near": 0.24,
+        "m2@move-a": 0.24,
+        "m2@rule": 0.24
+      }
+    },
+    {
+      "key": "phys.pulley-movable-lift",
+      "engine": "timeline",
+      "icon": "trending-up",
+      "title": {
+        "ky": "Кыймылдуу блок менен жүк көтөрүү",
+        "ru": "Подъём груза подвижным блоком",
+        "en": "Lifting with a movable pulley"
+      },
+      "description": {
+        "ky": "10 кг жүктү кыймылдуу блок менен 1 м ге көтөрөбүз: жүктүн бийиктиги жана жиптин тартылган узундугу кантип өзгөрөрүн байкайбыз.",
+        "ru": "Поднимаем груз 10 кг подвижным блоком на 1 м и следим, как меняются высота груза и длина вытянутой верёвки.",
+        "en": "We lift a 10 kg load 1 m with a movable pulley and watch the load’s height and the length of rope pulled."
+      },
+      "equation": "F = \\frac{P}{2},\\quad s = 2h,\\quad F s = P h",
+      "inputs": {
+        "ky": "m = 10 кг, P = 98 Н, h = 1 м, сүрүлүү жок",
+        "ru": "m = 10 кг, P = 98 Н, h = 1 м, без трения",
+        "en": "m = 10 kg, W = 98 N, h = 1 m, no friction"
+      },
+      "outputs": {
+        "ky": "F = 49 Н, s = 2 м, A = 98 Дж",
+        "ru": "F = 49 Н, s = 2 м, A = 98 Дж",
+        "en": "F = 49 N, s = 2 m, A = 98 J"
+      },
+      "energy": {
+        "ky": "Колдун жумушу F·s = 98 Дж = жүктү көтөрүү жумушу P·h",
+        "ru": "Работа руки F·s = 98 Дж = работа подъёма груза P·h",
+        "en": "The hand’s work F·s = 98 J = the lifting work W·h"
+      },
+      "steps": [
+        {
+          "key": "hook",
+          "title": {
+            "ky": "Жүктү илүү",
+            "ru": "Подвешиваем груз",
+            "en": "Hang the load"
+          },
+          "result": {
+            "ky": "h = 0, s = 0",
+            "ru": "h = 0, s = 0",
+            "en": "h = 0, s = 0"
+          },
+          "description": {
+            "ky": "Жүк кыймылдуу блоктун огундагы илмекке илинет, жиптин бир учу шыпка бекитилет.",
+            "ru": "Груз висит на крюке оси подвижного блока, один конец верёвки закреплён у потолка.",
+            "en": "The load hangs from the movable pulley’s axle; one rope end is tied to the ceiling."
+          },
+          "conceptKey": "phys.pulley-movable",
+          "altText": {
+            "ky": "Жүк полдо, жип бош эмес.",
+            "ru": "Груз у пола, верёвка натянута.",
+            "en": "The load on the floor, the rope taut."
+          },
+          "duration": 1
+        },
+        {
+          "key": "half",
+          "title": {
+            "ky": "Жарымы",
+            "ru": "Половина пути",
+            "en": "Halfway"
+          },
+          "result": {
+            "ky": "h = 0,5 м, s = 1 м",
+            "ru": "h = 0,5 м, s = 1 м",
+            "en": "h = 0.5 m, s = 1 m"
+          },
+          "description": {
+            "ky": "Жипти 1 м тарттык – жүк 0,5 м гана көтөрүлдү.",
+            "ru": "Вытянули 1 м верёвки – груз поднялся только на 0,5 м.",
+            "en": "One metre of rope pulled – the load has risen only 0.5 m."
+          },
+          "conceptKey": "phys.golden-rule",
+          "altText": {
+            "ky": "Жүк ортодо.",
+            "ru": "Груз на середине.",
+            "en": "The load halfway up."
+          },
+          "duration": 1
+        },
+        {
+          "key": "top",
+          "title": {
+            "ky": "Жүк 1 м бийиктикте",
+            "ru": "Груз на высоте 1 м",
+            "en": "Load at 1 m"
+          },
+          "result": {
+            "ky": "h = 1 м, s = 2 м",
+            "ru": "h = 1 м, s = 2 м",
+            "en": "h = 1 m, s = 2 m"
+          },
+          "description": {
+            "ky": "Жиптин учу 2 м жылды, жүк 1 м ге көтөрүлдү: s = 2h.",
+            "ru": "Конец верёвки прошёл 2 м, груз поднялся на 1 м: s = 2h.",
+            "en": "The rope end has moved 2 m and the load 1 m: s = 2h."
+          },
+          "conceptKey": "phys.weight",
+          "altText": {
+            "ky": "Жүк өйдөдө, сызгычта 1 м жана 2 м.",
+            "ru": "Груз вверху, на линейке 1 м и 2 м.",
+            "en": "The load at the top; the ruler shows 1 m and 2 m."
+          },
+          "duration": 1
+        },
+        {
+          "key": "work",
+          "title": {
+            "ky": "Жумуштарды салыштыруу",
+            "ru": "Сравниваем работы",
+            "en": "Compare the work"
+          },
+          "result": {
+            "ky": "A = 98 Дж",
+            "ru": "A = 98 Дж",
+            "en": "A = 98 J"
+          },
+          "description": {
+            "ky": "F·s = 49 Н · 2 м = 98 Дж, P·h = 98 Н · 1 м = 98 Дж. Жумуштан утуш жок – механиканын «алтын эрежеси».",
+            "ru": "F·s = 49 Н · 2 м = 98 Дж, P·h = 98 Н · 1 м = 98 Дж. Выигрыша в работе нет – «золотое правило» механики.",
+            "en": "F·s = 49 N × 2 m = 98 J, W·h = 98 N × 1 m = 98 J. No work is saved – the golden rule of mechanics."
+          },
+          "conceptKey": "phys.golden-rule",
+          "altText": {
+            "ky": "Эки бирдей энергия тилкеси.",
+            "ru": "Два одинаковых столбика энергии.",
+            "en": "Two equal energy bars."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "h",
+          "label": {
+            "ky": "Жүктүн бийиктиги h",
+            "ru": "Высота груза h",
+            "en": "Load height h"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 1,
+          "precision": 2
+        },
+        {
+          "key": "s",
+          "label": {
+            "ky": "Тартылган жип s",
+            "ru": "Вытянутая верёвка s",
+            "en": "Rope pulled s"
+          },
+          "unit": "m",
+          "min": 0,
+          "max": 2,
+          "precision": 2
+        }
+      ],
+      "params": {
+        "h@hook": 0,
+        "h@half": 0.5,
+        "h@top": 1,
+        "h@work": 1,
+        "s@hook": 0,
+        "s@half": 1,
+        "s@top": 2,
+        "s@work": 2
+      }
+    },
+    {
+      "key": "phys.incline-efficiency-lab",
+      "engine": "timeline",
+      "icon": "gauge",
+      "title": {
+        "ky": "Жантык тегиздиктин ПАКын аныктоо",
+        "ru": "Определяем КПД наклонной плоскости",
+        "en": "Measuring an incline’s efficiency"
+      },
+      "description": {
+        "ky": "№ 7 лабораториялык иштин жүрүшү: h жана l ди өлчөп, брусоктун оордук күчүн жана тартуу күчүн динамометр менен табабыз да, пайдалуу жана толук жумушту, ПАКты эсептейбиз.",
+        "ru": "Ход лабораторной работы № 7: измеряем h и l, динамометром находим силу тяжести бруска и силу тяги, вычисляем полезную и полную работу и КПД.",
+        "en": "Lab work no. 7 step by step: measure h and l, find the block’s weight and the pulling force with a dynamometer, then work out useful and total work and the efficiency."
+      },
+      "equation": "\\eta = \\frac{P h}{F l} \\cdot 100\\%",
+      "inputs": {
+        "ky": "l = 1 м, h = 0,5 м, P = 9,8 Н, μ ≈ 0,2",
+        "ru": "l = 1 м, h = 0,5 м, P = 9,8 Н, μ ≈ 0,2",
+        "en": "l = 1 m, h = 0.5 m, W = 9.8 N, μ ≈ 0.2"
+      },
+      "outputs": {
+        "ky": "A_п = 4,9 Дж, A_т ≈ 6,6 Дж, η ≈ 74 %",
+        "ru": "A_п = 4,9 Дж, A_з ≈ 6,6 Дж, η ≈ 74 %",
+        "en": "W_u = 4.9 J, W_t ≈ 6.6 J, η ≈ 74 %"
+      },
+      "steps": [
+        {
+          "key": "measure",
+          "title": {
+            "ky": "h жана l ди өлчөө",
+            "ru": "Измеряем h и l",
+            "en": "Measure h and l"
+          },
+          "result": {
+            "ky": "h = 0,5 м, l = 1 м",
+            "ru": "h = 0,5 м, l = 1 м",
+            "en": "h = 0.5 m, l = 1 m"
+          },
+          "description": {
+            "ky": "Сызгыч менен жантык тегиздиктин бийиктиги h = 0,5 м жана узундугу l = 1 м өлчөнөт.",
+            "ru": "Линейкой измеряем высоту h = 0,5 м и длину l = 1 м наклонной плоскости.",
+            "en": "A ruler gives the height h = 0.5 m and length l = 1 m."
+          },
+          "conceptKey": "phys.ramp",
+          "altText": {
+            "ky": "Жантык тактай жана сызгыч.",
+            "ru": "Наклонная доска и линейка.",
+            "en": "The sloping board and a ruler."
+          },
+          "duration": 1
+        },
+        {
+          "key": "weigh",
+          "title": {
+            "ky": "Оордук күчү P",
+            "ru": "Сила тяжести P",
+            "en": "Weight W"
+          },
+          "result": {
+            "ky": "A_п = 4,9 Дж",
+            "ru": "A_п = 4,9 Дж",
+            "en": "W_u = 4.9 J"
+          },
+          "description": {
+            "ky": "Брусокту динамометрге илип, P = 9,8 Н табабыз. Пайдалуу жумуш A_п = P·h = 4,9 Дж.",
+            "ru": "Подвешиваем брусок к динамометру: P = 9,8 Н. Полезная работа A_п = P·h = 4,9 Дж.",
+            "en": "Hang the block on the dynamometer: W = 9.8 N. Useful work W_u = W·h = 4.9 J."
+          },
+          "conceptKey": "phys.gravity",
+          "altText": {
+            "ky": "Динамометрде илинген брусок.",
+            "ru": "Брусок на динамометре.",
+            "en": "The block on the dynamometer."
+          },
+          "duration": 1
+        },
+        {
+          "key": "pull",
+          "title": {
+            "ky": "Тартуу күчү F",
+            "ru": "Сила тяги F",
+            "en": "Pulling force F"
+          },
+          "result": {
+            "ky": "A_т ≈ 6,6 Дж",
+            "ru": "A_з ≈ 6,6 Дж",
+            "en": "W_t ≈ 6.6 J"
+          },
+          "description": {
+            "ky": "Брусокту бир калыпта өйдө тартып, F ≈ 6,6 Н алабыз. Толук жумуш A_т = F·l ≈ 6,6 Дж.",
+            "ru": "Равномерно тянем брусок вверх: F ≈ 6,6 Н. Полная работа A_з = F·l ≈ 6,6 Дж.",
+            "en": "Pull the block up steadily: F ≈ 6.6 N. Total work W_t = F·l ≈ 6.6 J."
+          },
+          "conceptKey": "phys.friction-force",
+          "altText": {
+            "ky": "Брусок жантык тегиздик боюнча өйдө жылууда.",
+            "ru": "Брусок движется вверх по наклонной плоскости.",
+            "en": "The block moving up the slope."
+          },
+          "duration": 1
+        },
+        {
+          "key": "eta",
+          "title": {
+            "ky": "ПАКты эсептөө",
+            "ru": "Вычисляем КПД",
+            "en": "Work out η"
+          },
+          "result": {
+            "ky": "η ≈ 74 %",
+            "ru": "η ≈ 74 %",
+            "en": "η ≈ 74 %"
+          },
+          "description": {
+            "ky": "η = A_п/A_т · 100 % = 4,9/6,6 · 100 % ≈ 74 %.",
+            "ru": "η = A_п/A_з · 100 % = 4,9/6,6 · 100 % ≈ 74 %.",
+            "en": "η = W_u/W_t × 100 % = 4.9/6.6 × 100 % ≈ 74 %."
+          },
+          "conceptKey": "phys.efficiency",
+          "altText": {
+            "ky": "Таблица жана ПАКтын мааниси.",
+            "ru": "Таблица и значение КПД.",
+            "en": "The table with the efficiency."
+          },
+          "duration": 1
+        }
+      ],
+      "metrics": [
+        {
+          "key": "useful",
+          "label": {
+            "ky": "Пайдалуу жумуш A_п",
+            "ru": "Полезная работа A_п",
+            "en": "Useful work"
+          },
+          "unit": "J",
+          "min": 0,
+          "max": 7,
+          "precision": 1
+        },
+        {
+          "key": "total",
+          "label": {
+            "ky": "Толук жумуш A_т",
+            "ru": "Полная работа A_з",
+            "en": "Total work"
+          },
+          "unit": "J",
+          "min": 0,
+          "max": 7,
+          "precision": 1
+        },
+        {
+          "key": "eta",
+          "label": {
+            "ky": "ПАК η",
+            "ru": "КПД η",
+            "en": "Efficiency η"
+          },
+          "unit": "%",
+          "min": 0,
+          "max": 100,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "useful@measure": 0,
+        "useful@weigh": 4.9,
+        "useful@pull": 4.9,
+        "useful@eta": 4.9,
+        "total@measure": 0,
+        "total@weigh": 0,
+        "total@pull": 6.6,
+        "total@eta": 6.6,
+        "eta@measure": 0,
+        "eta@weigh": 0,
+        "eta@pull": 0,
+        "eta@eta": 74
+      }
+    }
+  ]
+}

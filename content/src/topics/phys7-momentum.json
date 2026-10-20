@@ -1,0 +1,491 @@
+{
+  "topic": {
+    "key": "phys7-momentum",
+    "unitKey": "phys.g7.energy",
+    "status": "published",
+    "title": { "ky": "Нерсенин импульсу. Импульстун сакталуу закону", "ru": "Импульс тела. Закон сохранения импульса", "en": "Momentum and its conservation" },
+    "formula": "m_1v_1 + m_2v_2 = m_1u_1 + m_2u_2",
+    "classification": { "ky": "Импульс, жумуш, кубаттуулук жана энергия", "ru": "Импульс, работа, мощность и энергия", "en": "Momentum, work, power and energy" },
+    "description": {
+      "ky": "Жылмакай жолдо эки арабача кагылышат. Ар биринин импульсу P = mv – массасы менен ылдамдыгынын көбөйтүндүсү. Кагылышууда бир арабача жайлап, экинчиси ылдамдайт, бирок алардын импульстарынын суммасы өзгөрбөйт: P₁ + P₂ = P₁′ + P₂′. Бул – импульстун сакталуу закону.",
+      "ru": "На гладкой дорожке сталкиваются две тележки. Импульс каждой P = mv – произведение массы на скорость. При ударе одна тележка замедляется, другая разгоняется, но сумма их импульсов не меняется: P₁ + P₂ = P₁′ + P₂′. Это закон сохранения импульса.",
+      "en": "Two carts collide on a smooth track. Each has momentum P = mv – mass times velocity. In the collision one cart slows and the other speeds up, yet their total momentum does not change: P₁ + P₂ = P₁′ + P₂′. This is the law of conservation of momentum."
+    },
+    "goal": {
+      "ky": "Нерсенин импульсун P = mv формуласы менен эсептөө, импульстун сакталуу законун арабачалардын кагылышуусунда түшүндүрүү жана маселеде колдонуу (PHYS-7.4.1).",
+      "ru": "Вычислять импульс тела по формуле P = mv, объяснять закон сохранения импульса на столкновении тележек и применять его в задачах (PHYS-7.4.1).",
+      "en": "Calculate momentum with P = mv, explain the conservation of momentum with colliding carts and use it to solve problems (PHYS-7.4.1)."
+    },
+    "objectiveKeys": ["phys.g7.energy.o1"],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "momentum",
+        "variant": "collision",
+        "carts": [
+          { "id": "A", "mass": 1, "v": 0.6 },
+          { "id": "B", "mass": 1, "v": 0 }
+        ],
+        "elastic": true
+      },
+      "camera": { "position": [1, 1.5, 4.2], "target": [0, 0.2, 0], "fov": 45 },
+      "modes": ["vectors", "labels"]
+    },
+    "conceptKeys": ["phys.momentum", "phys.closed-system", "phys.momentum-conservation", "phys.speed"],
+    "overrides": {
+      "phys.momentum": {
+        "nodes": ["Arrow_Momentum_A", "Arrow_Momentum_B"],
+        "anchor": [-0.8, 0.6, 0],
+        "description": {
+          "ky": "Ар бир арабачанын үстүндөгү жебе – анын импульсу P = mv. А арабачасы: 1 кг · 0,6 м/с = 0,6 кг·м/с, В арабачасы тынч турат: P = 0. Жебенин узундугу импульстун чоңдугуна пропорционалдуу, багыты ылдамдыктын багытындай.",
+          "ru": "Стрелка над каждой тележкой – её импульс P = mv. Тележка A: 1 кг · 0,6 м/с = 0,6 кг·м/с, тележка B стоит: P = 0. Длина стрелки пропорциональна импульсу, направление совпадает со скоростью.",
+          "en": "The arrow above each cart is its momentum P = mv. Cart A: 1 kg × 0.6 m/s = 0.6 kg·m/s; cart B is at rest: P = 0. The arrow's length is proportional to the momentum and it points the way the cart moves."
+        }
+      },
+      "phys.closed-system": {
+        "nodes": ["Cart_A", "Cart_B", "Track"],
+        "anchor": [0, 0.35, 0],
+        "description": {
+          "ky": "Эки арабача – туюк система: алар бири-бирине гана аракет этет. Оордук күчүн жолдун реакция күчү тең салмактайт, ал эми дөңгөлөктөрдүн сүрүлүүсү абдан аз.",
+          "ru": "Две тележки – замкнутая система: они действуют только друг на друга. Силу тяжести уравновешивает реакция дорожки, а трение колёс очень мало.",
+          "en": "The two carts form a closed system: they act only on each other. The track's normal force balances gravity and the wheels' friction is tiny."
+        },
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 1 },
+          { "kind": "quantity", "type": "speed", "value": 0.6 }
+        ]
+      },
+      "phys.momentum-conservation": {
+        "nodes": ["Readout_Before", "Readout_After"],
+        "anchor": [0, 1, 0]
+      },
+      "phys.speed": {
+        "anchor": [-1.2, 0.3, 0],
+        "description": {
+          "ky": "А арабачасынын ылдамдыгы v₁ = 0,6 м/с, В ныкы v₂ = 0. Кагылышкандан кийинки ылдамдыктарды u₁ жана u₂ деп белгилейбиз.",
+          "ru": "Скорость тележки A v₁ = 0,6 м/с, тележки B v₂ = 0. Скорости после удара обозначаем u₁ и u₂.",
+          "en": "Cart A's speed is v₁ = 0.6 m/s, cart B's is v₂ = 0. We call the speeds after the collision u₁ and u₂."
+        },
+        "props": [{ "kind": "quantity", "type": "speed", "value": 0.6 }]
+      }
+    },
+    "props": [
+      { "kind": "quantity", "type": "mass", "value": 1 },
+      { "kind": "quantity", "type": "speed", "value": 0.6 },
+      { "kind": "formula", "type": "formula", "value": "P = mv" }
+    ],
+    "samples": [
+      {
+        "key": "momentum-equal-elastic",
+        "title": { "ky": "Бирдей арабачалар, серпилгичтүү урунуу", "ru": "Одинаковые тележки, упругий удар", "en": "Equal carts, elastic bounce" },
+        "classification": { "ky": "A токтойт, B 0,6 м/с менен кетет", "ru": "A останавливается, B уезжает с 0,6 м/с", "en": "A stops, B leaves at 0.6 m/s" },
+        "thumb": "thumbs/momentum-equal-elastic.webp",
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 1 },
+          { "kind": "quantity", "type": "speed", "value": 0.6 }
+        ],
+        "scene": {
+          "params": { "carts": [{ "id": "A", "mass": 1, "v": 0.6 }, { "id": "B", "mass": 1, "v": 0 }], "elastic": true }
+        }
+      },
+      {
+        "key": "momentum-stick",
+        "title": { "ky": "Илешип калуу: 2 кг жана 1 кг", "ru": "Сцепка: 2 кг и 1 кг", "en": "Sticking together: 2 kg and 1 kg" },
+        "classification": { "ky": "Чогуу 0,4 м/с менен кетишет", "ru": "Едут вместе со скоростью 0,4 м/с", "en": "They move off together at 0.4 m/s" },
+        "thumb": "thumbs/momentum-stick.webp",
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 3 },
+          { "kind": "quantity", "type": "speed", "value": 0.4 }
+        ],
+        "scene": {
+          "params": { "carts": [{ "id": "A", "mass": 2, "v": 0.6 }, { "id": "B", "mass": 1, "v": 0 }], "elastic": false }
+        }
+      },
+      {
+        "key": "momentum-catch-up",
+        "title": { "ky": "Кубалап жетүү (китептеги маселе)", "ru": "Догоняет (задача из учебника)", "en": "Catching up (textbook problem)" },
+        "classification": { "ky": "0,6 кг · 0,5 м/с + 0,4 кг · 0,2 м/с → 0,38 м/с", "ru": "0,6 кг · 0,5 м/с + 0,4 кг · 0,2 м/с → 0,38 м/с", "en": "0.6 kg × 0.5 m/s + 0.4 kg × 0.2 m/s → 0.38 m/s" },
+        "thumb": "thumbs/momentum-catch-up.webp",
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 1 },
+          { "kind": "quantity", "type": "speed", "value": 0.38 }
+        ],
+        "scene": {
+          "params": { "carts": [{ "id": "A", "mass": 0.6, "v": 0.5 }, { "id": "B", "mass": 0.4, "v": 0.2 }], "elastic": false }
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": { "position": [1.13, 1.56, 4.74], "target": [0, 0.09, 0], "fov": 45 },
+            "modes": { "vectors": false },
+            "sample": "momentum-equal-elastic",
+            "focus": "phys.closed-system",
+            "text": {
+              "ky": "Жылмакай жолдо массасы 1 кг эки арабача турат. А арабачасын 0,6 м/с ылдамдык менен В ны көздөй түртөбүз. Урунгандан кийин эмне болот – сиздин божомолуңуз?",
+              "ru": "На гладкой дорожке две тележки по 1 кг. Толкаем тележку A к B со скоростью 0,6 м/с. Что будет после удара – ваши предположения?",
+              "en": "Two 1 kg carts sit on a smooth track. We push cart A towards B at 0.6 m/s. What happens after they hit – what do you predict?"
+            },
+            "teacherNote": {
+              "ky": "Окуучулардын божомолдорун тактага жазыңыз (экөө тең токтойт / экөө чогуу кетет / А токтойт). Тажрыйбадан кийин салыштырыңыз.",
+              "ru": "Запишите на доске предположения учеников (обе остановятся / поедут вместе / A остановится). Сравните после опыта.",
+              "en": "Write the pupils' guesses on the board (both stop / both go on together / A stops). Compare after the run."
+            },
+            "altText": {
+              "ky": "Түз жолдо бири-бирине караган эки арабача.",
+              "ru": "Две тележки на прямой дорожке, обращённые друг к другу.",
+              "en": "Two carts facing each other on a straight track."
+            }
+          },
+          {
+            "key": "momentum",
+            "modes": { "vectors": true },
+            "focus": "phys.momentum",
+            "text": {
+              "ky": "Арабачанын үстүндөгү жебе – анын импульсу: P = mv = 1 кг · 0,6 м/с = 0,6 кг·м/с. Импульс – вектор, ал ылдамдык жакка багытталган. В тынч турат, анын импульсу нөл.",
+              "ru": "Стрелка над тележкой – её импульс: P = mv = 1 кг · 0,6 м/с = 0,6 кг·м/с. Импульс – вектор, он направлен по скорости. B стоит, её импульс равен нулю.",
+              "en": "The arrow above the cart is its momentum: P = mv = 1 kg × 0.6 m/s = 0.6 kg·m/s. Momentum is a vector pointing along the velocity. B is at rest, so its momentum is zero."
+            },
+            "teacherNote": {
+              "ky": "Китептеги мисалды эскертиңиз: 3 кг баштыкты токтотуу оңой, ошол эле ылдамдыктагы 50 кг капты – кыйын. Импульс массага да көз каранды.",
+              "ru": "Напомните пример из учебника: мешочек 3 кг остановить легко, мешок 50 кг с той же скоростью – трудно. Импульс зависит и от массы.",
+              "en": "Recall the textbook example: a 3 kg bag is easy to stop, a 50 kg sack at the same speed is not. Momentum depends on mass too."
+            },
+            "altText": {
+              "ky": "А арабачасынын үстүндө оңго караган жебе.",
+              "ru": "Над тележкой A стрелка, направленная вправо.",
+              "en": "An arrow pointing right above cart A."
+            }
+          },
+          {
+            "key": "impact",
+            "modes": { "vectors": true },
+            "focus": "phys.momentum-conservation",
+            "text": {
+              "ky": "Урунганда А токтоду, ал эми В 0,6 м/с менен кетти. Импульс жоголгон жок – ал толугу менен В га өттү: 0,6 + 0 = 0 + 0,6 кг·м/с.",
+              "ru": "После удара A остановилась, а B поехала со скоростью 0,6 м/с. Импульс не исчез – он целиком перешёл к B: 0,6 + 0 = 0 + 0,6 кг·м/с.",
+              "en": "After the hit A stopped and B moved off at 0.6 m/s. The momentum didn't vanish – it all passed to B: 0.6 + 0 = 0 + 0.6 kg·m/s."
+            },
+            "teacherNote": {
+              "ky": "Бильярддагы шарлардын кагылышуусу менен салыштырыңыз (китептеги суроо 4).",
+              "ru": "Сравните со столкновением бильярдных шаров (вопрос 4 учебника).",
+              "en": "Compare with billiard balls colliding (question 4 in the textbook)."
+            },
+            "altText": {
+              "ky": "Сол арабача токтоп турат, оң арабача жебеси менен оңго жылууда.",
+              "ru": "Левая тележка стоит, правая едет вправо со стрелкой.",
+              "en": "The left cart is still; the right cart moves right with its arrow."
+            }
+          },
+          {
+            "key": "stick",
+            "sample": "momentum-stick",
+            "modes": { "vectors": true },
+            "focus": "phys.momentum-conservation",
+            "text": {
+              "ky": "Эми 2 кг арабача 0,6 м/с менен 1 кг тынч арабачага урунуп, илешип калат. (m₁ + m₂)u = m₁v₁: u = 2 · 0,6 / 3 = 0,4 м/с. Суммардык импульс мурдагыдай 1,2 кг·м/с.",
+              "ru": "Теперь тележка 2 кг со скоростью 0,6 м/с ударяет покоящуюся тележку 1 кг и сцепляется с ней. (m₁ + m₂)u = m₁v₁: u = 2 · 0,6 / 3 = 0,4 м/с. Суммарный импульс по-прежнему 1,2 кг·м/с.",
+              "en": "Now a 2 kg cart at 0.6 m/s hits a 1 kg cart at rest and they couple. (m₁ + m₂)u = m₁v₁: u = 2 × 0.6 / 3 = 0.4 m/s. The total momentum is still 1.2 kg·m/s."
+            },
+            "teacherNote": {
+              "ky": "Ылдамдык азайды, бирок импульс сакталды – «кагылышууда импульс жоголот» деген жаңылыш ойду талкуулаңыз.",
+              "ru": "Скорость уменьшилась, а импульс сохранился – разберите ошибочное «при ударе импульс теряется».",
+              "en": "The speed dropped but momentum was kept – discuss the mistaken idea that collisions lose momentum."
+            },
+            "altText": {
+              "ky": "Илешкен эки арабача бирге оңго жылат.",
+              "ru": "Сцепленные тележки едут вместе вправо.",
+              "en": "The two coupled carts roll right together."
+            }
+          },
+          {
+            "key": "catch-up",
+            "sample": "momentum-catch-up",
+            "modes": { "vectors": true },
+            "focus": "phys.speed",
+            "text": {
+              "ky": "Китептеги маселе: 5 м/с менен чуркаган 60 кг адам 2 м/с менен жылган 40 кг арабачага секирет. u = (m₁v₁ + m₂v₂)/(m₁ + m₂) = 380/100 = 3,8 м/с. Моделде ушул маселе 100 эсе жеңил жана 10 эсе жай: жооп 0,38 м/с.",
+              "ru": "Задача из учебника: человек 60 кг бежит со скоростью 5 м/с и прыгает на тележку 40 кг, едущую со скоростью 2 м/с. u = (m₁v₁ + m₂v₂)/(m₁ + m₂) = 380/100 = 3,8 м/с. На модели – та же задача в 100 раз легче и в 10 раз медленнее: 0,38 м/с.",
+              "en": "Textbook problem: a 60 kg runner at 5 m/s jumps onto a 40 kg cart moving at 2 m/s. u = (m₁v₁ + m₂v₂)/(m₁ + m₂) = 380/100 = 3.8 m/s. The model runs the same problem 100 times lighter and 10 times slower: 0.38 m/s."
+            },
+            "teacherNote": {
+              "ky": "«Берилди – Формула – Чыгарылышы» түрүндө тактада бирге чыгарыңыз.",
+              "ru": "Решите вместе на доске в форме «Дано – Формула – Решение».",
+              "en": "Solve it together on the board as 'Given – Formula – Solution'."
+            },
+            "altText": {
+              "ky": "Арткы арабача алдыңкысын кубалап жетип, экөө илешип кетет.",
+              "ru": "Задняя тележка догоняет переднюю, и они едут сцепившись.",
+              "en": "The rear cart catches the front one and they roll on coupled."
+            }
+          }
+        ]
+      },
+      "processKeys": ["phys.cart-collision"],
+      "comparison": {
+        "columns": [
+          { "kind": "sample", "key": "momentum-equal-elastic" },
+          { "kind": "sample", "key": "momentum-stick" },
+          { "kind": "sample", "key": "momentum-catch-up" }
+        ],
+        "rows": ["mass", "speed"],
+        "manual": [
+          { "column": "momentum-equal-elastic", "row": "mass", "value": { "ky": "1 кг + 1 кг", "ru": "1 кг + 1 кг", "en": "1 kg + 1 kg" } },
+          { "column": "momentum-equal-elastic", "row": "speed", "value": { "ky": "0,6 → 0 жана 0,6 м/с", "ru": "0,6 → 0 и 0,6 м/с", "en": "0.6 → 0 and 0.6 m/s" } },
+          { "column": "momentum-stick", "row": "mass", "value": { "ky": "2 кг + 1 кг", "ru": "2 кг + 1 кг", "en": "2 kg + 1 kg" } },
+          { "column": "momentum-stick", "row": "speed", "value": { "ky": "0,6 → 0,4 м/с", "ru": "0,6 → 0,4 м/с", "en": "0.6 → 0.4 m/s" } },
+          { "column": "momentum-catch-up", "row": "mass", "value": { "ky": "0,6 кг + 0,4 кг", "ru": "0,6 кг + 0,4 кг", "en": "0.6 kg + 0.4 kg" } },
+          { "column": "momentum-catch-up", "row": "speed", "value": { "ky": "0,5 жана 0,2 → 0,38 м/с", "ru": "0,5 и 0,2 → 0,38 м/с", "en": "0.5 and 0.2 → 0.38 m/s" } }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-momentum-1",
+          "phys.q.p7-momentum-2",
+          "phys.q.p7-momentum-3",
+          "phys.q.p7-momentum-4",
+          "phys.q.p7-momentum-5",
+          "phys.q.p7-momentum-6",
+          "phys.q.p7-momentum-7",
+          "phys.q.p7-momentum-8"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "s",
+          "title": { "ky": "Бильярд жана кёрлинг", "ru": "Бильярд и кёрлинг", "en": "Billiards and curling" },
+          "text": {
+            "ky": "Бильярдчылар жана кёрлинг оюнчулары импульстун сакталуу законун «сезишет»: шар (таш) экинчисин так ортосунан урса, өзү токтоп, импульсун толугу менен берет.",
+            "ru": "Бильярдисты и кёрлингисты «чувствуют» закон сохранения импульса: шар (камень), ударив другой точно в центр, останавливается и отдаёт ему весь импульс.",
+            "en": "Billiard and curling players 'feel' momentum conservation: a ball (stone) hitting another dead centre stops and hands over all its momentum."
+          }
+        },
+        {
+          "field": "e",
+          "title": { "ky": "Машинанын краш-тести", "ru": "Краш-тест автомобиля", "en": "Car crash tests" },
+          "text": {
+            "ky": "Инженерлер кагылышууга чейинки жана кийинки импульстарды өлчөп, машинанын денеси соккуну кантип кабыл аларын эсептешет – ушундан коопсуздук жаздыкчалары жана «бырышуучу» зоналар долбоорлонот.",
+            "ru": "Инженеры измеряют импульсы до и после столкновения и рассчитывают, как кузов воспринимает удар, – так проектируют подушки безопасности и зоны деформации.",
+            "en": "Engineers measure momentum before and after a crash to work out how the car body takes the blow – that's how airbags and crumple zones are designed."
+          }
+        },
+        {
+          "field": "m",
+          "title": { "ky": "Темир жол вагондору", "ru": "Сцепка вагонов", "en": "Coupling wagons" },
+          "text": {
+            "ky": "20 т вагон 1 м/с менен тынч турган ошондой эле вагонго урунуп илешсе: u = 20 · 1 / 40 = 0,5 м/с.",
+            "ru": "Вагон 20 т со скоростью 1 м/с сцепляется с таким же стоящим вагоном: u = 20 · 1 / 40 = 0,5 м/с.",
+            "en": "A 20 t wagon at 1 m/s couples to an identical wagon at rest: u = 20 × 1 / 40 = 0.5 m/s."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Ордо оюну", "ru": "Игра в ордо", "en": "The game of ordo" },
+          "text": {
+            "ky": "Ордодо чүкөнү сака менен урганда, сака жайлайт, ал эми чүкө тез учуп чыгат – сака өзүнүн импульсунун бир бөлүгүн чүкөгө берди.",
+            "ru": "В игре ордо, когда битой (сака) бьют по альчику, бита замедляется, а альчик вылетает – бита передала ему часть импульса.",
+            "en": "In the Kyrgyz knucklebone game ordo, the striker bone slows when it hits a target bone, which flies off – the striker passed on part of its momentum."
+          }
+        },
+        {
+          "title": { "ky": "Тепкичтеги балдар", "ru": "Дети на роликах", "en": "Kids on roller skates" },
+          "text": {
+            "ky": "Роликте тынч турган эки бала бири-бирин түртсө, карама-каршы жакка жылат; жеңилирээк бала тезирээк кетет – импульстары бирдей.",
+            "ru": "Двое детей на роликах отталкиваются друг от друга и разъезжаются; кто легче, тот быстрее – импульсы у них равны.",
+            "en": "Two kids on roller skates push apart and roll in opposite directions; the lighter one goes faster – their momenta are equal."
+          }
+        }
+      ]
+    },
+    "starters": [
+      { "ky": "Эмне үчүн оор машинаны токтотуу жеңил машинага караганда кыйын?", "ru": "Почему тяжёлую машину остановить труднее, чем лёгкую?", "en": "Why is a heavy lorry harder to stop than a light car?" },
+      { "ky": "Кагылышкан арабачалардын импульсу кайда кетет?", "ru": "Куда девается импульс сталкивающихся тележек?", "en": "Where does the carts' momentum go in a collision?" },
+      { "ky": "Импульстун бирдиги эмне үчүн кг·м/с?", "ru": "Почему единица импульса – кг·м/с?", "en": "Why is momentum measured in kg·m/s?" },
+      { "ky": "Ордодо сака эмне үчүн чүкөнү уруп токтоп калат?", "ru": "Почему в ордо бита иногда останавливается после удара?", "en": "Why does the striker in ordo sometimes stop dead after a hit?" }
+    ],
+    "rights": [{ "license": "own", "author": "Bilig", "source": "Bilig content team; problems after Мамбетакунов Э. Физика 7, §35–36" }],
+    "i18n": { "ky": "machine", "ru": "reviewed", "en": "draft" }
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-momentum-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Нерсенин импульсу кайсы формула менен аныкталат?",
+        "ru": "По какой формуле определяют импульс тела?",
+        "en": "Which formula gives a body's momentum?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "P = mv", "ru": "P = mv", "en": "P = mv" } },
+        { "key": "b", "text": { "ky": "P = mg", "ru": "P = mg", "en": "P = mg" } },
+        { "key": "c", "text": { "ky": "P = m/v", "ru": "P = m/v", "en": "P = m/v" } },
+        { "key": "d", "text": { "ky": "P = v/t", "ru": "P = v/t", "en": "P = v/t" } }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Импульс массанын ылдамдыкка көбөйтүндүсүнө барабар: P = mv. P = mg – бул салмак.",
+        "ru": "Импульс равен произведению массы на скорость: P = mv. P = mg – это вес.",
+        "en": "Momentum is mass times velocity: P = mv. P = mg is weight."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "misconceptionKey": "phys.m.momentum-is-speed",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-momentum-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы нерселердин импульсу 10 кг·м/с ка барабар?",
+        "ru": "У каких тел импульс равен 10 кг·м/с?",
+        "en": "Which bodies have a momentum of 10 kg·m/s?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "10 кг, 1 м/с", "ru": "10 кг, 1 м/с", "en": "10 kg, 1 m/s" } },
+        { "key": "b", "text": { "ky": "2 кг, 5 м/с", "ru": "2 кг, 5 м/с", "en": "2 kg, 5 m/s" } },
+        { "key": "c", "text": { "ky": "5 кг, 5 м/с", "ru": "5 кг, 5 м/с", "en": "5 kg, 5 m/s" } },
+        { "key": "d", "text": { "ky": "1 кг, 10 м/с", "ru": "1 кг, 10 м/с", "en": "1 kg, 10 m/s" } }
+      ],
+      "answer": ["a", "b", "d"],
+      "explanation": {
+        "ky": "10 · 1 = 2 · 5 = 1 · 10 = 10 кг·м/с, ал эми 5 · 5 = 25 кг·м/с. Массалары жана ылдамдыктары ар башка болсо да, кыймыл чени бирдей болушу мүмкүн.",
+        "ru": "10 · 1 = 2 · 5 = 1 · 10 = 10 кг·м/с, а 5 · 5 = 25 кг·м/с. При разных массах и скоростях мера движения может быть одинаковой.",
+        "en": "10 × 1 = 2 × 5 = 1 × 10 = 10 kg·m/s, while 5 × 5 = 25 kg·m/s. Different masses and speeds can give the same amount of motion."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "misconceptionKey": "phys.m.momentum-is-speed",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-momentum-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 10 г ок горизонталь багытта 200 м/с ылдамдык менен учуп баратат. Анын импульсу канча кг·м/с?",
+        "ru": "Пуля массой 10 г летит горизонтально со скоростью 200 м/с. Каков её импульс в кг·м/с?",
+        "en": "A 10 g bullet flies horizontally at 200 m/s. What is its momentum in kg·m/s?"
+      },
+      "answer": 2,
+      "tolerance": 0.01,
+      "unit": "kg·m/s",
+      "explanation": {
+        "ky": "10 г = 0,01 кг. P = mv = 0,01 · 200 = 2 кг·м/с.",
+        "ru": "10 г = 0,01 кг. P = mv = 0,01 · 200 = 2 кг·м/с.",
+        "en": "10 g = 0.01 kg. P = mv = 0.01 × 200 = 2 kg·m/s."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-momentum-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 60 кг адам 5 м/с ылдамдык менен чуркап келип, 2 м/с менен ошол эле багытта кыймылдаган 40 кг арабачага секирди. Алардын кийинки ылдамдыгы канча м/с?",
+        "ru": "Человек массой 60 кг, бегущий со скоростью 5 м/с, прыгает на тележку массой 40 кг, едущую в ту же сторону со скоростью 2 м/с. Какова их скорость после этого, м/с?",
+        "en": "A 60 kg person running at 5 m/s jumps onto a 40 kg cart moving the same way at 2 m/s. What is their speed afterwards, in m/s?"
+      },
+      "answer": 3.8,
+      "tolerance": 0.05,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "m₁v₁ + m₂v₂ = (m₁ + m₂)u: u = (60 · 5 + 40 · 2)/(60 + 40) = 380/100 = 3,8 м/с.",
+        "ru": "m₁v₁ + m₂v₂ = (m₁ + m₂)u: u = (60 · 5 + 40 · 2)/(60 + 40) = 380/100 = 3,8 м/с.",
+        "en": "m₁v₁ + m₂v₂ = (m₁ + m₂)u: u = (60 × 5 + 40 × 2)/(60 + 40) = 380/100 = 3.8 m/s."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "misconceptionKey": "phys.m.momentum-lost-in-collision",
+      "difficulty": 4
+    },
+    {
+      "key": "phys.q.p7-momentum-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден арабачанын импульсун көрсөткөн жебени тап.",
+        "ru": "Найди на модели стрелку, показывающую импульс тележки.",
+        "en": "Find the arrow that shows a cart's momentum on the model."
+      },
+      "targetConceptKey": "phys.momentum",
+      "explanation": {
+        "ky": "Арабачанын үстүндөгү жебе – импульс P = mv; ал ылдамдык жакка багытталган.",
+        "ru": "Стрелка над тележкой – импульс P = mv; она направлена по скорости.",
+        "en": "The arrow above the cart is its momentum P = mv; it points along the velocity."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-momentum-6",
+      "type": "match",
+      "prompt": {
+        "ky": "Чоңдукту анын СИдеги бирдиги менен дал келтир.",
+        "ru": "Сопоставь величину и её единицу в СИ.",
+        "en": "Match each quantity to its SI unit."
+      },
+      "pairs": [
+        { "key": "momentum", "left": { "ky": "Импульс", "ru": "Импульс", "en": "Momentum" }, "right": { "ky": "кг·м/с", "ru": "кг·м/с", "en": "kg·m/s" } },
+        { "key": "mass", "left": { "ky": "Масса", "ru": "Масса", "en": "Mass" }, "right": { "ky": "кг", "ru": "кг", "en": "kg" } },
+        { "key": "speed", "left": { "ky": "Ылдамдык", "ru": "Скорость", "en": "Speed" }, "right": { "ky": "м/с", "ru": "м/с", "en": "m/s" } },
+        { "key": "force", "left": { "ky": "Күч", "ru": "Сила", "en": "Force" }, "right": { "ky": "Н", "ru": "Н", "en": "N" } }
+      ],
+      "explanation": {
+        "ky": "P = mv болгондуктан импульстун бирдиги кг · м/с = кг·м/с.",
+        "ru": "Так как P = mv, единица импульса – кг · м/с = кг·м/с.",
+        "en": "Since P = mv, the unit of momentum is kg × m/s = kg·m/s."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-momentum-7",
+      "type": "single",
+      "prompt": {
+        "ky": "1 кг арабача 0,6 м/с менен ошондой эле тынч турган арабачага серпилгичтүү урунду. Андан кийин биринчи арабача эмне болот?",
+        "ru": "Тележка 1 кг со скоростью 0,6 м/с упруго ударяет такую же покоящуюся тележку. Что станет с первой тележкой?",
+        "en": "A 1 kg cart at 0.6 m/s bounces elastically off an identical cart at rest. What happens to the first cart?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "Токтоп калат, экинчиси 0,6 м/с менен кетет", "ru": "Остановится, вторая поедет с 0,6 м/с", "en": "It stops; the second leaves at 0.6 m/s" } },
+        { "key": "b", "text": { "ky": "Экөө тең токтойт", "ru": "Обе остановятся", "en": "Both stop" } },
+        { "key": "c", "text": { "ky": "Экөө тең 0,6 м/с менен кетет", "ru": "Обе поедут с 0,6 м/с", "en": "Both move on at 0.6 m/s" } }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Импульс сакталат: 0,6 кг·м/с толугу менен экинчи арабачага өтөт. «Экөө тең 0,6 м/с» болсо, суммасы 1,2 кг·м/с болуп калмак – бул мүмкүн эмес.",
+        "ru": "Импульс сохраняется: 0,6 кг·м/с целиком переходит ко второй тележке. Если бы обе поехали с 0,6 м/с, сумма была бы 1,2 кг·м/с – так не бывает.",
+        "en": "Momentum is conserved: all 0.6 kg·m/s passes to the second cart. If both moved at 0.6 m/s the total would be 1.2 kg·m/s – impossible."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "misconceptionKey": "phys.m.momentum-lost-in-collision",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-momentum-8",
+      "type": "single",
+      "prompt": {
+        "ky": "Кайсы учурда эки нерсенин импульстарынын суммасы сакталат деп айтууга болот?",
+        "ru": "В каком случае можно считать, что сумма импульсов двух тел сохраняется?",
+        "en": "When can we say the total momentum of two bodies is conserved?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "Алар бири-бирине гана аракет этсе (туюк система)", "ru": "Если они действуют только друг на друга (замкнутая система)", "en": "If they act only on each other (a closed system)" } },
+        { "key": "b", "text": { "ky": "Машина тормоз басып токтогондо", "ru": "Когда машина тормозит до остановки", "en": "When a car brakes to a stop" } },
+        { "key": "c", "text": { "ky": "Ар дайым, кандай шартта болбосун", "ru": "Всегда, при любых условиях", "en": "Always, whatever the conditions" } }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Закон туюк система үчүн аткарылат. Тормоздо сырткы сүрүлүү күчү машинанын импульсун азайтат.",
+        "ru": "Закон выполняется для замкнутой системы. При торможении внешняя сила трения уменьшает импульс машины.",
+        "en": "The law holds for a closed system. When braking, outside friction takes away the car's momentum."
+      },
+      "objectiveKeys": ["phys.g7.energy.o1"],
+      "misconceptionKey": "phys.m.closed-system-any",
+      "difficulty": 3
+    }
+  ]
+}

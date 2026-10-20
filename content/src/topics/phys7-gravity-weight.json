@@ -1,0 +1,1195 @@
+{
+  "topic": {
+    "key": "phys7-gravity-weight",
+    "unitKey": "phys.g7.dynamics",
+    "status": "published",
+    "title": {
+      "ky": "Оордук күчү жана салмак. Эркин түшүү",
+      "ru": "Сила тяжести и вес. Свободное падение",
+      "en": "Gravity and weight. Free fall"
+    },
+    "formula": "F_оор = mg, P = mg",
+    "classification": {
+      "ky": "Динамика",
+      "ru": "Динамика",
+      "en": "Dynamics"
+    },
+    "description": {
+      "ky": "Бардык нерселер бири-бирин тартат – бүткүл дүйнөлүк тартылуу. Жердин нерсени өзүнө тарткан күчү – оордук күчү F_оор = mg, ал нерсенин өзүнө коюлат. Абасыз мейкиндикте бардык нерселер бирдей ылдамдануу g ≈ 9,8 м/с² менен эркин түшөт. Пружинага 0,5 кг жүк илебиз: ага 4,9 Н оордук күчү таасир этет, ал эми жүк илгичти 4,9 Н салмак менен тартат – салмак асмага коюлат.",
+      "ru": "Все тела притягиваются друг к другу – всемирное тяготение. Сила, с которой Земля притягивает тело, – сила тяжести F_тяж = mg, она приложена к самому телу. В безвоздушном пространстве все тела свободно падают с одинаковым ускорением g ≈ 9,8 м/с². Подвешиваем на пружину груз 0,5 кг: на него действует сила тяжести 4,9 Н, а груз тянет крючок с силой 4,9 Н – это его вес, приложенный к подвесу.",
+      "en": "All bodies attract each other – universal gravitation. The Earth's pull on a body is the force of gravity F = mg, acting on the body itself. In a vacuum every body falls freely with the same acceleration g ≈ 9.8 m/s². We hang a 0.5 kg load on a spring: gravity of 4.9 N acts on it, and the load pulls the hook with its weight of 4.9 N – weight acts on the suspension."
+    },
+    "goal": {
+      "ky": "Бүткүл дүйнөлүк тартылууну жана эркин түшүүнү түшүндүрүү, оордук күчүн жана салмакты F_оор = P = mg боюнча эсептөө, алардын жалпы жана айырмалуу белгилерин атоо (PHYS-7.2.2).",
+      "ru": "Объяснять всемирное тяготение и свободное падение, вычислять силу тяжести и вес по формуле F_тяж = P = mg, называть их общие и отличительные признаки (PHYS-7.2.2).",
+      "en": "Explain universal gravitation and free fall, calculate gravity and weight with F = W = mg, and name what they share and how they differ (PHYS-7.2.2)."
+    },
+    "objectiveKeys": [
+      "phys.g7.dynamics.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "spring",
+        "variant": "hang",
+        "stiffness": 49,
+        "loads": [
+          {
+            "id": "A",
+            "mass": 0.5
+          }
+        ],
+        "g": 9.8,
+        "showScale": true
+      },
+      "camera": {
+        "position": [
+          1.3,
+          1.6,
+          3.6
+        ],
+        "target": [
+          0.1,
+          1,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.gravity",
+      "phys.weight",
+      "phys.support",
+      "phys.mass",
+      "phys.elastic-force",
+      "phys.gravity-force",
+      "phys.free-fall"
+    ],
+    "overrides": {
+      "phys.gravity": {
+        "nodes": [
+          "Arrow_Gravity",
+          "Arrow_Gravity_*"
+        ],
+        "description": {
+          "ky": "Жердин нерсени өзүнө тарткан күчү – оордук күчү. Ал нерсенин борборуна коюлат жана Жерди карай (тик ылдый) багытталат: F_оор = mg = 0,5 кг · 9,8 Н/кг = 4,9 Н. g = F_оор/m ≈ 9,8 Н/кг – бул эркин түшүүнүн ылдамдануусу: 9,8 Н/кг = 9,8 м/с².",
+          "ru": "Сила, с которой Земля притягивает тело, – сила тяжести. Она приложена к центру тела и направлена к Земле (вертикально вниз): F_тяж = mg = 0,5 кг · 9,8 Н/кг = 4,9 Н. g = F_тяж/m ≈ 9,8 Н/кг – это ускорение свободного падения: 9,8 Н/кг = 9,8 м/с².",
+          "en": "The Earth's pull on a body is the force of gravity. It acts at the body's centre and points towards the Earth (straight down): F = mg = 0.5 kg × 9.8 N/kg = 4.9 N. g = F/m ≈ 9.8 N/kg – the free-fall acceleration: 9.8 N/kg = 9.8 m/s²."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 4.9
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F_{оор} = m g"
+          },
+          {
+            "kind": "quantity",
+            "type": "gravity",
+            "value": 9.8,
+            "unit": "N/kg",
+            "approx": true
+          }
+        ]
+      },
+      "phys.weight": {
+        "nodes": [
+          "Arrow_Weight",
+          "Arrow_Weight_*"
+        ],
+        "description": {
+          "ky": "Жердин тартуу күчүнүн таасиринде нерсенин таянычка же асмага аракет жасаган күчү – салмак. Жүк илгичти ылдый тартат: P = mg = 4,9 Н. Нерсе тынч турганда (же горизонталдуу бир калыпта кыймылдаганда) салмак оордук күчүнө барабар, бирок ал жүккө эмес, илгичке коюлат.",
+          "ru": "Сила, с которой тело вследствие притяжения к Земле действует на опору или подвес, – вес. Груз тянет крючок вниз: P = mg = 4,9 Н. Когда тело покоится (или равномерно движется по горизонтали), вес равен силе тяжести, но приложен не к грузу, а к крючку.",
+          "en": "Weight is the force with which a body, pulled by the Earth, acts on its support or suspension. The load pulls the hook down: W = mg = 4.9 N. When the body is at rest (or moves steadily horizontally) its weight equals gravity, but it acts on the hook, not on the load."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 4.9
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P = m g"
+          }
+        ]
+      },
+      "phys.support": {
+        "nodes": [
+          "Hook",
+          "Hook_*",
+          "Stand",
+          "Stand_*"
+        ],
+        "description": {
+          "ky": "Жүк илинген илгич жана пружина – асма. Жүктүн салмагы ушуга коюлат: ал илгичти 4,9 Н менен тартат.",
+          "ru": "Крючок с пружиной, на которых висит груз, – подвес. Вес груза приложен именно к нему: груз тянет крючок с силой 4,9 Н.",
+          "en": "The hook and spring the load hangs from are the suspension. The load's weight acts on them: it pulls the hook with 4.9 N."
+        }
+      },
+      "phys.mass": {
+        "nodes": [
+          "Load_*"
+        ],
+        "description": {
+          "ky": "Жүктүн массасы 0,5 кг. Оордук күчү массага түз пропорциялаш: массасы эки эсе чоң жүккө эки эсе чоң оордук күчү таасир этет. Масса Айда да 0,5 кг бойдон калат.",
+          "ru": "Масса груза 0,5 кг. Сила тяжести прямо пропорциональна массе: на груз вдвое большей массы действует вдвое большая сила тяжести. На Луне масса останется 0,5 кг.",
+          "en": "The load's mass is 0.5 kg. Gravity is proportional to mass: twice the mass, twice the gravity. On the Moon the mass is still 0.5 kg."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.5
+          }
+        ]
+      },
+      "phys.elastic-force": {
+        "nodes": [
+          "Arrow_Elastic",
+          "Arrow_Elastic_*",
+          "Spring"
+        ],
+        "description": {
+          "ky": "Чоюлган пружина жүктү өйдө тартат: F_серп = kx = 49 Н/м · 0,1 м = 4,9 Н. Ал оордук күчүн теңдейт, ошондуктан жүк тынч илинип турат.",
+          "ru": "Растянутая пружина тянет груз вверх: F_упр = kx = 49 Н/м · 0,1 м = 4,9 Н. Она уравновешивает силу тяжести, поэтому груз висит неподвижно.",
+          "en": "The stretched spring pulls the load up: F = kx = 49 N/m × 0.1 m = 4.9 N. It balances gravity, so the load hangs still."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 4.9
+          },
+          {
+            "kind": "quantity",
+            "type": "stiffness",
+            "value": 49
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "weight-500g",
+        "title": {
+          "ky": "0,5 кг жүк Жерде",
+          "ru": "Груз 0,5 кг на Земле",
+          "en": "A 0.5 kg load on Earth"
+        },
+        "classification": {
+          "ky": "F_оор = P = 4,9 Н",
+          "ru": "F_тяж = P = 4,9 Н",
+          "en": "F = W = 4.9 N"
+        },
+        "thumb": "thumbs/weight-500g.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.5
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 4.9
+          },
+          {
+            "kind": "quantity",
+            "type": "gravity",
+            "value": 9.8,
+            "unit": "N/kg"
+          }
+        ],
+        "scene": {
+          "params": {
+            "loads": [
+              {
+                "id": "A",
+                "mass": 0.5
+              }
+            ],
+            "g": 9.8
+          }
+        }
+      },
+      {
+        "key": "weight-1kg",
+        "title": {
+          "ky": "Эки жүк: 1 кг",
+          "ru": "Два груза: 1 кг",
+          "en": "Two loads: 1 kg"
+        },
+        "classification": {
+          "ky": "P = 9,8 Н – эки эсе көп",
+          "ru": "P = 9,8 Н – вдвое больше",
+          "en": "W = 9.8 N – twice as much"
+        },
+        "thumb": "thumbs/weight-1kg.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 9.8
+          },
+          {
+            "kind": "quantity",
+            "type": "gravity",
+            "value": 9.8,
+            "unit": "N/kg"
+          }
+        ],
+        "scene": {
+          "params": {
+            "loads": [
+              {
+                "id": "A",
+                "mass": 0.5
+              },
+              {
+                "id": "B",
+                "mass": 0.5
+              }
+            ],
+            "g": 9.8
+          }
+        }
+      },
+      {
+        "key": "weight-moon",
+        "title": {
+          "ky": "Ошол эле 0,5 кг Айда",
+          "ru": "Те же 0,5 кг на Луне",
+          "en": "The same 0.5 kg on the Moon"
+        },
+        "classification": {
+          "ky": "g = 1,6 Н/кг, P = 0,8 Н",
+          "ru": "g = 1,6 Н/кг, P = 0,8 Н",
+          "en": "g = 1.6 N/kg, W = 0.8 N"
+        },
+        "thumb": "thumbs/weight-moon.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.5
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 0.8
+          },
+          {
+            "kind": "quantity",
+            "type": "gravity",
+            "value": 1.6,
+            "unit": "N/kg"
+          }
+        ],
+        "scene": {
+          "params": {
+            "loads": [
+              {
+                "id": "A",
+                "mass": 0.5
+              }
+            ],
+            "g": 1.6
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "mass",
+        "value": 0.5
+      },
+      {
+        "kind": "quantity",
+        "type": "force",
+        "value": 4.9
+      },
+      {
+        "kind": "quantity",
+        "type": "gravity",
+        "value": 9.8,
+        "unit": "N/kg",
+        "approx": true
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "P = m g"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                0.3,
+                1.2,
+                3.6
+              ],
+              "target": [
+                0.2,
+                1.0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false,
+              "labels": false
+            },
+            "focus": "phys.mass",
+            "text": {
+              "ky": "Штативде пружина илинип турат, анын жанында сызгыч. Пружинага 0,5 кг жүк илебиз. Эмне үчүн пружина чоюлат?",
+              "ru": "На штативе висит пружина, рядом линейка. Подвешиваем на пружину груз 0,5 кг. Почему пружина растягивается?",
+              "en": "A spring hangs from a stand next to a ruler. We hang a 0.5 kg load on it. Why does the spring stretch?"
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: жогору ыргытылган топ, бутактан үзүлгөн алма эмне үчүн Жерге түшөт?",
+              "ru": "Спросите: почему подброшенный мяч и яблоко с ветки падают на Землю?",
+              "en": "Ask: why do a ball thrown up and an apple from a branch fall to the Earth?"
+            },
+            "altText": {
+              "ky": "Штатив, пружина жана 0,5 кг жүк.",
+              "ru": "Штатив, пружина и груз 0,5 кг.",
+              "en": "A stand, a spring and a 0.5 kg load."
+            }
+          },
+          {
+            "key": "gravitation",
+            "camera": {
+              "position": [
+                0.3,
+                1.2,
+                3.6
+              ],
+              "target": [
+                0.2,
+                1.0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": false
+            },
+            "focus": "phys.gravity-force",
+            "text": {
+              "ky": "Жаратылыштагы бардык нерселер бири-бирин тартат – бүткүл дүйнөлүк тартылуу (Ньютон). Тартылуу күчү массалар чоң болгон сайын чоңоёт, аралык чоңойгон сайын азаят. Жер жүктү өзүнө тартат – бул оордук күчү.",
+              "ru": "Все тела в природе притягиваются друг к другу – всемирное тяготение (Ньютон). Сила притяжения тем больше, чем больше массы, и тем меньше, чем больше расстояние. Земля притягивает груз – это сила тяжести.",
+              "en": "Every body in nature attracts every other – universal gravitation (Newton). The pull is stronger for bigger masses and weaker at bigger distances. The Earth pulls the load – that is the force of gravity."
+            },
+            "teacherNote": {
+              "ky": "Ньютондун алмасы жөнүндөгү уламышты айтыңыз. Ай Жерге, планеталар Күнгө тартылат.",
+              "ru": "Расскажите легенду о яблоке Ньютона. Луна притягивается к Земле, планеты – к Солнцу.",
+              "en": "Tell the legend of Newton's apple. The Moon is pulled towards the Earth, the planets towards the Sun."
+            },
+            "altText": {
+              "ky": "Жүктүн борборунан ылдый караган жебе.",
+              "ru": "Стрелка вниз из центра груза.",
+              "en": "An arrow pointing down from the load's centre."
+            }
+          },
+          {
+            "key": "free-fall",
+            "camera": {
+              "position": [
+                0.3,
+                1.2,
+                3.6
+              ],
+              "target": [
+                0.2,
+                1.0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.free-fall",
+            "text": {
+              "ky": "Эгер пружинаны кесип жиберсек, жүккө оордук күчү гана таасир этип, ал эркин түшөт. Абасыз мейкиндикте бардык нерселер бирдей ылдамдануу менен түшөт: g ≈ 9,8 м/с². Тынч абалдан 1 с кийин v = 9,8 м/с, 2 с кийин 19,6 м/с, 3 с кийин 29,4 м/с.",
+              "ru": "Если перерезать пружину, на груз будет действовать только сила тяжести, и он начнёт свободно падать. В безвоздушном пространстве все тела падают с одинаковым ускорением g ≈ 9,8 м/с². Из покоя через 1 с v = 9,8 м/с, через 2 с – 19,6 м/с, через 3 с – 29,4 м/с.",
+              "en": "If we cut the spring, only gravity acts on the load and it falls freely. In a vacuum every body falls with the same acceleration g ≈ 9.8 m/s². From rest: v = 9.8 m/s after 1 s, 19.6 m/s after 2 s, 29.4 m/s after 3 s."
+            },
+            "teacherNote": {
+              "ky": "Галилейдин Пиза мунарасындагы тажрыйбасын жана Ньютондун трубкасын айтыңыз. «Эркин түшкөн шардын ылдамдыгы» процессин иштетиңиз. Тик өйдө ыргытылган нерсе: v = v₀ − gt.",
+              "ru": "Расскажите об опыте Галилея на Пизанской башне и трубке Ньютона. Запустите процесс «Скорость свободно падающего шара». Для тела, брошенного вверх: v = v₀ − gt.",
+              "en": "Tell of Galileo at the Tower of Pisa and of Newton's tube. Run the 'speed of a falling ball' process. For a body thrown up: v = v₀ − gt."
+            },
+            "altText": {
+              "ky": "Жүк жана оордук күчүнүн жебеси.",
+              "ru": "Груз и стрелка силы тяжести.",
+              "en": "The load and the gravity arrow."
+            }
+          },
+          {
+            "key": "gravity",
+            "camera": {
+              "position": [
+                0.6,
+                1.0,
+                2.2
+              ],
+              "target": [
+                0.15,
+                0.9,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.gravity",
+            "text": {
+              "ky": "Жүккө оордук күчү таасир этет: F_оор = mg = 0,5 · 9,8 = 4,9 Н. Ал жүктүн өзүнө – анын борборуна коюлат. Пружина 10 см чоюлуп, серпилгичтүүлүк күчү F_серп = 4,9 Н менен жүктү өйдө тартат – эки күч теңделет.",
+              "ru": "На груз действует сила тяжести F_тяж = mg = 0,5 · 9,8 = 4,9 Н. Она приложена к самому грузу – к его центру. Пружина растянулась на 10 см и силой упругости F_упр = 4,9 Н тянет груз вверх – силы уравновешены.",
+              "en": "Gravity acts on the load: F = mg = 0.5 × 9.8 = 4.9 N, at the load's own centre. The spring has stretched 10 cm and pulls the load up with an elastic force of 4.9 N – the two balance."
+            },
+            "teacherNote": {
+              "ky": "Китептеги маселе: 4,5 кг нерсеге F_оор = 4,5 · 9,8 = 44,1 Н.",
+              "ru": "Задача из учебника: на тело 4,5 кг действует F_тяж = 4,5 · 9,8 = 44,1 Н.",
+              "en": "Textbook problem: gravity on a 4.5 kg body is 4.5 × 9.8 = 44.1 N."
+            },
+            "altText": {
+              "ky": "Жүктөгү эки жебе: ылдый оордук күчү, өйдө серпилгичтүүлүк күчү.",
+              "ru": "Две стрелки на грузе: сила тяжести вниз, сила упругости вверх.",
+              "en": "Two arrows on the load: gravity down, elastic force up."
+            }
+          },
+          {
+            "key": "weight",
+            "camera": {
+              "position": [
+                0.6,
+                1.0,
+                2.2
+              ],
+              "target": [
+                0.15,
+                0.9,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.weight",
+            "text": {
+              "ky": "Жүк илгичти ылдый тартат – бул анын салмагы: P = mg = 4,9 Н. Чоңдугу оордук күчүнө барабар, бирок ал асмага (илгичке) коюлат. Оордук күчү Жер менен нерсенин, салмак нерсе менен таянычтын же асманын өз ара аракетинен пайда болот.",
+              "ru": "Груз тянет крючок вниз – это его вес: P = mg = 4,9 Н. По величине он равен силе тяжести, но приложен к подвесу (крючку). Сила тяжести возникает при взаимодействии Земли и тела, вес – при взаимодействии тела с опорой или подвесом.",
+              "en": "The load pulls the hook down – that is its weight: W = mg = 4.9 N. It equals gravity in size but acts on the suspension (the hook). Gravity comes from the Earth–body interaction; weight from the body–support or body–suspension interaction."
+            },
+            "teacherNote": {
+              "ky": "Тактага таблица чийиңиз: жалпы белгилери (экөө тең Жердин тартуусунан, 1 Н, Жерди карай, тынч турганда F_оор = P = mg) жана айырмасы (кайда коюлат).",
+              "ru": "Начертите таблицу: общие признаки (оба из-за притяжения Земли, в ньютонах, к центру Земли, при покое F_тяж = P = mg) и отличие (куда приложены).",
+              "en": "Draw a table: what they share (both from the Earth's pull, in newtons, towards the Earth, at rest F = W = mg) and how they differ (where they act)."
+            },
+            "altText": {
+              "ky": "Илгичтен ылдый караган салмак жебеси.",
+              "ru": "Стрелка веса вниз от крючка.",
+              "en": "The weight arrow pointing down from the hook."
+            }
+          },
+          {
+            "key": "double",
+            "sample": "weight-1kg",
+            "camera": {
+              "position": [
+                0.3,
+                1.2,
+                3.6
+              ],
+              "target": [
+                0.2,
+                1.0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.weight",
+            "text": {
+              "ky": "Экинчи 0,5 кг жүктү илебиз: масса 1 кг, оордук күчү да, салмак да 9,8 Н – эки эсе көп, пружина 20 см чоюлат. Оордук күчү массага түз пропорциялаш.",
+              "ru": "Подвешиваем второй груз 0,5 кг: масса 1 кг, сила тяжести и вес – 9,8 Н, вдвое больше, пружина растянулась на 20 см. Сила тяжести прямо пропорциональна массе.",
+              "en": "We add a second 0.5 kg load: the mass is 1 kg, gravity and weight are both 9.8 N – twice as much – and the spring stretches 20 cm. Gravity is proportional to mass."
+            },
+            "teacherNote": {
+              "ky": "Тескери маселе: адамдын салмагы 700 Н. Массасы? m = P/g = 700 : 9,8 ≈ 70 кг.",
+              "ru": "Обратная задача: вес человека 700 Н. Масса? m = P/g = 700 : 9,8 ≈ 70 кг.",
+              "en": "Reverse problem: a person weighs 700 N. Mass? m = W/g = 700 ÷ 9.8 ≈ 70 kg."
+            },
+            "altText": {
+              "ky": "Пружинада эки жүк, пружина эки эсе көп чоюлду.",
+              "ru": "На пружине два груза, растяжение вдвое больше.",
+              "en": "Two loads on the spring; it has stretched twice as far."
+            }
+          },
+          {
+            "key": "moon",
+            "sample": "weight-moon",
+            "camera": {
+              "position": [
+                0.6,
+                1.0,
+                2.2
+              ],
+              "target": [
+                0.15,
+                0.9,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.mass",
+            "text": {
+              "ky": "Ошол эле 0,5 кг жүк Айда: g ≈ 1,6 Н/кг, ошондуктан F_оор = P = 0,5 · 1,6 = 0,8 Н, пружина 1,6 см гана чоюлат. Масса өзгөргөн жок – 0,5 кг, ал эми салмак алты эсе азайды.",
+              "ru": "Тот же груз 0,5 кг на Луне: g ≈ 1,6 Н/кг, поэтому F_тяж = P = 0,5 · 1,6 = 0,8 Н, пружина растянулась всего на 1,6 см. Масса не изменилась – 0,5 кг, а вес уменьшился в шесть раз.",
+              "en": "The same 0.5 kg load on the Moon: g ≈ 1.6 N/kg, so F = W = 0.5 × 1.6 = 0.8 N and the spring stretches only 1.6 cm. The mass is still 0.5 kg, but the weight is six times smaller."
+            },
+            "teacherNote": {
+              "ky": "Жердин уюлунда g экватордогудан бир аз чоң, тоонун түбүндө чокусундагыдан көбүрөөк. Пружиналуу тараза муну сезет, тең ийиндүү тараза – жок.",
+              "ru": "На полюсе g чуть больше, чем на экваторе, у подножия горы – больше, чем на вершине. Пружинные весы это почувствуют, рычажные – нет.",
+              "en": "g is slightly larger at the poles than at the equator, and at a mountain's foot than at its top. Spring scales notice this; a beam balance does not."
+            },
+            "altText": {
+              "ky": "Пружина бир аз гана чоюлган.",
+              "ru": "Пружина растянута совсем немного.",
+              "en": "The spring is stretched only a little."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.free-fall-speed"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "weight-500g"
+          },
+          {
+            "kind": "sample",
+            "key": "weight-1kg"
+          },
+          {
+            "kind": "sample",
+            "key": "weight-moon"
+          }
+        ],
+        "rows": [
+          "mass",
+          "force",
+          "gravity"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-gravity-1",
+          "phys.q.phys7-gravity-2",
+          "phys.q.phys7-gravity-3",
+          "phys.q.phys7-gravity-4",
+          "phys.q.phys7-gravity-5",
+          "phys.q.phys7-gravity-6",
+          "phys.q.phys7-gravity-7",
+          "phys.q.phys7-gravity-8",
+          "phys.q.phys7-gravity-9",
+          "phys.q.phys7-gravity-10",
+          "phys.q.phys7-gravity-11",
+          "phys.q.phys7-gravity-12"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Ай жана деңиз",
+            "ru": "Луна и море",
+            "en": "The Moon and the sea"
+          },
+          "text": {
+            "ky": "Айдын тартылуусу океандын суусун көтөрөт: деңиз жээгинде суу күнүнө эки жолу ташкындап, кайра тартылат.",
+            "ru": "Притяжение Луны поднимает воду океана: на морском берегу дважды в сутки бывают прилив и отлив.",
+            "en": "The Moon's pull lifts the ocean: on the coast the tide comes in and goes out twice a day."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Парашют",
+            "ru": "Парашют",
+            "en": "Parachutes"
+          },
+          "text": {
+            "ky": "Парашютсуз секирген адам эркин түшкөндөй тездемек. Парашют абанын каршылыгын чоңойтуп, конуу ылдамдыгын 5–6 м/с ке чейин азайтат.",
+            "ru": "Без парашюта человек разгонялся бы почти как при свободном падении. Парашют увеличивает сопротивление воздуха и снижает скорость приземления до 5–6 м/с.",
+            "en": "Without a parachute a jumper would keep speeding up almost as in free fall. The parachute raises air resistance and slows the landing to 5–6 m/s."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Көпүрөнүн жүгү",
+            "ru": "Нагрузка на мост",
+            "en": "The load on a bridge"
+          },
+          "text": {
+            "ky": "20 т жүк машинасынын салмагы P = mg = 20 000 · 9,8 ≈ 196 000 Н. Инженерлер көпүрөнүн тирөөчтөрүн ушундай салмактарга эсептешет.",
+            "ru": "Вес грузовика 20 т: P = mg = 20 000 · 9,8 ≈ 196 000 Н. Инженеры рассчитывают опоры моста на такие веса.",
+            "en": "A 20 t lorry weighs W = mg = 20,000 × 9.8 ≈ 196,000 N. Engineers design bridge piers for weights like this."
+          },
+          "field": "e"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Секирүү",
+            "ru": "Прыжок",
+            "en": "Jumping"
+          },
+          "text": {
+            "ky": "Канча бийик секирсең да, Жер сени кайра тартып алат.",
+            "ru": "Как высоко ни прыгнешь, Земля притянет тебя обратно.",
+            "en": "However high you jump, the Earth pulls you back down."
+          }
+        },
+        {
+          "title": {
+            "ky": "Колдогу сумка",
+            "ru": "Сумка в руке",
+            "en": "A bag in your hand"
+          },
+          "text": {
+            "ky": "Сумканы көтөрүп турганда колуң аны тарткан күчтү сезет – бул сумканын салмагы, ал колго коюлат.",
+            "ru": "Держа сумку, рука чувствует, как сумка тянет её вниз, – это вес сумки, он приложен к руке.",
+            "en": "Holding a bag, your hand feels it pulling down – that is the bag's weight, acting on your hand."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Оордук күчү менен салмактын айырмасы эмнеде?",
+        "ru": "Чем сила тяжести отличается от веса?",
+        "en": "How is gravity different from weight?"
+      },
+      {
+        "ky": "Эмне үчүн оор жана жеңил нерселер абасыз бирдей түшөт?",
+        "ru": "Почему без воздуха тяжёлые и лёгкие тела падают одинаково?",
+        "en": "Why do heavy and light bodies fall alike without air?"
+      },
+      {
+        "ky": "Айда менин массам жана салмагым канча болот?",
+        "ru": "Какими будут мои масса и вес на Луне?",
+        "en": "What would my mass and weight be on the Moon?"
+      },
+      {
+        "ky": "Эркин түшкөн нерсенин ылдамдыгы 3 с кийин канча болот?",
+        "ru": "Какой будет скорость свободно падающего тела через 3 с?",
+        "en": "How fast is a freely falling body going after 3 s?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; Мамбетакунов Э. М., Физика 7 (кыргыз тилинде)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-gravity-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Оордук күчү деп кандай күчтү айтабыз?",
+        "ru": "Какую силу называют силой тяжести?",
+        "en": "What is the force of gravity?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жердин нерсени өзүнө тарткан күчүн",
+            "ru": "Силу, с которой Земля притягивает тело",
+            "en": "The force with which the Earth pulls a body"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Нерсенин таянычка басым кылган күчүн",
+            "ru": "Силу, с которой тело давит на опору",
+            "en": "The force with which a body presses on its support"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Пружинанын калыбына келтирүүчү күчүн",
+            "ru": "Силу, возвращающую пружину в прежнюю форму",
+            "en": "The force that restores a spring"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Кыймылга каршы күчтү",
+            "ru": "Силу, направленную против движения",
+            "en": "A force against the motion"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Оордук күчү – Жердин нерсени тартуу күчү, ал нерсенин өзүнө коюлат. Таянычка басым кылган күч – салмак.",
+        "ru": "Сила тяжести – сила притяжения тела Землёй, приложена к самому телу. Сила давления на опору – вес.",
+        "en": "Gravity is the Earth's pull on a body, acting on the body. The force on a support is weight."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-gravity-2",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 4,5 кг нерсеге аракет эткен оордук күчүн эсептегиле (Н). g = 9,8 Н/кг.",
+        "ru": "Вычислите силу тяжести, действующую на тело массой 4,5 кг (Н). g = 9,8 Н/кг.",
+        "en": "Work out the force of gravity on a 4.5 kg body (N). g = 9.8 N/kg."
+      },
+      "answer": 44.1,
+      "tolerance": 0.1,
+      "unit": "N",
+      "explanation": {
+        "ky": "F_оор = mg = 4,5 · 9,8 = 44,1 Н.",
+        "ru": "F_тяж = mg = 4,5 · 9,8 = 44,1 Н.",
+        "en": "F = mg = 4.5 × 9.8 = 44.1 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-gravity-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Адамдын салмагы 700 Н. Анын массасы канча (кг)? g = 9,8 Н/кг.",
+        "ru": "Вес человека 700 Н. Чему равна его масса (кг)? g = 9,8 Н/кг.",
+        "en": "A person weighs 700 N. What is their mass (kg)? g = 9.8 N/kg."
+      },
+      "answer": 71.4,
+      "tolerance": 1.5,
+      "unit": "kg",
+      "explanation": {
+        "ky": "m = P/g = 700 : 9,8 ≈ 71,4 кг (китепте ≈ 70 кг).",
+        "ru": "m = P/g = 700 : 9,8 ≈ 71,4 кг (в учебнике ≈ 70 кг).",
+        "en": "m = W/g = 700 ÷ 9.8 ≈ 71.4 kg (the textbook rounds to ≈ 70 kg)."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "misconceptionKey": "phys.m.weight-is-mass",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-gravity-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Нерсе тынч абалдан эркин түшөт. 3 с кийин анын ылдамдыгы канча (м/с)? g = 9,8 м/с².",
+        "ru": "Тело свободно падает из состояния покоя. Какой будет его скорость через 3 с (м/с)? g = 9,8 м/с².",
+        "en": "A body falls freely from rest. What is its speed after 3 s (m/s)? g = 9.8 m/s²."
+      },
+      "answer": 29.4,
+      "tolerance": 0.1,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "v = v₀ + gt = 0 + 9,8 · 3 = 29,4 м/с.",
+        "ru": "v = v₀ + gt = 0 + 9,8 · 3 = 29,4 м/с.",
+        "en": "v = v₀ + gt = 0 + 9.8 × 3 = 29.4 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-gravity-5",
+      "type": "single",
+      "prompt": {
+        "ky": "Абасы сордурулган түтүктө болот шар, пробка жана куштун тыбыты кантип түшөт?",
+        "ru": "Как падают стальной шарик, пробка и перо в трубке без воздуха?",
+        "en": "How do a steel ball, a cork and a feather fall in a tube with no air?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Үчөө бирдей",
+            "ru": "Все одновременно",
+            "en": "All together"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Шар биринчи, тыбыт акыркы",
+            "ru": "Шарик первым, перо последним",
+            "en": "The ball first, the feather last"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Тыбыт түшпөй калкып калат",
+            "ru": "Перо не падает, а парит",
+            "en": "The feather floats and does not fall"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Абасыз мейкиндикте бардык нерселер бирдей ылдамдануу g менен түшөт. Абада жеңил нерселерди абанын каршылыгы гана кармайт.",
+        "ru": "Без воздуха все тела падают с одинаковым ускорением g. В воздухе лёгкие тела тормозит только сопротивление воздуха.",
+        "en": "In a vacuum all bodies fall with the same acceleration g. In air only air resistance slows light bodies."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.heavier-falls-faster",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-gravity-6",
+      "type": "single",
+      "prompt": {
+        "ky": "Салмак эмнеге коюлат?",
+        "ru": "К чему приложен вес тела?",
+        "en": "What does weight act on?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Таянычка же асмага",
+            "ru": "К опоре или подвесу",
+            "en": "The support or suspension"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Нерсенин өзүнүн борборуна",
+            "ru": "К центру самого тела",
+            "en": "The centre of the body itself"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жердин борборуна",
+            "ru": "К центру Земли",
+            "en": "The centre of the Earth"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Салмак – нерсенин таянычка же асмага аракет жасаган күчү, ошондуктан ал таянычка же асмага коюлат. Нерсенин өзүнө оордук күчү коюлат.",
+        "ru": "Вес – сила, с которой тело действует на опору или подвес, поэтому приложен к ним. К самому телу приложена сила тяжести.",
+        "en": "Weight is the force a body exerts on its support or suspension, so it acts on them. Gravity acts on the body itself."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "misconceptionKey": "phys.m.weight-on-body",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-gravity-7",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Оордук күчү менен салмактын жалпы белгилерин тандаңыз.",
+        "ru": "Выберите общие признаки силы тяжести и веса.",
+        "en": "Choose what gravity and weight have in common."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Экөө тең Жердин тартуусунун натыйжасында пайда болот",
+            "ru": "Оба возникают из-за притяжения Земли",
+            "en": "Both arise from the Earth's pull"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Экөөнүн тең бирдиги – 1 Н",
+            "ru": "Единица обоих – 1 Н",
+            "en": "Both are measured in newtons"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Тынч турганда F_оор = P = mg",
+            "ru": "При покое F_тяж = P = mg",
+            "en": "At rest F = W = mg"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Экөө тең нерсеге коюлат",
+            "ru": "Оба приложены к телу",
+            "en": "Both act on the body"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Экөө тең килограмм менен ченелет",
+            "ru": "Оба измеряются в килограммах",
+            "en": "Both are measured in kilograms"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Айырмасы – коюлган чекитинде: оордук күчү нерсеге, салмак таянычка же асмага. Килограмм менен масса ченелет.",
+        "ru": "Отличие – в точке приложения: сила тяжести – к телу, вес – к опоре или подвесу. В килограммах измеряют массу.",
+        "en": "They differ in where they act: gravity on the body, weight on the support or suspension. Kilograms measure mass."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "misconceptionKey": "phys.m.weight-is-mass",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-gravity-8",
+      "type": "single",
+      "prompt": {
+        "ky": "0,5 кг жүктү Айга (g ≈ 1,6 Н/кг) алып бардык. Эмне өзгөрөт?",
+        "ru": "Груз 0,5 кг перенесли на Луну (g ≈ 1,6 Н/кг). Что изменится?",
+        "en": "A 0.5 kg load is taken to the Moon (g ≈ 1.6 N/kg). What changes?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Массасы 0,5 кг бойдон, салмагы 4,9 Н дан 0,8 Н га азаят",
+            "ru": "Масса останется 0,5 кг, вес уменьшится с 4,9 Н до 0,8 Н",
+            "en": "Its mass stays 0.5 kg; its weight drops from 4.9 N to 0.8 N"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Массасы да, салмагы да азаят",
+            "ru": "Уменьшатся и масса, и вес",
+            "en": "Both its mass and weight drop"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эч нерсе өзгөрбөйт",
+            "ru": "Ничего не изменится",
+            "en": "Nothing changes"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Масса – нерсенин касиети, өзгөрбөйт. Салмак P = mg: Айда g кичине, P = 0,5 · 1,6 = 0,8 Н.",
+        "ru": "Масса – свойство тела, она не меняется. Вес P = mg: на Луне g меньше, P = 0,5 · 1,6 = 0,8 Н.",
+        "en": "Mass belongs to the body and does not change. Weight W = mg: g is smaller on the Moon, W = 0.5 × 1.6 = 0.8 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "misconceptionKey": "phys.m.weight-is-mass",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-gravity-9",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Столдогу чайнектин массасы 1,5 кг. Анын салмагы канча (Н)? g ≈ 10 Н/кг деп алгыла (китептегидей).",
+        "ru": "Масса чайника на столе 1,5 кг. Каков его вес (Н)? Примите g ≈ 10 Н/кг (как в учебнике).",
+        "en": "A kettle on a table has a mass of 1.5 kg. What is its weight (N)? Take g ≈ 10 N/kg (as the textbook does)."
+      },
+      "answer": 15,
+      "tolerance": 0.3,
+      "unit": "N",
+      "explanation": {
+        "ky": "P = F_оор = mg ≈ 1,5 · 10 = 15 Н.",
+        "ru": "P = F_тяж = mg ≈ 1,5 · 10 = 15 Н.",
+        "en": "W = F = mg ≈ 1.5 × 10 = 15 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-gravity-10",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден жүктүн салмагын көрсөткөн жебени тап.",
+        "ru": "Найдите на модели стрелку, изображающую вес груза.",
+        "en": "Find the arrow in the model that shows the load's weight."
+      },
+      "targetConceptKey": "phys.weight",
+      "explanation": {
+        "ky": "Бул – илгичтен ылдый караган жебе P: салмак асмага коюлат.",
+        "ru": "Это стрелка P вниз от крючка: вес приложен к подвесу.",
+        "en": "That is the arrow W pointing down from the hook: weight acts on the suspension."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-gravity-11",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден жүккө аракет эткен оордук күчүн тап.",
+        "ru": "Найдите на модели силу тяжести, действующую на груз.",
+        "en": "Find the force of gravity acting on the load in the model."
+      },
+      "targetConceptKey": "phys.gravity",
+      "explanation": {
+        "ky": "Бул – жүктүн борборунан ылдый караган жебе F_оор.",
+        "ru": "Это стрелка F_тяж вниз из центра груза.",
+        "en": "That is the arrow pointing down from the load's centre."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-gravity-12",
+      "type": "match",
+      "prompt": {
+        "ky": "Чоңдукту анын формуласы менен дал келтириңиз.",
+        "ru": "Сопоставьте величину и формулу.",
+        "en": "Match each quantity to its formula."
+      },
+      "pairs": [
+        {
+          "key": "grav",
+          "left": {
+            "ky": "Оордук күчү",
+            "ru": "Сила тяжести",
+            "en": "Gravity"
+          },
+          "right": {
+            "ky": "F_оор = mg",
+            "ru": "F_тяж = mg",
+            "en": "F = mg"
+          }
+        },
+        {
+          "key": "speed",
+          "left": {
+            "ky": "Эркин түшүүдөгү ылдамдык",
+            "ru": "Скорость при свободном падении",
+            "en": "Speed in free fall"
+          },
+          "right": {
+            "ky": "v = v₀ + gt",
+            "ru": "v = v₀ + gt",
+            "en": "v = v₀ + gt"
+          }
+        },
+        {
+          "key": "up",
+          "left": {
+            "ky": "Тик өйдө ыргытылгандагы ылдамдык",
+            "ru": "Скорость при броске вверх",
+            "en": "Speed when thrown up"
+          },
+          "right": {
+            "ky": "v = v₀ − gt",
+            "ru": "v = v₀ − gt",
+            "en": "v = v₀ − gt"
+          }
+        },
+        {
+          "key": "g",
+          "left": {
+            "ky": "Эркин түшүүнүн ылдамдануусу",
+            "ru": "Ускорение свободного падения",
+            "en": "Free-fall acceleration"
+          },
+          "right": {
+            "ky": "g = F_оор/m",
+            "ru": "g = F_тяж/m",
+            "en": "g = F/m"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Китептеги формулалар: F_оор = mg, v = v₀ + gt, v = v₀ − gt, g = F_оор/m ≈ 9,8 Н/кг.",
+        "ru": "Формулы из учебника: F_тяж = mg, v = v₀ + gt, v = v₀ − gt, g = F_тяж/m ≈ 9,8 Н/кг.",
+        "en": "The textbook's formulas: F = mg, v = v₀ + gt, v = v₀ − gt, g = F/m ≈ 9.8 N/kg."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 2
+    }
+  ]
+}

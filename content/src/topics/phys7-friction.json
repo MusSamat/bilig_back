@@ -1,0 +1,1274 @@
+{
+  "topic": {
+    "key": "phys7-friction",
+    "unitKey": "phys.g7.dynamics",
+    "status": "published",
+    "title": {
+      "ky": "Сүрүлүү күчү. Сүрүлүүнүн түрлөрү",
+      "ru": "Сила трения. Виды трения",
+      "en": "Friction. Kinds of friction"
+    },
+    "formula": "μ = F_сүр / P",
+    "classification": {
+      "ky": "Динамика",
+      "ru": "Динамика",
+      "en": "Dynamics"
+    },
+    "description": {
+      "ky": "Бир нерсе экинчи нерсенин бети боюнча кыймылдаганда, ал кыймылга каршы аракет кылуучу күч – сүрүлүү күчү – пайда болот. Анын себептери – беттердин бүдүрлөрү жана алардын бөлүкчөлөрүнүн өз ара аракети. Жыгач столдо 2 кг жыгач брусокту динамометр менен тартабыз: μ = 0,3 болгондо тайгаланып сүрүлүү күчү F_сүр = μP = 0,3 · 19,6 = 5,88 Н. Акырын тартканда брусокту тынч туруудагы сүрүлүү кармап турат.",
+      "ru": "Когда одно тело движется по поверхности другого, возникает сила, препятствующая движению, – сила трения. Её причины – неровности поверхностей и взаимодействие их частиц. Тянем динамометром деревянный брусок массой 2 кг по деревянному столу: при μ = 0,3 сила трения скольжения F_тр = μP = 0,3 · 19,6 = 5,88 Н. При слабой тяге брусок удерживает трение покоя.",
+      "en": "When one body moves over another's surface, a force opposing the motion appears – friction. It comes from the bumps on the surfaces and the interaction of their particles. We pull a 2 kg wooden block across a wooden table with a dynamometer: with μ = 0.3 sliding friction is F = μW = 0.3 × 19.6 = 5.88 N. A gentle pull is held back by static friction."
+    },
+    "goal": {
+      "ky": "Сүрүлүү күчүнүн пайда болуу себептерин жана түрлөрүн (тайгаланып, тоголонуп, тынч туруудагы) түшүндүрүү, сүрүлүү коэффициентин μ = F_сүр/P боюнча аныктоо, сүрүлүүнү көбөйтүү жана азайтуу жолдорун атоо (PHYS-7.2.2).",
+      "ru": "Объяснять причины и виды трения (скольжения, качения, покоя), определять коэффициент трения по формуле μ = F_тр/P, называть способы увеличить и уменьшить трение (PHYS-7.2.2).",
+      "en": "Explain the causes and kinds of friction (sliding, rolling, static), find the coefficient of friction from μ = F_fr/W, and name ways to increase and reduce friction (PHYS-7.2.2)."
+    },
+    "objectiveKeys": [
+      "phys.g7.dynamics.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "forces",
+        "mass": 2,
+        "forces": [
+          {
+            "id": "pull",
+            "magnitude": 8,
+            "angleDeg": 0
+          }
+        ],
+        "gravity": true,
+        "friction": 0.3,
+        "dynamometer": true,
+        "g": 9.8
+      },
+      "camera": {
+        "position": [
+          1.3,
+          1.9,
+          4.4
+        ],
+        "target": [
+          0,
+          0.3,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "resultant",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.friction-force",
+      "phys.static-friction",
+      "phys.friction-coefficient",
+      "phys.block",
+      "phys.force",
+      "phys.dynamometer",
+      "phys.normal-force",
+      "phys.gravity",
+      "phys.net-force",
+      "phys.weight"
+    ],
+    "overrides": {
+      "phys.friction-force": {
+        "nodes": [
+          "Arrow_Friction",
+          "Arrow_Friction_*"
+        ],
+        "description": {
+          "ky": "Брусок менен столдун тийишкен беттеринин ортосунда пайда болуп, кыймылга каршы – солго багытталат. Тайгаланып сүрүлүү: F_сүр = μP = 0,3 · 19,6 = 5,88 Н. Ал беттердин заттарына, тегиздигине жана нерсенин салмагына көз каранды.",
+          "ru": "Возникает между соприкасающимися поверхностями бруска и стола и направлена против движения – влево. Трение скольжения: F_тр = μP = 0,3 · 19,6 = 5,88 Н. Зависит от материалов, гладкости поверхностей и веса тела.",
+          "en": "It arises between the touching surfaces of block and table and acts against the motion – to the left. Sliding friction: F = μW = 0.3 × 19.6 = 5.88 N. It depends on the materials, the smoothness of the surfaces and the body's weight."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 5.88
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F_{сүр} = \\mu P"
+          }
+        ]
+      },
+      "phys.static-friction": {
+        "description": {
+          "ky": "«Тынч туруудагы сүрүлүү» үлгүсүндө брусокту 3 Н менен тартабыз, ал жылбайт: тынч туруудагы сүрүлүү да 3 Н, тартууга каршы. Ал 5,88 Н ге чейин өсө алат; андан ашканда брусок жыла баштайт.",
+          "ru": "В образце «Трение покоя» тянем брусок с силой 3 Н – он не сдвигается: трение покоя тоже 3 Н и направлено против тяги. Оно может вырасти до 5,88 Н; сверх этого брусок трогается.",
+          "en": "In the 'Static friction' sample we pull with 3 N and the block does not move: static friction is also 3 N, against the pull. It can grow up to 5.88 N; beyond that the block starts to slide."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 3,
+            "max": 5.88
+          }
+        ]
+      },
+      "phys.friction-coefficient": {
+        "nodes": [
+          "Table",
+          "Table_*"
+        ],
+        "description": {
+          "ky": "Столдун бети жана брусок – экөө тең жыгач: μ = 0,3 (таблицада жыгач менен жыгач 0,20–0,50). «Муз үстүндө» үлгүсүндө μ = 0,035 гана.",
+          "ru": "Поверхность стола и брусок – оба деревянные: μ = 0,3 (в таблице дерево по дереву 0,20–0,50). В образце «По льду» μ всего 0,035.",
+          "en": "Both the table top and the block are wood: μ = 0.3 (wood on wood is 0.20–0.50 in the table). In the 'On ice' sample μ is only 0.035."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.3
+          }
+        ]
+      },
+      "phys.block": {
+        "nodes": [
+          "Block",
+          "Block_Label"
+        ],
+        "description": {
+          "ky": "Массасы 2 кг жыгач брусок. Анын салмагы P = mg = 19,6 Н; сүрүлүү күчү ушул салмакка түз пропорциялаш.",
+          "ru": "Деревянный брусок массой 2 кг. Его вес P = mg = 19,6 Н; сила трения прямо пропорциональна этому весу.",
+          "en": "A 2 kg wooden block. Its weight is W = mg = 19.6 N, and friction is proportional to it."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          }
+        ]
+      },
+      "phys.force": {
+        "nodes": [
+          "Arrow_pull",
+          "Arrow_pull_Label"
+        ],
+        "description": {
+          "ky": "Динамометрдин тартуу күчү – 8 Н оңго.",
+          "ru": "Сила тяги динамометра – 8 Н вправо.",
+          "en": "The dynamometer's pull – 8 N to the right."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 8
+          }
+        ]
+      },
+      "phys.dynamometer": {
+        "nodes": [
+          "Dynamometer",
+          "Dynamometer_*",
+          "Spring"
+        ],
+        "description": {
+          "ky": "Пружиналуу динамометр. Брусок бир калыпта жылганда анын көрсөтүүсү сүрүлүү күчүнө барабар – ушундай жол менен μ ну аныктайбыз.",
+          "ru": "Пружинный динамометр. Когда брусок движется равномерно, его показание равно силе трения – так определяют μ.",
+          "en": "A spring dynamometer. When the block slides steadily, its reading equals friction – that is how μ is found."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 8
+          }
+        ]
+      },
+      "phys.normal-force": {
+        "nodes": [
+          "Arrow_Normal"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 19.6
+          }
+        ]
+      },
+      "phys.gravity": {
+        "nodes": [
+          "Arrow_Gravity"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 19.6
+          }
+        ]
+      },
+      "phys.net-force": {
+        "nodes": [
+          "Arrow_Resultant",
+          "Arrow_Resultant_*"
+        ],
+        "description": {
+          "ky": "Тартуу 8 Н оңго, сүрүлүү 5,88 Н солго: R = 8 − 5,88 = 2,12 Н оңго – брусок ылдамданат.",
+          "ru": "Тяга 8 Н вправо, трение 5,88 Н влево: R = 8 − 5,88 = 2,12 Н вправо – брусок ускоряется.",
+          "en": "Pull 8 N right, friction 5.88 N left: R = 8 − 5.88 = 2.12 N to the right – the block accelerates."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 2.12
+          }
+        ]
+      },
+      "phys.weight": {
+        "description": {
+          "ky": "Брусоктун салмагы P = mg = 2 · 9,8 = 19,6 Н – μ = F_сүр/P формуласындагы P.",
+          "ru": "Вес бруска P = mg = 2 · 9,8 = 19,6 Н – это P в формуле μ = F_тр/P.",
+          "en": "The block's weight W = mg = 2 × 9.8 = 19.6 N – the W in μ = F_fr/W."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 19.6
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "friction-static",
+        "title": {
+          "ky": "Тынч туруудагы сүрүлүү: 3 Н",
+          "ru": "Трение покоя: 3 Н",
+          "en": "Static friction: 3 N"
+        },
+        "classification": {
+          "ky": "Брусок жылбайт, F_сүр = 3 Н",
+          "ru": "Брусок не сдвигается, F_тр = 3 Н",
+          "en": "The block stays put, friction = 3 N"
+        },
+        "thumb": "thumbs/friction-static.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 3
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.3
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          }
+        ],
+        "scene": {
+          "params": {
+            "forces": [
+              {
+                "id": "pull",
+                "magnitude": 3,
+                "angleDeg": 0
+              }
+            ],
+            "friction": 0.3,
+            "mass": 2
+          }
+        }
+      },
+      {
+        "key": "friction-steady",
+        "title": {
+          "ky": "Бир калыпта тартуу: 5,88 Н",
+          "ru": "Равномерная тяга: 5,88 Н",
+          "en": "A steady pull: 5.88 N"
+        },
+        "classification": {
+          "ky": "Тартуу = сүрүлүү, μ = 5,88 : 19,6 = 0,3",
+          "ru": "Тяга = трение, μ = 5,88 : 19,6 = 0,3",
+          "en": "Pull = friction, μ = 5.88 ÷ 19.6 = 0.3"
+        },
+        "thumb": "thumbs/friction-steady.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 5.88
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.3
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          }
+        ],
+        "scene": {
+          "params": {
+            "forces": [
+              {
+                "id": "pull",
+                "magnitude": 5.88,
+                "angleDeg": 0
+              }
+            ],
+            "friction": 0.3,
+            "mass": 2
+          }
+        }
+      },
+      {
+        "key": "friction-ice",
+        "title": {
+          "ky": "Жыгач муз үстүндө: μ = 0,035",
+          "ru": "Дерево по льду: μ = 0,035",
+          "en": "Wood on ice: μ = 0.035"
+        },
+        "classification": {
+          "ky": "F_сүр ≈ 0,69 Н – 3 Н менен жылат",
+          "ru": "F_тр ≈ 0,69 Н – скользит от 3 Н",
+          "en": "Friction ≈ 0.69 N – a 3 N pull slides it"
+        },
+        "thumb": "thumbs/friction-ice.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 0.69,
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.035
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          }
+        ],
+        "scene": {
+          "params": {
+            "forces": [
+              {
+                "id": "pull",
+                "magnitude": 3,
+                "angleDeg": 0
+              }
+            ],
+            "friction": 0.035,
+            "mass": 2
+          }
+        }
+      },
+      {
+        "key": "friction-heavy",
+        "title": {
+          "ky": "Оор брусок: 4 кг, 8 Н",
+          "ru": "Тяжёлый брусок: 4 кг, 8 Н",
+          "en": "A heavy block: 4 kg, 8 N"
+        },
+        "classification": {
+          "ky": "Чек 11,76 Н – брусок жылбайт",
+          "ru": "Предел 11,76 Н – брусок не сдвигается",
+          "en": "Limit 11.76 N – the block stays put"
+        },
+        "thumb": "thumbs/friction-heavy.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 8
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.3
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 4
+          }
+        ],
+        "scene": {
+          "params": {
+            "forces": [
+              {
+                "id": "pull",
+                "magnitude": 8,
+                "angleDeg": 0
+              }
+            ],
+            "friction": 0.3,
+            "mass": 4
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "mass",
+        "value": 2
+      },
+      {
+        "kind": "quantity",
+        "type": "frictionCoefficient",
+        "value": 0.3
+      },
+      {
+        "kind": "quantity",
+        "type": "force",
+        "value": 5.88
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "\\mu = \\frac{F_{сүр}}{P}"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false,
+              "resultant": false,
+              "labels": false
+            },
+            "focus": "phys.block",
+            "text": {
+              "ky": "Жантык ноодон түшкөн шар столдо алыс тоголонот, суу жоолукта жакыныраак, кумда андан да жакын токтойт. Эмне үчүн? Эми жыгач столдо 2 кг жыгач брусокту динамометр менен тартабыз.",
+              "ru": "Шар, скатившийся с наклонного жёлоба, по столу катится далеко, по мокрой ткани ближе, по песку – ещё ближе. Почему? Теперь тянем динамометром деревянный брусок массой 2 кг по деревянному столу.",
+              "en": "A ball rolling off a ramp goes far on a table, less far on a wet cloth and even less on sand. Why? Now we pull a 2 kg wooden block across a wooden table with a dynamometer."
+            },
+            "teacherNote": {
+              "ky": "Китептеги 59-сүрөттөгү тажрыйбаны кыскача көрсөтүңүз же айтып бериңиз.",
+              "ru": "Покажите или расскажите опыт с рис. 59 учебника.",
+              "en": "Show or describe the experiment in fig. 59 of the textbook."
+            },
+            "altText": {
+              "ky": "Столдо брусок жана ага илинген динамометр.",
+              "ru": "Брусок на столе и прицепленный динамометр.",
+              "en": "A block on a table with a dynamometer attached."
+            }
+          },
+          {
+            "key": "static",
+            "sample": "friction-static",
+            "camera": {
+              "position": [
+                1.59,
+                2.07,
+                5.38
+              ],
+              "target": [
+                0,
+                0.11,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.static-friction",
+            "text": {
+              "ky": "3 Н менен акырын тартабыз – брусок жылбайт. Аны тынч туруудагы сүрүлүү кармап турат: ал да 3 Н жана тартууга карама-каршы. Ушул сүрүлүүнүн аркасында мык тактайда, түйүн жипте кармалат.",
+              "ru": "Тянем слабо, с силой 3 Н, – брусок не сдвигается. Его держит трение покоя: оно тоже 3 Н и направлено против тяги. Благодаря такому трению гвоздь держится в доске, а узел – на верёвке.",
+              "en": "We pull gently with 3 N – the block does not move. Static friction holds it: also 3 N, opposite to the pull. The same friction holds nails in boards and knots in ropes."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: оор шкафты ордунан жылдыруу эмне үчүн жылып баратканда түртүүдөн кыйыныраак?",
+              "ru": "Спросите: почему тяжёлый шкаф труднее сдвинуть с места, чем толкать уже едущий?",
+              "en": "Ask: why is a heavy wardrobe harder to start moving than to keep moving?"
+            },
+            "altText": {
+              "ky": "Тартуу жана сүрүлүү жебелери бирдей, брусок ордунда.",
+              "ru": "Стрелки тяги и трения равны, брусок на месте.",
+              "en": "Pull and friction arrows are equal; the block stays put."
+            }
+          },
+          {
+            "key": "sliding",
+            "camera": {
+              "position": [
+                -0.53,
+                1.16,
+                3.45
+              ],
+              "target": [
+                -1.44,
+                0.04,
+                0.35
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.friction-force",
+            "text": {
+              "ky": "8 Н менен тартканда брусок жылат. Тайгаланып сүрүлүү күчү кыймылга каршы: F_сүр = 5,88 Н. Анын себептери – беттердин бүдүрлөрү бири-бирине илинишет жана беттердин бөлүкчөлөрү өз ара аракеттенишет.",
+              "ru": "При тяге 8 Н брусок движется. Сила трения скольжения направлена против движения: F_тр = 5,88 Н. Её причины – неровности поверхностей цепляются друг за друга, а частицы поверхностей взаимодействуют.",
+              "en": "With an 8 N pull the block slides. Sliding friction acts against the motion: 5.88 N. It arises because the bumps on the surfaces catch on each other and their particles interact."
+            },
+            "teacherNote": {
+              "ky": "Тең аракеттүү күчкө көңүл буруңуз: R = 8 − 5,88 = 2,12 Н – брусок ылдамданат.",
+              "ru": "Обратите внимание на равнодействующую: R = 8 − 5,88 = 2,12 Н – брусок ускоряется.",
+              "en": "Point out the resultant: R = 8 − 5.88 = 2.12 N – the block accelerates."
+            },
+            "altText": {
+              "ky": "Брусоктун астынан солго караган сүрүлүү жебеси.",
+              "ru": "Стрелка трения влево у основания бруска.",
+              "en": "The friction arrow pointing left at the block's base."
+            }
+          },
+          {
+            "key": "measure",
+            "sample": "friction-steady",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.friction-coefficient",
+            "text": {
+              "ky": "Брусокту бир калыпта тартсак, динамометр сүрүлүү күчүн көрсөтөт: 5,88 Н. Сүрүлүү коэффициенти μ = F_сүр/P = 5,88 : 19,6 = 0,3. Анын бирдиги жок.",
+              "ru": "Если тянуть брусок равномерно, динамометр покажет силу трения: 5,88 Н. Коэффициент трения μ = F_тр/P = 5,88 : 19,6 = 0,3. Он не имеет единицы.",
+              "en": "Pull the block steadily and the dynamometer shows the friction force: 5.88 N. The coefficient of friction is μ = F_fr/W = 5.88 ÷ 19.6 = 0.3. It has no unit."
+            },
+            "teacherNote": {
+              "ky": "«Сүрүлүү коэффициентин аныктоо» процессин иштетиңиз. Китептеги 5-таблицаны ачыңыз.",
+              "ru": "Запустите процесс «Определение коэффициента трения». Откройте таблицу 5 учебника.",
+              "en": "Run the 'Measuring the coefficient of friction' process. Open table 5 in the textbook."
+            },
+            "altText": {
+              "ky": "Тартуу жана сүрүлүү бирдей, «R = 0».",
+              "ru": "Тяга и трение равны, «R = 0».",
+              "en": "Pull equals friction; 'R = 0'."
+            }
+          },
+          {
+            "key": "weight",
+            "sample": "friction-heavy",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.weight",
+            "text": {
+              "ky": "Брусоктун массасы 4 кг болсо, салмагы 39,2 Н, тайгаланып сүрүлүүнүн чеги 0,3 · 39,2 = 11,76 Н. Ошол эле 8 Н аны жылдыра албайт. Нерсенин салмагы канчалык чоң болсо, сүрүлүү күчү ошончолук чоң.",
+              "ru": "Если масса бруска 4 кг, его вес 39,2 Н, предел трения 0,3 · 39,2 = 11,76 Н. Те же 8 Н его не сдвинут. Чем больше вес тела, тем больше сила трения.",
+              "en": "With a 4 kg block the weight is 39.2 N and the friction limit 0.3 × 39.2 = 11.76 N. The same 8 N cannot move it. The heavier the body, the bigger the friction."
+            },
+            "teacherNote": {
+              "ky": "Китептеги маселе: 70 кг шкафты жылдыруу үчүн F = μmg ≈ 0,3 · 70 · 10 = 210 Н керек.",
+              "ru": "Задача из учебника: чтобы сдвинуть шкаф 70 кг, нужно F = μmg ≈ 0,3 · 70 · 10 = 210 Н.",
+              "en": "Textbook problem: moving a 70 kg wardrobe takes F = μmg ≈ 0.3 × 70 × 10 = 210 N."
+            },
+            "altText": {
+              "ky": "Чоң брусок, ал жылбайт.",
+              "ru": "Большой брусок, он не сдвигается.",
+              "en": "A bigger block that does not move."
+            }
+          },
+          {
+            "key": "kinds",
+            "sample": "friction-ice",
+            "camera": {
+              "position": [
+                1.16,
+                0.88,
+                3.91
+              ],
+              "target": [
+                0,
+                -0.54,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.friction-coefficient",
+            "text": {
+              "ky": "Муз үстүндө (μ = 0,035) ошол эле брусокту 3 Н эле жылдырат. Сүрүлүүнү азайтуу жолдору: тайгаланып сүрүлүүнү тоголонуп сүрүлүү менен алмаштыруу (дөңгөлөк, подшипник), беттерди майлоо. Көбөйтүү жолдору: тайгак жолго кум себүү, протектор.",
+              "ru": "По льду (μ = 0,035) тот же брусок сдвигают всего 3 Н. Способы уменьшить трение: заменить трение скольжения трением качения (колёса, подшипники), смазать поверхности. Увеличить: посыпать скользкую дорогу песком, протектор шин.",
+              "en": "On ice (μ = 0.035) just 3 N moves the same block. To reduce friction: replace sliding with rolling (wheels, bearings), lubricate the surfaces. To increase it: sand on icy roads, tyre tread."
+            },
+            "teacherNote": {
+              "ky": "Талкуулаңыз: сүрүлүүнүн пайдасы жана зыяны. Сүрүлүү жок болсо, биз баса албайт элек, машина токтобойт эле.",
+              "ru": "Обсудите пользу и вред трения. Без трения мы не смогли бы ходить, а машина – затормозить.",
+              "en": "Discuss when friction helps and when it harms. Without it we could not walk and cars could not brake."
+            },
+            "altText": {
+              "ky": "Муз үстүндө брусок оңой жылат, сүрүлүү жебеси кыска.",
+              "ru": "По льду брусок скользит легко, стрелка трения короткая.",
+              "en": "On ice the block slides easily; the friction arrow is short."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.friction-measurement"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "friction-static"
+          },
+          {
+            "kind": "sample",
+            "key": "friction-steady"
+          },
+          {
+            "kind": "sample",
+            "key": "friction-ice"
+          },
+          {
+            "kind": "sample",
+            "key": "friction-heavy"
+          }
+        ],
+        "rows": [
+          "force",
+          "frictionCoefficient",
+          "mass"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-friction-1",
+          "phys.q.phys7-friction-2",
+          "phys.q.phys7-friction-3",
+          "phys.q.phys7-friction-4",
+          "phys.q.phys7-friction-5",
+          "phys.q.phys7-friction-6",
+          "phys.q.phys7-friction-7",
+          "phys.q.phys7-friction-8",
+          "phys.q.phys7-friction-9",
+          "phys.q.phys7-friction-10",
+          "phys.q.phys7-friction-11",
+          "phys.q.phys7-friction-12"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Подшипниктер",
+            "ru": "Подшипники",
+            "en": "Bearings"
+          },
+          "text": {
+            "ky": "Подшипникте шарчалар тоголонот: тайгаланып сүрүлүү тоголонуп сүрүлүү менен алмашып, сүрүлүү коэффициенти 0,02–0,08 ге чейин азаят.",
+            "ru": "В подшипнике катятся шарики: трение скольжения заменено трением качения, и коэффициент трения падает до 0,02–0,08.",
+            "en": "In a bearing the balls roll: sliding is replaced by rolling and the coefficient of friction drops to 0.02–0.08."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Жамгырдагы жол",
+            "ru": "Дорога в дождь",
+            "en": "Roads in the rain"
+          },
+          "text": {
+            "ky": "Дөңгөлөк менен кургак асфальттын μ = 0,50–0,70, суу асфальттыкы 0,35–0,45. Ошондуктан жамгырда тормоз жолу узарат, айдоочу ылдамдыкты азайтышы керек.",
+            "ru": "Для колеса по сухому асфальту μ = 0,50–0,70, по мокрому 0,35–0,45. Поэтому в дождь тормозной путь растёт и водитель должен снижать скорость.",
+            "en": "A tyre on dry asphalt has μ = 0.50–0.70, on wet 0.35–0.45. So braking distances grow in rain and drivers must slow down."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Чананы тартуу",
+            "ru": "Тянем сани",
+            "en": "Pulling a sledge"
+          },
+          "text": {
+            "ky": "Массасы 1200 кг жыгач чананы муз жолдо тартуу үчүн F = μmg = 0,035 · 1200 · 10 = 420 Н жетиштүү.",
+            "ru": "Чтобы тянуть по льду деревянные сани массой 1200 кг, достаточно F = μmg = 0,035 · 1200 · 10 = 420 Н.",
+            "en": "To pull a 1200 kg wooden sledge over ice, F = μmg = 0.035 × 1200 × 10 = 420 N is enough."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Тайгак жол",
+            "ru": "Скользкая дорога",
+            "en": "An icy path"
+          },
+          "text": {
+            "ky": "Кышында тайгак жолго кум же туз себишет – сүрүлүү көбөйүп, жөө адамдар жыгылбайт.",
+            "ru": "Зимой скользкую дорогу посыпают песком – трение растёт, и пешеходы не падают.",
+            "en": "In winter icy paths are sprinkled with sand – friction goes up and people don't fall."
+          }
+        },
+        {
+          "title": {
+            "ky": "Чана жана конёк",
+            "ru": "Сани и коньки",
+            "en": "Sledges and skates"
+          },
+          "text": {
+            "ky": "Чананын табаны жана конькинин мизи ичке жасалат – тийишкен бети кичине болуп, муз үстүндө оңой тайгаланат.",
+            "ru": "Полозья саней и лезвие конька делают тонкими – площадь соприкосновения мала, и они легко скользят по льду.",
+            "en": "Sledge runners and skate blades are thin – the contact area is small, so they glide easily on ice."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Эмне үчүн сүрүлүү күчү пайда болот?",
+        "ru": "Почему возникает сила трения?",
+        "en": "Why does friction arise?"
+      },
+      {
+        "ky": "Сүрүлүүнүн кандай түрлөрү бар?",
+        "ru": "Какие бывают виды трения?",
+        "en": "What kinds of friction are there?"
+      },
+      {
+        "ky": "Сүрүлүү коэффициентин кантип аныктайбыз?",
+        "ru": "Как определить коэффициент трения?",
+        "en": "How do we find the coefficient of friction?"
+      },
+      {
+        "ky": "Сүрүлүү пайдалуубу же зыяндуубу?",
+        "ru": "Трение полезно или вредно?",
+        "en": "Is friction helpful or harmful?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; Мамбетакунов Э. М., Физика 7 (кыргыз тилинде)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-friction-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Сүрүлүү күчү кайда багытталат?",
+        "ru": "Куда направлена сила трения скольжения?",
+        "en": "Which way does sliding friction point?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кыймылга каршы",
+            "ru": "Против движения",
+            "en": "Against the motion"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Кыймыл боюнча",
+            "ru": "По направлению движения",
+            "en": "Along the motion"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Тик өйдө",
+            "ru": "Вертикально вверх",
+            "en": "Straight up"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Тик ылдый",
+            "ru": "Вертикально вниз",
+            "en": "Straight down"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Сүрүлүү күчү нерсени кыймылга келтирүүчү күчкө тескери, кыймылга каршы багытталат.",
+        "ru": "Сила трения направлена против движения, противоположно силе, приводящей тело в движение.",
+        "en": "Friction opposes the motion, pointing against the force that drives the body."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-friction-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Сүрүлүү күчүнүн чоңдугу эмнелерге көз каранды? Бардык туура жоопторду тандаңыз.",
+        "ru": "От чего зависит сила трения? Выберите все верные ответы.",
+        "en": "What does the friction force depend on? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Беттердин заттарына жана тегиздигине",
+            "ru": "От материалов и гладкости поверхностей",
+            "en": "The materials and smoothness of the surfaces"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Нерсенин салмагына",
+            "ru": "От веса тела",
+            "en": "The body's weight"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Нерсенин түсүнө",
+            "ru": "От цвета тела",
+            "en": "The body's colour"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Сүрүлүүнүн түрүнө (тайгаланып же тоголонуп)",
+            "ru": "От вида трения (скольжение или качение)",
+            "en": "The kind of friction (sliding or rolling)"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": {
+        "ky": "F_сүр = μP: μ беттердин заттарына жана тегиздигине, P – салмакка байланыштуу; тоголонуп сүрүлүү тайгаланып сүрүлүүдөн аз.",
+        "ru": "F_тр = μP: μ зависит от материалов и гладкости, P – вес; трение качения меньше трения скольжения.",
+        "en": "F = μW: μ depends on materials and smoothness, W is the weight; rolling friction is less than sliding friction."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-friction-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 50 кг нерсе 200 Н күчтүн аракети менен тегиз бетте бир калыпта жылат. Сүрүлүү коэффициенти канча? g ≈ 10 Н/кг.",
+        "ru": "Тело массой 50 кг равномерно движется по ровной поверхности под действием силы 200 Н. Чему равен коэффициент трения? g ≈ 10 Н/кг.",
+        "en": "A 50 kg body moves steadily on a level surface under a 200 N pull. What is the coefficient of friction? g ≈ 10 N/kg."
+      },
+      "answer": 0.4,
+      "tolerance": 0.01,
+      "explanation": {
+        "ky": "Бир калыпта кыймылда F_сүр = F = 200 Н; P = mg = 500 Н; μ = 200 : 500 = 0,4.",
+        "ru": "При равномерном движении F_тр = F = 200 Н; P = mg = 500 Н; μ = 200 : 500 = 0,4.",
+        "en": "At steady speed friction = pull = 200 N; W = mg = 500 N; μ = 200 ÷ 500 = 0.4."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "misconceptionKey": "phys.m.mu-has-unit",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-friction-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 70 кг шкафты ордунан жылдыруу үчүн кандай күч керек (Н)? μ = 0,3, g ≈ 10 Н/кг.",
+        "ru": "Какую силу нужно приложить, чтобы сдвинуть шкаф массой 70 кг (Н)? μ = 0,3, g ≈ 10 Н/кг.",
+        "en": "What force is needed to move a 70 kg wardrobe (N)? μ = 0.3, g ≈ 10 N/kg."
+      },
+      "answer": 210,
+      "tolerance": 1,
+      "unit": "N",
+      "explanation": {
+        "ky": "F_сүр = μmg = 0,3 · 70 · 10 = 210 Н.",
+        "ru": "F_тр = μmg = 0,3 · 70 · 10 = 210 Н.",
+        "en": "F = μmg = 0.3 × 70 × 10 = 210 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-friction-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Жалпы массасы 1200 кг жыгач чананы ат муз боюнча бир калыпта тартат. μ = 0,035. Аттын тартуу күчү канча (Н)? g ≈ 10 Н/кг.",
+        "ru": "Лошадь равномерно тянет по льду деревянные сани общей массой 1200 кг. μ = 0,035. Какова сила тяги лошади (Н)? g ≈ 10 Н/кг.",
+        "en": "A horse pulls a 1200 kg wooden sledge steadily over ice. μ = 0.035. What is the horse's pulling force (N)? g ≈ 10 N/kg."
+      },
+      "answer": 420,
+      "tolerance": 2,
+      "unit": "N",
+      "explanation": {
+        "ky": "F = μmg = 0,035 · 1200 · 10 = 420 Н. (Китептин жообундагы 42 Н – басмадагы ката.)",
+        "ru": "F = μmg = 0,035 · 1200 · 10 = 420 Н. (В ответе учебника 42 Н – опечатка.)",
+        "en": "F = μmg = 0.035 × 1200 × 10 = 420 N. (The textbook's answer of 42 N is a misprint.)"
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-friction-6",
+      "type": "single",
+      "prompt": {
+        "ky": "Брусокту 3 Н менен тартабыз, ал жылбайт. Ага сүрүлүү күчү таасир этеби?",
+        "ru": "Брусок тянут с силой 3 Н, но он не сдвигается. Действует ли на него сила трения?",
+        "en": "A block is pulled with 3 N but does not move. Is friction acting on it?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ооба, тынч туруудагы сүрүлүү 3 Н, тартууга каршы",
+            "ru": "Да, трение покоя 3 Н против тяги",
+            "en": "Yes, static friction of 3 N against the pull"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жок, брусок кыймылдабайт",
+            "ru": "Нет, брусок ведь не движется",
+            "en": "No, the block is not moving"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ооба, 5,88 Н тартуу боюнча",
+            "ru": "Да, 5,88 Н по тяге",
+            "en": "Yes, 5.88 N along the pull"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Тынч туруудагы сүрүлүү тартууга барабар жана карама-каршы – R = 0, брусок турат. Ал белгилүү чектен (бул жерде 5,88 Н) ашпайт.",
+        "ru": "Трение покоя равно тяге и направлено против неё – R = 0, брусок стоит. Оно не превышает предела (здесь 5,88 Н).",
+        "en": "Static friction equals the pull and opposes it – R = 0, the block stays put. It cannot exceed a limit (5.88 N here)."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "misconceptionKey": "phys.m.static-no-friction",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-friction-7",
+      "type": "match",
+      "prompt": {
+        "ky": "Сүрүлүүнүн түрүн мисалы менен дал келтириңиз.",
+        "ru": "Сопоставьте вид трения и пример.",
+        "en": "Match each kind of friction to an example."
+      },
+      "pairs": [
+        {
+          "key": "slide",
+          "left": {
+            "ky": "Тайгаланып сүрүлүү",
+            "ru": "Трение скольжения",
+            "en": "Sliding friction"
+          },
+          "right": {
+            "ky": "Брусок столдо жылат",
+            "ru": "Брусок скользит по столу",
+            "en": "A block slides on a table"
+          }
+        },
+        {
+          "key": "roll",
+          "left": {
+            "ky": "Тоголонуп сүрүлүү",
+            "ru": "Трение качения",
+            "en": "Rolling friction"
+          },
+          "right": {
+            "ky": "Велосипеддин дөңгөлөгү жолдо",
+            "ru": "Колесо велосипеда на дороге",
+            "en": "A bike wheel on the road"
+          }
+        },
+        {
+          "key": "rest",
+          "left": {
+            "ky": "Тынч туруудагы сүрүлүү",
+            "ru": "Трение покоя",
+            "en": "Static friction"
+          },
+          "right": {
+            "ky": "Мык тактайда кармалып турат",
+            "ru": "Гвоздь держится в доске",
+            "en": "A nail holds in a board"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Китепте сүрүлүүнүн үч түрү: тайгаланып, тоголонуп жана тынч туруудагы.",
+        "ru": "В учебнике три вида трения: скольжения, качения и покоя.",
+        "en": "The textbook names three kinds: sliding, rolling and static."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-friction-8",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Сүрүлүүнү азайтуунун жолдорун тандаңыз.",
+        "ru": "Выберите способы уменьшить трение.",
+        "en": "Choose ways to reduce friction."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Беттерди майлоо",
+            "ru": "Смазать поверхности",
+            "en": "Lubricate the surfaces"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Тайгаланууну тоголонуу менен алмаштыруу",
+            "ru": "Заменить скольжение качением",
+            "en": "Replace sliding with rolling"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Тайгак жолго кум себүү",
+            "ru": "Посыпать дорогу песком",
+            "en": "Sprinkle sand on the road"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Шинага терең протектор жасоо",
+            "ru": "Сделать глубокий протектор шины",
+            "en": "Cut deep tyre tread"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "explanation": {
+        "ky": "Майлоо жана тоголонуу сүрүлүүнү азайтат; кум жана протектор – тескерисинче көбөйтөт.",
+        "ru": "Смазка и качение уменьшают трение; песок и протектор, наоборот, увеличивают.",
+        "en": "Lubrication and rolling reduce friction; sand and tread increase it."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "misconceptionKey": "phys.m.friction-always-bad",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-friction-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Сүрүлүү коэффициентинин бирдиги кандай?",
+        "ru": "В каких единицах измеряют коэффициент трения?",
+        "en": "What is the unit of the coefficient of friction?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Бирдиги жок",
+            "ru": "Безразмерная величина",
+            "en": "It has no unit"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ньютон",
+            "ru": "Ньютон",
+            "en": "Newton"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Н/кг",
+            "ru": "Н/кг",
+            "en": "N/kg"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Килограмм",
+            "ru": "Килограмм",
+            "en": "Kilogram"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "μ = F_сүр/P – эки күчтүн катышы, ньютондор кыскарат.",
+        "ru": "μ = F_тр/P – отношение двух сил, ньютоны сокращаются.",
+        "en": "μ = F_fr/W is a ratio of two forces; the newtons cancel."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "misconceptionKey": "phys.m.mu-has-unit",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-friction-10",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден брусоктун кыймылына каршы аракет эткен күчтү тап.",
+        "ru": "Найдите на модели силу, препятствующую движению бруска.",
+        "en": "Find the force in the model that opposes the block's motion."
+      },
+      "targetConceptKey": "phys.friction-force",
+      "explanation": {
+        "ky": "Бул – сүрүлүү күчү: брусоктун астынан кыймылга каршы багытталган жебе.",
+        "ru": "Это сила трения: стрелка у основания бруска против движения.",
+        "en": "That is friction: the arrow at the block's base pointing against the motion."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-friction-11",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден сүрүлүү күчүн ченөөгө колдонулган приборду тап.",
+        "ru": "Найдите на модели прибор, которым измеряют силу трения.",
+        "en": "Find the instrument in the model used to measure friction."
+      },
+      "targetConceptKey": "phys.dynamometer",
+      "explanation": {
+        "ky": "Бул – динамометр: брусок бир калыпта жылганда ал сүрүлүү күчүн көрсөтөт.",
+        "ru": "Это динамометр: при равномерном движении бруска он показывает силу трения.",
+        "en": "That is the dynamometer: at steady speed it shows the friction force."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-friction-12",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Машинанын жүгү менен кошо массасы 7000 кг. Аны бир калыпта козголтуу үчүн 35 кН тартуу күчү керек. Дөңгөлөк менен жолдун сүрүлүү коэффициенти канча? g ≈ 10 Н/кг.",
+        "ru": "Масса машины с грузом 7000 кг. Чтобы равномерно двигать её, нужна сила тяги 35 кН. Каков коэффициент трения колёс о дорогу? g ≈ 10 Н/кг.",
+        "en": "A loaded truck has a mass of 7000 kg. Moving it steadily takes a 35 kN pull. What is the coefficient of friction between wheels and road? g ≈ 10 N/kg."
+      },
+      "answer": 0.5,
+      "tolerance": 0.01,
+      "explanation": {
+        "ky": "P = mg = 70 000 Н; μ = F/P = 35 000 : 70 000 = 0,5.",
+        "ru": "P = mg = 70 000 Н; μ = F/P = 35 000 : 70 000 = 0,5.",
+        "en": "W = mg = 70,000 N; μ = F/W = 35,000 ÷ 70,000 = 0.5."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 3
+    }
+  ]
+}
