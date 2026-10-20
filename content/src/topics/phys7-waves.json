@@ -1,0 +1,1016 @@
+{
+  "topic": {
+    "key": "phys7-waves",
+    "unitKey": "phys.g7.oscillations",
+    "status": "published",
+    "title": {
+      "ky": "Толкундар",
+      "ru": "Волны",
+      "en": "Waves"
+    },
+    "formula": "v = \\lambda \\nu",
+    "classification": {
+      "ky": "Механикалык толкундар",
+      "ru": "Механические волны",
+      "en": "Mechanical waves"
+    },
+    "description": {
+      "ky": "Жиптин учун силкисек, ал боюнча толкун чуркайт; көлгө таш ыргытсак, толкун тегерек болуп тарайт. Серпилгичтүү чөйрөдө термелүүлөрдүн таралышы механикалык толкун деп аталат. Толкун энергияны ташыйт, бирок бөлүкчөлөр ордунда гана термелет. Бөлүкчөлөр толкундун багытына перпендикуляр термелсе – туурасынан, боюнча термелсе – узатасынан толкун. Эки өркөчтүн ортосундагы аралык – толкун узундугу λ; толкундун ылдамдыгы v = λν.",
+      "ru": "Тряхнём конец верёвки – по ней побежит волна; бросим камень в пруд – волны разойдутся кругами. Распространение колебаний в упругой среде называют механической волной. Волна переносит энергию, а частицы лишь колеблются на месте. Если частицы колеблются поперёк направления волны – волна поперечная, вдоль – продольная. Расстояние между гребнями – длина волны λ; скорость волны v = λν.",
+      "en": "Shake a rope and a wave runs along it; drop a stone in a pond and waves spread in circles. Oscillations spreading through an elastic medium form a mechanical wave. The wave carries energy while the particles only oscillate in place. If they move across the wave’s direction the wave is transverse, along it – longitudinal. The crest-to-crest distance is the wavelength λ, and the wave speed is v = λν."
+    },
+    "goal": {
+      "ky": "Толкундун пайда болушун жана таралышын түшүндүрүү, туурасынан жана узатасынан толкундарды айырмалоо, v = λν формуласын колдонуу (PHYS-7.6.2).",
+      "ru": "Объяснять возникновение и распространение волн, различать поперечные и продольные волны, применять формулу v = λν (PHYS-7.6.2).",
+      "en": "Explain how waves arise and travel, tell transverse from longitudinal waves and use v = λν (PHYS-7.6.2)."
+    },
+    "objectiveKeys": [
+      "phys.g7.oscillations.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "waves",
+        "variant": "transverse",
+        "amplitude": 0.3,
+        "wavelength": 2,
+        "frequency": 1,
+        "medium": "rope"
+      },
+      "camera": {
+        "position": [
+          1.2,
+          2.4,
+          7
+        ],
+        "target": [
+          0,
+          1.2,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "trace",
+        "vectors"
+      ]
+    },
+    "conceptKeys": [
+      "phys.wave",
+      "phys.oscillation",
+      "phys.transverse-wave",
+      "phys.longitudinal-wave",
+      "phys.wavelength",
+      "phys.amplitude",
+      "phys.wave-speed",
+      "phys.equilibrium"
+    ],
+    "overrides": {
+      "phys.wave": {
+        "nodes": [
+          "Medium",
+          "Bead_*",
+          "Medium_Link_*"
+        ],
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Жип, 40 мончок",
+              "ru": "Верёвка, 40 бусин",
+              "en": "Rope, 40 beads"
+            }
+          }
+        ]
+      },
+      "phys.oscillation": {
+        "nodes": [
+          "Source",
+          "Source_*"
+        ],
+        "title": {
+          "ky": "Термелүү булагы",
+          "ru": "Источник колебаний",
+          "en": "Wave source"
+        },
+        "description": {
+          "ky": "Жиптин учун өйдө-төмөн кыймылдаткан кол – термелүү булагы. Ал секундасына бир жолу (ν = 1 Гц) термелет; анын термелүүсү жиптин бөлүкчөлөрүнө берилип, чөйрө боюнча тарайт.",
+          "ru": "Рука, двигающая конец верёвки вверх-вниз, – источник колебаний. Она совершает одно колебание в секунду (ν = 1 Гц); её колебания передаются частицам верёвки и бегут по среде.",
+          "en": "The hand moving the rope’s end up and down is the source. It oscillates once a second (ν = 1 Hz), and its motion is passed to the rope and travels along it."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frequency",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "period",
+            "value": 1
+          }
+        ]
+      },
+      "phys.transverse-wave": {
+        "nodes": [
+          "Arrow_Bead_*"
+        ]
+      },
+      "phys.longitudinal-wave": {
+        "nodes": [
+          "Compression_*",
+          "Rarefaction_*"
+        ]
+      },
+      "phys.wavelength": {
+        "nodes": [
+          "Marker_Wavelength"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 2
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\lambda = vT = 2 \\cdot 1"
+          }
+        ]
+      },
+      "phys.amplitude": {
+        "nodes": [
+          "Marker_Amplitude"
+        ],
+        "description": {
+          "ky": "Толкундагы бөлүкчөнүн тең салмактуулук абалынан эң чоң четтөөсү – амплитуда: бул жерде A = 0,3 м.",
+          "ru": "Наибольшее отклонение частицы волны от положения равновесия – амплитуда: здесь A = 0,3 м.",
+          "en": "The largest displacement of a particle from equilibrium is the amplitude: here A = 0.3 m."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.3
+          }
+        ]
+      },
+      "phys.wave-speed": {
+        "nodes": [
+          "Arrow_Wave"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 2
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "v = \\lambda\\nu = 2 \\cdot 1 = 2"
+          }
+        ]
+      },
+      "phys.equilibrium": {
+        "nodes": [
+          "Equilibrium"
+        ],
+        "description": {
+          "ky": "Толкун жок кезде жип түз жатат – бул бөлүкчөлөрдүн тең салмактуулук абалы. Ар бир мончок ушул сызыктын айланасында термелет.",
+          "ru": "Когда волны нет, верёвка лежит прямо – это положение равновесия частиц. Каждая бусина колеблется около этой линии.",
+          "en": "With no wave the rope lies straight – the particles’ equilibrium. Every bead oscillates about this line."
+        }
+      }
+    },
+    "samples": [
+      {
+        "key": "wave-rope",
+        "title": {
+          "ky": "Жиптеги толкун, ν = 1 Гц",
+          "ru": "Волна на верёвке, ν = 1 Гц",
+          "en": "Rope wave, ν = 1 Hz"
+        },
+        "classification": {
+          "ky": "λ = 2 м, v = 2 м/с",
+          "ru": "λ = 2 м, v = 2 м/с",
+          "en": "λ = 2 m, v = 2 m/s"
+        },
+        "thumb": "thumbs/wave-rope.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frequency",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 2
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "waves",
+            "variant": "transverse",
+            "amplitude": 0.3,
+            "wavelength": 2,
+            "frequency": 1,
+            "medium": "rope"
+          },
+          "camera": {
+            "position": [
+              1.52,
+              3.55,
+              11.73
+            ],
+            "target": [
+              -0.49,
+              1.54,
+              0
+            ],
+            "fov": 45
+          }
+        }
+      },
+      {
+        "key": "wave-rope-fast",
+        "title": {
+          "ky": "Жиптеги толкун, ν = 2 Гц",
+          "ru": "Волна на верёвке, ν = 2 Гц",
+          "en": "Rope wave, ν = 2 Hz"
+        },
+        "classification": {
+          "ky": "λ = 1 м, v = 2 м/с",
+          "ru": "λ = 1 м, v = 2 м/с",
+          "en": "λ = 1 m, v = 2 m/s"
+        },
+        "thumb": "thumbs/wave-rope-fast.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frequency",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 2
+          }
+        ],
+        "scene": {
+          "params": {
+            "frequency": 2,
+            "wavelength": 1
+          }
+        }
+      },
+      {
+        "key": "wave-spring",
+        "title": {
+          "ky": "Пружинадагы узатасынан толкун",
+          "ru": "Продольная волна в пружине",
+          "en": "Longitudinal wave in a spring"
+        },
+        "classification": {
+          "ky": "Тыгыздалуулар жана сейректелүүлөр",
+          "ru": "Сгущения и разрежения",
+          "en": "Compressions and rarefactions"
+        },
+        "thumb": "thumbs/wave-spring.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frequency",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 2
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "longitudinal",
+            "medium": "spring",
+            "amplitude": 0.2
+          }
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "rope",
+            "camera": {
+              "position": [
+                1.43,
+                2.73,
+                8.33
+              ],
+              "target": [
+                0,
+                1.3,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.wave",
+            "text": {
+              "ky": "Узун жиптин бир учун дубалга бекитип, экинчи учун колубуз менен өйдө-төмөн кыймылдатабыз. Жипти бойлото өркөчтөр жана ойдуңдар «жүгүрөт» – бул толкун (140-сүрөт).",
+              "ru": "Один конец длинной верёвки закрепим на стене, другой будем двигать рукой вверх-вниз. Вдоль верёвки «бегут» горбы и впадины – это волна (рис. 140).",
+              "en": "Tie one end of a long rope to a wall and move the other end up and down by hand. Humps and dips run along the rope – a wave (fig. 140)."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: жиптин бөлүктөрү жип боюнча жылабы? Кызыл мончокту байкагыла.",
+              "ru": "Спросите: движутся ли кусочки верёвки вдоль неё? Следите за красной бусиной.",
+              "en": "Ask whether bits of rope travel along it – watch the red bead."
+            },
+            "altText": {
+              "ky": "Жип боюнча синусоида сымал толкун, сол жакта кол.",
+              "ru": "Волна-синусоида вдоль верёвки, слева рука.",
+              "en": "A sine-shaped wave along the rope with a hand on the left."
+            }
+          },
+          {
+            "key": "source",
+            "focus": "phys.oscillation",
+            "text": {
+              "ky": "Кол – термелүү булагы. Жиптин ар бир бөлүгү жанындагы бөлүгүн ээрчип термеле баштайт: термелүү чөйрө боюнча тарайт. Серпилгичтүү чөйрөдө термелүүлөрдүн таралышы механикалык толкун деп аталат.",
+              "ru": "Рука – источник колебаний. Каждый кусочек верёвки начинает колебаться вслед за соседним: колебания бегут по среде. Распространение колебаний в упругой среде называют механической волной.",
+              "en": "The hand is the source. Each bit of rope starts to oscillate after its neighbour, so the oscillation runs along the medium. Oscillations spreading through an elastic medium form a mechanical wave."
+            },
+            "teacherNote": {
+              "ky": "139-сүрөттөгү пружиналар менен байланышкан шарчалар моделин тактага тартыңыз.",
+              "ru": "Нарисуйте модель упругой среды из рис. 139 – шарики на пружинах.",
+              "en": "Sketch the balls-on-springs model of fig. 139."
+            },
+            "altText": {
+              "ky": "Жиптин учундагы кол бөлүнүп көрсөтүлгөн.",
+              "ru": "Выделена рука на конце верёвки.",
+              "en": "The hand at the end of the rope is highlighted."
+            }
+          },
+          {
+            "key": "particles",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.transverse-wave",
+            "text": {
+              "ky": "Кызыл мончок ордунда эле өйдө-төмөн термелет – ал толкун менен кетпейт. Толкун затты эмес, энергияны ташыйт. Бөлүкчөлөр толкундун багытына перпендикуляр термелгендиктен, бул – туурасынан толкун.",
+              "ru": "Красная бусина колеблется вверх-вниз на месте – с волной она не уходит. Волна переносит энергию, а не вещество. Частицы колеблются поперёк направления волны – это поперечная волна.",
+              "en": "The red bead bobs up and down in place – it does not travel with the wave. A wave carries energy, not matter. The particles move across the wave’s direction: a transverse wave."
+            },
+            "teacherNote": {
+              "ky": "Китептеги мисал: көлгө таш ыргытканда кагаз ордунда термелет.",
+              "ru": "Пример учебника: бумажка на пруду качается на месте.",
+              "en": "The book’s example: paper on a pond bobs in place."
+            },
+            "altText": {
+              "ky": "Мончоктордун ылдамдык жебелери тик багытталган.",
+              "ru": "Стрелки скоростей бусин направлены вертикально.",
+              "en": "The beads’ velocity arrows point vertically."
+            }
+          },
+          {
+            "key": "wavelength",
+            "modes": {
+              "trace": true
+            },
+            "focus": "phys.wavelength",
+            "text": {
+              "ky": "Эки жанаша өркөчтүн ортосундагы аралык – толкун узундугу λ = 2 м. Өркөчтүн тең салмактуулук абалынан бийиктиги – амплитуда A = 0,3 м. Бир мезгилде (T = 1 с) толкун так бир λ га жылат.",
+              "ru": "Расстояние между соседними гребнями – длина волны λ = 2 м. Высота гребня над положением равновесия – амплитуда A = 0,3 м. За один период (T = 1 с) волна сдвигается ровно на λ.",
+              "en": "The distance between neighbouring crests is the wavelength λ = 2 m; the crest height above equilibrium is the amplitude A = 0.3 m. In one period (T = 1 s) the wave moves exactly one λ."
+            },
+            "teacherNote": {
+              "ky": "Ката: толкун узундугун өркөчтүн бийиктиги менен чаташтыруу.",
+              "ru": "Ошибка: путать длину волны с высотой гребня.",
+              "en": "Watch for pupils confusing wavelength with crest height."
+            },
+            "altText": {
+              "ky": "Эки өркөчтүн ортосунда λ белгиси, өркөчтүн бийиктигинде A белгиси.",
+              "ru": "Отметка λ между гребнями и отметка A у высоты гребня.",
+              "en": "A λ marker between crests and an A marker at crest height."
+            }
+          },
+          {
+            "key": "speed",
+            "modes": {
+              "trace": true
+            },
+            "focus": "phys.wave-speed",
+            "sample": "wave-rope-fast",
+            "text": {
+              "ky": "Толкундун ылдамдыгы v = λ/T = λν = 2 м · 1 Гц = 2 м/с. Колду секундасына 2 жолу силкисек (ν = 2 Гц), ылдамдык ошол эле 2 м/с, бирок λ = 1 м болуп калат.",
+              "ru": "Скорость волны v = λ/T = λν = 2 м · 1 Гц = 2 м/с. Будем трясти рукой 2 раза в секунду (ν = 2 Гц) – скорость та же, 2 м/с, а λ станет 1 м.",
+              "en": "The wave speed is v = λ/T = λν = 2 m × 1 Hz = 2 m/s. Shake twice a second (ν = 2 Hz) and the speed is still 2 m/s, but λ becomes 1 m."
+            },
+            "teacherNote": {
+              "ky": "v = λν формуласы китепте жок; бул 7-класстын программасындагы максат (PHYS-7.6.2). Тактага жазып, бирге текшериңиз.",
+              "ru": "Формулы v = λν в учебнике нет; это цель программы 7 класса (PHYS-7.6.2). Запишите и проверьте вместе.",
+              "en": "The book does not give v = λν; it is a grade-7 programme objective (PHYS-7.6.2). Write it up and check it together."
+            },
+            "altText": {
+              "ky": "Жыштыраак толкун: өркөчтөр эки эсе жакын.",
+              "ru": "Более частая волна: гребни вдвое ближе.",
+              "en": "A higher-frequency wave: crests twice as close."
+            }
+          },
+          {
+            "key": "longitudinal",
+            "focus": "phys.longitudinal-wave",
+            "sample": "wave-spring",
+            "text": {
+              "ky": "Узун пружинанын учун алга-артка кыймылдатсак, шакекчелер толкундун багыты боюнча термелет: тыгыздалуулар жана сейректелүүлөр чуркайт. Бул – узатасынан толкун; үн абада ушундай тарайт.",
+              "ru": "Если двигать конец длинной пружины вперёд-назад, витки колеблются вдоль направления волны: бегут сгущения и разрежения. Это продольная волна; так звук идёт по воздуху.",
+              "en": "Move the end of a long spring back and forth and the coils oscillate along the wave’s direction: compressions and rarefactions run along it. This is a longitudinal wave – how sound travels in air."
+            },
+            "teacherNote": {
+              "ky": "Талаадагы эгиндин толкундануусу жана цунами – толкундун мисалдары (§54).",
+              "ru": "Волнение колосьев и цунами – примеры волн (§54).",
+              "en": "Rippling wheat and tsunamis are examples of waves (§54)."
+            },
+            "altText": {
+              "ky": "Пружинада кезектешкен тыгыз жана сейрек жерлер.",
+              "ru": "Чередующиеся сгущения и разрежения в пружине.",
+              "en": "Alternating dense and sparse regions in the spring."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.wave-propagation"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "wave-rope"
+          },
+          {
+            "kind": "sample",
+            "key": "wave-rope-fast"
+          },
+          {
+            "kind": "sample",
+            "key": "wave-spring"
+          }
+        ],
+        "rows": [
+          "frequency",
+          "length",
+          "speed"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-waves-1",
+          "phys.q.phys7-waves-2",
+          "phys.q.phys7-waves-3",
+          "phys.q.phys7-waves-4",
+          "phys.q.phys7-waves-5",
+          "phys.q.phys7-waves-6",
+          "phys.q.phys7-waves-7",
+          "phys.q.phys7-waves-8",
+          "phys.q.phys7-waves-9",
+          "phys.q.phys7-waves-10"
+        ],
+        "sampleSize": 6
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Жер титирөө жана цунами",
+            "ru": "Землетрясения и цунами",
+            "en": "Earthquakes and tsunamis"
+          },
+          "text": {
+            "ky": "Жер титирөөнүн толкундары жүздөгөн километрге тарайт; станциялар алардын келген убактысы боюнча борборун табат жана цунами жөнүндө эскертет.",
+            "ru": "Волны землетрясения расходятся на сотни километров; по времени их прихода станции находят эпицентр и предупреждают о цунами.",
+            "en": "Earthquake waves spread hundreds of kilometres; stations time their arrival to find the epicentre and warn of tsunamis."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Толкун электр станциялары",
+            "ru": "Волновые электростанции",
+            "en": "Wave power"
+          },
+          "text": {
+            "ky": "Океандардагы толкундардын энергиясын пайдалануу үчүн электр станциялары курулуп, иштеп жатат (§54).",
+            "ru": "Чтобы использовать энергию океанских волн, строят электростанции (§54).",
+            "en": "Power stations are built to use the energy of ocean waves (§54)."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "v = λν",
+            "ru": "v = λν",
+            "en": "v = λν"
+          },
+          "text": {
+            "ky": "λ = 2 м, ν = 1 Гц болсо v = 2 м/с; ν эки эсе чоңойсо, ошол эле чөйрөдө λ эки эсе кыскарат – көбөйтүндү туруктуу.",
+            "ru": "При λ = 2 м и ν = 1 Гц v = 2 м/с; если ν вдвое больше, в той же среде λ вдвое меньше – произведение постоянно.",
+            "en": "With λ = 2 m and ν = 1 Hz, v = 2 m/s; double ν and in the same medium λ halves – the product stays constant."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Стадиондогу «толкун»",
+            "ru": "«Волна» на стадионе",
+            "en": "A stadium wave"
+          },
+          "text": {
+            "ky": "Ар бир күйөрман ордунда туруп-отурат, бирок «толкун» стадионду айланат – энергия берилет, адамдар ордунда.",
+            "ru": "Каждый болельщик встаёт и садится на месте, а «волна» обегает стадион: передаётся движение, люди остаются на местах.",
+            "en": "Each fan stands and sits in place while the wave runs round – the motion is passed on, the people stay put."
+          }
+        },
+        {
+          "title": {
+            "ky": "Көлгө таш ыргытуу",
+            "ru": "Камень в пруду",
+            "en": "A stone in a pond"
+          },
+          "text": {
+            "ky": "Тынч сууга таш ыргытсаң, толкун бардык багытка тегерек болуп тарайт (141-сүрөт).",
+            "ru": "Бросишь камень в спокойную воду – волны разойдутся кругами во все стороны (рис. 141).",
+            "en": "Throw a stone into still water and circular waves spread in every direction (fig. 141)."
+          }
+        }
+      ]
+    },
+    "props": [
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "v = \\lambda\\nu"
+      },
+      {
+        "kind": "quantity",
+        "type": "length",
+        "value": 2
+      },
+      {
+        "kind": "quantity",
+        "type": "speed",
+        "value": 2
+      }
+    ],
+    "starters": [
+      {
+        "ky": "Толкун суунун бөлүкчөлөрүн алып кетеби?",
+        "ru": "Уносит ли волна частицы воды?",
+        "en": "Does a wave carry the water with it?"
+      },
+      {
+        "ky": "Туурасынан жана узатасынан толкундун айырмасы эмнеде?",
+        "ru": "Чем поперечная волна отличается от продольной?",
+        "en": "How do transverse and longitudinal waves differ?"
+      },
+      {
+        "ky": "Толкун узундугун кантип табабыз?",
+        "ru": "Как найти длину волны?",
+        "en": "How do you find the wavelength?"
+      },
+      {
+        "ky": "v = λν формуласы эмнени билдирет?",
+        "ru": "Что означает формула v = λν?",
+        "en": "What does v = λν mean?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Мамбетакунов, «Физика», 7-класс (kg-2018), V–VI главалар"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-waves-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Механикалык толкун деп эмнени айтабыз?",
+        "ru": "Что называют механической волной?",
+        "en": "What is a mechanical wave?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Серпилгичтүү чөйрөдө термелүүлөрдүн таралышын",
+            "ru": "Распространение колебаний в упругой среде",
+            "en": "Oscillations spreading through an elastic medium"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Бир нерсенин мезгилдүү кыймылын",
+            "ru": "Периодическое движение одного тела",
+            "en": "The periodic motion of a single body"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Суунун агымын",
+            "ru": "Течение воды",
+            "en": "A current of water"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Боштуктагы жарыкты",
+            "ru": "Свет в пустоте",
+            "en": "Light in a vacuum"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Серпилгичтүү чөйрөдө термелүүлөрдүн таралышы механикалык толкундар деп аталат (§54).",
+        "ru": "Распространение колебаний в упругой среде называют механическими волнами (§54).",
+        "en": "The spreading of oscillations in an elastic medium is a mechanical wave (§54)."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-waves-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Көлдөгү толкундун үстүндө кагаз жатат. Толкун өткөндө кагаз эмне кылат?",
+        "ru": "На волнах пруда лежит бумажка. Что она делает, когда проходит волна?",
+        "en": "A scrap of paper lies on a pond. What does it do as a wave passes?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Толкун менен кошо жээкке жылат",
+            "ru": "Уплывает с волной к берегу",
+            "en": "It rides with the wave to the shore"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ордунда эле өйдө-төмөн термелет",
+            "ru": "Качается вверх-вниз на месте",
+            "en": "It bobs up and down in place"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Сууга чөгөт",
+            "ru": "Тонет",
+            "en": "It sinks"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Толкун чөйрөнүн бөлүкчөлөрүн алып кетпейт, энергияны гана ташыйт: кагаз ордунда термелет.",
+        "ru": "Волна не уносит частицы среды, она переносит только энергию: бумажка качается на месте.",
+        "en": "A wave carries energy, not the medium: the paper bobs in place."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "misconceptionKey": "phys.m.wave-carries-matter",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-waves-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Жиптеги толкундун узундугу 2 м, жыштыгы 1 Гц. Толкун кандай ылдамдык менен таралат, м/с?",
+        "ru": "Длина волны на верёвке 2 м, частота 1 Гц. С какой скоростью бежит волна, м/с?",
+        "en": "A wave on a rope has λ = 2 m and ν = 1 Hz. What is its speed in m/s?"
+      },
+      "answer": 2,
+      "tolerance": 0.01,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "v = λν = 2 м · 1 Гц = 2 м/с.",
+        "ru": "v = λν = 2 м · 1 Гц = 2 м/с.",
+        "en": "v = λν = 2 m × 1 Hz = 2 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-waves-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Ошол эле жипте (v = 2 м/с) колду секундасына 2 жолу силкий баштадык (ν = 2 Гц). Толкун узундугу канча метр болот?",
+        "ru": "На той же верёвке (v = 2 м/с) стали трясти рукой 2 раза в секунду (ν = 2 Гц). Какой станет длина волны, м?",
+        "en": "On the same rope (v = 2 m/s) the hand now shakes twice a second (ν = 2 Hz). What is the wavelength in m?"
+      },
+      "answer": 1,
+      "tolerance": 0.01,
+      "unit": "m",
+      "explanation": {
+        "ky": "Бир эле чөйрөдө ылдамдык өзгөрбөйт: λ = v/ν = 2/2 = 1 м. Жыштык 2 эсе чоңойду – толкун узундугу 2 эсе кыскарды.",
+        "ru": "В той же среде скорость не меняется: λ = v/ν = 2/2 = 1 м. Частота выросла вдвое – длина волны вдвое уменьшилась.",
+        "en": "In the same medium the speed is unchanged: λ = v/ν = 2/2 = 1 m. Double the frequency, half the wavelength."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "misconceptionKey": "phys.m.frequency-changes-speed",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-waves-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Абада үн 330 м/с менен таралат. Жыштыгы 440 Гц үндүн толкун узундугу канча метр?",
+        "ru": "Звук в воздухе идёт со скоростью 330 м/с. Какова длина волны звука частотой 440 Гц, м?",
+        "en": "Sound travels at 330 m/s in air. What is the wavelength of a 440 Hz note in m?"
+      },
+      "answer": 0.75,
+      "tolerance": 0.01,
+      "unit": "m",
+      "explanation": {
+        "ky": "λ = v/ν = 330/440 = 0,75 м.",
+        "ru": "λ = v/ν = 330/440 = 0,75 м.",
+        "en": "λ = v/ν = 330/440 = 0.75 m."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-waves-6",
+      "type": "match",
+      "prompt": {
+        "ky": "Толкундун түрүн анын белгиси менен дал келтир.",
+        "ru": "Сопоставь вид волны и её признак.",
+        "en": "Match each kind of wave to its feature."
+      },
+      "pairs": [
+        {
+          "key": "tr",
+          "left": {
+            "ky": "Туурасынан толкун",
+            "ru": "Поперечная волна",
+            "en": "Transverse wave"
+          },
+          "right": {
+            "ky": "Бөлүкчөлөр таралуу багытына перпендикуляр термелет",
+            "ru": "Частицы колеблются поперёк направления распространения",
+            "en": "Particles move across the direction of travel"
+          }
+        },
+        {
+          "key": "lo",
+          "left": {
+            "ky": "Узатасынан толкун",
+            "ru": "Продольная волна",
+            "en": "Longitudinal wave"
+          },
+          "right": {
+            "ky": "Тыгыздалуулар жана сейректелүүлөр кезектешет",
+            "ru": "Чередуются сгущения и разрежения",
+            "en": "Compressions and rarefactions alternate"
+          }
+        },
+        {
+          "key": "len",
+          "left": {
+            "ky": "Толкун узундугу",
+            "ru": "Длина волны",
+            "en": "Wavelength"
+          },
+          "right": {
+            "ky": "Эки жанаша өркөчтүн ортосундагы аралык",
+            "ru": "Расстояние между соседними гребнями",
+            "en": "Distance between neighbouring crests"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Жиптеги толкун – туурасынан, пружинадагы жана абадагы үн – узатасынан.",
+        "ru": "Волна на верёвке поперечная, в пружине и звук в воздухе – продольные.",
+        "en": "A wave on a rope is transverse; one in a slinky, or sound in air, is longitudinal."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-waves-7",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден толкун узундугун көрсөткөн белгини тап.",
+        "ru": "Найди на модели отметку длины волны.",
+        "en": "Find the wavelength marker on the model."
+      },
+      "targetConceptKey": "phys.wavelength",
+      "explanation": {
+        "ky": "λ – эки жанаша өркөчтүн ортосундагы кесинди.",
+        "ru": "λ – отрезок между двумя соседними гребнями.",
+        "en": "λ is the bar between two neighbouring crests."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-waves-8",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Механикалык толкун кайсы чөйрөлөрдө тарай алат?",
+        "ru": "В каких средах может распространяться механическая волна?",
+        "en": "Where can a mechanical wave travel?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Абада",
+            "ru": "В воздухе",
+            "en": "Air"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Сууда",
+            "ru": "В воде",
+            "en": "Water"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Болотто",
+            "ru": "В стали",
+            "en": "Steel"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Боштукта (вакуумда)",
+            "ru": "В пустоте (вакууме)",
+            "en": "A vacuum"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Газ, суюк жана катуу нерселер – серпилгичтүү чөйрөлөр. Боштукта бөлүкчөлөр жок, механикалык толкун таралбайт.",
+        "ru": "Газы, жидкости и твёрдые тела – упругие среды. В пустоте частиц нет, механическая волна не распространяется.",
+        "en": "Gases, liquids and solids are elastic media. A vacuum has no particles, so mechanical waves cannot cross it."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-waves-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Абадагы үн толкуну кандай толкун?",
+        "ru": "Какая волна – звук в воздухе?",
+        "en": "What kind of wave is sound in air?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Туурасынан",
+            "ru": "Поперечная",
+            "en": "Transverse"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Узатасынан",
+            "ru": "Продольная",
+            "en": "Longitudinal"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Толкун эмес",
+            "ru": "Это не волна",
+            "en": "Not a wave"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Абада механикалык толкун узатасынан гана тарайт: аба тыгыздалып, сейректелет.",
+        "ru": "В воздухе механические волны только продольные: воздух то сгущается, то разрежается.",
+        "en": "Mechanical waves in air are only longitudinal: the air is squeezed and stretched."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "misconceptionKey": "phys.m.transverse-in-air",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-waves-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Толкун узундугу деп эмнени айтабыз?",
+        "ru": "Что такое длина волны?",
+        "en": "What is the wavelength?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Өркөчтүн бийиктигин",
+            "ru": "Высоту гребня",
+            "en": "The height of a crest"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Эки жанаша өркөчтүн ортосундагы аралыкты",
+            "ru": "Расстояние между двумя соседними гребнями",
+            "en": "The distance between two neighbouring crests"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жиптин узундугун",
+            "ru": "Длину верёвки",
+            "en": "The length of the rope"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Өркөчтүн бийиктиги – амплитуда; толкун узундугу λ – өркөчтөн өркөчкө чейинки аралык.",
+        "ru": "Высота гребня – амплитуда; длина волны λ – расстояние от гребня до гребня.",
+        "en": "Crest height is the amplitude; wavelength λ is the distance crest to crest."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "misconceptionKey": "phys.m.wavelength-is-height",
+      "difficulty": 1
+    }
+  ]
+}

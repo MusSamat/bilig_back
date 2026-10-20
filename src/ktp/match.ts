@@ -5,9 +5,10 @@
  * map to it (a strong signal: the КТП usually copies the textbook) and its
  * concept titles (a weaker one). Words are compared Kyrgyz/Russian-aware:
  * lower case, ё → е, no punctuation/numbering/«(10 саат)», and a word matches
- * another when they are equal or share a prefix of ≥ 5 letters (a ≥ 4-letter
- * word may also be a prefix of the other: «атом» ~ «атомдун»), which absorbs
- * case endings and the к/г, п/б mutations at the stem end.
+ * another when they are equal, a ≥ 4-letter word is a prefix of the other
+ * («атом» ~ «атомдун»), or they differ only from the shorter word's last
+ * letter on (≥ 5 letters shared) — case endings and the к/г, п/б mutations at
+ * the stem end, but not a different word on the same root.
  *
  * Score 0..1 = max over the topic's texts of max(Dice, containment), where
  * containment (every word of the topic text is in the lesson title) =
@@ -47,14 +48,24 @@ export function tokens(text: string): string[] {
   return t.split(' ').filter((w) => w.length > 1 && !/^\d+$/.test(w) && !STOP.has(w) && !TYPE_WORDS.has(w));
 }
 
-export function wordMatch(a: string, b: string): boolean {
-  if (a === b) return true;
+/**
+ * How well two words match, 0..1: 1 when equal or one is a ≥ 4-letter prefix of the other (an ending:
+ * «атом» ~ «атомдун»); otherwise the shared prefix (≥ 5 letters) over the shorter word — a mutated stem
+ * end scores slightly lower than an exact word («ылдамдык» ~ «ылдамдыгы» 7/8); a different word on the
+ * same root does not match («ылдамдык» speed ≠ «ылдамдануу» acceleration).
+ */
+export function wordWeight(a: string, b: string): number {
+  if (a === b) return 1;
   const [s, l] = a.length <= b.length ? [a, b] : [b, a];
-  if (s.length >= 4 && l.startsWith(s)) return true;
+  if (s.length >= 4 && l.startsWith(s)) return 1;
   let i = 0;
   while (i < s.length && s[i] === l[i]) i++;
-  return i >= 5;
+  // Only the stem's last letter may differ (к/г, п/б mutation before an ending): «ылдамдык» ~ «ылдамдыгы»,
+  // «скорость» ~ «скорости»; a different word on the same root is not the same word («ылдамдануу»).
+  return i >= 5 && i >= s.length - 1 ? i / s.length : 0;
 }
+
+export const wordMatch = (a: string, b: string): boolean => wordWeight(a, b) > 0;
 
 /** Unique words (by `wordMatch`), in order. */
 function uniq(ws: string[]): string[] {
@@ -67,15 +78,24 @@ export function similarity(q: readonly string[], d: readonly string[]): number {
   if (!q.length || !d.length) return 0;
   const used = new Array(d.length).fill(false);
   let m = 0;
-  for (const w of q) {
-    const j = d.findIndex((x, k) => !used[k] && wordMatch(w, x));
+  let w = 0;
+  for (const word of q) {
+    // The best unused partner, not the first: «ылдамдык» prefers «ылдамдык» over «ылдамдануу».
+    let j = -1;
+    let best = 0;
+    d.forEach((x, k) => {
+      const ww = used[k] ? 0 : wordWeight(word, x);
+      if (ww > best) [j, best] = [k, ww];
+    });
     if (j >= 0) {
       used[j] = true;
       m++;
+      w += best;
     }
   }
-  const dice = (2 * m) / (q.length + d.length);
-  const contain = m === d.length ? 0.5 + (0.5 * m) / q.length : 0;
+  const dice = (2 * w) / (q.length + d.length);
+  // Containment, scaled by how exact the matched words are.
+  const contain = m === d.length ? (0.5 + (0.5 * w) / q.length) * (w / m) : 0;
   return Math.max(dice, contain);
 }
 
@@ -127,23 +147,31 @@ export interface MatchResult {
 }
 
 export function scoreTopic(q: readonly string[], t: TopicDoc): number {
-  let best = 0;
-  for (const d of t.strong) best = Math.max(best, similarity(q, d));
-  for (const d of t.weak) best = Math.max(best, CONCEPT_WEIGHT * similarity(q, d));
-  return best;
+  return scoreParts(q, t).score;
+}
+
+/** The score, and the best match on the topic's own titles (the tie-break between equal scores). */
+function scoreParts(q: readonly string[], t: TopicDoc): { score: number; strong: number } {
+  let strong = 0;
+  for (const d of t.strong) strong = Math.max(strong, similarity(q, d));
+  let weak = 0;
+  for (const d of t.weak) weak = Math.max(weak, CONCEPT_WEIGHT * similarity(q, d));
+  return { score: Math.max(strong, weak), strong };
 }
 
 export function matchTitle(index: TopicIndex, title: string, ctx: MatchContext): MatchResult | null {
   const q = uniq(tokens(title));
   if (!q.length) return null;
-  const best: (MatchResult | null)[] = [null, null, null];
+  const best: ((MatchResult & { strong: number }) | null)[] = [null, null, null];
   for (const t of index.topics) {
     const sameSubject = ctx.subjectKey === null || t.subjectKey === ctx.subjectKey;
     const sameGrade = ctx.grade === null || t.grade === null || t.grade === ctx.grade;
     const tier = !sameSubject ? 2 : sameGrade ? 0 : 1;
-    const score = scoreTopic(q, t);
+    const { score, strong } = scoreParts(q, t);
     if (score < THRESHOLDS[tier]) continue;
-    if (!best[tier] || score > best[tier]!.score) best[tier] = { topicKey: t.key, score };
+    // Equal scores (often two topics sharing a concept): the one whose own title / textbook lesson is closer.
+    const cur = best[tier];
+    if (!cur || score > cur.score + 1e-9 || (Math.abs(score - cur.score) <= 1e-9 && strong > cur.strong)) best[tier] = { topicKey: t.key, score, strong };
   }
   const hit = best.find(Boolean) ?? null;
   return hit ? { topicKey: hit.topicKey, score: Math.round(Math.min(1, hit.score) * 100) / 100 } : null;

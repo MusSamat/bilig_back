@@ -64,6 +64,7 @@ import type {
   SnapshotRec,
   TopicRec,
   TopicVersionRec,
+  TutorAnswerRec,
   TutorMessageRec,
   GeneratedFilter,
   GeneratedRec,
@@ -1379,6 +1380,16 @@ export class PrismaRepository implements Repository {
   async addTutorMessage(m: TutorMessageRec) {
     await this.db.tutorMessage.create({ data: m });
   }
+  async getTutorAnswer(key: string) {
+    const r = await this.db.tutorAnswer.findUnique({ where: { key } });
+    return r ? { ...r, lang: r.lang as TutorAnswerRec['lang'] } : null;
+  }
+  async putTutorAnswer(a: TutorAnswerRec) {
+    await this.db.tutorAnswer.createMany({ data: [a], skipDuplicates: true });
+  }
+  async hitTutorAnswer(key: string) {
+    await this.db.tutorAnswer.updateMany({ where: { key }, data: { hits: { increment: 1 } } });
+  }
   async addGenerated(rows: GeneratedRec[]) {
     if (!rows.length) return;
     await this.db.generatedContent.createMany({ data: rows.map((g) => ({ ...g, payload: g.payload as object, reasons: g.reasons })) });
@@ -1406,6 +1417,28 @@ export class PrismaRepository implements Repository {
   async updateGenerated(id: Id, patch: Partial<Pick<GeneratedRec, 'status' | 'reviewedAt' | 'reviewedBy' | 'promotedTo'>>) {
     const r = await this.db.generatedContent.updateMany({ where: { id }, data: patch });
     return r.count ? this.getGenerated(id) : null;
+  }
+  async markGeneratedSeen(userId: Id, ids: Id[], at: Date) {
+    if (!ids.length) return;
+    await this.db.generatedSeen.createMany({ data: ids.map((generatedId) => ({ userId, generatedId, seenAt: at })), skipDuplicates: true });
+  }
+  async listSeenGenerated(userId: Id, filter: GeneratedFilter, limit: number) {
+    const rows = await this.db.generatedSeen.findMany({
+      where: {
+        userId,
+        generated: {
+          ...(filter.topicKey ? { topicKey: filter.topicKey } : {}),
+          ...(filter.conceptKey !== undefined ? { conceptKey: filter.conceptKey } : {}),
+          ...(filter.kind ? { kind: filter.kind } : {}),
+          ...(filter.lang ? { lang: filter.lang } : {}),
+          ...(filter.status ? { status: filter.status } : {}),
+        },
+      },
+      include: { generated: true },
+      orderBy: [{ seenAt: 'asc' }, { generatedId: 'asc' }],
+      take: limit,
+    });
+    return rows.map((r) => mapGenerated(r.generated));
   }
   async countGenerated(ids: Id[], delta: { served?: number; good?: number; bad?: number; reason?: string }) {
     if (!ids.length) return;

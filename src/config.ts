@@ -61,6 +61,12 @@ const EnvSchema = z.object({
    */
   DEEPSEEK_GENERATE_EFFORT: z.enum(['none', 'low', 'high', 'max']).default('low'),
   TUTOR_DAILY_TOKEN_BUDGET: z.coerce.number().int().min(0).default(2_000_000),
+  /** USD per 1M tokens, for the cost in logs and the eval (check the provider's price page; defaults: deepseek-flash). */
+  /** Shared answers to self-contained questions (starters, first questions): a repeat costs no tokens. `0` turns it off. */
+  TUTOR_ANSWER_CACHE: z.enum(['0', '1']).default('1').transform((v) => v === '1'),
+  TUTOR_PRICE_INPUT: z.coerce.number().min(0).default(0.15),
+  TUTOR_PRICE_INPUT_CACHED: z.coerce.number().min(0).default(0.003),
+  TUTOR_PRICE_OUTPUT: z.coerce.number().min(0).default(0.6),
   MAIL_TRANSPORT: z.enum(['console', 'memory']).default('console'),
   TRUST_PROXY: bool,
   GIT_COMMIT: z.string().optional(),
@@ -106,6 +112,17 @@ const EnvSchema = z.object({
 
 export type Env = z.infer<typeof EnvSchema>;
 
+export interface TokenPrices {
+  input: number;
+  inputCached: number;
+  output: number;
+}
+/** USD of one call: cached input at the cache price, the rest of the input at the full price. */
+export const usageCostUsd = (u: { inputTokens: number; outputTokens: number; cachedInputTokens?: number }, p: TokenPrices): number => {
+  const cached = Math.min(u.cachedInputTokens ?? 0, u.inputTokens);
+  return ((u.inputTokens - cached) * p.input + cached * p.inputCached + u.outputTokens * p.output) / 1e6;
+};
+
 export interface Config {
   env: Env['NODE_ENV'];
   port: number;
@@ -138,6 +155,10 @@ export interface Config {
     generateEffort: 'none' | 'low' | 'high' | 'max';
   };
   tutorDailyTokenBudget: number;
+  /** USD per 1M tokens: input (cache miss), input served from the prompt cache, output. */
+  tutorPrices: TokenPrices;
+  /** Shared answers to self-contained questions (TUTOR_ANSWER_CACHE). */
+  tutorAnswerCache: boolean;
   mailTransport: Env['MAIL_TRANSPORT'];
   trustProxy: boolean;
   commit?: string;
@@ -262,6 +283,8 @@ export function loadConfig(env?: NodeJS.ProcessEnv): Config {
       generateEffort: e.DEEPSEEK_GENERATE_EFFORT,
     },
     tutorDailyTokenBudget: e.TUTOR_DAILY_TOKEN_BUDGET,
+    tutorPrices: { input: e.TUTOR_PRICE_INPUT, inputCached: e.TUTOR_PRICE_INPUT_CACHED, output: e.TUTOR_PRICE_OUTPUT },
+    tutorAnswerCache: e.TUTOR_ANSWER_CACHE,
     mailTransport: e.MAIL_TRANSPORT,
     trustProxy: e.TRUST_PROXY,
     commit: e.GIT_COMMIT,

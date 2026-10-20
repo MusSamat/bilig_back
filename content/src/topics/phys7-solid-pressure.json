@@ -1,0 +1,1316 @@
+{
+  "topic": {
+    "key": "phys7-solid-pressure",
+    "unitKey": "phys.g7.pressure",
+    "status": "published",
+    "title": {
+      "ky": "Катуу нерселердин басымы",
+      "ru": "Давление твёрдых тел",
+      "en": "Pressure of solids"
+    },
+    "formula": "P = F/S",
+    "classification": {
+      "ky": "Катуу нерселердин басымы",
+      "ru": "Давление твёрдых тел",
+      "en": "Pressure of solids"
+    },
+    "description": {
+      "ky": "Массасы 2,5 кг брусокту кумга кең капталы, кууш капталы жана учу менен коёбуз. Брусоктун салмагы бардык учурда бирдей – 24,5 Н, ал эми кумдагы из ар кандай: күч аракет эткен беттин аянты канчалык кичине болсо, басым P = F/S ошончо чоң болот. Басымдын бирдиги – паскаль; басымды көбөйтүүнүн жана азайтуунун жолдорун карайбыз (§24–25).",
+      "ru": "Ставим брусок массой 2,5 кг на песок широкой гранью, узкой боковой гранью и торцом. Вес бруска всегда один и тот же – 24,5 Н, а вмятина в песке разная: чем меньше площадь, на которую действует сила, тем больше давление p = F/S. Единица давления – паскаль; разбираем способы увеличения и уменьшения давления (§24–25).",
+      "en": "We stand a 2.5 kg block on sand on its wide face, its narrow side and its end. Its weight is always 24.5 N, yet the dent in the sand differs: the smaller the area the force acts on, the bigger the pressure p = F/A. The unit of pressure is the pascal; we look at ways to raise and lower pressure (§24–25)."
+    },
+    "goal": {
+      "ky": "Басымды бетке перпендикуляр аракет эткен күчтүн аянтка болгон катышы катары аныктоо, P = F/S, F = P·S жана S = F/P формулалары менен эсептөө, паскаль, гПа жана кПа бирдиктерин которуу, басымды көбөйтүүнүн жана азайтуунун жолдорун түшүндүрүү (PHYS-7.3.1).",
+      "ru": "Определять давление как отношение силы, действующей перпендикулярно поверхности, к площади, вычислять по формулам p = F/S, F = p·S и S = F/p, переводить паскали, гПа и кПа, объяснять способы увеличения и уменьшения давления (PHYS-7.3.1).",
+      "en": "Define pressure as the force at right angles to a surface divided by its area, calculate with p = F/A, F = p·A and A = F/p, convert between pascals, hPa and kPa, and explain how pressure is raised and lowered (PHYS-7.3.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.pressure.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "pressure",
+        "variant": "solid",
+        "size": [
+          0.25,
+          0.12,
+          0.065
+        ],
+        "mass": 2.5,
+        "face": "large",
+        "surface": "sand"
+      },
+      "camera": {
+        "position": [
+          0.6,
+          1,
+          1.1
+        ],
+        "target": [
+          0,
+          0.05,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.pressure",
+      "phys.pressure-force",
+      "phys.contact-area",
+      "phys.pascal",
+      "phys.block"
+    ],
+    "overrides": {
+      "phys.pressure": {
+        "nodes": [
+          "Dent",
+          "Surface"
+        ],
+        "description": {
+          "ky": "Брусок кумду 24,5 Н күч менен басат, таяныч аянты 0,03 м²: P = F/S = 24,5 / 0,03 ≈ 817 Па. Кумдагы издин тереңдиги басымга пропорционалдуу – брусокту учу менен койсок, из ≈ 3,8 эсе тереңирээк болот.",
+          "ru": "Брусок давит на песок с силой 24,5 Н, площадь опоры 0,03 м²: p = F/S = 24,5 / 0,03 ≈ 817 Па. Глубина вмятины пропорциональна давлению – если поставить брусок на торец, вмятина станет глубже в ≈ 3,8 раза.",
+          "en": "The block presses on the sand with 24.5 N over 0.03 m²: p = F/A = 24.5 / 0.03 ≈ 817 Pa. The depth of the dent is proportional to the pressure – stand the block on its end and the dent becomes about 3.8 times deeper."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 817,
+            "unit": "Pa",
+            "approx": true
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P = \\frac{F}{S}"
+          }
+        ]
+      },
+      "phys.pressure-force": {
+        "nodes": [
+          "Arrow_Force"
+        ],
+        "description": {
+          "ky": "Брусоктун салмагы – кумга перпендикуляр аракет эткен басым күчү: F = m·g = 2,5 кг · 9,8 Н/кг = 24,5 Н. Брусокту кайсы капталына койсок да, бул күч өзгөрбөйт.",
+          "ru": "Вес бруска – сила давления, действующая перпендикулярно песку: F = m·g = 2,5 кг · 9,8 Н/кг = 24,5 Н. На какую бы грань ни поставили брусок, эта сила не меняется.",
+          "en": "The block's weight is the force of pressure acting at right angles to the sand: F = mg = 2.5 kg × 9.8 N/kg = 24.5 N. Whichever face the block stands on, this force stays the same."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 24.5
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F = m \\cdot g"
+          }
+        ]
+      },
+      "phys.contact-area": {
+        "nodes": [
+          "Contact"
+        ],
+        "description": {
+          "ky": "Брусоктун кумга тийип турган грани. Кең капталы: S = 0,25 · 0,12 = 0,03 м²; кууш капталы: 0,25 · 0,065 = 0,01625 м²; учу: 0,12 · 0,065 = 0,0078 м².",
+          "ru": "Грань бруска, которой он касается песка. Широкая грань: S = 0,25 · 0,12 = 0,03 м²; боковая: 0,25 · 0,065 = 0,01625 м²; торец: 0,12 · 0,065 = 0,0078 м².",
+          "en": "The face of the block touching the sand. Wide face: A = 0.25 × 0.12 = 0.03 m²; side: 0.25 × 0.065 = 0.01625 m²; end: 0.12 × 0.065 = 0.0078 m²."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "area",
+            "value": 0.03,
+            "unit": "m²"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "S = a \\cdot b"
+          }
+        ]
+      },
+      "phys.block": {
+        "nodes": [
+          "Brick"
+        ],
+        "title": {
+          "ky": "Брусок",
+          "ru": "Брусок",
+          "en": "Block"
+        },
+        "description": {
+          "ky": "Өлчөмү 25 × 12 × 6,5 см, массасы 2,5 кг брусок (кыш). Анын үч түрдүү граны бар, ошондуктан аны үч ар кандай аянт менен кумга коюуга болот.",
+          "ru": "Брусок (кирпич) 25 × 12 × 6,5 см массой 2,5 кг. У него три разные грани, поэтому его можно поставить на песок тремя разными площадями.",
+          "en": "A 25 × 12 × 6.5 cm block (a brick) with a mass of 2.5 kg. It has three different faces, so it can stand on the sand on three different areas."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2.5
+          },
+          {
+            "kind": "text",
+            "type": "shape",
+            "value": {
+              "ky": "Тик бурчтуу параллелепипед 25 × 12 × 6,5 см",
+              "ru": "Прямоугольный параллелепипед 25 × 12 × 6,5 см",
+              "en": "A 25 × 12 × 6.5 cm rectangular box"
+            }
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "solid-large-face",
+        "title": {
+          "ky": "Кең капталы менен",
+          "ru": "Широкой гранью",
+          "en": "On its wide face"
+        },
+        "classification": {
+          "ky": "S = 0,03 м², P ≈ 817 Па",
+          "ru": "S = 0,03 м², p ≈ 817 Па",
+          "en": "A = 0.03 m², p ≈ 817 Pa"
+        },
+        "thumb": "thumbs/solid-large-face.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 817,
+            "unit": "Pa",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "area",
+            "value": 0.03,
+            "unit": "m²"
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 24.5
+          }
+        ],
+        "scene": {
+          "params": {
+            "face": "large",
+            "surface": "sand"
+          }
+        }
+      },
+      {
+        "key": "solid-side-foam",
+        "title": {
+          "ky": "Кууш капталы менен, поролондо",
+          "ru": "Боковой гранью на поролоне",
+          "en": "On its side, on foam"
+        },
+        "classification": {
+          "ky": "S = 0,01625 м², P ≈ 1508 Па",
+          "ru": "S = 0,01625 м², p ≈ 1508 Па",
+          "en": "A = 0.01625 m², p ≈ 1508 Pa"
+        },
+        "thumb": "thumbs/solid-side-foam.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 1508,
+            "unit": "Pa",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "area",
+            "value": 0.01625,
+            "unit": "m²"
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 24.5
+          }
+        ],
+        "scene": {
+          "params": {
+            "face": "side",
+            "surface": "foam"
+          }
+        }
+      },
+      {
+        "key": "solid-end-face",
+        "title": {
+          "ky": "Учу менен",
+          "ru": "Торцом",
+          "en": "On its end"
+        },
+        "classification": {
+          "ky": "S = 0,0078 м², P ≈ 3141 Па",
+          "ru": "S = 0,0078 м², p ≈ 3141 Па",
+          "en": "A = 0.0078 m², p ≈ 3141 Pa"
+        },
+        "thumb": "thumbs/solid-end-face.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 3141,
+            "unit": "Pa",
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "area",
+            "value": 0.0078,
+            "unit": "m²"
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 24.5
+          }
+        ],
+        "scene": {
+          "params": {
+            "face": "end",
+            "surface": "sand"
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "mass",
+        "value": 2.5
+      },
+      {
+        "kind": "quantity",
+        "type": "force",
+        "value": 24.5
+      },
+      {
+        "kind": "quantity",
+        "type": "area",
+        "value": 0.03,
+        "unit": "m²"
+      },
+      {
+        "kind": "quantity",
+        "type": "pressure",
+        "value": 817,
+        "unit": "Pa",
+        "approx": true
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "P = \\frac{F}{S}"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                1,
+                2.35,
+                1.84
+              ],
+              "target": [
+                0,
+                0.76,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false
+            },
+            "focus": "phys.block",
+            "text": {
+              "ky": "Кумдун үстүндө 2,5 кг брусок жатат. Аны кең капталы менен, кууш капталы менен же учу менен койсок, кумдагы из бирдей болобу? Сиздин божомолуңуз?",
+              "ru": "На песке лежит брусок массой 2,5 кг. Если поставить его широкой гранью, боковой или торцом – вмятина в песке будет одинаковой? Ваше предположение?",
+              "en": "A 2.5 kg block lies on sand. If we stand it on its wide face, its side or its end, will the dent in the sand be the same? What do you think?"
+            },
+            "teacherNote": {
+              "ky": "Китептеги 67-сүрөттү эске салыңыз: лыжачан жана лыжасыз балдар. Окуучулар жоопторун дептерге жазып, сабактын аягында текшеришсин.",
+              "ru": "Напомните рисунок 67 учебника: дети на лыжах и без лыж. Пусть ученики запишут ответ в тетрадь и проверят его в конце урока.",
+              "en": "Recall figure 67 in the textbook: children with and without skis. Have pupils write down their guess and check it at the end of the lesson."
+            },
+            "altText": {
+              "ky": "Кумдун үстүндө кең капталы менен жаткан кызыл брусок.",
+              "ru": "Красный брусок лежит на песке широкой гранью.",
+              "en": "A red block lying on sand on its wide face."
+            }
+          },
+          {
+            "key": "force",
+            "camera": {
+              "position": [
+                0.89,
+                2.47,
+                2.03
+              ],
+              "target": [
+                0,
+                1.06,
+                0.4
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.pressure-force",
+            "text": {
+              "ky": "Брусок кумду өз салмагы менен басат: F = m·g = 2,5 · 9,8 = 24,5 Н. Бул күч кумдун бетине перпендикуляр – тик ылдый – багытталган.",
+              "ru": "Брусок давит на песок своим весом: F = m·g = 2,5 · 9,8 = 24,5 Н. Эта сила направлена перпендикулярно поверхности песка – вертикально вниз.",
+              "en": "The block presses on the sand with its weight: F = mg = 2.5 × 9.8 = 24.5 N. This force is at right angles to the sand – straight down."
+            },
+            "teacherNote": {
+              "ky": "Катуу нерселер бири-бирине перпендикуляр күч менен аракет этет (китептеги 1-жыйынтык). Сураңыз: брусокту учу менен койсок, күч өзгөрөбү? (Жок.)",
+              "ru": "Твёрдые тела действуют друг на друга с силой, перпендикулярной поверхности (вывод 1 учебника). Спросите: изменится ли сила, если поставить брусок торцом? (Нет.)",
+              "en": "Solids act on each other with a force at right angles to the surface (conclusion 1 in the book). Ask: does the force change if the block stands on its end? (No.)"
+            },
+            "altText": {
+              "ky": "Брусоктон кумга тик ылдый караган 24,5 Н жебе.",
+              "ru": "Стрелка 24,5 Н вертикально вниз от бруска к песку.",
+              "en": "A 24.5 N arrow straight down from the block into the sand."
+            }
+          },
+          {
+            "key": "area",
+            "camera": {
+              "position": [
+                1.12,
+                2.39,
+                2.06
+              ],
+              "target": [
+                0,
+                0.61,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.contact-area",
+            "text": {
+              "ky": "Күч брусоктун кумга тийген бетине бөлүштүрүлөт. Кең капталынын аянты S = 0,25 м · 0,12 м = 0,03 м². Сантиметрди метрге которууну унутпаңыз!",
+              "ru": "Сила распределяется по грани, которой брусок касается песка. Площадь широкой грани S = 0,25 м · 0,12 м = 0,03 м². Не забудьте перевести сантиметры в метры!",
+              "en": "The force is spread over the face touching the sand. The wide face has A = 0.25 m × 0.12 m = 0.03 m². Do not forget to change centimetres into metres!"
+            },
+            "teacherNote": {
+              "ky": "Классик ката: 25 · 12 = 300 «м²». Тактага 1 м² = 10 000 см² жазып коюңуз.",
+              "ru": "Типичная ошибка: 25 · 12 = 300 «м²». Запишите на доске: 1 м² = 10 000 см².",
+              "en": "A classic slip: 25 × 12 = 300 \"m²\". Write 1 m² = 10 000 cm² on the board."
+            },
+            "altText": {
+              "ky": "Брусоктун кумга тийген кең грани белгиленген.",
+              "ru": "Подсвечена широкая грань бруска, касающаяся песка.",
+              "en": "The wide face of the block touching the sand is highlighted."
+            }
+          },
+          {
+            "key": "pressure",
+            "camera": {
+              "position": [
+                1.12,
+                1.6,
+                2.06
+              ],
+              "target": [
+                0,
+                -0.18,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.pressure",
+            "text": {
+              "ky": "Басым – бетке перпендикуляр аракет эткен күчтүн ошол беттин аянтына болгон катышы: P = F/S = 24,5 Н / 0,03 м² ≈ 817 Па. Кумдагы издин тереңдиги басымды көрсөтөт.",
+              "ru": "Давление – отношение силы, действующей перпендикулярно поверхности, к площади этой поверхности: p = F/S = 24,5 Н / 0,03 м² ≈ 817 Па. Глубина вмятины показывает давление.",
+              "en": "Pressure is the force at right angles to a surface divided by the area: p = F/A = 24.5 N / 0.03 m² ≈ 817 Pa. The depth of the dent shows the pressure."
+            },
+            "teacherNote": {
+              "ky": "Китептеги аныктаманы окуп, тактага жазыңыз. Китепте басым чоң P тамгасы менен белгиленет – орус тилдүү булактарда кичине p.",
+              "ru": "Прочитайте определение из учебника и запишите на доске. В кыргызском учебнике давление обозначено большой буквой P, в русских учебниках – малой p.",
+              "en": "Read the textbook definition and write it on the board. The Kyrgyz textbook writes pressure with a capital P; Russian books use a small p."
+            },
+            "altText": {
+              "ky": "Кумдагы тайыз из жана басымдын көрсөткүчү 817 Па.",
+              "ru": "Неглубокая вмятина в песке и показание давления 817 Па.",
+              "en": "A shallow dent in the sand and the pressure readout of 817 Pa."
+            }
+          },
+          {
+            "key": "end",
+            "sample": "solid-end-face",
+            "camera": {
+              "position": [
+                1.28,
+                1.85,
+                2.35
+              ],
+              "target": [
+                0,
+                -0.18,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.pressure",
+            "text": {
+              "ky": "Брусокту учу менен коёбуз: S = 0,12 · 0,065 = 0,0078 м², P = 24,5 / 0,0078 ≈ 3141 Па. Аянт ≈ 3,8 эсе кичирейди – басым ≈ 3,8 эсе чоңойду. Басым аянтка тескери пропорциялаш.",
+              "ru": "Ставим брусок торцом: S = 0,12 · 0,065 = 0,0078 м², p = 24,5 / 0,0078 ≈ 3141 Па. Площадь меньше в ≈ 3,8 раза – давление больше в ≈ 3,8 раза. Давление обратно пропорционально площади.",
+              "en": "Now stand the block on its end: A = 0.12 × 0.065 = 0.0078 m², p = 24.5 / 0.0078 ≈ 3141 Pa. The area is about 3.8 times smaller – the pressure about 3.8 times bigger. Pressure is inversely proportional to area."
+            },
+            "teacherNote": {
+              "ky": "«Брусокту ар бир капталына коюу» процессин иштетиңиз. 12-көнүгүүнүн 1-тапшырмасы: окуучулар чыныгы брусоктун капталдарын сызгыч менен ченеп, басымдарды эсептешсин.",
+              "ru": "Запустите процесс «Брусок на разных гранях». Задание 1 из упражнения 12: пусть ученики измерят линейкой грани настоящего бруска и рассчитают давления.",
+              "en": "Run the process \"A block on each of its faces\". Exercise 12, task 1: pupils measure the faces of a real block with a ruler and work out the pressures."
+            },
+            "altText": {
+              "ky": "Учу менен тик турган брусок жана кумдагы терең из.",
+              "ru": "Брусок стоит на торце, в песке глубокая вмятина.",
+              "en": "The block standing on its end with a deep dent in the sand."
+            }
+          },
+          {
+            "key": "pascal",
+            "camera": {
+              "position": [
+                1.54,
+                3.03,
+                2.83
+              ],
+              "target": [
+                0,
+                0.59,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.pascal",
+            "text": {
+              "ky": "Басымдын бирдиги – паскаль: 1 Па = 1 Н/м². Бул – 1 м² аянтка перпендикуляр аракет эткен 1 Н күчтүн басымы. Практикада 1 кПа = 1000 Па жана 1 гПа = 100 Па колдонулат.",
+              "ru": "Единица давления – паскаль: 1 Па = 1 Н/м². Это давление силы 1 Н, действующей перпендикулярно на площадь 1 м². На практике используют 1 кПа = 1000 Па и 1 гПа = 100 Па.",
+              "en": "The unit of pressure is the pascal: 1 Pa = 1 N/m², the pressure of 1 N acting at right angles on 1 m². In practice 1 kPa = 1000 Pa and 1 hPa = 100 Pa are used."
+            },
+            "teacherNote": {
+              "ky": "Китептеги мисалды чыгаргыла: 22 × 16,5 см китеп 3 Н менен басат → 82,65 Па. Анан ошол эле жоопту Н/см² менен туюнтуңуз: 0,0082 Н/см². Сураңыз: булар бирдей басымбы? (Ооба.)",
+              "ru": "Решите пример из учебника: книга 22 × 16,5 см давит с силой 3 Н → 82,65 Па. Затем выразите в Н/см²: 0,0082 Н/см². Спросите: это одно и то же давление? (Да.)",
+              "en": "Work the textbook example: a 22 × 16.5 cm book pressing with 3 N → 82.65 Pa. Then express it in N/cm²: 0.0082 N/cm². Ask: is it the same pressure? (Yes.)"
+            },
+            "altText": {
+              "ky": "Басымдын көрсөткүчү паскаль менен.",
+              "ru": "Показание давления в паскалях.",
+              "en": "The pressure readout in pascals."
+            }
+          },
+          {
+            "key": "change",
+            "sample": "solid-side-foam",
+            "camera": {
+              "position": [
+                1.1,
+                2.36,
+                2.02
+              ],
+              "target": [
+                0,
+                0.61,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.contact-area",
+            "text": {
+              "ky": "Басымды азайтуу үчүн аянтты чоңойтобуз: трактордун каз таманы, лыжа, кең фундамент. Басымды көбөйтүү үчүн аянтты кичирейтебиз: бычактын мизи, ийненин учу, кнопка. Поролондо да ошондой: брусок капталына турганда из тереңирээк.",
+              "ru": "Чтобы уменьшить давление, увеличивают площадь: гусеницы трактора, лыжи, широкий фундамент. Чтобы увеличить – уменьшают площадь: лезвие ножа, остриё иглы, кнопка. На поролоне то же: брусок на боковой грани проминает его глубже.",
+              "en": "To lower pressure we widen the area: tractor tracks, skis, wide foundations. To raise it we shrink the area: a knife edge, a needle point, a drawing pin. Foam shows the same: the block on its side presses in deeper."
+            },
+            "teacherNote": {
+              "ky": "Кнопканы талкуулаңыз: 50 Н күч 1 мм² аянтка → 50 000 000 Па = 50 000 кПа, трактордукунан 1000 эсе чоң. «Шибегени капка катуу болбойт» макалын эске салыңыз.",
+              "ru": "Обсудите кнопку: сила 50 Н на 1 мм² → 50 000 000 Па = 50 000 кПа, в 1000 раз больше, чем у трактора. Вспомните пословицу «Шибегени капка катуу болбойт» (шило в мешке не утаишь).",
+              "en": "Discuss the drawing pin: 50 N on 1 mm² → 50 000 000 Pa = 50 000 kPa, a thousand times a tractor's. Recall the Kyrgyz proverb about an awl that no sack can hold."
+            },
+            "altText": {
+              "ky": "Поролондо кууш капталы менен турган брусок, поролон майышкан.",
+              "ru": "Брусок на боковой грани на поролоне, поролон промят.",
+              "en": "The block on its side on foam, which is squashed in."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.brick-faces"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "solid-large-face"
+          },
+          {
+            "kind": "sample",
+            "key": "solid-side-foam"
+          },
+          {
+            "kind": "sample",
+            "key": "solid-end-face"
+          }
+        ],
+        "rows": [
+          "force",
+          "area",
+          "pressure"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-solid-1",
+          "phys.q.p7-solid-2",
+          "phys.q.p7-solid-3",
+          "phys.q.p7-solid-4",
+          "phys.q.p7-solid-5",
+          "phys.q.p7-solid-6",
+          "phys.q.p7-solid-7",
+          "phys.q.p7-solid-8",
+          "phys.q.p7-solid-9",
+          "phys.q.p7-solid-10",
+          "phys.q.p7-solid-11",
+          "phys.q.p7-solid-12",
+          "phys.q.p7-solid-13",
+          "phys.q.p7-solid-14"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Каз тамандуу трактор",
+            "ru": "Гусеничный трактор",
+            "en": "Crawler tractors"
+          },
+          "text": {
+            "ky": "Трактордун 15–20 м² каз таманы анын салмагын чоң аянтка бөлүштүрөт, ошондуктан ал саздуу жерде батпай жүрөт.",
+            "ru": "Гусеницы трактора площадью 15–20 м² распределяют его вес по большой площади, и он проходит по болоту, не увязая.",
+            "en": "A tractor's 15–20 m² of track spreads its weight over a big area, so it crosses marshy ground without sinking."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Курч аспаптар",
+            "ru": "Острые инструменты",
+            "en": "Sharp tools"
+          },
+          "text": {
+            "ky": "Ийненин учунун аянты ≈ 0,0003 см²: кичине күч менен эле кездемени тешүүгө жетиштүү басым пайда болот.",
+            "ru": "Площадь острия иглы ≈ 0,0003 см²: даже малая сила создаёт давление, достаточное, чтобы проткнуть ткань.",
+            "en": "A needle point is about 0.0003 cm²: even a small force makes enough pressure to pierce cloth."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Кнопканы эсептөө",
+            "ru": "Расчёт для кнопки",
+            "en": "Working out a drawing pin"
+          },
+          "text": {
+            "ky": "Кнопкага 50 Н менен басабыз, учунун аянты 1 мм² = 0,000001 м²: P = 50 / 0,000001 = 50 000 000 Па = 50 000 кПа.",
+            "ru": "Давим на кнопку с силой 50 Н, площадь острия 1 мм² = 0,000001 м²: p = 50 / 0,000001 = 50 000 000 Па = 50 000 кПа.",
+            "en": "Push a drawing pin with 50 N on a 1 mm² = 0.000001 m² point: p = 50 / 0.000001 = 50 000 000 Pa = 50 000 kPa."
+          },
+          "field": "m"
+        },
+        {
+          "title": {
+            "ky": "Фундамент",
+            "ru": "Фундамент",
+            "en": "Foundations"
+          },
+          "text": {
+            "ky": "Имаратты куруу үчүн жерди терең казып, кең фундамент куюшат – ошондо ал жерге чөкпөйт жана жер титирөөгө туруктуу болот.",
+            "ru": "Под здание глубоко роют землю и заливают широкий фундамент – тогда оно не проседает и устойчиво к землетрясениям.",
+            "en": "Builders dig deep and pour a wide foundation, so the building does not sink and stands up to earthquakes."
+          },
+          "field": "e"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Лыжа менен карда",
+            "ru": "На лыжах по снегу",
+            "en": "Skiing on snow"
+          },
+          "text": {
+            "ky": "Лыжачан бала карга батпайт, ал эми лыжасыз бала тизесине чейин батат – экөөнүн салмагы бирдей.",
+            "ru": "Мальчик на лыжах не проваливается, а без лыж проваливается по колено – вес у обоих одинаковый.",
+            "en": "A boy on skis stays on the snow, one without skis sinks to his knees – though they weigh the same."
+          }
+        },
+        {
+          "title": {
+            "ky": "Курч бычак",
+            "ru": "Острый нож",
+            "en": "A sharp knife"
+          },
+          "text": {
+            "ky": "Мокок бычак менен нан кесүү кыйын, курч бычак менен жеңил – мизи ичке болсо, басым чоң.",
+            "ru": "Тупым ножом хлеб режется с трудом, острым – легко: чем тоньше лезвие, тем больше давление.",
+            "en": "A blunt knife struggles with bread, a sharp one glides – the thinner the edge, the bigger the pressure."
+          }
+        },
+        {
+          "title": {
+            "ky": "Кең тасма",
+            "ru": "Широкий ремень",
+            "en": "A wide strap"
+          },
+          "text": {
+            "ky": "Оор рюкзактын тасмасы кең болсо, ийиниңди аз басат.",
+            "ru": "Тяжёлый рюкзак с широкими лямками меньше давит на плечи.",
+            "en": "A heavy rucksack with wide straps presses less on your shoulders."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Эмне үчүн лыжачан адам карга батпайт?",
+        "ru": "Почему человек на лыжах не проваливается в снег?",
+        "en": "Why does a skier not sink into the snow?"
+      },
+      {
+        "ky": "Басым менен күчтүн айырмасы эмнеде?",
+        "ru": "Чем давление отличается от силы?",
+        "en": "How is pressure different from force?"
+      },
+      {
+        "ky": "1 паскаль чоң басымбы же кичинеби?",
+        "ru": "1 паскаль – это большое давление или маленькое?",
+        "en": "Is 1 pascal a big pressure or a small one?"
+      },
+      {
+        "ky": "Эмне үчүн тракторлордун каз таманы кең?",
+        "ru": "Почему у тракторов широкие гусеницы?",
+        "en": "Why do tractors have wide tracks?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Э. М. Мамбетакунов, «Физика, 7-класс», III глава (§24–34)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-solid-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Басым деген эмне?",
+        "ru": "Что такое давление?",
+        "en": "What is pressure?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Нерсеге аракет эткен бардык күчтөрдүн суммасы",
+            "ru": "Сумма всех сил, действующих на тело",
+            "en": "The sum of all forces on a body"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Бетке перпендикуляр аракет эткен күчтүн ошол беттин аянтына катышы",
+            "ru": "Отношение силы, действующей перпендикулярно поверхности, к площади этой поверхности",
+            "en": "The force at right angles to a surface divided by its area"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Нерсенин массасынын көлөмүнө катышы",
+            "ru": "Отношение массы тела к его объёму",
+            "en": "A body's mass divided by its volume"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Күчтүн жолго көбөйтүндүсү",
+            "ru": "Произведение силы на путь",
+            "en": "Force times distance"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Басым – бетке перпендикуляр аракет эткен күчтүн ошол беттин аянтына болгон катышы: P = F/S. Массанын көлөмгө катышы – тыгыздык, күчтүн жолго көбөйтүндүсү – жумуш.",
+        "ru": "Давление – отношение силы, действующей перпендикулярно поверхности, к площади: p = F/S. Масса на объём – плотность, сила на путь – работа.",
+        "en": "Pressure is the force at right angles to a surface divided by the area: p = F/A. Mass over volume is density; force times distance is work."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-solid-2",
+      "type": "single",
+      "prompt": {
+        "ky": "СИ системасында басымдын бирдиги кайсы?",
+        "ru": "Какая единица давления в СИ?",
+        "en": "What is the SI unit of pressure?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ньютон (Н)",
+            "ru": "Ньютон (Н)",
+            "en": "Newton (N)"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Паскаль (Па)",
+            "ru": "Паскаль (Па)",
+            "en": "Pascal (Pa)"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Килограмм (кг)",
+            "ru": "Килограмм (кг)",
+            "en": "Kilogram (kg)"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Джоуль (Дж)",
+            "ru": "Джоуль (Дж)",
+            "en": "Joule (J)"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Басымдын бирдиги – паскаль: 1 Па = 1 Н/м². Ньютон – күчтүн бирдиги.",
+        "ru": "Единица давления – паскаль: 1 Па = 1 Н/м². Ньютон – единица силы.",
+        "en": "The unit of pressure is the pascal: 1 Pa = 1 N/m². The newton is the unit of force."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-solid-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Узундугу 22 см, туурасы 16,5 см китеп столдун бетине 3 Н күч менен аракет этет. Басым канча паскаль?",
+        "ru": "Книга длиной 22 см и шириной 16,5 см давит на стол с силой 3 Н. Каково давление в паскалях?",
+        "en": "A book 22 cm long and 16.5 cm wide presses on a table with 3 N. What is the pressure in pascals?"
+      },
+      "answer": 82.65,
+      "tolerance": 0.5,
+      "unit": "Pa",
+      "explanation": {
+        "ky": "S = 0,22 м · 0,165 м = 0,0363 м²; P = F/S = 3 / 0,0363 ≈ 82,65 Па.",
+        "ru": "S = 0,22 м · 0,165 м = 0,0363 м²; p = F/S = 3 / 0,0363 ≈ 82,65 Па.",
+        "en": "A = 0.22 m × 0.165 m = 0.0363 m²; p = F/A = 3 / 0.0363 ≈ 82.65 Pa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-solid-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "100 см² аянтка жасалган басым 5000 Па. Аракет эткен күч канча ньютон?",
+        "ru": "Давление на площадь 100 см² равно 5000 Па. Какая сила действует, Н?",
+        "en": "The pressure on an area of 100 cm² is 5000 Pa. What force acts, in newtons?"
+      },
+      "answer": 50,
+      "tolerance": 0.5,
+      "unit": "N",
+      "explanation": {
+        "ky": "100 см² = 0,01 м². F = P·S = 5000 · 0,01 = 50 Н.",
+        "ru": "100 см² = 0,01 м². F = p·S = 5000 · 0,01 = 50 Н.",
+        "en": "100 cm² = 0.01 m². F = p·A = 5000 × 0.01 = 50 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-solid-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кар үстүндө турган лыжачынын салмагы 780 Н. Ар бир лыжанын узундугу 1,95 м, туурасы 8 см. Лыжачы карга канча килопаскаль басым жасайт?",
+        "ru": "Вес лыжника 780 Н. Длина каждой лыжи 1,95 м, ширина 8 см. Какое давление лыжник оказывает на снег, кПа?",
+        "en": "A skier weighs 780 N. Each ski is 1.95 m long and 8 cm wide. What pressure does the skier put on the snow, in kPa?"
+      },
+      "answer": 2.5,
+      "tolerance": 0.05,
+      "unit": "kPa",
+      "explanation": {
+        "ky": "Эки лыжанын аянты S = 2 · 1,95 · 0,08 = 0,312 м². P = 780 / 0,312 = 2500 Па = 2,5 кПа.",
+        "ru": "Площадь двух лыж S = 2 · 1,95 · 0,08 = 0,312 м². p = 780 / 0,312 = 2500 Па = 2,5 кПа.",
+        "en": "Two skis: A = 2 × 1.95 × 0.08 = 0.312 m². p = 780 / 0.312 = 2500 Pa = 2.5 kPa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-solid-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Адам күрөккө 600 Н күч менен басат. Күрөктүн мизинин узундугу 20 см, калыңдыгы 0,5 мм. Күрөк топуракка канча мегапаскаль (млн Па) басым жасайт?",
+        "ru": "Человек давит на лопату с силой 600 Н. Длина кромки 20 см, толщина 0,5 мм. Какое давление лопата оказывает на почву, МПа (млн Па)?",
+        "en": "A person pushes on a spade with 600 N. Its edge is 20 cm long and 0.5 mm thick. What pressure does it put on the soil, in MPa (million Pa)?"
+      },
+      "answer": 6,
+      "tolerance": 0.1,
+      "unit": "MPa",
+      "explanation": {
+        "ky": "S = 0,2 м · 0,0005 м = 0,0001 м². P = 600 / 0,0001 = 6 000 000 Па = 6 млн Па.",
+        "ru": "S = 0,2 м · 0,0005 м = 0,0001 м². p = 600 / 0,0001 = 6 000 000 Па = 6 млн Па.",
+        "en": "A = 0.2 m × 0.0005 m = 0.0001 m². p = 600 / 0.0001 = 6 000 000 Pa = 6 MPa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-solid-7",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы учурларда басым атайын ЧОҢОЙТУЛАТ? Бардык туура жоопторду тандаңыз.",
+        "ru": "В каких случаях давление специально УВЕЛИЧИВАЮТ? Выберите все верные ответы.",
+        "en": "In which cases is pressure deliberately INCREASED? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Бычактын мизин курчутуу",
+            "ru": "Заточка лезвия ножа",
+            "en": "Sharpening a knife"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Тракторго кең каз таман коюу",
+            "ru": "Широкие гусеницы у трактора",
+            "en": "Wide tracks on a tractor"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ийненин учун ичке кылуу",
+            "ru": "Тонкое остриё иглы",
+            "en": "A thin needle point"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Имаратка кең фундамент куюу",
+            "ru": "Широкий фундамент здания",
+            "en": "A wide foundation under a building"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Мыктын учун учтуу кылуу",
+            "ru": "Острый конец гвоздя",
+            "en": "A pointed nail"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "c",
+        "e"
+      ],
+      "explanation": {
+        "ky": "Аянтты кичирейтсек, басым чоңоёт: курч миз, ичке ийне, учтуу мык. Кең каз таман жана кең фундамент аянтты чоңойтуп, басымды азайтат.",
+        "ru": "Уменьшая площадь, увеличивают давление: острое лезвие, тонкая игла, острый гвоздь. Широкие гусеницы и фундамент увеличивают площадь и уменьшают давление.",
+        "en": "Shrinking the area raises pressure: a sharp edge, a thin needle, a pointed nail. Wide tracks and foundations widen the area and lower the pressure."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-solid-8",
+      "type": "match",
+      "prompt": {
+        "ky": "Басымдын маанисин паскаль менен дал келтириңиз.",
+        "ru": "Сопоставьте значение давления и его величину в паскалях.",
+        "en": "Match each pressure to its value in pascals."
+      },
+      "pairs": [
+        {
+          "key": "hpa",
+          "left": {
+            "ky": "5 гПа",
+            "ru": "5 гПа",
+            "en": "5 hPa"
+          },
+          "right": {
+            "ky": "500 Па",
+            "ru": "500 Па",
+            "en": "500 Pa"
+          }
+        },
+        {
+          "key": "kpa",
+          "left": {
+            "ky": "0,002 кПа",
+            "ru": "0,002 кПа",
+            "en": "0.002 kPa"
+          },
+          "right": {
+            "ky": "2 Па",
+            "ru": "2 Па",
+            "en": "2 Pa"
+          }
+        },
+        {
+          "key": "ncm",
+          "left": {
+            "ky": "0,04 Н/см²",
+            "ru": "0,04 Н/см²",
+            "en": "0.04 N/cm²"
+          },
+          "right": {
+            "ky": "400 Па",
+            "ru": "400 Па",
+            "en": "400 Pa"
+          }
+        },
+        {
+          "key": "one",
+          "left": {
+            "ky": "1 кПа",
+            "ru": "1 кПа",
+            "en": "1 kPa"
+          },
+          "right": {
+            "ky": "1000 Па",
+            "ru": "1000 Па",
+            "en": "1000 Pa"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "1 гПа = 100 Па, 1 кПа = 1000 Па, 1 Н/см² = 10 000 Па (анткени 1 м² = 10 000 см²). Ошондуктан 5 гПа = 500 Па, 0,002 кПа = 2 Па, 0,04 Н/см² = 400 Па.",
+        "ru": "1 гПа = 100 Па, 1 кПа = 1000 Па, 1 Н/см² = 10 000 Па (ведь 1 м² = 10 000 см²). Поэтому 5 гПа = 500 Па, 0,002 кПа = 2 Па, 0,04 Н/см² = 400 Па.",
+        "en": "1 hPa = 100 Pa, 1 kPa = 1000 Pa, 1 N/cm² = 10 000 Pa (as 1 m² = 10 000 cm²). So 5 hPa = 500 Pa, 0.002 kPa = 2 Pa, 0.04 N/cm² = 400 Pa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-solid-9",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден брусоктун кумга тийип турган бетин тап.",
+        "ru": "Найдите на модели грань бруска, которой он касается песка.",
+        "en": "Find the face of the block that touches the sand."
+      },
+      "targetConceptKey": "phys.contact-area",
+      "explanation": {
+        "ky": "Бул – таяныч беттин аянты S. Басым P = F/S ушул аянтка жараша болот.",
+        "ru": "Это площадь опоры S. От неё зависит давление p = F/S.",
+        "en": "That is the contact area A. The pressure p = F/A depends on it."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-solid-10",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден брусоктун кумга перпендикуляр аракет эткен күчүн тап.",
+        "ru": "Найдите на модели силу, с которой брусок перпендикулярно давит на песок.",
+        "en": "Find the force with which the block presses at right angles on the sand."
+      },
+      "targetConceptKey": "phys.pressure-force",
+      "explanation": {
+        "ky": "Бул – басым күчү: брусоктун салмагы F = m·g = 24,5 Н, тик ылдый.",
+        "ru": "Это сила давления: вес бруска F = m·g = 24,5 Н, вертикально вниз.",
+        "en": "That is the force of pressure: the block's weight F = mg = 24.5 N, straight down."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-solid-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Брусокту кең капталынан учуна бурдук. Кумга аракет эткен күч жана басым кандай өзгөрөт?",
+        "ru": "Брусок перевернули с широкой грани на торец. Как изменятся сила давления на песок и давление?",
+        "en": "The block is turned from its wide face onto its end. How do the force on the sand and the pressure change?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Күч да, басым да өзгөрбөйт",
+            "ru": "Не изменятся ни сила, ни давление",
+            "en": "Neither changes"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Күч өзгөрбөйт, басым чоңоёт",
+            "ru": "Сила не изменится, давление увеличится",
+            "en": "The force stays the same, the pressure grows"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Күч чоңоёт, басым өзгөрбөйт",
+            "ru": "Сила увеличится, давление не изменится",
+            "en": "The force grows, the pressure stays the same"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Күч да, басым да азаят",
+            "ru": "Уменьшатся и сила, и давление",
+            "en": "Both fall"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Күч – брусоктун салмагы, ал 24,5 Н бойдон калат. Аянт 0,03 м² ден 0,0078 м² ге кичирейди, ошондуктан басым 817 Па дан ≈ 3141 Па га чоңоёт.",
+        "ru": "Сила – вес бруска, она остаётся 24,5 Н. Площадь уменьшилась с 0,03 до 0,0078 м², поэтому давление выросло с 817 до ≈ 3141 Па.",
+        "en": "The force is the block's weight and stays 24.5 N. The area falls from 0.03 to 0.0078 m², so the pressure rises from 817 to about 3141 Pa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "misconceptionKey": "phys.m.pressure-is-force",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-solid-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Тактайдын жерге жасаган басымы P. Тактайдын узундугу a, туурасы b. Анын массасы кандай аныкталат?",
+        "ru": "Доска давит на землю с давлением p. Длина доски a, ширина b. Как найти её массу?",
+        "en": "A board presses on the ground with pressure p. It is a long and b wide. How do you find its mass?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "m = P·a·b / g",
+            "ru": "m = p·a·b / g",
+            "en": "m = p·a·b / g"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "m = P·a·b·g",
+            "ru": "m = p·a·b·g",
+            "en": "m = p·a·b·g"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "m = P / (a·b·g)",
+            "ru": "m = p / (a·b·g)",
+            "en": "m = p / (a·b·g)"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "m = a·b / (P·g)",
+            "ru": "m = a·b / (p·g)",
+            "en": "m = a·b / (p·g)"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "F = P·S = P·a·b, ал эми F = m·g. Демек m = P·a·b / g.",
+        "ru": "F = p·S = p·a·b, а F = m·g. Значит, m = p·a·b / g.",
+        "en": "F = p·A = p·a·b, and F = mg. So m = p·a·b / g."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-solid-13",
+      "type": "single",
+      "prompt": {
+        "ky": "200 Па канча килопаскаль?",
+        "ru": "Сколько килопаскалей в 200 Па?",
+        "en": "How many kilopascals is 200 Pa?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "20 кПа",
+            "ru": "20 кПа",
+            "en": "20 kPa"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "0,2 кПа",
+            "ru": "0,2 кПа",
+            "en": "0.2 kPa"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "2000 кПа",
+            "ru": "2000 кПа",
+            "en": "2000 kPa"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "0,002 кПа",
+            "ru": "0,002 кПа",
+            "en": "0.002 kPa"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "1 Па = 0,001 кПа, демек 200 Па = 0,2 кПа.",
+        "ru": "1 Па = 0,001 кПа, значит, 200 Па = 0,2 кПа.",
+        "en": "1 Pa = 0.001 kPa, so 200 Pa = 0.2 kPa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-solid-14",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн айыл чарба машиналарынын дөңгөлөктөрүн жазы кылып жасашат?",
+        "ru": "Почему колёса сельскохозяйственных машин делают широкими?",
+        "en": "Why are the wheels of farm machines made wide?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Машина ылдамыраак жүрүшү үчүн",
+            "ru": "Чтобы машина ехала быстрее",
+            "en": "So the machine goes faster"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Таяныч аянтын чоңойтуп, топуракка басымды азайтуу үчүн",
+            "ru": "Чтобы увеличить площадь опоры и уменьшить давление на почву",
+            "en": "To widen the contact area and lower the pressure on the soil"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Машинанын салмагын азайтуу үчүн",
+            "ru": "Чтобы уменьшить вес машины",
+            "en": "To make the machine lighter"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Басымды чоңойтуу үчүн",
+            "ru": "Чтобы увеличить давление",
+            "en": "To raise the pressure"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Жазы дөңгөлөк машинанын салмагын чоң аянтка бөлүштүрөт: басым азаят, машина борпоң жерге батпайт жана топуракты аз тыгыздайт.",
+        "ru": "Широкое колесо распределяет вес по большой площади: давление меньше, машина не вязнет в рыхлой земле и меньше уплотняет почву.",
+        "en": "A wide wheel spreads the weight over a big area: the pressure is lower, so the machine does not sink into soft ground and packs the soil less."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    }
+  ]
+}

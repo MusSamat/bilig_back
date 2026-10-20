@@ -6,7 +6,7 @@
  * the same as for questions, so the model only sees the published package.
  */
 import { z } from 'zod';
-import { KEY_RE, STEM_FIELDS, draftSignature, t, type ContentPackage, type DraftExample, type DraftQuizItem, type Lang, type ResolvedConcept } from '@bilig/content-model';
+import { KEY_RE, STEM_FIELDS, draftSignature, t, type ContentPackage, type DraftExample, type DraftQuizItem, type GradeRange, type Lang, type ResolvedConcept } from '@bilig/content-model';
 import { LANG_NAME } from './tutor.js';
 
 export type GenKind = 'simple' | 'stem' | 'quiz';
@@ -19,6 +19,8 @@ const exampleItem = {
     text: { type: 'string', description: '1–3 short sentences' },
     field: { type: 'string', enum: [...STEM_FIELDS], description: 'S = science, T = technology, E = engineering, M = math' },
     conceptKey: { type: 'string', description: 'Key of the structure from the material this is about' },
+    gradeFrom: { type: 'integer', description: 'Lowest school grade (1–12) for which this is understandable and not too childish' },
+    gradeTo: { type: 'integer', description: 'Highest school grade (1–12) for which it is still useful, not too easy' },
   },
   required: ['title', 'text'],
 };
@@ -34,6 +36,8 @@ const quizItem = {
     answer: { type: 'string', enum: ['a', 'b', 'c', 'd'] },
     explanation: { type: 'string', description: 'Why the answer is right, from the material, 1–2 sentences' },
     conceptKey: { type: 'string' },
+    gradeFrom: { type: 'integer', description: 'Lowest school grade (1–12) for which this is understandable and not too childish' },
+    gradeTo: { type: 'integer', description: 'Highest school grade (1–12) for which it is still useful, not too easy' },
   },
   required: ['prompt', 'options', 'answer', 'explanation'],
 };
@@ -105,8 +109,13 @@ const META_OPTION = /^(all|none|both) (of )?(the )?(above|answers)|^все (от
  */
 export function buildGeneratePrompt(kind: GenKind, lang: Lang, count: number, focus: ResolvedConcept | undefined, pkg: ContentPackage, avoid: string[]): string {
   const focusText = focus ? `the structure [[${focus.key}]] ${t(focus.title, lang)}` : `the topic «${t(pkg.topic.title, lang)}»`;
+  const grade = pkg.course?.grade;
   return [
     TASK[kind].replace('{count}', String(count)).replace('{focus}', focusText),
+    // v0.9.1: the same concept is taught in several grades; the range lets other grades reuse the item.
+    grade
+      ? `The class is grade ${grade} (pupils about ${grade + 6} years old): write for that age. Set gradeFrom/gradeTo to the school grades (1–12) for which the item is understandable and not too childish; the range must include ${grade}.`
+      : '',
     `Use ONLY facts from the topic material. Write in ${LANG_NAME[lang]} only${lang === 'ky' ? ' (correct Kyrgyz with ө ү ң; not Kazakh, not Russian)' : ''}. Set conceptKey to a key from the material when an item is about one structure.`,
     LIMITS[kind],
     'Do not write [[markers]] inside the texts.',
@@ -127,14 +136,40 @@ const clean = (s: string, max: number) =>
     .trim()
     .slice(0, max);
 
-const RawExample = z.object({ title: z.string(), text: z.string(), field: z.string().optional(), conceptKey: z.string().optional() });
+const GradeNum = z.union([z.number(), z.string()]).optional();
+const RawExample = z.object({ title: z.string(), text: z.string(), field: z.string().optional(), conceptKey: z.string().optional(), gradeFrom: GradeNum, gradeTo: GradeNum });
 const RawQuiz = z.object({
   prompt: z.string(),
   options: z.array(z.object({ key: z.string(), text: z.string() })),
   answer: z.string(),
   explanation: z.string(),
   conceptKey: z.string().optional(),
+  gradeFrom: GradeNum,
+  gradeTo: GradeNum,
 });
+
+/** At most this many grades on each side of the topic's grade: an example for 6th graders rarely suits 11th. */
+export const GRADE_SPREAD = 2;
+/**
+ * v0.9.1: the grade range of a generated item. The model proposes it; the
+ * server keeps it honest — it always contains the topic's grade (the item was
+ * written for that class), reaches at most GRADE_SPREAD grades either way and
+ * stays within 1–12. No proposal → one grade either side.
+ */
+export function gradeRange(from: unknown, to: unknown, grade: number): GradeRange {
+  const num = (v: unknown, d: number) => {
+    const n = typeof v === 'string' ? Number.parseInt(v, 10) : typeof v === 'number' ? Math.round(v) : NaN;
+    return Number.isFinite(n) && n >= 1 && n <= 12 ? n : d;
+  };
+  let lo = num(from, grade - 1);
+  let hi = num(to, grade + 1);
+  if (lo > hi) [lo, hi] = [hi, lo];
+  lo = Math.max(1, grade - GRADE_SPREAD, Math.min(lo, grade));
+  hi = Math.min(12, grade + GRADE_SPREAD, Math.max(hi, grade));
+  return { from: lo, to: hi };
+}
+/** Does an item with this range suit a class of `grade`? (No range = only its own topic.) */
+export const suitsGrade = (grades: GradeRange | undefined, grade: number | undefined): boolean => !!grades && grade !== undefined && grades.from <= grade && grade <= grades.to;
 
 export interface ValidatedGeneration {
   examples: DraftExample[];
@@ -149,7 +184,7 @@ export interface ValidatedGeneration {
  * item) and — for questions — has 2–5 distinct options with the answer among
  * them. Unknown concept keys are removed, never shown.
  */
-export function validateGenerated(kind: GenKind, data: unknown, validKeys: ReadonlySet<string>, avoid: ReadonlySet<string>, max: number, lang?: Lang): ValidatedGeneration {
+export function validateGenerated(kind: GenKind, data: unknown, validKeys: ReadonlySet<string>, avoid: ReadonlySet<string>, max: number, lang?: Lang, grade?: number): ValidatedGeneration {
   const out: ValidatedGeneration = { examples: [], quiz: [], rejected: 0 };
   const items = (data && typeof data === 'object' && Array.isArray((data as { items?: unknown }).items) ? (data as { items: unknown[] }).items : []) as unknown[];
   const seen = new Set(avoid);
@@ -175,7 +210,7 @@ export function validateGenerated(kind: GenKind, data: unknown, validKeys: Reado
       }
       seen.add(sig);
       const ck = key(p.data.conceptKey);
-      out.quiz.push({ prompt, options, answer: p.data.answer.trim().toLowerCase(), explanation, ...(ck ? { conceptKey: ck } : {}) });
+      out.quiz.push({ prompt, options, answer: p.data.answer.trim().toLowerCase(), explanation, ...(ck ? { conceptKey: ck } : {}), ...(grade ? { grades: gradeRange(p.data.gradeFrom, p.data.gradeTo, grade) } : {}) });
       if (out.quiz.length >= max) break;
     } else {
       const p = RawExample.safeParse(raw);
@@ -195,7 +230,7 @@ export function validateGenerated(kind: GenKind, data: unknown, validKeys: Reado
       }
       seen.add(sig);
       const ck = key(p.data.conceptKey);
-      out.examples.push({ title, text, ...(field ? { field } : {}), ...(ck ? { conceptKey: ck } : {}) });
+      out.examples.push({ title, text, ...(field ? { field } : {}), ...(ck ? { conceptKey: ck } : {}), ...(grade ? { grades: gradeRange(p.data.gradeFrom, p.data.gradeTo, grade) } : {}) });
       if (out.examples.length >= max) break;
     }
   }

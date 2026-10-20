@@ -1,0 +1,1415 @@
+{
+  "topic": {
+    "key": "phys7-archimedes",
+    "unitKey": "phys.g7.pressure",
+    "status": "published",
+    "title": {
+      "ky": "Архимед күчү жана аны эсептөө",
+      "ru": "Архимедова сила и её расчёт",
+      "en": "The buoyant force and how to calculate it"
+    },
+    "formula": "F_A = ρ_с·g·V_н",
+    "classification": {
+      "ky": "Архимед закону",
+      "ru": "Закон Архимеда",
+      "en": "Archimedes' principle"
+    },
+    "description": {
+      "ky": "Көлөмү 100 см³ алюминий цилиндр динамометрге илинген: абада ал 2,65 Н көрсөтөт. Цилиндрди чоргосу бар идиштеги сууга толук матырсак, динамометр 1,67 Н көрсөтөт, ал эми чоргодон стаканга 100 см³ суу агып түшөт. Суу нерсени 0,98 Н күч менен жогору түртөт – бул Архимед күчү, ал нерсе сүрүп чыгарган суунун салмагына барабар: F_A = ρ_с·g·V_н (§31–32).",
+      "ru": "Алюминиевый цилиндр объёмом 100 см³ висит на динамометре: в воздухе он показывает 2,65 Н. Погрузим цилиндр в отливной сосуд с водой – динамометр покажет 1,67 Н, а из носика в стакан стечёт 100 см³ воды. Вода выталкивает тело вверх с силой 0,98 Н – это архимедова сила, она равна весу вытесненной телом воды: F_A = ρ_ж·g·V_т (§31–32).",
+      "en": "A 100 cm³ aluminium cylinder hangs from a dynamometer: in air it reads 2.65 N. Lower it fully into a spout jug of water and the reading falls to 1.67 N, while 100 cm³ of water runs into a cup. The water pushes the body up with 0.98 N – the buoyant force, equal to the weight of the water the body pushes aside: F_A = ρ·g·V (§31–32)."
+    },
+    "goal": {
+      "ky": "Суюктукка матырылган нерсеге түртүүчү күч эмне үчүн аракет этерин басымдардын айырмасы менен түшүндүрүү, Архимед законун баяндоо, F_A = ρ_с·g·V_н жана P₁ = P − F_A формулалары менен эсептөө, Архимед күчүн динамометр менен ченөө (PHYS-7.3.2).",
+      "ru": "Объяснять выталкивающую силу разностью давлений, формулировать закон Архимеда, вычислять по формулам F_A = ρ_ж·g·V_т и P₁ = P − F_A, измерять архимедову силу динамометром (PHYS-7.3.2).",
+      "en": "Explain the buoyant force by the difference in pressures, state Archimedes' principle, calculate with F_A = ρgV and P₁ = P − F_A, and measure the buoyant force with a dynamometer (PHYS-7.3.2)."
+    },
+    "objectiveKeys": [
+      "phys.g7.pressure.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "buoyancy",
+        "variant": "dynamometer",
+        "liquid": "water",
+        "bodies": [
+          {
+            "id": "cyl",
+            "material": "aluminium",
+            "volume": 0.0001,
+            "shape": "cylinder"
+          }
+        ],
+        "submerged": 1,
+        "g": 9.8
+      },
+      "camera": {
+        "position": [
+          0.6,
+          0.75,
+          1.4
+        ],
+        "target": [
+          0,
+          0.35,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.buoyant-force",
+      "phys.archimedes-law",
+      "phys.displaced-liquid",
+      "phys.dynamometer",
+      "phys.gravity",
+      "phys.liquid-pressure"
+    ],
+    "overrides": {
+      "phys.buoyant-force": {
+        "nodes": [
+          "Arrow_Buoyancy_*"
+        ],
+        "description": {
+          "ky": "Суу цилиндрди 0,98 Н күч менен жогору түртөт: F_A = ρ_с·g·V_н = 1000 · 9,8 · 0,0001 = 0,98 Н. Ошондуктан динамометр абадагыдан аз көрсөтөт: P₁ = P − F_A = 2,65 − 0,98 ≈ 1,67 Н.",
+          "ru": "Вода выталкивает цилиндр вверх с силой 0,98 Н: F_A = ρ_ж·g·V_т = 1000 · 9,8 · 0,0001 = 0,98 Н. Поэтому динамометр показывает меньше, чем в воздухе: P₁ = P − F_A = 2,65 − 0,98 ≈ 1,67 Н.",
+          "en": "The water pushes the cylinder up with 0.98 N: F_A = ρgV = 1000 × 9.8 × 0.0001 = 0.98 N. So the dynamometer reads less than in air: P₁ = P − F_A = 2.65 − 0.98 ≈ 1.67 N."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 0.98
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F_A = \\rho_с \\cdot g \\cdot V_н"
+          }
+        ]
+      },
+      "phys.displaced-liquid": {
+        "nodes": [
+          "Cup",
+          "Stream"
+        ],
+        "description": {
+          "ky": "Цилиндр сууга толук батканда чоргодон стаканга өз көлөмүнө барабар 100 см³ суу агып түшөт. Анын массасы 0,1 кг, салмагы 0,98 Н – Архимед күчүнө так барабар.",
+          "ru": "Когда цилиндр полностью погружён, из носика в стакан стекает 100 см³ воды – столько же, каков объём цилиндра. Её масса 0,1 кг, вес 0,98 Н – ровно архимедова сила.",
+          "en": "With the cylinder fully under, 100 cm³ of water – its own volume – runs from the spout into the cup. That water has a mass of 0.1 kg and weighs 0.98 N – exactly the buoyant force."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "volume",
+            "value": 100
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 0.98
+          }
+        ]
+      },
+      "phys.dynamometer": {
+        "nodes": [
+          "Dynamometer",
+          "Dynamometer_Air",
+          "Dynamometer_Liquid"
+        ],
+        "description": {
+          "ky": "Динамометр цилиндрдин салмагын абада (P = 2,65 Н) жана сууда (P₁ ≈ 1,67 Н) көрсөтөт. Көрсөткүчтөрдүн айырмасы – Архимед күчү: F_A = P − P₁.",
+          "ru": "Динамометр показывает вес цилиндра в воздухе (P = 2,65 Н) и в воде (P₁ ≈ 1,67 Н). Разность показаний – архимедова сила: F_A = P − P₁.",
+          "en": "The dynamometer shows the cylinder's weight in air (P = 2.65 N) and in water (P₁ ≈ 1.67 N). The difference is the buoyant force: F_A = P − P₁."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 2.65
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 1.67
+          }
+        ]
+      },
+      "phys.gravity": {
+        "nodes": [
+          "Arrow_Gravity_*"
+        ],
+        "description": {
+          "ky": "Цилиндрге оордук күчү F = m·g = 0,27 · 9,8 ≈ 2,65 Н ылдый аракет этет – сууда да, абада да бирдей. Сууда ага карама-каршы Архимед күчү кошулат.",
+          "ru": "На цилиндр действует сила тяжести F = m·g = 0,27 · 9,8 ≈ 2,65 Н вниз – в воде такая же, как в воздухе. В воде ей навстречу добавляется архимедова сила.",
+          "en": "Gravity pulls the cylinder down with F = mg = 0.27 × 9.8 ≈ 2.65 N – the same in water as in air. In water the buoyant force acts against it."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 2.65
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.27
+          }
+        ]
+      },
+      "phys.liquid-pressure": {
+        "nodes": [
+          "Liquid",
+          "Beaker"
+        ],
+        "description": {
+          "ky": "Цилиндрдин астыңкы грани жогоркусунан тереңирээк, ошондуктан ага суу көбүрөөк басат: F₂ > F₁. Айырмасы F_A = F₂ − F₁ = ρ·g·S·(h₂ − h₁) = ρ·g·V – Архимед күчү.",
+          "ru": "Нижняя грань цилиндра глубже верхней, поэтому вода давит на неё сильнее: F₂ > F₁. Разность F_A = F₂ − F₁ = ρ·g·S·(h₂ − h₁) = ρgV – архимедова сила.",
+          "en": "The cylinder's bottom face is deeper than its top, so the water presses harder there: F₂ > F₁. The difference F_A = F₂ − F₁ = ρgA(h₂ − h₁) = ρgV is the buoyant force."
+        },
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F_A = F_2 - F_1"
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 1000,
+            "unit": "kg/m³"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "arch-aluminium-water",
+        "title": {
+          "ky": "Алюминий цилиндр сууда",
+          "ru": "Алюминиевый цилиндр в воде",
+          "en": "Aluminium cylinder in water"
+        },
+        "classification": {
+          "ky": "F_A = 0,98 Н, P₁ ≈ 1,67 Н",
+          "ru": "F_A = 0,98 Н, P₁ ≈ 1,67 Н",
+          "en": "F_A = 0.98 N, P₁ ≈ 1.67 N"
+        },
+        "thumb": "thumbs/arch-aluminium-water.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "volume",
+            "value": 100
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 2700,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 0.98
+          }
+        ],
+        "scene": {
+          "params": {
+            "liquid": "water",
+            "bodies": [
+              {
+                "id": "cyl",
+                "material": "aluminium",
+                "volume": 0.0001,
+                "shape": "cylinder"
+              }
+            ],
+            "submerged": 1
+          }
+        }
+      },
+      {
+        "key": "arch-aluminium-half",
+        "title": {
+          "ky": "Жарымы сууда",
+          "ru": "Наполовину в воде",
+          "en": "Half under water"
+        },
+        "classification": {
+          "ky": "F_A = 0,49 Н",
+          "ru": "F_A = 0,49 Н",
+          "en": "F_A = 0.49 N"
+        },
+        "thumb": "thumbs/arch-aluminium-half.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "volume",
+            "value": 50
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 0.49
+          }
+        ],
+        "scene": {
+          "params": {
+            "liquid": "water",
+            "bodies": [
+              {
+                "id": "cyl",
+                "material": "aluminium",
+                "volume": 0.0001,
+                "shape": "cylinder"
+              }
+            ],
+            "submerged": 0.5
+          }
+        }
+      },
+      {
+        "key": "arch-iron-water",
+        "title": {
+          "ky": "Темир цилиндр сууда",
+          "ru": "Железный цилиндр в воде",
+          "en": "Iron cylinder in water"
+        },
+        "classification": {
+          "ky": "Көлөм ошол эле – F_A = 0,98 Н",
+          "ru": "Тот же объём – F_A = 0,98 Н",
+          "en": "Same volume – F_A = 0.98 N"
+        },
+        "thumb": "thumbs/arch-iron-water.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "volume",
+            "value": 100
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 7800,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 0.98
+          }
+        ],
+        "scene": {
+          "params": {
+            "liquid": "water",
+            "bodies": [
+              {
+                "id": "cyl",
+                "material": "iron",
+                "volume": 0.0001,
+                "shape": "cylinder"
+              }
+            ],
+            "submerged": 1
+          }
+        }
+      },
+      {
+        "key": "arch-aluminium-oil",
+        "title": {
+          "ky": "Алюминий цилиндр майда",
+          "ru": "Алюминиевый цилиндр в масле",
+          "en": "Aluminium cylinder in oil"
+        },
+        "classification": {
+          "ky": "ρ = 900 кг/м³, F_A ≈ 0,88 Н",
+          "ru": "ρ = 900 кг/м³, F_A ≈ 0,88 Н",
+          "en": "ρ = 900 kg/m³, F_A ≈ 0.88 N"
+        },
+        "thumb": "thumbs/arch-aluminium-oil.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "volume",
+            "value": 100
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 900,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 0.882
+          }
+        ],
+        "scene": {
+          "params": {
+            "liquid": "oil",
+            "bodies": [
+              {
+                "id": "cyl",
+                "material": "aluminium",
+                "volume": 0.0001,
+                "shape": "cylinder"
+              }
+            ],
+            "submerged": 1
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "volume",
+        "value": 100
+      },
+      {
+        "kind": "quantity",
+        "type": "force",
+        "value": 0.98
+      },
+      {
+        "kind": "quantity",
+        "type": "density",
+        "value": 1000,
+        "unit": "kg/m³"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "F_A = \\rho_с g V_н"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                1.57,
+                2.04,
+                3.25
+              ],
+              "target": [
+                0.18,
+                1.11,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false
+            },
+            "focus": "phys.buoyant-force",
+            "text": {
+              "ky": "Абада араң көтөргөн ташты суунун түбүнөн оңой көтөрөбүз; сууга чөгөрүлгөн резина топ кайра калкып чыгат. Эмне үчүн? Динамометрге алюминий цилиндр илинген, астында чоргосу бар идиш.",
+              "ru": "Камень, который на воздухе едва поднимаешь, со дна легко поднять; притопленный резиновый мяч выпрыгивает обратно. Почему? На динамометре висит алюминиевый цилиндр, под ним – отливной сосуд.",
+              "en": "A stone you can hardly lift in air comes up easily from the bottom of a pond; a ball pushed under bobs straight back up. Why? An aluminium cylinder hangs from a dynamometer above a spout jug."
+            },
+            "teacherNote": {
+              "ky": "Китептеги Архимед жана Гиерондун таажысы жөнүндөгү легенданы кыскача айтып бериңиз – сабактын аягында кайра кайрылабыз.",
+              "ru": "Кратко расскажите легенду из учебника об Архимеде и короне Гиерона – вернёмся к ней в конце урока.",
+              "en": "Briefly tell the textbook legend of Archimedes and King Hiero's crown – we will come back to it at the end."
+            },
+            "altText": {
+              "ky": "Динамометрде илинген цилиндр жана суу толгон чоргосу бар идиш.",
+              "ru": "Цилиндр на динамометре и отливной сосуд с водой.",
+              "en": "A cylinder on a dynamometer above a spout jug of water."
+            }
+          },
+          {
+            "key": "air",
+            "camera": {
+              "position": [
+                0.8,
+                2.37,
+                1.87
+              ],
+              "target": [
+                0,
+                1.83,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.dynamometer",
+            "text": {
+              "ky": "Абада динамометр цилиндрдин салмагын көрсөтөт: m = 2700 · 0,0001 = 0,27 кг, P = 0,27 · 9,8 ≈ 2,65 Н.",
+              "ru": "В воздухе динамометр показывает вес цилиндра: m = 2700 · 0,0001 = 0,27 кг, P = 0,27 · 9,8 ≈ 2,65 Н.",
+              "en": "In air the dynamometer shows the cylinder's weight: m = 2700 × 0.0001 = 0.27 kg, P = 0.27 × 9.8 ≈ 2.65 N."
+            },
+            "teacherNote": {
+              "ky": "«Архимед күчүн динамометр менен ченөө» процессин иштетиңиз – ал 91-сүрөттөгү тажрыйбаны кайталайт.",
+              "ru": "Запустите процесс «Измеряем архимедову силу динамометром» – он повторяет опыт с рисунка 91.",
+              "en": "Run the process \"Measuring the buoyant force with a dynamometer\" – it repeats the experiment of figure 91."
+            },
+            "altText": {
+              "ky": "Динамометрдин шкаласында 2,65 Н.",
+              "ru": "На шкале динамометра 2,65 Н.",
+              "en": "The dynamometer scale shows 2.65 N."
+            }
+          },
+          {
+            "key": "immerse",
+            "camera": {
+              "position": [
+                1.57,
+                2.04,
+                3.25
+              ],
+              "target": [
+                0.18,
+                1.11,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.buoyant-force",
+            "text": {
+              "ky": "Цилиндрди сууга толук матырдык – динамометр 1,67 Н көрсөтөт. Суу нерсени F_A = P − P₁ = 2,65 − 1,67 = 0,98 Н күч менен жогору түртөт. Бул – Архимед күчү.",
+              "ru": "Полностью погрузили цилиндр – динамометр показывает 1,67 Н. Вода выталкивает тело вверх с силой F_A = P − P₁ = 2,65 − 1,67 = 0,98 Н. Это архимедова сила.",
+              "en": "Fully submerged, the dynamometer reads 1.67 N. The water pushes the body up with F_A = P − P₁ = 2.65 − 1.67 = 0.98 N. That is the buoyant force."
+            },
+            "teacherNote": {
+              "ky": "Белгилөөлөрдү китептегидей колдонуңуз: P – абадагы салмак, P₁ – суюктуктагы салмак, F_A – Архимед күчү. Оордук күчү сууда өзгөрбөйт – азайган салмак!",
+              "ru": "Используйте обозначения учебника: P – вес в воздухе, P₁ – вес в жидкости, F_A – архимедова сила. Сила тяжести в воде не меняется – уменьшается вес!",
+              "en": "Use the textbook's symbols: P – weight in air, P₁ – weight in liquid, F_A – buoyant force. Gravity does not change in water – the weight does!"
+            },
+            "altText": {
+              "ky": "Суудагы цилиндр: ылдый оордук күчү, өйдө Архимед күчү.",
+              "ru": "Цилиндр в воде: вниз сила тяжести, вверх архимедова сила.",
+              "en": "The cylinder in water: gravity down, buoyant force up."
+            }
+          },
+          {
+            "key": "why",
+            "camera": {
+              "position": [
+                0.8,
+                0.89,
+                1.87
+              ],
+              "target": [
+                0,
+                0.35,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.liquid-pressure",
+            "text": {
+              "ky": "Эмне үчүн суу түртөт? Цилиндрдин жогорку грани h₁, астыңкысы h₂ тереңдикте. Астыңкы гранга басым чоң: F₂ = ρ·g·h₂·S > F₁ = ρ·g·h₁·S. Айырмасы: F_A = F₂ − F₁ = ρ·g·S·h = ρ·g·V. Капталдагы күчтөр бири-бирин теңдейт.",
+              "ru": "Почему вода выталкивает? Верхняя грань цилиндра на глубине h₁, нижняя – h₂. На нижнюю грань давление больше: F₂ = ρgh₂S > F₁ = ρgh₁S. Разность: F_A = F₂ − F₁ = ρgSh = ρgV. Боковые силы уравновешивают друг друга.",
+              "en": "Why does water push up? The top face is at depth h₁, the bottom at h₂. The bottom face feels more pressure: F₂ = ρgh₂A > F₁ = ρgh₁A. The difference: F_A = F₂ − F₁ = ρgAh = ρgV. The side forces cancel out."
+            },
+            "teacherNote": {
+              "ky": "Тактада китептеги 90-сүрөт боюнча §32деги чыгарууну кайталаңыз. Ошол жерден P = ρ·g·h формуласы да чыгат.",
+              "ru": "На доске повторите вывод §32 по рисунку 90 учебника. Там же получается и формула p = ρgh.",
+              "en": "Repeat the §32 derivation from figure 90 on the board. The formula p = ρgh comes out of it too."
+            },
+            "altText": {
+              "ky": "Цилиндрдин үстүнкү жана астыңкы бетине суунун басымы.",
+              "ru": "Давление воды на верхнюю и нижнюю грани цилиндра.",
+              "en": "Water pressure on the top and bottom faces of the cylinder."
+            }
+          },
+          {
+            "key": "cup",
+            "camera": {
+              "position": [
+                1.27,
+                0.74,
+                1.87
+              ],
+              "target": [
+                0.47,
+                0.2,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.displaced-liquid",
+            "text": {
+              "ky": "Чоргодон стаканга 100 см³ суу агып түштү – цилиндрдин көлөмүндөй. Бул суунун массасы 0,1 кг, салмагы 0,1 · 9,8 = 0,98 Н – Архимед күчүнө так барабар!",
+              "ru": "Из носика в стакан стекло 100 см³ воды – ровно объём цилиндра. Масса этой воды 0,1 кг, вес 0,1 · 9,8 = 0,98 Н – точно архимедова сила!",
+              "en": "Exactly 100 cm³ of water – the cylinder's volume – has run into the cup. It has a mass of 0.1 kg and weighs 0.1 × 9.8 = 0.98 N – exactly the buoyant force!"
+            },
+            "teacherNote": {
+              "ky": "Стакандагы сууну цилиндрдин үстүндөгү чакага куйсак, динамометрдин жебеси баштапкы ордуна келет (91-в сүрөт).",
+              "ru": "Если вылить воду из стакана в ведёрко над цилиндром, стрелка динамометра вернётся на место (рисунок 91-в).",
+              "en": "Pour the cup of water into the little bucket above the cylinder and the pointer returns to where it began (figure 91c)."
+            },
+            "altText": {
+              "ky": "Чоргосу бар идиштин жанындагы суу толгон стакан.",
+              "ru": "Стакан с водой у носика отливного сосуда.",
+              "en": "The cup of water by the spout of the jug."
+            }
+          },
+          {
+            "key": "law",
+            "camera": {
+              "position": [
+                1.57,
+                2.04,
+                3.25
+              ],
+              "target": [
+                0.18,
+                1.11,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.archimedes-law",
+            "text": {
+              "ky": "Архимед закону: суюктукка матырылган нерсени жогору түртүүчү күч ал нерсе сүрүп чыгарган суюктуктун салмагына барабар: F_A = ρ_с·g·V_н. Газдарда да ушундай.",
+              "ru": "Закон Архимеда: выталкивающая сила, действующая на погружённое в жидкость тело, равна весу жидкости, вытесненной телом: F_A = ρ_ж·g·V_т. Для газов – так же.",
+              "en": "Archimedes' principle: the upward force on a body in a liquid equals the weight of the liquid the body pushes aside: F_A = ρgV. The same holds in gases."
+            },
+            "teacherNote": {
+              "ky": "Таажы жөнүндөгү 13-көнүгүүнүн 2-маселесин чыгарыңыз: абада 20 Н, сууда 18,75 Н → F_A = 1,25 Н, V ≈ 128 см³, ρ ≈ 16 000 кг/м³ < 19 300 – таажы таза алтын эмес.",
+              "ru": "Решите задачу 2 из упражнения 13 про корону: в воздухе 20 Н, в воде 18,75 Н → F_A = 1,25 Н, V ≈ 128 см³, ρ ≈ 16 000 кг/м³ < 19 300 – корона не из чистого золота.",
+              "en": "Do exercise 13, problem 2 about the crown: 20 N in air, 18.75 N in water → F_A = 1.25 N, V ≈ 128 cm³, ρ ≈ 16 000 kg/m³ < 19 300 – not pure gold."
+            },
+            "altText": {
+              "ky": "Архимед күчүнүн жебеси жана формуласы.",
+              "ru": "Стрелка и формула архимедовой силы.",
+              "en": "The buoyant force arrow and its formula."
+            }
+          },
+          {
+            "key": "iron",
+            "sample": "arch-iron-water",
+            "camera": {
+              "position": [
+                1.63,
+                2.12,
+                3.39
+              ],
+              "target": [
+                0.18,
+                1.16,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.buoyant-force",
+            "text": {
+              "ky": "Алюминийди ошол эле көлөмдөгү темир цилиндрге алмаштырабыз: темир 3 эсе оор (P ≈ 7,64 Н), бирок F_A ошол эле 0,98 Н. Архимед күчү нерсенин массасына эмес, көлөмүнө көз каранды.",
+              "ru": "Заменим алюминий железным цилиндром того же объёма: железо почти втрое тяжелее (P ≈ 7,64 Н), но F_A те же 0,98 Н. Архимедова сила зависит не от массы тела, а от его объёма.",
+              "en": "Swap the aluminium for an iron cylinder of the same volume: iron is nearly three times heavier (P ≈ 7.64 N) yet F_A is still 0.98 N. The buoyant force depends on the body's volume, not its mass."
+            },
+            "teacherNote": {
+              "ky": "Салыштыруу таблицасын ачыңыз. Сураңыз: цилиндрдин жарымы гана сууда болсочу? («Жарымы сууда» үлгүсү: 0,49 Н.)",
+              "ru": "Откройте таблицу сравнения. Спросите: а если в воде только половина цилиндра? (Образец «Наполовину в воде»: 0,49 Н.)",
+              "en": "Open the comparison table. Ask: what if only half the cylinder is under? (The \"Half under water\" sample: 0.49 N.)"
+            },
+            "altText": {
+              "ky": "Сууга баткан темир цилиндр, Архимед күчүнүн жебеси мурункудай.",
+              "ru": "Железный цилиндр в воде, стрелка архимедовой силы та же.",
+              "en": "The iron cylinder under water with the same buoyant force arrow."
+            }
+          },
+          {
+            "key": "oil",
+            "sample": "arch-aluminium-oil",
+            "camera": {
+              "position": [
+                1.57,
+                2.04,
+                3.25
+              ],
+              "target": [
+                0.18,
+                1.11,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.buoyant-force",
+            "text": {
+              "ky": "Ошол эле алюминий цилиндр майда (ρ = 900 кг/м³): F_A = 900 · 9,8 · 0,0001 ≈ 0,88 Н – суудагыдан аз. Суюктуктун тыгыздыгы канча кичине болсо, Архимед күчү ошончо кичине.",
+              "ru": "Тот же алюминиевый цилиндр в масле (ρ = 900 кг/м³): F_A = 900 · 9,8 · 0,0001 ≈ 0,88 Н – меньше, чем в воде. Чем меньше плотность жидкости, тем меньше архимедова сила.",
+              "en": "The same aluminium cylinder in oil (ρ = 900 kg/m³): F_A = 900 × 9.8 × 0.0001 ≈ 0.88 N – less than in water. The less dense the liquid, the smaller the buoyant force."
+            },
+            "teacherNote": {
+              "ky": "Китептеги 1.10-тест: темир таразанын ташы сууда керосиндегиге (800 кг/м³) караганда 1,25 эсе чоң Архимед күчүн сезет.",
+              "ru": "Тест 1.10 из учебника: на гирю в воде действует архимедова сила в 1,25 раза больше, чем в керосине (800 кг/м³).",
+              "en": "Textbook test 1.10: an iron weight feels a buoyant force 1.25 times bigger in water than in kerosene (800 kg/m³)."
+            },
+            "altText": {
+              "ky": "Сары майга баткан цилиндр.",
+              "ru": "Цилиндр, погружённый в жёлтое масло.",
+              "en": "The cylinder lowered into yellow oil."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.archimedes-bucket"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "arch-aluminium-water"
+          },
+          {
+            "kind": "sample",
+            "key": "arch-iron-water"
+          },
+          {
+            "kind": "sample",
+            "key": "arch-aluminium-oil"
+          },
+          {
+            "kind": "sample",
+            "key": "arch-aluminium-half"
+          }
+        ],
+        "rows": [
+          "volume",
+          "density",
+          "force"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-arch-1",
+          "phys.q.p7-arch-2",
+          "phys.q.p7-arch-3",
+          "phys.q.p7-arch-4",
+          "phys.q.p7-arch-5",
+          "phys.q.p7-arch-6",
+          "phys.q.p7-arch-7",
+          "phys.q.p7-arch-8",
+          "phys.q.p7-arch-9",
+          "phys.q.p7-arch-10",
+          "phys.q.p7-arch-11",
+          "phys.q.p7-arch-12",
+          "phys.q.p7-arch-13",
+          "phys.q.p7-arch-14",
+          "phys.q.p7-arch-15"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Таажынын сыры",
+            "ru": "Загадка короны",
+            "en": "The crown puzzle"
+          },
+          "text": {
+            "ky": "Архимед таажыны абада жана сууда тартып, анын көлөмүн жана тыгыздыгын тапкан: тыгыздыгы алтындыкынан аз болгондуктан, таажыга күмүш кошулганы аныкталган.",
+            "ru": "Архимед взвесил корону в воздухе и в воде, нашёл её объём и плотность: плотность оказалась меньше, чем у золота, – значит, к золоту подмешано серебро.",
+            "en": "Archimedes weighed the crown in air and in water and found its volume and density: it was less dense than gold, so silver had been mixed in."
+          },
+          "field": "m"
+        },
+        {
+          "title": {
+            "ky": "Суу астындагы иштер",
+            "ru": "Подводные работы",
+            "en": "Underwater salvage"
+          },
+          "text": {
+            "ky": "Суунун түбүнөн оор нерселерди көтөрүүдө аба толтурулган понтондор колдонулат: алар көп суу сүрүп чыгарып, чоң Архимед күчүн алат.",
+            "ru": "Для подъёма тяжестей со дна используют понтоны с воздухом: они вытесняют много воды и получают большую архимедову силу.",
+            "en": "To raise heavy wrecks, divers attach air-filled pontoons: they push aside a lot of water and gain a big buoyant force."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Ареометр",
+            "ru": "Ареометр",
+            "en": "Hydrometers"
+          },
+          "text": {
+            "ky": "Ареометр суюктукка канчалык терең батканына карап анын тыгыздыгын көрсөтөт – сүттүн, бензиндин сапатын текшерүүдө колдонулат.",
+            "ru": "Ареометр по глубине погружения показывает плотность жидкости – так проверяют качество молока и бензина.",
+            "en": "A hydrometer shows a liquid's density by how deep it sinks – used to check milk or petrol."
+          },
+          "field": "t"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Сууда таш көтөрүү",
+            "ru": "Камень в воде",
+            "en": "Lifting a stone in water"
+          },
+          "text": {
+            "ky": "Дарыяда ташты суунун ичинде оңой көтөрөсүң, ал эми суудан чыгаргандан кийин ал оорлоп калат.",
+            "ru": "В реке камень под водой поднимается легко, а как только вынешь его из воды – становится тяжелее.",
+            "en": "In a river a stone is easy to lift under water but feels heavier as soon as it leaves the water."
+          }
+        },
+        {
+          "title": {
+            "ky": "Толгон ванна",
+            "ru": "Полная ванна",
+            "en": "A full bath"
+          },
+          "text": {
+            "ky": "Толгон ваннага түшсөң, суу четинен төгүлөт – денең өз көлөмүндөй сууну сүрүп чыгарды.",
+            "ru": "Ляжешь в полную ванну – вода перельётся: тело вытеснило воду своего объёма.",
+            "en": "Get into a full bath and water spills over – your body has pushed aside its own volume of water."
+          }
+        },
+        {
+          "title": {
+            "ky": "Топ",
+            "ru": "Мяч",
+            "en": "A ball"
+          },
+          "text": {
+            "ky": "Сууга чөгөрүлгөн топту коё берсең, ал секирип чыгат – суу аны төмөндөн түртөт.",
+            "ru": "Отпусти притопленный мяч – он выскочит: вода выталкивает его снизу.",
+            "en": "Let go of a ball held under water and it shoots up – the water pushes it from below."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Эмне үчүн ташты суунун ичинде көтөрүү оңой?",
+        "ru": "Почему камень легче поднимать под водой?",
+        "en": "Why is a stone easier to lift under water?"
+      },
+      {
+        "ky": "Архимед күчү эмнеге көз каранды?",
+        "ru": "От чего зависит архимедова сила?",
+        "en": "What does the buoyant force depend on?"
+      },
+      {
+        "ky": "Архимед таажынын сырын кантип ачкан?",
+        "ru": "Как Архимед разгадал загадку короны?",
+        "en": "How did Archimedes solve the crown puzzle?"
+      },
+      {
+        "ky": "Темир жана алюминий цилиндрге сууда бирдей күч аракет этеби?",
+        "ru": "Одинаковая ли сила действует в воде на железный и алюминиевый цилиндры?",
+        "en": "Do an iron and an aluminium cylinder feel the same force in water?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Э. М. Мамбетакунов, «Физика, 7-класс», III глава (§24–34)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-arch-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Суюктукка матырылган нерсеге Архимед күчү кайсы тарапка багытталган?",
+        "ru": "Куда направлена архимедова сила, действующая на погружённое в жидкость тело?",
+        "en": "Which way does the buoyant force on a body in a liquid point?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Тик ылдый",
+            "ru": "Вертикально вниз",
+            "en": "Straight down"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Тик өйдө",
+            "ru": "Вертикально вверх",
+            "en": "Straight up"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Капталга",
+            "ru": "Вбок",
+            "en": "Sideways"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Суюктуктун агымы боюнча",
+            "ru": "По течению жидкости",
+            "en": "With the flow of the liquid"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Нерсенин салмагы жогортон төмөн багытталса, Архимед күчү төмөндөн жогору багытталат.",
+        "ru": "Вес тела направлен сверху вниз, а архимедова сила – снизу вверх.",
+        "en": "The body's weight points down; the buoyant force points up."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-arch-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Архимед күчү кайсы формула менен аныкталат?",
+        "ru": "По какой формуле вычисляют архимедову силу?",
+        "en": "Which formula gives the buoyant force?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "F_A = ρ_с·g·V_н",
+            "ru": "F_A = ρ_ж·g·V_т",
+            "en": "F_A = ρ_fluid·g·V_body"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "F_A = m·g",
+            "ru": "F_A = m·g (масса тела)",
+            "en": "F_A = m_body·g"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "F_A = P/S",
+            "ru": "F_A = p/S",
+            "en": "F_A = p/A"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "F_A = ρ_н·g·h",
+            "ru": "F_A = ρ_т·g·h",
+            "en": "F_A = ρ_body·g·h"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "F_A = g·ρ_с·V_н: ρ_с – суюктуктун тыгыздыгы, V_н – суюктукка матырылган нерсенин көлөмү.",
+        "ru": "F_A = ρ_ж·g·V_т: ρ_ж – плотность жидкости, V_т – объём погружённой части тела.",
+        "en": "F_A = ρ·g·V: ρ is the fluid's density and V the volume of the part that is submerged."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-arch-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Көлөмү 100 см³ нерсе сууга толук матырылды. Ага канча ньютон Архимед күчү аракет этет? ρ = 1000 кг/м³, g = 9,8 Н/кг.",
+        "ru": "Тело объёмом 100 см³ полностью погружено в воду. Какая архимедова сила на него действует, Н? ρ = 1000 кг/м³, g = 9,8 Н/кг.",
+        "en": "A 100 cm³ body is fully under water. What buoyant force acts on it, in N? ρ = 1000 kg/m³, g = 9.8 N/kg."
+      },
+      "answer": 0.98,
+      "tolerance": 0.01,
+      "unit": "N",
+      "explanation": {
+        "ky": "100 см³ = 0,0001 м³. F_A = 1000 · 9,8 · 0,0001 = 0,98 Н.",
+        "ru": "100 см³ = 0,0001 м³. F_A = 1000 · 9,8 · 0,0001 = 0,98 Н.",
+        "en": "100 cm³ = 0.0001 m³. F_A = 1000 × 9.8 × 0.0001 = 0.98 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-arch-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Таажы абада 20 Н, сууда 18,75 Н тартат. Ага канча ньютон Архимед күчү аракет этет?",
+        "ru": "Корона весит в воздухе 20 Н, в воде – 18,75 Н. Какая архимедова сила на неё действует, Н?",
+        "en": "A crown weighs 20 N in air and 18.75 N in water. What buoyant force acts on it, in N?"
+      },
+      "answer": 1.25,
+      "tolerance": 0.01,
+      "unit": "N",
+      "explanation": {
+        "ky": "F_A = P − P₁ = 20 − 18,75 = 1,25 Н.",
+        "ru": "F_A = P − P₁ = 20 − 18,75 = 1,25 Н.",
+        "en": "F_A = P − P₁ = 20 − 18.75 = 1.25 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-arch-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Ошол эле таажынын көлөмү канча см³? (F_A = 1,25 Н, ρ_суу = 1000 кг/м³, g = 9,8 Н/кг)",
+        "ru": "Каков объём той же короны, см³? (F_A = 1,25 Н, ρ_воды = 1000 кг/м³, g = 9,8 Н/кг)",
+        "en": "What is the volume of that crown, in cm³? (F_A = 1.25 N, ρ_water = 1000 kg/m³, g = 9.8 N/kg)"
+      },
+      "answer": 127.6,
+      "tolerance": 1.5,
+      "unit": "cm³",
+      "explanation": {
+        "ky": "V = F_A / (ρ·g) = 1,25 / 9800 ≈ 0,0001276 м³ ≈ 127,6 см³.",
+        "ru": "V = F_A / (ρg) = 1,25 / 9800 ≈ 0,0001276 м³ ≈ 127,6 см³.",
+        "en": "V = F_A / (ρg) = 1.25 / 9800 ≈ 0.0001276 m³ ≈ 127.6 cm³."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-arch-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Абада 2,65 Н тарткан алюминий цилиндрге сууда 0,98 Н Архимед күчү аракет этет. Динамометр сууда канча ньютон көрсөтөт?",
+        "ru": "Алюминиевый цилиндр весит в воздухе 2,65 Н, архимедова сила в воде 0,98 Н. Что покажет динамометр в воде, Н?",
+        "en": "An aluminium cylinder weighs 2.65 N in air and feels a 0.98 N buoyant force in water. What does the dynamometer read in water, in N?"
+      },
+      "answer": 1.67,
+      "tolerance": 0.01,
+      "unit": "N",
+      "explanation": {
+        "ky": "P₁ = P − F_A = 2,65 − 0,98 = 1,67 Н.",
+        "ru": "P₁ = P − F_A = 2,65 − 0,98 = 1,67 Н.",
+        "en": "P₁ = P − F_A = 2.65 − 0.98 = 1.67 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-arch-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кайыкка 3 кН Архимед күчү аракет этет. Аны ньютон менен туюнткула.",
+        "ru": "На лодку действует архимедова сила 3 кН. Выразите её в ньютонах.",
+        "en": "A boat feels a buoyant force of 3 kN. Express it in newtons."
+      },
+      "answer": 3000,
+      "tolerance": 1,
+      "unit": "N",
+      "explanation": {
+        "ky": "1 кН = 1000 Н, демек 3 кН = 3000 Н.",
+        "ru": "1 кН = 1000 Н, значит, 3 кН = 3000 Н.",
+        "en": "1 kN = 1000 N, so 3 kN = 3000 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-arch-8",
+      "type": "single",
+      "prompt": {
+        "ky": "Темир таразанын ташы (1) толугу менен сууга, (2) толугу менен керосинге матырылды. Суунун тыгыздыгы 1000 кг/м³, керосиндики 800 кг/м³. Архимед күчү жөнүндө эмне туура?",
+        "ru": "Железную гирю полностью погрузили (1) в воду, (2) в керосин. Плотность воды 1000 кг/м³, керосина 800 кг/м³. Что верно об архимедовой силе?",
+        "en": "An iron weight is fully lowered (1) into water and (2) into kerosene. Water is 1000 kg/m³, kerosene 800 kg/m³. What is true of the buoyant force?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "(1) жана (2) учурда бирдей",
+            "ru": "В (1) и (2) одинакова",
+            "en": "The same in (1) and (2)"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "(2) учурда 1,25 эсе кичине",
+            "ru": "В (2) в 1,25 раза меньше",
+            "en": "In (2) it is 1.25 times smaller"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "(1) учурда 1,25 эсе кичине",
+            "ru": "В (1) в 1,25 раза меньше",
+            "en": "In (1) it is 1.25 times smaller"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "(2) учурда 2,5 эсе кичине",
+            "ru": "В (2) в 2,5 раза меньше",
+            "en": "In (2) it is 2.5 times smaller"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Көлөм бирдей, F_A тыгыздыкка пропорционалдуу: 1000 / 800 = 1,25. Керосинде Архимед күчү 1,25 эсе кичине.",
+        "ru": "Объём одинаков, F_A пропорциональна плотности: 1000 / 800 = 1,25. В керосине архимедова сила в 1,25 раза меньше.",
+        "en": "Same volume, so F_A is proportional to density: 1000 / 800 = 1.25. In kerosene the force is 1.25 times smaller."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-arch-9",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Архимед күчү эмнеге көз каранды? Бардык туура жоопторду тандаңыз.",
+        "ru": "От чего зависит архимедова сила? Выберите все верные ответы.",
+        "en": "What does the buoyant force depend on? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Суюктуктун тыгыздыгына",
+            "ru": "От плотности жидкости",
+            "en": "The density of the liquid"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Нерсенин матырылган бөлүгүнүн көлөмүнө",
+            "ru": "От объёма погружённой части тела",
+            "en": "The volume of the submerged part"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Нерсенин массасына",
+            "ru": "От массы тела",
+            "en": "The body's mass"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Толук матырылган нерсенин тереңдигине",
+            "ru": "От глубины, на которой находится полностью погружённое тело",
+            "en": "How deep the fully submerged body is"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "g чоңдугуна",
+            "ru": "От величины g",
+            "en": "The value of g"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "e"
+      ],
+      "explanation": {
+        "ky": "F_A = ρ_с·g·V_н: суюктуктун тыгыздыгы, матырылган бөлүктүн көлөмү жана g. Нерсенин массасы жана толук матырылгандан кийинки тереңдик формулага кирбейт.",
+        "ru": "F_A = ρ_ж·g·V_т: плотность жидкости, объём погружённой части и g. Масса тела и глубина полностью погружённого тела в формулу не входят.",
+        "en": "F_A = ρgV: the fluid's density, the submerged volume and g. The body's mass and the depth of a fully submerged body do not appear."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "misconceptionKey": "phys.m.buoyancy-body-mass",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-arch-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Сууга толук баткан цилиндрди тереңирээк түшүрдүк (түбүнө тийбейт). Архимед күчү кандай өзгөрөт?",
+        "ru": "Полностью погружённый цилиндр опустили глубже (не касаясь дна). Как изменится архимедова сила?",
+        "en": "A fully submerged cylinder is lowered deeper (not touching the bottom). How does the buoyant force change?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Чоңоёт",
+            "ru": "Увеличится",
+            "en": "It grows"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Азаят",
+            "ru": "Уменьшится",
+            "en": "It falls"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не изменится",
+            "en": "It stays the same"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Үстүнкү жана астыңкы гранга басым бирдей өсөт, айырмасы өзгөрбөйт: F_A = ρ·g·V тереңдикке көз каранды эмес.",
+        "ru": "Давления на верхнюю и нижнюю грани растут одинаково, разность не меняется: F_A = ρgV от глубины не зависит.",
+        "en": "The pressures on top and bottom grow together and their difference stays the same: F_A = ρgV does not depend on depth."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "misconceptionKey": "phys.m.buoyancy-depth",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-arch-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Көлөмү бирдей темир жана алюминий цилиндрлер сууга толук матырылды. Кайсынысына Архимед күчү чоң аракет этет?",
+        "ru": "Железный и алюминиевый цилиндры одного объёма полностью погружены в воду. На какой действует большая архимедова сила?",
+        "en": "An iron and an aluminium cylinder of the same volume are fully under water. Which feels the bigger buoyant force?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Темир цилиндрге",
+            "ru": "На железный",
+            "en": "The iron one"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Алюминий цилиндрге",
+            "ru": "На алюминиевый",
+            "en": "The aluminium one"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Экөөнө бирдей",
+            "ru": "На оба одинаковая",
+            "en": "Both the same"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Экөө тең бирдей көлөмдөгү сууну сүрүп чыгарат, ошондуктан F_A бирдей (0,98 Н). Темир оор болгону менен, ал Архимед күчүнө таасир этпейт.",
+        "ru": "Оба вытесняют одинаковый объём воды, поэтому F_A одинакова (0,98 Н). То, что железо тяжелее, на архимедову силу не влияет.",
+        "en": "Both push aside the same volume of water, so F_A is the same (0.98 N). Iron being heavier makes no difference to it."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "misconceptionKey": "phys.m.buoyancy-body-mass",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-arch-12",
+      "type": "match",
+      "prompt": {
+        "ky": "Белгини анын маанисине дал келтириңиз.",
+        "ru": "Сопоставьте обозначение и его смысл.",
+        "en": "Match each symbol to its meaning."
+      },
+      "pairs": [
+        {
+          "key": "fa",
+          "left": {
+            "ky": "F_A",
+            "ru": "F_A",
+            "en": "F_A"
+          },
+          "right": {
+            "ky": "Архимед күчү",
+            "ru": "Архимедова сила",
+            "en": "Buoyant force"
+          }
+        },
+        {
+          "key": "rho",
+          "left": {
+            "ky": "ρ_с",
+            "ru": "ρ_ж",
+            "en": "ρ_fluid"
+          },
+          "right": {
+            "ky": "Суюктуктун тыгыздыгы",
+            "ru": "Плотность жидкости",
+            "en": "Density of the liquid"
+          }
+        },
+        {
+          "key": "v",
+          "left": {
+            "ky": "V_н",
+            "ru": "V_т",
+            "en": "V_body"
+          },
+          "right": {
+            "ky": "Матырылган нерсенин көлөмү",
+            "ru": "Объём погружённого тела",
+            "en": "Volume of the submerged body"
+          }
+        },
+        {
+          "key": "p1",
+          "left": {
+            "ky": "P₁",
+            "ru": "P₁",
+            "en": "P₁"
+          },
+          "right": {
+            "ky": "Нерсенин суюктуктагы салмагы",
+            "ru": "Вес тела в жидкости",
+            "en": "The body's weight in the liquid"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "F_A = ρ_с·g·V_н, ал эми нерсенин суюктуктагы салмагы P₁ = P − F_A.",
+        "ru": "F_A = ρ_ж·g·V_т, а вес тела в жидкости P₁ = P − F_A.",
+        "en": "F_A = ρgV, and the body's weight in the liquid is P₁ = P − F_A."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-arch-13",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден нерсе сүрүп чыгарган суу агып түшкөн стаканды тап.",
+        "ru": "Найдите на модели стакан, в который стекает вытесненная телом вода.",
+        "en": "Find the cup that collects the water the body pushes aside."
+      },
+      "targetConceptKey": "phys.displaced-liquid",
+      "explanation": {
+        "ky": "Бул – сүрүп чыгарылган суу: анын салмагы Архимед күчүнө барабар.",
+        "ru": "Это вытесненная вода: её вес равен архимедовой силе.",
+        "en": "That is the displaced water: its weight equals the buoyant force."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-arch-14",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден нерсени суюктуктан жогору түртүүчү күчтү тап.",
+        "ru": "Найдите на модели силу, выталкивающую тело из жидкости.",
+        "en": "Find the force that pushes the body up out of the liquid."
+      },
+      "targetConceptKey": "phys.buoyant-force",
+      "explanation": {
+        "ky": "Бул – Архимед күчү, ал тик өйдө багытталган: F_A = 0,98 Н.",
+        "ru": "Это архимедова сила, направленная вертикально вверх: F_A = 0,98 Н.",
+        "en": "That is the buoyant force, pointing straight up: F_A = 0.98 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-arch-15",
+      "type": "single",
+      "prompt": {
+        "ky": "Архимед күчүнүн бирдиги кайсы?",
+        "ru": "Какова единица архимедовой силы?",
+        "en": "What is the unit of the buoyant force?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Па",
+            "ru": "Па",
+            "en": "Pa"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "кПа",
+            "ru": "кПа",
+            "en": "kPa"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "кг",
+            "ru": "кг",
+            "en": "kg"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Н",
+            "ru": "Н",
+            "en": "N"
+          }
+        }
+      ],
+      "answer": "d",
+      "explanation": {
+        "ky": "Архимед күчү – күч, анын бирдиги ньютон (Н).",
+        "ru": "Архимедова сила – это сила, её единица – ньютон (Н).",
+        "en": "The buoyant force is a force, so its unit is the newton (N)."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    }
+  ]
+}

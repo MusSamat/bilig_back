@@ -1,0 +1,1225 @@
+{
+  "topic": {
+    "key": "phys7-inertia",
+    "unitKey": "phys.g7.dynamics",
+    "status": "published",
+    "title": {
+      "ky": "Инерция. Ньютондун биринчи закону",
+      "ru": "Инерция. Первый закон Ньютона",
+      "en": "Inertia. Newton's first law"
+    },
+    "formula": "R = 0 ⇒ v = const",
+    "classification": {
+      "ky": "Динамика",
+      "ru": "Динамика",
+      "en": "Dynamics"
+    },
+    "description": {
+      "ky": "Нерселер өз ара аракеттенишет: аракеттин натыйжасында алардын ылдамдыгы өзгөрөт же алар деформацияланат. Столдогу 2 кг брусокко таасир эткен күчтөрдү карайбыз: алар теңделсе (тең аракеттүү күч нөл), брусок ылдамдыгын өзгөртпөйт – тынч турса тынч турат, кыймылдаса бир калыпта түз сызык боюнча жыла берет. Бул – инерция жана Ньютондун биринчи закону. Сүрүлүү кыймылдагы брусокту акырындатып токтотот.",
+      "ru": "Тела взаимодействуют: в результате их скорость меняется или они деформируются. Рассматриваем силы, действующие на брусок массой 2 кг на столе: если они уравновешены (равнодействующая равна нулю), брусок не меняет скорость – покоится или скользит равномерно и прямолинейно. Это инерция и первый закон Ньютона. Трение замедляет и останавливает движущийся брусок.",
+      "en": "Bodies interact: as a result their speed changes or they deform. We look at the forces on a 2 kg block on a table: if they balance (zero resultant), the block keeps its velocity – it stays at rest or slides on steadily in a straight line. That is inertia and Newton's first law. Friction slows a moving block down and stops it."
+    },
+    "goal": {
+      "ky": "Өз ара аракеттенишүүгө мисал келтирүү, инерцияны жана инерттүүлүктү түшүндүрүү, Ньютондун биринчи законун айтып, аны турмуштук кубулуштарга колдонуу (PHYS-7.2.1).",
+      "ru": "Приводить примеры взаимодействия, объяснять инерцию и инертность, формулировать первый закон Ньютона и применять его к явлениям из жизни (PHYS-7.2.1).",
+      "en": "Give examples of interaction, explain inertia and inertness, state Newton's first law and apply it to everyday events (PHYS-7.2.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.dynamics.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "forces",
+        "mass": 2,
+        "forces": [],
+        "gravity": true,
+        "friction": 0,
+        "dynamometer": false,
+        "g": 9.8,
+        "v0": 1.5
+      },
+      "camera": {
+        "position": [
+          1.3,
+          1.9,
+          4.4
+        ],
+        "target": [
+          0,
+          0.3,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "resultant",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.inertia",
+      "phys.newton-first-law",
+      "phys.interaction",
+      "phys.mass",
+      "phys.force",
+      "phys.gravity",
+      "phys.normal-force",
+      "phys.friction-force"
+    ],
+    "overrides": {
+      "phys.inertia": {
+        "nodes": [
+          "Block"
+        ],
+        "description": {
+          "ky": "Столдогу 2 кг брусок. Ага таасир эткен күчтөр теңделсе, ал ылдамдыгын «сактайт»: тынч турса тынч турат, түртүлүп коё берилсе, сүрүлүү жок бетте 1,5 м/с ылдамдык менен жыла берет.",
+          "ru": "Брусок массой 2 кг на столе. Если силы, действующие на него, уравновешены, он «сохраняет» скорость: покоится или, если его толкнуть и отпустить, скользит по гладкой поверхности со скоростью 1,5 м/с.",
+          "en": "A 2 kg block on the table. If the forces on it balance, it 'keeps' its velocity: it stays at rest, or, once pushed and let go, slides on a frictionless surface at 1.5 m/s."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 1.5
+          }
+        ]
+      },
+      "phys.newton-first-law": {
+        "nodes": [
+          "Arrow_Resultant",
+          "Arrow_Resultant_*"
+        ],
+        "description": {
+          "ky": "Сахнадагы «R = 0» белгиси: брусокко таасир эткен бардык күчтөрдүн тең аракеттүүсү нөл. Ошондуктан брусоктун ылдамдыгы өзгөрбөйт – Ньютондун биринчи закону.",
+          "ru": "Надпись «R = 0» в сцене: равнодействующая всех сил, действующих на брусок, равна нулю. Поэтому скорость бруска не меняется – первый закон Ньютона.",
+          "en": "The 'R = 0' mark in the scene: the resultant of all the forces on the block is zero. So the block's velocity does not change – Newton's first law."
+        },
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "R = 0 \\Rightarrow a = 0"
+          }
+        ]
+      },
+      "phys.mass": {
+        "nodes": [
+          "Block_Label"
+        ],
+        "description": {
+          "ky": "Брусоктун массасы 2 кг. Масса канчалык чоң болсо, инерттүүлүк ошончолук чоң – брусоктун ылдамдыгын өзгөртүү кыйыныраак.",
+          "ru": "Масса бруска 2 кг. Чем больше масса, тем больше инертность – тем труднее изменить скорость бруска.",
+          "en": "The block's mass is 2 kg. The larger the mass, the greater the inertness – the harder it is to change the block's velocity."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          }
+        ]
+      },
+      "phys.force": {
+        "nodes": [
+          "Arrow_push"
+        ],
+        "description": {
+          "ky": "Тартуу күчү – брусокко башка нерсенин (колдун же динамометрдин) аракети. «Тең күчтөр» үлгүсүндө ал 5,88 Н, сүрүлүүгө барабар.",
+          "ru": "Сила тяги – действие другого тела (руки или динамометра) на брусок. В образце «Силы уравновешены» она 5,88 Н и равна трению.",
+          "en": "The pull is another body's (a hand's or a dynamometer's) action on the block. In the 'Balanced forces' sample it is 5.88 N, equal to friction."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 5.88
+          }
+        ]
+      },
+      "phys.gravity": {
+        "nodes": [
+          "Arrow_Gravity"
+        ],
+        "description": {
+          "ky": "Жер брусокту тартат: F_оор = mg = 2 · 9,8 = 19,6 Н, тик ылдый.",
+          "ru": "Земля притягивает брусок: F_тяж = mg = 2 · 9,8 = 19,6 Н, вертикально вниз.",
+          "en": "The Earth pulls the block: F = mg = 2 × 9.8 = 19.6 N, straight down."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 19.6
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F_{оор} = m g"
+          }
+        ]
+      },
+      "phys.normal-force": {
+        "nodes": [
+          "Arrow_Normal"
+        ],
+        "description": {
+          "ky": "Стол брусокту 19,6 Н менен өйдө түртөт – оордук күчүн теңдейт. Ошондуктан брусок тик багытта кыймылдабайт.",
+          "ru": "Стол давит на брусок вверх с силой 19,6 Н и уравновешивает силу тяжести. Поэтому по вертикали брусок не движется.",
+          "en": "The table pushes the block up with 19.6 N, balancing gravity. That is why the block does not move vertically."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 19.6
+          }
+        ]
+      },
+      "phys.friction-force": {
+        "nodes": [
+          "Arrow_Friction",
+          "Table"
+        ],
+        "description": {
+          "ky": "Столдун бетинин бүдүрлөрү кыймылдагы брусокко тескери таасир этет. μ = 0,3 болгондо F_сүр = μmg = 0,3 · 19,6 = 5,88 Н – бул күч брусокту акырындатып токтотот.",
+          "ru": "Неровности стола тормозят движущийся брусок. При μ = 0,3 сила трения F_тр = μmg = 0,3 · 19,6 = 5,88 Н – она замедляет и останавливает брусок.",
+          "en": "The bumps of the table surface act against the moving block. With μ = 0.3 friction is F = μmg = 0.3 × 19.6 = 5.88 N – it slows the block down and stops it."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 5.88
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.3
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "inertia-no-friction",
+        "title": {
+          "ky": "Сүрүлүү жок: брусок жыла берет",
+          "ru": "Без трения: брусок скользит дальше",
+          "en": "No friction: the block keeps sliding"
+        },
+        "classification": {
+          "ky": "R = 0, v = 1,5 м/с өзгөрбөйт",
+          "ru": "R = 0, v = 1,5 м/с не меняется",
+          "en": "R = 0, v = 1.5 m/s stays the same"
+        },
+        "thumb": "thumbs/inertia-no-friction.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 0
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 1.5
+          }
+        ],
+        "scene": {
+          "params": {
+            "friction": 0,
+            "forces": [],
+            "v0": 1.5
+          }
+        }
+      },
+      {
+        "key": "inertia-friction",
+        "title": {
+          "ky": "Сүрүлүү бар: брусок токтойт",
+          "ru": "С трением: брусок останавливается",
+          "en": "With friction: the block stops"
+        },
+        "classification": {
+          "ky": "F_сүр = 5,88 Н кыймылга каршы",
+          "ru": "F_тр = 5,88 Н против движения",
+          "en": "F_fr = 5.88 N against the motion"
+        },
+        "thumb": "thumbs/inertia-friction.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 5.88
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.3
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 1.5
+          }
+        ],
+        "scene": {
+          "params": {
+            "friction": 0.3,
+            "forces": [],
+            "v0": 1.5
+          }
+        }
+      },
+      {
+        "key": "inertia-balanced",
+        "title": {
+          "ky": "Күчтөр теңделген: 5,88 Н жана 5,88 Н",
+          "ru": "Силы уравновешены: 5,88 Н и 5,88 Н",
+          "en": "Balanced forces: 5.88 N and 5.88 N"
+        },
+        "classification": {
+          "ky": "Тартуу = сүрүлүү, R = 0",
+          "ru": "Тяга = трение, R = 0",
+          "en": "Pull = friction, R = 0"
+        },
+        "thumb": "thumbs/inertia-balanced.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 5.88
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.3
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 1.5
+          }
+        ],
+        "scene": {
+          "params": {
+            "friction": 0.3,
+            "forces": [
+              {
+                "id": "push",
+                "magnitude": 5.88,
+                "angleDeg": 0
+              }
+            ],
+            "v0": 1.5
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "mass",
+        "value": 2
+      },
+      {
+        "kind": "quantity",
+        "type": "speed",
+        "value": 1.5
+      },
+      {
+        "kind": "quantity",
+        "type": "gravity",
+        "value": 9.8,
+        "unit": "N/kg",
+        "approx": true
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "R = 0 \\Rightarrow v = \\text{const}"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false,
+              "resultant": false,
+              "labels": false
+            },
+            "focus": "phys.inertia",
+            "text": {
+              "ky": "Столдо 2 кг брусок жатат. Ага эч ким тийбесе, ал канча убакыт жатат? Ал эми аны түртүп коё берсек – эмне үчүн ал токтойт?",
+              "ru": "На столе лежит брусок массой 2 кг. Сколько он пролежит, если его никто не тронет? А если толкнуть и отпустить – почему он останавливается?",
+              "en": "A 2 kg block lies on the table. How long will it stay there if nobody touches it? And if we push it and let go – why does it stop?"
+            },
+            "teacherNote": {
+              "ky": "Окуучулардын жоопторун тактага жазыңыз. Көбү «күч түгөнгөндө токтойт» дейт – бул Аристотелдин көз карашы; сабактын аягында ага кайрылыңыз.",
+              "ru": "Запишите ответы учеников на доске. Многие скажут «сила кончилась – и он остановился» – это взгляд Аристотеля; вернитесь к нему в конце урока.",
+              "en": "Write the pupils' answers on the board. Many will say 'it stops when the force runs out' – Aristotle's view; come back to it at the end."
+            },
+            "altText": {
+              "ky": "Столдо жаткан көк брусок.",
+              "ru": "Синий брусок на столе.",
+              "en": "A blue block on a table."
+            }
+          },
+          {
+            "key": "interaction",
+            "camera": {
+              "position": [
+                -0.38,
+                0.79,
+                3.45
+              ],
+              "target": [
+                -1.3,
+                -0.34,
+                0.35
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.gravity",
+            "text": {
+              "ky": "Бир нерсе экинчисине аракет жасаса, экинчиси да биринчисине аракет жасайт – нерселер өз ара аракеттенишет. Жер брусокту ылдый тартат (19,6 Н), стол аны өйдө түртөт (19,6 Н). Бул эки аракет теңделет: R = 0, брусок тынч жатат.",
+              "ru": "Если одно тело действует на другое, второе действует на первое – тела взаимодействуют. Земля тянет брусок вниз (19,6 Н), стол толкает его вверх (19,6 Н). Эти действия уравновешены: R = 0, брусок покоится.",
+              "en": "When one body acts on another, the second acts back – bodies interact. The Earth pulls the block down (19.6 N), the table pushes it up (19.6 N). These actions balance: R = 0 and the block stays at rest."
+            },
+            "teacherNote": {
+              "ky": "Китептеги мисалдарды эске салыңыз: магнит темир арабачаны козгойт же токтотот; кайыктагы бала экинчи кайыкты түртсө, экөө тең жылат.",
+              "ru": "Напомните примеры из учебника: магнит трогает или останавливает железную тележку; мальчик в лодке отталкивает другую – обе лодки движутся.",
+              "en": "Recall the textbook's examples: a magnet starts or stops an iron cart; a child in a boat pushes another boat and both move."
+            },
+            "altText": {
+              "ky": "Брусоктон ылдый жана өйдө караган бирдей эки жебе.",
+              "ru": "Две равные стрелки от бруска вниз и вверх.",
+              "en": "Two equal arrows from the block, down and up."
+            }
+          },
+          {
+            "key": "no-friction",
+            "sample": "inertia-no-friction",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true
+            },
+            "focus": "phys.newton-first-law",
+            "text": {
+              "ky": "Брусокту түртүп коё бердик, ал 1,5 м/с ылдамдык менен жылат. Сүрүлүү жок болсо, горизонталь боюнча ага эч кандай күч таасир этпейт – R = 0. Брусок токтобойт: ылдамдыгы да, багыты да өзгөрбөйт.",
+              "ru": "Толкнули брусок и отпустили, он скользит со скоростью 1,5 м/с. Без трения по горизонтали на него не действует никакая сила – R = 0. Брусок не останавливается: не меняются ни скорость, ни направление.",
+              "en": "We push the block and let go; it slides at 1.5 m/s. With no friction no horizontal force acts on it – R = 0. The block does not stop: neither its speed nor its direction changes."
+            },
+            "teacherNote": {
+              "ky": "Галилейдин ой-жүгүртүүсүн айтып бериңиз: жантык ноонун экинчи бөлүгү канчалык жантык эмес болсо, шар ошончо алыс тоголонот; горизонталь болсо – түбөлүк.",
+              "ru": "Расскажите рассуждение Галилея: чем положе второй жёлоб, тем дальше катится шар; если он горизонтален – вечно.",
+              "en": "Tell Galileo's reasoning: the gentler the second ramp, the further the ball rolls; on a level one – for ever."
+            },
+            "altText": {
+              "ky": "Брусок горизонталь боюнча бир калыпта жылат, «R = 0» белгиси.",
+              "ru": "Брусок скользит равномерно, надпись «R = 0».",
+              "en": "The block glides steadily; the 'R = 0' mark."
+            }
+          },
+          {
+            "key": "friction",
+            "sample": "inertia-friction",
+            "camera": {
+              "position": [
+                1.16,
+                0.93,
+                3.91
+              ],
+              "target": [
+                0,
+                -0.49,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.friction-force",
+            "text": {
+              "ky": "Эми стол кадимкидей бүдүр (μ = 0,3). Кыймылдагы брусокко сүрүлүү күчү 5,88 Н кыймылга каршы таасир этет – брусок акырындап, токтоп калат. Аны «күч түгөнгөнү» эмес, башка нерсенин – столдун аракети токтотту.",
+              "ru": "Теперь стол обычный, шероховатый (μ = 0,3). На движущийся брусок против движения действует сила трения 5,88 Н – брусок замедляется и останавливается. Его остановила не «кончившаяся сила», а действие другого тела – стола.",
+              "en": "Now the table is ordinary and rough (μ = 0.3). Friction of 5.88 N acts on the moving block against its motion – it slows and stops. It was not stopped by a 'used-up force' but by another body acting on it – the table."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: муз үстүндө, кумда жана суу жоолукта шар кайсында алыс тоголонот? (Китептеги 59-сүрөттөгү тажрыйба.)",
+              "ru": "Спросите: где шар укатится дальше – по столу, по мокрой ткани или по песку? (Опыт с рис. 59 учебника.)",
+              "en": "Ask: where will a ball roll furthest – on the table, on a wet cloth or on sand? (The experiment in fig. 59 of the textbook.)"
+            },
+            "altText": {
+              "ky": "Брусоктун астында солго караган сүрүлүү жебеси.",
+              "ru": "Стрелка трения влево у основания бруска.",
+              "en": "A friction arrow pointing left at the base of the block."
+            }
+          },
+          {
+            "key": "balanced",
+            "sample": "inertia-balanced",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.force",
+            "text": {
+              "ky": "Брусокту 5,88 Н менен тартып турсак, тартуу сүрүлүүнү так теңдейт: R = 0. Брусок бир калыпта жыла берет. Нерсени кыймылда кармоо үчүн эмес, ылдамдыгын өзгөртүү үчүн күч керек.",
+              "ru": "Если тянуть брусок с силой 5,88 Н, тяга точно уравновесит трение: R = 0. Брусок скользит равномерно. Сила нужна не чтобы поддерживать движение, а чтобы менять скорость.",
+              "en": "If we pull with 5.88 N, the pull exactly balances friction: R = 0. The block slides on steadily. A force is needed to change velocity, not to keep moving."
+            },
+            "teacherNote": {
+              "ky": "Ньютондун биринчи законун тактага жазыңыз: «Нерсеге башка нерселер аракет кылбаса, ал тынч абалда же бир калыпта түз сызыктуу кыймылда болот.» Аракеттер теңделгенде да ушундай.",
+              "ru": "Запишите первый закон Ньютона: «Если на тело не действуют другие тела, оно покоится или движется равномерно и прямолинейно». То же – если действия уравновешены.",
+              "en": "Write Newton's first law on the board: 'If no other bodies act on a body, it stays at rest or moves steadily in a straight line.' The same holds when the actions balance."
+            },
+            "altText": {
+              "ky": "Тартуу жана сүрүлүү жебелери бирдей узундукта.",
+              "ru": "Стрелки тяги и трения одинаковой длины.",
+              "en": "The pull and friction arrows are the same length."
+            }
+          },
+          {
+            "key": "inertness",
+            "camera": {
+              "position": [
+                -0.33,
+                1.44,
+                3.1
+              ],
+              "target": [
+                -1.25,
+                0.31,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false,
+              "labels": true
+            },
+            "focus": "phys.inertia",
+            "text": {
+              "ky": "Нерсенин тынч абалын же бир калыптагы түз сызыктуу кыймылын сактоо кубулушу – инерция. Ал эми бул абалды сактоо касиети – инерттүүлүк: массасы чоң нерсенин ылдамдыгын өзгөртүү кыйын. Ошондуктан ат жалт бергенде жаш бала аттан кулап кетет, ал эми чоң киши анча козголбойт.",
+              "ru": "Явление сохранения телом покоя или равномерного прямолинейного движения – инерция. А свойство сохранять это состояние – инертность: скорость массивного тела изменить трудно. Поэтому, когда конь шарахается, ребёнок может упасть, а взрослый почти не шелохнётся.",
+              "en": "A body keeping its rest or steady straight-line motion is inertia. The property of keeping that state is inertness: a massive body's velocity is hard to change. That is why a child may fall when a horse shies, while an adult hardly moves."
+            },
+            "teacherNote": {
+              "ky": "«Арабачадагы жыгач брусок» процессин иштетиңиз: кескин козголгондо брусок артка, кескин токтогондо алдыга жыгылат. Окуучулар автобустан мисал келтиришсин.",
+              "ru": "Запустите процесс «Брусок на тележке»: при рывке брусок падает назад, при резкой остановке – вперёд. Пусть ученики приведут примеры из автобуса.",
+              "en": "Run the 'A block on a cart' process: a sudden start tips the block back, a sudden stop tips it forward. Ask pupils for examples from the bus."
+            },
+            "altText": {
+              "ky": "2 кг брусок жакындан.",
+              "ru": "Брусок 2 кг крупным планом.",
+              "en": "A close-up of the 2 kg block."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.inertia-cart"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "inertia-no-friction"
+          },
+          {
+            "kind": "sample",
+            "key": "inertia-friction"
+          },
+          {
+            "kind": "sample",
+            "key": "inertia-balanced"
+          }
+        ],
+        "rows": [
+          "force",
+          "frictionCoefficient"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-inertia-1",
+          "phys.q.phys7-inertia-2",
+          "phys.q.phys7-inertia-3",
+          "phys.q.phys7-inertia-4",
+          "phys.q.phys7-inertia-5",
+          "phys.q.phys7-inertia-6",
+          "phys.q.phys7-inertia-7",
+          "phys.q.phys7-inertia-8",
+          "phys.q.phys7-inertia-9",
+          "phys.q.phys7-inertia-10",
+          "phys.q.phys7-inertia-11",
+          "phys.q.phys7-inertia-12"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Коопсуздук куру",
+            "ru": "Ремень безопасности",
+            "en": "Seat belts"
+          },
+          "text": {
+            "ky": "Машина кескин токтогондо жүргүнчү инерция боюнча алдыга кыймылын улантат. Коопсуздук куру аны кармап калат – ошондуктан куруну дайыма тагынуу керек.",
+            "ru": "При резком торможении пассажир по инерции продолжает двигаться вперёд. Ремень безопасности удерживает его – поэтому пристёгиваться нужно всегда.",
+            "en": "When a car brakes hard the passenger carries on forwards by inertia. The seat belt holds them back – that is why you always buckle up."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Космостук зонддор",
+            "ru": "Космические зонды",
+            "en": "Space probes"
+          },
+          "text": {
+            "ky": "«Вояджер» зонддору кыймылдаткычтары өчүрүлгөндөн бери ондогон жылдар бою инерция боюнча учуп келатышат: космосто аларды токтото турган сүрүлүү дээрлик жок.",
+            "ru": "Зонды «Вояджер» десятилетиями летят по инерции после выключения двигателей: в космосе почти нет трения, которое могло бы их остановить.",
+            "en": "The Voyager probes have coasted for decades since their engines were switched off: in space there is almost no friction to stop them."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Тормоз жолу",
+            "ru": "Тормозной путь",
+            "en": "Stopping distance"
+          },
+          "text": {
+            "ky": "Жүктөлгөн жүк ташуучу машинанын инерттүүлүгү чоң, ал узагыраак жолдо токтойт. Ошондуктан жол инженерлери жүк машиналары үчүн аралыкты көбүрөөк калтырышат.",
+            "ru": "Гружёный грузовик очень инертен и тормозит на более длинном пути. Поэтому дорожные инженеры закладывают для грузовиков большую дистанцию.",
+            "en": "A loaded lorry has great inertness and needs a longer distance to stop, so road engineers allow lorries more following distance."
+          },
+          "field": "e"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Автобустагы жүргүнчүлөр",
+            "ru": "Пассажиры в автобусе",
+            "en": "Bus passengers"
+          },
+          "text": {
+            "ky": "Автобус аялдамага тез токтосо, жүргүнчүлөр алдыны көздөй умтулат; булкунуп козголсо – артты көздөй жылышат.",
+            "ru": "Автобус резко затормозил – пассажиры подались вперёд; резко тронулся – откинулись назад.",
+            "en": "When the bus brakes sharply passengers lurch forward; when it pulls away sharply they lurch back."
+          }
+        },
+        {
+          "title": {
+            "ky": "Балканын сабы",
+            "ru": "Рукоятка молотка",
+            "en": "A hammer handle"
+          },
+          "text": {
+            "ky": "Балканын сабын жерге уруп кийгизишет: сап токтойт, ал эми оор темир баш инерция боюнча ылдый жыла берип, сапка бекем отурат.",
+            "ru": "Рукоятку молотка насаживают, ударяя её о землю: рукоятка останавливается, а тяжёлая железная головка по инерции движется дальше вниз и плотно садится.",
+            "en": "To fix a hammer head you bang the handle on the ground: the handle stops while the heavy head carries on down by inertia and sits tight."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Эмне үчүн автобус кескин токтогондо биз алдыга ыргыйбыз?",
+        "ru": "Почему при резком торможении автобуса нас бросает вперёд?",
+        "en": "Why do we lurch forward when a bus brakes hard?"
+      },
+      {
+        "ky": "Инерция менен инерттүүлүктүн айырмасы эмнеде?",
+        "ru": "Чем инерция отличается от инертности?",
+        "en": "What is the difference between inertia and inertness?"
+      },
+      {
+        "ky": "Сүрүлүү жок болсо, түртүлгөн брусок качан токтойт?",
+        "ru": "Когда остановится толкнутый брусок, если трения нет?",
+        "en": "When would a pushed block stop if there were no friction?"
+      },
+      {
+        "ky": "Кыймылды улантуу үчүн дайыма күч керекпи?",
+        "ru": "Нужна ли постоянно сила, чтобы тело продолжало двигаться?",
+        "en": "Does a body need a force all the time to keep moving?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; Мамбетакунов Э. М., Физика 7 (кыргыз тилинде)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-inertia-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Физикада инерция деп эмнени айтабыз?",
+        "ru": "Что в физике называют инерцией?",
+        "en": "What does physics call inertia?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Нерсенин тынч абалын же бир калыптагы түз сызыктуу кыймылын сактоо кубулушун",
+            "ru": "Явление сохранения телом покоя или равномерного прямолинейного движения",
+            "en": "A body keeping its state of rest or steady straight-line motion"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Нерсени алдыга түрткөн күчтү",
+            "ru": "Силу, которая толкает тело вперёд",
+            "en": "A force that pushes a body forward"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Нерсенин массасын",
+            "ru": "Массу тела",
+            "en": "A body's mass"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Сүрүлүүнүн бир түрүн",
+            "ru": "Один из видов трения",
+            "en": "A kind of friction"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Инерция – кубулуш: нерсеге башка нерселер аракет этпесе, ал тынч абалын же бир калыптагы түз сызыктуу кыймылын сактайт.",
+        "ru": "Инерция – явление: если на тело не действуют другие тела, оно сохраняет покой или равномерное прямолинейное движение.",
+        "en": "Inertia is a phenomenon: if no other bodies act on a body, it keeps its rest or steady straight-line motion."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.inertia-is-force",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-inertia-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Автобус аялдамага кескин токтоду. Тик турган жүргүнчүлөр эмне болот?",
+        "ru": "Автобус резко затормозил у остановки. Что происходит со стоящими пассажирами?",
+        "en": "A bus brakes sharply at a stop. What happens to the standing passengers?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Алдыны көздөй умтулушат",
+            "ru": "Подаются вперёд",
+            "en": "They lurch forward"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Артты көздөй жылышат",
+            "ru": "Отклоняются назад",
+            "en": "They lurch back"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эч нерсе болбойт",
+            "ru": "Ничего не происходит",
+            "en": "Nothing happens"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Өйдө секиришет",
+            "ru": "Подпрыгивают",
+            "en": "They jump up"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Автобус токтойт, ал эми жүргүнчүлөр инерция боюнча мурдагы ылдамдыгы менен алдыга кыймылын улантат. Аларды эч ким алдыга түртпөйт.",
+        "ru": "Автобус останавливается, а пассажиры по инерции продолжают двигаться вперёд с прежней скоростью. Их никто не толкает вперёд.",
+        "en": "The bus stops while the passengers carry on forwards at their old speed by inertia. Nobody pushes them forward."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.inertia-is-force",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-inertia-3",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы учурларда нерсе тынч абалын же бир калыптагы түз сызыктуу кыймылын сактайт? Бардык туура жоопторду тандаңыз.",
+        "ru": "В каких случаях тело сохраняет покой или равномерное прямолинейное движение? Выберите все верные ответы.",
+        "en": "When does a body keep its rest or steady straight-line motion? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ага башка нерселер аракет этпесе",
+            "ru": "Если на него не действуют другие тела",
+            "en": "When no other bodies act on it"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ага аракет эткен күчтөр теңделсе (R = 0)",
+            "ru": "Если действующие на него силы уравновешены (R = 0)",
+            "en": "When the forces on it balance (R = 0)"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ага чоң күч аракет этсе",
+            "ru": "Если на него действует большая сила",
+            "en": "When a large force acts on it"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Ага кичине бир күч аракет этсе",
+            "ru": "Если на него действует одна маленькая сила",
+            "en": "When one small force acts on it"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "explanation": {
+        "ky": "Ньютондун биринчи закону: башка нерселер аракет этпесе же алардын аракеттери теңделсе, нерсенин ылдамдыгы өзгөрбөйт. Теңделбеген бир күч, кичине болсо да, ылдамдыкты өзгөртөт.",
+        "ru": "Первый закон Ньютона: если другие тела не действуют или их действия уравновешены, скорость тела не меняется. Одна неуравновешенная сила, даже маленькая, меняет скорость.",
+        "en": "Newton's first law: if no other bodies act, or their actions balance, the velocity does not change. A single unbalanced force, however small, changes it."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-inertia-4",
+      "type": "single",
+      "prompt": {
+        "ky": "2 кг брусокту 5,88 Н менен тартабыз, ага сүрүлүү күчү да 5,88 Н аракет этет. Брусок кандай кыймылдайт?",
+        "ru": "Брусок массой 2 кг тянут с силой 5,88 Н, на него действует сила трения тоже 5,88 Н. Как движется брусок?",
+        "en": "A 2 kg block is pulled with 5.88 N and friction on it is also 5.88 N. How does the block move?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Бир калыпта (же тынч турат)",
+            "ru": "Равномерно (или покоится)",
+            "en": "Steadily (or stays at rest)"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Акырындап токтойт",
+            "ru": "Замедляется и останавливается",
+            "en": "It slows down and stops"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Улам тездейт",
+            "ru": "Всё время разгоняется",
+            "en": "It keeps speeding up"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Күчтөр теңделген: R = 5,88 − 5,88 = 0. Тең аракеттүү күч нөл болсо, ылдамдык өзгөрбөйт. Кыймыл үчүн эмес, ылдамдыкты өзгөртүү үчүн күч керек.",
+        "ru": "Силы уравновешены: R = 5,88 − 5,88 = 0. При нулевой равнодействующей скорость не меняется. Сила нужна не для движения, а для изменения скорости.",
+        "en": "The forces balance: R = 5.88 − 5.88 = 0. With a zero resultant the velocity does not change. A force is needed to change speed, not to keep moving."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.aristotle-motion",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-inertia-5",
+      "type": "single",
+      "prompt": {
+        "ky": "Чаап бараткан ат жалт берсе, ким аттан кулап кетиши мүмкүн?",
+        "ru": "Если скачущий конь шарахнется в сторону, кто скорее упадёт?",
+        "en": "If a galloping horse shies, who is more likely to fall off?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жеңил жаш бала – анын инерттүүлүгү кичине",
+            "ru": "Лёгкий ребёнок – его инертность меньше",
+            "en": "A light child – their inertness is smaller"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Оор чоң киши – анын инерттүүлүгү чоң",
+            "ru": "Тяжёлый взрослый – его инертность больше",
+            "en": "A heavy adult – their inertness is greater"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Экөө тең бирдей",
+            "ru": "Оба одинаково",
+            "en": "Both equally"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Ат жалт бергенде ээрдин аракети чабандестин ылдамдыгын өзгөртүүгө умтулат. Жеңил баланын инерттүүлүгү кичине – анын ылдамдыгы оңой өзгөрөт, ал «ыргып» кетет; оор киши анча козголбойт (китептеги мисал).",
+        "ru": "Когда конь шарахается, седло стремится изменить скорость всадника. У лёгкого ребёнка инертность меньше – его скорость меняется легко, и его «выбрасывает»; тяжёлый взрослый почти не шелохнётся (пример из учебника).",
+        "en": "When the horse shies, the saddle tries to change the rider's velocity. A light child has little inertness – their velocity changes easily and they get thrown; a heavy adult barely moves (the textbook's example)."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-inertia-6",
+      "type": "match",
+      "prompt": {
+        "ky": "Кубулушту анын натыйжасы менен дал келтириңиз.",
+        "ru": "Сопоставьте явление и его результат.",
+        "en": "Match each event to what happens."
+      },
+      "pairs": [
+        {
+          "key": "stop",
+          "left": {
+            "ky": "Автобус кескин токтоду",
+            "ru": "Автобус резко затормозил",
+            "en": "The bus brakes sharply"
+          },
+          "right": {
+            "ky": "Жүргүнчүлөр алдыга умтулат",
+            "ru": "Пассажиры подаются вперёд",
+            "en": "Passengers lurch forward"
+          }
+        },
+        {
+          "key": "start",
+          "left": {
+            "ky": "Автобус булкунуп козголду",
+            "ru": "Автобус резко тронулся",
+            "en": "The bus pulls away sharply"
+          },
+          "right": {
+            "ky": "Жүргүнчүлөр артка жылышат",
+            "ru": "Пассажиры откидываются назад",
+            "en": "Passengers lurch back"
+          }
+        },
+        {
+          "key": "right",
+          "left": {
+            "ky": "Ат оң жакка жалт бурулду",
+            "ru": "Конь резко свернул вправо",
+            "en": "The horse swerves right"
+          },
+          "right": {
+            "ky": "Чабандес сол жакка оойт",
+            "ru": "Всадник отклоняется влево",
+            "en": "The rider sways left"
+          }
+        },
+        {
+          "key": "wall",
+          "left": {
+            "ky": "Арабача тосмого урунуп токтоду",
+            "ru": "Тележка упёрлась в препятствие",
+            "en": "The cart hits a barrier"
+          },
+          "right": {
+            "ky": "Үстүндөгү брусок алдыга жыгылат",
+            "ru": "Брусок на ней падает вперёд",
+            "en": "The block on it tips forward"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Бардык учурда нерсе (адам, брусок) мурдагы ылдамдыгын сактайт, ал эми анын таянычы (автобус, ат, арабача) ылдамдыгын өзгөртөт.",
+        "ru": "Во всех случаях тело (человек, брусок) сохраняет прежнюю скорость, а его опора (автобус, конь, тележка) меняет свою.",
+        "en": "Each time the body (person, block) keeps its old velocity while its support (bus, horse, cart) changes speed or direction."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-inertia-7",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден брусокко таасир эткен күчтөрдүн тең аракеттүүсүн көрсөткөн белгини тап.",
+        "ru": "Найдите на модели обозначение равнодействующей сил, действующих на брусок.",
+        "en": "Find the mark in the model that shows the resultant of the forces on the block."
+      },
+      "targetConceptKey": "phys.newton-first-law",
+      "explanation": {
+        "ky": "Бул – «R = 0» белгиси: күчтөр теңделген, ошондуктан брусоктун ылдамдыгы өзгөрбөйт (Ньютондун биринчи закону).",
+        "ru": "Это надпись «R = 0»: силы уравновешены, поэтому скорость бруска не меняется (первый закон Ньютона).",
+        "en": "That is the 'R = 0' mark: the forces balance, so the block's velocity does not change (Newton's first law)."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-inertia-8",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден кыймылга каршы таасир этип, брусокту токтоткон күчтү тап.",
+        "ru": "Найдите на модели силу, которая действует против движения и останавливает брусок.",
+        "en": "Find the force in the model that acts against the motion and stops the block."
+      },
+      "targetConceptKey": "phys.friction-force",
+      "explanation": {
+        "ky": "Бул – сүрүлүү күчү: ал столдун бети тарабынан кыймылга каршы таасир этет.",
+        "ru": "Это сила трения: она действует со стороны поверхности стола против движения.",
+        "en": "That is friction: the table surface exerts it against the motion."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-inertia-9",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Сүрүлүү дээрлик жок муз үстүндө шайба 4 м/с ылдамдык менен жылып баратат. Ага горизонталь боюнча эч кандай күч аракет этпесе, 3 с кийин анын ылдамдыгы канча болот (м/с)?",
+        "ru": "Шайба скользит по почти идеально гладкому льду со скоростью 4 м/с. Если по горизонтали на неё не действуют силы, какой будет её скорость через 3 с (м/с)?",
+        "en": "A puck glides on near-frictionless ice at 4 m/s. If no horizontal force acts on it, what is its speed after 3 s (m/s)?"
+      },
+      "answer": 4,
+      "tolerance": 0.01,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "R = 0 болсо, ылдамдык өзгөрбөйт: 3 с кийин да 4 м/с.",
+        "ru": "При R = 0 скорость не меняется: через 3 с она по-прежнему 4 м/с.",
+        "en": "With R = 0 the speed does not change: it is still 4 m/s after 3 s."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.motion-stops-itself",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-inertia-10",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 2 кг брусок столдо жатат, сүрүлүү коэффициенти 0,3. Брусок бир калыпта жылышы үчүн аны канча күч менен тартуу керек (Н)? g = 9,8 Н/кг.",
+        "ru": "Брусок массой 2 кг лежит на столе, коэффициент трения 0,3. С какой силой его нужно тянуть, чтобы он двигался равномерно (Н)? g = 9,8 Н/кг.",
+        "en": "A 2 kg block lies on a table with μ = 0.3. What pull keeps it moving steadily (N)? g = 9.8 N/kg."
+      },
+      "answer": 5.88,
+      "tolerance": 0.1,
+      "unit": "N",
+      "explanation": {
+        "ky": "Бир калыпта кыймылда тартуу сүрүлүүнү теңдейт: F = μmg = 0,3 · 2 · 9,8 = 5,88 Н.",
+        "ru": "При равномерном движении тяга уравновешивает трение: F = μmg = 0,3 · 2 · 9,8 = 5,88 Н.",
+        "en": "At steady speed the pull balances friction: F = μmg = 0.3 × 2 × 9.8 = 5.88 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-inertia-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Инерция менен инерттүүлүктүн айырмасы эмнеде?",
+        "ru": "Чем инерция отличается от инертности?",
+        "en": "How do inertia and inertness differ?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Инерция – кубулуш, инерттүүлүк – нерселердин касиети",
+            "ru": "Инерция – явление, инертность – свойство тел",
+            "en": "Inertia is a phenomenon, inertness a property of bodies"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Инерция – күч, инерттүүлүк – ылдамдык",
+            "ru": "Инерция – сила, инертность – скорость",
+            "en": "Inertia is a force, inertness a speed"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Алар бир эле нерсе",
+            "ru": "Это одно и то же",
+            "en": "They are the same thing"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Инерция – тынч абалды же бир калыптагы кыймылды сактоо кубулушу. Инерттүүлүк – ушул абалды сактоо касиети; аны масса мүнөздөйт.",
+        "ru": "Инерция – явление сохранения покоя или равномерного движения. Инертность – свойство тел сохранять это состояние; её характеризует масса.",
+        "en": "Inertia is the phenomenon of keeping rest or steady motion. Inertness is bodies' property of keeping that state; mass measures it."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-inertia-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Бала кайыктан жээкке секирди. Кайык эмне болот?",
+        "ru": "Мальчик прыгает из лодки на берег. Что произойдёт с лодкой?",
+        "en": "A boy jumps from a boat onto the shore. What happens to the boat?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кайык карама-каршы тарапка – жээктен алыстайт",
+            "ru": "Лодка сдвинется в противоположную сторону – от берега",
+            "en": "The boat moves the opposite way – away from the shore"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Кайык бала менен кошо жээкке жылат",
+            "ru": "Лодка поплывёт вместе с мальчиком к берегу",
+            "en": "The boat moves towards the shore with the boy"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Кайык ордунда калат",
+            "ru": "Лодка останется на месте",
+            "en": "The boat stays put"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Бала кайыкка аракет этет, кайык балага аракет этет – алар өз ара аракеттенишет. Бала алдыга, кайык артка жылат.",
+        "ru": "Мальчик действует на лодку, лодка – на мальчика: они взаимодействуют. Мальчик движется вперёд, лодка – назад.",
+        "en": "The boy acts on the boat and the boat on the boy – they interact. The boy goes forward and the boat goes back."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.one-way-action",
+      "difficulty": 1
+    }
+  ]
+}

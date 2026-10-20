@@ -1,0 +1,1186 @@
+{
+  "topic": {
+    "key": "phys7-mass-density",
+    "unitKey": "phys.g7.dynamics",
+    "status": "published",
+    "title": {
+      "ky": "Нерсенин массасы жана заттын тыгыздыгы",
+      "ru": "Масса тела и плотность вещества",
+      "en": "Mass and density"
+    },
+    "formula": "ρ = m/V",
+    "classification": {
+      "ky": "Динамика",
+      "ru": "Динамика",
+      "en": "Dynamics"
+    },
+    "description": {
+      "ky": "Масса – нерсенин инерттүүлүгүнүн чени: өз ара аракеттенишкен эки арабачанын массаларынын катышы алардын ылдамдыктарынын катышына тескери, m₁/m₂ = v₂/v₁. Күндөлүк турмушта массаны тараза менен өлчөйбүз. Тараза табагында массалары бирдей (270 г) алюминий, темир жана жез кубиктер турат, бирок алардын өлчөмдөрү ар башка – анткени заттардын тыгыздыгы ар башка: ρ = m/V.",
+      "ru": "Масса – мера инертности тела: отношение масс двух взаимодействующих тележек обратно отношению их скоростей, m₁/m₂ = v₂/v₁. В быту массу измеряют весами. На чашке весов стоят алюминиевый, железный и медный кубики одинаковой массы (270 г), но разного размера – потому что у веществ разная плотность: ρ = m/V.",
+      "en": "Mass measures a body's inertness: for two interacting carts the mass ratio is the inverse of the speed ratio, m₁/m₂ = v₂/v₁. In everyday life we measure mass with a balance. On the balance pan stand aluminium, iron and copper cubes of the same mass (270 g) but different sizes – because the substances have different densities: ρ = m/V."
+    },
+    "goal": {
+      "ky": "Массаны инерттүүлүктүн чени катары түшүндүрүү, массанын бирдиктерин которуу, тараза менен массаны өлчөө, заттын тыгыздыгын ρ = m/V боюнча эсептеп, таблица менен салыштыруу (PHYS-7.2.1).",
+      "ru": "Объяснять массу как меру инертности, переводить единицы массы, измерять массу на весах, вычислять плотность вещества по формуле ρ = m/V и сравнивать с таблицей (PHYS-7.2.1).",
+      "en": "Explain mass as a measure of inertness, convert units of mass, weigh a body on a balance, and calculate density with ρ = m/V and check it against the table (PHYS-7.2.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.dynamics.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "buoyancy",
+        "variant": "compare",
+        "equal": "mass",
+        "mass": 0.27,
+        "liquid": "water",
+        "bodies": [
+          {
+            "id": "al",
+            "material": "aluminium",
+            "volume": 0.0001,
+            "shape": "cube"
+          },
+          {
+            "id": "fe",
+            "material": "iron",
+            "volume": 3.4615e-05,
+            "shape": "cube"
+          },
+          {
+            "id": "cu",
+            "material": "copper",
+            "volume": 3.0337e-05,
+            "shape": "cube"
+          }
+        ],
+        "g": 9.8
+      },
+      "camera": {
+        "position": [
+          0.6,
+          1.3,
+          2.6
+        ],
+        "target": [
+          0,
+          0.4,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.mass",
+      "phys.inertia",
+      "phys.balance-scale",
+      "phys.density"
+    ],
+    "overrides": {
+      "phys.density": {
+        "nodes": [
+          "Body_*"
+        ],
+        "description": {
+          "ky": "Массалары бирдей (270 г) үч кубик: алюминий V = 100 см³, темир V ≈ 34,6 см³, жез V ≈ 30,3 см³. Тыгыздыгы чоң заттан жасалган кубиктин көлөмү кичине: ρ_ал = 2,7 г/см³, ρ_темир = 7,8 г/см³, ρ_жез = 8,9 г/см³.",
+          "ru": "Три кубика одинаковой массы (270 г): алюминиевый V = 100 см³, железный V ≈ 34,6 см³, медный V ≈ 30,3 см³. Чем плотнее вещество, тем меньше объём кубика: ρ_ал = 2,7 г/см³, ρ_жел = 7,8 г/см³, ρ_медь = 8,9 г/см³.",
+          "en": "Three cubes of equal mass (270 g): aluminium V = 100 cm³, iron V ≈ 34.6 cm³, copper V ≈ 30.3 cm³. The denser the substance, the smaller the cube: ρ_Al = 2.7 g/cm³, ρ_Fe = 7.8 g/cm³, ρ_Cu = 8.9 g/cm³."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 2.7,
+            "max": 8.9
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 270,
+            "unit": "g"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\rho = \\frac{m}{V}"
+          }
+        ]
+      },
+      "phys.balance-scale": {
+        "nodes": [
+          "Balance",
+          "Balance_*"
+        ],
+        "description": {
+          "ky": "Тараза кубиктердин массасын салыштырат: үчөөнүкү тең 270 г. Окуу таразасында нерсе сол табакка, тараза таштары оң табакка коюлат.",
+          "ru": "Весы сравнивают массы кубиков: у всех троих 270 г. На учебных весах тело кладут на левую чашку, гири – на правую.",
+          "en": "The balance compares the cubes' masses: all three are 270 g. On a school balance the body goes on the left pan and the weights on the right."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 270,
+            "unit": "g"
+          }
+        ]
+      },
+      "phys.mass": {
+        "description": {
+          "ky": "Ар бир кубиктин массасы 270 г = 0,27 кг. Массасы бирдей нерселерге бирдей оордук күчү таасир этет, бирок алардын өлчөмү ар башка болушу мүмкүн.",
+          "ru": "Масса каждого кубика 270 г = 0,27 кг. На тела одинаковой массы действует одинаковая сила тяжести, хотя размеры у них могут быть разными.",
+          "en": "Each cube has a mass of 270 g = 0.27 kg. Bodies of equal mass feel equal gravity, even if their sizes differ."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.27
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\frac{m_1}{m_2} = \\frac{v_2}{v_1}"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "density-equal-mass",
+        "title": {
+          "ky": "Массалары бирдей: Al, Fe, Cu",
+          "ru": "Равные массы: Al, Fe, Cu",
+          "en": "Equal masses: Al, Fe, Cu"
+        },
+        "classification": {
+          "ky": "270 г – көлөмдөрү ар башка",
+          "ru": "270 г – объёмы разные",
+          "en": "270 g – different volumes"
+        },
+        "thumb": "thumbs/density-equal-mass.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 270,
+            "unit": "g"
+          },
+          {
+            "kind": "quantity",
+            "type": "volume",
+            "value": 30.3,
+            "max": 100
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 2.7,
+            "max": 8.9
+          }
+        ],
+        "scene": {
+          "params": {
+            "equal": "mass",
+            "mass": 0.27,
+            "bodies": [
+              {
+                "id": "al",
+                "material": "aluminium",
+                "volume": 0.0001,
+                "shape": "cube"
+              },
+              {
+                "id": "fe",
+                "material": "iron",
+                "volume": 3.4615e-05,
+                "shape": "cube"
+              },
+              {
+                "id": "cu",
+                "material": "copper",
+                "volume": 3.0337e-05,
+                "shape": "cube"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "density-equal-volume",
+        "title": {
+          "ky": "Көлөмдөрү бирдей: жез, алюминий, пробка",
+          "ru": "Равные объёмы: медь, алюминий, пробка",
+          "en": "Equal volumes: copper, aluminium, cork"
+        },
+        "classification": {
+          "ky": "15 см³ – 133,5 г, 40,5 г, 3,6 г",
+          "ru": "15 см³ – 133,5 г, 40,5 г, 3,6 г",
+          "en": "15 cm³ – 133.5 g, 40.5 g, 3.6 g"
+        },
+        "thumb": "thumbs/density-equal-volume.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "volume",
+            "value": 15
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 3.6,
+            "max": 133.5,
+            "unit": "g"
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 0.24,
+            "max": 8.9
+          }
+        ],
+        "scene": {
+          "params": {
+            "equal": "volume",
+            "bodies": [
+              {
+                "id": "cu",
+                "material": "copper",
+                "volume": 1.5e-05,
+                "shape": "cube"
+              },
+              {
+                "id": "al",
+                "material": "aluminium",
+                "volume": 1.5e-05,
+                "shape": "cube"
+              },
+              {
+                "id": "cork",
+                "material": "cork",
+                "volume": 1.5e-05,
+                "shape": "cube"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "density-iron-cork",
+        "title": {
+          "ky": "100 г темир жана 100 г пробка",
+          "ru": "100 г железа и 100 г пробки",
+          "en": "100 g of iron and 100 g of cork"
+        },
+        "classification": {
+          "ky": "12,8 см³ жана 417 см³",
+          "ru": "12,8 см³ и 417 см³",
+          "en": "12.8 cm³ and 417 cm³"
+        },
+        "thumb": "thumbs/density-iron-cork.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 100,
+            "unit": "g"
+          },
+          {
+            "kind": "quantity",
+            "type": "volume",
+            "value": 12.8,
+            "max": 417
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 0.24,
+            "max": 7.8
+          }
+        ],
+        "scene": {
+          "params": {
+            "equal": "mass",
+            "mass": 0.1,
+            "bodies": [
+              {
+                "id": "fe",
+                "material": "iron",
+                "volume": 1.28e-05,
+                "shape": "cube"
+              },
+              {
+                "id": "cork",
+                "material": "cork",
+                "volume": 0.000417,
+                "shape": "cube"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "mass",
+        "value": 270,
+        "unit": "g"
+      },
+      {
+        "kind": "quantity",
+        "type": "density",
+        "value": 2.7,
+        "max": 8.9
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "\\rho = \\frac{m}{V}"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                0,
+                0.9,
+                2.6
+              ],
+              "target": [
+                0,
+                0.4,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "labels": false
+            },
+            "focus": "phys.balance-scale",
+            "text": {
+              "ky": "Тараза табагында үч кубик: алюминий, темир жана жез. Тараза үчөөнүн тең массасы 270 г экенин көрсөтөт, бирок алюминий кубик башкаларынан бир топ чоң. Эмне үчүн?",
+              "ru": "На чашке весов три кубика: алюминиевый, железный и медный. Весы показывают, что масса каждого 270 г, но алюминиевый заметно больше остальных. Почему?",
+              "en": "Three cubes stand on the balance: aluminium, iron and copper. The balance says each has a mass of 270 g, yet the aluminium cube is much bigger. Why?"
+            },
+            "teacherNote": {
+              "ky": "Адегенде окуучулар кайсы кубик оор деп ойлошорун сураңыз. «Чоңу оор» деген божомол – масса менен көлөмдү чаташтыруу.",
+              "ru": "Сначала спросите, какой кубик ученики считают самым тяжёлым. Ответ «самый большой» – это смешение массы и объёма.",
+              "en": "First ask which cube pupils think is heaviest. 'The biggest' confuses mass with volume."
+            },
+            "altText": {
+              "ky": "Тараза табагындагы ар башка өлчөмдөгү үч кубик.",
+              "ru": "Три кубика разного размера на чашке весов.",
+              "en": "Three cubes of different sizes on the balance pan."
+            }
+          },
+          {
+            "key": "mass",
+            "camera": {
+              "position": [
+                0,
+                0.9,
+                2.6
+              ],
+              "target": [
+                0,
+                0.4,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "phys.mass",
+            "text": {
+              "ky": "Масса деген эмне? Эки арабачаны серпилгич пластина менен түртүштүрсөк, массасы эки эсе кичине арабача эки эсе чоң ылдамдык алат: m₁/m₂ = v₂/v₁. Ылдамдыгы аз өзгөргөн нерсенин массасы чоң – инерттүүлүгү чоң. Масса – инерттүүлүктүн чени, бирдиги 1 кг.",
+              "ru": "Что такое масса? Если две тележки оттолкнуть друг от друга упругой пластиной, тележка вдвое меньшей массы получит вдвое большую скорость: m₁/m₂ = v₂/v₁. У тела, скорость которого меняется мало, масса больше – больше инертность. Масса – мера инертности, единица – 1 кг.",
+              "en": "What is mass? Push two carts apart with a springy strip and the cart with half the mass gets twice the speed: m₁/m₂ = v₂/v₁. A body whose speed changes little has more mass – more inertness. Mass measures inertness; its unit is 1 kg."
+            },
+            "teacherNote": {
+              "ky": "Бирдиктерди кайталаңыз: 1 т = 1000 кг, 1 кг = 1000 г, 1 г = 1000 мг. Килограммдын эталону – платина менен иридийдин цилиндри.",
+              "ru": "Повторите единицы: 1 т = 1000 кг, 1 кг = 1000 г, 1 г = 1000 мг. Эталон килограмма – цилиндр из платины и иридия.",
+              "en": "Revise the units: 1 t = 1000 kg, 1 kg = 1000 g, 1 g = 1000 mg. The kilogram prototype is a platinum–iridium cylinder."
+            },
+            "altText": {
+              "ky": "Кубиктер жана «m» белгиси.",
+              "ru": "Кубики и обозначение «m».",
+              "en": "The cubes and the symbol m."
+            }
+          },
+          {
+            "key": "weighing",
+            "camera": {
+              "position": [
+                0.64,
+                1.51,
+                2.79
+              ],
+              "target": [
+                0,
+                0.54,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "phys.balance-scale",
+            "text": {
+              "ky": "Тараза менен тартуунун эрежеси: коромыслонун тең салмактуулугун текшеребиз; нерсени сол табакка, таштарды оң табакка коёбуз – адегенде чоңун, анан кичинелерин; таштарды кыпчуур менен кармайбыз. Оң табактагы таштардын суммасы – нерсенин массасы.",
+              "ru": "Правила взвешивания: проверяем равновесие коромысла; тело кладём на левую чашку, гири – на правую, сначала крупные, потом мелкие; гири берём пинцетом. Сумма масс гирь на правой чашке – масса тела.",
+              "en": "Weighing rules: check that the beam balances; body on the left pan, weights on the right – big ones first, then small; handle weights with tweezers. The total of the weights on the right is the body's mass."
+            },
+            "teacherNote": {
+              "ky": "«Тараза менен массаны өлчөө» процессин иштетиңиз: 50 + 20 + 10 + 5 = 85 г. Мектептин таштары менен 1 ден 310 г чейин өлчөөгө болот.",
+              "ru": "Запустите процесс «Взвешивание на весах»: 50 + 20 + 10 + 5 = 85 г. Школьным набором гирь можно взвесить от 1 до 310 г.",
+              "en": "Run the 'Weighing on a balance' process: 50 + 20 + 10 + 5 = 85 g. A school set of weights covers 1 to 310 g."
+            },
+            "altText": {
+              "ky": "Тараза жана анын табагы жакындан.",
+              "ru": "Весы и их чашка крупным планом.",
+              "en": "A close-up of the balance and its pan."
+            }
+          },
+          {
+            "key": "density",
+            "camera": {
+              "position": [
+                0.63,
+                1.62,
+                3.25
+              ],
+              "target": [
+                -0.02,
+                0.66,
+                0.47
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "phys.density",
+            "text": {
+              "ky": "Массасы бирдей болгону менен көлөмдөрү ар башка. Көлөм бирдигиндеги массаны эсептейли: алюминий 270 г : 100 см³ = 2,7 г/см³, темир 270 : 34,6 ≈ 7,8 г/см³, жез 270 : 30,3 ≈ 8,9 г/см³. Бул чоңдук – заттын тыгыздыгы: ρ = m/V.",
+              "ru": "Массы одинаковы, а объёмы разные. Найдём массу единицы объёма: алюминий 270 г : 100 см³ = 2,7 г/см³, железо 270 : 34,6 ≈ 7,8 г/см³, медь 270 : 30,3 ≈ 8,9 г/см³. Эта величина – плотность вещества: ρ = m/V.",
+              "en": "The masses are equal but the volumes are not. Work out the mass per unit volume: aluminium 270 g ÷ 100 cm³ = 2.7 g/cm³, iron 270 ÷ 34.6 ≈ 7.8 g/cm³, copper 270 ÷ 30.3 ≈ 8.9 g/cm³. This is the density: ρ = m/V."
+            },
+            "teacherNote": {
+              "ky": "SI бирдиги – кг/м³: 1 г/см³ = 1000 кг/м³. Алтын: 19 300 кг/м³ = 19 300 000 г : 1 000 000 см³ = 19,3 г/см³.",
+              "ru": "Единица СИ – кг/м³: 1 г/см³ = 1000 кг/м³. Золото: 19 300 кг/м³ = 19 300 000 г : 1 000 000 см³ = 19,3 г/см³.",
+              "en": "The SI unit is kg/m³: 1 g/cm³ = 1000 kg/m³. Gold: 19,300 kg/m³ = 19,300,000 g ÷ 1,000,000 cm³ = 19.3 g/cm³."
+            },
+            "altText": {
+              "ky": "Үч кубиктин жанында m, V жана ρ маанилери.",
+              "ru": "У каждого кубика подписаны m, V и ρ.",
+              "en": "Each cube labelled with m, V and ρ."
+            }
+          },
+          {
+            "key": "equal-volume",
+            "sample": "density-equal-volume",
+            "camera": {
+              "position": [
+                0,
+                0.9,
+                2.6
+              ],
+              "target": [
+                0,
+                0.4,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "phys.density",
+            "text": {
+              "ky": "Эми көлөмдөрү бирдей (15 см³) кубиктер: жез 133,5 г, алюминий 40,5 г, пробка 3,6 г. Көлөмү бирдей, бирок ар кандай заттан жасалган нерселердин массалары ар башка. Тыгыздыгы эң чоң – жез (8,9 г/см³), эң кичине – пробка (0,24 г/см³).",
+              "ru": "Теперь кубики одинакового объёма (15 см³): медь 133,5 г, алюминий 40,5 г, пробка 3,6 г. Тела одного объёма из разных веществ имеют разные массы. Самая большая плотность у меди (8,9 г/см³), самая маленькая – у пробки (0,24 г/см³).",
+              "en": "Now cubes of equal volume (15 cm³): copper 133.5 g, aluminium 40.5 g, cork 3.6 g. Bodies of the same volume made of different substances have different masses. Copper is densest (8.9 g/cm³), cork least dense (0.24 g/cm³)."
+            },
+            "teacherNote": {
+              "ky": "Китептеги 2–4-таблицаларды ачыңыз. Сураңыз: суунун тыгыздыгы 1 г/см³ – бул эмнени билдирет? (1 см³ суунун массасы 1 г.)",
+              "ru": "Откройте таблицы 2–4 учебника. Спросите: плотность воды 1 г/см³ – что это значит? (Масса 1 см³ воды – 1 г.)",
+              "en": "Open tables 2–4 in the textbook. Ask: water's density is 1 g/cm³ – what does that mean? (1 cm³ of water has a mass of 1 g.)"
+            },
+            "altText": {
+              "ky": "Өлчөмдөрү бирдей үч кубик, массалары ар башка.",
+              "ru": "Три кубика одного размера с разными массами.",
+              "en": "Three same-sized cubes with different masses."
+            }
+          },
+          {
+            "key": "steel",
+            "camera": {
+              "position": [
+                0.63,
+                1.62,
+                3.25
+              ],
+              "target": [
+                -0.02,
+                0.66,
+                0.47
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "labels": true
+            },
+            "focus": "phys.density",
+            "text": {
+              "ky": "Болот кутуча (15 см³, 117 г), болот шар (8 см³, 62,4 г) жана болот кашык (22 см³, 171,6 г). Массасын көлөмүнө бөлсөк, баарында 7,8 г/см³ чыгат. Тыгыздык нерсенин өлчөмүнө эмес, анын кандай заттан жасалганына көз каранды.",
+              "ru": "Стальная коробочка (15 см³, 117 г), стальной шар (8 см³, 62,4 г) и стальная ложка (22 см³, 171,6 г). Разделив массу на объём, у всех получаем 7,8 г/см³. Плотность зависит не от размера тела, а от вещества, из которого оно сделано.",
+              "en": "A steel box (15 cm³, 117 g), a steel ball (8 cm³, 62.4 g) and a steel spoon (22 cm³, 171.6 g). Dividing mass by volume gives 7.8 g/cm³ for each. Density depends on the substance, not on the size of the body."
+            },
+            "teacherNote": {
+              "ky": "Формуланы үч түрдө жаздырыңыз: ρ = m/V, m = ρV, V = m/ρ. Тапшырма: узундугу 8 см, эни 4 см, калыңдыгы 2 см алтын кесегинин массасы? (1235,2 г.) Анан «100 г темир жана 100 г пробка» үлгүсүн ачыңыз: 12,8 см³ жана 417 см³.",
+              "ru": "Попросите записать формулу в трёх видах: ρ = m/V, m = ρV, V = m/ρ. Задача: масса куска золота 8 × 4 × 2 см? (1235,2 г.) Затем откройте образец «100 г железа и 100 г пробки»: 12,8 см³ против 417 см³.",
+              "en": "Have pupils write the formula three ways: ρ = m/V, m = ρV, V = m/ρ. Problem: the mass of a gold piece 8 × 4 × 2 cm? (1235.2 g.) Then open the '100 g of iron and 100 g of cork' sample: 12.8 cm³ against 417 cm³."
+            },
+            "altText": {
+              "ky": "Ар кандай формадагы үч болот буюм.",
+              "ru": "Три стальных предмета разной формы.",
+              "en": "Three steel objects of different shapes."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.balance-weighing"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "density-equal-mass"
+          },
+          {
+            "kind": "sample",
+            "key": "density-equal-volume"
+          },
+          {
+            "kind": "sample",
+            "key": "density-iron-cork"
+          }
+        ],
+        "rows": [
+          "mass",
+          "volume",
+          "density"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-density-1",
+          "phys.q.phys7-density-2",
+          "phys.q.phys7-density-3",
+          "phys.q.phys7-density-4",
+          "phys.q.phys7-density-5",
+          "phys.q.phys7-density-6",
+          "phys.q.phys7-density-7",
+          "phys.q.phys7-density-8",
+          "phys.q.phys7-density-9",
+          "phys.q.phys7-density-10",
+          "phys.q.phys7-density-11",
+          "phys.q.phys7-density-12",
+          "phys.q.phys7-density-13"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Архимед жана таажы",
+            "ru": "Архимед и корона",
+            "en": "Archimedes and the crown"
+          },
+          "text": {
+            "ky": "Уламыш боюнча Архимед падышанын таажысынын көлөмүн сууга салып ченеп, тыгыздыгы таза алтындыкынан аз экенин аныктаган – зергер алтынга күмүш кошкон экен.",
+            "ru": "По легенде, Архимед измерил объём царской короны, погрузив её в воду, и выяснил, что её плотность меньше, чем у чистого золота, – ювелир подмешал серебро.",
+            "en": "Legend says Archimedes measured the king's crown's volume by dipping it in water and found its density was lower than pure gold's – the goldsmith had mixed in silver."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Учак куруу",
+            "ru": "Самолётостроение",
+            "en": "Building aircraft"
+          },
+          "text": {
+            "ky": "Учактын корпусу алюминий куймаларынан жасалат: алюминийдин тыгыздыгы 2700 кг/м³, болоттукунан дээрлик үч эсе аз, ошондуктан учак жеңил болот.",
+            "ru": "Корпус самолёта делают из алюминиевых сплавов: плотность алюминия 2700 кг/м³ – почти втрое меньше, чем у стали, поэтому самолёт лёгкий.",
+            "en": "Aircraft bodies are made of aluminium alloys: aluminium's density, 2700 kg/m³, is nearly a third of steel's, so the plane is light."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Аквариумдагы суу",
+            "ru": "Вода в аквариуме",
+            "en": "Water in an aquarium"
+          },
+          "text": {
+            "ky": "Түбү 0,4 м × 0,2 м аквариумда 0,15 м бийиктикте суу бар: V = 0,4 · 0,2 · 0,15 = 0,012 м³, m = ρV = 1000 · 0,012 = 12 кг.",
+            "ru": "В аквариуме с дном 0,4 м × 0,2 м вода стоит на высоте 0,15 м: V = 0,4 · 0,2 · 0,15 = 0,012 м³, m = ρV = 1000 · 0,012 = 12 кг.",
+            "en": "An aquarium with a 0.4 m × 0.2 m base holds water 0.15 m deep: V = 0.4 × 0.2 × 0.15 = 0.012 m³, m = ρV = 1000 × 0.012 = 12 kg."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Кум жана кебез",
+            "ru": "Песок и вата",
+            "en": "Sand and cotton wool"
+          },
+          "text": {
+            "ky": "Бир кап кумду көтөрүү оор, ал эми ошондой эле бир кап кебезди оңой эле көтөрөсүң: көлөмдөрү бирдей, массалары ар башка.",
+            "ru": "Мешок песка поднять тяжело, а такой же мешок ваты – легко: объёмы одинаковы, массы разные.",
+            "en": "A sack of sand is heavy, but the same sack of cotton wool is easy to lift: same volume, different mass."
+          }
+        },
+        {
+          "title": {
+            "ky": "Базардагы тараза",
+            "ru": "Весы на рынке",
+            "en": "Scales at the market"
+          },
+          "text": {
+            "ky": "Сатуучу конфетти таразага тартып берет – ал массаны өлчөйт. Пакеттеги «1 кг» деген жазуу да массаны көрсөтөт.",
+            "ru": "Продавец взвешивает конфеты на весах – он измеряет массу. Надпись «1 кг» на пакете тоже указывает массу.",
+            "en": "The seller weighs sweets on scales – that measures mass. The '1 kg' on a packet tells you the mass too."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Эмне үчүн массалары бирдей кубиктердин өлчөмдөрү ар башка?",
+        "ru": "Почему кубики одинаковой массы разного размера?",
+        "en": "Why are cubes of equal mass different sizes?"
+      },
+      {
+        "ky": "Масса деген эмне жана аны кантип өлчөйбүз?",
+        "ru": "Что такое масса и как её измеряют?",
+        "en": "What is mass and how do we measure it?"
+      },
+      {
+        "ky": "19 300 кг/м³ ту г/см³ кө кантип которобуз?",
+        "ru": "Как перевести 19 300 кг/м³ в г/см³?",
+        "en": "How do I convert 19,300 kg/m³ to g/cm³?"
+      },
+      {
+        "ky": "Эмне үчүн муз сууда калкыйт?",
+        "ru": "Почему лёд плавает в воде?",
+        "en": "Why does ice float on water?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; Мамбетакунов Э. М., Физика 7 (кыргыз тилинде)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-density-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Масса деп эмнени айтабыз?",
+        "ru": "Что называют массой?",
+        "en": "What is mass?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Нерсенин инерттүүлүгүн мүнөздөөчү физикалык чоңдукту",
+            "ru": "Физическую величину, характеризующую инертность тела",
+            "en": "The physical quantity measuring a body's inertness"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Нерсенин көлөмүн",
+            "ru": "Объём тела",
+            "en": "A body's volume"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Нерсенин таянычка басым кылган күчүн",
+            "ru": "Силу, с которой тело давит на опору",
+            "en": "The force a body presses on its support with"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Көлөм бирдигиндеги заттын массасын",
+            "ru": "Массу вещества в единице объёма",
+            "en": "The mass per unit volume"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Масса – инерттүүлүктүн чени. Таянычка басым кылган күч – салмак, көлөм бирдигиндеги масса – тыгыздык.",
+        "ru": "Масса – мера инертности. Сила давления на опору – вес, масса единицы объёма – плотность.",
+        "en": "Mass measures inertness. The force on a support is weight; mass per unit volume is density."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-density-2",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Жүктүн массасы 2,5 т. Аны килограмм менен туюнткула.",
+        "ru": "Масса груза 2,5 т. Выразите её в килограммах.",
+        "en": "A load has a mass of 2.5 t. Express it in kilograms."
+      },
+      "answer": 2500,
+      "tolerance": 0.5,
+      "unit": "kg",
+      "explanation": {
+        "ky": "1 т = 1000 кг, ошондуктан 2,5 т = 2500 кг.",
+        "ru": "1 т = 1000 кг, поэтому 2,5 т = 2500 кг.",
+        "en": "1 t = 1000 kg, so 2.5 t = 2500 kg."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-density-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Эки арабача өз ара аракеттенишкенде биринчиси 0,6 м/с, экинчиси 0,3 м/с ылдамдык алды. Экинчи арабачанын массасы 2 кг. Биринчисинин массасы канча (кг)?",
+        "ru": "При взаимодействии двух тележек первая получила скорость 0,6 м/с, вторая – 0,3 м/с. Масса второй 2 кг. Чему равна масса первой (кг)?",
+        "en": "Two carts interact: the first gets 0.6 m/s, the second 0.3 m/s. The second has a mass of 2 kg. What is the first one's mass (kg)?"
+      },
+      "answer": 1,
+      "tolerance": 0.01,
+      "unit": "kg",
+      "explanation": {
+        "ky": "m₁/m₂ = v₂/v₁ → m₁ = m₂ · v₂/v₁ = 2 · 0,3/0,6 = 1 кг. Ылдамдыгы эки эсе чоң арабачанын массасы эки эсе кичине.",
+        "ru": "m₁/m₂ = v₂/v₁ → m₁ = m₂ · v₂/v₁ = 2 · 0,3/0,6 = 1 кг. У тележки с вдвое большей скоростью масса вдвое меньше.",
+        "en": "m₁/m₂ = v₂/v₁ → m₁ = m₂ × v₂/v₁ = 2 × 0.3/0.6 = 1 kg. The cart with twice the speed has half the mass."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-density-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 3 кг, көлөмү 200 см³ металлдын тыгыздыгы канча (г/см³)?",
+        "ru": "Какова плотность металла массой 3 кг и объёмом 200 см³ (г/см³)?",
+        "en": "What is the density of a metal with a mass of 3 kg and a volume of 200 cm³ (g/cm³)?"
+      },
+      "answer": 15,
+      "tolerance": 0.05,
+      "unit": "g/cm³",
+      "explanation": {
+        "ky": "3 кг = 3000 г; ρ = m/V = 3000 г : 200 см³ = 15 г/см³.",
+        "ru": "3 кг = 3000 г; ρ = m/V = 3000 г : 200 см³ = 15 г/см³.",
+        "en": "3 kg = 3000 g; ρ = m/V = 3000 g ÷ 200 cm³ = 15 g/cm³."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-density-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Узундугу 8 см, эни 4 см, калыңдыгы 2 см алтын кесегинин массасы канча (г)? Алтындын тыгыздыгы 19,3 г/см³.",
+        "ru": "Какова масса куска золота длиной 8 см, шириной 4 см и толщиной 2 см (г)? Плотность золота 19,3 г/см³.",
+        "en": "What is the mass of a gold piece 8 cm long, 4 cm wide and 2 cm thick (g)? Gold's density is 19.3 g/cm³."
+      },
+      "answer": 1235.2,
+      "tolerance": 1,
+      "unit": "g",
+      "explanation": {
+        "ky": "V = 8 · 4 · 2 = 64 см³; m = ρV = 19,3 · 64 = 1235,2 г.",
+        "ru": "V = 8 · 4 · 2 = 64 см³; m = ρV = 19,3 · 64 = 1235,2 г.",
+        "en": "V = 8 × 4 × 2 = 64 cm³; m = ρV = 19.3 × 64 = 1235.2 g."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-density-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "10 л сымаптын массасы канча (кг)? Сымаптын тыгыздыгы 13 600 кг/м³ (1 л = 0,001 м³).",
+        "ru": "Какова масса 10 л ртути (кг)? Плотность ртути 13 600 кг/м³ (1 л = 0,001 м³).",
+        "en": "What is the mass of 10 L of mercury (kg)? Mercury's density is 13,600 kg/m³ (1 L = 0.001 m³)."
+      },
+      "answer": 136,
+      "tolerance": 0.5,
+      "unit": "kg",
+      "explanation": {
+        "ky": "V = 10 л = 0,01 м³; m = ρV = 13 600 · 0,01 = 136 кг. Ошол эле 10 л суунун массасы 10 кг гана.",
+        "ru": "V = 10 л = 0,01 м³; m = ρV = 13 600 · 0,01 = 136 кг. Те же 10 л воды имеют массу всего 10 кг.",
+        "en": "V = 10 L = 0.01 m³; m = ρV = 13,600 × 0.01 = 136 kg. Ten litres of water would be only 10 kg."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-density-7",
+      "type": "single",
+      "prompt": {
+        "ky": "Көлөмдөрү бирдей мрамор, жез жана муз кубиктер берилген. Кайсынысынын массасы эң чоң?",
+        "ru": "Даны кубики одинакового объёма из мрамора, меди и льда. У какого масса больше всех?",
+        "en": "Equal-volume cubes of marble, copper and ice. Which has the largest mass?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жез (8,9 г/см³)",
+            "ru": "Медный (8,9 г/см³)",
+            "en": "Copper (8.9 g/cm³)"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Мрамор (2,7 г/см³)",
+            "ru": "Мраморный (2,7 г/см³)",
+            "en": "Marble (2.7 g/cm³)"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Муз (0,9 г/см³)",
+            "ru": "Ледяной (0,9 г/см³)",
+            "en": "Ice (0.9 g/cm³)"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Баарынын массасы бирдей",
+            "ru": "Массы одинаковы",
+            "en": "They all have the same mass"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Көлөмдөр бирдей болсо, m = ρV боюнча тыгыздыгы чоң заттын массасы чоң: жез.",
+        "ru": "При равных объёмах по m = ρV масса больше у самого плотного вещества – меди.",
+        "en": "With equal volumes, m = ρV means the densest substance – copper – has the most mass."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.mass-is-size",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-density-8",
+      "type": "single",
+      "prompt": {
+        "ky": "Болот кашыкты экиге бөлдүк. Бир бөлүгүнүн тыгыздыгы кандай болот?",
+        "ru": "Стальную ложку разрезали пополам. Какой будет плотность половинки?",
+        "en": "A steel spoon is cut in half. What is the density of one half?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Мурдагыдай эле 7,8 г/см³",
+            "ru": "Такая же – 7,8 г/см³",
+            "en": "The same – 7.8 g/cm³"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Эки эсе азаят",
+            "ru": "Уменьшится вдвое",
+            "en": "Half as much"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эки эсе чоңоёт",
+            "ru": "Увеличится вдвое",
+            "en": "Twice as much"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Массасы да, көлөмү да эки эсе азаят, ал эми алардын катышы ρ = m/V өзгөрбөйт. Тыгыздык – заттын касиети.",
+        "ru": "Уменьшатся вдвое и масса, и объём, а их отношение ρ = m/V не изменится. Плотность – свойство вещества.",
+        "en": "Both the mass and the volume halve, so their ratio ρ = m/V stays the same. Density belongs to the substance."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.density-depends-size",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-density-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Керосиндин тыгыздыгы 0,80 г/см³. Бул сан эмнени билдирет?",
+        "ru": "Плотность керосина 0,80 г/см³. Что означает это число?",
+        "en": "Kerosene's density is 0.80 g/cm³. What does that number mean?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "1 см³ керосиндин массасы 0,80 г",
+            "ru": "Масса 1 см³ керосина 0,80 г",
+            "en": "1 cm³ of kerosene has a mass of 0.80 g"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "1 г керосиндин көлөмү 0,80 см³",
+            "ru": "Объём 1 г керосина 0,80 см³",
+            "en": "1 g of kerosene has a volume of 0.80 cm³"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Керосин суудан 0,8 эсе оор",
+            "ru": "Керосин в 0,8 раза тяжелее воды",
+            "en": "Kerosene is 0.8 times heavier than water"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "ρ = m/V – көлөм бирдигиндеги масса: 1 см³ керосин 0,80 г тартат. Ошондой эле 800 кг/м³: 1 м³ – 800 кг.",
+        "ru": "ρ = m/V – масса единицы объёма: 1 см³ керосина имеет массу 0,80 г. Или 800 кг/м³: 1 м³ – 800 кг.",
+        "en": "ρ = m/V is mass per unit volume: 1 cm³ of kerosene has 0.80 g. Equivalently 800 kg/m³: 1 m³ has 800 kg."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-density-10",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Тараза менен тартуунун туура эрежелерин тандаңыз.",
+        "ru": "Выберите верные правила взвешивания.",
+        "en": "Choose the correct weighing rules."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Нерсе сол табакка, таштар оң табакка коюлат",
+            "ru": "Тело кладут на левую чашку, гири – на правую",
+            "en": "The body goes on the left pan, the weights on the right"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Таштарды кыпчуур менен кармайбыз",
+            "ru": "Гири берут пинцетом",
+            "en": "Weights are handled with tweezers"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Оң табактагы таштардын суммасы нерсенин массасына барабар",
+            "ru": "Сумма масс гирь на правой чашке равна массе тела",
+            "en": "The total of the weights on the right equals the body's mass"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Адегенде эң кичине таштарды коёбуз",
+            "ru": "Сначала ставят самые мелкие гири",
+            "en": "Start with the smallest weights"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Коромыслону текшербей эле тартабыз",
+            "ru": "Коромысло можно не проверять",
+            "en": "There is no need to check the beam"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Алгач коромыслону текшеребиз, нерсенин массасын болжолдоп, андан кичине деген чоң таштан баштайбыз, анан кичинелери менен толуктайбыз. Таштар кыпчуур менен алынат.",
+        "ru": "Сначала проверяют коромысло, оценивают массу на глаз и ставят чуть меньшую крупную гирю, затем добавляют мелкие. Гири берут пинцетом.",
+        "en": "First check the beam, estimate the mass, start with a large weight a bit below it and then add small ones. Weights are handled with tweezers."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.scale-gives-newtons",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-density-11",
+      "type": "match",
+      "prompt": {
+        "ky": "Затты анын тыгыздыгы менен дал келтириңиз (кг/м³).",
+        "ru": "Сопоставьте вещество и его плотность (кг/м³).",
+        "en": "Match each substance to its density (kg/m³)."
+      },
+      "pairs": [
+        {
+          "key": "ice",
+          "left": {
+            "ky": "Муз",
+            "ru": "Лёд",
+            "en": "Ice"
+          },
+          "right": {
+            "ky": "900",
+            "ru": "900",
+            "en": "900"
+          }
+        },
+        {
+          "key": "water",
+          "left": {
+            "ky": "Таза суу",
+            "ru": "Чистая вода",
+            "en": "Pure water"
+          },
+          "right": {
+            "ky": "1000",
+            "ru": "1000",
+            "en": "1000"
+          }
+        },
+        {
+          "key": "steel",
+          "left": {
+            "ky": "Болот, темир",
+            "ru": "Сталь, железо",
+            "en": "Steel, iron"
+          },
+          "right": {
+            "ky": "7800",
+            "ru": "7800",
+            "en": "7800"
+          }
+        },
+        {
+          "key": "hg",
+          "left": {
+            "ky": "Сымап",
+            "ru": "Ртуть",
+            "en": "Mercury"
+          },
+          "right": {
+            "ky": "13 600",
+            "ru": "13 600",
+            "en": "13,600"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Китептеги 2- жана 4-таблицалар: муз 900, суу 1000, болот 7800, сымап 13 600 кг/м³.",
+        "ru": "Таблицы 2 и 4 учебника: лёд 900, вода 1000, сталь 7800, ртуть 13 600 кг/м³.",
+        "en": "Textbook tables 2 and 4: ice 900, water 1000, steel 7800, mercury 13,600 kg/m³."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-density-12",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден массаны өлчөөчү куралды тап.",
+        "ru": "Найдите на модели прибор для измерения массы.",
+        "en": "Find the instrument in the model that measures mass."
+      },
+      "targetConceptKey": "phys.balance-scale",
+      "explanation": {
+        "ky": "Бул – тараза: ал нерселердин массасын салыштырат.",
+        "ru": "Это весы: они сравнивают массы тел.",
+        "en": "That is the balance: it compares masses."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-density-13",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден тыгыздыктары салыштырылып жаткан нерселерди тап.",
+        "ru": "Найдите на модели тела, плотности которых сравниваются.",
+        "en": "Find the bodies in the model whose densities are being compared."
+      },
+      "targetConceptKey": "phys.density",
+      "explanation": {
+        "ky": "Бул – кубиктер: алардын массасы бирдей, көлөмдөрү ар башка, демек тыгыздыктары да ар башка.",
+        "ru": "Это кубики: массы одинаковы, объёмы разные – значит, и плотности разные.",
+        "en": "These are the cubes: equal masses, different volumes – so different densities."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    }
+  ]
+}

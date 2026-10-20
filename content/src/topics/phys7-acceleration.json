@@ -1,0 +1,569 @@
+{
+  "topic": {
+    "key": "phys7-acceleration",
+    "unitKey": "phys.g7.kinematics",
+    "status": "published",
+    "title": { "ky": "Ылдамдануу. Ылдамдатылган жана акырындатылган кыймыл", "ru": "Ускорение. Ускоренное и замедленное движение", "en": "Acceleration. Speeding up and slowing down" },
+    "formula": "a = \\frac{v - v_0}{t}",
+    "classification": { "ky": "Кинематика", "ru": "Кинематика", "en": "Kinematics" },
+    "description": {
+      "ky": "Машина светофордон тынч абалдан жөнөп, 5 с ичинде 10 м/с ка чейин тездейт, 4 с бир калыпта жүрөт, анан тормоз берип 4 с ичинде токтойт. Ылдамдыктын убакыт бирдиги ичинде өзгөрүшүн ылдамдануу мүнөздөйт: a = (v − v₀)/t, бирдиги 1 м/с². a > 0 болсо кыймыл ылдамдатылган, a < 0 болсо – акырындатылган. Векторлор, издер жана s(t), v(t) графиктери кыймылдын ар бир бөлүгүн көрсөтөт.",
+      "ru": "Машина трогается от светофора из состояния покоя, за 5 с разгоняется до 10 м/с, 4 с едет равномерно, затем тормозит и за 4 с останавливается. Изменение скорости за единицу времени описывает ускорение: a = (v − v₀)/t, единица 1 м/с². При a > 0 движение ускоренное, при a < 0 – замедленное. Векторы, следы и графики s(t), v(t) показывают каждый участок движения.",
+      "en": "A car pulls away from the lights from rest, speeds up to 10 m/s in 5 s, cruises for 4 s, then brakes to a stop in 4 s. The change of speed per unit of time is the acceleration: a = (v − v₀)/t, measured in m/s². With a > 0 the motion speeds up, with a < 0 it slows down. Vectors, the trace and the s(t) and v(t) graphs show each part of the trip."
+    },
+    "goal": {
+      "ky": "Ылдамданууну a = (v − v₀)/t формуласы боюнча эсептөө, андан акыркы ылдамдыкты v = v₀ + at жана убакытты табуу, ылдамдатылган жана акырындатылган кыймылды ылдамдануунун белгиси жана v(t) графиги боюнча айырмалоо (PHYS-7.1.2).",
+      "ru": "Вычислять ускорение по формуле a = (v − v₀)/t, находить из неё конечную скорость v = v₀ + at и время, различать ускоренное и замедленное движение по знаку ускорения и графику v(t) (PHYS-7.1.2).",
+      "en": "Calculate acceleration with a = (v − v₀)/t, use it to find the final speed v = v₀ + at and the time, and tell speeding up from slowing down by the sign of a and the v(t) graph (PHYS-7.1.2)."
+    },
+    "objectiveKeys": ["phys.g7.kinematics.o2"],
+    "durationMin": 90,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "kinematics",
+        "segments": [{ "v": 0, "t": 5, "a": 2 }, { "v": 10, "t": 4 }, { "v": 10, "t": 4, "a": -2.5 }],
+        "radar": false,
+        "showGraph": true,
+        "graph": "both",
+        "markEvery": 10
+      },
+      "camera": { "position": [-3.5, 5, 13], "target": [0, 0.5, 0], "fov": 45 },
+      "modes": ["vectors", "trace", "graph", "labels"]
+    },
+    "conceptKeys": [
+      "phys.car",
+      "phys.acceleration",
+      "phys.speed",
+      "phys.initial-speed",
+      "phys.uniformly-accelerated",
+      "phys.non-uniform-motion",
+      "phys.path-length",
+      "phys.travel-time",
+      "phys.distance-time-graph"
+    ],
+    "overrides": {
+      "phys.car": {
+        "nodes": ["Car"],
+        "props": [
+          { "kind": "quantity", "type": "speed", "value": 0, "max": 10 },
+          { "kind": "quantity", "type": "acceleration", "value": -2.5, "max": 2 }
+        ]
+      },
+      "phys.acceleration": {
+        "nodes": ["Arrow_Acceleration"],
+        "description": {
+          "ky": "Ылдамдануунун жебеси ылдамдык өзгөрүп жаткан бөлүктөрдө гана чыгат. 0–5 с: a = (10 − 0) : 5 = 2 м/с², жебе алдыга – ылдамдык менен бир багытта. 5–9 с: a = 0, жебе жок. 9–13 с: a = (0 − 10) : 4 = −2,5 м/с², жебе артка – ылдамдыкка карама-каршы.",
+          "ru": "Стрелка ускорения появляется только там, где скорость меняется. 0–5 с: a = (10 − 0) : 5 = 2 м/с², стрелка вперёд – туда же, куда скорость. 5–9 с: a = 0, стрелки нет. 9–13 с: a = (0 − 10) : 4 = −2,5 м/с², стрелка назад – против скорости.",
+          "en": "The acceleration arrow appears only where the speed is changing. 0–5 s: a = (10 − 0) ÷ 5 = 2 m/s², pointing forward with the velocity. 5–9 s: a = 0, no arrow. 9–13 s: a = (0 − 10) ÷ 4 = −2.5 m/s², pointing backward, against the velocity."
+        },
+        "props": [
+          { "kind": "formula", "type": "formula", "value": "a = \\frac{v - v_0}{t}" },
+          { "kind": "quantity", "type": "acceleration", "value": 2 },
+          { "kind": "quantity", "type": "acceleration", "value": -2.5 }
+        ]
+      },
+      "phys.speed": {
+        "nodes": ["Arrow_Velocity"],
+        "description": {
+          "ky": "Ылдамдыктын жебеси машина менен кошо жылат: тездегенде узарат, бир калыпта жүргөндө өзгөрбөйт, тормоздогондо кыскарып, токтогондо жоголот. Ылдамдык – вектордук чоңдук.",
+          "ru": "Стрелка скорости движется вместе с машиной: при разгоне удлиняется, при равномерном движении не меняется, при торможении укорачивается и исчезает при остановке. Скорость – векторная величина.",
+          "en": "The velocity arrow travels with the car: it grows while speeding up, stays the same while cruising, shrinks while braking and disappears when the car stops. Velocity is a vector."
+        },
+        "props": [
+          { "kind": "quantity", "type": "speed", "value": 0, "max": 10 },
+          { "kind": "formula", "type": "formula", "value": "v = v_0 + a t" }
+        ]
+      },
+      "phys.initial-speed": {
+        "props": [
+          { "kind": "quantity", "type": "speed", "value": 0 },
+          { "kind": "quantity", "type": "speed", "value": 10 }
+        ]
+      },
+      "phys.uniformly-accelerated": {
+        "props": [
+          { "kind": "quantity", "type": "acceleration", "value": 2 },
+          { "kind": "quantity", "type": "acceleration", "value": -2.5 }
+        ]
+      },
+      "phys.path-length": {
+        "nodes": ["Road", "Marker_*"],
+        "description": {
+          "ky": "Белгилер ар бир 10 м сайын. Тездөөдө машина 25 м, бир калыпта жүргөндө 40 м, тормоздоодо 20 м өттү – бардыгы 85 м. Ылдамдатылган кыймылда издердин аралыгы улам чоңоёт, акырындатылганда – кичирейет.",
+          "ru": "Отметки через каждые 10 м. При разгоне машина прошла 25 м, при равномерном движении 40 м, при торможении 20 м – всего 85 м. При ускоренном движении промежутки между следами растут, при замедленном – уменьшаются.",
+          "en": "Markers every 10 m. The car covers 25 m speeding up, 40 m cruising and 20 m braking – 85 m in all. When speeding up the gaps between the marks grow; when slowing down they shrink."
+        },
+        "props": [
+          { "kind": "quantity", "type": "distance", "value": 85, "unit": "m" }
+        ]
+      },
+      "phys.travel-time": {
+        "nodes": ["Stopwatch"],
+        "props": [
+          { "kind": "quantity", "type": "eventDuration", "value": 13, "unit": "s" }
+        ]
+      },
+      "phys.distance-time-graph": {
+        "nodes": ["Graph*"],
+        "title": { "ky": "Кыймылдын графиктери: s(t) жана v(t)", "ru": "Графики движения: s(t) и v(t)", "en": "Motion graphs: s(t) and v(t)" },
+        "description": {
+          "ky": "v(t) графиги: 0–5 с – жогору көтөрүлгөн түз сызык (ылдамдатылган), 5–9 с – горизонталдык (бир калыптагы), 9–13 с – ылдый түшкөн түз сызык (акырындатылган). Анын тиктиги ылдамданууга барабар. s(t) графиги тездөөдө ийилип тигирээк, тормоздоодо жантайыңкы болот.",
+          "ru": "График v(t): 0–5 с – прямая вверх (ускоренное), 5–9 с – горизонтальная (равномерное), 9–13 с – прямая вниз (замедленное). Его наклон равен ускорению. График s(t) при разгоне изгибается круче, при торможении – положе.",
+          "en": "The v(t) graph: 0–5 s – a straight line going up (speeding up), 5–9 s – flat (steady), 9–13 s – a straight line going down (slowing down). Its slope equals the acceleration. The s(t) graph curves steeper while speeding up and flattens while braking."
+        },
+        "props": [
+          { "kind": "formula", "type": "formula", "value": "a = \\frac{\\Delta v}{\\Delta t}" }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "acc-start-cruise-brake",
+        "title": { "ky": "Жөнөө – бир калыпта – тормоз", "ru": "Разгон – равномерно – торможение", "en": "Speed up – cruise – brake" },
+        "classification": { "ky": "a = 2; 0; −2,5 м/с²", "ru": "a = 2; 0; −2,5 м/с²", "en": "a = 2; 0; −2.5 m/s²" },
+        "thumb": "thumbs/acc-start-cruise-brake.webp",
+        "props": [
+          { "kind": "quantity", "type": "acceleration", "value": -2.5, "max": 2 },
+          { "kind": "quantity", "type": "speed", "value": 0, "max": 10 },
+          { "kind": "quantity", "type": "distance", "value": 85, "unit": "m" },
+          { "kind": "quantity", "type": "eventDuration", "value": 13, "unit": "s" }
+        ]
+      },
+      {
+        "key": "acc-book-car",
+        "title": { "ky": "5 м/с тан 15 м/с ка 40 с та", "ru": "От 5 до 15 м/с за 40 с", "en": "From 5 to 15 m/s in 40 s" },
+        "classification": { "ky": "Ылдамдатылган, a = 0,25 м/с²", "ru": "Ускоренное, a = 0,25 м/с²", "en": "Speeding up, a = 0.25 m/s²" },
+        "thumb": "thumbs/acc-book-car.webp",
+        "props": [
+          { "kind": "quantity", "type": "acceleration", "value": 0.25 },
+          { "kind": "quantity", "type": "speed", "value": 5, "max": 15 },
+          { "kind": "quantity", "type": "distance", "value": 400, "unit": "m" },
+          { "kind": "quantity", "type": "eventDuration", "value": 40, "unit": "s" }
+        ],
+        "scene": { "params": { "segments": [{ "v": 5, "t": 40, "a": 0.25 }], "markEvery": 50 } }
+      },
+      {
+        "key": "acc-braking",
+        "title": { "ky": "Тормоздоо: 15 м/с тан 0гө", "ru": "Торможение: с 15 м/с до 0", "en": "Braking: from 15 m/s to 0" },
+        "classification": { "ky": "Акырындатылган, a = −2,5 м/с²", "ru": "Замедленное, a = −2,5 м/с²", "en": "Slowing down, a = −2.5 m/s²" },
+        "thumb": "thumbs/acc-braking.webp",
+        "props": [
+          { "kind": "quantity", "type": "acceleration", "value": -2.5 },
+          { "kind": "quantity", "type": "speed", "value": 0, "max": 15 },
+          { "kind": "quantity", "type": "distance", "value": 45, "unit": "m" },
+          { "kind": "quantity", "type": "eventDuration", "value": 6, "unit": "s" }
+        ],
+        "scene": { "params": { "segments": [{ "v": 15, "t": 6, "a": -2.5 }], "markEvery": 5 } }
+      }
+    ],
+    "props": [
+      { "kind": "quantity", "type": "acceleration", "value": 2 },
+      { "kind": "quantity", "type": "speed", "value": 10 },
+      { "kind": "quantity", "type": "eventDuration", "value": 13, "unit": "s" },
+      { "kind": "formula", "type": "formula", "value": "a = \\frac{v - v_0}{t}" }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "change",
+            "camera": { "position": [0, 5, 14], "target": [0, 0.5, 0], "fov": 45 },
+            "modes": { "graph": false, "trace": false, "vectors": false },
+            "focus": "phys.car",
+            "text": {
+              "ky": "Бир калыптагы кыймылда ылдамдык өзгөрбөйт. Ал эми станциядан чыккан поезд ылдамдыгын аз-аздан чоңойтот, экинчи станцияга жакындаганда акырындатып токтойт. Ылдамдыктын өзгөрүшүн мүнөздөө үчүн жаңы чоңдук – ылдамдануу киргизилет.",
+              "ru": "При равномерном движении скорость не меняется. А поезд, отходящий от станции, понемногу набирает скорость, а у следующей станции замедляется и останавливается. Чтобы описать изменение скорости, вводят новую величину – ускорение.",
+              "en": "In uniform motion the speed does not change. But a train leaving a station gradually gains speed, then slows and stops at the next one. To describe how the speed changes we introduce a new quantity – acceleration."
+            },
+            "teacherNote": {
+              "ky": "Окуучулардан күнүмдүк мисалдарды сураңыз: светофордо жөнөгөн машина, лифт, тоодон түшкөн чана. Алардын кайсынысы тездейт, кайсынысы жайлайт?",
+              "ru": "Спросите у учеников примеры из жизни: машина на светофоре, лифт, санки с горки. Кто из них разгоняется, кто тормозит?",
+              "en": "Ask pupils for everyday examples: a car at the lights, a lift, a sledge on a slope. Which speed up, which slow down?"
+            },
+            "altText": {
+              "ky": "Машина старт сызыгында турат, жол боюнча белгилер.",
+              "ru": "Машина стоит на старте, вдоль дороги отметки.",
+              "en": "The car standing at the start with markers along the road."
+            }
+          },
+          {
+            "key": "start",
+            "camera": { "position": [-3.61, 6.43, 13.39], "target": [0.08, 1.7, -0.29], "fov": 45 },
+            "modes": { "vectors": true },
+            "focus": "phys.initial-speed",
+            "text": {
+              "ky": "Секундомерди баскан учурдагы ылдамдык – баштапкы ылдамдык v₀. Машина тынч турат: v₀ = 0. t убакыттан кийинки ылдамдык – акыркы ылдамдык v.",
+              "ru": "Скорость в момент запуска секундомера – начальная скорость v₀. Машина стоит: v₀ = 0. Скорость через время t – конечная скорость v.",
+              "en": "The speed when the stopwatch starts is the initial speed v₀. The car is standing still: v₀ = 0. The speed after time t is the final speed v."
+            },
+            "teacherNote": {
+              "ky": "v₀ жана v белгилерин тактага жазып, «баштапкы» жана «акыркы» сөздөрүн бекемдеңиз – маселелерде эң көп ката ушул жерде кетет.",
+              "ru": "Запишите на доске обозначения v₀ и v и закрепите слова «начальная» и «конечная» – в задачах больше всего ошибок именно здесь.",
+              "en": "Write v₀ and v on the board and fix the words 'initial' and 'final' – this is where most problem errors happen."
+            },
+            "altText": {
+              "ky": "Машинанын жакын көрүнүшү, жебелер жок.",
+              "ru": "Машина крупным планом, стрелок нет.",
+              "en": "A close-up of the car with no arrows yet."
+            }
+          },
+          {
+            "key": "speed-up",
+            "camera": { "position": [-5.25, 3.53, 8.02], "target": [-3.14, 0.8, 0.15], "fov": 45 },
+            "modes": { "vectors": true, "trace": true, "labels": true },
+            "focus": "phys.acceleration",
+            "text": {
+              "ky": "5 с ичинде ылдамдык 0дон 10 м/с ка өстү. Ылдамдануу a = (v − v₀)/t = (10 − 0) : 5 = 2 м/с². Ылдамдануунун жебеси ылдамдык менен бир багытта, издердин аралыгы улам чоңоёт.",
+              "ru": "За 5 с скорость выросла от 0 до 10 м/с. Ускорение a = (v − v₀)/t = (10 − 0) : 5 = 2 м/с². Стрелка ускорения направлена так же, как скорость, промежутки между следами растут.",
+              "en": "In 5 s the speed grew from 0 to 10 m/s. Acceleration a = (v − v₀)/t = (10 − 0) ÷ 5 = 2 m/s². The acceleration arrow points the same way as the velocity, and the gaps between the marks keep growing."
+            },
+            "teacherNote": {
+              "ky": "Бирдиктин чыгышын көрсөтүңүз: [a] = (1 м/с) : 1 с = 1 м/с² – «метр бөлүнгөн секунда квадрат». Китептеги 1-маселе: 40 с ичинде 5 м/с тан 15 м/с ка – a = 0,25 м/с² (үлгүдө бар).",
+              "ru": "Покажите вывод единицы: [a] = (1 м/с) : 1 с = 1 м/с² – «метр на секунду в квадрате». Задача 1 учебника: за 40 с от 5 до 15 м/с – a = 0,25 м/с² (есть в образцах).",
+              "en": "Derive the unit: [a] = (1 m/s) ÷ 1 s = 1 m/s² – 'metre per second squared'. Book problem 1: from 5 to 15 m/s in 40 s – a = 0.25 m/s² (it is one of the samples)."
+            },
+            "altText": {
+              "ky": "Машинанын үстүндө бир багыттагы эки жебе, издер улам алыстайт.",
+              "ru": "Над машиной две стрелки в одну сторону, следы всё дальше друг от друга.",
+              "en": "Two arrows over the car pointing forward; the marks spread further apart."
+            }
+          },
+          {
+            "key": "meaning",
+            "camera": { "position": [-3.61, 6.43, 13.39], "target": [0.08, 1.7, -0.29], "fov": 45 },
+            "modes": { "graph": true },
+            "focus": "phys.acceleration",
+            "text": {
+              "ky": "a = 2 м/с² – ар бир секундда ылдамдык 2 м/с га өсөт: 1 с – 2 м/с, 2 с – 4 м/с, … 5 с – 10 м/с. Формуладан акыркы ылдамдык: v = v₀ + at. v(t) графиги – жогору көтөрүлгөн түз сызык.",
+              "ru": "a = 2 м/с² – каждую секунду скорость растёт на 2 м/с: 1 с – 2 м/с, 2 с – 4 м/с, … 5 с – 10 м/с. Из формулы конечная скорость: v = v₀ + at. График v(t) – прямая, идущая вверх.",
+              "en": "a = 2 m/s² means the speed grows by 2 m/s every second: 1 s – 2 m/s, 2 s – 4 m/s, … 5 s – 10 m/s. From the formula the final speed is v = v₀ + at. The v(t) graph is a straight line going up."
+            },
+            "teacherNote": {
+              "ky": "Таблица толтуртуңуз: t = 0, 1, 2, 3, 4, 5 с үчүн v = 0 + 2t. Анан китептеги 2-маселе: поезд v₀ = 0, a = 0,9 м/с², 7 с – v = 6,3 м/с.",
+              "ru": "Заполните таблицу: для t = 0, 1, 2, 3, 4, 5 с v = 0 + 2t. Затем задача 2 учебника: поезд, v₀ = 0, a = 0,9 м/с², 7 с – v = 6,3 м/с.",
+              "en": "Fill in a table: v = 0 + 2t for t = 0, 1, 2, 3, 4, 5 s. Then book problem 2: a train with v₀ = 0, a = 0.9 m/s², 7 s – v = 6.3 m/s."
+            },
+            "altText": {
+              "ky": "v(t) графигинде 0дон 10 м/с ка чейин көтөрүлгөн түз сызык.",
+              "ru": "На графике v(t) прямая, поднимающаяся от 0 до 10 м/с.",
+              "en": "A straight line on the v(t) graph rising from 0 to 10 m/s."
+            }
+          },
+          {
+            "key": "cruise",
+            "camera": { "position": [-3.61, 5.21, 13.71], "target": [0.08, 0.47, 0.03], "fov": 45 },
+            "modes": { "vectors": true, "trace": true, "graph": false },
+            "focus": "phys.speed",
+            "text": {
+              "ky": "5–9 с аралыгында ылдамдык 10 м/с бойдон калат: v = v₀, демек a = 0. Ылдамдануунун жебеси жок, издердин аралыгы бирдей – кыймыл бир калыптагы.",
+              "ru": "С 5 по 9 с скорость остаётся 10 м/с: v = v₀, значит, a = 0. Стрелки ускорения нет, промежутки между следами равны – движение равномерное.",
+              "en": "From 5 to 9 s the speed stays at 10 m/s: v = v₀, so a = 0. There is no acceleration arrow and the marks are evenly spaced – the motion is uniform."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: 900 км/саат менен бир калыпта учкан учактын ылдамдануусу канча? (Нөл.) Бул «ылдамдануу – ылдамдыктын өзү» деген катаны жоюуга жардам берет.",
+              "ru": "Спросите: каково ускорение самолёта, летящего равномерно со скоростью 900 км/ч? (Ноль.) Это помогает развеять ошибку «ускорение – это и есть скорость».",
+              "en": "Ask: what is the acceleration of a plane flying steadily at 900 km/h? (Zero.) This clears up the mistake 'acceleration is just speed'."
+            },
+            "altText": {
+              "ky": "Ылдамдыктын жебеси гана, издер бирдей аралыкта.",
+              "ru": "Только стрелка скорости, следы через равные промежутки.",
+              "en": "Only the velocity arrow; evenly spaced marks."
+            }
+          },
+          {
+            "key": "brake",
+            "camera": { "position": [-3.61, 6.43, 13.39], "target": [0.08, 1.7, -0.29], "fov": 45 },
+            "modes": { "vectors": true, "trace": true },
+            "focus": "phys.uniformly-accelerated",
+            "text": {
+              "ky": "Айдоочу тормоз берди: 4 с ичинде ылдамдык 10 м/с тан 0гө түштү. a = (0 − 10) : 4 = −2,5 м/с². Ылдамдануу терс, анын жебеси ылдамдыкка карама-каршы: v < v₀, a < 0 – бул акырындатылган кыймыл.",
+              "ru": "Водитель тормозит: за 4 с скорость упала с 10 м/с до 0. a = (0 − 10) : 4 = −2,5 м/с². Ускорение отрицательное, его стрелка направлена против скорости: v < v₀, a < 0 – это замедленное движение.",
+              "en": "The driver brakes: in 4 s the speed drops from 10 m/s to 0. a = (0 − 10) ÷ 4 = −2.5 m/s². The acceleration is negative and its arrow points against the velocity: v < v₀, a < 0 – slowing down."
+            },
+            "teacherNote": {
+              "ky": "Белгилүү ката: «a терс болсо, машина артка жүрөт». Көрсөтүңүз: машина алдыга жүрө берет, жайлайт гана. Китептеги маселе: велосипедчи 15 м/с тан 3 м/с ка, a = −1,5 м/с² – t = 8 с.",
+              "ru": "Частая ошибка: «если a отрицательно, машина едет назад». Покажите: машина продолжает ехать вперёд, только медленнее. Задача учебника: велосипедист с 15 до 3 м/с, a = −1,5 м/с² – t = 8 с.",
+              "en": "A common mistake: 'if a is negative the car goes backwards'. Show that the car keeps going forward, just slower. Book problem: a cyclist from 15 to 3 m/s at a = −1.5 m/s² – t = 8 s."
+            },
+            "altText": {
+              "ky": "Ылдамдануунун жебеси артты карайт, издер жыйылат, машина токтойт.",
+              "ru": "Стрелка ускорения смотрит назад, следы сгущаются, машина останавливается.",
+              "en": "The acceleration arrow points back, the marks bunch up and the car stops."
+            }
+          },
+          {
+            "key": "graphs",
+            "camera": { "position": [-2.51, 5.61, 8.63], "target": [0.17, 2.17, -1.32], "fov": 45 },
+            "modes": { "graph": true, "vectors": false, "trace": false },
+            "focus": "phys.distance-time-graph",
+            "text": {
+              "ky": "v(t) графиги бүт кыймылды айтып берет: көтөрүлүү – ылдамдатылган, горизонталь – бир калыптагы, түшүү – акырындатылган. Кесиндинин тиктиги – ылдамдануу. Үлгүлөрдөн «Тормоздоо: 15 м/с тан 0гө» жана «5 м/с тан 15 м/с ка» кыймылдарын салыштырыңыз.",
+              "ru": "График v(t) рассказывает обо всём движении: подъём – ускоренное, горизонталь – равномерное, спуск – замедленное. Наклон отрезка – ускорение. Сравните в образцах «Торможение: с 15 м/с до 0» и «От 5 до 15 м/с».",
+              "en": "The v(t) graph tells the whole story: rising – speeding up, flat – steady, falling – slowing down. The slope of each segment is the acceleration. Compare the samples 'Braking: from 15 m/s to 0' and 'From 5 to 15 m/s'."
+            },
+            "teacherNote": {
+              "ky": "Китептеги 20-сүрөт боюнча 4-көнүгүүнүн 3–4-маселелерин чыгартыңыз: OA – a = 1 м/с², AB – a = 0, BC – a = −1 м/с². Эскертүү: 4-көнүгүүнүн 6-маселесиндеги (3-көнүгүү) жооп текшерилсин: 10 − 0,5 · 10 = 5 м/с.",
+              "ru": "По рис. 20 учебника решите задачи 3–4 упражнения 4: OA – a = 1 м/с², AB – a = 0, BC – a = −1 м/с². Замечание: в задаче 6 упражнения 3 проверьте ответ: 10 − 0,5 · 10 = 5 м/с.",
+              "en": "Using fig. 20 of the book, solve problems 3–4 of exercise 4: OA – a = 1 m/s², AB – a = 0, BC – a = −1 m/s². Note: check the printed answer to problem 6 of exercise 3: 10 − 0.5 × 10 = 5 m/s."
+            },
+            "altText": {
+              "ky": "Экранда s(t) жана v(t) графиктери; v(t) – көтөрүлүү, горизонталь, түшүү.",
+              "ru": "На экране графики s(t) и v(t); v(t) – подъём, горизонталь, спуск.",
+              "en": "The s(t) and v(t) graphs on screen; v(t) rises, stays flat, then falls."
+            }
+          }
+        ]
+      },
+      "processKeys": ["phys.speed-up-and-brake"],
+      "comparison": {
+        "columns": [
+          { "kind": "sample", "key": "acc-start-cruise-brake" },
+          { "kind": "sample", "key": "acc-book-car" },
+          { "kind": "sample", "key": "acc-braking" }
+        ],
+        "rows": ["acceleration", "speed", "distance", "eventDuration"]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-acc-1",
+          "phys.q.p7-acc-2",
+          "phys.q.p7-acc-3",
+          "phys.q.p7-acc-4",
+          "phys.q.p7-acc-5",
+          "phys.q.p7-acc-6",
+          "phys.q.p7-acc-7",
+          "phys.q.p7-acc-8",
+          "phys.q.p7-acc-9",
+          "phys.q.p7-acc-10",
+          "phys.q.p7-acc-11",
+          "phys.q.p7-acc-12",
+          "phys.q.p7-acc-13",
+          "phys.q.p7-acc-14"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": { "ky": "Тормоздук жолду эсептөө", "ru": "Расчёт тормозного пути", "en": "Working out braking distance" },
+          "text": { "ky": "Жол инженерлери мектептин жанында ылдамдыкты 40 км/саатка чектешет: ушундай ылдамдыкта машина −5 м/с² ылдамдануу менен ≈ 2,2 с ичинде токтойт.", "ru": "Дорожные инженеры ограничивают скорость у школ 40 км/ч: с такой скорости машина с ускорением −5 м/с² останавливается примерно за 2,2 с.", "en": "Road engineers limit speed near schools to 40 km/h: from that speed a car braking at −5 m/s² stops in about 2.2 s." },
+          "field": "e"
+        },
+        {
+          "title": { "ky": "Эркин түшүү", "ru": "Свободное падение", "en": "Free fall" },
+          "text": { "ky": "Жерге эркин түшкөн нерсенин ылдамдануусу ≈ 9,8 м/с²: 1 с тан кийин v ≈ 9,8 м/с, 2 с тан кийин ≈ 19,6 м/с.", "ru": "Ускорение свободно падающего тела ≈ 9,8 м/с²: через 1 с v ≈ 9,8 м/с, через 2 с ≈ 19,6 м/с.", "en": "A freely falling body accelerates at about 9.8 m/s²: after 1 s v ≈ 9.8 m/s, after 2 s ≈ 19.6 m/s." },
+          "field": "s"
+        },
+        {
+          "title": { "ky": "Сызыктуу функция", "ru": "Линейная функция", "en": "A linear function" },
+          "text": { "ky": "v = v₀ + at – математикадагы y = b + kx функциясы: v(t) графиги түз сызык, анын бурчтук коэффициенти – ылдамдануу a.", "ru": "v = v₀ + at – это функция y = b + kx из математики: график v(t) – прямая, её угловой коэффициент – ускорение a.", "en": "v = v₀ + at is the maths function y = b + kx: the v(t) graph is a straight line whose slope is the acceleration a." },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Велосипед тоодон", "ru": "Велосипед с горки", "en": "Biking downhill" },
+          "text": { "ky": "Тоодон түшкөн велосипед ар бир секундда тездейт – ылдамдатылган кыймыл; түз жерде педалды теппей койсоң, акырындап токтойсуң.", "ru": "Велосипед с горки каждую секунду едет быстрее – ускоренное движение; на ровном месте, если не крутить педали, постепенно остановишься.", "en": "Coasting downhill a bike gets faster every second – speeding up; on the flat without pedalling you gradually come to a stop." }
+        },
+        {
+          "title": { "ky": "Лифт", "ru": "Лифт", "en": "A lift" },
+          "text": { "ky": "Лифт жөнөгөндө бутуң бир аз «басылат», токтоордо жеңилдегендей сезилет – бул ылдамдануунун белгиси.", "ru": "Когда лифт трогается, тебя слегка «вдавливает» в пол, а при остановке кажется, что стал легче, – это признаки ускорения.", "en": "When a lift starts you feel pressed into the floor, and as it stops you feel lighter – signs of acceleration." }
+        }
+      ]
+    },
+    "starters": [
+      { "ky": "Ылдамдануу менен ылдамдыктын айырмасы эмнеде?", "ru": "Чем ускорение отличается от скорости?", "en": "How is acceleration different from speed?" },
+      { "ky": "Ылдамдануу эмне үчүн терс болот?", "ru": "Почему ускорение бывает отрицательным?", "en": "Why can acceleration be negative?" },
+      { "ky": "a = 2 м/с² деген эмнени билдирет?", "ru": "Что означает a = 2 м/с²?", "en": "What does a = 2 m/s² mean?" },
+      { "ky": "v(t) графигинен ылдамданууну кантип табабыз?", "ru": "Как найти ускорение по графику v(t)?", "en": "How do we find acceleration from a v(t) graph?" }
+    ],
+    "rights": [
+      { "license": "own", "author": "Bilig", "source": "Bilig content team; Мамбетакунов Э., Физика 7-класс, §9–10" }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-acc-1",
+      "type": "single",
+      "prompt": { "ky": "Ылдамдануу деген эмне?", "ru": "Что такое ускорение?", "en": "What is acceleration?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Убакыт бирдиги ичинде өтүлгөн жол", "ru": "Путь за единицу времени", "en": "The distance covered per unit of time" } },
+        { "key": "b", "text": { "ky": "Убакыт бирдиги ичинде ылдамдыктын өзгөрүшүн мүнөздөөчү чоңдук", "ru": "Величина, характеризующая изменение скорости за единицу времени", "en": "The quantity describing the change of speed per unit of time" } },
+        { "key": "c", "text": { "ky": "Эң чоң ылдамдык", "ru": "Наибольшая скорость", "en": "The highest speed" } },
+        { "key": "d", "text": { "ky": "Кыймылдын убактысы", "ru": "Время движения", "en": "The time of motion" } }
+      ],
+      "answer": "b",
+      "explanation": { "ky": "Убакыт бирдиги ичинде ылдамдыктын өзгөрүшүн мүнөздөөчү физикалык чоңдук ылдамдануу деп аталат. Убакыт бирдиги ичиндеги жол – ылдамдык.", "ru": "Ускорением называют величину, характеризующую изменение скорости за единицу времени. Путь за единицу времени – это скорость.", "en": "Acceleration describes how much the speed changes per unit of time. Distance per unit of time is speed." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-acc-2",
+      "type": "single",
+      "prompt": { "ky": "Ылдамдануунун формуласы кайсы?", "ru": "Какова формула ускорения?", "en": "Which is the formula for acceleration?" },
+      "options": [
+        { "key": "a", "text": { "ky": "s = v · t", "ru": "s = v · t", "en": "s = v × t" } },
+        { "key": "b", "text": { "ky": "a = (v + v₀)/t", "ru": "a = (v + v₀)/t", "en": "a = (v + v₀)/t" } },
+        { "key": "c", "text": { "ky": "a = (v − v₀)/t", "ru": "a = (v − v₀)/t", "en": "a = (v − v₀)/t" } },
+        { "key": "d", "text": { "ky": "a = v₀/t", "ru": "a = v₀/t", "en": "a = v₀/t" } }
+      ],
+      "answer": "c",
+      "explanation": { "ky": "Ылдамдыктын өзгөрүшү v − v₀, аны убакытка бөлөбүз: a = (v − v₀)/t.", "ru": "Изменение скорости v − v₀ делят на время: a = (v − v₀)/t.", "en": "The change of speed v − v₀ divided by the time: a = (v − v₀)/t." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-acc-3",
+      "type": "numeric",
+      "prompt": { "ky": "Автомобилдин ылдамдыгы 40 с ичинде 5 м/с тан 15 м/с ка өстү. Анын ылдамдануусу канча м/с²?", "ru": "Скорость автомобиля за 40 с выросла с 5 м/с до 15 м/с. Каково его ускорение в м/с²?", "en": "A car's speed rises from 5 m/s to 15 m/s in 40 s. What is its acceleration in m/s²?" },
+      "answer": 0.25,
+      "tolerance": 0.01,
+      "unit": "m/s²",
+      "explanation": { "ky": "a = (15 м/с − 5 м/с) : 40 с = 10 м/с : 40 с = 0,25 м/с².", "ru": "a = (15 м/с − 5 м/с) : 40 с = 10 м/с : 40 с = 0,25 м/с².", "en": "a = (15 m/s − 5 m/s) ÷ 40 s = 10 m/s ÷ 40 s = 0.25 m/s²." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-acc-4",
+      "type": "numeric",
+      "prompt": { "ky": "Станциядан чыккан поезд 7 с ичинде 0,9 м/с² ылдамданууга жетти. Анын акыркы ылдамдыгы канча м/с?", "ru": "Поезд отошёл от станции и 7 с двигался с ускорением 0,9 м/с². Какова его конечная скорость в м/с?", "en": "A train leaves a station and accelerates at 0.9 m/s² for 7 s. What is its final speed in m/s?" },
+      "answer": 6.3,
+      "tolerance": 0.05,
+      "unit": "m/s",
+      "explanation": { "ky": "v₀ = 0 (станциядан чыкты). v = v₀ + at = 0 + 0,9 м/с² · 7 с = 6,3 м/с.", "ru": "v₀ = 0 (отошёл от станции). v = v₀ + at = 0 + 0,9 м/с² · 7 с = 6,3 м/с.", "en": "v₀ = 0 (leaving the station). v = v₀ + at = 0 + 0.9 m/s² × 7 s = 6.3 m/s." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-acc-5",
+      "type": "numeric",
+      "prompt": { "ky": "Велосипедчи 1,5 м/с² ылдамдануу менен түз сызык боюнча кыймылдап, ылдамдыгын 3 м/с тан 15 м/с ка өзгөрттү. Буга канча секунд кетти?", "ru": "Велосипедист, двигаясь по прямой с ускорением 1,5 м/с², изменил скорость с 3 м/с до 15 м/с. Сколько секунд на это ушло?", "en": "A cyclist moving in a straight line with acceleration 1.5 m/s² changes speed from 3 m/s to 15 m/s. How many seconds does it take?" },
+      "answer": 8,
+      "tolerance": 0.05,
+      "unit": "s",
+      "explanation": { "ky": "t = (v − v₀)/a = (15 − 3) м/с : 1,5 м/с² = 8 с.", "ru": "t = (v − v₀)/a = (15 − 3) м/с : 1,5 м/с² = 8 с.", "en": "t = (v − v₀)/a = (15 − 3) m/s ÷ 1.5 m/s² = 8 s." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-acc-6",
+      "type": "numeric",
+      "prompt": { "ky": "72 км/саат ылдамдык менен келе жаткан мотоциклчен 20 с ичинде ылдамдыгын 36 км/саатка чейин азайтты. Ылдамдануусу канча м/с²?", "ru": "Мотоциклист, ехавший со скоростью 72 км/ч, за 20 с снизил скорость до 36 км/ч. Каково его ускорение в м/с²?", "en": "A motorcyclist doing 72 km/h slows to 36 km/h in 20 s. What is the acceleration in m/s²?" },
+      "answer": -0.5,
+      "tolerance": 0.01,
+      "unit": "m/s²",
+      "explanation": { "ky": "72 км/саат = 20 м/с, 36 км/саат = 10 м/с. a = (10 − 20) : 20 = −0,5 м/с². Белгиси терс – кыймыл акырындатылган.", "ru": "72 км/ч = 20 м/с, 36 км/ч = 10 м/с. a = (10 − 20) : 20 = −0,5 м/с². Знак минус – движение замедленное.", "en": "72 km/h = 20 m/s, 36 km/h = 10 m/s. a = (10 − 20) ÷ 20 = −0.5 m/s². The minus sign means slowing down." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-acc-7",
+      "type": "single",
+      "prompt": { "ky": "Ылдамдануу a > 0, v > v₀. Кыймылдын мүнөзү кандай?", "ru": "Ускорение a > 0, v > v₀. Каков характер движения?", "en": "a > 0 and v > v₀. What kind of motion is it?" },
+      "options": [
+        { "key": "a", "text": { "ky": "Бир калыпта", "ru": "Равномерное", "en": "Uniform" } },
+        { "key": "b", "text": { "ky": "Акырындатылган", "ru": "Замедленное", "en": "Slowing down" } },
+        { "key": "c", "text": { "ky": "Ылдамдатылган", "ru": "Ускоренное", "en": "Speeding up" } },
+        { "key": "d", "text": { "ky": "Тынч турат", "ru": "Тело покоится", "en": "At rest" } }
+      ],
+      "answer": "c",
+      "explanation": { "ky": "Убакыттын өтүшү менен ылдамдыгын жогорулатып туруучу кыймыл ылдамдатылган кыймыл деп аталат (v > v₀, a > 0).", "ru": "Движение, при котором скорость с течением времени растёт, называют ускоренным (v > v₀, a > 0).", "en": "Motion in which the speed keeps rising is accelerated motion (v > v₀, a > 0)." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-acc-8",
+      "type": "single",
+      "prompt": { "ky": "Нерсенин ылдамдануусу 3 м/с². Анын физикалык мааниси кандай?", "ru": "Ускорение тела 3 м/с². Каков его физический смысл?", "en": "A body's acceleration is 3 m/s². What does it mean physically?" },
+      "options": [
+        { "key": "a", "text": { "ky": "1 м жолду 3 с та өтөт", "ru": "1 м проходит за 3 с", "en": "It covers 1 m in 3 s" } },
+        { "key": "b", "text": { "ky": "1 с та ылдамдыгы 3 м/с азаят", "ru": "За 1 с скорость уменьшается на 3 м/с", "en": "Its speed falls by 3 m/s every second" } },
+        { "key": "c", "text": { "ky": "1 с та ылдамдыгы 3 м/с га көбөйөт", "ru": "За 1 с скорость увеличивается на 3 м/с", "en": "Its speed grows by 3 m/s every second" } },
+        { "key": "d", "text": { "ky": "Ылдамдыгы 3 м/с", "ru": "Его скорость 3 м/с", "en": "Its speed is 3 m/s" } }
+      ],
+      "answer": "c",
+      "explanation": { "ky": "a = 3 м/с² (оң) – ар бир секундда ылдамдык 3 м/с га өсөт. Ылдамдануу ылдамдыктын өзүн эмес, анын өзгөрүшүн көрсөтөт.", "ru": "a = 3 м/с² (положительное) – каждую секунду скорость растёт на 3 м/с. Ускорение показывает не саму скорость, а её изменение.", "en": "a = 3 m/s² (positive) – the speed grows by 3 m/s each second. Acceleration shows the change of speed, not the speed itself." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "misconceptionKey": "phys.m.acceleration-is-speed",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-acc-9",
+      "type": "numeric",
+      "prompt": { "ky": "Нерсенин баштапкы ылдамдыгы 4 м/с, ылдамдануусу 0,25 м/с². 4 секунддан кийин анын ылдамдыгы канча м/с?", "ru": "Начальная скорость тела 4 м/с, ускорение 0,25 м/с². Какой будет скорость через 4 с, в м/с?", "en": "A body's initial speed is 4 m/s and its acceleration 0.25 m/s². What is its speed after 4 s, in m/s?" },
+      "answer": 5,
+      "tolerance": 0.01,
+      "unit": "m/s",
+      "explanation": { "ky": "v = v₀ + at = 4 + 0,25 · 4 = 4 + 1 = 5 м/с.", "ru": "v = v₀ + at = 4 + 0,25 · 4 = 4 + 1 = 5 м/с.", "en": "v = v₀ + at = 4 + 0.25 × 4 = 4 + 1 = 5 m/s." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-acc-10",
+      "type": "numeric",
+      "prompt": { "ky": "5 м/с ылдамдык менен келе жаткан нерсе 6 с ичинде ылдамдыгын 3 м/с га жогорулатты. Ылдамдануусу канча м/с²?", "ru": "Тело, двигавшееся со скоростью 5 м/с, за 6 с увеличило скорость на 3 м/с. Каково ускорение в м/с²?", "en": "A body moving at 5 m/s increases its speed by 3 m/s in 6 s. What is its acceleration in m/s²?" },
+      "answer": 0.5,
+      "tolerance": 0.01,
+      "unit": "m/s²",
+      "explanation": { "ky": "«3 м/с га жогорулатты» – акыркы ылдамдык 5 + 3 = 8 м/с. a = (8 − 5) : 6 = 0,5 м/с².", "ru": "«Увеличило на 3 м/с» – конечная скорость 5 + 3 = 8 м/с. a = (8 − 5) : 6 = 0,5 м/с².", "en": "'Increased by 3 m/s' – the final speed is 5 + 3 = 8 m/s. a = (8 − 5) ÷ 6 = 0.5 m/s²." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "misconceptionKey": "phys.m.increase-by-is-final",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-acc-11",
+      "type": "match",
+      "prompt": { "ky": "Кыймылдын түрүн анын шарты менен дал келтириңиз.", "ru": "Сопоставьте вид движения и его условие.", "en": "Match each kind of motion with its condition." },
+      "pairs": [
+        { "key": "acc", "left": { "ky": "Ылдамдатылган кыймыл", "ru": "Ускоренное движение", "en": "Speeding up" }, "right": { "ky": "v > v₀, a > 0", "ru": "v > v₀, a > 0", "en": "v > v₀, a > 0" } },
+        { "key": "dec", "left": { "ky": "Акырындатылган кыймыл", "ru": "Замедленное движение", "en": "Slowing down" }, "right": { "ky": "v < v₀, a < 0", "ru": "v < v₀, a < 0", "en": "v < v₀, a < 0" } },
+        { "key": "uni", "left": { "ky": "Бир калыптагы кыймыл", "ru": "Равномерное движение", "en": "Uniform motion" }, "right": { "ky": "v = v₀, a = 0", "ru": "v = v₀, a = 0", "en": "v = v₀, a = 0" } }
+      ],
+      "explanation": { "ky": "Ылдамдануунун белгиси кыймылдын түрүн көрсөтөт: оң – тездейт, терс – жайлайт, нөл – ылдамдык өзгөрбөйт.", "ru": "Знак ускорения показывает вид движения: плюс – разгоняется, минус – замедляется, ноль – скорость не меняется.", "en": "The sign of a shows the kind of motion: positive – speeding up, negative – slowing down, zero – constant speed." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "misconceptionKey": "phys.m.negative-acceleration-backwards",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-acc-12",
+      "type": "multiple",
+      "prompt": { "ky": "Кайсылары ылдамдатылган кыймылдын мисалдары? Бардык туура жоопторду тандаңыз.", "ru": "Какие из примеров – ускоренное движение? Выберите все верные ответы.", "en": "Which are examples of speeding up? Choose all correct answers." },
+      "options": [
+        { "key": "a", "text": { "ky": "Станциядан чыккан поезд", "ru": "Поезд, отходящий от станции", "en": "A train leaving a station" } },
+        { "key": "b", "text": { "ky": "Тоодон түшкөн чана", "ru": "Санки, съезжающие с горки", "en": "A sledge going down a hill" } },
+        { "key": "c", "text": { "ky": "Светофорго жакындап токтоп жаткан машина", "ru": "Машина, тормозящая у светофора", "en": "A car braking at the lights" } },
+        { "key": "d", "text": { "ky": "Бир калыпта жүргөн эскалатор", "ru": "Равномерно движущийся эскалатор", "en": "An escalator running steadily" } }
+      ],
+      "answer": ["a", "b"],
+      "explanation": { "ky": "Поезд жана чана ылдамдыгын жогорулатат (a > 0). Светофордогу машина жайлайт (a < 0), эскалатордун ылдамдыгы өзгөрбөйт (a = 0).", "ru": "Поезд и санки набирают скорость (a > 0). Машина у светофора замедляется (a < 0), у эскалатора скорость не меняется (a = 0).", "en": "The train and the sledge gain speed (a > 0). The car at the lights slows (a < 0); the escalator's speed is constant (a = 0)." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-acc-13",
+      "type": "find-on-model",
+      "prompt": { "ky": "Моделден ылдамдануунун жебесин тап (машина тездеп же тормоздоп жатканда).", "ru": "Найдите на модели стрелку ускорения (когда машина разгоняется или тормозит).", "en": "Find the acceleration arrow in the model (while the car speeds up or brakes)." },
+      "targetConceptKey": "phys.acceleration",
+      "explanation": { "ky": "Тездөөдө ылдамдануунун жебеси ылдамдык менен бир багытта, тормоздоодо – карама-каршы. Бир калыпта жүргөндө ал жок.", "ru": "При разгоне стрелка ускорения направлена так же, как скорость, при торможении – противоположно. При равномерном движении её нет.", "en": "When speeding up the acceleration arrow points with the velocity; when braking, against it. During steady motion there is none." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-acc-14",
+      "type": "single",
+      "prompt": { "ky": "v(t) графиги: 0–2 с аралыгында ылдамдык 0дон 2 м/с ка өсөт, 2–4 с аралыгында 2 м/с бойдон калат, 4–6 с аралыгында 0гө түшөт. 2–4 с аралыгындагы ылдамдануу канча?", "ru": "График v(t): за 0–2 с скорость растёт от 0 до 2 м/с, за 2–4 с остаётся 2 м/с, за 4–6 с падает до 0. Каково ускорение на участке 2–4 с?", "en": "A v(t) graph: from 0–2 s the speed rises from 0 to 2 m/s, from 2–4 s it stays at 2 m/s, from 4–6 s it drops to 0. What is the acceleration from 2 to 4 s?" },
+      "options": [
+        { "key": "a", "text": { "ky": "1 м/с²", "ru": "1 м/с²", "en": "1 m/s²" } },
+        { "key": "b", "text": { "ky": "0", "ru": "0", "en": "0" } },
+        { "key": "c", "text": { "ky": "−1 м/с²", "ru": "−1 м/с²", "en": "−1 m/s²" } },
+        { "key": "d", "text": { "ky": "2 м/с²", "ru": "2 м/с²", "en": "2 m/s²" } }
+      ],
+      "answer": "b",
+      "explanation": { "ky": "2–4 с аралыгында график горизонталдык: ылдамдык өзгөрбөйт, a = (2 − 2) : 2 = 0. 0–2 с – a = 1 м/с², 4–6 с – a = −1 м/с².", "ru": "На участке 2–4 с график горизонтален: скорость не меняется, a = (2 − 2) : 2 = 0. На 0–2 с a = 1 м/с², на 4–6 с a = −1 м/с².", "en": "From 2 to 4 s the graph is flat: the speed does not change, a = (2 − 2) ÷ 2 = 0. From 0–2 s a = 1 m/s², from 4–6 s a = −1 m/s²." },
+      "objectiveKeys": ["phys.g7.kinematics.o2"],
+      "difficulty": 3
+    }
+  ]
+}

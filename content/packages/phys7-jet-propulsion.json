@@ -1,0 +1,3377 @@
+{
+  "manifest": {
+    "topicKey": "phys7-jet-propulsion",
+    "version": "1.0.0",
+    "hash": "9ece6ee1747ccee0fbf710abe3a904bc8487096b0a0eef95ac5790c58d60e795",
+    "files": [
+      {
+        "path": "thumbs/rocket-fuel.webp",
+        "hash": "d7592698274b408fbfdef19e22378ae0c5a350631a426fe6049b0e27f455fee1",
+        "size": 0
+      },
+      {
+        "path": "thumbs/rocket-water.webp",
+        "hash": "73272cb3b6c081d89acf80af08b13cbe56fba6bf638799864e24ab17a8b434a1",
+        "size": 0
+      },
+      {
+        "path": "thumbs/rocket-air.webp",
+        "hash": "0ed4cdac619e1befd72e02a891bcb95d1d528d679c1aae9247912ce812bcd29a",
+        "size": 0
+      }
+    ],
+    "builtAt": "2026-10-15T00:00:00Z"
+  },
+  "subject": {
+    "key": "phys",
+    "icon": "orbit",
+    "hue": 28,
+    "group": "natural",
+    "order": 2,
+    "status": "live",
+    "title": {
+      "ky": "Физика",
+      "ru": "Физика",
+      "en": "Physics"
+    },
+    "assistantGuide": "Physics. Give the quantity, its symbol and unit (SI; km/h only as in the material) and the formula, then a short worked calculation with numbers and units when asked. Keep numbers from the material; round sensibly. Distinguish similar quantities (speed vs distance, mass vs weight, force vs moment)."
+  },
+  "course": {
+    "key": "phys.g7",
+    "subjectKey": "phys",
+    "grade": 7,
+    "curriculum": "kg-2018",
+    "title": {
+      "ky": "Физика, 7-класс",
+      "ru": "Физика, 7 класс",
+      "en": "Physics, grade 7"
+    }
+  },
+  "unit": {
+    "key": "phys.g7.energy",
+    "courseKey": "phys.g7",
+    "order": 4,
+    "title": {
+      "ky": "Импульс, жумуш, кубаттуулук жана энергия",
+      "ru": "Импульс, работа, мощность и энергия",
+      "en": "Momentum, work, power and energy"
+    }
+  },
+  "objectives": [
+    {
+      "key": "phys.g7.energy.o1",
+      "code": "PHYS-7.4.1",
+      "unitKey": "phys.g7.energy",
+      "text": {
+        "ky": "Импульсту жана анын сакталуу законун, реактивдүү кыймылды түшүндүрүү.",
+        "ru": "Объяснять импульс, закон его сохранения и реактивное движение.",
+        "en": "Explain momentum, its conservation and jet propulsion."
+      }
+    },
+    {
+      "key": "phys.g7.energy.o2",
+      "code": "PHYS-7.4.2",
+      "unitKey": "phys.g7.energy",
+      "text": {
+        "ky": "Механикалык жумушту, кубаттуулукту жана энергияны эсептөө, энергиянын сакталуу законун колдонуу.",
+        "ru": "Вычислять работу, мощность и энергию, применять закон сохранения энергии.",
+        "en": "Calculate work, power and energy and apply energy conservation."
+      }
+    }
+  ],
+  "topic": {
+    "key": "phys7-jet-propulsion",
+    "unitKey": "phys.g7.energy",
+    "status": "published",
+    "title": {
+      "ky": "Реактивдүү кыймыл",
+      "ru": "Реактивное движение",
+      "en": "Jet propulsion"
+    },
+    "formula": "m_г v_г = m_р v_р",
+    "classification": {
+      "ky": "Импульстун сакталуу законунун колдонулушу",
+      "ru": "Применение закона сохранения импульса",
+      "en": "Using conservation of momentum"
+    },
+    "description": {
+      "ky": "Бир нерсенин курамынан экинчи нерсенин бөлүнүп чыгышы менен пайда болгон кыймыл реактивдүү кыймыл деп аталат. Ракета күйгөн газды ылдый чоң ылдамдык менен ыргытат; импульстун сакталуу закону боюнча газ ылдый канча импульс алып кетсе, ракета ошончо импульсту өйдө алат: m_г·v_г = m_р·v_р.",
+      "ru": "Движение, возникающее при отделении от тела какой-то его части, называется реактивным. Ракета с большой скоростью выбрасывает вниз газы; по закону сохранения импульса, какой импульс газы уносят вниз, такой же получает ракета вверх: m_г·v_г = m_р·v_р.",
+      "en": "Motion that arises when part of a body separates and is thrown out is called jet (reactive) motion. A rocket blasts its exhaust downwards very fast; by conservation of momentum the rocket gets as much momentum upwards as the gas carries down: m_g·v_g = m_r·v_r."
+    },
+    "goal": {
+      "ky": "Реактивдүү кыймылды импульстун сакталуу закону менен түшүндүрүү, ракетанын түзүлүшүн жана иштешин айтып берүү, m_г·v_г = m_р·v_р боюнча жөнөкөй маселе чыгаруу (PHYS-7.4.1).",
+      "ru": "Объяснять реактивное движение законом сохранения импульса, рассказывать об устройстве и работе ракеты, решать простые задачи по m_г·v_г = m_р·v_р (PHYS-7.4.1).",
+      "en": "Explain jet propulsion with conservation of momentum, describe how a rocket is built and works, and solve simple problems with m_g·v_g = m_r·v_r (PHYS-7.4.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.energy.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "momentum",
+        "variant": "rocket",
+        "rocket": {
+          "mass": 1,
+          "fuelMass": 0.5,
+          "gasSpeed": 200
+        }
+      },
+      "camera": {
+        "position": [
+          1.4,
+          2.2,
+          5
+        ],
+        "target": [
+          0,
+          1.4,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.rocket",
+      "phys.jet-propulsion",
+      "phys.momentum",
+      "phys.momentum-conservation"
+    ],
+    "overrides": {
+      "phys.rocket": {
+        "nodes": [
+          "Rocket"
+        ],
+        "anchor": [
+          0,
+          1.5,
+          0
+        ],
+        "description": {
+          "ky": "Ракетанын тулкусу 1 кг, ичинде 0,5 кг отун бар. Отун күйүп, газ ракетанын түбүндөгү тешиктен (соплодон) ылдый атылат. Отундун баары бир заматта 200 м/с менен чыкты десек, ракета v_р = 0,5 · 200 / 1 = 100 м/с ылдамдык алат.",
+          "ru": "Корпус ракеты 1 кг, внутри 0,5 кг топлива. Топливо сгорает, газы вырываются вниз через сопло. Если считать, что всё топливо вылетело сразу со скоростью 200 м/с, ракета получит скорость v_р = 0,5 · 200 / 1 = 100 м/с.",
+          "en": "The rocket body is 1 kg with 0.5 kg of fuel inside. The fuel burns and the gas blasts down through the nozzle. If all the fuel left at once at 200 m/s, the rocket would get v_r = 0.5 × 200 / 1 = 100 m/s."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 100
+          }
+        ]
+      },
+      "phys.jet-propulsion": {
+        "nodes": [
+          "Exhaust"
+        ],
+        "anchor": [
+          0,
+          0.3,
+          0
+        ],
+        "description": {
+          "ky": "Ракетадан бөлүнүп чыккан газ – ракетаны кыймылга келтирген «экинчи нерсе». Газдын импульсу 0,5 кг · 200 м/с = 100 кг·м/с ылдый багытталган, ошончо импульсту ракета өйдө алат.",
+          "ru": "Газ, отделяющийся от ракеты, – та «вторая часть», что приводит ракету в движение. Импульс газа 0,5 кг · 200 м/с = 100 кг·м/с направлен вниз, такой же импульс вверх получает ракета.",
+          "en": "The exhaust leaving the rocket is the 'separated part' that drives it. The gas's momentum, 0.5 kg × 200 m/s = 100 kg·m/s, points down; the rocket gets the same momentum upwards."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.5
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 200
+          }
+        ]
+      },
+      "phys.momentum": {
+        "nodes": [
+          "Arrow_Momentum_Rocket",
+          "Arrow_Momentum_Gas"
+        ],
+        "anchor": [
+          0.5,
+          1.2,
+          0
+        ],
+        "description": {
+          "ky": "Эки жебе: газдын импульсу (ылдый) жана ракетанын импульсу (өйдө). Алардын узундугу дайыма бирдей – импульстар чоңдугу боюнча барабар, багыты боюнча карама-каршы.",
+          "ru": "Две стрелки: импульс газов (вниз) и импульс ракеты (вверх). Их длины всегда равны – импульсы равны по модулю и противоположны по направлению.",
+          "en": "Two arrows: the gas's momentum (down) and the rocket's (up). They are always the same length – equal in size, opposite in direction."
+        }
+      },
+      "phys.momentum-conservation": {
+        "anchor": [
+          0,
+          2.6,
+          0
+        ],
+        "description": {
+          "ky": "Учурга чейин ракета отуну менен тынч турган: системанын импульсу нөл. Учкандан кийин да суммасы нөл: m_р·v_р − m_г·v_г = 0, ошондуктан m_р·v_р = m_г·v_г.",
+          "ru": "До старта ракета с топливом покоилась: импульс системы равен нулю. После старта сумма тоже ноль: m_р·v_р − m_г·v_г = 0, поэтому m_р·v_р = m_г·v_г.",
+          "en": "Before launch the fuelled rocket was at rest: the system's momentum was zero. After launch the total is still zero: m_r·v_r − m_g·v_g = 0, so m_r·v_r = m_g·v_g."
+        }
+      }
+    },
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "mass",
+        "value": 1
+      },
+      {
+        "kind": "quantity",
+        "type": "speed",
+        "value": 200
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "v_р = \\frac{m_г v_г}{m_р}"
+      }
+    ],
+    "samples": [
+      {
+        "key": "rocket-fuel",
+        "title": {
+          "ky": "Отундуу ракета: 1 кг + 0,5 кг отун",
+          "ru": "Ракета на топливе: 1 кг + 0,5 кг",
+          "en": "Fuel rocket: 1 kg + 0.5 kg fuel"
+        },
+        "classification": {
+          "ky": "v_г = 200 м/с → v_р = 100 м/с",
+          "ru": "v_г = 200 м/с → v_р = 100 м/с",
+          "en": "v_g = 200 m/s → v_r = 100 m/s"
+        },
+        "thumb": "thumbs/rocket-fuel.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 100
+          }
+        ],
+        "scene": {
+          "params": {
+            "rocket": {
+              "mass": 1,
+              "fuelMass": 0.5,
+              "gasSpeed": 200
+            }
+          }
+        }
+      },
+      {
+        "key": "rocket-water",
+        "title": {
+          "ky": "Суу ракетасы (100-сүрөт)",
+          "ru": "Водяная ракета (рис. 100)",
+          "en": "Water rocket (fig. 100)"
+        },
+        "classification": {
+          "ky": "0,4 кг суу, 10 м/с → 20 м/с",
+          "ru": "0,4 кг воды, 10 м/с → 20 м/с",
+          "en": "0.4 kg water at 10 m/s → 20 m/s"
+        },
+        "thumb": "thumbs/rocket-water.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.2
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 20
+          }
+        ],
+        "scene": {
+          "params": {
+            "rocket": {
+              "mass": 0.2,
+              "fuelMass": 0.4,
+              "gasSpeed": 10
+            }
+          }
+        }
+      },
+      {
+        "key": "rocket-air",
+        "title": {
+          "ky": "Аба гана толтурулган модель",
+          "ru": "Модель только с воздухом",
+          "en": "Model with air only"
+        },
+        "classification": {
+          "ky": "2 г аба → 0,1 м/с: дээрлик көтөрүлбөйт",
+          "ru": "2 г воздуха → 0,1 м/с: почти не взлетает",
+          "en": "2 g of air → 0.1 m/s: barely lifts"
+        },
+        "thumb": "thumbs/rocket-air.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.2
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 0.1
+          }
+        ],
+        "scene": {
+          "params": {
+            "rocket": {
+              "mass": 0.2,
+              "fuelMass": 0.002,
+              "gasSpeed": 10
+            }
+          }
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "boat",
+            "camera": {
+              "position": [
+                0,
+                1.6,
+                5
+              ],
+              "target": [
+                0,
+                1.4,
+                0
+              ]
+            },
+            "modes": {
+              "vectors": false
+            },
+            "focus": "phys.rocket",
+            "text": {
+              "ky": "Тынч көлдөгү кайыктан бала таштарды артка ыргытса, кайык алдыга жылат (98-сүрөт). Ракета да ушундай учат: ал «таштын» ордуна газ ыргытат. Аянтчада 1 кг ракета, ичинде 0,5 кг отун.",
+              "ru": "Если мальчик бросает камни с лодки назад, лодка плывёт вперёд (рис. 98). Ракета летит так же, только вместо камней выбрасывает газ. На площадке ракета 1 кг с 0,5 кг топлива.",
+              "en": "If a boy throws stones off the back of a boat, the boat moves forward (fig. 98). A rocket flies the same way, throwing gas instead of stones. On the pad: a 1 kg rocket with 0.5 kg of fuel."
+            },
+            "teacherNote": {
+              "ky": "Класстан сураңыз: ракета эмнени «түртөт» – абаныбы, жерди бе, же өз газын бы?",
+              "ru": "Спросите класс: от чего «отталкивается» ракета – от воздуха, от земли или от своих газов?",
+              "en": "Ask the class: what does a rocket push against – the air, the ground or its own exhaust?"
+            },
+            "altText": {
+              "ky": "Аянтчада тик турган ракета.",
+              "ru": "Ракета стоит вертикально на стартовой площадке.",
+              "en": "A rocket standing upright on its launch pad."
+            }
+          },
+          {
+            "key": "ignite",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.jet-propulsion",
+            "text": {
+              "ky": "От алды: газ соплодон ылдый атылат, ракета өйдө көтөрүлөт. Бул – реактивдүү кыймыл: нерсенин бир бөлүгү бөлүнүп чыкканда калганы карама-каршы жакка жылат.",
+              "ru": "Зажигание: газы вырываются из сопла вниз, ракета поднимается. Это реактивное движение: когда часть тела отделяется, остальное движется в обратную сторону.",
+              "en": "Ignition: gas blasts down from the nozzle and the rocket rises. This is jet propulsion: when part of a body leaves, the rest moves the opposite way."
+            },
+            "teacherNote": {
+              "ky": "Байланбаган шарды класста коё бериңиз – эң жөнөкөй «ракета».",
+              "ru": "Отпустите в классе развязанный воздушный шарик – простейшая «ракета».",
+              "en": "Let an untied balloon go in class – the simplest 'rocket'."
+            },
+            "altText": {
+              "ky": "Ракетанын астында газ агымы, ракета көтөрүлүүдө.",
+              "ru": "Под ракетой струя газа, ракета поднимается.",
+              "en": "A jet of gas under the rocket as it lifts off."
+            }
+          },
+          {
+            "key": "balance",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.momentum",
+            "text": {
+              "ky": "Эки жебени салыштырыңыз: газдын импульсу ылдый, ракетанын импульсу өйдө, узундуктары бирдей. Учурга чейин суммасы нөл болчу – азыр да нөл: m_р·v_р = m_г·v_г.",
+              "ru": "Сравните две стрелки: импульс газов вниз, импульс ракеты вверх, длины одинаковы. До старта сумма была нулём – и сейчас ноль: m_р·v_р = m_г·v_г.",
+              "en": "Compare the two arrows: the gas's momentum down, the rocket's up, the same length. Before launch the total was zero – and it still is: m_r·v_r = m_g·v_g."
+            },
+            "teacherNote": {
+              "ky": "Эсептөөнү тактага жазыңыз: 0,5 · 200 = 100 кг·м/с, v_р = 100 / 1 = 100 м/с. Бул – отундун баары бир заматта чыкты деген жөнөкөйлөтүү.",
+              "ru": "Запишите расчёт: 0,5 · 200 = 100 кг·м/с, v_р = 100 / 1 = 100 м/с. Это упрощение: всё топливо вышло сразу.",
+              "en": "Write the sum on the board: 0.5 × 200 = 100 kg·m/s, v_r = 100 / 1 = 100 m/s. It's a simplification: all the fuel leaves at once."
+            },
+            "altText": {
+              "ky": "Ракетанын үстүндө өйдө жебе, газдын жанында ылдый жебе.",
+              "ru": "Над ракетой стрелка вверх, у газа стрелка вниз.",
+              "en": "An up arrow on the rocket and a down arrow on the gas."
+            }
+          },
+          {
+            "key": "water",
+            "sample": "rocket-water",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.momentum-conservation",
+            "text": {
+              "ky": "Суу ракетасы (100-сүрөт): 0,2 кг бөтөлкөгө 0,4 кг суу куюп, аба үйлөйбүз. Суу 10 м/с менен атылат: v_р = 0,4 · 10 / 0,2 = 20 м/с. Суунун массасы чоң – импульсу да чоң.",
+              "ru": "Водяная ракета (рис. 100): в бутылку 0,2 кг наливаем 0,4 кг воды и накачиваем воздух. Вода вылетает со скоростью 10 м/с: v_р = 0,4 · 10 / 0,2 = 20 м/с. Масса воды большая – и импульс большой.",
+              "en": "A water rocket (fig. 100): pour 0.4 kg of water into a 0.2 kg bottle and pump in air. The water shoots out at 10 m/s: v_r = 0.4 × 10 / 0.2 = 20 m/s. The water is heavy, so its momentum is large."
+            },
+            "teacherNote": {
+              "ky": "Мүмкүн болсо, мектеп короосунда суу ракетасын учуруп көрсөтүңүз (коопсуздук көз айнеги менен).",
+              "ru": "Если можно, запустите водяную ракету во дворе школы (в защитных очках).",
+              "en": "If possible, launch a water rocket in the schoolyard (with safety glasses)."
+            },
+            "altText": {
+              "ky": "Суу ылдый атылып, бөтөлкө-ракета өйдө учуп жатат.",
+              "ru": "Вода бьёт вниз, бутылка-ракета летит вверх.",
+              "en": "Water sprays down as the bottle rocket flies up."
+            }
+          },
+          {
+            "key": "air",
+            "sample": "rocket-air",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.rocket",
+            "text": {
+              "ky": "Эми ошол эле моделге суу куйбай, аба гана үйлөйбүз. Абанын массасы 2 г гана, анын импульсу аз – модель бир аз көтөрүлүп, кайра кыйшайып жыгылат.",
+              "ru": "Теперь в ту же модель не наливаем воду, а только накачиваем воздух. Масса воздуха всего 2 г, его импульс мал – модель чуть приподнимается и падает набок.",
+              "en": "Now the same model with no water, only air. The air weighs just 2 g, so its momentum is tiny – the model hops a little and topples over."
+            },
+            "teacherNote": {
+              "ky": "Китептеги тажрыйба (§37): салыштыруу таблицасын ачып, үч ракетаны салыштырыңыз.",
+              "ru": "Опыт учебника (§37): откройте таблицу сравнения и сравните три ракеты.",
+              "en": "The textbook experiment (§37): open the comparison table and compare the three rockets."
+            },
+            "altText": {
+              "ky": "Ракета-модель аянтчадан бир аз гана көтөрүлгөн.",
+              "ru": "Модель ракеты едва оторвалась от площадки.",
+              "en": "The model rocket barely leaves the pad."
+            }
+          },
+          {
+            "key": "space",
+            "sample": "rocket-fuel",
+            "focus": "phys.jet-propulsion",
+            "text": {
+              "ky": "Ракетага аба керек эмес – ал өз газын түртөт, ошондуктан космосто да учат. К. Э. Циолковский көп баскычтуу ракетаны сунуштаган, С. П. Королев ракеталарды курган, 1961-жылы Ю. А. Гагарин космоско учкан.",
+              "ru": "Ракете не нужен воздух – она отталкивается от собственных газов, поэтому летит и в космосе. К. Э. Циолковский предложил многоступенчатую ракету, С. П. Королёв строил ракеты, в 1961 году Ю. А. Гагарин полетел в космос.",
+              "en": "A rocket needs no air – it pushes on its own exhaust, so it flies in space too. Tsiolkovsky proposed multistage rockets, Korolev built them, and in 1961 Gagarin flew into space."
+            },
+            "teacherNote": {
+              "ky": "Космоско учкан биринчи кыргызстандык – Салижан Шарипов. Окуучуларга космос боюнча кыска маалымат даярдатыңыз (китептеги суроо 6).",
+              "ru": "Первый человек из Кыргызстана в космосе – Салижан Шарипов. Поручите подготовить короткие сообщения о космосе (вопрос 6 учебника).",
+              "en": "The first person from Kyrgyzstan in space was Salizhan Sharipov. Have pupils prepare short reports on space flight (textbook question 6)."
+            },
+            "altText": {
+              "ky": "Ракета бийикке учуп баратат.",
+              "ru": "Ракета уходит высоко вверх.",
+              "en": "The rocket climbing high."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.rocket-launch"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "rocket-fuel"
+          },
+          {
+            "kind": "sample",
+            "key": "rocket-water"
+          },
+          {
+            "kind": "sample",
+            "key": "rocket-air"
+          }
+        ],
+        "rows": [
+          "mass",
+          "speed"
+        ],
+        "manual": [
+          {
+            "column": "rocket-fuel",
+            "row": "mass",
+            "value": {
+              "ky": "ракета 1 кг, газ 0,5 кг",
+              "ru": "ракета 1 кг, газ 0,5 кг",
+              "en": "rocket 1 kg, gas 0.5 kg"
+            }
+          },
+          {
+            "column": "rocket-fuel",
+            "row": "speed",
+            "value": {
+              "ky": "газ 200 → ракета 100 м/с",
+              "ru": "газ 200 → ракета 100 м/с",
+              "en": "gas 200 → rocket 100 m/s"
+            }
+          },
+          {
+            "column": "rocket-water",
+            "row": "mass",
+            "value": {
+              "ky": "ракета 0,2 кг, суу 0,4 кг",
+              "ru": "ракета 0,2 кг, вода 0,4 кг",
+              "en": "rocket 0.2 kg, water 0.4 kg"
+            }
+          },
+          {
+            "column": "rocket-water",
+            "row": "speed",
+            "value": {
+              "ky": "суу 10 → ракета 20 м/с",
+              "ru": "вода 10 → ракета 20 м/с",
+              "en": "water 10 → rocket 20 m/s"
+            }
+          },
+          {
+            "column": "rocket-air",
+            "row": "mass",
+            "value": {
+              "ky": "ракета 0,2 кг, аба 0,002 кг",
+              "ru": "ракета 0,2 кг, воздух 0,002 кг",
+              "en": "rocket 0.2 kg, air 0.002 kg"
+            }
+          },
+          {
+            "column": "rocket-air",
+            "row": "speed",
+            "value": {
+              "ky": "аба 10 → ракета 0,1 м/с",
+              "ru": "воздух 10 → ракета 0,1 м/с",
+              "en": "air 10 → rocket 0.1 m/s"
+            }
+          }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-jet-1",
+          "phys.q.p7-jet-2",
+          "phys.q.p7-jet-3",
+          "phys.q.p7-jet-4",
+          "phys.q.p7-jet-5",
+          "phys.q.p7-jet-6",
+          "phys.q.p7-jet-7",
+          "phys.q.p7-jet-8"
+        ],
+        "sampleSize": 5
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "t",
+          "title": {
+            "ky": "Жасалма спутниктер",
+            "ru": "Искусственные спутники",
+            "en": "Artificial satellites"
+          },
+          "text": {
+            "ky": "1957-жылдын 4-октябрында көп баскычтуу ракета Жердин биринчи жасалма спутнигин орбитага чыгарган. Азыр ушундай ракеталар байланыш жана аба ырайы спутниктерин учурат.",
+            "ru": "4 октября 1957 года многоступенчатая ракета вывела на орбиту первый искусственный спутник Земли. Сейчас такие ракеты запускают спутники связи и погоды.",
+            "en": "On 4 October 1957 a multistage rocket put the first artificial satellite into orbit. Rockets like it now launch communication and weather satellites."
+          }
+        },
+        {
+          "field": "e",
+          "title": {
+            "ky": "Реактивдүү учак",
+            "ru": "Реактивный самолёт",
+            "en": "Jet aircraft"
+          },
+          "text": {
+            "ky": "Жүргүнчү учагынын кыймылдаткычы секундасына жүздөгөн килограмм ысык газды артка ыргытып, учакты 250 м/с ка жакын ылдамдыкка чейин алып барат.",
+            "ru": "Двигатель пассажирского самолёта каждую секунду выбрасывает назад сотни килограммов горячего газа и разгоняет самолёт почти до 250 м/с.",
+            "en": "An airliner's engines throw hundreds of kilograms of hot gas backwards every second, driving the plane to nearly 250 m/s."
+          }
+        },
+        {
+          "field": "s",
+          "title": {
+            "ky": "Кальмар",
+            "ru": "Кальмар",
+            "en": "Squid"
+          },
+          "text": {
+            "ky": "Кальмар денесине сууну соруп, аны катуу чыгарып, карама-каршы жакка ыргып кетет – табияттагы реактивдүү кыймылдаткыч.",
+            "ru": "Кальмар набирает в тело воду и резко выталкивает её, рывком уходя в обратную сторону, – природный реактивный двигатель.",
+            "en": "A squid sucks water into its body and squirts it out hard, darting the opposite way – a natural jet engine."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Шар",
+            "ru": "Шарик",
+            "en": "A balloon"
+          },
+          "text": {
+            "ky": "Үйлөнгөн шарды байлабай коё берсең, абасы бир жакка чыгат, шар карама-каршы жакка учат.",
+            "ru": "Отпусти надутый шарик, не завязав: воздух вылетает в одну сторону, шарик летит в другую.",
+            "en": "Let go of a blown-up balloon without tying it: air rushes out one way and the balloon flies the other."
+          }
+        },
+        {
+          "title": {
+            "ky": "Сугаруучу түтүк",
+            "ru": "Поливочный шланг",
+            "en": "A garden hose"
+          },
+          "text": {
+            "ky": "Бакчаны сугарганда суу катуу аккан түтүктүн учун коё берсең, түтүк «жыландай» кыймылдай баштайт.",
+            "ru": "Если отпустить конец шланга, из которого бьёт вода, шланг начинает «извиваться змеёй».",
+            "en": "Let go of the end of a hose with water gushing out and it starts writhing like a snake."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Ракета космосто эмнени түртүп учат?",
+        "ru": "От чего отталкивается ракета в космосе?",
+        "en": "What does a rocket push against in space?"
+      },
+      {
+        "ky": "Эмне үчүн суу ракетасына суу куюу керек?",
+        "ru": "Зачем в водяную ракету наливают воду?",
+        "en": "Why do you put water in a water rocket?"
+      },
+      {
+        "ky": "Кайыктан таш ыргытсак, кайык эмне үчүн жылат?",
+        "ru": "Почему лодка движется, если бросать с неё камни?",
+        "en": "Why does a boat move when you throw stones off it?"
+      },
+      {
+        "ky": "Көп баскычтуу ракета эмне үчүн керек?",
+        "ru": "Зачем нужна многоступенчатая ракета?",
+        "en": "Why build a multistage rocket?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; after Мамбетакунов Э. Физика 7, §37"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "concepts": [
+    {
+      "key": "phys.rocket",
+      "kind": "device",
+      "hue": 0,
+      "isContainer": false,
+      "title": {
+        "ky": "Ракета",
+        "ru": "Ракета",
+        "en": "Rocket"
+      },
+      "subtitle": {
+        "ky": "Реактивдүү кыймылдаткычы бар учуучу аппарат",
+        "ru": "Аппарат с реактивным двигателем",
+        "en": "A craft driven by jet propulsion"
+      },
+      "description": {
+        "ky": "Жөнөкөй ракета тулкудан жана күйгөн заттын калдыгын андан сыртка ыргытуучу бөлүктөн турат. Ракетадан чыккан газдын импульсу канчалык чоң болсо, ракетага карама-каршы багытта ошончо чоң импульс берет. Ракетанын ылдамдыгы газдын массасынан жана ылдамдыгынан көз каранды.",
+        "ru": "Простейшая ракета состоит из корпуса и части, выбрасывающей наружу продукты сгорания топлива. Чем больше импульс выходящих газов, тем больший импульс в обратную сторону получает ракета. Скорость ракеты зависит от массы и скорости газов.",
+        "en": "A simple rocket is a body plus a part that throws the burnt fuel out. The more momentum the exhaust carries, the more momentum the rocket gets the other way. The rocket's speed depends on the mass and speed of the exhaust."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "v_р = \\frac{m_г v_г}{m_р}"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Жасалма спутниктерди жана космонавттарды космоско чыгаруу",
+            "ru": "Выводит спутники и космонавтов в космос",
+            "en": "Puts satellites and astronauts into space"
+          }
+        }
+      ],
+      "related": [
+        "phys.jet-propulsion",
+        "phys.momentum"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.rocket-light-gas",
+          "text": {
+            "ky": "Ракетага жөн гана аба толтуруп коё берсе да бийик учат.",
+            "ru": "Если наполнить ракету одним воздухом и отпустить, она взлетит высоко.",
+            "en": "Fill a rocket with just air and it will shoot up high."
+          },
+          "correction": {
+            "ky": "Абанын массасы аз, ошондуктан анын импульсу да аз – ракетанын модели бир аз көтөрүлүп, кыйшайып жыгылат. Ичине бир аз суу куюп, аба үйлөсө, суу аралаш абанын импульсу чоң болуп, ракета бийик учат.",
+            "ru": "Масса воздуха мала, мала и его импульс – модель ракеты чуть приподнимается и падает набок. Если налить немного воды и накачать воздух, импульс смеси воды и воздуха станет большим, и ракета взлетит высоко.",
+            "en": "Air has little mass, so little momentum – the model barely lifts and topples. Add some water and pump in air: the water-air jet has far more momentum and the rocket shoots high."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "1961-жылдын 12-апрелинде Ю. А. Гагарин биринчи болуп космоско учкан. Космоско учкан кыргызстандык биринчи адам – С. Шарипов.",
+        "ru": "12 апреля 1961 года Ю. А. Гагарин первым полетел в космос. Первый человек из Кыргызстана в космосе – С. Шарипов.",
+        "en": "On 12 April 1961 Yuri Gagarin became the first person in space. The first person from Kyrgyzstan in space was Salizhan Sharipov."
+      },
+      "analogy": {
+        "ky": "Байланбаган, учуп кеткен шар",
+        "ru": "Развязавшийся летящий шарик",
+        "en": "An untied balloon flying off"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Көп баскычтуу ракета",
+              "ru": "Многоступенчатая ракета",
+              "en": "Multistage rocket"
+            },
+            "text": {
+              "ky": "К. Э. Циолковский 1929-жылы космостук ылдамдыкка жетүү үчүн көп баскычтуу ракетаны сунуштаган: отуну түгөнгөн баскыч таштала берет да, ракета жеңилдеп, ылдамдыгы чоңоёт.",
+              "ru": "В 1929 году К. Э. Циолковский предложил многоступенчатую ракету для достижения космической скорости: ступень с выгоревшим топливом отбрасывается, ракета становится легче и разгоняется сильнее.",
+              "en": "In 1929 Konstantin Tsiolkovsky proposed multistage rockets to reach orbital speed: each empty stage is dropped, the rocket gets lighter and speeds up more."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Суюк отун",
+              "ru": "Жидкое топливо",
+              "en": "Liquid fuel"
+            },
+            "text": {
+              "ky": "Циолковский отун катары суюк суутекти (H₂), кычкылдандыргыч катары суюк кычкылтекти (O₂) сунуштаган. Ушул идеянын негизинде 1957-жылдын 4-октябрында Жердин биринчи жасалма спутниги учурулган.",
+              "ru": "Циолковский предлагал горючим жидкий водород (H₂), окислителем – жидкий кислород (O₂). На этой основе 4 октября 1957 года был запущен первый искусственный спутник Земли.",
+              "en": "Tsiolkovsky proposed liquid hydrogen (H₂) as fuel and liquid oxygen (O₂) as the oxidiser. Building on this, the first artificial Earth satellite was launched on 4 October 1957."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Суу ракетасы",
+              "ru": "Водяная ракета",
+              "en": "A water rocket"
+            },
+            "text": {
+              "ky": "Желим бөтөлкөгө бир аз суу куюп, насос менен аба үйлөсөң, тыгын чыгып, суу ылдый атылат да, бөтөлкө өйдө учат.",
+              "ru": "Налей в пластиковую бутылку немного воды и накачай насосом воздух – пробка вылетит, вода ударит вниз, а бутылка взлетит.",
+              "en": "Put a little water in a plastic bottle and pump in air – the cork pops, water blasts down and the bottle flies up."
+            }
+          },
+          {
+            "title": {
+              "ky": "Майрамдык ракета",
+              "ru": "Праздничная ракета",
+              "en": "A firework rocket"
+            },
+            "text": {
+              "ky": "Салют ракетасында дары күйүп, газ ылдый атылат, ракета асманга учат.",
+              "ru": "В салютной ракете сгорает порох, газы вырываются вниз, а ракета летит в небо.",
+              "en": "In a firework rocket the powder burns, gas shoots downwards and the rocket rises into the sky."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.jet-propulsion",
+      "kind": "phenomenon",
+      "hue": 15,
+      "isContainer": false,
+      "title": {
+        "ky": "Реактивдүү кыймыл",
+        "ru": "Реактивное движение",
+        "en": "Jet propulsion"
+      },
+      "subtitle": {
+        "ky": "Бөлүгүн артка ыргытып алдыга жылуу",
+        "ru": "Выбросить часть назад – поехать вперёд",
+        "en": "Throw part back, move forward"
+      },
+      "description": {
+        "ky": "Бир нерсенин курамынан экинчи нерсенин бөлүнүп чыгышы менен пайда болгон кыймыл реактивдүү кыймыл деп аталат. Импульстун сакталуу закону боюнча артка ыргытылган бөлүктүн импульсу m_г·v_г нерсенин калган бөлүгүнө ошончо чоң, карама-каршы багыттагы импульс берет: m_г·v_г = m_р·v_р.",
+        "ru": "Движение, возникающее, когда от тела отделяется и выбрасывается его часть, называется реактивным. По закону сохранения импульса выброшенная назад часть с импульсом m_г·v_г сообщает остальному телу такой же по модулю импульс в противоположную сторону: m_г·v_г = m_р·v_р.",
+        "en": "Motion that arises when part of a body separates from it and is thrown out is called jet (reactive) motion. By conservation of momentum the part thrown back with momentum m_g·v_g gives the rest of the body an equal momentum the opposite way: m_g·v_g = m_r·v_r."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "m_г v_г = m_р v_р"
+        },
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Ракета, реактивдүү учак, кальмар, суу сугаргыч түтүк",
+            "ru": "Ракета, реактивный самолёт, кальмар, поливочный шланг",
+            "en": "Rockets, jet planes, squid, a garden hose"
+          }
+        }
+      ],
+      "related": [
+        "phys.momentum-conservation",
+        "phys.rocket"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.rocket-pushes-air",
+          "text": {
+            "ky": "Ракета абаны түртүп учат, ошондуктан аба жок космосто уча албайт.",
+            "ru": "Ракета летит, отталкиваясь от воздуха, поэтому в безвоздушном космосе она не полетит.",
+            "en": "A rocket flies by pushing on the air, so it cannot fly in airless space."
+          },
+          "correction": {
+            "ky": "Ракета өзүнөн чыккан газды түртөт, газ ракетаны карама-каршы жакка түртөт. Ага аба керек эмес – космосто, тескерисинче, аба каршылык көрсөтпөйт.",
+            "ru": "Ракета толкает выбрасываемые ею газы, а газы толкают ракету в обратную сторону. Воздух для этого не нужен – в космосе ему, наоборот, ничто не мешает.",
+            "en": "The rocket pushes its own exhaust out and the exhaust pushes the rocket the other way. No air is needed – in space there is even no air drag."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Бакчаны сугаруучу желим түтүк оролуп турганда суу жиберсек, анын ороому жазылат – бул да реактивдүү кыймыл.",
+        "ru": "Если пустить воду по свёрнутому поливочному шлангу, он начинает разворачиваться – это тоже реактивное движение.",
+        "en": "Turn on water in a coiled garden hose and the coil starts to unwind – that's jet propulsion too."
+      },
+      "analogy": {
+        "ky": "Кайыктан артка таш ыргытсаң, кайык алдыга жылат",
+        "ru": "Бросаешь камни с лодки назад – лодка плывёт вперёд",
+        "en": "Throw stones off the back of a boat and the boat moves forward"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "t",
+            "title": {
+              "ky": "Реактивдүү учактар",
+              "ru": "Реактивные самолёты",
+              "en": "Jet aircraft"
+            },
+            "text": {
+              "ky": "Учактын кыймылдаткычы абаны жутуп, отун менен күйгүзүп, ысык газды артка чоң ылдамдык менен ыргытат – газдын импульсу учакты алдыга түртөт.",
+              "ru": "Двигатель самолёта засасывает воздух, сжигает в нём топливо и выбрасывает горячие газы назад с огромной скоростью – их импульс толкает самолёт вперёд.",
+              "en": "A jet engine sucks in air, burns fuel in it and throws hot gas out the back very fast – the gas's momentum pushes the plane forward."
+            }
+          },
+          {
+            "field": "s",
+            "title": {
+              "ky": "Кальмар жана медуза",
+              "ru": "Кальмар и медуза",
+              "en": "Squid and jellyfish"
+            },
+            "text": {
+              "ky": "Кальмар денесине сууну соруп алып, аны түтүкчө аркылуу катуу чыгарат да, карама-каршы жакка тез сүзөт – табияттагы реактивдүү кыймылдаткыч.",
+              "ru": "Кальмар набирает воду в тело и резко выбрасывает её через трубку-воронку, уплывая в обратную сторону, – природный реактивный двигатель.",
+              "en": "A squid fills its body with water and squirts it out through a funnel, shooting off the opposite way – nature's own jet engine."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Шар",
+              "ru": "Воздушный шарик",
+              "en": "A balloon"
+            },
+            "text": {
+              "ky": "Үйлөнгөн шарды байлабай коё берсең, абасы артка чыгып, шар алдыга учуп кетет.",
+              "ru": "Отпусти надутый шарик, не завязав, – воздух вырывается назад, а шарик летит вперёд.",
+              "en": "Let go of a blown-up balloon without tying it: the air rushes out the back and the balloon zooms forward."
+            }
+          },
+          {
+            "title": {
+              "ky": "Кайыктагы таштар",
+              "ru": "Камни из лодки",
+              "en": "Stones from a boat"
+            },
+            "text": {
+              "ky": "Тынч көлдөгү кайыктан бала таштарды артка ыргыта баштаса, бир аздан кийин кайык алдыга жыла баштайт.",
+              "ru": "Если мальчик бросает камни с кормы лодки на тихом озере, через некоторое время лодка начинает двигаться вперёд.",
+              "en": "If a boy throws stones off the back of a boat on a calm lake, the boat soon starts moving forward."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.momentum",
+      "kind": "quantity",
+      "hue": 265,
+      "isContainer": false,
+      "title": {
+        "ky": "Нерсенин импульсу",
+        "ru": "Импульс тела",
+        "en": "Momentum"
+      },
+      "subtitle": {
+        "ky": "P = mv",
+        "ru": "P = mv",
+        "en": "P = mv"
+      },
+      "description": {
+        "ky": "Механикалык кыймылдын сандык ченин мүнөздөөчү физикалык чоңдук. Нерсенин импульсу анын массасы менен ылдамдыгынын көбөйтүндүсүнө барабар: P = mv. Импульс – вектордук чоңдук, анын багыты ылдамдыктын багытындай. СИде бирдиги 1 кг·м/с.",
+        "ru": "Физическая величина, характеризующая количественную меру механического движения. Импульс тела равен произведению его массы на скорость: P = mv. Импульс – векторная величина, направлен так же, как скорость. Единица в СИ – 1 кг·м/с.",
+        "en": "The physical quantity that measures 'how much motion' a body has. Momentum equals mass times velocity: P = mv. It is a vector pointing the same way as the velocity. Its SI unit is 1 kg·m/s."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "\\vec{P} = m\\vec{v}"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Бирдиги: 1 кг·м/с",
+            "ru": "Единица: 1 кг·м/с",
+            "en": "Unit: 1 kg·m/s"
+          }
+        }
+      ],
+      "related": [
+        "phys.momentum-conservation",
+        "phys.speed"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.momentum-is-speed",
+          "text": {
+            "ky": "Импульс – бул эле ылдамдык: тез кыймылдаган нерсенин импульсу дайыма чоң.",
+            "ru": "Импульс – это та же скорость: у быстрого тела импульс всегда больше.",
+            "en": "Momentum is just speed: a faster body always has more momentum."
+          },
+          "correction": {
+            "ky": "Импульс масса менен ылдамдыкка көз каранды. 6 м/с менен учкан 8 г коргошундун импульсу 0,048 кг·м/с, ал эми 0,5 м/с менен жылган 50 кг каптыкы 25 кг·м/с – жай болсо да, кап «токтотууга кыйын».",
+            "ru": "Импульс зависит и от массы, и от скорости. У свинцовой дробинки 8 г при 6 м/с импульс 0,048 кг·м/с, а у мешка 50 кг при 0,5 м/с – 25 кг·м/с: мешок медленнее, но остановить его труднее.",
+            "en": "Momentum depends on both mass and speed. An 8 g lead pellet at 6 m/s has 0.048 kg·m/s; a 50 kg sack at 0.5 m/s has 25 kg·m/s – slower, yet much harder to stop."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "«Импульс» – латын сөзү, кыргызча «түрткү, козгоо, умтулуу» дегенди түшүндүрөт.",
+        "ru": "«Импульс» – латинское слово, означает «толчок, побуждение, стремление».",
+        "en": "'Impulse' comes from Latin and means 'a push, a drive, an urge'."
+      },
+      "analogy": {
+        "ky": "Кыймылдагы нерсени токтотуу канчалык кыйын экенинин чени",
+        "ru": "Мера того, насколько трудно остановить движущееся тело",
+        "en": "A measure of how hard a moving body is to stop"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "e",
+            "title": {
+              "ky": "Машинанын коопсуздук аралыгы",
+              "ru": "Дистанция грузовика",
+              "en": "Lorry stopping distance"
+            },
+            "text": {
+              "ky": "Жүк ташуучу машинанын массасы чоң, ошондуктан бирдей ылдамдыкта анын импульсу жеңил машинаныкынан бир нече эсе чоң – аны токтотууга көбүрөөк убакыт жана аралык керек. Ошондуктан айдоочулар оор машинадан алысыраак жүрүшөт.",
+              "ru": "Масса грузовика велика, поэтому при той же скорости его импульс в несколько раз больше, чем у легковой машины, – чтобы его остановить, нужно больше времени и пути. Поэтому за грузовиком держат большую дистанцию.",
+              "en": "A lorry is heavy, so at the same speed its momentum is several times a car's – it needs more time and road to stop. That is why drivers keep a longer gap behind lorries."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Бирдей импульс – ар башка кыймыл",
+              "ru": "Одинаковый импульс – разное движение",
+              "en": "Same momentum, different motion"
+            },
+            "text": {
+              "ky": "10 кг · 1 м/с, 1 кг · 10 м/с, 2 кг · 5 м/с жана 5 кг · 2 м/с – төртөөнүн тең импульсу 10 кг·м/с. Массалары жана ылдамдыктары ар башка болсо да, алардын кыймыл чени бирдей.",
+              "ru": "10 кг · 1 м/с, 1 кг · 10 м/с, 2 кг · 5 м/с и 5 кг · 2 м/с – у всех четырёх импульс 10 кг·м/с. Массы и скорости разные, а мера движения одна.",
+              "en": "10 kg × 1 m/s, 1 kg × 10 m/s, 2 kg × 5 m/s and 5 kg × 2 m/s all give 10 kg·m/s: different masses and speeds, the same amount of motion."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Кум салынган баштык жана кап",
+              "ru": "Мешочек и мешок песка",
+              "en": "A bag and a sack of sand"
+            },
+            "text": {
+              "ky": "0,5 м/с менен жылып келе жаткан 3 кг кумдуу баштыкты кол менен оңой токтотосуң, ал эми ошол эле ылдамдыктагы 50 кг капты токтото албайсың.",
+              "ru": "Мешочек с песком 3 кг, скользящий со скоростью 0,5 м/с, легко остановить рукой, а мешок 50 кг с той же скоростью – нет.",
+              "en": "You can stop a 3 kg bag of sand sliding at 0.5 m/s with one hand, but not a 50 kg sack at the same speed."
+            }
+          },
+          {
+            "title": {
+              "ky": "Ыргытылган топ",
+              "ru": "Брошенный мяч",
+              "en": "A thrown ball"
+            },
+            "text": {
+              "ky": "Жай ыргытылган топту кармоо оңой, катуу тебилген топ колду «уруп» кетет – анын импульсу чоң.",
+              "ru": "Медленно брошенный мяч поймать легко, а сильно пущенный «бьёт» по рукам – у него большой импульс.",
+              "en": "A gently tossed ball is easy to catch; a hard-kicked one stings your hands – it carries a lot of momentum."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.momentum-conservation",
+      "kind": "law",
+      "hue": 285,
+      "isContainer": false,
+      "title": {
+        "ky": "Импульстун сакталуу закону",
+        "ru": "Закон сохранения импульса",
+        "en": "Conservation of momentum"
+      },
+      "subtitle": {
+        "ky": "m₁v₁ + m₂v₂ = m₁u₁ + m₂u₂",
+        "ru": "m₁v₁ + m₂v₂ = m₁u₁ + m₂u₂",
+        "en": "m₁v₁ + m₂v₂ = m₁u₁ + m₂u₂"
+      },
+      "description": {
+        "ky": "Нерселердин кагылышканга чейинки импульстарынын суммасы кагылышкандан кийинки импульстарынын суммасына барабар: P₁ + P₂ = P₁′ + P₂′. Закон Ньютондун үчүнчү законунан келип чыгат: кагылышкан нерселер бири-бирине чоңдугу барабар, багыты карама-каршы күчтөр менен аракет этет.",
+        "ru": "Сумма импульсов тел до столкновения равна сумме их импульсов после столкновения: P₁ + P₂ = P₁′ + P₂′. Закон следует из третьего закона Ньютона: сталкивающиеся тела действуют друг на друга силами, равными по модулю и противоположными по направлению.",
+        "en": "The total momentum of bodies before a collision equals their total momentum after it: P₁ + P₂ = P₁′ + P₂′. It follows from Newton's third law: colliding bodies push on each other with equal and opposite forces."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "m_1v_1 + m_2v_2 = m_1u_1 + m_2u_2"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Туюк системада аткарылат",
+            "ru": "Выполняется в замкнутой системе",
+            "en": "Holds in a closed system"
+          }
+        }
+      ],
+      "related": [
+        "phys.momentum",
+        "phys.closed-system",
+        "phys.jet-propulsion"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.momentum-lost-in-collision",
+          "text": {
+            "ky": "Кагылышканда арабачалар жайлайт, демек импульс жоголот.",
+            "ru": "При столкновении тележки замедляются – значит, импульс теряется.",
+            "en": "Carts slow down in a crash, so momentum gets lost."
+          },
+          "correction": {
+            "ky": "Бир арабача жайласа, экинчиси ошончо ылдамдайт. Эки арабачанын импульстарынын суммасы кагылышууга чейин да, андан кийин да бирдей – биригип калышса да.",
+            "ru": "Если одна тележка замедлилась, другая ровно настолько же разогналась. Сумма импульсов двух тележек до и после удара одинакова – даже если они сцепились.",
+            "en": "Whatever momentum one cart loses, the other gains. The total momentum of the two carts is the same before and after – even if they stick together."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Бильярдда шар экинчи шарды так ортосунан урса, өзү токтоп калат да, экинчиси анын ылдамдыгы менен кетет – импульс толугу менен өтөт.",
+        "ru": "В бильярде шар, ударив другой точно в центр, сам останавливается, а второй уходит с его скоростью – импульс передаётся целиком.",
+        "en": "In billiards a ball that hits another dead centre stops, and the other rolls off at its speed – all the momentum passes on."
+      },
+      "analogy": {
+        "ky": "Эки дос бир кап алманы бөлүшкөндөй: бирөөнө көп тийсе, экинчисине аз калат, бирок алманын жалпы саны өзгөрбөйт",
+        "ru": "Как двое друзей делят мешок яблок: одному больше – другому меньше, а всего яблок столько же",
+        "en": "Like two friends sharing a bag of apples: one gets more, the other less, but the total stays the same"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Темир жол вагондорунун уланышы",
+              "ru": "Сцепка вагонов",
+              "en": "Coupling railway wagons"
+            },
+            "text": {
+              "ky": "Сорттоочу станцияда кыймылдаган вагон тынч турган вагонго урунуп, илешип калат. Алар чогуу жайыраак кетет: m₁v₁ = (m₁ + m₂)u.",
+              "ru": "На сортировочной станции движущийся вагон ударяет стоящий и сцепляется с ним. Дальше они едут вместе медленнее: m₁v₁ = (m₁ + m₂)u.",
+              "en": "In a marshalling yard a rolling wagon bumps into a standing one and couples to it. They roll on together, more slowly: m₁v₁ = (m₁ + m₂)u."
+            }
+          },
+          {
+            "field": "m",
+            "title": {
+              "ky": "Арабачага секирген адам",
+              "ru": "Человек прыгает на тележку",
+              "en": "A runner jumps on a cart"
+            },
+            "text": {
+              "ky": "Китептеги маселе: 5 м/с менен чуркаган 60 кг адам 2 м/с менен кыймылдаган 40 кг арабачага секирет. u = (60·5 + 40·2)/(60 + 40) = 3,8 м/с.",
+              "ru": "Задача из учебника: человек массой 60 кг бежит со скоростью 5 м/с и прыгает на тележку 40 кг, едущую со скоростью 2 м/с. u = (60·5 + 40·2)/(60 + 40) = 3,8 м/с.",
+              "en": "A textbook problem: a 60 kg runner at 5 m/s jumps onto a 40 kg cart moving at 2 m/s. u = (60·5 + 40·2)/(60 + 40) = 3.8 m/s."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Бильярд",
+              "ru": "Бильярд",
+              "en": "Billiards"
+            },
+            "text": {
+              "ky": "Ак шар кызыл шарды урганда, ак шар жайлайт же токтойт, ал эми кызыл шар тез кетет – «кыймыл» бирөөнөн экинчисине өттү.",
+              "ru": "Когда биток ударяет шар, биток замедляется или останавливается, а шар быстро катится – «движение» перешло от одного к другому.",
+              "en": "When the cue ball hits another ball it slows or stops while the other rolls off fast – the 'motion' moved from one to the other."
+            }
+          },
+          {
+            "title": {
+              "ky": "Муз тебүүчүлөр",
+              "ru": "Конькобежцы",
+              "en": "Skaters"
+            },
+            "text": {
+              "ky": "Муз үстүндө тынч турган эки бала бири-бирин түртсө, экөө тең карама-каршы жакка жылат; жеңилирээк бала тезирээк кетет.",
+              "ru": "Двое детей, стоящих на льду, отталкиваются друг от друга – и разъезжаются в разные стороны; кто легче, тот быстрее.",
+              "en": "Two children standing on ice push each other and glide apart in opposite directions; the lighter one goes faster."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.speed",
+      "kind": "quantity",
+      "hue": 200,
+      "isContainer": false,
+      "title": {
+        "ky": "Ылдамдык",
+        "ru": "Скорость",
+        "en": "Speed"
+      },
+      "subtitle": {
+        "ky": "v = s/t, м/с жана км/саат",
+        "ru": "v = s/t, м/с и км/ч",
+        "en": "v = s/t, m/s and km/h"
+      },
+      "description": {
+        "ky": "Дене убакыт бирдигинде басып өткөн жол. Ылдамдыкты табуу үчүн жолду убакытка бөлөбүз: v = s/t. SI системасында ылдамдыктын бирдиги – метр секундуна (м/с), турмушта көбүнчө километр саатына (км/саат) колдонулат: 1 м/с = 3,6 км/саат.",
+        "ru": "Путь, который тело проходит за единицу времени. Чтобы найти скорость, путь делят на время: v = s/t. В СИ скорость измеряют в метрах в секунду (м/с), в быту чаще в километрах в час (км/ч): 1 м/с = 3,6 км/ч.",
+        "en": "The distance a body covers per unit of time. To find the speed, divide the distance by the time: v = s/t. The SI unit is the metre per second (m/s); in everyday life we often use kilometres per hour (km/h): 1 m/s = 3.6 km/h."
+      },
+      "props": [
+        {
+          "kind": "formula",
+          "type": "formula",
+          "value": "v = \\frac{s}{t}"
+        },
+        {
+          "kind": "text",
+          "type": "function",
+          "value": {
+            "ky": "Кыймылдын канчалык тез экенин көрсөтөт",
+            "ru": "Показывает, насколько быстро движется тело",
+            "en": "Shows how fast a body moves"
+          }
+        }
+      ],
+      "related": [],
+      "misconceptions": [
+        {
+          "key": "phys.m.bigger-number-faster",
+          "text": {
+            "ky": "Саны чоңураак ылдамдык дайыма тезирээк: 18 км/саат 5 м/с тан тез.",
+            "ru": "Скорость с большим числом всегда больше: 18 км/ч быстрее, чем 5 м/с.",
+            "en": "The speed with the bigger number is always faster: 18 km/h is faster than 5 m/s."
+          },
+          "correction": {
+            "ky": "Ылдамдыктарды бир эле бирдикке келтирип гана салыштырабыз: 5 м/с = 5 · 3,6 = 18 км/саат, демек алар бирдей.",
+            "ru": "Скорости сравнивают только в одинаковых единицах: 5 м/с = 5 · 3,6 = 18 км/ч, значит, они равны.",
+            "en": "Compare speeds only in the same units: 5 m/s = 5 × 3.6 = 18 km/h, so they are equal."
+          }
+        }
+      ],
+      "funFact": {
+        "ky": "Үлүл секундуна болжол менен 1 мм жылат – бул 0,001 м/с, башкача айтканда саатына 3,6 м гана.",
+        "ru": "Улитка проползает около 1 мм в секунду – это 0,001 м/с, то есть всего 3,6 м в час.",
+        "en": "A snail crawls about 1 mm per second – that is 0.001 m/s, or just 3.6 m per hour."
+      },
+      "analogy": {
+        "ky": "Ылдамдык – ар бир секундда канча метр «чогултканыңдын» эсеби: 15 м/с – секунд сайын 15 метр.",
+        "ru": "Скорость – это сколько метров ты «набираешь» каждую секунду: 15 м/с – по 15 метров за секунду.",
+        "en": "Speed is how many metres you 'collect' every second: 15 m/s means 15 metres each second."
+      },
+      "examples": {
+        "stem": [
+          {
+            "title": {
+              "ky": "Спидометр",
+              "ru": "Спидометр",
+              "en": "Speedometer"
+            },
+            "text": {
+              "ky": "Машинанын спидометри дөңгөлөктүн секундуна канча жолу айланарын эсептеп, аны км/саатка айлантып көрсөтөт.",
+              "ru": "Спидометр машины считает, сколько оборотов в секунду делает колесо, и переводит это в км/ч.",
+              "en": "A car's speedometer counts how many turns the wheel makes per second and converts that into km/h."
+            },
+            "field": "t"
+          },
+          {
+            "title": {
+              "ky": "Чагылгандын алыстыгы",
+              "ru": "Как далеко гроза",
+              "en": "How far away is the storm"
+            },
+            "text": {
+              "ky": "Абада үн ≈ 340 м/с ылдамдык менен тарайт. Чагылган жаркылдагандан күндүн күркүрөөсүнө чейин 3 с өтсө, бороон ≈ 340 · 3 ≈ 1 км алыста.",
+              "ru": "Звук в воздухе распространяется со скоростью ≈ 340 м/с. Если от вспышки молнии до грома прошло 3 с, гроза примерно в 340 · 3 ≈ 1 км.",
+              "en": "Sound travels through air at about 340 m/s. If 3 s pass between the flash and the thunder, the storm is about 340 × 3 ≈ 1 km away."
+            },
+            "field": "s"
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Мектепке жөө",
+              "ru": "Пешком в школу",
+              "en": "Walking to school"
+            },
+            "text": {
+              "ky": "1,2 км жолду 15 мүнөттө (900 с) басып өтсөң, ылдамдыгың 1200 м : 900 с ≈ 1,3 м/с.",
+              "ru": "Если ты проходишь 1,2 км за 15 минут (900 с), твоя скорость 1200 м : 900 с ≈ 1,3 м/с.",
+              "en": "If you walk 1.2 km in 15 minutes (900 s), your speed is 1200 m ÷ 900 s ≈ 1.3 m/s."
+            }
+          },
+          {
+            "title": {
+              "ky": "Велосипед менен",
+              "ru": "На велосипеде",
+              "en": "By bike"
+            },
+            "text": {
+              "ky": "Ошол эле жолду велосипед менен 4 мүнөттө (240 с) өтсөң: 1200 : 240 = 5 м/с – жөө басканга караганда ≈ 4 эсе тез.",
+              "ru": "Тот же путь на велосипеде за 4 минуты (240 с): 1200 : 240 = 5 м/с – примерно в 4 раза быстрее, чем пешком.",
+              "en": "The same trip by bike in 4 minutes (240 s): 1200 ÷ 240 = 5 m/s – about 4 times faster than walking."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "phys.closed-system",
+      "kind": "model",
+      "hue": 230,
+      "isContainer": false,
+      "title": {
+        "ky": "Туюк система",
+        "ru": "Замкнутая система",
+        "en": "Closed system"
+      },
+      "subtitle": {
+        "ky": "Сырттан күч таасир этпеген нерселер тобу",
+        "ru": "Тела без внешних сил",
+        "en": "Bodies with no outside push"
+      },
+      "description": {
+        "ky": "Бири-бири менен гана аракеттенишкен, сырткы нерселердин таасири жок (же алар бири-бирин компенсациялаган) нерселердин тобу. Импульстун сакталуу закону туюк система үчүн аткарылат. Тегиз, жылмакай жолдогу эки арабача – туюк системага жакын мисал: оордук күчүн таянычтын реакция күчү тең салмактайт, ал эми сүрүлүү абдан аз.",
+        "ru": "Группа тел, которые взаимодействуют только друг с другом, без влияния внешних тел (или внешние силы уравновешены). Закон сохранения импульса выполняется для замкнутой системы. Две тележки на гладком ровном пути – близкий пример: силу тяжести уравновешивает реакция опоры, а трение очень мало.",
+        "en": "A group of bodies that interact only with each other, with no outside forces (or with outside forces that cancel). Momentum is conserved in a closed system. Two carts on a smooth level track come close: the normal force balances gravity and friction is tiny."
+      },
+      "props": [
+        {
+          "kind": "text",
+          "type": "foundIn",
+          "value": {
+            "ky": "Жылмакай жолдогу арабачалар, ракета жана анын газы",
+            "ru": "Тележки на гладком пути, ракета и её газы",
+            "en": "Carts on a smooth track, a rocket and its exhaust"
+          }
+        }
+      ],
+      "related": [
+        "phys.momentum-conservation"
+      ],
+      "misconceptions": [
+        {
+          "key": "phys.m.closed-system-any",
+          "text": {
+            "ky": "Импульс бардык учурда сакталат – тормоз басылса да.",
+            "ru": "Импульс сохраняется всегда – даже когда нажимают тормоз.",
+            "en": "Momentum is always conserved, even when the brakes are on."
+          },
+          "correction": {
+            "ky": "Тормоздо сырткы сүрүлүү күчү машинаны токтотот – система туюк эмес, анын импульсу азаят (импульс Жерге өтөт). Закон сырткы күчтөр жок же тең салмакталган учурда гана колдонулат.",
+            "ru": "При торможении внешняя сила трения останавливает машину – система не замкнута, и её импульс уменьшается (он передаётся Земле). Закон применяют, только когда внешних сил нет или они уравновешены.",
+            "en": "When braking, outside friction stops the car – the system is not closed and its momentum drops (it is passed to the Earth). Use the law only when outside forces are absent or cancel out."
+          }
+        }
+      ],
+      "analogy": {
+        "ky": "Эшиги жабык бөлмөдөгү оюн: оюнчулар топту бири-бирине берет, бирок сырттан эч ким кийлигишпейт",
+        "ru": "Игра в закрытой комнате: мяч передают друг другу, а снаружи никто не вмешивается",
+        "en": "A game in a locked room: the players pass the ball around but nobody from outside joins in"
+      },
+      "examples": {
+        "stem": [
+          {
+            "field": "s",
+            "title": {
+              "ky": "Аба жаздыкчалуу жол",
+              "ru": "Воздушная дорожка",
+              "en": "Air track"
+            },
+            "text": {
+              "ky": "Лабораторияларда арабачалар аба жаздыкчасында сүрүлүүсүз жылат – ошондо кагылышууда импульстун сакталышы абдан так текшерилет.",
+              "ru": "В лабораториях тележки скользят на воздушной подушке почти без трения – так закон сохранения импульса проверяют очень точно.",
+              "en": "In labs, gliders ride on an air cushion with almost no friction, so momentum conservation in collisions can be checked very precisely."
+            }
+          },
+          {
+            "field": "t",
+            "title": {
+              "ky": "Космостогу аппарат",
+              "ru": "Аппарат в космосе",
+              "en": "A spacecraft"
+            },
+            "text": {
+              "ky": "Космосто аба жана жол жок, ошондуктан ракета менен андан чыккан газ туюк системага абдан жакын – ракета газды түртүп гана ылдамдайт.",
+              "ru": "В космосе нет ни воздуха, ни дороги, поэтому ракета вместе с выброшенными газами – почти замкнутая система: ракета разгоняется, только выталкивая газ.",
+              "en": "Space has no air or road, so a rocket and its exhaust form an almost closed system – the rocket speeds up only by pushing gas out."
+            }
+          }
+        ],
+        "simple": [
+          {
+            "title": {
+              "ky": "Муздагы эки бала",
+              "ru": "Двое на льду",
+              "en": "Two on the ice"
+            },
+            "text": {
+              "ky": "Тайгак муз үстүндө эки бала бири-бирин гана түртөт – сырттан аларды эч ким тартпайт. Бул туюк системага жакын.",
+              "ru": "На скользком льду двое детей толкают только друг друга – извне их никто не тянет. Это почти замкнутая система.",
+              "en": "On slippery ice two children push only each other – nobody pulls them from outside. That is nearly a closed system."
+            }
+          },
+          {
+            "title": {
+              "ky": "Кайыктагы бала",
+              "ru": "Мальчик в лодке",
+              "en": "A boy in a boat"
+            },
+            "text": {
+              "ky": "Кайык жана андагы бала бир система: бала таш ыргытса, ташты да кошуп эсептегенде системанын импульсу өзгөрбөйт.",
+              "ru": "Лодка и мальчик в ней – одна система: если он бросает камень, то вместе с камнем импульс системы не меняется.",
+              "en": "The boat and the boy are one system: if he throws a stone, counting the stone too, the system's momentum does not change."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "processes": [
+    {
+      "key": "phys.rocket-launch",
+      "engine": "timeline",
+      "icon": "rocket",
+      "title": {
+        "ky": "Ракетанын учушу",
+        "ru": "Старт ракеты",
+        "en": "Rocket launch"
+      },
+      "description": {
+        "ky": "Ракетанын тулкусу 1 кг, отуну 0,5 кг. Күйгөн газ 200 м/с ылдамдык менен ылдый атылат. Газ канча импульс алып кетсе, ракета ошончо импульсту өйдө карай алат: m_г·v_г = m_р·v_р. Отундун баары бир заматта чыкты деп, оордук күчүн эске албай эсептейбиз.",
+        "ru": "Корпус ракеты 1 кг, топливо 0,5 кг. Газы вылетают вниз со скоростью 200 м/с. Какой импульс уносят газы, такой же импульс вверх получает ракета: m_г·v_г = m_р·v_р. Считаем упрощённо: всё топливо выброшено сразу, сила тяжести не учитывается.",
+        "en": "The rocket body is 1 kg with 0.5 kg of fuel. The exhaust shoots down at 200 m/s. Whatever momentum the gas carries away, the rocket gets the same upwards: m_g·v_g = m_r·v_r. Simplified: all the fuel leaves at once and gravity is ignored."
+      },
+      "equation": "m_г v_г = m_р v_р",
+      "inputs": {
+        "ky": "m_р = 1 кг, m_г = 0,5 кг, v_г = 200 м/с",
+        "ru": "m_р = 1 кг, m_г = 0,5 кг, v_г = 200 м/с",
+        "en": "m_r = 1 kg, m_g = 0.5 kg, v_g = 200 m/s"
+      },
+      "outputs": {
+        "ky": "m_г·v_г = 100 кг·м/с, v_р = 100 м/с",
+        "ru": "m_г·v_г = 100 кг·м/с, v_р = 100 м/с",
+        "en": "m_g·v_g = 100 kg·m/s, v_r = 100 m/s"
+      },
+      "steps": [
+        {
+          "key": "pad",
+          "title": {
+            "ky": "Старт аянтчасында",
+            "ru": "На стартовом столе",
+            "en": "On the pad"
+          },
+          "result": {
+            "ky": "P = 0",
+            "ru": "P = 0",
+            "en": "P = 0"
+          },
+          "description": {
+            "ky": "Ракета отуну менен тынч турат: системанын импульсу нөл.",
+            "ru": "Ракета с топливом стоит: импульс системы равен нулю.",
+            "en": "The fuelled rocket stands still: the system's momentum is zero."
+          },
+          "conceptKey": "phys.rocket",
+          "altText": {
+            "ky": "Аянтчада тик турган ракета.",
+            "ru": "Ракета стоит вертикально на площадке.",
+            "en": "A rocket standing upright on the pad."
+          },
+          "duration": 1
+        },
+        {
+          "key": "ignite",
+          "title": {
+            "ky": "От алуу",
+            "ru": "Зажигание",
+            "en": "Ignition"
+          },
+          "result": {
+            "ky": "Газ ылдый, ракета өйдө",
+            "ru": "Газ вниз, ракета вверх",
+            "en": "Gas down, rocket up"
+          },
+          "description": {
+            "ky": "Отун күйүп, газ ылдый атыла баштайт. Газ ылдый импульс алса, ракета өйдө ошончо импульс алат – суммасы мурдагыдай нөл.",
+            "ru": "Топливо горит, газы начинают вырываться вниз. Сколько импульса вниз получает газ, столько же вверх – ракета; сумма по-прежнему ноль.",
+            "en": "The fuel burns and gas starts to blast downwards. As much momentum as the gas gets downwards, the rocket gets upwards – the total is still zero."
+          },
+          "conceptKey": "phys.jet-propulsion",
+          "altText": {
+            "ky": "Ракетанын түбүнөн жалын жана газ ылдый чыгып жатат.",
+            "ru": "Из сопла ракеты вниз вырываются пламя и газ.",
+            "en": "Flame and gas pour down from the rocket's nozzle."
+          },
+          "duration": 1
+        },
+        {
+          "key": "thrust",
+          "title": {
+            "ky": "Ылдамдоо",
+            "ru": "Разгон",
+            "en": "Speeding up"
+          },
+          "result": {
+            "ky": "m_г·v_г = m_р·v_р = 50 кг·м/с",
+            "ru": "m_г·v_г = m_р·v_р = 50 кг·м/с",
+            "en": "m_g·v_g = m_r·v_r = 50 kg·m/s"
+          },
+          "description": {
+            "ky": "Отундун жарымы чыкты: 0,25 кг · 200 м/с = 50 кг·м/с. Ракета ушунча импульс алды: 50 кг·м/с / 1 кг = 50 м/с.",
+            "ru": "Вышла половина топлива: 0,25 кг · 200 м/с = 50 кг·м/с. Ракета получила такой же импульс: 50 кг·м/с / 1 кг = 50 м/с.",
+            "en": "Half the fuel is out: 0.25 kg × 200 m/s = 50 kg·m/s. The rocket got the same momentum: 50 kg·m/s ÷ 1 kg = 50 m/s."
+          },
+          "conceptKey": "phys.momentum-conservation",
+          "altText": {
+            "ky": "Ракета өйдө көтөрүлүүдө, анын астында газ агымы.",
+            "ru": "Ракета поднимается, под ней струя газа.",
+            "en": "The rocket climbs with a jet of gas below it."
+          },
+          "duration": 1.5
+        },
+        {
+          "key": "burnout",
+          "title": {
+            "ky": "Отун түгөндү",
+            "ru": "Топливо выгорело",
+            "en": "Burnout"
+          },
+          "result": {
+            "ky": "v_р = 100 м/с",
+            "ru": "v_р = 100 м/с",
+            "en": "v_r = 100 m/s"
+          },
+          "description": {
+            "ky": "Бүт отун чыкты: m_г·v_г = 0,5 · 200 = 100 кг·м/с, ракетанын ылдамдыгы v_р = 100 м/с. Андан ары ракета оордук күчүнүн таасиринде жайлайт.",
+            "ru": "Всё топливо вышло: m_г·v_г = 0,5 · 200 = 100 кг·м/с, скорость ракеты v_р = 100 м/с. Дальше ракета замедляется под действием силы тяжести.",
+            "en": "All the fuel is gone: m_g·v_g = 0.5 × 200 = 100 kg·m/s, so the rocket's speed is 100 m/s. From now on gravity slows it down."
+          },
+          "conceptKey": "phys.rocket",
+          "altText": {
+            "ky": "Ракета жогоруда, газ агымы токтогон.",
+            "ru": "Ракета высоко, струя газа прекратилась.",
+            "en": "The rocket is high up and the exhaust has stopped."
+          },
+          "duration": 1.5
+        }
+      ],
+      "metrics": [
+        {
+          "key": "p-gas",
+          "label": {
+            "ky": "Газдын импульсу (ылдый)",
+            "ru": "Импульс газов (вниз)",
+            "en": "Exhaust momentum (down)"
+          },
+          "unit": "kg·m/s",
+          "min": 0,
+          "max": 100,
+          "precision": 0
+        },
+        {
+          "key": "p-rocket",
+          "label": {
+            "ky": "Ракетанын импульсу (өйдө)",
+            "ru": "Импульс ракеты (вверх)",
+            "en": "Rocket momentum (up)"
+          },
+          "unit": "kg·m/s",
+          "min": 0,
+          "max": 100,
+          "precision": 0
+        },
+        {
+          "key": "rocket-speed",
+          "label": {
+            "ky": "Ракетанын ылдамдыгы",
+            "ru": "Скорость ракеты",
+            "en": "Rocket speed"
+          },
+          "unit": "m/s",
+          "min": 0,
+          "max": 100,
+          "precision": 0
+        }
+      ],
+      "params": {
+        "rocketMass": 1,
+        "fuelMass": 0.5,
+        "gasSpeed": 200,
+        "p-gas@pad": 0,
+        "p-gas@ignite": 10,
+        "p-gas@thrust": 50,
+        "p-gas@burnout": 100,
+        "p-rocket@pad": 0,
+        "p-rocket@ignite": 10,
+        "p-rocket@thrust": 50,
+        "p-rocket@burnout": 100,
+        "rocket-speed@pad": 0,
+        "rocket-speed@ignite": 10,
+        "rocket-speed@thrust": 50,
+        "rocket-speed@burnout": 100
+      }
+    }
+  ],
+  "items": [
+    {
+      "key": "phys.q.p7-jet-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Реактивдүү кыймыл деген эмне?",
+        "ru": "Что называют реактивным движением?",
+        "en": "What is jet propulsion?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Нерсенин курамынан бир бөлүгүнүн бөлүнүп чыгышы менен пайда болгон кыймыл",
+            "ru": "Движение, возникающее при отделении от тела его части",
+            "en": "Motion that arises when part of a body separates from it"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Шамалдын түртүүсүнөн пайда болгон кыймыл",
+            "ru": "Движение под действием ветра",
+            "en": "Motion caused by the wind pushing"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Дөңгөлөктөрдүн жолго сүрүлүүсүнөн пайда болгон кыймыл",
+            "ru": "Движение за счёт трения колёс о дорогу",
+            "en": "Motion due to wheels gripping the road"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Бир нерсенин курамынан экинчи нерсенин бөлүнүп чыгышы менен пайда болгон кыймыл реактивдүү кыймыл деп аталат.",
+        "ru": "Реактивным называют движение, возникающее при отделении от тела какой-либо его части.",
+        "en": "Jet propulsion is the motion that arises when part of a body separates and is thrown out."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-jet-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсылары реактивдүү кыймылдын мисалы?",
+        "ru": "Что из этого – примеры реактивного движения?",
+        "en": "Which of these are examples of jet propulsion?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Учуп бараткан ракета",
+            "ru": "Летящая ракета",
+            "en": "A flying rocket"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Сууну сыгып чыгарып сүзгөн кальмар",
+            "ru": "Кальмар, выталкивающий воду",
+            "en": "A squid squirting water"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Тепкилеп айдалган велосипед",
+            "ru": "Велосипед, который крутят педалями",
+            "en": "A bicycle being pedalled"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Байланбай коё берилген шар",
+            "ru": "Отпущенный незавязанный шарик",
+            "en": "An untied balloon let go"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": {
+        "ky": "Ракета, кальмар жана шар өзүнөн газ же суу ыргытып жылат. Велосипед дөңгөлөгү жолду түртүп жылат – бул реактивдүү кыймыл эмес.",
+        "ru": "Ракета, кальмар и шарик движутся, выбрасывая газ или воду. Велосипед отталкивается колесом от дороги – это не реактивное движение.",
+        "en": "The rocket, squid and balloon move by throwing out gas or water. A bicycle's wheel pushes on the road – that's not jet propulsion."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o1"
+      ],
+      "misconceptionKey": "phys.m.rocket-pushes-air",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-jet-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 1 кг ракетадан 0,5 кг газ 200 м/с ылдамдык менен бир заматта чыкты. Ракета кандай ылдамдык алат, м/с? (Оордук күчүн эске албагыла.)",
+        "ru": "Из ракеты массой 1 кг мгновенно вылетает 0,5 кг газа со скоростью 200 м/с. Какую скорость получит ракета, м/с? (Силу тяжести не учитывать.)",
+        "en": "0.5 kg of gas leaves a 1 kg rocket all at once at 200 m/s. What speed does the rocket get, in m/s? (Ignore gravity.)"
+      },
+      "answer": 100,
+      "tolerance": 1,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "m_р·v_р = m_г·v_г: v_р = 0,5 · 200 / 1 = 100 м/с.",
+        "ru": "m_р·v_р = m_г·v_г: v_р = 0,5 · 200 / 1 = 100 м/с.",
+        "en": "m_r·v_r = m_g·v_g: v_r = 0.5 × 200 / 1 = 100 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-jet-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кайык бала менен бирге 100 кг. Бала 2 кг ташты кайыктын артынан 5 м/с ылдамдык менен ыргытты. Кайык кандай ылдамдык менен алдыга жылат, м/с?",
+        "ru": "Лодка с мальчиком весит 100 кг. Мальчик бросает с кормы камень 2 кг со скоростью 5 м/с. С какой скоростью лодка поплывёт вперёд, м/с?",
+        "en": "A boat with a boy in it has a mass of 100 kg. The boy throws a 2 kg stone off the back at 5 m/s. How fast does the boat move forward, in m/s?"
+      },
+      "answer": 0.1,
+      "tolerance": 0.005,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "Баштапкы импульс нөл: 100 · v = 2 · 5, v = 10 / 100 = 0,1 м/с.",
+        "ru": "Начальный импульс равен нулю: 100 · v = 2 · 5, v = 10 / 100 = 0,1 м/с.",
+        "en": "The starting momentum is zero: 100 × v = 2 × 5, v = 10 / 100 = 0.1 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-jet-5",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден ракетаны кыймылга келтирген, андан бөлүнүп чыгып жаткан бөлүктү тап.",
+        "ru": "Найди на модели ту часть, которая отделяется от ракеты и приводит её в движение.",
+        "en": "Find the part that leaves the rocket and drives it."
+      },
+      "targetConceptKey": "phys.jet-propulsion",
+      "explanation": {
+        "ky": "Бул – соплодон ылдый атылган газ агымы.",
+        "ru": "Это струя газов, вырывающаяся из сопла вниз.",
+        "en": "It's the jet of exhaust gas blasting down from the nozzle."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-jet-6",
+      "type": "match",
+      "prompt": {
+        "ky": "Окумуштууну (адамды) анын эмгеги менен дал келтир.",
+        "ru": "Сопоставь человека и его вклад.",
+        "en": "Match each person to what they did."
+      },
+      "pairs": [
+        {
+          "key": "tsiolkovsky",
+          "left": {
+            "ky": "К. Э. Циолковский",
+            "ru": "К. Э. Циолковский",
+            "en": "K. E. Tsiolkovsky"
+          },
+          "right": {
+            "ky": "Реактивдүү кыймылдын законун изилдеп, көп баскычтуу ракетаны сунуштаган",
+            "ru": "Исследовал реактивное движение, предложил многоступенчатую ракету",
+            "en": "Studied jet propulsion and proposed the multistage rocket"
+          }
+        },
+        {
+          "key": "korolev",
+          "left": {
+            "ky": "С. П. Королев",
+            "ru": "С. П. Королёв",
+            "en": "S. P. Korolev"
+          },
+          "right": {
+            "ky": "Космостук ракеталарды иштеп чыгууну башкарган",
+            "ru": "Руководил созданием космических ракет",
+            "en": "Led the building of space rockets"
+          }
+        },
+        {
+          "key": "gagarin",
+          "left": {
+            "ky": "Ю. А. Гагарин",
+            "ru": "Ю. А. Гагарин",
+            "en": "Yu. A. Gagarin"
+          },
+          "right": {
+            "ky": "1961-жылы биринчи болуп космоско учкан",
+            "ru": "Первым полетел в космос в 1961 году",
+            "en": "First person in space, in 1961"
+          }
+        },
+        {
+          "key": "sharipov",
+          "left": {
+            "ky": "С. Шарипов",
+            "ru": "С. Шарипов",
+            "en": "S. Sharipov"
+          },
+          "right": {
+            "ky": "Космоско учкан биринчи кыргызстандык",
+            "ru": "Первый космонавт из Кыргызстана",
+            "en": "First person from Kyrgyzstan in space"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Циолковский – теория, Королев – ракеталар, Гагарин – биринчи учуу, Шарипов – Кыргызстандын биринчи космонавты.",
+        "ru": "Циолковский – теория, Королёв – ракеты, Гагарин – первый полёт, Шарипов – первый космонавт из Кыргызстана.",
+        "en": "Tsiolkovsky – the theory, Korolev – the rockets, Gagarin – the first flight, Sharipov – Kyrgyzstan's first cosmonaut."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-jet-7",
+      "type": "single",
+      "prompt": {
+        "ky": "Аба жок космосто ракета учабы?",
+        "ru": "Может ли ракета лететь в безвоздушном космосе?",
+        "en": "Can a rocket fly in airless space?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ооба: ал өзүнөн чыккан газды түртөт",
+            "ru": "Да: она отталкивается от своих газов",
+            "en": "Yes: it pushes on its own exhaust"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жок: түртө турган аба жок",
+            "ru": "Нет: не от чего оттолкнуться",
+            "en": "No: there's no air to push on"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жерге жакын жерде гана учат",
+            "ru": "Только вблизи Земли",
+            "en": "Only close to the Earth"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Ракета менен газ – бир система; газ ылдый импульс алса, ракета өйдө ошончо импульс алат. Буга аба керек эмес.",
+        "ru": "Ракета и газы – одна система; если газ получает импульс вниз, ракета получает такой же вверх. Воздух для этого не нужен.",
+        "en": "The rocket and its gas are one system; if the gas gets momentum downwards, the rocket gets the same upwards. No air is needed."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o1"
+      ],
+      "misconceptionKey": "phys.m.rocket-pushes-air",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-jet-8",
+      "type": "single",
+      "prompt": {
+        "ky": "Ракетанын моделине аба гана үйлөсөк, ал бир аз көтөрүлүп жыгылат, ал эми бир аз суу куйсак – бийик учат. Эмне үчүн?",
+        "ru": "Модель ракеты с одним воздухом чуть поднимается и падает, а с небольшим количеством воды – взлетает высоко. Почему?",
+        "en": "A model rocket with only air hops and falls, but with a little water it flies high. Why?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Суу аралаш абанын массасы, демек импульсу чоң",
+            "ru": "У смеси воды и воздуха больше масса, а значит, и импульс",
+            "en": "The water-air jet has more mass, so more momentum"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Суу ракетаны жеңилдетет",
+            "ru": "Вода делает ракету легче",
+            "en": "Water makes the rocket lighter"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Суу абага караганда тезирээк агат",
+            "ru": "Вода вытекает быстрее воздуха",
+            "en": "Water flows out faster than air"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Чыккан заттын импульсу m·v канчалык чоң болсо, ракетага ошончо чоң импульс берет. Абанын массасы аз – импульсу да аз.",
+        "ru": "Чем больше импульс m·v выброшенного вещества, тем больший импульс получает ракета. У воздуха мала масса – мал и импульс.",
+        "en": "The bigger the momentum m·v of what is thrown out, the more momentum the rocket gets. Air has little mass, so little momentum."
+      },
+      "objectiveKeys": [
+        "phys.g7.energy.o1"
+      ],
+      "misconceptionKey": "phys.m.rocket-light-gas",
+      "difficulty": 3
+    }
+  ],
+  "glossary": [
+    {
+      "id": "g-phys-pendulum",
+      "ky": "маятник",
+      "ru": "маятник",
+      "en": "pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-period",
+      "ky": "термелүү мезгили",
+      "ru": "период колебаний",
+      "en": "period of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-amplitude",
+      "ky": "амплитуда",
+      "ru": "амплитуда",
+      "en": "amplitude",
+      "forbidden": [
+        "amplitud"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gravity",
+      "ky": "оордук күчү",
+      "ru": "сила тяжести",
+      "en": "force of gravity",
+      "forbidden": [
+        "attraction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction",
+      "ky": "сүрүлүү күчү",
+      "ru": "сила трения",
+      "en": "friction force",
+      "forbidden": [
+        "force of rubbing"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-force",
+      "ky": "таянычтын реакция күчү",
+      "ru": "сила реакции опоры",
+      "en": "normal force",
+      "forbidden": [
+        "support reaction force"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-acceleration",
+      "ky": "ылдамдануу",
+      "ru": "ускорение",
+      "en": "acceleration",
+      "forbidden": [
+        "тездетүү"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-speed",
+      "ky": "ылдамдык",
+      "ru": "скорость",
+      "en": "speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinetic-energy",
+      "ky": "кинетикалык энергия",
+      "ru": "кинетическая энергия",
+      "en": "kinetic energy",
+      "forbidden": [
+        "кинетический энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-potential-energy",
+      "ky": "потенциалдык энергия",
+      "ru": "потенциальная энергия",
+      "en": "potential energy",
+      "forbidden": [
+        "потенциальный энергия"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-voltage",
+      "ky": "чыңалуу",
+      "ru": "напряжение",
+      "en": "voltage",
+      "forbidden": [
+        "electric tension"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-current",
+      "ky": "ток күчү",
+      "ru": "сила тока",
+      "en": "electric current",
+      "forbidden": [
+        "current force",
+        "current strength"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-resistance",
+      "ky": "каршылык",
+      "ru": "сопротивление",
+      "en": "resistance",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-circuit",
+      "ky": "электр чынжыры",
+      "ru": "электрическая цепь",
+      "en": "electric circuit",
+      "forbidden": [
+        "electric chain",
+        "электрическая цепочка"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-source",
+      "ky": "ток булагы",
+      "ru": "источник тока",
+      "en": "power source",
+      "forbidden": [
+        "source of current"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-switch",
+      "ky": "ачкыч",
+      "ru": "ключ (выключатель)",
+      "en": "switch",
+      "forbidden": [
+        "electric key"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-distance-travelled",
+      "ky": "басып өткөн жол",
+      "ru": "пройденный путь",
+      "en": "distance travelled",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-time",
+      "ky": "убакыт",
+      "ru": "время",
+      "en": "time",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-uniform-motion",
+      "ky": "бир калыптагы кыймыл",
+      "ru": "равномерное движение",
+      "en": "uniform motion",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-average-speed",
+      "ky": "орточо ылдамдык",
+      "ru": "средняя скорость",
+      "en": "average speed",
+      "forbidden": [
+        "medium speed"
+      ]
+    },
+    {
+      "id": "g-phys-speed-radar",
+      "ky": "ылдамдык радары",
+      "ru": "радар скорости",
+      "en": "speed radar",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-stopwatch",
+      "ky": "секундомер",
+      "ru": "секундомер",
+      "en": "stopwatch",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-distance-time-graph",
+      "ky": "жолдун убакыттан көз карандылык графиги",
+      "ru": "график зависимости пути от времени",
+      "en": "distance–time graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-graph-slope",
+      "ky": "графиктин тиктиги",
+      "ru": "наклон графика",
+      "en": "slope of a graph",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-rest",
+      "ky": "тынч абал",
+      "ru": "покой",
+      "en": "rest",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-force",
+      "ky": "күч",
+      "ru": "сила",
+      "en": "force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-vector",
+      "ky": "вектор",
+      "ru": "вектор",
+      "en": "vector",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-newton",
+      "ky": "ньютон (Н)",
+      "ru": "ньютон (Н)",
+      "en": "newton (N)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-dynamometer",
+      "ky": "динамометр",
+      "ru": "динамометр",
+      "en": "dynamometer (spring scale)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-weight",
+      "ky": "салмак",
+      "ru": "вес тела",
+      "en": "weight",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-resultant",
+      "ky": "тең аракеттүү күч",
+      "ru": "равнодействующая сила",
+      "en": "resultant force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-elastic-force",
+      "ky": "серпилгичтик күчү",
+      "ru": "сила упругости",
+      "en": "elastic force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-point-of-application",
+      "ky": "күчтүн коюлган чекити",
+      "ru": "точка приложения силы",
+      "en": "point of application",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever",
+      "ky": "рычаг",
+      "ru": "рычаг",
+      "en": "lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-pivot",
+      "ky": "таяныч чекити",
+      "ru": "точка опоры",
+      "en": "pivot (fulcrum)",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-lever-arm",
+      "ky": "күчтүн ийини",
+      "ru": "плечо силы",
+      "en": "lever arm",
+      "forbidden": [
+        "shoulder of force"
+      ]
+    },
+    {
+      "id": "g-phys-moment",
+      "ky": "күчтүн моменти",
+      "ru": "момент силы",
+      "en": "moment of a force",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-equilibrium-lever",
+      "ky": "рычагдын тең салмактуулугу",
+      "ru": "равновесие рычага",
+      "en": "equilibrium of a lever",
+      "forbidden": []
+    },
+    {
+      "id": "g-phys-interaction",
+      "ky": "өз ара аракеттенишүү",
+      "ru": "взаимодействие",
+      "en": "interaction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-deformation",
+      "ky": "деформация",
+      "ru": "деформация",
+      "en": "deformation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inertia",
+      "ky": "инерция",
+      "ru": "инерция",
+      "en": "inertia",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inertness",
+      "ky": "инерттүүлүк",
+      "ru": "инертность",
+      "en": "inertness",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-first-law",
+      "ky": "Ньютондун биринчи закону",
+      "ru": "первый закон Ньютона",
+      "en": "Newton's first law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mass",
+      "ky": "масса",
+      "ru": "масса",
+      "en": "mass",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kilogram",
+      "ky": "килограмм (кг)",
+      "ru": "килограмм (кг)",
+      "en": "kilogram (kg)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-balance-scale",
+      "ky": "тараза",
+      "ru": "весы",
+      "en": "balance (scales)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-beam",
+      "ky": "коромысло (тараза ийини)",
+      "ru": "коромысло",
+      "en": "beam (of a balance)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-weights-set",
+      "ky": "тараза таштары (гирялар)",
+      "ru": "гири",
+      "en": "weights (set of masses)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-density",
+      "ky": "заттын тыгыздыгы",
+      "ru": "плотность вещества",
+      "en": "density",
+      "forbidden": [
+        "тыгыздуулук"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-second-law",
+      "ky": "Ньютондун экинчи закону",
+      "ru": "второй закон Ньютона",
+      "en": "Newton's second law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-universal-gravitation",
+      "ky": "бүткүл дүйнөлүк тартылуу",
+      "ru": "всемирное тяготение",
+      "en": "universal gravitation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-fall",
+      "ky": "эркин түшүү",
+      "ru": "свободное падение",
+      "en": "free fall",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-fall-acceleration",
+      "ky": "эркин түшүүнүн ылдамдануусу",
+      "ru": "ускорение свободного падения",
+      "en": "free-fall acceleration",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-support",
+      "ky": "таяныч",
+      "ru": "опора",
+      "en": "support",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-suspension",
+      "ky": "асма",
+      "ru": "подвес",
+      "en": "suspension",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hooke-law",
+      "ky": "Гуктун закону",
+      "ru": "закон Гука",
+      "en": "Hooke's law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-stiffness",
+      "ky": "пружинанын катуулугу",
+      "ru": "жёсткость пружины",
+      "en": "spring stiffness",
+      "forbidden": [
+        "spring hardness"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-extension",
+      "ky": "пружинанын узарышы",
+      "ru": "удлинение пружины",
+      "en": "spring extension",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-graduation",
+      "ky": "динамометрди градуирлөө",
+      "ru": "градуировка динамометра",
+      "en": "calibration of a dynamometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-measurement-limit",
+      "ky": "өлчөө чеги",
+      "ru": "предел измерения",
+      "en": "measuring range",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sliding-friction",
+      "ky": "тайгаланып сүрүлүү",
+      "ru": "трение скольжения",
+      "en": "sliding friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rolling-friction",
+      "ky": "тоголонуп сүрүлүү",
+      "ru": "трение качения",
+      "en": "rolling friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-static-friction",
+      "ky": "тынч туруудагы сүрүлүү",
+      "ru": "трение покоя",
+      "en": "static friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-friction-coefficient",
+      "ky": "сүрүлүү коэффициенти",
+      "ru": "коэффициент трения",
+      "en": "coefficient of friction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-newton-third-law",
+      "ky": "Ньютондун үчүнчү закону",
+      "ru": "третий закон Ньютона",
+      "en": "Newton's third law",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-action-reaction",
+      "ky": "аракет жана каршы аракет",
+      "ru": "действие и противодействие",
+      "en": "action and reaction",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-phenomenon",
+      "ky": "кубулуш",
+      "ru": "явление",
+      "en": "phenomenon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-physical-quantity",
+      "ky": "физикалык чоңдук",
+      "ru": "физическая величина",
+      "en": "physical quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-si",
+      "ky": "СИ (бирдиктердин эл аралык системасы)",
+      "ru": "СИ (Международная система единиц)",
+      "en": "SI (International System of Units)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scale",
+      "ky": "шкала",
+      "ru": "шкала",
+      "en": "scale",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scale-division",
+      "ky": "шкаланын баасы",
+      "ru": "цена деления шкалы",
+      "en": "scale division value",
+      "forbidden": [
+        "scale price"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-motion",
+      "ky": "механикалык кыймыл",
+      "ru": "механическое движение",
+      "en": "mechanical motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-kinematics",
+      "ky": "кинематика",
+      "ru": "кинематика",
+      "en": "kinematics",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-relativity-of-motion",
+      "ky": "кыймылдын салыштырмалуулугу",
+      "ru": "относительность движения",
+      "en": "relativity of motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-reference-body",
+      "ky": "салыштыруу нерсеси",
+      "ru": "тело отсчёта",
+      "en": "reference body",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-material-point",
+      "ky": "материялык чекит",
+      "ru": "материальная точка",
+      "en": "material point",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-trajectory",
+      "ky": "кыймылдын траекториясы",
+      "ru": "траектория движения",
+      "en": "trajectory",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rectilinear-motion",
+      "ky": "түз сызыктуу кыймыл",
+      "ru": "прямолинейное движение",
+      "en": "straight-line motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-curvilinear-motion",
+      "ky": "ийри сызыктуу кыймыл",
+      "ru": "криволинейное движение",
+      "en": "curvilinear motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-path-length",
+      "ky": "өтүлгөн жол",
+      "ru": "пройденный путь",
+      "en": "path length",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-displacement",
+      "ky": "которулуш",
+      "ru": "перемещение",
+      "en": "displacement",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-scalar",
+      "ky": "скалярдык чоңдук",
+      "ru": "скалярная величина",
+      "en": "scalar quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-vector-quantity",
+      "ky": "вектордук чоңдук",
+      "ru": "векторная величина",
+      "en": "vector quantity",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-non-uniform-motion",
+      "ky": "бир калыптагы эмес кыймыл",
+      "ru": "неравномерное движение",
+      "en": "non-uniform motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-initial-speed",
+      "ky": "баштапкы ылдамдык",
+      "ru": "начальная скорость",
+      "en": "initial speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-final-speed",
+      "ky": "акыркы ылдамдык",
+      "ru": "конечная скорость",
+      "en": "final speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-accelerated-motion",
+      "ky": "ылдамдатылган кыймыл",
+      "ru": "ускоренное движение",
+      "en": "accelerated motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-decelerated-motion",
+      "ky": "акырындатылган кыймыл",
+      "ru": "замедленное движение",
+      "en": "decelerated motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-uniform-circular-motion",
+      "ky": "айлана боюнча бир калыптагы кыймыл",
+      "ru": "равномерное движение по окружности",
+      "en": "uniform circular motion",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-linear-speed",
+      "ky": "сызыктуу ылдамдык",
+      "ru": "линейная скорость",
+      "en": "linear speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rotation-period",
+      "ky": "айлануу мезгили",
+      "ru": "период обращения",
+      "en": "period of rotation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rotation-frequency",
+      "ky": "айлануунун жыштыгы",
+      "ru": "частота обращения",
+      "en": "rotation frequency",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-tangent",
+      "ky": "жаныма",
+      "ru": "касательная",
+      "en": "tangent",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-momentum",
+      "ky": "нерсенин импульсу",
+      "ru": "импульс тела",
+      "en": "momentum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-momentum-conservation",
+      "ky": "импульстун сакталуу закону",
+      "ru": "закон сохранения импульса",
+      "en": "conservation of momentum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-closed-system",
+      "ky": "туюк система",
+      "ru": "замкнутая система",
+      "en": "closed system",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-jet-propulsion",
+      "ky": "реактивдүү кыймыл",
+      "ru": "реактивное движение",
+      "en": "jet propulsion",
+      "forbidden": [
+        "реактивный кыймыл"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-rocket",
+      "ky": "ракета",
+      "ru": "ракета",
+      "en": "rocket",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-work",
+      "ky": "механикалык жумуш",
+      "ru": "механическая работа",
+      "en": "mechanical work",
+      "forbidden": [
+        "механикалык иш"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-joule",
+      "ky": "джоуль (Дж)",
+      "ru": "джоуль (Дж)",
+      "en": "joule (J)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-power",
+      "ky": "кубаттуулук",
+      "ru": "мощность",
+      "en": "power",
+      "forbidden": [
+        "кубаттулук"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-watt",
+      "ky": "ватт (Вт)",
+      "ru": "ватт (Вт)",
+      "en": "watt (W)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-energy",
+      "ky": "энергия",
+      "ru": "энергия",
+      "en": "energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-energy",
+      "ky": "механикалык энергия",
+      "ru": "механическая энергия",
+      "en": "mechanical energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-total-mechanical-energy",
+      "ky": "толук механикалык энергия",
+      "ru": "полная механическая энергия",
+      "en": "total mechanical energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-energy-conservation",
+      "ky": "энергиянын сакталуу закону",
+      "ru": "закон сохранения энергии",
+      "en": "conservation of energy",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-maxwell-pendulum",
+      "ky": "Максвелл маятниги",
+      "ru": "маятник Максвелла",
+      "en": "Maxwell's pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pressure",
+      "ky": "басым",
+      "ru": "давление",
+      "en": "pressure",
+      "forbidden": [
+        "кысым"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal",
+      "ky": "паскаль (Па)",
+      "ru": "паскаль (Па)",
+      "en": "pascal (Pa)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-area",
+      "ky": "аянт",
+      "ru": "площадь",
+      "en": "area",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pressure-force",
+      "ky": "басым күчү",
+      "ru": "сила давления",
+      "en": "force of pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gas-pressure",
+      "ky": "газдын басымы",
+      "ru": "давление газа",
+      "en": "gas pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-liquid-pressure",
+      "ky": "суюктуктун басымы",
+      "ru": "давление жидкости",
+      "en": "liquid pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-liquid-column",
+      "ky": "суюктук мамычасы",
+      "ru": "столб жидкости",
+      "en": "column of liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-depth",
+      "ky": "тереңдик",
+      "ru": "глубина",
+      "en": "depth",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-manometer",
+      "ky": "манометр",
+      "ru": "манометр",
+      "en": "manometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal-law",
+      "ky": "Паскаль закону",
+      "ru": "закон Паскаля",
+      "en": "Pascal's law",
+      "forbidden": [
+        "Паскалдын закону"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pascal-ball",
+      "ky": "Паскаль шары",
+      "ru": "шар Паскаля",
+      "en": "Pascal's ball",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-communicating-vessels",
+      "ky": "катыш идиштер",
+      "ru": "сообщающиеся сосуды",
+      "en": "communicating vessels",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-press",
+      "ky": "гидравликалык пресс",
+      "ru": "гидравлический пресс",
+      "en": "hydraulic press",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-lift",
+      "ky": "гидравликалык көтөргүч",
+      "ru": "гидравлический подъёмник",
+      "en": "hydraulic lift",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hydraulic-brake",
+      "ky": "гидравликалык токтоткуч",
+      "ru": "гидравлический тормоз",
+      "en": "hydraulic brake",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-piston",
+      "ky": "поршень",
+      "ru": "поршень",
+      "en": "piston",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-atmosphere",
+      "ky": "атмосфера",
+      "ru": "атмосфера",
+      "en": "atmosphere",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-atmospheric-pressure",
+      "ky": "атмосфера басымы",
+      "ru": "атмосферное давление",
+      "en": "atmospheric pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-normal-atmospheric-pressure",
+      "ky": "нормалдуу атмосфера басымы",
+      "ru": "нормальное атмосферное давление",
+      "en": "normal atmospheric pressure",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-torricelli-experiment",
+      "ky": "Торричеллинин тажрыйбасы",
+      "ru": "опыт Торричелли",
+      "en": "Torricelli's experiment",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mercury-column",
+      "ky": "сымап мамычасы",
+      "ru": "столб ртути",
+      "en": "mercury column",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mmhg",
+      "ky": "сымап мамычасынын миллиметри (сым. мам. мм)",
+      "ru": "миллиметр ртутного столба (мм рт. ст.)",
+      "en": "millimetre of mercury (mmHg)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-vacuum",
+      "ky": "боштук (вакуум)",
+      "ru": "пустота (вакуум)",
+      "en": "vacuum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-barometer",
+      "ky": "барометр",
+      "ru": "барометр",
+      "en": "barometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-aneroid",
+      "ky": "барометр-анероид",
+      "ru": "барометр-анероид",
+      "en": "aneroid barometer",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-altimeter",
+      "ky": "бийиктик ченегич",
+      "ru": "высотомер",
+      "en": "altimeter",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-buoyant-force",
+      "ky": "Архимед күчү",
+      "ru": "архимедова сила",
+      "en": "buoyant force",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-archimedes-law",
+      "ky": "Архимед закону",
+      "ru": "закон Архимеда",
+      "en": "Archimedes' principle",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-displaced-liquid",
+      "ky": "сүрүп чыгарылган суюктук",
+      "ru": "вытесненная жидкость",
+      "en": "displaced liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-weight-in-liquid",
+      "ky": "нерсенин суюктуктагы салмагы",
+      "ru": "вес тела в жидкости",
+      "en": "weight in a liquid",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-floating-conditions",
+      "ky": "нерселердин сүзүү шарттары",
+      "ru": "условия плавания тел",
+      "en": "conditions for floating",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-floating",
+      "ky": "калкуу",
+      "ru": "плавание на поверхности",
+      "en": "floating",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sinking",
+      "ky": "чөгүү",
+      "ru": "погружение (тонет)",
+      "en": "sinking",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-waterline",
+      "ky": "ватер сызыгы",
+      "ru": "ватерлиния",
+      "en": "waterline",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-balloon",
+      "ky": "аба шары",
+      "ru": "воздушный шар",
+      "en": "balloon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sonde",
+      "ky": "зонд-шар",
+      "ru": "шар-зонд",
+      "en": "sounding balloon",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-simple-machine",
+      "ky": "жөнөкөй механизм",
+      "ru": "простой механизм",
+      "en": "simple machine",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pulley",
+      "ky": "блок",
+      "ru": "блок",
+      "en": "pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-fixed-pulley",
+      "ky": "кыймылсыз блок",
+      "ru": "неподвижный блок",
+      "en": "fixed pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-movable-pulley",
+      "ky": "кыймылдуу блок",
+      "ru": "подвижный блок",
+      "en": "movable pulley",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-golden-rule",
+      "ky": "механиканын «алтын эрежеси»",
+      "ru": "«золотое правило» механики",
+      "en": "golden rule of mechanics",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-useful-work",
+      "ky": "пайдалуу жумуш",
+      "ru": "полезная работа",
+      "en": "useful work",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-total-work",
+      "ky": "толук жумуш",
+      "ru": "полная (затраченная) работа",
+      "en": "total work",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-efficiency",
+      "ky": "пайдалуу аракет коэффициенти (ПАК)",
+      "ru": "коэффициент полезного действия (КПД)",
+      "en": "efficiency",
+      "forbidden": [
+        "пайдалуу иш коэффициенти"
+      ],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-inclined-plane",
+      "ky": "жантык тегиздик",
+      "ru": "наклонная плоскость",
+      "en": "inclined plane",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-gain-in-force",
+      "ky": "күчтөн утуш",
+      "ru": "выигрыш в силе",
+      "en": "gain in force",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-oscillation",
+      "ky": "термелүү",
+      "ru": "колебание",
+      "en": "oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-free-oscillation",
+      "ky": "эркин термелүү",
+      "ru": "свободные колебания",
+      "en": "free oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-equilibrium-position",
+      "ky": "тең салмактуулук абалы",
+      "ru": "положение равновесия",
+      "en": "equilibrium position",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-oscillation-frequency",
+      "ky": "термелүү жыштыгы",
+      "ru": "частота колебаний",
+      "en": "frequency of oscillation",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-hertz",
+      "ky": "герц (Гц)",
+      "ru": "герц (Гц)",
+      "en": "hertz (Hz)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-math-pendulum",
+      "ky": "математикалык маятник",
+      "ru": "математический маятник",
+      "en": "simple pendulum",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-isochronism",
+      "ky": "изохронизм",
+      "ru": "изохронизм",
+      "en": "isochronism",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-elastic-medium",
+      "ky": "серпилгичтүү чөйрө",
+      "ru": "упругая среда",
+      "en": "elastic medium",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-mechanical-wave",
+      "ky": "механикалык толкун",
+      "ru": "механическая волна",
+      "en": "mechanical wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-wavelength",
+      "ky": "толкун узундугу",
+      "ru": "длина волны",
+      "en": "wavelength",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-wave-speed",
+      "ky": "толкундун таралуу ылдамдыгы",
+      "ru": "скорость распространения волны",
+      "en": "wave speed",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-transverse-wave",
+      "ky": "туурасынан толкун",
+      "ru": "поперечная волна",
+      "en": "transverse wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-longitudinal-wave",
+      "ky": "узатасынан толкун",
+      "ru": "продольная волна",
+      "en": "longitudinal wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-sound-wave",
+      "ky": "үн толкуну",
+      "ru": "звуковая волна",
+      "en": "sound wave",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-pitch",
+      "ky": "үндүн тону (бийиктиги)",
+      "ru": "высота (тон) звука",
+      "en": "pitch",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-loudness",
+      "ky": "үндүн катуулугу",
+      "ru": "громкость звука",
+      "en": "loudness",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-timbre",
+      "ky": "үндүн тембри",
+      "ru": "тембр звука",
+      "en": "timbre",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-decibel",
+      "ky": "децибелл (дБ)",
+      "ru": "децибел (дБ)",
+      "en": "decibel (dB)",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-tuning-fork",
+      "ky": "камертон",
+      "ru": "камертон",
+      "en": "tuning fork",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-echo",
+      "ky": "жаңырык",
+      "ru": "эхо",
+      "en": "echo",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-ultrasound",
+      "ky": "ультраүн",
+      "ru": "ультразвук",
+      "en": "ultrasound",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    },
+    {
+      "id": "g-phys-echo-sounder",
+      "ky": "эхолот",
+      "ru": "эхолот",
+      "en": "echo sounder",
+      "forbidden": [],
+      "approvedBy": "editor-phys"
+    }
+  ],
+  "propertyTypes": [
+    {
+      "key": "speed",
+      "icon": "gauge",
+      "valueKind": "quantity",
+      "unit": "m/s",
+      "label": {
+        "ky": "Ылдамдыгы",
+        "ru": "Скорость",
+        "en": "Speed"
+      }
+    }
+  ]
+}

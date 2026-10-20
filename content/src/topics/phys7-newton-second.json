@@ -1,0 +1,1224 @@
+{
+  "topic": {
+    "key": "phys7-newton-second",
+    "unitKey": "phys.g7.dynamics",
+    "status": "published",
+    "title": {
+      "ky": "Ньютондун экинчи закону",
+      "ru": "Второй закон Ньютона",
+      "en": "Newton's second law"
+    },
+    "formula": "a = F/m",
+    "classification": {
+      "ky": "Динамика",
+      "ru": "Динамика",
+      "en": "Dynamics"
+    },
+    "description": {
+      "ky": "Сүрүлүүсүз столдо 2 кг брусокту динамометр менен 6 Н күч менен тартабыз. Брусок ылдамданат: a = F/m = 6 : 2 = 3 м/с². Күчтү эки эсе чоңойтсок, ылдамдануу да эки эсе чоңоёт; массаны эки эсе чоңойтсок – эки эсе азаят. Нерсенин ылдамдануусу аракет жасаган күчкө түз жана массасына тескери пропорциялаш – бул Ньютондун экинчи закону.",
+      "ru": "Тянем динамометром брусок массой 2 кг по столу без трения с силой 6 Н. Брусок ускоряется: a = F/m = 6 : 2 = 3 м/с². Увеличим силу вдвое – ускорение тоже вырастет вдвое; увеличим вдвое массу – ускорение уменьшится вдвое. Ускорение тела прямо пропорционально действующей силе и обратно пропорционально массе – это второй закон Ньютона.",
+      "en": "We pull a 2 kg block across a frictionless table with a dynamometer, using 6 N. The block accelerates: a = F/m = 6 ÷ 2 = 3 m/s². Double the force and the acceleration doubles; double the mass and it halves. A body's acceleration is proportional to the force and inversely proportional to its mass – Newton's second law."
+    },
+    "goal": {
+      "ky": "Ылдамдануунун күчкө жана массага көз карандылыгын түшүндүрүү, Ньютондун экинчи законун a = F/m жана F = m·a түрүндө колдонуп маселе чыгаруу, 1 Н = 1 кг·м/с² экенин түшүнүү (PHYS-7.2.1).",
+      "ru": "Объяснять зависимость ускорения от силы и массы, решать задачи по второму закону Ньютона в виде a = F/m и F = m·a, понимать, что 1 Н = 1 кг·м/с² (PHYS-7.2.1).",
+      "en": "Explain how acceleration depends on force and mass, solve problems with Newton's second law as a = F/m and F = ma, and understand that 1 N = 1 kg·m/s² (PHYS-7.2.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.dynamics.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "forces",
+        "mass": 2,
+        "forces": [
+          {
+            "id": "pull",
+            "magnitude": 6,
+            "angleDeg": 0
+          }
+        ],
+        "gravity": true,
+        "friction": 0,
+        "dynamometer": true,
+        "g": 9.8
+      },
+      "camera": {
+        "position": [
+          1.3,
+          1.9,
+          4.4
+        ],
+        "target": [
+          0,
+          0.3,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "resultant",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.newton-second-law",
+      "phys.mass",
+      "phys.force",
+      "phys.net-force",
+      "phys.acceleration",
+      "phys.friction-force",
+      "phys.gravity",
+      "phys.normal-force",
+      "phys.dynamometer"
+    ],
+    "overrides": {
+      "phys.mass": {
+        "nodes": [
+          "Block",
+          "Block_Label"
+        ],
+        "description": {
+          "ky": "Брусоктун массасы 2 кг. Ошол эле күч массасы эки эсе чоң (4 кг) брусокко эки эсе кичине ылдамдануу берет: 6 : 4 = 1,5 м/с².",
+          "ru": "Масса бруска 2 кг. Та же сила сообщает бруску вдвое большей массы (4 кг) вдвое меньшее ускорение: 6 : 4 = 1,5 м/с².",
+          "en": "The block's mass is 2 kg. The same force gives a block of twice the mass (4 kg) half the acceleration: 6 ÷ 4 = 1.5 m/s²."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          }
+        ]
+      },
+      "phys.force": {
+        "nodes": [
+          "Arrow_pull",
+          "Arrow_pull_Label"
+        ],
+        "description": {
+          "ky": "Динамометр брусокту 6 Н күч менен оңго тартат. Ылдамдануу ушул күчтүн багытында.",
+          "ru": "Динамометр тянет брусок вправо с силой 6 Н. Ускорение направлено так же, как эта сила.",
+          "en": "The dynamometer pulls the block to the right with 6 N. The acceleration points the same way."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 6
+          }
+        ]
+      },
+      "phys.net-force": {
+        "nodes": [
+          "Arrow_Resultant",
+          "Arrow_Resultant_*"
+        ],
+        "description": {
+          "ky": "Брусокко таасир эткен бардык күчтөрдүн тең аракеттүүсү. Сүрүлүү жок болгондо R = 6 Н; тик багытта оордук күчү менен таянычтын реакция күчү (19,6 Н) теңделет. Ньютондун экинчи законундагы F – дал ушул күч.",
+          "ru": "Равнодействующая всех сил, действующих на брусок. Без трения R = 6 Н; по вертикали сила тяжести и сила реакции опоры (19,6 Н) уравновешены. Именно эта сила – F во втором законе Ньютона.",
+          "en": "The resultant of all the forces on the block. With no friction R = 6 N; vertically, gravity and the normal force (19.6 N) balance. This is the F in Newton's second law."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 6
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "a = \\frac{R}{m}"
+          }
+        ]
+      },
+      "phys.acceleration": {
+        "description": {
+          "ky": "Брусоктун ылдамдануусу a = F/m = 6 Н : 2 кг = 3 м/с²: ар бир секундда анын ылдамдыгы 3 м/с ке чоңоёт. Ылдамдануунун багыты тең аракеттүү күчтүн багыты менен дал келет.",
+          "ru": "Ускорение бруска a = F/m = 6 Н : 2 кг = 3 м/с²: каждую секунду его скорость растёт на 3 м/с. Направление ускорения совпадает с направлением равнодействующей.",
+          "en": "The block's acceleration is a = F/m = 6 N ÷ 2 kg = 3 m/s²: its speed grows by 3 m/s every second. The acceleration points the same way as the resultant."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "acceleration",
+            "value": 3
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "a = \\frac{F}{m}"
+          }
+        ]
+      },
+      "phys.friction-force": {
+        "nodes": [
+          "Arrow_Friction",
+          "Table"
+        ],
+        "description": {
+          "ky": "«Сүрүлүү менен» үлгүсүндө μ = 0,25: F_сүр = 0,25 · 19,6 = 4,9 Н. Тартуу 8,9 Н болсо, тең аракеттүү күч 8,9 − 4,9 = 4 Н, a = 4 : 2 = 2 м/с².",
+          "ru": "В образце «С трением» μ = 0,25: F_тр = 0,25 · 19,6 = 4,9 Н. При тяге 8,9 Н равнодействующая 8,9 − 4,9 = 4 Н, a = 4 : 2 = 2 м/с².",
+          "en": "In the 'With friction' sample μ = 0.25: F = 0.25 × 19.6 = 4.9 N. With an 8.9 N pull the resultant is 8.9 − 4.9 = 4 N and a = 4 ÷ 2 = 2 m/s²."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 4.9
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.25
+          }
+        ]
+      },
+      "phys.gravity": {
+        "nodes": [
+          "Arrow_Gravity"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 19.6
+          }
+        ]
+      },
+      "phys.normal-force": {
+        "nodes": [
+          "Arrow_Normal"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 19.6
+          }
+        ]
+      },
+      "phys.dynamometer": {
+        "nodes": [
+          "Dynamometer",
+          "Dynamometer_*",
+          "Spring"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 6
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "second-6n-2kg",
+        "title": {
+          "ky": "6 Н, 2 кг",
+          "ru": "6 Н, 2 кг",
+          "en": "6 N, 2 kg"
+        },
+        "classification": {
+          "ky": "a = 3 м/с²",
+          "ru": "a = 3 м/с²",
+          "en": "a = 3 m/s²"
+        },
+        "thumb": "thumbs/second-6n-2kg.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 6
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "acceleration",
+            "value": 3
+          }
+        ],
+        "scene": {
+          "params": {
+            "mass": 2,
+            "forces": [
+              {
+                "id": "pull",
+                "magnitude": 6,
+                "angleDeg": 0
+              }
+            ],
+            "friction": 0
+          }
+        }
+      },
+      {
+        "key": "second-12n-2kg",
+        "title": {
+          "ky": "Күч эки эсе: 12 Н, 2 кг",
+          "ru": "Сила вдвое: 12 Н, 2 кг",
+          "en": "Double the force: 12 N, 2 kg"
+        },
+        "classification": {
+          "ky": "a = 6 м/с²",
+          "ru": "a = 6 м/с²",
+          "en": "a = 6 m/s²"
+        },
+        "thumb": "thumbs/second-12n-2kg.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 12
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "acceleration",
+            "value": 6
+          }
+        ],
+        "scene": {
+          "params": {
+            "mass": 2,
+            "forces": [
+              {
+                "id": "pull",
+                "magnitude": 12,
+                "angleDeg": 0
+              }
+            ],
+            "friction": 0
+          }
+        }
+      },
+      {
+        "key": "second-6n-4kg",
+        "title": {
+          "ky": "Масса эки эсе: 6 Н, 4 кг",
+          "ru": "Масса вдвое: 6 Н, 4 кг",
+          "en": "Double the mass: 6 N, 4 kg"
+        },
+        "classification": {
+          "ky": "a = 1,5 м/с²",
+          "ru": "a = 1,5 м/с²",
+          "en": "a = 1.5 m/s²"
+        },
+        "thumb": "thumbs/second-6n-4kg.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 6
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 4
+          },
+          {
+            "kind": "quantity",
+            "type": "acceleration",
+            "value": 1.5
+          }
+        ],
+        "scene": {
+          "params": {
+            "mass": 4,
+            "forces": [
+              {
+                "id": "pull",
+                "magnitude": 6,
+                "angleDeg": 0
+              }
+            ],
+            "friction": 0
+          }
+        }
+      },
+      {
+        "key": "second-friction",
+        "title": {
+          "ky": "Сүрүлүү менен: 8,9 Н, μ = 0,25",
+          "ru": "С трением: 8,9 Н, μ = 0,25",
+          "en": "With friction: 8.9 N, μ = 0.25"
+        },
+        "classification": {
+          "ky": "R = 4 Н, a = 2 м/с²",
+          "ru": "R = 4 Н, a = 2 м/с²",
+          "en": "R = 4 N, a = 2 m/s²"
+        },
+        "thumb": "thumbs/second-friction.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 4
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "acceleration",
+            "value": 2
+          },
+          {
+            "kind": "quantity",
+            "type": "frictionCoefficient",
+            "value": 0.25
+          }
+        ],
+        "scene": {
+          "params": {
+            "mass": 2,
+            "forces": [
+              {
+                "id": "pull",
+                "magnitude": 8.9,
+                "angleDeg": 0
+              }
+            ],
+            "friction": 0.25
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "mass",
+        "value": 2
+      },
+      {
+        "kind": "quantity",
+        "type": "force",
+        "value": 6
+      },
+      {
+        "kind": "quantity",
+        "type": "acceleration",
+        "value": 3
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "a = \\frac{F}{m}"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false,
+              "resultant": false,
+              "labels": false
+            },
+            "focus": "phys.mass",
+            "text": {
+              "ky": "Сүрүлүүсүз столдо 2 кг брусок, ага динамометр илинген. Брусокту 6 Н менен тартабыз. Ал кандай кыймылдайт: бир калыптабы же ылдамданабы?",
+              "ru": "На столе без трения брусок массой 2 кг с прицепленным динамометром. Тянем брусок с силой 6 Н. Как он будет двигаться – равномерно или с ускорением?",
+              "en": "A 2 kg block on a frictionless table with a dynamometer hooked on. We pull with 6 N. How will it move – steadily or accelerating?"
+            },
+            "teacherNote": {
+              "ky": "Биринчи законду эске салыңыз: R = 0 болсо a = 0. Эми R ≠ 0 – эмне болот?",
+              "ru": "Напомните первый закон: при R = 0 a = 0. А если R ≠ 0?",
+              "en": "Recall the first law: if R = 0 then a = 0. What if R ≠ 0?"
+            },
+            "altText": {
+              "ky": "Столдогу брусок жана ага илинген динамометр.",
+              "ru": "Брусок на столе и прицепленный динамометр.",
+              "en": "A block on a table with a dynamometer hooked to it."
+            }
+          },
+          {
+            "key": "resultant",
+            "camera": {
+              "position": [
+                -0.14,
+                1.58,
+                3.48
+              ],
+              "target": [
+                -1.05,
+                0.45,
+                0.38
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.net-force",
+            "text": {
+              "ky": "Тик багытта оордук күчү (19,6 Н) менен таянычтын реакция күчү теңделет. Горизонталь боюнча 6 Н гана калат – тең аракеттүү күч R = 6 Н оңго. Ал брусоктун ылдамдыгын өзгөртөт.",
+              "ru": "По вертикали сила тяжести (19,6 Н) и сила реакции опоры уравновешены. По горизонтали остаются только 6 Н – равнодействующая R = 6 Н вправо. Она и меняет скорость бруска.",
+              "en": "Vertically, gravity (19.6 N) and the normal force balance. Horizontally only the 6 N remains – the resultant is R = 6 N to the right. That is what changes the block's speed."
+            },
+            "teacherNote": {
+              "ky": "Тажрыйбаны эске салыңыз: тамчылаткычы бар арабачанын тамчыларынын аралыгы улам чоңоёт – бул ылдамдатылган кыймыл.",
+              "ru": "Напомните опыт: у тележки с капельницей расстояния между каплями растут – это ускоренное движение.",
+              "en": "Recall the experiment: the gaps between the dropper cart's drops keep growing – accelerated motion."
+            },
+            "altText": {
+              "ky": "Оңго караган тең аракеттүү күчтүн жебеси.",
+              "ru": "Стрелка равнодействующей вправо.",
+              "en": "The resultant arrow pointing right."
+            }
+          },
+          {
+            "key": "formula",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.acceleration",
+            "text": {
+              "ky": "Ылдамдануу: a = F/m = 6 Н : 2 кг = 3 м/с². Ар бир секундда брусоктун ылдамдыгы 3 м/с ке чоңоёт. Ылдамдануу күчтүн багыты боюнча – оңго.",
+              "ru": "Ускорение: a = F/m = 6 Н : 2 кг = 3 м/с². Каждую секунду скорость бруска растёт на 3 м/с. Ускорение направлено вдоль силы – вправо.",
+              "en": "Acceleration: a = F/m = 6 N ÷ 2 kg = 3 m/s². Every second the block's speed grows by 3 m/s. The acceleration points along the force – to the right."
+            },
+            "teacherNote": {
+              "ky": "Бирдикти чыгарыңыз: F = m·a → 1 Н = 1 кг·м/с². 1 Н – массасы 1 кг нерсеге 1 м/с² ылдамдануу берүүчү күч.",
+              "ru": "Выведите единицу: F = m·a → 1 Н = 1 кг·м/с². 1 Н – сила, сообщающая телу массой 1 кг ускорение 1 м/с².",
+              "en": "Derive the unit: F = ma → 1 N = 1 kg·m/s². One newton gives a 1 kg body an acceleration of 1 m/s²."
+            },
+            "altText": {
+              "ky": "Брусок оңго тездеп жылат.",
+              "ru": "Брусок разгоняется вправо.",
+              "en": "The block speeds up to the right."
+            }
+          },
+          {
+            "key": "double-force",
+            "sample": "second-12n-2kg",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.force",
+            "text": {
+              "ky": "Күчтү 12 Н ге чейин эки эсе чоңойтобуз: a = 12 : 2 = 6 м/с² – ылдамдануу да эки эсе чоңойду. Масса туруктуу болгондо ылдамдануу күчкө түз пропорциялаш: a ~ F.",
+              "ru": "Увеличим силу вдвое – до 12 Н: a = 12 : 2 = 6 м/с² – ускорение тоже выросло вдвое. При постоянной массе ускорение прямо пропорционально силе: a ~ F.",
+              "en": "Double the force to 12 N: a = 12 ÷ 2 = 6 m/s² – the acceleration doubles too. With constant mass acceleration is proportional to force: a ~ F."
+            },
+            "teacherNote": {
+              "ky": "Китептеги тажрыйба: жипке илинген жүктөрдүн саны көбөйгөн сайын тамчылардын аралыгы тезирээк өсөт.",
+              "ru": "Опыт из учебника: чем больше грузов на нити, тем быстрее растут расстояния между каплями.",
+              "en": "The textbook's experiment: the more weights on the string, the faster the drop gaps grow."
+            },
+            "altText": {
+              "ky": "Тартуунун жебеси эки эсе узун.",
+              "ru": "Стрелка тяги вдвое длиннее.",
+              "en": "The pull arrow is twice as long."
+            }
+          },
+          {
+            "key": "double-mass",
+            "sample": "second-6n-4kg",
+            "camera": {
+              "position": [
+                0,
+                1.4,
+                4.5
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.newton-second-law",
+            "text": {
+              "ky": "Эми күч 6 Н, бирок брусоктун массасы 4 кг: a = 6 : 4 = 1,5 м/с² – ылдамдануу эки эсе азайды. Күч туруктуу болгондо ылдамдануу массага тескери пропорциялаш: a ~ 1/m.",
+              "ru": "Теперь сила 6 Н, но масса бруска 4 кг: a = 6 : 4 = 1,5 м/с² – ускорение уменьшилось вдвое. При постоянной силе ускорение обратно пропорционально массе: a ~ 1/m.",
+              "en": "Now the force is 6 N but the block's mass is 4 kg: a = 6 ÷ 4 = 1.5 m/s² – half the acceleration. With constant force acceleration is inversely proportional to mass: a ~ 1/m."
+            },
+            "teacherNote": {
+              "ky": "Эки жыйынтыкты бириктириңиз: «Нерсенин ылдамдануусу аракет жасаган күчкө түз жана массасына тескери пропорциялаш» – a = F/m.",
+              "ru": "Объедините два вывода: «Ускорение тела прямо пропорционально действующей силе и обратно пропорционально его массе» – a = F/m.",
+              "en": "Combine both results: 'A body's acceleration is proportional to the force and inversely proportional to its mass' – a = F/m."
+            },
+            "altText": {
+              "ky": "Чоңураак брусок жайыраак тездейт.",
+              "ru": "Брусок побольше разгоняется медленнее.",
+              "en": "A bigger block speeds up more slowly."
+            }
+          },
+          {
+            "key": "friction",
+            "sample": "second-friction",
+            "camera": {
+              "position": [
+                1.16,
+                0.93,
+                3.91
+              ],
+              "target": [
+                0,
+                -0.49,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "resultant": true,
+              "labels": true
+            },
+            "focus": "phys.friction-force",
+            "text": {
+              "ky": "Кадимки столдо сүрүлүү бар (μ = 0,25, F_сүр = 4,9 Н). 8,9 Н менен тартсак, тең аракеттүү күч 8,9 − 4,9 = 4 Н, a = 4 : 2 = 2 м/с². Формулага бир күчтү эмес, тең аракеттүү күчтү коёбуз.",
+              "ru": "На обычном столе есть трение (μ = 0,25, F_тр = 4,9 Н). При тяге 8,9 Н равнодействующая 8,9 − 4,9 = 4 Н, a = 4 : 2 = 2 м/с². В формулу подставляют не одну силу, а равнодействующую.",
+              "en": "An ordinary table has friction (μ = 0.25, F = 4.9 N). Pulling with 8.9 N gives a resultant of 8.9 − 4.9 = 4 N, so a = 4 ÷ 2 = 2 m/s². The formula takes the resultant, not a single force."
+            },
+            "teacherNote": {
+              "ky": "Китептеги маселе: 1500 кг автомашина 0,5 м/с² ылдамдануу менен козголот – тартуу күчү F = 1500 · 0,5 = 750 Н.",
+              "ru": "Задача из учебника: автомобиль 1500 кг разгоняется с ускорением 0,5 м/с² – сила тяги F = 1500 · 0,5 = 750 Н.",
+              "en": "Textbook problem: a 1500 kg car accelerates at 0.5 m/s² – the driving force is F = 1500 × 0.5 = 750 N."
+            },
+            "altText": {
+              "ky": "Тартуу, сүрүлүү жана тең аракеттүү күчтүн жебелери.",
+              "ru": "Стрелки тяги, трения и равнодействующей.",
+              "en": "Arrows for the pull, friction and the resultant."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.cart-acceleration"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "second-6n-2kg"
+          },
+          {
+            "kind": "sample",
+            "key": "second-12n-2kg"
+          },
+          {
+            "kind": "sample",
+            "key": "second-6n-4kg"
+          },
+          {
+            "kind": "sample",
+            "key": "second-friction"
+          }
+        ],
+        "rows": [
+          "force",
+          "mass",
+          "acceleration"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-second-1",
+          "phys.q.phys7-second-2",
+          "phys.q.phys7-second-3",
+          "phys.q.phys7-second-4",
+          "phys.q.phys7-second-5",
+          "phys.q.phys7-second-6",
+          "phys.q.phys7-second-7",
+          "phys.q.phys7-second-8",
+          "phys.q.phys7-second-9",
+          "phys.q.phys7-second-10",
+          "phys.q.phys7-second-11",
+          "phys.q.phys7-second-12"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Автомашинанын кыймылдаткычы",
+            "ru": "Двигатель автомобиля",
+            "en": "A car engine"
+          },
+          "text": {
+            "ky": "Массасы 1500 кг машинага 0,5 м/с² ылдамдануу берүү үчүн кыймылдаткыч F = m·a = 750 Н тартуу күчүн өндүрүшү керек. Жүктөлгөн машина ошол эле күч менен жайыраак ылдамдайт.",
+            "ru": "Чтобы сообщить машине массой 1500 кг ускорение 0,5 м/с², двигатель должен развить силу тяги F = m·a = 750 Н. Гружёная машина при той же силе разгоняется медленнее.",
+            "en": "To give a 1500 kg car an acceleration of 0.5 m/s² the engine must supply F = ma = 750 N. A loaded car speeds up more slowly with the same force."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Поездди тормоздоо",
+            "ru": "Торможение поезда",
+            "en": "Braking a train"
+          },
+          "text": {
+            "ky": "5·10⁵ кг поезд 10 м/с ылдамдыктан 1200 с та токтосо, a = (0 − 10) : 1200 м/с², тормоздоочу күч F = m·a ≈ −4166 Н. «−» – күч кыймылга каршы.",
+            "ru": "Поезд 5·10⁵ кг останавливается со скорости 10 м/с за 1200 с: a = (0 − 10) : 1200 м/с², тормозящая сила F = m·a ≈ −4166 Н. «−» – сила против движения.",
+            "en": "A 5·10⁵ kg train stops from 10 m/s in 1200 s: a = (0 − 10) ÷ 1200 m/s², braking force F = ma ≈ −4166 N. The minus sign means it opposes the motion."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Ракета",
+            "ru": "Ракета",
+            "en": "Rockets"
+          },
+          "text": {
+            "ky": "Ракета күйүүчү майды жаккан сайын жеңилдейт, ошондуктан ошол эле тартуу күчүндө анын ылдамдануусу улам өсөт.",
+            "ru": "Сжигая топливо, ракета становится легче, поэтому при той же тяге её ускорение всё время растёт.",
+            "en": "As a rocket burns fuel it gets lighter, so with the same thrust its acceleration keeps growing."
+          },
+          "field": "s"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Бош жана толук араба",
+            "ru": "Пустая и полная тележка",
+            "en": "Empty and full trolleys"
+          },
+          "text": {
+            "ky": "Дүкөндөгү бош арабаны бир аз түртсөң эле тездейт, ал эми азыкка толгон араба ошол эле түртүүдөн жайыраак тездейт.",
+            "ru": "Пустая тележка в магазине разгоняется от лёгкого толчка, а полная продуктов от такого же толчка – медленнее.",
+            "en": "An empty shopping trolley speeds up from a light push; a full one speeds up more slowly from the same push."
+          }
+        },
+        {
+          "title": {
+            "ky": "Топ тебүү",
+            "ru": "Удар по мячу",
+            "en": "Kicking a ball"
+          },
+          "text": {
+            "ky": "Топту катуураак тепсең, ал тезирээк учат: чоң күч чоң ылдамдануу берет.",
+            "ru": "Ударишь по мячу сильнее – он полетит быстрее: большая сила даёт большее ускорение.",
+            "en": "Kick a ball harder and it flies faster: a bigger force gives a bigger acceleration."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Эмне үчүн толук араба бош арабага караганда жай тездейт?",
+        "ru": "Почему полная тележка разгоняется медленнее пустой?",
+        "en": "Why does a full trolley speed up more slowly than an empty one?"
+      },
+      {
+        "ky": "1 ньютон деген кандай күч?",
+        "ru": "Что такое сила в 1 ньютон?",
+        "en": "How big is a force of 1 newton?"
+      },
+      {
+        "ky": "Күч эки эсе чоңойсо ылдамдык да эки эсе чоңоебу?",
+        "ru": "Если сила вдвое больше, скорость тоже вдвое больше?",
+        "en": "If the force doubles, does the speed double too?"
+      },
+      {
+        "ky": "Сүрүлүү бар болгондо a = F/m формуласына кайсы күчтү коёбуз?",
+        "ru": "Какую силу подставлять в a = F/m, если есть трение?",
+        "en": "Which force goes into a = F/m when there is friction?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; Мамбетакунов Э. М., Физика 7 (кыргыз тилинде)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-second-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Ньютондун экинчи закону кандай айтылат?",
+        "ru": "Как формулируется второй закон Ньютона?",
+        "en": "How is Newton's second law stated?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ылдамдануу күчкө түз, массага тескери пропорциялаш",
+            "ru": "Ускорение прямо пропорционально силе и обратно пропорционально массе",
+            "en": "Acceleration is proportional to force and inversely proportional to mass"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ылдамдык күчкө түз пропорциялаш",
+            "ru": "Скорость прямо пропорциональна силе",
+            "en": "Speed is proportional to force"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ылдамдануу массага түз пропорциялаш",
+            "ru": "Ускорение прямо пропорционально массе",
+            "en": "Acceleration is proportional to mass"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Күч ылдамдыкка барабар",
+            "ru": "Сила равна скорости",
+            "en": "Force equals speed"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "a = F/m: нерсенин ылдамдануусу аракет жасаган күчкө түз жана массасына тескери пропорциялаш.",
+        "ru": "a = F/m: ускорение тела прямо пропорционально действующей силе и обратно пропорционально массе.",
+        "en": "a = F/m: a body's acceleration is proportional to the force and inversely proportional to its mass."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "misconceptionKey": "phys.m.force-gives-speed",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-second-2",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 5 кг нерсеге 10 Н күч аракет этет. Анын ылдамдануусу канча (м/с²)?",
+        "ru": "На тело массой 5 кг действует сила 10 Н. Каково его ускорение (м/с²)?",
+        "en": "A 10 N force acts on a 5 kg body. What is its acceleration (m/s²)?"
+      },
+      "answer": 2,
+      "tolerance": 0.01,
+      "unit": "m/s²",
+      "explanation": {
+        "ky": "a = F/m = 10 : 5 = 2 м/с².",
+        "ru": "a = F/m = 10 : 5 = 2 м/с².",
+        "en": "a = F/m = 10 ÷ 5 = 2 m/s²."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-second-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 1500 кг автомашина 0,5 м/с² ылдамдануу менен кыймылдайт. Тартуу күчү канча (Н)? Сүрүлүүнү эсептебегиле.",
+        "ru": "Автомобиль массой 1500 кг движется с ускорением 0,5 м/с². Какова сила тяги (Н)? Трение не учитывать.",
+        "en": "A 1500 kg car accelerates at 0.5 m/s². What is the driving force (N)? Ignore friction."
+      },
+      "answer": 750,
+      "tolerance": 1,
+      "unit": "N",
+      "explanation": {
+        "ky": "F = m·a = 1500 · 0,5 = 750 Н.",
+        "ru": "F = m·a = 1500 · 0,5 = 750 Н.",
+        "en": "F = ma = 1500 × 0.5 = 750 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-second-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 200 г нерсе 1,5 м/с² ылдамдануу менен кыймылдашы үчүн ага кандай күч менен аракет жасоо керек (Н)?",
+        "ru": "С какой силой нужно действовать на тело массой 200 г, чтобы оно двигалось с ускорением 1,5 м/с² (Н)?",
+        "en": "What force gives a 200 g body an acceleration of 1.5 m/s² (N)?"
+      },
+      "answer": 0.3,
+      "tolerance": 0.005,
+      "unit": "N",
+      "explanation": {
+        "ky": "200 г = 0,2 кг; F = m·a = 0,2 · 1,5 = 0,3 Н.",
+        "ru": "200 г = 0,2 кг; F = m·a = 0,2 · 1,5 = 0,3 Н.",
+        "en": "200 g = 0.2 kg; F = ma = 0.2 × 1.5 = 0.3 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-second-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 0,5 кг нерсе тынч абалынан 35 Н күчтүн аракети астында кыймылга келет. 4 с өткөндөн кийин анын ылдамдыгы канча (м/с)?",
+        "ru": "Тело массой 0,5 кг из состояния покоя приходит в движение под действием силы 35 Н. Какой будет его скорость через 4 с (м/с)?",
+        "en": "A 0.5 kg body starts from rest under a 35 N force. What is its speed after 4 s (m/s)?"
+      },
+      "answer": 280,
+      "tolerance": 1,
+      "unit": "m/s",
+      "explanation": {
+        "ky": "a = F/m = 35 : 0,5 = 70 м/с²; v = a·t = 70 · 4 = 280 м/с.",
+        "ru": "a = F/m = 35 : 0,5 = 70 м/с²; v = a·t = 70 · 4 = 280 м/с.",
+        "en": "a = F/m = 35 ÷ 0.5 = 70 m/s²; v = at = 70 × 4 = 280 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-second-6",
+      "type": "single",
+      "prompt": {
+        "ky": "Арабачага аракет эткен күчтү өзгөртпөй, анын массасын эки эсе чоңойттук. Ылдамдануу кандай өзгөрөт?",
+        "ru": "Силу, действующую на тележку, не меняли, а массу тележки увеличили вдвое. Как изменится ускорение?",
+        "en": "The force on a cart stays the same but its mass is doubled. How does the acceleration change?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Эки эсе азаят",
+            "ru": "Уменьшится вдвое",
+            "en": "It halves"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Эки эсе чоңоёт",
+            "ru": "Увеличится вдвое",
+            "en": "It doubles"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не изменится",
+            "en": "It does not change"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Күч туруктуу болсо, a ~ 1/m: масса эки эсе чоңойсо, ылдамдануу эки эсе азаят.",
+        "ru": "При постоянной силе a ~ 1/m: масса вдвое больше – ускорение вдвое меньше.",
+        "en": "With constant force a ~ 1/m: twice the mass, half the acceleration."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-second-7",
+      "type": "single",
+      "prompt": {
+        "ky": "1 Н кайсы бирдиктерге барабар?",
+        "ru": "Чему равен 1 Н в основных единицах?",
+        "en": "What is 1 N in base units?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "1 кг·м/с²",
+            "ru": "1 кг·м/с²",
+            "en": "1 kg·m/s²"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "1 кг·м",
+            "ru": "1 кг·м",
+            "en": "1 kg·m"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "1 кг·м/с",
+            "ru": "1 кг·м/с",
+            "en": "1 kg·m/s"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "1 кг/м",
+            "ru": "1 кг/м",
+            "en": "1 kg/m"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "F = m·a болгондуктан 1 Н = 1 кг · 1 м/с² = 1 кг·м/с².",
+        "ru": "Так как F = m·a, 1 Н = 1 кг · 1 м/с² = 1 кг·м/с².",
+        "en": "Since F = ma, 1 N = 1 kg × 1 m/s² = 1 kg·m/s²."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-second-8",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Туура айтылгандарды тандаңыз.",
+        "ru": "Выберите верные утверждения.",
+        "en": "Choose the true statements."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ылдамдануунун багыты аракет эткен күчтүн багыты менен дал келет",
+            "ru": "Направление ускорения совпадает с направлением действующей силы",
+            "en": "The acceleration points the same way as the force"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Күч жана ылдамдануу – вектордук чоңдуктар, масса – скалярдык",
+            "ru": "Сила и ускорение – векторы, масса – скаляр",
+            "en": "Force and acceleration are vectors, mass is a scalar"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Тең аракеттүү күч нөл болсо, нерсе сөзсүз токтойт",
+            "ru": "Если равнодействующая равна нулю, тело обязательно останавливается",
+            "en": "If the resultant is zero the body must stop"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Ылдамдык нерсенин массасы менен гана аныкталат",
+            "ru": "Скорость тела определяется только его массой",
+            "en": "A body's speed is set by its mass alone"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "explanation": {
+        "ky": "a = F/m: вектордук чоңдукту скалярдык чоңдукка бөлсөк вектор чыгат, ылдамдануу күчтүн багытында. R = 0 болсо, нерсе токтобойт – ылдамдыгын сактайт.",
+        "ru": "a = F/m: вектор, делённый на скаляр, – вектор, ускорение направлено по силе. При R = 0 тело не останавливается, а сохраняет скорость.",
+        "en": "a = F/m: a vector divided by a scalar is a vector, so acceleration points along the force. With R = 0 a body does not stop – it keeps its velocity."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-second-9",
+      "type": "numeric",
+      "prompt": {
+        "ky": "2 кг брусокту 8,9 Н менен тартабыз, сүрүлүү күчү 4,9 Н. Брусоктун ылдамдануусу канча (м/с²)?",
+        "ru": "Брусок массой 2 кг тянут с силой 8,9 Н, сила трения 4,9 Н. Каково ускорение бруска (м/с²)?",
+        "en": "A 2 kg block is pulled with 8.9 N against 4.9 N of friction. What is its acceleration (m/s²)?"
+      },
+      "answer": 2,
+      "tolerance": 0.02,
+      "unit": "m/s²",
+      "explanation": {
+        "ky": "R = 8,9 − 4,9 = 4 Н; a = R/m = 4 : 2 = 2 м/с². Формулага тең аракеттүү күч коюлат.",
+        "ru": "R = 8,9 − 4,9 = 4 Н; a = R/m = 4 : 2 = 2 м/с². В формулу подставляется равнодействующая.",
+        "en": "R = 8.9 − 4.9 = 4 N; a = R/m = 4 ÷ 2 = 2 m/s². The resultant goes into the formula."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-second-10",
+      "type": "match",
+      "prompt": {
+        "ky": "Чоңдукту анын бирдиги менен дал келтириңиз.",
+        "ru": "Сопоставьте величину и её единицу.",
+        "en": "Match each quantity to its unit."
+      },
+      "pairs": [
+        {
+          "key": "force",
+          "left": {
+            "ky": "Күч F",
+            "ru": "Сила F",
+            "en": "Force F"
+          },
+          "right": {
+            "ky": "Н",
+            "ru": "Н",
+            "en": "N"
+          }
+        },
+        {
+          "key": "mass",
+          "left": {
+            "ky": "Масса m",
+            "ru": "Масса m",
+            "en": "Mass m"
+          },
+          "right": {
+            "ky": "кг",
+            "ru": "кг",
+            "en": "kg"
+          }
+        },
+        {
+          "key": "acc",
+          "left": {
+            "ky": "Ылдамдануу a",
+            "ru": "Ускорение a",
+            "en": "Acceleration a"
+          },
+          "right": {
+            "ky": "м/с²",
+            "ru": "м/с²",
+            "en": "m/s²"
+          }
+        },
+        {
+          "key": "speed",
+          "left": {
+            "ky": "Ылдамдык v",
+            "ru": "Скорость v",
+            "en": "Speed v"
+          },
+          "right": {
+            "ky": "м/с",
+            "ru": "м/с",
+            "en": "m/s"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "F – ньютон, m – килограмм, a – м/с², v – м/с.",
+        "ru": "F – ньютон, m – килограмм, a – м/с², v – м/с.",
+        "en": "F – newton, m – kilogram, a – m/s², v – m/s."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-second-11",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден брусоктун ылдамдануусун аныктаган күчтү – бардык күчтөрдүн тең аракеттүүсүн тап.",
+        "ru": "Найдите на модели силу, определяющую ускорение бруска, – равнодействующую всех сил.",
+        "en": "Find the force in the model that sets the block's acceleration – the resultant of all the forces."
+      },
+      "targetConceptKey": "phys.net-force",
+      "explanation": {
+        "ky": "Бул – тең аракеттүү күч R. Ньютондун экинчи закону боюнча a = R/m.",
+        "ru": "Это равнодействующая R. По второму закону Ньютона a = R/m.",
+        "en": "That is the resultant R. By Newton's second law a = R/m."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-second-12",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден брусокко аракет эткен күчтү ченөөчү приборду тап.",
+        "ru": "Найдите на модели прибор, измеряющий силу, действующую на брусок.",
+        "en": "Find the instrument in the model that measures the force on the block."
+      },
+      "targetConceptKey": "phys.dynamometer",
+      "explanation": {
+        "ky": "Бул – динамометр: ал 6 Н көрсөтөт.",
+        "ru": "Это динамометр: он показывает 6 Н.",
+        "en": "That is the dynamometer: it reads 6 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o1"
+      ],
+      "difficulty": 1
+    }
+  ]
+}

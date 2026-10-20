@@ -1,0 +1,1028 @@
+{
+  "topic": {
+    "key": "phys7-sound",
+    "unitKey": "phys.g7.oscillations",
+    "status": "published",
+    "title": {
+      "ky": "Үн толкундары. Жаңырык. Ультраүн",
+      "ru": "Звуковые волны. Эхо. Ультразвук",
+      "en": "Sound waves, echo and ultrasound"
+    },
+    "formula": "s = \\frac{vt}{2}",
+    "classification": {
+      "ky": "Үн толкундары",
+      "ru": "Звуковые волны",
+      "en": "Sound waves"
+    },
+    "description": {
+      "ky": "Үндүн булагы – термелүүчү нерсе: комуздун кылы, камертон. Анын термелүүлөрү абада узатасынан толкун болуп 330 м/с менен таралат; жыштыгы 16 Гцтен 20 000 Гцке чейинки толкундарды угабыз. Үндүн тону жыштыкка, катуулугу амплитудага көз каранды, тембри анын жагымдуулугун мүнөздөйт. Үн тоскоолдуктан чагылат – бул жаңырык: аскага чейинки аралык s = vt/2. Жыштыгы 20 000 Гцтен жогору ультраүндөр эхолотто, медицинада жана өндүрүштө колдонулат.",
+      "ru": "Источник звука – колеблющееся тело: струна комуза, камертон. Его колебания идут по воздуху продольной волной со скоростью 330 м/с; мы слышим волны от 16 до 20 000 Гц. Тон звука зависит от частоты, громкость – от амплитуды, тембр характеризует его приятность. Звук отражается от препятствий – это эхо: расстояние до скалы s = vt/2. Ультразвук с частотой выше 20 000 Гц применяют в эхолотах, медицине и промышленности.",
+      "en": "A sound source is a vibrating body – a komuz string, a tuning fork. Its vibrations travel through air as a longitudinal wave at 330 m/s; we hear 16 Hz to 20,000 Hz. Pitch depends on frequency, loudness on amplitude, and timbre describes the sound’s quality. Sound reflects off obstacles – an echo: the distance to a cliff is s = vt/2. Ultrasound above 20,000 Hz is used in echo sounders, medicine and industry."
+    },
+    "goal": {
+      "ky": "Үндүн пайда болушун жана таралышын, жаңырыкты жана ультраүндү түшүндүрүү, үндүн ылдамдыгы боюнча аралыкты (s = vt/2) жана толкун узундугун (λ = v/ν) эсептөө (PHYS-7.6.2).",
+      "ru": "Объяснять возникновение и распространение звука, эхо и ультразвук, вычислять расстояния по скорости звука (s = vt/2) и длину волны (λ = v/ν) (PHYS-7.6.2).",
+      "en": "Explain how sound arises and travels, echoes and ultrasound, and calculate distances from the speed of sound (s = vt/2) and wavelengths (λ = v/ν) (PHYS-7.6.2)."
+    },
+    "objectiveKeys": [
+      "phys.g7.oscillations.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "waves",
+        "variant": "sound",
+        "frequency": 440,
+        "medium": "air"
+      },
+      "camera": {
+        "position": [
+          1,
+          2,
+          6.5
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "trace",
+        "vectors"
+      ]
+    },
+    "conceptKeys": [
+      "phys.sound",
+      "phys.oscillation",
+      "phys.longitudinal-wave",
+      "phys.wavelength",
+      "phys.oscillation-frequency",
+      "phys.echo",
+      "phys.ultrasound"
+    ],
+    "overrides": {
+      "phys.sound": {
+        "nodes": [
+          "Air_Particles",
+          "Air_Tracer_*",
+          "Ear",
+          "Ear_*"
+        ]
+      },
+      "phys.oscillation": {
+        "nodes": [
+          "Source",
+          "Source_*"
+        ],
+        "title": {
+          "ky": "Үндүн булагы – камертон",
+          "ru": "Источник звука – камертон",
+          "en": "Sound source – tuning fork"
+        },
+        "description": {
+          "ky": "Камертон – үндүн жасалма булагы. Урулган камертондун жаактары секундасына 440 жолу термелип, айланадагы абаны термелтет. Ар бир камертон белгилүү бир жыштыктагы үндү гана чыгарат – ал анын бетине жазылат.",
+          "ru": "Камертон – искусственный источник звука. Ножки ударенного камертона колеблются 440 раз в секунду и раскачивают воздух. Каждый камертон даёт звук только одной частоты – она написана на нём.",
+          "en": "A tuning fork is a man-made sound source. Struck, its prongs vibrate 440 times a second and shake the air. Each fork gives one frequency, stamped on it."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frequency",
+            "value": 440
+          }
+        ]
+      },
+      "phys.longitudinal-wave": {
+        "nodes": [
+          "Compression_*"
+        ]
+      },
+      "phys.wavelength": {
+        "nodes": [
+          "Marker_Wavelength"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.75
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\lambda = 330/440 = 0.75"
+          }
+        ]
+      },
+      "phys.oscillation-frequency": {
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frequency",
+            "value": 440
+          }
+        ]
+      },
+      "phys.echo": {
+        "nodes": [
+          "Wall",
+          "Pulse_Back",
+          "Echo_Heard",
+          "Marker_Distance"
+        ],
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "t = 2s/v = 340/330 \\approx 1.03"
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 170
+          }
+        ]
+      },
+      "phys.ultrasound": {
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frequency",
+            "value": 20000
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 1560
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "sound-440",
+        "title": {
+          "ky": "Камертон, 440 Гц",
+          "ru": "Камертон, 440 Гц",
+          "en": "Tuning fork, 440 Hz"
+        },
+        "classification": {
+          "ky": "λ = 330/440 = 0,75 м",
+          "ru": "λ = 330/440 = 0,75 м",
+          "en": "λ = 330/440 = 0.75 m"
+        },
+        "thumb": "thumbs/sound-440.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frequency",
+            "value": 440
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.75
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 330
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "waves",
+            "variant": "sound",
+            "frequency": 440,
+            "medium": "air"
+          },
+          "camera": {
+            "position": [
+              1.51,
+              3.58,
+              14.07
+            ],
+            "target": [
+              -0.7,
+              1.37,
+              -0.28
+            ],
+            "fov": 45
+          }
+        }
+      },
+      {
+        "key": "sound-220",
+        "title": {
+          "ky": "Жоон үн, 220 Гц",
+          "ru": "Низкий звук, 220 Гц",
+          "en": "Low note, 220 Hz"
+        },
+        "classification": {
+          "ky": "λ = 330/220 = 1,5 м",
+          "ru": "λ = 330/220 = 1,5 м",
+          "en": "λ = 330/220 = 1.5 m"
+        },
+        "thumb": "thumbs/sound-220.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frequency",
+            "value": 220
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 1.5
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 330
+          }
+        ],
+        "scene": {
+          "params": {
+            "frequency": 220
+          }
+        }
+      },
+      {
+        "key": "sound-echo",
+        "title": {
+          "ky": "Жаңырык: аска 170 м",
+          "ru": "Эхо: скала в 170 м",
+          "en": "Echo from a cliff 170 m away"
+        },
+        "classification": {
+          "ky": "t = 2s/v ≈ 1,03 с",
+          "ru": "t = 2s/v ≈ 1,03 с",
+          "en": "t = 2s/v ≈ 1.03 s"
+        },
+        "thumb": "thumbs/sound-echo.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 170
+          },
+          {
+            "kind": "quantity",
+            "type": "speed",
+            "value": 330
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "echo",
+            "distance": 170
+          }
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "fork",
+            "camera": {
+              "position": [
+                -1.9,
+                1.7,
+                6.5
+              ],
+              "target": [
+                -2.9,
+                0.7,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.oscillation",
+            "text": {
+              "ky": "Камертонду урсак, анын жаактары секундасына 440 жолу термелет. Термелүүчү нерсе – үндүн булагы. Камертондун үнү катуураак чыгышы үчүн ал ичи көңдөй кутуга орнотулат (144-сүрөт).",
+              "ru": "Ударим по камертону – его ножки колеблются 440 раз в секунду. Колеблющееся тело – источник звука. Чтобы звук был громче, камертон ставят на полый ящик (рис. 144).",
+              "en": "Strike the tuning fork and its prongs vibrate 440 times a second. A vibrating body is a source of sound. The fork sits on a hollow box to make it louder (fig. 144)."
+            },
+            "teacherNote": {
+              "ky": "Мүмкүн болсо, чыныгы камертонду уруп, жаагын суу куюлган стаканга тийгизиңиз – суу чачырайт.",
+              "ru": "Если есть камертон, ударьте и коснитесь ножкой воды в стакане – брызги покажут колебания.",
+              "en": "If you have a fork, strike it and dip a prong in water – the splashes show the vibration."
+            },
+            "altText": {
+              "ky": "Кутуга орнотулган камертон, жаактары дирилдейт.",
+              "ru": "Камертон на ящике, ножки дрожат.",
+              "en": "A tuning fork on a box with vibrating prongs."
+            }
+          },
+          {
+            "key": "air",
+            "modes": {
+              "trace": true
+            },
+            "focus": "phys.longitudinal-wave",
+            "text": {
+              "ky": "Жаактар абаны кезек тыгыздап, сейректетет – тыгыздалуулар бардык багытка тарайт. Бул – үн толкуну, узатасынан толкун. Аба бөлүкчөлөрү ордунда гана алга-артка термелет.",
+              "ru": "Ножки то сжимают, то разрежают воздух – сгущения расходятся во все стороны. Это звуковая волна, продольная. Частицы воздуха лишь колеблются вперёд-назад на месте.",
+              "en": "The prongs squeeze and stretch the air in turn and the compressions spread out in all directions – a sound wave, which is longitudinal. Air particles only move back and forth in place."
+            },
+            "teacherNote": {
+              "ky": "Белгиленген үч бөлүкчөнү байкагыла: алар кулакка чейин жетпейт.",
+              "ru": "Следите за тремя отмеченными частицами: до уха они не долетают.",
+              "en": "Watch the three marked particles: they never reach the ear."
+            },
+            "altText": {
+              "ky": "Аба бөлүкчөлөрүнүн тыгыз жана сейрек катмарлары.",
+              "ru": "Сгущения и разрежения частиц воздуха.",
+              "en": "Dense and sparse layers of air particles."
+            }
+          },
+          {
+            "key": "ear",
+            "focus": "phys.sound",
+            "text": {
+              "ky": "Үн толкуну кулагыбыздын калкасына жеткенде, биз үндү угабыз. Жыштыгы 16 Гцтен 20 000 Гцке чейинки толкундар гана угулат. Абада үн 330 м/с менен таралат, ошондуктан 440 Гц үндүн толкун узундугу λ = 330/440 = 0,75 м.",
+              "ru": "Когда звуковая волна доходит до барабанной перепонки, мы слышим звук. Слышны только волны от 16 до 20 000 Гц. В воздухе звук идёт со скоростью 330 м/с, поэтому у звука 440 Гц длина волны λ = 330/440 = 0,75 м.",
+              "en": "When the sound wave reaches the eardrum we hear it. Only 16–20,000 Hz is audible. Sound travels at 330 m/s in air, so a 440 Hz note has λ = 330/440 = 0.75 m."
+            },
+            "teacherNote": {
+              "ky": "Боштукта үн таралбайт: 142-сүрөттөгү вакуумдагы коңгуроо тажрыйбасын айтып бериңиз.",
+              "ru": "В пустоте звук не идёт: расскажите об опыте со звонком под колоколом (рис. 142).",
+              "en": "Sound cannot cross a vacuum: describe the bell-jar experiment (fig. 142)."
+            },
+            "altText": {
+              "ky": "Оң жактагы кулак жана толкун узундугунун белгиси.",
+              "ru": "Ухо справа и отметка длины волны.",
+              "en": "The ear on the right and the wavelength marker."
+            }
+          },
+          {
+            "key": "pitch",
+            "focus": "phys.wavelength",
+            "sample": "sound-220",
+            "text": {
+              "ky": "Жыштыкты 220 Гцке түшүрсөк, үн жоонураак угулат, ал эми толкун узундугу эки эсе узарат: λ = 330/220 = 1,5 м. Үндүн тону (бийиктиги) жыштыкка, катуулугу амплитудага көз каранды.",
+              "ru": "Понизим частоту до 220 Гц – звук станет ниже, а длина волны вдвое больше: λ = 330/220 = 1,5 м. Тон (высота) звука зависит от частоты, громкость – от амплитуды.",
+              "en": "Drop the frequency to 220 Hz: the note sounds lower and the wavelength doubles, λ = 330/220 = 1.5 m. Pitch depends on frequency, loudness on amplitude."
+            },
+            "teacherNote": {
+              "ky": "143-сүрөттөгү тиштүү дисктер: тиштер көп болсо үн ичке чыгат.",
+              "ru": "Зубчатые диски рис. 143: больше зубцов – выше звук.",
+              "en": "The toothed discs of fig. 143: more teeth, higher note."
+            },
+            "altText": {
+              "ky": "Тыгыздалуулар сейрегирээк – толкун узун.",
+              "ru": "Сгущения реже – волна длиннее.",
+              "en": "Compressions further apart – a longer wave."
+            }
+          },
+          {
+            "key": "echo",
+            "focus": "phys.echo",
+            "sample": "sound-echo",
+            "text": {
+              "ky": "Үн аскадан чагылат – бул жаңырык. Адам аскадан 170 м алыста кыйкырса, үн 340 м жол басып, t = 2s/v = 340/330 ≈ 1,03 с дан кийин кайтып келет.",
+              "ru": "Звук отражается от скалы – это эхо. Если человек крикнет в 170 м от скалы, звук пройдёт 340 м и вернётся через t = 2s/v = 340/330 ≈ 1,03 с.",
+              "en": "Sound reflects off a cliff – an echo. Shout 170 m from the cliff and the sound travels 340 m, returning after t = 2s/v = 340/330 ≈ 1.03 s."
+            },
+            "teacherNote": {
+              "ky": "Кулак эки үндү 1/15 с аралыкта ажыратат, ошондуктан аска 11 мден жакын болсо жаңырык угулбайт.",
+              "ru": "Ухо различает звуки через 1/15 с, поэтому если скала ближе 11 м, эха не слышно.",
+              "en": "The ear needs 1/15 s between sounds, so a cliff closer than 11 m gives no audible echo."
+            },
+            "altText": {
+              "ky": "Адам, аска жана алды-артка жүргөн үн импульсу, секундомер.",
+              "ru": "Человек, скала, звуковой импульс туда и обратно, секундомер.",
+              "en": "A person, a cliff, a sound pulse going out and back, and a stopwatch."
+            }
+          },
+          {
+            "key": "ultrasound",
+            "focus": "phys.ultrasound",
+            "sample": "sound-echo",
+            "text": {
+              "ky": "Жыштыгы 20 000 Гцтен жогору толкундар – ультраүн, биз аны укпайбыз. Эхолот кеменин түбүнөн ультраүн жиберип, деңиздин тереңдигин s = vt/2 боюнча заматта өлчөйт; жарганаттар жана дельфиндер ультраүн менен багыт табат.",
+              "ru": "Волны с частотой выше 20 000 Гц – ультразвук, мы его не слышим. Эхолот на днище судна посылает ультразвук и мгновенно измеряет глубину по s = vt/2; летучие мыши и дельфины ориентируются ультразвуком.",
+              "en": "Waves above 20,000 Hz are ultrasound – we cannot hear them. An echo sounder on a ship’s hull sends ultrasound and finds the depth at once from s = vt/2; bats and dolphins navigate with it."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: Айда адамдар үн чыгарып сүйлөшө алышабы? (Жок – аба жок.)",
+              "ru": "Спросите: могут ли люди на Луне разговаривать голосом? (Нет – там нет воздуха.)",
+              "en": "Ask whether people could talk aloud on the Moon (no – there is no air)."
+            },
+            "altText": {
+              "ky": "Аскадан кайткан импульс жана жаңырыкты уккан белги.",
+              "ru": "Отражённый от скалы импульс и отметка «эхо услышано».",
+              "en": "The pulse returning from the cliff and the “echo heard” sign."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.echo-sounding"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "sound-440"
+          },
+          {
+            "kind": "sample",
+            "key": "sound-220"
+          },
+          {
+            "kind": "sample",
+            "key": "sound-echo"
+          }
+        ],
+        "rows": [
+          "frequency",
+          "length",
+          "speed"
+        ],
+        "manual": [
+          {
+            "column": "sound-echo",
+            "row": "frequency",
+            "value": {
+              "ky": "440 Гц",
+              "ru": "440 Гц",
+              "en": "440 Hz"
+            }
+          }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-sound-1",
+          "phys.q.phys7-sound-2",
+          "phys.q.phys7-sound-3",
+          "phys.q.phys7-sound-4",
+          "phys.q.phys7-sound-5",
+          "phys.q.phys7-sound-6",
+          "phys.q.phys7-sound-7",
+          "phys.q.phys7-sound-8",
+          "phys.q.phys7-sound-9",
+          "phys.q.phys7-sound-10",
+          "phys.q.phys7-sound-11"
+        ],
+        "sampleSize": 6
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Эхолот",
+            "ru": "Эхолот",
+            "en": "Echo sounder"
+          },
+          "text": {
+            "ky": "Кеменин түбүндөгү эхолот ультраүн жиберип, анын деңиздин түбүнөн кайткан убактысын өлчөйт; ушинтип океандардын жана суу астындагы тоолордун рельефи такталган (146-сүрөт).",
+            "ru": "Эхолот на днище судна посылает ультразвук и засекает время его возвращения от дна; так нанесли на карты рельеф океанов и подводных гор (рис. 146).",
+            "en": "An echo sounder on a ship’s hull sends ultrasound and times its return from the seabed; that is how the relief of oceans and undersea mountains was mapped (fig. 146)."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Ультраүн медицинада",
+            "ru": "Ультразвук в медицине",
+            "en": "Ultrasound in medicine"
+          },
+          "text": {
+            "ky": "Ультраүн ички органдардагы өзгөрүүлөрдү (шишик, жара ж. б.) табат жана айрым ооруларды дарылоодо колдонулат.",
+            "ru": "Ультразвук находит изменения во внутренних органах (опухоли, язвы и т. п.) и применяется для лечения некоторых болезней.",
+            "en": "Ultrasound finds changes in internal organs – tumours, ulcers – and treats some illnesses."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Концерт залдары",
+            "ru": "Концертные залы",
+            "en": "Concert halls"
+          },
+          "text": {
+            "ky": "Залдын дубалдарына үн жутуучу материалдар жана ийри беттер колдонулат, ошондо жаңырык сөздү бузбайт.",
+            "ru": "В залах применяют звукопоглощающие материалы и изогнутые поверхности, чтобы эхо не мешало речи.",
+            "en": "Halls use sound-absorbing materials and curved surfaces so echoes do not spoil speech."
+          },
+          "field": "e"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Тоодо кыйкыруу",
+            "ru": "Крик в горах",
+            "en": "Shouting in the mountains"
+          },
+          "text": {
+            "ky": "Капчыгайда кыйкырсаң, үнүң аскадан чагылып кайра келет – жаңырык.",
+            "ru": "Крикнешь в ущелье – голос отразится от скалы и вернётся: эхо.",
+            "en": "Shout in a gorge and your voice bounces back from the cliff – an echo."
+          }
+        },
+        {
+          "title": {
+            "ky": "Рельске кулак төшөө",
+            "ru": "Ухо к рельсу",
+            "en": "Ear to the rail"
+          },
+          "text": {
+            "ky": "Поезддин келатканын рельстен эртерээк угабыз: темирде үн абадагыдан 15 эсе тез.",
+            "ru": "Поезд слышно по рельсу раньше: в железе звук в 15 раз быстрее, чем в воздухе.",
+            "en": "You hear a train in the rail first: sound is 15 times faster in iron than in air."
+          }
+        }
+      ]
+    },
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "speed",
+        "value": 330
+      },
+      {
+        "kind": "quantity",
+        "type": "frequency",
+        "value": 16,
+        "max": 20000
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "s = vt/2"
+      }
+    ],
+    "starters": [
+      {
+        "ky": "Эмне үчүн боштукта үн таралбайт?",
+        "ru": "Почему звук не распространяется в пустоте?",
+        "en": "Why can’t sound cross a vacuum?"
+      },
+      {
+        "ky": "Жаңырык боюнча аскага чейинки аралыкты кантип табабыз?",
+        "ru": "Как по эху найти расстояние до скалы?",
+        "en": "How can an echo tell you the distance to a cliff?"
+      },
+      {
+        "ky": "Үндүн тону эмнеге көз каранды?",
+        "ru": "От чего зависит высота звука?",
+        "en": "What does the pitch of a sound depend on?"
+      },
+      {
+        "ky": "Жарганаттар караңгыда кантип учат?",
+        "ru": "Как летучие мыши летают в темноте?",
+        "en": "How do bats fly in the dark?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Мамбетакунов, «Физика», 7-класс (kg-2018), V–VI главалар"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-sound-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Кулакка угулган үн толкундарынын жыштыгы канчага барабар?",
+        "ru": "Какова частота звуковых волн, которые слышит ухо?",
+        "en": "What frequencies can the human ear hear?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "16 Гцтен төмөн",
+            "ru": "Ниже 16 Гц",
+            "en": "Below 16 Hz"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "16 Гцтен 20 000 Гцке чейин",
+            "ru": "От 16 до 20 000 Гц",
+            "en": "16 Hz to 20,000 Hz"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "10 Гцтен 40 000 Гцке чейин",
+            "ru": "От 10 до 40 000 Гц",
+            "en": "10 Hz to 40,000 Hz"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "20 000 Гцтен жогору",
+            "ru": "Выше 20 000 Гц",
+            "en": "Above 20,000 Hz"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Жыштыгы 16 Гцтен 20 000 Гцке чейинки толкундар үн сезимин пайда кылат; андан төмөн жана жогорку толкундарды угабыз.",
+        "ru": "Ощущение звука вызывают волны от 16 до 20 000 Гц; более низкие и высокие мы не слышим.",
+        "en": "Waves from 16 to 20,000 Hz are heard as sound; lower and higher ones are not."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-sound-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Электр коңгуроо айнек баллондун ичинде шыңгырап турат. Баллондун абасын сордура баштаса эмне болот?",
+        "ru": "Электрический звонок звенит под стеклянным колоколом. Что будет, если откачивать из-под него воздух?",
+        "en": "An electric bell rings inside a glass jar. What happens as the air is pumped out?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Үн катуулайт",
+            "ru": "Звук станет громче",
+            "en": "It gets louder"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Үн басаңдап, акыры угулбай калат",
+            "ru": "Звук ослабеет и в конце концов пропадёт",
+            "en": "It fades and finally cannot be heard"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эч нерсе өзгөрбөйт",
+            "ru": "Ничего не изменится",
+            "en": "Nothing changes"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Үн таралышы үчүн серпилгичтүү чөйрө керек; боштукта үн таралбайт (142-сүрөт).",
+        "ru": "Звуку нужна упругая среда; в пустоте звук не распространяется (рис. 142).",
+        "en": "Sound needs an elastic medium; it cannot cross a vacuum (fig. 142)."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "misconceptionKey": "phys.m.sound-in-vacuum",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-sound-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Чагылгандын күркүрөгөн үнү 15 секунддан кийин угулду. Чагылган канча метр аралыкта болгон? (v = 330 м/с)",
+        "ru": "Гром услышали через 15 с после молнии. На каком расстоянии ударила молния, м? (v = 330 м/с)",
+        "en": "Thunder is heard 15 s after the lightning. How far away was it in m? (v = 330 m/s)"
+      },
+      "answer": 4950,
+      "tolerance": 10,
+      "unit": "m",
+      "explanation": {
+        "ky": "Жарык заматта жетет, ошондуктан s = v·t = 330 м/с · 15 с = 4950 м (15-көнүгүү, 6-маселе).",
+        "ru": "Свет приходит мгновенно, поэтому s = v·t = 330 м/с · 15 с = 4950 м (упр. 15, задача 6).",
+        "en": "Light arrives at once, so s = v·t = 330 m/s × 15 s = 4950 m (exercise 15, problem 6)."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-sound-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кулак эки үндү 1/15 с аралыкта ажыратат. Жаңырык угулушу үчүн тоскоолдук эң жок дегенде канча метр алыс болушу керек? (v = 330 м/с)",
+        "ru": "Ухо различает два звука через 1/15 с. На каком наименьшем расстоянии должно быть препятствие, чтобы услышать эхо, м? (v = 330 м/с)",
+        "en": "The ear separates two sounds 1/15 s apart. How far away must an obstacle be, at least, to hear an echo? (v = 330 m/s)"
+      },
+      "answer": 11,
+      "tolerance": 0.2,
+      "unit": "m",
+      "explanation": {
+        "ky": "s = v·t/2 = 330 м/с · (1/15 с)/2 = 11 м.",
+        "ru": "s = v·t/2 = 330 м/с · (1/15 с)/2 = 11 м.",
+        "en": "s = v·t/2 = 330 m/s × (1/15 s)/2 = 11 m."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "misconceptionKey": "phys.m.echo-distance-full",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-sound-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Адам аскадан 170 м алыстыкта туруп кыйкырды. Ал жаңырыкты канча секунддан кийин угат? (v = 330 м/с)",
+        "ru": "Человек крикнул, стоя в 170 м от скалы. Через сколько секунд он услышит эхо? (v = 330 м/с)",
+        "en": "Someone shouts 170 m from a cliff. After how many seconds is the echo heard? (v = 330 m/s)"
+      },
+      "answer": 1.03,
+      "tolerance": 0.02,
+      "unit": "s",
+      "explanation": {
+        "ky": "Үн 2s = 340 м жол басат: t = 2s/v = 340/330 ≈ 1,03 с.",
+        "ru": "Звук проходит путь 2s = 340 м: t = 2s/v = 340/330 ≈ 1,03 с.",
+        "en": "The sound travels 2s = 340 m: t = 2s/v = 340/330 ≈ 1.03 s."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "misconceptionKey": "phys.m.echo-distance-full",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-sound-6",
+      "type": "match",
+      "prompt": {
+        "ky": "Үндүн мүнөздөмөсүн ал эмнеге байланыштуу экени менен дал келтир.",
+        "ru": "Сопоставь характеристику звука и то, от чего она зависит.",
+        "en": "Match each property of sound to what it depends on."
+      },
+      "pairs": [
+        {
+          "key": "pitch",
+          "left": {
+            "ky": "Тону (бийиктиги)",
+            "ru": "Тон (высота)",
+            "en": "Pitch"
+          },
+          "right": {
+            "ky": "Жыштыгына",
+            "ru": "От частоты",
+            "en": "Frequency"
+          }
+        },
+        {
+          "key": "loud",
+          "left": {
+            "ky": "Катуулугу",
+            "ru": "Громкость",
+            "en": "Loudness"
+          },
+          "right": {
+            "ky": "Амплитудасына жана жыштыгына",
+            "ru": "От амплитуды и частоты",
+            "en": "Amplitude and frequency"
+          }
+        },
+        {
+          "key": "timbre",
+          "left": {
+            "ky": "Тембри",
+            "ru": "Тембр",
+            "en": "Timbre"
+          },
+          "right": {
+            "ky": "Үндүн жагымдуулугу, үнгө кошулган обондорго",
+            "ru": "Приятность звука, его «окраска»",
+            "en": "The quality or colour of the sound"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Тон жыштыкка, катуулук амплитудага жана жыштыкка байланыштуу; тембр үндүн жагымдуулугун мүнөздөйт (§55).",
+        "ru": "Тон связан с частотой, громкость – с амплитудой и частотой; тембр характеризует приятность звука (§55).",
+        "en": "Pitch goes with frequency, loudness with amplitude and frequency; timbre describes the sound’s quality (§55)."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-sound-7",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден үндүн булагын – камертонду тап.",
+        "ru": "Найди на модели источник звука – камертон.",
+        "en": "Find the sound source – the tuning fork – on the model."
+      },
+      "targetConceptKey": "phys.oscillation",
+      "explanation": {
+        "ky": "Камертондун жаактары термелип, айланадагы абаны термелтет.",
+        "ru": "Ножки камертона колеблются и раскачивают окружающий воздух.",
+        "en": "The fork’s prongs vibrate and set the air around them vibrating."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-sound-8",
+      "type": "single",
+      "prompt": {
+        "ky": "Үндүн ылдамдыгы кайсы чөйрөдө эң чоң?",
+        "ru": "В какой среде скорость звука наибольшая?",
+        "en": "In which medium is sound fastest?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Абада",
+            "ru": "В воздухе",
+            "en": "Air"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Сууда",
+            "ru": "В воде",
+            "en": "Water"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Темирде",
+            "ru": "В железе",
+            "en": "Iron"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Айнекте",
+            "ru": "В стекле",
+            "en": "Glass"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Жыгачта",
+            "ru": "В дереве",
+            "en": "Wood"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "5-таблица: аба 330, суу 1440, жыгач 4000, айнек 4500, темир жана болот 5000 м/с.",
+        "ru": "Таблица 5: воздух 330, вода 1440, дерево 4000, стекло 4500, железо и сталь 5000 м/с.",
+        "en": "Table 5: air 330, water 1440, wood 4000, glass 4500, iron and steel 5000 m/s."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-sound-9",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Ультраүн кайда колдонулат?",
+        "ru": "Где применяют ультразвук?",
+        "en": "Where is ultrasound used?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Эхолот менен деңиздин тереңдигин өлчөөдө",
+            "ru": "Измерение глубины моря эхолотом",
+            "en": "Measuring sea depth with an echo sounder"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Деталдардагы боштуктарды табууда",
+            "ru": "Поиск пустот в деталях",
+            "en": "Finding hollows in metal parts"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ички органдарды текшерүүдө",
+            "ru": "Исследование внутренних органов",
+            "en": "Examining internal organs"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Боштукта сүйлөшүүдө",
+            "ru": "Разговор в пустоте",
+            "en": "Talking across a vacuum"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Ультраүн эхолотто, өндүрүштө жана медицинада колдонулат; бирок ал да серпилгичтүү толкун, боштукта таралбайт.",
+        "ru": "Ультразвук применяют в эхолотах, промышленности и медицине; но это тоже упругая волна – в пустоте она не идёт.",
+        "en": "Ultrasound is used in echo sounders, industry and medicine – but it is still an elastic wave and cannot cross a vacuum."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-sound-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Ультраүн деген эмне?",
+        "ru": "Что такое ультразвук?",
+        "en": "What is ultrasound?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Абдан катуу үн",
+            "ru": "Очень громкий звук",
+            "en": "Very loud sound"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жыштыгы 20 000 Гцтен жогору, кулакка угулбаган толкундар",
+            "ru": "Неслышимые волны с частотой выше 20 000 Гц",
+            "en": "Inaudible waves above 20,000 Hz"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жыштыгы 16 Гцтен төмөн толкундар",
+            "ru": "Волны с частотой ниже 16 Гц",
+            "en": "Waves below 16 Hz"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Ультраүн – жыштыгы 20 000 Гцтен жогору серпилгичтүү толкундар; кулак аларды укпайт.",
+        "ru": "Ультразвук – упругие волны с частотой выше 20 000 Гц; ухо их не слышит.",
+        "en": "Ultrasound is elastic waves above 20,000 Hz; the ear cannot hear them."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "misconceptionKey": "phys.m.ultrasound-loud",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-sound-11",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Абада үн 330 м/с менен таралат. Жыштыгы 220 Гц үндүн толкун узундугу канча метр?",
+        "ru": "Скорость звука в воздухе 330 м/с. Какова длина волны звука частотой 220 Гц, м?",
+        "en": "Sound travels at 330 m/s in air. What is the wavelength of a 220 Hz sound in m?"
+      },
+      "answer": 1.5,
+      "tolerance": 0.02,
+      "unit": "m",
+      "explanation": {
+        "ky": "λ = v/ν = 330/220 = 1,5 м: жоонураак үн – узунураак толкун.",
+        "ru": "λ = v/ν = 330/220 = 1,5 м: звук ниже – волна длиннее.",
+        "en": "λ = v/ν = 330/220 = 1.5 m: a lower note has a longer wave."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o2"
+      ],
+      "misconceptionKey": "phys.m.frequency-changes-speed",
+      "difficulty": 3
+    }
+  ]
+}

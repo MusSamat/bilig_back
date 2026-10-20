@@ -1,0 +1,1477 @@
+{
+  "topic": {
+    "key": "phys7-floating",
+    "unitKey": "phys.g7.pressure",
+    "status": "published",
+    "title": {
+      "ky": "Нерселердин сууда сүзүү шарттары. Аба шарлары",
+      "ru": "Условия плавания тел. Воздушные шары",
+      "en": "Why bodies float. Balloons"
+    },
+    "formula": "F = F_A",
+    "classification": {
+      "ky": "Сүзүү, калкуу жана чөгүү шарттары",
+      "ru": "Условия плавания и погружения тел",
+      "en": "Floating and sinking"
+    },
+    "description": {
+      "ky": "Көлөмү бирдей (1 дм³) темир, жыгач, муз жана тыгын кубиктерди сууга салабыз. Ар бирине оордук күчү F жана Архимед күчү F_A аракет этет: F > F_A болсо нерсе чөгөт, F = F_A болсо суюктуктун ичинде сүзүп жүрөт, F < F_A болсо калкып чыгып, бетинде калкып жүрөт. Бул нерсенин жана суюктуктун тыгыздыктарына көз каранды. Кеменин сүзүшү жана гелий толтурулган аба шарынын көтөрүлүшү да Архимед күчүнө негизделген (§33–34).",
+      "ru": "Опускаем в воду кубики одинакового объёма (1 дм³) из железа, дерева, льда и пробки. На каждый действуют сила тяжести F и архимедова сила F_A: если F > F_A, тело тонет, если F = F_A – плавает внутри жидкости, если F < F_A – всплывает и плавает на поверхности. Это зависит от плотностей тела и жидкости. Плавание судов и подъём гелиевого воздушного шара тоже основаны на архимедовой силе (§33–34).",
+      "en": "We drop equal 1 dm³ cubes of iron, wood, ice and cork into water. Each feels gravity F and the buoyant force F_A: if F > F_A the body sinks, if F = F_A it hovers inside the liquid, if F < F_A it rises and floats at the surface. It all comes down to the densities of the body and the liquid. Ships and helium balloons rely on the buoyant force too (§33–34)."
+    },
+    "goal": {
+      "ky": "Нерселердин чөгүү, суюктук ичинде сүзүү жана бетинде калкуу шарттарын оордук күчү менен Архимед күчүн, ошондой эле тыгыздыктарды салыштыруу аркылуу түшүндүрүү; кеменин ватер сызыгын жана аба шарынын көтөрүү күчүн эсептөө (PHYS-7.3.2).",
+      "ru": "Объяснять условия, при которых тело тонет, плавает внутри жидкости или на поверхности, сравнивая силу тяжести с архимедовой силой и плотности; объяснять ватерлинию судна и рассчитывать подъёмную силу воздушного шара (PHYS-7.3.2).",
+      "en": "Explain when a body sinks, hovers or floats by comparing gravity with the buoyant force and the densities; explain a ship's waterline and calculate a balloon's lifting force (PHYS-7.3.2)."
+    },
+    "objectiveKeys": [
+      "phys.g7.pressure.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "buoyancy",
+        "variant": "float",
+        "liquid": "water",
+        "bodies": [
+          {
+            "id": "iron",
+            "material": "iron",
+            "volume": 0.001,
+            "shape": "cube"
+          },
+          {
+            "id": "wood",
+            "material": "wood",
+            "volume": 0.001,
+            "shape": "cube"
+          },
+          {
+            "id": "ice",
+            "material": "ice",
+            "volume": 0.001,
+            "shape": "cube"
+          },
+          {
+            "id": "cork",
+            "material": "cork",
+            "volume": 0.001,
+            "shape": "cube"
+          }
+        ],
+        "g": 9.8
+      },
+      "camera": {
+        "position": [
+          0.45,
+          0.75,
+          1.6
+        ],
+        "target": [
+          0,
+          0.15,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.floating",
+      "phys.sinking",
+      "phys.buoyant-force",
+      "phys.gravity",
+      "phys.density",
+      "phys.archimedes-law",
+      "phys.balloon"
+    ],
+    "overrides": {
+      "phys.floating": {
+        "nodes": [
+          "Body_wood*",
+          "Body_ice*",
+          "Body_cork*"
+        ],
+        "description": {
+          "ky": "Жыгач (600 кг/м³), муз (900 кг/м³) жана тыгын (240 кг/м³) суудан тыгыздыгы аз, ошондуктан калкып чыгып, F_A = F болгуча батат: жыгач 60 %, муз 90 %, тыгын 24 %.",
+          "ru": "Дерево (600 кг/м³), лёд (900 кг/м³) и пробка (240 кг/м³) менее плотны, чем вода, поэтому всплывают и погружаются, пока F_A не станет равна F: дерево на 60 %, лёд на 90 %, пробка на 24 %.",
+          "en": "Wood (600 kg/m³), ice (900 kg/m³) and cork (240 kg/m³) are less dense than water, so they rise and settle where F_A = F: wood 60 % under, ice 90 %, cork 24 %."
+        },
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F = F_A"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\frac{V_{бат}}{V} = \\frac{\\rho_н}{\\rho_с}"
+          }
+        ]
+      },
+      "phys.sinking": {
+        "nodes": [
+          "Body_iron*",
+          "Arrow_Support_*"
+        ],
+        "description": {
+          "ky": "Темир кубик: F = 7,8 кг · 9,8 = 76,4 Н, F_A = 1000 · 9,8 · 0,001 = 9,8 Н. F > F_A, ошондуктан ал түбүнө чөгөт; түбү аны калган 66,6 Н күч менен кармап турат.",
+          "ru": "Железный кубик: F = 7,8 кг · 9,8 = 76,4 Н, F_A = 1000 · 9,8 · 0,001 = 9,8 Н. F > F_A, поэтому он тонет; дно удерживает его с оставшейся силой 66,6 Н.",
+          "en": "The iron cube: F = 7.8 kg × 9.8 = 76.4 N, F_A = 1000 × 9.8 × 0.001 = 9.8 N. F > F_A, so it sinks; the bottom holds it up with the remaining 66.6 N."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 76.4
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 9.8
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F > F_A"
+          }
+        ]
+      },
+      "phys.buoyant-force": {
+        "nodes": [
+          "Arrow_Buoyancy_*"
+        ],
+        "description": {
+          "ky": "Ар бир кубикке суунун Архимед күчү. Калкып жүргөн кубикте ал оордук күчүнө барабар; чөккөн темирде ал толук көлөмгө жараша 9,8 Н гана.",
+          "ru": "Архимедова сила воды на каждый кубик. У плавающих кубиков она равна силе тяжести; у утонувшего железного – всего 9,8 Н по полному объёму.",
+          "en": "The water's buoyant force on each cube. For the floating cubes it equals gravity; for the sunken iron one it is only 9.8 N for its full volume."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 5.88
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F_A = \\rho_с g V_{бат}"
+          }
+        ]
+      },
+      "phys.gravity": {
+        "nodes": [
+          "Arrow_Gravity_*"
+        ],
+        "description": {
+          "ky": "Ар бир кубикке оордук күчү F = m·g ылдый аракет этет. Көлөм бирдей болгондуктан, ал тыгыздыкка жараша: темир 76,4 Н, муз 8,8 Н, жыгач 5,9 Н, тыгын 2,4 Н.",
+          "ru": "На каждый кубик действует сила тяжести F = m·g вниз. Объёмы равны, поэтому она зависит от плотности: железо 76,4 Н, лёд 8,8 Н, дерево 5,9 Н, пробка 2,4 Н.",
+          "en": "Gravity F = mg pulls each cube down. The volumes are equal, so it follows the density: iron 76.4 N, ice 8.8 N, wood 5.9 N, cork 2.4 N."
+        },
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F = m \\cdot g"
+          }
+        ]
+      },
+      "phys.density": {
+        "description": {
+          "ky": "Нерсе чөгөбү же калкыйбы – анын тыгыздыгын суюктуктун тыгыздыгы менен салыштыруу керек: ρ_н > ρ_с – чөгөт; ρ_н = ρ_с – ичинде сүзүп жүрөт; ρ_н < ρ_с – калкыйт. Ошондуктан темир сууда чөгөт, ал эми сымапта калкыйт.",
+          "ru": "Утонет тело или всплывёт – сравниваем его плотность с плотностью жидкости: ρ_т > ρ_ж – тонет; ρ_т = ρ_ж – плавает внутри; ρ_т < ρ_ж – всплывает. Поэтому железо в воде тонет, а в ртути плавает.",
+          "en": "To tell whether a body sinks or floats, compare its density with the liquid's: denser – it sinks; equal – it hovers inside; less dense – it floats. That is why iron sinks in water but floats on mercury."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 1000,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 7800,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 600,
+            "unit": "kg/m³"
+          }
+        ],
+        "nodes": [
+          "Liquid",
+          "Beaker",
+          "Beaker_*"
+        ]
+      },
+      "phys.balloon": {
+        "nodes": [
+          "Balloon",
+          "Basket"
+        ],
+        "description": {
+          "ky": "Гелий толтурулган шар. Гелийдин тыгыздыгы (0,18 кг/м³) абаныкынан (≈ 1,3 кг/м³) 7 эседей аз, ошондуктан абанын Архимед күчү шардын, гелийдин жана жүктүн салмагынан чоң болуп, шар көтөрүлөт.",
+          "ru": "Шар, наполненный гелием. Плотность гелия (0,18 кг/м³) примерно в 7 раз меньше плотности воздуха (≈ 1,3 кг/м³), поэтому архимедова сила воздуха больше веса оболочки, гелия и груза – и шар поднимается.",
+          "en": "A helium-filled balloon. Helium (0.18 kg/m³) is about 7 times less dense than air (about 1.3 kg/m³), so the air's buoyant force beats the weight of envelope, helium and load – and the balloon rises."
+        }
+      }
+    },
+    "samples": [
+      {
+        "key": "float-water",
+        "title": {
+          "ky": "Сууда: темир, жыгач, муз, тыгын",
+          "ru": "В воде: железо, дерево, лёд, пробка",
+          "en": "In water: iron, wood, ice, cork"
+        },
+        "classification": {
+          "ky": "Темир чөгөт, калгандары калкыйт",
+          "ru": "Железо тонет, остальные плавают",
+          "en": "Iron sinks, the rest float"
+        },
+        "thumb": "thumbs/float-water.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 1000,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "volume",
+            "value": 1000
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "float",
+            "liquid": "water",
+            "bodies": [
+              {
+                "id": "iron",
+                "material": "iron",
+                "volume": 0.001,
+                "shape": "cube"
+              },
+              {
+                "id": "wood",
+                "material": "wood",
+                "volume": 0.001,
+                "shape": "cube"
+              },
+              {
+                "id": "ice",
+                "material": "ice",
+                "volume": 0.001,
+                "shape": "cube"
+              },
+              {
+                "id": "cork",
+                "material": "cork",
+                "volume": 0.001,
+                "shape": "cube"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "float-mercury",
+        "title": {
+          "ky": "Сымапта: темир, жез, таш",
+          "ru": "В ртути: железо, медь, камень",
+          "en": "On mercury: iron, copper, stone"
+        },
+        "classification": {
+          "ky": "Металлдар да калкыйт",
+          "ru": "Даже металлы плавают",
+          "en": "Even metals float"
+        },
+        "thumb": "thumbs/float-mercury.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 13600,
+            "unit": "kg/m³"
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "float",
+            "liquid": "mercury",
+            "bodies": [
+              {
+                "id": "iron",
+                "material": "iron",
+                "volume": 0.001,
+                "shape": "cube"
+              },
+              {
+                "id": "copper",
+                "material": "copper",
+                "volume": 0.001,
+                "shape": "cube"
+              },
+              {
+                "id": "stone",
+                "material": "stone",
+                "volume": 0.001,
+                "shape": "cube"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "float-oil",
+        "title": {
+          "ky": "Майда: парафин, жыгач, алюминий",
+          "ru": "В масле: парафин, дерево, алюминий",
+          "en": "In oil: paraffin, wood, aluminium"
+        },
+        "classification": {
+          "ky": "Парафин ичинде сүзүп жүрөт",
+          "ru": "Парафин плавает внутри",
+          "en": "Paraffin hovers inside"
+        },
+        "thumb": "thumbs/float-oil.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 900,
+            "unit": "kg/m³"
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "float",
+            "liquid": "oil",
+            "bodies": [
+              {
+                "id": "paraffin",
+                "material": "paraffin",
+                "volume": 0.001,
+                "shape": "cube"
+              },
+              {
+                "id": "wood",
+                "material": "wood",
+                "volume": 0.001,
+                "shape": "cube"
+              },
+              {
+                "id": "aluminium",
+                "material": "aluminium",
+                "volume": 0.001,
+                "shape": "cube"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "float-balloon",
+        "title": {
+          "ky": "Гелий шары",
+          "ru": "Гелиевый шар",
+          "en": "Helium balloon"
+        },
+        "classification": {
+          "ky": "Архимед күчү абада",
+          "ru": "Архимедова сила в воздухе",
+          "en": "Buoyancy in air"
+        },
+        "thumb": "thumbs/float-balloon.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 0.18,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 1.29,
+            "unit": "kg/m³"
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "balloon",
+            "gas": "helium"
+          },
+          "camera": {
+            "position": [
+              0,
+              0.8,
+              2.6
+            ],
+            "target": [
+              0,
+              0.6,
+              0
+            ],
+            "fov": 45
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "volume",
+        "value": 1000
+      },
+      {
+        "kind": "quantity",
+        "type": "density",
+        "value": 1000,
+        "unit": "kg/m³"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "F = F_A"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                1.01,
+                1.8,
+                2.43
+              ],
+              "target": [
+                0.33,
+                0.89,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false
+            },
+            "focus": "phys.floating",
+            "text": {
+              "ky": "Көлөмү бирдей төрт кубик – темир, жыгач, муз жана тыгын – сууга салынды. Кайсынысы чөгөт, кайсынысы калкыйт, калкыгандары канчалык терең батат? Божомолдоңуз.",
+              "ru": "Четыре кубика одинакового объёма – железный, деревянный, ледяной и пробковый – опустили в воду. Какой утонет, какие всплывут и насколько погрузятся? Предположите.",
+              "en": "Four cubes of equal volume – iron, wood, ice and cork – go into the water. Which sinks, which float, and how deep do the floaters sit? Make a guess."
+            },
+            "teacherNote": {
+              "ky": "Окуучулар болжолдорун дептерге жазышсын. «Нерселерди сууга салуу» процессин иштетиңиз.",
+              "ru": "Пусть ученики запишут прогнозы. Запустите процесс «Тела в воде».",
+              "en": "Have pupils write down predictions. Run the process \"Bodies dropped into water\"."
+            },
+            "altText": {
+              "ky": "Суу толгон бакта төрт түрдүү кубик.",
+              "ru": "Четыре разных кубика в баке с водой.",
+              "en": "Four different cubes in a tank of water."
+            }
+          },
+          {
+            "key": "sink",
+            "camera": {
+              "position": [
+                -0.45,
+                1.61,
+                1.92
+              ],
+              "target": [
+                -0.99,
+                0.89,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.sinking",
+            "text": {
+              "ky": "Темир кубикке F = 76,4 Н оордук күчү жана F_A = 9,8 Н Архимед күчү аракет этет. F > F_A – кубик чөгөт.",
+              "ru": "На железный кубик действуют сила тяжести F = 76,4 Н и архимедова сила F_A = 9,8 Н. F > F_A – кубик тонет.",
+              "en": "Gravity F = 76.4 N and the buoyant force F_A = 9.8 N act on the iron cube. F > F_A – it sinks."
+            },
+            "teacherNote": {
+              "ky": "Китептеги үч шартты тактага жазыңыз: 1) F > F_A – чөгөт; 2) F = F_A – суюктуктун ичинде сүзүп жүрөт; 3) F < F_A – бетинде калкып жүрөт.",
+              "ru": "Запишите на доске три условия из учебника: 1) F > F_A – тонет; 2) F = F_A – плавает внутри жидкости; 3) F < F_A – плавает на поверхности.",
+              "en": "Write the book's three conditions on the board: 1) F > F_A – sinks; 2) F = F_A – hovers inside; 3) F < F_A – floats at the surface."
+            },
+            "altText": {
+              "ky": "Бактын түбүндө жаткан темир кубик, узун ылдый жебе жана кыска өйдө жебе.",
+              "ru": "Железный кубик на дне, длинная стрелка вниз и короткая вверх.",
+              "en": "The iron cube on the bottom with a long arrow down and a short one up."
+            }
+          },
+          {
+            "key": "float",
+            "camera": {
+              "position": [
+                0.94,
+                2.09,
+                3.37
+              ],
+              "target": [
+                0,
+                0.84,
+                0.02
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.buoyant-force",
+            "text": {
+              "ky": "Жыгач кубик: F = 0,6 · 9,8 = 5,88 Н. Толук батса F_A = 9,8 Н > F – ал калкып чыгат да, F_A = F = 5,88 Н болгуча батат: 0,6 дм³, б. а. 60 %.",
+              "ru": "Деревянный кубик: F = 0,6 · 9,8 = 5,88 Н. При полном погружении F_A = 9,8 Н > F – он всплывает и погружается, пока F_A не станет равна F = 5,88 Н: 0,6 дм³, то есть 60 %.",
+              "en": "The wooden cube: F = 0.6 × 9.8 = 5.88 N. Fully under, F_A = 9.8 N > F, so it rises and settles where F_A = F = 5.88 N: 0.6 dm³, i.e. 60 %."
+            },
+            "teacherNote": {
+              "ky": "Калкып жүргөн нерсеге да Архимед күчү аракет этет – ал нерсенин салмагына так барабар. Бул – кеңири таралган ката.",
+              "ru": "На плавающее тело тоже действует архимедова сила – она точно равна его весу. Это частая ошибка.",
+              "en": "A floating body does feel a buoyant force – exactly equal to its weight. This is a common slip."
+            },
+            "altText": {
+              "ky": "Суунун бетинде калкыган жыгач кубик, өйдө жана ылдый жебелер бирдей.",
+              "ru": "Деревянный кубик на поверхности, стрелки вверх и вниз равны.",
+              "en": "The wooden cube at the surface with equal up and down arrows."
+            }
+          },
+          {
+            "key": "density",
+            "camera": {
+              "position": [
+                0.94,
+                2.09,
+                3.37
+              ],
+              "target": [
+                0,
+                0.84,
+                0.02
+              ],
+              "fov": 45
+            },
+            "focus": "phys.density",
+            "text": {
+              "ky": "Чөгүү же калкуу тыгыздыктарга көз каранды: ρ_н > ρ_с – чөгөт; ρ_н = ρ_с – ичинде сүзүп жүрөт; ρ_н < ρ_с – калкыйт. Нерсенин тыгыздыгы канча кичине болсо, анын ошончо аз бөлүгү батат: муз – 90 %, тыгын – 24 %.",
+              "ru": "Тонуть или плавать – зависит от плотностей: ρ_т > ρ_ж – тонет; ρ_т = ρ_ж – плавает внутри; ρ_т < ρ_ж – всплывает. Чем меньше плотность тела, тем меньшая часть погружена: лёд – 90 %, пробка – 24 %.",
+              "en": "Sinking or floating depends on densities: denser than the liquid – sinks; equal – hovers; less dense – floats. The less dense the body, the less of it is under: ice 90 %, cork 24 %."
+            },
+            "teacherNote": {
+              "ky": "Китептеги 92-сүрөттү көрсөтүңүз. Сураңыз: айсбергдин канча бөлүгү суунун астында? (Деңиз суусунда ≈ 0,87.)",
+              "ru": "Покажите рисунок 92 учебника. Спросите: какая часть айсберга под водой? (В морской воде ≈ 0,87.)",
+              "en": "Show figure 92 in the textbook. Ask: how much of an iceberg is under water? (About 0.87 in sea water.)"
+            },
+            "altText": {
+              "ky": "Ар кандай тереңдикке баткан кубиктер.",
+              "ru": "Кубики, погружённые на разную глубину.",
+              "en": "Cubes floating at different depths."
+            }
+          },
+          {
+            "key": "mercury",
+            "sample": "float-mercury",
+            "camera": {
+              "position": [
+                -0.4,
+                1.74,
+                1.6
+              ],
+              "target": [
+                -0.85,
+                1.14,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.sinking",
+            "text": {
+              "ky": "Сымаптын тыгыздыгы 13 600 кг/м³ – темирдикинен (7800) чоң. Ошондуктан темир, жез жана таш сымапта чөкпөй калкыйт! Темир кубиктин ≈ 57 % гана батат.",
+              "ru": "Плотность ртути 13 600 кг/м³ – больше, чем у железа (7800). Поэтому железо, медь и камень в ртути не тонут, а плавают! Железный кубик погружён лишь на ≈ 57 %.",
+              "en": "Mercury is 13 600 kg/m³ – denser than iron (7800). So iron, copper and stone float on mercury! The iron cube sits only about 57 % under."
+            },
+            "teacherNote": {
+              "ky": "«Оор нерселер чөгөт» деген түшүнүктү талкуулаңыз: маанилүүсү масса эмес, тыгыздыктардын катышы.",
+              "ru": "Обсудите представление «тяжёлое тонет»: важна не масса, а соотношение плотностей.",
+              "en": "Discuss the idea that \"heavy things sink\": what matters is not mass but the ratio of densities."
+            },
+            "altText": {
+              "ky": "Сымаптын бетинде калкыган металл кубиктер.",
+              "ru": "Металлические кубики плавают на ртути.",
+              "en": "Metal cubes floating on mercury."
+            }
+          },
+          {
+            "key": "hover",
+            "sample": "float-oil",
+            "camera": {
+              "position": [
+                0.42,
+                1.7,
+                1.5
+              ],
+              "target": [
+                0,
+                1.14,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.floating",
+            "text": {
+              "ky": "Майдын тыгыздыгы 900 кг/м³, парафиндики да 900 кг/м³: F = F_A – парафин майдын ичинде кайсы тереңдикте болсо да тең салмактуу абалда сүзүп жүрөт. Алюминий (2700) чөгөт, жыгач калкыйт.",
+              "ru": "Плотность масла 900 кг/м³, у парафина тоже 900 кг/м³: F = F_A – парафин плавает внутри масла в равновесии на любой глубине. Алюминий (2700) тонет, дерево всплывает.",
+              "en": "Oil is 900 kg/m³ and so is paraffin: F = F_A – the paraffin hovers in balance at any depth in the oil. Aluminium (2700) sinks and wood floats."
+            },
+            "teacherNote": {
+              "ky": "Сууда тузсуз жумуртка чөгөт, туз кошкондо сүзүп, андан да көп туз кошкондо калкыйт – жөнөкөй тажрыйба катары сунуштаңыз.",
+              "ru": "Предложите опыт: яйцо в пресной воде тонет, при добавлении соли плавает внутри, а с ещё большим количеством соли всплывает.",
+              "en": "Suggest an experiment: an egg sinks in fresh water, hovers once salt is added and floats with even more salt."
+            },
+            "altText": {
+              "ky": "Майдын ичинде илинип турган парафин кубик.",
+              "ru": "Парафиновый кубик висит внутри масла.",
+              "en": "A paraffin cube hanging in the middle of the oil."
+            }
+          },
+          {
+            "key": "ship",
+            "camera": {
+              "position": [
+                0.94,
+                2.09,
+                3.37
+              ],
+              "target": [
+                0,
+                0.84,
+                0.02
+              ],
+              "fov": 45
+            },
+            "focus": "phys.archimedes-law",
+            "text": {
+              "ky": "Калкып жүргөн нерсени суу анын абадагы салмагына барабар күч менен түртөт. Кеменин суудагы бөлүгү аркылуу сүрүп чыгарылган суунун салмагы кеменин жүгү менен кошо салмагына барабар. Кеменин сууга баткан тереңдигин кызыл ватер сызыгы көрсөтөт – суу андан жогору чыкса, кеме чөгүп кетиши мүмкүн.",
+              "ru": "Плавающее тело вода выталкивает с силой, равной его весу в воздухе. Вес воды, вытесненной подводной частью судна, равен весу судна вместе с грузом. Глубину погружения показывает красная ватерлиния – если вода поднимется выше, судно может затонуть.",
+              "en": "Water pushes a floating body up with a force equal to its weight in air. The weight of water pushed aside by a ship's hull equals the weight of the ship with its cargo. The red waterline shows how deep it may sit – if the water rises above it the ship may sink."
+            },
+            "teacherNote": {
+              "ky": "93-сүрөттөгү тажрыйба: калкыган жыгачтын сүрүп чыгарган суусунун салмагы жыгачтын салмагына барабар. «Ватер» – голландча «суу».",
+              "ru": "Опыт с рисунка 93: вес воды, вытесненной плавающим бруском, равен весу бруска. «Ватер» по-голландски – «вода».",
+              "en": "The experiment of figure 93: the water pushed aside by a floating block weighs the same as the block. \"Water\" in the word waterline is Dutch for water."
+            },
+            "altText": {
+              "ky": "Суунун бетинде калкыган кубиктер жана алардын баткан бөлүктөрү.",
+              "ru": "Плавающие кубики и их погружённые части.",
+              "en": "The floating cubes and the parts of them under water."
+            }
+          },
+          {
+            "key": "balloon",
+            "sample": "float-balloon",
+            "camera": {
+              "position": [
+                0,
+                0.8,
+                2.6
+              ],
+              "target": [
+                0,
+                0.6,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.balloon",
+            "text": {
+              "ky": "Архимед күчү абада да аракет этет. Абадан жеңил газ (гелий, суутек же ысык аба) толтурулган шар көтөрүлөт. Китептеги мисал: 40 м³ гелий 71 Н, абанын Архимед күчү 1,3 · 40 · 9,8 ≈ 510 Н – шар 510 − 71 = 439 Н жүктү көтөрөт.",
+              "ru": "Архимедова сила действует и в воздухе. Шар с газом легче воздуха (гелий, водород или горячий воздух) поднимается. Пример из учебника: 40 м³ гелия весят 71 Н, архимедова сила воздуха 1,3 · 40 · 9,8 ≈ 510 Н – шар поднимет груз 510 − 71 = 439 Н.",
+              "en": "The buoyant force works in air too. A balloon filled with a gas lighter than air (helium, hydrogen or hot air) rises. The textbook example: 40 m³ of helium weighs 71 N, the air's buoyant force is 1.3 × 40 × 9.8 ≈ 510 N, so the balloon lifts 510 − 71 = 439 N."
+            },
+            "teacherNote": {
+              "ky": "Бийиктеген сайын аба сейрек болуп, Архимед күчү азаят – шар белгилүү бийиктикте токтойт. Түшүү үчүн газдын бир бөлүгүн клапан аркылуу чыгарышат. Китепте абанын тыгыздыгы 1,3 кг/м³, моделде 1,29 кг/м³.",
+              "ru": "С высотой воздух разрежается, архимедова сила уменьшается – шар останавливается на определённой высоте. Чтобы опуститься, часть газа выпускают через клапан. В учебнике плотность воздуха 1,3 кг/м³, в модели 1,29 кг/м³.",
+              "en": "Higher up the air is thinner and the buoyant force smaller – the balloon stops at some height. To descend, gas is let out through a valve. The book uses 1.3 kg/m³ for air; the model uses 1.29 kg/m³."
+            },
+            "altText": {
+              "ky": "Себети бар гелий шары абада көтөрүлүүдө.",
+              "ru": "Гелиевый шар с корзиной поднимается в воздухе.",
+              "en": "A helium balloon with a basket rising through the air."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.bodies-in-water"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "float-water"
+          },
+          {
+            "kind": "sample",
+            "key": "float-mercury"
+          },
+          {
+            "kind": "sample",
+            "key": "float-oil"
+          }
+        ],
+        "rows": [
+          "density"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-float-1",
+          "phys.q.p7-float-2",
+          "phys.q.p7-float-3",
+          "phys.q.p7-float-4",
+          "phys.q.p7-float-5",
+          "phys.q.p7-float-6",
+          "phys.q.p7-float-7",
+          "phys.q.p7-float-8",
+          "phys.q.p7-float-9",
+          "phys.q.p7-float-10",
+          "phys.q.p7-float-11",
+          "phys.q.p7-float-12",
+          "phys.q.p7-float-13",
+          "phys.q.p7-float-14",
+          "phys.q.p7-float-15",
+          "phys.q.p7-float-16"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Кемелер",
+            "ru": "Корабли",
+            "en": "Ships"
+          },
+          "text": {
+            "ky": "Болот кеменин корпусу көңдөй, ошондуктан анын орточо тыгыздыгы суунукунан аз жана ал өз салмагындай сууну сүрүп чыгарып калкыйт.",
+            "ru": "Корпус стального судна полый, поэтому средняя плотность судна меньше, чем у воды, и оно плавает, вытесняя воду весом, равным своему.",
+            "en": "A steel ship's hull is hollow, so its average density is below water's and it floats, pushing aside its own weight of water."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Суу астындагы кайык",
+            "ru": "Подводная лодка",
+            "en": "Submarines"
+          },
+          "text": {
+            "ky": "Кайык балласт цистерналарына суу толтуруп чөгөт (F > F_A), сууну кысылган аба менен чыгарып калкып чыгат (F < F_A).",
+            "ru": "Лодка набирает воду в балластные цистерны и погружается (F > F_A), а выдувает её сжатым воздухом и всплывает (F < F_A).",
+            "en": "A submarine floods its ballast tanks to dive (F > F_A) and blows them out with compressed air to surface (F < F_A)."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Зонд-шарлар",
+            "ru": "Зонды-шары",
+            "en": "Weather balloons"
+          },
+          "text": {
+            "ky": "Диаметри 1–2 м болгон зонд-шарлар 35–40 км бийиктикке көтөрүлүп, абанын басымы, температурасы жана нымдуулугу жөнүндө маалыматты радио аркылуу беришет.",
+            "ru": "Зонды-шары диаметром 1–2 м поднимаются на 35–40 км и передают по радио данные о давлении, температуре и влажности воздуха.",
+            "en": "Sonde balloons 1–2 m across climb to 35–40 km and radio back the air's pressure, temperature and humidity."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "Шардын көтөрүү күчү",
+            "ru": "Подъёмная сила шара",
+            "en": "A balloon's lift"
+          },
+          "text": {
+            "ky": "1 м³ гелий шары: F_A = 1,3 · 9,8 · 1 ≈ 12,7 Н, гелийдин салмагы 0,18 · 9,8 ≈ 1,8 Н – шар ≈ 10,9 Н жүктү (кабыгы менен кошо) көтөрө алат.",
+            "ru": "Шар с 1 м³ гелия: F_A = 1,3 · 9,8 · 1 ≈ 12,7 Н, вес гелия 0,18 · 9,8 ≈ 1,8 Н – шар поднимет ≈ 10,9 Н (вместе с оболочкой).",
+            "en": "A balloon with 1 m³ of helium: F_A = 1.3 × 9.8 × 1 ≈ 12.7 N, the helium weighs 0.18 × 9.8 ≈ 1.8 N, so it can lift about 10.9 N (envelope included)."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Алма жана картошка",
+            "ru": "Яблоко и картошка",
+            "en": "An apple and a potato"
+          },
+          "text": {
+            "ky": "Сууга салсаң, алма калкыйт, картошка чөгөт – алманын тыгыздыгы суунукунан аз, картошканыкы чоң.",
+            "ru": "В воде яблоко плавает, а картошка тонет: плотность яблока меньше, чем у воды, а картошки – больше.",
+            "en": "In water an apple floats and a potato sinks: the apple is less dense than water and the potato more."
+          }
+        },
+        {
+          "title": {
+            "ky": "Сал",
+            "ru": "Плот",
+            "en": "A raft"
+          },
+          "text": {
+            "ky": "Жыгач бөрөнөлөрдөн жасалган сал оор болсо да дарыяда калкыйт.",
+            "ru": "Плот из брёвен, хоть и тяжёлый, плывёт по реке.",
+            "en": "A log raft is heavy, yet it floats down the river."
+          }
+        },
+        {
+          "title": {
+            "ky": "Гелий шарчасы",
+            "ru": "Гелиевый шарик",
+            "en": "A party balloon"
+          },
+          "text": {
+            "ky": "Гелий шарчасын коё берсең, ал учуп кетет, ал эми ооз менен үйлөгөн шарча жерге түшөт.",
+            "ru": "Гелиевый шарик улетает, а надутый ртом – падает на пол.",
+            "en": "A helium balloon floats away, but one blown up by mouth falls to the floor."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Эмне үчүн темир кеме чөкпөйт, ал эми мык чөгөт?",
+        "ru": "Почему железный корабль не тонет, а гвоздь тонет?",
+        "en": "Why does an iron ship float when a nail sinks?"
+      },
+      {
+        "ky": "Нерсе качан чөгөт, качан калкыйт?",
+        "ru": "Когда тело тонет, а когда плавает?",
+        "en": "When does a body sink and when does it float?"
+      },
+      {
+        "ky": "Кеменин ватер сызыгы эмнени көрсөтөт?",
+        "ru": "Что показывает ватерлиния судна?",
+        "en": "What does a ship's waterline show?"
+      },
+      {
+        "ky": "Аба шары эмне үчүн асманга көтөрүлөт?",
+        "ru": "Почему воздушный шар поднимается в небо?",
+        "en": "Why does a balloon rise into the sky?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Э. М. Мамбетакунов, «Физика, 7-класс», III глава (§24–34)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-float-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Нерсенин оордук күчү Архимед күчүнөн чоң (F > F_A). Нерсе эмне болот?",
+        "ru": "Сила тяжести больше архимедовой силы (F > F_A). Что будет с телом?",
+        "en": "Gravity is bigger than the buoyant force (F > F_A). What happens to the body?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Суюктукка чөгөт",
+            "ru": "Утонет",
+            "en": "It sinks"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Суюктуктун ичинде сүзүп жүрөт",
+            "ru": "Будет плавать внутри жидкости",
+            "en": "It hovers inside the liquid"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Бетинде калкып жүрөт",
+            "ru": "Будет плавать на поверхности",
+            "en": "It floats at the surface"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "F > F_A болсо, нерсе суюктукка чөгөт.",
+        "ru": "Если F > F_A, тело тонет.",
+        "en": "If F > F_A, the body sinks."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-float-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Нерсенин оордук күчү Архимед күчүнө барабар (F = F_A). Нерсе эмне болот?",
+        "ru": "Сила тяжести равна архимедовой силе (F = F_A). Что будет с телом?",
+        "en": "Gravity equals the buoyant force (F = F_A). What happens to the body?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Чөгөт",
+            "ru": "Утонет",
+            "en": "It sinks"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Суюктуктун ичинде сүзүп жүрөт",
+            "ru": "Плавает внутри жидкости",
+            "en": "It hovers inside the liquid"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Суюктуктан учуп чыгат",
+            "ru": "Вылетит из жидкости",
+            "en": "It flies out of the liquid"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "F = F_A болсо, нерсе суюктуктун ичинде тең салмактуу абалда сүзүп жүрөт – анын тыгыздыгы суюктуктукуна барабар.",
+        "ru": "Если F = F_A, тело плавает внутри жидкости в равновесии – его плотность равна плотности жидкости.",
+        "en": "If F = F_A the body hovers in balance inside the liquid – its density equals the liquid's."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-float-3",
+      "type": "single",
+      "prompt": {
+        "ky": "Темирдин кесиндиси сымапка салынды. Эмне болот? (ρ_темир = 7800 кг/м³, ρ_сымап = 13 600 кг/м³)",
+        "ru": "Кусок железа бросили в ртуть. Что произойдёт? (ρ_железа = 7800 кг/м³, ρ_ртути = 13 600 кг/м³)",
+        "en": "A piece of iron is dropped into mercury. What happens? (ρ_iron = 7800 kg/m³, ρ_mercury = 13 600 kg/m³)"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Чөгөт",
+            "ru": "Утонет",
+            "en": "It sinks"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Калкып калат",
+            "ru": "Будет плавать",
+            "en": "It floats"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эрип кетет",
+            "ru": "Растворится",
+            "en": "It dissolves"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Темирдин тыгыздыгы сымаптыкынан аз, ошондуктан F < F_A болуп, темир сымапта калкыйт.",
+        "ru": "Плотность железа меньше, чем у ртути, поэтому F < F_A, и железо плавает в ртути.",
+        "en": "Iron is less dense than mercury, so F < F_A and the iron floats."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "misconceptionKey": "phys.m.heavy-things-sink",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-float-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Жыгач кубиктин тыгыздыгы 600 кг/м³. Ал сууда калкып жүрөт. Кубиктин канча пайызы суунун астында?",
+        "ru": "Плотность деревянного кубика 600 кг/м³. Он плавает в воде. Какая часть кубика (в процентах) под водой?",
+        "en": "A wooden cube of density 600 kg/m³ floats in water. What percentage of it is under water?"
+      },
+      "answer": 60,
+      "tolerance": 1,
+      "unit": "%",
+      "explanation": {
+        "ky": "V_бат/V = ρ_н/ρ_с = 600/1000 = 0,6 – 60 %.",
+        "ru": "V_погр/V = ρ_т/ρ_ж = 600/1000 = 0,6 – 60 %.",
+        "en": "V_under/V = ρ_body/ρ_liquid = 600/1000 = 0.6 – 60 %."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-float-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Муздун тыгыздыгы 900 кг/м³. Тузсуз сууда калкыган муздун канча пайызы суунун астында?",
+        "ru": "Плотность льда 900 кг/м³. Какая часть льдины (в процентах) находится под водой в пресной воде?",
+        "en": "Ice is 900 kg/m³. What percentage of an ice block floating in fresh water is under the surface?"
+      },
+      "answer": 90,
+      "tolerance": 1,
+      "unit": "%",
+      "explanation": {
+        "ky": "900/1000 = 0,9 – 90 % суунун астында, 10 % гана бетинде.",
+        "ru": "900/1000 = 0,9 – 90 % под водой, лишь 10 % над ней.",
+        "en": "900/1000 = 0.9 – 90 % under water and only 10 % above."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-float-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Массасы 0,6 кг жыгач брусок сууда калкып жүрөт. Ага канча ньютон Архимед күчү аракет этет? g = 9,8 Н/кг.",
+        "ru": "Деревянный брусок массой 0,6 кг плавает в воде. Какая архимедова сила на него действует, Н? g = 9,8 Н/кг.",
+        "en": "A 0.6 kg wooden block floats in water. What buoyant force acts on it, in N? g = 9.8 N/kg."
+      },
+      "answer": 5.88,
+      "tolerance": 0.05,
+      "unit": "N",
+      "explanation": {
+        "ky": "Калкып жүргөн нерсе үчүн F_A = F = m·g = 0,6 · 9,8 = 5,88 Н.",
+        "ru": "Для плавающего тела F_A = F = m·g = 0,6 · 9,8 = 5,88 Н.",
+        "en": "For a floating body F_A = F = mg = 0.6 × 9.8 = 5.88 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "misconceptionKey": "phys.m.floating-no-buoyancy",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-float-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Көлөмү 40 м³ шар гелий менен толтурулган (ρ_гелий = 0,18 кг/м³, ρ_аба = 1,3 кг/м³). Гелийдин салмагын эсептен чыгарганда, шар канча ньютон жүктү көтөрө алат? g = 9,8 Н/кг.",
+        "ru": "Шар объёмом 40 м³ наполнен гелием (ρ_гелия = 0,18 кг/м³, ρ_возд = 1,3 кг/м³). Какой груз, Н, он поднимет с учётом веса гелия? g = 9,8 Н/кг.",
+        "en": "A 40 m³ balloon is filled with helium (ρ_He = 0.18 kg/m³, ρ_air = 1.3 kg/m³). Allowing for the helium's weight, what load in N can it lift? g = 9.8 N/kg."
+      },
+      "answer": 439,
+      "tolerance": 4,
+      "unit": "N",
+      "explanation": {
+        "ky": "F_A = 1,3 · 40 · 9,8 ≈ 510 Н; гелийдин салмагы 0,18 · 40 · 9,8 ≈ 71 Н; 510 − 71 = 439 Н.",
+        "ru": "F_A = 1,3 · 40 · 9,8 ≈ 510 Н; вес гелия 0,18 · 40 · 9,8 ≈ 71 Н; 510 − 71 = 439 Н.",
+        "en": "F_A = 1.3 × 40 × 9.8 ≈ 510 N; the helium weighs 0.18 × 40 × 9.8 ≈ 71 N; 510 − 71 = 439 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-float-8",
+      "type": "numeric",
+      "prompt": {
+        "ky": "1 м³ гелий толтурулган шарга абада канча ньютон түртүүчү күч аракет этет? ρ_аба = 1,3 кг/м³, g = 9,8 Н/кг.",
+        "ru": "Какая выталкивающая сила действует в воздухе на шар с 1 м³ гелия, Н? ρ_возд = 1,3 кг/м³, g = 9,8 Н/кг.",
+        "en": "What buoyant force does the air exert on a balloon holding 1 m³ of helium, in N? ρ_air = 1.3 kg/m³, g = 9.8 N/kg."
+      },
+      "answer": 12.74,
+      "tolerance": 0.2,
+      "unit": "N",
+      "explanation": {
+        "ky": "F_A = ρ_аба·g·V = 1,3 · 9,8 · 1 ≈ 12,7 Н.",
+        "ru": "F_A = ρ_возд·g·V = 1,3 · 9,8 · 1 ≈ 12,7 Н.",
+        "en": "F_A = ρ_air·g·V = 1.3 × 9.8 × 1 ≈ 12.7 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-float-9",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Суутек толтурулган көлөмү 30 м³ аба шары 15 км бийиктикке көтөрүлдү. Ошол бийиктикте шарга 60 Н Архимед күчү аракет этсе, абанын тыгыздыгы канча кг/м³? g = 9,8 Н/кг.",
+        "ru": "Шар объёмом 30 м³ с водородом поднялся на высоту 15 км. Если там на него действует архимедова сила 60 Н, какова плотность воздуха, кг/м³? g = 9,8 Н/кг.",
+        "en": "A 30 m³ hydrogen balloon rises to 15 km. If the buoyant force there is 60 N, what is the air density in kg/m³? g = 9.8 N/kg."
+      },
+      "answer": 0.204,
+      "tolerance": 0.01,
+      "unit": "kg/m³",
+      "explanation": {
+        "ky": "ρ = F_A / (g·V) = 60 / (9,8 · 30) ≈ 0,2 кг/м³.",
+        "ru": "ρ = F_A / (g·V) = 60 / (9,8 · 30) ≈ 0,2 кг/м³.",
+        "en": "ρ = F_A / (gV) = 60 / (9.8 × 30) ≈ 0.2 kg/m³."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-float-10",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы нерселер сууда калкыйт? Бардык туура жоопторду тандаңыз.",
+        "ru": "Какие тела плавают в воде? Выберите все верные ответы.",
+        "en": "Which bodies float in water? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жыгач (600 кг/м³)",
+            "ru": "Дерево (600 кг/м³)",
+            "en": "Wood (600 kg/m³)"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Тыгын (240 кг/м³)",
+            "ru": "Пробка (240 кг/м³)",
+            "en": "Cork (240 kg/m³)"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Муз (900 кг/м³)",
+            "ru": "Лёд (900 кг/м³)",
+            "en": "Ice (900 kg/m³)"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Жез (8900 кг/м³)",
+            "ru": "Медь (8900 кг/м³)",
+            "en": "Copper (8900 kg/m³)"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Таш (2600 кг/м³)",
+            "ru": "Камень (2600 кг/м³)",
+            "en": "Stone (2600 kg/m³)"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Тыгыздыгы суунукунан (1000 кг/м³) аз нерселер калкыйт: жыгач, тыгын, муз. Жез жана таш тыгызыраак – чөгөт.",
+        "ru": "Плавают тела, плотность которых меньше плотности воды (1000 кг/м³): дерево, пробка, лёд. Медь и камень плотнее – тонут.",
+        "en": "Bodies less dense than water (1000 kg/m³) float: wood, cork, ice. Copper and stone are denser and sink."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-float-11",
+      "type": "single",
+      "prompt": {
+        "ky": "Оор жыгач бөрөнө сууда калкыйт, ал эми кичинекей темир мык чөгөт. Эмне үчүн?",
+        "ru": "Тяжёлое бревно плавает, а маленький железный гвоздь тонет. Почему?",
+        "en": "A heavy log floats but a tiny iron nail sinks. Why?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Мык бөрөнөдөн оор",
+            "ru": "Гвоздь тяжелее бревна",
+            "en": "The nail is heavier than the log"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Чөгүү массага эмес, тыгыздыкка көз каранды",
+            "ru": "Плавание зависит не от массы, а от плотности",
+            "en": "Floating depends on density, not mass"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Бөрөнөгө Архимед күчү аракет этпейт",
+            "ru": "На бревно не действует архимедова сила",
+            "en": "No buoyant force acts on the log"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Жыгачтын тыгыздыгы суунукунан аз, темирдики чоң. Нерсенин массасы эмес, анын тыгыздыгы суюктуктун тыгыздыгынан чоңбу же кичинеби – ошол чечет.",
+        "ru": "Плотность дерева меньше, чем у воды, а железа – больше. Решает не масса, а то, больше или меньше плотность тела плотности жидкости.",
+        "en": "Wood is less dense than water and iron more. It is not the mass that decides but whether the body's density is above or below the liquid's."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "misconceptionKey": "phys.m.heavy-things-sink",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-float-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Кеменин ватер сызыгы эмнени көрсөтөт?",
+        "ru": "Что показывает ватерлиния судна?",
+        "en": "What does a ship's waterline show?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кеменин ылдамдыгын",
+            "ru": "Скорость судна",
+            "en": "The ship's speed"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Кеменин кайсы бөлүгүнө чейин суу көтөрүлөрүн – эң чоң жол берилген тереңдикти",
+            "ru": "До какой части судна поднимается вода – предельную осадку",
+            "en": "How far up the hull the water may come – the deepest allowed draught"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Суунун температурасын",
+            "ru": "Температуру воды",
+            "en": "The water temperature"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Кеменин узундугун",
+            "ru": "Длину судна",
+            "en": "The ship's length"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Ватер сызыгы кеменин кайсы бөлүгүнө чейин суунун көтөрүлөрүн билгизет. Суу андан жогору чыкса, кеме чөгүп кетүү коркунучу туулат.",
+        "ru": "Ватерлиния показывает, до какой части судна поднимается вода. Если вода выше неё – судну грозит затопление.",
+        "en": "The waterline shows how far up the hull the water comes. If the water rises above it the ship risks sinking."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-float-13",
+      "type": "single",
+      "prompt": {
+        "ky": "Бирдей эки жыгач кубик эки түрдүү суюктукка салынды: биринчиде кубиктин жарымы, экинчисинде үчтөн бири гана батат. Кайсы суюктуктун тыгыздыгы чоң?",
+        "ru": "Два одинаковых деревянных кубика опустили в разные жидкости: в первой кубик погружён наполовину, во второй – на треть. Плотность какой жидкости больше?",
+        "en": "Two identical wooden cubes float in two liquids: half under in the first, a third under in the second. Which liquid is denser?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Биринчисиники",
+            "ru": "Первой",
+            "en": "The first"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Экинчисиники",
+            "ru": "Второй",
+            "en": "The second"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Тыгыздыктары бирдей",
+            "ru": "Плотности равны",
+            "en": "They are equal"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Эки учурда тең F_A = F (бирдей). F_A = ρ_с·g·V_бат: баткан көлөм кичине болсо, суюктуктун тыгыздыгы чоң – экинчиси.",
+        "ru": "В обоих случаях F_A = F (одинакова). F_A = ρ_ж·g·V_погр: чем меньше погружённый объём, тем больше плотность жидкости – у второй.",
+        "en": "In both cases F_A = F (the same). F_A = ρgV_under: the smaller the volume under, the denser the liquid – the second."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-float-14",
+      "type": "match",
+      "prompt": {
+        "ky": "Сууга салынган кубикти анын абалы менен дал келтириңиз.",
+        "ru": "Сопоставьте кубик, опущенный в воду, и его поведение.",
+        "en": "Match each cube dropped in water with what it does."
+      },
+      "pairs": [
+        {
+          "key": "iron",
+          "left": {
+            "ky": "Темир (7800 кг/м³)",
+            "ru": "Железо (7800 кг/м³)",
+            "en": "Iron (7800 kg/m³)"
+          },
+          "right": {
+            "ky": "Түбүнө чөгөт",
+            "ru": "Тонет",
+            "en": "Sinks to the bottom"
+          }
+        },
+        {
+          "key": "wood",
+          "left": {
+            "ky": "Жыгач (600 кг/м³)",
+            "ru": "Дерево (600 кг/м³)",
+            "en": "Wood (600 kg/m³)"
+          },
+          "right": {
+            "ky": "60 % батып калкыйт",
+            "ru": "Плавает, погрузившись на 60 %",
+            "en": "Floats 60 % under"
+          }
+        },
+        {
+          "key": "ice",
+          "left": {
+            "ky": "Муз (900 кг/м³)",
+            "ru": "Лёд (900 кг/м³)",
+            "en": "Ice (900 kg/m³)"
+          },
+          "right": {
+            "ky": "90 % батып калкыйт",
+            "ru": "Плавает, погрузившись на 90 %",
+            "en": "Floats 90 % under"
+          }
+        },
+        {
+          "key": "cork",
+          "left": {
+            "ky": "Тыгын (240 кг/м³)",
+            "ru": "Пробка (240 кг/м³)",
+            "en": "Cork (240 kg/m³)"
+          },
+          "right": {
+            "ky": "24 % гана батып калкыйт",
+            "ru": "Плавает, погрузившись лишь на 24 %",
+            "en": "Floats only 24 % under"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Темир суудан тыгыз – чөгөт. Калгандарынын баткан бөлүгү ρ_н/ρ_с ге барабар: 0,6; 0,9; 0,24.",
+        "ru": "Железо плотнее воды – тонет. У остальных погружённая доля равна ρ_т/ρ_ж: 0,6; 0,9; 0,24.",
+        "en": "Iron is denser than water and sinks. For the rest the share under water is ρ_body/ρ_liquid: 0.6, 0.9, 0.24."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-float-15",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден сууга чөгүп кеткен кубикти тап.",
+        "ru": "Найдите на модели кубик, который утонул.",
+        "en": "Find the cube that has sunk."
+      },
+      "targetConceptKey": "phys.sinking",
+      "explanation": {
+        "ky": "Бул – темир кубик: анын оордук күчү Архимед күчүнөн чоң (76,4 Н > 9,8 Н).",
+        "ru": "Это железный кубик: сила тяжести больше архимедовой (76,4 Н > 9,8 Н).",
+        "en": "That is the iron cube: its weight beats the buoyant force (76.4 N > 9.8 N)."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-float-16",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден суунун бетинде калкып жүргөн кубиктердин бирин тап.",
+        "ru": "Найдите на модели один из кубиков, плавающих на поверхности.",
+        "en": "Find one of the cubes floating at the surface."
+      },
+      "targetConceptKey": "phys.floating",
+      "explanation": {
+        "ky": "Жыгач, муз же тыгын кубик: алардын тыгыздыгы суунукунан аз, ошондуктан F_A = F болгуча гана батат.",
+        "ru": "Деревянный, ледяной или пробковый кубик: их плотность меньше, чем у воды, поэтому они погружаются, пока F_A не станет равна F.",
+        "en": "The wood, ice or cork cube: less dense than water, they sink in only until F_A = F."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o2"
+      ],
+      "difficulty": 1
+    }
+  ]
+}

@@ -1,0 +1,527 @@
+{
+  "topic": {
+    "key": "phys7-work-power",
+    "unitKey": "phys.g7.energy",
+    "status": "published",
+    "title": { "ky": "Механикалык жумуш. Кубаттуулук", "ru": "Механическая работа. Мощность", "en": "Mechanical work and power" },
+    "formula": "A = F \\cdot s,\\quad N = \\frac{A}{t}",
+    "classification": { "ky": "Импульс, жумуш, кубаттуулук жана энергия", "ru": "Импульс, работа, мощность и энергия", "en": "Momentum, work, power and energy" },
+    "description": {
+      "ky": "10 кг жүктү кыймылсыз блок аркылуу 0,2 м/с ылдамдык менен 1 м бийиктикке көтөрөбүз. Аркан 98 Н күч менен 1 м жолго тартылат: аткарылган жумуш A = F·s = 98 Дж. Жүк 5 с та көтөрүлдү, ошондуктан кубаттуулук N = A/t = 19,6 Вт. Жумуш – күч менен жолдун көбөйтүндүсү, кубаттуулук – жумуштун канчалык тез аткарылганы.",
+      "ru": "Поднимаем груз 10 кг через неподвижный блок со скоростью 0,2 м/с на высоту 1 м. Верёвку тянут с силой 98 Н на 1 м: совершённая работа A = F·s = 98 Дж. Груз поднялся за 5 с, поэтому мощность N = A/t = 19,6 Вт. Работа – это произведение силы на путь, мощность – как быстро совершается работа.",
+      "en": "We lift a 10 kg load 1 m through a fixed pulley at 0.2 m/s. The rope is pulled with 98 N over 1 m: the work done is A = F·s = 98 J. The lift takes 5 s, so the power is N = A/t = 19.6 W. Work is force times distance; power is how quickly the work is done."
+    },
+    "goal": {
+      "ky": "Механикалык жумуштун аткарылуу шартын түшүндүрүү, жумушту A = F·s жана кубаттуулукту N = A/t = F·v формулалары менен эсептөө, бирдиктерин (Дж, Вт) колдонуу (PHYS-7.4.2).",
+      "ru": "Объяснять условие совершения механической работы, вычислять работу по формуле A = F·s и мощность по N = A/t = F·v, пользоваться единицами (Дж, Вт) (PHYS-7.4.2).",
+      "en": "Explain when mechanical work is done, calculate work with A = F·s and power with N = A/t = F·v, and use their units (J, W) (PHYS-7.4.2)."
+    },
+    "objectiveKeys": ["phys.g7.energy.o2"],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "pulley",
+        "variant": "fixed",
+        "loadMass": 10,
+        "pulleyMass": 0,
+        "height": 1,
+        "speed": 0.2,
+        "friction": 0,
+        "g": 9.8
+      },
+      "camera": { "position": [1.4, 1.8, 4.2], "target": [0, 1.1, 0], "fov": 45 },
+      "modes": ["vectors", "energy", "labels"]
+    },
+    "conceptKeys": ["phys.mechanical-work", "phys.power", "phys.force", "phys.gravity", "phys.distance", "phys.pulley-fixed"],
+    "overrides": {
+      "phys.pulley-fixed": {
+        "nodes": ["Pulley_Fixed", "Pulley_Fixed_*", "Beam"]
+      },
+      "phys.mechanical-work": {
+        "nodes": ["Load", "Bar_Useful", "Bar_Total"],
+        "anchor": [0.3, 0.4, 0],
+        "description": {
+          "ky": "Жумуш жүктүн үстүнөн аткарылат: ага 98 Н күч аракет этет жана ал күчтүн багыты боюнча 1 м жылат. A = F·s = 98 Н · 1 м = 98 Дж. Жүк полдо кыймылсыз турганда күч болсо да, жумуш нөл.",
+          "ru": "Работа совершается над грузом: на него действует сила 98 Н, и он перемещается по направлению силы на 1 м. A = F·s = 98 Н · 1 м = 98 Дж. Пока груз неподвижно стоит на полу, работа равна нулю, хоть сила и есть.",
+          "en": "Work is done on the load: a 98 N force acts on it and it moves 1 m in the direction of the force. A = F·s = 98 N × 1 m = 98 J. While the load sits still on the floor the work is zero, even though there is a force."
+        },
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 10 },
+          { "kind": "quantity", "type": "energy", "value": 98 }
+        ]
+      },
+      "phys.power": {
+        "nodes": ["Readout"],
+        "anchor": [-0.6, 1.8, 0],
+        "description": {
+          "ky": "98 Дж жумуш 5 с та аткарылды: N = A/t = 98 / 5 = 19,6 Вт. Башкача: N = F·v = 98 Н · 0,2 м/с = 19,6 Вт. Жүктү эки эсе тез көтөрсөк, жумуш ошол эле, кубаттуулук эки эсе чоң.",
+          "ru": "Работа 98 Дж совершена за 5 с: N = A/t = 98 / 5 = 19,6 Вт. Иначе: N = F·v = 98 Н · 0,2 м/с = 19,6 Вт. Поднимем груз вдвое быстрее – работа та же, а мощность вдвое больше.",
+          "en": "98 J of work was done in 5 s: N = A/t = 98 / 5 = 19.6 W. Or: N = F·v = 98 N × 0.2 m/s = 19.6 W. Lift the load twice as fast and the work is the same but the power doubles."
+        },
+        "props": [
+          { "kind": "quantity", "type": "power", "value": 19.6 },
+          { "kind": "quantity", "type": "period", "value": 5 },
+          { "kind": "formula", "type": "formula", "value": "N = F \\cdot v" }
+        ]
+      },
+      "phys.force": {
+        "nodes": ["Arrow_Effort", "Hand"],
+        "anchor": [-0.3, 0.8, 0],
+        "description": {
+          "ky": "Колдун арканды тарткан күчү. Кыймылсыз блок күчтү утпайт, багытын гана өзгөртөт: жүктү бир калыпта көтөрүү үчүн F = mg = 10 · 9,8 = 98 Н керек.",
+          "ru": "Сила, с которой рука тянет верёвку. Неподвижный блок не даёт выигрыша в силе, а только меняет её направление: чтобы равномерно поднимать груз, нужно F = mg = 10 · 9,8 = 98 Н.",
+          "en": "The hand's pull on the rope. A fixed pulley doesn't reduce the force, it only changes its direction: to lift the load steadily you need F = mg = 10 × 9.8 = 98 N."
+        },
+        "props": [{ "kind": "quantity", "type": "force", "value": 98 }]
+      },
+      "phys.gravity": {
+        "nodes": ["Arrow_Weight"],
+        "anchor": [0.3, 0.1, 0],
+        "description": {
+          "ky": "Жүккө оордук күчү F_о = mg = 98 Н ылдый аракет этет. Жүктү көтөрүү үчүн ушул күчкө барабар күч менен өйдө тартуу керек.",
+          "ru": "На груз действует сила тяжести F_т = mg = 98 Н, направленная вниз. Чтобы поднимать груз, его нужно тянуть вверх с такой же силой.",
+          "en": "Gravity pulls the load down with mg = 98 N. To lift it you must pull up with a force of the same size."
+        },
+        "props": [
+          { "kind": "quantity", "type": "force", "value": 98 },
+          { "kind": "formula", "type": "formula", "value": "F_о = mg" }
+        ]
+      },
+      "phys.distance": {
+        "nodes": ["Ruler", "Ruler_Mark", "Dim_H", "Dim_S"],
+        "anchor": [0.6, 0.6, 0],
+        "description": {
+          "ky": "Сызгыч жүктүн өткөн жолун көрсөтөт: s = h = 1 м. Кыймылсыз блокто колдун арканды тарткан жолу да 1 м.",
+          "ru": "Линейка показывает путь груза: s = h = 1 м. У неподвижного блока рука вытягивает тоже 1 м верёвки.",
+          "en": "The ruler shows the distance the load moves: s = h = 1 m. With a fixed pulley the hand also pulls 1 m of rope."
+        },
+        "props": [{ "kind": "quantity", "type": "length", "value": 1 }]
+      }
+    },
+    "props": [
+      { "kind": "quantity", "type": "mass", "value": 10 },
+      { "kind": "quantity", "type": "force", "value": 98 },
+      { "kind": "quantity", "type": "power", "value": 19.6 },
+      { "kind": "formula", "type": "formula", "value": "A = F \\cdot s" }
+    ],
+    "samples": [
+      {
+        "key": "pulley-10kg-slow",
+        "title": { "ky": "10 кг, 0,2 м/с менен", "ru": "10 кг со скоростью 0,2 м/с", "en": "10 kg at 0.2 m/s" },
+        "classification": { "ky": "A = 98 Дж, t = 5 с, N = 19,6 Вт", "ru": "A = 98 Дж, t = 5 с, N = 19,6 Вт", "en": "A = 98 J, t = 5 s, N = 19.6 W" },
+        "thumb": "thumbs/pulley-10kg-slow.webp",
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 10 },
+          { "kind": "quantity", "type": "force", "value": 98 },
+          { "kind": "quantity", "type": "speed", "value": 0.2 },
+          { "kind": "quantity", "type": "power", "value": 19.6 }
+        ],
+        "scene": { "params": { "loadMass": 10, "height": 1, "speed": 0.2 } }
+      },
+      {
+        "key": "pulley-10kg-fast",
+        "title": { "ky": "Ошол эле жүк, 0,5 м/с менен", "ru": "Тот же груз со скоростью 0,5 м/с", "en": "Same load at 0.5 m/s" },
+        "classification": { "ky": "A = 98 Дж, t = 2 с, N = 49 Вт", "ru": "A = 98 Дж, t = 2 с, N = 49 Вт", "en": "A = 98 J, t = 2 s, N = 49 W" },
+        "thumb": "thumbs/pulley-10kg-fast.webp",
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 10 },
+          { "kind": "quantity", "type": "force", "value": 98 },
+          { "kind": "quantity", "type": "speed", "value": 0.5 },
+          { "kind": "quantity", "type": "power", "value": 49 }
+        ],
+        "scene": { "params": { "loadMass": 10, "height": 1, "speed": 0.5 } }
+      },
+      {
+        "key": "pulley-15kg-2m",
+        "title": { "ky": "15 кг чака суу, 2 м", "ru": "Ведро воды 15 кг на 2 м", "en": "A 15 kg bucket of water, 2 m" },
+        "classification": { "ky": "A = 294 Дж, t = 4 с, N = 73,5 Вт", "ru": "A = 294 Дж, t = 4 с, N = 73,5 Вт", "en": "A = 294 J, t = 4 s, N = 73.5 W" },
+        "thumb": "thumbs/pulley-15kg-2m.webp",
+        "props": [
+          { "kind": "quantity", "type": "mass", "value": 15 },
+          { "kind": "quantity", "type": "force", "value": 147 },
+          { "kind": "quantity", "type": "speed", "value": 0.5 },
+          { "kind": "quantity", "type": "power", "value": 73.5 }
+        ],
+        "scene": { "params": { "loadMass": 15, "height": 2, "speed": 0.5 } }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": { "position": [1.4, 1.8, 4.2], "target": [0, 1.1, 0] },
+            "modes": { "vectors": false, "energy": false },
+            "sample": "pulley-10kg-slow",
+            "focus": "phys.mechanical-work",
+            "text": {
+              "ky": "Шыпка кыймылсыз блок бекитилген, арканга 10 кг жүк илинген. Жүк полдо турат. Азыр жумуш аткарылып жатабы?",
+              "ru": "К потолку прикреплён неподвижный блок, на верёвке груз 10 кг. Груз стоит на полу. Совершается ли сейчас работа?",
+              "en": "A fixed pulley hangs from a beam with a 10 kg load on the rope. The load rests on the floor. Is any work being done right now?"
+            },
+            "teacherNote": {
+              "ky": "Күнүмдүк «жумуш» (китеп окуу, эсеп чыгаруу) менен физикадагы механикалык жумуштун айырмасын талкуулаңыз.",
+              "ru": "Обсудите разницу между «работой» в быту (читать, решать задачи) и механической работой в физике.",
+              "en": "Discuss how everyday 'work' (reading, doing sums) differs from mechanical work in physics."
+            },
+            "altText": { "ky": "Шыптагы блок, андан түшкөн аркан жана полдогу жүк.", "ru": "Блок под потолком, верёвка и груз на полу.", "en": "A pulley under the beam, the rope, and a load on the floor." }
+          },
+          {
+            "key": "forces",
+            "modes": { "vectors": true },
+            "focus": "phys.force",
+            "text": {
+              "ky": "Жүккө оордук күчү 98 Н ылдый аракет этет. Аны бир калыпта көтөрүү үчүн арканды 98 Н күч менен тартабыз. Кыймылсыз блок күчтүн багытын гана өзгөртөт.",
+              "ru": "На груз действует сила тяжести 98 Н вниз. Чтобы поднимать его равномерно, тянем верёвку с силой 98 Н. Неподвижный блок лишь меняет направление силы.",
+              "en": "Gravity pulls the load down with 98 N. To lift it steadily we pull the rope with 98 N. A fixed pulley only changes the direction of the force."
+            },
+            "teacherNote": {
+              "ky": "Китептеги маселелерде g ≈ 10 Н/кг алынат; моделде g = 9,8 Н/кг. Эки жолу тең эсептеп көрсөтүңүз: 100 Н жана 98 Н.",
+              "ru": "В задачах учебника берут g ≈ 10 Н/кг; в модели g = 9,8 Н/кг. Посчитайте оба варианта: 100 Н и 98 Н.",
+              "en": "The textbook problems use g ≈ 10 N/kg; the model uses 9.8 N/kg. Work out both: 100 N and 98 N."
+            },
+            "altText": { "ky": "Жүктөн ылдый жана колдон ылдый караган эки жебе.", "ru": "Две стрелки вниз: от груза и от руки.", "en": "Two downward arrows: one on the load, one at the hand." }
+          },
+          {
+            "key": "work",
+            "modes": { "vectors": true },
+            "focus": "phys.distance",
+            "text": {
+              "ky": "Жүк 1 м көтөрүлдү. Күч аракет этти жана нерсе күчтүн багыты боюнча жылды – жумуш аткарылды: A = F·s = 98 Н · 1 м = 98 Дж. 1 Дж = 1 Н·м.",
+              "ru": "Груз поднялся на 1 м. Сила действовала, и тело двигалось в направлении силы – работа совершена: A = F·s = 98 Н · 1 м = 98 Дж. 1 Дж = 1 Н·м.",
+              "en": "The load rose 1 m. A force acted and the body moved in its direction – work was done: A = F·s = 98 N × 1 m = 98 J. 1 J = 1 N·m."
+            },
+            "teacherNote": {
+              "ky": "Китептеги маселе: 10 м кудуктан 15 кг сууну тартканда A = 1500 Дж. Окуучулар өздөрү чыгарсын.",
+              "ru": "Задача из учебника: поднять 15 кг воды из колодца 10 м – A = 1500 Дж. Пусть ученики решат сами.",
+              "en": "Textbook problem: lifting 15 kg of water from a 10 m well takes A = 1500 J. Let pupils solve it themselves."
+            },
+            "altText": { "ky": "Жүк сызгычтын 1 м белгисинде.", "ru": "Груз у отметки 1 м на линейке.", "en": "The load at the 1 m mark on the ruler." }
+          },
+          {
+            "key": "power",
+            "modes": { "energy": true },
+            "focus": "phys.power",
+            "text": {
+              "ky": "Көтөрүү 5 с созулду: N = A/t = 98 Дж / 5 с = 19,6 Вт. Ошол эле жоопту N = F·v = 98 Н · 0,2 м/с менен да алабыз. 1 Вт = 1 Дж/с.",
+              "ru": "Подъём занял 5 с: N = A/t = 98 Дж / 5 с = 19,6 Вт. Тот же ответ даёт N = F·v = 98 Н · 0,2 м/с. 1 Вт = 1 Дж/с.",
+              "en": "The lift took 5 s: N = A/t = 98 J / 5 s = 19.6 W. N = F·v = 98 N × 0.2 m/s gives the same answer. 1 W = 1 J/s."
+            },
+            "teacherNote": {
+              "ky": "Адамдын кубаттуулугу орточо 70–80 Вт, тепкичтен чуркаганда 700 Вт ка чейин жетерин айтыңыз.",
+              "ru": "Скажите, что мощность человека в среднем 70–80 Вт, а при беге по лестнице доходит до 700 Вт.",
+              "en": "Mention that a person's power is about 70–80 W on average and up to 700 W running up stairs."
+            },
+            "altText": { "ky": "Жумуштун тилкеси толду, жанында кубаттуулуктун көрсөткүчү.", "ru": "Столбик работы заполнен, рядом показатель мощности.", "en": "The work bar is full, with the power readout beside it." }
+          },
+          {
+            "key": "faster",
+            "sample": "pulley-10kg-fast",
+            "modes": { "energy": true },
+            "focus": "phys.power",
+            "text": {
+              "ky": "Ошол эле жүктү 0,5 м/с менен көтөрөбүз: 2 с гана кетти. Жумуш ошол эле 98 Дж, бирок кубаттуулук N = 98 / 2 = 49 Вт – 2,5 эсе чоң.",
+              "ru": "Поднимаем тот же груз со скоростью 0,5 м/с: всего 2 с. Работа та же – 98 Дж, а мощность N = 98 / 2 = 49 Вт – в 2,5 раза больше.",
+              "en": "Lift the same load at 0.5 m/s: only 2 s. The work is still 98 J, but the power is N = 98 / 2 = 49 W – 2.5 times more."
+            },
+            "teacherNote": {
+              "ky": "«Кубаттуу машина көп жумуш аткарат» деген жаңылыш ойду талкуулаңыз: кубаттуулук – тездик.",
+              "ru": "Разберите ошибочное «мощная машина делает больше работы»: мощность – это быстрота.",
+              "en": "Discuss the mistaken idea that a powerful machine does more work: power is about speed."
+            },
+            "altText": { "ky": "Жүк тез көтөрүлүүдө, кубаттуулуктун көрсөткүчү чоңойду.", "ru": "Груз поднимается быстро, показатель мощности вырос.", "en": "The load rises fast and the power readout has grown." }
+          },
+          {
+            "key": "bucket",
+            "sample": "pulley-15kg-2m",
+            "modes": { "vectors": true, "energy": true },
+            "focus": "phys.mechanical-work",
+            "text": {
+              "ky": "Эми 15 кг чака сууну 2 м бийиктикке 0,5 м/с менен көтөрөбүз: F = 147 Н, A = 147 · 2 = 294 Дж, t = 4 с, N = 73,5 Вт.",
+              "ru": "Теперь поднимаем ведро воды 15 кг на 2 м со скоростью 0,5 м/с: F = 147 Н, A = 147 · 2 = 294 Дж, t = 4 с, N = 73,5 Вт.",
+              "en": "Now a 15 kg bucket of water rises 2 m at 0.5 m/s: F = 147 N, A = 147 × 2 = 294 J, t = 4 s, N = 73.5 W."
+            },
+            "teacherNote": {
+              "ky": "Салыштыруу таблицасын ачып, үч учурду салыштырыңыз: кайсында жумуш көп, кайсында кубаттуулук чоң?",
+              "ru": "Откройте таблицу сравнения: где больше работа, а где мощность?",
+              "en": "Open the comparison table: where is the work greatest, and where the power?"
+            },
+            "altText": { "ky": "Чоңураак жүк бийик көтөрүлдү, жебелер узунураак.", "ru": "Груз побольше поднят выше, стрелки длиннее.", "en": "A bigger load lifted higher, with longer arrows." }
+          }
+        ]
+      },
+      "processKeys": ["phys.pulley-lift"],
+      "comparison": {
+        "columns": [
+          { "kind": "sample", "key": "pulley-10kg-slow" },
+          { "kind": "sample", "key": "pulley-10kg-fast" },
+          { "kind": "sample", "key": "pulley-15kg-2m" }
+        ],
+        "rows": ["mass", "force", "speed", "power"]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-work-1",
+          "phys.q.p7-work-2",
+          "phys.q.p7-work-3",
+          "phys.q.p7-work-4",
+          "phys.q.p7-work-5",
+          "phys.q.p7-work-6",
+          "phys.q.p7-work-7",
+          "phys.q.p7-work-8",
+          "phys.q.p7-work-9"
+        ],
+        "sampleSize": 6
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "field": "e",
+          "title": { "ky": "Көтөргүч кран", "ru": "Подъёмный кран", "en": "A tower crane" },
+          "text": {
+            "ky": "Кубаттуулугу 5 кВт кран жүктү 0,1 м/с менен бир калыпта көтөрөт. N = F·v = mgv болгондуктан m = N/(gv) = 5000 / (10 · 0,1) = 5000 кг.",
+            "ru": "Кран мощностью 5 кВт равномерно поднимает груз со скоростью 0,1 м/с. Так как N = F·v = mgv, m = N/(gv) = 5000 / (10 · 0,1) = 5000 кг.",
+            "en": "A 5 kW crane lifts a load steadily at 0.1 m/s. Since N = F·v = mgv, m = N/(gv) = 5000 / (10 × 0.1) = 5000 kg."
+          }
+        },
+        {
+          "field": "t",
+          "title": { "ky": "Трактор жер айдаганда", "ru": "Трактор пашет", "en": "A tractor ploughing" },
+          "text": {
+            "ky": "Трактор сокону 15 000 Н күч менен тартып, 200 м жол өтсө, A = F·s = 15 000 · 200 = 3 000 000 Дж = 3 МДж жумуш аткарат.",
+            "ru": "Трактор тянет плуг с силой 15 000 Н на 200 м и совершает работу A = F·s = 15 000 · 200 = 3 000 000 Дж = 3 МДж.",
+            "en": "A tractor pulling a plough with 15 000 N for 200 m does A = F·s = 15 000 × 200 = 3 000 000 J = 3 MJ of work."
+          }
+        },
+        {
+          "field": "m",
+          "title": { "ky": "Кадамдардын кубаттуулугу", "ru": "Мощность шагов", "en": "Power of walking" },
+          "text": {
+            "ky": "Адам 2 саатта 10 000 кадам жасап, ар биринде 40 Дж жумуш аткарса: N = 400 000 Дж / 7200 с ≈ 55,5 Вт.",
+            "ru": "Человек за 2 часа делает 10 000 шагов, на каждый тратя 40 Дж: N = 400 000 Дж / 7200 с ≈ 55,5 Вт.",
+            "en": "A person takes 10 000 steps in 2 hours at 40 J each: N = 400 000 J / 7200 s ≈ 55.5 W."
+          }
+        }
+      ],
+      "simple": [
+        {
+          "title": { "ky": "Дубалды түртүү", "ru": "Толкать стену", "en": "Pushing a wall" },
+          "text": {
+            "ky": "Үйдүн дубалын канча катуу түртсөң да, ал жылбаса – механикалык жумуш аткарылбайт, бирок чарчайсың.",
+            "ru": "Как ни толкай стену дома, если она не сдвинулась – механической работы нет, хотя ты и устанешь.",
+            "en": "Push a house wall as hard as you like – if it doesn't move, no mechanical work is done, even though you get tired."
+          }
+        },
+        {
+          "title": { "ky": "Тепкичтен чыгуу", "ru": "Подъём по лестнице", "en": "Climbing the stairs" },
+          "text": {
+            "ky": "Экинчи кабатка басып чыксаң да, чуркап чыксаң да жумуш бирдей. Чуркаганда тез чыктың – кубаттуулугуң чоң болду.",
+            "ru": "Поднимешься на второй этаж шагом или бегом – работа одна. Бегом ты быстрее – значит, мощность больше.",
+            "en": "Walk or run up to the first floor – the work is the same. Running you're quicker, so your power is greater."
+          }
+        }
+      ]
+    },
+    "starters": [
+      { "ky": "Оор сумканы кармап турсам, жумуш аткарамбы?", "ru": "Совершаю ли я работу, если просто держу тяжёлую сумку?", "en": "Am I doing work if I just hold a heavy bag?" },
+      { "ky": "Кубаттуулук менен жумуштун айырмасы эмнеде?", "ru": "Чем мощность отличается от работы?", "en": "How is power different from work?" },
+      { "ky": "Эмне үчүн кыймылсыз блок күчтү утпайт?", "ru": "Почему неподвижный блок не даёт выигрыша в силе?", "en": "Why doesn't a fixed pulley make the pull smaller?" },
+      { "ky": "1 джоуль канча жумуш?", "ru": "Сколько это – 1 джоуль?", "en": "How much work is one joule?" }
+    ],
+    "rights": [{ "license": "own", "author": "Bilig", "source": "Bilig content team; problems after Мамбетакунов Э. Физика 7, §38–39" }],
+    "i18n": { "ky": "machine", "ru": "reviewed", "en": "draft" }
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-work-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Механикалык жумуш аткарылышынын негизги шарты кайсы?",
+        "ru": "Каково главное условие совершения механической работы?",
+        "en": "What is the main condition for mechanical work to be done?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "Нерсеге күч аракет этип, нерсе күчтүн багыты боюнча жылышы керек", "ru": "На тело действует сила, и тело перемещается по направлению силы", "en": "A force acts on a body and the body moves in the direction of the force" } },
+        { "key": "b", "text": { "ky": "Нерсеге күч аракет этсе жетиштүү", "ru": "Достаточно, чтобы на тело действовала сила", "en": "It's enough for a force to act on the body" } },
+        { "key": "c", "text": { "ky": "Адам чарчашы керек", "ru": "Человек должен устать", "en": "Someone must get tired" } }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Күч бар, бирок нерсе жылбаса (s = 0), A = F·s = 0. Күч жок болуп, нерсе инерция боюнча жылса да жумуш аткарылбайт.",
+        "ru": "Если сила есть, а тело не движется (s = 0), то A = F·s = 0. Если сил нет и тело движется по инерции – работы тоже нет.",
+        "en": "With a force but no movement (s = 0), A = F·s = 0. With movement but no force (motion by inertia) there is no work either."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "misconceptionKey": "phys.m.work-without-motion",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-work-2",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы учурларда механикалык жумуш аткарылат?",
+        "ru": "В каких случаях совершается механическая работа?",
+        "en": "In which cases is mechanical work done?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "Бала бакка чыгып баратат", "ru": "Мальчик залезает на дерево", "en": "A boy is climbing a tree" } },
+        { "key": "b", "text": { "ky": "Киши аркасына бир мүшөк буудайды көтөрүп, ордунда турат", "ru": "Человек стоит на месте с мешком пшеницы на спине", "en": "A man stands still with a sack of wheat on his back" } },
+        { "key": "c", "text": { "ky": "Кран жүктү өйдө көтөрүп жатат", "ru": "Кран поднимает груз", "en": "A crane is lifting a load" } },
+        { "key": "d", "text": { "ky": "Суу идиштин капталдарына басым жасайт", "ru": "Вода давит на стенки сосуда", "en": "Water presses on the sides of a jar" } }
+      ],
+      "answer": ["a", "c"],
+      "explanation": {
+        "ky": "Бала жана жүк күч аракет эткен багытта жылат – жумуш бар. Мүшөк менен турган кишиде жана идиштин капталында күч бар, бирок жылуу жок – жумуш жок.",
+        "ru": "Мальчик и груз движутся по направлению силы – работа есть. У человека с мешком и у стенок сосуда сила есть, а перемещения нет – работы нет.",
+        "en": "The boy and the load move along the force – work is done. The man with the sack and the jar walls feel a force but nothing moves – no work."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "misconceptionKey": "phys.m.work-without-motion",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-work-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Тереңдиги 10 м кудуктан массасы 15 кг сууну чака менен тартып алуу үчүн адам канча жумуш аткарат? g ≈ 10 Н/кг.",
+        "ru": "Какую работу совершает человек, поднимая ведром 15 кг воды из колодца глубиной 10 м? g ≈ 10 Н/кг.",
+        "en": "How much work does a person do lifting 15 kg of water in a bucket from a 10 m deep well? g ≈ 10 N/kg."
+      },
+      "answer": 1500,
+      "tolerance": 10,
+      "unit": "J",
+      "explanation": {
+        "ky": "F = mg = 15 · 10 = 150 Н; A = F·s = 150 · 10 = 1500 Дж.",
+        "ru": "F = mg = 15 · 10 = 150 Н; A = F·s = 150 · 10 = 1500 Дж.",
+        "en": "F = mg = 15 × 10 = 150 N; A = F·s = 150 × 10 = 1500 J."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-work-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Моделде 10 кг жүк кыймылсыз блок менен 1 м бийиктикке 5 с та көтөрүлөт (g = 9,8 Н/кг). Кубаттуулук канча ватт?",
+        "ru": "На модели груз 10 кг поднимают неподвижным блоком на 1 м за 5 с (g = 9,8 Н/кг). Какова мощность в ваттах?",
+        "en": "In the model a 10 kg load is lifted 1 m by a fixed pulley in 5 s (g = 9.8 N/kg). What is the power in watts?"
+      },
+      "answer": 19.6,
+      "tolerance": 0.2,
+      "unit": "W",
+      "explanation": {
+        "ky": "A = mgh = 10 · 9,8 · 1 = 98 Дж; N = A/t = 98 / 5 = 19,6 Вт.",
+        "ru": "A = mgh = 10 · 9,8 · 1 = 98 Дж; N = A/t = 98 / 5 = 19,6 Вт.",
+        "en": "A = mgh = 10 × 9.8 × 1 = 98 J; N = A/t = 98 / 5 = 19.6 W."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-work-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кубаттуулугу 5 кВт көтөргүч кран жүктү 0,1 м/с ылдамдык менен бир калыпта көтөрөт. Жүктүн массасы канча кг? g ≈ 10 Н/кг.",
+        "ru": "Подъёмный кран мощностью 5 кВт равномерно поднимает груз со скоростью 0,1 м/с. Какова масса груза, кг? g ≈ 10 Н/кг.",
+        "en": "A 5 kW crane lifts a load steadily at 0.1 m/s. What is the load's mass in kg? g ≈ 10 N/kg."
+      },
+      "answer": 5000,
+      "tolerance": 10,
+      "unit": "kg",
+      "explanation": {
+        "ky": "N = F·v = mgv, m = N/(gv) = 5000 / (10 · 0,1) = 5000 кг.",
+        "ru": "N = F·v = mgv, m = N/(gv) = 5000 / (10 · 0,1) = 5000 кг.",
+        "en": "N = F·v = mgv, so m = N/(gv) = 5000 / (10 × 0.1) = 5000 kg."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "difficulty": 5
+    },
+    {
+      "key": "phys.q.p7-work-6",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден үстүнөн жумуш аткарылып жаткан нерсени тап.",
+        "ru": "Найди на модели тело, над которым совершается работа.",
+        "en": "Find the body on which work is being done."
+      },
+      "targetConceptKey": "phys.mechanical-work",
+      "explanation": {
+        "ky": "Бул – көтөрүлүп жаткан жүк: ага күч аракет этет жана ал күчтүн багыты боюнча жылат.",
+        "ru": "Это поднимаемый груз: на него действует сила, и он движется по её направлению.",
+        "en": "It's the rising load: a force acts on it and it moves in the force's direction."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-work-7",
+      "type": "match",
+      "prompt": {
+        "ky": "Чоңдукту анын бирдиги менен дал келтир.",
+        "ru": "Сопоставь величину и её единицу.",
+        "en": "Match each quantity to its unit."
+      },
+      "pairs": [
+        { "key": "work", "left": { "ky": "Жумуш A", "ru": "Работа A", "en": "Work A" }, "right": { "ky": "джоуль (Дж)", "ru": "джоуль (Дж)", "en": "joule (J)" } },
+        { "key": "power", "left": { "ky": "Кубаттуулук N", "ru": "Мощность N", "en": "Power N" }, "right": { "ky": "ватт (Вт)", "ru": "ватт (Вт)", "en": "watt (W)" } },
+        { "key": "force", "left": { "ky": "Күч F", "ru": "Сила F", "en": "Force F" }, "right": { "ky": "ньютон (Н)", "ru": "ньютон (Н)", "en": "newton (N)" } },
+        { "key": "path", "left": { "ky": "Жол s", "ru": "Путь s", "en": "Distance s" }, "right": { "ky": "метр (м)", "ru": "метр (м)", "en": "metre (m)" } }
+      ],
+      "explanation": {
+        "ky": "1 Дж = 1 Н · 1 м, 1 Вт = 1 Дж / 1 с.",
+        "ru": "1 Дж = 1 Н · 1 м, 1 Вт = 1 Дж / 1 с.",
+        "en": "1 J = 1 N × 1 m, 1 W = 1 J / 1 s."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-work-8",
+      "type": "single",
+      "prompt": {
+        "ky": "Эки бала бирдей гантелди бирдей бийиктикке көтөрдү: бирөө 1 с та, экинчиси 3 с та. Кайсы туура?",
+        "ru": "Двое ребят подняли одинаковые гантели на одну высоту: один за 1 с, другой за 3 с. Что верно?",
+        "en": "Two children lift identical dumbbells to the same height, one in 1 s and the other in 3 s. Which is true?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "Жумуш бирдей, биринчисинин кубаттуулугу 3 эсе чоң", "ru": "Работа одинакова, мощность первого в 3 раза больше", "en": "The work is equal; the first child's power is 3 times greater" } },
+        { "key": "b", "text": { "ky": "Биринчиси 3 эсе көп жумуш аткарды", "ru": "Первый совершил в 3 раза больше работы", "en": "The first child did 3 times more work" } },
+        { "key": "c", "text": { "ky": "Кубаттуулуктары бирдей", "ru": "Мощности одинаковы", "en": "Their power is the same" } }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "A = mgh экөөндө тең бирдей. N = A/t: убакыт 3 эсе аз болсо, кубаттуулук 3 эсе чоң.",
+        "ru": "A = mgh у обоих одинакова. N = A/t: если время в 3 раза меньше, мощность в 3 раза больше.",
+        "en": "A = mgh is the same for both. N = A/t: three times less time means three times more power."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "misconceptionKey": "phys.m.power-is-more-work",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-work-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Ат чананы туруктуу v ылдамдык менен сүйрөп, N кубаттуулукка ээ. Чанага аракет эткен каршылык күчү эмнеге барабар?",
+        "ru": "Лошадь тянет сани с постоянной скоростью v, развивая мощность N. Чему равна сила сопротивления, действующая на сани?",
+        "en": "A horse pulls a sledge at a steady speed v with power N. What is the resisting force on the sledge?"
+      },
+      "options": [
+        { "key": "a", "text": { "ky": "F = N/v", "ru": "F = N/v", "en": "F = N/v" } },
+        { "key": "b", "text": { "ky": "F = N·v", "ru": "F = N·v", "en": "F = N·v" } },
+        { "key": "c", "text": { "ky": "F = v/N", "ru": "F = v/N", "en": "F = v/N" } },
+        { "key": "d", "text": { "ky": "F = Ng/v", "ru": "F = Ng/v", "en": "F = Ng/v" } }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "N = F·v, демек F = N/v. Ылдамдык туруктуу болгондуктан тартуу күчү каршылык күчүнө барабар.",
+        "ru": "N = F·v, значит F = N/v. Скорость постоянна, поэтому сила тяги равна силе сопротивления.",
+        "en": "N = F·v, so F = N/v. The speed is steady, so the pull equals the resisting force."
+      },
+      "objectiveKeys": ["phys.g7.energy.o2"],
+      "difficulty": 4
+    }
+  ]
+}

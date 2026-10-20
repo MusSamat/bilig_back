@@ -61,6 +61,7 @@ import type {
   SnapshotRec,
   TopicRec,
   TopicVersionRec,
+  TutorAnswerRec,
   TutorMessageRec,
   TutorThreadRec,
   UserRec,
@@ -162,6 +163,8 @@ export class MemoryRepository implements Repository {
   private threads = new Map<Id, TutorThreadRec>();
   private messages: TutorMessageRec[] = [];
   private generated = new Map<Id, GeneratedRec>();
+  private generatedSeen = new Map<string, { userId: Id; generatedId: Id; seenAt: Date; n: number }>();
+  private tutorAnswers = new Map<string, TutorAnswerRec>();
   private journal: AuditEventRec[] = [];
   private alerts = new Map<Id, AuditAlertRec>();
   private staff = new Map<Id, StaffProfileRec>();
@@ -893,6 +896,17 @@ export class MemoryRepository implements Repository {
   async addTutorMessage(m: TutorMessageRec) {
     this.messages.push(clone(m));
   }
+  async getTutorAnswer(key: string) {
+    const a = this.tutorAnswers.get(key);
+    return a ? clone(a) : null;
+  }
+  async putTutorAnswer(a: TutorAnswerRec) {
+    if (!this.tutorAnswers.has(a.key)) this.tutorAnswers.set(a.key, clone(a));
+  }
+  async hitTutorAnswer(key: string) {
+    const a = this.tutorAnswers.get(key);
+    if (a) a.hits++;
+  }
   async addGenerated(rows: GeneratedRec[]) {
     for (const r of rows) this.generated.set(r.id, clone(r));
   }
@@ -917,6 +931,28 @@ export class MemoryRepository implements Repository {
     const next = { ...g, ...patch };
     this.generated.set(id, next);
     return clone(next);
+  }
+  async markGeneratedSeen(userId: Id, ids: Id[], at: Date) {
+    for (const id of ids) {
+      const k = `${userId}|${id}`;
+      if (this.generatedSeen.has(k) || !this.generated.has(id)) continue;
+      this.generatedSeen.set(k, { userId, generatedId: id, seenAt: new Date(at), n: this.generatedSeen.size });
+    }
+  }
+  async listSeenGenerated(userId: Id, filter: GeneratedFilter, limit: number) {
+    const match = (g: GeneratedRec) =>
+      (!filter.topicKey || g.topicKey === filter.topicKey) &&
+      (filter.conceptKey === undefined || g.conceptKey === filter.conceptKey) &&
+      (!filter.kind || g.kind === filter.kind) &&
+      (!filter.lang || g.lang === filter.lang) &&
+      (!filter.status || g.status === filter.status);
+    return [...this.generatedSeen.values()]
+      .filter((s) => s.userId === userId)
+      .sort((a, b) => a.seenAt.getTime() - b.seenAt.getTime() || a.n - b.n)
+      .map((s) => this.generated.get(s.generatedId))
+      .filter((g): g is GeneratedRec => !!g && match(g))
+      .slice(0, limit)
+      .map(clone);
   }
   async countGenerated(ids: Id[], delta: { served?: number; good?: number; bad?: number; reason?: string }) {
     for (const id of ids) {

@@ -62,7 +62,11 @@ const thinkingFields = (effort: DeepSeekEffort | null): DeepSeekExtras =>
 interface DeepSeekUsage {
   prompt_tokens?: number;
   completion_tokens?: number;
+  /** Context caching on disk: the part of the prompt served from cache (billed at the cache-hit price). */
+  prompt_cache_hit_tokens?: number;
+  prompt_cache_miss_tokens?: number;
 }
+const toUsage = (u: DeepSeekUsage | undefined) => ({ inputTokens: u?.prompt_tokens ?? 0, outputTokens: u?.completion_tokens ?? 0, cachedInputTokens: u?.prompt_cache_hit_tokens ?? 0 });
 
 export class DeepSeekProvider implements TutorProvider {
   readonly name = 'deepseek';
@@ -111,7 +115,7 @@ export class DeepSeekProvider implements TutorProvider {
       }
       if (finish === 'insufficient_system_resource' || finish === 'aborted') throw new ProviderUnavailable(`finish_${finish}`);
       if (finish === 'content_filter') yield { type: 'refusal' };
-      yield { type: 'usage', inputTokens: usage?.prompt_tokens ?? 0, outputTokens: usage?.completion_tokens ?? 0 };
+      yield { type: 'usage', ...toUsage(usage) };
     } catch (err) {
       throw providerError(err);
     }
@@ -138,7 +142,7 @@ export class DeepSeekProvider implements TutorProvider {
         { signal: req.signal, timeout: GENERATE_TIMEOUT_MS },
       );
       const u = completion.usage as DeepSeekUsage | undefined;
-      const usage = { inputTokens: u?.prompt_tokens ?? 0, outputTokens: u?.completion_tokens ?? 0 };
+      const usage = toUsage(u);
       const choice = completion.choices[0];
       const finish = choice?.finish_reason as string | undefined;
       if (finish === 'insufficient_system_resource' || finish === 'aborted') throw new ProviderUnavailable(`finish_${finish}`);

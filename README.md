@@ -124,6 +124,8 @@ All variables are documented in [`.env.example`](.env.example). The important on
 | `TUTOR_MODEL`, `TUTOR_FALLBACK` | the primary model (default per provider); an optional failover provider (`anthropic` / `deepseek`) |
 | `ANTHROPIC_API_KEY` | Claude, only when chosen with `TUTOR_PROVIDER=anthropic` or `TUTOR_FALLBACK=anthropic` |
 | `TUTOR_DAILY_TOKEN_BUDGET` | daily token budget; once spent the tutor answers 503 |
+| `TUTOR_ANSWER_CACHE` | `1` (default): one shared answer per topic version, language and self-contained question (starter or first question); repeats cost no tokens. `0` turns it off |
+| `TUTOR_PRICE_INPUT` / `TUTOR_PRICE_INPUT_CACHED` / `TUTOR_PRICE_OUTPUT` | USD per 1M tokens (defaults 0.15 / 0.003 / 0.6): the cost in the `tutor.usage` log line and in `npm run tutor:eval` |
 | `MAIL_TRANSPORT` | `console` prints verification / reset / invite links |
 | `DEMO_SEED` | `1` loads the demo dataset at startup (dev only; refused in production) |
 | `AUTH_FIXED_OTP` | TEMPORARY: every one-time code (e-mail registration, WhatsApp phone codes) is this 6-digit value; phone codes are not sent (startup warning) |

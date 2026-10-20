@@ -1,0 +1,1345 @@
+{
+  "topic": {
+    "key": "phys7-liquid-pressure",
+    "unitKey": "phys.g7.pressure",
+    "status": "published",
+    "title": {
+      "ky": "Суюктуктардагы жана газдардагы басым. Паскаль закону",
+      "ru": "Давление в жидкостях и газах. Закон Паскаля",
+      "en": "Pressure in liquids and gases. Pascal's law"
+    },
+    "formula": "P = ρ·g·h",
+    "classification": {
+      "ky": "Суюктуктардын жана газдардын басымы",
+      "ru": "Давление жидкостей и газов",
+      "en": "Pressure of liquids and gases"
+    },
+    "description": {
+      "ky": "Бийик айнек идиштин капталында үч тешик бар: ылдыйкы тешиктен суу эң алыска атылат. Манометрге туташкан зонд 0,3 м тереңдикте 2940 Па көрсөтөт. Суюктуктун жана газдын молекулалары тынымсыз кыймылда болуп, идиштин бардык капталдарына урунат, ошондуктан алар бардык тарапка басым жасайт: P = ρ·g·h. Паскаль шары басым бардык багыт боюнча бирдей берилерин көрсөтөт (§26–27).",
+      "ru": "В стенке высокого стеклянного сосуда три отверстия: из нижнего вода бьёт дальше всего. Датчик с манометром на глубине 0,3 м показывает 2940 Па. Молекулы жидкости и газа непрерывно движутся и ударяются о все стенки сосуда, поэтому давят во все стороны: p = ρgh. Шар Паскаля показывает, что давление передаётся одинаково во всех направлениях (§26–27).",
+      "en": "A tall glass vessel has three holes in its side: the lowest jet travels furthest. A probe joined to a manometer reads 2940 Pa at a depth of 0.3 m. The molecules of liquids and gases are always moving and hitting every wall of the vessel, so they press in all directions: p = ρgh. Pascal's ball shows that pressure is passed on equally every way (§26–27)."
+    },
+    "goal": {
+      "ky": "Газдын жана суюктуктун басымын молекулалык түзүлүш менен түшүндүрүү, газдын басымы көлөмгө жана температурага кантип көз каранды экенин айтуу, Паскаль законун баяндоо жана колдонуу, суюктук мамычасынын басымын P = ρ·g·h менен эсептөө (PHYS-7.3.1).",
+      "ru": "Объяснять давление газа и жидкости молекулярным строением, описывать зависимость давления газа от объёма и температуры, формулировать и применять закон Паскаля, вычислять давление столба жидкости по p = ρgh (PHYS-7.3.1).",
+      "en": "Explain gas and liquid pressure through molecular structure, describe how gas pressure depends on volume and temperature, state and apply Pascal's law, and calculate the pressure of a liquid column with p = ρgh (PHYS-7.3.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.pressure.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "pressure",
+        "variant": "liquid",
+        "liquid": "water",
+        "depth": 0.3,
+        "height": 0.5
+      },
+      "camera": {
+        "position": [
+          0.5,
+          0.6,
+          1.5
+        ],
+        "target": [
+          0,
+          0.25,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.liquid-pressure",
+      "phys.depth",
+      "phys.pressure",
+      "phys.pascal-law",
+      "phys.piston"
+    ],
+    "overrides": {
+      "phys.liquid-pressure": {
+        "nodes": [
+          "Liquid",
+          "Jet_*",
+          "Arrow_Wall_*"
+        ],
+        "description": {
+          "ky": "Идиштеги суу түбүнө да, капталдарына да басат. Капталдагы үч тешиктен агым чыгат: ылдыйкысы эң алыска атылат, анткени ал жерде суу мамычасы бийигирээк жана басым чоңураак.",
+          "ru": "Вода в сосуде давит и на дно, и на стенки. Из трёх боковых отверстий бьют струи: нижняя – дальше всех, потому что над ней выше столб воды и больше давление.",
+          "en": "The water presses on the bottom and on the walls. Jets come from the three side holes: the lowest goes furthest, because the column of water above it is taller and the pressure greater."
+        },
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P = \\rho \\cdot g \\cdot h"
+          },
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 1000,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 4900,
+            "unit": "Pa"
+          }
+        ]
+      },
+      "phys.depth": {
+        "nodes": [
+          "Probe",
+          "Probe_Membrane",
+          "Depth",
+          "Arrow_Probe"
+        ],
+        "description": {
+          "ky": "Зонд (резина пленка менен капталган кутуча) 0,3 м тереңдикте турат. Аны ылдый түшүргөн сайын манометрдеги деңгээлдердин айырмасы чоңоёт.",
+          "ru": "Датчик (коробочка, затянутая резиновой плёнкой) находится на глубине 0,3 м. Чем глубже его опускают, тем больше разность уровней в манометре.",
+          "en": "The probe (a small box covered with a rubber film) sits 0.3 m down. The lower it goes, the bigger the difference in the manometer levels."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "depth",
+            "value": 0.3,
+            "unit": "m"
+          }
+        ]
+      },
+      "phys.pressure": {
+        "nodes": [
+          "Gauge"
+        ],
+        "title": {
+          "ky": "Суунун басымы (манометр)",
+          "ru": "Давление воды (манометр)",
+          "en": "Water pressure (manometer)"
+        },
+        "description": {
+          "ky": "U түрүндөгү манометр зонддогу басымды көрсөтөт: P = ρ·g·h = 1000 · 9,8 · 0,3 = 2940 Па. Зондду ошол эле тереңдикте кайсы тарапка бурсак да, көрсөткүч өзгөрбөйт.",
+          "ru": "U-образный манометр показывает давление у датчика: p = ρgh = 1000 · 9,8 · 0,3 = 2940 Па. Как ни поворачивай датчик на той же глубине, показание не меняется.",
+          "en": "The U-tube manometer shows the pressure at the probe: p = ρgh = 1000 × 9.8 × 0.3 = 2940 Pa. However the probe is turned at that depth, the reading stays the same."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 2940,
+            "unit": "Pa"
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P = \\rho g h"
+          }
+        ]
+      },
+      "phys.pascal-law": {
+        "nodes": [
+          "Ball",
+          "Cylinder",
+          "Arrow_Pressure_*"
+        ],
+        "description": {
+          "ky": "Паскаль шары – ар кайсы жеринде кичине тешиктери бар көңдөй металл шар, ага поршени бар түтүк бириктирилген. Шарга суу куюп, поршенди түртсөк, суу бардык тешиктерден бирдей атылат: поршендин басымы суюктуктун ар бир чекитине бардык багыт боюнча бирдей берилет.",
+          "ru": "Шар Паскаля – полый металлический шар с маленькими отверстиями, соединённый с трубкой с поршнем. Если налить в шар воду и надавить на поршень, вода брызнет из всех отверстий одинаково: давление поршня передаётся в каждую точку жидкости одинаково во всех направлениях.",
+          "en": "Pascal's ball is a hollow metal ball with small holes all over it, joined to a tube with a piston. Fill it with water and push the piston: water squirts equally from every hole, because the piston's pressure reaches every point of the liquid equally in all directions."
+        },
+        "props": [
+          {
+            "kind": "text",
+            "type": "foundIn",
+            "value": {
+              "ky": "Суюктуктар жана газдар",
+              "ru": "Жидкости и газы",
+              "en": "Liquids and gases"
+            }
+          }
+        ]
+      },
+      "phys.piston": {
+        "nodes": [
+          "Piston",
+          "Arrow_Force"
+        ],
+        "description": {
+          "ky": "Паскаль шарынын түтүгүндөгү поршень. Аны түртсөк, ал астындагы суунун бетин кысат, суунун бөлүкчөлөрү кысылып, басымды тереңирээк катмарларга жана шардын капталдарына берет.",
+          "ru": "Поршень в трубке шара Паскаля. Когда на него давят, он сжимает поверхность воды, частицы воды уплотняются и передают давление глубже и на стенки шара.",
+          "en": "The piston in the tube of Pascal's ball. Pushing it squeezes the water surface; the water particles crowd together and pass the pressure deeper and on to the walls of the ball."
+        }
+      }
+    },
+    "samples": [
+      {
+        "key": "liquid-water-30cm",
+        "title": {
+          "ky": "Суу, 30 см тереңдик",
+          "ru": "Вода, глубина 30 см",
+          "en": "Water, 30 cm deep"
+        },
+        "classification": {
+          "ky": "P = 2940 Па",
+          "ru": "p = 2940 Па",
+          "en": "p = 2940 Pa"
+        },
+        "thumb": "thumbs/liquid-water-30cm.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 1000,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "depth",
+            "value": 0.3,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 2940,
+            "unit": "Pa"
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "liquid",
+            "liquid": "water",
+            "depth": 0.3
+          }
+        }
+      },
+      {
+        "key": "liquid-water-10cm",
+        "title": {
+          "ky": "Суу, 10 см тереңдик",
+          "ru": "Вода, глубина 10 см",
+          "en": "Water, 10 cm deep"
+        },
+        "classification": {
+          "ky": "P = 980 Па",
+          "ru": "p = 980 Па",
+          "en": "p = 980 Pa"
+        },
+        "thumb": "thumbs/liquid-water-10cm.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 1000,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "depth",
+            "value": 0.1,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 980,
+            "unit": "Pa"
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "liquid",
+            "liquid": "water",
+            "depth": 0.1
+          }
+        }
+      },
+      {
+        "key": "liquid-oil-30cm",
+        "title": {
+          "ky": "Май, 30 см тереңдик",
+          "ru": "Масло, глубина 30 см",
+          "en": "Oil, 30 cm deep"
+        },
+        "classification": {
+          "ky": "ρ = 900 кг/м³, P = 2646 Па",
+          "ru": "ρ = 900 кг/м³, p = 2646 Па",
+          "en": "ρ = 900 kg/m³, p = 2646 Pa"
+        },
+        "thumb": "thumbs/liquid-oil-30cm.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "density",
+            "value": 900,
+            "unit": "kg/m³"
+          },
+          {
+            "kind": "quantity",
+            "type": "depth",
+            "value": 0.3,
+            "unit": "m"
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 2646,
+            "unit": "Pa"
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "liquid",
+            "liquid": "oil",
+            "depth": 0.3
+          }
+        }
+      },
+      {
+        "key": "liquid-pascal-ball",
+        "title": {
+          "ky": "Паскаль шары",
+          "ru": "Шар Паскаля",
+          "en": "Pascal's ball"
+        },
+        "classification": {
+          "ky": "Басым бардык багытта бирдей",
+          "ru": "Давление одинаково во всех направлениях",
+          "en": "Equal pressure in every direction"
+        },
+        "thumb": "thumbs/liquid-pascal-ball.webp",
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Тешиктери бар көңдөй шар, поршендүү түтүк, суу",
+              "ru": "Полый шар с отверстиями, трубка с поршнем, вода",
+              "en": "A hollow ball with holes, a tube with a piston, water"
+            }
+          }
+        ],
+        "scene": {
+          "params": {
+            "variant": "pascal",
+            "liquid": "water"
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "density",
+        "value": 1000,
+        "unit": "kg/m³"
+      },
+      {
+        "kind": "quantity",
+        "type": "depth",
+        "value": 0.3,
+        "unit": "m"
+      },
+      {
+        "kind": "quantity",
+        "type": "pressure",
+        "value": 2940,
+        "unit": "Pa"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "P = \\rho \\cdot g \\cdot h"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                2.84,
+                2.43,
+                4.48
+              ],
+              "target": [
+                1.35,
+                1.38,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false
+            },
+            "focus": "phys.liquid-pressure",
+            "text": {
+              "ky": "Бийик идишке суу куюлган, капталында бири-биринин үстүндө үч тешик бар. Кайсы тешиктен суу эң алыска атылат деп ойлойсуз?",
+              "ru": "В высокий сосуд налита вода, в стенке одно над другим три отверстия. Из какого отверстия, по-вашему, вода будет бить дальше всего?",
+              "en": "A tall vessel full of water has three holes, one above the other, in its side. Which hole do you think will send the water furthest?"
+            },
+            "teacherNote": {
+              "ky": "Тажрыйбаны пластик бөтөлкө менен класста кайталаса болот. Окуучулар адегенде божомолун айтышсын.",
+              "ru": "Опыт легко повторить в классе с пластиковой бутылкой. Пусть ученики сначала выскажут догадки.",
+              "en": "You can repeat this in class with a plastic bottle. Let pupils guess first."
+            },
+            "altText": {
+              "ky": "Капталынан үч агым чыккан суу толгон бийик айнек идиш.",
+              "ru": "Высокий стеклянный сосуд с водой, из стенки бьют три струи.",
+              "en": "A tall glass vessel of water with three jets coming from its side."
+            }
+          },
+          {
+            "key": "molecules",
+            "camera": {
+              "position": [
+                2.84,
+                2.43,
+                4.48
+              ],
+              "target": [
+                1.35,
+                1.38,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.liquid-pressure",
+            "text": {
+              "ky": "Эмне үчүн суюктук жана газ басым жасайт? Алардын молекулалары тынымсыз кыймылда болуп, идиштин түбүнө, капталдарына жана капкагына урунат. Газды кысып көлөмүн кичирейтсек, тыгыздыгы чоңоюп, урунуулар көбөйөт – басым чоңоёт. Газды ысытсак, молекулалар тезирээк кыймылдап, басым дагы чоңоёт.",
+              "ru": "Почему жидкость и газ давят? Их молекулы непрерывно движутся и ударяются о дно, стенки и крышку сосуда. Если сжать газ, уменьшив объём, плотность растёт, ударов больше – давление растёт. Если газ нагреть, молекулы движутся быстрее, и давление тоже растёт.",
+              "en": "Why do liquids and gases press? Their molecules are always moving and striking the bottom, walls and lid of the vessel. Squeeze a gas into a smaller volume and it gets denser, there are more hits – the pressure rises. Heat a gas and the molecules move faster – the pressure rises too."
+            },
+            "teacherNote": {
+              "ky": "Китептеги 75-сүрөттү (аба насосунун калпакчасындагы резина шар) жана 76-сүрөттү (поршень менен пленка) талкуулаңыз. Бойль–Мариотт закону ушул жерде сапаттык деңгээлде гана.",
+              "ru": "Обсудите рисунки 75 (резиновый шарик под колоколом насоса) и 76 (поршень и плёнка) учебника. Закон Бойля–Мариотта здесь только качественно.",
+              "en": "Discuss figures 75 (a rubber balloon under the pump's bell jar) and 76 (piston and film) in the textbook. The Boyle–Mariotte law is only qualitative here."
+            },
+            "altText": {
+              "ky": "Идиштин капталдарына урунган суу бөлүкчөлөрү.",
+              "ru": "Частицы воды, ударяющиеся о стенки сосуда.",
+              "en": "Water particles striking the walls of the vessel."
+            }
+          },
+          {
+            "key": "probe",
+            "camera": {
+              "position": [
+                1.08,
+                2.96,
+                3.57
+              ],
+              "target": [
+                -0.1,
+                2.13,
+                0.02
+              ],
+              "fov": 45
+            },
+            "focus": "phys.depth",
+            "text": {
+              "ky": "Зондду 0,3 м тереңдикке түшүрдүк. Манометрдин тизелериндеги деңгээлдердин айырмасы зонддогу басымды көрсөтөт. Зондду ылдыйлаткан сайын айырма чоңоёт.",
+              "ru": "Опустили датчик на глубину 0,3 м. Разность уровней в коленах манометра показывает давление у датчика. Чем глубже датчик, тем больше разность.",
+              "en": "The probe is lowered to 0.3 m. The difference in the levels of the manometer arms shows the pressure at the probe. The lower the probe, the bigger the difference."
+            },
+            "teacherNote": {
+              "ky": "«Басым ченегичти сууга түшүрүү» процессин иштетиңиз: 0 → 980 → 2940 → 4900 Па.",
+              "ru": "Запустите процесс «Погружаем датчик давления»: 0 → 980 → 2940 → 4900 Па.",
+              "en": "Run the process \"Lowering a pressure probe\": 0 → 980 → 2940 → 4900 Pa."
+            },
+            "altText": {
+              "ky": "Суунун ичиндеги зонд жана ага туташкан U түрүндөгү манометр.",
+              "ru": "Датчик в воде и соединённый с ним U-образный манометр.",
+              "en": "The probe in the water and the U-tube manometer joined to it."
+            }
+          },
+          {
+            "key": "formula",
+            "camera": {
+              "position": [
+                0.3,
+                1.63,
+                3.52
+              ],
+              "target": [
+                -0.88,
+                0.8,
+                -0.03
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.pressure",
+            "text": {
+              "ky": "Суюктук мамычасынын басымы: P = ρ·g·h = 1000 кг/м³ · 9,8 Н/кг · 0,3 м = 2940 Па. Ал суюктуктун тыгыздыгына жана тереңдикке гана көз каранды – идиштин формасына жана түбүнүн аянтына көз каранды эмес.",
+              "ru": "Давление столба жидкости: p = ρgh = 1000 кг/м³ · 9,8 Н/кг · 0,3 м = 2940 Па. Оно зависит только от плотности жидкости и глубины – не от формы сосуда и не от площади дна.",
+              "en": "The pressure of a column of liquid: p = ρgh = 1000 kg/m³ × 9.8 N/kg × 0.3 m = 2940 Pa. It depends only on the density and the depth – not on the vessel's shape or the area of its bottom."
+            },
+            "teacherNote": {
+              "ky": "Формуланы китептеги §32ден көрсөтүңүз: P = F/S, F = m·g = ρ·V·g, V = S·h ⇒ P = ρ·g·h. Тактада кадам-кадамы менен чыгарыңыз.",
+              "ru": "Покажите вывод из §32 учебника: p = F/S, F = m·g = ρ·V·g, V = S·h ⇒ p = ρgh. Проведите его на доске по шагам.",
+              "en": "Show the derivation from §32 of the textbook: p = F/A, F = mg = ρVg, V = A·h ⇒ p = ρgh. Work it step by step on the board."
+            },
+            "altText": {
+              "ky": "Манометрдин көрсөткүчү 2940 Па.",
+              "ru": "Показание манометра 2940 Па.",
+              "en": "The manometer reading of 2940 Pa."
+            }
+          },
+          {
+            "key": "shallow",
+            "sample": "liquid-water-10cm",
+            "camera": {
+              "position": [
+                1.08,
+                3.28,
+                3.57
+              ],
+              "target": [
+                -0.1,
+                2.45,
+                0.02
+              ],
+              "fov": 45
+            },
+            "focus": "phys.depth",
+            "text": {
+              "ky": "Зонд 0,1 м тереңдикте: P = 1000 · 9,8 · 0,1 = 980 Па – 3 эсе аз. Тереңдик канча эсе кичирейсе, басым ошончо эсе кичирейет.",
+              "ru": "Датчик на глубине 0,1 м: p = 1000 · 9,8 · 0,1 = 980 Па – втрое меньше. Во сколько раз меньше глубина, во столько раз меньше давление.",
+              "en": "The probe at 0.1 m: p = 1000 × 9.8 × 0.1 = 980 Pa – three times less. However many times smaller the depth, that many times smaller the pressure."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: Ысык-Көлдө 10 м тереңдикте басым канча? (98 000 Па ≈ 98 кПа.)",
+              "ru": "Спросите: какое давление воды в Иссык-Куле на глубине 10 м? (98 000 Па ≈ 98 кПа.)",
+              "en": "Ask: what is the water pressure 10 m down in Lake Issyk-Kul? (98 000 Pa ≈ 98 kPa.)"
+            },
+            "altText": {
+              "ky": "Зонд суунун бетине жакын, манометрдеги айырма кичине.",
+              "ru": "Датчик у поверхности, разность в манометре мала.",
+              "en": "The probe near the surface; the manometer difference is small."
+            }
+          },
+          {
+            "key": "oil",
+            "sample": "liquid-oil-30cm",
+            "camera": {
+              "position": [
+                2.84,
+                2.43,
+                4.48
+              ],
+              "target": [
+                1.35,
+                1.38,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.liquid-pressure",
+            "text": {
+              "ky": "Суунун ордуна май (ρ = 900 кг/м³): ошол эле 0,3 м тереңдикте P = 900 · 9,8 · 0,3 = 2646 Па. Суюктуктун тыгыздыгы кичине болсо, басым да кичине.",
+              "ru": "Вместо воды масло (ρ = 900 кг/м³): на той же глубине 0,3 м p = 900 · 9,8 · 0,3 = 2646 Па. Меньше плотность жидкости – меньше давление.",
+              "en": "Oil instead of water (ρ = 900 kg/m³): at the same 0.3 m, p = 900 × 9.8 × 0.3 = 2646 Pa. A less dense liquid gives a smaller pressure."
+            },
+            "teacherNote": {
+              "ky": "Салыштыруу таблицасын ачыңыз: суу 30 см, суу 10 см, май 30 см.",
+              "ru": "Откройте таблицу сравнения: вода 30 см, вода 10 см, масло 30 см.",
+              "en": "Open the comparison table: water 30 cm, water 10 cm, oil 30 cm."
+            },
+            "altText": {
+              "ky": "Сары май толтурулган идиш, агымдар кыскараак.",
+              "ru": "Сосуд с жёлтым маслом, струи короче.",
+              "en": "A vessel of yellow oil with shorter jets."
+            }
+          },
+          {
+            "key": "pascal",
+            "sample": "liquid-pascal-ball",
+            "camera": {
+              "position": [
+                1.27,
+                2.94,
+                4.05
+              ],
+              "target": [
+                -0.08,
+                2,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.pascal-law",
+            "text": {
+              "ky": "Паскаль шары: поршенди түртсөк, суу бардык тешиктерден бирдей атылат. Паскаль закону: суюктуктарга же газдарга жасалган басым алардын ар бир чекитине бардык багыт боюнча бирдей берилет. Шарды түтүнгө толтурсак, түтүн да бардык тешиктен бирдей чыгат.",
+              "ru": "Шар Паскаля: при нажатии на поршень вода брызжет из всех отверстий одинаково. Закон Паскаля: давление, производимое на жидкость или газ, передаётся в каждую их точку одинаково во всех направлениях. Если заполнить шар дымом, дым тоже выходит из всех отверстий одинаково.",
+              "en": "Pascal's ball: push the piston and water squirts equally from every hole. Pascal's law: pressure applied to a liquid or gas is passed on to every point equally in all directions. Fill the ball with smoke and the smoke comes out of every hole equally too."
+            },
+            "teacherNote": {
+              "ky": "Катуу нерселер басымды күчтүн багыты боюнча гана берет (катуу брусок), ал эми суюктуктар жана газдар – бардык тарапка. Бул айырманы китептеги 79-сүрөт менен түшүндүрүңүз.",
+              "ru": "Твёрдые тела передают давление только по направлению силы (брусок), а жидкости и газы – во все стороны. Объясните разницу по рисунку 79 учебника.",
+              "en": "Solids pass pressure on only along the force (the block); liquids and gases pass it every way. Explain the difference with figure 79 in the textbook."
+            },
+            "altText": {
+              "ky": "Поршени түртүлгөн шардын бардык тешиктеринен бирдей агымдар чыгат.",
+              "ru": "Из всех отверстий шара с нажатым поршнем бьют одинаковые струи.",
+              "en": "Equal jets coming from every hole of the ball as the piston is pushed."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.probe-dive"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "liquid-water-30cm"
+          },
+          {
+            "kind": "sample",
+            "key": "liquid-water-10cm"
+          },
+          {
+            "kind": "sample",
+            "key": "liquid-oil-30cm"
+          }
+        ],
+        "rows": [
+          "density",
+          "depth",
+          "pressure"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-liquid-1",
+          "phys.q.p7-liquid-2",
+          "phys.q.p7-liquid-3",
+          "phys.q.p7-liquid-4",
+          "phys.q.p7-liquid-5",
+          "phys.q.p7-liquid-6",
+          "phys.q.p7-liquid-7",
+          "phys.q.p7-liquid-8",
+          "phys.q.p7-liquid-9",
+          "phys.q.p7-liquid-10",
+          "phys.q.p7-liquid-11",
+          "phys.q.p7-liquid-12",
+          "phys.q.p7-liquid-13",
+          "phys.q.p7-liquid-14"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Плотина",
+            "ru": "Плотина",
+            "en": "Dams"
+          },
+          "text": {
+            "ky": "Токтогул ГЭСинин плотинасы ылдый жагында калыңыраак: суунун басымы тереңдик менен өсөт, 100 м де ≈ 980 кПа.",
+            "ru": "Плотина Токтогульской ГЭС внизу толще: давление воды растёт с глубиной и на 100 м составляет ≈ 980 кПа.",
+            "en": "The Toktogul dam is thicker at the base: water pressure grows with depth, reaching about 980 kPa at 100 m."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Суу астындагы аппараттар",
+            "ru": "Глубоководные аппараты",
+            "en": "Deep-sea craft"
+          },
+          "text": {
+            "ky": "Батискафтын дубалы өтө бекем болот: 11 км тереңдикте P = 1030 · 9,8 · 11 000 ≈ 111 млн Па.",
+            "ru": "Стенки батискафа очень прочные: на глубине 11 км p = 1030 · 9,8 · 11 000 ≈ 111 млн Па.",
+            "en": "A bathyscaphe needs immensely strong walls: at 11 km, p = 1030 × 9.8 × 11 000 ≈ 111 million Pa."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Газдын басымы жана температура",
+            "ru": "Давление газа и температура",
+            "en": "Gas pressure and temperature"
+          },
+          "text": {
+            "ky": "Жайкы ысыкта дөңгөлөктөгү абанын басымы чоңоёт – молекулалар тезирээк кыймылдайт. Ошондуктан айдоочулар дөңгөлөктү муздак кезде текшеришет.",
+            "ru": "В летнюю жару давление воздуха в шинах растёт – молекулы движутся быстрее. Поэтому водители проверяют шины холодными.",
+            "en": "In summer heat the air pressure in tyres rises – the molecules move faster. That is why drivers check tyres when they are cold."
+          },
+          "field": "s"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Тешик бөтөлкө",
+            "ru": "Бутылка с дырками",
+            "en": "A bottle with holes"
+          },
+          "text": {
+            "ky": "Бөтөлкөнүн капталына тешик тешип суу куйсаң, ылдыйкы тешиктен суу эң алыска агат.",
+            "ru": "Проткни сбоку бутылку в нескольких местах и налей воды – из нижней дырки струя бьёт дальше всех.",
+            "en": "Prick holes in the side of a bottle and fill it – the lowest hole squirts furthest."
+          }
+        },
+        {
+          "title": {
+            "ky": "Футбол топу",
+            "ru": "Футбольный мяч",
+            "en": "A football"
+          },
+          "text": {
+            "ky": "Топту насос менен үйлөгөндө ал бардык тарапка бирдей томпоёт – абанын басымы бардык тарапка бирдей.",
+            "ru": "Когда мяч накачивают, он раздувается во все стороны одинаково – давление воздуха везде одинаково.",
+            "en": "Pump up a ball and it swells evenly all round – the air pressure is the same in every direction."
+          }
+        },
+        {
+          "title": {
+            "ky": "Чөмүлүү",
+            "ru": "Ныряние",
+            "en": "Diving"
+          },
+          "text": {
+            "ky": "Бассейндин тереңине чөмүлсөң, кулагың көбүрөөк кысылат – тереңдик чоң, басым чоң.",
+            "ru": "Нырнёшь глубже в бассейне – уши сдавит сильнее: больше глубина, больше давление.",
+            "en": "Dive deeper in a pool and your ears hurt more – more depth, more pressure."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Эмне үчүн ылдыйкы тешиктен суу эң алыска атылат?",
+        "ru": "Почему из нижнего отверстия вода бьёт дальше всего?",
+        "en": "Why does water squirt furthest from the lowest hole?"
+      },
+      {
+        "ky": "Газ эмне үчүн идиштин капталдарына басым жасайт?",
+        "ru": "Почему газ давит на стенки сосуда?",
+        "en": "Why does a gas press on the walls of its container?"
+      },
+      {
+        "ky": "Паскаль закону кандай айтылат?",
+        "ru": "Как формулируется закон Паскаля?",
+        "en": "How is Pascal's law stated?"
+      },
+      {
+        "ky": "Суюктуктун басымы идиштин формасына көз карандыбы?",
+        "ru": "Зависит ли давление жидкости от формы сосуда?",
+        "en": "Does liquid pressure depend on the shape of the vessel?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Э. М. Мамбетакунов, «Физика, 7-класс», III глава (§24–34)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-liquid-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Газдын басымынын себеби эмнеде?",
+        "ru": "В чём причина давления газа?",
+        "en": "What causes gas pressure?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Көлөмүнүн аз болушу",
+            "ru": "В малом объёме газа",
+            "en": "Its small volume"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Идиштин формасы",
+            "ru": "В форме сосуда",
+            "en": "The shape of the container"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Молекулалардын кыймылы жана идиштин капталдарына урунушу",
+            "ru": "В движении молекул и их ударах о стенки сосуда",
+            "en": "Its molecules moving and hitting the walls"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Газдын түсү",
+            "ru": "В цвете газа",
+            "en": "The colour of the gas"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Газдын молекулалары тынымсыз кыймылда болуп, идиштин капталдарына урунат. Ошол урунуулардын натыйжасы – газдын басымы.",
+        "ru": "Молекулы газа непрерывно движутся и ударяются о стенки сосуда. Результат этих ударов и есть давление газа.",
+        "en": "Gas molecules keep moving and striking the walls of the container. The result of those hits is the gas pressure."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Ичинде газы бар баллонго дагы газ үйлөп киргизсек, басым кандай өзгөрөт?",
+        "ru": "Если в баллон с газом накачать ещё газа, как изменится давление?",
+        "en": "If more gas is pumped into a cylinder of gas, how does the pressure change?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не изменится",
+            "en": "It does not change"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Азаят",
+            "ru": "Уменьшится",
+            "en": "It falls"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Чоңоёт",
+            "ru": "Увеличится",
+            "en": "It rises"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Көлөм ошол эле, ал эми молекулалар көбөйдү: тыгыздык чоңоюп, капталдарга урунуулар көбөйөт – басым чоңоёт.",
+        "ru": "Объём тот же, а молекул больше: плотность растёт, ударов о стенки больше – давление растёт.",
+        "en": "Same volume, more molecules: the density rises and there are more hits on the walls – the pressure rises."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-3",
+      "type": "single",
+      "prompt": {
+        "ky": "Паскаль закону кандай айтылат?",
+        "ru": "Как формулируется закон Паскаля?",
+        "en": "Which statement is Pascal's law?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Суюктукка же газга жасалган басым алардын ар бир чекитине бардык багыт боюнча бирдей берилет",
+            "ru": "Давление, производимое на жидкость или газ, передаётся в каждую точку одинаково во всех направлениях",
+            "en": "Pressure applied to a liquid or gas is passed on to every point equally in all directions"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Суюктук басымды ылдый карай гана берет",
+            "ru": "Жидкость передаёт давление только вниз",
+            "en": "A liquid passes pressure on only downwards"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Басым күч аракет эткен аянтка түз пропорциялаш",
+            "ru": "Давление прямо пропорционально площади",
+            "en": "Pressure is directly proportional to the area"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Газдын басымы температурага көз каранды эмес",
+            "ru": "Давление газа не зависит от температуры",
+            "en": "Gas pressure does not depend on temperature"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Паскаль закону (1653): суюктуктарга же газдарга жасалган басым алардын ар бир чекитине бардык багыт боюнча бирдей берилет.",
+        "ru": "Закон Паскаля (1653): давление, производимое на жидкость или газ, передаётся в каждую их точку одинаково во всех направлениях.",
+        "en": "Pascal's law (1653): pressure applied to a liquid or gas is passed on to every point equally in all directions."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-4",
+      "type": "single",
+      "prompt": {
+        "ky": "Оозу тыгын менен бекитилген колбага тыгын аркылуу газ үйлөп киргизилди. Колбанын кайсы жеринде газдын басымы чоң?",
+        "ru": "В закрытую пробкой колбу через пробку накачали газ. Где давление газа в колбе больше?",
+        "en": "Gas is pumped through the stopper into a closed flask. Where in the flask is the gas pressure greatest?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Тыгынга",
+            "ru": "На пробку",
+            "en": "On the stopper"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Колбанын түбүнө",
+            "ru": "На дно колбы",
+            "en": "On the bottom"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Колбанын каптал бетине",
+            "ru": "На боковые стенки",
+            "en": "On the side walls"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Колбанын бардык жеринде басым бирдей",
+            "ru": "Во всех местах колбы давление одинаково",
+            "en": "It is the same everywhere in the flask"
+          }
+        }
+      ],
+      "answer": "d",
+      "explanation": {
+        "ky": "Паскаль закону боюнча газ басымды бардык тарапка бирдей берет, ошондуктан колбанын бардык жеринде басым бирдей.",
+        "ru": "По закону Паскаля газ передаёт давление одинаково во все стороны, поэтому во всех местах колбы оно одинаково.",
+        "en": "By Pascal's law a gas passes pressure on equally every way, so it is the same everywhere in the flask."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-liquid-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "0,3 м тереңдиктеги суунун басымы канча паскаль? ρ = 1000 кг/м³, g = 9,8 Н/кг.",
+        "ru": "Каково давление воды на глубине 0,3 м, Па? ρ = 1000 кг/м³, g = 9,8 Н/кг.",
+        "en": "What is the water pressure at a depth of 0.3 m, in Pa? ρ = 1000 kg/m³, g = 9.8 N/kg."
+      },
+      "answer": 2940,
+      "tolerance": 10,
+      "unit": "Pa",
+      "explanation": {
+        "ky": "P = ρ·g·h = 1000 · 9,8 · 0,3 = 2940 Па.",
+        "ru": "p = ρgh = 1000 · 9,8 · 0,3 = 2940 Па.",
+        "en": "p = ρgh = 1000 × 9.8 × 0.3 = 2940 Pa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кандай тереңдикте суунун басымы 4900 Па болот? Жоопту метр менен бериңиз. g = 9,8 Н/кг.",
+        "ru": "На какой глубине давление воды равно 4900 Па? Ответ в метрах. g = 9,8 Н/кг.",
+        "en": "At what depth is the water pressure 4900 Pa? Answer in metres. g = 9.8 N/kg."
+      },
+      "answer": 0.5,
+      "tolerance": 0.01,
+      "unit": "m",
+      "explanation": {
+        "ky": "h = P / (ρ·g) = 4900 / (1000 · 9,8) = 0,5 м.",
+        "ru": "h = p / (ρg) = 4900 / (1000 · 9,8) = 0,5 м.",
+        "en": "h = p / (ρg) = 4900 / (1000 × 9.8) = 0.5 m."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-liquid-7",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Көлдө 10 м тереңдиктеги суунун басымы канча килопаскаль? ρ = 1000 кг/м³, g = 9,8 Н/кг (аба басымын эсепке албаңыз).",
+        "ru": "Каково давление воды в озере на глубине 10 м, кПа? ρ = 1000 кг/м³, g = 9,8 Н/кг (без учёта давления воздуха).",
+        "en": "What is the water pressure 10 m down in a lake, in kPa? ρ = 1000 kg/m³, g = 9.8 N/kg (ignore air pressure)."
+      },
+      "answer": 98,
+      "tolerance": 1,
+      "unit": "kPa",
+      "explanation": {
+        "ky": "P = 1000 · 9,8 · 10 = 98 000 Па = 98 кПа.",
+        "ru": "p = 1000 · 9,8 · 10 = 98 000 Па = 98 кПа.",
+        "en": "p = 1000 × 9.8 × 10 = 98 000 Pa = 98 kPa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-liquid-8",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Суюктук мамычасынын басымы эмнеге көз каранды? Бардык туура жоопторду тандаңыз.",
+        "ru": "От чего зависит давление столба жидкости? Выберите все верные ответы.",
+        "en": "What does the pressure of a liquid column depend on? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Суюктуктун тыгыздыгына",
+            "ru": "От плотности жидкости",
+            "en": "The liquid's density"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Тереңдикке",
+            "ru": "От глубины",
+            "en": "The depth"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Идиштин формасына",
+            "ru": "От формы сосуда",
+            "en": "The shape of the vessel"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Идиштин түбүнүн аянтына",
+            "ru": "От площади дна сосуда",
+            "en": "The area of the vessel's bottom"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "g чоңдугуна",
+            "ru": "От величины g",
+            "en": "The value of g"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "e"
+      ],
+      "explanation": {
+        "ky": "P = ρ·g·h: басым тыгыздыкка, тереңдикке жана g ге көз каранды. Идиштин формасы жана түбүнүн аянты формулага кирбейт.",
+        "ru": "p = ρgh: давление зависит от плотности, глубины и g. Форма сосуда и площадь дна в формулу не входят.",
+        "en": "p = ρgh: pressure depends on density, depth and g. The vessel's shape and bottom area are not in the formula."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "misconceptionKey": "phys.m.liquid-pressure-shape",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-liquid-9",
+      "type": "match",
+      "prompt": {
+        "ky": "Көрүнүштү анын түшүндүрмөсү менен дал келтириңиз.",
+        "ru": "Сопоставьте явление и его объяснение.",
+        "en": "Match each observation to its explanation."
+      },
+      "pairs": [
+        {
+          "key": "ball",
+          "left": {
+            "ky": "Паскаль шарынын бардык тешиктеринен суу бирдей атылат",
+            "ru": "Из всех отверстий шара Паскаля вода бьёт одинаково",
+            "en": "Water squirts equally from all holes of Pascal's ball"
+          },
+          "right": {
+            "ky": "Басым бардык багыт боюнча бирдей берилет",
+            "ru": "Давление передаётся одинаково во всех направлениях",
+            "en": "Pressure is passed on equally in all directions"
+          }
+        },
+        {
+          "key": "jet",
+          "left": {
+            "ky": "Ылдыйкы тешиктен суу эң алыска атылат",
+            "ru": "Из нижнего отверстия вода бьёт дальше всех",
+            "en": "The lowest hole squirts furthest"
+          },
+          "right": {
+            "ky": "Басым тереңдик менен өсөт",
+            "ru": "Давление растёт с глубиной",
+            "en": "Pressure grows with depth"
+          }
+        },
+        {
+          "key": "bell",
+          "left": {
+            "ky": "Калпакчадан аба сордурулганда резина шар чоңоёт",
+            "ru": "Шарик под колоколом раздувается, когда откачивают воздух",
+            "en": "A balloon swells as air is pumped out of the bell jar"
+          },
+          "right": {
+            "ky": "Ичиндеги газ сырттагыдан көбүрөөк урунат",
+            "ru": "Газ внутри ударяет сильнее, чем снаружи",
+            "en": "The gas inside hits harder than the gas outside"
+          }
+        },
+        {
+          "key": "hot",
+          "left": {
+            "ky": "Ысытылган жабык идиштеги газдын басымы чоңоёт",
+            "ru": "Давление газа в нагретом закрытом сосуде растёт",
+            "en": "The pressure of gas in a heated closed vessel rises"
+          },
+          "right": {
+            "ky": "Молекулалар тезирээк кыймылдайт",
+            "ru": "Молекулы движутся быстрее",
+            "en": "The molecules move faster"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Паскаль шары – Паскаль закону; агымдардын узундугу – тереңдик менен басымдын өсүшү; калпакчадагы шар – ичиндеги молекулалардын урунуусу көбүрөөк; ысытуу – молекулалардын ылдамдыгы өсөт.",
+        "ru": "Шар Паскаля – закон Паскаля; длина струй – рост давления с глубиной; шарик под колоколом – ударов изнутри больше; нагрев – молекулы движутся быстрее.",
+        "en": "Pascal's ball – Pascal's law; jet length – pressure growing with depth; the balloon in the bell jar – more hits from inside; heating – faster molecules."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-liquid-10",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден тереңдиктеги басымды ченөөчү зондду тап.",
+        "ru": "Найдите на модели датчик, измеряющий давление на глубине.",
+        "en": "Find the probe that measures pressure under the water."
+      },
+      "targetConceptKey": "phys.depth",
+      "explanation": {
+        "ky": "Бул – зонд: ал h тереңдикте турат, басым P = ρ·g·h ушул тереңдикке көз каранды.",
+        "ru": "Это датчик: он находится на глубине h, и давление p = ρgh зависит от этой глубины.",
+        "en": "That is the probe: it sits at depth h, and the pressure p = ρgh depends on that depth."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-11",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден басымды көрсөткөн приборду (манометрди) тап.",
+        "ru": "Найдите на модели прибор, показывающий давление (манометр).",
+        "en": "Find the instrument that shows the pressure (the manometer)."
+      },
+      "targetConceptKey": "phys.pressure",
+      "explanation": {
+        "ky": "Бул – U түрүндөгү манометр: анын тизелериндеги деңгээлдердин айырмасы басымды көрсөтөт.",
+        "ru": "Это U-образный манометр: разность уровней в его коленах показывает давление.",
+        "en": "That is the U-tube manometer: the difference between its levels shows the pressure."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Кең жана ичке эки идишке бирдей бийиктикте суу куюлган. Идиштердин түбүнө суунун басымы кандай?",
+        "ru": "В широкий и узкий сосуды налита вода до одинаковой высоты. Как соотносятся давления воды на дно?",
+        "en": "A wide and a narrow vessel are filled with water to the same height. How do the pressures on their bottoms compare?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Кең идиште чоң",
+            "ru": "В широком больше",
+            "en": "Greater in the wide one"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ичке идиште чоң",
+            "ru": "В узком больше",
+            "en": "Greater in the narrow one"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Бирдей",
+            "ru": "Одинаковы",
+            "en": "They are equal"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "P = ρ·g·h: суюктук да, бийиктик да бирдей, демек басым бирдей. Кең идиштеги суу оор, бирок ал чоң аянтка бөлүштүрүлөт.",
+        "ru": "p = ρgh: жидкость и высота одинаковы, значит, давление одинаково. Вода в широком сосуде тяжелее, но распределена по большей площади.",
+        "en": "p = ρgh: same liquid, same height, so the same pressure. The water in the wide vessel is heavier but spread over a larger area."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "misconceptionKey": "phys.m.liquid-pressure-shape",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-liquid-13",
+      "type": "single",
+      "prompt": {
+        "ky": "Суу толгон идиштин капталына тешик тешилди. Эмне болот?",
+        "ru": "В боковой стенке сосуда с водой проделали отверстие. Что произойдёт?",
+        "en": "A hole is made in the side wall of a vessel full of water. What happens?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Эч нерсе: суу түбүнө гана басат",
+            "ru": "Ничего: вода давит только на дно",
+            "en": "Nothing: water only presses on the bottom"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Тешиктен суу атылып чыгат",
+            "ru": "Из отверстия бьёт струя",
+            "en": "A jet of water comes out"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Аба тешиктен сууга кирет",
+            "ru": "Через отверстие в воду входит воздух",
+            "en": "Air comes in through the hole"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Суюктук идиштин капталдарына да басым жасайт, ошондуктан каптал тешиктен суу атылып чыгат.",
+        "ru": "Жидкость давит и на стенки сосуда, поэтому из бокового отверстия бьёт струя.",
+        "en": "A liquid presses on the walls too, so water spurts out of a side hole."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "misconceptionKey": "phys.m.liquid-pressure-down",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-liquid-14",
+      "type": "single",
+      "prompt": {
+        "ky": "Бирдей 0,3 м тереңдикте кайсы суюктуктун басымы эң чоң?",
+        "ru": "Давление какой жидкости на одной и той же глубине 0,3 м наибольшее?",
+        "en": "At the same depth of 0.3 m, which liquid has the greatest pressure?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Май (900 кг/м³)",
+            "ru": "Масло (900 кг/м³)",
+            "en": "Oil (900 kg/m³)"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Суу (1000 кг/м³)",
+            "ru": "Вода (1000 кг/м³)",
+            "en": "Water (1000 kg/m³)"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Сымап (13 600 кг/м³)",
+            "ru": "Ртуть (13 600 кг/м³)",
+            "en": "Mercury (13 600 kg/m³)"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Баарында бирдей",
+            "ru": "Везде одинаково",
+            "en": "They are all equal"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Тереңдик бирдей болсо, басым тыгыздыкка пропорционалдуу: сымаптыкы эң чоң, P = 13 600 · 9,8 · 0,3 ≈ 40 000 Па.",
+        "ru": "При одинаковой глубине давление пропорционально плотности: у ртути больше всего, p = 13 600 · 9,8 · 0,3 ≈ 40 000 Па.",
+        "en": "At equal depth the pressure is proportional to density: mercury's is greatest, p = 13 600 × 9.8 × 0.3 ≈ 40 000 Pa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    }
+  ]
+}

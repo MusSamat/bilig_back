@@ -186,6 +186,12 @@ export const TutorGenerateRequestSchema = z.object({
 });
 export type TutorGenerateRequest = z.input<typeof TutorGenerateRequestSchema>;
 
+/** v0.9.1: the school grades a generated item suits («6–8 класс»). */
+export const GradeRangeSchema = z
+  .object({ from: z.number().int().min(1).max(12), to: z.number().int().min(1).max(12) })
+  .refine((r) => r.from <= r.to, { message: 'from > to', path: ['to'] });
+export type GradeRangeDto = z.infer<typeof GradeRangeSchema>;
+
 export const GeneratedExampleSchema = z.object({
   id: IdSchema,
   title: z.string().trim().min(1).max(200),
@@ -195,6 +201,8 @@ export const GeneratedExampleSchema = z.object({
   conceptKey: KeySchema.optional(),
   /** An editor reviewed it (served before unreviewed ones). */
   reviewed: z.boolean().optional(),
+  /** v0.9.1: grades it suits; the pool shares it with every topic of these grades on the same concept. */
+  grades: GradeRangeSchema.optional(),
 });
 export type GeneratedExample = z.infer<typeof GeneratedExampleSchema>;
 
@@ -210,6 +218,7 @@ export const GeneratedQuizItemSchema = z
     explanation: z.string().trim().min(1).max(1000),
     conceptKey: KeySchema.optional(),
     reviewed: z.boolean().optional(),
+    grades: GradeRangeSchema.optional(),
   })
   .refine((q) => q.options.some((o) => o.key === q.answer), { message: 'answer must be one of the options', path: ['answer'] })
   .refine((q) => new Set(q.options.map((o) => o.key)).size === q.options.length, { message: 'option keys must be unique', path: ['options'] });
@@ -226,6 +235,29 @@ export const TutorGenerateResponseSchema = z.object({
   exhausted: z.boolean(),
 });
 export type TutorGenerateResponse = z.infer<typeof TutorGenerateResponseSchema>;
+
+// v0.9.1 (additive): what this teacher already got — GET /tutor/generated. Generated items
+// are remembered per user: a card shows them again after a reload, «Ещё» brings an item
+// the user has not seen yet from the pool and asks the model for a new one only when
+// every pooled item was seen. The client asks for one item per click (`count: 1`).
+export const TutorGeneratedSeenQuerySchema = z.object({
+  topicKey: KeySchema,
+  lang: LangSchema,
+  kind: GenerateKindSchema,
+  conceptKey: KeySchema.optional(),
+});
+export type TutorGeneratedSeenQuery = z.input<typeof TutorGeneratedSeenQuerySchema>;
+
+export const TutorGeneratedSeenResponseSchema = z.object({
+  kind: GenerateKindSchema,
+  lang: LangSchema,
+  /** In the order the user first got them. */
+  examples: z.array(GeneratedExampleSchema),
+  quiz: z.array(GeneratedQuizItemSchema),
+  /** The pool still has items this user has not seen (the next «Ещё» is free). */
+  unseen: z.number().int().min(0),
+});
+export type TutorGeneratedSeenResponse = z.infer<typeof TutorGeneratedSeenResponseSchema>;
 
 /** A teacher's verdict on one generated item: «хороший пример» or a report. */
 export const GENERATED_REPORT_REASONS = ['wrong', 'unclear', 'inappropriate', 'off_topic'] as const;

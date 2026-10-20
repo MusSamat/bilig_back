@@ -56,7 +56,7 @@ describe('DeepSeekProvider.stream', () => {
     expect(out).toEqual([
       { type: 'text', text: 'Ылдамдык — ' },
       { type: 'text', text: 'жолдун убакытка катышы.' },
-      { type: 'usage', inputTokens: 120, outputTokens: 14 },
+      { type: 'usage', inputTokens: 120, outputTokens: 14, cachedInputTokens: 100 },
     ]);
     expect(seen[0].url).toBe('https://api.deepseek.com/chat/completions');
     expect(seen[0].auth).toBe('Bearer sk-test');
@@ -123,7 +123,7 @@ describe('DeepSeekProvider.generate', () => {
   it('JSON mode with thinking (effort low by default), the schema in a prompt that says «json»', async () => {
     const { f, seen } = fakeDeepSeek({ json: completion('{"items":[{"q":"1"}]}') });
     const out = await new DeepSeekProvider({ apiKey: 'k', fetch: f }).generate(gen);
-    expect(out).toEqual({ data: { items: [{ q: '1' }] }, usage: { inputTokens: 300, outputTokens: 200 } });
+    expect(out).toEqual({ data: { items: [{ q: '1' }] }, usage: { inputTokens: 300, outputTokens: 200, cachedInputTokens: 0 } });
     expect(seen[0].body).toMatchObject({ response_format: { type: 'json_object' }, thinking: { type: 'enabled' }, reasoning_effort: 'low', max_tokens: 1500 + 4096 });
     const user = (seen[0].body.messages as { role: string; content: string }[]).find((m) => m.role === 'user')!;
     expect(user.content).toMatch(/json/);

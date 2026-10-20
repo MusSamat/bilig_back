@@ -1,0 +1,1237 @@
+{
+  "topic": {
+    "key": "phys7-elastic-force",
+    "unitKey": "phys.g7.dynamics",
+    "status": "published",
+    "title": {
+      "ky": "Серпилгичтүүлүк күчү. Динамометр",
+      "ru": "Сила упругости. Динамометр",
+      "en": "Elastic force. The dynamometer"
+    },
+    "formula": "F_серп = kx",
+    "classification": {
+      "ky": "Динамика",
+      "ru": "Динамика",
+      "en": "Dynamics"
+    },
+    "description": {
+      "ky": "Пружиналуу динамометрге 100 г жүктөрдү бирден илебиз. Ар бир жүк кошулган сайын пружина бирдей – 2 см ге – узарат, ал эми серпилгичтүүлүк күчү 1 Н ге чоңоёт: F = kx, мында k = 50 Н/м – пружинанын катуулугу (Гуктун закону). Серпилгичтүүлүк күчү деформациялоочу күчкө карама-каршы багытталат. Динамометрдин шкаласы ушул касиетке негизделип градуирленет (китептегидей g ≈ 10 Н/кг).",
+      "ru": "Подвешиваем на пружинный динамометр грузы по 100 г один за другим. С каждым грузом пружина удлиняется на одинаковые 2 см, а сила упругости растёт на 1 Н: F = kx, где k = 50 Н/м – жёсткость пружины (закон Гука). Сила упругости направлена против деформирующей силы. На этом свойстве основана градуировка шкалы динамометра (как в учебнике, g ≈ 10 Н/кг).",
+      "en": "We hang 100 g weights on a spring dynamometer one at a time. With each weight the spring stretches the same 2 cm and the elastic force grows by 1 N: F = kx, where k = 50 N/m is the spring's stiffness (Hooke's law). The elastic force opposes the deforming force. The dynamometer's scale is calibrated using this (with g ≈ 10 N/kg, as the textbook does)."
+    },
+    "goal": {
+      "ky": "Деформацияны жана серпилгичтүүлүк күчүн түшүндүрүү, Гуктун законун F = kx колдонуу, динамометрдин түзүлүшүн, шкаласынын баасын жана өлчөө чегин аныктап, күчтү ченөө (PHYS-7.2.2).",
+      "ru": "Объяснять деформацию и силу упругости, применять закон Гука F = kx, разбираться в устройстве динамометра, определять цену деления и предел измерения, измерять силу (PHYS-7.2.2).",
+      "en": "Explain deformation and the elastic force, use Hooke's law F = kx, understand how a dynamometer works, find its scale division and range, and measure forces (PHYS-7.2.2)."
+    },
+    "objectiveKeys": [
+      "phys.g7.dynamics.o2"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "spring",
+        "variant": "dynamometer",
+        "stiffness": 50,
+        "loads": [
+          {
+            "id": "A",
+            "mass": 0.1
+          },
+          {
+            "id": "B",
+            "mass": 0.1
+          },
+          {
+            "id": "C",
+            "mass": 0.1
+          }
+        ],
+        "g": 10,
+        "showScale": true
+      },
+      "camera": {
+        "position": [
+          1.3,
+          1.6,
+          3.6
+        ],
+        "target": [
+          0.1,
+          1,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.elastic-force",
+      "phys.spring",
+      "phys.spring-stretch",
+      "phys.stiffness",
+      "phys.dynamometer",
+      "phys.gravity",
+      "phys.mass"
+    ],
+    "overrides": {
+      "phys.elastic-force": {
+        "nodes": [
+          "Arrow_Elastic",
+          "Arrow_Elastic_*"
+        ],
+        "description": {
+          "ky": "Чоюлган пружина жүктөрдү өйдө тартат – чоюлууга карама-каршы. Үч жүк (300 г) илингенде x = 6 см, F_серп = kx = 50 Н/м · 0,06 м = 3 Н – жүктөрдүн оордук күчүнө барабар.",
+          "ru": "Растянутая пружина тянет грузы вверх – против растяжения. С тремя грузами (300 г) x = 6 см, F_упр = kx = 50 Н/м · 0,06 м = 3 Н – столько же, сколько сила тяжести грузов.",
+          "en": "The stretched spring pulls the weights up – against the stretch. With three weights (300 g) x = 6 cm and F = kx = 50 N/m × 0.06 m = 3 N – equal to the weights' gravity."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 3
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F_{серп} = k x"
+          }
+        ]
+      },
+      "phys.spring": {
+        "nodes": [
+          "Spring",
+          "Spring_*"
+        ],
+        "description": {
+          "ky": "Динамометрдин болот пружинасы. Жүк илгенде ал серпилгичтүү деформацияланат, жүк алынганда баштапкы узундугуна кайтат.",
+          "ru": "Стальная пружина динамометра. Под грузом она упруго деформируется, а без груза возвращается к начальной длине.",
+          "en": "The dynamometer's steel spring. Under a load it deforms elastically; without one it returns to its original length."
+        }
+      },
+      "phys.spring-stretch": {
+        "nodes": [
+          "Ruler",
+          "Ruler_*",
+          "Pointer",
+          "Pointer_*"
+        ],
+        "description": {
+          "ky": "Жебе сызгыч боюнча пружинанын узарышын көрсөтөт: 1 жүк – 2 см, 2 жүк – 4 см, 3 жүк – 6 см. Күч канча эсе чоңойсо, узарыш да ошончо эсе чоңоёт.",
+          "ru": "Указатель показывает по линейке удлинение пружины: 1 груз – 2 см, 2 груза – 4 см, 3 груза – 6 см. Во сколько раз больше сила, во столько же раз больше удлинение.",
+          "en": "The pointer shows the extension on the ruler: 1 weight – 2 cm, 2 weights – 4 cm, 3 weights – 6 cm. Multiply the force and the extension multiplies by the same amount."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.06
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "x = \\frac{F}{k}"
+          }
+        ]
+      },
+      "phys.stiffness": {
+        "description": {
+          "ky": "Бул пружинанын катуулугу k = F/x = 1 Н : 0,02 м = 50 Н/м. «Катуу пружина» үлгүсүндө k = 100 Н/м: ошол эле 3 Н ал 3 см гана чоюлат.",
+          "ru": "Жёсткость этой пружины k = F/x = 1 Н : 0,02 м = 50 Н/м. В образце «Жёсткая пружина» k = 100 Н/м: те же 3 Н растягивают её всего на 3 см.",
+          "en": "This spring's stiffness is k = F/x = 1 N ÷ 0.02 m = 50 N/m. In the 'Stiff spring' sample k = 100 N/m: the same 3 N stretches it only 3 cm."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "stiffness",
+            "value": 50
+          }
+        ]
+      },
+      "phys.dynamometer": {
+        "nodes": [
+          "Dynamometer",
+          "Dynamometer_*"
+        ],
+        "description": {
+          "ky": "Мектептеги пружиналуу динамометр: тактага бекитилген, эки учунда илгичи бар болот пружина, жебе жана Н менен белгиленген шкала. Шкаланын баасы 0,25 Н, өлчөө чеги 3 Н.",
+          "ru": "Школьный пружинный динамометр: стальная пружина с крючками на концах, закреплённая на дощечке, указатель и шкала в ньютонах. Цена деления 0,25 Н, предел измерения 3 Н.",
+          "en": "A school spring dynamometer: a steel spring with hooks at both ends fixed to a board, a pointer and a scale in newtons. One division is 0.25 N; the range is 3 N."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 3
+          },
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "Такта, пружина, жебе, шкала, илгич",
+              "ru": "Дощечка, пружина, указатель, шкала, крючок",
+              "en": "Board, spring, pointer, scale, hook"
+            }
+          }
+        ]
+      },
+      "phys.gravity": {
+        "nodes": [
+          "Arrow_Gravity",
+          "Arrow_Gravity_*"
+        ],
+        "description": {
+          "ky": "Ар бир 100 г жүккө F_оор = mg ≈ 0,1 · 10 = 1 Н оордук күчү таасир этет; үчөөнө – 3 Н.",
+          "ru": "На каждый груз 100 г действует сила тяжести F_тяж = mg ≈ 0,1 · 10 = 1 Н; на три – 3 Н.",
+          "en": "Gravity on each 100 g weight is F = mg ≈ 0.1 × 10 = 1 N; on three, 3 N."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 3
+          },
+          {
+            "kind": "quantity",
+            "type": "gravity",
+            "value": 10,
+            "unit": "N/kg",
+            "approx": true
+          }
+        ]
+      },
+      "phys.mass": {
+        "nodes": [
+          "Load_*"
+        ],
+        "description": {
+          "ky": "Массасы 100 г болгон үч жүк – жалпы 300 г.",
+          "ru": "Три груза по 100 г – всего 300 г.",
+          "en": "Three 100 g weights – 300 g in all."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.3
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "elastic-three-loads",
+        "title": {
+          "ky": "Үч жүк: 1, 2, 3 Н",
+          "ru": "Три груза: 1, 2, 3 Н",
+          "en": "Three weights: 1, 2, 3 N"
+        },
+        "classification": {
+          "ky": "k = 50 Н/м: 2, 4, 6 см",
+          "ru": "k = 50 Н/м: 2, 4, 6 см",
+          "en": "k = 50 N/m: 2, 4, 6 cm"
+        },
+        "thumb": "thumbs/elastic-three-loads.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 3
+          },
+          {
+            "kind": "quantity",
+            "type": "stiffness",
+            "value": 50
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.06
+          }
+        ],
+        "scene": {
+          "params": {
+            "stiffness": 50,
+            "loads": [
+              {
+                "id": "A",
+                "mass": 0.1
+              },
+              {
+                "id": "B",
+                "mass": 0.1
+              },
+              {
+                "id": "C",
+                "mass": 0.1
+              }
+            ],
+            "variant": "dynamometer"
+          }
+        }
+      },
+      {
+        "key": "elastic-stiff",
+        "title": {
+          "ky": "Катуу пружина: k = 100 Н/м",
+          "ru": "Жёсткая пружина: k = 100 Н/м",
+          "en": "A stiff spring: k = 100 N/m"
+        },
+        "classification": {
+          "ky": "3 Н → 3 см гана",
+          "ru": "3 Н → всего 3 см",
+          "en": "3 N → only 3 cm"
+        },
+        "thumb": "thumbs/elastic-stiff.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 3
+          },
+          {
+            "kind": "quantity",
+            "type": "stiffness",
+            "value": 100
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.03
+          }
+        ],
+        "scene": {
+          "params": {
+            "stiffness": 100,
+            "loads": [
+              {
+                "id": "A",
+                "mass": 0.1
+              },
+              {
+                "id": "B",
+                "mass": 0.1
+              },
+              {
+                "id": "C",
+                "mass": 0.1
+              }
+            ],
+            "variant": "dynamometer"
+          }
+        }
+      },
+      {
+        "key": "elastic-soft",
+        "title": {
+          "ky": "Жумшак пружина штативде: k = 25 Н/м",
+          "ru": "Мягкая пружина на штативе: k = 25 Н/м",
+          "en": "A soft spring on a stand: k = 25 N/m"
+        },
+        "classification": {
+          "ky": "1 Н → 4 см",
+          "ru": "1 Н → 4 см",
+          "en": "1 N → 4 cm"
+        },
+        "thumb": "thumbs/elastic-soft.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "stiffness",
+            "value": 25
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.04
+          }
+        ],
+        "scene": {
+          "params": {
+            "stiffness": 25,
+            "loads": [
+              {
+                "id": "A",
+                "mass": 0.1
+              }
+            ],
+            "variant": "hang"
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "stiffness",
+        "value": 50
+      },
+      {
+        "kind": "quantity",
+        "type": "force",
+        "value": 3
+      },
+      {
+        "kind": "quantity",
+        "type": "gravity",
+        "value": 10,
+        "unit": "N/kg",
+        "approx": true
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "F_{серп} = k x"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                0.3,
+                1.2,
+                3.4
+              ],
+              "target": [
+                0.2,
+                1.0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false,
+              "labels": false
+            },
+            "focus": "phys.dynamometer",
+            "text": {
+              "ky": "Резина топту кыссак, зымды ийсек, пружинаны чойсок – алардын формасы өзгөрөт. Коё берсек, пружина жана болот сызгыч кайра калыбына келет. Мындай нерселер серпилгичтүү нерселер деп аталат. Алдыбызда пружиналуу динамометр жана 100 г жүктөр.",
+              "ru": "Сожмём резиновый мяч, согнём проволоку, растянем пружину – их форма изменится. Отпустим – пружина и стальная линейка вернутся в прежнюю форму. Такие тела называют упругими. Перед нами пружинный динамометр и грузы по 100 г.",
+              "en": "Squeeze a rubber ball, bend a wire, stretch a spring – their shape changes. Let go and the spring and a steel ruler spring back. Such bodies are called elastic. In front of us: a spring dynamometer and some 100 g weights."
+            },
+            "teacherNote": {
+              "ky": "Деформацияны эске салыңыз: бир нерсенин таасири астында башка катуу нерсенин формасынын өзгөрүшү.",
+              "ru": "Напомните: деформация – изменение формы твёрдого тела под действием другого тела.",
+              "en": "Recall: deformation is a change in a solid body's shape caused by another body."
+            },
+            "altText": {
+              "ky": "Динамометр жана анын жанында үч жүк.",
+              "ru": "Динамометр и рядом три груза.",
+              "en": "A dynamometer with three weights beside it."
+            }
+          },
+          {
+            "key": "elastic",
+            "camera": {
+              "position": [
+                0.6,
+                1.0,
+                2.0
+              ],
+              "target": [
+                0.15,
+                1.0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.elastic-force",
+            "text": {
+              "ky": "Биринчи жүктү илебиз. Пружина чоюлуп, жүктү өйдө тарткан серпилгичтүүлүк күчү пайда болот – ал деформациялоочу күчкө карама-каршы. Жүк тынч илингенде F_серп = F_оор = 1 Н.",
+              "ru": "Подвешиваем первый груз. Пружина растягивается, и возникает сила упругости, тянущая груз вверх, – против деформирующей силы. Когда груз висит неподвижно, F_упр = F_тяж = 1 Н.",
+              "en": "We hang the first weight. The spring stretches and an elastic force appears, pulling the weight up – against the deforming force. When the weight hangs still, the elastic force equals gravity: 1 N."
+            },
+            "teacherNote": {
+              "ky": "Пружинаны кыссак да серпилгичтүүлүк күчү пайда болот – ал кысуучу күчкө каршы түртөт (китептеги 52-сүрөт).",
+              "ru": "При сжатии пружины тоже возникает сила упругости – она отталкивает против сжимающей силы (рис. 52 учебника).",
+              "en": "Compressing a spring also produces an elastic force – it pushes back against the squeeze (fig. 52 in the textbook)."
+            },
+            "altText": {
+              "ky": "Жүктөн өйдө караган серпилгичтүүлүк күчүнүн жебеси.",
+              "ru": "Стрелка силы упругости вверх от груза.",
+              "en": "The elastic-force arrow pointing up from the weight."
+            }
+          },
+          {
+            "key": "hooke",
+            "camera": {
+              "position": [
+                0.6,
+                1.0,
+                2.0
+              ],
+              "target": [
+                0.15,
+                1.0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.spring-stretch",
+            "text": {
+              "ky": "Экинчи, анан үчүнчү жүктү илебиз: 2 Н – 4 см, 3 Н – 6 см. Узарыш күчкө түз пропорциялаш: F = kx. Бул – Гуктун закону (Роберт Гук, 1635–1703). Багытын эске алсак, F_серп = −kx.",
+              "ru": "Подвешиваем второй, затем третий груз: 2 Н – 4 см, 3 Н – 6 см. Удлинение прямо пропорционально силе: F = kx. Это закон Гука (Роберт Гук, 1635–1703). С учётом направления F_упр = −kx.",
+              "en": "We add the second, then the third weight: 2 N – 4 cm, 3 N – 6 cm. The extension is proportional to the force: F = kx – Hooke's law (Robert Hooke, 1635–1703). With direction, F = −kx."
+            },
+            "teacherNote": {
+              "ky": "Тактага таблица жана F(x) графигин чийиңиз: координаталар башынан чыккан түз сызык.",
+              "ru": "Начертите таблицу и график F(x): прямая из начала координат.",
+              "en": "Draw a table and the F–x graph: a straight line through the origin."
+            },
+            "altText": {
+              "ky": "Сызгыч боюнча жебе 6 см ди көрсөтөт.",
+              "ru": "Указатель на линейке показывает 6 см.",
+              "en": "The pointer on the ruler shows 6 cm."
+            }
+          },
+          {
+            "key": "stiffness",
+            "sample": "elastic-stiff",
+            "camera": {
+              "position": [
+                0.6,
+                1.0,
+                2.0
+              ],
+              "target": [
+                0.15,
+                1.0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.stiffness",
+            "text": {
+              "ky": "Пружинанын катуулугу k = F/x = 3 Н : 0,06 м = 50 Н/м. Катуураак пружина (k = 100 Н/м) ошол эле 3 Н дан 3 см гана чоюлат: аны чоюу кыйыныраак, бирок пайда болгон серпилгичтүүлүк күчү ошого жараша.",
+              "ru": "Жёсткость пружины k = F/x = 3 Н : 0,06 м = 50 Н/м. Более жёсткая пружина (k = 100 Н/м) от тех же 3 Н растягивается лишь на 3 см: её труднее растянуть, но и сила упругости соответствующая.",
+              "en": "The stiffness is k = F/x = 3 N ÷ 0.06 m = 50 N/m. A stiffer spring (k = 100 N/m) stretches only 3 cm under the same 3 N: harder to stretch, with a matching elastic force."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: k пружинага илинген жүккө көз карандыбы? (Жок – пружинанын өзүнө: зымдын жоондугуна, материалына.)",
+              "ru": "Спросите: зависит ли k от подвешенного груза? (Нет – от самой пружины: толщины проволоки, материала.)",
+              "en": "Ask: does k depend on the load? (No – on the spring itself: wire thickness, material.)"
+            },
+            "altText": {
+              "ky": "Катуу пружина аз чоюлган.",
+              "ru": "Жёсткая пружина растянута меньше.",
+              "en": "The stiff spring stretches less."
+            }
+          },
+          {
+            "key": "dynamometer",
+            "sample": "elastic-three-loads",
+            "camera": {
+              "position": [
+                0.6,
+                1.0,
+                2.0
+              ],
+              "target": [
+                0.15,
+                1.0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false,
+              "labels": true
+            },
+            "focus": "phys.dynamometer",
+            "text": {
+              "ky": "Күчтү өлчөөчү курал – динамометр (грекче «динамис» – күч, «метрео» – өлчөө). Пружина чоюлбай турганда жебе көрсөткөн чекит – нөл. 100 г жүккө F_оор = 0,1 · 10 = 1 Н – ал жерге «1» коюлат; ушундай жол менен 2, 3 белгилери. Бул – динамометрди градуирлөө.",
+              "ru": "Прибор для измерения силы – динамометр (греч. «динамис» – сила, «метрео» – измерять). Точка, которую показывает указатель при нерастянутой пружине, – ноль. На груз 100 г действует F_тяж = 0,1 · 10 = 1 Н – там ставят «1»; так же отметки 2, 3. Это градуировка динамометра.",
+              "en": "The instrument for measuring force is the dynamometer (Greek 'dynamis' – force, 'metreo' – measure). Where the pointer sits with the spring unstretched is zero. A 100 g weight feels 0.1 × 10 = 1 N – mark '1' there; likewise 2 and 3. This is calibrating the dynamometer."
+            },
+            "teacherNote": {
+              "ky": "«Динамометрди градуирлөө» процессин иштетиңиз. Бөлүктөрдү санатыңыз: 1 Н 4 бөлүккө бөлүнгөн – шкаланын баасы 0,25 Н, өлчөө чеги 3 Н.",
+              "ru": "Запустите процесс «Градуировка динамометра». Пусть сосчитают деления: 1 Н разделён на 4 части – цена деления 0,25 Н, предел 3 Н.",
+              "en": "Run the 'Calibrating a dynamometer' process. Have pupils count divisions: 1 N split into 4 – 0.25 N per division, range 3 N."
+            },
+            "altText": {
+              "ky": "Динамометрдин шкаласы жана белгилери.",
+              "ru": "Шкала динамометра с отметками.",
+              "en": "The dynamometer scale with its marks."
+            }
+          },
+          {
+            "key": "uses",
+            "sample": "elastic-soft",
+            "camera": {
+              "position": [
+                0.3,
+                1.2,
+                3.4
+              ],
+              "target": [
+                0.2,
+                1.0,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true,
+              "labels": true
+            },
+            "focus": "phys.spring",
+            "text": {
+              "ky": "Жумшак пружинага (k = 25 Н/м) ошол эле 100 г жүк – 4 см. Жумшак пружина кичине күчтөрдү, катуусу чоң күчтөрдү ченөөгө ылайыктуу. Кол күчүн, машинанын тартуу күчүн ченөөчү динамометрлер да бар.",
+              "ru": "Мягкая пружина (k = 25 Н/м) от того же груза 100 г растягивается на 4 см. Мягкие пружины годятся для малых сил, жёсткие – для больших. Есть динамометры для силы руки и силы тяги машин.",
+              "en": "A soft spring (k = 25 N/m) stretches 4 cm under the same 100 g. Soft springs suit small forces, stiff springs large ones. There are dynamometers for hand grip and for vehicles' pulling force."
+            },
+            "teacherNote": {
+              "ky": "Эскертиңиз: динамометрди өлчөө чегинен ашык жүктөөгө болбойт – Гуктун закону кичине деформацияларда гана аткарылат.",
+              "ru": "Предупредите: динамометр нельзя нагружать сверх предела – закон Гука выполняется лишь при малых деформациях.",
+              "en": "Warn pupils: never load a dynamometer beyond its range – Hooke's law holds only for small deformations."
+            },
+            "altText": {
+              "ky": "Штативдеги жумшак пружина жана бир жүк.",
+              "ru": "Мягкая пружина на штативе с одним грузом.",
+              "en": "A soft spring on a stand with one weight."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.dynamometer-graduation"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "elastic-three-loads"
+          },
+          {
+            "kind": "sample",
+            "key": "elastic-stiff"
+          },
+          {
+            "kind": "sample",
+            "key": "elastic-soft"
+          }
+        ],
+        "rows": [
+          "force",
+          "stiffness",
+          "length"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-elastic-1",
+          "phys.q.phys7-elastic-2",
+          "phys.q.phys7-elastic-3",
+          "phys.q.phys7-elastic-4",
+          "phys.q.phys7-elastic-5",
+          "phys.q.phys7-elastic-6",
+          "phys.q.phys7-elastic-7",
+          "phys.q.phys7-elastic-8",
+          "phys.q.phys7-elastic-9",
+          "phys.q.phys7-elastic-10",
+          "phys.q.phys7-elastic-11",
+          "phys.q.phys7-elastic-12"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Машинанын амортизаторлору",
+            "ru": "Подвеска автомобиля",
+            "en": "Car suspension"
+          },
+          "text": {
+            "ky": "Дөңгөлөктөрдүн үстүндөгү катуу пружиналар жол тегиз эмес жерде кысылып, серпилгичтүүлүк күчү менен кузовду кармайт – машина силкинбейт.",
+            "ru": "Жёсткие пружины над колёсами сжимаются на неровностях и силой упругости удерживают кузов – машину не трясёт.",
+            "en": "Stiff springs above the wheels compress over bumps and hold the body up with their elastic force – the ride stays smooth."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Жүк таразалары",
+            "ru": "Крановые весы",
+            "en": "Crane scales"
+          },
+          "text": {
+            "ky": "Кран көтөргөн жүктү өлчөөчү динамометрлер ондогон килоньютонго эсептелет – аларга өтө катуу пружиналар коюлат.",
+            "ru": "Динамометры для взвешивания грузов на кране рассчитаны на десятки килоньютонов – в них стоят очень жёсткие пружины.",
+            "en": "Dynamometers that weigh crane loads handle tens of kilonewtons – they use very stiff springs."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Түз пропорциялаш",
+            "ru": "Прямая пропорциональность",
+            "en": "Direct proportion"
+          },
+          "text": {
+            "ky": "F(x) графиги – координаталар башынан чыккан түз сызык; анын тиктиги k ны көрсөтөт. 2 см – 1 Н болсо, 5 см – 2,5 Н.",
+            "ru": "График F(x) – прямая из начала координат; её наклон показывает k. Если 2 см – 1 Н, то 5 см – 2,5 Н.",
+            "en": "The F–x graph is a straight line through the origin; its slope is k. If 2 cm means 1 N, then 5 cm means 2.5 N."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Жаа жана рогатка",
+            "ru": "Лук и рогатка",
+            "en": "A bow and a catapult"
+          },
+          "text": {
+            "ky": "Жаанын жебеси жана рогатканын ташы чоюлган кириштин же резинанын серпилгичтүүлүк күчү менен учат.",
+            "ru": "Стрела и камень из рогатки летят благодаря силе упругости натянутой тетивы или резинки.",
+            "en": "An arrow and a catapult stone fly thanks to the elastic force of the stretched string or rubber."
+          }
+        },
+        {
+          "title": {
+            "ky": "Каалганын пружинасы",
+            "ru": "Пружина на двери",
+            "en": "A door spring"
+          },
+          "text": {
+            "ky": "Каалга ачылганда пружина чоюлат; коё берсек, серпилгичтүүлүк күчү каалганы кайра жабат.",
+            "ru": "Когда дверь открывают, пружина растягивается; отпустишь – сила упругости закроет дверь.",
+            "en": "Opening the door stretches the spring; let go and the elastic force pulls it shut."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Серпилгичтүүлүк күчү кайсы тарапка багытталат?",
+        "ru": "Куда направлена сила упругости?",
+        "en": "Which way does the elastic force point?"
+      },
+      {
+        "ky": "Гуктун закону эмнени айтат?",
+        "ru": "О чём говорит закон Гука?",
+        "en": "What does Hooke's law say?"
+      },
+      {
+        "ky": "Динамометрдин шкаласынын баасын кантип табабыз?",
+        "ru": "Как найти цену деления динамометра?",
+        "en": "How do I find a dynamometer's scale division?"
+      },
+      {
+        "ky": "Пружинанын катуулугу эмнеге көз каранды?",
+        "ru": "От чего зависит жёсткость пружины?",
+        "en": "What does a spring's stiffness depend on?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; Мамбетакунов Э. М., Физика 7 (кыргыз тилинде)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-elastic-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Серпилгичтүүлүк күчү деп кандай күчтү айтабыз?",
+        "ru": "Какую силу называют силой упругости?",
+        "en": "What is the elastic force?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Нерсе деформацияланганда аны кайра калыбына келтирүүчү күчтү",
+            "ru": "Силу, возвращающую деформированное тело в прежнюю форму",
+            "en": "The force that restores a deformed body's shape"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Жердин нерсени тарткан күчүн",
+            "ru": "Силу притяжения тела к Земле",
+            "en": "The Earth's pull on a body"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Кыймылга каршы күчтү",
+            "ru": "Силу, направленную против движения",
+            "en": "A force against the motion"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Серпилгичтүүлүк күчү деформацияда пайда болуп, нерсени калыбына келтирет жана деформациялоочу күчкө карама-каршы багытталат.",
+        "ru": "Сила упругости возникает при деформации, возвращает тело в прежнюю форму и направлена против деформирующей силы.",
+        "en": "The elastic force arises in a deformation, restores the shape and opposes the deforming force."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-elastic-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Пружинаны ылдый чойдук. Серпилгичтүүлүк күчү кайда багытталат?",
+        "ru": "Пружину растянули вниз. Куда направлена сила упругости?",
+        "en": "A spring is stretched downwards. Which way does the elastic force point?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Өйдө – чоюлууга каршы",
+            "ru": "Вверх – против растяжения",
+            "en": "Up – against the stretch"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ылдый – чоюлуу боюнча",
+            "ru": "Вниз – по растяжению",
+            "en": "Down – along the stretch"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Капталга",
+            "ru": "В сторону",
+            "en": "Sideways"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Серпилгичтүүлүк күчү деформациялоочу күчкө карама-каршы: F_серп = −kx.",
+        "ru": "Сила упругости направлена против деформирующей силы: F_упр = −kx.",
+        "en": "The elastic force opposes the deforming force: F = −kx."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "misconceptionKey": "phys.m.elastic-same-direction",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-elastic-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Катуулугу 50 Н/м пружинаны 4 см ге чоюу үчүн канча күч керек (Н)?",
+        "ru": "Какая сила нужна, чтобы растянуть пружину жёсткостью 50 Н/м на 4 см (Н)?",
+        "en": "What force stretches a 50 N/m spring by 4 cm (N)?"
+      },
+      "answer": 2,
+      "tolerance": 0.02,
+      "unit": "N",
+      "explanation": {
+        "ky": "x = 4 см = 0,04 м; F = kx = 50 · 0,04 = 2 Н.",
+        "ru": "x = 4 см = 0,04 м; F = kx = 50 · 0,04 = 2 Н.",
+        "en": "x = 4 cm = 0.04 m; F = kx = 50 × 0.04 = 2 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "misconceptionKey": "phys.m.stretch-is-length",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-elastic-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Пружина 3 Н күчтөн 6 см ге чоюлду. Анын катуулугу канча (Н/м)?",
+        "ru": "Пружина растянулась на 6 см под действием силы 3 Н. Какова её жёсткость (Н/м)?",
+        "en": "A spring stretches 6 cm under 3 N. What is its stiffness (N/m)?"
+      },
+      "answer": 50,
+      "tolerance": 0.5,
+      "unit": "N/m",
+      "explanation": {
+        "ky": "k = F/x = 3 Н : 0,06 м = 50 Н/м.",
+        "ru": "k = F/x = 3 Н : 0,06 м = 50 Н/м.",
+        "en": "k = F/x = 3 N ÷ 0.06 m = 50 N/m."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-elastic-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Пружина 1 Н күчтөн 2 см ге чоюлат. 2,5 Н күчтөн ал канча см ге чоюлат?",
+        "ru": "Пружина растягивается на 2 см от силы 1 Н. На сколько сантиметров она растянется от силы 2,5 Н?",
+        "en": "A spring stretches 2 cm under 1 N. How many centimetres will it stretch under 2.5 N?"
+      },
+      "answer": 5,
+      "tolerance": 0.05,
+      "unit": "cm",
+      "explanation": {
+        "ky": "Узарыш күчкө түз пропорциялаш: 2,5 Н – 2,5 эсе көп, 2 · 2,5 = 5 см.",
+        "ru": "Удлинение пропорционально силе: 2,5 Н – в 2,5 раза больше, 2 · 2,5 = 5 см.",
+        "en": "Extension is proportional to force: 2.5 N is 2.5 times as much, so 2 × 2.5 = 5 cm."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-elastic-6",
+      "type": "single",
+      "prompt": {
+        "ky": "Динамометрдин шкаласында 0 дөн 1 Н ге чейин 4 бөлүк бар. Шкаланын баасы канча?",
+        "ru": "На шкале динамометра от 0 до 1 Н – 4 деления. Какова цена деления?",
+        "en": "A dynamometer scale has 4 divisions from 0 to 1 N. What is one division worth?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "0,25 Н",
+            "ru": "0,25 Н",
+            "en": "0.25 N"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "0,4 Н",
+            "ru": "0,4 Н",
+            "en": "0.4 N"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "4 Н",
+            "ru": "4 Н",
+            "en": "4 N"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "1 Н",
+            "ru": "1 Н",
+            "en": "1 N"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Шкаланын баасы = 1 Н : 4 = 0,25 Н (китептеги 56-сүрөттөгү динамометр).",
+        "ru": "Цена деления = 1 Н : 4 = 0,25 Н (динамометр на рис. 56 учебника).",
+        "en": "One division = 1 N ÷ 4 = 0.25 N (the dynamometer in fig. 56 of the textbook)."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-elastic-7",
+      "type": "single",
+      "prompt": {
+        "ky": "Динамометрге илинген жүктү ылдый карай кошумча 0,5 Н күч менен тартсак, 1,5 Н көрсөткөн динамометр эмнени көрсөтөт?",
+        "ru": "Динамометр с грузом показывает 1,5 Н. Если потянуть груз вниз с силой 0,5 Н, что он покажет?",
+        "en": "A dynamometer with a load reads 1.5 N. If we pull the load down with an extra 0.5 N, what will it read?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "2 Н",
+            "ru": "2 Н",
+            "en": "2 N"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "1 Н",
+            "ru": "1 Н",
+            "en": "1 N"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "1,5 Н",
+            "ru": "1,5 Н",
+            "en": "1.5 N"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "0,5 Н",
+            "ru": "0,5 Н",
+            "en": "0.5 N"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Пружинаны чойгон күчтөр бир багытта – кошулат: 1,5 + 0,5 = 2 Н (китептеги тест 2.6).",
+        "ru": "Силы, растягивающие пружину, направлены одинаково – складываются: 1,5 + 0,5 = 2 Н (тест 2.6 учебника).",
+        "en": "The forces stretching the spring point the same way and add: 1.5 + 0.5 = 2 N (test 2.6 in the textbook)."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-elastic-8",
+      "type": "single",
+      "prompt": {
+        "ky": "Пружинага илинген жүктүн массасын эки эсе көбөйттүк. Пружинанын катуулугу кандай өзгөрөт?",
+        "ru": "Массу груза на пружине увеличили вдвое. Как изменится жёсткость пружины?",
+        "en": "The load on a spring is doubled. How does the spring's stiffness change?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не изменится",
+            "en": "It does not change"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Эки эсе чоңоёт",
+            "ru": "Увеличится вдвое",
+            "en": "It doubles"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Эки эсе азаят",
+            "ru": "Уменьшится вдвое",
+            "en": "It halves"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "k – пружинанын өзүнүн касиети. Күч да, узарыш да эки эсе чоңоёт, ал эми k = F/x өзгөрбөйт.",
+        "ru": "k – свойство самой пружины. Вдвое растут и сила, и удлинение, а k = F/x не меняется.",
+        "en": "k belongs to the spring. Force and extension both double, while k = F/x stays the same."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "misconceptionKey": "phys.m.stiffness-depends-load",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-elastic-9",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Серпилгичтүүлүк күчүнүн аракети менен иштеген нерселерди тандаңыз.",
+        "ru": "Выберите предметы, которые работают благодаря силе упругости.",
+        "en": "Choose the things that work thanks to the elastic force."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жаа",
+            "ru": "Лук",
+            "en": "A bow"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Рогатка",
+            "ru": "Рогатка",
+            "en": "A catapult"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Динамометр",
+            "ru": "Динамометр",
+            "en": "A dynamometer"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Парашют",
+            "ru": "Парашют",
+            "en": "A parachute"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": {
+        "ky": "Жаа, рогатка жана динамометр серпилгичтүү деформацияны колдонот. Парашют абанын каршылыгы менен иштейт.",
+        "ru": "Лук, рогатка и динамометр используют упругую деформацию. Парашют работает за счёт сопротивления воздуха.",
+        "en": "A bow, a catapult and a dynamometer use elastic deformation. A parachute relies on air resistance."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-elastic-10",
+      "type": "match",
+      "prompt": {
+        "ky": "Белгини анын маанисине дал келтириңиз.",
+        "ru": "Сопоставьте обозначение и его смысл.",
+        "en": "Match each symbol to its meaning."
+      },
+      "pairs": [
+        {
+          "key": "k",
+          "left": {
+            "ky": "k",
+            "ru": "k",
+            "en": "k"
+          },
+          "right": {
+            "ky": "Пружинанын катуулугу, Н/м",
+            "ru": "Жёсткость пружины, Н/м",
+            "en": "Spring stiffness, N/m"
+          }
+        },
+        {
+          "key": "x",
+          "left": {
+            "ky": "x",
+            "ru": "x",
+            "en": "x"
+          },
+          "right": {
+            "ky": "Пружинанын узарышы, м",
+            "ru": "Удлинение пружины, м",
+            "en": "Spring extension, m"
+          }
+        },
+        {
+          "key": "x0",
+          "left": {
+            "ky": "x₀",
+            "ru": "x₀",
+            "en": "x₀"
+          },
+          "right": {
+            "ky": "Пружинанын баштапкы узундугу",
+            "ru": "Начальная длина пружины",
+            "en": "The spring's original length"
+          }
+        },
+        {
+          "key": "f",
+          "left": {
+            "ky": "F_серп",
+            "ru": "F_упр",
+            "en": "F_el"
+          },
+          "right": {
+            "ky": "Серпилгичтүүлүк күчү, Н",
+            "ru": "Сила упругости, Н",
+            "en": "Elastic force, N"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "F_серп = kx, мында k – катуулук, x – узарыш (x − x₀).",
+        "ru": "F_упр = kx, где k – жёсткость, x – удлинение (x − x₀).",
+        "en": "F = kx, where k is the stiffness and x the extension (x − x₀)."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-elastic-11",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден пружинанын узарышын ченөөгө мүмкүн болгон бөлүктү тап.",
+        "ru": "Найдите на модели часть, по которой измеряют удлинение пружины.",
+        "en": "Find the part of the model used to measure the spring's extension."
+      },
+      "targetConceptKey": "phys.spring-stretch",
+      "explanation": {
+        "ky": "Бул – сызгыч жана жебе: жебе пружинанын учу менен кошо жылып, узарышты көрсөтөт.",
+        "ru": "Это линейка и указатель: указатель движется с концом пружины и показывает удлинение.",
+        "en": "That is the ruler and pointer: the pointer moves with the spring's end and shows the extension."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-elastic-12",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден жүктү өйдө тарткан күчтү тап.",
+        "ru": "Найдите на модели силу, которая тянет груз вверх.",
+        "en": "Find the force in the model that pulls the load up."
+      },
+      "targetConceptKey": "phys.elastic-force",
+      "explanation": {
+        "ky": "Бул – серпилгичтүүлүк күчү F_серп: ал чоюлууга каршы, өйдө багытталган.",
+        "ru": "Это сила упругости F_упр: она направлена вверх, против растяжения.",
+        "en": "That is the elastic force: it points up, against the stretch."
+      },
+      "objectiveKeys": [
+        "phys.g7.dynamics.o2"
+      ],
+      "difficulty": 1
+    }
+  ]
+}

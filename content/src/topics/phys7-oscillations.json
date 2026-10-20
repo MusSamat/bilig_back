@@ -1,0 +1,1199 @@
+{
+  "topic": {
+    "key": "phys7-oscillations",
+    "unitKey": "phys.g7.oscillations",
+    "status": "published",
+    "title": {
+      "ky": "Термелүүлөр. Математикалык маятник",
+      "ru": "Колебания. Математический маятник",
+      "en": "Oscillations and the simple pendulum"
+    },
+    "formula": "T = 2\\pi\\sqrt{l/g},\\ \\nu = 1/T",
+    "classification": {
+      "ky": "Механикалык термелүүлөр",
+      "ru": "Механические колебания",
+      "en": "Mechanical oscillations"
+    },
+    "description": {
+      "ky": "Бак-дарактын бутагы, комуздун кылы, жүрөк – бардыгы термелет: кыймыл белгилүү бир убакыт аралыгында кайталанат. Термелүүнү амплитудасы A (эң чоң четтөө, м), мезгили T (бир толук термелүүнүн убактысы, с) жана жыштыгы ν = 1/T (Гц) мүнөздөйт. Узундугу 1 м математикалык маятник ≈ 2 с мезгил менен термелет; мезгил жиптин узундугуна жана g ге гана көз каранды: T = 2π√(l/g).",
+      "ru": "Ветка дерева, струна комуза, сердце – всё это колеблется: движение повторяется через определённые промежутки времени. Колебания характеризуют амплитуда A (наибольшее отклонение, м), период T (время полного колебания, с) и частота ν = 1/T (Гц). Математический маятник длиной 1 м качается с периодом ≈ 2 с; период зависит только от длины нити и g: T = 2π√(l/g).",
+      "en": "A tree branch, a komuz string, your heart – all oscillate: the motion repeats at regular intervals. An oscillation is described by its amplitude A (largest displacement, m), period T (time of one full oscillation, s) and frequency ν = 1/T (Hz). A 1 m simple pendulum swings with a period of about 2 s; the period depends only on the string length and g: T = 2π√(l/g)."
+    },
+    "goal": {
+      "ky": "Термелүүнүн амплитудасын, мезгилин жана жыштыгын аныктоо, математикалык маятниктин мезгили эмнеге көз каранды экенин тажрыйба жүзүндө изилдөө (PHYS-7.6.1, № 8 лабораториялык иш).",
+      "ru": "Определять амплитуду, период и частоту колебаний, исследовать на опыте, от чего зависит период математического маятника (PHYS-7.6.1, лабораторная работа № 8).",
+      "en": "Find the amplitude, period and frequency of an oscillation and investigate by experiment what a simple pendulum’s period depends on (PHYS-7.6.1, lab work no. 8)."
+    },
+    "objectiveKeys": [
+      "phys.g7.oscillations.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "pendulum",
+        "length": 1,
+        "mass": 0.1,
+        "amplitudeDeg": 8,
+        "g": 9.8,
+        "damping": 0
+      },
+      "camera": {
+        "position": [
+          0.5,
+          0.2,
+          3.5
+        ],
+        "target": [
+          0,
+          -0.2,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "trace",
+        "energy"
+      ]
+    },
+    "conceptKeys": [
+      "phys.oscillation",
+      "phys.math-pendulum",
+      "phys.oscillation-period",
+      "phys.oscillation-frequency",
+      "phys.amplitude",
+      "phys.equilibrium",
+      "phys.bob",
+      "phys.string",
+      "phys.pivot",
+      "phys.gravity"
+    ],
+    "overrides": {
+      "phys.oscillation": {
+        "nodes": [
+          "Trace_*"
+        ],
+        "props": [
+          {
+            "kind": "text",
+            "type": "composition",
+            "value": {
+              "ky": "A ≈ 0,14 м, T ≈ 2,01 с, ν ≈ 0,5 Гц",
+              "ru": "A ≈ 0,14 м, T ≈ 2,01 с, ν ≈ 0,5 Гц",
+              "en": "A ≈ 0.14 m, T ≈ 2.01 s, ν ≈ 0.5 Hz"
+            }
+          }
+        ]
+      },
+      "phys.math-pendulum": {
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "T = 2\\pi\\sqrt{1/9.8} \\approx 2.01"
+          },
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.1
+          }
+        ]
+      },
+      "phys.oscillation-period": {
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "period",
+            "value": 2.01,
+            "approx": true
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "T = t/N = 20.1/10"
+          }
+        ]
+      },
+      "phys.oscillation-frequency": {
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "frequency",
+            "value": 0.5,
+            "approx": true
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\nu = 1/T"
+          }
+        ]
+      },
+      "phys.amplitude": {
+        "nodes": [
+          "Arc_Amplitude"
+        ],
+        "anchor": [
+          0.14,
+          -0.48,
+          0
+        ],
+        "description": {
+          "ky": "Нерсенин тең салмактуулук абалынан эң чоң четтөө аралыгы термелүүнүн амплитудасы деп аталат. Ал A менен белгиленет, бирдиги – метр. Биздин маятник 8° четтейт: A ≈ 1 м · sin 8° ≈ 0,14 м. Сүрүлүү жок болсо, амплитуда өзгөрбөйт.",
+          "ru": "Наибольшее отклонение тела от положения равновесия называют амплитудой колебаний. Её обозначают A, единица – метр. Наш маятник отклоняется на 8°: A ≈ 1 м · sin 8° ≈ 0,14 м. Без трения амплитуда не меняется.",
+          "en": "The largest displacement from equilibrium is the amplitude A, measured in metres. Our pendulum swings 8°: A ≈ 1 m × sin 8° ≈ 0.14 m. Without friction the amplitude stays the same."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.14,
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "angle",
+            "value": 8
+          }
+        ]
+      },
+      "phys.equilibrium": {
+        "nodes": [
+          "Marker_Equilibrium"
+        ],
+        "anchor": [
+          0,
+          -0.55,
+          0
+        ]
+      },
+      "phys.bob": {
+        "nodes": [
+          "Bob",
+          "Bob_*"
+        ],
+        "anchor": [
+          0,
+          -0.5,
+          0
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.1
+          }
+        ]
+      },
+      "phys.string": {
+        "nodes": [
+          "String"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 1
+          }
+        ]
+      },
+      "phys.pivot": {
+        "nodes": [
+          "Pivot",
+          "Pivot_*"
+        ],
+        "anchor": [
+          0,
+          0.5,
+          0
+        ]
+      },
+      "phys.gravity": {
+        "nodes": [
+          "Vector_Gravity"
+        ],
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 0.98
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "P = mg"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "pendulum-1m",
+        "title": {
+          "ky": "Маятник, l = 1 м",
+          "ru": "Маятник, l = 1 м",
+          "en": "Pendulum, l = 1 m"
+        },
+        "classification": {
+          "ky": "T ≈ 2,01 с, ν ≈ 0,5 Гц",
+          "ru": "T ≈ 2,01 с, ν ≈ 0,5 Гц",
+          "en": "T ≈ 2.01 s, ν ≈ 0.5 Hz"
+        },
+        "thumb": "thumbs/pendulum-1m.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "period",
+            "value": 2.01,
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.1
+          }
+        ],
+        "scene": {
+          "params": {
+            "model": "pendulum",
+            "length": 1,
+            "mass": 0.1,
+            "amplitudeDeg": 8,
+            "g": 9.8,
+            "damping": 0
+          },
+          "camera": {
+            "position": [
+              0,
+              0,
+              3.5
+            ],
+            "target": [
+              0,
+              -0.2,
+              0
+            ],
+            "fov": 45
+          }
+        }
+      },
+      {
+        "key": "pendulum-25cm",
+        "title": {
+          "ky": "Маятник, l = 0,25 м",
+          "ru": "Маятник, l = 0,25 м",
+          "en": "Pendulum, l = 0.25 m"
+        },
+        "classification": {
+          "ky": "T ≈ 1,0 с, ν ≈ 1 Гц",
+          "ru": "T ≈ 1,0 с, ν ≈ 1 Гц",
+          "en": "T ≈ 1.0 s, ν ≈ 1 Hz"
+        },
+        "thumb": "thumbs/pendulum-25cm.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 0.25
+          },
+          {
+            "kind": "quantity",
+            "type": "period",
+            "value": 1.0,
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.1
+          }
+        ],
+        "scene": {
+          "params": {
+            "length": 0.25
+          },
+          "camera": {
+            "position": [
+              0,
+              0,
+              1.3
+            ],
+            "target": [
+              0,
+              -0.05,
+              0
+            ],
+            "fov": 45
+          }
+        }
+      },
+      {
+        "key": "pendulum-heavy",
+        "title": {
+          "ky": "Оор шар, m = 0,4 кг",
+          "ru": "Тяжёлый шар, m = 0,4 кг",
+          "en": "Heavy bob, m = 0.4 kg"
+        },
+        "classification": {
+          "ky": "Мезгил ошол эле: T ≈ 2,01 с",
+          "ru": "Период тот же: T ≈ 2,01 с",
+          "en": "Same period: T ≈ 2.01 s"
+        },
+        "thumb": "thumbs/pendulum-heavy.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "period",
+            "value": 2.01,
+            "approx": true
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 0.4
+          }
+        ],
+        "scene": {
+          "params": {
+            "mass": 0.4
+          }
+        }
+      },
+      {
+        "key": "pendulum-damped",
+        "title": {
+          "ky": "Өчүүчү термелүү",
+          "ru": "Затухающие колебания",
+          "en": "Damped oscillation"
+        },
+        "classification": {
+          "ky": "Сүрүлүү амплитуданы азайтат",
+          "ru": "Трение уменьшает амплитуду",
+          "en": "Friction shrinks the amplitude"
+        },
+        "thumb": "thumbs/pendulum-damped.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "length",
+            "value": 1
+          },
+          {
+            "kind": "quantity",
+            "type": "period",
+            "value": 2.01,
+            "approx": true
+          }
+        ],
+        "scene": {
+          "params": {
+            "damping": 0.15
+          }
+        }
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "overview",
+            "camera": {
+              "position": [
+                0,
+                0,
+                3.5
+              ],
+              "target": [
+                0,
+                -0.2,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "trace": true
+            },
+            "focus": "phys.oscillation",
+            "text": {
+              "ky": "Шарчаны жипке байлап, штативге бекиттик – бул маятник. Анын тынч турган абалы – тең салмактуулук абалы. Шарчаны 8° четтетип коё берели: ал бирде оңго, бирде солго жылып, кайталануучу кыймылга келет.",
+              "ru": "Привязали шарик к нити и закрепили на штативе – это маятник. Положение, в котором он покоится, – положение равновесия. Отклоним шарик на 8° и отпустим: он движется то вправо, то влево, повторяя движение.",
+              "en": "We tie a ball to a string on a stand – a pendulum. Its resting position is the equilibrium position. Pull the ball 8° aside and let go: it moves right, then left, again and again."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: турмушта дагы кандай термелүүлөрдү көргөнсүңөр? (Бак-дарактар, комуздун кылы, жүрөк.)",
+              "ru": "Спросите: какие ещё колебания вы видели? (Деревья, струна комуза, сердце.)",
+              "en": "Ask what other oscillations pupils know – trees, komuz strings, the heart."
+            },
+            "altText": {
+              "ky": "Штативдеги жипке илинген шарча, тик сызык – тең салмактуулук абалы.",
+              "ru": "Шарик на нити на штативе, вертикальная линия – положение равновесия.",
+              "en": "A ball on a string on a stand; the vertical line marks equilibrium."
+            }
+          },
+          {
+            "key": "equilibrium",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.equilibrium",
+            "text": {
+              "ky": "Тең салмактуулук абалында жипке оордук күчү P = mg жана жиптин керилүү күчү аракет этет – алар барабар жана карама-каршы. Шарча четтегенде алардын тең аракеттүүсү F аны кайра ортого кайтарат.",
+              "ru": "В положении равновесия на шарик действуют сила тяжести P = mg и сила натяжения нити – они равны и противоположны. При отклонении их равнодействующая F возвращает шарик к середине.",
+              "en": "At equilibrium gravity P = mg and the string tension are equal and opposite. When the ball is displaced their resultant F pulls it back to the middle."
+            },
+            "teacherNote": {
+              "ky": "137-сүрөттү колдонуп, F = P + F_к векторлорун тактада кошуңуз.",
+              "ru": "По рис. 137 сложите на доске векторы F = P + F_к.",
+              "en": "Use fig. 137 to add the vectors F = P + F_tension on the board."
+            },
+            "altText": {
+              "ky": "Илинүү чекитинин астындагы тик сызык жана оордук күчүнүн жебеси.",
+              "ru": "Вертикаль под точкой подвеса и стрелка силы тяжести.",
+              "en": "The vertical below the pivot and the gravity arrow."
+            }
+          },
+          {
+            "key": "amplitude",
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.amplitude",
+            "text": {
+              "ky": "Нерсенин тең салмактуулук абалынан эң чоң четтөө аралыгы – амплитуда A. 1 м жипте 8° четтөө A ≈ 0,14 м берет. Четки абалдарда (x = ±A) ылдамдык нөл, ортодо эң чоң – болжол менен 0,44 м/с.",
+              "ru": "Наибольшее отклонение тела от положения равновесия – амплитуда A. На нити 1 м отклонение 8° даёт A ≈ 0,14 м. В крайних положениях (x = ±A) скорость равна нулю, в середине – наибольшая, около 0,44 м/с.",
+              "en": "The largest displacement from equilibrium is the amplitude A. On a 1 m string 8° gives A ≈ 0.14 m. At the ends (x = ±A) the speed is zero, in the middle it is greatest, about 0.44 m/s."
+            },
+            "teacherNote": {
+              "ky": "«Термелүүчү нерсенин ылдамдыгы кантип өзгөрөт?» – §52 суроосун талкуулаңыз.",
+              "ru": "Обсудите вопрос §52: как меняется скорость колеблющегося тела?",
+              "en": "Discuss §52: how does the speed of an oscillating body change?"
+            },
+            "altText": {
+              "ky": "Маятниктин жаасы жана четтөө бурчу.",
+              "ru": "Дуга маятника и угол отклонения.",
+              "en": "The pendulum’s arc and the swing angle."
+            }
+          },
+          {
+            "key": "period",
+            "modes": {
+              "trace": true
+            },
+            "focus": "phys.oscillation-period",
+            "text": {
+              "ky": "Бир толук термелүүгө (четтен четке жана кайра) кеткен убакыт – мезгил T. 10 термелүүгө ≈ 20,1 с кетет, ошондуктан T = t/N ≈ 2,01 с. Жыштыгы ν = 1/T ≈ 0,5 Гц – секундасына жарым термелүү.",
+              "ru": "Время одного полного колебания (от края до края и обратно) – период T. 10 колебаний длятся ≈ 20,1 с, значит T = t/N ≈ 2,01 с. Частота ν = 1/T ≈ 0,5 Гц – полколебания в секунду.",
+              "en": "The time for one full oscillation (end to end and back) is the period T. Ten swings take ≈ 20.1 s, so T = t/N ≈ 2.01 s. The frequency ν = 1/T ≈ 0.5 Hz – half an oscillation per second."
+            },
+            "teacherNote": {
+              "ky": "Китепте жыштык n тамгасы менен белгиленет (n = 1/T); бул жерде эл аралык ν колдонулат. Секундомер менен 10 термелүүнү бирге санагыла.",
+              "ru": "В учебнике частота обозначена n (n = 1/T); здесь – международная ν. Вместе засеките секундомером 10 колебаний.",
+              "en": "The book writes frequency as n (n = 1/T); here we use the international ν. Time ten swings together with a stopwatch."
+            },
+            "altText": {
+              "ky": "Маятниктин изи жаа боюнча кайталанат.",
+              "ru": "След маятника повторяется по дуге.",
+              "en": "The pendulum’s trace repeats along the arc."
+            }
+          },
+          {
+            "key": "length",
+            "modes": {
+              "trace": true
+            },
+            "focus": "phys.string",
+            "sample": "pendulum-25cm",
+            "text": {
+              "ky": "Жипти 4 эсе кыскартсак (0,25 м), мезгил 2 эсе азаят – ≈ 1,0 с. Жип канчалык узун болсо, мезгил ошончолук чоң: T = 2π√(l/g).",
+              "ru": "Укоротим нить в 4 раза (0,25 м) – период уменьшится вдвое, до ≈ 1,0 с. Чем длиннее нить, тем больше период: T = 2π√(l/g).",
+              "en": "Make the string 4 times shorter (0.25 m) and the period halves to ≈ 1.0 s. The longer the string, the longer the period: T = 2π√(l/g)."
+            },
+            "teacherNote": {
+              "ky": "№ 8 лабораториялык иштин 5-пункту: жиптин узундугун өзгөртүп, мезгилди өлчөгүлө.",
+              "ru": "Пункт 5 лабораторной работы № 8: меняйте длину нити и измеряйте период.",
+              "en": "Lab work no. 8, step 5: change the string length and measure the period."
+            },
+            "altText": {
+              "ky": "Кыска жиптеги маятник тезирээк термелет.",
+              "ru": "Маятник на короткой нити качается быстрее.",
+              "en": "A pendulum on a short string swings faster."
+            }
+          },
+          {
+            "key": "mass",
+            "focus": "phys.math-pendulum",
+            "sample": "pendulum-heavy",
+            "text": {
+              "ky": "Шарды 4 эсе оор шарга алмаштырсак да мезгил ошол эле ≈ 2,01 с. Мезгил массага жана кичине амплитудага көз каранды эмес – бул изохронизм. Гюйгенс 1657-жылы ушул касиетти саатка колдонгон.",
+              "ru": "Заменим шарик на вчетверо более тяжёлый – период тот же, ≈ 2,01 с. Период не зависит от массы и малой амплитуды – это изохронизм. Гюйгенс в 1657 году применил это свойство в часах.",
+              "en": "Swap in a ball 4 times heavier – the period is still ≈ 2.01 s. It depends on neither the mass nor a small amplitude: isochronism. Huygens used this in his clock in 1657."
+            },
+            "teacherNote": {
+              "ky": "Талкуулаңыз: маятниктүү саат Айда тез жүрөбү же жайбы? (g аз – жай.)",
+              "ru": "Обсудите: пойдут ли маятниковые часы на Луне быстрее или медленнее? (g меньше – медленнее.)",
+              "en": "Discuss: would a pendulum clock on the Moon run fast or slow? (Smaller g – slow.)"
+            },
+            "altText": {
+              "ky": "Чоңураак шарчалуу маятник ошол эле ыргак менен термелет.",
+              "ru": "Маятник с большим шариком качается в том же ритме.",
+              "en": "A pendulum with a bigger bob keeps the same rhythm."
+            }
+          },
+          {
+            "key": "damped",
+            "modes": {
+              "trace": true
+            },
+            "focus": "phys.bob",
+            "sample": "pendulum-damped",
+            "text": {
+              "ky": "Чыныгы маятникке абанын каршылыгы жана сүрүлүү аракет этет: амплитуда акырындап азайып, термелүү өчөт. Эркин термелүү болушу үчүн сүрүлүү аз болушу керек.",
+              "ru": "На настоящий маятник действуют сопротивление воздуха и трение: амплитуда постепенно уменьшается, колебания затухают. Для свободных колебаний трение должно быть малым.",
+              "en": "A real pendulum feels air resistance and friction: the amplitude slowly shrinks and the oscillation dies away. Free oscillation needs little friction."
+            },
+            "teacherNote": {
+              "ky": "Селкинчектин мисалы: ага мезгил-мезгили менен түрткү берип турганда гана термелет.",
+              "ru": "Пример качелей: они качаются, только если их периодически подталкивать.",
+              "en": "Use the swing example: it keeps going only if pushed now and then."
+            },
+            "altText": {
+              "ky": "Маятниктин жаасы барган сайын кыскарат.",
+              "ru": "Размах маятника с каждым разом меньше.",
+              "en": "The pendulum’s swing gets smaller each time."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.pendulum-period-lab"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "pendulum-1m"
+          },
+          {
+            "kind": "sample",
+            "key": "pendulum-25cm"
+          },
+          {
+            "kind": "sample",
+            "key": "pendulum-heavy"
+          }
+        ],
+        "rows": [
+          "length",
+          "mass",
+          "period",
+          "frequency"
+        ],
+        "manual": [
+          {
+            "column": "pendulum-1m",
+            "row": "frequency",
+            "value": {
+              "ky": "≈ 0,5 Гц",
+              "ru": "≈ 0,5 Гц",
+              "en": "≈ 0.5 Hz"
+            }
+          },
+          {
+            "column": "pendulum-25cm",
+            "row": "frequency",
+            "value": {
+              "ky": "≈ 1 Гц",
+              "ru": "≈ 1 Гц",
+              "en": "≈ 1 Hz"
+            }
+          },
+          {
+            "column": "pendulum-heavy",
+            "row": "frequency",
+            "value": {
+              "ky": "≈ 0,5 Гц",
+              "ru": "≈ 0,5 Гц",
+              "en": "≈ 0.5 Hz"
+            }
+          }
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.phys7-oscillations-1",
+          "phys.q.phys7-oscillations-2",
+          "phys.q.phys7-oscillations-3",
+          "phys.q.phys7-oscillations-4",
+          "phys.q.phys7-oscillations-5",
+          "phys.q.phys7-oscillations-6",
+          "phys.q.phys7-oscillations-7",
+          "phys.q.phys7-oscillations-8",
+          "phys.q.phys7-oscillations-9",
+          "phys.q.phys7-oscillations-10",
+          "phys.q.phys7-oscillations-11"
+        ],
+        "sampleSize": 6
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Маятниктүү саат",
+            "ru": "Маятниковые часы",
+            "en": "Pendulum clocks"
+          },
+          "text": {
+            "ky": "1657-жылы Христиан Гюйгенс маятниктин изохрондуулугун колдонуп саат жасаган; анын механизминин негизги түзүлүшү азыркы күнгө чейин сакталган.",
+            "ru": "В 1657 году Христиан Гюйгенс, используя изохронность маятника, создал часы; основа их механизма сохранилась до наших дней.",
+            "en": "In 1657 Christiaan Huygens used the pendulum’s isochronism to build a clock whose basic mechanism survives to this day."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "g ни жана кендерди издөө",
+            "ru": "Измерение g и поиск руды",
+            "en": "Measuring g and finding ore"
+          },
+          "text": {
+            "ky": "Жердин тартуу күчү экватордон уюлдарга карай жана темир кени бар жерде чоңоёт – маятниктин мезгилин так өлчөп, g = 4π²l/T² табылат.",
+            "ru": "Притяжение Земли растёт от экватора к полюсам и над залежами железа – точно измерив период маятника, находят g = 4π²l/T².",
+            "en": "Earth’s pull is stronger towards the poles and over iron ore; timing a pendulum precisely gives g = 4π²l/T²."
+          },
+          "field": "s"
+        },
+        {
+          "title": {
+            "ky": "√ функциясы",
+            "ru": "Функция √",
+            "en": "The square-root law"
+          },
+          "text": {
+            "ky": "T ~ √l: жипти 4 эсе узартсак мезгил 2 эсе, 9 эсе узартсак 3 эсе чоңоёт.",
+            "ru": "T ~ √l: удлиним нить в 4 раза – период вырастет вдвое, в 9 раз – втрое.",
+            "en": "T ~ √l: make the string 4 times longer and the period doubles; 9 times longer and it triples."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Селкинчек",
+            "ru": "Качели",
+            "en": "A swing"
+          },
+          "text": {
+            "ky": "Селкинчекке мезгил-мезгили менен түрткү бербесең, ал бир аздан кийин токтойт – эркин термелүү өчөт.",
+            "ru": "Если качели не подталкивать время от времени, они скоро остановятся: свободные колебания затухают.",
+            "en": "Stop pushing a swing and it soon comes to rest – free oscillations die away."
+          }
+        },
+        {
+          "title": {
+            "ky": "Бешик",
+            "ru": "Бешик",
+            "en": "A beshik cradle"
+          },
+          "text": {
+            "ky": "Бешик катуу же акырын термелсе да, анын ыргагы дээрлик өзгөрбөйт.",
+            "ru": "Сильно или слабо качается бешик, его ритм почти не меняется.",
+            "en": "Whether rocked hard or gently, a beshik cradle keeps nearly the same rhythm."
+          }
+        }
+      ]
+    },
+    "props": [
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "T = 2\\pi\\sqrt{l/g}"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "\\nu = 1/T"
+      },
+      {
+        "kind": "quantity",
+        "type": "period",
+        "value": 2.01,
+        "approx": true
+      }
+    ],
+    "starters": [
+      {
+        "ky": "Маятниктин мезгили эмнеге көз каранды?",
+        "ru": "От чего зависит период маятника?",
+        "en": "What does a pendulum’s period depend on?"
+      },
+      {
+        "ky": "Мезгил менен жыштыктын кандай байланышы бар?",
+        "ru": "Как связаны период и частота?",
+        "en": "How are period and frequency related?"
+      },
+      {
+        "ky": "Эмне үчүн селкинчек акырындап токтойт?",
+        "ru": "Почему качели постепенно останавливаются?",
+        "en": "Why does a swing slowly stop?"
+      },
+      {
+        "ky": "Маятник убакытты өлчөөдө эмне үчүн колдонулат?",
+        "ru": "Почему маятник используют для измерения времени?",
+        "en": "Why is a pendulum used to keep time?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Мамбетакунов, «Физика», 7-класс (kg-2018), V–VI главалар"
+      }
+    ],
+    "i18n": {
+      "ky": "machine",
+      "ru": "reviewed",
+      "en": "draft"
+    }
+  },
+  "items": [
+    {
+      "key": "phys.q.phys7-oscillations-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Кандай кыймыл термелүү кыймылы деп аталат?",
+        "ru": "Какое движение называют колебательным?",
+        "en": "Which motion is called an oscillation?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Белгилүү бир убакыт аралыгында кайталануучу кыймыл",
+            "ru": "Движение, повторяющееся через определённые промежутки времени",
+            "en": "A motion that repeats at regular intervals"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Түз сызыктуу бир калыптагы кыймыл",
+            "ru": "Прямолинейное равномерное движение",
+            "en": "Uniform straight-line motion"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Колдун жардамы менен китепти ары-бери жылдыруу",
+            "ru": "Перемещение книги рукой туда-сюда",
+            "en": "Moving a book back and forth by hand"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Эркин түшүү",
+            "ru": "Свободное падение",
+            "en": "Free fall"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Термелүү – мезгилдүү кайталанып туруучу кыймыл. Колдогу китептин кыймылы кол токтогондо токтойт – ал термелүү эмес.",
+        "ru": "Колебания – периодически повторяющееся движение. Книга в руке остановится вместе с рукой – это не колебания.",
+        "en": "An oscillation repeats itself regularly. A book moved by hand stops when the hand stops – that is not an oscillation."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o1"
+      ],
+      "misconceptionKey": "phys.m.any-back-forth",
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-oscillations-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Эркин термелүү кандай күчтүн таасиринде пайда болот?",
+        "ru": "Под действием каких сил возникают свободные колебания?",
+        "en": "Which forces cause free oscillations?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Оордук күчүнүн гана",
+            "ru": "Только силы тяжести",
+            "en": "Gravity only"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Сүрүлүү күчүнүн",
+            "ru": "Силы трения",
+            "en": "Friction"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Серпилгичтүүлүк күчүнүн гана",
+            "ru": "Только силы упругости",
+            "en": "The elastic force only"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Оордук жана серпилгичтүүлүк күчтөрүнүн",
+            "ru": "Силы тяжести и силы упругости",
+            "en": "Gravity and the elastic force"
+          }
+        }
+      ],
+      "answer": "d",
+      "explanation": {
+        "ky": "Нерсе тең салмактуулук абалынан чыгарылгандан кийин оордук күчүнүн же серпилгичтүүлүк күчүнүн аракети астында термелет; сүрүлүү болсо термелүүнү өчүрөт.",
+        "ru": "Выведенное из равновесия тело колеблется под действием силы тяжести или силы упругости; трение колебания гасит.",
+        "en": "A displaced body oscillates under gravity or an elastic force; friction damps the motion."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-oscillations-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Пружинага илинген жүк 10 секундда 20 термелүү жасады. Анын жыштыгы канча Гц?",
+        "ru": "Груз на пружине за 10 секунд совершил 20 колебаний. Какова частота, Гц?",
+        "en": "A load on a spring makes 20 oscillations in 10 s. What is its frequency in Hz?"
+      },
+      "answer": 2,
+      "tolerance": 0.01,
+      "unit": "Hz",
+      "explanation": {
+        "ky": "ν = N/t = 20/10 = 2 Гц, мезгил T = 1/ν = 0,5 с (15-көнүгүү, 2-маселе).",
+        "ru": "ν = N/t = 20/10 = 2 Гц, период T = 1/ν = 0,5 с (упр. 15, задача 2).",
+        "en": "ν = N/t = 20/10 = 2 Hz and T = 1/ν = 0.5 s (exercise 15, problem 2)."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-oscillations-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Жипке илинген шарчанын термелүү мезгили 0,2 с. Анын термелүү жыштыгы канча Гц?",
+        "ru": "Период колебаний шарика на нити 0,2 с. Какова частота, Гц?",
+        "en": "A ball on a thread has a period of 0.2 s. What is its frequency in Hz?"
+      },
+      "answer": 5,
+      "tolerance": 0.01,
+      "unit": "Hz",
+      "explanation": {
+        "ky": "ν = 1/T = 1/0,2 с = 5 Гц.",
+        "ru": "ν = 1/T = 1/0,2 с = 5 Гц.",
+        "en": "ν = 1/T = 1/0.2 s = 5 Hz."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o1"
+      ],
+      "misconceptionKey": "phys.m.frequency-is-distance",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-oscillations-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Жибинин узундугу 1 м болгон математикалык маятниктин термелүү мезгили канча секунд? (g = 9,8 м/с²)",
+        "ru": "Каков период математического маятника длиной 1 м? (g = 9,8 м/с²)",
+        "en": "What is the period of a 1 m simple pendulum? (g = 9.8 m/s²)"
+      },
+      "answer": 2.01,
+      "tolerance": 0.03,
+      "unit": "s",
+      "explanation": {
+        "ky": "T = 2π√(l/g) = 2 · 3,14 · √(1/9,8) ≈ 2,01 с.",
+        "ru": "T = 2π√(l/g) = 2 · 3,14 · √(1/9,8) ≈ 2,01 с.",
+        "en": "T = 2π√(l/g) = 2 × 3.14 × √(1/9.8) ≈ 2.01 s."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o1"
+      ],
+      "misconceptionKey": "phys.m.length-no-effect",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-oscillations-6",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Математикалык маятниктин термелүү мезгили эмнеге көз каранды?",
+        "ru": "От чего зависит период математического маятника?",
+        "en": "What does a simple pendulum’s period depend on?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жиптин узундугуна",
+            "ru": "От длины нити",
+            "en": "The string length"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Эркин түшүүнүн ылдамдануусуна g",
+            "ru": "От ускорения свободного падения g",
+            "en": "The acceleration of free fall g"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Жүктүн массасына",
+            "ru": "От массы груза",
+            "en": "The bob’s mass"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Кичине амплитудага",
+            "ru": "От малой амплитуды",
+            "en": "A small amplitude"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b"
+      ],
+      "explanation": {
+        "ky": "Тажрыйбалар көрсөткөндөй, мезгил массага жана амплитудага көз каранды эмес, жиптин узундугуна түз, g ге тескери көз каранды: T = 2π√(l/g).",
+        "ru": "Опыты показывают: период не зависит от массы и амплитуды, растёт с длиной нити и уменьшается с ростом g: T = 2π√(l/g).",
+        "en": "Experiments show the period does not depend on mass or amplitude; it grows with length and falls as g rises: T = 2π√(l/g)."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o1"
+      ],
+      "misconceptionKey": "phys.m.amplitude-period",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.phys7-oscillations-7",
+      "type": "match",
+      "prompt": {
+        "ky": "Термелүүнү мүнөздөөчү чоңдукту анын бирдиги менен дал келтир.",
+        "ru": "Сопоставь характеристику колебаний и её единицу.",
+        "en": "Match each quantity to its unit."
+      },
+      "pairs": [
+        {
+          "key": "amp",
+          "left": {
+            "ky": "Амплитуда A",
+            "ru": "Амплитуда A",
+            "en": "Amplitude A"
+          },
+          "right": {
+            "ky": "метр (м)",
+            "ru": "метр (м)",
+            "en": "metre (m)"
+          }
+        },
+        {
+          "key": "per",
+          "left": {
+            "ky": "Мезгил T",
+            "ru": "Период T",
+            "en": "Period T"
+          },
+          "right": {
+            "ky": "секунд (с)",
+            "ru": "секунда (с)",
+            "en": "second (s)"
+          }
+        },
+        {
+          "key": "freq",
+          "left": {
+            "ky": "Жыштык ν",
+            "ru": "Частота ν",
+            "en": "Frequency ν"
+          },
+          "right": {
+            "ky": "герц (Гц)",
+            "ru": "герц (Гц)",
+            "en": "hertz (Hz)"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Амплитуда – аралык (м), мезгил – убакыт (с), жыштык – 1 секунддагы термелүүлөрдүн саны (Гц = 1/с).",
+        "ru": "Амплитуда – расстояние (м), период – время (с), частота – число колебаний за секунду (Гц = 1/с).",
+        "en": "Amplitude is a distance (m), period a time (s), frequency oscillations per second (Hz = 1/s)."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-oscillations-8",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден маятниктин тең салмактуулук абалын тап.",
+        "ru": "Найди на модели положение равновесия маятника.",
+        "en": "Find the pendulum’s equilibrium position on the model."
+      },
+      "targetConceptKey": "phys.equilibrium",
+      "explanation": {
+        "ky": "Тең салмактуулук абалы – жип тик турган абал, илинүү чекитинин так астында.",
+        "ru": "Положение равновесия – когда нить вертикальна, точно под точкой подвеса.",
+        "en": "Equilibrium is where the string hangs vertically, right below the pivot."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.phys7-oscillations-9",
+      "type": "single",
+      "prompt": {
+        "ky": "Маятниктеги жүктүн массасын 2 эсе чоңойтсок, анын термелүү мезгили кандай өзгөрөт?",
+        "ru": "Как изменится период маятника, если массу груза увеличить в 2 раза?",
+        "en": "How does the period change if the bob’s mass is doubled?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "2 эсе чоңоёт",
+            "ru": "Увеличится в 2 раза",
+            "en": "Doubles"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "2 эсе кичирейет",
+            "ru": "Уменьшится в 2 раза",
+            "en": "Halves"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не изменится",
+            "en": "Does not change"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Математикалык маятниктин термелүү мезгили анын массасына көз каранды эмес: коргошун, пластмасса же жыгач шар бирдей мезгил менен термелет.",
+        "ru": "Период математического маятника не зависит от массы: свинцовый, пластмассовый и деревянный шарики качаются с одним периодом.",
+        "en": "A simple pendulum’s period does not depend on its mass: lead, plastic and wooden balls all swing with the same period."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o1"
+      ],
+      "misconceptionKey": "phys.m.heavier-faster",
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.phys7-oscillations-10",
+      "type": "single",
+      "prompt": {
+        "ky": "Темир шарчалуу маятниктин астына күчтүү магнит койдук. Термелүү мезгили кандай өзгөрөт?",
+        "ru": "Под маятник с железным шариком поставили сильный магнит. Как изменится период?",
+        "en": "A strong magnet is placed under a pendulum with an iron bob. How does the period change?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Азаят",
+            "ru": "Уменьшится",
+            "en": "It gets shorter"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Чоңоёт",
+            "ru": "Увеличится",
+            "en": "It gets longer"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Өзгөрбөйт",
+            "ru": "Не изменится",
+            "en": "No change"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Магнит шарды ылдый тартат – Жердин тартуусу күчөгөндөй болот. Мезгил g ге тескери көз каранды, ошондуктан азаят (138-сүрөт).",
+        "ru": "Магнит тянет шарик вниз – будто притяжение Земли усилилось. Период обратно зависит от g, поэтому уменьшается (рис. 138).",
+        "en": "The magnet pulls the ball down, as if gravity were stronger. The period falls as g rises, so it gets shorter (fig. 138)."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o1"
+      ],
+      "misconceptionKey": "phys.m.pendulum-same-everywhere",
+      "difficulty": 4
+    },
+    {
+      "key": "phys.q.phys7-oscillations-11",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Маятник сол четки абалдан оң четки абалга 1 секундда жетти. Анын термелүү мезгили канча секунд?",
+        "ru": "Маятник дошёл от левого крайнего положения до правого за 1 с. Каков его период, с?",
+        "en": "A pendulum swings from its left end to its right end in 1 s. What is its period in s?"
+      },
+      "answer": 2,
+      "tolerance": 0.01,
+      "unit": "s",
+      "explanation": {
+        "ky": "Четтен четке – бул жарым термелүү. Толук термелүүдө маятник кайра сол четке кайтат: T = 2 · 1 с = 2 с.",
+        "ru": "От края до края – только половина колебания. За полное колебание маятник возвращается к левому краю: T = 2 · 1 с = 2 с.",
+        "en": "End to end is half an oscillation; a full one returns to the left end: T = 2 × 1 s = 2 s."
+      },
+      "objectiveKeys": [
+        "phys.g7.oscillations.o1"
+      ],
+      "misconceptionKey": "phys.m.period-half-swing",
+      "difficulty": 3
+    }
+  ]
+}

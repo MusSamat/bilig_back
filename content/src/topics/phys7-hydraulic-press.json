@@ -1,0 +1,1216 @@
+{
+  "topic": {
+    "key": "phys7-hydraulic-press",
+    "unitKey": "phys.g7.pressure",
+    "status": "published",
+    "title": {
+      "ky": "Паскаль законунун турмушта колдонулушу. Гидравликалык пресс",
+      "ru": "Применение закона Паскаля. Гидравлический пресс",
+      "en": "Using Pascal's law. The hydraulic press"
+    },
+    "formula": "F₂/F₁ = S₂/S₁",
+    "classification": {
+      "ky": "Гидравликалык машиналар",
+      "ru": "Гидравлические машины",
+      "en": "Hydraulic machines"
+    },
+    "description": {
+      "ky": "Ичине май куюлган, негизи туташ эки цилиндр: кичине поршендин аянты 10 см², чоңунуку 500 см². Кичине поршенге 100 Н күч менен басабыз – майдагы 100 000 Па басым Паскаль закону боюнча чоң поршенге берилип, ал 5000 Н күч менен жүктү көтөрөт. Катыш идиштер, чайнек, гидравликалык токтоткуч жана көтөргүч да Паскаль законуна негизделген (§28).",
+      "ru": "Два сообщающихся цилиндра с маслом: площадь малого поршня 10 см², большого – 500 см². Давим на малый поршень с силой 100 Н – давление в масле 100 000 Па по закону Паскаля передаётся большому поршню, и он поднимает груз с силой 5000 Н. Сообщающиеся сосуды, чайник, гидравлический тормоз и подъёмник тоже основаны на законе Паскаля (§28).",
+      "en": "Two connected cylinders full of oil: the small piston is 10 cm², the big one 500 cm². We push the small piston with 100 N – the 100 000 Pa pressure in the oil is passed by Pascal's law to the big piston, which lifts its load with 5000 N. Communicating vessels, teapots, hydraulic brakes and lifts all rest on Pascal's law too (§28)."
+    },
+    "goal": {
+      "ky": "Катыш идиштердин, гидравликалык токтоткучтун жана гидравликалык көтөргүчтүн (пресстин) иштешин Паскаль закону менен түшүндүрүү, F₂/F₁ = S₂/S₁ формуласы менен күчтөн утушту эсептөө (PHYS-7.3.1).",
+      "ru": "Объяснять работу сообщающихся сосудов, гидравлического тормоза и гидравлического подъёмника (пресса) законом Паскаля, рассчитывать выигрыш в силе по формуле F₂/F₁ = S₂/S₁ (PHYS-7.3.1).",
+      "en": "Explain communicating vessels, hydraulic brakes and the hydraulic lift (press) with Pascal's law, and calculate the gain in force with F₂/F₁ = A₂/A₁ (PHYS-7.3.1)."
+    },
+    "objectiveKeys": [
+      "phys.g7.pressure.o1"
+    ],
+    "durationMin": 45,
+    "scene": {
+      "plugin": "sim",
+      "params": {
+        "model": "pressure",
+        "variant": "hydraulic",
+        "smallArea": 0.001,
+        "largeArea": 0.05,
+        "force": 100
+      },
+      "camera": {
+        "position": [
+          0.8,
+          1.25,
+          2.4
+        ],
+        "target": [
+          0,
+          0.45,
+          0
+        ],
+        "fov": 45
+      },
+      "modes": [
+        "vectors",
+        "labels"
+      ]
+    },
+    "conceptKeys": [
+      "phys.hydraulic-press",
+      "phys.piston",
+      "phys.pressure-force",
+      "phys.pascal-law",
+      "phys.weight",
+      "phys.pressure"
+    ],
+    "overrides": {
+      "phys.hydraulic-press": {
+        "nodes": [
+          "Cylinder_Small",
+          "Cylinder_Large",
+          "Pipe",
+          "Base",
+          "Liquid"
+        ],
+        "description": {
+          "ky": "Ичке (S₁ = 0,001 м²) жана жазы (S₂ = 0,05 м²) цилиндрлер ылдыйкы түтүк аркылуу туташкан, ичинде май бар. Аянттардын катышы 50, ошондуктан пресс күчтөн 50 эсе утат: F₂ = 100 · 50 = 5000 Н.",
+          "ru": "Узкий (S₁ = 0,001 м²) и широкий (S₂ = 0,05 м²) цилиндры соединены снизу трубкой и заполнены маслом. Площади отличаются в 50 раз, поэтому пресс даёт выигрыш в силе в 50 раз: F₂ = 100 · 50 = 5000 Н.",
+          "en": "A narrow (A₁ = 0.001 m²) and a wide (A₂ = 0.05 m²) cylinder joined at the bottom by a pipe and filled with oil. The areas differ 50 times, so the press multiplies the force 50 times: F₂ = 100 × 50 = 5000 N."
+        },
+        "props": [
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "\\frac{F_2}{F_1} = \\frac{S_2}{S_1}"
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 5000
+          }
+        ]
+      },
+      "phys.piston": {
+        "nodes": [
+          "Piston_Small",
+          "Piston_Large"
+        ],
+        "description": {
+          "ky": "Кичине поршендин аянты S₁ = 10 см² = 0,001 м², чоңунуку S₂ = 500 см² = 0,05 м². Майдагы басым экөөнө тең бирдей – 100 000 Па, бирок чоң поршенге 50 эсе чоң күч аракет этет.",
+          "ru": "Площадь малого поршня S₁ = 10 см² = 0,001 м², большого S₂ = 500 см² = 0,05 м². Давление масла на оба поршня одинаково – 100 000 Па, но на большой действует в 50 раз большая сила.",
+          "en": "The small piston is A₁ = 10 cm² = 0.001 m², the big one A₂ = 500 cm² = 0.05 m². The oil pressure on both is the same 100 000 Pa, but the force on the big one is 50 times larger."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "area",
+            "value": 0.001,
+            "unit": "m²"
+          },
+          {
+            "kind": "quantity",
+            "type": "area",
+            "value": 0.05,
+            "unit": "m²"
+          }
+        ]
+      },
+      "phys.pressure-force": {
+        "nodes": [
+          "Arrow_F1",
+          "Arrow_F2"
+        ],
+        "title": {
+          "ky": "F₁ жана F₂ күчтөрү",
+          "ru": "Силы F₁ и F₂",
+          "en": "Forces F₁ and F₂"
+        },
+        "description": {
+          "ky": "F₁ = 100 Н – кичине поршенге колдун күчү (ылдый). F₂ = P·S₂ = 100 000 · 0,05 = 5000 Н – майдын чоң поршенге күчү (өйдө).",
+          "ru": "F₁ = 100 Н – сила руки на малый поршень (вниз). F₂ = p·S₂ = 100 000 · 0,05 = 5000 Н – сила масла на большой поршень (вверх).",
+          "en": "F₁ = 100 N – the hand's force on the small piston (down). F₂ = p·A₂ = 100 000 × 0.05 = 5000 N – the oil's force on the big piston (up)."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 100
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 5000
+          },
+          {
+            "kind": "formula",
+            "type": "formula",
+            "value": "F_2 = F_1 \\frac{S_2}{S_1}"
+          }
+        ]
+      },
+      "phys.weight": {
+        "nodes": [
+          "Load"
+        ],
+        "description": {
+          "ky": "Чоң поршендеги жүк. Анын салмагы 5000 Н ге чейин болсо (массасы ≈ 510 кг), пресс аны 100 Н күч менен эле көтөрө алат.",
+          "ru": "Груз на большом поршне. Если его вес до 5000 Н (масса ≈ 510 кг), пресс поднимет его силой всего 100 Н.",
+          "en": "The load on the big piston. If it weighs up to 5000 N (a mass of about 510 kg), the press lifts it with only 100 N."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 5000
+          },
+          {
+            "kind": "quantity",
+            "type": "mass",
+            "value": 510,
+            "approx": true
+          }
+        ]
+      },
+      "phys.pressure": {
+        "title": {
+          "ky": "Майдагы басым",
+          "ru": "Давление в масле",
+          "en": "Pressure in the oil"
+        },
+        "description": {
+          "ky": "P = F₁/S₁ = 100 Н / 0,001 м² = 100 000 Па = 100 кПа. Бул басым майдын бардык чекитине бирдей берилет.",
+          "ru": "p = F₁/S₁ = 100 Н / 0,001 м² = 100 000 Па = 100 кПа. Это давление одинаково передаётся во все точки масла.",
+          "en": "p = F₁/A₁ = 100 N / 0.001 m² = 100 000 Pa = 100 kPa. This pressure is passed on equally to every point of the oil."
+        },
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 100000,
+            "unit": "Pa"
+          }
+        ]
+      }
+    },
+    "samples": [
+      {
+        "key": "hydraulic-50x",
+        "title": {
+          "ky": "Аянттардын катышы 50",
+          "ru": "Площади отличаются в 50 раз",
+          "en": "Area ratio 50"
+        },
+        "classification": {
+          "ky": "100 Н → 5000 Н",
+          "ru": "100 Н → 5000 Н",
+          "en": "100 N → 5000 N"
+        },
+        "thumb": "thumbs/hydraulic-50x.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 100
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 5000
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 100000,
+            "unit": "Pa"
+          }
+        ],
+        "scene": {
+          "params": {
+            "smallArea": 0.001,
+            "largeArea": 0.05,
+            "force": 100
+          }
+        }
+      },
+      {
+        "key": "hydraulic-car-lift",
+        "title": {
+          "ky": "Автомашинаны көтөрүү: 100 кг → 2 т",
+          "ru": "Подъём автомобиля: 100 кг → 2 т",
+          "en": "Lifting a car: 100 kg → 2 t"
+        },
+        "classification": {
+          "ky": "S₂/S₁ = 20, F₂ = 19 600 Н",
+          "ru": "S₂/S₁ = 20, F₂ = 19 600 Н",
+          "en": "A₂/A₁ = 20, F₂ = 19 600 N"
+        },
+        "thumb": "thumbs/hydraulic-car-lift.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 980
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 19600
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 392000,
+            "unit": "Pa"
+          }
+        ],
+        "scene": {
+          "params": {
+            "smallArea": 0.0025,
+            "largeArea": 0.05,
+            "force": 980
+          }
+        }
+      },
+      {
+        "key": "hydraulic-10x",
+        "title": {
+          "ky": "Аянттардын катышы 10",
+          "ru": "Площади отличаются в 10 раз",
+          "en": "Area ratio 10"
+        },
+        "classification": {
+          "ky": "100 Н → 1000 Н",
+          "ru": "100 Н → 1000 Н",
+          "en": "100 N → 1000 N"
+        },
+        "thumb": "thumbs/hydraulic-10x.webp",
+        "props": [
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 100
+          },
+          {
+            "kind": "quantity",
+            "type": "force",
+            "value": 1000
+          },
+          {
+            "kind": "quantity",
+            "type": "pressure",
+            "value": 20000,
+            "unit": "Pa"
+          }
+        ],
+        "scene": {
+          "params": {
+            "smallArea": 0.005,
+            "largeArea": 0.05,
+            "force": 100
+          }
+        }
+      }
+    ],
+    "props": [
+      {
+        "kind": "quantity",
+        "type": "force",
+        "value": 100
+      },
+      {
+        "kind": "quantity",
+        "type": "area",
+        "value": 0.001,
+        "unit": "m²"
+      },
+      {
+        "kind": "quantity",
+        "type": "area",
+        "value": 0.05,
+        "unit": "m²"
+      },
+      {
+        "kind": "quantity",
+        "type": "pressure",
+        "value": 100000,
+        "unit": "Pa"
+      },
+      {
+        "kind": "formula",
+        "type": "formula",
+        "value": "\\frac{F_2}{F_1} = \\frac{S_2}{S_1}"
+      }
+    ],
+    "activities": {
+      "tour": {
+        "steps": [
+          {
+            "key": "setup",
+            "camera": {
+              "position": [
+                0,
+                0.8,
+                2.4
+              ],
+              "target": [
+                0,
+                0.35,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": false
+            },
+            "focus": "phys.hydraulic-press",
+            "text": {
+              "ky": "Ичке жана жазы эки цилиндр астынан түтүк менен туташкан, ичинде май бар, экөөнө тең поршень коюлган. Жазы поршендин үстүндө оор жүк. Кичине поршенди 100 Н менен гана басып, ал жүктү көтөрө алабызбы?",
+              "ru": "Узкий и широкий цилиндры соединены снизу трубкой, внутри масло, в обоих – поршни. На широком поршне тяжёлый груз. Сможем ли мы поднять его, давя на малый поршень силой всего 100 Н?",
+              "en": "A narrow and a wide cylinder are joined underneath by a pipe, filled with oil, each with a piston. A heavy load sits on the wide piston. Can we lift it by pushing the small piston with only 100 N?"
+            },
+            "teacherNote": {
+              "ky": "Алгач катыш идиштерди эске салыңыз (китептеги 80–81-сүрөттөр): туташ идиштерде бир түрдүү суюктуктун деңгээли бирдей болот.",
+              "ru": "Сначала вспомните сообщающиеся сосуды (рисунки 80–81 учебника): в соединённых сосудах однородная жидкость стоит на одном уровне.",
+              "en": "First recall communicating vessels (figures 80–81 in the book): a single liquid stands at the same level in connected vessels."
+            },
+            "altText": {
+              "ky": "Түтүк менен туташкан ичке жана жазы цилиндрлер, жазысынын үстүндө жүк.",
+              "ru": "Узкий и широкий цилиндры, соединённые трубкой, на широком – груз.",
+              "en": "A narrow and a wide cylinder joined by a pipe, with a load on the wide one."
+            }
+          },
+          {
+            "key": "push",
+            "camera": {
+              "position": [
+                0.88,
+                2.07,
+                2.48
+              ],
+              "target": [
+                0.05,
+                1.24,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.piston",
+            "text": {
+              "ky": "Кичине поршенге (S₁ = 0,001 м²) 100 Н күч менен басабыз. Майда P = F₁/S₁ = 100 / 0,001 = 100 000 Па басым пайда болот.",
+              "ru": "Давим на малый поршень (S₁ = 0,001 м²) с силой 100 Н. В масле возникает давление p = F₁/S₁ = 100 / 0,001 = 100 000 Па.",
+              "en": "We push the small piston (A₁ = 0.001 m²) with 100 N. The oil gets a pressure p = F₁/A₁ = 100 / 0.001 = 100 000 Pa."
+            },
+            "teacherNote": {
+              "ky": "Тактага бирдиктерди которуңуз: 10 см² = 0,001 м², 500 см² = 0,05 м².",
+              "ru": "Переведите единицы на доске: 10 см² = 0,001 м², 500 см² = 0,05 м².",
+              "en": "Convert the units on the board: 10 cm² = 0.001 m², 500 cm² = 0.05 m²."
+            },
+            "altText": {
+              "ky": "Кичине поршендин үстүндө ылдый караган F₁ жебеси.",
+              "ru": "Стрелка F₁ вниз над малым поршнем.",
+              "en": "The F₁ arrow pointing down on the small piston."
+            }
+          },
+          {
+            "key": "pascal",
+            "camera": {
+              "position": [
+                0,
+                0.8,
+                2.4
+              ],
+              "target": [
+                0,
+                0.35,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.pascal-law",
+            "text": {
+              "ky": "Паскаль закону боюнча бул басым майдын ар бир чекитине бардык багыт боюнча бирдей берилет – чоң поршендин астында да 100 000 Па.",
+              "ru": "По закону Паскаля это давление передаётся в каждую точку масла одинаково во всех направлениях – под большим поршнем тоже 100 000 Па.",
+              "en": "By Pascal's law the pressure reaches every point of the oil equally in every direction – under the big piston it is also 100 000 Pa."
+            },
+            "teacherNote": {
+              "ky": "Сураңыз: майдын ордуна аба болсочу? (Аба кысылат, пресс начар иштейт; ошондуктан тормоз системасындагы аба көбүкчөлөрү коркунучтуу.)",
+              "ru": "Спросите: а если вместо масла воздух? (Воздух сжимается, пресс работает плохо; поэтому пузырьки воздуха в тормозах опасны.)",
+              "en": "Ask: what if there were air instead of oil? (Air squashes, so the press works badly; that is why air bubbles in brake lines are dangerous.)"
+            },
+            "altText": {
+              "ky": "Эки цилиндрдеги жана түтүктөгү май, ар бир жерде басым бирдей.",
+              "ru": "Масло в цилиндрах и трубке, давление везде одинаково.",
+              "en": "Oil in both cylinders and the pipe, at the same pressure everywhere."
+            }
+          },
+          {
+            "key": "force2",
+            "camera": {
+              "position": [
+                1,
+                2.35,
+                2.48
+              ],
+              "target": [
+                0.18,
+                1.52,
+                0
+              ],
+              "fov": 45
+            },
+            "modes": {
+              "vectors": true
+            },
+            "focus": "phys.pressure-force",
+            "text": {
+              "ky": "Чоң поршенге F₂ = P·S₂ = 100 000 · 0,05 = 5000 Н күч аракет этет. Кичине поршендин аянты чоңунукунан канча эсе кичине болсо, чоң поршенге аракет эткен күч ошончо эсе чоң: F₂/F₁ = S₂/S₁ = 50.",
+              "ru": "На большой поршень действует сила F₂ = p·S₂ = 100 000 · 0,05 = 5000 Н. Во сколько раз площадь малого поршня меньше большого, во столько раз сила на большом поршне больше: F₂/F₁ = S₂/S₁ = 50.",
+              "en": "The force on the big piston is F₂ = p·A₂ = 100 000 × 0.05 = 5000 N. However many times smaller the small piston is, that many times bigger the force on the big one: F₂/F₁ = A₂/A₁ = 50."
+            },
+            "teacherNote": {
+              "ky": "Формуланы китептегидей жазыңыз: F₂/F₁ = S₂/S₁. «Аянттардын катышы 10» үлгүсүндө F₂ = 1000 Н экенин текшериңиз.",
+              "ru": "Запишите формулу как в учебнике: F₂/F₁ = S₂/S₁. На образце «Площади отличаются в 10 раз» проверьте, что F₂ = 1000 Н.",
+              "en": "Write the formula as in the book: F₂/F₁ = S₂/S₁. Check on the \"Area ratio 10\" sample that F₂ = 1000 N."
+            },
+            "altText": {
+              "ky": "Чоң поршенден өйдө караган узун F₂ жебеси.",
+              "ru": "Длинная стрелка F₂ вверх от большого поршня.",
+              "en": "A long F₂ arrow pointing up from the big piston."
+            }
+          },
+          {
+            "key": "car",
+            "sample": "hydraulic-car-lift",
+            "camera": {
+              "position": [
+                0,
+                0.8,
+                2.4
+              ],
+              "target": [
+                0,
+                0.35,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.weight",
+            "text": {
+              "ky": "Китептеги мисал: экинчи цилиндрдин аянты биринчисинен 20 эсе чоң болсо, күчтөн 20 эсе утабыз. Кичине поршенге 100 кг жүк (980 Н) койсок, чоң поршень салмагы 2 т (19 600 Н) автомашинаны көтөрөт.",
+              "ru": "Пример из учебника: если площадь второго цилиндра в 20 раз больше первого, выигрыш в силе в 20 раз. Груз 100 кг (980 Н) на малом поршне поднимет на большом автомобиль массой 2 т (19 600 Н).",
+              "en": "The textbook example: if the second cylinder's area is 20 times the first, the force gain is 20. A 100 kg load (980 N) on the small piston lifts a 2 t car (19 600 N) on the big one."
+            },
+            "teacherNote": {
+              "ky": "Автосервистеги гидравликалык көтөргүчтү (83-сүрөт) көрсөтүңүз. «Гидравликалык пресстин иштеши» процессин иштетиңиз.",
+              "ru": "Покажите гидравлический подъёмник автосервиса (рисунок 83). Запустите процесс «Работа гидравлического пресса».",
+              "en": "Show a garage hydraulic lift (figure 83). Run the process \"How a hydraulic press works\"."
+            },
+            "altText": {
+              "ky": "Чоң поршендеги автомашина көтөрүлүп турат.",
+              "ru": "Автомобиль на большом поршне поднят.",
+              "en": "A car raised on the big piston."
+            }
+          },
+          {
+            "key": "travel",
+            "camera": {
+              "position": [
+                0,
+                0.8,
+                2.4
+              ],
+              "target": [
+                0,
+                0.35,
+                0
+              ],
+              "fov": 45
+            },
+            "focus": "phys.piston",
+            "text": {
+              "ky": "Күчтөн утуш бекер эмес: кичине поршень 50 см ылдыйлаганда, чоңу 1 см гана көтөрүлөт – майдын көлөмү өзгөрбөйт: S₁·h₁ = S₂·h₂. Күчтөн канча эсе утсак, жолдон ошончо эсе утулабыз.",
+              "ru": "Выигрыш в силе не бесплатный: когда малый поршень опускается на 50 см, большой поднимается лишь на 1 см – объём масла не меняется: S₁·h₁ = S₂·h₂. Во сколько раз выигрываем в силе, во столько раз проигрываем в пути.",
+              "en": "The force gain is not free: when the small piston goes down 50 cm, the big one rises only 1 cm – the oil's volume stays the same: A₁h₁ = A₂h₂. Whatever we gain in force we lose in distance."
+            },
+            "teacherNote": {
+              "ky": "Бул – жөнөкөй механизмдердин «алтын эрежесине» көпүрө (энергия бөлүмү). Домкраттын туткасын эмне үчүн көп жолу басуу керек экенин сураңыз.",
+              "ru": "Это мостик к «золотому правилу» механики (раздел об энергии). Спросите, почему ручку домкрата приходится качать много раз.",
+              "en": "This bridges to the \"golden rule\" of machines (the energy unit). Ask why a jack handle has to be pumped so many times."
+            },
+            "altText": {
+              "ky": "Кичине поршень көп ылдыйлаган, чоңу бир аз көтөрүлгөн.",
+              "ru": "Малый поршень сильно опустился, большой чуть поднялся.",
+              "en": "The small piston has gone a long way down, the big one up a little."
+            }
+          }
+        ]
+      },
+      "processKeys": [
+        "phys.hydraulic-lift"
+      ],
+      "comparison": {
+        "columns": [
+          {
+            "kind": "sample",
+            "key": "hydraulic-50x"
+          },
+          {
+            "kind": "sample",
+            "key": "hydraulic-car-lift"
+          },
+          {
+            "kind": "sample",
+            "key": "hydraulic-10x"
+          }
+        ],
+        "rows": [
+          "force",
+          "pressure"
+        ]
+      },
+      "quiz": {
+        "itemKeys": [
+          "phys.q.p7-hydraulic-1",
+          "phys.q.p7-hydraulic-2",
+          "phys.q.p7-hydraulic-3",
+          "phys.q.p7-hydraulic-4",
+          "phys.q.p7-hydraulic-5",
+          "phys.q.p7-hydraulic-6",
+          "phys.q.p7-hydraulic-7",
+          "phys.q.p7-hydraulic-8",
+          "phys.q.p7-hydraulic-9",
+          "phys.q.p7-hydraulic-10",
+          "phys.q.p7-hydraulic-11",
+          "phys.q.p7-hydraulic-12",
+          "phys.q.p7-hydraulic-13"
+        ],
+        "sampleSize": 8
+      }
+    },
+    "examples": {
+      "stem": [
+        {
+          "title": {
+            "ky": "Гидравликалык токтоткуч",
+            "ru": "Гидравлический тормоз",
+            "en": "Hydraulic brakes"
+          },
+          "text": {
+            "ky": "Педалды басканда башкы цилиндрдеги суюктуктун басымы бардык тарапка бирдей берилип, токтоткуч колодкалары дискти эки жагынан кысат да, дөңгөлөк токтойт.",
+            "ru": "При нажатии педали давление жидкости в главном цилиндре передаётся во все стороны, колодки сжимают диск с двух сторон, и колесо останавливается.",
+            "en": "Pressing the pedal sends the fluid pressure in the master cylinder out in every direction; the pads squeeze the disc from both sides and the wheel stops."
+          },
+          "field": "t"
+        },
+        {
+          "title": {
+            "ky": "Шлюз",
+            "ru": "Шлюз",
+            "en": "Canal locks"
+          },
+          "text": {
+            "ky": "Дарыядагы шлюз – катыш идиш: камерадагы суунун деңгээли дарыянын деңгээлине теңелгенде кеме өтөт.",
+            "ru": "Шлюз на реке – сообщающийся сосуд: когда уровень воды в камере сравняется с уровнем реки, судно проходит.",
+            "en": "A river lock is a pair of communicating vessels: when the water in the chamber reaches the river's level, the boat sails through."
+          },
+          "field": "e"
+        },
+        {
+          "title": {
+            "ky": "Күчтөн утушту эсептөө",
+            "ru": "Расчёт выигрыша в силе",
+            "en": "Working out the force gain"
+          },
+          "text": {
+            "ky": "S₁ = 2 см², S₂ = 400 см²: катыш 200. 12 000 Н жүктү көтөрүү үчүн F₁ = 12 000 / 200 = 60 Н жетиштүү.",
+            "ru": "S₁ = 2 см², S₂ = 400 см²: отношение 200. Чтобы поднять груз 12 000 Н, достаточно F₁ = 12 000 / 200 = 60 Н.",
+            "en": "A₁ = 2 cm², A₂ = 400 cm²: a ratio of 200. To lift 12 000 N you need only F₁ = 12 000 / 200 = 60 N."
+          },
+          "field": "m"
+        }
+      ],
+      "simple": [
+        {
+          "title": {
+            "ky": "Чайнек",
+            "ru": "Чайник",
+            "en": "A teapot"
+          },
+          "text": {
+            "ky": "Чайнектин ичиндеги суунун деңгээли менен чоргосундагы суунун деңгээли бирдей – бул катыш идиш. Ошондуктан чоргосу чайнектин оозу менен бирдей бийиктикте жасалат.",
+            "ru": "Уровень воды в чайнике и в носике одинаков – это сообщающиеся сосуды. Поэтому носик делают на одной высоте с горлом чайника.",
+            "en": "The water in a teapot stands at the same level as in its spout – they are communicating vessels. That is why the spout reaches as high as the top of the pot."
+          }
+        },
+        {
+          "title": {
+            "ky": "Эки шприц",
+            "ru": "Два шприца",
+            "en": "Two syringes"
+          },
+          "text": {
+            "ky": "Ичке жана жоон шприцти түтүк менен туташтырып, сууга толтур: ичкесин манжа менен басканда жоонунун поршенин кармап туруу кыйын.",
+            "ru": "Соедини тонкий и толстый шприцы трубкой с водой: нажимаешь пальцем на тонкий – поршень толстого трудно удержать.",
+            "en": "Join a thin and a thick syringe with a water-filled tube: push the thin one with a finger and the thick one's plunger is hard to hold back."
+          }
+        },
+        {
+          "title": {
+            "ky": "Гүл сугаргыч",
+            "ru": "Лейка",
+            "en": "A watering can"
+          },
+          "text": {
+            "ky": "Гүл сугаргычтын чоргосундагы суу идиштеги суу менен бирдей деңгээлде турат.",
+            "ru": "Вода в носике лейки стоит на одном уровне с водой в самой лейке.",
+            "en": "The water in a watering can's spout stands level with the water in the can."
+          }
+        }
+      ]
+    },
+    "starters": [
+      {
+        "ky": "Кичине күч менен оор машинаны кантип көтөрсө болот?",
+        "ru": "Как маленькой силой поднять тяжёлую машину?",
+        "en": "How can a small force lift a heavy car?"
+      },
+      {
+        "ky": "Гидравликалык токтоткуч кантип иштейт?",
+        "ru": "Как работает гидравлический тормоз?",
+        "en": "How do hydraulic brakes work?"
+      },
+      {
+        "ky": "Катыш идиштер деген эмне?",
+        "ru": "Что такое сообщающиеся сосуды?",
+        "en": "What are communicating vessels?"
+      },
+      {
+        "ky": "Гидравликалык пресс ишти да көбөйтөбү?",
+        "ru": "Даёт ли гидравлический пресс выигрыш в работе?",
+        "en": "Does a hydraulic press multiply work too?"
+      }
+    ],
+    "rights": [
+      {
+        "license": "own",
+        "author": "Bilig",
+        "source": "Bilig content team; textbook: Э. М. Мамбетакунов, «Физика, 7-класс», III глава (§24–34)"
+      }
+    ]
+  },
+  "items": [
+    {
+      "key": "phys.q.p7-hydraulic-1",
+      "type": "single",
+      "prompt": {
+        "ky": "Гидравликалык пресстин иши кайсы законго негизделген?",
+        "ru": "На каком законе основана работа гидравлического пресса?",
+        "en": "Which law does a hydraulic press rely on?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Архимед закону",
+            "ru": "Закон Архимеда",
+            "en": "Archimedes' principle"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Паскаль закону",
+            "ru": "Закон Паскаля",
+            "en": "Pascal's law"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Ньютондун биринчи закону",
+            "ru": "Первый закон Ньютона",
+            "en": "Newton's first law"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Гуктун закону",
+            "ru": "Закон Гука",
+            "en": "Hooke's law"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Кичине поршендин басымы суюктук аркылуу бардык тарапка бирдей берилет – бул Паскаль закону.",
+        "ru": "Давление малого поршня передаётся через жидкость одинаково во все стороны – это закон Паскаля.",
+        "en": "The small piston's pressure is passed through the liquid equally every way – that is Pascal's law."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-hydraulic-2",
+      "type": "single",
+      "prompt": {
+        "ky": "Гидравликалык пресстеги күчтөр жана аянттар кандай байланышта?",
+        "ru": "Как связаны силы и площади в гидравлическом прессе?",
+        "en": "How are the forces and areas in a hydraulic press related?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "F₂/F₁ = S₂/S₁",
+            "ru": "F₂/F₁ = S₂/S₁",
+            "en": "F₂/F₁ = A₂/A₁"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "F₂/F₁ = S₁/S₂",
+            "ru": "F₂/F₁ = S₁/S₂",
+            "en": "F₂/F₁ = A₁/A₂"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "F₁·F₂ = S₁·S₂",
+            "ru": "F₁·F₂ = S₁·S₂",
+            "en": "F₁·F₂ = A₁·A₂"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "F₂ = F₁",
+            "ru": "F₂ = F₁",
+            "en": "F₂ = F₁"
+          }
+        }
+      ],
+      "answer": "a",
+      "explanation": {
+        "ky": "Эки поршенде басым бирдей: F₁/S₁ = F₂/S₂, демек F₂/F₁ = S₂/S₁.",
+        "ru": "Давление на оба поршня одинаково: F₁/S₁ = F₂/S₂, значит, F₂/F₁ = S₂/S₁.",
+        "en": "The pressure on both pistons is the same: F₁/A₁ = F₂/A₂, so F₂/F₁ = A₂/A₁."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-hydraulic-3",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кичине поршендин аянты 10 см², чоңунуку 500 см². Кичине поршенге 100 Н күч менен басышты. Чоң поршенге канча ньютон күч аракет этет?",
+        "ru": "Площадь малого поршня 10 см², большого – 500 см². На малый поршень давят с силой 100 Н. Какая сила действует на большой поршень, Н?",
+        "en": "The small piston is 10 cm², the big one 500 cm². The small piston is pushed with 100 N. What force acts on the big piston, in N?"
+      },
+      "answer": 5000,
+      "tolerance": 10,
+      "unit": "N",
+      "explanation": {
+        "ky": "F₂ = F₁ · S₂/S₁ = 100 · 500/10 = 5000 Н.",
+        "ru": "F₂ = F₁ · S₂/S₁ = 100 · 500/10 = 5000 Н.",
+        "en": "F₂ = F₁ × A₂/A₁ = 100 × 500/10 = 5000 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-hydraulic-4",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Экинчи цилиндрдин аянты биринчисинен 20 эсе чоң. Биринчи поршенге 100 кг жүк коюлду. Экинчи поршень канча ньютон салмакты көтөрө алат? g = 9,8 Н/кг.",
+        "ru": "Площадь второго цилиндра в 20 раз больше первого. На первый поршень положили груз 100 кг. Какой вес, Н, может поднять второй поршень? g = 9,8 Н/кг.",
+        "en": "The second cylinder's area is 20 times the first. A 100 kg load is put on the first piston. What weight, in N, can the second piston lift? g = 9.8 N/kg."
+      },
+      "answer": 19600,
+      "tolerance": 50,
+      "unit": "N",
+      "explanation": {
+        "ky": "F₁ = 100 · 9,8 = 980 Н; F₂ = 20 · 980 = 19 600 Н – массасы 2 т автомашина.",
+        "ru": "F₁ = 100 · 9,8 = 980 Н; F₂ = 20 · 980 = 19 600 Н – автомобиль массой 2 т.",
+        "en": "F₁ = 100 × 9.8 = 980 N; F₂ = 20 × 980 = 19 600 N – a 2 t car."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-hydraulic-5",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кичине поршендин аянты 0,001 м², ага 100 Н күч аракет этет. Майдагы басым канча килопаскаль?",
+        "ru": "Площадь малого поршня 0,001 м², на него действует сила 100 Н. Каково давление в масле, кПа?",
+        "en": "The small piston is 0.001 m² and a force of 100 N acts on it. What is the oil pressure, in kPa?"
+      },
+      "answer": 100,
+      "tolerance": 1,
+      "unit": "kPa",
+      "explanation": {
+        "ky": "P = F/S = 100 / 0,001 = 100 000 Па = 100 кПа.",
+        "ru": "p = F/S = 100 / 0,001 = 100 000 Па = 100 кПа.",
+        "en": "p = F/A = 100 / 0.001 = 100 000 Pa = 100 kPa."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-hydraulic-6",
+      "type": "numeric",
+      "prompt": {
+        "ky": "Кичине поршендин аянты 2 см², чоңунуку 400 см². Салмагы 12 000 Н жүктү көтөрүү үчүн кичине поршенге канча ньютон күч керек?",
+        "ru": "Площадь малого поршня 2 см², большого – 400 см². Какую силу, Н, надо приложить к малому поршню, чтобы поднять груз весом 12 000 Н?",
+        "en": "The small piston is 2 cm², the big one 400 cm². What force, in N, is needed on the small piston to lift a 12 000 N load?"
+      },
+      "answer": 60,
+      "tolerance": 1,
+      "unit": "N",
+      "explanation": {
+        "ky": "F₁ = F₂ · S₁/S₂ = 12 000 · 2/400 = 60 Н.",
+        "ru": "F₁ = F₂ · S₁/S₂ = 12 000 · 2/400 = 60 Н.",
+        "en": "F₁ = F₂ × A₁/A₂ = 12 000 × 2/400 = 60 N."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-hydraulic-7",
+      "type": "single",
+      "prompt": {
+        "ky": "Катыш идиштерге бир түрдүү суюктук куюлган. Идиштердеги суюктуктун деңгээли кандай болот?",
+        "ru": "В сообщающиеся сосуды налита однородная жидкость. Как располагаются её уровни?",
+        "en": "A single liquid is poured into communicating vessels. How do its levels compare?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Жазы идиште бийик",
+            "ru": "В широком выше",
+            "en": "Higher in the wide vessel"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Ичке идиште бийик",
+            "ru": "В узком выше",
+            "en": "Higher in the narrow vessel"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Бардык идиште бирдей деңгээлде",
+            "ru": "На одном уровне во всех сосудах",
+            "en": "At the same level in all of them"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Катыш идиштерде бир түрдүү суюктуктун деңгээли идиштердин формасына карабай бирдей болот – чайнек менен анын чоргосундагыдай.",
+        "ru": "В сообщающихся сосудах однородная жидкость стоит на одном уровне независимо от формы сосудов – как в чайнике и его носике.",
+        "en": "In communicating vessels a single liquid stands at one level whatever the shapes – like a teapot and its spout."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-hydraulic-8",
+      "type": "multiple",
+      "prompt": {
+        "ky": "Кайсы түзүлүштөрдүн иши Паскаль законуна же катыш идиштердин касиетине негизделген? Бардык туура жоопторду тандаңыз.",
+        "ru": "Работа каких устройств основана на законе Паскаля или свойстве сообщающихся сосудов? Выберите все верные ответы.",
+        "en": "Which devices rely on Pascal's law or on communicating vessels? Choose all correct answers."
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Автомашинанын гидравликалык токтоткучу",
+            "ru": "Гидравлический тормоз автомобиля",
+            "en": "A car's hydraulic brakes"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Гидравликалык көтөргүч",
+            "ru": "Гидравлический подъёмник",
+            "en": "A hydraulic lift"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Чайнек",
+            "ru": "Чайник",
+            "en": "A teapot"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "Динамометр",
+            "ru": "Динамометр",
+            "en": "A dynamometer"
+          }
+        },
+        {
+          "key": "e",
+          "text": {
+            "ky": "Кеме өтүүчү шлюз",
+            "ru": "Судоходный шлюз",
+            "en": "A canal lock"
+          }
+        }
+      ],
+      "answer": [
+        "a",
+        "b",
+        "c",
+        "e"
+      ],
+      "explanation": {
+        "ky": "Токтоткуч, көтөргүч, чайнек жана шлюз – Паскаль законунун жана катыш идиштердин колдонулушу. Динамометр пружинанын серпилгичтигине негизделген.",
+        "ru": "Тормоз, подъёмник, чайник и шлюз – применения закона Паскаля и сообщающихся сосудов. Динамометр основан на упругости пружины.",
+        "en": "Brakes, lifts, teapots and locks all use Pascal's law or communicating vessels. A dynamometer works by a spring's elasticity."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-hydraulic-9",
+      "type": "match",
+      "prompt": {
+        "ky": "Түзүлүштү анын иштешинин негизи менен дал келтириңиз.",
+        "ru": "Сопоставьте устройство и принцип его работы.",
+        "en": "Match each device with how it works."
+      },
+      "pairs": [
+        {
+          "key": "press",
+          "left": {
+            "ky": "Гидравликалык пресс",
+            "ru": "Гидравлический пресс",
+            "en": "Hydraulic press"
+          },
+          "right": {
+            "ky": "Күчтөн S₂/S₁ эсе утат",
+            "ru": "Выигрыш в силе в S₂/S₁ раз",
+            "en": "Gains force by A₂/A₁"
+          }
+        },
+        {
+          "key": "brake",
+          "left": {
+            "ky": "Гидравликалык токтоткуч",
+            "ru": "Гидравлический тормоз",
+            "en": "Hydraulic brake"
+          },
+          "right": {
+            "ky": "Педалдын басымын колодкаларга бирдей берет",
+            "ru": "Передаёт давление педали колодкам одинаково",
+            "en": "Passes the pedal's pressure equally to the pads"
+          }
+        },
+        {
+          "key": "teapot",
+          "left": {
+            "ky": "Чайнек",
+            "ru": "Чайник",
+            "en": "Teapot"
+          },
+          "right": {
+            "ky": "Чоргодогу жана ичиндеги суунун деңгээли бирдей",
+            "ru": "Уровень воды в носике и чайнике одинаков",
+            "en": "The water level is the same in spout and pot"
+          }
+        },
+        {
+          "key": "lock",
+          "left": {
+            "ky": "Шлюз",
+            "ru": "Шлюз",
+            "en": "Canal lock"
+          },
+          "right": {
+            "ky": "Камерадагы суунун деңгээлин дарыянын деңгээлине теңейт",
+            "ru": "Выравнивает уровень воды в камере с уровнем реки",
+            "en": "Brings the chamber's water level to the river's"
+          }
+        }
+      ],
+      "explanation": {
+        "ky": "Пресс күчтөн утат; токтоткуч басымды бардык колодкаларга берет; чайнек жана шлюз – катыш идиштер, деңгээлдери бирдей.",
+        "ru": "Пресс даёт выигрыш в силе; тормоз передаёт давление всем колодкам; чайник и шлюз – сообщающиеся сосуды с равными уровнями.",
+        "en": "A press gains force; brakes pass pressure to every pad; a teapot and a lock are communicating vessels with equal levels."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    },
+    {
+      "key": "phys.q.p7-hydraulic-10",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден кол менен басылган кичине поршенди тап.",
+        "ru": "Найдите на модели малый поршень, на который давит рука.",
+        "en": "Find the small piston the hand pushes on."
+      },
+      "targetConceptKey": "phys.piston",
+      "explanation": {
+        "ky": "Бул – поршень: кичине поршенге F₁ күч аракет этип, майда P = F₁/S₁ басым пайда болот.",
+        "ru": "Это поршень: сила F₁ на малый поршень создаёт в масле давление p = F₁/S₁.",
+        "en": "That is a piston: the force F₁ on the small piston makes a pressure p = F₁/A₁ in the oil."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-hydraulic-11",
+      "type": "find-on-model",
+      "prompt": {
+        "ky": "Моделден чоң поршенге майдын аракет эткен күчүн тап.",
+        "ru": "Найдите на модели силу, с которой масло действует на большой поршень.",
+        "en": "Find the force with which the oil pushes on the big piston."
+      },
+      "targetConceptKey": "phys.pressure-force",
+      "explanation": {
+        "ky": "Бул – F₂ = P·S₂ = 5000 Н күчү, ал өйдө багытталып, жүктү көтөрөт.",
+        "ru": "Это сила F₂ = p·S₂ = 5000 Н, она направлена вверх и поднимает груз.",
+        "en": "That is F₂ = p·A₂ = 5000 N, pointing up and lifting the load."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 1
+    },
+    {
+      "key": "phys.q.p7-hydraulic-12",
+      "type": "single",
+      "prompt": {
+        "ky": "Пресстин кичине поршени 50 см ылдыйлады, аянттардын катышы 50. Чоң поршень канчага көтөрүлөт?",
+        "ru": "Малый поршень пресса опустился на 50 см, площади отличаются в 50 раз. На сколько поднимется большой поршень?",
+        "en": "A press's small piston goes down 50 cm and the area ratio is 50. How far does the big piston rise?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "50 см",
+            "ru": "50 см",
+            "en": "50 cm"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "25 м",
+            "ru": "25 м",
+            "en": "25 m"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "1 см",
+            "ru": "1 см",
+            "en": "1 cm"
+          }
+        },
+        {
+          "key": "d",
+          "text": {
+            "ky": "0 см – кыймылдабайт",
+            "ru": "0 см – не сдвинется",
+            "en": "0 cm – it does not move"
+          }
+        }
+      ],
+      "answer": "c",
+      "explanation": {
+        "ky": "Майдын көлөмү өзгөрбөйт: S₁·h₁ = S₂·h₂, h₂ = 50 / 50 = 1 см. Күчтөн 50 эсе утсак, жолдон 50 эсе утулабыз – иштен утуш жок.",
+        "ru": "Объём масла не меняется: S₁·h₁ = S₂·h₂, h₂ = 50 / 50 = 1 см. Выигрыш в силе в 50 раз – проигрыш в пути в 50 раз; выигрыша в работе нет.",
+        "en": "The oil volume is unchanged: A₁h₁ = A₂h₂, h₂ = 50 / 50 = 1 cm. Fifty times the force means fifty times less distance – no gain in work."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "misconceptionKey": "phys.m.press-free-work",
+      "difficulty": 3
+    },
+    {
+      "key": "phys.q.p7-hydraulic-13",
+      "type": "single",
+      "prompt": {
+        "ky": "Эмне үчүн гидравликалык токтоткучта бардык дөңгөлөктөр бир убакта токтойт?",
+        "ru": "Почему в гидравлическом тормозе все колёса тормозят одновременно?",
+        "en": "Why do all the wheels brake at once with hydraulic brakes?"
+      },
+      "options": [
+        {
+          "key": "a",
+          "text": {
+            "ky": "Ар бир дөңгөлөктүн өз педалы бар",
+            "ru": "У каждого колеса своя педаль",
+            "en": "Each wheel has its own pedal"
+          }
+        },
+        {
+          "key": "b",
+          "text": {
+            "ky": "Педалдын басымы суюктук аркылуу бардык цилиндрлерге бирдей берилет",
+            "ru": "Давление педали через жидкость одинаково передаётся всем цилиндрам",
+            "en": "The pedal's pressure travels through the fluid equally to every cylinder"
+          }
+        },
+        {
+          "key": "c",
+          "text": {
+            "ky": "Дөңгөлөктөр сүрүлүүдөн өзү токтойт",
+            "ru": "Колёса останавливаются сами от трения",
+            "en": "The wheels stop by friction on their own"
+          }
+        }
+      ],
+      "answer": "b",
+      "explanation": {
+        "ky": "Паскаль закону боюнча башкы цилиндрдеги басым түтүктөр аркылуу бардык дөңгөлөктөрдүн цилиндрлерине бирдей берилет.",
+        "ru": "По закону Паскаля давление в главном цилиндре по трубкам одинаково передаётся цилиндрам всех колёс.",
+        "en": "By Pascal's law the pressure in the master cylinder travels along the pipes equally to every wheel cylinder."
+      },
+      "objectiveKeys": [
+        "phys.g7.pressure.o1"
+      ],
+      "difficulty": 2
+    }
+  ]
+}
