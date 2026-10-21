@@ -182,6 +182,8 @@ model Class {
   subjectKey      String?
   /// v0.8.0: every subject taught in the class (subjectKey = subjectKeys[0]).
   subjectKeys     String[]     @default([])
+  /// v0.9.3: the book per subject (subjectKey → Book.id).
+  books           Json         @default("{}")
   createdBy       String       @db.Uuid
   createdAt       DateTime     @db.Timestamptz(3)
   deletedAt       DateTime?    @db.Timestamptz(3)
@@ -678,6 +680,70 @@ model TutorMessage {
 
   @@index([threadId])
   @@index([createdAt])
+}
+
+/// v0.9.3: the book library — staff upload a book, the AI reads it page by page, then every §.
+model Book {
+  id            String        @id @db.Uuid
+  title         String
+  subjectKey    String
+  grade         Int
+  lang          String
+  part          Int?
+  authors       String[]      @default([])
+  publisher     String        @default("")
+  year          Int?
+  summary       String        @default("")
+  status        String
+  stage         String
+  progressDone  Int           @default(0)
+  progressTotal Int           @default(0)
+  error         String?
+  pageCount     Int
+  fileName      String
+  coverKey      String?
+  contents      Json?
+  usage         Json          @default("{}")
+  leaseUntil    DateTime?     @db.Timestamptz(3)
+  createdBy     String        @db.Uuid
+  createdAt     DateTime      @db.Timestamptz(3)
+  updatedAt     DateTime      @db.Timestamptz(3)
+  publishedAt   DateTime?     @db.Timestamptz(3)
+  pages         BookPage[]
+  sections      BookSection[]
+
+  @@index([status])
+  @@index([grade, subjectKey, lang])
+}
+
+model BookPage {
+  bookId   String  @db.Uuid
+  n        Int
+  imageKey String?
+  text     String?
+  read     Json?
+  book     Book    @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+  @@id([bookId, n])
+}
+
+model BookSection {
+  id            String  @id @db.Uuid
+  bookId        String  @db.Uuid
+  order         Int
+  chapterNumber String
+  chapterTitle  String
+  number        String
+  kind          String
+  title         String
+  pageFrom      Int?
+  pageTo        Int?
+  info          Json?
+  topicKey      String?
+  reviewed      Boolean @default(false)
+  book          Book    @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+  @@index([bookId, order])
 }
 
 /// v0.9.1: shared answers to self-contained questions (a starter, or the first question of a thread):

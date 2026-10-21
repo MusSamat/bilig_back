@@ -29,6 +29,7 @@ import { ItemSchema } from '../item.js';
 import { TextbookSchema } from '../textbook.js';
 import * as decks from './decks.js';
 import * as ktp from './ktp.js';
+import * as books from './books.js';
 import * as staff from './staff.js';
 import * as learning from './learning.js';
 import * as tutor from './tutor.js';
@@ -136,6 +137,20 @@ export const ENDPOINTS = {
   // v0.5.0: КТП → lesson plans (owner-only)
   ktpList: e({ method: 'GET', path: '/ktp', auth: 'lesson.plan', query: PageQuerySchema, response: ktp.TeachingPlanListSchema }),
   ktpCreate: e({ method: 'POST', path: '/ktp', auth: 'lesson.plan', body: ktp.KtpUploadRequestSchema, response: ktp.TeachingPlanSchema }),
+  // v0.9.3: the book library — staff upload and publish, teachers choose a book per class and subject
+  adminBookList: e({ method: 'GET', path: '/admin/books', auth: 'content.draft.edit', query: books.AdminBookListQuerySchema, response: books.AdminBookListSchema }),
+  adminBookCreate: e({ method: 'POST', path: '/admin/books', auth: 'content.draft.edit', body: books.AdminBookCreateSchema, response: books.BookSchema }),
+  adminBookGet: e({ method: 'GET', path: '/admin/books/:id', auth: 'content.draft.edit', response: books.BookDetailSchema }),
+  adminBookPages: e({ method: 'POST', path: '/admin/books/:id/pages', auth: 'content.draft.edit', body: books.AdminBookPagesSchema, response: books.BookSchema }),
+  adminBookProcess: e({ method: 'POST', path: '/admin/books/:id/process', auth: 'content.draft.edit', body: books.AdminBookProcessSchema, response: books.BookSchema }),
+  adminBookPatch: e({ method: 'PATCH', path: '/admin/books/:id', auth: 'content.draft.edit', body: books.AdminBookPatchSchema, response: books.BookDetailSchema }),
+  adminBookCover: e({ method: 'POST', path: '/admin/books/:id/cover', auth: 'content.draft.edit', body: books.AdminBookCoverSchema, response: books.BookSchema }),
+  adminBookPublish: e({ method: 'POST', path: '/admin/books/:id/publish', auth: 'content.publish', response: books.BookSchema }),
+  adminBookArchive: e({ method: 'DELETE', path: '/admin/books/:id', auth: 'content.publish', response: books.BookSchema }),
+  bookList: e({ method: 'GET', path: '/books', auth: 'lesson.plan', query: books.BookListQuerySchema, response: books.BookListSchema }),
+  bookGet: e({ method: 'GET', path: '/books/:id', auth: 'lesson.plan', response: books.BookDetailSchema }),
+  bookCover: e({ method: 'GET', path: '/books/:id/cover', auth: 'lesson.plan', response: BinaryResponseSchema, produces: 'image/jpeg' }),
+
   // v0.9.2: a preliminary КТП from a textbook's contents, and any КТП as a .docx
   ktpContents: e({ method: 'POST', path: '/ktp/contents', auth: 'lesson.plan', body: ktp.KtpContentsRequestSchema, response: ktp.KtpContentsResponseSchema }),
   ktpFromTextbook: e({ method: 'POST', path: '/ktp/from-textbook', auth: 'lesson.plan', body: ktp.KtpFromTextbookRequestSchema, response: ktp.TeachingPlanSchema }),

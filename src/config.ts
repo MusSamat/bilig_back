@@ -63,6 +63,11 @@ const EnvSchema = z.object({
   DEEPSEEK_GENERATE_EFFORT: z.enum(['none', 'low', 'high', 'max']).default('none'),
   TUTOR_DAILY_TOKEN_BUDGET: z.coerce.number().int().min(0).default(2_000_000),
   /** USD per 1M tokens, for the cost in logs and the eval (check the provider's price page; defaults: deepseek-flash). */
+  /** v0.9.3 book library: the model reading books, reasoning for page transcription and for the § analysis, a daily token cap. */
+  BOOK_MODEL: z.string().default('deepseek-flash'),
+  BOOK_OCR_EFFORT: z.enum(['none', 'low', 'high', 'max']).default('none'),
+  BOOK_ANALYSIS_EFFORT: z.enum(['none', 'low', 'high', 'max']).default('high'),
+  BOOK_DAILY_TOKEN_BUDGET: z.coerce.number().int().min(0).default(30_000_000),
   /** Shared answers to self-contained questions (starters, first questions): a repeat costs no tokens. `0` turns it off. */
   TUTOR_ANSWER_CACHE: z.enum(['0', '1']).default('1').transform((v) => v === '1'),
   TUTOR_PRICE_INPUT: z.coerce.number().min(0).default(0.15),
@@ -160,6 +165,10 @@ export interface Config {
   tutorPrices: TokenPrices;
   /** Shared answers to self-contained questions (TUTOR_ANSWER_CACHE). */
   tutorAnswerCache: boolean;
+  bookModel: string;
+  bookOcrEffort: 'none' | 'low' | 'high' | 'max';
+  bookAnalysisEffort: 'none' | 'low' | 'high' | 'max';
+  bookDailyTokenBudget: number;
   mailTransport: Env['MAIL_TRANSPORT'];
   trustProxy: boolean;
   commit?: string;
@@ -286,6 +295,10 @@ export function loadConfig(env?: NodeJS.ProcessEnv): Config {
     tutorDailyTokenBudget: e.TUTOR_DAILY_TOKEN_BUDGET,
     tutorPrices: { input: e.TUTOR_PRICE_INPUT, inputCached: e.TUTOR_PRICE_INPUT_CACHED, output: e.TUTOR_PRICE_OUTPUT },
     tutorAnswerCache: e.TUTOR_ANSWER_CACHE,
+    bookModel: e.BOOK_MODEL,
+    bookOcrEffort: e.BOOK_OCR_EFFORT,
+    bookAnalysisEffort: e.BOOK_ANALYSIS_EFFORT,
+    bookDailyTokenBudget: e.BOOK_DAILY_TOKEN_BUDGET,
     mailTransport: e.MAIL_TRANSPORT,
     trustProxy: e.TRUST_PROXY,
     commit: e.GIT_COMMIT,

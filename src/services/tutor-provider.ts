@@ -46,6 +46,10 @@ export interface GenerateRequest {
   grounding?: ProviderGrounding & { kind: 'simple' | 'stem' | 'quiz'; count: number; avoid: string[] };
   /** v0.9.2: page images sent with the prompt (data URLs, JPEG / PNG / WebP) — reading a book's contents. */
   images?: string[];
+  /** v0.9.3: reasoning for this call (DeepSeek thinking): overrides the provider's generation default. */
+  effort?: 'none' | 'low' | 'high' | 'max';
+  /** v0.9.3: a longer wait for big jobs (reading book pages), ms. */
+  timeoutMs?: number;
 }
 
 /** `data:image/jpeg;base64,…` → its media type and base64 body. */

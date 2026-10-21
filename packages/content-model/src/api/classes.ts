@@ -16,6 +16,8 @@ export const ClassSchema = z.object({
   subjectKey: z.string().min(1).max(60).nullable().optional(),
   /** v0.8.0: every subject the teacher teaches in this class. */
   subjectKeys: z.array(z.string().min(1).max(60)).max(12).optional(),
+  /** v0.9.3: the book the teacher uses per subject of the class (a published book id). */
+  books: z.record(z.string().min(1).max(60), IdSchema).optional(),
 });
 export type SchoolClass = z.infer<typeof ClassSchema>;
 
@@ -42,6 +44,8 @@ export const ClassPatchRequestSchema = z
     subjectKey: z.string().min(1).max(60).nullable(),
     /** v0.8.0 */
     subjectKeys: z.array(z.string().min(1).max(60)).max(12),
+    /** v0.9.3: set the book of a subject (null clears it); the other subjects keep theirs. */
+    books: z.record(z.string().min(1).max(60), IdSchema.nullable()),
   })
   .partial();
 export type ClassPatchRequest = z.infer<typeof ClassPatchRequestSchema>;

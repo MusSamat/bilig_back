@@ -123,7 +123,8 @@ export class DeepSeekProvider implements TutorProvider {
 
   async generate(req: GenerateRequest): Promise<GenerateResult> {
     try {
-      const extras = thinkingFields(this.generateEffort);
+      const effort = req.effort ?? this.generateEffort;
+      const extras = thinkingFields(effort);
       const completion = await this.client.chat.completions.create(
         {
           model: this.modelFor(req.model),
@@ -139,11 +140,11 @@ export class DeepSeekProvider implements TutorProvider {
               ),
             },
           ],
-          max_tokens: req.maxTokens + (this.generateEffort !== 'none' ? REASONING_HEADROOM : 0),
+          max_tokens: req.maxTokens + (effort !== 'none' ? REASONING_HEADROOM * (effort === 'high' || effort === 'max' ? 2 : 1) : 0),
           response_format: { type: 'json_object' },
           ...extras,
         } as OpenAI.Chat.ChatCompletionCreateParamsNonStreaming,
-        { signal: req.signal, timeout: GENERATE_TIMEOUT_MS },
+        { signal: req.signal, timeout: req.timeoutMs ?? GENERATE_TIMEOUT_MS },
       );
       const u = completion.usage as DeepSeekUsage | undefined;
       const usage = toUsage(u);

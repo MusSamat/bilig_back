@@ -71,6 +71,12 @@ export type AuditAction =
   // v0.5.0: КТП → lesson plans
   | 'ktp.created'
   | 'ktp.deleted'
+  // v0.9.3: the book library
+  | 'book.created'
+  | 'book.processing'
+  | 'book.updated'
+  | 'book.published'
+  | 'book.archived'
   // v0.6.0: teachers register themselves
   | 'auth.self_registered'
   // v0.8.0: staff, support, teacher data, deletion requests, exports

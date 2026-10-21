@@ -8,7 +8,7 @@ import { afterAll, beforeEach, describe, expect, it } from 'vitest';
 import { animalCellPackage } from '@bilig/content-model/fixtures/animal-cell';
 import { newId } from '../ids.js';
 import type { ContentPackage } from '@bilig/content-model';
-import type { AuditEventInput, BuildRec, ClassRec, GeneratedRec, PhoneOtpRec, Repository, SessionRec, TopicVersionRec, UserRec } from './types.js';
+import type { BookRec, BookSectionRec, AuditEventInput, BuildRec, ClassRec, GeneratedRec, PhoneOtpRec, Repository, SessionRec, TopicVersionRec, UserRec } from './types.js';
 
 const T0 = new Date('2026-10-15T08:00:00Z');
 const at = (min: number) => new Date(T0.getTime() + min * 60_000);
@@ -788,6 +788,43 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         await Promise.all([repo.hitTutorAnswer('k1'), repo.hitTutorAnswer('k1')]);
         await repo.hitTutorAnswer('missing');
         expect(await repo.getTutorAnswer('k1')).toEqual({ ...a, hits: 2 });
+      });
+
+      it('books: create, filters, lease claim, pages, sections (v0.9.3)', async () => {
+        const mk = (patch: Partial<BookRec> = {}): BookRec => ({
+          id: newId(), title: 'Физика 7', subjectKey: 'phys', grade: 7, lang: 'ky', part: null, authors: ['Э. М. Мамбетакунов'], publisher: '', year: 2018, summary: '',
+          status: 'queued', stage: 'pages', progressDone: 0, progressTotal: 2, error: null, pageCount: 2, fileName: 'f.pdf', coverKey: null, contents: null,
+          usage: { inputTokens: 0, cachedInputTokens: 0, outputTokens: 0, costUsd: 0 }, leaseUntil: null, createdBy: newId(), createdAt: T0, updatedAt: T0, publishedAt: null, ...patch,
+        });
+        const a = mk();
+        const b = mk({ grade: 8, status: 'published', createdAt: at(5), updatedAt: at(5) });
+        await repo.createBook(a);
+        await repo.createBook(b);
+        expect(await repo.getBook(a.id)).toEqual(a);
+        expect((await repo.listBooks({})).map((x) => x.id)).toEqual([b.id, a.id]);
+        expect((await repo.listBooks({ grade: 7, statuses: ['queued'] })).map((x) => x.id)).toEqual([a.id]);
+        // One worker wins the lease; after it runs out the book can be claimed again.
+        const first = await repo.claimBook(at(10), at(20));
+        expect(first?.id).toBe(a.id);
+        expect(await repo.claimBook(at(11), at(21))).toBeNull();
+        expect((await repo.claimBook(at(20), at(30)))?.id).toBe(a.id);
+        expect(await repo.updateBook(a.id, { status: 'review', usage: { inputTokens: 5, cachedInputTokens: 1, outputTokens: 2, costUsd: 0.01 }, contents: { keepTitle: true } })).toMatchObject({ status: 'review', usage: { inputTokens: 5 }, contents: { keepTitle: true } });
+        expect(await repo.updateBook(newId(), { status: 'review' })).toBeNull();
+        await repo.putBookPages([{ bookId: a.id, n: 2, imageKey: null, text: 'b', read: null }, { bookId: a.id, n: 1, imageKey: 'k1', text: null, read: null }]);
+        await repo.putBookPages([{ bookId: a.id, n: 2, imageKey: null, text: 'b2', read: null }]);
+        await repo.setBookPageRead(a.id, 1, { text: 'read', printed: [1] });
+        expect(await repo.listBookPages(a.id)).toEqual([
+          { bookId: a.id, n: 1, imageKey: 'k1', text: null, read: { text: 'read', printed: [1] } },
+          { bookId: a.id, n: 2, imageKey: null, text: 'b2', read: null },
+        ]);
+        const sec = (order: number): BookSectionRec => ({ id: newId(), bookId: a.id, order, chapterNumber: '1', chapterTitle: 'Механика', number: String(order + 1), kind: 'lesson', title: `§ ${order + 1}`, pageFrom: 3 + order, pageTo: 3 + order, info: null, topicKey: null, reviewed: false });
+        const [s1, s0] = [sec(1), sec(0)];
+        await repo.replaceBookSections(a.id, [s1, s0]);
+        expect((await repo.listBookSections(a.id)).map((x) => x.id)).toEqual([s0.id, s1.id]);
+        expect(await repo.updateBookSection(a.id, s0.id, { info: { summary: 'x' }, reviewed: true })).toMatchObject({ info: { summary: 'x' }, reviewed: true });
+        expect(await repo.updateBookSection(b.id, s0.id, { reviewed: true })).toBeNull();
+        await repo.replaceBookSections(a.id, []);
+        expect(await repo.listBookSections(a.id)).toEqual([]);
       });
 
       it('audit append + filters + pagination', async () => {

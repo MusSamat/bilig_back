@@ -92,7 +92,7 @@ export function aggregateResults(
 export async function toClassDto(repo: Repository, c: ClassRec): Promise<SchoolClass> {
   const n = (await repo.listEnrollments({ classId: c.id, role: 'student' })).length;
   const subjectKeys = c.subjectKeys ?? (c.subjectKey ? [c.subjectKey] : []);
-  return { id: c.id, schoolId: c.schoolId, name: c.name, grade: c.grade, joinCode: c.joinCode, joinCodeEnabled: c.joinCodeEnabled, studentCount: n, subjectKey: subjectKeys[0] ?? null, subjectKeys };
+  return { id: c.id, schoolId: c.schoolId, name: c.name, grade: c.grade, joinCode: c.joinCode, joinCodeEnabled: c.joinCodeEnabled, studentCount: n, subjectKey: subjectKeys[0] ?? null, subjectKeys, books: c.books ?? {} };
 }
 
 export const toAssignmentDto = (a: AssignmentRec): Assignment => ({
@@ -235,8 +235,23 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
     // `subjectKeys` replaces the list; a lone `subjectKey` (≤ 0.7 clients) becomes the first one, the rest stay.
     const subjects = ctx.body.subjectKeys !== undefined || ctx.body.subjectKey !== undefined ? classSubjects(ctx.body, cls).subjectKeys : undefined;
     if (subjects) await checkSubjects(cls.schoolId, subjects.filter((k) => !(cls.subjectKeys ?? []).includes(k)));
-    const { subjectKey: _k, subjectKeys: _ks, ...rest } = ctx.body;
-    const next = await repo.updateClass(cls.id, { ...rest, ...(subjects ? { subjectKeys: subjects } : {}) });
+    const { subjectKey: _k, subjectKeys: _ks, books: bookPatch, ...rest } = ctx.body;
+    // v0.9.3: the book per subject — only published books; null clears one subject, the others stay.
+    let books: Record<string, string> | undefined;
+    if (bookPatch) {
+      books = { ...(cls.books ?? {}) };
+      for (const [subject, id] of Object.entries(bookPatch)) {
+        if (id === null) {
+          delete books[subject];
+          continue;
+        }
+        const book = await repo.getBook(id);
+        if (!book || book.status !== 'published' || book.subjectKey !== subject)
+          fail('validation_failed', { detail: 'book', issues: [{ path: ['books', subject], message: 'Not a published book of this subject' }] });
+        books[subject] = id;
+      }
+    }
+    const next = await repo.updateClass(cls.id, { ...rest, ...(subjects ? { subjectKeys: subjects } : {}), ...(books ? { books } : {}) });
     if (!next || next === 'conflict') fail('conflict');
     const uid = ctx.auth.user!.id;
     await audit.log(uid, 'class.updated', { type: 'class', id: cls.id, label: next.name }, {

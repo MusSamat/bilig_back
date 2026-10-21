@@ -65,6 +65,9 @@ import type {
   TopicRec,
   TopicVersionRec,
   TutorAnswerRec,
+  BookRec,
+  BookPageRec,
+  BookSectionRec,
   TutorMessageRec,
   GeneratedFilter,
   GeneratedRec,
@@ -265,6 +268,51 @@ const mapInvite = (r: Row): InviteRec => ({
 });
 const mapSchool = (r: Row): SchoolRec => ({ id: r.id, name: r.name, region: r.region, type: r.type, language: r.language, status: r.status, origin: r.origin, createdAt: r.createdAt, version: r.version });
 const mapLicense = (r: Row): LicenseRec => ({ id: r.id, schoolId: r.schoolId, subjects: r.subjects, grades: r.grades, seats: r.seats, startsAt: r.startsAt, endsAt: r.endsAt, version: r.version });
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const mapBook = (r: any): BookRec => ({
+  id: r.id,
+  title: r.title,
+  subjectKey: r.subjectKey,
+  grade: r.grade,
+  lang: r.lang,
+  part: r.part ?? null,
+  authors: r.authors ?? [],
+  publisher: r.publisher ?? '',
+  year: r.year ?? null,
+  summary: r.summary ?? '',
+  status: r.status,
+  stage: r.stage,
+  progressDone: r.progressDone,
+  progressTotal: r.progressTotal,
+  error: r.error ?? null,
+  pageCount: r.pageCount,
+  fileName: r.fileName,
+  coverKey: r.coverKey ?? null,
+  contents: r.contents ?? null,
+  usage: { inputTokens: 0, cachedInputTokens: 0, outputTokens: 0, costUsd: 0, ...((r.usage ?? {}) as object) },
+  leaseUntil: r.leaseUntil ?? null,
+  createdBy: r.createdBy,
+  createdAt: r.createdAt,
+  updatedAt: r.updatedAt,
+  publishedAt: r.publishedAt ?? null,
+});
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const mapSection = (r: any): BookSectionRec => ({
+  id: r.id,
+  bookId: r.bookId,
+  order: r.order,
+  chapterNumber: r.chapterNumber,
+  chapterTitle: r.chapterTitle,
+  number: r.number,
+  kind: r.kind,
+  title: r.title,
+  pageFrom: r.pageFrom ?? null,
+  pageTo: r.pageTo ?? null,
+  info: (r.info ?? null) as Record<string, unknown> | null,
+  topicKey: r.topicKey ?? null,
+  reviewed: r.reviewed,
+});
+
 const mapClass = (r: Row): ClassRec => ({
   id: r.id,
   schoolId: r.schoolId,
@@ -274,6 +322,7 @@ const mapClass = (r: Row): ClassRec => ({
   joinCodeEnabled: r.joinCodeEnabled,
   subjectKey: r.subjectKey ?? null,
   subjectKeys: r.subjectKeys ?? [],
+  books: (r.books ?? {}) as Record<string, string>,
   createdBy: r.createdBy,
   createdAt: r.createdAt,
   deletedAt: r.deletedAt,
@@ -1379,6 +1428,71 @@ export class PrismaRepository implements Repository {
   }
   async addTutorMessage(m: TutorMessageRec) {
     await this.db.tutorMessage.create({ data: m });
+  }
+  async createBook(b: BookRec) {
+    await this.db.book.create({ data: { ...b, contents: (b.contents ?? undefined) as object | undefined, usage: b.usage } });
+  }
+  async getBook(id: Id) {
+    const r = await this.db.book.findUnique({ where: { id } });
+    return r ? mapBook(r) : null;
+  }
+  async listBooks(f: { grade?: number; subjectKey?: string; lang?: string; statuses?: BookRec['status'][] }) {
+    const rows = await this.db.book.findMany({
+      where: { ...(f.grade !== undefined ? { grade: f.grade } : {}), ...(f.subjectKey ? { subjectKey: f.subjectKey } : {}), ...(f.lang ? { lang: f.lang } : {}), ...(f.statuses ? { status: { in: f.statuses } } : {}) },
+      orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
+    });
+    return rows.map(mapBook);
+  }
+  async updateBook(id: Id, patch: Partial<Omit<BookRec, 'id' | 'createdBy' | 'createdAt'>>) {
+    const { contents, usage, ...rest } = patch;
+    const r = await this.db.book.updateMany({
+      where: { id },
+      data: { ...rest, ...(contents !== undefined ? { contents: contents as object } : {}), ...(usage ? { usage } : {}) },
+    });
+    return r.count ? this.getBook(id) : null;
+  }
+  async claimBook(now: Date, until: Date) {
+    // Optimistic claim: the lease condition is checked again in the update, so two workers never both win.
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const b = await this.db.book.findFirst({
+        where: { status: { in: ['queued', 'processing'] }, OR: [{ leaseUntil: null }, { leaseUntil: { lte: now } }] },
+        orderBy: { updatedAt: 'asc' },
+      });
+      if (!b) return null;
+      const r = await this.db.book.updateMany({ where: { id: b.id, OR: [{ leaseUntil: null }, { leaseUntil: { lte: now } }] }, data: { leaseUntil: until } });
+      if (r.count) return mapBook({ ...b, leaseUntil: until });
+    }
+    return null;
+  }
+  async putBookPages(pages: BookPageRec[]) {
+    for (const p of pages) {
+      const data = { imageKey: p.imageKey, text: p.text, read: (p.read ?? undefined) as object | undefined };
+      await this.db.bookPage.upsert({ where: { bookId_n: { bookId: p.bookId, n: p.n } }, create: { bookId: p.bookId, n: p.n, ...data }, update: { ...data, read: (p.read ?? null) as object } });
+    }
+  }
+  async listBookPages(bookId: Id) {
+    const rows = await this.db.bookPage.findMany({ where: { bookId }, orderBy: { n: 'asc' } });
+    return rows.map((r) => ({ bookId: r.bookId, n: r.n, imageKey: r.imageKey, text: r.text, read: r.read ?? null }));
+  }
+  async setBookPageRead(bookId: Id, n: number, read: unknown) {
+    await this.db.bookPage.updateMany({ where: { bookId, n }, data: { read: read as object } });
+  }
+  async replaceBookSections(bookId: Id, rows: BookSectionRec[]) {
+    await this.db.$transaction([
+      this.db.bookSection.deleteMany({ where: { bookId } }),
+      this.db.bookSection.createMany({ data: rows.map((r) => ({ ...r, info: (r.info ?? undefined) as object | undefined })) }),
+    ]);
+  }
+  async listBookSections(bookId: Id) {
+    const rows = await this.db.bookSection.findMany({ where: { bookId }, orderBy: { order: 'asc' } });
+    return rows.map(mapSection);
+  }
+  async updateBookSection(bookId: Id, id: Id, patch: Partial<Omit<BookSectionRec, 'id' | 'bookId'>>) {
+    const { info, ...rest } = patch;
+    const r = await this.db.bookSection.updateMany({ where: { id, bookId }, data: { ...rest, ...(info !== undefined ? { info: (info ?? null) as object } : {}) } });
+    if (!r.count) return null;
+    const row = await this.db.bookSection.findUnique({ where: { id } });
+    return row ? mapSection(row) : null;
   }
   async getTutorAnswer(key: string) {
     const r = await this.db.tutorAnswer.findUnique({ where: { key } });

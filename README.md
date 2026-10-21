@@ -124,6 +124,7 @@ All variables are documented in [`.env.example`](.env.example). The important on
 | `TUTOR_MODEL`, `TUTOR_FALLBACK` | the primary model (default per provider); an optional failover provider (`anthropic` / `deepseek`) |
 | `ANTHROPIC_API_KEY` | Claude, only when chosen with `TUTOR_PROVIDER=anthropic` or `TUTOR_FALLBACK=anthropic` |
 | `TUTOR_DAILY_TOKEN_BUDGET` | daily token budget; once spent the tutor answers 503 |
+| `BOOK_MODEL`, `BOOK_OCR_EFFORT`, `BOOK_ANALYSIS_EFFORT`, `BOOK_DAILY_TOKEN_BUDGET` | the book library worker: the model (deepseek-flash, reads page images), reasoning for page transcription (default `none`) and for the § analysis (default `high`), a daily token cap (30M) — see docs/CONTRACT_CHANGES-0.9.3.md |
 | `TUTOR_ANSWER_CACHE` | `1` (default): one shared answer per topic version, language and self-contained question (starter or first question); repeats cost no tokens. `0` turns it off |
 | `TUTOR_PRICE_INPUT` / `TUTOR_PRICE_INPUT_CACHED` / `TUTOR_PRICE_OUTPUT` | USD per 1M tokens (defaults 0.15 / 0.003 / 0.6): the cost in the `tutor.usage` log line and in `npm run tutor:eval` |
 | `MAIL_TRANSPORT` | `console` prints verification / reset / invite links |

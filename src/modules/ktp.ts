@@ -24,6 +24,7 @@ import { detectLang } from '../domain/lang.js';
 import { getTutorSettings } from '../services/tutor-settings.js';
 import { usageCostUsd } from '../config.js';
 import { budgetKey } from './tutor.js';
+import { bookAsTextbook } from '../services/books.js';
 import { buildPlanContent, type PlanContent } from '../ktp/plan-content.js';
 import { renderPlansDocx } from '../ktp/plan-docx.js';
 import { createPlanDoc, patchPlanDoc, recheck, toSummary, toTeachingPlan, type MatchSources, type PlanDoc } from '../ktp/teaching-plan.js';
@@ -296,7 +297,15 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
     let bookLang: Lang;
     let subjectKey: string | null;
     let sourceName: string;
-    if (body.textbookKey) {
+    if (body.bookId) {
+      // v0.9.3: a published book of the library (its § with pages and topics).
+      const b = /^[0-9a-f-]{36}$/i.test(body.bookId) ? await repo.getBook(body.bookId) : null;
+      if (!b || b.status !== 'published') fail('not_found', { detail: 'book' });
+      book = bookAsTextbook(b, await repo.listBookSections(b.id)) as never;
+      bookLang = b.lang;
+      subjectKey = body.subjectKey ?? b.subjectKey;
+      sourceName = b.title;
+    } else if (body.textbookKey) {
       const tb = src.textbooks.find((x) => x.key === body.textbookKey);
       if (!tb) fail('not_found', { detail: 'textbook' });
       book = tb;

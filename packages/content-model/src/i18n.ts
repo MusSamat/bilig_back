@@ -4,7 +4,7 @@
 import { z } from 'zod';
 
 /** Contract version shared by @bilig/content-model and @bilig/permissions. */
-export const CONTRACT_VERSION = '0.9.2';
+export const CONTRACT_VERSION = '0.9.3';
 
 /**
  * The ACTIVE content languages: every Localized value carries exactly these

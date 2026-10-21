@@ -10,6 +10,7 @@ export * from './classes.js';
 export * from './tutor.js';
 export * from './decks.js';
 export * from './ktp.js';
+export * from './books.js';
 export * from './staff.js';
 export * from './admin.js';
 export * from './endpoints.js';

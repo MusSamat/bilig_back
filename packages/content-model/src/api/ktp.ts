@@ -275,6 +275,8 @@ export const KtpFromTextbookRequestSchema = z
   .object({
     /** A textbook of the catalog… */
     textbookKey: KeySchema.optional(),
+    /** …or a published book of the library (v0.9.3)… */
+    bookId: z.string().uuid().optional(),
     /** …or the contents the teacher checked (POST /ktp/contents). */
     draft: TextbookDraftSchema.optional(),
     /** Chapters of this subject only (an integrated book spans several). */
@@ -289,5 +291,5 @@ export const KtpFromTextbookRequestSchema = z
     /** Class labels for the КТП header («7а», «7б»); dates stay empty for the teacher to fill in. */
     classes: z.array(KtpClassSchema).max(8).optional(),
   })
-  .refine((b) => !!b.textbookKey !== !!b.draft, { message: 'Send textbookKey or draft', path: ['textbookKey'] });
+  .refine((b) => [b.textbookKey, b.bookId, b.draft].filter(Boolean).length === 1, { message: 'Send one of textbookKey, bookId or draft', path: ['textbookKey'] });
 export type KtpFromTextbookRequest = z.input<typeof KtpFromTextbookRequestSchema>;

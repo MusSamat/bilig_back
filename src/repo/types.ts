@@ -211,6 +211,8 @@ export interface ClassRec {
   subjectKey?: string | null;
   /** v0.8.0: every subject taught in the class; repos return [] when unset. */
   subjectKeys?: string[];
+  /** v0.9.3: the book per subject (subjectKey → book id); repos return {} when unset. */
+  books?: Record<string, Id>;
   createdBy: Id;
   createdAt: Date;
   deletedAt: Date | null;
@@ -583,6 +585,65 @@ export interface GeneratedFilter {
   status?: GeneratedStatusRec;
 }
 
+/** v0.9.3: a book of the library (staff upload, the AI reads it, staff publish). */
+export interface BookRec {
+  id: Id;
+  title: string;
+  subjectKey: string;
+  grade: number;
+  lang: 'ky' | 'ru' | 'en';
+  part: number | null;
+  authors: string[];
+  publisher: string;
+  year: number | null;
+  summary: string;
+  status: 'uploading' | 'queued' | 'processing' | 'review' | 'published' | 'failed' | 'archived';
+  stage: 'pages' | 'contents' | 'sections' | 'book' | 'done';
+  progressDone: number;
+  progressTotal: number;
+  error: string | null;
+  pageCount: number;
+  fileName: string;
+  /** Storage key of the cover image (staff upload, else PDF page 1). */
+  coverKey: string | null;
+  /** The contents as read (chapters → lessons with printed pages), set by the «contents» stage. */
+  contents: unknown;
+  usage: { inputTokens: number; cachedInputTokens: number; outputTokens: number; costUsd: number };
+  /** A worker holds the book until then (one worker per book across instances). */
+  leaseUntil: Date | null;
+  createdBy: Id;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+}
+
+/** One PDF page: its image (storage key) or text layer, and what the AI read on it. */
+export interface BookPageRec {
+  bookId: Id;
+  n: number;
+  imageKey: string | null;
+  text: string | null;
+  /** { printed: number[], kind, headings, text, terms, formulas } once read. */
+  read: unknown;
+}
+
+export interface BookSectionRec {
+  id: Id;
+  bookId: Id;
+  order: number;
+  chapterNumber: string;
+  chapterTitle: string;
+  number: string;
+  kind: 'lesson' | 'review' | 'extra';
+  title: string;
+  pageFrom: number | null;
+  pageTo: number | null;
+  /** The § analysis (summary, objectives, keyTerms, formulas, quantities, facts, experiments, questions, keywords). */
+  info: Record<string, unknown> | null;
+  topicKey: string | null;
+  reviewed: boolean;
+}
+
 /** v0.9.1: a shared answer to a self-contained question (same topic version, language, question, screen). */
 export interface TutorAnswerRec {
   /** sha256 of the topic version, language, normalised question and the screen context. */
@@ -874,7 +935,7 @@ export interface Repository {
   getClass(id: Id): Promise<ClassRec | null>;
   getClassByJoinCode(code: string): Promise<ClassRec | null>;
   /** v0.8.0: `subjectKeys` wins over `subjectKey`; the repos keep subjectKey = subjectKeys[0]. */
-  updateClass(id: Id, patch: Partial<Pick<ClassRec, 'name' | 'grade' | 'joinCode' | 'joinCodeEnabled' | 'deletedAt' | 'subjectKey' | 'subjectKeys'>>): Promise<ClassRec | null | 'conflict'>;
+  updateClass(id: Id, patch: Partial<Pick<ClassRec, 'name' | 'grade' | 'joinCode' | 'joinCodeEnabled' | 'deletedAt' | 'subjectKey' | 'subjectKeys' | 'books'>>): Promise<ClassRec | null | 'conflict'>;
   listClasses(filter: { ids?: Id[]; schoolIds?: Id[] }, page: PageReq): Promise<PageRes<ClassRec>>;
 
   addEnrollment(e: Omit<EnrollmentRec, 'createdAt'>): Promise<void>;
@@ -984,6 +1045,22 @@ export interface Repository {
   getThread(id: Id): Promise<TutorThreadRec | null>;
   addTutorMessage(m: TutorMessageRec): Promise<void>;
   listTutorMessages(filter: { threadId?: Id; from?: Date; to?: Date; limit?: number }): Promise<TutorMessageRec[]>;
+  // v0.9.3: the book library
+  createBook(b: BookRec): Promise<void>;
+  getBook(id: Id): Promise<BookRec | null>;
+  /** Newest first. */
+  listBooks(filter: { grade?: number; subjectKey?: string; lang?: string; statuses?: BookRec['status'][] }): Promise<BookRec[]>;
+  updateBook(id: Id, patch: Partial<Omit<BookRec, 'id' | 'createdBy' | 'createdAt'>>): Promise<BookRec | null>;
+  /** Take a queued / processing book whose lease ran out (oldest first), leased until `until`; null when none. */
+  claimBook(now: Date, until: Date): Promise<BookRec | null>;
+  putBookPages(pages: BookPageRec[]): Promise<void>;
+  /** In page order. */
+  listBookPages(bookId: Id): Promise<BookPageRec[]>;
+  setBookPageRead(bookId: Id, n: number, read: unknown): Promise<void>;
+  replaceBookSections(bookId: Id, rows: BookSectionRec[]): Promise<void>;
+  /** In reading order. */
+  listBookSections(bookId: Id): Promise<BookSectionRec[]>;
+  updateBookSection(bookId: Id, id: Id, patch: Partial<Omit<BookSectionRec, 'id' | 'bookId'>>): Promise<BookSectionRec | null>;
   // v0.9.1: shared answers (first write wins; hits counted atomically)
   getTutorAnswer(key: string): Promise<TutorAnswerRec | null>;
   putTutorAnswer(a: TutorAnswerRec): Promise<void>;

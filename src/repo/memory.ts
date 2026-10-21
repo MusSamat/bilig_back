@@ -62,6 +62,9 @@ import type {
   TopicRec,
   TopicVersionRec,
   TutorAnswerRec,
+  BookRec,
+  BookPageRec,
+  BookSectionRec,
   TutorMessageRec,
   TutorThreadRec,
   UserRec,
@@ -165,6 +168,9 @@ export class MemoryRepository implements Repository {
   private generated = new Map<Id, GeneratedRec>();
   private generatedSeen = new Map<string, { userId: Id; generatedId: Id; seenAt: Date; n: number }>();
   private tutorAnswers = new Map<string, TutorAnswerRec>();
+  private books = new Map<string, BookRec>();
+  private bookPages = new Map<string, BookPageRec>();
+  private bookSections = new Map<string, BookSectionRec[]>();
   private journal: AuditEventRec[] = [];
   private alerts = new Map<Id, AuditAlertRec>();
   private staff = new Map<Id, StaffProfileRec>();
@@ -895,6 +901,57 @@ export class MemoryRepository implements Repository {
   }
   async addTutorMessage(m: TutorMessageRec) {
     this.messages.push(clone(m));
+  }
+  async createBook(b: BookRec) {
+    this.books.set(b.id, clone(b));
+  }
+  async getBook(id: Id) {
+    const b = this.books.get(id);
+    return b ? clone(b) : null;
+  }
+  async listBooks(f: { grade?: number; subjectKey?: string; lang?: string; statuses?: BookRec['status'][] }) {
+    return [...this.books.values()]
+      .filter((b) => (f.grade === undefined || b.grade === f.grade) && (!f.subjectKey || b.subjectKey === f.subjectKey) && (!f.lang || b.lang === f.lang) && (!f.statuses || f.statuses.includes(b.status)))
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime() || (a.id < b.id ? 1 : -1))
+      .map(clone);
+  }
+  async updateBook(id: Id, patch: Partial<Omit<BookRec, 'id' | 'createdBy' | 'createdAt'>>) {
+    const b = this.books.get(id);
+    if (!b) return null;
+    const next = { ...b, ...clone(patch) };
+    this.books.set(id, next);
+    return clone(next);
+  }
+  async claimBook(now: Date, until: Date) {
+    const b = [...this.books.values()]
+      .filter((x) => (x.status === 'queued' || x.status === 'processing') && (!x.leaseUntil || x.leaseUntil <= now))
+      .sort((a, c) => a.updatedAt.getTime() - c.updatedAt.getTime())[0];
+    if (!b) return null;
+    b.leaseUntil = new Date(until);
+    return clone(b);
+  }
+  async putBookPages(pages: BookPageRec[]) {
+    for (const p of pages) this.bookPages.set(`${p.bookId}|${p.n}`, clone(p));
+  }
+  async listBookPages(bookId: Id) {
+    return [...this.bookPages.values()].filter((p) => p.bookId === bookId).sort((a, b) => a.n - b.n).map(clone);
+  }
+  async setBookPageRead(bookId: Id, n: number, read: unknown) {
+    const p = this.bookPages.get(`${bookId}|${n}`);
+    if (p) p.read = clone(read);
+  }
+  async replaceBookSections(bookId: Id, rows: BookSectionRec[]) {
+    this.bookSections.set(bookId, rows.map(clone));
+  }
+  async listBookSections(bookId: Id) {
+    return (this.bookSections.get(bookId) ?? []).slice().sort((a, b) => a.order - b.order).map(clone);
+  }
+  async updateBookSection(bookId: Id, id: Id, patch: Partial<Omit<BookSectionRec, 'id' | 'bookId'>>) {
+    const list = this.bookSections.get(bookId) ?? [];
+    const i = list.findIndex((x) => x.id === id);
+    if (i < 0) return null;
+    list[i] = { ...list[i], ...clone(patch) };
+    return clone(list[i]);
   }
   async getTutorAnswer(key: string) {
     const a = this.tutorAnswers.get(key);

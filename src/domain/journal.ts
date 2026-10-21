@@ -23,6 +23,7 @@ export function groupOf(action: string): AuditGroup {
     case 'asset':
     case 'review':
     case 'generated':
+    case 'book':
     case 'tutor':
       return 'content';
     case 'export':

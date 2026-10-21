@@ -25,6 +25,7 @@ import { registerClasses } from './modules/classes.js';
 import { registerTutor } from './modules/tutor.js';
 import { registerDecks } from './modules/decks.js';
 import { registerKtp } from './modules/ktp.js';
+import { registerBooks } from './modules/books.js';
 import { registerTopicDeck } from './modules/topic-deck.js';
 import { registerAdmin } from './modules/admin/index.js';
 import { registerCdn } from './modules/cdn.js';
@@ -197,6 +198,7 @@ export async function buildApp(deps: Deps): Promise<FastifyInstance> {
   registerTutor(app, deps);
   registerDecks(app, deps);
   registerKtp(app, deps);
+  registerBooks(app, deps);
   registerTopicDeck(app, deps);
   registerAdmin(app, deps);
   registerCdn(app, deps);

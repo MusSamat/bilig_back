@@ -1,9 +1,11 @@
 /** bilig_back entrypoint: config → deps → app → listen; scheduled publishes + data purge timers. */
 import { buildApp } from './app.js';
+import { runBookWorker } from './services/books.js';
 import { createDeps } from './bootstrap.js';
 import { loadConfig } from './config.js';
 import { seedDemo } from './services/demo-seed.js';
-import { importContent, loadContentDir } from './services/seed.js';
+import { DEFAULT_CONTENT_DIR, importContent, loadContentDir } from './services/seed.js';
+import { importBooks, loadBookSeeds } from './services/book-seed.js';
 import { runScheduledPublishes } from './services/workflow.js';
 import { expireSupportSessions } from './services/support.js';
 
@@ -19,6 +21,11 @@ if (deps.repo.kind === 'memory') {
   // Zero-dependency dev mode: load content/** into memory on boot.
   const report = await importContent(deps.repo, deps.clock, loadContentDir(config.contentDir), config);
   process.stdout.write(`memory repo seeded: ${JSON.stringify(report)}\n`);
+}
+// v0.9.3: books shipped with the content (published, read before the admin upload) — created once, never overwritten.
+{
+  const books = await importBooks(deps, loadBookSeeds(config.contentDir ?? DEFAULT_CONTENT_DIR));
+  if (books.created.length) process.stdout.write(`books imported: ${books.created.length}\n`);
 }
 // DEV ONLY: demo school + accounts (throws when NODE_ENV=production).
 if (config.demoSeed) await seedDemo(deps.repo, deps);
@@ -41,7 +48,19 @@ if (!deps.tutor) app.log.warn(`AI assistant is off: TUTOR_PROVIDER=${config.tuto
 else app.log.info(`AI assistant: ${deps.tutor.name}, model ${config.tutorModel}`);
 
 await maintainJournal();
+// v0.9.3: the book worker — one tick at a time (a tick works ≤ 4 min on one leased book, then saves).
+let bookTick = false;
+const tickBooks = () => {
+  if (bookTick) return;
+  bookTick = true;
+  void runBookWorker(deps, app.log)
+    .catch((err) => app.log.error({ err: String(err) }, 'book worker failed'))
+    .finally(() => {
+      bookTick = false;
+    });
+};
 const timers = [
+  setInterval(tickBooks, 15_000),
   setInterval(() => void maintainJournal(), 24 * 3600_000),
   setInterval(() => void expireSupportSessions(deps).catch((err) => app.log.error({ err: String(err) }, 'support expiry failed')), 60_000),
   setInterval(() => void runScheduledPublishes(deps).catch((err) => app.log.error({ err: String(err) }, 'scheduled publish failed')), 60_000),
