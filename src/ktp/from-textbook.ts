@@ -137,7 +137,8 @@ function lessonList(tb: Pick<Textbook, 'chapters'>, lang: Lang, subjectKey?: str
     for (const r of c.lessons.filter((l) => l.kind === 'review')) items.push({ kind: 'test', chapter: ci, lessons: [r], title: T[lang].test(t(c.title, lang)) });
   });
   // Arabic chapter numbers print as Roman («I глава»); an unnumbered chapter (the introduction) has none.
-  return { items, chapters: real.map((c) => ({ title: t(c.title, lang), number: /^\d+$/.test(c.number) ? (ROMAN[Number(c.number) - 1] ?? c.number) : c.number })) };
+  // A chapter without a title (the introduction, the final tests outside any chapter): its first item names it.
+  return { items, chapters: real.map((c) => ({ title: t(c.title, lang).trim() || (c.lessons[0] ? t(c.lessons[0].title, lang).trim() : ''), number: /^\d+$/.test(c.number) ? (ROMAN[Number(c.number) - 1] ?? c.number) : c.number })) };
 }
 
 /**
@@ -245,6 +246,7 @@ export function draftKtpFromTextbook(tb: Pick<Textbook, 'chapters'> & { grade: n
   const { items: base, chapters } = lessonList(tb, o.lang, o.subjectKey);
   const items = base.length > n ? shrink(base, n) : grow(base, n, chapters, o.lang);
   const hours = chapters.map((_, ci) => items.filter((x) => x.chapter === ci).length);
+  const sectionTitle = (ci: number): string => (chapters[ci].number ? L.chapter(chapters[ci].number, chapters[ci].title) : chapters[ci].title).trim().slice(0, 300);
   const rows: KtpRow[] = items.map((it, i) => {
     const ls = it.lessons;
     const nums = ls.map((l) => l.number).filter(Boolean);
@@ -258,7 +260,8 @@ export function draftKtpFromTextbook(tb: Pick<Textbook, 'chapters'> & { grade: n
     return {
       index: i + 1,
       number: i + 1,
-      section: { title: (chapters[it.chapter].number ? L.chapter(chapters[it.chapter].number, chapters[it.chapter].title) : chapters[it.chapter].title).slice(0, 300), hours: hours[it.chapter] },
+      // The contract wants a titled section: a row of a chapter with no name at all has none.
+      ...(sectionTitle(it.chapter) ? { section: { title: sectionTitle(it.chapter), hours: hours[it.chapter] } } : {}),
       title: title.slice(0, 500),
       hours: 1,
       // A long § over several lessons: new material, the last of them practice («бекемдөө»).

@@ -126,7 +126,10 @@ export const ktpClass = (label: string) => normalizeClassName(label).replace(/\s
  * v0.9.3: the class labels of a stored plan in capitals — the class columns, the date keys, the class
  * links and the impossible dates (plans saved before kept them as typed). Issues are rechecked.
  */
-export function normalizePlanClasses(doc: PlanDoc): PlanDoc {
+export function normalizePlanClasses(stored: PlanDoc): PlanDoc {
+  // Plans made from a book before the fix kept a row section with an empty title (a chapter without a name),
+  // which the contract refuses: such a section is dropped.
+  const doc = stored.rows.some((r) => r.section && !r.section.title.trim()) ? { ...stored, rows: stored.rows.map(({ section, ...r }) => (section && !section.title.trim() ? r : { ...r, section })) } : stored;
   if (doc.classes.every((c) => ktpClass(c) === c)) return doc;
   const keys = <T,>(o: Record<string, T> | undefined) => (o ? Object.fromEntries(Object.entries(o).map(([k, v]) => [ktpClass(k), v])) : o);
   return recheck({

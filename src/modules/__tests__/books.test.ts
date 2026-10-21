@@ -185,3 +185,36 @@ describe('class names and books in the new class form (v0.9.3)', () => {
     expect(json(await t.inject({ method: 'GET', url: `${API}/classes/${c.id}`, token: teacher.token })).name).toBe('7Г');
   });
 });
+
+describe('every shipped book', () => {
+  it('opens, and a КТП is made from it at 1, 2, 3 and 5 hours a week (responses match the contract)', async () => {
+    const { importBooks, loadBookSeeds } = await import('../../services/book-seed.js');
+    const { DEFAULT_CONTENT_DIR } = await import('../../services/seed.js');
+    const seeds = loadBookSeeds(DEFAULT_CONTENT_DIR);
+    await importBooks(t.deps, seeds);
+    const bad: string[] = [];
+    for (const s of seeds) {
+      const teacher = await makeUser(t.deps, { role: 'teacher', scopeId: w.school.id });
+      const g = await t.inject({ method: 'GET', url: `${API}/books/${s.id}`, token: teacher.token });
+      if (g.statusCode !== 200) bad.push(`GET ${s.title}: ${g.statusCode}`);
+      for (const hoursPerWeek of [1, 2, 3, 5]) {
+        const r = await t.inject({ method: 'POST', url: `${API}/ktp/from-textbook`, token: teacher.token, payload: { bookId: s.id, hoursPerWeek } });
+        if (r.statusCode !== 200) bad.push(`KTP ${s.title} ${hoursPerWeek}h: ${r.statusCode}`);
+      }
+    }
+    expect(bad).toEqual([]);
+    // A plan saved before the fix with an untitled section still opens (the section is dropped on read).
+    const teacher = await makeUser(t.deps, { role: 'teacher', scopeId: w.school.id });
+    const ky = seeds.find((s) => s.subjectKey === 'kyrgyz')!;
+    const plan = json(await t.inject({ method: 'POST', url: `${API}/ktp/from-textbook`, token: teacher.token, payload: { bookId: ky.id, hoursPerWeek: 2 } }));
+    // The tests at the end of Кыргыз тили are outside any chapter: their first item names the section.
+    expect(plan.rows.every((r: { section?: { title: string } }) => r.section?.title)).toBe(true);
+    expect(plan.rows.map((r: { section: { title: string } }) => r.section.title)).toContain('Окуучулардын билимин, машыккандыгын жана көнүккөндүгүн баалоо үчүн тесттер');
+    const rec = (await t.repo.getTeachingPlan(plan.id))!;
+    const doc = rec.doc as { rows: { section?: { title: string } }[] };
+    await t.repo.updateTeachingPlan(plan.id, { doc: { ...doc, rows: doc.rows.map((r, i) => (i === 0 ? { ...r, section: { title: '' } } : r)) } as never }, rec.version);
+    const back = await t.inject({ method: 'GET', url: `${API}/ktp/${plan.id}`, token: teacher.token });
+    expect(back.statusCode).toBe(200);
+    expect(json(back).rows[0].section).toBeUndefined();
+  }, 120_000);
+});
