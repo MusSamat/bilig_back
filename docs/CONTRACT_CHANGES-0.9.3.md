@@ -53,7 +53,8 @@ Rough cost of a 90-page book: ≈ $0.25–0.40.
 `content/books/<key>/book.json` (+ `cover.jpg`) are imported on start as
 published books, once (a book already in the database is never
 overwritten). The first: «Физика, 7-класс», Э. М. Мамбетакунов (Бишкек,
-2009) — every § read from the scan.
+2009, Kyrgyz) — every § read from the scan; «Физика, 7 класс», Э. Мамбетакунов,
+Б. Б. Мурзаибраимова («Учкун», 2023, Russian) — read from its text layer.
 
 ## Migration
 

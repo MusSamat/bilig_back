@@ -149,7 +149,8 @@ export const ENDPOINTS = {
   adminBookArchive: e({ method: 'DELETE', path: '/admin/books/:id', auth: 'content.publish', response: books.BookSchema }),
   bookList: e({ method: 'GET', path: '/books', auth: 'lesson.plan', query: books.BookListQuerySchema, response: books.BookListSchema }),
   bookGet: e({ method: 'GET', path: '/books/:id', auth: 'lesson.plan', response: books.BookDetailSchema }),
-  bookCover: e({ method: 'GET', path: '/books/:id/cover', auth: 'lesson.plan', response: BinaryResponseSchema, produces: 'image/jpeg' }),
+  // A cover is not secret (staff see an unpublished book's cover too): any signed-in role.
+  bookCover: e({ method: 'GET', path: '/books/:id/cover', auth: 'demo.view', response: BinaryResponseSchema, produces: 'image/jpeg' }),
 
   // v0.9.2: a preliminary КТП from a textbook's contents, and any КТП as a .docx
   ktpContents: e({ method: 'POST', path: '/ktp/contents', auth: 'lesson.plan', body: ktp.KtpContentsRequestSchema, response: ktp.KtpContentsResponseSchema }),

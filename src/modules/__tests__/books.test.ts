@@ -54,13 +54,15 @@ describe('the book library', () => {
     expect(json(res)).toMatchObject({ status: 'uploading', stage: 'pages', coverUrl: null, title: 'Физика-7' });
     await admin('POST', `/admin/books/${id}/pages`, { pages: [{ n: 1, image: PNG }, { n: 2, text: TOC }] });
     const up = json(await admin('POST', `/admin/books/${id}/pages`, { pages: [3, 4, 5, 6, 7, 8].map((n) => ({ n, text: PAGE_TEXT[n] })) }));
-    expect(up).toMatchObject({ pagesUploaded: 8, coverUrl: `/api/v1/books/${id}/cover` });
+    expect(up).toMatchObject({ pagesUploaded: 8 });
+    expect(up.coverUrl).toMatch(new RegExp(`^/api/v1/books/${id}/cover\\?v=[0-9a-f]{10}$`));
     expect((await admin('POST', `/admin/books/${id}/pages`, { pages: [{ n: 9, text: 'x' }] })).statusCode).toBe(400);
     expect((await admin('POST', `/admin/books/${id}/pages`, { pages: [{ n: 3, image: 'data:image/gif;base64,AAAA' }] })).statusCode).toBe(400);
   });
 
   it('the worker reads it: pages → contents (§ with pages) → every § analysed → book meta → review; costs counted', async () => {
     expect(json(await admin('POST', `/admin/books/${id}/process`, {}))).toMatchObject({ status: 'queued' });
+    expect((await admin('POST', `/admin/books/${id}/process`, {})).statusCode).toBe(409); // already queued
     await work();
     const d = json(await admin('GET', `/admin/books/${id}`));
     expect(d.book).toMatchObject({ status: 'review', stage: 'done', title: 'Физика 7', authors: ['Э. М. Мамбетакунов'], year: 2018, error: null, sectionCount: 6 });
@@ -86,6 +88,10 @@ describe('the book library', () => {
     expect(json(await list('?grade=7&subjectKey=phys')).items.map((b: { id: string }) => b.id)).toEqual([id]);
     expect(json(await list('?grade=8')).items).toEqual([]);
     expect(json(await t.inject({ method: 'GET', url: `${API}/books/${id}`, token: w.teacher.token })).sections).toHaveLength(6);
+    // A new cover changes the link (no stale cache); staff see it, so do teachers once published.
+    const before = json(await admin('GET', `/admin/books/${id}`)).book.coverUrl;
+    const after = json(await admin('POST', `/admin/books/${id}/cover`, { image: PNG })).coverUrl;
+    expect(after).not.toBe(before);
     const cover = await t.inject({ method: 'GET', url: `${API}/books/${id}/cover`, token: w.teacher.token });
     expect(cover.statusCode).toBe(200);
     expect(cover.headers['content-type']).toContain('image/png');
@@ -132,12 +138,22 @@ describe('books shipped with the content (v0.9.3)', () => {
     expect((await importBooks(t.deps, seeds)).created).toContain(phys.id);
     const fresh = await makeUser(t.deps, { role: 'teacher', scopeId: w.school.id });
     const d = json(await t.inject({ method: 'GET', url: `${API}/books/${phys.id}`, token: fresh.token }));
-    expect(d.book).toMatchObject({ status: 'published', coverUrl: `/api/v1/books/${phys.id}/cover` });
+    expect(d.book).toMatchObject({ status: 'published' });
+    expect(d.book.coverUrl).toMatch(/\/cover\?v=/);
     const lessons = d.sections.filter((s: { kind: string }) => s.kind === 'lesson');
     expect(lessons.map((s: { number: string }) => s.number)).toEqual(Array.from({ length: 56 }, (_, i) => String(i + 1)));
     expect(lessons.every((s: { summary: string; keywords: string[] }) => s.summary.length > 20 && s.keywords.length > 0)).toBe(true);
     expect(d.sections.filter((s: { kind: string }) => s.kind === 'review')).toHaveLength(6);
     expect(lessons.find((s: { number: string }) => s.number === '6')).toMatchObject({ topicKey: 'phys7-uniform-speed' });
+    // The Russian edition (2023) is a separate book of the same grade and subject, found by language.
+    const ru = seeds.find((s) => s.lang === 'ru' && s.subjectKey === 'phys' && s.grade === 7)!;
+    expect(ru).toMatchObject({ title: 'Физика, 7 класс', year: 2023, publisher: 'Учкун', authors: ['Э. Мамбетакунов', 'Б. Б. Мурзаибраимова'] });
+    const ruNumbered = ru.sections.filter((x) => x.kind !== 'review' && Number(x.number) >= 1 && !(x.kind === 'extra' && Number(x.number) <= 4 && x.chapterNumber === '6'));
+    expect(ruNumbered.map((x) => x.number)).toEqual(Array.from({ length: 58 }, (_, i) => String(i + 1)));
+    expect(ru.sections.filter((x) => x.kind === 'review')).toHaveLength(5);
+    const byLang = async (lang: string) => json(await t.inject({ method: 'GET', url: `${API}/books?grade=7&subjectKey=phys&lang=${lang}`, token: fresh.token })).items.map((b: { id: string }) => b.id);
+    expect(await byLang('ru')).toEqual([ru.id]);
+    expect(await byLang('ky')).toContain(phys.id);
     await t.repo.updateBook(phys.id, { summary: 'staff' });
     expect((await importBooks(t.deps, seeds)).created).toEqual([]);
     expect((await t.repo.getBook(phys.id))!.summary).toBe('staff');

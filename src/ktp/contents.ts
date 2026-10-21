@@ -65,7 +65,8 @@ export function parseContentsText(text: string): ReadChapter[] {
   let lines = text
     .split(/\r?\n/)
     .map((l) => l.replace(/\s+/g, ' ').trim())
-    .filter(Boolean);
+    // A line that is only a number is the page footer of the contents page («269»), not a § line.
+    .filter((l) => l && !/^\d{1,4}$/.test(l));
   const head = lines.findIndex((l) => CONTENTS_WORDS.test(l));
   if (head >= 0) lines = lines.slice(head + 1);
   const chapters: ReadChapter[] = [];
@@ -74,8 +75,12 @@ export function parseContentsText(text: string): ReadChapter[] {
     return chapters[chapters.length - 1];
   };
   let pending = '';
+  // Numbering seen so far: numbered lines after the § series that restart from 1 («1. Связь …») are appendices.
+  let lastNumber = 0;
+  let sectionMarks = 0;
   for (const raw of lines) {
-    const line = pending ? `${pending} ${raw}` : raw;
+    // A wrapped title: the first part may end in dot leaders of its own («на графике. .»).
+    const line = pending ? `${pending.replace(/(?:\s*[.…·_]){2,}\s*$/u, '.').trimEnd()} ${raw}` : raw;
     const { text: body, page } = splitPage(line);
     const ch = body.match(CHAPTER);
     const sec = body.match(SECTION_MARK) ?? body.match(LESSON);
@@ -96,6 +101,14 @@ export function parseContentsText(text: string): ReadChapter[] {
     pending = '';
     if (sec?.groups) {
       const title = sec.groups.rest.trim();
+      const n = Number.parseInt(sec.groups.n, 10);
+      const marked = /^§/.test(body);
+      if (marked) sectionMarks++;
+      if (!marked && sectionMarks >= 3 && n < lastNumber) {
+        current().lessons.push({ number: sec.groups.n, kind: 'extra', title, page });
+        continue;
+      }
+      if (Number.isFinite(n)) lastNumber = Math.max(lastNumber, n);
       // A numbered line is a lesson, unless it is a lab work («№ 3. Лабораториялык иш») or a test.
       current().lessons.push({ number: sec.groups.n, kind: LAB.test(title) ? 'extra' : /^(тест|текшерүү иши|контрольная|test)(?!\p{L})/iu.test(title) ? 'review' : 'lesson', title, page });
       continue;

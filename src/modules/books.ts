@@ -122,8 +122,10 @@ export function registerBooks(app: FastifyInstance, deps: Deps) {
   route(app, deps, 'adminBookProcess', async ({ auth, params, body, ip }) => {
     const b = await load(params.id);
     if (b.status === 'archived') fail('conflict', { detail: 'book is archived' });
+    if (b.status === 'queued' || b.status === 'processing') fail('conflict', { detail: `book is ${b.status}` });
     const pages = await repo.listBookPages(b.id);
     if (!pages.length) fail('validation_failed', { detail: 'no pages uploaded' });
+    if (pages.length < b.pageCount) fail('conflict', { detail: `pages missing: ${pages.length} of ${b.pageCount} uploaded` });
     const from: BookStage = body.from ?? (b.status === 'uploading' ? 'pages' : b.stage === 'done' ? 'pages' : b.stage);
     // Redo from a stage: forget what that stage and the later ones made.
     if (from === 'pages') for (const p of pages) await repo.setBookPageRead(b.id, p.n, null);

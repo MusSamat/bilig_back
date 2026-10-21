@@ -109,3 +109,21 @@ describe('КТП .docx', () => {
     expect(p.rows[0].note).toBe('Bilig: Тема');
   });
 });
+
+describe('the contents reader on a real text PDF (Физика 7, 2023, Russian)', () => {
+  it('58 §, labs inside §, chapter tests, page footers and appendices handled', () => {
+    const text = readFileSync(new URL('./contents-ru-phys7-2023.txt', import.meta.url), 'utf8');
+    const ch = parseContentsText(text);
+    expect(looksParsed(ch)).toBe(true);
+    const { draft: d } = finishDraft(ch, { title: 'Физика 7', grade: 7, lang: 'ru', subjectKey: 'phys' });
+    const all = d.chapters.flatMap((c) => c.lessons);
+    expect(all.filter((l) => /^\d+$/.test(l.number) && l.kind !== 'extra' && l.number !== '' ).length + all.filter((l) => /Лабораторная работа/.test(l.title)).length).toBe(58);
+    expect(all.map((l) => l.number).filter((n) => Number(n) > 100)).toEqual([]); // no «§ 269»
+    expect(all.find((l) => l.number === '26')).toMatchObject({ kind: 'lesson', pages: { from: 116, to: 121 } });
+    expect(all.find((l) => l.number === '14')!.title).toBe('Способы изображения движения на графике. Система отсчета');
+    expect(all.filter((l) => l.kind === 'review')).toHaveLength(5);
+    expect(all.filter((l) => /Лабораторная работа/.test(l.title)).every((l) => l.kind === 'extra')).toBe(true);
+    expect(all.slice(-4).every((l) => l.kind === 'extra')).toBe(true); // the 4 appendices
+    expect(d.chapters.map((c) => c.number)).toEqual(['1', '2', '3', '4', '5', '6']);
+  });
+});

@@ -13,6 +13,7 @@
  *
  * Costs are counted per book (usage, costUsd) and per day (BOOK_BUDGET_KEY).
  */
+import { createHash } from 'node:crypto';
 import type { FastifyBaseLogger } from 'fastify';
 import { t, type Lang } from '@bilig/content-model';
 import type { Book, BookSection } from '@bilig/content-model/api';
@@ -42,7 +43,8 @@ const isRead = (p: BookPageRec) => {
 };
 const isDone = (p: BookPageRec) => isRead(p) || !!readOf(p)?.failed;
 
-export const coverPath = (id: string) => `/api/v1/books/${id}/cover`;
+/** The cover path; `?v=` changes with every new cover, so a cached old image is never shown. */
+export const coverPath = (id: string, key: string) => `/api/v1/books/${id}/cover?v=${createHash('sha256').update(key).digest('hex').slice(0, 10)}`;
 
 export function toBookDto(b: BookRec, extra: { pagesUploaded: number; sectionCount: number }): Book {
   const iso = (d: Date | null) => (d ? d.toISOString() : null);
@@ -66,7 +68,7 @@ export function toBookDto(b: BookRec, extra: { pagesUploaded: number; sectionCou
     sectionCount: extra.sectionCount,
     usage: b.usage,
     fileName: b.fileName,
-    coverUrl: b.coverKey ? coverPath(b.id) : null,
+    coverUrl: b.coverKey ? coverPath(b.id, b.coverKey) : null,
     createdAt: b.createdAt.toISOString(),
     updatedAt: b.updatedAt.toISOString(),
     publishedAt: iso(b.publishedAt),
