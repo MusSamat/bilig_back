@@ -45,7 +45,8 @@ import { getTutorSettings } from '../services/tutor-settings.js';
 /** Answers are 2–4 sentences (≈ 80–200 tokens in ky/ru): the cap stops a runaway answer, output costs 4× input. */
 const MAX_TOKENS = 450;
 /** Up to 5 short items as JSON (≈ 120–200 tokens each). */
-const GENERATE_MAX_TOKENS = 1200;
+/** Output cap for generation: room for `count` items (a Kyrgyz quiz item is up to ~450 tokens), never more than 1200. */
+const generateMaxTokens = (count: number) => Math.min(1200, 150 + 450 * count);
 /** Pool rows considered per (topic, concept, kind, language). */
 const POOL_SCAN = 500;
 /** Votes are counted once per teacher (or IP for guests) per item, for this long. */
@@ -395,10 +396,11 @@ export function registerTutor(app: FastifyInstance, deps: Deps) {
       try {
         const res = await provider.generate({
           model: settings.model,
-          system: buildSystemPrompt(pkg, lang, settings.systemPrompts[lang], 'full'),
+          // The chat's own system prompt: chat and generation share one cached prefix per topic + language.
+          system: buildSystemPrompt(pkg, lang, settings.systemPrompts[lang]),
           prompt: buildGeneratePrompt(kind, lang, need, focus, pkg, avoidLines),
           schema: generateSchema(kind),
-          maxTokens: GENERATE_MAX_TOKENS,
+          maxTokens: generateMaxTokens(need),
           grounding: { pkg, lang, kind, count: need, avoid: [...avoidSigs], ...(conceptKey ? { conceptKey } : {}) },
         });
         await limiter.add(budgetKey(clock.now()), res.usage.inputTokens + res.usage.outputTokens, 2 * 86400);

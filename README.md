@@ -120,7 +120,7 @@ All variables are documented in [`.env.example`](.env.example). The important on
 | `CORS_ORIGIN` | comma-separated client/admin origins (credentials allowed) |
 | `TUTOR_PROVIDER` | `deepseek` (in use), `anthropic` (kept), `dev` or `none`. Unset: `deepseek` with `DEEPSEEK_API_KEY`, else `dev` in development, else `none` (tutor answers 503). `dev` answers and generates from the package itself, without an LLM, and is refused in production |
 | `DEEPSEEK_API_KEY`, `DEEPSEEK_BASE_URL`, `DEEPSEEK_MODEL` | DeepSeek (OpenAI-format API, `https://api.deepseek.com`, model `deepseek-flash`) |
-| `DEEPSEEK_CHAT_THINKING`, `DEEPSEEK_GENERATE_EFFORT` | thinking for chat answers (default off: fast first token) and the reasoning effort for generation (`none`/`low`/`high`/`max`, default `low`) |
+| `DEEPSEEK_CHAT_THINKING`, `DEEPSEEK_GENERATE_EFFORT` | thinking for chat answers (default off: fast first token) and the reasoning effort for generation (`none`/`low`/`high`/`max`, default `none` since 0.9.1: reasoning is billed as output and was half the bill) |
 | `TUTOR_MODEL`, `TUTOR_FALLBACK` | the primary model (default per provider); an optional failover provider (`anthropic` / `deepseek`) |
 | `ANTHROPIC_API_KEY` | Claude, only when chosen with `TUTOR_PROVIDER=anthropic` or `TUTOR_FALLBACK=anthropic` |
 | `TUTOR_DAILY_TOKEN_BUDGET` | daily token budget; once spent the tutor answers 503 |

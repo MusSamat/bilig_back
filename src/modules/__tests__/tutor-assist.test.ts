@@ -310,6 +310,17 @@ describe('shared answers to self-contained questions (v0.9.1)', () => {
   });
 });
 
+describe('one cached prefix for chat and generation (v0.9.1)', () => {
+  it('«Ещё пример» sends the same system prompt as the chat, and an output cap sized for the items', async () => {
+    const p = new MockProvider(() => text('Ядро [[bio.nucleus]] хранит ДНК.'), () => QUIZ(1));
+    t = await makeTestApp({ tutor: p });
+    await ask({ question: 'Что хранит ядро?' });
+    await gen({ count: 1 });
+    expect(p.generateCalls[0].system).toBe(p.calls[0].system);
+    expect(p.generateCalls[0].maxTokens).toBe(600);
+  });
+});
+
 describe('feedback on generated items', () => {
   it('one vote per teacher; a report hides a new item from the pool; reasons are counted', async () => {
     t = await makeTestApp({ tutor: new MockProvider(undefined, () => QUIZ(2)) });

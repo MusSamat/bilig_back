@@ -32,7 +32,7 @@ export interface DeepSeekOptions {
   chatThinking?: boolean;
   /** Reasoning effort for chat when chatThinking is on (default low). */
   chatEffort?: DeepSeekEffort;
-  /** Reasoning effort for generation (default high; `none` = thinking off). */
+  /** Reasoning effort for generation (default `none` = thinking off: reasoning is billed as output). */
   generateEffort?: DeepSeekEffort;
   /** Tests: a fetch stand-in. */
   fetch?: typeof fetch;
@@ -78,7 +78,7 @@ export class DeepSeekProvider implements TutorProvider {
   constructor(o: DeepSeekOptions) {
     this.model = o.model ?? 'deepseek-flash';
     this.chatEffort = o.chatThinking ? (o.chatEffort ?? 'low') : null;
-    this.generateEffort = o.generateEffort ?? 'low';
+    this.generateEffort = o.generateEffort ?? 'none';
     // maxRetries 1: a failed call falls back to the client's offline index quickly.
     this.client = new OpenAI({ apiKey: o.apiKey, baseURL: o.baseURL ?? 'https://api.deepseek.com', maxRetries: 1, ...(o.fetch ? { fetch: o.fetch } : {}) });
   }

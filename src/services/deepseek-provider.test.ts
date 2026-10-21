@@ -120,11 +120,12 @@ describe('DeepSeekProvider.generate', () => {
     usage: { prompt_tokens: 300, completion_tokens: 200, total_tokens: 500 },
   });
 
-  it('JSON mode with thinking (effort low by default), the schema in a prompt that says «json»', async () => {
+  it('JSON mode without thinking by default (reasoning is billed as output), the schema in a prompt that says «json»', async () => {
     const { f, seen } = fakeDeepSeek({ json: completion('{"items":[{"q":"1"}]}') });
     const out = await new DeepSeekProvider({ apiKey: 'k', fetch: f }).generate(gen);
     expect(out).toEqual({ data: { items: [{ q: '1' }] }, usage: { inputTokens: 300, outputTokens: 200, cachedInputTokens: 0 } });
-    expect(seen[0].body).toMatchObject({ response_format: { type: 'json_object' }, thinking: { type: 'enabled' }, reasoning_effort: 'low', max_tokens: 1500 + 4096 });
+    expect(seen[0].body).toMatchObject({ response_format: { type: 'json_object' }, thinking: { type: 'disabled' }, max_tokens: 1500 });
+    expect(seen[0].body).not.toHaveProperty('reasoning_effort');
     const user = (seen[0].body.messages as { role: string; content: string }[]).find((m) => m.role === 'user')!;
     expect(user.content).toMatch(/json/);
     expect(user.content).toContain('"items"');
@@ -137,10 +138,10 @@ describe('DeepSeekProvider.generate', () => {
     }
   });
 
-  it('generateEffort none turns thinking off', async () => {
+  it('generateEffort low turns thinking on, with headroom for the reasoning', async () => {
     const { f, seen } = fakeDeepSeek({ json: completion('{}') });
-    await new DeepSeekProvider({ apiKey: 'k', fetch: f, generateEffort: 'none' }).generate(gen);
-    expect(seen[0].body).toMatchObject({ thinking: { type: 'disabled' }, max_tokens: 1500 });
+    await new DeepSeekProvider({ apiKey: 'k', fetch: f, generateEffort: 'low' }).generate(gen);
+    expect(seen[0].body).toMatchObject({ thinking: { type: 'enabled' }, reasoning_effort: 'low', max_tokens: 1500 + 4096 });
   });
 });
 
@@ -192,7 +193,7 @@ describe('config: hand-edited env files on a server', () => {
   it('an empty line means «not set», quotes are unwrapped (both used to stop the API at start)', () => {
     const c = loadConfig({ ...prod, DEEPSEEK_BASE_URL: '', DEEPSEEK_GENERATE_EFFORT: '', TUTOR_PROVIDER: '', TUTOR_FALLBACK: '', AUTH_FIXED_TOTP: '"012345"', DEEPSEEK_API_KEY: " 'sk-q' " });
     expect(c.deepseek.baseURL).toBe('https://api.deepseek.com');
-    expect(c.deepseek.generateEffort).toBe('low');
+    expect(c.deepseek.generateEffort).toBe('none');
     expect(c.authFixedTotp).toBe('012345');
     expect(c.deepseek.apiKey).toBe('sk-q');
     expect(c.tutorProvider).toBe('deepseek');

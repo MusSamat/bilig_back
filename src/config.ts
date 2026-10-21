@@ -56,10 +56,11 @@ const EnvSchema = z.object({
   DEEPSEEK_CHAT_THINKING: bool,
   /**
    * Reasoning effort for «more examples / questions» generation; `none` turns thinking off.
-   * Default `low`: reasoning tokens are billed as output; short school items need little of it,
-   * and every item is validated server-side anyway (language, length, options, duplicates).
+   * Default `none`: reasoning tokens are billed as output and were half of the whole bill (measured:
+   * 567 output tokens per request against ~150 for an answer); one short school item needs no
+   * reasoning, and every item is validated server-side anyway (language, length, options, duplicates).
    */
-  DEEPSEEK_GENERATE_EFFORT: z.enum(['none', 'low', 'high', 'max']).default('low'),
+  DEEPSEEK_GENERATE_EFFORT: z.enum(['none', 'low', 'high', 'max']).default('none'),
   TUTOR_DAILY_TOKEN_BUDGET: z.coerce.number().int().min(0).default(2_000_000),
   /** USD per 1M tokens, for the cost in logs and the eval (check the provider's price page; defaults: deepseek-flash). */
   /** Shared answers to self-contained questions (starters, first questions): a repeat costs no tokens. `0` turns it off. */

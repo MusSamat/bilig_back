@@ -47,7 +47,13 @@ Contract `@bilig/content-model` and `@bilig/permissions` 0.9.0 → **0.9.1**
   every structure's description, values (no repeats), analogies and common
   mistakes with corrections, process titles and steps' titles. Dropped from
   chat: «related» links, fun facts, the goal line, step texts. Generation of
-  examples keeps the full material.
+  examples sends the very same system prompt, so chat and generation share one
+  cached prefix per topic and language.
+- Generation without reasoning by default (`DEEPSEEK_GENERATE_EFFORT=none`):
+  reasoning tokens are billed as output and were half of the bill (measured on
+  the DeepSeek dashboard: 567 output tokens per request against ~150 for an
+  answer); the output cap follows the number of items asked (150 + 450 each,
+  at most 1200).
 - Shared answers (`TutorAnswer`, `TUTOR_ANSWER_CACHE=1` by default): a
   self-contained question — the first of a thread, or a starter / suggested
   question — without a selection is answered once per topic version
