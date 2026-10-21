@@ -8,6 +8,7 @@
  */
 import type { FastifyInstance } from 'fastify';
 import type { Assignment, AssignmentResults, SchoolClass, Student } from '@bilig/content-model/api';
+import { normalizeClassName } from '@bilig/content-model/api';
 import type { Permission } from '@bilig/permissions';
 import { newId } from '../ids.js';
 import type { Deps } from '../deps.js';
@@ -92,7 +93,7 @@ export function aggregateResults(
 export async function toClassDto(repo: Repository, c: ClassRec): Promise<SchoolClass> {
   const n = (await repo.listEnrollments({ classId: c.id, role: 'student' })).length;
   const subjectKeys = c.subjectKeys ?? (c.subjectKey ? [c.subjectKey] : []);
-  return { id: c.id, schoolId: c.schoolId, name: c.name, grade: c.grade, joinCode: c.joinCode, joinCodeEnabled: c.joinCodeEnabled, studentCount: n, subjectKey: subjectKeys[0] ?? null, subjectKeys, books: c.books ?? {} };
+  return { id: c.id, schoolId: c.schoolId, name: normalizeClassName(c.name), grade: c.grade, joinCode: c.joinCode, joinCodeEnabled: c.joinCodeEnabled, studentCount: n, subjectKey: subjectKeys[0] ?? null, subjectKeys, books: c.books ?? {} };
 }
 
 export const toAssignmentDto = (a: AssignmentRec): Assignment => ({
@@ -170,6 +171,16 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
     }
   }
 
+  /** v0.9.3: books per subject must be published books of that subject, and the subject one of the class's. */
+  async function checkBooks(books: Record<string, string>, subjects: readonly string[]): Promise<Record<string, string>> {
+    for (const [subject, id] of Object.entries(books)) {
+      const book = await repo.getBook(id);
+      if (!subjects.includes(subject) || !book || book.status !== 'published' || book.subjectKey !== subject)
+        fail('validation_failed', { detail: 'book', issues: [{ path: ['books', subject], message: 'Not a published book of a subject of this class' }] });
+    }
+    return { ...books };
+  }
+
   /** v0.8.0: the subjects a create / patch body asks for (`subjectKeys` wins); undefined = unchanged. */
   const bodySubjects = (b: { subjectKey?: string | null; subjectKeys?: string[] }): string[] | undefined =>
     b.subjectKeys !== undefined ? [...new Set(b.subjectKeys)] : b.subjectKey !== undefined ? (b.subjectKey ? [b.subjectKey] : []) : undefined;
@@ -216,9 +227,11 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
     if (!(await repo.getSchool(schoolId))) fail('not_found', { detail: 'school' });
     const subjects = bodySubjects(body) ?? [];
     await checkSubjects(schoolId, subjects);
+    // v0.9.3: the books chosen in the new class form — only for the class's subjects.
+    const books = body.books ? await checkBooks(body.books, subjects) : {};
     let created: ClassRec | 'conflict' = 'conflict';
     for (let i = 0; i < 5 && created === 'conflict'; i++) {
-      created = await repo.createClass({ id: newId(), schoolId, name: body.name, grade: body.grade, joinCode: await uniqueJoinCode(), joinCodeEnabled: true, subjectKey: subjects[0] ?? null, subjectKeys: subjects, createdBy: uid, createdAt: clock.now(), deletedAt: null });
+      created = await repo.createClass({ id: newId(), schoolId, name: normalizeClassName(body.name), grade: body.grade, joinCode: await uniqueJoinCode(), joinCodeEnabled: true, subjectKey: subjects[0] ?? null, subjectKeys: subjects, ...(Object.keys(books).length ? { books } : {}), createdBy: uid, createdAt: clock.now(), deletedAt: null });
     }
     if (created === 'conflict') fail('conflict');
     if (auth.grants.some((g) => g.role === 'teacher' && g.scopeId === schoolId)) await repo.addEnrollment({ classId: created.id, userId: uid, role: 'teacher' });
@@ -240,18 +253,11 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
     let books: Record<string, string> | undefined;
     if (bookPatch) {
       books = { ...(cls.books ?? {}) };
-      for (const [subject, id] of Object.entries(bookPatch)) {
-        if (id === null) {
-          delete books[subject];
-          continue;
-        }
-        const book = await repo.getBook(id);
-        if (!book || book.status !== 'published' || book.subjectKey !== subject)
-          fail('validation_failed', { detail: 'book', issues: [{ path: ['books', subject], message: 'Not a published book of this subject' }] });
-        books[subject] = id;
-      }
+      for (const [subject, id] of Object.entries(bookPatch)) if (id === null) delete books[subject];
+      const set = Object.fromEntries(Object.entries(bookPatch).filter((e): e is [string, string] => e[1] !== null));
+      Object.assign(books, await checkBooks(set, subjects ?? cls.subjectKeys ?? []));
     }
-    const next = await repo.updateClass(cls.id, { ...rest, ...(subjects ? { subjectKeys: subjects } : {}), ...(books ? { books } : {}) });
+    const next = await repo.updateClass(cls.id, { ...rest, ...(rest.name !== undefined ? { name: normalizeClassName(rest.name) } : {}), ...(subjects ? { subjectKeys: subjects } : {}), ...(books ? { books } : {}) });
     if (!next || next === 'conflict') fail('conflict');
     const uid = ctx.auth.user!.id;
     await audit.log(uid, 'class.updated', { type: 'class', id: cls.id, label: next.name }, {

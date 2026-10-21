@@ -35,12 +35,12 @@ describe('POST /ktp', () => {
     const res = await upload(teacher.token, algebraKtp());
     expect(res.statusCode, res.body).toBe(200);
     const p = json(res);
-    expect(p).toMatchObject({ version: 1, ownerId: teacher.user.id, subjectName: 'алгебра', subjectKey: 'math', grade: 8, lang: 'ky', classes: ['8б', '8в'], year: 2026, declaredHours: 136, totalHours: 138, sourceName: 'КТП алгебра 8.docx' });
+    expect(p).toMatchObject({ version: 1, ownerId: teacher.user.id, subjectName: 'алгебра', subjectKey: 'math', grade: 8, lang: 'ky', classes: ['8Б', '8В'], year: 2026, declaredHours: 136, totalHours: 138, sourceName: 'КТП алгебра 8.docx' });
     expect(p.rows).toHaveLength(138);
     expect(p.rows[0]).toMatchObject({ index: 1, number: 1, title: 'Сандар системасы', section: { title: 'Сан', hours: 10 }, topicKey: null });
     expect(p.rows.find((r: { title: string }) => r.title === 'Тик бурчтуу үч бурчтук. Пифагордун теоремасы')).toMatchObject({ topicKey: 'pythagorean-theorem', match: { auto: true } });
     expect(p.issues.map((i: { code: string }) => i.code)).toContain('hours_mismatch');
-    expect(p.issues.find((i: { code: string }) => i.code === 'date_invalid')).toEqual({ code: 'date_invalid', severity: 'error', row: 109, class: '8в', params: { date: '31.04.27' } });
+    expect(p.issues.find((i: { code: string }) => i.code === 'date_invalid')).toEqual({ code: 'date_invalid', severity: 'error', row: 109, class: '8В', params: { date: '31.04.27' } });
     expect(p).not.toHaveProperty('invalidDates');
     expect(res.headers.etag).toBe('"1"');
     const audit = await t.repo.listAudit({ action: 'ktp.created', actorId: teacher.user.id }, { limit: 10 });
@@ -91,7 +91,7 @@ describe('owner-only CRUD', () => {
 
     const list = json(await t.inject({ method: 'GET', url: `${API}/ktp?limit=100`, token: teacher.token }));
     const mine = list.items.find((x: { id: string }) => x.id === p.id);
-    expect(mine).toMatchObject({ title: p.title, lessons: 138, errors: 1, totalHours: 138, classes: ['8б', '8в'], version: 1 });
+    expect(mine).toMatchObject({ title: p.title, lessons: 138, errors: 1, totalHours: 138, classes: ['8Б', '8В'], version: 1 });
     expect(mine.warnings).toBeGreaterThan(0);
     expect(mine.rows).toBeUndefined();
     expect(json(await t.inject({ method: 'GET', url: `${API}/ktp`, token: other.token })).items).toEqual([]);
@@ -107,7 +107,7 @@ describe('owner-only CRUD', () => {
 
     const ok = await patch(
       teacher.token,
-      { version: 1, title: 'Алгебра 8', teacherName: 'Асанов Б.', rows: [{ index: 109, dates: { '8в': '2027-04-02' } }, { index: 3, topicKey: 'speed' }, { index: 5, hours: 2 }] },
+      { version: 1, title: 'Алгебра 8', teacherName: 'Асанов Б.', rows: [{ index: 109, dates: { '8В': '2027-04-02' } }, { index: 3, topicKey: 'speed' }, { index: 5, hours: 2 }] },
       '"1"',
     );
     expect(ok.statusCode, ok.body).toBe(200);
@@ -145,14 +145,21 @@ describe('lesson plan downloads', () => {
     scienceId = json(await upload(teacher.token, scienceKtp())).id;
   });
 
-  it('one lesson: the official form as .docx with a UTF-8 file name', async () => {
+  it('v0.9.3: class labels in capitals; an old lowercase link (?class=8б) still finds «8Б»', async () => {
+    const p = json(await t.inject({ method: 'GET', url: `${API}/ktp/${algebraId}`, token: teacher.token }));
+    expect(p.classes).toEqual(['8Б', '8В']);
     const res = await t.inject({ method: 'GET', url: `${API}/ktp/${algebraId}/lessons/1/plan?class=${encodeURIComponent('8б')}`, token: teacher.token });
+    expect(res.statusCode).toBe(200);
+  });
+
+  it('one lesson: the official form as .docx with a UTF-8 file name', async () => {
+    const res = await t.inject({ method: 'GET', url: `${API}/ktp/${algebraId}/lessons/1/plan?class=${encodeURIComponent('8Б')}`, token: teacher.token });
     expect(res.statusCode, res.body).toBe(200);
     expect(res.headers['content-type']).toContain(DOCX_MEDIA_TYPE);
-    expect(res.headers['content-disposition']).toBe(`attachment; filename="plan_8b_2026-09-15_1.docx"; filename*=UTF-8''plan_8%D0%B1_2026-09-15_1.docx`);
+    expect(res.headers['content-disposition']).toBe(`attachment; filename="plan_8B_2026-09-15_1.docx"; filename*=UTF-8''plan_8%D0%91_2026-09-15_1.docx`);
     const lines = dumpDocx(res.rawPayload);
     const text = lines.join('\n');
-    expect(text).toContain('8б -класс');
+    expect(text).toContain('8Б -класс');
     expect(text).toContain('Числосу: 15.09.2026');
     expect(text).toContain('Сабактын темасы: Сандар системасы');
     expect(text).toContain('Предмети: Алгебра');
@@ -165,7 +172,7 @@ describe('lesson plan downloads', () => {
   });
 
   it('content from the linked topic (speed): goal, tour, mini-test, § 8.1 and pages; in Russian on request', async () => {
-    const ky = await t.inject({ method: 'GET', url: `${API}/ktp/${scienceId}/lessons/1/plan?class=${encodeURIComponent('8а')}`, token: teacher.token });
+    const ky = await t.inject({ method: 'GET', url: `${API}/ktp/${scienceId}/lessons/1/plan?class=${encodeURIComponent('8А')}`, token: teacher.token });
     expect(ky.statusCode, ky.body).toBe(200);
     const text = docxText(ky.rawPayload);
     expect(text).toContain('Сабактын милдети: Ылдамдыкты v = s/t формуласы боюнча эсептөө');
@@ -173,7 +180,7 @@ describe('lesson plan downloads', () => {
     expect(text).toContain('Ылдамдыкты кайсы формула менен эсептейбиз?');
     expect(text).toContain('Табигый илимдер 8, § 8.1, 176–185-беттер');
     expect(text).toContain('Bilig: «Ылдамдык»');
-    const ru = await t.inject({ method: 'GET', url: `${API}/ktp/${scienceId}/lessons/1/plan?class=${encodeURIComponent('8а')}&lang=ru`, token: teacher.token });
+    const ru = await t.inject({ method: 'GET', url: `${API}/ktp/${scienceId}/lessons/1/plan?class=${encodeURIComponent('8А')}&lang=ru`, token: teacher.token });
     const rt = docxText(ru.rawPayload);
     expect(rt).toContain('Ход урока:');
     expect(rt).toContain('Естественные науки 8, § 8.1, стр. 176–185');
@@ -181,9 +188,9 @@ describe('lesson plan downloads', () => {
   });
 
   it('a range: one .docx with a plan per page; limits and errors', async () => {
-    const res = await t.inject({ method: 'GET', url: `${API}/ktp/${algebraId}/plans?class=${encodeURIComponent('8в')}&from=8&to=12`, token: teacher.token });
+    const res = await t.inject({ method: 'GET', url: `${API}/ktp/${algebraId}/plans?class=${encodeURIComponent('8В')}&from=8&to=12`, token: teacher.token });
     expect(res.statusCode, res.body).toBe(200);
-    expect(res.headers['content-disposition']).toContain(`filename*=UTF-8''plans_8%D0%B2_8-12.docx`);
+    expect(res.headers['content-disposition']).toContain(`filename*=UTF-8''plans_8%D0%92_8-12.docx`);
     const lines = dumpDocx(res.rawPayload);
     expect(lines.filter((l) => l === '\f')).toHaveLength(4);
     expect(lines.filter((l) => l.startsWith('Сабактын темасы:'))).toEqual([

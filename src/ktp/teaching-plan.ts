@@ -3,7 +3,7 @@
  * PATCH (re-validate, never re-parse), and map to the contract DTOs. Pure.
  */
 import type { Lang } from '@bilig/content-model';
-import type { KtpPatchRequest, KtpRow, TeachingPlan, TeachingPlanSummary } from '@bilig/content-model/api';
+import { normalizeClassName, type KtpPatchRequest, type KtpRow, type TeachingPlan, type TeachingPlanSummary } from '@bilig/content-model/api';
 import type { TeachingPlanRec } from '../repo/types.js';
 import { lessonType } from './lesson-type.js';
 import { applyMatches, type TopicIndex } from './match.js';
@@ -119,8 +119,27 @@ export function patchPlanDoc(doc: PlanDoc, body: KtpPatchRequest, src: MatchSour
   return recheck(rest);
 }
 
+/** A КТП class label as Bilig shows it: capitals, no spaces («8б» → «8Б», «8 «В»» was read as «8В»). */
+export const ktpClass = (label: string) => normalizeClassName(label).replace(/\s+/g, '');
+
+/**
+ * v0.9.3: the class labels of a stored plan in capitals — the class columns, the date keys, the class
+ * links and the impossible dates (plans saved before kept them as typed). Issues are rechecked.
+ */
+export function normalizePlanClasses(doc: PlanDoc): PlanDoc {
+  if (doc.classes.every((c) => ktpClass(c) === c)) return doc;
+  const keys = <T,>(o: Record<string, T> | undefined) => (o ? Object.fromEntries(Object.entries(o).map(([k, v]) => [ktpClass(k), v])) : o);
+  return recheck({
+    ...doc,
+    classes: [...new Set(doc.classes.map(ktpClass))],
+    rows: doc.rows.map((r) => ({ ...r, dates: keys(r.dates)! })),
+    ...(doc.classLinks ? { classLinks: keys(doc.classLinks) } : {}),
+    invalidDates: Object.fromEntries(Object.entries(doc.invalidDates ?? {}).map(([i, m]) => [i, keys(m)!])),
+  });
+}
+
 export function toTeachingPlan(rec: TeachingPlanRec): TeachingPlan {
-  const { invalidDates: _inv, ...d } = rec.doc as PlanDoc;
+  const { invalidDates: _inv, ...d } = normalizePlanClasses(rec.doc as PlanDoc);
   return {
     ...d,
     id: rec.id,
@@ -133,7 +152,7 @@ export function toTeachingPlan(rec: TeachingPlanRec): TeachingPlan {
 }
 
 export function toSummary(rec: TeachingPlanRec): TeachingPlanSummary {
-  const d = rec.doc as PlanDoc;
+  const d = normalizePlanClasses(rec.doc as PlanDoc);
   return {
     id: rec.id,
     title: rec.title,

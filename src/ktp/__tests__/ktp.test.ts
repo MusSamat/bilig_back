@@ -50,7 +50,7 @@ describe('docx reader', () => {
         {
           table: [
             [{ text: '№', vMerge: 'restart' }, { text: 'Дата', span: 2 }, 'x'],
-            [{ vMerge: 'continue' }, '8б', '8в', 'y'],
+            [{ vMerge: 'continue' }, '8Б', '8В', 'y'],
             ['1', 'z'],
           ],
           gridBefore: { 2: 2 },
@@ -132,12 +132,12 @@ describe('docx reader', () => {
 // the real algebra КТП (structure of the prototype's parsed.json)
 // ---------------------------------------------------------------------------
 
-describe('parse: algebra КТП (8б, 8в)', () => {
+describe('parse: algebra КТП (8Б, 8В)', () => {
   const p = parse(algebraKtp());
   const byTitle = (re: RegExp) => p.rows.filter((r) => re.test(r.title));
 
   it('counts lessons, classes and sections', () => {
-    expect(p.classes).toEqual(['8б', '8в']);
+    expect(p.classes).toEqual(['8Б', '8В']);
     expect(p.rows).toHaveLength(138);
     expect(p.rows.reduce((s, r) => s + r.hours, 0)).toBe(138);
     const sections = [...new Set(p.rows.filter((r) => r.section).map((r) => r.section!.title))];
@@ -170,7 +170,7 @@ describe('parse: algebra КТП (8б, 8в)', () => {
     expect(byTitle(/Координата жөнүндө/)[0].section).toEqual({ title: 'Координаталар жана өзгөртүп түзүүлөр', hours: 8 });
     // «10. Ыктымалдуулук (9 саат)» alone in a numbered, dated row: starts the section and stays a lesson (the section's 9 hours count it)
     const prob = p.rows.find((r) => r.section?.title === 'Ыктымалдуулук')!;
-    expect(prob).toMatchObject({ number: 25, title: 'Ыктымалдуулук', dates: { '8б': '2027-04-17' } });
+    expect(prob).toMatchObject({ number: 25, title: 'Ыктымалдуулук', dates: { '8Б': '2027-04-17' } });
     expect(p.rows.filter((r) => r.section?.title === 'Ыктымалдуулук')).toHaveLength(9);
     expect(p.rows.some((r) => /саат\)|\(\d+ саат/.test(r.title) || /^\d+\./.test(r.title))).toBe(false);
   });
@@ -181,7 +181,7 @@ describe('parse: algebra КТП (8б, 8в)', () => {
         { p: 'Физика предмети боюнча 7-класс үчүн календардык-тематикалык план, 2026-2027-окуу жылы' },
         {
           table: [
-            ['№', 'Сабактын темасы', 'Саат', '7а'],
+            ['№', 'Сабактын темасы', 'Саат', '7А'],
             [{ text: 'I бөлүм. Механикалык кыймыл (2 саат)', span: 4 }],
             ['1', 'Кыймыл', '1', '02.09'],
             ['', 'Ылдамдык (2 саат)', '', ''],
@@ -209,8 +209,8 @@ describe('parse: algebra КТП (8б, 8в)', () => {
 
   it('F4: merged «43\\n44» row → two lessons with their own dates and 1 hour each', () => {
     expect(p.rows.slice(-2).map((r) => [r.number, r.title, r.hours, r.dates])).toEqual([
-      [43, 'Жалпы кайталоо', 1, { '8б': '2027-05-24', '8в': '2027-05-24' }],
-      [44, 'Жалпы кайталоо', 1, { '8б': '2027-05-25', '8в': '2027-05-25' }],
+      [43, 'Жалпы кайталоо', 1, { '8Б': '2027-05-24', '8В': '2027-05-24' }],
+      [44, 'Жалпы кайталоо', 1, { '8Б': '2027-05-25', '8В': '2027-05-25' }],
     ]);
   });
 
@@ -218,18 +218,18 @@ describe('parse: algebra КТП (8б, 8в)', () => {
     const issues = validate(p.rows, { classes: p.classes, year: p.meta.year, declaredHours: p.meta.declaredHours }, p.invalidDates);
     expect(issues.map((i) => `${i.code}:${i.row ?? ''}:${i.class ?? ''}`)).toEqual([
       'hours_mismatch::',
-      'date_holiday:90:8б',
-      'date_holiday:90:8в',
-      'date_holiday:103:8б',
-      'date_holiday:103:8в',
-      'date_invalid:109:8в',
+      'date_holiday:90:8Б',
+      'date_holiday:90:8В',
+      'date_holiday:103:8Б',
+      'date_holiday:103:8В',
+      'date_invalid:109:8В',
       'section_hours_mismatch:128:',
     ]);
     expect(issues[0]).toMatchObject({ severity: 'warning', params: { declared: 136, actual: 138 } });
     expect(issues.find((i) => i.code === 'date_invalid')).toMatchObject({ severity: 'error', params: { date: '31.04.27' } });
-    expect(p.rows[108]).toMatchObject({ number: 15, dates: { '8б': '2027-04-01', '8в': null } });
+    expect(p.rows[108]).toMatchObject({ number: 15, dates: { '8Б': '2027-04-01', '8В': null } });
     // 17.10.26 (ишемби) is a Saturday: no issue, no flag
-    expect(p.rows.find((r) => r.dates['8б'] === '2026-10-17')).not.toHaveProperty('saturday');
+    expect(p.rows.find((r) => r.dates['8Б'] === '2026-10-17')).not.toHaveProperty('saturday');
   });
 
   it('F10: subject from the title, teacher from the «Мугалим:» line, school year, grade, declared hours', () => {
@@ -306,11 +306,11 @@ describe('F13: header detection', () => {
     const p = parse(
       buildDocx([
         { p: 'Химия боюнча КТП, 9-класс' },
-        { table: [['№', 'Темасы', 'Саат', '9а', '9б', 'Үй тапшырма'], ['1', 'Суу', '1', '02.09.26', '03.09.26', '§1']] },
-        { table: [['2', 'Метан', '1', '04.09.26', '05.09.26', '§2'], ['№', 'Темасы', 'Саат', '9а', '9б', 'Үй тапшырма'], ['3', 'Аш тузу', '1', '07.09.26', '08.09.26', '§3']] },
+        { table: [['№', 'Темасы', 'Саат', '9А', '9Б', 'Үй тапшырма'], ['1', 'Суу', '1', '02.09.26', '03.09.26', '§1']] },
+        { table: [['2', 'Метан', '1', '04.09.26', '05.09.26', '§2'], ['№', 'Темасы', 'Саат', '9А', '9Б', 'Үй тапшырма'], ['3', 'Аш тузу', '1', '07.09.26', '08.09.26', '§3']] },
       ]),
     );
-    expect(p.classes).toEqual(['9а', '9б']);
+    expect(p.classes).toEqual(['9А', '9Б']);
     expect(p.rows.map((r) => [r.index, r.number, r.title, r.homework])).toEqual([
       [1, 1, 'Суу', '§1'],
       [2, 2, 'Метан', '§2'],
@@ -326,7 +326,7 @@ describe('F13: header detection', () => {
   });
 
   it('class labels as printed, spaces and quotes removed', () => {
-    expect(['8б', '8 «Б»', '8-Б', '8Б', '10 А', '11"В"', '8 б класс'].map(classLabel)).toEqual(['8б', '8Б', '8Б', '8Б', '10А', '11В', '8б']);
+    expect(['8Б', '8 «Б»', '8-Б', '8Б', '10 А', '11"В"', '8 б класс'].map(classLabel)).toEqual(['8Б', '8Б', '8Б', '8Б', '10А', '11В', '8Б']);
     expect(['№', 'Дата', '8', '2026'].map(classLabel)).toEqual([null, null, null, null]);
   });
 
@@ -354,8 +354,8 @@ describe('F4: lesson numbers and hours of merged rows', () => {
     expect(splitHours('2', 1)).toEqual([2]);
   });
   it('a merged row with hours «1» and one date per line', () => {
-    const p = parse(buildDocx([{ table: [['№', 'Тема', 'Саат', '5а'], ['7\n8', 'Кайталоо', '1', '10.09.26\n11.09.26']] }]));
-    expect(p.rows.map((r) => [r.number, r.hours, r.dates['5а']])).toEqual([
+    const p = parse(buildDocx([{ table: [['№', 'Тема', 'Саат', '5А'], ['7\n8', 'Кайталоо', '1', '10.09.26\n11.09.26']] }]));
+    expect(p.rows.map((r) => [r.number, r.hours, r.dates['5А']])).toEqual([
       [7, 1, '2026-09-10'],
       [8, 1, '2026-09-11'],
     ]);
@@ -542,13 +542,13 @@ describe('teaching plan document', () => {
     const doc = createPlanDoc(parse(scienceKtp()), { sourceName: 'КТП 8.docx', ...src });
     expect(doc.rows.map((r) => r.topicKey)).toEqual(['speed', 'atom-structure', null, null]);
     expect(doc.rows[0].match).toEqual({ auto: true, score: 1 });
-    expect(doc).toMatchObject({ subjectKey: null, grade: 8, classes: ['8а'], totalHours: 4, lang: 'ky' });
+    expect(doc).toMatchObject({ subjectKey: null, grade: 8, classes: ['8А'], totalHours: 4, lang: 'ky' });
   });
 
   it('PATCH keeps the teacher topic on re-validation, re-matches edited auto rows, clears a fixed impossible date', () => {
     const doc = createPlanDoc(parse(algebraKtp()), { sourceName: 'ktp.docx', ...src });
     expect(doc.issues.some((i) => i.code === 'date_invalid')).toBe(true);
-    const a = patchPlanDoc(doc, { version: 1, rows: [{ index: 109, dates: { '8в': '2027-04-02' } }, { index: 3, topicKey: 'speed' }, { index: 4, title: 'Пифагордун теоремасы' }] }, src);
+    const a = patchPlanDoc(doc, { version: 1, rows: [{ index: 109, dates: { '8В': '2027-04-02' } }, { index: 3, topicKey: 'speed' }, { index: 4, title: 'Пифагордун теоремасы' }] }, src);
     if ('error' in a) throw new Error(a.error);
     expect(a.issues.some((i) => i.code === 'date_invalid')).toBe(false);
     expect(a.rows[2]).toMatchObject({ topicKey: 'speed', match: { auto: false, score: 1 } });
@@ -568,11 +568,11 @@ describe('teaching plan document', () => {
 // ---------------------------------------------------------------------------
 
 const speedPkg = published.find((p) => p.topic.key === 'speed')!;
-const baseRow: KtpRow = { index: 1, number: 1, title: 'Ылдамдык', hours: 1, type: 'new', dates: { '8б': '2026-09-15' }, homework: '', note: '', topicKey: 'speed' };
+const baseRow: KtpRow = { index: 1, number: 1, title: 'Ылдамдык', hours: 1, type: 'new', dates: { '8Б': '2026-09-15' }, homework: '', note: '', topicKey: 'speed' };
 const input = (over: Partial<PlanInput> = {}): PlanInput => ({
   plan: { subjectName: 'алгебра', subjectKey: 'math', grade: 8, teacherName: 'Асанов Б.' },
   row: { ...baseRow, title: 'Сандар системасы', topicKey: null },
-  cls: '8б',
+  cls: '8Б',
   lang: 'ky',
   ...over,
 });
@@ -592,7 +592,7 @@ describe('plan content', () => {
     const c = buildPlanContent(input());
     expect(c.sources).toEqual(['Алгебра окуу китеби (8-класс)', 'Bilig платформасы']);
     expect(JSON.stringify(c)).not.toContain('Табигый илимдер');
-    expect(c).toMatchObject({ subject: 'Алгебра', classLabel: '8б', date: '15.09.2026', teacher: 'Асанов Б.', target: '(13-14 жаш курагындагы окуучулар үчүн, 8-класс, окутуу тили – кыргыз тилинде)' });
+    expect(c).toMatchObject({ subject: 'Алгебра', classLabel: '8Б', date: '15.09.2026', teacher: 'Асанов Б.', target: '(13-14 жаш курагындагы окуучулар үчүн, 8-класс, окутуу тили – кыргыз тилинде)' });
     expect(c.draftNote).toContain('Долбоор');
     expect(buildPlanContent(input({ lang: 'ru' })).sources[0]).toBe('Учебник «Алгебра» для 8 класса');
   });
@@ -643,7 +643,7 @@ describe('F11: plan .docx from the tagged template', () => {
       expect(text).toContain(PLAN_TEXTS[lang].draftNote);
     }
     const ky = dumpDocx(renderPlansDocx([buildPlanContent(input())]));
-    expect(ky).toContain('8б -класс                      Числосу: 15.09.2026                                    Мугалими: Асанов Б.');
+    expect(ky).toContain('8Б -класс                      Числосу: 15.09.2026                                    Мугалими: Асанов Б.');
     expect(ky).toContain('Сабактын темасы: Сандар системасы');
     expect(ky).toContain('Предмети: Алгебра');
     const ru = dumpDocx(renderPlansDocx([buildPlanContent(input({ lang: 'ru' }))])).join('\n');

@@ -70,10 +70,10 @@ describe('POST /ktp/from-textbook and GET /ktp/:id/docx', () => {
     const res = await fromTextbook({ textbookKey: 'fizika-7', hoursPerWeek: 2, year: 2026, classes: ['7 а'] });
     expect(res.statusCode, res.body).toBe(200);
     const p = json(res);
-    expect(p).toMatchObject({ subjectKey: 'phys', grade: 7, lang: 'ky', year: 2026, classes: ['7а'], declaredHours: 68, totalHours: 68, sourceName: 'Физика, 7-класс' });
+    expect(p).toMatchObject({ subjectKey: 'phys', grade: 7, lang: 'ky', year: 2026, classes: ['7А'], declaredHours: 68, totalHours: 68, sourceName: 'Физика, 7-класс' });
     expect(p.title).toMatch(/\(алдын ала\)$/);
     expect(p.rows).toHaveLength(68);
-    expect(p.issues).toEqual([{ code: 'date_missing', severity: 'info', class: '7а' }]);
+    expect(p.issues).toEqual([{ code: 'date_missing', severity: 'info', class: '7А' }]);
     const file = await t.inject({ method: 'GET', url: `${API}/ktp/${p.id}/docx`, token: teacher.token });
     expect(file.statusCode).toBe(200);
     expect(file.headers['content-type']).toContain(DOCX_MEDIA_TYPE);

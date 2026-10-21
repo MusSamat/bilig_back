@@ -11,13 +11,13 @@ import { validate } from '../validate.js';
 import { PHYS7_CONTENTS } from './contents.fixture.js';
 
 const tb = JSON.parse(readFileSync(new URL('../../../content/src/textbooks/fizika-7.json', import.meta.url), 'utf8')).textbook as Textbook;
-const draft = (hoursPerWeek: number, classes: string[] = ['7а']) => draftKtpFromTextbook(tb, 'Физика', { lang: 'ky', hoursPerWeek, weeks: 34, classes });
+const draft = (hoursPerWeek: number, classes: string[] = ['7А']) => draftKtpFromTextbook(tb, 'Физика', { lang: 'ky', hoursPerWeek, weeks: 34, classes });
 
 describe('draftKtpFromTextbook (Физика 7: 56 §, 6 tests, 8 lab works)', () => {
   it('2 lessons a week: 68 lessons in book order, without dates; labs after their topic, the test closes each chapter', () => {
     const d = draft(2);
     expect(d.rows).toHaveLength(68);
-    expect(d.rows.every((r) => r.hours === 1 && r.dates['7а'] === null)).toBe(true);
+    expect(d.rows.every((r) => r.hours === 1 && r.dates['7А'] === null)).toBe(true);
     expect(d.rows[0]).toMatchObject({ index: 1, title: '§ 1. Физика, табият жана турмуш', type: 'new', homework: '§ 1, 8–9-беттер', topicKey: 'phys7-mechanical-motion', section: { title: 'I глава. Механика. Кинематиканын негиздери' } });
     // Lab work № 1 (volume, density) right after § 16 (density), before § 17.
     const density = d.rows.findIndex((r) => r.title.includes('§ 16'));
@@ -34,7 +34,7 @@ describe('draftKtpFromTextbook (Физика 7: 56 §, 6 tests, 8 lab works)', (
     expect(d.rows.filter((r) => r.type === 'test').map((r) => r.title)[0]).toBe('Текшерүү иши: «Механика. Кинематиканын негиздери»');
     // 70 items for 68 lessons: the shortest neighbouring § were joined.
     expect(d.rows.filter((r) => /^§ \d+–\d+\./.test(r.title)).length).toBe(2);
-    expect(validate(d.rows, { classes: ['7а'], year: 2026, declaredHours: 68 }).map((i) => `${i.code}:${i.severity}`)).toEqual(['date_missing:info']);
+    expect(validate(d.rows, { classes: ['7А'], year: 2026, declaredHours: 68 }).map((i) => `${i.code}:${i.severity}`)).toEqual(['date_missing:info']);
   });
 
   it('1 lesson a week joins up to 5 § in a lesson; 3 a week adds analysis, problem solving and a final review', () => {
@@ -52,9 +52,9 @@ describe('draftKtpFromTextbook (Физика 7: 56 §, 6 tests, 8 lab works)', (
   });
 
   it('Russian titles from the textbook translations; class labels give empty date columns', () => {
-    const d = draftKtpFromTextbook(tb, 'Физика', { lang: 'ru', hoursPerWeek: 2, weeks: 34, classes: ['7а', '7б'] });
+    const d = draftKtpFromTextbook(tb, 'Физика', { lang: 'ru', hoursPerWeek: 2, weeks: 34, classes: ['7А', '7Б'] });
     expect(d.title).toBe('Физика, 7 класс: календарно-тематический план (предварительный)');
-    expect(d.rows[0]).toMatchObject({ title: '§ 1. Физика, природа и жизнь', homework: '§ 1, с. 8–9', dates: { '7а': null, '7б': null } });
+    expect(d.rows[0]).toMatchObject({ title: '§ 1. Физика, природа и жизнь', homework: '§ 1, с. 8–9', dates: { '7А': null, '7Б': null } });
   });
 });
 
@@ -99,11 +99,11 @@ describe('the contents reader', () => {
 
 describe('КТП .docx', () => {
   it('Word layout the КТП parser reads back (ky, two classes): lessons, hours, types, homework, sections, meta', () => {
-    const d = draft(2, ['7а', '7б']);
+    const d = draft(2, ['7А', '7Б']);
     const buf = ktpDocx({ title: d.title, subjectName: 'физика', grade: 7, year: 2026, lang: 'ky', teacherName: 'Асанова Айгүл', schoolName: '№5 мектеп', classes: d.classes, rows: d.rows, topicTitle: () => 'Тема', hoursPerWeek: 2 });
     const p = parseKtp(readDocx(buf), { now: new Date('2026-08-20') });
     expect(p.meta).toMatchObject({ subjectKey: 'phys', grade: 7, year: 2026, declaredHours: 68, teacherName: 'Асанова Айгүл', lang: 'ky' });
-    expect(p.classes).toEqual(['7а', '7б']);
+    expect(p.classes).toEqual(['7А', '7Б']);
     expect(p.rows.map((r) => [r.title, r.hours, r.type, r.homework])).toEqual(d.rows.map((r) => [r.title, r.hours, r.type, r.homework]));
     expect(p.rows[0].section).toEqual({ title: 'Механика. Кинематиканын негиздери', hours: 12 });
     expect(p.rows[0].note).toBe('Bilig: Тема');

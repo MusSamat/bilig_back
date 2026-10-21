@@ -4,7 +4,7 @@ import { importContent, loadContentDir } from '../../services/seed.js';
 import { MockProvider, type GenerateRequest } from '../../services/tutor-provider.js';
 import { runBookWorker } from '../../services/books.js';
 import { BOOK_SCHEMA, PAGES_SCHEMA, SECTION_SCHEMA } from '../../domain/book-read.js';
-import { API, json, makeTestApp, makeUser, type TestCtx } from '../../test/helpers.js';
+import { API, json, licenseSchool, makeTestApp, makeUser, type TestCtx } from '../../test/helpers.js';
 import { makeAdminWorld, type AdminWorld } from '../../test/admin-world.js';
 
 const PNG = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
@@ -157,5 +157,24 @@ describe('books shipped with the content (v0.9.3)', () => {
     await t.repo.updateBook(phys.id, { summary: 'staff' });
     expect((await importBooks(t.deps, seeds)).created).toEqual([]);
     expect((await t.repo.getBook(phys.id))!.summary).toBe('staff');
+  });
+});
+
+describe('class names and books in the new class form (v0.9.3)', () => {
+  it('names show in capitals (saved and old ones); the form can set the books of the class subjects', async () => {
+    const { normalizeClassName } = await import('@bilig/content-model/api');
+    expect(['8а', ' 9  б ', '7-ө', '10 «в»', '8A'].map(normalizeClassName)).toEqual(['8А', '9 Б', '7-Ө', '10 «В»', '8A']);
+    const teacher = await makeUser(t.deps, { role: 'teacher', scopeId: w.school.id });
+    await licenseSchool(t.deps, w.school.id, ['phys', 'bio'], [7]);
+    const [book] = json(await t.inject({ method: 'GET', url: `${API}/books?grade=7&subjectKey=phys&lang=ky`, token: teacher.token })).items;
+    const create = (payload: Record<string, unknown>) => t.inject({ method: 'POST', url: `${API}/classes`, token: teacher.token, payload });
+    const c = json(await create({ name: '7а', grade: 7, subjectKeys: ['phys'], books: { phys: book.id } }));
+    expect(c).toMatchObject({ name: '7А', books: { phys: book.id } });
+    expect((await create({ name: '7б', grade: 7, subjectKeys: ['bio'], books: { phys: book.id } })).statusCode).toBe(400); // not a subject of the class
+    const renamed = json(await t.inject({ method: 'PATCH', url: `${API}/classes/${c.id}`, token: teacher.token, payload: { name: '7 в' } }));
+    expect(renamed.name).toBe('7 В');
+    // A class saved before (lowercase in the database) is shown in capitals.
+    await t.repo.updateClass(c.id, { name: '7г' });
+    expect(json(await t.inject({ method: 'GET', url: `${API}/classes/${c.id}`, token: teacher.token })).name).toBe('7Г');
   });
 });

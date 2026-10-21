@@ -250,7 +250,8 @@ const TYPE_HDR = /тиби|тип\s*урока|^тип$/iu;
 
 export function classLabel(text: string): string | null {
   const m = CLASS_RE.exec(text.trim());
-  return m ? `${m[1]}${m[2]}` : null;
+  // v0.9.3: the class letter in capitals («8б» → «8Б»), as Bilig shows every class name.
+  return m ? `${m[1]}${m[2].toLocaleUpperCase('ru')}` : null;
 }
 
 interface Layout {

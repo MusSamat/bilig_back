@@ -531,7 +531,7 @@ describe('classes → subjects: КТП status, next lesson, progress; КТП cla
     const teacher = await makeUser(t.deps, { role: 'teacher', scopeId: school.id });
     const c8b = await makeClass(t.deps, school.id, teacher.user.id, '8 Б');
     const c8v = await makeClass(t.deps, school.id, teacher.user.id, '8-В');
-    const other = await makeClass(t.deps, school.id, undefined, '8г');
+    const other = await makeClass(t.deps, school.id, undefined, '8Г');
     await t.repo.updateClass(c8b.id, { subjectKeys: ['math'] });
     await t.repo.updateClass(c8v.id, { subjectKeys: ['math', 'bio'] });
 
@@ -541,7 +541,7 @@ describe('classes → subjects: КТП status, next lesson, progress; КТП cla
     const up = await req('POST', '/ktp', teacher.token, { fileName: 'КТП.docx', data: algebraKtp().toString('base64') });
     expect(up.statusCode, up.body).toBe(200);
     const plan = json(up);
-    expect(plan.classLinks).toEqual({ '8б': c8b.id, '8в': c8v.id });
+    expect(plan.classLinks).toEqual({ '8Б': c8b.id, '8В': c8v.id });
 
     t.clock.advance(30 * 86400_000); // mid-November
     teacher.token = await tokenFor(t.deps, teacher.user);
@@ -554,17 +554,17 @@ describe('classes → subjects: КТП status, next lesson, progress; КТП cla
     expect(res.progress.done).toBeLessThan(res.progress.total);
     expect(res.nextLesson.date >= '2026-11-14').toBe(true);
     const row = plan.rows.find((r: { index: number }) => r.index === res.nextLesson.index);
-    expect(row.dates['8б']).toBe(res.nextLesson.date);
-    // 8в also teaches bio: no КТП for it
+    expect(row.dates['8Б']).toBe(res.nextLesson.date);
+    // 8В also teaches bio: no КТП for it
     expect(json(await req('GET', `/classes/${c8v.id}/subjects`, teacher.token)).items.map((x: { ktp: { status: string } }) => x.ktp.status)).toEqual(['parsed', 'none']);
 
     // PATCH: unlink 8в; another teacher's class or an unknown column is refused
     const patch = (body: object, v: number) => req('PATCH', `/ktp/${plan.id}`, teacher.token, { version: v, ...body }, { 'if-match': String(v) });
-    expect((await patch({ classLinks: { '8в': other.id } }, 1)).statusCode).toBe(400);
-    expect((await patch({ classLinks: { '9а': null } }, 1)).statusCode).toBe(400);
-    const p = await patch({ classLinks: { '8в': null } }, 1);
+    expect((await patch({ classLinks: { '8В': other.id } }, 1)).statusCode).toBe(400);
+    expect((await patch({ classLinks: { '9А': null } }, 1)).statusCode).toBe(400);
+    const p = await patch({ classLinks: { '8В': null } }, 1);
     expect(p.statusCode, p.body).toBe(200);
-    expect(json(p).classLinks).toEqual({ '8б': c8b.id, '8в': null });
+    expect(json(p).classLinks).toEqual({ '8Б': c8b.id, '8В': null });
     expect(json(await req('GET', `/classes/${c8v.id}/subjects`, teacher.token)).items[0].ktp.status).toBe('none');
     expect((await journal({ action: 'ktp.updated' }))[0]).toMatchObject({ actorId: teacher.user.id, group: 'teacher_data' });
   }, 60_000);
@@ -575,8 +575,8 @@ describe('grades 1–12', () => {
     expect((await req('GET', '/textbooks?grade=12')).statusCode).toBe(200);
     expect((await req('GET', '/textbooks?grade=13')).statusCode).toBe(400);
     const { gradeOf } = await import('../../ktp/plan-content.js');
-    expect(gradeOf('12а', null)).toBe(12);
-    expect(gradeOf('13а', null)).toBeNull();
+    expect(gradeOf('12А', null)).toBe(12);
+    expect(gradeOf('13А', null)).toBeNull();
     const { cleanTeaching } = await import('../../services/teacher-signup.js');
     expect((await cleanTeaching(t.repo, { subjects: ['bio'], grades: [11, 12, 13] })).grades).toEqual([11, 12]);
   });

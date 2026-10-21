@@ -27,7 +27,7 @@ import { budgetKey } from './tutor.js';
 import { bookAsTextbook } from '../services/books.js';
 import { buildPlanContent, type PlanContent } from '../ktp/plan-content.js';
 import { renderPlansDocx } from '../ktp/plan-docx.js';
-import { createPlanDoc, patchPlanDoc, recheck, toSummary, toTeachingPlan, type MatchSources, type PlanDoc } from '../ktp/teaching-plan.js';
+import { createPlanDoc, ktpClass, normalizePlanClasses, patchPlanDoc, recheck, toSummary, toTeachingPlan, type MatchSources, type PlanDoc } from '../ktp/teaching-plan.js';
 import { taughtClasses } from '../services/profile.js';
 
 export const KTP_UPLOADS_PER_HOUR = 20;
@@ -83,7 +83,8 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
   async function own(uid: string, id: string): Promise<TeachingPlanRec> {
     const p = await repo.getTeachingPlan(id);
     if (!p || p.ownerId !== uid) fail('not_found', { detail: 'teaching_plan' });
-    return p;
+    // Class labels in capitals for every use (a plan saved before keeps «8б» in storage until its next save).
+    return { ...p, doc: normalizePlanClasses(p.doc as PlanDoc) };
   }
 
   async function sources(): Promise<MatchSources> {
@@ -91,8 +92,9 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
     return { index: buildTopicIndex(src.packages, src.textbooks), subjectKeys: src.subjectKeys };
   }
 
-  async function plansDocx(rec: TeachingPlanRec, rows: KtpRow[], cls: string, lang: Lang | undefined): Promise<Buffer> {
+  async function plansDocx(rec: TeachingPlanRec, rows: KtpRow[], asked: string, lang: Lang | undefined): Promise<Buffer> {
     const doc = rec.doc as PlanDoc;
+    const cls = ktpClass(asked); // «?class=8б» from an old link still finds «8Б»
     if (!doc.classes.includes(cls)) fail('validation_failed', { detail: `class must be one of: ${doc.classes.join(', ')}` });
     const src = await content.ktpSources();
     const byKey = new Map(src.packages.map((p) => [p.topic.key, p]));
@@ -198,8 +200,8 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
     if (!row) fail('not_found', { detail: 'lesson' });
     await downloadLimit(uid);
     const body = await plansDocx(rec, [row], query.class, query.lang);
-    const date = row.dates[query.class] ?? 'no-date';
-    return { body, contentType: DOCX_MEDIA_TYPE, filename: `plan_${safeName(query.class)}_${date}_${row.index}.docx` };
+    const date = row.dates[ktpClass(query.class)] ?? 'no-date';
+    return { body, contentType: DOCX_MEDIA_TYPE, filename: `plan_${safeName(ktpClass(query.class))}_${date}_${row.index}.docx` };
   });
 
   route(app, deps, 'ktpLessonPlans', async ({ userId, params, query }) => {
@@ -211,7 +213,7 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
     const body = await plansDocx(rec, rows, query.class, query.lang);
     const first = rows[0].index;
     const last = rows[rows.length - 1].index;
-    return { body, contentType: DOCX_MEDIA_TYPE, filename: `plans_${safeName(query.class)}_${first}-${last}.docx` };
+    return { body, contentType: DOCX_MEDIA_TYPE, filename: `plans_${safeName(ktpClass(query.class))}_${first}-${last}.docx` };
   });
 
   // --- v0.9.2: a preliminary КТП from a textbook ---------------------------------------------
@@ -342,7 +344,7 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
     const grade = book.grade;
     const subjectTitle = (subjectKey && catalog.subjects.find((s) => s.key === subjectKey)?.title) || sourceName;
     const subjectName = typeof subjectTitle === 'string' ? subjectTitle : t(subjectTitle, lang);
-    const classes = body.classes?.length ? body.classes.map((c) => c.replace(/\s+/g, '')) : grade ? [String(grade)] : [];
+    const classes = body.classes?.length ? [...new Set(body.classes.map(ktpClass))] : grade ? [String(grade)] : [];
     const draft = draftKtpFromTextbook(book, subjectName, { lang, hoursPerWeek: body.hoursPerWeek, weeks: body.weeks ?? SCHOOL_WEEKS, classes, ...(body.textbookKey && body.subjectKey ? { subjectKey: body.subjectKey } : {}) });
     const year = body.year ?? schoolYearOf(clock.now());
     const doc = recheck({

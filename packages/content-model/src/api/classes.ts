@@ -22,6 +22,13 @@ export const ClassSchema = z.object({
 export type SchoolClass = z.infer<typeof ClassSchema>;
 
 // POST /classes
+/**
+ * v0.9.3: a class name as Bilig shows it — letters in capitals («8а» → «8А», «9 б» → «9 Б», «7-ө» → «7-Ө»),
+ * spaces trimmed and collapsed; digits and separators as typed. Used on every save and every read, so old
+ * names display the same way, and for the class columns of a КТП.
+ */
+export const normalizeClassName = (name: string): string => name.replace(/\s+/g, ' ').trim().toLocaleUpperCase('ru');
+
 export const ClassCreateRequestSchema = z.object({
   name: z.string().min(1).max(40),
   grade: z.number().int().min(1).max(12),
@@ -31,6 +38,8 @@ export const ClassCreateRequestSchema = z.object({
   subjectKey: z.string().min(1).max(60).nullable().optional(),
   /** v0.8.0: wins over subjectKey when both are sent. */
   subjectKeys: z.array(z.string().min(1).max(60)).max(12).optional(),
+  /** v0.9.3: the book of each subject, chosen in the new class form (published books of those subjects). */
+  books: z.record(z.string().min(1).max(60), IdSchema).optional(),
 });
 export type ClassCreateRequest = z.infer<typeof ClassCreateRequestSchema>;
 
