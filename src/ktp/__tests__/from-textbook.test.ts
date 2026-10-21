@@ -182,3 +182,18 @@ describe('a long § over several lessons (v0.9.3)', () => {
     ]);
   });
 });
+
+describe('finishDraft always gives a draft the contract accepts', () => {
+  it('a chapter heading with no lines under it is dropped; at most 60 chapters and 200 lines in a chapter', async () => {
+    const { TextbookDraftSchema } = await import('@bilig/content-model/api');
+    const empty = parseContentsText(['МАЗМУНУ', 'I ГЛАВА. Кинематика', 'II ГЛАВА. Динамика', '§ 1. Күч ......... 3', '§ 2. Масса ......... 5', 'III ГЛАВА. Энергия'].join('\n'));
+    const a = finishDraft(empty, { title: 'Физика', grade: 7, lang: 'ky', subjectKey: 'phys' }).draft;
+    expect(TextbookDraftSchema.safeParse(a).success).toBe(true);
+    expect(a.chapters.map((c) => c.title)).toEqual(['Динамика']);
+    const many = Array.from({ length: 70 }, (_, i) => ({ number: String(i + 1), title: `Глава ${i + 1}`, lessons: Array.from({ length: 210 }, (_, j) => ({ number: String(j + 1), kind: 'lesson' as const, title: `§ ${j + 1}`, page: j + 1 })) }));
+    const b = finishDraft(many, { title: 'Китеп', grade: 7, lang: 'ky', subjectKey: null }).draft;
+    expect(TextbookDraftSchema.safeParse(b).success).toBe(true);
+    // Nothing usable at all: one placeholder chapter, still valid.
+    expect(TextbookDraftSchema.safeParse(finishDraft([{ number: '', title: '', lessons: [] }], { title: '', grade: null, lang: 'ru', subjectKey: null }).draft).success).toBe(true);
+  });
+});

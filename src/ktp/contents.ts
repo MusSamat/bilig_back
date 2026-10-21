@@ -222,8 +222,13 @@ export function fromModel(data: unknown): { chapters: ReadChapter[]; contentsIma
  * Chapters as read → the draft: page ranges (a lesson ends where the next line starts; the last one
  * spans one page), chapter titles, a book title, warnings for what the teacher should check.
  */
-export function finishDraft(chapters: ReadChapter[], meta: { title: string; grade: number | null; lang: Lang; subjectKey: string | null }): { draft: TextbookDraft; warnings: Warning[] } {
+export function finishDraft(read: ReadChapter[], meta: { title: string; grade: number | null; lang: Lang; subjectKey: string | null }): { draft: TextbookDraft; warnings: Warning[] } {
   const warnings: Warning[] = [];
+  // The contract's draft: a chapter has 1–200 lines, at most 60 chapters (a heading with nothing under it is dropped).
+  const chapters = read
+    .map((c) => ({ ...c, lessons: c.lessons.filter((l) => l.title.trim()).slice(0, 200) }))
+    .filter((c) => c.lessons.length)
+    .slice(0, 60);
   const flat = chapters.flatMap((c, ci) => c.lessons.map((l, li) => ({ l, ci, li })));
   const out: DraftChapter[] = chapters.map((c, ci) => ({
     // An unnumbered chapter (the introduction) keeps no number: «Киришүү», not «1».
@@ -239,7 +244,7 @@ export function finishDraft(chapters: ReadChapter[], meta: { title: string; grad
     }),
   }));
   if (!out.length || !out.some((c) => c.lessons.some((l) => l.kind === 'lesson'))) warnings.push({ code: 'no_lessons' });
-  return { draft: { title: (meta.title || 'Окуу китеби').slice(0, 300), grade: meta.grade, lang: meta.lang, subjectKey: meta.subjectKey, chapters: out.length ? out : [{ number: '1', title: '—', lessons: [{ number: '', kind: 'lesson', title: '—' }] }] }, warnings };
+  return { draft: { title: (meta.title.trim() || 'Окуу китеби').slice(0, 300), grade: meta.grade, lang: meta.lang, subjectKey: meta.subjectKey, chapters: out.length ? out : [{ number: '1', title: '—', lessons: [{ number: '', kind: 'lesson', title: '—' }] }] }, warnings };
 }
 
 /** Enough recognised lessons with pages to trust the text parser (else the model reads the text). */
