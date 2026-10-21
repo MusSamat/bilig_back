@@ -271,6 +271,7 @@ const mapLicense = (r: Row): LicenseRec => ({ id: r.id, schoolId: r.schoolId, su
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mapBook = (r: any): BookRec => ({
   id: r.id,
+  kind: r.kind ?? 'textbook',
   title: r.title,
   subjectKey: r.subjectKey,
   grade: r.grade,
@@ -1436,9 +1437,9 @@ export class PrismaRepository implements Repository {
     const r = await this.db.book.findUnique({ where: { id } });
     return r ? mapBook(r) : null;
   }
-  async listBooks(f: { grade?: number; subjectKey?: string; lang?: string; statuses?: BookRec['status'][] }) {
+  async listBooks(f: { grade?: number; subjectKey?: string; lang?: string; statuses?: BookRec['status'][]; kind?: BookRec['kind'] }) {
     const rows = await this.db.book.findMany({
-      where: { ...(f.grade !== undefined ? { grade: f.grade } : {}), ...(f.subjectKey ? { subjectKey: f.subjectKey } : {}), ...(f.lang ? { lang: f.lang } : {}), ...(f.statuses ? { status: { in: f.statuses } } : {}) },
+      where: { ...(f.grade !== undefined ? { grade: f.grade } : {}), ...(f.subjectKey ? { subjectKey: f.subjectKey } : {}), ...(f.lang ? { lang: f.lang } : {}), ...(f.statuses ? { status: { in: f.statuses } } : {}), ...(f.kind ? { kind: f.kind } : {}) },
       orderBy: [{ createdAt: 'desc' }, { id: 'desc' }],
     });
     return rows.map(mapBook);

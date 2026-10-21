@@ -14,6 +14,7 @@ import type { BookSectionRec } from '../repo/types.js';
 
 const SeedSchema = z.object({
   id: z.string().uuid(),
+  kind: z.enum(['textbook', 'teacher_guide']).default('textbook'),
   title: z.string().min(1).max(300),
   subjectKey: z.string().min(1),
   grade: z.number().int().min(1).max(12),
@@ -54,6 +55,7 @@ export async function importBooks(deps: Pick<Deps, 'repo' | 'clock' | 'storage'>
     }
     await deps.repo.createBook({
       id: s.id,
+      kind: s.kind,
       title: s.title,
       subjectKey: s.subjectKey,
       grade: s.grade,

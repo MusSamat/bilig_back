@@ -26,6 +26,11 @@ export const BOOK_STATUSES = ['uploading', 'queued', 'processing', 'review', 'pu
 export const BookStatusSchema = z.enum(BOOK_STATUSES);
 export type BookStatus = z.infer<typeof BookStatusSchema>;
 
+/** v0.9.4: a pupil's textbook, or a teacher's guide (lesson plans for a textbook) — not offered as a class book. */
+export const BOOK_KINDS = ['textbook', 'teacher_guide'] as const;
+export const BookKindSchema = z.enum(BOOK_KINDS);
+export type BookKind = z.infer<typeof BookKindSchema>;
+
 export const BOOK_STAGES = ['pages', 'contents', 'sections', 'book', 'done'] as const;
 export const BookStageSchema = z.enum(BOOK_STAGES);
 export type BookStage = z.infer<typeof BookStageSchema>;
@@ -77,6 +82,8 @@ export type BookSection = z.infer<typeof BookSectionSchema>;
 
 export const BookSchema = z.object({
   id: IdSchema,
+  /** v0.9.4 */
+  kind: BookKindSchema,
   title: short(300),
   subjectKey: KeySchema,
   grade: z.number().int().min(1).max(12),
@@ -122,6 +129,8 @@ export const AdminBookCreateSchema = z.object({
   /** Optional, when staff know it; the AI reads it from the cover otherwise. */
   title: z.string().trim().max(300).optional(),
   part: z.number().int().min(1).max(9).optional(),
+  /** v0.9.4 (default textbook) */
+  kind: BookKindSchema.optional(),
 });
 export type AdminBookCreate = z.infer<typeof AdminBookCreateSchema>;
 
@@ -148,11 +157,14 @@ export const AdminBookListQuerySchema = z.object({
   subjectKey: KeySchema.optional(),
   lang: LangSchema.optional(),
   status: BookStatusSchema.optional(),
+  /** v0.9.4 */
+  kind: BookKindSchema.optional(),
 });
 export const AdminBookListSchema = z.object({ items: z.array(BookSchema) });
 
 // PATCH /admin/books/:id — fix what the AI got wrong (meta and §), before or after publishing.
 export const AdminBookPatchSchema = z.object({
+  kind: BookKindSchema.optional(),
   title: short(300).optional(),
   subjectKey: KeySchema.optional(),
   grade: z.number().int().min(1).max(12).optional(),

@@ -909,9 +909,9 @@ export class MemoryRepository implements Repository {
     const b = this.books.get(id);
     return b ? clone(b) : null;
   }
-  async listBooks(f: { grade?: number; subjectKey?: string; lang?: string; statuses?: BookRec['status'][] }) {
+  async listBooks(f: { grade?: number; subjectKey?: string; lang?: string; statuses?: BookRec['status'][]; kind?: BookRec['kind'] }) {
     return [...this.books.values()]
-      .filter((b) => (f.grade === undefined || b.grade === f.grade) && (!f.subjectKey || b.subjectKey === f.subjectKey) && (!f.lang || b.lang === f.lang) && (!f.statuses || f.statuses.includes(b.status)))
+      .filter((b) => (f.grade === undefined || b.grade === f.grade) && (!f.subjectKey || b.subjectKey === f.subjectKey) && (!f.lang || b.lang === f.lang) && (!f.statuses || f.statuses.includes(b.status)) && (!f.kind || (b.kind ?? 'textbook') === f.kind))
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime() || (a.id < b.id ? 1 : -1))
       .map(clone);
   }

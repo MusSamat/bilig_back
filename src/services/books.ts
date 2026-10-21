@@ -50,6 +50,7 @@ export function toBookDto(b: BookRec, extra: { pagesUploaded: number; sectionCou
   const iso = (d: Date | null) => (d ? d.toISOString() : null);
   return {
     id: b.id,
+    kind: b.kind ?? 'textbook',
     title: b.title,
     subjectKey: b.subjectKey,
     grade: b.grade,

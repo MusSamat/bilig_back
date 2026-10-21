@@ -588,6 +588,8 @@ export interface GeneratedFilter {
 /** v0.9.3: a book of the library (staff upload, the AI reads it, staff publish). */
 export interface BookRec {
   id: Id;
+  /** v0.9.4 */
+  kind: 'textbook' | 'teacher_guide';
   title: string;
   subjectKey: string;
   grade: number;
@@ -1049,7 +1051,7 @@ export interface Repository {
   createBook(b: BookRec): Promise<void>;
   getBook(id: Id): Promise<BookRec | null>;
   /** Newest first. */
-  listBooks(filter: { grade?: number; subjectKey?: string; lang?: string; statuses?: BookRec['status'][] }): Promise<BookRec[]>;
+  listBooks(filter: { grade?: number; subjectKey?: string; lang?: string; statuses?: BookRec['status'][]; kind?: BookRec['kind'] }): Promise<BookRec[]>;
   updateBook(id: Id, patch: Partial<Omit<BookRec, 'id' | 'createdBy' | 'createdAt'>>): Promise<BookRec | null>;
   /** Take a queued / processing book whose lease ran out (oldest first), leased until `until`; null when none. */
   claimBook(now: Date, until: Date): Promise<BookRec | null>;

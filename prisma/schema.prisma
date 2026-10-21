@@ -685,6 +685,8 @@ model TutorMessage {
 /// v0.9.3: the book library — staff upload a book, the AI reads it page by page, then every §.
 model Book {
   id            String        @id @db.Uuid
+  /// v0.9.4: textbook | teacher_guide
+  kind          String        @default("textbook")
   title         String
   subjectKey    String
   grade         Int

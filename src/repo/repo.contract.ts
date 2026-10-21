@@ -792,7 +792,7 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
 
       it('books: create, filters, lease claim, pages, sections (v0.9.3)', async () => {
         const mk = (patch: Partial<BookRec> = {}): BookRec => ({
-          id: newId(), title: 'Физика 7', subjectKey: 'phys', grade: 7, lang: 'ky', part: null, authors: ['Э. М. Мамбетакунов'], publisher: '', year: 2018, summary: '',
+          id: newId(), kind: 'textbook', title: 'Физика 7', subjectKey: 'phys', grade: 7, lang: 'ky', part: null, authors: ['Э. М. Мамбетакунов'], publisher: '', year: 2018, summary: '',
           status: 'queued', stage: 'pages', progressDone: 0, progressTotal: 2, error: null, pageCount: 2, fileName: 'f.pdf', coverKey: null, contents: null,
           usage: { inputTokens: 0, cachedInputTokens: 0, outputTokens: 0, costUsd: 0 }, leaseUntil: null, createdBy: newId(), createdAt: T0, updatedAt: T0, publishedAt: null, ...patch,
         });

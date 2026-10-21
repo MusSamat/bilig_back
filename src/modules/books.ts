@@ -49,7 +49,7 @@ export function registerBooks(app: FastifyInstance, deps: Deps) {
   // --- staff ------------------------------------------------------------------------------
 
   route(app, deps, 'adminBookList', async ({ query }) => {
-    const books = await repo.listBooks({ grade: query.grade, subjectKey: query.subjectKey, lang: query.lang, ...(query.status ? { statuses: [query.status] } : {}) });
+    const books = await repo.listBooks({ grade: query.grade, subjectKey: query.subjectKey, lang: query.lang, ...(query.status ? { statuses: [query.status] } : {}), ...(query.kind ? { kind: query.kind } : {}) });
     return { items: await Promise.all(books.map(dto)) };
   });
 
@@ -59,6 +59,7 @@ export function registerBooks(app: FastifyInstance, deps: Deps) {
     const now = clock.now();
     const b: BookRec = {
       id: newId(),
+      kind: body.kind ?? 'textbook',
       title: body.title?.trim() || body.fileName.replace(/\.[^.]{1,5}$/, '').slice(0, 300),
       subjectKey: body.subjectKey,
       grade: body.grade,
@@ -198,7 +199,7 @@ export function registerBooks(app: FastifyInstance, deps: Deps) {
   }
 
   route(app, deps, 'bookList', async ({ query }) => {
-    const books = await repo.listBooks({ grade: query.grade, subjectKey: query.subjectKey, lang: query.lang, statuses: ['published'] });
+    const books = await repo.listBooks({ grade: query.grade, subjectKey: query.subjectKey, lang: query.lang, statuses: ['published'], ...(query.kind ? { kind: query.kind } : {}) });
     return { items: await Promise.all(books.map(dto)) };
   });
 

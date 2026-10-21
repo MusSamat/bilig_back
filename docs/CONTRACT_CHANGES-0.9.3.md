@@ -60,3 +60,11 @@ overwritten). The first: «Физика, 7-класс», Э. М. Мамбета�
 
 `20261023100000_contract_0_9_3`: `Book`, `BookPage`, `BookSection`,
 `Class.books`.
+
+## 0.9.4 (additive)
+
+- `Book.kind`: `textbook` | `teacher_guide` (migration `20261024100000_contract_0_9_4`, default textbook).
+  A teacher's guide is stored in the library but never offered as a class book: the class book pickers
+  ask `GET /books?kind=textbook`.
+- New subjects (status `soon`, group «Тилдер жана адабият»): `kyrgyz`, `kyrgyz-lit`, `russian`,
+  `russian-lit`, `english` — their books are kept in the library for the topics to come.
