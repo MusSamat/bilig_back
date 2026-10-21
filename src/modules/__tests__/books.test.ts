@@ -154,6 +154,13 @@ describe('books shipped with the content (v0.9.3)', () => {
     const byLang = async (lang: string) => json(await t.inject({ method: 'GET', url: `${API}/books?grade=7&subjectKey=phys&lang=${lang}`, token: fresh.token })).items.map((b: { id: string }) => b.id);
     expect(await byLang('ru')).toEqual([ru.id]);
     expect(await byLang('ky')).toContain(phys.id);
+    // Математика 7 (То Тин Лам, 2025, Kyrgyz): 10 chapters, 53 sections, a consolidation review per chapter.
+    const math = seeds.find((s) => s.subjectKey === 'math' && s.grade === 7 && s.lang === 'ky')!;
+    expect(math).toMatchObject({ authors: ['То Тин Лам'], year: 2025 });
+    expect(math.sections.filter((x) => x.kind === 'lesson')).toHaveLength(53);
+    expect(math.sections.filter((x) => x.kind === 'review')).toHaveLength(10);
+    expect(math.sections.find((x) => x.number === '4.6')).toMatchObject({ title: 'Алгебралык теңдемелер жана аларды колдонуу', pages: { from: 143, to: 149 } });
+    expect(math.cover?.length).toBeGreaterThan(10_000);
     await t.repo.updateBook(phys.id, { summary: 'staff' });
     expect((await importBooks(t.deps, seeds)).created).toEqual([]);
     expect((await t.repo.getBook(phys.id))!.summary).toBe('staff');

@@ -43,10 +43,17 @@ interface Item {
   /** Book lessons behind this item (two or more when joined). */
   lessons: TextbookLesson[];
   title: string;
+  /** A long § taught over several lessons: this is lesson k of `of`, on these printed pages. */
+  part?: { k: number; of: number; from: number; to: number };
 }
 
-const T: Record<Lang, { test: (chapter: string) => string; chapter: (n: string, title: string) => string; lab: (n: string) => string; analysis: string; practice: (title: string) => string; review: string; pages: (n: string, from: number, to: number) => string; testHw: string; labHw: string; none: string; plan: (subject: string, grade: number | null) => string }> = {
+/** Printed pages a lesson of a long § covers (about this many), when there are hours to spare. */
+const PAGES_PER_LESSON = 4;
+const MAX_PARTS = 4;
+
+const T: Record<Lang, { part: (k: number) => string; test: (chapter: string) => string; chapter: (n: string, title: string) => string; lab: (n: string) => string; analysis: string; practice: (title: string) => string; review: string; pages: (n: string, from: number, to: number) => string; testHw: string; labHw: string; none: string; plan: (subject: string, grade: number | null) => string }> = {
   ky: {
+    part: (k) => `(${k}-сабак)`,
     test: (x) => `Текшерүү иши: «${x}»`,
     chapter: (n, x) => `${n} глава. ${x}`,
     lab: (n) => `Лабораториялык иш ${n}.`,
@@ -60,6 +67,7 @@ const T: Record<Lang, { test: (chapter: string) => string; chapter: (n: string, 
     plan: (s, g) => `${s}${g ? `, ${g}-класс` : ''}: календардык-тематикалык план (алдын ала)`,
   },
   ru: {
+    part: (k) => `(урок ${k})`,
     test: (x) => `Контрольная работа: «${x}»`,
     chapter: (n, x) => `Глава ${n}. ${x}`,
     lab: (n) => `Лабораторная работа ${n}.`,
@@ -73,6 +81,7 @@ const T: Record<Lang, { test: (chapter: string) => string; chapter: (n: string, 
     plan: (s, g) => `${s}${g ? `, ${g} класс` : ''}: календарно-тематический план (предварительный)`,
   },
   en: {
+    part: (k) => `(lesson ${k})`,
     test: (x) => `Test: «${x}»`,
     chapter: (n, x) => `Chapter ${n}. ${x}`,
     lab: (n) => `Lab work ${n}.`,
@@ -87,6 +96,12 @@ const T: Record<Lang, { test: (chapter: string) => string; chapter: (n: string, 
   },
 };
 
+/** «Лабораториялык иш № 3. …» — the title as printed when it already names the work (or has no number). */
+const labTitle = (lab: TextbookLesson, lang: Lang) => {
+  const title = t(lab.title, lang);
+  return !lab.number || /лаборатор|практикалык иш|практическая|lab(oratory)? work/i.test(title) ? title : `${T[lang].lab(lab.number)} ${title}`;
+};
+
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV'];
 const pagesOf = (ls: readonly TextbookLesson[]) => ls.reduce((n, l) => n + (l.pages ? l.pages.to - l.pages.from + 1 : 2), 0);
 
@@ -94,13 +109,16 @@ function lessonList(tb: Pick<Textbook, 'chapters'>, lang: Lang, subjectKey?: str
   const chapters = tb.chapters.filter((c) => !subjectKey || c.subjectKey === subjectKey);
   // Lab works may sit in their own chapter («Лабораториялык иштер»): each goes to the chapter of its topic.
   const isLabChapter = (c: (typeof chapters)[number]) => c.lessons.every((l) => l.kind === 'extra');
+  // An «extra» line is a lesson only when it is a lab work; a chapter opener, a key ideas page or an appendix is not.
+  const isLab = (l: TextbookLesson) => l.kind === 'extra' && /лаборатор|lab(oratory)? work|практикалык иш|практическая работа/i.test(Object.values(l.title).join(' '));
+  // A chapter of lab works («Лабораториялык иштер») holds only lab works, whatever their titles say.
   const labs = chapters.filter(isLabChapter).flatMap((c) => c.lessons);
   const real = chapters.filter((c) => !isLabChapter(c));
   const items: Item[] = [];
   const placed = new Set<string>();
   real.forEach((c, ci) => {
     const lessons = c.lessons.filter((l) => l.kind === 'lesson');
-    const own = [...labs.filter((l) => !placed.has(l.key) && l.topicKeys.some((k) => lessons.some((x) => x.topicKeys.includes(k)))), ...c.lessons.filter((l) => l.kind === 'extra')];
+    const own = [...labs.filter((l) => !placed.has(l.key) && l.topicKeys.some((k) => lessons.some((x) => x.topicKeys.includes(k)))), ...c.lessons.filter(isLab)];
     for (const l of lessons) {
       items.push({ kind: 'lesson', chapter: ci, lessons: [l], title: t(l.title, lang) });
       // A lab work right after the last lesson of its topic.
@@ -108,12 +126,12 @@ function lessonList(tb: Pick<Textbook, 'chapters'>, lang: Lang, subjectKey?: str
       for (const lab of own) {
         if (placed.has(lab.key) || last(lab)?.key !== l.key) continue;
         placed.add(lab.key);
-        items.push({ kind: 'lab', chapter: ci, lessons: [lab], title: `${T[lang].lab(lab.number)} ${t(lab.title, lang)}` });
+        items.push({ kind: 'lab', chapter: ci, lessons: [lab], title: labTitle(lab, lang) });
       }
     }
     for (const lab of own.filter((l) => !placed.has(l.key))) {
       placed.add(lab.key);
-      items.push({ kind: 'lab', chapter: ci, lessons: [lab], title: `${T[lang].lab(lab.number)} ${t(lab.title, lang)}` });
+      items.push({ kind: 'lab', chapter: ci, lessons: [lab], title: labTitle(lab, lang) });
     }
     // The book's «test tasks» page becomes the chapter test lesson («Текшерүү иши» — the parser's test type).
     for (const r of c.lessons.filter((l) => l.kind === 'review')) items.push({ kind: 'test', chapter: ci, lessons: [r], title: T[lang].test(t(c.title, lang)) });
@@ -161,6 +179,33 @@ function grow(items: Item[], slots: number, chapters: { title: string }[], lang:
     });
     out.splice(i + 1, 0, it);
   };
+  // 0. Long § first: about one lesson per PAGES_PER_LESSON printed pages (at most MAX_PARTS), the longest first.
+  const pagesOf1 = (x: Item) => (x.lessons.length === 1 && x.lessons[0].pages ? x.lessons[0].pages.to - x.lessons[0].pages.from + 1 : 0);
+  const want = (x: Item) => (x.kind === 'lesson' ? Math.min(MAX_PARTS, Math.max(1, Math.round(pagesOf1(x) / PAGES_PER_LESSON))) : 1);
+  const parts = new Map<Item, number>(out.map((x) => [x, 1]));
+  while (free > 0) {
+    let best: Item | null = null;
+    for (const x of out) if (parts.get(x)! < want(x) && (!best || pagesOf1(x) / parts.get(x)! > pagesOf1(best) / parts.get(best)!)) best = x;
+    if (!best) break;
+    parts.set(best, parts.get(best)! + 1);
+    free--;
+  }
+  for (let i = out.length - 1; i >= 0; i--) {
+    const x = out[i];
+    const n = parts.get(x)!;
+    if (n < 2) continue;
+    const { from, to } = x.lessons[0].pages!;
+    const span = to - from + 1;
+    out.splice(
+      i,
+      1,
+      ...Array.from({ length: n }, (_, k): Item => {
+        const a = from + Math.floor((k * span) / n);
+        const b = from + Math.floor(((k + 1) * span) / n) - 1;
+        return { ...x, part: { k: k + 1, of: n, from: a, to: Math.max(a, b) } };
+      }),
+    );
+  }
   // 1. Analysis after each chapter test.
   for (let ci = 0; ci < chapters.length && free > 0; ci++) {
     if (!out.some((x) => x.kind === 'test' && x.chapter === ci)) continue;
@@ -204,11 +249,11 @@ export function draftKtpFromTextbook(tb: Pick<Textbook, 'chapters'> & { grade: n
     const ls = it.lessons;
     const nums = ls.map((l) => l.number).filter(Boolean);
     const number = nums.length > 1 ? `${nums[0]}–${nums.at(-1)}` : (nums[0] ?? '');
-    const from = Math.min(...ls.map((l) => l.pages?.from ?? Infinity));
-    const to = Math.max(...ls.map((l) => l.pages?.to ?? -Infinity));
+    const from = it.part?.from ?? Math.min(...ls.map((l) => l.pages?.from ?? Infinity));
+    const to = it.part?.to ?? Math.max(...ls.map((l) => l.pages?.to ?? -Infinity));
     const homework =
       it.kind === 'test' ? L.testHw : it.kind === 'lab' ? L.labHw : it.kind === 'lesson' && Number.isFinite(from) ? L.pages(number, from, to) : L.none;
-    const title = it.kind === 'lesson' ? `${number ? `§ ${number}. ` : ''}${it.title}` : it.title;
+    const title = it.kind === 'lesson' ? `${number ? `§ ${number}. ` : ''}${it.title}${it.part ? ` ${L.part(it.part.k)}` : ''}` : it.title;
     const topicKey = ls.flatMap((l) => l.topicKeys)[0] ?? null;
     return {
       index: i + 1,
@@ -216,7 +261,8 @@ export function draftKtpFromTextbook(tb: Pick<Textbook, 'chapters'> & { grade: n
       section: { title: (chapters[it.chapter].number ? L.chapter(chapters[it.chapter].number, chapters[it.chapter].title) : chapters[it.chapter].title).slice(0, 300), hours: hours[it.chapter] },
       title: title.slice(0, 500),
       hours: 1,
-      type: TYPE[it.kind],
+      // A long § over several lessons: new material, the last of them practice («бекемдөө»).
+      type: it.part && it.part.k === it.part.of ? 'practice' : TYPE[it.kind],
       dates: Object.fromEntries(o.classes.map((c) => [c, null])),
       homework: homework.slice(0, 1000),
       note: '',

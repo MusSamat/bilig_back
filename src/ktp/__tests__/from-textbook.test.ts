@@ -127,3 +127,58 @@ describe('the contents reader on a real text PDF (Физика 7, 2023, Russian)
     expect(d.chapters.map((c) => c.number)).toEqual(['1', '2', '3', '4', '5', '6']);
   });
 });
+
+describe('extras that are not lab works (v0.9.3)', () => {
+  it('a chapter opener and a key ideas page are not lessons; a lab work inside a chapter is', () => {
+    const L = (s: string) => ({ ky: s, ru: s, en: s });
+    const book = {
+      grade: 7,
+      chapters: [
+        {
+          key: 'c1', number: '1', title: L('Сандар'), subjectKey: 'math',
+          lessons: [
+            { key: 'i', number: '', kind: 'extra' as const, title: L('Бөлүмгө киришүү'), topicKeys: [] },
+            { key: 'a', number: '1.1', kind: 'lesson' as const, title: L('Амалдар'), pages: { from: 10, to: 20 }, topicKeys: [] },
+            { key: 'l', number: '', kind: 'extra' as const, title: L('Практикалык иш: ченөө'), topicKeys: [] },
+            { key: 'k', number: '', kind: 'extra' as const, title: L('Түйүндүү идеялар'), topicKeys: [] },
+            { key: 'r', number: '', kind: 'review' as const, title: L('Бышыктоо'), topicKeys: [] },
+          ],
+        },
+      ],
+    };
+    const d = draftKtpFromTextbook(book, 'Математика', { lang: 'ky', hoursPerWeek: 1, weeks: 3, classes: [] });
+    expect(d.rows.map((r) => [r.type, r.title.slice(0, 25)])).toEqual([
+      ['new', '§ 1.1. Амалдар'],
+      ['practice', 'Практикалык иш: ченөө'],
+      ['test', 'Текшерүү иши: «Сандар»'],
+    ]);
+  });
+});
+
+describe('a long § over several lessons (v0.9.3)', () => {
+  it('spare hours go to long § first (≈ 1 lesson per 4 pages), the pages split between them, the last part is practice', () => {
+    const L = (s: string) => ({ ky: s, ru: s, en: s });
+    const book = {
+      grade: 7,
+      chapters: [
+        {
+          key: 'c1', number: '1', title: L('Сандар'), subjectKey: 'math',
+          lessons: [
+            { key: 'a', number: '1.1', kind: 'lesson' as const, title: L('Амалдар'), pages: { from: 10, to: 20 }, topicKeys: [] },
+            { key: 'b', number: '1.2', kind: 'lesson' as const, title: L('Бөлүүчүлөр'), pages: { from: 21, to: 23 }, topicKeys: [] },
+            { key: 'r', number: '', kind: 'review' as const, title: L('Бышыктоо'), topicKeys: [] },
+          ],
+        },
+      ],
+    };
+    const d = draftKtpFromTextbook(book, 'Математика', { lang: 'ky', hoursPerWeek: 1, weeks: 6, classes: [] });
+    expect(d.rows.map((r) => [r.type, r.title, r.homework])).toEqual([
+      ['new', '§ 1.1. Амалдар (1-сабак)', '§ 1.1, 10–12-беттер'],
+      ['new', '§ 1.1. Амалдар (2-сабак)', '§ 1.1, 13–16-беттер'],
+      ['practice', '§ 1.1. Амалдар (3-сабак)', '§ 1.1, 17–20-беттер'],
+      ['new', '§ 1.2. Бөлүүчүлөр', '§ 1.2, 21–23-беттер'],
+      ['test', 'Текшерүү иши: «Сандар»', 'Главаны кайталоо'],
+      ['analysis', 'Текшерүү ишинин анализи. Каталар үстүндө иштөө', ''],
+    ]);
+  });
+});
