@@ -6,7 +6,8 @@
  */
 import type { FastifyInstance } from 'fastify';
 import type { Lang } from '@bilig/content-model';
-import { DOCX_MEDIA_TYPE, KTP_MAX_BYTES, type KtpRow } from '@bilig/content-model/api';
+import { t, type Textbook } from '@bilig/content-model';
+import { CONTENTS_MAX_IMAGE_BYTES, DOCX_MEDIA_TYPE, KTP_MAX_BYTES, SCHOOL_WEEKS, type KtpContentsResponse, type KtpRow, type TextbookDraft } from '@bilig/content-model/api';
 import type { Deps } from '../deps.js';
 import { fail } from '../http/errors.js';
 import { route } from '../http/route.js';
@@ -14,14 +15,36 @@ import { newId } from '../ids.js';
 import { pageOf } from '../repo/paging.js';
 import type { TeachingPlanRec } from '../repo/types.js';
 import { DocxError, readDocx } from '../ktp/docx-read.js';
-import { buildTopicIndex } from '../ktp/match.js';
-import { parseKtp } from '../ktp/parse.js';
+import { CONTENTS_SCHEMA, contentsPrompt, finishDraft, fromModel, looksParsed, parseContentsText } from '../ktp/contents.js';
+import { draftKtpFromTextbook } from '../ktp/from-textbook.js';
+import { ktpDocx } from '../ktp/ktp-docx.js';
+import { buildTopicIndex, matchTitle } from '../ktp/match.js';
+import { parseKtp, subjectKeyOf } from '../ktp/parse.js';
+import { detectLang } from '../domain/lang.js';
+import { getTutorSettings } from '../services/tutor-settings.js';
+import { usageCostUsd } from '../config.js';
+import { budgetKey } from './tutor.js';
 import { buildPlanContent, type PlanContent } from '../ktp/plan-content.js';
 import { renderPlansDocx } from '../ktp/plan-docx.js';
-import { createPlanDoc, patchPlanDoc, toSummary, toTeachingPlan, type MatchSources, type PlanDoc } from '../ktp/teaching-plan.js';
+import { createPlanDoc, patchPlanDoc, recheck, toSummary, toTeachingPlan, type MatchSources, type PlanDoc } from '../ktp/teaching-plan.js';
 import { taughtClasses } from '../services/profile.js';
 
 export const KTP_UPLOADS_PER_HOUR = 20;
+/** v0.9.2: contents readings per teacher and hour (images cost model tokens). */
+export const KTP_CONTENTS_PER_HOUR = 15;
+/** Body limit for POST /ktp/contents: up to 24 page images. */
+export const KTP_CONTENTS_BODY_LIMIT = 24 * (Math.ceil((CONTENTS_MAX_IMAGE_BYTES * 4) / 3) + 64) + 64 * 1024;
+
+/** The school year a date falls in (2026 for 1 Jul 2026 … 30 Jun 2027). */
+export const schoolYearOf = (d: Date) => (d.getUTCMonth() >= 6 ? d.getUTCFullYear() : d.getUTCFullYear() - 1);
+
+/** Text of a .docx for the contents reader: paragraphs, and table rows as «cell cell … page». */
+function docxText(buf: Buffer): string {
+  const doc = readDocx(buf);
+  return doc.blocks
+    .flatMap((b) => (b.kind === 'p' ? [b.text] : b.table.rows.map((r) => r.map((c) => c.text).filter(Boolean).join(' '))))
+    .join('\n');
+}
 export const KTP_PLAN_DOWNLOADS_PER_HOUR = 300;
 /** Body limit for POST /ktp: the contract's base64 limit (4/3 · KTP_MAX_BYTES + 8) plus room for the JSON envelope. */
 export const KTP_BODY_LIMIT = Math.ceil((KTP_MAX_BYTES * 4) / 3) + 8 + 64 * 1024;
@@ -54,7 +77,7 @@ export function matchClassLinks(columns: readonly string[], classes: readonly { 
 const safeName = (s: string) => s.replace(/[\\/:*?"<>|\u0000-\u001f]+/g, '_').slice(0, 60) || 'class';
 
 export function registerKtp(app: FastifyInstance, deps: Deps) {
-  const { repo, clock, content, limiter, audit } = deps;
+  const { repo, clock, content, limiter, audit, config } = deps;
 
   async function own(uid: string, id: string): Promise<TeachingPlanRec> {
     const p = await repo.getTeachingPlan(id);
@@ -188,5 +211,178 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
     const first = rows[0].index;
     const last = rows[rows.length - 1].index;
     return { body, contentType: DOCX_MEDIA_TYPE, filename: `plans_${safeName(query.class)}_${first}-${last}.docx` };
+  });
+
+  // --- v0.9.2: a preliminary КТП from a textbook ---------------------------------------------
+
+  route(
+    app,
+    deps,
+    'ktpContents',
+    async ({ req, userId, body }) => {
+      const uid = userId();
+      const r = await limiter.hit(`ktp-contents:${uid}`, KTP_CONTENTS_PER_HOUR, 3600);
+      if (!r.allowed) fail('rate_limited', { retryAfter: r.retryAfter });
+      const text = body.pages ? body.pages.join('\n') : body.docx ? (() => {
+        try {
+          return docxText(decodeKtpUpload(body.docx));
+        } catch (e) {
+          if (e instanceof DocxError) fail('validation_failed', { detail: `invalid .docx: ${e.code}` });
+          throw e;
+        }
+      })() : '';
+      let chapters = text ? parseContentsText(text) : [];
+      let source: KtpContentsResponse['source'] = 'text';
+      let contentsPages: number[] = [];
+      let modelTitle = '';
+      let modelGrade: number | null = null;
+      // Images, or text the parser could not read as contents: the model reads them.
+      if (body.images?.length || !looksParsed(chapters)) {
+        const settings = await getTutorSettings(repo, config);
+        const provider = deps.tutor;
+        if (!provider || !settings.enabled || provider.name === 'dev') fail('tutor_unavailable', { detail: 'offline' });
+        if ((await limiter.get(budgetKey(clock.now()))) >= settings.dailyTokenBudget) fail('tutor_unavailable', { detail: 'budget_exhausted' });
+        const images = (body.images ?? []).map((u) => (u.startsWith('data:') ? u : `data:image/jpeg;base64,${u}`));
+        if (images.some((u) => !/^data:image\/(jpeg|png|webp);base64,/.test(u))) fail('validation_failed', { detail: 'images must be JPEG, PNG or WebP' });
+        try {
+          const res = await provider.generate({
+            model: settings.model,
+            system: 'You read school textbooks for teachers in Kyrgyzstan and copy their table of contents exactly.',
+            prompt: images.length ? contentsPrompt(images.length, body.lang) : `${contentsPrompt(0, body.lang).replace(/^These are 0 page images[^\n]*\n/, 'Here is the text of the first and last pages of a school textbook.\n')}\n\n<pages>\n${text.slice(0, 60_000)}\n</pages>`,
+            schema: CONTENTS_SCHEMA,
+            maxTokens: 8000,
+            ...(images.length ? { images } : {}),
+          });
+          await limiter.add(budgetKey(clock.now()), res.usage.inputTokens + res.usage.outputTokens, 2 * 86400);
+          req.log.info({ purpose: 'ktp.contents', images: images.length, inputTokens: res.usage.inputTokens, cachedInputTokens: res.usage.cachedInputTokens ?? 0, outputTokens: res.usage.outputTokens, costUsd: Number(usageCostUsd(res.usage, config.tutorPrices).toFixed(6)) }, 'tutor.usage');
+          const m = fromModel(res.data);
+          if (m.chapters.length) [chapters, contentsPages, modelTitle, modelGrade, source] = [m.chapters, m.contentsImages, m.title, m.grade, 'assistant'];
+        } catch (err) {
+          req.log.warn({ err }, 'ktp.contents: provider failed');
+          if (!chapters.length) fail('tutor_unavailable', { detail: 'provider_error' });
+        }
+      }
+      const all = [text, modelTitle, ...chapters.flatMap((c) => [c.title, ...c.lessons.map((l) => l.title)])].join('\n');
+      const lang = body.lang ?? detectLang(all, 'ky');
+      const firstLine = text.split(/\n/).map((x) => x.trim()).find((x) => x && !/^(мазмуну|содержание|оглавление|contents)/i.test(x)) ?? '';
+      const title = modelTitle || firstLine.slice(0, 120) || body.fileName.replace(/\.[^.]{1,5}$/, '');
+      const grade = body.grade ?? modelGrade ?? (() => {
+        const g = /(?<!\d)(1[0-2]|[1-9])\s*[-‑–]?\s*(?:класс|class|кл\b|grade)/iu.exec(`${title} ${body.fileName}`) ?? /(?:grade|класс)\s*(1[0-2]|[1-9])(?!\d)/iu.exec(`${title} ${body.fileName}`);
+        return g ? Number(g[1]) : null;
+      })();
+      const src = await sources();
+      const guessed = body.subjectKey ?? subjectKeyOf(`${title} ${body.fileName}`);
+      const subjectKey = guessed && src.subjectKeys.has(guessed) ? guessed : null;
+      const { draft, warnings } = finishDraft(chapters, { title, grade, lang, subjectKey });
+      // Link every § to a Bilig topic of the book's subject and grade (the same matcher as an uploaded КТП).
+      for (const c of draft.chapters)
+        for (const l of c.lessons) {
+          if (l.kind !== 'lesson') continue;
+          const hit = matchTitle(src.index, l.title, { subjectKey, grade });
+          l.topicKey = hit?.topicKey ?? null;
+        }
+      return { draft, source, contentsPages, warnings };
+    },
+    { bodyLimit: KTP_CONTENTS_BODY_LIMIT },
+  );
+
+  route(app, deps, 'ktpFromTextbook', async ({ auth, userId, body, ip }) => {
+    const uid = userId();
+    const r = await limiter.hit(`ktp-upload:${uid}`, KTP_UPLOADS_PER_HOUR, 3600);
+    if (!r.allowed) fail('rate_limited', { retryAfter: r.retryAfter });
+    const src = await content.ktpSources();
+    const catalog = await content.catalog(body.lang ?? 'ky');
+    let book: Pick<Textbook, 'chapters'> & { grade: number | null };
+    let bookLang: Lang;
+    let subjectKey: string | null;
+    let sourceName: string;
+    if (body.textbookKey) {
+      const tb = src.textbooks.find((x) => x.key === body.textbookKey);
+      if (!tb) fail('not_found', { detail: 'textbook' });
+      book = tb;
+      bookLang = tb.lang;
+      subjectKey = body.subjectKey ?? tb.chapters[0]?.subjectKey ?? null;
+      sourceName = t(tb.title, body.lang ?? tb.lang);
+    } else {
+      const d = body.draft as TextbookDraft;
+      const index = buildTopicIndex(src.packages, src.textbooks);
+      subjectKey = body.subjectKey ?? d.subjectKey;
+      const L = (s: string) => ({ ky: s, ru: s, en: s });
+      // The teacher's draft → the textbook shape: one language for every title, topics as checked (or matched).
+      book = {
+        grade: d.grade,
+        chapters: d.chapters.map((c, ci) => ({
+          key: `c${ci}`,
+          number: c.number || '',
+          title: L(c.title),
+          subjectKey: subjectKey ?? 'x',
+          lessons: c.lessons.map((l, li) => ({
+            key: `c${ci}.l${li}`,
+            number: l.number,
+            kind: l.kind,
+            title: L(l.title),
+            ...(l.pages ? { pages: l.pages } : {}),
+            topicKeys: l.topicKey === undefined ? (l.kind === 'lesson' ? [matchTitle(index, l.title, { subjectKey, grade: d.grade })?.topicKey].filter((k): k is string => !!k) : []) : l.topicKey ? [l.topicKey] : [],
+          })),
+        })),
+      };
+      bookLang = d.lang;
+      sourceName = d.title;
+    }
+    const lang = body.lang ?? bookLang;
+    const grade = book.grade;
+    const subjectTitle = (subjectKey && catalog.subjects.find((s) => s.key === subjectKey)?.title) || sourceName;
+    const subjectName = typeof subjectTitle === 'string' ? subjectTitle : t(subjectTitle, lang);
+    const classes = body.classes?.length ? body.classes.map((c) => c.replace(/\s+/g, '')) : grade ? [String(grade)] : [];
+    const draft = draftKtpFromTextbook(book, subjectName, { lang, hoursPerWeek: body.hoursPerWeek, weeks: body.weeks ?? SCHOOL_WEEKS, classes, ...(body.textbookKey && body.subjectKey ? { subjectKey: body.subjectKey } : {}) });
+    const year = body.year ?? schoolYearOf(clock.now());
+    const doc = recheck({
+      title: draft.title,
+      subjectName,
+      subjectKey: subjectKey && src.subjectKeys.has(subjectKey) ? subjectKey : null,
+      grade,
+      lang,
+      teacherName: auth.user?.displayName ?? '',
+      schoolName: '',
+      year,
+      classes: draft.classes,
+      declaredHours: draft.rows.length,
+      rows: draft.rows,
+      sourceName: sourceName.slice(0, 200),
+      invalidDates: {},
+    });
+    doc.classLinks = matchClassLinks(doc.classes, await taughtClasses(repo, uid));
+    const now = clock.now();
+    const rec: TeachingPlanRec = { id: newId(), ownerId: uid, title: doc.title, doc, version: 1, createdAt: now, updatedAt: now };
+    await repo.createTeachingPlan(rec);
+    await audit.log(uid, 'ktp.created', { type: 'teaching_plan', id: rec.id, label: rec.title }, { ip, diff: { from: body.textbookKey ? `textbook:${body.textbookKey}` : 'contents', lessons: doc.rows.length, hoursPerWeek: body.hoursPerWeek } });
+    return toTeachingPlan(rec);
+  });
+
+  route(app, deps, 'ktpDocx', async ({ userId, params }) => {
+    const uid = userId();
+    const rec = await own(uid, params.id);
+    await downloadLimit(uid);
+    const doc = rec.doc as PlanDoc;
+    const src = await content.ktpSources();
+    const byKey = new Map(src.packages.map((p) => [p.topic.key, p]));
+    const hoursPerWeek = Math.round(doc.totalHours / SCHOOL_WEEKS) || undefined;
+    const body = ktpDocx({
+      title: doc.title,
+      subjectName: doc.subjectName,
+      grade: doc.grade,
+      year: doc.year,
+      lang: doc.lang,
+      teacherName: doc.teacherName,
+      schoolName: doc.schoolName,
+      classes: doc.classes,
+      rows: doc.rows,
+      topicTitle: (k) => {
+        const p = byKey.get(k);
+        return p ? t(p.topic.title, doc.lang) : undefined;
+      },
+      ...(hoursPerWeek && hoursPerWeek * SCHOOL_WEEKS === doc.totalHours ? { hoursPerWeek } : {}),
+    });
+    return { body, contentType: DOCX_MEDIA_TYPE, filename: `KTP_${safeName(doc.title)}.docx` };
   });
 }

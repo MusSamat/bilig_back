@@ -136,6 +136,10 @@ export const ENDPOINTS = {
   // v0.5.0: КТП → lesson plans (owner-only)
   ktpList: e({ method: 'GET', path: '/ktp', auth: 'lesson.plan', query: PageQuerySchema, response: ktp.TeachingPlanListSchema }),
   ktpCreate: e({ method: 'POST', path: '/ktp', auth: 'lesson.plan', body: ktp.KtpUploadRequestSchema, response: ktp.TeachingPlanSchema }),
+  // v0.9.2: a preliminary КТП from a textbook's contents, and any КТП as a .docx
+  ktpContents: e({ method: 'POST', path: '/ktp/contents', auth: 'lesson.plan', body: ktp.KtpContentsRequestSchema, response: ktp.KtpContentsResponseSchema }),
+  ktpFromTextbook: e({ method: 'POST', path: '/ktp/from-textbook', auth: 'lesson.plan', body: ktp.KtpFromTextbookRequestSchema, response: ktp.TeachingPlanSchema }),
+  ktpDocx: e({ method: 'GET', path: '/ktp/:id/docx', auth: 'lesson.plan', response: BinaryResponseSchema, produces: ktp.DOCX_MEDIA_TYPE }),
   ktpGet: e({ method: 'GET', path: '/ktp/:id', auth: 'lesson.plan', response: ktp.TeachingPlanSchema }),
   ktpPatch: e({ method: 'PATCH', path: '/ktp/:id', auth: 'lesson.plan', body: ktp.KtpPatchRequestSchema, response: ktp.TeachingPlanSchema, ifMatch: true }),
   ktpDelete: e({ method: 'DELETE', path: '/ktp/:id', auth: 'lesson.plan', response: OkSchema, ifMatch: true }),

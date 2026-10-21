@@ -138,6 +138,17 @@ describe('DeepSeekProvider.generate', () => {
     }
   });
 
+  it('v0.9.2: page images go first in the user message as image_url parts (images are not allowed in system)', async () => {
+    const { f, seen } = fakeDeepSeek({ json: completion('{"chapters":[]}') });
+    await new DeepSeekProvider({ apiKey: 'k', fetch: f }).generate({ ...gen, images: ['data:image/jpeg;base64,AAAA', 'data:image/png;base64,BBBB'] });
+    const msgs = seen[0].body.messages as { role: string; content: unknown }[];
+    expect(typeof msgs[0].content).toBe('string');
+    const parts = msgs[1].content as { type: string; image_url?: { url: string; detail: string }; text?: string }[];
+    expect(parts.map((p) => p.type)).toEqual(['image_url', 'image_url', 'text']);
+    expect(parts[0].image_url).toEqual({ url: 'data:image/jpeg;base64,AAAA', detail: 'high' });
+    expect(parts[2].text).toMatch(/json/);
+  });
+
   it('generateEffort low turns thinking on, with headroom for the reasoning', async () => {
     const { f, seen } = fakeDeepSeek({ json: completion('{}') });
     await new DeepSeekProvider({ apiKey: 'k', fetch: f, generateEffort: 'low' }).generate(gen);

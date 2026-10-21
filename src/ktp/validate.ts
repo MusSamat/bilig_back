@@ -58,6 +58,12 @@ export function validate(rows: readonly Row[], meta: ValidateMeta, invalidDates:
   const from = meta.year !== null ? `${meta.year}-09-01` : null;
   const to = meta.year !== null ? `${meta.year + 1}-06-30` : null;
   for (const cls of meta.classes) {
+    // v0.9.2: a column with no dates at all is a plan whose dates are still to be filled in (a КТП made
+    // from a textbook): one note for the class, not an error per lesson.
+    if (rows.every((r) => (r.dates[cls] ?? null) === null && !invalidDates[String(r.index)]?.[cls])) {
+      issues.push({ code: 'date_missing', severity: 'info', class: cls });
+      continue;
+    }
     let prev: string | null = null;
     for (const r of rows) {
       const d = r.dates[cls] ?? null;

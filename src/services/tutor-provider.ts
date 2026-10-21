@@ -44,6 +44,14 @@ export interface GenerateRequest {
   maxTokens: number;
   signal?: AbortSignal;
   grounding?: ProviderGrounding & { kind: 'simple' | 'stem' | 'quiz'; count: number; avoid: string[] };
+  /** v0.9.2: page images sent with the prompt (data URLs, JPEG / PNG / WebP) — reading a book's contents. */
+  images?: string[];
+}
+
+/** `data:image/jpeg;base64,…` → its media type and base64 body. */
+export function parseDataUrl(url: string): { mediaType: 'image/jpeg' | 'image/png' | 'image/webp' | 'image/gif'; data: string } | null {
+  const m = url.match(/^data:(image\/(?:jpeg|png|webp|gif));base64,([A-Za-z0-9+/=\s]+)$/);
+  return m ? { mediaType: m[1] as 'image/jpeg', data: m[2].replace(/\s+/g, '') } : null;
 }
 
 export interface GenerateResult {
@@ -147,7 +155,20 @@ export class AnthropicProvider implements TutorProvider {
           // Structured outputs: the reply is JSON matching the schema (validated again server-side).
           output_config: { effort: 'low', format: { type: 'json_schema', schema: req.schema } },
           system: [{ type: 'text', text: req.system, cache_control: { type: 'ephemeral' } }],
-          messages: [{ role: 'user', content: req.prompt }],
+          messages: [
+            {
+              role: 'user',
+              content: req.images?.length
+                ? [
+                    ...req.images.flatMap((u) => {
+                      const d = parseDataUrl(u);
+                      return d ? [{ type: 'image' as const, source: { type: 'base64' as const, media_type: d.mediaType, data: d.data } }] : [];
+                    }),
+                    { type: 'text' as const, text: req.prompt },
+                  ]
+                : req.prompt,
+            },
+          ],
         },
         { signal: req.signal },
       );

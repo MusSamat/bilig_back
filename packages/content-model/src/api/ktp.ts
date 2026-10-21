@@ -187,3 +187,107 @@ export const KtpLessonPlansQuerySchema = z
 export type KtpLessonPlansQuery = z.infer<typeof KtpLessonPlansQuerySchema>;
 
 export const DOCX_MEDIA_TYPE = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+
+// ---------------------------------------------------------------------------
+// v0.9.2: a preliminary КТП from a textbook's contents («Мазмуну»)
+// ---------------------------------------------------------------------------
+
+/** Page range as printed in the book. */
+export const DraftPagesSchema = z.object({ from: z.number().int().min(1).max(2000), to: z.number().int().min(1).max(2000) }).refine((p) => p.to >= p.from, { message: 'to < from', path: ['to'] });
+
+/** One line of the contents: a § / lesson, a chapter test («тесттик тапшырмалар», «текшерүү»), or an extra (lab work, appendix). */
+export const DraftLessonSchema = z.object({
+  /** As printed: «4», «4.1»; empty for a test or an unnumbered line. */
+  number: z.string().max(20),
+  kind: z.enum(['lesson', 'review', 'extra']),
+  title: z.string().trim().min(1).max(500),
+  pages: DraftPagesSchema.optional(),
+  /** Bilig topic of the lesson (from the catalog textbook, or matched by title on the server). */
+  topicKey: KeySchema.nullable().optional(),
+});
+export type DraftLesson = z.infer<typeof DraftLessonSchema>;
+
+export const DraftChapterSchema = z.object({
+  /** As printed: «1», «I», «Лаб.»; a chapter of lab works only is spread over the chapters of their topics. */
+  number: z.string().max(20),
+  title: z.string().trim().min(1).max(300),
+  lessons: z.array(DraftLessonSchema).min(1).max(200),
+});
+export type DraftChapter = z.infer<typeof DraftChapterSchema>;
+
+/** A book's contents in one language, as the teacher checked it (editable before the КТП is made). */
+export const TextbookDraftSchema = z.object({
+  title: z.string().trim().min(1).max(300),
+  grade: z.number().int().min(1).max(12).nullable(),
+  lang: LangSchema,
+  subjectKey: KeySchema.nullable(),
+  chapters: z.array(DraftChapterSchema).min(1).max(60),
+});
+export type TextbookDraft = z.infer<typeof TextbookDraftSchema>;
+
+/** Max pages sent as images for the contents search (the first and the last pages of a book). */
+export const CONTENTS_MAX_IMAGES = 24;
+/** Max bytes of one page image (JPEG / PNG / WebP). */
+export const CONTENTS_MAX_IMAGE_BYTES = 1_500_000;
+
+// POST /ktp/contents — read the contents of a book: page images (a scan or photos; the AI assistant reads
+// them), the text of the pages (a PDF with a text layer) or a .docx. Text and .docx are parsed without
+// the model when the lines look like contents; images always need the online assistant.
+export const KtpContentsRequestSchema = z
+  .object({
+    fileName: z.string().trim().min(1).max(200),
+    /** Page images as data URLs or bare base64 (JPEG / PNG / WebP), in page order. */
+    images: z.array(z.string().min(1).max(Math.ceil((CONTENTS_MAX_IMAGE_BYTES * 4) / 3) + 64)).max(CONTENTS_MAX_IMAGES).optional(),
+    /** Printed page numbers of the images when known (PDF page → book page differs). */
+    imagePages: z.array(z.number().int().min(1).max(5000)).max(CONTENTS_MAX_IMAGES).optional(),
+    /** Plain text of the pages (one page per item), e.g. from a PDF text layer. */
+    pages: z.array(z.string().max(20_000)).max(60).optional(),
+    /** A .docx, base64. */
+    docx: z.string().min(1).max(Math.ceil((KTP_MAX_BYTES * 4) / 3) + 8).optional(),
+    /** The book's language when known; detected otherwise. */
+    lang: LangSchema.optional(),
+    /** Subject and grade when the teacher knows them (they help the topic matching). */
+    subjectKey: KeySchema.optional(),
+    grade: z.number().int().min(1).max(12).optional(),
+  })
+  .refine((b) => [b.images?.length, b.pages?.length, b.docx ? 1 : 0].filter((n) => n).length === 1, { message: 'Send exactly one of images, pages or docx', path: ['images'] });
+export type KtpContentsRequest = z.input<typeof KtpContentsRequestSchema>;
+
+export const KtpContentsResponseSchema = z.object({
+  draft: TextbookDraftSchema,
+  /** How the contents were read: the text parser or the AI assistant (images / text it could not parse). */
+  source: z.enum(['text', 'assistant']),
+  /** 0-based indexes of the images (or text pages) that held the contents. */
+  contentsPages: z.array(z.number().int().min(0)),
+  /** Lines to check: «§ 12 has no page», «pages go back at § 30». */
+  warnings: z.array(z.object({ code: z.enum(['no_pages', 'pages_order', 'no_lessons', 'unmatched']), chapter: z.number().int().min(0).optional(), lesson: z.number().int().min(0).optional() })),
+});
+export type KtpContentsResponse = z.infer<typeof KtpContentsResponseSchema>;
+
+/** Weeks of lessons in a school year (Kyrgyzstan: 34). */
+export const SCHOOL_WEEKS = 34;
+
+// POST /ktp/from-textbook — make a preliminary КТП (a TeachingPlan, editable like an uploaded one) from a
+// catalog textbook or a checked contents draft. No dates: every teacher's timetable differs — the plan has
+// the lessons in book order, their § and pages, hours, types and Bilig topics; the number of lessons is
+// hours a week × weeks. Download it with GET /ktp/:id/docx.
+export const KtpFromTextbookRequestSchema = z
+  .object({
+    /** A textbook of the catalog… */
+    textbookKey: KeySchema.optional(),
+    /** …or the contents the teacher checked (POST /ktp/contents). */
+    draft: TextbookDraftSchema.optional(),
+    /** Chapters of this subject only (an integrated book spans several). */
+    subjectKey: KeySchema.optional(),
+    lang: LangSchema.optional(),
+    /** Lessons a week of the subject (the curriculum's hours). */
+    hoursPerWeek: z.number().int().min(1).max(10),
+    /** Weeks of lessons (default SCHOOL_WEEKS). */
+    weeks: z.number().int().min(10).max(40).optional(),
+    /** School year start (2026 = 2026–2027), for the title; default: the current school year. */
+    year: z.number().int().min(2020).max(2100).optional(),
+    /** Class labels for the КТП header («7а», «7б»); dates stay empty for the teacher to fill in. */
+    classes: z.array(KtpClassSchema).max(8).optional(),
+  })
+  .refine((b) => !!b.textbookKey !== !!b.draft, { message: 'Send textbookKey or draft', path: ['textbookKey'] });
+export type KtpFromTextbookRequest = z.input<typeof KtpFromTextbookRequestSchema>;

@@ -399,7 +399,9 @@ describe('F5/F6/F8: validate', () => {
     expect(codes([row(1, '2027-07-01')], { classes: ['a'], year: null, declaredHours: null })).toEqual([]);
   });
   it('missing title, missing date, hours mismatch', () => {
-    expect(codes([row(1, null, { title: ' ' })], { classes: ['a'], year: null, declaredHours: 2 })).toEqual(['hours_mismatch/warning:', 'title_missing/error:1', 'date_missing/error:1']);
+    expect(codes([row(1, null, { title: ' ' }), row(2, '2026-09-03')], { classes: ['a'], year: null, declaredHours: 3 })).toEqual(['hours_mismatch/warning:', 'title_missing/error:1', 'date_missing/error:1']);
+    // v0.9.2: a class column with no dates at all (a КТП from a textbook) is one note, not an error per lesson.
+    expect(codes([row(1, null), row(2, null)], { classes: ['a'], year: null, declaredHours: 2 })).toEqual(['date_missing/info:']);
   });
   it('declared totals in headers and footers (ky / ru)', () => {
     expect(findDeclaredHours('Жумасына 4 саат, бардыгы 136 саат')).toBe(136);

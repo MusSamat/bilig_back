@@ -23,7 +23,8 @@ export interface MatchSources {
 
 const baseName = (f: string) => f.replace(/\.[^.]{1,5}$/, '').trim();
 
-const recheck = (doc: Omit<PlanDoc, 'issues' | 'totalHours'>): PlanDoc => ({
+/** Totals and issues of a plan body (v0.9.2: also for a КТП made from a textbook). */
+export const recheck = (doc: Omit<PlanDoc, 'issues' | 'totalHours'>): PlanDoc => ({
   ...doc,
   totalHours: totalHours(doc.rows),
   issues: validate(doc.rows, { classes: doc.classes, year: doc.year, declaredHours: doc.declaredHours }, doc.invalidDates),

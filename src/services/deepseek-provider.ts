@@ -131,8 +131,12 @@ export class DeepSeekProvider implements TutorProvider {
             { role: 'system', content: req.system },
             {
               role: 'user',
-              // JSON mode needs the word «json» and the expected shape in the prompt.
-              content: `${req.prompt}\n\nReply with one json object only, matching this JSON Schema exactly:\n${JSON.stringify(req.schema)}`,
+              // JSON mode needs the word «json» and the expected shape in the prompt. Page images (v0.9.2)
+              // go first, as image_url parts of this user message (images are not allowed in system).
+              content: ((text: string) =>
+                req.images?.length ? [...req.images.map((url) => ({ type: 'image_url', image_url: { url, detail: 'high' } })), { type: 'text', text }] : text)(
+                `${req.prompt}\n\nReply with one json object only, matching this JSON Schema exactly:\n${JSON.stringify(req.schema)}`,
+              ),
             },
           ],
           max_tokens: req.maxTokens + (this.generateEffort !== 'none' ? REASONING_HEADROOM : 0),
