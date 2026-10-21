@@ -155,7 +155,7 @@ describe('books shipped with the content (v0.9.3)', () => {
     expect(await byLang('ru')).toEqual([ru.id]);
     expect(await byLang('ky')).toContain(phys.id);
     // Математика 7 (То Тин Лам, 2025, Kyrgyz): 10 chapters, 53 sections, a consolidation review per chapter.
-    const math = seeds.find((s) => s.subjectKey === 'math' && s.grade === 7 && s.lang === 'ky')!;
+    const math = seeds.find((s) => s.id === '5f0e6b5e-7c2a-4f3e-9b1d-7a0c2d4e7f03')!;
     expect(math).toMatchObject({ authors: ['То Тин Лам'], year: 2025 });
     expect(math.sections.filter((x) => x.kind === 'lesson')).toHaveLength(53);
     expect(math.sections.filter((x) => x.kind === 'review')).toHaveLength(10);
