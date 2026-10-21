@@ -73,4 +73,4 @@ overwritten). The first: «Физика, 7-класс», Э. М. Мамбета�
 
 Физика 7 (ky, ru) · Математика 7 — То Тин Лам (ky, ru) · Алгебра — Ибраева (ky) · Алгебра — Макарычев (ky) ·
 Кыргыз тили (ky) · Кыргыз адабияты (ky) · Русский язык (ru) · Литературное чтение (ru) · English 7 (en) ·
-Математика 7 teacher's guides (ky, ru; `kind: teacher_guide`). 13 books, 878 items.
+Математика 7 teacher's guides (ky, ru; `kind: teacher_guide`). 13 books, 888 items.
