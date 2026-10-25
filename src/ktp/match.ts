@@ -146,10 +146,6 @@ export interface MatchResult {
   score: number;
 }
 
-export function scoreTopic(q: readonly string[], t: TopicDoc): number {
-  return scoreParts(q, t).score;
-}
-
 /** The score, and the best match on the topic's own titles (the tie-break between equal scores). */
 function scoreParts(q: readonly string[], t: TopicDoc): { score: number; strong: number } {
   let strong = 0;

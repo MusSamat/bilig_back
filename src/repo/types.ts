@@ -253,18 +253,6 @@ export interface ContentKinds {
   textbook: Textbook;
 }
 export type ContentKind = keyof ContentKinds;
-export const CONTENT_KINDS: readonly ContentKind[] = [
-  'group',
-  'subject',
-  'course',
-  'unit',
-  'objective',
-  'concept',
-  'process',
-  'item',
-  'glossary',
-  'textbook',
-];
 
 export interface ContentRec<T> {
   id: Id;
