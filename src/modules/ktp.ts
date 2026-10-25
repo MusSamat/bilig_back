@@ -6,7 +6,7 @@
  */
 import type { FastifyInstance } from 'fastify';
 import type { Lang } from '@bilig/content-model';
-import { t, type Textbook } from '@bilig/content-model';
+import { DEFAULT_LESSON_MODEL, lessonModel, t, type Textbook } from '@bilig/content-model';
 import { CONTENTS_MAX_IMAGE_BYTES, DOCX_MEDIA_TYPE, KTP_MAX_BYTES, SCHOOL_WEEKS, type KtpContentsResponse, type KtpRow, type TextbookDraft } from '@bilig/content-model/api';
 import type { Deps } from '../deps.js';
 import { fail } from '../http/errors.js';
@@ -27,7 +27,9 @@ import { budgetKey } from './tutor.js';
 import { bookAsTextbook } from '../services/books.js';
 import { buildPlanContent, type PlanContent } from '../ktp/plan-content.js';
 import { renderPlansDocx } from '../ktp/plan-docx.js';
-import { createPlanDoc, ktpClass, normalizePlanClasses, patchPlanDoc, recheck, toSummary, toTeachingPlan, type MatchSources, type PlanDoc } from '../ktp/teaching-plan.js';
+import { lessonBodyOf } from '../ktp/lesson-content.js';
+import { lessonPlanContent } from '../ktp/lesson-plan.js';
+import { createPlanDoc, ktpClass, patchPlanDoc, planDocOf, recheck, toSummary, toTeachingPlan, type MatchSources, type PlanDoc } from '../ktp/teaching-plan.js';
 import { taughtClasses } from '../services/profile.js';
 
 export const KTP_UPLOADS_PER_HOUR = 20;
@@ -77,14 +79,70 @@ export function matchClassLinks(columns: readonly string[], classes: readonly { 
 
 const safeName = (s: string) => s.replace(/[\\/:*?"<>|\u0000-\u001f]+/g, '_').slice(0, 60) || 'class';
 
+/**
+ * v0.9.2: a preliminary КТП from a book's chapters (v0.10.0: also the chapters drafted from the subject
+ * standard): the lesson list fitted to the hours, without dates, stored as a new plan of the teacher.
+ */
+export async function createBookPlan(
+  deps: Pick<Deps, 'repo' | 'content' | 'clock'>,
+  a: {
+    ownerId: string;
+    teacherName: string;
+    book: Pick<Textbook, 'chapters'> & { grade: number | null };
+    lang: Lang;
+    subjectKey: string | null;
+    sourceName: string;
+    hoursPerWeek: number;
+    weeks?: number;
+    year?: number;
+    classes?: string[];
+    /** Only the chapters of this subject (an integrated book). */
+    onlySubject?: string;
+    origin: NonNullable<PlanDoc['origin']>;
+  },
+): Promise<TeachingPlanRec> {
+  const { repo, content, clock } = deps;
+  const src = await content.ktpSources();
+  const catalog = await content.catalog(a.lang);
+  const { book, lang, subjectKey, sourceName } = a;
+  const grade = book.grade;
+  const subjectTitle = (subjectKey && catalog.subjects.find((s) => s.key === subjectKey)?.title) || sourceName;
+  const subjectName = typeof subjectTitle === 'string' ? subjectTitle : t(subjectTitle, lang);
+  const classes = a.classes?.length ? [...new Set(a.classes.map(ktpClass))] : grade ? [String(grade)] : [];
+  const draft = draftKtpFromTextbook(book, subjectName, { lang, hoursPerWeek: a.hoursPerWeek, weeks: a.weeks ?? SCHOOL_WEEKS, classes, ...(a.onlySubject ? { subjectKey: a.onlySubject } : {}) });
+  const year = a.year ?? schoolYearOf(clock.now());
+  const doc = recheck({
+    title: draft.title,
+    subjectName,
+    subjectKey: subjectKey && src.subjectKeys.has(subjectKey) ? subjectKey : null,
+    grade,
+    lang,
+    teacherName: a.teacherName,
+    schoolName: '',
+    year,
+    classes: draft.classes,
+    declaredHours: draft.rows.length,
+    rows: draft.rows,
+    sourceName: sourceName.slice(0, 200),
+    origin: a.origin,
+    invalidDates: {},
+  });
+  doc.classLinks = matchClassLinks(doc.classes, await taughtClasses(repo, a.ownerId));
+  const now = clock.now();
+  const rec: TeachingPlanRec = { id: newId(), ownerId: a.ownerId, title: doc.title, doc, version: 1, createdAt: now, updatedAt: now };
+  await repo.createTeachingPlan(rec);
+  return rec;
+}
+
 export function registerKtp(app: FastifyInstance, deps: Deps) {
   const { repo, clock, content, limiter, audit, config } = deps;
 
   async function own(uid: string, id: string): Promise<TeachingPlanRec> {
     const p = await repo.getTeachingPlan(id);
     if (!p || p.ownerId !== uid) fail('not_found', { detail: 'teaching_plan' });
-    // Class labels in capitals for every use (a plan saved before keeps «8б» in storage until its next save).
-    return { ...p, doc: normalizePlanClasses(p.doc as PlanDoc) };
+    // Class labels in capitals and a uid on every row for every use (a plan saved before keeps «8б» and
+    // rows without uids in storage until its next save).
+    return { ...p, doc: planDocOf(p) };
   }
 
   async function sources(): Promise<MatchSources> {
@@ -99,10 +157,13 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
     const src = await content.ktpSources();
     const byKey = new Map(src.packages.map((p) => [p.topic.key, p]));
     const planLang = lang ?? doc.lang;
+    // v0.10.0: lessons with a saved lesson page are filled from it (its model, else the owner's default).
+    const saved = new Map((await repo.listLessonContents({ planIds: [rec.id], uids: rows.map((r) => r.uid) })).map((c) => [c.uid, c]));
+    const ownerModel = saved.size ? ((await repo.getUser(rec.ownerId))?.defaultLessonModel ?? null) : null;
     const contents: PlanContent[] = rows.map((row) => {
       const pkg = row.topicKey ? byKey.get(row.topicKey) : undefined;
       const prev = doc.rows.find((r) => r.index === row.index - 1) ?? null;
-      return buildPlanContent({
+      const base = buildPlanContent({
         plan: { subjectName: doc.subjectName, subjectKey: doc.subjectKey, grade: doc.grade, teacherName: doc.teacherName },
         row,
         prev,
@@ -110,6 +171,10 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
         lang: planLang,
         topic: pkg ? { pkg, textbooks: src.textbooks } : null,
       });
+      const c = saved.get(row.uid);
+      if (!c) return base;
+      const body = lessonBodyOf(c);
+      return lessonPlanContent({ base, row, body, model: lessonModel(body.modelId ?? ownerModel ?? DEFAULT_LESSON_MODEL), lang: planLang });
     });
     return renderPlansDocx(contents);
   }
@@ -145,6 +210,7 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
       }
       const src = await sources();
       const doc = createPlanDoc(parsed, { sourceName: body.fileName, lang: body.lang, index: src.index, subjectKeys: src.subjectKeys });
+      doc.origin = 'upload';
       doc.classLinks = matchClassLinks(doc.classes, await taughtClasses(repo, uid));
       const now = clock.now();
       const rec: TeachingPlanRec = { id: newId(), ownerId: uid, title: doc.title, doc, version: 1, createdAt: now, updatedAt: now };
@@ -162,7 +228,8 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
     const cur = await own(uid, params.id);
     if (ifMatch !== body.version || cur.version !== ifMatch) fail('version_mismatch', { detail: `current version is ${cur.version}` });
     const next = patchPlanDoc(cur.doc as PlanDoc, body, await sources());
-    if ('error' in next) fail('validation_failed', { detail: next.error });
+    // v0.10.0: a row patch for a row that moved (another tab inserted or removed lessons) is a conflict.
+    if ('error' in next) fail(next.conflict ? 'version_mismatch' : 'validation_failed', { detail: next.error });
     // v0.8.0: class links — a КТП class column → one of the teacher's classes (or null).
     if (body.classLinks) {
       const mine = new Set((await taughtClasses(repo, uid)).map((c) => c.id));
@@ -177,8 +244,13 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
     const res = await repo.updateTeachingPlan(cur.id, { doc: next, title: next.title }, ifMatch);
     if (res === 'not_found') fail('not_found', { detail: 'teaching_plan' });
     if (res === 'version_mismatch') fail('version_mismatch');
-    const { version: _v, rows, ...fields } = body;
-    await audit.log(uid, 'ktp.updated', { type: 'teaching_plan', id: cur.id, label: res.title }, { ip, after: { ...fields, ...(rows ? { rows: rows.length } : {}), version: res.version } });
+    // v0.10.0: a removed lesson's content goes with it.
+    if (body.remove?.length) await repo.deleteLessonContents(cur.id, body.remove);
+    const { version: _v, rows, remove, insert, ...fields } = body;
+    await audit.log(uid, 'ktp.updated', { type: 'teaching_plan', id: cur.id, label: res.title }, {
+      ip,
+      after: { ...fields, ...(rows ? { rows: rows.length } : {}), ...(remove ? { remove: remove.length } : {}), ...(insert ? { insert: insert.length } : {}), version: res.version },
+    });
     return toTeachingPlan(res);
   });
 
@@ -294,7 +366,6 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
     const r = await limiter.hit(`ktp-upload:${uid}`, KTP_UPLOADS_PER_HOUR, 3600);
     if (!r.allowed) fail('rate_limited', { retryAfter: r.retryAfter });
     const src = await content.ktpSources();
-    const catalog = await content.catalog(body.lang ?? 'ky');
     let book: Pick<Textbook, 'chapters'> & { grade: number | null };
     let bookLang: Lang;
     let subjectKey: string | null;
@@ -340,33 +411,21 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
       bookLang = d.lang;
       sourceName = d.title;
     }
-    const lang = body.lang ?? bookLang;
-    const grade = book.grade;
-    const subjectTitle = (subjectKey && catalog.subjects.find((s) => s.key === subjectKey)?.title) || sourceName;
-    const subjectName = typeof subjectTitle === 'string' ? subjectTitle : t(subjectTitle, lang);
-    const classes = body.classes?.length ? [...new Set(body.classes.map(ktpClass))] : grade ? [String(grade)] : [];
-    const draft = draftKtpFromTextbook(book, subjectName, { lang, hoursPerWeek: body.hoursPerWeek, weeks: body.weeks ?? SCHOOL_WEEKS, classes, ...(body.textbookKey && body.subjectKey ? { subjectKey: body.subjectKey } : {}) });
-    const year = body.year ?? schoolYearOf(clock.now());
-    const doc = recheck({
-      title: draft.title,
-      subjectName,
-      subjectKey: subjectKey && src.subjectKeys.has(subjectKey) ? subjectKey : null,
-      grade,
-      lang,
+    const rec = await createBookPlan(deps, {
+      ownerId: uid,
       teacherName: auth.user?.displayName ?? '',
-      schoolName: '',
-      year,
-      classes: draft.classes,
-      declaredHours: draft.rows.length,
-      rows: draft.rows,
-      sourceName: sourceName.slice(0, 200),
-      invalidDates: {},
+      book,
+      lang: body.lang ?? bookLang,
+      subjectKey,
+      sourceName,
+      hoursPerWeek: body.hoursPerWeek,
+      weeks: body.weeks,
+      year: body.year,
+      classes: body.classes,
+      ...(body.textbookKey && body.subjectKey ? { onlySubject: body.subjectKey } : {}),
+      origin: 'textbook',
     });
-    doc.classLinks = matchClassLinks(doc.classes, await taughtClasses(repo, uid));
-    const now = clock.now();
-    const rec: TeachingPlanRec = { id: newId(), ownerId: uid, title: doc.title, doc, version: 1, createdAt: now, updatedAt: now };
-    await repo.createTeachingPlan(rec);
-    await audit.log(uid, 'ktp.created', { type: 'teaching_plan', id: rec.id, label: rec.title }, { ip, diff: { from: body.textbookKey ? `textbook:${body.textbookKey}` : 'contents', lessons: doc.rows.length, hoursPerWeek: body.hoursPerWeek } });
+    await audit.log(uid, 'ktp.created', { type: 'teaching_plan', id: rec.id, label: rec.title }, { ip, diff: { from: body.textbookKey ? `textbook:${body.textbookKey}` : 'contents', lessons: (rec.doc as PlanDoc).rows.length, hoursPerWeek: body.hoursPerWeek } });
     return toTeachingPlan(rec);
   });
 

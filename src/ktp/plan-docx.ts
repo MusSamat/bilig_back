@@ -153,6 +153,20 @@ export const PLAN_LABELS: Record<Lang, PlanLabels> = {
 
 const PAGE_BREAK = '<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
 
+const xmlText = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, '');
+const RUN = '<w:rPr><w:rFonts w:ascii="Times New Roman" w:eastAsia="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/>';
+const para = (text: string, o: { bold?: boolean } = {}) =>
+  `<w:p><w:pPr><w:spacing w:after="60" w:line="240" w:lineRule="auto"/></w:pPr><w:r>${RUN}${o.bold ? '<w:b/>' : ''}<w:sz w:val="24"/><w:szCs w:val="24"/></w:rPr><w:t xml:space="preserve">${xmlText(text)}</w:t></w:r></w:p>`;
+
+/** v0.10.0: the «Тиркеме» of a plan (its ticked materials by kind) as raw paragraphs, on a new page. */
+export function appendixXml(a: NonNullable<PlanContent['appendix']>): string {
+  return [
+    PAGE_BREAK,
+    para(a.title, { bold: true }),
+    ...a.groups.flatMap((g) => [para(g.title, { bold: true }), ...g.items.flatMap((it, i) => it.split('\n').map((line, k) => para(k ? `   ${line}` : `${i + 1}. ${line}`)))]),
+  ].join('');
+}
+
 let templateBytes: Buffer | null = null;
 const template = () => (templateBytes ??= readFileSync(LESSON_PLAN_TEMPLATE));
 
@@ -179,7 +193,8 @@ export function renderPlansDocx(plans: readonly PlanContent[]): Buffer {
     nullGetter: () => '',
   });
   doc.render({
-    plans: plans.map((p, i) => ({ ...p, L: PLAN_LABELS[p.lang], pageBreak: i < plans.length - 1 ? PAGE_BREAK : '' })),
+    // The raw `{@pageBreak}` tag closes each plan: its appendix (v0.10.0), then the break before the next plan.
+    plans: plans.map((p, i) => ({ ...p, L: PLAN_LABELS[p.lang], pageBreak: (p.appendix ? appendixXml(p.appendix) : '') + (i < plans.length - 1 ? PAGE_BREAK : '') })),
   });
   return doc.getZip().generate({ type: 'nodebuffer', compression: 'DEFLATE' }) as Buffer;
 }
