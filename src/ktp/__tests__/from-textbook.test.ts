@@ -18,7 +18,10 @@ describe('draftKtpFromTextbook (Физика 7: 56 §, 6 tests, 8 lab works)', (
     const d = draft(2);
     expect(d.rows).toHaveLength(68);
     expect(d.rows.every((r) => r.hours === 1 && r.dates['7А'] === null)).toBe(true);
-    expect(d.rows[0]).toMatchObject({ index: 1, title: '§ 1. Физика, табият жана турмуш', type: 'new', homework: '§ 1, 8–9-беттер', topicKey: 'phys7-mechanical-motion', section: { title: 'I глава. Механика. Кинематиканын негиздери' } });
+    expect(d.rows[0]).toMatchObject({ index: 1, paragraph: '§1', title: '§ 1. Физика, табият жана турмуш', type: 'new', homework: '§ 1, 8–9-беттер', topicKey: 'phys7-mechanical-motion', section: { title: 'I глава. Механика. Кинематиканын негиздери' } });
+    // v0.10.0: joined § keep both; a lab work or a test has no paragraph
+    expect(d.rows.find((r) => /^§ \d+–\d+\./.test(r.title))!.paragraph).toMatch(/^§\d+–\d+$/);
+    expect(d.rows.filter((r) => r.type === 'test').every((r) => r.paragraph === undefined)).toBe(true);
     // Lab work № 1 (volume, density) right after § 16 (density), before § 17.
     const density = d.rows.findIndex((r) => r.title.includes('§ 16'));
     expect(d.rows[density + 1]).toMatchObject({ type: 'practice', topicKey: 'phys7-mass-density' });

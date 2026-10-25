@@ -66,6 +66,8 @@ export const KtpRowSchema = z.object({
   uid: KtpRowUidSchema,
   /** 1-based position in the whole plan (lesson numbers restart per table; this does not). */
   index: z.number().int().min(1),
+  /** v0.10.0: the textbook paragraph of the lesson («§13», «§4.1»), when known (a КТП from a book). */
+  paragraph: z.string().max(20).optional(),
   /** Number as printed in the КТП. */
   number: z.number().int().min(0),
   section: KtpSectionSchema.optional(),

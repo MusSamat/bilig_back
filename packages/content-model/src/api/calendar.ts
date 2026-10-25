@@ -113,7 +113,25 @@ export const schoolYearOfIso = (iso: string) => {
   return d.getUTCMonth() >= 6 ? d.getUTCFullYear() : d.getUTCFullYear() - 1;
 };
 
+/** Fixed-date public holidays of the Kyrgyz Republic (MM-DD → key): no lessons on these days. */
+export const KG_PUBLIC_HOLIDAYS: Readonly<Record<string, string>> = {
+  '01-01': 'new_year',
+  '01-07': 'christmas',
+  '02-23': 'defender_day',
+  '03-08': 'womens_day',
+  '03-21': 'nooruz',
+  '03-22': 'nooruz',
+  '05-01': 'labour_day',
+  '05-05': 'constitution_day',
+  '05-09': 'victory_day',
+  '08-31': 'independence_day',
+  '11-07': 'history_day',
+  '11-08': 'history_day',
+};
+
+/** A day without lessons: school holidays (каникулы) or a public holiday. */
 export const isHoliday = (cal: SchoolCalendar, iso: string) =>
+  iso.slice(5) in KG_PUBLIC_HOLIDAYS ||
   cal.holidays.some((h) => iso >= h.from && iso <= h.to);
 
 /**

@@ -3,7 +3,7 @@
  * class and params; the client localizes the message. Runs on parse and again
  * after every PATCH (on the stored rows, never re-parsing the file).
  */
-import { quarterHours, quarterOf, schoolCalendar, type KtpIssue, type KtpRow, type Weekdays } from '@bilig/content-model/api';
+import { KG_PUBLIC_HOLIDAYS, quarterHours, quarterOf, schoolCalendar, type KtpIssue, type KtpRow, type Weekdays } from '@bilig/content-model/api';
 import type { InvalidDates } from './parse.js';
 
 export interface ValidateMeta {
@@ -16,22 +16,6 @@ export interface ValidateMeta {
 }
 
 type Row = Pick<KtpRow, 'index' | 'title' | 'hours' | 'dates' | 'section'>;
-
-/** Fixed-date public holidays of the Kyrgyz Republic (MM-DD). */
-export const KG_HOLIDAYS: Record<string, string> = {
-  '01-01': 'new_year',
-  '01-07': 'christmas',
-  '02-23': 'defender_day',
-  '03-08': 'womens_day',
-  '03-21': 'nooruz',
-  '03-22': 'nooruz',
-  '05-01': 'labour_day',
-  '05-05': 'constitution_day',
-  '05-09': 'victory_day',
-  '08-31': 'independence_day',
-  '11-07': 'history_day',
-  '11-08': 'history_day',
-};
 
 const weekday = (iso: string) => new Date(`${iso}T00:00:00Z`).getUTCDay();
 
@@ -80,7 +64,7 @@ export function validate(rows: readonly Row[], meta: ValidateMeta, invalidDates:
         else if (d === prev) add({ code: 'date_same_day', severity: 'info', row: r.index, class: cls, params: { date: d } });
       }
       if (weekday(d) === 0) add({ code: 'date_sunday', severity: 'warning', row: r.index, class: cls, params: { date: d } });
-      const holiday = KG_HOLIDAYS[d.slice(5)];
+      const holiday = KG_PUBLIC_HOLIDAYS[d.slice(5)];
       if (holiday) add({ code: 'date_holiday', severity: 'warning', row: r.index, class: cls, params: { date: d, holiday } });
       if (from && to && (d < from || d > to)) add({ code: 'date_out_of_year', severity: 'warning', row: r.index, class: cls, params: { date: d } });
       prev = d;

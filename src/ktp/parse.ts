@@ -14,6 +14,12 @@ import type { DocxDocument, DocxTable, GridCell } from './docx-read.js';
 import { lessonType } from './lesson-type.js';
 import { newRowUid } from './row-uid.js';
 
+/** v0.10.0: «§ 13. …», «§4.1», «§§ 4–5» at the start of a title or homework → «§13», «§4.1», «§4–5». */
+export function paragraphOf(text: string): string | undefined {
+  const m = /^\s*§{1,2}\s*(\d{1,3}(?:\.\d{1,2})?(?:\s*[-–]\s*\d{1,3}(?:\.\d{1,2})?)?)/u.exec(text);
+  return m ? `§${m[1].replace(/\s+/g, '').replace('-', '–')}`.slice(0, 20) : undefined;
+}
+
 export type ParsedRow = Omit<KtpRow, 'topicKey' | 'match'>;
 /** Raw text of impossible dates by lesson index and class (kept so re-validation still reports them). */
 export type InvalidDates = Record<string, Record<string, string>>;
@@ -510,16 +516,19 @@ export function parseKtp(doc: DocxDocument, opts: { now?: Date } = {}): ParsedKt
           if (tok && tok.iso === null) (invalidDates[String(index)] ??= {})[c.label] = tok.raw;
         }
         const typeFromCol: KtpLessonType | null = typeCell ? lessonType(typeCell) : null;
+        const homeworkJ = clip(oneLine(k > 1 && hwLines.length === k ? hwLines[j] : hwLines.join('\n')), 1000);
+        const paragraph = paragraphOf(titleJ) ?? paragraphOf(homeworkJ);
         const row: ParsedRow = {
           uid: newRowUid(),
           index,
+          ...(paragraph ? { paragraph } : {}),
           number: nums[j],
           ...(section ? { section: { ...section } } : {}),
           title: titleJ,
           hours: hoursList[j],
           type: typeFromCol && typeFromCol !== 'new' ? typeFromCol : lessonType(titleJ),
           dates,
-          homework: clip(oneLine(k > 1 && hwLines.length === k ? hwLines[j] : hwLines.join('\n')), 1000),
+          homework: homeworkJ,
           note: clip(oneLine(k > 1 && noteLines.length === k ? noteLines[j] : noteLines.join('\n')), 1000),
         };
         rows.push(row);

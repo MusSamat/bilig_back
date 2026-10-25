@@ -159,6 +159,7 @@ export const LessonAssistResponseSchema = z.discriminatedUnion('task', [
   z.object({ task: z.literal('ask'), answer: z.string().max(4000) }),
   z.object({
     task: z.literal('draft'),
+    /** Keyed `<modelId>:<stageKey>` (`stageContentKey`), like LessonContent.stages. */
     stages: z.record(
       z.string(),
       z.object({ teacher: z.string().max(4000), pupil: z.string().max(4000) }),

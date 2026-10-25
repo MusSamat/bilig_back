@@ -30,6 +30,8 @@ export interface DraftOptions {
   classes: string[];
   /** Only the chapters of this subject (an integrated book spans several); default: all. */
   subjectKey?: string;
+  /** v0.10.0: lessons to fit (default hours a week × weeks) — fewer leave room for СОР / СОЧ. */
+  lessons?: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -243,7 +245,7 @@ export interface DraftKtp {
 
 export function draftKtpFromTextbook(tb: Pick<Textbook, 'chapters'> & { grade: number | null }, subjectTitle: string, o: DraftOptions): DraftKtp {
   const L = T[o.lang];
-  const n = o.hoursPerWeek * o.weeks;
+  const n = o.lessons ?? o.hoursPerWeek * o.weeks;
   const { items: base, chapters } = lessonList(tb, o.lang, o.subjectKey);
   const items = base.length > n ? shrink(base, n) : grow(base, n, chapters, o.lang);
   const hours = chapters.map((_, ci) => items.filter((x) => x.chapter === ci).length);
@@ -261,6 +263,8 @@ export function draftKtpFromTextbook(tb: Pick<Textbook, 'chapters'> & { grade: n
     return {
       uid: newRowUid(),
       index: i + 1,
+      // v0.10.0: the textbook paragraph(s) of a lesson («§13», «§4–5»).
+      ...(it.kind === 'lesson' && number ? { paragraph: `§${number}`.slice(0, 20) } : {}),
       number: i + 1,
       // The contract wants a titled section: a row of a chapter with no name at all has none.
       ...(sectionTitle(it.chapter) ? { section: { title: sectionTitle(it.chapter), hours: hours[it.chapter] } } : {}),

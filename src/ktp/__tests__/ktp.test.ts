@@ -12,7 +12,8 @@ import { classLabel, dateTokens, detectLang, findDeclaredHours, findTeacher, fin
 import { buildPlanContent, STAGE_TIMES, PLAN_TEXTS, type PlanInput } from '../plan-content.js';
 import { PLAN_LABELS, renderPlansDocx } from '../plan-docx.js';
 import { patchPlanDoc, createPlanDoc } from '../teaching-plan.js';
-import { validate, KG_HOLIDAYS } from '../validate.js';
+import { validate } from '../validate.js';
+import { KG_PUBLIC_HOLIDAYS } from '@bilig/content-model/api';
 import { buildDocx, documentXml, dumpDocx, zipDocx } from './docx-builder.js';
 import { algebraKtp, russianKtp, scienceKtp } from './fixtures.js';
 import type { KtpRow } from '@bilig/content-model/api';
@@ -393,7 +394,7 @@ describe('F5/F6/F8: validate', () => {
   });
   it('Sunday, every fixed KG holiday, outside 1 Sep – 30 Jun', () => {
     expect(codes([row(1, '2026-09-06')])).toEqual(['date_sunday/warning:1']);
-    expect(Object.keys(KG_HOLIDAYS).sort()).toEqual(['01-01', '01-07', '02-23', '03-08', '03-21', '03-22', '05-01', '05-05', '05-09', '08-31', '11-07', '11-08']);
+    expect(Object.keys(KG_PUBLIC_HOLIDAYS).sort()).toEqual(['01-01', '01-07', '02-23', '03-08', '03-21', '03-22', '05-01', '05-05', '05-09', '08-31', '11-07', '11-08']);
     expect(codes([row(1, '2026-11-08')])).toEqual(['date_sunday/warning:1', 'date_holiday/warning:1']);
     expect(codes([row(1, '2026-08-25'), row(2, '2027-07-01')])).toEqual(['date_out_of_year/warning:1', 'date_out_of_year/warning:2']);
     expect(codes([row(1, '2027-07-01')], { classes: ['a'], year: null, declaredHours: null })).toEqual([]);

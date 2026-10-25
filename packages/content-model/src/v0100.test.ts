@@ -48,6 +48,7 @@ describe('contract 0.10.0', () => {
     const slots = studySlots(cal, { '2': 1, '4': 1 });
     expect(slots[0]).toEqual({ date: '2026-09-03', quarter: 1 }); // Thu (2 Sep is a Wednesday)
     expect(slots.some((s) => s.date >= '2026-11-11' && s.date <= '2026-11-15')).toBe(false);
+    expect(studySlots(cal, { '2': 1 }).some((s) => s.date === '2027-02-23')).toBe(false); // a public holiday (Tuesday)
     const double = studySlots(cal, { '1': 2 });
     expect(double[0].date).toBe(double[1].date);
     const h = quarterHours(cal, { '2': 1, '4': 1 });
