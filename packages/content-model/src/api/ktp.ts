@@ -159,7 +159,7 @@ export type KtpUploadRequest = z.infer<typeof KtpUploadRequestSchema>;
 // PATCH /ktp/:id — fix what the parser got wrong, link topics. Issues are recomputed.
 export const KtpRowPatchSchema = z.object({
   index: z.number().int().min(1),
-  /** v0.10.0: when sent, must be the uid of the row at `index` (409 `version_conflict` otherwise). */
+  /** v0.10.0: when sent, must be the uid of the row at `index` (409 `version_mismatch` otherwise). */
   uid: KtpRowUidSchema.optional(),
   title: z.string().max(500).optional(),
   type: KtpLessonTypeSchema.optional(),
