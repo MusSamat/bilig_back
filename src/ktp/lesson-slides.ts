@@ -1,7 +1,7 @@
 /**
- * v0.10.0: the presentation of a КТП lesson (.pptx, pptxgenjs): a title slide, one slide per stage of the
- * lesson model (the teacher's text or the model's hints), the ticked slide materials, the ticked test
- * questions on a «Суроолор» slide, and the homework. 16:9, Noto Sans, plain and readable.
+ * v0.10.0: the presentation of a КТП lesson (.pptx, pptxgenjs): a title slide, the ticked slide materials
+ * (or, when none is ticked, one slide per stage of the lesson model: the teacher's text or the model's
+ * hints), the ticked test questions on a «Суроолор» slide, and the homework. 16:9, Noto Sans, plain and readable.
  */
 import PptxGenJS from 'pptxgenjs';
 import { stageContentKey, type Lang, type LessonModel, type LessonModelId } from '@bilig/content-model';
@@ -52,7 +52,9 @@ export async function renderLessonSlides(i: LessonSlidesInput): Promise<Buffer> 
   title.addText(i.title, { x: 0.8, y: 2.2, w: W - 1.6, h: 1.6, fontFace: FONT_FAMILY, fontSize: 40, bold: true, align: 'center', color: '111827' });
   title.addText([i.subjectName, `${i.classLabel} ${L.grade}`, i.date].filter(Boolean).join(' · '), { x: 1, y: 4, w: W - 2, h: 0.8, fontFace: FONT_FAMILY, fontSize: 20, align: 'center', color: '4B5563' });
 
-  for (const st of i.model.stages) {
+  // Ticked slides = the deck the teacher assembled: then no per-stage slides.
+  const slides = i.body.materials.filter((x) => x.on && x.kind === 'slides');
+  for (const st of slides.length ? [] : i.model.stages) {
     const c = i.body.stages[stageContentKey(i.model.id as LessonModelId, st.key)];
     const s = pptx.addSlide();
     heading(s, `${st.code} — ${st.title}`);
@@ -60,7 +62,7 @@ export async function renderLessonSlides(i: LessonSlidesInput): Promise<Buffer> 
     s.addNotes([st.text, c?.pupil.trim() || st.pupil].join('\n'));
   }
 
-  for (const m of i.body.materials.filter((x) => x.on && x.kind === 'slides')) {
+  for (const m of slides) {
     const [first, ...rest] = m.text.split('\n').map((x) => x.replace(/^[-•*]\s*/, '').trim()).filter(Boolean);
     const s = pptx.addSlide();
     heading(s, first ?? '');

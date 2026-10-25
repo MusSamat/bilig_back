@@ -98,6 +98,8 @@ export async function createBookPlan(
     classes?: string[];
     /** Only the chapters of this subject (an integrated book). */
     onlySubject?: string;
+    /** v0.10.0: lessons to fit instead of hours a week × weeks. */
+    lessons?: number;
     origin: NonNullable<PlanDoc['origin']>;
   },
 ): Promise<TeachingPlanRec> {
@@ -109,7 +111,7 @@ export async function createBookPlan(
   const subjectTitle = (subjectKey && catalog.subjects.find((s) => s.key === subjectKey)?.title) || sourceName;
   const subjectName = typeof subjectTitle === 'string' ? subjectTitle : t(subjectTitle, lang);
   const classes = a.classes?.length ? [...new Set(a.classes.map(ktpClass))] : grade ? [String(grade)] : [];
-  const draft = draftKtpFromTextbook(book, subjectName, { lang, hoursPerWeek: a.hoursPerWeek, weeks: a.weeks ?? SCHOOL_WEEKS, classes, ...(a.onlySubject ? { subjectKey: a.onlySubject } : {}) });
+  const draft = draftKtpFromTextbook(book, subjectName, { lang, hoursPerWeek: a.hoursPerWeek, weeks: a.weeks ?? SCHOOL_WEEKS, classes, ...(a.onlySubject ? { subjectKey: a.onlySubject } : {}), ...(a.lessons ? { lessons: a.lessons } : {}) });
   const year = a.year ?? schoolYearOf(clock.now());
   const doc = recheck({
     title: draft.title,

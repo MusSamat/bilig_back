@@ -163,7 +163,7 @@ export const STANDARD_SCHEMA = {
 export function standardPrompt(o: { subjectName: string; grade: number; lang: Lang; lessons: number }): string {
   return [
     `Draft the calendar-thematic plan (КТП) of «${o.subjectName}» for grade ${o.grade} of a general school in the Kyrgyz Republic, following the state subject standard and curriculum of the Kyrgyz Republic.`,
-    `The year has ${o.lessons} lessons (hours a week × school weeks). Give the chapters (sections) in teaching order and, in each, its lessons in order: new-material lessons by topic, and the laboratory and practical works where the subject has them (kind "lab", titled as the work, e.g. «Лабораториялык иш: …» / «Лабораторная работа: …»). End each chapter with its test (kind "test").`,
+    `Plan ${o.lessons} lessons (the year's hours less the summative assessments СОР / СОЧ, which are added later — do not include them). Give the chapters (sections) in teaching order and, in each, its lessons in order: new-material lessons by topic, and the laboratory and practical works where the subject has them (kind "lab", titled as the work, e.g. «Лабораториялык иш: …» / «Лабораторная работа: …»). No chapter tests: the СОР take their place.`,
     `About ${o.lessons} lessons in all; when unsure, give fewer topics rather than invent them. Titles are short topic names as in a КТП, in ${LANG_NAME[o.lang]}, without numbers.`,
     'Answer with json only.',
   ].join('\n');

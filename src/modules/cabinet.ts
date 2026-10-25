@@ -8,6 +8,7 @@ import type { FastifyInstance, FastifyRequest } from 'fastify';
 import { DEFAULT_LESSON_MODEL, lessonModel, t, type Lang, type Textbook } from '@bilig/content-model';
 import {
   AGENDA_MAX_DAYS,
+  SCHOOL_WEEKS,
   dateOf,
   isoOf,
   schoolCalendar,
@@ -22,7 +23,7 @@ import { route } from '../http/route.js';
 import type { ClassRec, TeachingPlanRec } from '../repo/types.js';
 import type { GenerateRequest } from '../services/tutor-provider.js';
 import { ktpClass, planDocOf, recheck, toTeachingPlan, type PlanDoc } from '../ktp/teaching-plan.js';
-import { scheduleRows } from '../ktp/schedule.js';
+import { scheduleRows, settleHours, withoutDraftMark } from '../ktp/schedule.js';
 import { emptyLessonBody, lessonBodyIssues, lessonBodyOf, toLessonContent } from '../ktp/lesson-content.js';
 import { renderLessonSlides } from '../ktp/lesson-slides.js';
 import { ASK_SCHEMA, ASSIST_SYSTEM, DRAFT_SCHEMA, MATERIALS_SCHEMA, STANDARD_SCHEMA, answerOf, askPrompt, draftOf, draftPrompt, materialsOf, materialsPrompt, standardOf, standardPrompt, type LessonContext } from '../ktp/assist.js';
@@ -33,6 +34,9 @@ import { usageCostUsd } from '../config.js';
 import { budgetKey } from './tutor.js';
 import { assignmentSummaries, localDate } from './classes.js';
 import { KTP_CONTENTS_PER_HOUR, createBookPlan } from './ktp.js';
+
+/** Topic lessons of a КТП from the standard: the year's hours less 4 СОЧ and 2 СОР a quarter (at least 60 %). */
+export const standardLessons = (hours: number) => Math.max(Math.ceil(hours * 0.6), hours - 4 - 2 * 4);
 
 /** Assistant requests per teacher and hour (lesson pages). */
 export const LESSON_ASSIST_PER_HOUR = 30;
@@ -118,7 +122,8 @@ export function registerCabinet(app: FastifyInstance, deps: Deps) {
     if (ifMatch !== body.version || cur.version !== ifMatch) fail('version_mismatch', { detail: `current version is ${cur.version}` });
     const cls = classOf(cur.doc, body.class);
     const cal = schoolCalendar(cur.doc.year ?? schoolYearOfIso(today()));
-    const rows = scheduleRows(cur.doc.rows, cal, { cls, classes: cur.doc.classes, weekdays: body.weekdays, mode: body.mode, ...(body.from ? { from: body.from } : {}), assessments: body.assessments ?? false, lang: cur.doc.lang });
+    const scheduled = scheduleRows(cur.doc.rows, cal, { cls, classes: cur.doc.classes, weekdays: body.weekdays, mode: body.mode, ...(body.from ? { from: body.from } : {}), assessments: body.assessments ?? false, lang: cur.doc.lang });
+    const { rows, declaredHours } = settleHours(scheduled);
     // Impossible dates (kept by row index) follow their rows; those of the scheduled class are replaced.
     const oldIndex = new Map(cur.doc.rows.map((r) => [r.uid, String(r.index)]));
     const invalidDates: PlanDoc['invalidDates'] = {};
@@ -130,8 +135,9 @@ export function registerCabinet(app: FastifyInstance, deps: Deps) {
       if (Object.keys(others).length) invalidDates[String(r.index)] = others;
     }
     const { issues: _i, totalHours: _t, ...rest } = cur.doc;
-    const doc = recheck({ ...rest, year: rest.year ?? cal.year, rows, invalidDates, schedule: { ...(rest.schedule ?? {}), [cls]: body.weekdays } });
-    const res = await repo.updateTeachingPlan(cur.id, { doc }, ifMatch);
+    const title = withoutDraftMark(rest.title);
+    const doc = recheck({ ...rest, title, declaredHours, year: rest.year ?? cal.year, rows, invalidDates, schedule: { ...(rest.schedule ?? {}), [cls]: body.weekdays } });
+    const res = await repo.updateTeachingPlan(cur.id, { doc, title: withoutDraftMark(cur.title) }, ifMatch);
     if (res === 'not_found') fail('not_found', { detail: 'teaching_plan' });
     if (res === 'version_mismatch') fail('version_mismatch');
     await audit.log(uid, 'ktp.updated', { type: 'teaching_plan', id: cur.id, label: res.title }, {
@@ -151,7 +157,8 @@ export function registerCabinet(app: FastifyInstance, deps: Deps) {
     if (!src.subjectKeys.has(body.subjectKey)) fail('validation_failed', { detail: 'subjectKey', issues: [{ path: ['subjectKey'], message: 'Unknown subject' }] });
     const subject = (await content.catalog(lang)).subjects.find((s) => s.key === body.subjectKey);
     const subjectName = subject ? (typeof subject.title === 'string' ? subject.title : t(subject.title, lang)) : body.subjectKey;
-    const lessons = body.hoursPerWeek * (body.weeks ?? 34);
+    // Topic lessons leave room for the assessments scheduling adds: a СОЧ and up to two СОР a quarter.
+    const lessons = standardLessons(body.hoursPerWeek * (body.weeks ?? SCHOOL_WEEKS));
     const data = await generate(req, 'ktp.standard', { system: ASSIST_SYSTEM, prompt: standardPrompt({ subjectName, grade: body.grade, lang, lessons }), schema: STANDARD_SCHEMA, maxTokens: 8000 });
     const chapters = standardOf(data);
     if (!chapters.length) fail('tutor_unavailable', { detail: 'provider_error' });
@@ -187,6 +194,7 @@ export function registerCabinet(app: FastifyInstance, deps: Deps) {
       ...(body.weeks ? { weeks: body.weeks } : {}),
       ...(body.year ? { year: body.year } : {}),
       ...(body.classes ? { classes: body.classes } : {}),
+      lessons,
       origin: 'standard',
     });
     await audit.log(uid, 'ktp.created', { type: 'teaching_plan', id: rec.id, label: rec.title }, { ip, diff: { from: `standard:${body.subjectKey}:${body.grade}`, lessons: (rec.doc as PlanDoc).rows.length, hoursPerWeek: body.hoursPerWeek } });

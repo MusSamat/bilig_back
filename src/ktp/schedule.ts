@@ -148,3 +148,20 @@ export function scheduleRows(rows: readonly KtpRow[], cal: SchoolCalendar, o: Sc
   } else next = place(rows.map((r) => ({ ...r, dates: { ...r.dates } })), slots, o.cls, o.mode === 'empty');
   return next.map((r, i) => ({ ...r, index: i + 1, number: numbered || r.number === 0 ? i + 1 : r.number }));
 }
+
+/** The mark a preliminary КТП carries in its title (from-textbook / from-standard) — gone once it is scheduled. */
+export const DRAFT_MARK = /\s*\((?:алдын ала|предварительн\S*|draft)\)/giu;
+export const withoutDraftMark = (title: string) => title.replace(DRAFT_MARK, '').trim() || title;
+
+/**
+ * After scheduling the rows are the plan: the declared total and every section's hours follow them (a
+ * section by its title, as the checks group it), so the plan raises no hours_mismatch / section_hours_mismatch.
+ */
+export function settleHours(rows: readonly KtpRow[]): { rows: KtpRow[]; declaredHours: number } {
+  const bySection = new Map<string, number>();
+  for (const r of rows) if (r.section) bySection.set(r.section.title, (bySection.get(r.section.title) ?? 0) + r.hours);
+  return {
+    rows: rows.map((r) => (r.section ? { ...r, section: { ...r.section, hours: bySection.get(r.section.title)! } } : r)),
+    declaredHours: rows.reduce((n, r) => n + r.hours, 0),
+  };
+}

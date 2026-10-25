@@ -1,7 +1,8 @@
 /** v0.10.0: scheduling a КТП class column on the lesson days (pure). */
 import { describe, expect, it } from 'vitest';
 import { isHoliday, quarterHours, schoolCalendar, studySlots, type KtpRow } from '@bilig/content-model/api';
-import { assessmentSlots, scheduleRows } from '../schedule.js';
+import { assessmentSlots, scheduleRows, settleHours, withoutDraftMark } from '../schedule.js';
+import { paragraphOf } from '../parse.js';
 import { lessonType } from '../lesson-type.js';
 import { validate } from '../validate.js';
 
@@ -125,5 +126,36 @@ describe('quarter_hours_short', () => {
     // without a schedule (or a year): no check
     expect(validate(scheduled, { classes: ['7А'], year: 2026, declaredHours: null }).some((i) => i.code === 'quarter_hours_short')).toBe(false);
     expect(validate(scheduled, { classes: ['7А'], year: null, declaredHours: null, schedule: { '7А': MON_WED } }).some((i) => i.code === 'quarter_hours_short')).toBe(false);
+  });
+});
+
+describe('after scheduling (v0.10.0)', () => {
+  it('declared hours and section hours follow the rows; the draft mark leaves the title', () => {
+    const out = scheduleRows(rows(30).map((r) => ({ ...r, section: { ...r.section!, hours: 3 } })), cal, { ...opts, weekdays: MON_WED, mode: 'all', assessments: true });
+    const { rows: settled, declaredHours } = settleHours(out);
+    expect(declaredHours).toBe(out.length);
+    const codes = validate(settled, { classes: ['7А'], year: 2026, declaredHours, schedule: { '7А': MON_WED } }).map((i) => i.code);
+    expect(codes).not.toContain('hours_mismatch');
+    expect(codes).not.toContain('section_hours_mismatch');
+    expect(codes).not.toContain('quarter_hours_short');
+    expect(withoutDraftMark('Физика, 7-класс: календардык-тематикалык план (алдын ала)')).toBe('Физика, 7-класс: календардык-тематикалык план');
+    expect(withoutDraftMark('Физика, 7 класс: календарно-тематический план (предварительный)')).toBe('Физика, 7 класс: календарно-тематический план');
+    expect(withoutDraftMark('Physics: scheme of work (draft)')).toBe('Physics: scheme of work');
+    expect(withoutDraftMark('КТП алгебра')).toBe('КТП алгебра');
+  });
+
+  it('public holidays are not lesson days', () => {
+    const out = scheduleRows(rows(60), cal, { ...opts, weekdays: { '2': 1 }, mode: 'all' });
+    expect(out.map((r) => r.dates['7А'])).not.toContain('2027-02-23');
+  });
+});
+
+describe('paragraphOf', () => {
+  it('a § reference at the start of a title or homework', () => {
+    expect(paragraphOf('§ 13. Басым')).toBe('§13');
+    expect(paragraphOf('§4.1 Ылдамдык')).toBe('§4.1');
+    expect(paragraphOf('§§ 4-5, 23-бет')).toBe('§4–5');
+    expect(paragraphOf('Басым, § 13')).toBeUndefined();
+    expect(paragraphOf('')).toBeUndefined();
   });
 });

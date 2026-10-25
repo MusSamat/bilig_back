@@ -15,7 +15,7 @@ import { newRowUid } from '../../ktp/row-uid.js';
 import { recheck, type PlanDoc } from '../../ktp/teaching-plan.js';
 import { ASK_SCHEMA, DRAFT_SCHEMA, MATERIALS_SCHEMA, STANDARD_SCHEMA } from '../../ktp/assist.js';
 import type { ClassRec, TeachingPlanRec } from '../../repo/types.js';
-import { LESSON_ASSIST_PER_HOUR } from '../cabinet.js';
+import { LESSON_ASSIST_PER_HOUR, standardLessons } from '../cabinet.js';
 
 const STANDARD = {
   chapters: [
@@ -169,14 +169,18 @@ describe('GET /calendar, POST /ktp/:id/schedule', () => {
     expect((await send('POST', `/ktp/${plan.id}/schedule`, { version: 2, class: '7А', weekdays, mode: 'all' })).statusCode).toBe(428);
   });
 
-  it('assessments add СОР / СОЧ rows and fill the year', async () => {
-    const plan = await makePlan(teacher.user.id, Array.from({ length: 20 }, (_, i) => row(i + 1)));
+  it('assessments add СОР / СОЧ rows and fill the year; hours and the title follow the scheduled rows', async () => {
+    const plan = await makePlan(teacher.user.id, Array.from({ length: 20 }, (_, i) => row(i + 1, { section: { title: 'Кинематика', hours: 20 } })), { title: 'Физика, 7-класс: календардык-тематикалык план (алдын ала)' });
     const res = await send('POST', `/ktp/${plan.id}/schedule`, { version: 1, class: '7А', weekdays: { '2': 1 }, mode: 'all', assessments: true }, { ifMatch: 1 });
     expect(res.statusCode, res.body).toBe(200);
     const p = json(res);
     expect(p.rows).toHaveLength(studySlots(schoolCalendar(2026), { '2': 1 }).length);
     expect(p.rows.filter((r: KtpRow) => r.type === 'soch')).toHaveLength(4);
     expect(p.issues.some((i: { code: string }) => i.code === 'quarter_hours_short')).toBe(false);
+    expect(p.issues.map((i: { code: string }) => i.code)).not.toContain('section_hours_mismatch');
+    expect(p.issues.map((i: { code: string }) => i.code)).not.toContain('hours_mismatch');
+    expect(p).toMatchObject({ declaredHours: p.rows.length, totalHours: p.rows.length, title: 'Физика, 7-класс: календардык-тематикалык план' });
+    expect(p.rows[0].section).toEqual({ title: 'Кинематика', hours: p.rows.length });
   });
 });
 
@@ -291,12 +295,20 @@ describe('the lesson plan .docx and the slides from the lesson page', () => {
     const text = slides.map((f) => f.asText()).join('\n');
     expect(text).toContain('Ылдамдык');
     expect(text).toContain('15.10.2026');
-    expect(text).toContain('Engage — Кызыктыруу / Тартуу');
-    expect(text).toContain('Мугалим суроо берет');
     expect(text).toContain('v = s / t');
     expect(text).toContain('Суроолор');
     expect(text).toContain('§ 5');
-    expect(slides.length).toBe(1 + 5 + 1 + 1 + 1);
+    // ticked slides = the teacher's deck: no per-stage slides
+    expect(text).not.toContain('Engage');
+    expect(slides.length).toBe(1 + 1 + 1 + 1);
+    // without ticked slides: one slide per stage of the model
+    await send('PUT', `/ktp/${plan.id}/lessons/${uid}`, lessonBody({ materials: lessonBody().materials.map((m) => (m.kind === 'slides' ? { ...m, on: false } : m)) }));
+    const staged = new PizZip((await get(`/ktp/${plan.id}/lessons/${uid}/slides?class=7А`)).rawPayload).file(/^ppt\/slides\/slide\d+\.xml$/);
+    const stagedText = staged.map((f) => f.asText()).join('\n');
+    expect(stagedText).toContain('Engage — Кызыктыруу / Тартуу');
+    expect(stagedText).toContain('Мугалим суроо берет');
+    expect(stagedText).not.toContain('v = s / t');
+    expect(staged.length).toBe(1 + 5 + 1 + 1);
     expect((await get(`/ktp/${plan.id}/lessons/${uid}/slides?class=9В`)).statusCode).toBe(400);
   });
 });
@@ -345,14 +357,16 @@ describe('POST /ktp/from-standard', () => {
     expect(res.statusCode, res.body).toBe(200);
     const p = json(res);
     expect(p).toMatchObject({ origin: 'standard', subjectKey: 'phys', grade: 7, classes: ['7А'], lang: 'ky', classLinks: { '7А': cls.id } });
-    expect(p.rows).toHaveLength(10);
+    // topic lessons leave room for the assessments: 10 hours − 4 СОЧ − 2·4 СОР, at least 60 %
+    expect(p.rows).toHaveLength(standardLessons(10));
+    expect(standardLessons(68)).toBe(56);
     expect(p.rows.map((r: KtpRow) => r.title)).toContain('Лабораториялык иш: Ылдамдыкты өлчөө');
-    expect(p.rows.filter((r: KtpRow) => r.type === 'test')).toHaveLength(2);
+    expect(p.rows.filter((r: KtpRow) => r.type === 'test').length).toBeGreaterThan(0);
     expect(p.rows[0].section.title).toBe('I глава. Механикалык кыймыл');
     expect(p.rows.every((r: KtpRow) => r.uid)).toBe(true);
     const call = provider.generateCalls.at(-1)!;
     expect(call.prompt).toContain('grade 7');
-    expect(call.prompt).toContain('10 lessons');
+    expect(call.prompt).toContain(`Plan ${standardLessons(10)} lessons`);
     expect((await send('POST', '/ktp/from-standard', { subjectKey: 'nope', grade: 7, hoursPerWeek: 1 })).statusCode).toBe(400);
     expect((await send('POST', '/ktp/from-standard', { subjectKey: 'phys', grade: 7, hoursPerWeek: 1 }, { token: world.students[0].token })).statusCode).toBe(403);
   });
