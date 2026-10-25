@@ -1,7 +1,7 @@
 /** Me (TZ §9): profile, roles, permissions, sessions, 2FA, the student's assignments. */
 import type { FastifyInstance } from 'fastify';
 import { grantedPermissions } from '@bilig/permissions';
-import { t } from '@bilig/content-model';
+import { DEFAULT_LESSON_MODEL, t } from '@bilig/content-model';
 import { type MeResponse, type MyLicense } from '@bilig/content-model/api';
 import type { Deps } from '../deps.js';
 import { route } from '../http/route.js';
@@ -10,9 +10,9 @@ import { toRoleGrant } from '../http/auth-context.js';
 import { newTotpSecret, otpauthUrl, verifyTotp } from '../domain/totp.js';
 import type { UserRec } from '../repo/types.js';
 import { assignmentStatus } from './classes.js';
-import { cleanTeaching, selfTrial, userSchoolIds } from '../services/teacher-signup.js';
+import { cleanTeaching, isPlaceholderSchoolName, selfTrial, userSchoolIds } from '../services/teacher-signup.js';
 import { principalGrants } from '../services/staff.js';
-import { teacherProfile } from '../services/profile.js';
+import { isTeacher, teacherProfile } from '../services/profile.js';
 import type { AuthCtx } from '../http/auth-context.js';
 
 export function registerMe(app: FastifyInstance, deps: Deps) {
@@ -35,12 +35,29 @@ export function registerMe(app: FastifyInstance, deps: Deps) {
       ...(user.phone ? { phone: user.phone } : {}),
       ...(user.teachingLang ? { teachingLang: user.teachingLang } : {}),
       ...(await teachingOf(user)),
+      // v0.10.0: the lesson model new lessons start with (teachers), the region and the school name.
+      ...(user.kind === 'adult' && isTeacher(rows) ? { defaultLessonModel: user.defaultLessonModel ?? DEFAULT_LESSON_MODEL } : {}),
+      ...(await schoolOf(user)),
       // v0.8.0: the setup checklist and status of every teacher (self-registered and school teachers).
       ...(profile ? { setup: profile.setup, profileStatus: profile.profileStatus } : {}),
       // v0.8.0: the banner while a staff member works in this cabinet.
       ...(sp
         ? { support: { sessionId: sp.session.id, mode: sp.session.mode, actor: { id: sp.actor.id, displayName: sp.actor.displayName }, expiresAt: sp.session.expiresAt.toISOString() } }
         : {}),
+    };
+  }
+
+  /** v0.10.0: the region and school name of an adult: their own (self) school first, else their school, else the sign-up. */
+  async function schoolOf(user: UserRec): Promise<Pick<MeResponse, 'region' | 'schoolName'>> {
+    if (user.kind !== 'adult') return {};
+    const self = await selfTrial(repo, user.id);
+    const ids = self ? [] : await userSchoolIds(repo, user.id);
+    const school = self?.school ?? (ids.length ? await repo.getSchool(ids[0]) : null);
+    const name = school?.name ?? user.signup?.schoolName ?? '';
+    const region = school?.region ?? user.signup?.region ?? '';
+    return {
+      ...(region.trim() ? { region } : {}),
+      ...(name.trim() && !isPlaceholderSchoolName(name) ? { schoolName: name } : {}),
     };
   }
 
@@ -76,6 +93,8 @@ export function registerMe(app: FastifyInstance, deps: Deps) {
   route(app, deps, 'mePatch', async ({ auth, body, ip }) => {
     const { teaching, schoolName, region, ...profile } = body;
     const uid = auth.user!.id;
+    // v0.10.0: the default lesson model is a teacher's setting.
+    if (profile.defaultLessonModel !== undefined && !(auth.user!.kind === 'adult' && isTeacher(auth.grants))) fail('forbidden', { detail: 'teachers_only' });
     const editsSchool = schoolName !== undefined || region !== undefined;
     // Validate everything first, then write (no half-applied PATCH).
     const self = editsSchool || teaching ? await selfTrial(repo, uid) : null;
