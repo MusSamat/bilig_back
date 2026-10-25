@@ -351,6 +351,22 @@ describe('POST /ktp/:id/lessons/:uid/assist', () => {
   });
 });
 
+describe('GET /ktp/:id/docx heading', () => {
+  it('«(алдын ала)» while a plan from a textbook / the standard is not scheduled; never for an upload', async () => {
+    const heading = async (id: string) => dumpDocx((await get(`/ktp/${id}/docx`)).rawPayload).join('\n');
+    const plan = await makePlan(teacher.user.id, [row(1), row(2)]);
+    await t.repo.updateTeachingPlan(plan.id, { doc: { ...(plan.doc as PlanDoc), origin: 'textbook' } }, 1);
+    expect(await heading(plan.id)).toContain('календардык-тематикалык планы (алдын ала)');
+    expect((await send('POST', `/ktp/${plan.id}/schedule`, { version: 2, class: '7А', weekdays: { '1': 1 }, mode: 'all' }, { ifMatch: 2 })).statusCode).toBe(200);
+    const after = await heading(plan.id);
+    expect(after).toContain('календардык-тематикалык планы');
+    expect(after).not.toContain('алдын ала');
+    const upload = await makePlan(teacher.user.id, [row(1)]);
+    await t.repo.updateTeachingPlan(upload.id, { doc: { ...(upload.doc as PlanDoc), origin: 'upload' } }, 1);
+    expect(await heading(upload.id)).not.toContain('алдын ала');
+  });
+});
+
 describe('POST /ktp/from-standard', () => {
   it('the assistant drafts the chapters; the textbook pipeline fits them to the hours (origin standard)', async () => {
     const res = await send('POST', '/ktp/from-standard', { subjectKey: 'phys', grade: 7, hoursPerWeek: 1, weeks: 10, classes: ['7а'] });

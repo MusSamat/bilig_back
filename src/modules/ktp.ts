@@ -440,6 +440,8 @@ export function registerKtp(app: FastifyInstance, deps: Deps) {
     const byKey = new Map(src.packages.map((p) => [p.topic.key, p]));
     const hoursPerWeek = Math.round(doc.totalHours / SCHOOL_WEEKS) || undefined;
     const body = ktpDocx({
+      // v0.10.0: «(алдын ала)» only while a plan from a textbook / the standard is not scheduled (uploads never).
+      draft: doc.origin !== 'upload' && !Object.keys(doc.schedule ?? {}).length,
       title: doc.title,
       subjectName: doc.subjectName,
       grade: doc.grade,

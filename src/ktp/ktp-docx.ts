@@ -23,6 +23,8 @@ export interface KtpDocxInput {
   topicTitle: (key: string) => string | undefined;
   /** Lessons a week, when known (the heading says «Жумасына 2 саат»). */
   hoursPerWeek?: number;
+  /** v0.10.0: a preliminary plan (from a textbook / the standard, not scheduled yet): «(алдын ала)» in the heading. Default true. */
+  draft?: boolean;
 }
 
 const ruHours = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'час' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 'часа' : 'часов');
@@ -40,7 +42,7 @@ const L: Record<Lang, { num: string; topic: string; hours: string; date: string;
     head: (i, n) => [
       i.schoolName,
       `${i.grade ? `${i.grade}-класстын ` : ''}${i.subjectName} предмети боюнча`,
-      `${i.year ? `${i.year}-${i.year + 1}-окуу жылы үчүн ` : ''}календардык-тематикалык планы (алдын ала)`,
+      `${i.year ? `${i.year}-${i.year + 1}-окуу жылы үчүн ` : ''}календардык-тематикалык планы${i.draft === false ? '' : ' (алдын ала)'}`,
       `${i.hoursPerWeek ? `Жумасына ${i.hoursPerWeek} саат, ` : ''}бардыгы ${n} саат`,
       `Мугалим: ${i.teacherName || '________________'}`,
     ],
@@ -56,7 +58,7 @@ const L: Record<Lang, { num: string; topic: string; hours: string; date: string;
     unit: (n) => `${n} ${ruHours(n)}`,
     head: (i, n) => [
       i.schoolName,
-      `Календарно-тематическое планирование (предварительное) по предмету «${i.subjectName}»${i.grade ? ` для ${i.grade} класса` : ''}${i.year ? ` на ${i.year}-${i.year + 1} учебный год` : ''}`,
+      `Календарно-тематическое планирование${i.draft === false ? '' : ' (предварительное)'} по предмету «${i.subjectName}»${i.grade ? ` для ${i.grade} класса` : ''}${i.year ? ` на ${i.year}-${i.year + 1} учебный год` : ''}`,
       `${i.hoursPerWeek ? `${i.hoursPerWeek} ${ruHours(i.hoursPerWeek)} в неделю, ` : ''}всего ${n} ${ruHours(n)}`,
       `Учитель: ${i.teacherName || '________________'}`,
     ],
@@ -72,7 +74,7 @@ const L: Record<Lang, { num: string; topic: string; hours: string; date: string;
     unit: (n) => `${n} hours`,
     head: (i, n) => [
       i.schoolName,
-      `Scheme of work (draft): ${i.subjectName}${i.grade ? `, grade ${i.grade}` : ''}${i.year ? `, ${i.year}-${i.year + 1}` : ''}`,
+      `Scheme of work${i.draft === false ? '' : ' (draft)'}: ${i.subjectName}${i.grade ? `, grade ${i.grade}` : ''}${i.year ? `, ${i.year}-${i.year + 1}` : ''}`,
       `${i.hoursPerWeek ? `${i.hoursPerWeek} hours a week, ` : ''}total ${n} hours`,
       `Teacher: ${i.teacherName || '________________'}`,
     ],
