@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { CONTRACT_VERSION } from './i18n.js';
+import { contractAtLeast } from './i18n.js';
 import { ENDPOINTS, LoginRequestSchema, OtpStartRequestSchema, PhoneSchema, formatKgPhone, normalizeKgPhone } from './api/index.js';
 
 describe('contract 0.7.0: phone-first accounts', () => {
-  it('version is 0.7.0 or later', () => expect(CONTRACT_VERSION >= '0.7.0').toBe(true));
+  it('version is 0.7.0 or later', () => expect(contractAtLeast('0.7.0')).toBe(true));
 
   it.each([
     ['+996 555 12 34 56', '+996555123456'],

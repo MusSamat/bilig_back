@@ -3,6 +3,7 @@
  * HttpOnly cookie, never in a body.
  */
 import { z } from 'zod';
+import { LESSON_MODEL_IDS } from '../lesson-models.js';
 import {
   AUTHOR_SUBROLES,
   PERMISSIONS,
@@ -189,6 +190,12 @@ export const MeResponseSchema = z.object({
   profileStatus: z.enum(['incomplete', 'complete']).optional(),
   /** v0.8.0: the language the teacher teaches in. */
   teachingLang: z.enum(['ky', 'ru', 'uz', 'en']).optional(),
+  /** v0.10.0: the lesson model new lessons start with (teachers; default 5E). */
+  defaultLessonModel: z.enum(LESSON_MODEL_IDS).optional(),
+  /** v0.10.0: the teacher's region (as set in the cabinet). */
+  region: z.string().optional(),
+  /** v0.10.0: the teacher's school name (own or the school's). */
+  schoolName: z.string().optional(),
   /** v0.8.0: set while a staff member works in this cabinet (support session): drives the banner. */
   support: z
     .object({
@@ -217,6 +224,8 @@ export const MePatchRequestSchema = z
     region: z.string().trim().max(100),
     /** v0.8.0 */
     teachingLang: z.enum(['ky', 'ru', 'uz', 'en']),
+    /** v0.10.0 */
+    defaultLessonModel: z.enum(LESSON_MODEL_IDS),
   })
   .partial();
 export type MePatchRequest = z.infer<typeof MePatchRequestSchema>;

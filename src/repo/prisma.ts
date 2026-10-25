@@ -51,6 +51,7 @@ import type {
   PageRes,
   PresentationRec,
   TeachingPlanRec,
+  LessonContentRec,
   ProgressRec,
   PublishedRec,
   Repository,
@@ -222,6 +223,7 @@ const mapUser = (r: Row): UserRec => ({
   phoneVerifiedAt: r.phoneVerifiedAt ?? null,
   teachingLang: r.teachingLang ?? null,
   lastLoginAt: r.lastLoginAt ?? null,
+  defaultLessonModel: r.defaultLessonModel ?? null,
 });
 const mapPhoneOtp = (r: Row): PhoneOtpRec => ({
   id: r.id,
@@ -445,7 +447,17 @@ function assetData(a: Partial<AssetRec>): Record<string, unknown> {
 }
 const mapString = (r: Row): LocaleStringRec => ({ key: r.key, locale: r.locale, value: r.value, status: r.status, sourceHash: r.sourceHash, updatedAt: r.updatedAt, version: r.version });
 const mapProgress = (r: Row): ProgressRec => ({ userId: r.userId, topicKey: r.topicKey, visitedConcepts: r.visitedConcepts, completedActivities: r.completedActivities, updatedAt: r.updatedAt });
-const mapAssignment = (r: Row): AssignmentRec => ({ id: r.id, classId: r.classId, topicKey: r.topicKey, activities: r.activities, dueAt: r.dueAt, createdBy: r.createdBy, createdAt: r.createdAt });
+const mapAssignment = (r: Row): AssignmentRec => ({
+  id: r.id,
+  classId: r.classId,
+  topicKey: r.topicKey,
+  activities: r.activities,
+  dueAt: r.dueAt,
+  createdBy: r.createdBy,
+  createdAt: r.createdAt,
+  title: r.title ?? null,
+  lesson: r.lessonPlanId && r.lessonUid ? { planId: r.lessonPlanId, uid: r.lessonUid } : null,
+});
 const mapAttempt = (r: Row): AttemptRec => ({
   id: r.id,
   userId: r.userId,
@@ -479,6 +491,17 @@ const mapTeachingPlan = (r: Row): TeachingPlanRec => ({
   ownerId: r.ownerId,
   title: r.title,
   doc: r.doc,
+  version: r.version,
+  createdAt: r.createdAt,
+  updatedAt: r.updatedAt,
+});
+const mapLessonContent = (r: Row): LessonContentRec => ({
+  id: r.id,
+  planId: r.planId,
+  ownerId: r.ownerId,
+  uid: r.uid,
+  doc: r.doc,
+  conducted: (r.conducted as Record<string, string> | null) ?? {},
   version: r.version,
   createdAt: r.createdAt,
   updatedAt: r.updatedAt,
@@ -1259,7 +1282,8 @@ export class PrismaRepository implements Repository {
   }
 
   async createAssignment(a: AssignmentRec) {
-    await this.db.assignment.create({ data: a });
+    const { lesson, title, ...rest } = a;
+    await this.db.assignment.create({ data: { ...rest, title: title ?? null, lessonPlanId: lesson?.planId ?? null, lessonUid: lesson?.uid ?? null } });
   }
   async getAssignment(id: Id) {
     const r = await this.db.assignment.findUnique({ where: { id } });
@@ -1396,7 +1420,11 @@ export class PrismaRepository implements Repository {
     return mapTeachingPlan(await this.db.teachingPlan.findUniqueOrThrow({ where: { id } }));
   }
   async deleteTeachingPlan(id: Id, expectedVersion: number) {
-    const res = await this.db.teachingPlan.deleteMany({ where: { id, version: expectedVersion } });
+    const res = await this.db.$transaction(async (tx) => {
+      const r = await tx.teachingPlan.deleteMany({ where: { id, version: expectedVersion } });
+      if (r.count > 0) await tx.lessonContent.deleteMany({ where: { planId: id } });
+      return r;
+    });
     if (res.count > 0) return 'ok' as const;
     return (await this.db.teachingPlan.findUnique({ where: { id } })) ? ('version_mismatch' as const) : ('not_found' as const);
   }
@@ -1404,6 +1432,46 @@ export class PrismaRepository implements Repository {
     const rows = await this.db.teachingPlan.findMany({ where: { ...idWhere(p), ownerId }, orderBy: { id: 'asc' }, take: p.limit + 1 });
     const res = page(rows, p.limit, (r) => r.id);
     return { items: res.items.map(mapTeachingPlan), nextCursor: res.nextCursor };
+  }
+
+  // --- v0.10.0: lesson contents ------------------------------------------------------
+  async getLessonContent(planId: Id, uid: string) {
+    const r = await this.db.lessonContent.findUnique({ where: { planId_uid: { planId, uid } } });
+    return r ? mapLessonContent(r) : null;
+  }
+  async listLessonContents(filter: { planIds: Id[]; uids?: string[] }) {
+    if (!filter.planIds.length) return [];
+    const rows = await this.db.lessonContent.findMany({ where: { planId: { in: filter.planIds }, ...(filter.uids ? { uid: { in: filter.uids } } : {}) }, orderBy: { id: 'asc' } });
+    return rows.map(mapLessonContent);
+  }
+  async saveLessonContent(key: { planId: Id; uid: string; ownerId: Id }, patch: { doc?: unknown; conducted?: Record<string, string> }, expectedVersion: number | null): Promise<LessonContentRec | 'version_mismatch'> {
+    const where = { planId_uid: { planId: key.planId, uid: key.uid } };
+    const data = { ...(patch.doc !== undefined ? { doc: json(patch.doc) } : {}), ...(patch.conducted ? { conducted: json(patch.conducted) } : {}) };
+    const cur = await this.db.lessonContent.findUnique({ where });
+    if (!cur) {
+      if (expectedVersion !== null && expectedVersion !== 0) return 'version_mismatch';
+      const now = new Date();
+      try {
+        return mapLessonContent(
+          await this.db.lessonContent.create({ data: { id: newId(), ...key, doc: json(patch.doc ?? {}), conducted: json(patch.conducted ?? {}), version: 1, createdAt: now, updatedAt: now } }),
+        );
+      } catch (e) {
+        // Another write created it first: stale for a checked write, retried as an update otherwise.
+        if (!isUnique(e) || expectedVersion !== null) {
+          if (isUnique(e)) return 'version_mismatch';
+          throw e;
+        }
+        return this.saveLessonContent(key, patch, null);
+      }
+    }
+    const version = expectedVersion ?? cur.version;
+    const res = await this.db.lessonContent.updateMany({ where: { planId: key.planId, uid: key.uid, version }, data: { ...data, version: { increment: 1 }, updatedAt: new Date() } });
+    if (res.count === 0) return expectedVersion === null ? this.saveLessonContent(key, patch, null) : 'version_mismatch';
+    return mapLessonContent(await this.db.lessonContent.findUniqueOrThrow({ where }));
+  }
+  async deleteLessonContents(planId: Id, uids: readonly string[]) {
+    if (!uids.length) return 0;
+    return (await this.db.lessonContent.deleteMany({ where: { planId, uid: { in: [...uids] } } })).count;
   }
 
   async createSnapshot(s: SnapshotRec) {

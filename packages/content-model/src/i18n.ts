@@ -4,7 +4,15 @@
 import { z } from 'zod';
 
 /** Contract version shared by @bilig/content-model and @bilig/permissions. */
-export const CONTRACT_VERSION = '0.9.4';
+export const CONTRACT_VERSION = '0.10.0';
+
+/** v0.10.0: `CONTRACT_VERSION >= v` by number, not by string ('0.10.0' sorts before '0.9.0' as text). */
+export const contractAtLeast = (v: string, current: string = CONTRACT_VERSION): boolean => {
+  const a = current.split('.').map(Number);
+  const b = v.split('.').map(Number);
+  for (let i = 0; i < 3; i++) if ((a[i] ?? 0) !== (b[i] ?? 0)) return (a[i] ?? 0) > (b[i] ?? 0);
+  return true;
+};
 
 /**
  * The ACTIVE content languages: every Localized value carries exactly these

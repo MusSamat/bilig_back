@@ -22,6 +22,9 @@ export const STAGE_TIMES: Record<KtpLessonType, readonly number[]> = {
   practice: [3, 7, 2, 5, 3, 20, 5],
   test: [3, 2, 2, 3, 30, 3, 2],
   analysis: [3, 3, 2, 10, 5, 17, 5],
+  // v0.10.0: СОР / СОЧ are summative tests — the timings of `test`.
+  sor: [3, 2, 2, 3, 30, 3, 2],
+  soch: [3, 2, 2, 3, 30, 3, 2],
 };
 for (const [k, v] of Object.entries(STAGE_TIMES)) {
   const sum = v.reduce((a, b) => a + b, 0);
@@ -66,8 +69,10 @@ export interface PlanContent {
   sources: string[];
   homework: string;
   draftNote: string;
-  /** Total of the stage minutes (always 45). */
+  /** Total of the stage minutes (always 45; v0.10.0: a lesson model's stages may differ). */
   totalMinutes: number;
+  /** v0.10.0: the lesson's ticked materials, printed after the plan («Тиркеме»). */
+  appendix?: { title: string; groups: { title: string; items: string[] }[] };
 }
 
 export interface PlanInput {
@@ -215,6 +220,8 @@ const KY: Texts = {
     practice: 'Билимдерди бышыктоо, көндүмдөрдү калыптандыруу',
     test: 'Билимдерди текшерүү',
     analysis: 'Текшерүү ишин талдоо, каталар менен иштөө',
+    sor: 'Бөлүм боюнча суммативдик баалоо (СОР)',
+    soch: 'Чейрек боюнча суммативдик баалоо (СОЧ)',
   },
   teacherBlank: '______________________',
   dateBlank: '_________________',
@@ -321,6 +328,8 @@ const RU: Texts = {
     practice: 'Урок закрепления знаний и формирования умений',
     test: 'Урок контроля знаний',
     analysis: 'Урок анализа контрольной работы, работа над ошибками',
+    sor: 'Суммативное оценивание за раздел (СОР)',
+    soch: 'Суммативное оценивание за четверть (СОЧ)',
   },
   teacherBlank: '______________________',
   dateBlank: '_________________',
@@ -426,6 +435,8 @@ const EN: Texts = {
     practice: 'Consolidation and skills practice',
     test: 'Assessment of knowledge',
     analysis: 'Review of the test, working on mistakes',
+    sor: 'Summative assessment of the unit',
+    soch: 'Summative assessment of the term',
   },
   teacherBlank: '______________________',
   dateBlank: '_________________',
@@ -603,7 +614,8 @@ function topicPieces(pkg: ContentPackage, textbooks: readonly Textbook[], lang: 
 export function buildPlanContent(input: PlanInput): PlanContent {
   const { row, cls, lang, plan } = input;
   const T = PLAN_TEXTS[lang];
-  const type = row.type;
+  // v0.10.0: a СОР / СОЧ is planned like a test lesson; only its type label differs.
+  const type = row.type === 'sor' || row.type === 'soch' ? 'test' : row.type;
   const grade = gradeOf(cls, plan.grade);
   const topicTitle = row.title.trim() || '—';
   const tp = input.topic ? topicPieces(input.topic.pkg, input.topic.textbooks, lang, grade) : null;
@@ -699,7 +711,7 @@ export function buildPlanContent(input: PlanInput): PlanContent {
     date: fmtDate(row.dates[cls]) || T.dateBlank,
     teacher: plan.teacherName.trim() || T.teacherBlank,
     subject: cap(subjectName),
-    lessonType: T.types[type],
+    lessonType: T.types[row.type],
     topic: topicTitle,
     methods: T.methods(type, subjectKey, !!tp),
     target: T.target(cls, grade),

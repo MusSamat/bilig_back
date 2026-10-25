@@ -385,7 +385,7 @@ describe('F7: dates', () => {
 });
 
 describe('F5/F6/F8: validate', () => {
-  const row = (index: number, d: string | null, extra: Partial<KtpRow> = {}): KtpRow => ({ index, number: index, title: 'T', hours: 1, type: 'new', dates: { a: d }, homework: '', note: '', topicKey: null, ...extra });
+  const row = (index: number, d: string | null, extra: Partial<KtpRow> = {}): KtpRow => ({ uid: `r_test${index}`, index, number: index, title: 'T', hours: 1, type: 'new', dates: { a: d }, homework: '', note: '', topicKey: null, ...extra });
   const codes = (rows: KtpRow[], meta = { classes: ['a'], year: 2026 as number | null, declaredHours: null as number | null }) => validate(rows, meta).map((i) => `${i.code}/${i.severity}:${i.row ?? ''}`);
 
   it('order: same day is info, earlier is error (only against the previous dated lesson)', () => {
@@ -568,7 +568,7 @@ describe('teaching plan document', () => {
 // ---------------------------------------------------------------------------
 
 const speedPkg = published.find((p) => p.topic.key === 'speed')!;
-const baseRow: KtpRow = { index: 1, number: 1, title: 'Ылдамдык', hours: 1, type: 'new', dates: { '8Б': '2026-09-15' }, homework: '', note: '', topicKey: 'speed' };
+const baseRow: KtpRow = { uid: 'r_base1', index: 1, number: 1, title: 'Ылдамдык', hours: 1, type: 'new', dates: { '8Б': '2026-09-15' }, homework: '', note: '', topicKey: 'speed' };
 const input = (over: Partial<PlanInput> = {}): PlanInput => ({
   plan: { subjectName: 'алгебра', subjectKey: 'math', grade: 8, teacherName: 'Асанов Б.' },
   row: { ...baseRow, title: 'Сандар системасы', topicKey: null },

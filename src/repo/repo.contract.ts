@@ -622,8 +622,12 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         const classId = newId();
         const a = { id: newId(), classId, topicKey: 't', activities: ['quiz'], dueAt: at(100), createdBy: newId(), createdAt: T0 };
         await repo.createAssignment(a);
-        expect(await repo.getAssignment(a.id)).toEqual(a);
-        expect((await repo.listAssignments({ classIds: [classId] }, { limit: 10 })).items).toEqual([a]);
+        // v0.10.0: title and lesson come back null when unset
+        expect(await repo.getAssignment(a.id)).toEqual({ ...a, title: null, lesson: null });
+        expect((await repo.listAssignments({ classIds: [classId] }, { limit: 10 })).items).toEqual([{ ...a, title: null, lesson: null }]);
+        const titled = { ...a, id: newId(), title: 'Кан', lesson: { planId: newId(), uid: 'r_abcd1' } };
+        await repo.createAssignment(titled);
+        expect(await repo.getAssignment(titled.id)).toEqual(titled);
         expect((await repo.listAssignments({ classIds: [newId()] }, { limit: 10 })).items).toEqual([]);
         const uid = newId();
         const att = { id: newId(), userId: uid, clientId: newId(), assignmentId: a.id, topicKey: 't', topicVersion: '1.0.0', topicVersionId: newId(), seed: 's', itemKeys: ['i1', 'i2'], startedAt: T0, finishedAt: null, score: null, source: 'online' as const };
@@ -711,6 +715,34 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         expect(await repo.deleteTeachingPlan(p.id, 2)).toBe('ok');
         expect(await repo.deleteTeachingPlan(p.id, 2)).toBe('not_found');
         expect(await repo.getTeachingPlan(other.id)).toEqual(other);
+      });
+
+      it('v0.10.0 lesson contents: upsert with a version check, list, delete by row and with the plan', async () => {
+        const owner = newId();
+        const plan = { id: newId(), ownerId: owner, title: 'КТП', doc: { rows: [] }, version: 1, createdAt: T0, updatedAt: T0 };
+        await repo.createTeachingPlan(plan);
+        const key = { planId: plan.id, uid: 'r_aaaa1', ownerId: owner };
+        expect(await repo.getLessonContent(plan.id, 'r_aaaa1')).toBeNull();
+        expect(await repo.saveLessonContent(key, { doc: { modelId: '5e' } }, 3)).toBe('version_mismatch');
+        const c1 = await repo.saveLessonContent(key, { doc: { modelId: '5e', stages: {} } }, 0);
+        expect(c1).toMatchObject({ planId: plan.id, uid: 'r_aaaa1', ownerId: owner, doc: { modelId: '5e', stages: {} }, conducted: {}, version: 1 });
+        expect(await repo.saveLessonContent(key, { doc: { modelId: 'pemA' } }, 0)).toBe('version_mismatch');
+        // conducted only: the doc stays
+        const c2 = await repo.saveLessonContent(key, { conducted: { '8Б': '2026-10-01T08:00:00.000Z' } }, null);
+        expect(c2).toMatchObject({ doc: { modelId: '5e' }, conducted: { '8Б': '2026-10-01T08:00:00.000Z' }, version: 2 });
+        const c3 = await repo.saveLessonContent(key, { doc: { modelId: '3c1e' } }, 2);
+        expect(c3).toMatchObject({ doc: { modelId: '3c1e' }, conducted: { '8Б': '2026-10-01T08:00:00.000Z' }, version: 3 });
+        expect(await repo.getLessonContent(plan.id, 'r_aaaa1')).toEqual(c3);
+        await repo.saveLessonContent({ ...key, uid: 'r_bbbb2' }, { doc: {} }, null);
+        const otherPlan = newId();
+        await repo.saveLessonContent({ planId: otherPlan, uid: 'r_aaaa1', ownerId: owner }, { doc: {} }, null);
+        expect((await repo.listLessonContents({ planIds: [plan.id] })).map((c) => c.uid).sort()).toEqual(['r_aaaa1', 'r_bbbb2']);
+        expect((await repo.listLessonContents({ planIds: [plan.id, otherPlan], uids: ['r_aaaa1'] }))).toHaveLength(2);
+        expect(await repo.listLessonContents({ planIds: [] })).toEqual([]);
+        expect(await repo.deleteLessonContents(plan.id, ['r_bbbb2', 'r_nope'])).toBe(1);
+        expect(await repo.deleteTeachingPlan(plan.id, 1)).toBe('ok');
+        expect(await repo.listLessonContents({ planIds: [plan.id] })).toEqual([]);
+        expect(await repo.listLessonContents({ planIds: [otherPlan] })).toHaveLength(1);
       });
 
       it('tutor threads and messages (limit keeps the latest)', async () => {
@@ -946,7 +978,8 @@ export function runRepositoryContract(name: string, make: () => Promise<Reposito
         expect(await repo.listUserIdsByRole('manager')).toEqual([u.id, v.id].sort());
         expect(await repo.listUserIdsByRole('teacher')).toEqual([v.id]);
         expect(await repo.updateUser(u.id, { teachingLang: 'uz', lastLoginAt: at(3) })).toMatchObject({ teachingLang: 'uz', lastLoginAt: at(3) });
-        expect(await repo.getUser(v.id)).toMatchObject({ teachingLang: null, lastLoginAt: null });
+        expect(await repo.getUser(v.id)).toMatchObject({ teachingLang: null, lastLoginAt: null, defaultLessonModel: null });
+        expect(await repo.updateUser(v.id, { defaultLessonModel: 'pemB' })).toMatchObject({ defaultLessonModel: 'pemB' });
 
         const s = await school();
         const c = await klass(s.id);

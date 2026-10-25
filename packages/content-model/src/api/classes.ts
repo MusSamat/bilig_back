@@ -69,6 +69,8 @@ export const StudentSchema = z.object({
   displayName: z.string().min(1).max(80),
   /** School confirmed a parental consent form is on file. */
   hasConsent: z.boolean(),
+  /** v0.10.0: last sign-in of the student (null = never signed in). */
+  lastSeenAt: DateTimeSchema.nullable().optional(),
 });
 export type Student = z.infer<typeof StudentSchema>;
 
@@ -95,6 +97,9 @@ export const AssignmentCreateRequestSchema = z.object({
   topicKey: KeySchema,
   activities: z.array(AssignmentActivitySchema).min(1),
   dueAt: DateTimeSchema.optional(),
+  /** v0.10.0: given from a lesson page — its title (default: the topic's) and the КТП lesson. */
+  title: z.string().trim().min(1).max(300).optional(),
+  lesson: z.object({ planId: IdSchema, uid: z.string().regex(/^[A-Za-z0-9_-]{4,40}$/) }).optional(),
 });
 export type AssignmentCreateRequest = z.infer<typeof AssignmentCreateRequestSchema>;
 
@@ -105,6 +110,17 @@ export const AssignmentSchema = AssignmentCreateRequestSchema.extend({
   createdAt: DateTimeSchema,
 });
 export type Assignment = z.infer<typeof AssignmentSchema>;
+
+/** v0.10.0: an assignment in the class list («Задания»): its title, who has done it and the average. */
+export const AssignmentSummarySchema = AssignmentSchema.extend({
+  /** The assignment's title, else the topic title in the request language. */
+  displayTitle: z.string(),
+  subjectKey: KeySchema.nullable(),
+  done: z.number().int().min(0),
+  totalStudents: z.number().int().min(0),
+  averageScore: z.number().min(0).max(1).nullable(),
+});
+export type AssignmentSummary = z.infer<typeof AssignmentSummarySchema>;
 
 // GET /assignments/:id/results — v0.3.0: `?cursor=&limit=` pages `students`
 // (ordered by name); without them every student is returned (as before).

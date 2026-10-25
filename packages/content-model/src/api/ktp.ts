@@ -7,12 +7,16 @@
 import { z } from 'zod';
 import { KeySchema } from '../common.js';
 import { LangSchema } from '../i18n.js';
+import { WeekdaysSchema } from './calendar.js';
 
 /** Calendar date `YYYY-MM-DD`. */
 export const IsoDateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Expected YYYY-MM-DD');
 
-/** Lesson type; sets the stage timings of the plan (always 45 minutes). */
-export const KTP_LESSON_TYPES = ['new', 'practice', 'test', 'analysis'] as const;
+/**
+ * Lesson type; sets the stage timings of the plan (always 45 minutes). v0.10.0: `sor` / `soch` — the
+ * summative assessments of a chapter (СОР) and of a quarter (СОЧ).
+ */
+export const KTP_LESSON_TYPES = ['new', 'practice', 'test', 'analysis', 'sor', 'soch'] as const;
 export const KtpLessonTypeSchema = z.enum(KTP_LESSON_TYPES);
 export type KtpLessonType = z.infer<typeof KtpLessonTypeSchema>;
 
@@ -31,6 +35,7 @@ export const KTP_ISSUE_CODES = [
   'date_out_of_year', // outside 1 Sep – 30 Jun of the plan's school year
   'hours_mismatch', // declared total ≠ sum of lesson hours
   'section_hours_mismatch', // «Сан (10 саат)» but the section has another number of lessons
+  'quarter_hours_short', // v0.10.0: a quarter has fewer lessons than the class's timetable gives it — params { quarter, planned, need }
 ] as const;
 export const KtpIssueCodeSchema = z.enum(KTP_ISSUE_CODES);
 export type KtpIssueCode = z.infer<typeof KtpIssueCodeSchema>;
@@ -53,7 +58,12 @@ export const KtpSectionSchema = z.object({
 });
 export type KtpSection = z.infer<typeof KtpSectionSchema>;
 
+/** v0.10.0: a row's stable id — it survives inserts, removals and re-numbering (lesson content hangs on it). */
+export const KtpRowUidSchema = z.string().regex(/^[A-Za-z0-9_-]{4,40}$/);
+
 export const KtpRowSchema = z.object({
+  /** v0.10.0 */
+  uid: KtpRowUidSchema,
   /** 1-based position in the whole plan (lesson numbers restart per table; this does not). */
   index: z.number().int().min(1),
   /** Number as printed in the КТП. */
@@ -93,6 +103,13 @@ export const TeachingPlanSchema = z.object({
   classLinks: z.record(KtpClassSchema, z.string().uuid().nullable()).optional(),
   declaredHours: z.number().int().min(0).nullable(),
   totalHours: z.number().int().min(0),
+  /**
+   * v0.10.0: each class's lesson days (set by POST /ktp/:id/schedule). With them the plan checks the hours
+   * of every quarter, and the cabinet shows «planned / needed» per quarter.
+   */
+  schedule: z.record(KtpClassSchema, WeekdaysSchema).optional(),
+  /** v0.10.0: where the topics came from — an uploaded file, a textbook, or Bilig's subject standard. */
+  origin: z.enum(['upload', 'textbook', 'standard']).optional(),
   rows: z.array(KtpRowSchema),
   issues: z.array(KtpIssueSchema),
   sourceName: z.string().max(200),
@@ -142,6 +159,8 @@ export type KtpUploadRequest = z.infer<typeof KtpUploadRequestSchema>;
 // PATCH /ktp/:id — fix what the parser got wrong, link topics. Issues are recomputed.
 export const KtpRowPatchSchema = z.object({
   index: z.number().int().min(1),
+  /** v0.10.0: when sent, must be the uid of the row at `index` (409 `version_conflict` otherwise). */
+  uid: KtpRowUidSchema.optional(),
   title: z.string().max(500).optional(),
   type: KtpLessonTypeSchema.optional(),
   hours: z.number().int().min(0).max(10).optional(),
@@ -150,6 +169,21 @@ export const KtpRowPatchSchema = z.object({
   topicKey: KeySchema.nullable().optional(),
 });
 export type KtpRowPatch = z.infer<typeof KtpRowPatchSchema>;
+
+/** v0.10.0: a new lesson for PATCH /ktp/:id `insert`. */
+export const KtpRowInsertSchema = z.object({
+  /** Insert after this row; null = at the start. */
+  afterUid: KtpRowUidSchema.nullable(),
+  title: z.string().trim().min(1).max(500),
+  type: KtpLessonTypeSchema.optional(),
+  hours: z.number().int().min(0).max(10).optional(),
+  homework: z.string().max(1000).optional(),
+  dates: z.record(KtpClassSchema, IsoDateSchema.nullable()).optional(),
+  topicKey: KeySchema.nullable().optional(),
+  /** Section of the new row; default: the section of the row before it. */
+  section: KtpSectionSchema.optional(),
+});
+export type KtpRowInsert = z.infer<typeof KtpRowInsertSchema>;
 
 export const KtpPatchRequestSchema = z.object({
   version: z.number().int().min(1),
@@ -162,6 +196,12 @@ export const KtpPatchRequestSchema = z.object({
   rows: z.array(KtpRowPatchSchema).max(400).optional(),
   /** v0.8.0 */
   classLinks: z.record(KtpClassSchema, z.string().uuid().nullable()).optional(),
+  /**
+   * v0.10.0: remove lessons, then insert new ones (applied after `rows`, in this order; rows are then
+   * re-indexed 1..n — `rows` patches use the indexes from before the request).
+   */
+  remove: z.array(KtpRowUidSchema).max(400).optional(),
+  insert: z.array(KtpRowInsertSchema).max(50).optional(),
 });
 export type KtpPatchRequest = z.infer<typeof KtpPatchRequestSchema>;
 

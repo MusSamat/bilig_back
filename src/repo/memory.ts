@@ -49,6 +49,7 @@ import type {
   PageRes,
   PresentationRec,
   TeachingPlanRec,
+  LessonContentRec,
   ProgressRec,
   PublishedRec,
   Repository,
@@ -162,6 +163,8 @@ export class MemoryRepository implements Repository {
   private idem = new Map<string, IdempotencyRec>();
   private presentations = new Map<Id, PresentationRec>();
   private teachingPlans = new Map<Id, TeachingPlanRec>();
+  /** v0.10.0: key `${planId}:${uid}`. */
+  private lessonContents = new Map<string, LessonContentRec>();
   private snapshots = new Map<Id, SnapshotRec>();
   private threads = new Map<Id, TutorThreadRec>();
   private messages: TutorMessageRec[] = [];
@@ -188,7 +191,7 @@ export class MemoryRepository implements Repository {
     if (u.email && [...this.users.values()].some((x) => x.email === u.email)) return 'conflict' as const;
     if (u.phone && [...this.users.values()].some((x) => x.phone === u.phone)) return 'conflict' as const;
     const now = new Date();
-    const rec: UserRec = { signup: null, phone: null, phoneVerifiedAt: null, teachingLang: null, lastLoginAt: null, ...u, createdAt: now, updatedAt: now, deletedAt: null };
+    const rec: UserRec = { signup: null, phone: null, phoneVerifiedAt: null, teachingLang: null, lastLoginAt: null, defaultLessonModel: null, ...u, createdAt: now, updatedAt: now, deletedAt: null };
     this.users.set(u.id, clone(rec));
     return clone(rec);
   }
@@ -741,7 +744,7 @@ export class MemoryRepository implements Repository {
   }
 
   async createAssignment(a: AssignmentRec) {
-    this.assignments.set(a.id, clone(a));
+    this.assignments.set(a.id, clone({ ...a, title: a.title ?? null, lesson: a.lesson ?? null }));
   }
   async getAssignment(id: Id) {
     const a = this.assignments.get(id);
@@ -872,12 +875,41 @@ export class MemoryRepository implements Repository {
     if (!p) return 'not_found' as const;
     if (p.version !== expectedVersion) return 'version_mismatch' as const;
     this.teachingPlans.delete(id);
+    for (const [k, c] of this.lessonContents) if (c.planId === id) this.lessonContents.delete(k);
     return 'ok' as const;
   }
   async listTeachingPlans(ownerId: Id, page: PageReq) {
     const rows = [...this.teachingPlans.values()].filter((p) => p.ownerId === ownerId).sort(byId);
     const res = pageArray(rows, page, (p) => p.id);
     return { items: res.items.map(clone), nextCursor: res.nextCursor };
+  }
+
+  // --- v0.10.0: lesson contents ------------------------------------------------------
+  async getLessonContent(planId: Id, uid: string) {
+    const c = this.lessonContents.get(`${planId}:${uid}`);
+    return c ? clone(c) : null;
+  }
+  async listLessonContents(filter: { planIds: Id[]; uids?: string[] }) {
+    return [...this.lessonContents.values()]
+      .filter((c) => filter.planIds.includes(c.planId) && (!filter.uids || filter.uids.includes(c.uid)))
+      .sort(byId)
+      .map(clone);
+  }
+  async saveLessonContent(key: { planId: Id; uid: string; ownerId: Id }, patch: { doc?: unknown; conducted?: Record<string, string> }, expectedVersion: number | null) {
+    const k = `${key.planId}:${key.uid}`;
+    const cur = this.lessonContents.get(k);
+    if (expectedVersion !== null && (cur?.version ?? 0) !== expectedVersion) return 'version_mismatch' as const;
+    const now = new Date();
+    const next: LessonContentRec = cur
+      ? { ...cur, ...(patch.doc !== undefined ? { doc: clone(patch.doc) } : {}), ...(patch.conducted ? { conducted: { ...patch.conducted } } : {}), version: cur.version + 1, updatedAt: now }
+      : { id: newId(), ...key, doc: clone(patch.doc ?? {}), conducted: { ...(patch.conducted ?? {}) }, version: 1, createdAt: now, updatedAt: now };
+    this.lessonContents.set(k, next);
+    return clone(next);
+  }
+  async deleteLessonContents(planId: Id, uids: readonly string[]) {
+    let n = 0;
+    for (const uid of uids) if (this.lessonContents.delete(`${planId}:${uid}`)) n++;
+    return n;
   }
 
   async createSnapshot(s: SnapshotRec) {

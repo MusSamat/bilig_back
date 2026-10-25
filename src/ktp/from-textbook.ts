@@ -18,6 +18,7 @@
  */
 import { t, type Lang, type Textbook, type TextbookLesson } from '@bilig/content-model';
 import type { KtpLessonType, KtpRow } from '@bilig/content-model/api';
+import { newRowUid } from './row-uid.js';
 
 export interface DraftOptions {
   lang: Lang;
@@ -258,6 +259,7 @@ export function draftKtpFromTextbook(tb: Pick<Textbook, 'chapters'> & { grade: n
     const title = it.kind === 'lesson' ? `${number ? `§ ${number}. ` : ''}${it.title}${it.part ? ` ${L.part(it.part.k)}` : ''}` : it.title;
     const topicKey = ls.flatMap((l) => l.topicKeys)[0] ?? null;
     return {
+      uid: newRowUid(),
       index: i + 1,
       number: i + 1,
       // The contract wants a titled section: a row of a chapter with no name at all has none.

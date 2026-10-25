@@ -33,6 +33,8 @@ import * as books from './books.js';
 import * as staff from './staff.js';
 import * as learning from './learning.js';
 import * as tutor from './tutor.js';
+import * as cabinet from './cabinet.js';
+import * as calendar from './calendar.js';
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
@@ -121,7 +123,8 @@ export const ENDPOINTS = {
   classJoinCode: e({ method: 'POST', path: '/classes/:id/join-code', auth: 'class.manage', body: EmptySchema, response: classes.JoinCodeResponseSchema }),
   classStudentsAdd: e({ method: 'POST', path: '/classes/:id/students', auth: 'class.manage', body: classes.StudentsAddRequestSchema, response: classes.StudentsAddResponseSchema }),
   studentResetPin: e({ method: 'POST', path: '/students/:id/reset-pin', auth: 'class.manage', body: EmptySchema, response: classes.ResetPinResponseSchema }),
-  assignmentList: e({ method: 'GET', path: '/classes/:id/assignments', auth: 'assignment.manage', query: PageQuerySchema, response: cursorPage(classes.AssignmentSchema) }),
+  // v0.10.0: items are AssignmentSummary (an Assignment plus title and progress)
+  assignmentList: e({ method: 'GET', path: '/classes/:id/assignments', auth: 'assignment.manage', query: PageQuerySchema, response: cursorPage(classes.AssignmentSummarySchema) }),
   assignmentCreate: e({ method: 'POST', path: '/classes/:id/assignments', auth: 'assignment.manage', body: classes.AssignmentCreateRequestSchema, response: classes.AssignmentSchema }),
   assignmentResults: e({ method: 'GET', path: '/assignments/:id/results', auth: 'assignment.manage', query: classes.AssignmentResultsQuerySchema, response: classes.AssignmentResultsSchema }),
 
@@ -161,6 +164,16 @@ export const ENDPOINTS = {
   ktpDelete: e({ method: 'DELETE', path: '/ktp/:id', auth: 'lesson.plan', response: OkSchema, ifMatch: true }),
   ktpLessonPlan: e({ method: 'GET', path: '/ktp/:id/lessons/:index/plan', auth: 'lesson.plan', query: ktp.KtpLessonPlanQuerySchema, response: BinaryResponseSchema, produces: ktp.DOCX_MEDIA_TYPE }),
   ktpLessonPlans: e({ method: 'GET', path: '/ktp/:id/plans', auth: 'lesson.plan', query: ktp.KtpLessonPlansQuerySchema, response: BinaryResponseSchema, produces: ktp.DOCX_MEDIA_TYPE }),
+  // v0.10.0: the teacher cabinet v3 — calendar, scheduling, lesson pages, the agenda
+  calendar: e({ method: 'GET', path: '/calendar', auth: 'session', query: calendar.CalendarQuerySchema, response: calendar.SchoolCalendarSchema }),
+  ktpSchedule: e({ method: 'POST', path: '/ktp/:id/schedule', auth: 'lesson.plan', body: cabinet.KtpScheduleRequestSchema, response: ktp.TeachingPlanSchema, ifMatch: true }),
+  ktpFromStandard: e({ method: 'POST', path: '/ktp/from-standard', auth: 'lesson.plan', body: cabinet.KtpFromStandardRequestSchema, response: ktp.TeachingPlanSchema }),
+  lessonGet: e({ method: 'GET', path: '/ktp/:id/lessons/:uid', auth: 'lesson.plan', response: cabinet.LessonContentSchema }),
+  lessonPut: e({ method: 'PUT', path: '/ktp/:id/lessons/:uid', auth: 'lesson.plan', body: cabinet.LessonContentPutSchema, response: cabinet.LessonContentSchema, ifMatchOptional: true }),
+  lessonConducted: e({ method: 'POST', path: '/ktp/:id/lessons/:uid/conducted', auth: 'lesson.plan', body: cabinet.LessonConductedRequestSchema, response: cabinet.LessonContentSchema }),
+  lessonAssist: e({ method: 'POST', path: '/ktp/:id/lessons/:uid/assist', auth: 'lesson.plan', body: cabinet.LessonAssistRequestSchema, response: cabinet.LessonAssistResponseSchema }),
+  lessonSlides: e({ method: 'GET', path: '/ktp/:id/lessons/:uid/slides', auth: 'lesson.plan', query: ktp.KtpLessonPlanQuerySchema, response: BinaryResponseSchema, produces: 'application/vnd.openxmlformats-officedocument.presentationml.presentation' }),
+  teacherAgenda: e({ method: 'GET', path: '/teacher/agenda', auth: 'lesson.plan', query: cabinet.AgendaQuerySchema, response: cabinet.AgendaResponseSchema }),
   // v0.8.0 — staff (SuperAdmin: staff.manage)
   staffList: e({ method: 'GET', path: '/admin/staff', auth: 'staff.manage', response: staff.StaffListSchema }),
   staffInvite: e({ method: 'POST', path: '/admin/staff/invites', auth: 'staff.manage', body: staff.StaffInviteRequestSchema, response: OkSchema }),

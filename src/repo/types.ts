@@ -20,6 +20,7 @@ import type {
   Item,
   ItemResponse,
   Lang,
+  LessonModelId,
   Manifest,
   Objective,
   Process,
@@ -74,6 +75,8 @@ export interface UserRec {
   teachingLang?: TeachingLang | null;
   /** v0.8.0: the last successful sign-in; repos return null when unset. */
   lastLoginAt?: Date | null;
+  /** v0.10.0: the lesson model a teacher's new lessons start with; repos return null when unset. */
+  defaultLessonModel?: LessonModelId | null;
 }
 
 export type TeachingLang = 'ky' | 'ru' | 'uz' | 'en';
@@ -474,6 +477,10 @@ export interface AssignmentRec {
   dueAt: Date | null;
   createdBy: Id;
   createdAt: Date;
+  /** v0.10.0: the teacher's title (null = the topic's); repos return null when unset. */
+  title?: string | null;
+  /** v0.10.0: the КТП lesson it was given from; repos return null when unset. */
+  lesson?: { planId: Id; uid: string } | null;
 }
 
 export interface AttemptRec {
@@ -530,6 +537,26 @@ export interface TeachingPlanRec {
   ownerId: Id;
   title: string;
   doc: unknown;
+  version: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+/**
+ * v0.10.0: the content of one КТП lesson (model stages, goals, materials) and where it was taught — a
+ * table of its own, so autosaving a lesson never bumps the plan version. Unique (planId, uid).
+ */
+export interface LessonContentRec {
+  id: Id;
+  planId: Id;
+  ownerId: Id;
+  /** `KtpRow.uid`. */
+  uid: string;
+  /** `LessonContentBody` (modelId, stages, goals, materials). */
+  doc: unknown;
+  /** КТП class → ISO time the lesson was marked as taught there. */
+  conducted: Record<string, string>;
+  /** Starts at 1 (0 = nothing stored). */
   version: number;
   createdAt: Date;
   updatedAt: Date;
@@ -856,7 +883,7 @@ export interface Repository {
   getUserByPhone(phone: string): Promise<UserRec | null>;
   updateUser(
     id: Id,
-    patch: Partial<Pick<UserRec, 'displayName' | 'locale' | 'status' | 'emailVerifiedAt' | 'deletedAt' | 'signup' | 'phone' | 'phoneVerifiedAt' | 'teachingLang' | 'lastLoginAt'>>,
+    patch: Partial<Pick<UserRec, 'displayName' | 'locale' | 'status' | 'emailVerifiedAt' | 'deletedAt' | 'signup' | 'phone' | 'phoneVerifiedAt' | 'teachingLang' | 'lastLoginAt' | 'defaultLessonModel'>>,
   ): Promise<UserRec | null>;
   listUsers(filter: UserFilter, page: PageReq): Promise<PageRes<UserRec>>;
   getUsers(ids: readonly Id[]): Promise<UserRec[]>;
@@ -1037,10 +1064,27 @@ export interface Repository {
   createTeachingPlan(p: TeachingPlanRec): Promise<void>;
   getTeachingPlan(id: Id): Promise<TeachingPlanRec | null>;
   updateTeachingPlan(id: Id, patch: Partial<Pick<TeachingPlanRec, 'title' | 'doc'>>, expectedVersion: number): Promise<WriteResult<TeachingPlanRec>>;
-  /** Delete when the version matches (optimistic lock, like updates). */
+  /** Delete when the version matches (optimistic lock, like updates); v0.10.0: its lesson contents go with it. */
   deleteTeachingPlan(id: Id, expectedVersion: number): Promise<'ok' | 'not_found' | 'version_mismatch'>;
   /** Owner's plans ordered by id. */
   listTeachingPlans(ownerId: Id, page: PageReq): Promise<PageRes<TeachingPlanRec>>;
+
+  // v0.10.0: lesson contents of a КТП
+  getLessonContent(planId: Id, uid: string): Promise<LessonContentRec | null>;
+  /** Every stored content of these plans (`uids` narrows to those rows). */
+  listLessonContents(filter: { planIds: Id[]; uids?: string[] }): Promise<LessonContentRec[]>;
+  /**
+   * Create or update the content of (planId, uid): `doc` and/or `conducted` replace the stored ones, the
+   * version goes up by one. `expectedVersion` (0 = nothing stored yet) → 'version_mismatch' when stale;
+   * null writes whatever is there (last write wins).
+   */
+  saveLessonContent(
+    key: { planId: Id; uid: string; ownerId: Id },
+    patch: { doc?: unknown; conducted?: Record<string, string> },
+    expectedVersion: number | null,
+  ): Promise<LessonContentRec | 'version_mismatch'>;
+  /** Delete the contents of these rows of a plan; returns how many. */
+  deleteLessonContents(planId: Id, uids: readonly string[]): Promise<number>;
 
   // tutor
   createThread(t: TutorThreadRec): Promise<void>;

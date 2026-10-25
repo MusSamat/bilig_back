@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { MANAGER_ASSIGNABLE, grantFor } from '@bilig/permissions';
-import { CONTRACT_VERSION } from './i18n.js';
+import { contractAtLeast } from './i18n.js';
 import { parseGradeSegment } from './curriculum.js';
 import { ClassCreateRequestSchema, ENDPOINTS, StaffInviteRequestSchema, SupportStartRequestSchema } from './api/index.js';
 
 describe('contract 0.8.0: roles, support, journal', () => {
-  it('version is 0.8.0 or later', () => expect(CONTRACT_VERSION >= '0.8.0').toBe(true));
+  it('version is 0.8.0 or later', () => expect(contractAtLeast('0.8.0')).toBe(true));
 
   it('grades 1–12 (g12 is a valid URL segment)', () => {
     expect(parseGradeSegment('g12')).toBe(12);

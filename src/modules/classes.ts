@@ -7,7 +7,7 @@
  * school admin manages every class of their school and a superadmin all.
  */
 import type { FastifyInstance } from 'fastify';
-import type { Assignment, AssignmentResults, SchoolClass, Student } from '@bilig/content-model/api';
+import type { Assignment, AssignmentResults, AssignmentSummary, SchoolClass, Student } from '@bilig/content-model/api';
 import { normalizeClassName } from '@bilig/content-model/api';
 import type { Permission } from '@bilig/permissions';
 import { newId } from '../ids.js';
@@ -18,12 +18,12 @@ import { joinCode, randomPin } from '../domain/crypto.js';
 import { parseStudentNames } from '../domain/csv.js';
 import { hashSecret } from '../domain/passwords.js';
 import { pageOf, sortedPage } from '../repo/paging.js';
-import { t } from '@bilig/content-model';
+import { t, type Lang } from '@bilig/content-model';
 import type { AssignmentRec, AttemptRec, ClassRec, Repository, UserRec } from '../repo/types.js';
 import type { AuthCtx } from '../http/auth-context.js';
 import { renderLoginCards } from '../export/login-cards.js';
 import type { TeachingPlanRec } from '../repo/types.js';
-import type { PlanDoc } from '../ktp/teaching-plan.js';
+import { planDocOf } from '../ktp/teaching-plan.js';
 import { extendTrialForClass, liveSubjectKeys } from '../services/teacher-signup.js';
 import { classSubjects } from '../repo/class-subjects.js';
 
@@ -104,7 +104,39 @@ export const toAssignmentDto = (a: AssignmentRec): Assignment => ({
   ...(a.dueAt ? { dueAt: iso(a.dueAt) } : {}),
   createdBy: a.createdBy,
   createdAt: iso(a.createdAt),
+  ...(a.title ? { title: a.title } : {}),
+  ...(a.lesson ? { lesson: { ...a.lesson } } : {}),
 });
+
+/**
+ * v0.10.0: assignments with their title and progress in the class: done / total students and the average
+ * score as in /results. One read of the class's students and their attempts for the whole page.
+ */
+export async function assignmentSummaries(deps: Pick<Deps, 'repo' | 'content'>, classId: string, list: readonly AssignmentRec[], lang: Lang): Promise<AssignmentSummary[]> {
+  const { repo, content } = deps;
+  if (!list.length) return [];
+  const enr = await repo.listEnrollments({ classId, role: 'student' });
+  const students = (await repo.getUsers(enr.map((e) => e.userId))).filter((u) => !u.deletedAt);
+  const attempts = students.length ? await repo.listAttempts({ userIds: students.map((u) => u.id) }) : [];
+  const topics = new Map<string, { title: string; subjectKey: string } | null>();
+  for (const key of new Set(list.map((a) => a.topicKey))) {
+    const pub = await content.getPublished(key);
+    topics.set(key, pub ? { title: t(pub.build.pkg.topic.title, lang), subjectKey: pub.build.pkg.subject.key } : null);
+  }
+  return list.map((a) => {
+    const mine = attempts.filter((x) => x.assignmentId === a.id);
+    const scores = students.map((u) => assignmentStatus(mine.filter((x) => x.userId === u.id))).filter((st) => st.status === 'done');
+    const topic = topics.get(a.topicKey) ?? null;
+    return {
+      ...toAssignmentDto(a),
+      displayTitle: a.title || topic?.title || a.topicKey,
+      subjectKey: topic?.subjectKey ?? null,
+      done: scores.length,
+      totalStudents: students.length,
+      averageScore: scores.length ? Math.min(1, Math.max(0, scores.reduce((n, st) => n + (st.score ?? 0), 0) / scores.length)) : null,
+    };
+  });
+}
 
 /** May the caller manage this class? Teachers only their own classes (see module doc). */
 export async function classAccess(repo: Repository, auth: AuthCtx, cls: ClassRec, permission: Permission, authorize: Guard['authorize']): Promise<void> {
@@ -195,7 +227,7 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
 
   async function toStudents(classId: string, users: UserRec[]): Promise<Student[]> {
     const consents = new Set((await repo.listConsents(users.map((u) => u.id))).map((c) => c.studentId));
-    return users.map((u) => ({ id: u.id, classId, displayName: u.displayName, hasConsent: consents.has(u.id) }));
+    return users.map((u) => ({ id: u.id, classId, displayName: u.displayName, hasConsent: consents.has(u.id), lastSeenAt: u.lastLoginAt ? iso(u.lastLoginAt) : null }));
   }
 
   // GET /classes
@@ -281,11 +313,11 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
     return {
       items: keys.map((subjectKey) => {
         const plan = plans.find((p) => {
-          const d = p.doc as PlanDoc;
+          const d = planDocOf(p);
           return d.subjectKey === subjectKey && Object.values(d.classLinks ?? {}).includes(cls.id);
         });
         if (!plan) return { subjectKey, ktp: { status: 'none' as const, planId: null, errors: 0, warnings: 0 }, nextLesson: null, progress: { done: 0, total: 0 } };
-        const d = plan.doc as PlanDoc;
+        const d = planDocOf(plan);
         const col = Object.entries(d.classLinks ?? {}).find(([, v]) => v === cls.id)![0];
         const dated = d.rows.map((r) => ({ r, date: r.dates[col] ?? null }));
         const upcoming = dated.filter((x) => x.date && x.date >= today).sort((a, b) => (a.date! < b.date! ? -1 : a.date! > b.date! ? 1 : a.r.index - b.r.index))[0];
@@ -351,7 +383,7 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
         await repo.setCredential(u.id, 'pin', await hashSecret(pin));
         await repo.addEnrollment({ classId: cls.id, userId: u.id, role: 'student' });
         await repo.addGrant({ userId: u.id, role: 'student', scope: 'class', scopeId: cls.id, subrole: null });
-        items.push({ student: { id: u.id, classId: cls.id, displayName: u.displayName, hasConsent: false }, pin });
+        items.push({ student: { id: u.id, classId: cls.id, displayName: u.displayName, hasConsent: false, lastSeenAt: null }, pin });
       }
       await audit.log(ctx.auth.user!.id, 'student.created', { type: 'class', id: cls.id }, { ip: ctx.ip, diff: { count: items.length } });
       return { items };
@@ -419,13 +451,20 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
   route(app, deps, 'assignmentList', async (ctx) => {
     const cls = await loadClass(ctx, ctx.params.id, 'assignment.manage');
     const res = await repo.listAssignments({ classIds: [cls.id] }, pageOf(ctx.query));
-    return { items: res.items.map(toAssignmentDto), nextCursor: res.nextCursor };
+    return { items: await assignmentSummaries(deps, cls.id, res.items, ctx.lang), nextCursor: res.nextCursor };
   });
 
   route(app, deps, 'assignmentCreate', async (ctx) => {
     const cls = await loadClass(ctx, ctx.params.id, 'assignment.manage');
     const pub = await deps.content.getPublished(ctx.body.topicKey);
     if (!pub) fail('not_found', { detail: 'topic' });
+    // v0.10.0: given from a lesson page — the КТП must be the teacher's and the lesson one of its rows.
+    const lesson = ctx.body.lesson;
+    if (lesson) {
+      const plan = await repo.getTeachingPlan(lesson.planId);
+      if (!plan || plan.ownerId !== ctx.auth.user!.id || !planDocOf(plan).rows.some((r) => r.uid === lesson.uid))
+        fail('validation_failed', { detail: 'lesson', issues: [{ path: ['lesson'], message: 'Not a lesson of your КТП' }] });
+    }
     const rec: AssignmentRec = {
       id: newId(),
       classId: cls.id,
@@ -434,6 +473,8 @@ export function registerClasses(app: FastifyInstance, deps: Deps) {
       dueAt: ctx.body.dueAt ? new Date(ctx.body.dueAt) : null,
       createdBy: ctx.auth.user!.id,
       createdAt: clock.now(),
+      title: ctx.body.title ?? null,
+      lesson: lesson ? { planId: lesson.planId, uid: lesson.uid } : null,
     };
     await repo.createAssignment(rec);
     return toAssignmentDto(rec);

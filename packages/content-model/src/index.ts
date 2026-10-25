@@ -20,3 +20,4 @@ export * from './scene-state.js';
 export * from './package.js';
 export * from './validate.js';
 export * from './assist.js';
+export * from './lesson-models.js';

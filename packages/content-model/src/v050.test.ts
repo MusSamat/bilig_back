@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CONTRACT_VERSION } from './i18n.js';
+import { contractAtLeast } from './i18n.js';
 import { animalCellPackage } from './fixtures/animal-cell.js';
 import { sceneForSample, type SceneSpec } from './topic.js';
 import { validatePackage } from './validate.js';
@@ -47,7 +47,7 @@ const book = (): Textbook => ({
 });
 
 describe('contract 0.5.0: textbooks', () => {
-  it('version is 0.5.0 or later', () => expect(CONTRACT_VERSION >= '0.5.0').toBe(true));
+  it('version is 0.5.0 or later', () => expect(contractAtLeast('0.5.0')).toBe(true));
   it('accepts an optional shortTitle', () => expect(TextbookSchema.safeParse({ ...book(), shortTitle: L('NS 8') }).success).toBe(true));
   it('validates a textbook; chapter and lesson keys are unique inside it', () => {
     expect(TextbookSchema.safeParse(book()).success).toBe(true);

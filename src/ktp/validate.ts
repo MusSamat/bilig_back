@@ -3,7 +3,7 @@
  * class and params; the client localizes the message. Runs on parse and again
  * after every PATCH (on the stored rows, never re-parsing the file).
  */
-import type { KtpIssue, KtpRow } from '@bilig/content-model/api';
+import { quarterHours, quarterOf, schoolCalendar, type KtpIssue, type KtpRow, type Weekdays } from '@bilig/content-model/api';
 import type { InvalidDates } from './parse.js';
 
 export interface ValidateMeta {
@@ -11,6 +11,8 @@ export interface ValidateMeta {
   /** School year start; enables `date_out_of_year`. */
   year: number | null;
   declaredHours: number | null;
+  /** v0.10.0: lesson days per class (TeachingPlan.schedule); with a year enables `quarter_hours_short`. */
+  schedule?: Record<string, Weekdays>;
 }
 
 type Row = Pick<KtpRow, 'index' | 'title' | 'hours' | 'dates' | 'section'>;
@@ -97,6 +99,23 @@ export function validate(rows: readonly Row[], meta: ValidateMeta, invalidDates:
   for (const s of sections.values())
     if (s.declared !== s.actual)
       add({ code: 'section_hours_mismatch', severity: 'warning', row: s.first, params: { section: s.title, declared: s.declared, actual: s.actual } });
+
+  // v0.10.0: hours planned in each quarter (rows dated in it) vs the hours the class's lesson days give it.
+  if (meta.year !== null && meta.schedule) {
+    const cal = schoolCalendar(meta.year);
+    for (const cls of meta.classes) {
+      const days = meta.schedule[cls];
+      if (!days) continue;
+      const need = quarterHours(cal, days);
+      const planned = [0, 0, 0, 0];
+      for (const r of rows) {
+        const q = quarterOf(cal, r.dates[cls] ?? null);
+        if (q) planned[q - 1] += r.hours;
+      }
+      for (let q = 0; q < 4; q++)
+        if (planned[q] < need[q]) issues.push({ code: 'quarter_hours_short', severity: 'warning', class: cls, params: { quarter: q + 1, planned: planned[q], need: need[q], class: cls } });
+    }
+  }
 
   for (const idx of [...perRow.keys()].sort((a, b) => a - b)) issues.push(...perRow.get(idx)!);
   return issues;

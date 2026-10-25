@@ -12,6 +12,7 @@ import type { Lang } from '@bilig/content-model';
 import type { KtpLessonType, KtpRow, KtpSection } from '@bilig/content-model/api';
 import type { DocxDocument, DocxTable, GridCell } from './docx-read.js';
 import { lessonType } from './lesson-type.js';
+import { newRowUid } from './row-uid.js';
 
 export type ParsedRow = Omit<KtpRow, 'topicKey' | 'match'>;
 /** Raw text of impossible dates by lesson index and class (kept so re-validation still reports them). */
@@ -510,6 +511,7 @@ export function parseKtp(doc: DocxDocument, opts: { now?: Date } = {}): ParsedKt
         }
         const typeFromCol: KtpLessonType | null = typeCell ? lessonType(typeCell) : null;
         const row: ParsedRow = {
+          uid: newRowUid(),
           index,
           number: nums[j],
           ...(section ? { section: { ...section } } : {}),

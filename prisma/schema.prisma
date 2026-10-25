@@ -17,25 +17,27 @@ datasource db {
 // ---------------------------------------------------------------------------
 
 model User {
-  id              String    @id @db.Uuid
-  kind            String // adult | student
-  email           String?   @unique
-  emailVerifiedAt DateTime? @db.Timestamptz(3)
-  displayName     String
-  locale          String
-  status          String // active | blocked | invited | pending
-  createdAt       DateTime  @db.Timestamptz(3)
-  updatedAt       DateTime  @db.Timestamptz(3)
-  deletedAt       DateTime? @db.Timestamptz(3)
+  id                 String    @id @db.Uuid
+  kind               String // adult | student
+  email              String?   @unique
+  emailVerifiedAt    DateTime? @db.Timestamptz(3)
+  displayName        String
+  locale             String
+  status             String // active | blocked | invited | pending
+  createdAt          DateTime  @db.Timestamptz(3)
+  updatedAt          DateTime  @db.Timestamptz(3)
+  deletedAt          DateTime? @db.Timestamptz(3)
   /// v0.6.0: pending self-registration details { teaching?, schoolName?, region? } until the e-mail is confirmed.
-  signup          Json?
+  signup             Json?
   /// v0.7.0: the teacher's WhatsApp number (E.164 `+996XXXXXXXXX`), verified with a one-time code.
-  phone           String?   @unique
-  phoneVerifiedAt DateTime? @db.Timestamptz(3)
+  phone              String?   @unique
+  phoneVerifiedAt    DateTime? @db.Timestamptz(3)
   /// v0.8.0: the language the teacher teaches in (ky | ru | uz | en).
-  teachingLang    String?
+  teachingLang       String?
   /// v0.8.0: the last successful sign-in (any audience).
-  lastLoginAt     DateTime? @db.Timestamptz(3)
+  lastLoginAt        DateTime? @db.Timestamptz(3)
+  /// v0.10.0: the lesson model a teacher's new lessons start with (5e | 3c1e | pemA | pemB).
+  defaultLessonModel String?
 
   credentials Credential[]
   sessions    Session[]
@@ -536,13 +538,17 @@ model Progress {
 }
 
 model Assignment {
-  id         String    @id @db.Uuid
-  classId    String    @db.Uuid
-  topicKey   String
-  activities String[]
-  dueAt      DateTime? @db.Timestamptz(3)
-  createdBy  String    @db.Uuid
-  createdAt  DateTime  @db.Timestamptz(3)
+  id           String    @id @db.Uuid
+  classId      String    @db.Uuid
+  topicKey     String
+  activities   String[]
+  dueAt        DateTime? @db.Timestamptz(3)
+  createdBy    String    @db.Uuid
+  createdAt    DateTime  @db.Timestamptz(3)
+  /// v0.10.0: the teacher's title (null = the topic's) and the КТП lesson it was given from.
+  title        String?
+  lessonPlanId String?   @db.Uuid
+  lessonUid    String?
 
   @@index([classId])
 }
@@ -638,6 +644,25 @@ model TeachingPlan {
   createdAt DateTime @db.Timestamptz(3)
   updatedAt DateTime @db.Timestamptz(3)
 
+  @@index([ownerId])
+}
+
+/// v0.10.0: the content of one КТП lesson (model stages, goals, materials) and where it was taught.
+/// Its own table: autosaving a lesson never bumps the plan version. Deleted with the plan / the row.
+model LessonContent {
+  id        String   @id @db.Uuid
+  planId    String   @db.Uuid
+  ownerId   String   @db.Uuid
+  /// KtpRow.uid
+  uid       String
+  doc       Json
+  /// КТП class → ISO time the lesson was marked as taught
+  conducted Json
+  version   Int
+  createdAt DateTime @db.Timestamptz(3)
+  updatedAt DateTime @db.Timestamptz(3)
+
+  @@unique([planId, uid])
   @@index([ownerId])
 }
 
@@ -763,21 +788,21 @@ model TutorAnswer {
 
 /// v0.4.0: pool of AI-generated examples / practice questions (POST /tutor/generate) and their review state.
 model GeneratedContent {
-  id         String    @id @db.Uuid
+  id         String          @id @db.Uuid
   kind       String
   topicKey   String
   conceptKey String?
   lang       String
   payload    Json
   signature  String
-  status     String    @default("new")
-  good       Int       @default(0)
-  bad        Int       @default(0)
-  reasons    Json      @default("{}")
-  served     Int       @default(0)
-  createdAt  DateTime  @db.Timestamptz(3)
-  reviewedAt DateTime? @db.Timestamptz(3)
-  reviewedBy String?   @db.Uuid
+  status     String          @default("new")
+  good       Int             @default(0)
+  bad        Int             @default(0)
+  reasons    Json            @default("{}")
+  served     Int             @default(0)
+  createdAt  DateTime        @db.Timestamptz(3)
+  reviewedAt DateTime?       @db.Timestamptz(3)
+  reviewedBy String?         @db.Uuid
   promotedTo String?
   seenBy     GeneratedSeen[]
 
